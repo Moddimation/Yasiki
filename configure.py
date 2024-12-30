@@ -284,7 +284,12 @@ config.libs = [
             Object(NonMatching, "Sotoike/AITurara.cpp"),
             Object(Matching, "Koga/CharacterEventObserver.cpp"),
             Object(NonMatching, "hvqm4dec/hvqm4dec.c"),
-            Object(NonMatching, "Unsorted/PlayerRank.cpp"),
+            Object(NonMatching, "Unsorted/assignPlayerRank.cpp"),
+            Object(NonMatching, "Unsorted/getPlayerRank.cpp"),
+            Object(NonMatching, "Unsorted/checkTimeRange.cpp"),
+            Object(NonMatching, "Unsorted/checkEventTimeBounds.cpp"),
+            Object(NonMatching, "Unsorted/setAndExecCurrentEvent.cpp"),
+            Object(NonMatching, "JSystem/J2DScreen.cpp"),
         ],
     },
     {
