@@ -1,0 +1,2 @@
+int gCurrentMinute;
+int gCurrentHour;
