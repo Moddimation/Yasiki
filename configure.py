@@ -30,6 +30,7 @@ from tools.project import (
 DEFAULT_VERSION = 0
 VERSIONS = [
     "GLME01",  # 0
+    "GLMJ01",  # 1
 ]
 
 parser = argparse.ArgumentParser()
@@ -313,11 +314,11 @@ config.warn_missing_config = True
 config.warn_missing_source = False
 config.libs = [
     {
-        "lib": "luigiMansion",
+        "lib": "game",
         "mw_version": config.linker_version,
         "cflags": cflags_game,
         "progress_category": "game",
-        "src_dir": "src",
+        "src_dir": "sources",
         "objects": [
             #Object(NonMatching, "Unsorted/MoveObj.cpp"),
             #Object(NonMatching, "Unsorted/Character.cpp"),
@@ -432,10 +433,10 @@ config.libs = [
 # Optional extra categories for progress tracking
 # Adjust as desired for your project
 config.progress_categories = [
-    ProgressCategory("game", "Game Code"),
-    ProgressCategory("jsys", "JSystem Code"),
-    ProgressCategory("sdk", "SDK Code"),
-    ProgressCategory("library", "Other Library Code"),
+    ProgressCategory("game", "Game"),
+    ProgressCategory("jsys", "JSystem"),
+    ProgressCategory("sdk", "SDK"),
+    ProgressCategory("library", "Other Libraries"),
 ]
 config.progress_each_module = args.verbose
 
