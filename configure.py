@@ -155,8 +155,9 @@ config.check_sha_path = Path("config") / config.version / "build.sha1"
 config.asflags = [
     "-mgekko",
     "--strip-local-absolute",
-    "-I include",
+    "-I include -I lib",
     f"-I build/{config.version}/include",
+    f"-I build/{config.version}/lib",
     f"--defsym version={version_num}",
 ]
 config.ldflags = [
@@ -197,8 +198,11 @@ cflags_base = [
     "-str reuse",
     "-multibyte",  # For Wii compilers, replace with `-enc SJIS`
     "-i include",
+    "-i lib",
     f"-i build/{config.version}/include",
-    f"-DVERSION={version_num}",
+    f"-i build/{config.version}/lib",
+    f"-DBUILD_VERSION={version_num}",
+    f"-DVERSION_{version_num}",
 ]
 
 # Debug flags
@@ -207,6 +211,33 @@ if args.debug:
     cflags_base.extend(["-sym on", "-DDEBUG=1"])
 else:
     cflags_base.append("-DNDEBUG=1")
+
+# JAudio library flags
+cflags_framework = [
+    *cflags_base,
+    
+]
+
+# jaudio library flags
+cflags_audio = [
+    *cflags_base,
+    "-proc 750",
+    "-align powerpc",
+    "-O4,s",
+    "-inline off",
+    "-common on",
+    "-func_align 32",
+    "-lang c++",
+    "-DNDEBUG=1",
+    "-w off",
+    "-use_lmw_stmw on",
+]
+
+# JSystem library flags
+cflags_framework = [
+    *cflags_base,
+    
+]
 
 # Metrowerks library flags
 cflags_runtime = [
@@ -221,7 +252,7 @@ cflags_runtime = [
 # Game flags
 cflags_game = [
     *cflags_base,
-    "-RTTI on"
+    "-RTTI on",
 ]
 
 # REL flags
@@ -241,6 +272,18 @@ def DolphinLib(lib_name: str, objects: List[Object]) -> Dict[str, Any]:
         "mw_version": "GC/1.2.5n",
         "cflags": cflags_base,
         "progress_category": "sdk",
+        "src_dir": "lib",
+        "objects": objects,
+    }
+
+# Helper function for Dolphin libraries
+def JSystemLib(lib_name: str, objects, progress_category="jsystem"):
+    return {
+        "lib": lib_name,
+        "mw_version": "GC/1.3.2",
+        "cflags": cflags_framework,
+        "progress_category": "sdk",
+        "src_dir": "lib",
         "objects": objects,
     }
 
@@ -270,26 +313,97 @@ config.warn_missing_config = True
 config.warn_missing_source = False
 config.libs = [
     {
-        "lib": "zmansion",
+        "lib": "luigiMansion",
         "mw_version": config.linker_version,
         "cflags": cflags_game,
         "progress_category": "game",
+        "src_dir": "src",
         "objects": [
-            Object(NonMatching, "Unsorted/MoveObj.cpp"),
-            Object(NonMatching, "Unsorted/Character.cpp"),
+            #Object(NonMatching, "Unsorted/MoveObj.cpp"),
+            #Object(NonMatching, "Unsorted/Character.cpp"),
             Object(Matching, "Sato/EnemyStrategy.cpp"),
             Object(NonMatching, "Unsorted/IncludeStrategy.cpp"),
             Object(NonMatching, "Sato/EnStrategy.cpp"),
             Object(NonMatching, "Sato/EnemyTypicalStrategy.cpp"),
-            Object(NonMatching, "Sotoike/AITurara.cpp"),
+            #Object(NonMatching, "Sotoike/AITurara.cpp"),
             Object(Matching, "Koga/CharacterEventObserver.cpp"),
-            Object(NonMatching, "hvqm4dec/hvqm4dec.c"),
             Object(NonMatching, "Unsorted/assignPlayerRank.cpp"),
             Object(NonMatching, "Unsorted/getPlayerRank.cpp"),
             Object(NonMatching, "Unsorted/checkTimeRange.cpp"),
-            Object(NonMatching, "Unsorted/checkEventTimeBounds.cpp"),
-            Object(NonMatching, "Unsorted/setAndExecCurrentEvent.cpp"),
-            Object(NonMatching, "JSystem/J2DScreen.cpp"),
+            #Object(NonMatching, "Unsorted/checkEventTimeBounds.cpp"),
+            #Object(NonMatching, "Unsorted/setAndExecCurrentEvent.cpp"),
+        ],
+    },
+    {
+        "lib": "JAudio",
+        "mw_version": config.linker_version,
+        "cflags": cflags_audio,
+        "progress_category": "jsys",
+        "src_dir": "lib",
+        "objects": [
+            #Object(NonMatching, "JSystem/JAI/JAIBasic.cpp"),
+        ]
+    },
+    {
+        "lib": "jaudio",
+        "mw_version": config.linker_version,
+        "cflags": cflags_audio,
+        "progress_category": "jsys",
+        "src_dir": "lib",
+        "objects": [
+            #Object(NonMatching, "JSystem/jaudio/aictrl.c"),
+            #Object(NonMatching, "JSystem/jaudio/aramcall.c"),
+            #Object(NonMatching, "JSystem/jaudio/audiomesg.c"),
+            #Object(NonMatching, "JSystem/jaudio/audiothread.c"),
+            #Object(NonMatching, "JSystem/jaudio/bankdrv.c"),
+            #Object(NonMatching, "JSystem/jaudio/bankread.c"),
+            #Object(NonMatching, "JSystem/jaudio/cmdqueue.c"),
+            #Object(NonMatching, "JSystem/jaudio/connect.c"),
+            #Object(NonMatching, "JSystem/jaudio/cpubuf.c"),
+            #Object(NonMatching, "JSystem/jaudio/driverinterface.c"),
+            #Object(NonMatching, "JSystem/jaudio/dsp_cardunlock.c"),
+            #Object(NonMatching, "JSystem/jaudio/dspboot.c"),
+            #Object(NonMatching, "JSystem/jaudio/dspbuf.c"),
+            #Object(NonMatching, "JSystem/jaudio/dspdriver.c"),
+            #Object(NonMatching, "JSystem/jaudio/dspinterface.c"),
+            #Object(NonMatching, "JSystem/jaudio/dspproc.c"),
+            #Object(NonMatching, "JSystem/jaudio/dummyprobe.c"),
+            #Object(NonMatching, "JSystem/jaudio/dummyrom.c"),
+            #Object(NonMatching, "JSystem/jaudio/dvdthread.c"),
+            #Object(NonMatching, "JSystem/jaudio/fat.c"),
+            #Object(NonMatching, "JSystem/jaudio/file_seq.c"),
+            #Object(NonMatching, "JSystem/jaudio/foilter3d.c"),
+            #Object(NonMatching, "JSystem/jaudio/fxinterface.c"),
+            #Object(NonMatching, "JSystem/jaudio/heapctrl.c"),
+            #Object(NonMatching, "JSystem/jaudio/hvqm_play.c"),
+            #Object(NonMatching, "JSystem/jaudio/interface.c"),
+            #Object(NonMatching, "JSystem/jaudio/ipldec.c"),
+            #Object(NonMatching, "JSystem/jaudio/ja_calc.c"),
+            #Object(NonMatching, "JSystem/jaudio/jammain_2.c"),
+            #Object(NonMatching, "JSystem/jaudio/jamosc.c"),
+            #Object(NonMatching, "JSystem/jaudio/memory.c"),
+            #Object(NonMatching, "JSystem/jaudio/noteon.c"),
+            #Object(NonMatching, "JSystem/jaudio/oneshot.c"),
+            #Object(NonMatching, "JSystem/jaudio/playercall.c"),
+            #Object(NonMatching, "JSystem/jaudio/random.c"),
+            #Object(NonMatching, "JSystem/jaudio/sample.c"),
+            #Object(NonMatching, "JSystem/jaudio/seqsetup.c"),
+            #Object(NonMatching, "JSystem/jaudio/stackchecker.c"),
+            #Object(NonMatching, "JSystem/jaudio/streamctrl.c"),
+            #Object(NonMatching, "JSystem/jaudio/syncstream.c"),
+            #Object(NonMatching, "JSystem/jaudio/verysimple.c"),
+            #Object(NonMatching, "JSystem/jaudio/virtload.c"),
+            #Object(NonMatching, "JSystem/jaudio/waveread.c"),
+        ],
+    },
+    {
+        "lib": "hvqm4dec",
+        "mw_version": config.linker_version,
+        "cflags": cflags_base,
+        "progress_category": "library",
+        "src_dir": "lib",
+        "objects": [
+            Object(NonMatching, "hvqm4dec/hvqm4dec.c"),
         ],
     },
     {
@@ -297,9 +411,20 @@ config.libs = [
         "mw_version": config.linker_version,
         "cflags": cflags_runtime,
         "progress_category": "sdk",  # str | List[str]
+        "src_dir": "lib",
         "objects": [
-            Object(NonMatching, "Runtime.PPCEABI.H/global_destructor_chain.c"),
-            Object(NonMatching, "Runtime.PPCEABI.H/__init_cpp_exceptions.cpp"),
+            #Object(NonMatching, "Runtime.PPCEABI.H/global_destructor_chain.c"),
+            #Object(NonMatching, "Runtime.PPCEABI.H/__init_cpp_exceptions.cpp"),
+        ],
+    },
+    {
+        "lib": "MSL_C.PPCEABI.bare.H",
+        "mw_version": config.linker_version,
+        "cflags": cflags_runtime,
+        "progress_category": "sdk",  # str | List[str]
+        "src_dir": "lib",
+        "objects": [
+            #Object(NonMatching, ""),
         ],
     },
 ]
@@ -308,7 +433,9 @@ config.libs = [
 # Adjust as desired for your project
 config.progress_categories = [
     ProgressCategory("game", "Game Code"),
+    ProgressCategory("jsys", "JSystem Code"),
     ProgressCategory("sdk", "SDK Code"),
+    ProgressCategory("library", "Other Library Code"),
 ]
 config.progress_each_module = args.verbose
 
