@@ -408,7 +408,7 @@ config.libs = [
         "lib": "hvqm4dec",
         "mw_version": config.linker_version,
         "cflags": cflags_base,
-        "progress_category": "library",
+        "progress_category": "jsys",
         "src_dir": "lib",
         "objects": [
             Object(NonMatching, "hvqm4dec/hvqm4dec.c"),
@@ -452,7 +452,6 @@ config.progress_categories = [
     ProgressCategory("game", "Game"),
     ProgressCategory("jsys", "JSystem"),
     ProgressCategory("sdk", "SDK"),
-    ProgressCategory("library", "Other Libraries"),
 ]
 config.progress_each_module = args.verbose
 
