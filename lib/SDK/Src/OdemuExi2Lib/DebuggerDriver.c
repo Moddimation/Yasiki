@@ -1,9 +1,16 @@
-#include <dolphin.h>
+#include <types.h>
 
 #define DB_NO_ERROR          0
 #define ODEMU_ADDR_PC2NNGC   0x10000
 #define ODEMU_OFFSET_NNGC2PC 0x405
 #define ODEMU_ADDR_NNGC2PC   0x1C000
+
+void (*MTRCallback)(Ptr);
+void (*DBGCallback)(Ptr);
+u32 SendMailData;
+u32 RecvDataLeng;
+Ptr pEXIInputFlag;
+s8 EXIInputFlag;
 
 void DBClose(void) { return; }
 
@@ -34,7 +41,12 @@ void DBInitComm(int* inputFlagPtr, int* mtrCallback) { }
 
 void DBGHandler(void) { }
 
-void MWCallback(void) { }
+void MWCallback(void)
+{
+	EXIInputFlag = 1;
+	if (MTRCallback != nullptr)
+		MTRCallback(NULL);
+}
 
 void DBGReadStatus(void) { }
 
