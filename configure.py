@@ -156,15 +156,18 @@ config.check_sha_path = Path("config") / config.version / "build.sha1"
 config.asflags = [
     "-mgekko",
     "--strip-local-absolute",
-    "-I include",
     "-I lib",
+    "-I include",
     "-I lib/SDK/Include",
     "-I lib/SDK/Include/stl",
+    "-I lib/PowerPC_EABI_Support/MetroTRK/Os/dolphin/Include",
+    "-I lib/PowerPC_EABI_Support/MetroTRK/Portable/Include",
+    "-I lib/PowerPC_EABI_Support/MetroTRK/Processor/ppc/Generic",
     "-I lib/PowerPC_EABI_Support/MSL/MSL_C/MSL_Common/Include",
     "-I lib/PowerPC_EABI_Support/MSL/MSL_C/MSL_Common_Embedded/Include",
+    "-I lib/PowerPC_EABI_Support/MSL/MSL_C/MSL_Common_Embedded/Math/Double_precision",
     "-I lib/PowerPC_EABI_Support/MSL/MSL_C/PPC_EABI/Include",
     "-I lib/PowerPC_EABI_Support/Runtime/Include",
-    "-I lib/PowerPC_EABI_Tools",
     f"-I build/{config.version}/include",
     f"--defsym version={version_num}",
 ]
@@ -204,15 +207,18 @@ cflags_base = [
     "-fp_contract on",
     "-str reuse",
     "-multibyte",  # For Wii compilers, replace with `-enc SJIS`
-    "-i include",
     "-i lib",
+    "-i include",
     "-i lib/SDK/Include",
     "-i lib/SDK/Include/stl",
+    "-i lib/PowerPC_EABI_Support/MetroTRK/Os/dolphin/Include",
+    "-i lib/PowerPC_EABI_Support/MetroTRK/Portable/Include",
+    "-i lib/PowerPC_EABI_Support/MetroTRK/Processor/ppc/Generic",
     "-i lib/PowerPC_EABI_Support/MSL/MSL_C/MSL_Common/Include",
     "-i lib/PowerPC_EABI_Support/MSL/MSL_C/MSL_Common_Embedded/Include",
+    "-i lib/PowerPC_EABI_Support/MSL/MSL_C/MSL_Common_Embedded/Math/Double_precision",
     "-i lib/PowerPC_EABI_Support/MSL/MSL_C/PPC_EABI/Include",
     "-i lib/PowerPC_EABI_Support/Runtime/Include",
-    "-i lib/PowerPC_EABI_Tools",
     f"-i build/{config.version}/include",
     f"-DBUILD_VERSION={version_num}",
     f"-DVERSION_{version_num}",
@@ -261,6 +267,14 @@ cflags_game = [
     "-RTTI on",
 ]
 
+#SDK flags
+cflags_sdk = [
+    *cflags_base,
+    "-inline auto, deferred",
+    "-lang c",
+    "-O3,p",
+]
+
 config.linker_version = "GC/1.3.2"
 
 
@@ -268,9 +282,13 @@ config.linker_version = "GC/1.3.2"
 pathJSys = "JSystem"
 pathSDK = "SDK/Src"
 pathDolphin = f"{pathSDK}/dolphin"
-pathMSL = "PowerPC_EABI_Support/MSL/MSL_C"
+pathMSL = "PowerPC_EABI_Support/MSL/MSL_C/MSL_Common/Src"
+pathMSL = "PowerPC_EABI_Support/MSL/MSL_C/MSL_Common_Embedded/Src"
+pathMSL = "PowerPC_EABI_Support/MSL/MSL_C/PPC_EABI/Src"
+pathMTK_Os = "PowerPC_EABI_Tools/MetroTRK/Os/dolphin/Src"
+pathMTK_Portable = "PowerPC_EABI_Tools/MetroTRK/Portable/Src"
+pathMTK_Processor = "PowerPC_EABI_Tools/MetroTRK/Processor/ppc/Generic/Src"
 pathRuntime = "PowerPC_EABI_Support/Runtime/Src"
-pathMTK = "PowerPC_EABI_Tools/MetroTRK"
 
 # Helper function for Dolphin libraries
 def DolphinLib(lib_name: str, objects: List[Object]) -> Dict[str, Any]:
@@ -411,9 +429,16 @@ config.libs = [
         "objects": [
             #Object(NonMatching, ""),
         ]},
-    DolphinLib("OdemuExi2", [
-            Object(NonMatching, f"{pathSDK}/OdemuExi2Lib/DebuggerDriver.c", cflags=[*cflags_base, "-inline auto,deferred"]),
-        ]),
+    {
+        "lib": "OdemuExi2",
+        "mw_version": config.linker_version,
+        "cflags": cflags_sdk,
+        "progress_category": "sdk",  # str | List[str]
+        "src_dir": "lib",
+        "mw_version": "GC/1.2.5",
+        "objects": [
+            Object(NonMatching, f"{pathSDK}/OdemuExi2Lib/DebuggerDriver.c"),
+        ]},
     DolphinLib("amcstubs", [
             Object(NonMatching, f"{pathDolphin}/amcstubs/AmcExi2Stubs.c"),
         ]),
