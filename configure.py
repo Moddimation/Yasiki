@@ -156,9 +156,13 @@ config.check_sha_path = Path("config") / config.version / "build.sha1"
 config.asflags = [
     "-mgekko",
     "--strip-local-absolute",
-    "-I include -I lib",
+    "-I include",
+    "-I lib",
+    "-I lib/SDK/include",
+    "-I lib/PowerPC_EABI_Support/MSL/MSL_C",
+    "-I lib/PowerPC_EABI_Support/Runtime/Include",
+    "-I lib/PowerPC_EABI_Tools",
     f"-I build/{config.version}/include",
-    f"-I build/{config.version}/lib",
     f"--defsym version={version_num}",
 ]
 config.ldflags = [
@@ -200,8 +204,11 @@ cflags_base = [
     "-multibyte",  # For Wii compilers, replace with `-enc SJIS`
     "-i include",
     "-i lib",
+    "-i lib/SDK/include",
+    "-i lib/PowerPC_EABI_Support/MSL/MSL_C",
+    "-i lib/PowerPC_EABI_Support/Runtime/Include",
+    "-i lib/PowerPC_EABI_Tools",
     f"-i build/{config.version}/include",
-    f"-i build/{config.version}/lib",
     f"-DBUILD_VERSION={version_num}",
     f"-DVERSION_{version_num}",
 ]
@@ -428,6 +435,15 @@ config.libs = [
             #Object(NonMatching, ""),
         ],
     },
+    DolphinLib("OdemuExi2", [
+            Object(NonMatching, "OdemuExi2/DebuggerDriver.c", cflags=[*cflags_base, "-inline auto,deferred"]),
+        ]),
+    DolphinLib("amcstubs", [
+            Object(NonMatching, "dolphin/amcstubs/AmcExi2Stubs.c"),
+        ]),
+    DolphinLib("odenotstub", [
+            Object(Matching, "dolphin/odenotstub/odenotstub.c"),
+        ]),
 ]
 
 # Optional extra categories for progress tracking
