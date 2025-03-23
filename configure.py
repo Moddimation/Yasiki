@@ -29,8 +29,8 @@ from tools.project import (
 # Game versions
 DEFAULT_VERSION = 0
 VERSIONS = [
-    "GLME01",  # 0
-    "GLMJ01",  # 1
+    "GLMJ01",  # 0
+    "GLME01",  # 1
 ]
 
 parser = argparse.ArgumentParser()
@@ -159,7 +159,10 @@ config.asflags = [
     "-I include",
     "-I lib",
     "-I lib/SDK/include",
-    "-I lib/PowerPC_EABI_Support/MSL/MSL_C",
+    "-I lib/SDK/include/stl",
+    "-I lib/PowerPC_EABI_Support/MSL/MSL_C/MSL_Common/Include",
+    "-I lib/PowerPC_EABI_Support/MSL/MSL_C/MSL_Common_Embedded/Include",
+    "-I lib/PowerPC_EABI_Support/MSL/MSL_C/PPC_EABI/Include",
     "-I lib/PowerPC_EABI_Support/Runtime/Include",
     "-I lib/PowerPC_EABI_Tools",
     f"-I build/{config.version}/include",
@@ -204,7 +207,10 @@ cflags_base = [
     "-i include",
     "-i lib",
     "-i lib/SDK/include",
-    "-i lib/PowerPC_EABI_Support/MSL/MSL_C",
+    "-i lib/SDK/include/stl",
+    "-i lib/PowerPC_EABI_Support/MSL/MSL_C/MSL_Common",
+    "-i lib/PowerPC_EABI_Support/MSL/MSL_C/MSL_Common_Embedded",
+    "-i lib/PowerPC_EABI_Support/MSL/MSL_C/PPC_EABI",
     "-i lib/PowerPC_EABI_Support/Runtime/Include",
     "-i lib/PowerPC_EABI_Tools",
     f"-i build/{config.version}/include",
@@ -406,7 +412,7 @@ config.libs = [
             #Object(NonMatching, ""),
         ]},
     DolphinLib("OdemuExi2", [
-            Object(NonMatching, f"{pathSDK}/OdemuExi2/DebuggerDriver.c", cflags=[*cflags_base, "-inline auto,deferred"]),
+            Object(NonMatching, f"{pathSDK}/OdemuExi2Lib/DebuggerDriver.c", cflags=[*cflags_base, "-inline auto,deferred"]),
         ]),
     DolphinLib("amcstubs", [
             Object(NonMatching, f"{pathDolphin}/amcstubs/AmcExi2Stubs.c"),
@@ -419,9 +425,9 @@ config.libs = [
 # Optional extra categories for progress tracking
 # Adjust as desired for your project
 config.progress_categories = [
-    ProgressCategory("game", "Game"),
-    ProgressCategory("jsys", "JSystem"),
-    ProgressCategory("sdk", "SDK"),
+    ProgressCategory("game", "Game Application"),
+    ProgressCategory("jsys", "JSystem MiddleWare"),
+    ProgressCategory("sdk", "Dolphin SDK"),
 ]
 config.progress_each_module = args.verbose
 
