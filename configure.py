@@ -170,10 +170,9 @@ config.ldflags = [
     "-nodefaults",
 ]
 if args.debug:
-    config.ldflags.append("-g")  # Or -gdwarf-2 for Wii linkers
+    config.ldflags.append("-g")
 if args.map:
     config.ldflags.append("-mapunused")
-    # config.ldflags.append("-listclosure") # For Wii linkers
 
 # Use for any additional files that should cause a re-configure when modified
 config.reconfig_deps = []
@@ -215,16 +214,9 @@ cflags_base = [
 
 # Debug flags
 if args.debug:
-    # Or -sym dwarf-2 for Wii compilers
     cflags_base.extend(["-sym on", "-DDEBUG=1"])
 else:
     cflags_base.append("-DNDEBUG=1")
-
-# JAudio library flags
-cflags_framework = [
-    *cflags_base,
-    
-]
 
 # jaudio library flags
 cflags_audio = [
@@ -242,7 +234,7 @@ cflags_audio = [
 ]
 
 # JSystem library flags
-cflags_framework = [
+cflags_jsys = [
     *cflags_base,
     
 ]
@@ -263,15 +255,16 @@ cflags_game = [
     "-RTTI on",
 ]
 
-# REL flags
-cflags_rel = [
-    *cflags_base,
-    "-sdata 0",
-    "-sdata2 0",
-]
-
 config.linker_version = "GC/1.3.2"
 
+
+# Path prefixes for libraries
+pathJSys = "JSystem"
+pathSDK = "SDK/src"
+pathDolphin = f"{pathSDK}/dolphin"
+pathMSL = "PowerPC_EABI_Support/MSL/MSL_C"
+pathRuntime = "PowerPC_EABI_Support/Runtime/Src"
+pathMTK = "PowerPC_EABI_Tools/MetroTRK"
 
 # Helper function for Dolphin libraries
 def DolphinLib(lib_name: str, objects: List[Object]) -> Dict[str, Any]:
@@ -284,25 +277,14 @@ def DolphinLib(lib_name: str, objects: List[Object]) -> Dict[str, Any]:
         "objects": objects,
     }
 
-# Helper function for Dolphin libraries
-def JSystemLib(lib_name: str, objects, progress_category="jsystem"):
+# Helper function for JSystem libraries
+def JSystemLib(lib_name: str, objects: List[Object]) -> Dict[str, Any]:
     return {
         "lib": lib_name,
         "mw_version": "GC/1.3.2",
-        "cflags": cflags_framework,
-        "progress_category": "sdk",
+        "cflags": cflags_jsys,
+        "progress_category": "jsys",
         "src_dir": "lib",
-        "objects": objects,
-    }
-
-
-# Helper function for REL script objects
-def Rel(lib_name: str, objects: List[Object]) -> Dict[str, Any]:
-    return {
-        "lib": lib_name,
-        "mw_version": "GC/1.3.2",
-        "cflags": cflags_rel,
-        "progress_category": "game",
         "objects": objects,
     }
 
@@ -340,18 +322,10 @@ config.libs = [
             Object(NonMatching, "Unsorted/checkTimeRange.cpp"),
             #Object(NonMatching, "Unsorted/checkEventTimeBounds.cpp"),
             #Object(NonMatching, "Unsorted/setAndExecCurrentEvent.cpp"),
-        ],
-    },
-    {
-        "lib": "JAudio",
-        "mw_version": config.linker_version,
-        "cflags": cflags_audio,
-        "progress_category": "jsys",
-        "src_dir": "lib",
-        "objects": [
-            #Object(NonMatching, "JSystem/JAI/JAIBasic.cpp"),
-        ]
-    },
+        ]},
+    JSystemLib("JAI", [
+            #Object(NonMatching, f"{pathJSys}/JAI/JAIBasic.cpp"),
+        ]),
     {
         "lib": "jaudio",
         "mw_version": config.linker_version,
@@ -359,51 +333,50 @@ config.libs = [
         "progress_category": "jsys",
         "src_dir": "lib",
         "objects": [
-            #Object(NonMatching, "JSystem/jaudio/aictrl.c"),
-            #Object(NonMatching, "JSystem/jaudio/aramcall.c"),
-            #Object(NonMatching, "JSystem/jaudio/audiomesg.c"),
-            #Object(NonMatching, "JSystem/jaudio/audiothread.c"),
-            #Object(NonMatching, "JSystem/jaudio/bankdrv.c"),
-            #Object(NonMatching, "JSystem/jaudio/bankread.c"),
-            #Object(NonMatching, "JSystem/jaudio/cmdqueue.c"),
-            #Object(NonMatching, "JSystem/jaudio/connect.c"),
-            #Object(NonMatching, "JSystem/jaudio/cpubuf.c"),
-            #Object(NonMatching, "JSystem/jaudio/driverinterface.c"),
-            #Object(NonMatching, "JSystem/jaudio/dsp_cardunlock.c"),
-            #Object(NonMatching, "JSystem/jaudio/dspboot.c"),
-            #Object(NonMatching, "JSystem/jaudio/dspbuf.c"),
-            #Object(NonMatching, "JSystem/jaudio/dspdriver.c"),
-            #Object(NonMatching, "JSystem/jaudio/dspinterface.c"),
-            #Object(NonMatching, "JSystem/jaudio/dspproc.c"),
-            #Object(NonMatching, "JSystem/jaudio/dummyprobe.c"),
-            #Object(NonMatching, "JSystem/jaudio/dummyrom.c"),
-            #Object(NonMatching, "JSystem/jaudio/dvdthread.c"),
-            #Object(NonMatching, "JSystem/jaudio/fat.c"),
-            #Object(NonMatching, "JSystem/jaudio/file_seq.c"),
-            #Object(NonMatching, "JSystem/jaudio/foilter3d.c"),
-            #Object(NonMatching, "JSystem/jaudio/fxinterface.c"),
-            #Object(NonMatching, "JSystem/jaudio/heapctrl.c"),
-            #Object(NonMatching, "JSystem/jaudio/hvqm_play.c"),
-            #Object(NonMatching, "JSystem/jaudio/interface.c"),
-            #Object(NonMatching, "JSystem/jaudio/ipldec.c"),
-            #Object(NonMatching, "JSystem/jaudio/ja_calc.c"),
-            #Object(NonMatching, "JSystem/jaudio/jammain_2.c"),
-            #Object(NonMatching, "JSystem/jaudio/jamosc.c"),
-            #Object(NonMatching, "JSystem/jaudio/memory.c"),
-            #Object(NonMatching, "JSystem/jaudio/noteon.c"),
-            #Object(NonMatching, "JSystem/jaudio/oneshot.c"),
-            #Object(NonMatching, "JSystem/jaudio/playercall.c"),
-            #Object(NonMatching, "JSystem/jaudio/random.c"),
-            #Object(NonMatching, "JSystem/jaudio/sample.c"),
-            #Object(NonMatching, "JSystem/jaudio/seqsetup.c"),
-            #Object(NonMatching, "JSystem/jaudio/stackchecker.c"),
-            #Object(NonMatching, "JSystem/jaudio/streamctrl.c"),
-            #Object(NonMatching, "JSystem/jaudio/syncstream.c"),
-            #Object(NonMatching, "JSystem/jaudio/verysimple.c"),
-            #Object(NonMatching, "JSystem/jaudio/virtload.c"),
-            #Object(NonMatching, "JSystem/jaudio/waveread.c"),
-        ],
-    },
+            #Object(NonMatching, f"{pathJSys}/jaudio/aictrl.c"),
+            #Object(NonMatching, f"{pathJSys}/jaudio/aramcall.c"),
+            #Object(NonMatching, f"{pathJSys}/jaudio/audiomesg.c"),
+            #Object(NonMatching, f"{pathJSys}/jaudio/audiothread.c"),
+            #Object(NonMatching, f"{pathJSys}/jaudio/bankdrv.c"),
+            #Object(NonMatching, f"{pathJSys}/jaudio/bankread.c"),
+            #Object(NonMatching, f"{pathJSys}/jaudio/cmdqueue.c"),
+            #Object(NonMatching, f"{pathJSys}/jaudio/connect.c"),
+            #Object(NonMatching, f"{pathJSys}/jaudio/cpubuf.c"),
+            #Object(NonMatching, f"{pathJSys}/jaudio/driverinterface.c"),
+            #Object(NonMatching, f"{pathJSys}/jaudio/dsp_cardunlock.c"),
+            #Object(NonMatching, f"{pathJSys}/jaudio/dspboot.c"),
+            #Object(NonMatching, f"{pathJSys}/jaudio/dspbuf.c"),
+            #Object(NonMatching, f"{pathJSys}/jaudio/dspdriver.c"),
+            #Object(NonMatching, f"{pathJSys}/jaudio/dspinterface.c"),
+            #Object(NonMatching, f"{pathJSys}/jaudio/dspproc.c"),
+            #Object(NonMatching, f"{pathJSys}/jaudio/dummyprobe.c"),
+            #Object(NonMatching, f"{pathJSys}/jaudio/dummyrom.c"),
+            #Object(NonMatching, f"{pathJSys}/jaudio/dvdthread.c"),
+            #Object(NonMatching, f"{pathJSys}/jaudio/fat.c"),
+            #Object(NonMatching, f"{pathJSys}/jaudio/file_seq.c"),
+            #Object(NonMatching, f"{pathJSys}/jaudio/foilter3d.c"),
+            #Object(NonMatching, f"{pathJSys}/jaudio/fxinterface.c"),
+            #Object(NonMatching, f"{pathJSys}/jaudio/heapctrl.c"),
+            #Object(NonMatching, f"{pathJSys}/jaudio/hvqm_play.c"),
+            #Object(NonMatching, f"{pathJSys}/jaudio/interface.c"),
+            #Object(NonMatching, f"{pathJSys}/jaudio/ipldec.c"),
+            #Object(NonMatching, f"{pathJSys}/jaudio/ja_calc.c"),
+            #Object(NonMatching, f"{pathJSys}/jaudio/jammain_2.c"),
+            #Object(NonMatching, f"{pathJSys}/jaudio/jamosc.c"),
+            #Object(NonMatching, f"{pathJSys}/jaudio/memory.c"),
+            #Object(NonMatching, f"{pathJSys}/jaudio/noteon.c"),
+            #Object(NonMatching, f"{pathJSys}/jaudio/oneshot.c"),
+            #Object(NonMatching, f"{pathJSys}/jaudio/playercall.c"),
+            #Object(NonMatching, f"{pathJSys}/jaudio/random.c"),
+            #Object(NonMatching, f"{pathJSys}/jaudio/sample.c"),
+            #Object(NonMatching, f"{pathJSys}/jaudio/seqsetup.c"),
+            #Object(NonMatching, f"{pathJSys}/jaudio/stackchecker.c"),
+            #Object(NonMatching, f"{pathJSys}/jaudio/streamctrl.c"),
+            #Object(NonMatching, f"{pathJSys}/jaudio/syncstream.c"),
+            #Object(NonMatching, f"{pathJSys}/jaudio/verysimple.c"),
+            #Object(NonMatching, f"{pathJSys}/jaudio/virtload.c"),
+            #Object(NonMatching, f"{pathJSys}/jaudio/waveread.c"),
+        ]},
     {
         "lib": "hvqm4dec",
         "mw_version": config.linker_version,
@@ -411,9 +384,8 @@ config.libs = [
         "progress_category": "jsys",
         "src_dir": "lib",
         "objects": [
-            Object(NonMatching, "hvqm4dec/hvqm4dec.c"),
-        ],
-    },
+            Object(NonMatching, "HVQM/hvqm4dec.c"),
+        ]},
     {
         "lib": "Runtime.PPCEABI.H",
         "mw_version": config.linker_version,
@@ -421,10 +393,9 @@ config.libs = [
         "progress_category": "sdk",  # str | List[str]
         "src_dir": "lib",
         "objects": [
-            #Object(NonMatching, "Runtime.PPCEABI.H/global_destructor_chain.c"),
-            #Object(NonMatching, "Runtime.PPCEABI.H/__init_cpp_exceptions.cpp"),
-        ],
-    },
+            #Object(NonMatching, f"{pathRuntime}/global_destructor_chain.c"),
+            #Object(NonMatching, f"{pathRuntime}/__init_cpp_exceptions.cpp"),
+        ]},
     {
         "lib": "MSL_C.PPCEABI.bare.H",
         "mw_version": config.linker_version,
@@ -433,16 +404,15 @@ config.libs = [
         "src_dir": "lib",
         "objects": [
             #Object(NonMatching, ""),
-        ],
-    },
+        ]},
     DolphinLib("OdemuExi2", [
-            Object(NonMatching, "OdemuExi2/DebuggerDriver.c", cflags=[*cflags_base, "-inline auto,deferred"]),
+            Object(NonMatching, f"{pathSDK}/OdemuExi2/DebuggerDriver.c", cflags=[*cflags_base, "-inline auto,deferred"]),
         ]),
     DolphinLib("amcstubs", [
-            Object(NonMatching, "dolphin/amcstubs/AmcExi2Stubs.c"),
+            Object(NonMatching, f"{pathDolphin}/amcstubs/AmcExi2Stubs.c"),
         ]),
     DolphinLib("odenotstub", [
-            Object(Matching, "dolphin/odenotstub/odenotstub.c"),
+            Object(Matching, f"{pathDolphin}/odenotstub/odenotstub.c"),
         ]),
 ]
 
