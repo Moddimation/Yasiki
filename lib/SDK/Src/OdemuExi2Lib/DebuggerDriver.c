@@ -5,33 +5,17 @@
 #define ODEMU_OFFSET_NNGC2PC 0x405
 #define ODEMU_ADDR_NNGC2PC   0x1C000
 
-void DBGEXIInit(void) { }
+void DBClose(void) { return; }
 
-void DBGEXISelect(void) { }
+void DBOpen(void) { return; }
 
-void DBGEXIDeselect(void) { }
+void DBWrite(void) { }
 
-void DBGEXISync(void) { }
-void DBGEXIImm(void) { }
+void DBRead(void) { }
 
-void DBGEXIClearInterrupts(void) { }
+void DBQueryData(void) { }
 
-void DBGCheckID(void) { }
-void DBGWriteMailbox(void) { }
-
-void DBGReadMailbox(void) { }
-
-void DBGRead(void) { }
-
-void DBGWrite(void) { }
-
-void DBGReadStatus(void) { }
-
-void MWCallback(void) { }
-
-void DBGHandler(void) { }
-
-void DBInitComm(int* inputFlagPtr, int* mtrCallback) { }
+void CheckMailBox(void) { }
 
 void DBInitInterrupts(void)
 { /*
@@ -46,14 +30,32 @@ void DBInitInterrupts(void)
  */
 }
 
-void CheckMailBox(void) { }
+void DBInitComm(int* inputFlagPtr, int* mtrCallback) { }
 
-void DBQueryData(void) { }
+void DBGHandler(void) { }
 
-void DBRead(void) { }
+void MWCallback(void) { }
 
-void DBWrite(void) { }
+void DBGReadStatus(void) { }
 
-void DBOpen(void) { return; }
+void DBGEXIImm(void) { }
 
-void DBClose(void) { return; }
+void DBGEXISync(void) { }
+
+void DBGEXIDeselect(void) { }
+
+void DBGEXISelect(void) { }
+
+void DBGEXIInit(void) { }
+
+void DBGEXIClearInterrupts(void) { }
+
+// void DBGCheckID(void) { }
+
+void DBGWrite(void) { }
+
+void DBGRead(void) { }
+
+void DBGReadMailbox(void) { }
+
+void DBGWriteMailbox(void) { }
