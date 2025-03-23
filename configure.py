@@ -158,8 +158,8 @@ config.asflags = [
     "--strip-local-absolute",
     "-I include",
     "-I lib",
-    "-I lib/SDK/include",
-    "-I lib/SDK/include/stl",
+    "-I lib/SDK/Include",
+    "-I lib/SDK/Include/stl",
     "-I lib/PowerPC_EABI_Support/MSL/MSL_C/MSL_Common/Include",
     "-I lib/PowerPC_EABI_Support/MSL/MSL_C/MSL_Common_Embedded/Include",
     "-I lib/PowerPC_EABI_Support/MSL/MSL_C/PPC_EABI/Include",
@@ -206,11 +206,11 @@ cflags_base = [
     "-multibyte",  # For Wii compilers, replace with `-enc SJIS`
     "-i include",
     "-i lib",
-    "-i lib/SDK/include",
-    "-i lib/SDK/include/stl",
-    "-i lib/PowerPC_EABI_Support/MSL/MSL_C/MSL_Common",
-    "-i lib/PowerPC_EABI_Support/MSL/MSL_C/MSL_Common_Embedded",
-    "-i lib/PowerPC_EABI_Support/MSL/MSL_C/PPC_EABI",
+    "-i lib/SDK/Include",
+    "-i lib/SDK/Include/stl",
+    "-i lib/PowerPC_EABI_Support/MSL/MSL_C/MSL_Common/Include",
+    "-i lib/PowerPC_EABI_Support/MSL/MSL_C/MSL_Common_Embedded/Include",
+    "-i lib/PowerPC_EABI_Support/MSL/MSL_C/PPC_EABI/Include",
     "-i lib/PowerPC_EABI_Support/Runtime/Include",
     "-i lib/PowerPC_EABI_Tools",
     f"-i build/{config.version}/include",
@@ -266,7 +266,7 @@ config.linker_version = "GC/1.3.2"
 
 # Path prefixes for libraries
 pathJSys = "JSystem"
-pathSDK = "SDK/src"
+pathSDK = "SDK/Src"
 pathDolphin = f"{pathSDK}/dolphin"
 pathMSL = "PowerPC_EABI_Support/MSL/MSL_C"
 pathRuntime = "PowerPC_EABI_Support/Runtime/Src"
