@@ -1,3 +1,4 @@
+#include <addresses.h>
 #include <types.h>
 
 #define DB_NO_ERROR          0
@@ -5,8 +6,8 @@
 #define ODEMU_OFFSET_NNGC2PC 0x405
 #define ODEMU_ADDR_NNGC2PC   0x1C000
 
-void (*MTRCallback)(Ptr);
-void (*DBGCallback)(Ptr);
+void (*MTRCallback)(u32);
+void (*DBGCallback)(u32);
 u32 SendMailData;
 u32 RecvDataLeng;
 Ptr pEXIInputFlag;
@@ -39,13 +40,18 @@ void DBInitInterrupts(void)
 
 void DBInitComm(int* inputFlagPtr, int* mtrCallback) { }
 
-void DBGHandler(void) { }
+void DBGHandler(s16 _0)
+{
+	ADDR_PI_INTSR = 0x1000;
+	if (DBGCallback != nullptr)
+		DBGCallback(_0);
+}
 
 void MWCallback(void)
 {
 	EXIInputFlag = 1;
 	if (MTRCallback != nullptr)
-		MTRCallback(NULL);
+		MTRCallback(0);
 }
 
 void DBGReadStatus(void) { }

@@ -206,7 +206,7 @@ cflags_base = [
     "-RTTI off",
     "-fp_contract on",
     "-str reuse",
-    "-multibyte",  # For Wii compilers, replace with `-enc SJIS`
+    "-multibyte",
     "-i lib",
     "-i include",
     "-i lib/SDK/Include",
@@ -230,17 +230,41 @@ if args.debug:
 else:
     cflags_base.append("-DNDEBUG=1")
 
-# jaudio library flags
-cflags_audio = [
-    *cflags_base,
+# JAudio flags
+cflags_jaudio = [
+    "-nodefaults",
     "-proc 750",
     "-align powerpc",
+    "-enum int",
+    "-fp hardware",
+    "-Cpp_exceptions off",
+    # "-W all",
     "-O4,s",
     "-inline off",
+    '-pragma "cats off"',
+    '-pragma "warn_notinlined off"',
+    "-maxerrors 1",
+    "-nosyspath",
+    "-RTTI off",
+    "-fp_contract on",
+    "-str reuse, readonly",
+    "-multibyte",
+    "-i lib",
+    "-i include",
+    "-i lib/SDK/Include",
+    "-i lib/SDK/Include/stl",
+    "-i lib/PowerPC_EABI_Support/MetroTRK/Os/dolphin/Include",
+    "-i lib/PowerPC_EABI_Support/MetroTRK/Portable/Include",
+    "-i lib/PowerPC_EABI_Support/MetroTRK/Processor/ppc/Generic",
+    "-i lib/PowerPC_EABI_Support/MSL/MSL_C/MSL_Common/Include",
+    "-i lib/PowerPC_EABI_Support/MSL/MSL_C/MSL_Common_Embedded/Include",
+    "-i lib/PowerPC_EABI_Support/MSL/MSL_C/MSL_Common_Embedded/Math/Double_precision",
+    "-i lib/PowerPC_EABI_Support/MSL/MSL_C/PPC_EABI/Include",
+    "-i lib/PowerPC_EABI_Support/Runtime/Include",
     "-common on",
     "-func_align 32",
     "-lang c++",
-    "-DNDEBUG=1",
+    "-DNDEBUG=1", 
     "-w off",
     "-use_lmw_stmw on",
 ]
@@ -268,11 +292,36 @@ cflags_game = [
 ]
 
 #SDK flags
-cflags_sdk = [
-    *cflags_base,
-    "-inline auto, deferred",
-    "-lang c",
-    "-O3,p",
+cflags_odemu = [
+    "-nodefaults",
+    "-proc 750",
+    "-align powerpc",
+    "-enum int",
+    "-fp hardware",
+    "-Cpp_exceptions off",
+    # "-W all",
+    "-O2",
+    "-inline off",
+    '-pragma "cats off"',
+    '-pragma "warn_notinlined off"',
+    "-maxerrors 1",
+    "-nosyspath",
+    "-RTTI off",
+    "-fp_contract on",
+    "-str reuse, readonly",
+    "-multibyte",
+    "-i lib",
+    "-i include",
+    "-i lib/SDK/Include",
+    "-i lib/SDK/Include/stl",
+    "-i lib/PowerPC_EABI_Support/MetroTRK/Os/dolphin/Include",
+    "-i lib/PowerPC_EABI_Support/MetroTRK/Portable/Include",
+    "-i lib/PowerPC_EABI_Support/MetroTRK/Processor/ppc/Generic",
+    "-i lib/PowerPC_EABI_Support/MSL/MSL_C/MSL_Common/Include",
+    "-i lib/PowerPC_EABI_Support/MSL/MSL_C/MSL_Common_Embedded/Include",
+    "-i lib/PowerPC_EABI_Support/MSL/MSL_C/MSL_Common_Embedded/Math/Double_precision",
+    "-i lib/PowerPC_EABI_Support/MSL/MSL_C/PPC_EABI/Include",
+    "-i lib/PowerPC_EABI_Support/Runtime/Include",
 ]
 
 config.linker_version = "GC/1.3.2"
@@ -353,7 +402,7 @@ config.libs = [
     {
         "lib": "jaudio",
         "mw_version": config.linker_version,
-        "cflags": cflags_audio,
+        "cflags": cflags_jaudio,
         "progress_category": "jsys",
         "src_dir": "lib",
         "objects": [
@@ -405,7 +454,7 @@ config.libs = [
         "lib": "hvqm4dec",
         "mw_version": config.linker_version,
         "cflags": cflags_base,
-        "progress_category": "jsys",
+        "progress_category": "lib",
         "src_dir": "lib",
         "objects": [
             Object(NonMatching, "HVQM/hvqm4dec.c"),
@@ -414,7 +463,7 @@ config.libs = [
         "lib": "Runtime.PPCEABI.H",
         "mw_version": config.linker_version,
         "cflags": cflags_runtime,
-        "progress_category": "sdk",  # str | List[str]
+        "progress_category": "sdk",
         "src_dir": "lib",
         "objects": [
             #Object(NonMatching, f"{pathRuntime}/global_destructor_chain.c"),
@@ -424,7 +473,7 @@ config.libs = [
         "lib": "MSL_C.PPCEABI.bare.H",
         "mw_version": config.linker_version,
         "cflags": cflags_runtime,
-        "progress_category": "sdk",  # str | List[str]
+        "progress_category": "sdk",
         "src_dir": "lib",
         "objects": [
             #Object(NonMatching, ""),
@@ -432,8 +481,8 @@ config.libs = [
     {
         "lib": "OdemuExi2",
         "mw_version": config.linker_version,
-        "cflags": cflags_sdk,
-        "progress_category": "sdk",  # str | List[str]
+        "cflags": cflags_odemu,
+        "progress_category": "lib",
         "src_dir": "lib",
         "mw_version": "GC/1.2.5",
         "objects": [
@@ -453,6 +502,7 @@ config.progress_categories = [
     ProgressCategory("game", "Game Application"),
     ProgressCategory("jsys", "JSystem MiddleWare"),
     ProgressCategory("sdk", "Dolphin SDK"),
+    ProgressCategory("lib", "Misc MiddleWare"),
 ]
 config.progress_each_module = args.verbose
 
