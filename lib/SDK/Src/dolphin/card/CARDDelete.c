@@ -1,7 +1,7 @@
 #include <dolphin.h>
 #include <dolphin/card.h>
 
-#include "__card.h"
+#include "CARDPrivate.h"
 
 // functions
 static void DeleteCallback(s32 chan, s32 result);

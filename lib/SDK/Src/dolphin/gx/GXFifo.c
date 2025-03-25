@@ -4,7 +4,7 @@
 #include <dolphin/os.h>
 #include <macros.h>
 
-#include "__gx.h"
+#include "GXPrivate.h"
 
 static OSThread *__GXCurrentThread;
 static GXBool CPGPLinked;

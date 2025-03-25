@@ -102,7 +102,7 @@ static void CompleteTransfer(long chan) {
         if (exi->state & 2) {
             if ((len = exi->immLen) != 0) {
                 buf = exi->immBuf;
-                data = __EXIRegs[(chan * 5) + 4];
+                data = __EXIReg[(chan * 5) + 4];
                 for(i = 0; i < len; i++) {
                     *buf++ = data >> ((3 - i) * 8);
                 }
@@ -139,11 +139,11 @@ int EXIImm(long chan, void * buf, long len, unsigned long type, EXICallback call
         for(i = 0; i < len; i++) {
             data |= ((u8*)buf)[i] << ((3 - i) * 8);
         }
-        __EXIRegs[(chan * 5) + 4] = data;
+        __EXIReg[(chan * 5) + 4] = data;
     }
     exi->immBuf = buf;
     exi->immLen = (type != 1) ? len : 0; 
-    __EXIRegs[(chan * 5) + 3] = (type << 2) | 1 | ((len - 1) << 4);
+    __EXIReg[(chan * 5) + 3] = (type << 2) | 1 | ((len - 1) << 4);
     OSRestoreInterrupts(enabled);
     return 1;
 }
@@ -188,9 +188,9 @@ int EXIDma(long chan, void * buf, long len, unsigned long type, EXICallback call
         __OSUnmaskInterrupts(0x200000U >> (chan * 3));
     }
     exi->state |= 1;
-    __EXIRegs[(chan * 5) + 1] = (u32)buf & 0x03FFFFE0;
-    __EXIRegs[(chan * 5) + 2] = len;
-    __EXIRegs[(chan * 5) + 3] = (type * 4) | 3;
+    __EXIReg[(chan * 5) + 1] = (u32)buf & 0x03FFFFE0;
+    __EXIReg[(chan * 5) + 2] = len;
+    __EXIReg[(chan * 5) + 3] = (type * 4) | 3;
     OSRestoreInterrupts(enabled);
     return 1;
 }
@@ -204,7 +204,7 @@ int EXISync(long chan) {
     rc = 0;
     ASSERTLINE(0x1D7, 0 <= chan && chan < MAX_CHAN);
     while ((exi->state & 4)) {
-        if (!(__EXIRegs[(chan * 5) + 3] & 1)) {
+        if (!(__EXIReg[(chan * 5) + 3] & 1)) {
             enabled = OSDisableInterrupts();
             if (exi->state & 4) {
                 CompleteTransfer(chan);
@@ -223,7 +223,7 @@ unsigned long EXIClearInterrupts(long chan, int exi, int tc, int ext) {
     unsigned long prev;
 
     ASSERTLINE(0x1FE, 0 <= chan && chan < MAX_CHAN);
-    cpr = prev = __EXIRegs[(chan * 5)];
+    cpr = prev = __EXIReg[(chan * 5)];
     prev &= 0x7F5;
     if (exi != 0) {
         prev |= 2;
@@ -234,7 +234,7 @@ unsigned long EXIClearInterrupts(long chan, int exi, int tc, int ext) {
     if (ext != 0) {
         prev |= 0x800;
     }
-    __EXIRegs[(chan * 5)] = prev;
+    __EXIReg[(chan * 5)] = prev;
     return cpr;
 }
 
@@ -277,7 +277,7 @@ int EXIProbe(long chan) {
     }
     rc = 1;
     enabled = OSDisableInterrupts();
-    cpr = __EXIRegs[(chan * 5)];
+    cpr = __EXIReg[(chan * 5)];
     if (!(exi->state & 8)) {
         if (cpr & 0x800) {
             EXIClearInterrupts(chan, 0, 0, 1);
@@ -376,10 +376,10 @@ int EXISelect(long chan, unsigned long dev, unsigned long freq) {
         return 0;
     }
     exi->state |= 4;
-    cpr = __EXIRegs[(chan * 5)];
+    cpr = __EXIReg[(chan * 5)];
     cpr &= 0x405;
     cpr |= (((1 << dev) << 7) | (freq * 0x10));
-    __EXIRegs[(chan * 5)] = cpr;
+    __EXIReg[(chan * 5)] = cpr;
     if (exi->state & 8) {
         switch (chan) {
             case 0:
@@ -407,8 +407,8 @@ int EXIDeselect(long chan) {
         return 0;
     }
     exi->state &= ~4;
-    cpr = __EXIRegs[(chan * 5)];
-    __EXIRegs[(chan * 5)] = cpr & 0x405;
+    cpr = __EXIReg[(chan * 5)];
+    __EXIReg[(chan * 5)] = cpr & 0x405;
     if (exi->state & 8) {
         switch (chan) {
             case 0:
@@ -473,7 +473,7 @@ static void EXTIntrruptHandler(signed short interrupt, struct OSContext * contex
 
     ASSERTLINE(0x3A2, 0 <= chan && chan < 2);
     __OSMaskInterrupts(0x700000U >> (chan * 3));
-    __EXIRegs[(chan * 5)] = 0;
+    __EXIReg[(chan * 5)] = 0;
     exi = &Ecb[chan];
     callback = exi->extCallback;
     exi->state &= 0xFFFFFFF7;
@@ -485,10 +485,10 @@ static void EXTIntrruptHandler(signed short interrupt, struct OSContext * contex
 
 void EXIInit() {
     __OSMaskInterrupts(0x7F8000U);
-    __EXIRegs[0] = 0;
-    __EXIRegs[5] = 0;
-    __EXIRegs[10] = 0;
-    __EXIRegs[0] = 0x2000;
+    __EXIReg[0] = 0;
+    __EXIReg[5] = 0;
+    __EXIReg[10] = 0;
+    __EXIReg[0] = 0x2000;
     __OSSetInterruptHandler(9,  EXIIntrruptHandler);
     __OSSetInterruptHandler(10, TCIntrruptHandler);
     __OSSetInterruptHandler(11, EXTIntrruptHandler);

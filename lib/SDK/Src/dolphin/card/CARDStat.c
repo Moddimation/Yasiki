@@ -2,7 +2,7 @@
 #include <dolphin/os.h>
 #include <dolphin/card.h>
 
-#include "__card.h"
+#include "CARDPrivate.h"
 
 // functions
 static void UpdateIconOffsets(CARDDir *ent, CARDStat *stat);

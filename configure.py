@@ -197,7 +197,6 @@ cflags_base = [
     "-fp hardware",
     "-Cpp_exceptions off",
     # "-W all",
-    "-O4,p",
     "-inline auto",
     '-pragma "cats off"',
     '-pragma "warn_notinlined off"',
@@ -232,55 +231,32 @@ else:
 
 # JAudio flags
 cflags_jaudio = [
-    "-nodefaults",
+    *cflags_base,
     "-proc 750",
-    "-align powerpc",
-    "-enum int",
-    "-fp hardware",
-    "-Cpp_exceptions off",
-    # "-W all",
     "-O4,s",
     "-inline off",
-    '-pragma "cats off"',
-    '-pragma "warn_notinlined off"',
-    "-maxerrors 1",
-    "-nosyspath",
-    "-RTTI off",
-    "-fp_contract on",
-    "-str reuse, readonly",
-    "-multibyte",
-    "-i lib",
-    "-i include",
-    "-i lib/SDK/Include",
-    "-i lib/SDK/Include/stl",
-    "-i lib/PowerPC_EABI_Support/MetroTRK/Os/dolphin/Include",
-    "-i lib/PowerPC_EABI_Support/MetroTRK/Portable/Include",
-    "-i lib/PowerPC_EABI_Support/MetroTRK/Processor/ppc/Generic",
-    "-i lib/PowerPC_EABI_Support/MSL/MSL_C/MSL_Common/Include",
-    "-i lib/PowerPC_EABI_Support/MSL/MSL_C/MSL_Common_Embedded/Include",
-    "-i lib/PowerPC_EABI_Support/MSL/MSL_C/MSL_Common_Embedded/Math/Double_precision",
-    "-i lib/PowerPC_EABI_Support/MSL/MSL_C/PPC_EABI/Include",
-    "-i lib/PowerPC_EABI_Support/Runtime/Include",
     "-common on",
     "-func_align 32",
     "-lang c++",
     "-DNDEBUG=1", 
     "-w off",
     "-use_lmw_stmw on",
+    "-str reuse, readonly",
 ]
 
 # JSystem library flags
 cflags_jsys = [
     *cflags_base,
+    "-O4,p",
     
 ]
 
 # Metrowerks library flags
 cflags_runtime = [
     *cflags_base,
+    "-O4,p",
     "-use_lmw_stmw on",
     "-str reuse,pool,readonly",
-    "-gccinc",
     "-common off",
     "-inline auto",
 ]
@@ -288,40 +264,22 @@ cflags_runtime = [
 # Game flags
 cflags_game = [
     *cflags_base,
+    "-O4,p",
     "-RTTI on",
 ]
 
-#SDK flags
+# Odemu flags
 cflags_odemu = [
-    "-nodefaults",
+    *cflags_base,
     "-proc 750",
-    "-align powerpc",
-    "-enum int",
-    "-fp hardware",
-    "-Cpp_exceptions off",
-    # "-W all",
-    "-O2",
+    "-O3,p",
     "-inline off",
-    '-pragma "cats off"',
-    '-pragma "warn_notinlined off"',
-    "-maxerrors 1",
-    "-nosyspath",
-    "-RTTI off",
-    "-fp_contract on",
-    "-str reuse, readonly",
-    "-multibyte",
-    "-i lib",
-    "-i include",
-    "-i lib/SDK/Include",
-    "-i lib/SDK/Include/stl",
-    "-i lib/PowerPC_EABI_Support/MetroTRK/Os/dolphin/Include",
-    "-i lib/PowerPC_EABI_Support/MetroTRK/Portable/Include",
-    "-i lib/PowerPC_EABI_Support/MetroTRK/Processor/ppc/Generic",
-    "-i lib/PowerPC_EABI_Support/MSL/MSL_C/MSL_Common/Include",
-    "-i lib/PowerPC_EABI_Support/MSL/MSL_C/MSL_Common_Embedded/Include",
-    "-i lib/PowerPC_EABI_Support/MSL/MSL_C/MSL_Common_Embedded/Math/Double_precision",
-    "-i lib/PowerPC_EABI_Support/MSL/MSL_C/PPC_EABI/Include",
-    "-i lib/PowerPC_EABI_Support/Runtime/Include",
+]
+
+# SDK flags
+cflags_sdk = [
+    *cflags_base,
+    "-O4,p",
 ]
 
 config.linker_version = "GC/1.3.2"
@@ -344,7 +302,7 @@ def DolphinLib(lib_name: str, objects: List[Object]) -> Dict[str, Any]:
     return {
         "lib": lib_name,
         "mw_version": "GC/1.2.5n",
-        "cflags": cflags_base,
+        "cflags": cflags_sdk,
         "progress_category": "sdk",
         "src_dir": "lib",
         "objects": objects,
@@ -453,7 +411,7 @@ config.libs = [
     {
         "lib": "hvqm4dec",
         "mw_version": config.linker_version,
-        "cflags": cflags_base,
+        "cflags": cflags_sdk,
         "progress_category": "lib",
         "src_dir": "lib",
         "objects": [

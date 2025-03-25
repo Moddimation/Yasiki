@@ -4,7 +4,7 @@
 #include <dolphin/mix.h>
 #include "fake_tgmath.h"
 
-#include "__syn.h"
+#include "SYNPrivate.h"
 
 // .data
 long __SYNVolumeAttenuation[128] = {

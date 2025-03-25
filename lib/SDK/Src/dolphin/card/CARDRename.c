@@ -2,7 +2,7 @@
 #include <dolphin/os.h>
 #include <dolphin/card.h>
 
-#include "__card.h"
+#include "CARDPrivate.h"
 
 s32 CARDRenameAsync(s32 chan, const char *old, const char *new, CARDCallback callback) {
     CARDControl* card;

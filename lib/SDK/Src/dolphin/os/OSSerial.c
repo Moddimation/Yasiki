@@ -29,19 +29,19 @@ static unsigned long CompleteTransfer() {
     unsigned char * input;
     unsigned long temp;
 
-    sr = __SIRegs[SI_STATUS_IDX];
-    __SIRegs[SI_COMCSR_IDX] = SI_COMCSR_TCINT_MASK;
+    sr = __SIReg[SI_STATUS_IDX];
+    __SIReg[SI_COMCSR_IDX] = SI_COMCSR_TCINT_MASK;
 
     if (Si.chan != -1) {
         input = Si.input;
         rLen = (Si.inputBytes / 4);
         for(i = 0; i < rLen; i++) {
-            *((u32*)input)++ = __SIRegs[i+0x20];
+            *((u32*)input)++ = __SIReg[i+0x20];
         }
         
         rLen = Si.inputBytes & 3;
         if (rLen != 0) {
-            temp = __SIRegs[i + 32];
+            temp = __SIReg[i + 32];
             for(i = 0; i < rLen; i++) {
                 *(input++) = temp >> ((3 - i) * 8);
             }
@@ -94,9 +94,9 @@ static void SIIntrruptHandler(short unused, struct OSContext * context) {
 
 void SIInit() {
     Packet[0].chan = Packet[1].chan = Packet[2].chan = Packet[3].chan = -1;
-    __SIRegs[0x30/4] = 0;
-    do {} while(__SIRegs[SI_COMCSR_IDX] & SI_COMCSR_TSTART_MASK);
-    __SIRegs[SI_COMCSR_IDX] = SI_COMCSR_TCINT_MASK;
+    __SIReg[0x30/4] = 0;
+    do {} while(__SIReg[SI_COMCSR_IDX] & SI_COMCSR_TSTART_MASK);
+    __SIReg[SI_COMCSR_IDX] = SI_COMCSR_TCINT_MASK;
     __OSSetInterruptHandler(0x14, SIIntrruptHandler);
     __OSUnmaskInterrupts(0x800);
 }
@@ -133,10 +133,10 @@ static int __SITransfer(long chan, void * output, unsigned long outputBytes, voi
         OSRestoreInterrupts(enabled);
         return 0;
     }
-    ASSERTLINE(0x138, (__SIRegs[SI_COMCSR_IDX] & (SI_COMCSR_TSTART_MASK | SI_COMCSR_TCINT_MASK)) == 0);
-    sr = __SIRegs[SI_STATUS_IDX];
+    ASSERTLINE(0x138, (__SIReg[SI_COMCSR_IDX] & (SI_COMCSR_TSTART_MASK | SI_COMCSR_TCINT_MASK)) == 0);
+    sr = __SIReg[SI_STATUS_IDX];
     sr &= (0x0F000000 >> (chan * 8));
-    __SIRegs[SI_STATUS_IDX] = sr;
+    __SIReg[SI_STATUS_IDX] = sr;
     
     Si.chan = chan;
     Si.callback = callback;
@@ -145,7 +145,7 @@ static int __SITransfer(long chan, void * output, unsigned long outputBytes, voi
 
     rLen = ROUND(outputBytes, 4) / 4;
     for (i = 0; i < rLen; i++) {
-        __SIRegs[i+0x20] = ((u32*)output)[i];
+        __SIReg[i+0x20] = ((u32*)output)[i];
     }
     
     comcsr.val = 0;
@@ -156,7 +156,7 @@ static int __SITransfer(long chan, void * output, unsigned long outputBytes, voi
     comcsr.f.channel = chan;
     comcsr.f.tstart = 1;
 
-    __SIRegs[SI_COMCSR_IDX] = comcsr.val;
+    __SIReg[SI_COMCSR_IDX] = comcsr.val;
     OSRestoreInterrupts(enabled);
     return 1;
 }
@@ -165,7 +165,7 @@ unsigned long SISync() {
     int enabled; // r31
     unsigned long sr; // r30
 
-    do {} while(__SIRegs[SI_COMCSR_IDX] & SI_COMCSR_TSTART_MASK);
+    do {} while(__SIReg[SI_COMCSR_IDX] & SI_COMCSR_TSTART_MASK);
 
     enabled = OSDisableInterrupts();
     sr = CompleteTransfer();
@@ -175,21 +175,21 @@ unsigned long SISync() {
 }
 
 unsigned long SIGetStatus() {
-    return __SIRegs[SI_STATUS_IDX];
+    return __SIReg[SI_STATUS_IDX];
 }
 
 void SISetCommand(long chan, unsigned long command) {
     ASSERTMSGLINE(0x197, (chan >= 0) && (chan < 4), "SISetCommand(): invalid channel.");
-    __SIRegs[chan * 3] = command;
+    __SIReg[chan * 3] = command;
 }
 
 unsigned long SIGetCommand(long chan) {
     ASSERTMSGLINE(0x1A9, (chan >= 0) && (chan < 4), "SIGetCommand(): invalid channel.");
-    return __SIRegs[chan * 3];
+    return __SIReg[chan * 3];
 }
 
 void SITransferCommands() {
-    __SIRegs[SI_STATUS_IDX] = SI_COMCSR_TCINT_MASK;
+    __SIReg[SI_STATUS_IDX] = SI_COMCSR_TCINT_MASK;
 }
 
 unsigned long SISetXY(unsigned long x, unsigned long y) {
@@ -220,7 +220,7 @@ unsigned long SIEnablePolling(unsigned long poll) {
     }
     
     enabled = OSDisableInterrupts();
-    __SIRegs[0x30/4] = 0;
+    __SIReg[0x30/4] = 0;
     poll = poll >> 24;
     en = poll & 0xF0;
     ASSERTLINE(0x202, en);
@@ -230,8 +230,8 @@ unsigned long SIEnablePolling(unsigned long poll) {
     Si.poll &= ~(en >> 4);
     Si.poll |= poll;
     poll = Si.poll;
-    __SIRegs[0x38/4] = 0x80000000;
-    __SIRegs[0x30/4] = poll;
+    __SIReg[0x38/4] = 0x80000000;
+    __SIReg[0x30/4] = poll;
     OSRestoreInterrupts(enabled);
     return poll;
 }
@@ -248,7 +248,7 @@ unsigned long SIDisablePolling(unsigned long poll) {
     poll &= 0xF0;
     ASSERTLINE(0x23A, poll);
     poll = Si.poll & ~poll;
-    __SIRegs[0x30/4] = poll;
+    __SIReg[0x30/4] = poll;
     Si.poll = poll;
     OSRestoreInterrupts(enabled);
     return poll;
@@ -256,8 +256,8 @@ unsigned long SIDisablePolling(unsigned long poll) {
 
 void SIGetResponse(long chan, void * data) {
     ASSERTMSGLINE(0x250, ((chan >= 0) && (chan < 4)), "SIGetResponse(): invalid channel.");
-    ((u32*)data)[0] = __SIRegs[chan * 3 + 1];
-    ((u32*)data)[1] = __SIRegs[chan * 3 + 2];
+    ((u32*)data)[0] = __SIReg[chan * 3 + 1];
+    ((u32*)data)[1] = __SIReg[chan * 3 + 2];
 }
 
 static void AlarmHandler(struct OSAlarm * alarm, struct OSContext * context) {

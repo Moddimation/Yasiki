@@ -5,7 +5,7 @@
 
 #include <macros.h>
 
-#include "__gx.h"
+#include "GXPrivate.h"
 
 static GXVtxDescList vcd[27];
 static GXVtxAttrFmtList vat[27];

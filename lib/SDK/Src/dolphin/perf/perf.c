@@ -3,7 +3,7 @@
 #include <dolphin/perf.h>
 #include "fake_tgmath.h"
 
-#include "__perf.h"
+#include "PERFPrivate.h"
 #include "../gx/__gx.h"
 
 #define TOKEN_MAX 0xFFFF

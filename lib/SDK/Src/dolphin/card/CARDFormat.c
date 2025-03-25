@@ -2,7 +2,7 @@
 #include <dolphin/card.h>
 
 #include "os/__os.h"
-#include "__card.h"
+#include "CARDPrivate.h"
 
 #define formatStep mountStep // huh?
 
@@ -69,7 +69,7 @@ s32 CARDFormatAsync(s32 chan, CARDCallback callback) {
 
     id = (CARDID *)card->workArea;
     memset(id, 0xff, CARD_SYSTEM_BLOCK_SIZE);
-    viDTVStatus = __VIRegs[55];
+    viDTVStatus = __VIReg[55];
 
     id->encode = OSGetFontEncode();
 

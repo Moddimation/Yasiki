@@ -2,7 +2,7 @@
 #include <dolphin/syn.h>
 #include "fake_tgmath.h"
 
-#include "__syn.h"
+#include "SYNPrivate.h"
 
 static float __SYNCentsTable[100] = {
     1.000000f,

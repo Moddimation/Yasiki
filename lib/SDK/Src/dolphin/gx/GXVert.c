@@ -1,7 +1,7 @@
 #if DEBUG
 #include <dolphin/gx.h>
 
-#include "__gx.h"
+#include "GXPrivate.h"
 
 #define FUNC_1PARAM(name, T) \
 void name##1##T(T x) { GXWGFifo.T = x; }

@@ -5,7 +5,7 @@
 #include <dolphin/syn.h>
 #include "fake_tgmath.h"
 
-#include "__syn.h"
+#include "SYNPrivate.h"
 
 // .sbss
 struct SYNSYNTH * __SYNSynthList;

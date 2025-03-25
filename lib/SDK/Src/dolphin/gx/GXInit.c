@@ -6,7 +6,7 @@
 #include <dolphin/vi.h>
 #include <macros.h>
 
-#include "__gx.h"
+#include "GXPrivate.h"
 
 static struct __GXData_struct gxData;
 struct __GXData_struct *gx = &gxData;

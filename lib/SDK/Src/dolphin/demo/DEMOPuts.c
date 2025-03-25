@@ -3,7 +3,7 @@
 #include <dolphin/demo.h>
 #include <dolphin/mtx.h>
 
-#include "__demo.h"
+#include "DEMOPrivate.h"
 
 extern unsigned long DEMOFontBitmap[]; // size: 0x0, address: 0x0
 

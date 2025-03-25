@@ -4,7 +4,7 @@
 #include <dolphin/vi.h>
 #include <dolphin/demo.h>
 
-#include "__demo.h"
+#include "DEMOPrivate.h"
 
 extern unsigned char DemoStatEnable; // size: 0x1, address: 0x0
 

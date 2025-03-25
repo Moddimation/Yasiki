@@ -1,7 +1,7 @@
 #include <dolphin.h>
 #include <dolphin/ax.h>
 
-#include "__ax.h"
+#include "AXPrivate.h"
 
 static u16 __AXHRTFHistory[128];
 static u16 __AXCommandList[2][384];

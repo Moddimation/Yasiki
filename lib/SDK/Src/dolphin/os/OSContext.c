@@ -1,7 +1,7 @@
 #include <dolphin.h>
 #include <dolphin/os.h>
 
-#include "__os.h"
+#include "OSPrivate.h"
 
 #define HID2 920
 

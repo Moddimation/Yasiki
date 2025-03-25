@@ -2,7 +2,7 @@
 #include <dolphin/os.h>
 
 // internal header
-#include "__os.h"
+#include "OSPrivate.h"
 
 struct OSAlarmQueue {
     struct OSAlarm * head;

@@ -2,7 +2,7 @@
 
 #include <dolphin/gx.h>
 
-#include "__gx.h"
+#include "GXPrivate.h"
 
 static struct __GXVerifyData __gxVerifData;
 struct __GXVerifyData * __gxVerif = &__gxVerifData;
