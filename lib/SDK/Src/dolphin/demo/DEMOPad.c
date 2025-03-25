@@ -2,7 +2,7 @@
 #include <dolphin/pad.h>
 #include <dolphin/demo.h>
 
-#include "__demo.h"
+#include "DEMOPrivate.h"
 
 // .data
 static unsigned long PadChanMask[4] = {

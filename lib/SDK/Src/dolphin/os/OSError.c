@@ -3,7 +3,7 @@
 #include <dolphin/os.h>
 
 // internal include
-#include "__os.h"
+#include "OSPrivate.h"
 
 static OSErrorHandler OSErrorTable[15];
 

@@ -1,7 +1,7 @@
 #include <dolphin.h>
 #include <dolphin/os.h>
 
-#include "__os.h"
+#include "OSPrivate.h"
 
 // These macros are copied from OSThread.c. Or ARE they the same
 // macros? They dont seem to be in the SDK headers.
@@ -154,5 +154,5 @@ void OSResetSystem(int reset, unsigned long resetCode, int forceMenu) {
 }
 
 unsigned long OSGetResetCode() {
-    return (__PIRegs[9] & 0xFFFFFFF8) / 8;
+    return (__PIReg[9] & 0xFFFFFFF8) / 8;
 }

@@ -3,7 +3,7 @@
 #include <dolphin/syn.h>
 #include "fake_tgmath.h"
 
-#include "__syn.h"
+#include "SYNPrivate.h"
 
 static f32 __SYNLfo[64] = {
     0.000000f,

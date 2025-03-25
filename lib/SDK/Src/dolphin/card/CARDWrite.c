@@ -2,7 +2,7 @@
 #include <dolphin/card.h>
 
 // internal includes
-#include "__card.h"
+#include "CARDPrivate.h"
 
 // functions
 static void WriteCallback(long chan, long result);

@@ -1,7 +1,7 @@
 #include <dolphin.h>
 #include <dolphin/card.h>
 
-#include "__card.h"
+#include "CARDPrivate.h"
 
 BOOL __CARDCompareFileName(CARDDir *ent, const char *fileName) {
     char *entName = (char*)ent->fileName;

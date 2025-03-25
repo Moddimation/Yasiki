@@ -2,7 +2,7 @@
 #include <dolphin/os.h>
 #include <macros.h>
 
-#include "__gx.h"
+#include "GXPrivate.h"
 
 #if DEBUG
 #define GX_WRITE_SOME_REG5(a, b) \

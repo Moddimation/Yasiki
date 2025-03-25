@@ -4,7 +4,7 @@
 #include <dolphin/syn.h>
 #include "fake_tgmath.h"
 
-#include "__syn.h"
+#include "SYNPrivate.h"
 
 #define AX_MAX_VOICES 64
 

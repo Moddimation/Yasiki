@@ -1,6 +1,6 @@
 #include <dolphin/dsp.h>
 
-#include "__dsp.h"
+#include "DSPPrivate.h"
 
 // this is duplicated from dsp.c
 DSPTaskInfo *__DSP_first_task;

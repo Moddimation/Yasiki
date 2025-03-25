@@ -3,7 +3,7 @@
 #include <dolphin.h>
 #include <dolphin/hw_regs.h>
 
-#include "__dsp.h"
+#include "DSPPrivate.h"
 
 static u32 t0, t1, t2;  // unused
 
@@ -22,9 +22,9 @@ void __DSPHandler(__OSInterrupt intr, OSContext *context)
     unsigned short tmp;
     unsigned long mail;
 
-    tmp = __DSPRegs[5];
+    tmp = __DSPReg[5];
     tmp = (tmp & ~0x28) | 0x80;
-    __DSPRegs[5] = tmp;
+    __DSPReg[5] = tmp;
     OSClearContext(&exceptionContext);
     OSSetCurrentContext(&exceptionContext);
     ASSERTMSGLINE(0x8A, __DSP_curr_task != NULL, "__DSPHandler(): No current task! Someone set us up the bomb!\n");

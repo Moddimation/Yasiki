@@ -7,7 +7,7 @@
 void EnableMetroTRKInterrupts(void);
 
 // internal headers
-#include "__os.h"
+#include "OSPrivate.h"
 
 #define OS_BI2_DEBUG_ADDRESS 0x800000F4
 #define DEBUGFLAG_ADDR 0x800030E8
@@ -147,7 +147,7 @@ void OSInit() {
         } else {
             BootInfo->consoleType = OS_CONSOLE_RETAIL1;
         }
-        BootInfo->consoleType += (__PIRegs[11] & 0xF0000000) >> 28;
+        BootInfo->consoleType += (__PIReg[11] & 0xF0000000) >> 28;
         OSReport("\nDolphin OS $Revision: 36 $.\n");
 #if DEBUG
         OSReport("Kernel built : %s %s\n", "May 22 2001", "01:47:06");

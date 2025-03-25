@@ -3,7 +3,7 @@
 #include <dolphin/syn.h>
 #include "fake_tgmath.h"
 
-#include "__syn.h"
+#include "SYNPrivate.h"
 
 // functions
 static u32 __SYNGetNibbleAddress(u32 count);

@@ -2,7 +2,7 @@
 #include <dolphin/syn.h>
 #include "fake_tgmath.h"
 
-#include "__syn.h"
+#include "SYNPrivate.h"
 
 int __SYNGetWavetableData(struct SYNVOICE * voice) {
     u32 regionIndex;

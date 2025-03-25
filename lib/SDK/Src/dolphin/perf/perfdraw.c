@@ -3,7 +3,7 @@
 #include <dolphin/perf.h>
 #include "fake_tgmath.h"
 
-#include "__perf.h"
+#include "PERFPrivate.h"
 
 __declspec(weak) float HEIGHT(unsigned long a, float f);
 __declspec(weak) float COORD(unsigned long a /* r3 */);

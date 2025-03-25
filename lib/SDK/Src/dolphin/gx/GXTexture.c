@@ -2,7 +2,7 @@
 #include <dolphin/os.h>
 #include <macros.h>
 
-#include "__gx.h"
+#include "GXPrivate.h"
 
 // GXTexObj internal data
 typedef struct __GXTexObjInt_struct {

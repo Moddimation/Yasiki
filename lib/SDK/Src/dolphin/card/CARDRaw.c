@@ -1,7 +1,7 @@
 #include <dolphin.h>
 #include <dolphin/card.h>
 
-#include "__card.h"
+#include "CARDPrivate.h"
 
 long __CARDRawReadAsync(long chan, void * buf, long length, long offset, void (* callback)(long, long)) {
     struct CARDControl * card;

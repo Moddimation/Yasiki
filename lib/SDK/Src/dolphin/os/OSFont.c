@@ -1,7 +1,7 @@
 #include <dolphin.h>
 #include <dolphin/os.h>
 
-#include "__os.h"
+#include "OSPrivate.h"
 
 static OSFontHeader* FontData; // type unsure
 static u8* SheetImage;         // type unsure
@@ -305,7 +305,7 @@ unsigned short OSGetFontEncode(void) {
     }
     switch (*(int*)OSPhysicalToCached(0xCC)) {
     case VI_NTSC:
-        fontEncode = (__VIRegs[VI_DTV_STAT] & 2) ? OS_FONT_ENCODE_SJIS : OS_FONT_ENCODE_ANSI;
+        fontEncode = (__VIReg[VI_DTV_STAT] & 2) ? OS_FONT_ENCODE_SJIS : OS_FONT_ENCODE_ANSI;
         break;
 
     case VI_PAL:

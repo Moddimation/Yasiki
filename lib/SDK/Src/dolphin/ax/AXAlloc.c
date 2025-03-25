@@ -1,7 +1,7 @@
 #include <dolphin.h>
 #include <dolphin/ax.h>
 
-#include "__ax.h"
+#include "AXPrivate.h"
 
 static AXVPB * __AXStackHead[AX_PRIORITY_STACKS];
 static AXVPB * __AXStackTail[AX_PRIORITY_STACKS];

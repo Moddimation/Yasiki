@@ -2,7 +2,7 @@
 #include <dolphin/os.h>
 #include <dolphin/dvd.h>
 
-#include "__dvd.h"
+#include "DVDPrivate.h"
 
 // .bss
 static unsigned char bb2Buf[63]; // size: 0x3F, address: 0x0

@@ -1,7 +1,7 @@
 #include <dolphin.h>
 #include <dolphin/ax.h>
 
-#include "__ax.h"
+#include "AXPrivate.h"
 
 static long __AXBufferAuxA[3][480] ATTRIBUTE_ALIGN(32);
 static long __AXBufferAuxB[3][480] ATTRIBUTE_ALIGN(32);

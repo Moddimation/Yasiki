@@ -1,7 +1,7 @@
 #include <dolphin.h>
 #include <dolphin/dvd.h>
 
-#include "__dvd.h"
+#include "DVDPrivate.h"
 
 struct FSTEntry {
     /* 0x00 */ u32 isDirAndStringOff;

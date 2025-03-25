@@ -3,7 +3,7 @@
 #include <dolphin/exi.h>
 
 #include "os/__os.h"
-#include "__card.h"
+#include "CARDPrivate.h"
 
 typedef void (*EXICallback)(s32 chan, OSContext *context);
 

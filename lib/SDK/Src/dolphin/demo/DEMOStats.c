@@ -2,7 +2,7 @@
 #include <dolphin/gx.h>
 #include <dolphin/demo.h>
 
-#include "__demo.h"
+#include "DEMOPrivate.h"
 
 unsigned char DemoStatEnable = 0;
 static DemoStatData * DemoStat;

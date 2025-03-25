@@ -2,7 +2,7 @@
 #include <dolphin.h>
 #include <dolphin/os.h>
 
-#include "__os.h"
+#include "OSPrivate.h"
 
 __declspec(section ".ctors") extern void (* _ctors[])(); // size: 0x0, address: 0x0
 __declspec(section ".dtors") extern void (* _dtors[])(); // size: 0x0, address: 0x0

@@ -4,7 +4,7 @@
 
 #include <dolphin/gx.h>
 
-#include "__gx.h"
+#include "GXPrivate.h"
 
 void __GXVerifySU(void)
 {

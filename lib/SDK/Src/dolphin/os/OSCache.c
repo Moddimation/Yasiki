@@ -2,7 +2,7 @@
 #include <dolphin/db.h>
 #include <dolphin/os.h>
 
-#include "__os.h"
+#include "OSPrivate.h"
 
 // Can't use this due to weird condition register issues
 //#include "asm_types.h"

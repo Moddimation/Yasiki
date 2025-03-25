@@ -3,7 +3,7 @@
 #include <dolphin/gx.h>
 #include <dolphin/os.h>
 
-#include "__gx.h"
+#include "GXPrivate.h"
 
 static u8 *dlist;
 static u32 dlistSize;
