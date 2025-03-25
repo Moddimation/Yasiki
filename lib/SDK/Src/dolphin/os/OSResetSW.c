@@ -11,7 +11,7 @@ void __OSResetSWInterruptHandler(short exception, struct OSContext *context) {
     OSResetCallback callback;
 
     Down = 1;
-    __PIReg[0] = 2;
+    __PIRegs[0] = 2;
     __OSMaskInterrupts(0x200);
 
     if (ResetCallback) {
@@ -30,7 +30,7 @@ OSResetCallback OSSetResetCallback(OSResetCallback callback) {
     ResetCallback = callback;
 
     if (callback) {
-        __PIReg[0] = 2;
+        __PIRegs[0] = 2;
         __OSUnmaskInterrupts(0x200);
     } else {
         __OSMaskInterrupts(0x200);
@@ -45,14 +45,14 @@ int OSGetResetSwitchState() {
     unsigned long reg;
 
     enabled = OSDisableInterrupts();
-    reg = __PIReg[0];
+    reg = __PIRegs[0];
 
     if (!(reg & 0x10000)) {
         Down = 1;
         state = 1;
     } else if (Down != 0) {
         if (reg & 2) {
-            __PIReg[0] = 2;
+            __PIRegs[0] = 2;
             Down = 1;
         } else {
             Down = 0;

@@ -40,7 +40,7 @@ static void __SaveCPRegs(u8 reg, u8 vatIdx, u32 data)
 {
     s32 idx;
 
-    DPF("\tCP Stream Reg[0x%x] = 0x%x\n", reg, data);
+    DPF("\tCP Stream Regs[0x%x] = 0x%x\n", reg, data);
     switch (reg) {
     case 0:
     case 1:

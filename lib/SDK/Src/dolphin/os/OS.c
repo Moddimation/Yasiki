@@ -147,7 +147,7 @@ void OSInit() {
         } else {
             BootInfo->consoleType = OS_CONSOLE_RETAIL1;
         }
-        BootInfo->consoleType += (__PIReg[11] & 0xF0000000) >> 28;
+        BootInfo->consoleType += (__PIRegs[11] & 0xF0000000) >> 28;
         OSReport("\nDolphin OS $Revision: 36 $.\n");
 #if DEBUG
         OSReport("Kernel built : %s %s\n", "May 22 2001", "01:47:06");

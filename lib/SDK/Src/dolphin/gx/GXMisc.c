@@ -68,9 +68,9 @@ static inline void __GXAbortWait(u32 clocks)
 
 void GXAbortFrame(void)
 {
-    __piReg[6] = 1;
+    __piRegs[6] = 1;
     __GXAbortWait(0xC8U);
-    __piReg[6] = 0;
+    __piRegs[6] = 0;
     __GXAbortWait(0x14U);
     __GXCleanGPFifo();
 }
@@ -95,7 +95,7 @@ void GXSetDrawSync(u16 token)
 
 u16 GXReadDrawSync(void)
 {
-    u16 token = __peReg[7];
+    u16 token = __peRegs[7];
     return token;
 }
 
@@ -160,7 +160,7 @@ void __GXBypass(u32 reg)
 
 u16 __GXReadPEReg(u32 reg)
 {
-    return __peReg[reg];
+    return __peRegs[reg];
 }
 #endif
 
@@ -170,7 +170,7 @@ void GXPokeAlphaMode(GXCompare func, u8 threshold)
 
     CHECK_GXBEGIN(0x25F, "GXPokeAlphaMode");
     reg = (func << 8) | threshold;
-    __peReg[3] = reg;
+    __peRegs[3] = reg;
 }
 
 void GXPokeAlphaRead(GXAlphaReadMode mode)
@@ -181,7 +181,7 @@ void GXPokeAlphaRead(GXAlphaReadMode mode)
     reg = 0;
     SET_REG_FIELD(0x26D, reg, 2, 0, mode);
     SET_REG_FIELD(0x26E, reg, 1, 2, 1);
-    __peReg[4] = reg;
+    __peRegs[4] = reg;
 }
 
 void GXPokeAlphaUpdate(GXBool update_enable)
@@ -189,9 +189,9 @@ void GXPokeAlphaUpdate(GXBool update_enable)
     u32 reg;
 
     CHECK_GXBEGIN(0x277, "GXPokeAlphaUpdate");
-    reg = __peReg[1];
+    reg = __peRegs[1];
     SET_REG_FIELD(0x27A, reg, 1, 4, update_enable);
-    __peReg[1] = reg;
+    __peRegs[1] = reg;
 }
 
 void GXPokeBlendMode(GXBlendMode type, GXBlendFactor src_factor, GXBlendFactor dst_factor, GXLogicOp op)
@@ -199,7 +199,7 @@ void GXPokeBlendMode(GXBlendMode type, GXBlendFactor src_factor, GXBlendFactor d
     u32 reg;
 
     CHECK_GXBEGIN(0x284, "GXPokeBlendUpdate");
-    reg = __peReg[1];
+    reg = __peRegs[1];
     SET_REG_FIELD(0x28C, reg, 1, 0, (type == GX_BM_BLEND) || (type == GX_BM_SUBTRACT));
     SET_REG_FIELD(0x28D, reg, 1, 11, (type == GX_BM_SUBTRACT));
     SET_REG_FIELD(0x28F, reg, 1, 1, (type == GX_BM_LOGIC));
@@ -207,7 +207,7 @@ void GXPokeBlendMode(GXBlendMode type, GXBlendFactor src_factor, GXBlendFactor d
     SET_REG_FIELD(0x291, reg, 3, 8, src_factor);
     SET_REG_FIELD(0x292, reg, 3, 5, dst_factor);
     SET_REG_FIELD(0x293, reg, 8, 24, 0x41);
-    __peReg[1] = reg;
+    __peRegs[1] = reg;
 }
 
 void GXPokeColorUpdate(GXBool update_enable)
@@ -215,9 +215,9 @@ void GXPokeColorUpdate(GXBool update_enable)
     u32 reg;
 
     CHECK_GXBEGIN(0x29D, "GXPokeColorUpdate");
-    reg = __peReg[1];
+    reg = __peRegs[1];
     SET_REG_FIELD(0x2A0, reg, 1, 3, update_enable);
-    __peReg[1] = reg;
+    __peRegs[1] = reg;
 }
 
 void GXPokeDstAlpha(GXBool enable, u8 alpha)
@@ -227,7 +227,7 @@ void GXPokeDstAlpha(GXBool enable, u8 alpha)
     CHECK_GXBEGIN(0x2A9, "GXPokeDstAlpha");
     SET_REG_FIELD(0x2AB, reg, 8, 0, alpha);
     SET_REG_FIELD(0x2AC, reg, 1, 8, enable);
-    __peReg[2] = reg;
+    __peRegs[2] = reg;
 }
 
 void GXPokeDither(GXBool dither)
@@ -235,9 +235,9 @@ void GXPokeDither(GXBool dither)
     u32 reg;
 
     CHECK_GXBEGIN(0x2B5, "GXPokeDither");
-    reg = __peReg[1];
+    reg = __peRegs[1];
     SET_REG_FIELD(0x2B8, reg, 1, 2, dither);
-    __peReg[1] = reg;
+    __peRegs[1] = reg;
 }
 
 void GXPokeZMode(GXBool compare_enable, GXCompare func, GXBool update_enable)
@@ -249,7 +249,7 @@ void GXPokeZMode(GXBool compare_enable, GXCompare func, GXBool update_enable)
     SET_REG_FIELD(0x2C3, reg, 1, 0, compare_enable);
     SET_REG_FIELD(0x2C4, reg, 3, 1, func);
     SET_REG_FIELD(0x2C5, reg, 1, 4, update_enable);
-    __peReg[0] = reg;
+    __peRegs[0] = reg;
 }
 
 void GXPeekARGB(u16 x, u16 y, u32 *color)
@@ -310,7 +310,7 @@ static void GXTokenInterruptHandler(__OSInterrupt interrupt, OSContext *context)
     OSContext exceptionContext;
     u32 reg;
 
-    token = __peReg[7];
+    token = __peRegs[7];
     if (TokenCB != NULL) {
         OSClearContext(&exceptionContext);
         OSSetCurrentContext(&exceptionContext);
@@ -318,9 +318,9 @@ static void GXTokenInterruptHandler(__OSInterrupt interrupt, OSContext *context)
         OSClearContext(&exceptionContext);
         OSSetCurrentContext(context);
     }
-    reg = __peReg[5];
+    reg = __peRegs[5];
     SET_REG_FIELD(0, reg, 1, 2, 1);
-    __peReg[5] = reg;
+    __peRegs[5] = reg;
 }
 
 GXDrawDoneCallback GXSetDrawDoneCallback(GXDrawDoneCallback cb)
@@ -340,9 +340,9 @@ static void GXFinishInterruptHandler(__OSInterrupt interrupt, OSContext *context
     OSContext exceptionContext;
     u32 reg;
 
-    reg = __peReg[5];
+    reg = __peRegs[5];
     SET_REG_FIELD(0, reg, 1, 3, 1);
-    __peReg[5] = reg;
+    __peRegs[5] = reg;
     DrawDone = 1;
     if (DrawDoneCB != NULL) {
         OSClearContext(&exceptionContext);
@@ -362,12 +362,12 @@ void __GXPEInit(void)
     OSInitThreadQueue(&FinishQueue);
     __OSUnmaskInterrupts(0x2000);
     __OSUnmaskInterrupts(0x1000);
-    reg = __peReg[5];
+    reg = __peRegs[5];
     SET_REG_FIELD(0, reg, 1, 2, 1);
     SET_REG_FIELD(0, reg, 1, 3, 1);
     SET_REG_FIELD(0, reg, 1, 0, 1);
     SET_REG_FIELD(0, reg, 1, 1, 1);
-    __peReg[5] = reg;
+    __peRegs[5] = reg;
 }
 
 u32 GXCompressZ16(u32 z24, GXZFmt16 zfmt)
