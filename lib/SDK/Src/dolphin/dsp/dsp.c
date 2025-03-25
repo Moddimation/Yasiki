@@ -13,28 +13,28 @@
 
 u32 DSPCheckMailToDSP(void)
 {
-    return (__DSPReg[0] & (1 << 15)) >> 15;
+    return (__DSPRegs[0] & (1 << 15)) >> 15;
 }
 
 u32 DSPCheckMailFromDSP(void)
 {
-    return (__DSPReg[2] & (1 << 15)) >> 15;
+    return (__DSPRegs[2] & (1 << 15)) >> 15;
 }
 
 u32 DSPReadCPUToDSPMbox(void)
 {
-    return (__DSPReg[0] << 16) | __DSPRegs[1];
+    return (__DSPRegs[0] << 16) | __DSPRegs[1];
 }
 
 u32 DSPReadMailFromDSP(void)
 {
-    return (__DSPReg[2] << 16) | __DSPRegs[3];
+    return (__DSPRegs[2] << 16) | __DSPRegs[3];
 }
 
 void DSPSendMailToDSP(u32 mail)
 {
-    __DSPReg[0] = mail >> 16;
-    __DSPReg[1] = mail & 0xFFFF;
+    __DSPRegs[0] = mail >> 16;
+    __DSPRegs[1] = mail & 0xFFFF;
 }
 
 void DSPAssertInt(void)
@@ -43,9 +43,9 @@ void DSPAssertInt(void)
     u16 tmp;
 
     old = OSDisableInterrupts();
-    tmp = __DSPReg[5];
+    tmp = __DSPRegs[5];
     tmp = (tmp & ~0xA8) | 2;
-    __DSPReg[5] = tmp;
+    __DSPRegs[5] = tmp;
     OSRestoreInterrupts(old);
 }
 
@@ -69,12 +69,12 @@ void DSPInit(void)
     __OSSetInterruptHandler(7, __DSPHandler);
     __OSUnmaskInterrupts(OS_INTERRUPTMASK_DSP_DSP);
 
-    tmp = __DSPReg[5];
+    tmp = __DSPRegs[5];
     tmp = (tmp & ~0xA8) | 0x800;
-    __DSPReg[5] = tmp;
+    __DSPRegs[5] = tmp;
 
-    tmp = __DSPReg[5];
-    __DSPReg[5] = tmp = tmp & ~0xAC;
+    tmp = __DSPRegs[5];
+    __DSPRegs[5] = tmp = tmp & ~0xAC;
 
     __DSP_first_task = __DSP_last_task = __DSP_curr_task = __DSP_tmp_task = NULL;
     __DSP_init_flag = 1;
@@ -93,9 +93,9 @@ void DSPReset(void)
     u16 tmp;
 
     old = OSDisableInterrupts();
-    tmp = __DSPReg[5];
+    tmp = __DSPRegs[5];
     tmp = (tmp & ~0xA8) | 0x800 | 1;
-    __DSPReg[5] = tmp;
+    __DSPRegs[5] = tmp;
     __DSP_init_flag = 0;
     OSRestoreInterrupts(old);
 }
@@ -106,9 +106,9 @@ void DSPHalt(void)
     u16 tmp;
 
     old = OSDisableInterrupts();
-    tmp = __DSPReg[5];
+    tmp = __DSPRegs[5];
     tmp = (tmp & ~0xA8) | 4;
-    __DSPReg[5] = tmp;
+    __DSPRegs[5] = tmp;
     OSRestoreInterrupts(old);
 }
 
@@ -118,15 +118,15 @@ void DSPUnhalt(void)
     u16 tmp;
 
     old = OSDisableInterrupts();
-    tmp = __DSPReg[5];
+    tmp = __DSPRegs[5];
     tmp = (tmp & ~0xAC);
-    __DSPReg[5] = tmp;
+    __DSPRegs[5] = tmp;
     OSRestoreInterrupts(old);
 }
 
 u32 DSPGetDMAStatus(void)
 {
-    return (__DSPReg[5] & (1 << 9));
+    return (__DSPRegs[5] & (1 << 9));
 }
 
 DSPTaskInfo *DSPAddTask(DSPTaskInfo *task)

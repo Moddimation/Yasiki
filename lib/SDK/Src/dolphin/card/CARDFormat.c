@@ -69,7 +69,7 @@ s32 CARDFormatAsync(s32 chan, CARDCallback callback) {
 
     id = (CARDID *)card->workArea;
     memset(id, 0xff, CARD_SYSTEM_BLOCK_SIZE);
-    viDTVStatus = __VIReg[55];
+    viDTVStatus = __VIRegs[55];
 
     id->encode = OSGetFontEncode();
 

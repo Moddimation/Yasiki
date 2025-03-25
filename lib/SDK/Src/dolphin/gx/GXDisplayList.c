@@ -51,7 +51,7 @@ unsigned long GXEndDisplayList(void)
     if (gx->dirtyState != 0) {
         __GXSetDirtyState();
     }
-    reg = __piReg[5];
+    reg = __piRegs[5];
     ov = (reg >> 26) & 1;
     __GXSaveCPUFifoAux(&DisplayListFifo);
     ASSERTMSGLINE(0xC3, !ov, "GXEndDisplayList: display list commands overflowed buffer");

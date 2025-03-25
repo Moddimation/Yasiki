@@ -23,7 +23,7 @@ static void ExiHandler(s32 chan, OSContext *context)
 
 static void DbgHandler(__OSInterrupt interrupt, OSContext *context)
 {
-    __PIReg[0] = 0x1000;
+    __PIRegs[0] = 0x1000;
     if (ExiCallback) {
         ExiCallback();
     }

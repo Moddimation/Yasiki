@@ -3,31 +3,31 @@
 
 #ifdef __MWERKS__
 // clang-format off
-volatile u32 __RAMReg[]         : 0x80000000; // RAM Register
-volatile u16 __CPReg[]          : 0xCC000000; // Command Processor Register
-volatile u16 __PEReg[]          : 0xCC001000; // Pixel Engine Register
-volatile u16 __VIReg[]        	: 0xCC002000; // Video Interface Register
-volatile u32 __PIReg[]        	: 0xCC003000; // Process Interrupt Register
-volatile u16 __MIReg[]        	: 0xCC004000; // Memory Interrupt Register
-volatile u16 __DSPReg[]         : 0xCC005000; // Digital Signal Processor Register
-volatile u32 __DIReg[]          : 0xCC006000; // DVD Interface Register
-volatile u32 __SIReg[]     		 : 0xCC006400; // Serial Interface Register
-volatile u32 __EXIReg[]    		 : 0xCC006800; // External Interface Register
-volatile u32 __AIReg[]          : 0xCC006C00; // Audio Interface Register
-volatile u8 __GXReg[]           : 0xCC008000; // Graphics FIFO Register
+volatile u32 __RAMRegs[]       : 0x80000000; // RAM Register
+volatile u16 __CPRegs[]        : 0xCC000000; // Command Processor Register
+volatile u16 __PERegs[]        : 0xCC001000; // Pixel Engine Register
+volatile u16 __VIRegs[]      	: 0xCC002000; // Video Interface Register
+volatile u32 __PIRegs[]      	: 0xCC003000; // Process Interrupt Register
+volatile u16 __MIRegs[]      	: 0xCC004000; // Memory Interrupt Register
+volatile u16 __DSPRegs[]       : 0xCC005000; // Digital Signal Processor Register
+volatile u32 __DIRegs[]        : 0xCC006000; // DVD Interface Register
+volatile u32 __SIRegs[]     	 : 0xCC006400; // Serial Interface Register
+volatile u32 __EXIRegs[]    	 : 0xCC006800; // External Interface Register
+volatile u32 __AIRegs[]        : 0xCC006C00; // Audio Interface Register
+volatile u8 __GXRegs[]         : 0xCC008000; // Graphics FIFO Register
 #else
-#define __RAMReg ((volatile u16*)0x80000000)
-#define __CPReg  ((volatile u16*)0xCC000000)
-#define __PEReg  ((volatile u16*)0xCC001000)
-#define __VIReg  ((volatile u16*)0xCC002000)
-#define __PIReg  ((volatile u32*)0xCC003000)
-#define __MEMReg ((volatile u16*)0xCC004000)
-#define __DSPReg ((volatile u16*)0xCC005000)
-#define __DIReg  ((volatile u32*)0xCC006000)
-#define __SIReg  ((volatile u32*)0xCC006400)
-#define __EXIReg ((volatile u32*)0xCC006800)
-#define __AIReg  ((volatile u32*)0xCC006C00)
-#define __GXReg  ((volatile u32*)0xCC008000)
+#define __RAMRegs ((volatile u16*)0x80000000)
+#define __CPRegs  ((volatile u16*)0xCC000000)
+#define __PERegs  ((volatile u16*)0xCC001000)
+#define __VIRegs  ((volatile u16*)0xCC002000)
+#define __PIRegs  ((volatile u32*)0xCC003000)
+#define __MEMRegs ((volatile u16*)0xCC004000)
+#define __DSPRegs ((volatile u16*)0xCC005000)
+#define __DIRegs  ((volatile u32*)0xCC006000)
+#define __SIRegs  ((volatile u32*)0xCC006400)
+#define __EXIRegs ((volatile u32*)0xCC006800)
+#define __AIRegs  ((volatile u32*)0xCC006C00)
+#define __GXRegs  ((volatile u32*)0xCC008000)
 #endif
 
 //
@@ -281,27 +281,27 @@ volatile u8 __GXReg[]           : 0xCC008000; // Graphics FIFO Register
 //
 // offsets for SI Regs
 //
-#define SI_C0_OUTBUF (0) // si channel 0 output buffer (joy-channel 1 command)
-#define SI_J1_B1     (1) // joy-channel 1 buttons 1
-#define SI_J1_B2     (2) // joy-channel 1 buttons 2
+#define SI_C0_OUTBUF  (0) // si channel 0 output buffer (joy-channel 1 command)
+#define SI_C0_INBUF   (1) // joy-channel 1 buttons L
+#define SI_C0_INBUF_U (2) // joy-channel 1 buttons U
 
-#define SI_C1_OUTBUF (3) // si channel 1 output buffer (joy-channel 2 command)
-#define SI_J2_B1     (4) // joy-channel 1 buttons 1
-#define SI_J2_B2     (5) // joy-channel 1 buttons 2
+#define SI_C1_OUTBUF  (3) // si channel 1 output buffer (joy-channel 2 command)
+#define SI_C1_INBUF   (4) // joy-channel 1 buttons L
+#define SI_C1_INBUF_U (5) // joy-channel 1 buttons U
 
-#define SI_C2_OUTBUF (6) // si channel 2 output buffer (joy-channel 3 command)
-#define SI_J3_B1     (7) // joy-channel 1 buttons 1
-#define SI_J3_B2     (8) // joy-channel 1 buttons 2
+#define SI_C2_OUTBUF  (6) // si channel 2 output buffer (joy-channel 3 command)
+#define SI_C2_INBUF   (7) // joy-channel 1 buttons L
+#define SI_C2_INBUF_U (8) // joy-channel 1 buttons U
 
-#define SI_C3_OUTBUF (9)  // si channel 3 output buffer (joy-channel 4 command)
-#define SI_J4_B1     (10) // joy-channel 1 buttons 1
-#define SI_J4_B2     (11) // joy-channel 1 buttons 2
+#define SI_C3_OUTBUF  (9)  // si channel 3 output buffer (joy-channel 4 command)
+#define SI_C3_INBUF   (10) // joy-channel 1 buttons L
+#define SI_C3_INBUF_U (11) // joy-channel 1 buttons U
 
-#define SI_POLL      (12) // si poll register (joy-channek control)
-#define SI_COMCSR    (13) // si communication control status register (command)
-#define SI_SR 			 (14) // si status register (channel select & status2)
-#define SI_EXILK		 (15) // si exi clock lock
-#define SI_BUFFER		(16) // si i/o buffer (access by word)
+#define SI_POLL       (12) // si poll register (joy-channek control)
+#define SI_COMCSR     (13) // si communication control status register (command)
+#define SI_SR 			  (14) // si status register (channel select & status2)
+#define SI_EXILK		  (15) // si exi clock lock
+#define SI_BUFFER	 	(16) // si i/o buffer (access by word)
 
 //
 // offsets for EXI Regs
@@ -312,17 +312,17 @@ volatile u8 __GXReg[]           : 0xCC008000; // Graphics FIFO Register
 #define EXI_C0_CR     (3) // exi channel 0 control register
 #define EXI_C0_DATA   (4) // exi channel 0 immediate data
 
-#define EXI_C1_SR     (0) // exi channel 1 parameter register
-#define EXI_C1_MAR    (1) // exi channel 1 dma start address
-#define EXI_C1_LENGTH (2) // exi channel 1 dma transfer length
-#define EXI_C1_CR     (3) // exi channel 1 control register
-#define EXI_C1_DATA   (4) // exi channel 1 immediate data
+#define EXI_C1_SR     (5) // exi channel 1 parameter register
+#define EXI_C1_MAR    (6) // exi channel 1 dma start address
+#define EXI_C1_LENGTH (7) // exi channel 1 dma transfer length
+#define EXI_C1_CR     (8) // exi channel 1 control register
+#define EXI_C1_DATA   (9) // exi channel 1 immediate data
 
-#define EXI_C2_SR     (0) // exi channel 2 parameter register
-#define EXI_C2_MAR    (1) // exi channel 2 dma start address
-#define EXI_C2_LENGTH (2) // exi channel 2 dma transfer length
-#define EXI_C2_CR     (3) // exi channel 2 control register
-#define EXI_C2_DATA   (4) // exi channel 2 immediate data
+#define EXI_C2_SR     (10) // exi channel 2 parameter register
+#define EXI_C2_MAR    (11) // exi channel 2 dma start address
+#define EXI_C2_LENGTH (12) // exi channel 2 dma transfer length
+#define EXI_C2_CR     (13) // exi channel 2 control register
+#define EXI_C2_DATA   (14) // exi channel 2 immediate data
 
 //
 // offsets for AI Regs

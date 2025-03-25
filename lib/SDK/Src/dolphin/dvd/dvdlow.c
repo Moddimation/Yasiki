@@ -177,12 +177,12 @@ void DVDLowReset() {
     long long resetStart;
 
     __DIRegs[1] = 2;
-    reg = __PIReg[9];
-    __PIReg[9] = (reg & 0xFFFFFFFB) | 1;
+    reg = __PIRegs[9];
+    __PIRegs[9] = (reg & 0xFFFFFFFB) | 1;
     resetStart = __OSGetSystemTime();
     while((__OSGetSystemTime() - resetStart) < OSMicrosecondsToTicks(12)) 
         ;
-    __PIReg[9] = (reg | 4 | 1);
+    __PIRegs[9] = (reg | 4 | 1);
     ResetOccurred = 1;
     LastResetEnd = __OSGetSystemTime();
 }

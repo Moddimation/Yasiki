@@ -142,7 +142,7 @@ static int VISetRegs(void)
     if (changeMode != 1 || getCurrentFieldEvenOdd() != 0) {
         while (shdwChanged != 0) {
             regIndex = cntlzd(shdwChanged);
-            __VIReg[regIndex] = shdwRegs[regIndex];
+            __VIRegs[regIndex] = shdwRegs[regIndex];
             shdwChanged &= ~((u64)1 << (63 - regIndex));
         }
         changeMode = 0;
@@ -161,27 +161,27 @@ static void __VIRetraceHandler(__OSInterrupt unused, OSContext *context)
 #endif
 
     inter = 0;
-    reg = __VIReg[0x18];
+    reg = __VIRegs[0x18];
     if (reg & 0x8000) {
-        __VIReg[0x18] = reg & ~0x8000;
+        __VIRegs[0x18] = reg & ~0x8000;
         inter |= 1;
     }
-    reg = __VIReg[0x1A];
+    reg = __VIRegs[0x1A];
     if (reg & 0x8000) {
-        __VIReg[0x1A] = reg & ~0x8000;
+        __VIRegs[0x1A] = reg & ~0x8000;
         inter |= 2;
     }
-    reg = __VIReg[0x1C];
+    reg = __VIRegs[0x1C];
     if (reg & 0x8000) {
-        __VIReg[0x1C] = reg & ~0x8000;
+        __VIRegs[0x1C] = reg & ~0x8000;
         inter |= 4;
     }
-    reg = __VIReg[0x1E];
+    reg = __VIRegs[0x1E];
     if (reg & 0x8000) {
-        __VIReg[0x1E] = reg & ~0x8000;
+        __VIRegs[0x1E] = reg & ~0x8000;
         inter |= 8;
     }
-    reg = __VIReg[0x1E];
+    reg = __VIRegs[0x1E];
     if ((inter & 4) || (inter & 8)) {
         OSSetCurrentContext(context);
         return;
@@ -282,44 +282,44 @@ void __VIInit(VITVMode mode)
         tv = 3;
     }
     tm = getTiming(mode);
-    __VIReg[1] = 2;
+    __VIRegs[1] = 2;
 
     // why?
     for (a = 0; a < 1000; a++) {
     }
 
-    __VIReg[1] = 0;
-    __VIReg[3] = (u32)tm->hlw;
-    __VIReg[2] = tm->hce | (tm->hcs << 8);
-    __VIReg[5] = tm->hsy | ((tm->hbe640 & 0x1FF) << 7);
-    __VIReg[4] = (tm->hbe640 >> 9) | ((tm->hbs640 & 0xFFFF) << 1);
+    __VIRegs[1] = 0;
+    __VIRegs[3] = (u32)tm->hlw;
+    __VIRegs[2] = tm->hce | (tm->hcs << 8);
+    __VIRegs[5] = tm->hsy | ((tm->hbe640 & 0x1FF) << 7);
+    __VIRegs[4] = (tm->hbe640 >> 9) | ((tm->hbs640 & 0xFFFF) << 1);
     if (encoderType == 0) {
-        __VIReg[0x39] = tm->hbeCCIR656 | 0x8000;
-        __VIReg[0x3A] = (u32)tm->hbsCCIR656;
+        __VIRegs[0x39] = tm->hbeCCIR656 | 0x8000;
+        __VIRegs[0x3A] = (u32)tm->hbsCCIR656;
     }
-    __VIReg[0] = (u32)tm->equ;
-    __VIReg[7] = (u32)(tm->prbOdd + (tm->acv * 2) - 2);
-    __VIReg[6] = (u32)(tm->psbOdd + 2);
-    __VIReg[9] = (u32)(tm->prbEven + (tm->acv * 2) - 2);
-    __VIReg[8] = (u32)(tm->psbEven + 2);
-    __VIReg[11] = tm->bs1 | (tm->be1 << 5);
-    __VIReg[10] = tm->bs3 | (tm->be3 << 5);
-    __VIReg[13] = tm->bs2 | (tm->be2 << 5);
-    __VIReg[12] = tm->bs4 | (tm->be4 << 5);
-    __VIReg[36] = 0x2828;
-    __VIReg[27] = 1;
-    __VIReg[26] = 0x1001;
+    __VIRegs[0] = (u32)tm->equ;
+    __VIRegs[7] = (u32)(tm->prbOdd + (tm->acv * 2) - 2);
+    __VIRegs[6] = (u32)(tm->psbOdd + 2);
+    __VIRegs[9] = (u32)(tm->prbEven + (tm->acv * 2) - 2);
+    __VIRegs[8] = (u32)(tm->psbEven + 2);
+    __VIRegs[11] = tm->bs1 | (tm->be1 << 5);
+    __VIRegs[10] = tm->bs3 | (tm->be3 << 5);
+    __VIRegs[13] = tm->bs2 | (tm->be2 << 5);
+    __VIRegs[12] = tm->bs4 | (tm->be4 << 5);
+    __VIRegs[36] = 0x2828;
+    __VIRegs[27] = 1;
+    __VIRegs[26] = 0x1001;
     hct = tm->hlw + 1;
     vct = (tm->nhlines / 2) + 1;
-    __VIReg[25] = (u16)(u32)hct;
-    __VIReg[24] = vct | 0x1000;
+    __VIRegs[25] = (u16)(u32)hct;
+    __VIRegs[24] = vct | 0x1000;
     if (mode != VI_TVMODE_NTSC_PROG) {
-        __VIReg[1] = (nonInter << 2) | 1 | (tv << 8);
-        __VIReg[54] = 0;
+        __VIRegs[1] = (nonInter << 2) | 1 | (tv << 8);
+        __VIRegs[54] = 0;
         return;
     }
-    __VIReg[1] = (tv << 8) | 5;
-    __VIReg[54] = 1;
+    __VIRegs[1] = (tv << 8) | 5;
+    __VIRegs[54] = 1;
 }
 
 #define MAX(a, b) ((a) > (b) ? (a) : (b))
@@ -362,7 +362,7 @@ void VIInit(void)
     u32 tv;
 
     encoderType = getEncoderType();
-    if (!(__VIReg[1] & 1)) {
+    if (!(__VIRegs[1] & 1)) {
         __VIInit(VI_TVMODE_NTSC_INT);
     }
     retraceCount = 0;
@@ -370,21 +370,21 @@ void VIInit(void)
     shdwChanged = 0;
     changeMode = 0;
     flushFlag = 0;
-    __VIReg[39] = taps[0] | ((taps[1] & 0x3F) << 10);
-    __VIReg[38] = (taps[1] >> 6) | (taps[2] << 4);
-    __VIReg[41] = taps[3] | ((taps[4] & 0x3F) << 10);
-    __VIReg[40] = (taps[4] >> 6) | (taps[5] << 4);
-    __VIReg[43] = taps[6] | ((taps[7] & 0x3F) << 10);
-    __VIReg[42] = (taps[7] >> 6) | (taps[8] << 4);
-    __VIReg[45] = taps[9] | (taps[10] << 8);
-    __VIReg[44] = taps[11] | (taps[12] << 8);
-    __VIReg[47] = taps[13] | (taps[14] << 8);
-    __VIReg[46] = taps[15] | (taps[16] << 8);
-    __VIReg[49] = taps[17] | (taps[18] << 8);
-    __VIReg[48] = taps[19] | (taps[20] << 8);
-    __VIReg[51] = taps[21] | (taps[22] << 8);
-    __VIReg[50] = taps[23] | (taps[24] << 8);
-    __VIReg[56] = 0x280;
+    __VIRegs[39] = taps[0] | ((taps[1] & 0x3F) << 10);
+    __VIRegs[38] = (taps[1] >> 6) | (taps[2] << 4);
+    __VIRegs[41] = taps[3] | ((taps[4] & 0x3F) << 10);
+    __VIRegs[40] = (taps[4] >> 6) | (taps[5] << 4);
+    __VIRegs[43] = taps[6] | ((taps[7] & 0x3F) << 10);
+    __VIRegs[42] = (taps[7] >> 6) | (taps[8] << 4);
+    __VIRegs[45] = taps[9] | (taps[10] << 8);
+    __VIRegs[44] = taps[11] | (taps[12] << 8);
+    __VIRegs[47] = taps[13] | (taps[14] << 8);
+    __VIRegs[46] = taps[15] | (taps[16] << 8);
+    __VIRegs[49] = taps[17] | (taps[18] << 8);
+    __VIRegs[48] = taps[19] | (taps[20] << 8);
+    __VIRegs[51] = taps[21] | (taps[22] << 8);
+    __VIRegs[50] = taps[23] | (taps[24] << 8);
+    __VIRegs[56] = 0x280;
     ImportAdjustingValues();
     HorVer.DispSizeX = 0x280U;
     HorVer.DispSizeY = 0x1E0U;
@@ -398,7 +398,7 @@ void VIInit(void)
     HorVer.PanSizeX = 0x280;
     HorVer.PanSizeY = 0x1E0;
     HorVer.FBMode = 0;
-    dspCfg = __VIReg[1];
+    dspCfg = __VIRegs[1];
     HorVer.nonInter = (s32) ((dspCfg >> 2U) & 1);
     HorVer.tv = (u32) ((dspCfg >> 8U) & 3);
     tv = (HorVer.tv == 3) ? 0 : HorVer.tv;
@@ -411,18 +411,18 @@ void VIInit(void)
     HorVer.black = 1;
     HorVer.threeD = 0;
     OSInitThreadQueue(&retraceQueue);
-    value = __VIReg[24];
+    value = __VIRegs[24];
     value &= ~0x8000;
 #if !DEBUG
     value = (u16)value;
 #endif
-    __VIReg[24] = value;
-    value = __VIReg[26];
+    __VIRegs[24] = value;
+    value = __VIRegs[26];
     value = value & ~0x8000;
 #if !DEBUG
     value = (u16)value;
 #endif
-    __VIReg[26] = value;
+    __VIRegs[26] = value;
     PreCB = NULL;
     PostCB = NULL;
     __OSSetInterruptHandler(0x18, __VIRetraceHandler);
@@ -847,11 +847,11 @@ static u32 getCurrentHalfLine(void)
     VITiming *tm;
 
     tm = HorVer.timing;
-    vcount = __VIReg[22] & 0x7FF;
+    vcount = __VIRegs[22] & 0x7FF;
     do {
         vcount0 = vcount;
-        hcount = __VIReg[23] & 0x7FF;
-        vcount = __VIReg[22] & 0x7FF;
+        hcount = __VIRegs[23] & 0x7FF;
+        vcount = __VIRegs[22] & 0x7FF;
     } while (vcount0 != vcount);
     return ((vcount - 1) * 2) + ((hcount - 1) / tm->hlw);
 }
@@ -865,10 +865,10 @@ static u32 getCurrentFieldEvenOdd(void)
     u32 nhlines;
     VITiming *tm;
 
-    if (__VIReg[54] & 1) {
+    if (__VIRegs[54] & 1) {
         tm = getTiming(VI_TVMODE_NTSC_PROG);
     } else {
-        value = __VIReg[1];
+        value = __VIRegs[1];
         nin = ((value >> 2U) & 1);
         fmt = ((value >> 8U) & 3);
         tvMode = (fmt << 2) + nin;

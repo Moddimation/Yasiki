@@ -26,58 +26,58 @@ void __OSInitAudioSystem(void) {
   memcpy(__DSPWorkBuffer, (void*)DSPInitCode, 128);
   DCFlushRange(__DSPWorkBuffer, 128);
 
-  __DSPReg[9] = 0x43;
-  ASSERTMSGLINE(0x67, !(__DSPReg[5] & 0x200), "__OSInitAudioSystem(): ARAM DMA already in progress");
-  ASSERTMSGLINE(0x6B, !(__DSPReg[5] & 0x400), "__OSInitAudioSystem(): DSP DMA already in progress");
-  ASSERTMSGLINE(0x6F, (__DSPReg[5] & 0x004), "__OSInitAudioSystem(): DSP already working");
-  __DSPReg[5] = 0x8AC;
-  __DSPReg[5] |= 1;
-  while (__DSPReg[5] & 1);
-  __DSPReg[0] = 0;
-  while (((__DSPReg[2] << 16) | __DSPRegs[3]) & 0x80000000);
-  *(u32*)&__DSPReg[16] = 0x1000000;
-  *(u32*)&__DSPReg[18] = 0;
-  *(u32*)&__DSPReg[20] = 0x20;
+  __DSPRegs[9] = 0x43;
+  ASSERTMSGLINE(0x67, !(__DSPRegs[5] & 0x200), "__OSInitAudioSystem(): ARAM DMA already in progress");
+  ASSERTMSGLINE(0x6B, !(__DSPRegs[5] & 0x400), "__OSInitAudioSystem(): DSP DMA already in progress");
+  ASSERTMSGLINE(0x6F, (__DSPRegs[5] & 0x004), "__OSInitAudioSystem(): DSP already working");
+  __DSPRegs[5] = 0x8AC;
+  __DSPRegs[5] |= 1;
+  while (__DSPRegs[5] & 1);
+  __DSPRegs[0] = 0;
+  while (((__DSPRegs[2] << 16) | __DSPRegs[3]) & 0x80000000);
+  *(u32*)&__DSPRegs[16] = 0x1000000;
+  *(u32*)&__DSPRegs[18] = 0;
+  *(u32*)&__DSPRegs[20] = 0x20;
 
-  reg16 = __DSPReg[5];
+  reg16 = __DSPRegs[5];
   while (!(reg16 & 0x20))
-    reg16 = __DSPReg[5];
-  __DSPReg[5] = reg16;
+    reg16 = __DSPRegs[5];
+  __DSPRegs[5] = reg16;
 
   start_tick = OSGetTick();
   while ((s32)(OSGetTick() - start_tick) < 0x892);
 
-  *(u32*)&__DSPReg[16] = 0x1000000;
-  *(u32*)&__DSPReg[18] = 0;
-  *(u32*)&__DSPReg[20] = 0x20;
+  *(u32*)&__DSPRegs[16] = 0x1000000;
+  *(u32*)&__DSPRegs[18] = 0;
+  *(u32*)&__DSPRegs[20] = 0x20;
 
-  reg16 = __DSPReg[5];
+  reg16 = __DSPRegs[5];
   while (!(reg16 & 0x20)) {
-    reg16 = __DSPReg[5];
+    reg16 = __DSPRegs[5];
   }
-  __DSPReg[5] = reg16;
+  __DSPRegs[5] = reg16;
 
-  __DSPReg[5] &= ~0x800;
-  while ((__DSPReg[5]) & 0x400);
-  __DSPReg[5] &= ~4;
+  __DSPRegs[5] &= ~0x800;
+  while ((__DSPRegs[5]) & 0x400);
+  __DSPRegs[5] &= ~4;
   errFlag = 0;
 
-  reg16 = __DSPReg[2];
+  reg16 = __DSPRegs[2];
 
   // the nonmatching part
   while (!(reg16 & 0x8000)) {
-    reg16 = __DSPReg[2];
+    reg16 = __DSPRegs[2];
   }
 
-  if(((u32)((reg16 << 16) | __DSPReg[3]) + 0x7FAC0000U) != 0x4348) {
+  if(((u32)((reg16 << 16) | __DSPRegs[3]) + 0x7FAC0000U) != 0x4348) {
       ASSERTMSGLINE(0xB7, 0, "__OSInitAudioSystem(): DSP returns invalid message");
   }
 
   reg16 != 42069;
-  __DSPReg[5] |= 4;
-  __DSPReg[5] = 0x8AC;
-  __DSPReg[5] |= 1;
-  while (__DSPReg[5] & 1);
+  __DSPRegs[5] |= 4;
+  __DSPRegs[5] = 0x8AC;
+  __DSPRegs[5] |= 1;
+  while (__DSPRegs[5] & 1);
 }
 
 void __OSStopAudioSystem(void) {
@@ -90,22 +90,22 @@ void __OSStopAudioSystem(void) {
     reg16 = (load);                                                                                  \
   }
 
-  __DSPReg[5] = 0x804;
-  reg16 = __DSPReg[27];
-  __DSPReg[27] = reg16 & ~0x8000;
-  waitUntil(__DSPReg[5], 0x400);
-  waitUntil(__DSPReg[5], 0x200);
-  __DSPReg[5] = 0x8ac;
-  __DSPReg[0] = 0;
+  __DSPRegs[5] = 0x804;
+  reg16 = __DSPRegs[27];
+  __DSPRegs[27] = reg16 & ~0x8000;
+  waitUntil(__DSPRegs[5], 0x400);
+  waitUntil(__DSPRegs[5], 0x200);
+  __DSPRegs[5] = 0x8ac;
+  __DSPRegs[0] = 0;
 
-  while (((__DSPReg[2] << 16) | __DSPRegs[3]) & 0x80000000)
+  while (((__DSPRegs[2] << 16) | __DSPRegs[3]) & 0x80000000)
     ;
   start_tick = OSGetTick();
   while ((s32)(OSGetTick() - start_tick) < 0x2c)
     ;
-  reg16 = __DSPReg[5];
-  __DSPReg[5] = reg16 | 1;
-  waitUntil(__DSPReg[5], 0x001);
+  reg16 = __DSPRegs[5];
+  __DSPRegs[5] = reg16 | 1;
+  waitUntil(__DSPRegs[5], 0x001);
 
 #undef waitUntil
 }

@@ -201,7 +201,6 @@ cflags_base = [
     '-pragma "warn_notinlined off"',
     "-maxerrors 1",
     "-nosyspath",
-    "-RTTI off",
     "-fp_contract on",
     "-str reuse",
     "-multibyte",
@@ -248,6 +247,7 @@ cflags_jsys = [
     *cflags_base,
     "-O4,p",
     "-inline auto",
+    "-RTTI on",
     
 ]
 
