@@ -197,7 +197,6 @@ cflags_base = [
     "-fp hardware",
     "-Cpp_exceptions off",
     # "-W all",
-    "-inline auto",
     '-pragma "cats off"',
     '-pragma "warn_notinlined off"',
     "-maxerrors 1",
@@ -248,6 +247,7 @@ cflags_jaudio = [
 cflags_jsys = [
     *cflags_base,
     "-O4,p",
+    "-inline auto",
     
 ]
 
@@ -266,6 +266,7 @@ cflags_game = [
     *cflags_base,
     "-O4,p",
     "-RTTI on",
+    "-inline auto",
 ]
 
 # Odemu flags
@@ -273,13 +274,14 @@ cflags_odemu = [
     *cflags_base,
     "-proc 750",
     "-O3,p",
-    "-inline off",
+    "-use_lmw_stmw off",
 ]
 
 # SDK flags
 cflags_sdk = [
     *cflags_base,
     "-O4,p",
+    "-inline auto",
 ]
 
 config.linker_version = "GC/1.3.2"
@@ -442,7 +444,7 @@ config.libs = [
         "cflags": cflags_odemu,
         "progress_category": "lib",
         "src_dir": "lib",
-        "mw_version": "GC/1.2.5",
+        "mw_version": "GC/1.2.5n",
         "objects": [
             Object(NonMatching, f"{pathSDK}/OdemuExi2Lib/DebuggerDriver.c"),
         ]},

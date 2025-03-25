@@ -2,12 +2,18 @@
 #include <dolphin.h>
 #include <types.h>
 
-#define DB_NO_ERROR          0
-#define ODEMU_ADDR_PC2NNGC   0x10000
-#define ODEMU_OFFSET_NNGC2PC 0x405
-#define ODEMU_ADDR_NNGC2PC   0x1C000
+#define DB_NO_ERROR     0x0
+#define DB_STAT_SEND    0x1
+#define DB_STAT_RECIEVE 0x2
 
-#define ROUND_UP(x, align) (((x) + (align) - 1) & (-(align)))
+#define ODEMU_ADDR_NNGC2PC   0x0001C000
+#define ODEMU_ADDR_PC2NNGC   0x0001E000
+#define ODEMU_OFFSET_NNGC2PC 0x00001000
+#define ODEMU_OFFSET_PC2NNGC 0x00001000
+#define ODEMU_MAIL_MAGIC     0x1F000000
+#define ODEMU_MAIL_MASK      0x1fffffff
+
+#define ROUND_UP(x) ((x + 3) & ~3)
 
 #pragma peephole off
 
@@ -19,7 +25,6 @@ s32 RecvDataLeng;
 u32 SendMailData;
 DBGCallbackType DBGCallback;
 MTRCallbackType MTRCallback;
-u8 SendCount = 0x80;
 
 void DBGEXIClearInterrupts(void) { }
 
@@ -54,7 +59,7 @@ void MWCallback(u32 a, OSContext* b)
 
 void DBGHandler(s16 a, OSContext* b)
 {
-	__PIReg[0] = 0x1000;
+	__PIReg[PI_INTSR] = 0x1000;
 
 	if (DBGCallback != nullptr)
 		DBGCallback(a, b);
@@ -81,36 +86,104 @@ void DBInitInterrupts(void)
 	__OSUnmaskInterrupts(OS_INTERRUPTMASK_PI_DEBUG);
 }
 
-void CheckMailBox(void) { }
+void CheckMailBox(void)
+{
+	u32 v;
+	DBGReadStatus(&v);
+	if (v & 1) {
+		DBGReadMailbox(&v);
+		v &= ODEMU_MAIL_MASK;
+
+		if ((v & ODEMU_MAIL_MAGIC) == ODEMU_MAIL_MAGIC) {
+			SendMailData = v;
+			RecvDataLeng = v & 0x7fff;
+			EXIInputFlag = 1;
+		}
+	}
+}
 
 u32 DBQueryData()
 {
-	BOOL interr;
+	BOOL irq;
 	EXIInputFlag = FALSE;
 	if (RecvDataLeng == 0) {
-		interr = OSDisableInterrupts();
+		irq = OSDisableInterrupts();
 		CheckMailBox();
 	}
-	OSRestoreInterrupts(interr);
+	OSRestoreInterrupts(irq);
 	return RecvDataLeng;
 }
 
 BOOL DBRead(u32* buffer, s32 count)
 {
-	BOOL interrupts = OSDisableInterrupts();
-	u32 v           = SendMailData & 0x10000 ? 0x1000 : 0;
+	BOOL irq = OSDisableInterrupts();
+	u32 v    = SendMailData & 0x10000 ? ODEMU_OFFSET_PC2NNGC : 0;
+	v += ODEMU_ADDR_PC2NNGC;
 
-	DBGRead(v + 0x1e000, buffer, ROUND_UP(count, 4));
+	DBGRead(v, buffer, ROUND_UP(count));
 
 	RecvDataLeng = 0;
 	EXIInputFlag = 0;
 
-	OSRestoreInterrupts(interrupts);
+	OSRestoreInterrupts(irq);
 
 	return 0;
 }
 
-BOOL DBWrite(void* src, u32 size) { return 0; }
+inline u32 __DBMakeMail(u32 v, u32 size)
+{
+	return (ODEMU_MAIL_MAGIC) | v << 0x10 | size;
+}
+
+inline void __DBWaitForSendMail(u32* busyFlag)
+{
+	do {
+		DBGReadStatus(busyFlag);
+	} while (*busyFlag & DB_STAT_RECIEVE);
+}
+inline void __DBWaitForSendMailSafe(u32* busyFlag)
+{
+	do {
+		while (!DBGReadStatus(busyFlag))
+			;
+	} while (*busyFlag & DB_STAT_RECIEVE);
+}
+inline void __DBWrite(u32 offset, void* data, u32 size)
+{
+	while (!DBGWrite(offset | ODEMU_ADDR_NNGC2PC, data, ROUND_UP(size)))
+		;
+}
+inline void __DBWriteMail(u32 count, u32 size)
+{
+	while (!DBGWriteMailbox(__DBMakeMail(count, size)))
+		;
+}
+BOOL DBWrite(void* data, u32 size)
+{
+	u32 mail;
+	u32 offset;
+	u32 busyFlag;
+	BOOL irq;
+	static u8 sendCount = 0x80;
+
+	irq = OSDisableInterrupts();
+	__DBWaitForSendMail(&busyFlag);
+
+	sendCount++;
+	offset = ((sendCount & 1) ? ODEMU_OFFSET_NNGC2PC : 0);
+
+	__DBWrite(offset, data, size);
+
+	__DBWaitForSendMail(&busyFlag);
+
+	__DBWriteMail(sendCount, size);
+
+	__DBWaitForSendMailSafe(&busyFlag);
+
+	OSRestoreInterrupts(irq);
+
+	return 0;
+}
 
 void DBOpen(void) { }
 
