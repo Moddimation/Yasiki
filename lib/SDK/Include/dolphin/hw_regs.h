@@ -119,15 +119,15 @@ volatile u8 __GXReg[]           : 0xCC008000; // Graphics FIFO Register
 #define CP_FIFO_BP_U        (31) // fifo bp U
 
 //
-// offsets for PI Regs
+// offsets for PE Regs
 //
-#define PI_Z          (0) // z configuration
-#define PI_ALPHA      (1) // alpha configuration
-#define PI_DEST_ALPHA (2) // destination alpha
-#define PI_ALPHA_MODE (3) // alpha mode
-#define PI_ALPHA_READ (4) // alpha read
-#define PI_IST        (5) // interrupt status register
-#define PI_TOKEN      (6) // pe token
+#define PE_Z          (0) // z configuration
+#define PE_ALPHA      (1) // alpha configuration
+#define PE_DEST_ALPHA (2) // destination alpha
+#define PE_ALPHA_MODE (3) // alpha mode
+#define PE_ALPHA_READ (4) // alpha read
+#define PE_IST        (5) // interrupt status register
+#define PE_TOKEN      (6) // pe token
 
 //
 // offsets for VI Regs
