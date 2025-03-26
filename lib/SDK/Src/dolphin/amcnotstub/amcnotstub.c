@@ -1,8 +1,5 @@
 #include <dolphin.h>
 
-// this file is a stub.
-int AMC_IsStub();
+s32 AMC_IsStub();
 
-int AMC_IsStub() {
-    return 0;
-}
+s32 AMC_IsStub() { return 0; }

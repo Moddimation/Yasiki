@@ -1,41 +1,25 @@
 #include <dolphin.h>
 
-int Hu_IsStub();
+s32 Hu_IsStub();
 void DBInitInterrupts();
-long DBQueryData();
-unsigned long DBRead();
-unsigned long DBWrite();
+s32 DBQueryData();
+u32 DBRead(const u32* data, s32 size);
+u32 DBWrite(const s32* data, u32 size);
 void DBOpen();
 void DBClose();
 
-int Hu_IsStub() {
-    return 1;
-}
+s32 Hu_IsStub() { return 1; }
 
-void DBInitComm() {
-    
-}
+void DBInitComm(u8** a, MTRCallbackType b) { }
 
-void DBInitInterrupts() {
+void DBInitInterrupts() { }
 
-}
+s32 DBQueryData() { return 0; }
 
-long DBQueryData() {
-    return 0;
-}
+u32 DBRead(const u32* data, s32 size) { return 0; }
 
-unsigned long DBRead() {
-    return 0;
-}
+u32 DBWrite(const s32* data, u32 size) { return 0; }
 
-unsigned long DBWrite() {
-    return 0;
-}
+void DBOpen() { }
 
-void DBOpen() {
-    
-}
-
-void DBClose() {
-    
-}
+void DBClose() { }

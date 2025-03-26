@@ -273,9 +273,13 @@ cflags_game = [
 cflags_odemu = [
     *cflags_base,
     "-proc 750",
-    "-O3,p",
     "-use_lmw_stmw off",
+    "-common on"
 ]
+if config.version == "GLMJ01":
+    cflags_odemu.extend(["-O3,p"])
+else:
+    cflags_odemu.extend(["-inline deferred", "-O4,s"])
 
 # SDK flags
 cflags_sdk = [
@@ -444,7 +448,9 @@ config.libs = [
         "cflags": cflags_odemu,
         "progress_category": "lib",
         "src_dir": "lib",
-        "mw_version": "GC/1.2.5n",
+        "mw_version": "GC/1.2.5n"
+        if config.version == "GLMJ01"
+            else "GC/1.3.2",
         "objects": [
             Object(NonMatching, f"{pathSDK}/OdemuExi2Lib/DebuggerDriver.c"),
         ]},
