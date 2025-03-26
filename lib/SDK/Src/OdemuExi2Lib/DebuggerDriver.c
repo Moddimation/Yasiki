@@ -4,9 +4,11 @@
 #include <dolphin.h>
 #include <types.h>
 
+#define DB_NO_ERROR     0x0
 #define DB_STAT_SEND    0x1
 #define DB_STAT_RECIEVE 0x2
 
+typedef enum { ODEMU_NO_ERROR = 0, ODEMU_UNSELECTED } ODEMUError;
 #define ODEMU_ADDR_NNGC2PC   0x0001C000
 #define ODEMU_ADDR_PC2NNGC   0x0001E000
 #define ODEMU_OFFSET_NNGC2PC 0x00001000
@@ -34,33 +36,33 @@ void DBGEXIInit(void)
 	__EXIRegs[EXI_C2_SR] = 0;
 }
 
-BOOL DBGEXISelect(u32 v)
+ODEMUError DBGEXISelect(u32 v)
 {
 	u32 regs = __EXIRegs[EXI_C2_SR];
 	regs &= 0x405;
 	regs |= 0x80 | (v << 4);
 	__EXIRegs[EXI_C2_SR] = regs;
-	return TRUE;
+	return ODEMU_NO_ERROR;
 }
 
-BOOL DBGEXIDeselect(void)
+ODEMUError DBGEXIDeselect(void)
 {
 	u32 regs = __EXIRegs[EXI_C2_SR];
 	regs &= 0x405;
 	__EXIRegs[EXI_C2_SR] = regs;
-	return TRUE;
+	return ODEMU_NO_ERROR;
 }
 
 // NON_MATCHING
-BOOL DBGEXISync(void)
+ODEMUError DBGEXISync(void)
 {
 	do {
 	} while ((__EXIRegs[EXI_C2_CR] & 1) != 0);
-	return TRUE;
+	return ODEMU_NO_ERROR;
 }
 
 // NON_MATCHING
-BOOL DBGEXIImm(const void* data, s32 size, u32 mode)
+ODEMUError DBGEXIImm(const void* data, s32 size, u32 mode)
 {
 	u32 writeVal;
 	u32 readVal;
@@ -86,17 +88,17 @@ BOOL DBGEXIImm(const void* data, s32 size, u32 mode)
 		}
 	}
 
-	return TRUE;
+	return ODEMU_NO_ERROR;
 }
 
-BOOL DBGWriteMailbox(u32 v)
+ODEMUError DBGWriteMailbox(u32 v)
 {
 
 	BOOL err = FALSE;
 	u32 value;
 
 	if (!DBGEXISelect(4)) {
-		return FALSE;
+		return ODEMU_UNSELECTED;
 	}
 
 	value = 0xc0000000 | (v & 0x1fffffff);
@@ -107,14 +109,14 @@ BOOL DBGWriteMailbox(u32 v)
 	return !err;
 }
 
-BOOL DBGReadMailbox(u32* v)
+ODEMUError DBGReadMailbox(u32* v)
 {
 
 	BOOL err = FALSE;
 	u32 value;
 
 	if (!DBGEXISelect(4)) {
-		return FALSE;
+		return ODEMU_UNSELECTED;
 	}
 
 	value = 0x60000000;
@@ -130,7 +132,7 @@ BOOL DBGReadMailbox(u32* v)
 // void DBGCheckID(void) { }
 
 // NON_MATCHING
-BOOL DBGWrite(u32 addr, const void* data, s32 size)
+ODEMUError DBGWrite(u32 addr, const void* data, s32 size)
 {
 	BOOL err     = FALSE;
 	u32* dataPtr = (u32*)data;
@@ -138,7 +140,7 @@ BOOL DBGWrite(u32 addr, const void* data, s32 size)
 	u32 nextWord;
 
 	if (!DBGEXISelect(4)) {
-		return FALSE;
+		return ODEMU_UNSELECTED;
 	}
 
 	value = 0xa0000000 | ((addr << 8) & 0x01fffc00);
@@ -162,7 +164,7 @@ BOOL DBGWrite(u32 addr, const void* data, s32 size)
 }
 
 // NON_MATCHING
-BOOL DBGRead(u32 addr, const u32* data, s32 byte_size)
+ODEMUError DBGRead(u32 addr, const u32* data, s32 byte_size)
 {
 	BOOL err     = FALSE;
 	u32* dataPtr = (u32*)data;
@@ -170,7 +172,7 @@ BOOL DBGRead(u32 addr, const u32* data, s32 byte_size)
 	u32 readValue;
 
 	if (!DBGEXISelect(4))
-		return FALSE;
+		return ODEMU_UNSELECTED;
 
 	writeValue = 0x20000000 | ((addr << 8) & 0x01fffc00); // TODO: enum
 	err        = !DBGEXIImm(&writeValue, 4, 1);
@@ -192,13 +194,13 @@ BOOL DBGRead(u32 addr, const u32* data, s32 byte_size)
 	return !err;
 }
 
-BOOL DBGReadStatus(u32* status)
+ODEMUError DBGReadStatus(u32* status)
 {
 	BOOL err;
 	u32 cmd;
 
 	if (!DBGEXISelect(4))
-		return FALSE;
+		return ODEMU_UNSELECTED;
 
 	cmd = 0x40000000;
 	err = !DBGEXIImm(&cmd, 2, 1); // TODO: Enums: 1 = Write, 0 = Read
@@ -262,7 +264,7 @@ void CheckMailBox(void)
 	}
 }
 
-u32 DBQueryData()
+s32 DBQueryData()
 {
 	BOOL irq;
 	EXIInputFlag = FALSE;
@@ -274,20 +276,20 @@ u32 DBQueryData()
 	return RecvDataLeng;
 }
 
-BOOL DBRead(const u32* buffer, s32 count)
+BOOL DBRead(const u32* data, s32 size)
 {
 	BOOL irq = OSDisableInterrupts();
 	u32 v    = SendMailData & 0x10000 ? ODEMU_OFFSET_PC2NNGC : 0;
 	v += ODEMU_ADDR_PC2NNGC;
 
-	DBGRead(v, buffer, ALIGN_NEXT(count, 4));
+	DBGRead(v, data, ALIGN_NEXT(size, 4));
 
 	RecvDataLeng = 0;
 	EXIInputFlag = 0;
 
 	OSRestoreInterrupts(irq);
 
-	return 0;
+	return DB_NO_ERROR;
 }
 
 inline void __DBWaitForSendMail(u32* busyFlag)
@@ -333,7 +335,7 @@ int DBWrite(const s32* data, u32 size)
 
 	OSRestoreInterrupts(enabled);
 
-	return 0;
+	return DB_NO_ERROR;
 }
 
 void DBOpen(void) { }
