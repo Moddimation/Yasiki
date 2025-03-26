@@ -1,34 +1,23 @@
 #ifndef _DOLPHIN_HW_REGS_H_
 #define _DOLPHIN_HW_REGS_H_
 
-#ifdef __MWERKS__
+// Register base adresses
+
 // clang-format off
-volatile u32 __RAMRegs[]       : 0x80000000; // RAM Register
-volatile u16 __CPRegs[]        : 0xCC000000; // Command Processor Register
-volatile u16 __PERegs[]        : 0xCC001000; // Pixel Engine Register
-volatile u16 __VIRegs[]      	: 0xCC002000; // Video Interface Register
-volatile u32 __PIRegs[]      	: 0xCC003000; // Process Interrupt Register
-volatile u16 __MIRegs[]      	: 0xCC004000; // Memory Interrupt Register
-volatile u16 __DSPRegs[]       : 0xCC005000; // Digital Signal Processor Register
-volatile u32 __DIRegs[]        : 0xCC006000; // DVD Interface Register
-volatile u32 __SIRegs[]     	 : 0xCC006400; // Serial Interface Register
-volatile u32 __EXIRegs[]    	 : 0xCC006800; // External Interface Register
-volatile u32 __AIRegs[]        : 0xCC006C00; // Audio Interface Register
-volatile u8 __GXRegs[]         : 0xCC008000; // Graphics FIFO Register
-#else
-#define __RAMRegs ((volatile u16*)0x80000000)
-#define __CPRegs  ((volatile u16*)0xCC000000)
-#define __PERegs  ((volatile u16*)0xCC001000)
-#define __VIRegs  ((volatile u16*)0xCC002000)
-#define __PIRegs  ((volatile u32*)0xCC003000)
-#define __MEMRegs ((volatile u16*)0xCC004000)
-#define __DSPRegs ((volatile u16*)0xCC005000)
-#define __DIRegs  ((volatile u32*)0xCC006000)
-#define __SIRegs  ((volatile u32*)0xCC006400)
-#define __EXIRegs ((volatile u32*)0xCC006800)
-#define __AIRegs  ((volatile u32*)0xCC006C00)
-#define __GXRegs  ((volatile u32*)0xCC008000)
-#endif
+volatile u32 __RAMRegs[]        AT_ADDRESS(0x80000000); // RAM Register
+volatile u16 __CPRegs[]         AT_ADDRESS(0xCC000000); // Command Processor Register
+volatile u16 __PERegs[]         AT_ADDRESS(0xCC001000); // Pixel Engine Register
+volatile u16 __VIRegs[]      	AT_ADDRESS(0xCC002000); // Video Interface Register
+volatile u32 __PIRegs[]      	AT_ADDRESS(0xCC003000); // Process Interrupt Register
+volatile u16 __MIRegs[]      	AT_ADDRESS(0xCC004000); // Memory Interrupt Register
+volatile u16 __DSPRegs[]        AT_ADDRESS(0xCC005000); // Digital Signal Processor Register
+volatile u32 __DIRegs[]         AT_ADDRESS(0xCC006000); // DVD Interface Register
+volatile u32 __SIRegs[]     	AT_ADDRESS(0xCC006400); // Serial Interface Register
+volatile u32 __EXIRegs[]    	AT_ADDRESS(0xCC006800); // External Interface Register
+volatile u32 __AIRegs[]         AT_ADDRESS(0xCC006C00); // Audio Interface Register
+volatile u8 __GXRegs[]          AT_ADDRESS(0xCC008000); // Graphics FIFO Register
+
+// Register offsets
 
 //
 // offsets for RAM Regs
@@ -48,9 +37,9 @@ volatile u8 __GXRegs[]         : 0xCC008000; // Graphics FIFO Register
 #define RAM_DBG_EXCEPT_HOOK_DEST    (18) // exception hook destination (physical address)
 #define RAM_DBG_LR_TEMP             (19) // debug load register temp 
 #define RAM_DBG_HOOK_PTR            (24) // debug hook ptr
-#define RAM_OS_CONTX_PHYS_CURR 	   (48) // current os context (physical address)
-#define RAM_OS_INT_MASK_PREV   		 (49) // previous os interrupt mask
-#define RAM_OS_INT_MASK_CURR   		 (50) // current os interrupt mask
+#define RAM_OS_CONTX_PHYS_CURR 	    (48) // current os context (physical address)
+#define RAM_OS_INT_MASK_PREV        (49) // previous os interrupt mask
+#define RAM_OS_INT_MASK_CURR   	    (50) // current os interrupt mask
 #define RAM_TV_MODE                 (51) // tv mode
 #define RAM_ARAM_SIZE               (52) // aram size (intenal+expansion) in bytes
 #define RAM_OS_CONTEXT_LOGICAL_CURR (53) // current os context (logical address)
@@ -232,7 +221,7 @@ volatile u8 __GXRegs[]         : 0xCC008000; // Graphics FIFO Register
 #define MI_INT_MASK  (6)  // mi interrupt mask
 #define MI_INT_CAUSE (7)  // mi interrupt cause
 
-#define MI_ACK   		(8)  // aaackK!!!
+#define MI_ACK       (8)  // aaackK!!!
 
 #define MI_REG_U     (10) // address, which failed protection rules L
 #define MI_REG       (9)  // address, which failed protection rules U
@@ -299,9 +288,9 @@ volatile u8 __GXRegs[]         : 0xCC008000; // Graphics FIFO Register
 
 #define SI_POLL       (12) // si poll register (joy-channek control)
 #define SI_COMCSR     (13) // si communication control status register (command)
-#define SI_SR 			  (14) // si status register (channel select & status2)
-#define SI_EXILK		  (15) // si exi clock lock
-#define SI_BUFFER	 	(16) // si i/o buffer (access by word)
+#define SI_SR 	      (14) // si status register (channel select & status2)
+#define SI_EXILK      (15) // si exi clock lock
+#define SI_BUFFER     (16) // si i/o buffer (access by word)
 
 //
 // offsets for EXI Regs
