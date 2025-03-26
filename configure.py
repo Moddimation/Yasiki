@@ -27,10 +27,10 @@ from tools.project import (
 )
 
 # Game versions
-DEFAULT_VERSION = 0
+DEFAULT_VERSION = 0 # GLMJ01
 VERSIONS = [
-    "GLMJ01",  # 0
-    "GLME01",  # 1
+    "GLMJ01",  # Japan Release
+    "GLME01",  # US Release
 ]
 
 parser = argparse.ArgumentParser()
@@ -160,9 +160,7 @@ config.asflags = [
     "-I include",
     "-I lib/SDK/Include",
     "-I lib/SDK/Include/stl",
-    "-I lib/PowerPC_EABI_Support/MetroTRK/Os/dolphin/Include",
-    "-I lib/PowerPC_EABI_Support/MetroTRK/Portable/Include",
-    "-I lib/PowerPC_EABI_Support/MetroTRK/Processor/ppc/Generic",
+    "-I lib/PowerPC_EABI_Support/MetroTRK/include",
     "-I lib/PowerPC_EABI_Support/MSL/MSL_C/MSL_Common/Include",
     "-I lib/PowerPC_EABI_Support/MSL/MSL_C/MSL_Common_Embedded/Include",
     "-I lib/PowerPC_EABI_Support/MSL/MSL_C/MSL_Common_Embedded/Math/Double_precision",
@@ -208,17 +206,14 @@ cflags_base = [
     "-i include",
     "-i lib/SDK/Include",
     "-i lib/SDK/Include/stl",
-    "-i lib/PowerPC_EABI_Support/MetroTRK/Os/dolphin/Include",
-    "-i lib/PowerPC_EABI_Support/MetroTRK/Portable/Include",
-    "-i lib/PowerPC_EABI_Support/MetroTRK/Processor/ppc/Generic",
+    "-i lib/PowerPC_EABI_Support/MetroTRK/include",
     "-i lib/PowerPC_EABI_Support/MSL/MSL_C/MSL_Common/Include",
     "-i lib/PowerPC_EABI_Support/MSL/MSL_C/MSL_Common_Embedded/Include",
     "-i lib/PowerPC_EABI_Support/MSL/MSL_C/MSL_Common_Embedded/Math/Double_precision",
     "-i lib/PowerPC_EABI_Support/MSL/MSL_C/PPC_EABI/Include",
     "-i lib/PowerPC_EABI_Support/Runtime/Include",
     f"-i build/{config.version}/include",
-    f"-DBUILD_VERSION={version_num}",
-    f"-DVERSION_{version_num}",
+    f"-DVERSION_{config.version}",
 ]
 
 # Debug flags
@@ -254,11 +249,23 @@ cflags_jsys = [
 # Metrowerks library flags
 cflags_runtime = [
     *cflags_base,
+    "-proc 750",
     "-O4,p",
     "-use_lmw_stmw on",
     "-str reuse,pool,readonly",
     "-common off",
-    "-inline auto",
+    "-inline deferred,auto",
+    "-char signed",
+    "-sdata 0",
+    "-sdata2 0",
+]
+cflags_debugger = [
+    *cflags_base,
+    "-O4,p",
+    "-pool off",
+    "-str readonly",
+    "-enum min",
+    "-sdatathreshold 0",
 ]
 
 # Game flags
@@ -272,14 +279,11 @@ cflags_game = [
 # Odemu flags
 cflags_odemu = [
     *cflags_base,
-    "-proc 750",
-    "-use_lmw_stmw off",
-    "-common on"
 ]
 if config.version == "GLMJ01":
-    cflags_odemu.extend(["-O3,p"])
+    cflags_odemu.extend(["-O3,p", "-proc 750", "-use_lmw_stmw off"])
 else:
-    cflags_odemu.extend(["-inline deferred", "-O4,s"])
+    cflags_odemu.extend(["-O4,p", "-proc gekko", "-inline all"])
 
 # SDK flags
 cflags_sdk = [
@@ -295,12 +299,10 @@ config.linker_version = "GC/1.3.2"
 pathJSys = "JSystem"
 pathSDK = "SDK/Src"
 pathDolphin = f"{pathSDK}/dolphin"
-pathMSL = "PowerPC_EABI_Support/MSL/MSL_C/MSL_Common/Src"
-pathMSL = "PowerPC_EABI_Support/MSL/MSL_C/MSL_Common_Embedded/Src"
-pathMSL = "PowerPC_EABI_Support/MSL/MSL_C/PPC_EABI/Src"
-pathMTK_Os = "PowerPC_EABI_Tools/MetroTRK/Os/dolphin/Src"
-pathMTK_Portable = "PowerPC_EABI_Tools/MetroTRK/Portable/Src"
-pathMTK_Processor = "PowerPC_EABI_Tools/MetroTRK/Processor/ppc/Generic/Src"
+pathMSL_Com = "PowerPC_EABI_Support/MSL/MSL_C/MSL_Common/Src"
+pathMSL_Emb = "PowerPC_EABI_Support/MSL/MSL_C/MSL_Common_Embedded/Src"
+pathMSL_Ppc = "PowerPC_EABI_Support/MSL/MSL_C/PPC_EABI/Src"
+pathMTK = "PowerPC_EABI_Support/MetroTRK/src"
 pathRuntime = "PowerPC_EABI_Support/Runtime/Src"
 
 # Helper function for Dolphin libraries
@@ -365,7 +367,7 @@ config.libs = [
         ]),
     {
         "lib": "jaudio",
-        "mw_version": config.linker_version,
+        "mw_version": "GC/1.2.5n",
         "cflags": cflags_jaudio,
         "progress_category": "jsys",
         "src_dir": "lib",
@@ -416,18 +418,18 @@ config.libs = [
         ]},
     {
         "lib": "hvqm4dec",
-        "mw_version": config.linker_version,
+        "mw_version": "GC/1.2.5n",
         "cflags": cflags_sdk,
-        "progress_category": "lib",
+        "progress_category": "sdk",
         "src_dir": "lib",
         "objects": [
             Object(NonMatching, "HVQM/hvqm4dec.c"),
         ]},
     {
         "lib": "Runtime.PPCEABI.H",
-        "mw_version": config.linker_version,
+        "mw_version": "GC/1.2.5n",
         "cflags": cflags_runtime,
-        "progress_category": "sdk",
+        "progress_category": "mtk",
         "src_dir": "lib",
         "objects": [
             #Object(NonMatching, f"{pathRuntime}/global_destructor_chain.c"),
@@ -435,27 +437,34 @@ config.libs = [
         ]},
     {
         "lib": "MSL_C.PPCEABI.bare.H",
-        "mw_version": config.linker_version,
+        "mw_version": "GC/1.2.5n",
         "cflags": cflags_runtime,
-        "progress_category": "sdk",
+        "progress_category": "mtk",
         "src_dir": "lib",
         "objects": [
             #Object(NonMatching, ""),
         ]},
     {
-        "lib": "OdemuExi2",
-        "mw_version": config.linker_version,
-        "cflags": cflags_odemu,
-        "progress_category": "lib",
+        "lib": "TRK_MINNOW_DOLPHIN",
+        "mw_version": "GC/1.2.5n",
+        "cflags": cflags_debugger,
+        "progress_category": "mtk",
         "src_dir": "lib",
-        "mw_version": "GC/1.2.5n"
-        if config.version == "GLMJ01"
-            else "GC/1.3.2",
         "objects": [
-            Object(NonMatching, f"{pathSDK}/OdemuExi2Lib/DebuggerDriver.c"),
+            Object(NonMatching, f"{pathMTK}/Os/dolphin/dolphin_trk_glue.c"),
+            Object(NonMatching, f"{pathMTK}/Os/dolphin/targcont.c"),
+        ]},
+    {
+        "lib": "OdemuExi2",
+        "mw_version": "GC/1.2.5",
+        "cflags": cflags_odemu,
+        "progress_category": "sdk",
+        "src_dir": "lib",
+        "objects": [
+            Object(MatchingFor("GLME01"), f"{pathSDK}/OdemuExi2Lib/DebuggerDriver.c"),
         ]},
     DolphinLib("amcstubs", [
-            Object(NonMatching, f"{pathDolphin}/amcstubs/AmcExi2Stubs.c"),
+            Object(Matching, f"{pathDolphin}/amcstubs/AmcExi2Stubs.c"),
         ]),
     DolphinLib("odenotstub", [
             Object(Matching, f"{pathDolphin}/odenotstub/odenotstub.c"),
@@ -468,7 +477,7 @@ config.progress_categories = [
     ProgressCategory("game", "Game Application"),
     ProgressCategory("jsys", "JSystem MiddleWare"),
     ProgressCategory("sdk", "Dolphin SDK"),
-    ProgressCategory("lib", "Misc MiddleWare"),
+    ProgressCategory("mtk", "MTK Runtime"),
 ]
 config.progress_each_module = args.verbose
 

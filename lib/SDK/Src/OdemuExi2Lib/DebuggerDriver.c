@@ -8,7 +8,14 @@
 #define DB_STAT_SEND    0x1
 #define DB_STAT_RECIEVE 0x2
 
-typedef enum { ODEMU_NO_ERROR = 0, ODEMU_UNSELECTED } ODEMUError;
+#define ODEMU_NO_ERROR 1
+#define ODEMU_ERROR    1;
+#ifdef VERSION_GLMJ01
+#define US_HIDE
+#else
+#define US_HIDE inline
+#endif
+
 #define ODEMU_ADDR_NNGC2PC   0x0001C000
 #define ODEMU_ADDR_PC2NNGC   0x0001E000
 #define ODEMU_OFFSET_NNGC2PC 0x00001000
@@ -25,18 +32,25 @@ u32 SendMailData;
 DBGCallbackType DBGCallback;
 MTRCallbackType MTRCallback;
 
+#ifdef VERSION_GLMJ01
 #pragma peephole off
+#endif
 
-void DBGEXIClearInterrupts(void) { __SIRegs[SI_EXILK] = 0; }
+US_HIDE void DBGEXIClearInterrupts(void)
+{
+#ifdef VERSION_GLMJ01
+	__SIRegs[SI_EXILK] = 0;
+#endif
+}
 
-void DBGEXIInit(void)
+US_HIDE void DBGEXIInit(void)
 {
 	__OSMaskInterrupts(OS_INTERRUPTMASK_EXI_2);
 	DBGEXIClearInterrupts();
 	__EXIRegs[EXI_C2_SR] = 0;
 }
 
-ODEMUError DBGEXISelect(u32 v)
+US_HIDE BOOL DBGEXISelect(u32 v)
 {
 	u32 regs = __EXIRegs[EXI_C2_SR];
 	regs &= 0x405;
@@ -45,16 +59,15 @@ ODEMUError DBGEXISelect(u32 v)
 	return ODEMU_NO_ERROR;
 }
 
-ODEMUError DBGEXIDeselect(void)
+US_HIDE BOOL DBGEXIDeselect(void)
 {
-	u32 regs = __EXIRegs[EXI_C2_SR];
-	regs &= 0x405;
+	u32 regs             = __EXIRegs[EXI_C2_SR] & 0x405;
 	__EXIRegs[EXI_C2_SR] = regs;
 	return ODEMU_NO_ERROR;
 }
 
 // NON_MATCHING
-ODEMUError DBGEXISync(void)
+US_HIDE BOOL DBGEXISync(void)
 {
 	do {
 	} while ((__EXIRegs[EXI_C2_CR] & 1) != 0);
@@ -62,7 +75,7 @@ ODEMUError DBGEXISync(void)
 }
 
 // NON_MATCHING
-ODEMUError DBGEXIImm(const void* data, s32 size, u32 mode)
+BOOL DBGEXIImm(const void* data, s32 size, u32 mode)
 {
 	u32 writeVal;
 	u32 readVal;
@@ -91,36 +104,36 @@ ODEMUError DBGEXIImm(const void* data, s32 size, u32 mode)
 	return ODEMU_NO_ERROR;
 }
 
-ODEMUError DBGWriteMailbox(u32 v)
+US_HIDE BOOL DBGWriteMailbox(u32 v)
 {
 
 	BOOL err = FALSE;
 	u32 value;
 
 	if (!DBGEXISelect(4)) {
-		return ODEMU_UNSELECTED;
+		return ODEMU_ERROR;
 	}
 
 	value = 0xc0000000 | (v & 0x1fffffff);
-	err   = !DBGEXIImm(&value, 4, 1);
+	err |= !DBGEXIImm(&value, 4, 1);
 	err |= !DBGEXISync();
 	err |= !DBGEXIDeselect();
 
 	return !err;
 }
 
-ODEMUError DBGReadMailbox(u32* v)
+BOOL DBGReadMailbox(u32* v)
 {
 
 	BOOL err = FALSE;
 	u32 value;
 
 	if (!DBGEXISelect(4)) {
-		return ODEMU_UNSELECTED;
+		return ODEMU_ERROR;
 	}
 
 	value = 0x60000000;
-	err   = !DBGEXIImm(&value, 2, 1);
+	err |= !DBGEXIImm(&value, 2, 1);
 	err |= !DBGEXISync();
 	err |= !DBGEXIImm(v, 4, 0);
 	err |= !DBGEXISync();
@@ -129,42 +142,8 @@ ODEMUError DBGReadMailbox(u32* v)
 	return !err;
 }
 
-// void DBGCheckID(void) { }
-
 // NON_MATCHING
-ODEMUError DBGWrite(u32 addr, const void* data, s32 size)
-{
-	BOOL err     = FALSE;
-	u32* dataPtr = (u32*)data;
-	u32 value;
-	u32 nextWord;
-
-	if (!DBGEXISelect(4)) {
-		return ODEMU_UNSELECTED;
-	}
-
-	value = 0xa0000000 | ((addr << 8) & 0x01fffc00);
-	err   = !DBGEXIImm((u8*)&value, sizeof(value), 1);
-	err |= !DBGEXISync();
-
-	while (size != 0) {
-		nextWord = *dataPtr++;
-
-		err |= !DBGEXIImm((u8*)&nextWord, sizeof(nextWord), 1);
-		err |= !DBGEXISync();
-
-		size -= 4;
-		if (size < 0)
-			size = 0;
-	}
-
-	err |= !DBGEXIDeselect();
-
-	return !err;
-}
-
-// NON_MATCHING
-ODEMUError DBGRead(u32 addr, const u32* data, s32 byte_size)
+BOOL DBGRead(u32 addr, const u32* data, s32 byte_size)
 {
 	BOOL err     = FALSE;
 	u32* dataPtr = (u32*)data;
@@ -172,10 +151,10 @@ ODEMUError DBGRead(u32 addr, const u32* data, s32 byte_size)
 	u32 readValue;
 
 	if (!DBGEXISelect(4))
-		return ODEMU_UNSELECTED;
+		return ODEMU_ERROR;
 
 	writeValue = 0x20000000 | ((addr << 8) & 0x01fffc00); // TODO: enum
-	err        = !DBGEXIImm(&writeValue, 4, 1);
+	err |= !DBGEXIImm(&writeValue, 4, 1);
 	err |= !DBGEXISync();
 
 	while (byte_size != 0) {
@@ -194,16 +173,50 @@ ODEMUError DBGRead(u32 addr, const u32* data, s32 byte_size)
 	return !err;
 }
 
-ODEMUError DBGReadStatus(u32* status)
+// void DBGCheckID(void) { }
+
+// NON_MATCHING
+BOOL DBGWrite(u32 addr, const void* data, s32 size)
 {
-	BOOL err;
+	BOOL err     = FALSE;
+	u32* dataPtr = (u32*)data;
+	u32 value;
+	u32 nextWord;
+
+	if (!DBGEXISelect(4)) {
+		return ODEMU_ERROR;
+	}
+
+	value = 0xa0000000 | ((addr << 8) & 0x01fffc00);
+	err |= !DBGEXIImm((u8*)&value, sizeof(value), 1);
+	err |= !DBGEXISync();
+
+	while (size != 0) {
+		nextWord = *dataPtr++;
+
+		err |= !DBGEXIImm((u8*)&nextWord, sizeof(nextWord), 1);
+		err |= !DBGEXISync();
+
+		size -= 4;
+		if (size < 0)
+			size = 0;
+	}
+
+	err |= !DBGEXIDeselect();
+
+	return !err;
+}
+
+BOOL DBGReadStatus(u32* status)
+{
+	BOOL err = FALSE;
 	u32 cmd;
 
 	if (!DBGEXISelect(4))
-		return ODEMU_UNSELECTED;
+		return ODEMU_ERROR;
 
 	cmd = 0x40000000;
-	err = !DBGEXIImm(&cmd, 2, 1); // TODO: Enums: 1 = Write, 0 = Read
+	err |= !DBGEXIImm(&cmd, 2, 1); // TODO: Enums: 1 = Write, 0 = Read
 	err |= !DBGEXISync();
 	err |= !DBGEXIImm(status, 4, 0);
 	err |= !DBGEXISync();
@@ -248,7 +261,7 @@ void DBInitInterrupts(void)
 	__OSUnmaskInterrupts(OS_INTERRUPTMASK_PI_DEBUG);
 }
 
-void CheckMailBox(void)
+US_HIDE void CheckMailBox(void)
 {
 	u32 v;
 	DBGReadStatus(&v);
@@ -292,32 +305,19 @@ BOOL DBRead(const u32* data, s32 size)
 	return DB_NO_ERROR;
 }
 
-inline void __DBWaitForSendMail(u32* busyFlag)
-{
-	do {
-		DBGReadStatus(busyFlag);
-	} while (*busyFlag & DB_STAT_RECIEVE);
-}
-
-inline void __DBWaitForSendMailSafe(u32* busyFlag)
-{
-	do {
-		while (!DBGReadStatus(busyFlag))
-			;
-	} while (*busyFlag & DB_STAT_RECIEVE);
-}
-
 // NON_MATCHING
 int DBWrite(const s32* data, u32 size)
 {
 	u32 value;
 	u32 busyFlag;
-	BOOL enabled;
+	BOOL irq;
 	static u8 SendCount = 0x80;
 
-	enabled = OSDisableInterrupts();
+	irq = OSDisableInterrupts();
 
-	__DBWaitForSendMail(&busyFlag);
+	do {
+		DBGReadStatus(&busyFlag);
+	} while (busyFlag & DB_STAT_RECIEVE);
 
 	++SendCount;
 
@@ -325,15 +325,20 @@ int DBWrite(const s32* data, u32 size)
 	while (!DBGWrite(value | 0x1c000, data, ALIGN_NEXT(size, 4)))
 		;
 
-	__DBWaitForSendMail(&busyFlag);
+	do {
+		DBGReadStatus(&busyFlag);
+	} while (busyFlag & DB_STAT_RECIEVE);
 
 	value = ODEMU_MAIL_MAGIC | SendCount << 0x10 | size;
 	while (!DBGWriteMailbox(value))
 		;
 
-	__DBWaitForSendMailSafe(&busyFlag);
+	do {
+		while (!DBGReadStatus(&busyFlag))
+			;
+	} while (busyFlag & DB_STAT_RECIEVE);
 
-	OSRestoreInterrupts(enabled);
+	OSRestoreInterrupts(irq);
 
 	return DB_NO_ERROR;
 }
