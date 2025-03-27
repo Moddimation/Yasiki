@@ -162,8 +162,8 @@ config.asflags = [
     "-I lib/SDK/Include/stl",
     "-I lib/PowerPC_EABI_Support/MetroTRK/include",
     "-I lib/PowerPC_EABI_Support/MSL/MSL_C/MSL_Common/Include",
+    "-I lib/PowerPC_EABI_Support/MSL/MSL_C/MSL_Common_Embedded",
     "-I lib/PowerPC_EABI_Support/MSL/MSL_C/MSL_Common_Embedded/Include",
-    "-I lib/PowerPC_EABI_Support/MSL/MSL_C/MSL_Common_Embedded/Math/Double_precision",
     "-I lib/PowerPC_EABI_Support/MSL/MSL_C/PPC_EABI/Include",
     "-I lib/PowerPC_EABI_Support/Runtime/Include",
     f"-I build/{config.version}/include",
@@ -208,8 +208,8 @@ cflags_base = [
     "-i lib/SDK/Include/stl",
     "-i lib/PowerPC_EABI_Support/MetroTRK/include",
     "-i lib/PowerPC_EABI_Support/MSL/MSL_C/MSL_Common/Include",
+    "-i lib/PowerPC_EABI_Support/MSL/MSL_C/MSL_Common_Embedded",
     "-i lib/PowerPC_EABI_Support/MSL/MSL_C/MSL_Common_Embedded/Include",
-    "-i lib/PowerPC_EABI_Support/MSL/MSL_C/MSL_Common_Embedded/Math/Double_precision",
     "-i lib/PowerPC_EABI_Support/MSL/MSL_C/PPC_EABI/Include",
     "-i lib/PowerPC_EABI_Support/Runtime/Include",
     f"-i build/{config.version}/include",
@@ -301,6 +301,7 @@ pathSDK = "SDK/Src"
 pathDolphin = f"{pathSDK}/dolphin"
 pathMSL_Com = "PowerPC_EABI_Support/MSL/MSL_C/MSL_Common/Src"
 pathMSL_Emb = "PowerPC_EABI_Support/MSL/MSL_C/MSL_Common_Embedded/Src"
+pathMSL_Mat = "PowerPC_EABI_Support/MSL/MSL_C/MSL_Common_Embedded/Src/Math"
 pathMSL_Ppc = "PowerPC_EABI_Support/MSL/MSL_C/PPC_EABI/Src"
 pathMTK = "PowerPC_EABI_Support/MetroTRK/src"
 pathRuntime = "PowerPC_EABI_Support/Runtime/Src"
@@ -443,16 +444,6 @@ config.libs = [
         "src_dir": "lib",
         "objects": [
             #Object(NonMatching, ""),
-        ]},
-    {
-        "lib": "TRK_MINNOW_DOLPHIN",
-        "mw_version": "GC/1.2.5n",
-        "cflags": cflags_debugger,
-        "progress_category": "mtk",
-        "src_dir": "lib",
-        "objects": [
-            Object(NonMatching, f"{pathMTK}/Os/dolphin/dolphin_trk_glue.c"),
-            Object(NonMatching, f"{pathMTK}/Os/dolphin/targcont.c"),
         ]},
     {
         "lib": "OdemuExi2",
