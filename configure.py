@@ -35,8 +35,8 @@ VERSIONS = [
     "GLME01",   # US Release
     "GLME01_1", # US Demo
     "GLMP01",   # EU Release
-    "GLME01_1", # EU Release r1
-    "GLME01_2", # EU Demo 
+    "GLMP01_1", # EU Release r1
+    "GLMP01_2", # EU Demo 
 ]
 
 parser = argparse.ArgumentParser()
@@ -245,8 +245,8 @@ for flag in cflags_base:
         converted.append(flag)
 cflags_base = converted
  # Print all caue why not
-for s in cflags_base:
-    print(s)
+#for s in cflags_base:
+#    print(s)
 
 # Debug flags
 if args.debug:
@@ -581,3 +581,5 @@ elif args.mode == "progress":
     calculate_progress(config)
 else:
     sys.exit("Unknown mode: " + args.mode)
+
+# ignore: export_all: true, 
