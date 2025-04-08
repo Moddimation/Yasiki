@@ -40,5 +40,16 @@ The state of the repo is rather early, but you're nevertheless free to contribut
 
 - You can put personal stuff in /private/, it is ignored with github.
 - I prefer communication through [the Discord](https://discord.gg/hKx3FJJgrV) in the #luigis-mansion channel, but you can open issues as needed.
+
+### To-do
+
+Project Code:
+- once labelling is done, carry over these to the symbols and splits file.
+
+Project Misc:
+- Add workflow for building
+- Add progress indicator for displaying
+- Maybe a webpage? (why not)
+
  
 ~Moddimation
