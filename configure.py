@@ -15,7 +15,7 @@
 import argparse
 import sys
 from pathlib import Path
-from typing import Any, Dict, List
+from typing import Any, Dict, List, Tuple
 
 from tools.project import (
     Object,
@@ -156,16 +156,13 @@ config.check_sha_path = Path("config") / config.version / "build.sha1"
 config.asflags = [
     "-mgekko",
     "--strip-local-absolute",
-    "-I lib",
-    "-I include",
-    "-I lib/SDK/Include",
-    "-I lib/SDK/Include/stl",
-    "-I lib/PowerPC_EABI_Support/MetroTRK/include",
-    "-I lib/PowerPC_EABI_Support/MSL/MSL_C/MSL_Common/Include",
-    "-I lib/PowerPC_EABI_Support/MSL/MSL_C/MSL_Common_Embedded",
-    "-I lib/PowerPC_EABI_Support/MSL/MSL_C/MSL_Common_Embedded/Include",
-    "-I lib/PowerPC_EABI_Support/MSL/MSL_C/PPC_EABI/Include",
-    "-I lib/PowerPC_EABI_Support/Runtime/Include",
+    "-I decomp/App/lib",
+    "-I decomp/App/*/include",
+    "-I decompilation/SDK/include",
+    "-I decompilation/lib/CodeWarrior/**/include",
+    "-I decompilation/lib/CodeWarrior/**/Include",
+    "-I decompilation/lib/CodeWarrior/**/INCLUDE",
+    "-I decompilation/JSystem/**/include",
     f"-I build/{config.version}/include",
     f"--defsym version={version_num}",
 ]
@@ -202,16 +199,13 @@ cflags_base = [
     "-fp_contract on",
     "-str reuse",
     "-multibyte",
-    "-i lib",
-    "-i include",
-    "-i lib/SDK/Include",
-    "-i lib/SDK/Include/stl",
-    "-i lib/PowerPC_EABI_Support/MetroTRK/include",
-    "-i lib/PowerPC_EABI_Support/MSL/MSL_C/MSL_Common/Include",
-    "-i lib/PowerPC_EABI_Support/MSL/MSL_C/MSL_Common_Embedded",
-    "-i lib/PowerPC_EABI_Support/MSL/MSL_C/MSL_Common_Embedded/Include",
-    "-i lib/PowerPC_EABI_Support/MSL/MSL_C/PPC_EABI/Include",
-    "-i lib/PowerPC_EABI_Support/Runtime/Include",
+    "-i decomp/App/lib",
+    "-i decomp/App/sources/*/include",
+    "-i decomp/SDK/include",
+    "-i decomp/CodeWarrior/**/include",
+    "-i decomp/CodeWarrior/**/Include",
+    "-i decomp/CodeWarrior/**/INCLUDE",
+    "-i decomp/JSystem/**/include",
     f"-i build/{config.version}/include",
     f"-DVERSION_{config.version}",
 ]
@@ -276,10 +270,6 @@ cflags_game = [
     "-inline auto",
 ]
 
-# Odemu flags
-cflags_odemu = [
-    *cflags_base,
-]
 if config.version == "GLMJ01":
     cflags_odemu.extend(["-O3,p", "-proc 750", "-use_lmw_stmw off"])
 else:
@@ -293,41 +283,79 @@ cflags_sdk = [
 ]
 
 config.linker_version = "GC/1.3.2"
+linker_version_default = "GC/1.2.5"
 
+# Helper function for SDK libraries
+def SDKLib(lib_name: str, files: List[Tuple[bool, str]], conf: Dict[str,str]) -> Dict[str, Any]:
+    objects = []
+    for matching, filename in files:
+        filepath = os.path.join(lib_name, filename)
+        objects.append(Object(matching, filepath))
 
-# Path prefixes for libraries
-pathJSys = "JSystem"
-pathSDK = "SDK/Src"
-pathDolphin = f"{pathSDK}/dolphin"
-pathMSL_Com = "PowerPC_EABI_Support/MSL/MSL_C/MSL_Common/Src"
-pathMSL_Emb = "PowerPC_EABI_Support/MSL/MSL_C/MSL_Common_Embedded/Src"
-pathMSL_Mat = "PowerPC_EABI_Support/MSL/MSL_C/MSL_Common_Embedded/Src/Math"
-pathMSL_Ppc = "PowerPC_EABI_Support/MSL/MSL_C/PPC_EABI/Src"
-pathMTK = "PowerPC_EABI_Support/MetroTRK/src"
-pathRuntime = "PowerPC_EABI_Support/Runtime/Src"
-
-# Helper function for Dolphin libraries
-def DolphinLib(lib_name: str, objects: List[Object]) -> Dict[str, Any]:
     return {
         "lib": lib_name,
-        "mw_version": "GC/1.2.5n",
+        "mw_version": linker_version_default,
         "cflags": cflags_sdk,
         "progress_category": "sdk",
-        "src_dir": "lib",
+        "src_dir": "lib/SDK/src",
         "objects": objects,
+        **conf,
     }
+
+# Helper function for Dolphin libraries
+def DolphinLib(lib_name: str, files: List[Tuple[bool, str]]) -> Dict[str, Any]:
+    return SDKLib(lib_name, files, {
+        "src_dir": f"decomp/SDK/src/dolphin",
+    })
 
 # Helper function for JSystem libraries
-def JSystemLib(lib_name: str, objects: List[Object]) -> Dict[str, Any]:
+def JSystemLib(lib_name: str, sub_dir: str, files: List[Tuple[bool, str]], conf: Dict[str, str]=None) -> Dict[str, Any]:
+    objects = []
+    for matching, filename in files:
+        objects.append(Object(matching, filename))
+
     return {
         "lib": lib_name,
-        "mw_version": "GC/1.3.2",
+        "mw_version": linker_version_default,
         "cflags": cflags_jsys,
         "progress_category": "jsys",
-        "src_dir": "lib",
+        "src_dir": f"decomp/JSystem/{sub_dir}/src",
         "objects": objects,
+        **conf
     }
 
+# Helper function for CodeWarrior runtime libraries
+def CWLib(lib_name: str, sub_path: str, files: List[Tuple[bool, str]], conf: Dict[str, str]=None) -> Dict[str, Any]:
+    objects = []
+    for matching, filename in files:
+        objects.append(Object(matching, filename))
+
+    return {
+        "lib": lib_name,
+        "mw_version": linker_version_default,
+        "cflags": cflags_cw,
+        "progress_category": "cw",
+        "src_dir": f"decomp/CodeWarrior/PowerPC_EABI_Support/{sub_path}",
+        "objects": objects,
+        **conf
+    }
+
+# Helper function for Game app libraries
+def GameSource(lib_name: str, files: List[Tuple[bool, str]], conf: Dict[str, str]=None) -> Dict[str, Any]:
+    objects = []
+    for matching, filename in files:
+        filepath = os.path.join(lib_name, "src", filename, ".cpp")
+        objects.append(Object(matching, filepath))
+
+    return {
+        "lib": "game",
+        "mw_version": config.linker_version,
+        "cflags": cflags_game,
+        "progress_category": "game",
+        "src_dir": "sources",
+        "objects": objects,
+        **conf
+    }
 
 Matching = True                   # Object matches and should be linked
 NonMatching = False               # Object does not match and should not be linked
@@ -349,126 +377,131 @@ config.libs = [
         "progress_category": "game",
         "src_dir": "sources",
         "objects": [
-            #Object(NonMatching, "Unsorted/MoveObj.cpp"),
-            #Object(NonMatching, "Unsorted/Character.cpp"),
-            Object(Matching, "Sato/EnemyStrategy.cpp"),
-            Object(NonMatching, "Unsorted/IncludeStrategy.cpp"),
-            Object(NonMatching, "Sato/EnStrategy.cpp"),
-            Object(NonMatching, "Sato/EnemyTypicalStrategy.cpp"),
-            #Object(NonMatching, "Sotoike/AITurara.cpp"),
-            Object(Matching, "Koga/CharacterEventObserver.cpp"),
-            Object(NonMatching, "Unsorted/assignPlayerRank.cpp"),
-            Object(NonMatching, "Unsorted/getPlayerRank.cpp"),
-            Object(NonMatching, "Unsorted/checkTimeRange.cpp"),
-            #Object(NonMatching, "Unsorted/checkEventTimeBounds.cpp"),
-            #Object(NonMatching, "Unsorted/setAndExecCurrentEvent.cpp"),
+            ##Object(NonMatching, "Unsorted/MoveObj.cpp"),
+            ##Object(NonMatching, "Unsorted/Character.cpp"),
+            #Object(Matching, "Sato/EnemyStrategy.cpp"),
+            #Object(NonMatching, "Unsorted/IncludeStrategy.cpp"),
+            #Object(NonMatching, "Sato/EnStrategy.cpp"),
+            #Object(NonMatching, "Sato/EnemyTypicalStrategy.cpp"),
+            ##Object(NonMatching, "Sotoike/AITurara.cpp"),
+            #Object(NonMatching, "Unsorted/assignPlayerRank.cpp"),
+            #Object(NonMatching, "Unsorted/getPlayerRank.cpp"),
+            #Object(NonMatching, "Unsorted/checkTimeRange.cpp"),
+            ##Object(NonMatching, "Unsorted/checkEventTimeBounds.cpp"),
+            ##Object(NonMatching, "Unsorted/setAndExecCurrentEvent.cpp"),
         ]},
-    JSystemLib("JAI", [
-            #Object(NonMatching, f"{pathJSys}/JAI/JAIBasic.cpp"),
-        ]),
-    {
-        "lib": "jaudio",
-        "mw_version": "GC/1.2.5n",
-        "cflags": cflags_jaudio,
-        "progress_category": "jsys",
-        "src_dir": "lib",
-        "objects": [
-            #Object(NonMatching, f"{pathJSys}/jaudio/aictrl.c"),
-            #Object(NonMatching, f"{pathJSys}/jaudio/aramcall.c"),
-            #Object(NonMatching, f"{pathJSys}/jaudio/audiomesg.c"),
-            #Object(NonMatching, f"{pathJSys}/jaudio/audiothread.c"),
-            #Object(NonMatching, f"{pathJSys}/jaudio/bankdrv.c"),
-            #Object(NonMatching, f"{pathJSys}/jaudio/bankread.c"),
-            #Object(NonMatching, f"{pathJSys}/jaudio/cmdqueue.c"),
-            #Object(NonMatching, f"{pathJSys}/jaudio/connect.c"),
-            #Object(NonMatching, f"{pathJSys}/jaudio/cpubuf.c"),
-            #Object(NonMatching, f"{pathJSys}/jaudio/driverinterface.c"),
-            #Object(NonMatching, f"{pathJSys}/jaudio/dsp_cardunlock.c"),
-            #Object(NonMatching, f"{pathJSys}/jaudio/dspboot.c"),
-            #Object(NonMatching, f"{pathJSys}/jaudio/dspbuf.c"),
-            #Object(NonMatching, f"{pathJSys}/jaudio/dspdriver.c"),
-            #Object(NonMatching, f"{pathJSys}/jaudio/dspinterface.c"),
-            #Object(NonMatching, f"{pathJSys}/jaudio/dspproc.c"),
-            #Object(NonMatching, f"{pathJSys}/jaudio/dummyprobe.c"),
-            #Object(NonMatching, f"{pathJSys}/jaudio/dummyrom.c"),
-            #Object(NonMatching, f"{pathJSys}/jaudio/dvdthread.c"),
-            #Object(NonMatching, f"{pathJSys}/jaudio/fat.c"),
-            #Object(NonMatching, f"{pathJSys}/jaudio/file_seq.c"),
-            #Object(NonMatching, f"{pathJSys}/jaudio/foilter3d.c"),
-            #Object(NonMatching, f"{pathJSys}/jaudio/fxinterface.c"),
-            #Object(NonMatching, f"{pathJSys}/jaudio/heapctrl.c"),
-            #Object(NonMatching, f"{pathJSys}/jaudio/hvqm_play.c"),
-            #Object(NonMatching, f"{pathJSys}/jaudio/interface.c"),
-            #Object(NonMatching, f"{pathJSys}/jaudio/ipldec.c"),
-            #Object(NonMatching, f"{pathJSys}/jaudio/ja_calc.c"),
-            #Object(NonMatching, f"{pathJSys}/jaudio/jammain_2.c"),
-            #Object(NonMatching, f"{pathJSys}/jaudio/jamosc.c"),
-            #Object(NonMatching, f"{pathJSys}/jaudio/memory.c"),
-            #Object(NonMatching, f"{pathJSys}/jaudio/noteon.c"),
-            #Object(NonMatching, f"{pathJSys}/jaudio/oneshot.c"),
-            #Object(NonMatching, f"{pathJSys}/jaudio/playercall.c"),
-            #Object(NonMatching, f"{pathJSys}/jaudio/random.c"),
-            #Object(NonMatching, f"{pathJSys}/jaudio/sample.c"),
-            #Object(NonMatching, f"{pathJSys}/jaudio/seqsetup.c"),
-            #Object(NonMatching, f"{pathJSys}/jaudio/stackchecker.c"),
-            #Object(NonMatching, f"{pathJSys}/jaudio/streamctrl.c"),
-            #Object(NonMatching, f"{pathJSys}/jaudio/syncstream.c"),
-            #Object(NonMatching, f"{pathJSys}/jaudio/verysimple.c"),
-            #Object(NonMatching, f"{pathJSys}/jaudio/virtload.c"),
-            #Object(NonMatching, f"{pathJSys}/jaudio/waveread.c"),
-        ]},
-    {
-        "lib": "hvqm4dec",
-        "mw_version": "GC/1.2.5n",
-        "cflags": cflags_sdk,
-        "progress_category": "sdk",
-        "src_dir": "lib",
-        "objects": [
-            Object(NonMatching, "HVQM/hvqm4dec.c"),
-        ]},
-    {
-        "lib": "Runtime.PPCEABI.H",
-        "mw_version": "GC/1.2.5n",
-        "cflags": cflags_runtime,
-        "progress_category": "mtk",
-        "src_dir": "lib",
-        "objects": [
-            #Object(NonMatching, f"{pathRuntime}/global_destructor_chain.c"),
-            #Object(NonMatching, f"{pathRuntime}/__init_cpp_exceptions.cpp"),
-        ]},
-    {
-        "lib": "MSL_C.PPCEABI.bare.H",
-        "mw_version": "GC/1.2.5n",
-        "cflags": cflags_runtime,
-        "progress_category": "mtk",
-        "src_dir": "lib",
-        "objects": [
-            #Object(NonMatching, ""),
-        ]},
-    {
-        "lib": "OdemuExi2",
-        "mw_version": "GC/1.2.5",
-        "cflags": cflags_odemu,
-        "progress_category": "sdk",
-        "src_dir": "lib",
-        "objects": [
-            Object(MatchingFor("GLME01"), f"{pathSDK}/OdemuExi2Lib/DebuggerDriver.c"),
-        ]},
+    GameSource("Kawano", [
+        #(NonMatching, ""),
+    ])
+    GameSource("Iwamoto", [
+        #(NonMatching, ""),
+    ])
+    GameSource("Nakamura", [
+        #(NonMatching, ""),
+    ])
+    GameSource("Ajioka", [
+        #(NonMatching, ""),
+    ])
+    GameSource("Game", [
+        #(NonMatching, ""),
+    ])
+    GameSource("Koga", [
+        (Matching, "CharacterEventObserver"),
+    ])
+    JSystemLib("JAudio", "JAudio/JAInterface", [
+        #(NonMatching, "JAIBasic.cpp"),
+    ]),
+    JSystemLib("JAudio", "JAudio/Jaudio", [
+        #(NonMatching, "aictrl.c"),
+        #(NonMatching, "aramcall.c"),
+        #(NonMatching, "audiomesg.c"),
+        #(NonMatching, "audiothread.c"),
+        #(NonMatching, "bankdrv.c"),
+        #(NonMatching, "bankread.c"),
+        #(NonMatching, "cmdqueue.c"),
+        #(NonMatching, "connect.c"),
+        #(NonMatching, "cpubuf.c"),
+        #(NonMatching, "driverinterface.c"),
+        #(NonMatching, "dsp_cardunlock.c"),
+        #(NonMatching, "dspboot.c"),
+        #(NonMatching, "dspbuf.c"),
+        #(NonMatching, "dspdriver.c"),
+        #(NonMatching, "dspinterface.c"),
+        #(NonMatching, "dspproc.c"),
+        #(NonMatching, "dummyprobe.c"),
+        #(NonMatching, "dummyrom.c"),
+        #(NonMatching, "dvdthread.c"),
+        #(NonMatching, "fat.c"),
+        #(NonMatching, "file_seq.c"),
+        #(NonMatching, "foilter3d.c"),
+        #(NonMatching, "fxinterface.c"),
+        #(NonMatching, "heapctrl.c"),
+        #(NonMatching, "hvqm_play.c"),
+        #(NonMatching, "interface.c"),
+        #(NonMatching, "ipldec.c"),
+        #(NonMatching, "ja_calc.c"),
+        #(NonMatching, "jammain_2.c"),
+        #(NonMatching, "jamosc.c"),
+        #(NonMatching, "memory.c"),
+        #(NonMatching, "noteon.c"),
+        #(NonMatching, "oneshot.c"),
+        #(NonMatching, "playercall.c"),
+        #(NonMatching, "random.c"),
+        #(NonMatching, "sample.c"),
+        #(NonMatching, "seqsetup.c"),
+        #(NonMatching, "stackchecker.c"),
+        #(NonMatching, "streamctrl.c"),
+        #(NonMatching, "syncstream.c"),
+        #(NonMatching, "verysimple.c"),
+        #(NonMatching, "virtload.c"),
+        #(NonMatching, "waveread.c"),
+    ]{
+        "cflags": cflags_jaudio
+    }),
+    JSystemLib("HVQM", "JAudio/Jaudio/lib/hvqm4dec/src", [
+        (NonMatching, "hvqm4dec.c")
+    ],{
+        "src_dir": "lib/HVQM/src"
+    }),
+    CWLib("Runtime.PPCEABI.H", "Runtime/Src", [
+        #(NonMatching, "global_destructor_chain.c"),
+        #(NonMatching, "__init_cpp_exceptions.cpp"),
+    ])
+    CWLib("MSL_C.PPCEABI.bare.H", "MSL/MSL_C/MSL_Common/Src", [
+        #(NonMatching, ""),
+    ])
+    CWLib("MSL_C.PPCEABI.bare.H", "MSL/MSL_C/MSL_Common_Embedded/Src", [
+        #(NonMatching, ""),
+    ])
+    CWLib("MSL_C.PPCEABI.bare.H", "MSL/MSL_C/MSL_Common_Embedded/Math", [
+        #(NonMatching, ""),
+    ])
+    CWLib("MSL_C.PPCEABI.bare.H", "MSL/MSL_C/PPC_EABI/SRC", [
+        #(NonMatching, ""),
+    ])
+    CWLib("MSL_C.PPCEABI.bare.H", "MetroTRK/src", [
+        #(NonMatching, ""),
+    ])
     DolphinLib("amcstubs", [
-            Object(Matching, f"{pathDolphin}/amcstubs/AmcExi2Stubs.c"),
-        ]),
+        (Matching, "AmcExi2Stubs.c"),
+    ]),
+    DolphinLib("OdemuExi2Lib", [
+        (MatchingFor("GLME01"), "DebuggerDriver.c")
+    ],{
+        "cflags"; cflags_base
+    }),
     DolphinLib("odenotstub", [
-            Object(Matching, f"{pathDolphin}/odenotstub/odenotstub.c"),
-        ]),
+        (Matching, "odenotstub.c"),
+    ]),
 ]
 
 # Optional extra categories for progress tracking
 # Adjust as desired for your project
 config.progress_categories = [
-    ProgressCategory("game", "Game Application"),
-    ProgressCategory("jsys", "JSystem MiddleWare"),
-    ProgressCategory("sdk", "Dolphin SDK"),
-    ProgressCategory("mtk", "MTK Runtime"),
+    ProgressCategory("game", "Game App"),
+    ProgressCategory("jsys", "JSystem"),
+    ProgressCategory("sdk", "DolphinSDK"),
+    ProgressCategory("cw", "CW Runtime"),
 ]
 config.progress_each_module = args.verbose
 
