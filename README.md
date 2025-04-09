@@ -1,8 +1,8 @@
-# Luigi's Mansion (JP, USA) Decompilation
+# Luigi's Mansion Decompilation
 
 **Work in progress**
 
-The focus currently lies on the **JP release version** of the game.
+The focus currently lies on the **Japanese Release Version** of the game, but configurations for all versions were created.
 
 ---
 
