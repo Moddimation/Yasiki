@@ -29,7 +29,7 @@ from tools.project import (
 )
 
 # Game versions
-DEFAULT_VERSION = 0 # GLMJ01
+DEFAULT_VERSION = 0 # Japan Release
 VERSIONS = [
     "GLMJ01",   # Japan Release
     "GLME01",   # US Release
@@ -283,7 +283,6 @@ cflags_odemu = [
     *cflags_base,
 
 ]
-
 # Metrowerks library flags
 cflags_cw = [
     *cflags_base,
@@ -297,6 +296,7 @@ cflags_cw = [
     "-sdata 0",
     "-sdata2 0",
 ]
+# Metrowerks TRK library flags
 cflags_cw_trk = [
     *cflags_base,
     "-O4,p",
@@ -581,5 +581,3 @@ elif args.mode == "progress":
     calculate_progress(config)
 else:
     sys.exit("Unknown mode: " + args.mode)
-
-# ignore: export_all: true, 
