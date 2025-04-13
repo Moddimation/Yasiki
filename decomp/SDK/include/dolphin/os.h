@@ -155,8 +155,8 @@ void OSSetSoundMode(u32 mode);
 void OSReport(char *, ...);
 void OSPanic(char *file, int line, char *msg, ...);
 
-#define OSRoundUp32B(x)   (((u32)(x) + 32 - 1) & ~(32 - 1))
-#define OSRoundDown32B(x) (((u32)(x)) & ~(32 - 1))
+#define OSRoundUp32B(x)   (((u32)(x) + 32 - 1) & ‾(32 - 1))
+#define OSRoundDown32B(x) (((u32)(x)) & ‾(32 - 1))
 
 void *OSPhysicalToCached(u32 paddr);
 void *OSPhysicalToUncached(u32 paddr);

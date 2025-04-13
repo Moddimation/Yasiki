@@ -363,7 +363,7 @@ void GXSetTevOrder(GXTevStageID stage, GXTexCoordID coord, GXTexMapID map, GXCha
     ptref = &gx->tref[stage / 2];
     gx->texmapId[stage] = map;
 
-    tmap = map & ~0x100;
+    tmap = map & ‾0x100;
     tmap = (tmap >= GX_MAX_TEXMAP) ? GX_TEXMAP0 : tmap;
     tcoord = (coord >= GX_MAX_TEXCOORD) ? GX_TEXCOORD0 : coord;
 

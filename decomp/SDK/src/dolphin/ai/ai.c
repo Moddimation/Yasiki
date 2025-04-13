@@ -75,7 +75,7 @@ void AIStartDMA(void)
 
 void AIStopDMA(void)
 {
-    __DSPRegs[27] = __DSPRegs[27] & ~0x8000;
+    __DSPRegs[27] = __DSPRegs[27] & ‾0x8000;
 }
 
 u32 AIGetDMABytesLeft(void)
@@ -117,7 +117,7 @@ u32 AIGetStreamSampleCount(void)
 
 void AIResetStreamSampleCount(void)
 {
-    __AIRegs[0] = (__AIRegs[0] & ~0x20) | 0x20;
+    __AIRegs[0] = (__AIRegs[0] & ‾0x20) | 0x20;
 }
 
 void AISetStreamTrigger(u32 trigger)
@@ -320,7 +320,7 @@ static void __AIDHandler(__OSInterrupt interrupt, OSContext *context)
     u16 tmp;
 
     tmp = __DSPRegs[5];
-    tmp = (tmp & ~0xA0) | 8;
+    tmp = (tmp & ‾0xA0) | 8;
     __DSPRegs[5] = tmp;
     OSClearContext(&exceptionContext);
     OSSetCurrentContext(&exceptionContext);

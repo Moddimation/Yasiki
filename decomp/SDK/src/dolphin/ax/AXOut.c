@@ -113,7 +113,7 @@ void __AXOutInitDSP(void) {
 
 void __AXOutInit(void) {
 #ifdef DEBUG
-    OSReport("Initializing AXOut code module\n");
+    OSReport("Initializing AXOut code module¥n");
 #endif
     ASSERTLINE(0x13B, ((u32)&__AXOutBuffer[0][0] & 0x1F) == 0);
     ASSERTLINE(0x13C, ((u32)&__AXOutBuffer[1][0] & 0x1F) == 0);
@@ -136,7 +136,7 @@ void __AXOutQuit(void) {
     int old;
 
 #ifdef DEBUG
-    OSReport("Shutting down AXOut code module\n");
+    OSReport("Shutting down AXOut code module¥n");
 #endif
     old = OSDisableInterrupts();
     __AXUserFrameCallback = NULL;

@@ -1031,7 +1031,7 @@ void GXSetTexCoordScaleManually(GXTexCoordID coord, u8 enable, u16 ss, u16 ts)
 {
     CHECK_GXBEGIN(0x6D1, "GXSetTexCoordScaleManually");
     ASSERTMSGLINEV(0x6D3, coord < 8, "%s: bad texcoord specified", "GXSetTexCoordScaleManually");
-    gx->tcsManEnab = (gx->tcsManEnab & ~(1 << coord)) | (enable << coord);
+    gx->tcsManEnab = (gx->tcsManEnab & ‾(1 << coord)) | (enable << coord);
     if (enable != 0) {
         SET_REG_FIELD(0x6D9, gx->suTs0[coord], 16, 0, (u16)(ss - 1));
         SET_REG_FIELD(0x6DA, gx->suTs1[coord], 16, 0, (u16)(ts - 1));

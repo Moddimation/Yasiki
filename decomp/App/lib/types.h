@@ -9,10 +9,10 @@
 #endif
 
 #ifndef _DOLPHIN_STL_H
-#include <stdarg.h>
+#include <cstdarg>
 #endif
-#include <stddef.h>
-#include <string.h>
+#include <cstddef>
+#include <cstring>
 #include <macros.h>
 
 #ifndef _TYPES_H
@@ -49,7 +49,6 @@ typedef u64 unk64;
 
 #ifndef __cplusplus
 typedef u16 wchar_t;
-typedef unsigned long size_t;
 #endif
 
 #endif // _TYPES_H

@@ -1,14 +1,31 @@
-#ifndef MSL_COMMON_SRC_SIGNAL_H
-#define MSL_COMMON_SRC_SIGNAL_H
+/* Metrowerks Standard Library
+ * Copyright C 1995-2001 Metrowerks Corporation.  All rights reserved.
+ *
+ * $Date: 2001/07/21 18:43:20 $
+ * $Revision: 1.16.4.1 $
+ */
 
-#ifdef __cplusplus
-extern "C" {
+#ifndef _MSL_SIGNAL_H
+#define _MSL_SIGNAL_H
+
+#if __MACH__
+	#error You must have the /usr/include access path before the MSL access path
+#else
+
+#include <csignal>
+
+#if defined(__cplusplus) && defined(_MSL_USING_NAMESPACE)
+	using std::sig_atomic_t;
+	using std::raise;
+	using std::signal;
 #endif
 
-int raise(int sig);
+#endif /* __MACH__ */
 
-#ifdef __cplusplus
-}
-#endif
+#endif /* _MSL_SIGNAL_H */
 
-#endif /* MSL_COMMON_SRC_SIGNAL_H */
+/* Change record:
+ * hh  971206 Created.
+ * hh  991112 Fixed using bug.
+ * JWW 001208 Added case for targeting Mach-O
+ */

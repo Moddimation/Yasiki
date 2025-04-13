@@ -39,14 +39,14 @@ void __AXInitVoiceStacks(void) {
 
 void __AXAllocInit(void) {
 #ifdef DEBUG
-    OSReport("Initializing AXAlloc code module\n");
+    OSReport("Initializing AXAlloc code module¥n");
 #endif
     __AXInitVoiceStacks();
 }
 
 void __AXAllocQuit(void) {
 #ifdef DEBUG
-    OSReport("Shutting down AXAlloc code module\n");
+    OSReport("Shutting down AXAlloc code module¥n");
 #endif
     __AXInitVoiceStacks();
 }

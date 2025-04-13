@@ -1,24 +1,30 @@
-#ifndef _STDDEF_H_
-#define _STDDEF_H_
+/* Metrowerks Standard Library
+ * Copyright C 1995-2001 Metrowerks Corporation.  All rights reserved.
+ *
+ * $Date: 2001/07/21 18:43:27 $
+ * $Revision: 1.16.4.1 $
+ */
+ 
+#ifndef _MSL_STDDEF_H
+#define _MSL_STDDEF_H
 
-#ifdef __cplusplus
-extern "C" {
-#endif
-
-#if defined __INTELLISENSE__
-typedef unsigned int size_t;
-typedef int ptrdiff_t;
+#if __MACH__
+	#error You must have the /usr/include access path before the MSL access path
 #else
-typedef unsigned long size_t;
-typedef long ptrdiff_t;
+
+#include <cstddef>
+
+#if defined(__cplusplus) && defined(_MSL_USING_NAMESPACE)
+	using std::ptrdiff_t;
+	using std::size_t;
 #endif
 
-#ifndef NULL
-#define NULL (0)
-#endif
+#endif /* __MACH__ */
 
-#ifdef __cplusplus
-}
-#endif
+#endif /* _MSL_STDDEF_H */
 
-#endif
+/* Change record:
+ * hh  971206 Created.
+ * hh  990928 fixed "using bug"
+ * JWW 001208 Added case for targeting Mach-O
+ */

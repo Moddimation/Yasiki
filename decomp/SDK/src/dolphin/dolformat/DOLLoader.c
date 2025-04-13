@@ -22,10 +22,10 @@ void *DOLLoadImage(u8 *buffer, BOOL verbose)
 
     ip = (struct DolImage *)buffer;
     if (verbose) {
-        DBPrintf("DOLLoadImage header :\n");
+        DBPrintf("DOLLoadImage header :¥n");
         for (segment = 0; segment < DOL_MAX_TEXT; segment++) {
             if (ip->textData[segment] != NULL) {
-                DBPrintf("TEXT[%d]- offset 0x%x, length %d(0x%x) -> VA 0x%x\n",
+                DBPrintf("TEXT[%d]- offset 0x%x, length %d(0x%x) -> VA 0x%x¥n",
                     segment,
                     ip->textData[segment],
                     ip->textLen[segment],
@@ -35,7 +35,7 @@ void *DOLLoadImage(u8 *buffer, BOOL verbose)
         }
         for (segment = 0; segment < DOL_MAX_DATA; segment++) {
             if (ip->dataData[segment] != NULL) {
-                DBPrintf("DATA[%d]- offset 0x%x, length %d (0x%x) -> VA 0x%x\n",
+                DBPrintf("DATA[%d]- offset 0x%x, length %d (0x%x) -> VA 0x%x¥n",
                     segment,
                     ip->dataData[segment],
                     ip->dataLen[segment],
@@ -43,8 +43,8 @@ void *DOLLoadImage(u8 *buffer, BOOL verbose)
                     ip->data[segment]);
             }
         }
-        DBPrintf("BSS segment length %d -> VA 0x%x\n", ip->bssLen, ip->bss);
-        DBPrintf("ENTRY POINT -> VA 0x%x\n\n", ip->entry);
+        DBPrintf("BSS segment length %d -> VA 0x%x¥n", ip->bssLen, ip->bss);
+        DBPrintf("ENTRY POINT -> VA 0x%x¥n¥n", ip->entry);
     }
     bzero((void *)ip->bss, ip->bssLen);
     if (verbose) {
@@ -73,7 +73,7 @@ void *DOLLoadImage(u8 *buffer, BOOL verbose)
         }
     }
     if (verbose) {
-        DBPrintf("\n");
+        DBPrintf("¥n");
     }
     ICFlashInvalidate();
     ICSync();

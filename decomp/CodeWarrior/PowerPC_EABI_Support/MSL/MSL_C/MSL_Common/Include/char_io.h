@@ -1,17 +1,29 @@
-#ifndef MSL_COMMON_SRC_CHAR_IO_H
-#define MSL_COMMON_SRC_CHAR_IO_H
+/* Metrowerks Standard Library
+ * Copyright C 1995-2001 Metrowerks Corporation.  All rights reserved.
+ *
+ * $Date: 2001/06/19 00:12:59 $
+ * $Revision: 1.18 $
+ */
 
-#include "MSL_C/MSL_Common/Src/ansi_files.h"
+#ifndef _MSL_CHAR_IO_H
+#define _MSL_CHAR_IO_H
 
-#ifdef __cplusplus
-extern "C" {
-#endif
+#include <ansi_parms.h>                  				/*- hh 971206 -*/
+#include <cstdio>                        				/*- hh 971206 -*/
 
-int fputs(const char* str, FILE* stream);
-int __put_char(int c, FILE* stream);
+	_MSL_BEGIN_EXTERN_C	/*- cc 010409 -*/
 
-#ifdef __cplusplus
-}
-#endif
+		int	__ungotten(__std(FILE) *  );  	/*- hh 990121 -*/  /*- mf 990715 -*/
 
-#endif /* MSL_COMMON_SRC_CHAR_IO_H */
+	_MSL_END_EXTERN_C	/*- cc 010409 -*/
+
+#endif /* _MSL_CHAR_IO_H */
+
+/* Change record:
+ * hh  971206 namespace support
+ * hh  990121 fixed __std
+ * mf  990715 Arg names in prototype cause conflicts
+ * cc  010405 removed pragma options align native and reset
+ * cc  010409 updated defines to JWW new namespace macros
+ * JWW 010618 Use cname headers exclusively to prevent namespace pollution in C++
+ */

@@ -1,37 +1,42 @@
-#ifndef MSL_COMMON_SRC_CTYPE_H
-#define MSL_COMMON_SRC_CTYPE_H
+/* Metrowerks Standard Library
+ * Copyright C 1995-2001 Metrowerks Corporation.  All rights reserved.
+ *
+ * $Date: 2001/07/21 18:42:36 $
+ * $Revision: 1.16.4.1 $
+ */
+ 
+#ifndef _MSL_CTYPE_H
+#define _MSL_CTYPE_H
 
-#ifdef __cplusplus
-extern "C" {
+#if __MACH__
+	#error You must have the /usr/include access path before the MSL access path
+#else
+
+#include <cctype>
+
+#if defined(__cplusplus) && defined(_MSL_USING_NAMESPACE)
+	using std::isalnum;
+	using std::isalpha;
+	using std::iscntrl;
+	using std::isdigit;
+	using std::isgraph;
+	using std::islower;
+	using std::isprint;
+	using std::ispunct;
+	using std::isspace;
+	using std::isupper;
+	using std::iswblank;
+	using std::isxdigit;
+	using std::tolower;
+	using std::toupper;
 #endif
 
-#define EOF -1L
+#endif /* __MACH__ */
 
-extern unsigned char __ctype_map[];
-extern unsigned char __lower_map[];
-extern unsigned char __upper_map[];
+#endif /* _MSL_CTYPE_H */
 
-#define __control_char 0x01
-#define __motion_char 0x02
-#define __space_char 0x04
-#define __punctuation 0x08
-#define __digit 0x10
-#define __hex_digit 0x20
-#define __lower_case 0x40
-#define __upper_case 0x80
-
-#define __letter (__lower_case | __upper_case)
-#define __alphanumeric (__letter | __digit)
-#define __graphic (__alphanumeric | __punctuation)
-#define __printable (__graphic | __space_char)
-#define __whitespace (__motion_char | __space_char)
-#define __control (__motion_char | __control_char)
-#define __zero_fill(c) ((int)(unsigned char)(c))
-
-int tolower(int);
-
-#ifdef __cplusplus
-}
-#endif
-
-#endif /* MSL_COMMON_SRC_CTYPE_H */
+/* Change record:
+ * hh  971206 Created.
+ * hh  991112 Fixed using bug.
+ * JWW 001208 Added case for targeting Mach-O
+ */

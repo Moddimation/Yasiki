@@ -1,19 +1,33 @@
-#ifndef MSL_COMMON_SRC_MEM_FUNCS_H
-#define MSL_COMMON_SRC_MEM_FUNCS_H
+/* Metrowerks Standard Library
+ * Copyright C 1995-2001 Metrowerks Corporation.  All rights reserved.
+ *
+ * $Date: 2001/04/20 19:33:58 $
+ * $Revision: 1.15 $
+ */
+ 
+#ifndef _MSL_MEM_FUNCS
+#define _MSL_MEM_FUNCS
 
-#include "MSL_C/MSL_Common/Src/stddef.h"
+#include <ansi_parms.h>                 /*- mm 970905 -*/
 
-#ifdef __cplusplus
-extern "C" {
-#endif
+#define __min_bytes_for_long_copy	32		/* NEVER let this be < 16 */
 
-void __copy_longs_rev_unaligned(void* dst, const void* src, size_t n);
-void __copy_longs_unaligned(void* dst, const void* src, size_t n);
-void __copy_longs_rev_aligned(void* dst, const void* src, size_t n);
-void __copy_longs_aligned(void* dst, const void* src, size_t n);
+_MSL_BEGIN_EXTERN_C	/*- cc 010409 -*/
 
-#ifdef __cplusplus
-}
-#endif
+	void	__copy_mem                (void * dst, const void * src, unsigned long n);
+	void	__move_mem                (void * dst, const void * src, unsigned long n);
+	void	__copy_longs_aligned      (void * dst, const void * src, unsigned long n);
+	void	__copy_longs_rev_aligned  (void * dst, const void * src, unsigned long n);
+	void	__copy_longs_unaligned    (void * dst, const void * src, unsigned long n);
+	void	__copy_longs_rev_unaligned(void * dst, const void * src, unsigned long n);
+	void	__fill_mem				  (void * dst, int val, unsigned long n);
 
-#endif /* MSL_COMMON_SRC_MEM_FUNCS_H */
+_MSL_END_EXTERN_C	/*- cc 010409 -*/
+
+#endif /* _MSL_MEM_FUNCS */
+
+/* Change record:
+ * mm  970905 added include of ansi_parms.h to avoid need for prefix file
+ * cc  010405 removed pragma options align native and reset	
+ * cc  010409 updated defines to JWW new namespace macros 
+ */

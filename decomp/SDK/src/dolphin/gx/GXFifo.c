@@ -110,7 +110,7 @@ void GXInitFifoBase(GXFifoObj *fifo, void *base, u32 size)
     realFifo->top = (u8 *)base + size - 4;
     realFifo->size = size;
     realFifo->count = 0;
-    GXInitFifoLimits(fifo, size - 0x4000, (size >> 1) & ~0x1F);
+    GXInitFifoLimits(fifo, size - 0x4000, (size >> 1) & ‾0x1F);
     GXInitFifoPtrs(fifo, base, base);
 }
 
@@ -156,8 +156,8 @@ static char str_reg_field_out_of_range[] = "GX Internal: Register field out of r
 #undef SET_REG_FIELD
 #define SET_REG_FIELD(line, reg, size, shift, val) \
 do { \
-    ASSERTMSGLINE(line, ((u32)(val) & ~((1 << (size)) - 1)) == 0, str_reg_field_out_of_range); \
-    (reg) = ((u32)(reg) & ~(((1 << (size)) - 1) << (shift))) | ((u32)(val) << (shift)); \
+    ASSERTMSGLINE(line, ((u32)(val) & ‾((1 << (size)) - 1)) == 0, str_reg_field_out_of_range); \
+    (reg) = ((u32)(reg) & ‾(((1 << (size)) - 1) << (shift))) | ((u32)(val) << (shift)); \
 } while (0)
 asm void GXSetCPUFifo(GXFifoObj *fifo)
 {
@@ -535,8 +535,8 @@ u32 GXResetOverflowCount(void)
 
 #define SET_REG_FIELD2(line, reg, mask, val) \
 do { \
-    ASSERTMSGLINE(line, ((val) & ~(mask)) == 0, "GX Internal: Register field out of range"); \
-    (reg) = ((u32)(reg) & ~(mask)) | ((u32)(val)); \
+    ASSERTMSGLINE(line, ((val) & ‾(mask)) == 0, "GX Internal: Register field out of range"); \
+    (reg) = ((u32)(reg) & ‾(mask)) | ((u32)(val)); \
 } while (0)
 
 #if DEBUG  // currently doesn't match
@@ -578,7 +578,7 @@ volatile void *GXRedirectWriteGatherPipe(void *ptr)
     /*if (((u32)ptr >> 5) & 0x1E00000)
         OSPanic(__FILE__, 0x5FB, "GX Internal: Register field out of range");
     //SET_REG_FIELD(0x5C8, reg, 25, 5, ((u32)ptr & 0x3FFFFFFF) >> 5);*/
-    //reg = (reg & ~0x3FFFFE0) | ((u32)ptr & 0x3FFFFFE0);
+    //reg = (reg & ‾0x3FFFFE0) | ((u32)ptr & 0x3FFFFFE0);
     reg &= 0xFBFFFFFF;
     __piRegs[5] = reg;
     __sync();
@@ -617,7 +617,7 @@ void GXRestoreWriteGatherPipe(void)
     SET_REG_FIELD(0x5FB, reg, 21, 5, ((u32)CPUFifo->wrPtr & 0x3FFFFFFF) >> 5);
     /*if ((((u32)CPUFifo->wrPtr & 0x3FFFFFFF) >> 5) & 0x7E00000)
         OSPanic(__FILE__, 0x5FB, "GX Internal: Register field out of range");
-    reg = (reg & ~0x3FFFFE0) | (((u32)CPUFifo->wrPtr & 0x3FFFFFFF) & ~0x1F);*/
+    reg = (reg & ‾0x3FFFFE0) | (((u32)CPUFifo->wrPtr & 0x3FFFFFFF) & ‾0x1F);*/
     //SET_REG_FIELD(0x5FB, reg, 25, 5, ((u32)CPUFifo->wrPtr & 0x3FFFFFFF) >> 5);
     reg &= 0xFBFFFFFF;
     __piRegs[5] = reg;

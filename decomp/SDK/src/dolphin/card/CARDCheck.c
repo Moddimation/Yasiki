@@ -19,7 +19,7 @@ void __CARDCheckSum(void *ptr, int length, u16 *checksum, u16 *checksumInv) {
     for (i = 0, p = ptr; i < length; i++, p++)
     {
         *checksum += *p;
-        *checksumInv += ~*p;
+        *checksumInv += ‾*p;
     }
     if (*checksum == 0xffff)
         *checksum = 0;

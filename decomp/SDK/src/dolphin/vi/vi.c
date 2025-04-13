@@ -143,7 +143,7 @@ static int VISetRegs(void)
         while (shdwChanged != 0) {
             regIndex = cntlzd(shdwChanged);
             __VIRegs[regIndex] = shdwRegs[regIndex];
-            shdwChanged &= ~((u64)1 << (63 - regIndex));
+            shdwChanged &= ‾((u64)1 << (63 - regIndex));
         }
         changeMode = 0;
         return 1;
@@ -163,22 +163,22 @@ static void __VIRetraceHandler(__OSInterrupt unused, OSContext *context)
     inter = 0;
     reg = __VIRegs[0x18];
     if (reg & 0x8000) {
-        __VIRegs[0x18] = reg & ~0x8000;
+        __VIRegs[0x18] = reg & ‾0x8000;
         inter |= 1;
     }
     reg = __VIRegs[0x1A];
     if (reg & 0x8000) {
-        __VIRegs[0x1A] = reg & ~0x8000;
+        __VIRegs[0x1A] = reg & ‾0x8000;
         inter |= 2;
     }
     reg = __VIRegs[0x1C];
     if (reg & 0x8000) {
-        __VIRegs[0x1C] = reg & ~0x8000;
+        __VIRegs[0x1C] = reg & ‾0x8000;
         inter |= 4;
     }
     reg = __VIRegs[0x1E];
     if (reg & 0x8000) {
-        __VIRegs[0x1E] = reg & ~0x8000;
+        __VIRegs[0x1E] = reg & ‾0x8000;
         inter |= 8;
     }
     reg = __VIRegs[0x1E];
@@ -412,13 +412,13 @@ void VIInit(void)
     HorVer.threeD = 0;
     OSInitThreadQueue(&retraceQueue);
     value = __VIRegs[24];
-    value &= ~0x8000;
+    value &= ‾0x8000;
 #if !DEBUG
     value = (u16)value;
 #endif
     __VIRegs[24] = value;
     value = __VIRegs[26];
-    value = value & ~0x8000;
+    value = value & ‾0x8000;
 #if !DEBUG
     value = (u16)value;
 #endif
@@ -522,7 +522,7 @@ static void calcFbbs(u32 bufAddr, u16 panPosX, u16 panPosY, u8 wordPerLine, VIXF
     u32 xoffInWords;
     u32 tmp;
 
-    xoffInWords = (panPosX & ~0xF) >> 4;
+    xoffInWords = (panPosX & ‾0xF) >> 4;
     bytesPerLine = (wordPerLine & 0xFF) << 5;
     *tfbb = bufAddr + (xoffInWords << 5) + (bytesPerLine * panPosY);
     *bfbb = (xfbMode == VI_XFBMODE_SF) ? *tfbb : *tfbb + bytesPerLine;
@@ -773,7 +773,7 @@ void VIFlush(void)
     while (changed != 0) {
         regIndex = cntlzd(changed);
         shdwRegs[regIndex] = regs[regIndex];
-        changed &= ~((u64)1 << (63 - regIndex));
+        changed &= ‾((u64)1 << (63 - regIndex));
     }
     flushFlag = 1;
     OSRestoreInterrupts(enabled);

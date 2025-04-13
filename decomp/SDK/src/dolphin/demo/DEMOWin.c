@@ -83,7 +83,7 @@ void DEMOWinOpenWindow(struct STRUCT_DEMOWIN * handle) {
 
 void DEMOWinCloseWindow(struct STRUCT_DEMOWIN * handle) {
     ASSERTMSGLINE(0x146, handle, "DEMOWinCloseWindow(): NULL handle!\n");
-    handle->flags &= ~(DEMOWIN_FLAGS_OPENED);
+    handle->flags &= ‾(DEMOWIN_FLAGS_OPENED);
 }
 
 void DEMOWinSetWindowColor(struct STRUCT_DEMOWIN * handle, enum DEMOWinItem item, u8 r, u8 g, u8 b, u8 a) {
@@ -485,7 +485,7 @@ static void __DEMOWin_delete_node(struct STRUCT_DEMOWIN * handle) {
         handle->prev->next = handle->next;
         handle->next->prev = handle->prev;
     }
-    handle->flags &= ~(DEMOWIN_FLAGS_INIT);
+    handle->flags &= ‾(DEMOWIN_FLAGS_INIT);
 }
 
 static void __DEMOWin_puts_n(signed short x, signed short y, signed short z, unsigned short n, char * string) {

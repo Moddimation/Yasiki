@@ -250,13 +250,13 @@ static void __SEQReadHeader(SEQSEQUENCE * sequence, u8 * midiStream) {
     u32 fileType;
 
     read = midiStream;
-    ASSERTMSGLINE(0x188, *(u32*)read == 'MThd', "!!!midiStream is not a valid MIDI file\n!!!");
+    ASSERTMSGLINE(0x188, *(u32*)read == 'MThd', "!!!midiStream is not a valid MIDI file¥n!!!");
     read+=4;
     bytes = *(u32*)read; read+=4;
     fileType = *(u16*)read; read+=2;
     sequence->nTracks = *(u16*)read; read+=2;
     sequence->timeFormat = *(s16*)read; read+=2;
-    ASSERTMSGLINE(0x197, sequence->timeFormat >= 0, "!!!SEQ does not support SMPTE time!!!\n");
+    ASSERTMSGLINE(0x197, sequence->timeFormat >= 0, "!!!SEQ does not support SMPTE time!!!¥n");
     bytes -= 6;
     read += bytes;
     switch(fileType) {
@@ -265,11 +265,11 @@ static void __SEQReadHeader(SEQSEQUENCE * sequence, u8 * midiStream) {
             __SEQInitTracks(sequence, read, 1);
             break;
         case 1:
-            ASSERTMSGLINE(0x1AD, sequence->nTracks < 0x40, "exceeded SEQ_MAX_TRACKS, please increase SEQ_MAX_TRACKS\n");
+            ASSERTMSGLINE(0x1AD, sequence->nTracks < 0x40, "exceeded SEQ_MAX_TRACKS, please increase SEQ_MAX_TRACKS¥n");
             __SEQInitTracks(sequence, read, sequence->nTracks);
             break;
         default:
-            ASSERTMSGLINE(0x1B5, 0, "!!!Invalid MIDI file type\n!!!");
+            ASSERTMSGLINE(0x1B5, 0, "!!!Invalid MIDI file type¥n!!!");
             break;
     }
     sequence->tracksRunning = sequence->nTracks;

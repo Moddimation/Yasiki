@@ -60,7 +60,7 @@ void __AXPrintStudio(void) {
 
 void __AXSPBInit(void) {
 #ifdef DEBUG
-    OSReport("Initializing AXSPB code module\n");
+    OSReport("Initializing AXSPB code module¥n");
 #endif
     __AXSpbAL = 
     __AXSpbAR = 
@@ -75,7 +75,7 @@ void __AXSPBInit(void) {
 
 void __AXSPBQuit(void) {
 #ifdef DEBUG
-    OSReport("Shutting down AXSPB code module\n");
+    OSReport("Shutting down AXSPB code module¥n");
 #endif
 }
 

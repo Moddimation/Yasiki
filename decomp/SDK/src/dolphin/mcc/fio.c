@@ -199,7 +199,7 @@ int FIOFopen(const char *filename, u32 mode) {
         gLastErr = 0xB0;
         goto exit;
     }
-    if (mode & ~0xE03) {
+    if (mode & ‾0xE03) {
         gLastErr = 0xB0;
         goto exit;
     }
@@ -881,7 +881,7 @@ static int fioPacketResultRead(void *buffer, u32 dataSize) {
     nPacketSize = ((u8)nChannelBlocks << 0xD);
     nDataPacketSize = dataSize / nPacketSize;
     nFraction = dataSize - (nDataPacketSize * nPacketSize);
-    nFraction = OSRoundUp32B(nFraction) & ~1;
+    nFraction = OSRoundUp32B(nFraction) & ‾1;
 
     if (nFraction != 0) {
         do {} while ((u32) gStreamReady != 0x20U);

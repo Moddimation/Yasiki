@@ -5,8 +5,8 @@
 #define FLAG_ON(V, F)    (((V) & (F)) == 0)
 #define FLAG_OFF(V, F)   (((V) & (F)) != 0)
 
-#define ALIGN_PREV(u, align) (u & (~(align - 1)))
-#define ALIGN_NEXT(u, align) ((u + (align - 1)) & (~(align - 1)))
+#define ALIGN_PREV(u, align) (u & (‾(align - 1)))
+#define ALIGN_NEXT(u, align) ((u + (align - 1)) & (‾(align - 1)))
 #define IS_ALIGNED(X, N)     (((X) & ((N) - 1)) == 0)
 #define IS_NOT_ALIGNED(X, N) (((X) & ((N) - 1)) != 0)
 
@@ -73,7 +73,7 @@
 #define SET_FLAG(x, val) (x |= (val))
 
 // Resets specific flag from (val) back to 0
-#define RESET_FLAG(x, val) (x &= ~(val))
+#define RESET_FLAG(x, val) (x &= ‾(val))
 
 // Return 1 if flag is set, 0 if flag is not set
 #define IS_FLAG(x, val) (x & val)
