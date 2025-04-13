@@ -76,7 +76,7 @@ struct OSSectionInfo {
 
 // OSSectionInfo.offset bit
 #define OS_SECTIONINFO_EXEC 0x1
-#define OS_SECTIONINFO_OFFSET(offset) ((offset) & ~0x1)
+#define OS_SECTIONINFO_OFFSET(offset) ((offset) & ‾0x1)
 
 struct OSImportInfo {
   OSModuleID id; // external module id

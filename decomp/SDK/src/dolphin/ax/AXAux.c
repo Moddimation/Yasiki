@@ -24,7 +24,7 @@ void __AXAuxInit(void) {
     long * pB;
 
 #ifdef DEBUG
-    OSReport("Initializing AXAux code module\n");
+    OSReport("Initializing AXAux code module¥n");
 #endif
     __AXCallbackAuxA = NULL;
     __AXCallbackAuxB = NULL;
@@ -43,7 +43,7 @@ void __AXAuxInit(void) {
 
 void __AXAuxQuit(void) {
 #ifdef DEBUG
-    OSReport("Shutting down AXAux code module\n");
+    OSReport("Shutting down AXAux code module¥n");
 #endif
     __AXCallbackAuxA = NULL;
     __AXCallbackAuxB = NULL;

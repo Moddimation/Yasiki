@@ -1,8 +1,8 @@
 #include <dolphin.h>
 #include <dolphin/os.h>
 
-#define ROUND(n, a) (((u32)(n) + (a)-1) & ~((a)-1))
-#define TRUNC(n, a) (((u32)(n)) & ~((a)-1))
+#define ROUND(n, a) (((u32)(n) + (a)-1) & ‾((a)-1))
+#define TRUNC(n, a) (((u32)(n)) & ‾((a)-1))
 
 static void * __OSArenaHi;
 static void * __OSArenaLo = (void*)-1;

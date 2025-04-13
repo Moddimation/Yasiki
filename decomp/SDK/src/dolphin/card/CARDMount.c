@@ -121,7 +121,7 @@ static s32 DoMount(s32 chan) {
                 sram->flashID[chan][i] = card->id[i];
                 checkSum += card->id[i];
             }
-            sram->flashIDCheckSum[chan] = (u8)~checkSum;
+            sram->flashIDCheckSum[chan] = (u8)‾checkSum;
             __OSUnlockSramEx(TRUE);
 
             return result;
@@ -136,7 +136,7 @@ static s32 DoMount(s32 chan) {
                 checkSum += sram->flashID[chan][i];
 
             __OSUnlockSramEx(FALSE);
-            if (sram->flashIDCheckSum[chan] != (u8)~checkSum)
+            if (sram->flashIDCheckSum[chan] != (u8)‾checkSum)
             {
                 result = CARD_RESULT_IOERROR;
                 goto error;

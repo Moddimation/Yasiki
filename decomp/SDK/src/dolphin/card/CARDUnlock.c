@@ -44,7 +44,7 @@ static u32 exnor_1st(u32 data, u32 rshift) {
     work = data;
     for (i = 0; i < rshift; i++)
     {
-        wk = ~(work ^ (work >> 7) ^ (work >> 15) ^ (work >> 23));
+        wk = ‾(work ^ (work >> 7) ^ (work >> 15) ^ (work >> 23));
         work = (work >> 1) | ((wk << 30) & 0x40000000);
     }
     return work;
@@ -59,7 +59,7 @@ static u32 exnor(u32 data, u32 lshift) {
     for (i = 0; i < lshift; i++)
     {
         // 1bit Left Shift
-        wk = ~(work ^ (work << 7) ^ (work << 15) ^ (work << 23));
+        wk = ‾(work ^ (work << 7) ^ (work << 15) ^ (work << 23));
         work = (work << 1) | ((wk >> 30) & 0x00000002);
     }
     return work;
@@ -221,7 +221,7 @@ s32 __CARDUnlock(s32 chan, u8 flashID[12]) {
 
     rshift = (u32)(dummy * 8 + 1);
     wk = exnor_1st(init_val, rshift);
-    wk1 = ~(wk ^ (wk >> 7) ^ (wk >> 15) ^ (wk >> 23));
+    wk1 = ‾(wk ^ (wk >> 7) ^ (wk >> 15) ^ (wk >> 23));
     card->scramble = (wk | ((wk1 << 31) & 0x80000000));
     card->scramble = bitrev(card->scramble);
     dummy = DummyLen();
@@ -239,31 +239,31 @@ s32 __CARDUnlock(s32 chan, u8 flashID[12]) {
     para1A = (para1A ^ card->scramble);
     rshift = 32;
     wk = exnor(card->scramble, rshift);
-    wk1 = ~(wk ^ (wk << 7) ^ (wk << 15) ^ (wk << 23));
+    wk1 = ‾(wk ^ (wk << 7) ^ (wk << 15) ^ (wk << 23));
     card->scramble = (wk | ((wk1 >> 31) & 0x00000001));
     para1B = (para1B ^ card->scramble);
     rshift = 32;
     wk = exnor(card->scramble, rshift);
-    wk1 = ~(wk ^ (wk << 7) ^ (wk << 15) ^ (wk << 23));
+    wk1 = ‾(wk ^ (wk << 7) ^ (wk << 15) ^ (wk << 23));
     card->scramble = (wk | ((wk1 >> 31) & 0x00000001));
     Ans1 ^= card->scramble;
     rshift = 32;
     wk = exnor(card->scramble, rshift);
-    wk1 = ~(wk ^ (wk << 7) ^ (wk << 15) ^ (wk << 23));
+    wk1 = ‾(wk ^ (wk << 7) ^ (wk << 15) ^ (wk << 23));
     card->scramble = (wk | ((wk1 >> 31) & 0x00000001));
     para2A = (para2A ^ card->scramble);
     rshift = 32;
     wk = exnor(card->scramble, rshift);
-    wk1 = ~(wk ^ (wk << 7) ^ (wk << 15) ^ (wk << 23));
+    wk1 = ‾(wk ^ (wk << 7) ^ (wk << 15) ^ (wk << 23));
     card->scramble = (wk | ((wk1 >> 31) & 0x00000001));
     para2B = (para2B ^ card->scramble);
     rshift = (u32)(dummy * 8);
     wk = exnor(card->scramble, rshift);
-    wk1 = ~(wk ^ (wk << 7) ^ (wk << 15) ^ (wk << 23));
+    wk1 = ‾(wk ^ (wk << 7) ^ (wk << 15) ^ (wk << 23));
     card->scramble = (wk | ((wk1 >> 31) & 0x00000001));
     rshift = 32 + 1;
     wk = exnor(card->scramble, rshift);
-    wk1 = ~(wk ^ (wk << 7) ^ (wk << 15) ^ (wk << 23));
+    wk1 = ‾(wk ^ (wk << 7) ^ (wk << 15) ^ (wk << 23));
     card->scramble = (wk | ((wk1 >> 31) & 0x00000001));
 
     *(u32 *)&input[0] = para2A;
@@ -372,7 +372,7 @@ static void DoneCallback(void *_task)
 
     rshift = (u32)((dummy + 4 + card->latency) * 8 + 1);
     wk = exnor(card->scramble, rshift);
-    wk1 = ~(wk ^ (wk << 7) ^ (wk << 15) ^ (wk << 23));
+    wk1 = ‾(wk ^ (wk << 7) ^ (wk << 15) ^ (wk << 23));
     card->scramble = (wk | ((wk1 >> 31) & 0x00000001));
 
     dummy = DummyLen();

@@ -157,35 +157,39 @@ config.sjiswrap_tag = "v1.2.0"
 config.wibo_tag = "0.6.11"
 
 # Project
+
+## Helper
+def cflags_paths_expand(cflags):
+    converted = []
+    for flag in cflags:
+        if flag.startswith("-i "):
+            path = flag[3:]
+            if any(c in path for c in "*?[]"):
+                converted.extend([f"-i {os.path.normpath(p)}" for p in glob.glob(path, recursive=True) if os.path.isdir(p)])
+            else:
+                converted.append(flag)
+        else:
+            converted.append(flag)
+    cflags[:] = converted  # Mutate the original list in-place
+
+## Definitions
 config.config_path = Path("config") / config.version / "config.yml"
 config.check_sha_path = Path("config") / config.version / "build.sha1"
 config.asflags = [
     "-mgekko",
+    "-m__PPCGEKKO__",
     "--strip-local-absolute",
     "-I decomp/App/*/include",
     "-I decomp/App/lib",
     "-I decomp/JSystem/**/include",
     "-I decomp/SDK/include",
-    "-I decomp/CodeWarrior/**/stl",
-    "-I decomp/CodeWarrior/**/Math",
-    "-I decomp/CodeWarrior/**/include",
     "-I decomp/CodeWarrior/**/Include",
-    "-I decomp/CodeWarrior/**/INCLUDE",
+    "-I decomp/CodeWarrior/**/Inc",
     f"-I build/{config.version}/include",
     f"--defsym version={version_num}",
 ]
 # fill in * , because MWCC not supporting that
-converted = []
-for flag in config.asflags:
-    if flag.startswith("-i "):
-        path = flag[3:]
-        if any(c in path for c in "*?[]"):  # wildcard check
-            converted.extend([f"-i {os.path.normpath(p)}" for p in glob.glob(path, recursive=True) if os.path.isdir(p)])
-        else:
-            converted.append(flag)
-    else:
-        converted.append(flag)
-config.asflags = converted
+cflags_paths_expand(config.asflags)
 
 config.ldflags = [
     "-fp hardware",
@@ -220,33 +224,12 @@ cflags_base = [
     "-fp_contract on",
     "-str reuse",
     "-multibyte",
-    "-i decomp/App/sources/*/include",
     "-i decomp/App/lib",
-    "-i decomp/JSystem/**/include",
-    "-i decomp/SDK/include",
-    "-i decomp/CodeWarrior/**/stl",
-    "-i decomp/CodeWarrior/**/Math",
-    "-i decomp/CodeWarrior/**/include",
     "-i decomp/CodeWarrior/**/Include",
-    "-i decomp/CodeWarrior/**/INCLUDE",
+    "-i decomp/CodeWarrior/**/Inc",
     f"-i build/{config.version}/include",
     f"-DVERSION_{config.version}",
 ]
-# fill in * , because MWCC not supporting that
-converted = []
-for flag in cflags_base:
-    if flag.startswith("-i "):
-        path = flag[3:]
-        if any(c in path for c in "*?[]"):
-            converted.extend([f"-i {os.path.normpath(p)}" for p in glob.glob(path, recursive=True) if os.path.isdir(p)])
-        else:
-            converted.append(flag)
-    else:
-        converted.append(flag)
-cflags_base = converted
- # Print all caue why not
-#for s in cflags_base:
-#    print(s)
 
 # Debug flags
 if args.debug:
@@ -257,6 +240,7 @@ else:
 # JAudio flags
 cflags_jaudio = [
     *cflags_base,
+    "-i decomp/JSystem/**/include",
     "-proc 750",
     "-O4,s",
     "-inline off",
@@ -272,6 +256,8 @@ cflags_jaudio = [
 # JSystem library flags
 cflags_jsys = [
     *cflags_base,
+    "-i decomp/SDK/include",
+    "-i decomp/JSystem/**/include",
     "-O4,p",
     "-inline auto",
     "-RTTI on",
@@ -281,24 +267,25 @@ cflags_jsys = [
 # OdemuExi2 library flags
 cflags_odemu = [
     *cflags_base,
+    "-i decomp/SDK/include",
 
 ]
 # Metrowerks library flags
 cflags_cw = [
     *cflags_base,
-    "-proc 750",
+    "-DHW2=1 -DEPPC=1 -DMARLIN_DI=1 -DORCA=1 -DGEKKO=1 -DGX_REV=1 -DBUG_CLR_LOAD_DLY=0 -DBUG_XF_STALL=0 -DTRK_INTEGRATION=1 -DGX_FIFO_SERIAL=1 -D__HWSIM=0",
+    "-i decomp/CodeWarrior/**/Include",
     "-O4,p",
     "-use_lmw_stmw on",
     "-str reuse,pool,readonly",
     "-common off",
     "-inline deferred,auto",
     "-char signed",
-    "-sdata 0",
-    "-sdata2 0",
 ]
 # Metrowerks TRK library flags
 cflags_cw_trk = [
     *cflags_base,
+    "-DHW2=1 -DEPPC=1 -DMARLIN_DI=1 -DORCA=1 -DGEKKO=1 -DGX_REV=1 -DBUG_CLR_LOAD_DLY=0 -DBUG_XF_STALL=0 -DTRK_INTEGRATION=1 -DGX_FIFO_SERIAL=1 -D__HWSIM=0",
     "-O4,p",
     "-pool off",
     "-str readonly",
@@ -309,6 +296,9 @@ cflags_cw_trk = [
 # Game flags
 cflags_game = [
     *cflags_base,
+    "-i decomp/SDK/include",
+    "-i decomp/App/sources/*/include",
+    "-i decomp/JSystem/**/include",
     "-O4,p",
     "-RTTI on",
     "-inline auto",
@@ -322,9 +312,20 @@ else:
 # SDK flags
 cflags_sdk = [
     *cflags_base,
+    "-i decomp/SDK/include",
     "-O4,p",
     "-inline auto",
 ]
+
+# fill in * , because MWCC not supporting that
+cflags_paths_expand(cflags_base)
+cflags_paths_expand(cflags_jaudio)
+cflags_paths_expand(cflags_jsys)
+cflags_paths_expand(cflags_odemu)
+cflags_paths_expand(cflags_cw)
+cflags_paths_expand(cflags_cw_trk)
+cflags_paths_expand(cflags_game)
+cflags_paths_expand(cflags_sdk)
 
 config.linker_version = "GC/1.3.2"
 linker_version_default = "GC/1.2.5"
@@ -333,7 +334,7 @@ linker_version_default = "GC/1.2.5"
 def SDKLib(lib_name: str, files: List[Tuple[bool, str]], conf: Dict[str,str]={"":""}) -> Dict[str, Any]:
     objects = []
     for matching, filename in files:
-        filepath = f"{lib_name}/{filename}"
+        filepath = f"SDK/src/{lib_name}/{filename}"
         objects.append(Object(matching, filepath))
 
     return {
@@ -341,7 +342,7 @@ def SDKLib(lib_name: str, files: List[Tuple[bool, str]], conf: Dict[str,str]={""
         "mw_version": linker_version_default,
         "cflags": cflags_sdk,
         "progress_category": "sdk",
-        "src_dir": "decomp/SDK/src",
+        "src_dir": "decomp",
         "objects": objects,
         **conf
     }
@@ -354,14 +355,15 @@ def DolphinLib(lib_name: str, files: List[Tuple[bool, str]], conf:Dict[str,str]=
 def JSystemLib(lib_name: str, sub_dir: str, files: List[Tuple[bool, str]], conf: Dict[str, str]={"":""}) -> Dict[str, Any]:
     objects = []
     for matching, filename in files:
-        objects.append(Object(matching, filename))
+        filepath = f"JSystem/{sub_dir}/src/{filename}"
+        objects.append(Object(matching, filepath))
 
     return {
         "lib": lib_name,
         "mw_version": linker_version_default,
         "cflags": cflags_jsys,
         "progress_category": "jsys",
-        "src_dir": f"decomp/System/{sub_dir}/src",
+        "src_dir": "decomp",
         "objects": objects,
         **conf
     }
@@ -370,14 +372,15 @@ def JSystemLib(lib_name: str, sub_dir: str, files: List[Tuple[bool, str]], conf:
 def CWLib(lib_name: str, sub_path: str, files: List[Tuple[bool, str]], conf: Dict[str, str]={"":""}) -> Dict[str, Any]:
     objects = []
     for matching, filename in files:
-        objects.append(Object(matching, filename))
+        filepath = f"CodeWarrior/PowerPC_EABI_Support/{sub_path}/{filename}"
+        objects.append(Object(matching, filepath))
 
     return {
         "lib": lib_name,
         "mw_version": linker_version_default,
         "cflags": cflags_cw,
         "progress_category": "cw",
-        "src_dir": "decomp/CodeWarrior/PowerPC_EABI_Support/{sub_path}",
+        "src_dir": f"decomp",
         "objects": objects,
         **conf
     }
@@ -386,14 +389,15 @@ def CWLib(lib_name: str, sub_path: str, files: List[Tuple[bool, str]], conf: Dic
 def GameSource(lib_name: str, files: List[Tuple[bool, str]], conf: Dict[str, str]={"":""}) -> Dict[str, Any]:
     objects = []
     for matching, filename in files:
-        objects.append(Object(matching, filename))
+        filepath = f"sources/{lib_name}/src/{filename}"
+        objects.append(Object(matching, filepath))
 
     return {
-        "lib": "game",
+        "lib": lib_name,
         "mw_version": config.linker_version,
         "cflags": cflags_game,
         "progress_category": "game",
-        "src_dir": f"sources/{lib_name}/src",
+        "src_dir": f"decomp/App",
         "objects": objects,
         **conf
     }
@@ -409,34 +413,12 @@ def MatchingFor(*versions):
 
 
 config.warn_missing_config = True
-config.warn_missing_source = True
+config.warn_missing_source = False
 config.libs = [
-    {
-    # To-Be-Removed
-        "lib": "game",
-        "mw_version": config.linker_version,
-        "cflags": cflags_game,
-        "progress_category": "game",
-        "src_dir": "sources",
-        "objects": [
-            ##Object(NonMatching, "Unsorted/MoveObj.cpp"),
-            ##Object(NonMatching, "Unsorted/Character.cpp"),
-            #Object(Matching, "Sato/EnemyStrategy.cpp"),
-            Object(NonMatching, "Unsorted/IncludeStrategy.cpp"),
-            #Object(NonMatching, "Sato/EnStrategy.cpp"),
-            #Object(NonMatching, "Sato/EnemyTypicalStrategy.cpp"),
-            ##Object(NonMatching, "Sotoike/AITurara.cpp"),
-            #Object(NonMatching, "Unsorted/assignPlayerRank.cpp"),
-            #Object(NonMatching, "Unsorted/getPlayerRank.cpp"),
-            #Object(NonMatching, "Unsorted/checkTimeRange.cpp"),
-            ##Object(NonMatching, "Unsorted/checkEventTimeBounds.cpp"),
-            ##Object(NonMatching, "Unsorted/setAndExecCurrentEvent.cpp"),
-        ]
-    },
 
     # Game source folders
 
-#    GameSource("Game", [
+#    GameSource("PSystem", [
 #        (NonMatching, ""),
 #    ]),
 #    GameSource("Kawano", [
@@ -445,30 +427,38 @@ config.libs = [
 #    GameSource("Iwamoto", [
 #        (NonMatching, ""),
 #    ]),
-#    GameSource("Sotoike", [
-#        (NonMatching, ""),
-#    ]),
+    GameSource("Sotoike", [
+        (NonMatching, "AITurara.cpp"),
+    ]),
 #    GameSource("Kawamoto", [
 #        (NonMatching, ""),
 #    ]),
-#    GameSource("Koga", [
-#        (Matching, "CharacterEventObserver.cpp"),
-#    ]),
+    GameSource("Koga", [
+        (Matching, "CharacterEventObserver.cpp"),
+        (Matching, "IncludeStrategy.cpp"),
+    ]),
 #    GameSource("Ajioka", [
 #        (NonMatching, ""),
 #    ]),
-#    GameSource("Sato", [
-#        (NonMatching, ""),
-#    ]),
-#    GameSource("Nakamura", [
-#        (NonMatching, ""),
-#    ]),
+    GameSource("Sato", [
+        (NonMatching, "EnStrategy.cpp"),
+        (NonMatching, "EnemyStrategy.cpp"),
+        (NonMatching, "EnemyTypicalStrategy.cpp"),
+    ]),
 #    GameSource("Kohno", [
 #        (NonMatching, ""),
 #    ]),
-#    GameSource("AudioLib", [
+#    GameSource("Unsorted", [
 #        (NonMatching, ""),
 #    ]),
+    # Kept for reference
+            ##Object(NonMatching, "Unsorted/MoveObj.cpp"),
+            ##Object(NonMatching, "Unsorted/Character.cpp"), (Sotoike/character.cpp?)
+            #Object(NonMatching, "Unsorted/assignPlayerRank.cpp"),
+            #Object(NonMatching, "Unsorted/getPlayerRank.cpp"),
+            #Object(NonMatching, "Unsorted/checkTimeRange.cpp"),
+            ##Object(NonMatching, "Unsorted/checkEventTimeBounds.cpp"),
+            ##Object(NonMatching, "Unsorted/setAndExecCurrentEvent.cpp"),
 
     # JSystem Libraries
 
@@ -534,16 +524,21 @@ config.libs = [
 #        (NonMatching, "global_destructor_chain.c"),
 #        (NonMatching, "__init_cpp_exceptions.cpp"),
 #    ]),
-#    CWLib("MSL_C.PPCEABI.bare.H", "MSL/MSL_C/MSL_Common/Src", [
+#    CWLib("MSL_C.PPCEABI.bare.H", "Msl/MSL_C/MSL_Common/Src", [
 #        (NonMatching, ""),
 #    ]),
-#    CWLib("MSL_C.PPCEABI.bare.H", "MSL/MSL_C/MSL_Common_Embedded/Src", [
+#    CWLib("MSL_C.PPCEABI.bare.H", "Msl/MSL_C/MSL_Common_Embedded/Src", [
 #        (NonMatching, ""),
 #    ]),
-#    CWLib("MSL_C.PPCEABI.bare.H", "MSL/MSL_C/MSL_Common_Embedded/Math", [
-#        (NonMatching, ""),
-#    ]),
-#    CWLib("MSL_C.PPCEABI.bare.H", "MSL/MSL_C/PPC_EABI/SRC", [
+    CWLib("MSL_C.PPCEABI.bare.H", "Msl/MSL_C/MSL_Common_Embedded/Math", [
+        (NonMatching, "Double_precision/e_asin.c"),
+        (NonMatching, "Single_precision/inverse_trig.c"),
+        (Matching, "Single_precision/roundingf.c"),
+        (NonMatching, "Single_precision/trigf.c"),
+        (Matching, "Single_precision/common_float_tables.c"),
+        (Matching, "Single_precision/lnf.c"),
+    ]),
+#    CWLib("MSL_C.PPCEABI.bare.H", "Msl/MSL_C/PPC_EABI/SRC", [
 #        (NonMatching, ""),
 #    ]),
 #    CWLib("MSL_C.PPCEABI.bare.H", "MetroTRK/src", [
@@ -554,7 +549,7 @@ config.libs = [
     DolphinLib("amcstubs", [
         (Matching, "AmcExi2Stubs.c"),
     ]),
-    SDKLib("OdemuExi2Lib", [
+    SDKLib("OdemuExi2", [
         (MatchingFor("GLME01"), "DebuggerDriver.c")
     ],{
         "cflags": cflags_odemu
@@ -569,7 +564,7 @@ config.libs = [
 config.progress_categories = [
     ProgressCategory("game", "Game App"),
     ProgressCategory("jsys", "JSystem"),
-    ProgressCategory("sdk", "Dolphin SDK (~2001)"),
+    ProgressCategory("sdk", "Dolphin SDK (Jul 19 2001)"),
     ProgressCategory("cw", "CodeWarrior Runtime"),
 ]
 config.progress_each_module = args.verbose

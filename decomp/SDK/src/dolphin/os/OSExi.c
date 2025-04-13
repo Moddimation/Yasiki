@@ -108,7 +108,7 @@ static void CompleteTransfer(long chan) {
                 }
             }
         }
-        exi->state &= ~3;
+        exi->state &= ‾3;
     }
 }
 
@@ -174,7 +174,7 @@ int EXIDma(long chan, void * buf, long len, unsigned long type, EXICallback call
     ASSERTLINE(0x1A4, exi->state & STATE_SELECTED);
     ASSERTLINE(0x1A5, OFFSET(buf, 32) == 0);
     ASSERTLINE(0x1A6, 0 < len && OFFSET(len, 32) == 0);
-    ASSERTLINE(0x1A8, ((u32) len & ~EXI_0LENGTH_EXILENGTH_MASK) == 0);
+    ASSERTLINE(0x1A8, ((u32) len & ‾EXI_0LENGTH_EXILENGTH_MASK) == 0);
     ASSERTLINE(0x1AA, type == EXI_READ || type == EXI_WRITE);
 
     enabled = OSDisableInterrupts();
@@ -352,7 +352,7 @@ int EXIDetach(long chan) {
         OSRestoreInterrupts(enabled);
         return 0;
     }
-    exi->state &= ~8;
+    exi->state &= ‾8;
     __OSMaskInterrupts(0x700000U >> (chan * 3));
     OSRestoreInterrupts(enabled);
     return 1;
@@ -406,7 +406,7 @@ int EXIDeselect(long chan) {
         OSRestoreInterrupts(enabled);
         return 0;
     }
-    exi->state &= ~4;
+    exi->state &= ‾4;
     cpr = __EXIRegs[(chan * 5)];
     __EXIRegs[(chan * 5)] = cpr & 0x405;
     if (exi->state & 8) {

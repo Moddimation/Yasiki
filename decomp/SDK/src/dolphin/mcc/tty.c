@@ -158,7 +158,7 @@ int TTYPrintf(const char *format, ...) {
         hdr->length = strlen(str) + 0xD;
         hdr->rsvd = 0;
         hdr->protocol = 0x210;
-        dataSize = OSRoundUp32B(hdr->length) & ~1;
+        dataSize = OSRoundUp32B(hdr->length) & ‾1;
         if ((0x2000 - (gBufTail - gBufHead)) <= dataSize) {
             ttyFlush(gPrintfID, 1);
         }

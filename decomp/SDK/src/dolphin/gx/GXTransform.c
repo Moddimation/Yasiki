@@ -206,8 +206,8 @@ void GXLoadPosMtxImm(f32 mtx[3][4], u32 id)
 // this one uses cmpwi instead of cmplwi for some reason
 #define SET_REG_FIELD_(line, reg, size, shift, val) \
 do { \
-    ASSERTMSGLINE(line, ((s32)(val) & ~((1 << (size)) - 1)) == 0, "GX Internal: Register field out of range"); \
-    (reg) = ((u32)(reg) & ~(((1 << (size)) - 1) << (shift))) | ((u32)(val) << (shift)); \
+    ASSERTMSGLINE(line, ((s32)(val) & ‾((1 << (size)) - 1)) == 0, "GX Internal: Register field out of range"); \
+    (reg) = ((u32)(reg) & ‾(((1 << (size)) - 1) << (shift))) | ((u32)(val) << (shift)); \
 } while (0)
 
 void GXLoadPosMtxIndx(u16 mtx_indx, u32 id)

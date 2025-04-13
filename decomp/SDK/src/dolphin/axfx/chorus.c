@@ -412,7 +412,7 @@ int AXFXChorusSettings(struct AXFX_CHORUS * c) {
     c->work.currentPosHi = 0x140 - ((c->baseDelay - 5) << 5);
     c->work.currentPosLo = 0;
     c->work.currentPosHi = (c->work.currentPosHi + ((c->work.currentLast - 1) * 0xA0/1)) % 480;
-    c->work.pitchOffsetPeriod = ((c->period / 5) + 1) & ~(1);
+    c->work.pitchOffsetPeriod = ((c->period / 5) + 1) & ‾(1);
     c->work.pitchOffsetPeriodCount = c->work.pitchOffsetPeriod >> 1;
     c->work.pitchOffset = (c->variation << 0x10) / (c->work.pitchOffsetPeriod * 5);
     OSRestoreInterrupts(old);

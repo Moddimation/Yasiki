@@ -136,7 +136,7 @@ void __GXVerifyBUMP(void)
     }
 }
 
-#define SOMEINDEX(index) (index & 3) + ((index * 8) & ~0x1F)
+#define SOMEINDEX(index) (index & 3) + ((index * 8) & ‾0x1F)
 
 #define MAX(a, b) ((a) > (b) ? (a) : (b))
 

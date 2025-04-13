@@ -7,7 +7,7 @@
 
 class EnemyTypicalStrategy : public EnemyStrategyDecorator, public Koga::CharacterEventObserver {
 public:
-    virtual ~EnemyTypicalStrategy() {
+    virtual ‾EnemyTypicalStrategy() {
 
     }
 

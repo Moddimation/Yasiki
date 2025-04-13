@@ -226,7 +226,7 @@ void __SYNSetupSample(struct SYNVOICE * voice) {
             __SYNSetupPcm8(voice);
             return;
         default:
-            ASSERTMSGLINE(0x174, FALSE, "unknown sample format\n");
+            ASSERTMSGLINE(0x174, FALSE, "unknown sample format¥n");
             return;
     }
 }

@@ -175,7 +175,7 @@ static int UnlockSram(int commit, unsigned long offset) {
             sram->checkSum = sram->checkSumInv = 0;
             for(p = (unsigned short*)&sram->counterBias; p < ((u16*)&Scb.sram[sizeof (struct OSSram)]); p++) {
                 sram->checkSum += *p;
-                sram->checkSumInv += ~(*p);
+                sram->checkSumInv += ‾(*p);
             }
         }
         if (offset < Scb.offset) {
@@ -218,7 +218,7 @@ int __OSCheckSram() {
 
     for (p = (void*)&sram->counterBias; p < (u16*)&Scb.sram[0x14]; p++) {
         checkSum += *p;
-        checkSumInv += ~(*p);
+        checkSumInv += ‾(*p);
     }
 
     return (sram->checkSum == checkSum && sram->checkSumInv == checkSumInv);

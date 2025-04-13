@@ -158,16 +158,16 @@ static void __SYNSetData(struct SYNSYNTH * synth, u8 midiChannel) {
                 synth->pwMaxCents[midiChannel] = (synth->controller[midiChannel][0x26] + (synth->controller[midiChannel][0x6] * 100)) << 0x10;
                 break;
             case 1:
-                ASSERTMSGLINE(0x50, FALSE, "RPN 0001 not supported\n");
+                ASSERTMSGLINE(0x50, FALSE, "RPN 0001 not supported¥n");
                 break;
             case 2:
-                ASSERTMSGLINE(0x56, FALSE, "RPN 0002 not supported\n");
+                ASSERTMSGLINE(0x56, FALSE, "RPN 0002 not supported¥n");
                 break;
             case 3:
-                ASSERTMSGLINE(0x5C, FALSE, "RPN 0003 not supported\n");
+                ASSERTMSGLINE(0x5C, FALSE, "RPN 0003 not supported¥n");
                 break;
             case 4:
-                ASSERTMSGLINE(0x62, FALSE, "RPN 0004 not supported\n");
+                ASSERTMSGLINE(0x62, FALSE, "RPN 0004 not supported¥n");
                 break;
         }
     }

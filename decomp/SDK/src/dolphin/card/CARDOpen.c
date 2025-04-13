@@ -13,11 +13,11 @@ BOOL __CARDCompareFileName(CARDDir *ent, const char *fileName) {
     {
         if ((c1 = *entName++) != (c2 = *fileName++))
             return FALSE;
-        else if (c2 == '\0')
+        else if (c2 == '¥0')
             return TRUE;
     }
 
-    if (*fileName == '\0')
+    if (*fileName == '¥0')
         return TRUE;
     return FALSE;
 }

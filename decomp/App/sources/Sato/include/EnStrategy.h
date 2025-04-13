@@ -11,7 +11,7 @@ class EnStrategyContainer {
 
 public:
     EnStrategyContainer();
-    virtual ~EnStrategyContainer();
+    virtual ‾EnStrategyContainer();
 
     virtual s32 getStrategyId(int i_entityIdx) = 0;
 
@@ -37,7 +37,7 @@ class EnCondStrategies {
     EnemyStrategy* mpCondStrategy;
 
 public:
-    virtual ~EnCondStrategies();
+    virtual ‾EnCondStrategies();
 
     void destroyCondStrategy();
     EnemyStrategy* createCondStrategy(int i_condType);

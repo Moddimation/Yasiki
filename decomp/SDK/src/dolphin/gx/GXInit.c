@@ -39,7 +39,7 @@ static void DisableWriteGatherPipe(void)
 {
     u32 hid2 = PPCMfhid2();
 
-    hid2 &= ~0x40000000;
+    hid2 &= ‾0x40000000;
     PPCMthid2(hid2);
 }
 
