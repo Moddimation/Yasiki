@@ -418,11 +418,25 @@ config.libs = [
 
     # Game source folders
 
-#    GameSource("PSystem", [
+#    GameSource("system", [
+#        (NonMatching, "initthread.cpp"),
+#        (NonMatching, "memory.cpp"),
+#        (NonMatching, "dvd.cpp"),
+#    ]),
+#    GameSource("someGraphicsFolder", [
 #        (NonMatching, ""),
 #    ]),
 #    GameSource("Kawano", [
 #        (NonMatching, ""),
+#    ]),
+#    GameSource("sequence", [
+#        (NonMatching, "sequence.cpp"),
+#        (NonMatching, "booting.cpp"),
+#        (NonMatching, "titlescreen.cpp"),
+#        (NonMatching, "dataselect.cpp"),
+#        (NonMatching, "opening.cpp"),
+#        (NonMatching, "rolling.cpp"),
+#        (NonMatching, "ending.cpp"),
 #    ]),
 #    GameSource("Iwamoto", [
 #        (NonMatching, ""),
@@ -448,7 +462,7 @@ config.libs = [
 #    GameSource("Kohno", [
 #        (NonMatching, ""),
 #    ]),
-#    GameSource("Unsorted", [
+#    GameSource("unsorted", [
 #        (NonMatching, ""),
 #    ]),
     # Kept for reference
@@ -517,6 +531,12 @@ config.libs = [
 #    ],{
 #        "src_dir": "lib/HVQM/src"
 #    }),
+
+    # SDK
+
+    DolphinLib("gx", [
+        (NonMatching, "GXTransform.c")
+    ]),
 
     # CodeWarrior
 
