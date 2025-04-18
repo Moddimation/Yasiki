@@ -31,7 +31,7 @@ Information
 I heavily restructured the source layout of the original repo from [Sage-of-Mirrors](https://github.com/Sage-of-Mirrors/zmansion). This was not forked directly from it, but from [CoNesTra](https://github.com/CoNesTra/zmansion), as he put in effort to add Luigi's Mansion 3DS information to the repo and updated the [DTK](https://github.com/encounter/decomp-toolkit) tools.
 I did reset the splits and the symbol list, so the % were brought back to 0.
 ### Current State of Progress
-I am currently trying to fill out the library symbols in the Ghidra repository.
+I am currently trying to fill out the symbols in the Ghidra repository (read further to learn how to connect to the server).
 ### Code Structure
 The code categories are put inside of the 'decomp' folder in root, as follows:  
  `/decomp/<category>/...`
