@@ -273,7 +273,7 @@ cflags_odemu = [
 # Metrowerks library flags
 cflags_cw = [
     *cflags_base,
-    "-DHW2=1 -DEPPC=1 -DMARLIN_DI=1 -DORCA=1 -DGEKKO=1 -DGX_REV=1 -DBUG_CLR_LOAD_DLY=0 -DBUG_XF_STALL=0 -DTRK_INTEGRATION=1 -DGX_FIFO_SERIAL=1 -D__HWSIM=0",
+    "-DHW2=1 -DEPPC=1 -DMARLIN_DI=1 -DORCA=1 -D__PPCGEKKO__=1 -DGEKKO=1 -DGX_REV=1 -DBUG_CLR_LOAD_DLY=0 -DBUG_XF_STALL=0 -DTRK_INTEGRATION=1 -DGX_FIFO_SERIAL=1 -D__HWSIM=0",
     "-i decomp/CodeWarrior/**/Include",
     "-O4,p",
     "-use_lmw_stmw on",
@@ -285,7 +285,7 @@ cflags_cw = [
 # Metrowerks TRK library flags
 cflags_cw_trk = [
     *cflags_base,
-    "-DHW2=1 -DEPPC=1 -DMARLIN_DI=1 -DORCA=1 -DGEKKO=1 -DGX_REV=1 -DBUG_CLR_LOAD_DLY=0 -DBUG_XF_STALL=0 -DTRK_INTEGRATION=1 -DGX_FIFO_SERIAL=1 -D__HWSIM=0",
+    "-DHW2=1 -DEPPC=1 -DMARLIN_DI=1 -DORCA=1 -D__PPCGEKKO__=1 -DGEKKO=1 -DGX_REV=1 -DBUG_CLR_LOAD_DLY=0 -DBUG_XF_STALL=0 -DTRK_INTEGRATION=1 -DGX_FIFO_SERIAL=1 -D__HWSIM=0",
     "-O4,p",
     "-pool off",
     "-str readonly",
