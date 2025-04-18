@@ -358,10 +358,12 @@ def SDKLib(lib_name: str, files: List[Tuple[bool, str]], conf: Dict[str,str]={""
         filepath = f"SDK/src/{lib_name}/{filename}"
         objects.append(Object(matching, filepath))
 
+    __cflags = cflags_sdk + [f"-i {os.path.dirname(f'decomp/{filepath}')}"]
+
     return {
         "lib": lib_name,
         "mw_version": linker_version_default,
-        "cflags": cflags_sdk,
+        "cflags": __cflags,
         "progress_category": "sdk",
         "src_dir": "decomp",
         "objects": objects,
@@ -379,10 +381,12 @@ def JSystemLib(lib_name: str, sub_dir: str, files: List[Tuple[bool, str]], conf:
         filepath = f"JSystem/{sub_dir}/src/{filename}"
         objects.append(Object(matching, filepath))
 
+    __cflags = cflags_jsys + [f"-i {os.path.dirname(f'decomp/{filepath}')}"]
+
     return {
         "lib": lib_name,
         "mw_version": linker_version_default,
-        "cflags": cflags_jsys,
+        "cflags": __cflags,
         "progress_category": "jsys",
         "src_dir": "decomp",
         "objects": objects,
@@ -396,10 +400,12 @@ def CWLib(lib_name: str, sub_path: str, files: List[Tuple[bool, str]], conf: Dic
         filepath = f"CodeWarrior/PowerPC_EABI_Support/{sub_path}/{filename}"
         objects.append(Object(matching, filepath))
 
+    __cflags = cflags_cw + [f"-i {os.path.dirname(f'decomp/{filepath}')}"]
+
     return {
         "lib": lib_name,
         "mw_version": linker_version_default,
-        "cflags": cflags_cw,
+        "cflags": __cflags,
         "progress_category": "cw",
         "src_dir": f"decomp",
         "objects": objects,
@@ -412,6 +418,8 @@ def GameSource(lib_name: str, files: List[Tuple[bool, str]], conf: Dict[str, str
     for matching, filename in files:
         filepath = f"sources/{lib_name}/src/{filename}"
         objects.append(Object(matching, filepath))
+
+    __cflags = cflags_game + [f"-i {os.path.dirname(f'decomp/{filepath}')}"]
 
     return {
         "lib": lib_name,
