@@ -565,13 +565,13 @@ config.libs = [
 #        (NonMatching, "global_destructor_chain.c"),
 #        (NonMatching, "__init_cpp_exceptions.cpp"),
 #    ]),
-#    CWLib("MSL_C.PPCEABI.bare.H", "Msl/MSL_C/MSL_Common/Src", [
+#    CWLib("MSL_C.PPCEABI.bare.H", "MSL/MSL_C/MSL_Common/Src", [
 #        (NonMatching, ""),
 #    ]),
-#    CWLib("MSL_C.PPCEABI.bare.H", "Msl/MSL_C/MSL_Common_Embedded/Src", [
+#    CWLib("MSL_C.PPCEABI.bare.H", "MSL/MSL_C/MSL_Common_Embedded/Src", [
 #        (NonMatching, ""),
 #    ]),
-    CWLib("MSL_C.PPCEABI.bare.H", "Msl/MSL_C/MSL_Common_Embedded/Math", [
+    CWLib("MSL_C.PPCEABI.bare.H", "MSL/MSL_C/MSL_Common_Embedded/Math", [
         (NonMatching, "Double_precision/e_asin.c"),
         (NonMatching, "Single_precision/inverse_trig.c"),
         (Matching, "Single_precision/roundingf.c"),
@@ -579,7 +579,7 @@ config.libs = [
         (Matching, "Single_precision/common_float_tables.c"),
         (Matching, "Single_precision/lnf.c"),
     ]),
-#    CWLib("MSL_C.PPCEABI.bare.H", "Msl/MSL_C/PPC_EABI/SRC", [
+#    CWLib("MSL_C.PPCEABI.bare.H", "MSL/MSL_C/PPC_EABI/SRC", [
 #        (NonMatching, ""),
 #    ]),
 #    CWLib("MSL_C.PPCEABI.bare.H", "MetroTRK/src", [
