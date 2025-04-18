@@ -84,6 +84,11 @@ parser.add_argument(
     action="store_true",
     help="build with debug info (non-matching)",
 )
+parser.add_argument(
+    "--action",
+    action="store_true",
+    help="build for github actions (do not use)",
+)
 if not is_windows():
     parser.add_argument(
         "--wrapper",
@@ -158,19 +163,32 @@ config.wibo_tag = "0.6.11"
 
 # Project
 
-## Helper
+## Helper (Guess who generated this)
 def cflags_paths_expand(cflags):
+    seen = set()
     converted = []
+
     for flag in cflags:
         if flag.startswith("-i "):
             path = flag[3:]
             if any(c in path for c in "*?[]"):
-                converted.extend([f"-i {os.path.normpath(p)}" for p in glob.glob(path, recursive=True) if os.path.isdir(p)])
+                matches = glob.glob(path, recursive=True)
+                for p in matches:
+                    norm_path = os.path.normpath(p)
+                    flag_str = f"-i {norm_path}"
+                    if os.path.isdir(p) and flag_str not in seen:
+                        converted.append(flag_str)
+                        seen.add(flag_str)
             else:
-                converted.append(flag)
+                if flag not in seen:
+                    converted.append(flag)
+                    seen.add(flag)
         else:
-            converted.append(flag)
-    cflags[:] = converted  # Mutate the original list in-place
+            if flag not in seen:
+                converted.append(flag)
+                seen.add(flag)
+
+    cflags[:] = converted
 
 ## Definitions
 config.config_path = Path("config") / config.version / "config.yml"
@@ -179,12 +197,13 @@ config.asflags = [
     "-mgekko",
     "-m__PPCGEKKO__",
     "--strip-local-absolute",
-    "-I decomp/App/*/include",
-    "-I decomp/App/lib",
-    "-I decomp/JSystem/**/include",
-    "-I decomp/SDK/include",
-    "-I decomp/CodeWarrior/**/Include",
-    "-I decomp/CodeWarrior/**/Inc",
+    "-i decomp/App/lib",
+    "-i decomp/App/sources/*/include",
+    "-i decomp/JSystem/**/include",
+    "-i decomp/SDK/include",
+    "-i decomp/CodeWarrior/**/Include",
+    "-i decomp/CodeWarrior/**/INCLUDE",
+    "-i decomp/CodeWarrior/**/Inc",
     f"-I build/{config.version}/include",
     f"--defsym version={version_num}",
 ]
@@ -226,6 +245,7 @@ cflags_base = [
     "-multibyte",
     "-i decomp/App/lib",
     "-i decomp/CodeWarrior/**/Include",
+    "-i decomp/CodeWarrior/**/INCLUDE",
     "-i decomp/CodeWarrior/**/Inc",
     f"-i build/{config.version}/include",
     f"-DVERSION_{config.version}",
@@ -236,6 +256,9 @@ if args.debug:
     cflags_base.extend(["-sym on", "-DDEBUG=1"])
 else:
     cflags_base.append("-DNDEBUG=1")
+
+if args.action:
+    cflags_base.append("-DGH_ACTION=1")
 
 # JAudio flags
 cflags_jaudio = [
@@ -273,7 +296,6 @@ cflags_odemu = [
 # Metrowerks library flags
 cflags_cw = [
     *cflags_base,
-    "-DHW2=1 -DEPPC=1 -DMARLIN_DI=1 -DORCA=1 -D__PPCGEKKO__=1 -DGEKKO=1 -DGX_REV=1 -DBUG_CLR_LOAD_DLY=0 -DBUG_XF_STALL=0 -DTRK_INTEGRATION=1 -DGX_FIFO_SERIAL=1 -D__HWSIM=0",
     "-i decomp/CodeWarrior/**/Include",
     "-O4,p",
     "-use_lmw_stmw on",
@@ -285,7 +307,6 @@ cflags_cw = [
 # Metrowerks TRK library flags
 cflags_cw_trk = [
     *cflags_base,
-    "-DHW2=1 -DEPPC=1 -DMARLIN_DI=1 -DORCA=1 -D__PPCGEKKO__=1 -DGEKKO=1 -DGX_REV=1 -DBUG_CLR_LOAD_DLY=0 -DBUG_XF_STALL=0 -DTRK_INTEGRATION=1 -DGX_FIFO_SERIAL=1 -D__HWSIM=0",
     "-O4,p",
     "-pool off",
     "-str readonly",
