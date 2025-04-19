@@ -13,7 +13,7 @@ class IncludeStrategy
 public:
     IncludeStrategy();
     
-    virtual ‾IncludeStrategy();
+    virtual ~IncludeStrategy();
     virtual void unknownVirtualFunc() = 0;
 
     void setStrategy(int i_entityIdx);

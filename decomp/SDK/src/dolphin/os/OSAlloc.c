@@ -220,8 +220,8 @@ void * OSAllocFixed(void * rstart, void * rend) {
     void * end;
     void * cellEnd;
 
-    start = (void*)((*(u32*)rstart) & ‾((32)-1));
-    end = (void*)((*(u32*)rend + 0x1FU) & ‾((32)-1));
+    start = (void*)((*(u32*)rstart) & ~((32)-1));
+    end = (void*)((*(u32*)rend + 0x1FU) & ~((32)-1));
 
     ASSERTMSGLINE(0x1B0, HeapArray, "OSAllocFixed(): heap is not initialized.");
     ASSERTMSGLINE(0x1B1, (u32)start < (u32)end, "OSAllocFixed(): invalid range.");
@@ -389,8 +389,8 @@ int OSCreateHeap(void * start, void * end) {
     ASSERTMSGLINE(0x2BD, HeapArray, "OSCreateHeap(): heap is not initialized.");
     ASSERTMSGLINE(0x2BE, (u32)start < (u32)end, "OSCreateHeap(): invalid range.");
 
-    start = (void*)(((u32)start + 0x1FU) & ‾((32)-1));
-    end = (void*)(((u32)end) & ‾((32)-1));
+    start = (void*)(((u32)start + 0x1FU) & ~((32)-1));
+    end = (void*)(((u32)end) & ~((32)-1));
 
     ASSERTMSGLINE(0x2C1, (u32)start < (u32)end, "OSCreateHeap(): invalid range.");
     ASSERTMSGLINE(0x2C3, (u32)ArenaStart <= (u32)start && (u32)end <= (u32)ArenaEnd, "OSCreateHeap(): invalid range.");
@@ -469,8 +469,8 @@ void OSAddToHeap(int heap, void * start, void * end) {
 
     ASSERTMSGLINE(0x33F, (u32)start < (u32)end, "OSAddToHeap(): invalid range.");
 
-    start = (void*)(((u32)start + 0x1F) & ‾((32)-1));
-    end = (void*)(((u32)end) & ‾((32)-1));
+    start = (void*)(((u32)start + 0x1F) & ~((32)-1));
+    end = (void*)(((u32)end) & ~((32)-1));
 
     ASSERTMSGLINE(0x343, ((u32)end - (u32)start) >= 0x40U, "OSAddToHeap(): too small range.");
     ASSERTMSGLINE(0x345, (u32)ArenaStart <= (u32)start && (u32)end <= (u32)ArenaEnd, "OSAddToHeap(): invalid range.");

@@ -573,13 +573,13 @@ static void L2Init(void) {
 }
 
 void L2Enable(void) { 
-    PPCMtl2cr((PPCMfl2cr() | L2CR_L2E) & ‾L2CR_L2I);
+    PPCMtl2cr((PPCMfl2cr() | L2CR_L2E) & ~L2CR_L2I);
 }
 
 /* clang-format on */
 void L2Disable(void) {
   __sync();
-  PPCMtl2cr(PPCMfl2cr() & ‾0x80000000);
+  PPCMtl2cr(PPCMfl2cr() & ~0x80000000);
   __sync();
 }
 
@@ -588,7 +588,7 @@ void L2GlobalInvalidate(void) {
   PPCMtl2cr(PPCMfl2cr() | 0x00200000);
   while (PPCMfl2cr() & 0x00000001u)
     ;
-  PPCMtl2cr(PPCMfl2cr() & ‾0x00200000);
+  PPCMtl2cr(PPCMfl2cr() & ~0x00200000);
   while (PPCMfl2cr() & 0x00000001u) {
     DBPrintf(">>> L2 INVALIDATE : SHOULD NEVER HAPPEN\n");
   }

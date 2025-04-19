@@ -79,8 +79,8 @@ static volatile unsigned long RunQueueBits;
 static volatile int RunQueueHint;
 static long Reschedule;
 
-#define ALIGN4(val) (((val) + 0x3) & ‾0x3)
-#define ALIGN8(val) (((val) + 0x7) & ‾0x7)
+#define ALIGN4(val) (((val) + 0x3) & ~0x3)
+#define ALIGN8(val) (((val) + 0x7) & ~0x7)
 
 // functions
 static void OSInitMutexQueue(struct OSMutexQueue * queue);;
@@ -250,7 +250,7 @@ static void UnsetRun(struct OSThread * thread) {
     DEQUEUE_THREAD(thread, queue, link);
 
     if (!queue->head) {
-        RunQueueBits &= ‾(1 << (0x1F - thread->priority));
+        RunQueueBits &= ~(1 << (0x1F - thread->priority));
     }
     thread->queue = NULL;
 }
@@ -384,7 +384,7 @@ static struct OSThread * SelectThread(int yield) {
     ASSERTLINE(0x2C9, nextThread->priority == priority);
 
     if (!queue->head) {
-        RunQueueBits &= ‾(1 << (0x1F - priority));
+        RunQueueBits &= ~(1 << (0x1F - priority));
     }
     nextThread->queue = 0;
     nextThread->state = 2;
@@ -430,7 +430,7 @@ int OSCreateThread(struct OSThread * thread, void * (* func)(void *), void * par
     OSInitThreadQueue((void*)&thread->queueMutex); // why
 #endif
     sp = (u32)stack;
-    sp &= ‾7;
+    sp &= ~7;
     sp -= 8;
     ((u32*)sp)[0] = 0; 
     ((u32*)sp)[1] = 0;

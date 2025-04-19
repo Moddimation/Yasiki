@@ -383,7 +383,7 @@ u32 GXCompressZ16(u32 z24, GXZFmt16 zfmt)
     u8 unused[4];
 #endif
 
-    z24n = ‾(z24 << 8);
+    z24n = ~(z24 << 8);
     temp = __cntlzw(z24n);
     switch (zfmt) {
     case GX_ZC_LINEAR:
@@ -400,7 +400,7 @@ u32 GXCompressZ16(u32 z24, GXZFmt16 zfmt)
         } else {
             shift = 9 - exp;
         }
-        z16 = ((z24 >> shift) & 0x3FFF & ‾0xFFFFC000) | (exp << 14);
+        z16 = ((z24 >> shift) & 0x3FFF & ~0xFFFFC000) | (exp << 14);
         break;
     case GX_ZC_MID:
         if (temp > 7) {
@@ -413,7 +413,7 @@ u32 GXCompressZ16(u32 z24, GXZFmt16 zfmt)
         } else {
             shift = 10 - exp;
         }
-        z16 = ((z24 >> shift) & 0x1FFF & ‾0xFFFFE000) | (exp << 13);
+        z16 = ((z24 >> shift) & 0x1FFF & ~0xFFFFE000) | (exp << 13);
         break;
     case GX_ZC_FAR:
         if (temp > 12) {
@@ -426,7 +426,7 @@ u32 GXCompressZ16(u32 z24, GXZFmt16 zfmt)
         } else {
             shift = 11 - exp;
         }
-        z16 = ((z24 >> shift) & 0xFFF & ‾0xFFFFF000) | (exp << 12);
+        z16 = ((z24 >> shift) & 0xFFF & ~0xFFFFF000) | (exp << 12);
         break;
     default:
         OSPanic(__FILE__, 0x3B0, "GXCompressZ16: Invalid Z format\n");

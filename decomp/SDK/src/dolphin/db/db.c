@@ -55,7 +55,7 @@ void __DBMarkException(u8 exception, int value)
     if (value != 0)
         __DBInterface->exceptionMask = __DBInterface->exceptionMask | mask;
     else
-        __DBInterface->exceptionMask = __DBInterface->exceptionMask & ‾mask;
+        __DBInterface->exceptionMask = __DBInterface->exceptionMask & ~mask;
 }
 
 void __DBSetPresent(u32 value)

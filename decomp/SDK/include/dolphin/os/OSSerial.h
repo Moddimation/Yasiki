@@ -36,7 +36,7 @@
                                  | (1 << 1)
 #define SI_COMCSR_TSTART_MASK      (1 << 0)
 
-#define ROUND(n, a) (((u32)(n) + (a)-1) & ‾((a)-1))
+#define ROUND(n, a) (((u32)(n) + (a)-1) & ~((a)-1))
 
 struct SIControl {
     long chan;
