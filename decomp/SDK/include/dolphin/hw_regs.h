@@ -1,6 +1,8 @@
 #ifndef _DOLPHIN_HW_REGS_H_
 #define _DOLPHIN_HW_REGS_H_
 
+#include <types.h>
+
 // Register base adresses
 
 // clang-format off
