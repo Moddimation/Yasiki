@@ -15,8 +15,8 @@ static u32 __GXOverflowCount;
 static int IsWGPipeRedirected;
 #endif
 
-struct __GXFifoObj *CPUFifo;
-struct __GXFifoObj *GPFifo;
+__GXFifoObj *CPUFifo;
+__GXFifoObj *GPFifo;
 void *__GXCurrentBP;
 
 static void __GXFifoReadEnable(void);
@@ -97,7 +97,7 @@ static void GXCPInterruptHandler(s16 interrupt, OSContext *context)
 
 void GXInitFifoBase(GXFifoObj *fifo, void *base, u32 size)
 {
-    struct __GXFifoObj *realFifo = (struct __GXFifoObj *)fifo;
+    __GXFifoObj *realFifo = (struct __GXFifoObj *)fifo;
 
     ASSERTMSGLINE(0x1FF, realFifo != CPUFifo,     "GXInitFifoBase: fifo is attached to CPU");
     ASSERTMSGLINE(0x201, realFifo != GPFifo,      "GXInitFifoBase: fifo is attached to GP");
@@ -110,13 +110,13 @@ void GXInitFifoBase(GXFifoObj *fifo, void *base, u32 size)
     realFifo->top = (u8 *)base + size - 4;
     realFifo->size = size;
     realFifo->count = 0;
-    GXInitFifoLimits(fifo, size - 0x4000, (size >> 1) & ‾0x1F);
+    GXInitFifoLimits(fifo, size - 0x4000, (size >> 1) & ~0x1F);
     GXInitFifoPtrs(fifo, base, base);
 }
 
 void GXInitFifoPtrs(GXFifoObj *fifo, void *readPtr, void *writePtr)
 {
-    struct __GXFifoObj *realFifo = (struct __GXFifoObj *)fifo;
+    __GXFifoObj *realFifo = (struct __GXFifoObj *)fifo;
     BOOL enabled;
 
     ASSERTMSGLINE(0x231, realFifo != CPUFifo,         "GXInitFifoPtrs: fifo is attached to CPU");
@@ -138,7 +138,7 @@ void GXInitFifoPtrs(GXFifoObj *fifo, void *readPtr, void *writePtr)
 
 void GXInitFifoLimits(GXFifoObj *fifo, u32 hiWatermark, u32 loWatermark)
 {
-    struct __GXFifoObj *realFifo = (struct __GXFifoObj *)fifo;
+    __GXFifoObj *realFifo = (struct __GXFifoObj *)fifo;
 
     ASSERTMSGLINE(0x262, realFifo != GPFifo,        "GXInitFifoLimits: fifo is attached to GP");
     ASSERTMSGLINE(0x264, (hiWatermark & 0x1F) == 0, "GXInitFifoLimits: hiWatermark not 32B aligned");
@@ -156,8 +156,8 @@ static char str_reg_field_out_of_range[] = "GX Internal: Register field out of r
 #undef SET_REG_FIELD
 #define SET_REG_FIELD(line, reg, size, shift, val) \
 do { \
-    ASSERTMSGLINE(line, ((u32)(val) & ‾((1 << (size)) - 1)) == 0, str_reg_field_out_of_range); \
-    (reg) = ((u32)(reg) & ‾(((1 << (size)) - 1) << (shift))) | ((u32)(val) << (shift)); \
+    ASSERTMSGLINE(line, ((u32)(val) & ~((1 << (size)) - 1)) == 0, str_reg_field_out_of_range); \
+    (reg) = ((u32)(reg) & ~(((1 << (size)) - 1) << (shift))) | ((u32)(val) << (shift)); \
 } while (0)
 asm void GXSetCPUFifo(GXFifoObj *fifo)
 {
@@ -168,7 +168,7 @@ asm void GXSetCPUFifo(GXFifoObj *fifo)
 #else
 void GXSetCPUFifo(GXFifoObj *fifo)
 {
-    struct __GXFifoObj *realFifo = (struct __GXFifoObj *)fifo;
+    __GXFifoObj *realFifo = (struct __GXFifoObj *)fifo;
     BOOL enabled = OSDisableInterrupts();
 
     CPUFifo = realFifo;
@@ -212,7 +212,7 @@ void GXSetCPUFifo(GXFifoObj *fifo)
 
 void GXSetGPFifo(GXFifoObj *fifo)
 {
-    struct __GXFifoObj *realFifo = (struct __GXFifoObj *)fifo;
+    __GXFifoObj *realFifo = (struct __GXFifoObj *)fifo;
     BOOL enabled = OSDisableInterrupts();
 
     __GXFifoReadDisable();
@@ -253,7 +253,7 @@ void GXSetGPFifo(GXFifoObj *fifo)
 
 void GXSaveCPUFifo(GXFifoObj *fifo)
 {
-    struct __GXFifoObj *realFifo = (struct __GXFifoObj *)fifo;
+    __GXFifoObj *realFifo = (struct __GXFifoObj *)fifo;
     ASSERTMSGLINE(0x321, realFifo == CPUFifo, "GXSaveCPUFifo: fifo is not attached to CPU");
     __GXSaveCPUFifoAux(realFifo);
 }
@@ -272,7 +272,7 @@ do { \
     fifo->count = temp; \
 } while (0)
 
-void __GXSaveCPUFifoAux(struct __GXFifoObj *realFifo)
+void __GXSaveCPUFifoAux(__GXFifoObj *realFifo)
 {
     BOOL enabled = OSDisableInterrupts();
 
@@ -293,7 +293,7 @@ void __GXSaveCPUFifoAux(struct __GXFifoObj *realFifo)
 
 void GXSaveGPFifo(GXFifoObj *fifo)
 {
-    struct __GXFifoObj *realFifo = (struct __GXFifoObj *)fifo;
+    __GXFifoObj *realFifo = (struct __GXFifoObj *)fifo;
     unsigned long cpStatus;
     unsigned char readIdle;
     unsigned long temp;
@@ -319,7 +319,7 @@ void GXGetGPStatus(GXBool *overhi, GXBool *underlow, GXBool *readIdle, GXBool *c
 
 void GXGetFifoStatus(GXFifoObj *fifo, GXBool *overhi, GXBool *underflow, u32 *fifoCount, GXBool *cpuWrite, GXBool *gpRead, GXBool *fifowrap)
 {
-    struct __GXFifoObj *realFifo = (struct __GXFifoObj *)fifo;
+    __GXFifoObj *realFifo = (struct __GXFifoObj *)fifo;
 
     *underflow = GX_FALSE;
     *overhi    = GX_FALSE;
@@ -342,7 +342,7 @@ void GXGetFifoStatus(GXFifoObj *fifo, GXBool *overhi, GXBool *underflow, u32 *fi
 
 void GXGetFifoPtrs(GXFifoObj *fifo, void **readPtr, void **writePtr)
 {
-    struct __GXFifoObj *realFifo = (struct __GXFifoObj *)fifo;
+    __GXFifoObj *realFifo = (struct __GXFifoObj *)fifo;
 
     ASSERTMSGLINE(0x3F2, realFifo == CPUFifo || realFifo == GPFifo, "GXGetFifoPtrs: fifo is not CPU or GP fifo");
     if (realFifo == CPUFifo) {
@@ -363,21 +363,21 @@ void GXGetFifoPtrs(GXFifoObj *fifo, void **readPtr, void **writePtr)
 
 void *GXGetFifoBase(GXFifoObj *fifo)
 {
-    struct __GXFifoObj *realFifo = (struct __GXFifoObj *)fifo;
+    __GXFifoObj *realFifo = (struct __GXFifoObj *)fifo;
 
     return realFifo->base;
 }
 
 u32 GXGetFifoSize(GXFifoObj *fifo)
 {
-    struct __GXFifoObj *realFifo = (struct __GXFifoObj *)fifo;
+    __GXFifoObj *realFifo = (struct __GXFifoObj *)fifo;
 
     return realFifo->size;
 }
 
 void GXGetFifoLimits(GXFifoObj *fifo, u32 *hi, u32 *lo)
 {
-     struct __GXFifoObj *realFifo = (struct __GXFifoObj *)fifo;
+     __GXFifoObj *realFifo = (struct __GXFifoObj *)fifo;
 
     *hi = realFifo->hiWatermark;
     *lo = realFifo->loWatermark;
@@ -464,7 +464,7 @@ static void __GXWriteFifoIntReset(u8 hiWatermarkClr, u8 loWatermarkClr)
 
 void __GXInsaneWatermark(void)
 {
-    struct __GXFifoObj *realFifo = GPFifo;
+    __GXFifoObj *realFifo = GPFifo;
 
     realFifo->hiWatermark = realFifo->loWatermark + 512;
     __cpRegs[20] = (realFifo->hiWatermark & 0x3FFFFFFF) & 0xFFFF;
@@ -535,8 +535,8 @@ u32 GXResetOverflowCount(void)
 
 #define SET_REG_FIELD2(line, reg, mask, val) \
 do { \
-    ASSERTMSGLINE(line, ((val) & ‾(mask)) == 0, "GX Internal: Register field out of range"); \
-    (reg) = ((u32)(reg) & ‾(mask)) | ((u32)(val)); \
+    ASSERTMSGLINE(line, ((val) & ~(mask)) == 0, "GX Internal: Register field out of range"); \
+    (reg) = ((u32)(reg) & ~(mask)) | ((u32)(val)); \
 } while (0)
 
 #if DEBUG  // currently doesn't match
@@ -578,7 +578,7 @@ volatile void *GXRedirectWriteGatherPipe(void *ptr)
     /*if (((u32)ptr >> 5) & 0x1E00000)
         OSPanic(__FILE__, 0x5FB, "GX Internal: Register field out of range");
     //SET_REG_FIELD(0x5C8, reg, 25, 5, ((u32)ptr & 0x3FFFFFFF) >> 5);*/
-    //reg = (reg & ‾0x3FFFFE0) | ((u32)ptr & 0x3FFFFFE0);
+    //reg = (reg & ~0x3FFFFE0) | ((u32)ptr & 0x3FFFFFE0);
     reg &= 0xFBFFFFFF;
     __piRegs[5] = reg;
     __sync();
@@ -617,7 +617,7 @@ void GXRestoreWriteGatherPipe(void)
     SET_REG_FIELD(0x5FB, reg, 21, 5, ((u32)CPUFifo->wrPtr & 0x3FFFFFFF) >> 5);
     /*if ((((u32)CPUFifo->wrPtr & 0x3FFFFFFF) >> 5) & 0x7E00000)
         OSPanic(__FILE__, 0x5FB, "GX Internal: Register field out of range");
-    reg = (reg & ‾0x3FFFFE0) | (((u32)CPUFifo->wrPtr & 0x3FFFFFFF) & ‾0x1F);*/
+    reg = (reg & ~0x3FFFFE0) | (((u32)CPUFifo->wrPtr & 0x3FFFFFFF) & ~0x1F);*/
     //SET_REG_FIELD(0x5FB, reg, 25, 5, ((u32)CPUFifo->wrPtr & 0x3FFFFFFF) >> 5);
     reg &= 0xFBFFFFFF;
     __piRegs[5] = reg;

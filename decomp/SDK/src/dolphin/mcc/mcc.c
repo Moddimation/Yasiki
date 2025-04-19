@@ -957,7 +957,7 @@ int MCCOpen(enum MCC_CHANNEL chID, u8 blockSize, MCC_CBEvent callbackEvent) {
         gLastError = 0xA;
         goto exit;
     }
-    if (‾(gChannelInfo[chID].eventMask) & 1) {
+    if (~(gChannelInfo[chID].eventMask) & 1) {
         NotifyCompulsorily(chID, 1, 0xAU);
         if (gChannelInfo[chID].callbackEvent) {
             gChannelInfo[chID].callbackEvent(chID, 1, 0);
@@ -999,7 +999,7 @@ int MCCClose(enum MCC_CHANNEL chID) {
         gLastError = 0x12;
         goto exit;
     }
-    gChannelInfo[chID].info.connect &= ‾connectSide;
+    gChannelInfo[chID].info.connect &= ~connectSide;
     if (gChannelInfo[chID].info.connect == 0) {
         ClearChannelInfo(chID);
     }
@@ -1009,7 +1009,7 @@ int MCCClose(enum MCC_CHANNEL chID) {
         goto exit;
     }
     if (gChannelInfo[chID].info.connect != 0) {
-        if (‾(gChannelInfo[chID].eventMask) & 2) {
+        if (~(gChannelInfo[chID].eventMask) & 2) {
             NotifyCompulsorily(chID, 2, 0xAU);
             if (gChannelInfo[chID].callbackEvent) {
                 gChannelInfo[chID].callbackEvent(chID, 2, 0);
@@ -1062,7 +1062,7 @@ int MCCLock(enum MCC_CHANNEL chID) {
         gLastError = 0xA;
         goto exit;
     }
-    if (‾(gChannelInfo[chID].eventMask) & 4) {
+    if (~(gChannelInfo[chID].eventMask) & 4) {
         NotifyChannelEvent(chID, 4);
     }
     gLastError = 0;
@@ -1111,7 +1111,7 @@ int MCCUnlock(enum MCC_CHANNEL chID) {
         gLastError = 0xA;
         goto exit;
     }
-    if (‾(gChannelInfo[chID].eventMask) & 8) {
+    if (~(gChannelInfo[chID].eventMask) & 8) {
         NotifyChannelEvent(chID, 8);
     }
     gLastError = 0;
@@ -1188,10 +1188,10 @@ int MCCRead(enum MCC_CHANNEL chID, u32 offset, void *data, long size, enum MCC_S
         goto exit;
     }
     DCInvalidateRange(data, size);
-    if (‾(gChannelInfo[chID].eventMask) & 0x10) {
+    if (~(gChannelInfo[chID].eventMask) & 0x10) {
         NotifyChannelEvent(chID, 0x10);
     }
-    if (‾(gChannelInfo[chID].eventMask) & 0x40 && gChannelInfo[chID].callbackEvent) {
+    if (~(gChannelInfo[chID].eventMask) & 0x40 && gChannelInfo[chID].callbackEvent) {
         gChannelInfo[chID].callbackEvent(chID, 0x40, 0);
     }
     gLastError = 0;
@@ -1273,10 +1273,10 @@ int MCCWrite(enum MCC_CHANNEL chID, u32 offset, void *data, long size, enum MCC_
         gLastError = 8;
         goto exit;
     }
-    if (‾(gChannelInfo[chID].eventMask) & 0x20) {
+    if (~(gChannelInfo[chID].eventMask) & 0x20) {
         NotifyChannelEvent(chID, 0x20);
     }
-    if (‾(gChannelInfo[chID].eventMask) & 0x80 && gChannelInfo[chID].callbackEvent) {
+    if (~(gChannelInfo[chID].eventMask) & 0x80 && gChannelInfo[chID].callbackEvent) {
         gChannelInfo[chID].callbackEvent(chID, 0x80, 0);
     }
     gLastError = 0;
@@ -1305,17 +1305,17 @@ int MCCCheckAsyncDone() {
         chID = AsyncResourceGetChannel();
         AsyncResourceClearState();
         if (mode == 0) {
-            if (‾(gChannelInfo[chID].eventMask) & 0x10) {
+            if (~(gChannelInfo[chID].eventMask) & 0x10) {
                 NotifyChannelEvent(chID, 0x10);
             }
-            if (‾(gChannelInfo[chID].eventMask) & 0x40 && gChannelInfo[chID].callbackEvent) {
+            if (~(gChannelInfo[chID].eventMask) & 0x40 && gChannelInfo[chID].callbackEvent) {
                 gChannelInfo[chID].callbackEvent(chID, 0x40, 0);
             }
         } else {
-            if (‾(gChannelInfo[chID].eventMask) & 0x20) {
+            if (~(gChannelInfo[chID].eventMask) & 0x20) {
                 NotifyChannelEvent(chID, 0x20);
             }
-            if (‾(gChannelInfo[chID].eventMask) & 0x80 && gChannelInfo[chID].callbackEvent) {
+            if (~(gChannelInfo[chID].eventMask) & 0x80 && gChannelInfo[chID].callbackEvent) {
                 gChannelInfo[chID].callbackEvent(chID, 0x80, 0);
             }
         }

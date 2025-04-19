@@ -240,7 +240,6 @@ cflags_base = [
     '-pragma "warn_notinlined off"',
     "-maxerrors 1",
     "-nosyspath",
-    "-fp_contract on",
     "-str reuse",
     "-multibyte",
     "-i decomp/Project/lib",
@@ -323,6 +322,7 @@ cflags_game = [
     "-O4,p",
     "-RTTI on",
     "-inline auto",
+    "-fp_contract on",
 ]
 
 if config.version == "GLMJ01":
@@ -349,7 +349,7 @@ cflags_paths_expand(cflags_game)
 cflags_paths_expand(cflags_sdk)
 
 config.linker_version = "GC/1.3.2"
-linker_version_default = "GC/1.2.5"
+linker_version_default = "GC/1.1"
 
 # Helper function for SDK libraries
 def SDKLib(lib_name: str, files: List[Tuple[bool, str]], conf: Dict[str,str]={"":""}) -> Dict[str, Any]:
@@ -431,7 +431,9 @@ def GameSource(lib_name: str, files: List[Tuple[bool, str]], conf: Dict[str, str
         **conf
     }
 
-Matching = True                   # Object matches and should be linked
+#Matching = True                   # Object matches and should be linked
+# The names of some vars (@149) keep changing, lets keep it this way until we are 100%...
+Matching = False                  # Object matches and should be linked
 NonMatching = False               # Object does not match and should not be linked
 Equivalent = config.non_matching  # Object should be linked when configured with --non-matching
 
@@ -564,7 +566,10 @@ config.libs = [
     # SDK
 
     DolphinLib("gx", [
-        (NonMatching, "GXTransform.c")
+        (NonMatching, "GXDraw.c"),
+        (NonMatching, "GXStubs.c"),
+        (NonMatching, "GXDisplayList.c"),
+        (Matching, "GXTransform.c"),
     ]),
 
     # CodeWarrior

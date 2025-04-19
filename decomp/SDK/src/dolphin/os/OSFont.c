@@ -463,7 +463,7 @@ int OSInitFont(OSFontHeader * fontData) {
     } else {
         temp = (void*)((u8*)fontData + 0x1D120);
     }
-    temp = ((void* )(((u32)(temp)) & ‾((32)-1)));
+    temp = ((void* )(((u32)(temp)) & ~((32)-1)));
     size = OSLoadFont(fontData, temp);
     if (size == 0) {
         return 0;

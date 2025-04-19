@@ -41,7 +41,7 @@ void __DVDFSInit() {
 
 /* For convenience */
 #define entryIsDir(i) (((FstStart[i].isDirAndStringOff & 0xff000000) == 0) ? FALSE : TRUE)
-#define stringOff(i) (FstStart[i].isDirAndStringOff & ‾0xff000000)
+#define stringOff(i) (FstStart[i].isDirAndStringOff & ~0xff000000)
 #define parentDir(i) (FstStart[i].parentOrPosition)
 #define nextDir(i) (FstStart[i].nextEntryOrLength)
 #define filePosition(i) (FstStart[i].parentOrPosition)
@@ -492,7 +492,7 @@ void * DVDGetFSTLocation() {
     return BootInfo->FSTLocation;
 }
 
-#define RoundUp32KB(x) (((u32)(x) + 32 * 1024 - 1) & ‾(32 * 1024 - 1))
+#define RoundUp32KB(x) (((u32)(x) + 32 * 1024 - 1) & ~(32 * 1024 - 1))
 #define Is32KBAligned(x) (((u32)(x) & (32 * 1024 - 1)) == 0)
 
 BOOL DVDPrepareStreamAsync(DVDFileInfo* fileInfo, u32 length, u32 offset, DVDCallback callback) {

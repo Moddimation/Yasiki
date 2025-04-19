@@ -103,7 +103,7 @@ static int DoReset() {
         Type[ResettingChan] = 0;
         rc = SITransfer(ResettingChan, &frame, 1, &Type[ResettingChan], 3, PADResetCallback, 0);
         chanBit = (0x80000000 >> ResettingChan);
-        ResettingBits &= ‾chanBit;
+        ResettingBits &= ~chanBit;
         if (rc == 0) {
             ResettingChan = 0x20;
             ResettingBits = 0;
@@ -173,10 +173,10 @@ static void PADDisable(long chan) {
     enabled = OSDisableInterrupts();
     chanBit = 0x80000000 >> chan;
     SIDisablePolling(chanBit);
-    EnabledBits &= ‾chanBit;
-    WaitingBits &= ‾chanBit;
-    CheckingBits &= ‾chanBit;
-    ProbingBits &= ‾chanBit;
+    EnabledBits &= ~chanBit;
+    WaitingBits &= ~chanBit;
+    CheckingBits &= ~chanBit;
+    ProbingBits &= ~chanBit;
     SetWirelessID(chan, 0);
     OSRestoreInterrupts(enabled);
 }
@@ -191,22 +191,22 @@ static void UpdateOrigin(s32 chan) {
     case 0x00000500u:
     case 0x00000600u:
     case 0x00000700u:
-        origin->triggerLeft &= ‾15;
-        origin->triggerRight &= ‾15;
-        origin->analogA &= ‾15;
-        origin->analogB &= ‾15;
+        origin->triggerLeft &= ~15;
+        origin->triggerRight &= ~15;
+        origin->analogA &= ~15;
+        origin->analogB &= ~15;
         break;
     case 0x00000100u:
-        origin->substickX &= ‾15;
-        origin->substickY &= ‾15;
-        origin->analogA &= ‾15;
-        origin->analogB &= ‾15;
+        origin->substickX &= ~15;
+        origin->substickY &= ~15;
+        origin->analogA &= ~15;
+        origin->analogB &= ~15;
         break;
     case 0x00000200u:
-        origin->substickX &= ‾15;
-        origin->substickY &= ‾15;
-        origin->triggerLeft &= ‾15;
-        origin->triggerRight &= ‾15;
+        origin->substickX &= ~15;
+        origin->substickY &= ~15;
+        origin->triggerLeft &= ~15;
+        origin->triggerRight &= ~15;
         break;
     case 0x00000300u: break;
     case 0x00000400u: break;
@@ -279,9 +279,9 @@ static void PADResetCallback(long unused, unsigned long error, struct OSContext 
     type = Type[ResettingChan];
     chanBit = 0x80000000 >> ResettingChan;
     recalibrate = RecalibrateBits & chanBit;
-    RecalibrateBits &= ‾chanBit;
+    RecalibrateBits &= ~chanBit;
     fix = __PADFixBits & chanBit;
-    __PADFixBits &= ‾chanBit;
+    __PADFixBits &= ~chanBit;
     if ((error & 0xF) || (((type & 0x18000000) + 0xF8000000) != 0)) {
         SetWirelessID(ResettingChan, 0);
         DoReset();
@@ -353,10 +353,10 @@ int PADReset(unsigned long mask) {
     rc = 0;
     ASSERTMSGLINE(0x392, !(mask & 0x0FFFFFFF), "PADReset(): invalid mask");
     enabled = OSDisableInterrupts();
-    mask = mask & ‾(CheckingBits | (ProbingBits | WaitingBits));
+    mask = mask & ~(CheckingBits | (ProbingBits | WaitingBits));
     ResettingBits |= mask;
-    EnabledBits &= ‾mask;
-    WaitingBits &= ‾mask;
+    EnabledBits &= ~mask;
+    WaitingBits &= ~mask;
     if (Spec == 4) {
         RecalibrateBits |= mask;
     }
@@ -375,9 +375,9 @@ BOOL PADRecalibrate(u32 mask) {
     ret = FALSE;
     ASSERTMSGLINE(0x3BD, !(mask & 0x0FFFFFFF), "PADReset(): invalid mask");
     intrEnabled = OSDisableInterrupts();
-    mask &= ‾(CheckingBits | (ProbingBits | WaitingBits));
+    mask &= ~(CheckingBits | (ProbingBits | WaitingBits));
     ResettingBits |= mask;
-    EnabledBits &= ‾mask;
+    EnabledBits &= ~mask;
     RecalibrateBits |= mask;
     SIDisablePolling(ResettingBits);
     if ((s32)ResettingChan == 32)
@@ -417,8 +417,8 @@ static void PADReceiveCheckCallback(s32 chan, unsigned long error, OSContext *ar
 
     type = Type[chan];
     chanBit = 0x80000000 >> chan;
-    WaitingBits &= ‾chanBit;
-    CheckingBits &= ‾chanBit;
+    WaitingBits &= ~chanBit;
+    CheckingBits &= ~chanBit;
     if (EnabledBits & chanBit) {
         if (!(error & 0xF) && (type & 0x80000000) && (type & 0x02000000) && (type & 0x40000000) && !(type & 0x04000000)) {
             frame = 0x41000000;
@@ -837,11 +837,11 @@ void PADSetAnalogMode(u32 mode) {
 
     enabled = OSDisableInterrupts();
     AnalogMode = mode << 8;
-    mask = EnabledBits & ‾ProbingBits;
+    mask = EnabledBits & ~ProbingBits;
 
-    EnabledBits &= ‾mask;
-    WaitingBits &= ‾mask;
-    CheckingBits &= ‾mask;
+    EnabledBits &= ~mask;
+    WaitingBits &= ~mask;
+    CheckingBits &= ~mask;
 
     SIDisablePolling(mask);
     OSRestoreInterrupts(enabled);

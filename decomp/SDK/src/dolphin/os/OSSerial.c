@@ -227,7 +227,7 @@ unsigned long SIEnablePolling(unsigned long poll) {
     poll &= ((en >> 4) | 0x03FFFFF0);
     poll &= 0xFC0000FF;
     
-    Si.poll &= ‾(en >> 4);
+    Si.poll &= ~(en >> 4);
     Si.poll |= poll;
     poll = Si.poll;
     __SIRegs[0x38/4] = 0x80000000;
@@ -247,7 +247,7 @@ unsigned long SIDisablePolling(unsigned long poll) {
     poll = poll >> 24;
     poll &= 0xF0;
     ASSERTLINE(0x23A, poll);
-    poll = Si.poll & ‾poll;
+    poll = Si.poll & ~poll;
     __SIRegs[0x30/4] = poll;
     Si.poll = poll;
     OSRestoreInterrupts(enabled);

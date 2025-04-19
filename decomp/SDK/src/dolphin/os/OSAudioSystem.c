@@ -57,9 +57,9 @@ void __OSInitAudioSystem(void) {
   }
   __DSPRegs[5] = reg16;
 
-  __DSPRegs[5] &= ‾0x800;
+  __DSPRegs[5] &= ~0x800;
   while ((__DSPRegs[5]) & 0x400);
-  __DSPRegs[5] &= ‾4;
+  __DSPRegs[5] &= ~4;
   errFlag = 0;
 
   reg16 = __DSPRegs[2];
@@ -92,7 +92,7 @@ void __OSStopAudioSystem(void) {
 
   __DSPRegs[5] = 0x804;
   reg16 = __DSPRegs[27];
-  __DSPRegs[27] = reg16 & ‾0x8000;
+  __DSPRegs[27] = reg16 & ~0x8000;
   waitUntil(__DSPRegs[5], 0x400);
   waitUntil(__DSPRegs[5], 0x200);
   __DSPRegs[5] = 0x8ac;

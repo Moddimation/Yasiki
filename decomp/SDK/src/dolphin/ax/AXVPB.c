@@ -593,7 +593,7 @@ void AXSetVoiceItdOn(AXVPB * p) {
     old = OSDisableInterrupts();
     p->pb.itd.flag = 1;
     p->pb.itd.shiftL = p->pb.itd.shiftR = p->pb.itd.targetShiftL = p->pb.itd.targetShiftR = 0;
-    p->sync &= ‾(AX_SYNC_FLAG_COPYTSHIFT);
+    p->sync &= ~(AX_SYNC_FLAG_COPYTSHIFT);
     p->sync |= AX_SYNC_FLAG_COPYITD;
     OSRestoreInterrupts(old);
 }
@@ -735,7 +735,7 @@ void AXSetVoiceAddr(AXVPB * p, AXPBADDR * addr) {
             ASSERTMSGLINE(0x4F0, 0, "unknown addr->formaqt in PB¥n");
             break;
     }
-    p->sync &= ‾(AX_SYNC_FLAG_COPYLOOP | AX_SYNC_FLAG_COPYLOOPADDR | AX_SYNC_FLAG_COPYENDADDR | AX_SYNC_FLAG_COPYCURADDR);
+    p->sync &= ~(AX_SYNC_FLAG_COPYLOOP | AX_SYNC_FLAG_COPYLOOPADDR | AX_SYNC_FLAG_COPYENDADDR | AX_SYNC_FLAG_COPYCURADDR);
     p->sync |= (AX_SYNC_FLAG_COPYADDR | AX_SYNC_FLAG_COPYADPCM);
     OSRestoreInterrupts(old);
 }
@@ -823,7 +823,7 @@ void AXSetVoiceSrc(AXVPB * p, AXPBSRC * src_) {
         *(dst) = *(src); dst+=1; src+=1;
         *(dst) = *(src); dst+=1; src+=1;
     }
-    p->sync &= ‾(AX_SYNC_FLAG_COPYRATIO);
+    p->sync &= ~(AX_SYNC_FLAG_COPYRATIO);
     p->sync |= AX_SYNC_FLAG_COPYSRC;
     OSRestoreInterrupts(old);
 }

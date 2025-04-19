@@ -44,7 +44,7 @@ void DSPAssertInt(void)
 
     old = OSDisableInterrupts();
     tmp = __DSPRegs[5];
-    tmp = (tmp & ‾0xA8) | 2;
+    tmp = (tmp & ~0xA8) | 2;
     __DSPRegs[5] = tmp;
     OSRestoreInterrupts(old);
 }
@@ -70,11 +70,11 @@ void DSPInit(void)
     __OSUnmaskInterrupts(OS_INTERRUPTMASK_DSP_DSP);
 
     tmp = __DSPRegs[5];
-    tmp = (tmp & ‾0xA8) | 0x800;
+    tmp = (tmp & ~0xA8) | 0x800;
     __DSPRegs[5] = tmp;
 
     tmp = __DSPRegs[5];
-    __DSPRegs[5] = tmp = tmp & ‾0xAC;
+    __DSPRegs[5] = tmp = tmp & ~0xAC;
 
     __DSP_first_task = __DSP_last_task = __DSP_curr_task = __DSP_tmp_task = NULL;
     __DSP_init_flag = 1;
@@ -94,7 +94,7 @@ void DSPReset(void)
 
     old = OSDisableInterrupts();
     tmp = __DSPRegs[5];
-    tmp = (tmp & ‾0xA8) | 0x800 | 1;
+    tmp = (tmp & ~0xA8) | 0x800 | 1;
     __DSPRegs[5] = tmp;
     __DSP_init_flag = 0;
     OSRestoreInterrupts(old);
@@ -107,7 +107,7 @@ void DSPHalt(void)
 
     old = OSDisableInterrupts();
     tmp = __DSPRegs[5];
-    tmp = (tmp & ‾0xA8) | 4;
+    tmp = (tmp & ~0xA8) | 4;
     __DSPRegs[5] = tmp;
     OSRestoreInterrupts(old);
 }
@@ -119,7 +119,7 @@ void DSPUnhalt(void)
 
     old = OSDisableInterrupts();
     tmp = __DSPRegs[5];
-    tmp = (tmp & ‾0xAC);
+    tmp = (tmp & ~0xAC);
     __DSPRegs[5] = tmp;
     OSRestoreInterrupts(old);
 }

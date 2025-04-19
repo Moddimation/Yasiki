@@ -12,7 +12,7 @@ enemyStrategyInitFunc* getEnemyStrategyInitFunc(int i_entityIdx);
 class EnemyStrategy : public JORReflexible {
 public:
     EnemyStrategy();
-    virtual ‾EnemyStrategy();
+    virtual ~EnemyStrategy();
 
     virtual void init();
     virtual void update();

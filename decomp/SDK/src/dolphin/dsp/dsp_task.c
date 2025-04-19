@@ -23,7 +23,7 @@ void __DSPHandler(__OSInterrupt intr, OSContext *context)
     unsigned long mail;
 
     tmp = __DSPRegs[5];
-    tmp = (tmp & ‾0x28) | 0x80;
+    tmp = (tmp & ~0x28) | 0x80;
     __DSPRegs[5] = tmp;
     OSClearContext(&exceptionContext);
     OSSetCurrentContext(&exceptionContext);

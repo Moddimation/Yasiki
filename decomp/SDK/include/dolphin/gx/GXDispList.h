@@ -4,12 +4,13 @@
 #include <dolphin/types.h>
 
 #ifdef __cplusplus
-extern "C" {
+extern "C"
+{
 #endif
 
 void GXBeginDisplayList(void *list, u32 size);
-u32 GXEndDisplayList(void);
-void GXCallDisplayList( void *list, u32 nbytes);
+u32  GXEndDisplayList(void);
+void GXCallDisplayList(void *list, u32 nbytes);
 
 #ifdef __cplusplus
 }

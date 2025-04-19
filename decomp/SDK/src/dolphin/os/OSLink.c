@@ -161,7 +161,7 @@ Found:
       break;
     case R_PPC_ADDR24:
       x = offset + rel->addend;
-      *p = (*p & ‾0x03fffffc) | (x & 0x03fffffc);
+      *p = (*p & ~0x03fffffc) | (x & 0x03fffffc);
       break;
     case R_PPC_ADDR16:
       x = offset + rel->addend;
@@ -181,7 +181,7 @@ Found:
       break;
     case R_PPC_REL24:
       x = offset + rel->addend - (u32)p;
-      *p = (*p & ‾0x03fffffc) | (x & 0x03fffffc);
+      *p = (*p & ~0x03fffffc) | (x & 0x03fffffc);
       break;
     case R_DOLPHIN_NOP:
       break;
@@ -307,7 +307,7 @@ Found:
       *p = x;
       break;
     case R_PPC_ADDR24:
-      *p = (*p & ‾0x03fffffc) | (x & 0x03fffffc);
+      *p = (*p & ~0x03fffffc) | (x & 0x03fffffc);
       break;
     case R_PPC_ADDR16:
       *(u16*)p = (u16)(x & 0xffff);
@@ -325,7 +325,7 @@ Found:
       if (module->unresolvedSection != SHN_UNDEF) {
         x = (u32)module->unresolved - (u32)p;
       }
-      *p = (*p & ‾0x03fffffc) | (x & 0x03fffffc);
+      *p = (*p & ~0x03fffffc) | (x & 0x03fffffc);
       break;
     case R_DOLPHIN_NOP:
       break;

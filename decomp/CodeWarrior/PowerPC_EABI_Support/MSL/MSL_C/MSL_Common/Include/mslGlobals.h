@@ -27,6 +27,12 @@
 #define GEKKO
 #endif
 
+#ifndef __MWERKS__
+#define __option(x)   0
+#define __declspec(x) 0
+#define asm
+#endif
+
 #ifndef __ansi_prefix__
 
 #if defined(__MC68K__) /*- beb 990804 -*/

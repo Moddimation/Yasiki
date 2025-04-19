@@ -7,7 +7,7 @@
 class AITurara : public EnemyTypicalStrategy {
 public:
     AITurara();
-    virtual ‾AITurara();
+    virtual ~AITurara();
 
     // EnemyStrategy overrides
     virtual s32 unkEnemyStrategyFunc01();

@@ -17,6 +17,32 @@ typedef char* Ptr;
 
 typedef int BOOL;
 
+typedef volatile u8 vu8;
+typedef volatile u16 vu16;
+typedef volatile u32 vu32;
+typedef volatile u64 vu64;
+typedef volatile s8 vs8;
+typedef volatile s16 vs16;
+typedef volatile s32 vs32;
+typedef volatile s64 vs64;
+
+typedef long double f128;
+typedef volatile f32 vf32;
+typedef volatile f64 vf64;
+typedef volatile f128 vf128;
+
+#ifndef __cplusplus
+typedef u16 wchar_t;
+#endif
+
+#ifndef NULL
+#define NULL ((void*)0)
+#endif
+
+#ifndef nullptr
+#define nullptr 0
+#endif
+
 #define FALSE 0
 #define TRUE  1
 
