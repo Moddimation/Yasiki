@@ -197,8 +197,8 @@ config.asflags = [
     "-mgekko",
     "-m__PPCGEKKO__",
     "--strip-local-absolute",
-    "-i decomp/App/lib",
-    "-i decomp/App/sources/*/include",
+    "-i decomp/Project/lib",
+    "-i decomp/Project/sources/*/include",
     "-i decomp/JSystem/**/include",
     "-i decomp/SDK/include",
     "-i decomp/CodeWarrior/**/Include",
@@ -243,7 +243,7 @@ cflags_base = [
     "-fp_contract on",
     "-str reuse",
     "-multibyte",
-    "-i decomp/App/lib",
+    "-i decomp/Project/lib",
     "-i decomp/CodeWarrior/**/Include",
     "-i decomp/CodeWarrior/**/INCLUDE",
     "-i decomp/CodeWarrior/**/Inc",
@@ -318,7 +318,7 @@ cflags_cw_trk = [
 cflags_game = [
     *cflags_base,
     "-i decomp/SDK/include",
-    "-i decomp/App/sources/*/include",
+    "-i decomp/Project/sources/*/include",
     "-i decomp/JSystem/**/include",
     "-O4,p",
     "-RTTI on",
@@ -426,7 +426,7 @@ def GameSource(lib_name: str, files: List[Tuple[bool, str]], conf: Dict[str, str
         "mw_version": config.linker_version,
         "cflags": cflags_game,
         "progress_category": "game",
-        "src_dir": f"decomp/App",
+        "src_dir": f"decomp/Project",
         "objects": objects,
         **conf
     }
