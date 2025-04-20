@@ -20,15 +20,18 @@
 #define GX_DRAW_LINE_STRIP     0xB0
 #define GX_DRAW_POINTS         0xB8
 
-#define GX_OPCODE_MASK 0xF8
-#define GX_VAT_MASK    0x07
+#define GX_CMD_CALL_DL         0x40
+#define GX_CMD_INVAL_VTX       0x48
 
-extern u8 GXTexMode0Ids[8];
-extern u8 GXTexMode1Ids[8];
-extern u8 GXTexImage0Ids[8];
-extern u8 GXTexImage1Ids[8];
-extern u8 GXTexImage2Ids[8];
-extern u8 GXTexImage3Ids[8];
-extern u8 GXTexTlutIds[8];
+#define GX_OPCODE_MASK         0xF8
+#define GX_VAT_MASK            0x07
+
+extern u8 GXTexMode0Ids [8];
+extern u8 GXTexMode1Ids [8];
+extern u8 GXTexImage0Ids [8];
+extern u8 GXTexImage1Ids [8];
+extern u8 GXTexImage2Ids [8];
+extern u8 GXTexImage3Ids [8];
+extern u8 GXTexTlutIds [8];
 
 #endif
