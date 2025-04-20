@@ -40,9 +40,9 @@ Sublibraries in a library rely on the modular scheme used for libraries and for 
  `/decomp/JSystem/System/JKernel/ src/include`,  
  `/decomp/JSystem/System/JSupport/ src/include`,  
  `/decomp/JSystem/JAudio/JAInterface/ src/include`,  
- `/decomp/App/Kawamoto/  src/include`,  
- `/decomp/App/Sotoike/  src/include`,  
- `/decomp/App/Koga/  src/include`,
+ `/decomp/Project/Kawamoto/  src/include`,  
+ `/decomp/Project/Sotoike/  src/include`,  
+ `/decomp/Project/Koga/  src/include`,
 and so on.
 
 My goal is to stay as original as possible, while still making it possible to work with for the decompiling efforts.
