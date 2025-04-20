@@ -17,10 +17,10 @@ Supported versions (active):
 
 Supported versions (to be worked on):
 - `GLME01`: USA (Rev 0)
-- `GLME01_1`: USA Demo (October 2001)
+- `GLME01_1`: USA Demo (Oct 2001)
 - `GLMP01`: Europe (Rev 0)
 - `GLMP01_1`: Europe (Rev 1)
-- `GLMP01_2`: Europe (March 2002)
+- `GLMP01_2`: Europe (Mar 2002)
 
 > [!IMPORTANT]
 > Reminder: **this will not produce a playable game.** 
