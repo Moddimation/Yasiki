@@ -60,14 +60,14 @@ GXSetTevColorIn(GXTevStageID stage, GXTevColorArg a, GXTevColorArg b, GXTevColor
     ASSERTMSGLINE(0xE9, c <= 15, "GXSetTev*In: A/B/C/D argument out of range");
     ASSERTMSGLINE(0xEA, d <= 15, "GXSetTev*In: A/B/C/D argument out of range");
 
-    pTevReg = &gx->tevc[stage];
+    pTevReg = &__GXData->tevc[stage];
     SET_REG_FIELD(0xED, *pTevReg, 4, 12, a);
     SET_REG_FIELD(0xEE, *pTevReg, 4, 8, b);
     SET_REG_FIELD(0xEF, *pTevReg, 4, 4, c);
     SET_REG_FIELD(0xF0, *pTevReg, 4, 0, d);
 
     GX_WRITE_RAS_REG(*pTevReg);
-    gx->bpSent = 1;
+    __GXData->bpSent = 1;
 }
 
 void
@@ -82,14 +82,14 @@ GXSetTevAlphaIn(GXTevStageID stage, GXTevAlphaArg a, GXTevAlphaArg b, GXTevAlpha
     ASSERTMSGLINE(0x10C, c <= 7, "GXSetTev*In: A/B/C/D argument out of range");
     ASSERTMSGLINE(0x10D, d <= 7, "GXSetTev*In: A/B/C/D argument out of range");
 
-    pTevReg = &gx->teva[stage];
+    pTevReg = &__GXData->teva[stage];
     SET_REG_FIELD(0x110, *pTevReg, 3, 13, a);
     SET_REG_FIELD(0x111, *pTevReg, 3, 10, b);
     SET_REG_FIELD(0x112, *pTevReg, 3, 7, c);
     SET_REG_FIELD(0x113, *pTevReg, 3, 4, d);
 
     GX_WRITE_RAS_REG(*pTevReg);
-    gx->bpSent = 1;
+    __GXData->bpSent = 1;
 }
 
 void
@@ -100,7 +100,7 @@ GXSetTevColorOp(GXTevStageID stage, GXTevOp op, GXTevBias bias, GXTevScale scale
     CHECK_GXBEGIN(0x12E, "GXSetTevColorOp");
     ASSERTMSGLINE(0x12F, stage < 16, "GXSetTevColor: Invalid Tev Stage Index");
 
-    pTevReg = &gx->tevc[stage];
+    pTevReg = &__GXData->tevc[stage];
     SET_REG_FIELD(0x137, *pTevReg, 1, 18, op & 1);
     if (op <= 1)
     {
@@ -116,7 +116,7 @@ GXSetTevColorOp(GXTevStageID stage, GXTevOp op, GXTevBias bias, GXTevScale scale
     SET_REG_FIELD(0x141, *pTevReg, 2, 22, out_reg);
 
     GX_WRITE_RAS_REG(*pTevReg);
-    gx->bpSent = 1;
+    __GXData->bpSent = 1;
 }
 
 void
@@ -127,7 +127,7 @@ GXSetTevAlphaOp(GXTevStageID stage, GXTevOp op, GXTevBias bias, GXTevScale scale
     CHECK_GXBEGIN(0x15A, "GXSetTevAlphaOp");
     ASSERTMSGLINE(0x15B, stage < 16, "GXSetTevAlpha: Invalid Tev Stage Index");
 
-    pTevReg = &gx->teva[stage];
+    pTevReg = &__GXData->teva[stage];
     SET_REG_FIELD(0x163, *pTevReg, 1, 18, op & 1);
     if (op <= 1)
     {
@@ -143,7 +143,7 @@ GXSetTevAlphaOp(GXTevStageID stage, GXTevOp op, GXTevBias bias, GXTevScale scale
     SET_REG_FIELD(0x16D, *pTevReg, 2, 22, out_reg);
 
     GX_WRITE_RAS_REG(*pTevReg);
-    gx->bpSent = 1;
+    __GXData->bpSent = 1;
 }
 
 void
@@ -168,7 +168,7 @@ GXSetTevColor(GXTevRegID id, GXColor color)
     GX_WRITE_RAS_REG(regBG);
     GX_WRITE_RAS_REG(regBG);
     GX_WRITE_RAS_REG(regBG);
-    gx->bpSent = 1;
+    __GXData->bpSent = 1;
 }
 
 void
@@ -198,7 +198,7 @@ GXSetTevColorS10(GXTevRegID id, GXColorS10 color)
     GX_WRITE_RAS_REG(regBG);
     GX_WRITE_RAS_REG(regBG);
     GX_WRITE_RAS_REG(regBG);
-    gx->bpSent = 1;
+    __GXData->bpSent = 1;
 }
 
 void
@@ -223,7 +223,7 @@ GXSetTevKColor(GXTevKColorID id, GXColor color)
 
     GX_WRITE_RAS_REG(regRA);
     GX_WRITE_RAS_REG(regBG);
-    gx->bpSent = 1;
+    __GXData->bpSent = 1;
 }
 
 void
@@ -234,7 +234,7 @@ GXSetTevKColorSel(GXTevStageID stage, GXTevKColorSel sel)
     CHECK_GXBEGIN(0x204, "GXSetTevKColorSel");
     ASSERTMSGLINE(0x205, stage < 16, "GXSetTevKColor*: Invalid Tev Stage Index");
 
-    Kreg = &gx->tevKsel[stage >> 1];
+    Kreg = &__GXData->tevKsel[stage >> 1];
     if (stage & 1)
     {
         SET_REG_FIELD(0x20A, *Kreg, 5, 14, sel);
@@ -245,7 +245,7 @@ GXSetTevKColorSel(GXTevStageID stage, GXTevKColorSel sel)
     }
 
     GX_WRITE_RAS_REG(*Kreg);
-    gx->bpSent = 1;
+    __GXData->bpSent = 1;
 }
 
 void
@@ -256,7 +256,7 @@ GXSetTevKAlphaSel(GXTevStageID stage, GXTevKAlphaSel sel)
     CHECK_GXBEGIN(0x225, "GXSetTevKAlphaSel");
     ASSERTMSGLINE(0x226, stage < 16, "GXSetTevKColor*: Invalid Tev Stage Index");
 
-    Kreg = &gx->tevKsel[stage >> 1];
+    Kreg = &__GXData->tevKsel[stage >> 1];
     if (stage & 1)
     {
         SET_REG_FIELD(0x22B, *Kreg, 5, 19, sel);
@@ -267,7 +267,7 @@ GXSetTevKAlphaSel(GXTevStageID stage, GXTevKAlphaSel sel)
     }
 
     GX_WRITE_RAS_REG(*Kreg);
-    gx->bpSent = 1;
+    __GXData->bpSent = 1;
 }
 
 void
@@ -278,12 +278,12 @@ GXSetTevSwapMode(GXTevStageID stage, GXTevSwapSel ras_sel, GXTevSwapSel tex_sel)
     CHECK_GXBEGIN(0x24A, "GXSetTevSwapMode");
     ASSERTMSGLINE(0x24B, stage < 16, "GXSetTevSwapMode: Invalid Tev Stage Index");
 
-    pTevReg = &gx->teva[stage];
+    pTevReg = &__GXData->teva[stage];
     SET_REG_FIELD(0x24E, *pTevReg, 2, 0, ras_sel);
     SET_REG_FIELD(0x24F, *pTevReg, 2, 2, tex_sel);
 
     GX_WRITE_RAS_REG(*pTevReg);
-    gx->bpSent = 1;
+    __GXData->bpSent = 1;
 }
 
 void
@@ -291,32 +291,25 @@ GXSetTevSwapModeTable(GXTevSwapSel table, GXTevColorChan red, GXTevColorChan gre
                       GXTevColorChan alpha)
 {
     u32 *Kreg;
-#if !DEBUG
-    // not a real variable, but needed to match release
-    int index = table * 2;
-#endif
 
     CHECK_GXBEGIN(0x26E, "GXSetTevSwapModeTable");
     ASSERTMSGLINE(0x26F, table < 4, "GXSetTevSwapModeTable: Invalid Swap Selection Index");
 
-#if DEBUG
-    Kreg = &gx->tevKsel[table * 2];
-#else
-    Kreg = &gx->tevKsel[index];
-#endif
+    Kreg = &__GXData->tevKsel[table << 1];
     SET_REG_FIELD(0x272, *Kreg, 2, 0, red);
     SET_REG_FIELD(0x273, *Kreg, 2, 2, green);
 
     GX_WRITE_RAS_REG(*Kreg);
 
-    Kreg = &gx->tevKsel[table * 2 + 1];
+    Kreg = &__GXData->tevKsel[(table << 1) + 1];
     SET_REG_FIELD(0x277, *Kreg, 2, 0, blue);
     SET_REG_FIELD(0x278, *Kreg, 2, 2, alpha);
 
     GX_WRITE_RAS_REG(*Kreg);
-    gx->bpSent = 1;
+    __GXData->bpSent = 1;
 }
 
+IGNORE_ALL
 void
 GXSetTevClampMode(void)
 {
@@ -338,7 +331,7 @@ GXSetAlphaCompare(GXCompare comp0, u8 ref0, GXAlphaOp op, GXCompare comp1, u8 re
     SET_REG_FIELD(0x2B9, reg, 8, 24, 0xF3);
 
     GX_WRITE_RAS_REG(reg);
-    gx->bpSent = 1;
+    __GXData->bpSent = 1;
 }
 
 void
@@ -377,7 +370,7 @@ GXSetZTexture(GXZTexOp op, GXTexFmt fmt, u32 bias)
 
     GX_WRITE_RAS_REG(zenv0);
     GX_WRITE_RAS_REG(zenv1);
-    gx->bpSent = 1;
+    __GXData->bpSent = 1;
 }
 
 void
@@ -391,8 +384,8 @@ GXSetTevOrder(GXTevStageID stage, GXTexCoordID coord, GXTexMapID map, GXChannelI
     CHECK_GXBEGIN(0x307, "GXSetTevOrder");
     ASSERTMSGLINE(0x308, stage < 16, "GXSetTevColor: Invalid Tev Stage Index");
 
-    ptref = &gx->tref[stage / 2];
-    gx->texmapId[stage] = map;
+    ptref = &__GXData->tref[stage / 2];
+    __GXData->texmapId[stage] = map;
 
     tmap = map & ~0x100;
     tmap = (tmap >= GX_MAX_TEXMAP) ? GX_TEXMAP0 : tmap;
@@ -414,8 +407,8 @@ GXSetTevOrder(GXTevStageID stage, GXTexCoordID coord, GXTexMapID map, GXChannelI
     }
 
     GX_WRITE_RAS_REG(*ptref);
-    gx->bpSent = 1;
-    gx->dirtyState |= 1;
+    __GXData->bpSent = 1;
+    __GXData->dirtyState |= 1;
 }
 
 void
@@ -424,6 +417,6 @@ GXSetNumTevStages(u8 nStages)
     CHECK_GXBEGIN(0x331, "GXSetNumTevStages");
 
     ASSERTMSGLINE(0x333, nStages != 0 && nStages <= 16, "GXSetNumTevStages: Exceed max number of tex stages");
-    SET_REG_FIELD(0x334, gx->genMode, 4, 10, nStages - 1);
-    gx->dirtyState |= 4;
+    SET_REG_FIELD(0x334, __GXData->genMode, 4, 10, nStages - 1);
+    __GXData->dirtyState |= 4;
 }

@@ -142,15 +142,15 @@ __GXVerifyGlobal(void)
 static void
 __GXVerifyCP(GXVtxFmt fmt)
 {
-    u32 nrmCnt = GET_REG_FIELD(gx->vatA[fmt], 1, 9);
+    u32 nrmCnt = GET_REG_FIELD(__GXData->vatA[fmt], 1, 9);
 
     if (__gxVerif->verifyLevel >= GX_WARN_SEVERE)
     {
-        if (gx->hasNrms && nrmCnt != 0)
+        if (__GXData->hasNrms && nrmCnt != 0)
         {
             __gxVerif->cb(1, 0, __gxvWarnings[0]);
         }
-        else if (gx->hasBiNrms && nrmCnt != 1 && nrmCnt != 2)
+        else if (__GXData->hasBiNrms && nrmCnt != 1 && nrmCnt != 2)
         {
             __gxVerif->cb(1, 0, __gxvWarnings[0]);
         }

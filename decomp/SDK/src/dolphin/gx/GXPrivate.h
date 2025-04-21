@@ -144,7 +144,7 @@ extern "C"
         regAddr = addr;                                                                                                \
         if (regAddr >= 0 && regAddr < 4)                                                                               \
         {                                                                                                              \
-            gx->indexBase[regAddr] = c;                                                                                \
+            __GXData->indexBase[regAddr] = c;                                                                                \
         }                                                                                                              \
     } while (0)
 #define GX_WRITE_SOME_REG3(a, b, c, addr)                                                                              \
@@ -157,7 +157,7 @@ extern "C"
         regAddr = addr;                                                                                                \
         if (regAddr >= 0 && regAddr < 4)                                                                               \
         {                                                                                                              \
-            gx->indexStride[regAddr] = c;                                                                              \
+            __GXData->indexStride[regAddr] = c;                                                                              \
         }                                                                                                              \
     } while (0)
 #define GX_WRITE_SOME_REG4(a, b, c, addr)                                                                              \

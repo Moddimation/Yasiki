@@ -410,7 +410,7 @@ GXLoadLightObjImm(GXLightObj *lt_obj, GXLightID light)
     WRITE_SOME_LIGHT_REG2(obj->ldir[1], addr + 14);
     WRITE_SOME_LIGHT_REG2(obj->ldir[2], addr + 15);
 
-    gx->bpSent = 0;
+    __GXData->bpSent = 0;
 }
 
 void
@@ -464,7 +464,7 @@ GXLoadLightObjIndx(u32 lt_obj_indx, GXLightID light)
 #if DEBUG
     __GXShadowIndexState(7, reg);
 #endif
-    gx->bpSent = 0;
+    __GXData->bpSent = 0;
 }
 
 void
@@ -479,7 +479,7 @@ GXSetChanAmbColor(GXChannelID chan, GXColor amb_color)
     switch (chan)
     {
         case GX_COLOR0 :
-            alpha = gx->ambColor[0] & 0xFF;
+            alpha = __GXData->ambColor[0] & 0xFF;
             SET_REG_FIELD(0x23E, reg, 8, 0, alpha);
             SET_REG_FIELD(0x23F, reg, 8, 8, amb_color.b);
             SET_REG_FIELD(0x240, reg, 8, 16, amb_color.g);
@@ -487,7 +487,7 @@ GXSetChanAmbColor(GXChannelID chan, GXColor amb_color)
             colIdx = 0;
             break;
         case GX_COLOR1 :
-            alpha = gx->ambColor[1] & 0xFF;
+            alpha = __GXData->ambColor[1] & 0xFF;
             SET_REG_FIELD(0x247, reg, 8, 0, alpha);
             SET_REG_FIELD(0x248, reg, 8, 8, amb_color.b);
             SET_REG_FIELD(0x249, reg, 8, 16, amb_color.g);
@@ -495,12 +495,12 @@ GXSetChanAmbColor(GXChannelID chan, GXColor amb_color)
             colIdx = 1;
             break;
         case GX_ALPHA0 :
-            reg = gx->ambColor[0];
+            reg = __GXData->ambColor[0];
             SET_REG_FIELD(0x250, reg, 8, 0, amb_color.a);
             colIdx = 0;
             break;
         case GX_ALPHA1 :
-            reg = gx->ambColor[1];
+            reg = __GXData->ambColor[1];
             SET_REG_FIELD(0x256, reg, 8, 0, amb_color.a);
             colIdx = 1;
             break;
@@ -524,8 +524,8 @@ GXSetChanAmbColor(GXChannelID chan, GXColor amb_color)
     }
 
     GX_WRITE_XF_REG(colIdx + 10, reg);
-    gx->bpSent = 0;
-    gx->ambColor[colIdx] = reg;
+    __GXData->bpSent = 0;
+    __GXData->ambColor[colIdx] = reg;
 }
 
 void
@@ -540,7 +540,7 @@ GXSetChanMatColor(GXChannelID chan, GXColor mat_color)
     switch (chan)
     {
         case GX_COLOR0 :
-            alpha = gx->matColor[0] & 0xFF;
+            alpha = __GXData->matColor[0] & 0xFF;
             SET_REG_FIELD(0x28F, reg, 8, 0, alpha);
             SET_REG_FIELD(0x290, reg, 8, 8, mat_color.b);
             SET_REG_FIELD(0x291, reg, 8, 16, mat_color.g);
@@ -548,7 +548,7 @@ GXSetChanMatColor(GXChannelID chan, GXColor mat_color)
             colIdx = 0;
             break;
         case GX_COLOR1 :
-            alpha = gx->matColor[1] & 0xFF;
+            alpha = __GXData->matColor[1] & 0xFF;
             SET_REG_FIELD(0x298, reg, 8, 0, alpha);
             SET_REG_FIELD(0x299, reg, 8, 8, mat_color.b);
             SET_REG_FIELD(0x29A, reg, 8, 16, mat_color.g);
@@ -556,12 +556,12 @@ GXSetChanMatColor(GXChannelID chan, GXColor mat_color)
             colIdx = 1;
             break;
         case GX_ALPHA0 :
-            reg = gx->matColor[0];
+            reg = __GXData->matColor[0];
             SET_REG_FIELD(0x2A1, reg, 8, 0, mat_color.a);
             colIdx = 0;
             break;
         case GX_ALPHA1 :
-            reg = gx->matColor[1];
+            reg = __GXData->matColor[1];
             SET_REG_FIELD(0x2A7, reg, 8, 0, mat_color.a);
             colIdx = 1;
             break;
@@ -585,8 +585,8 @@ GXSetChanMatColor(GXChannelID chan, GXColor mat_color)
     }
 
     GX_WRITE_XF_REG(colIdx + 12, reg);
-    gx->bpSent = 0;
-    gx->matColor[colIdx] = reg;
+    __GXData->bpSent = 0;
+    __GXData->matColor[colIdx] = reg;
 }
 
 void
@@ -595,9 +595,9 @@ GXSetNumChans(u8 nChans)
     CHECK_GXBEGIN(0x2D5, "GXSetNumChans");
     ASSERTMSGLINE(0x2D6, nChans <= 2, "GXSetNumChans: nChans > 2");
 
-    SET_REG_FIELD(0x2D8, gx->genMode, 3, 4, nChans);
+    SET_REG_FIELD(0x2D8, __GXData->genMode, 3, 4, nChans);
     GX_WRITE_XF_REG(9, nChans);
-    gx->dirtyState |= 4;
+    __GXData->dirtyState |= 4;
 }
 
 void
@@ -641,7 +641,7 @@ GXSetChanCtrl(GXChannelID chan, GXBool enable, GXColorSrc amb_src, GXColorSrc ma
     SET_REG_FIELD(0x310, reg, 1, 10, (attn_fn != 0));
 
     GX_WRITE_XF_REG(idx + 14, reg);
-    gx->bpSent = 0;
+    __GXData->bpSent = 0;
     if (chan == GX_COLOR0A0)
     {
         GX_WRITE_XF_REG(16, reg);
