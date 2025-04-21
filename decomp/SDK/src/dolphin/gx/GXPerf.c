@@ -12,7 +12,7 @@ GXSetGPMetric(GXPerf0 perf0, GXPerf1 perf1)
 
     CHECK_GXBEGIN(0x6A, "GXSetGPMetric");
 
-    switch (gx->perf0)
+    switch (__GXData->perf0)
     {
         case GX_PERF0_VERTICES :
         case GX_PERF0_CLIP_VTX :
@@ -65,7 +65,7 @@ GXSetGPMetric(GXPerf0 perf0, GXPerf1 perf1)
             break;
     }
 
-    switch (gx->perf1)
+    switch (__GXData->perf1)
     {
         case GX_PERF1_TEXELS :
         case GX_PERF1_TX_IDLE :
@@ -88,8 +88,8 @@ GXSetGPMetric(GXPerf0 perf0, GXPerf1 perf1)
         case GX_PERF1_VC_STREAMBUF_LOW :
         case GX_PERF1_VC_ALL_STALLS :
         case GX_PERF1_VERTICES :
-            SET_REG_FIELD(0, gx->perfSel, 4, 4, 0);
-            GX_WRITE_SOME_REG4(8, 0x20, gx->perfSel, -12);
+            SET_REG_FIELD(0, __GXData->perfSel, 4, 4, 0);
+            GX_WRITE_SOME_REG4(8, 0x20, __GXData->perfSel, -12);
             break;
         case GX_PERF1_FIFO_REQ :
         case GX_PERF1_CALL_REQ :
@@ -105,8 +105,8 @@ GXSetGPMetric(GXPerf0 perf0, GXPerf1 perf1)
             break;
     }
 
-    gx->perf0 = perf0;
-    switch (gx->perf0)
+    __GXData->perf0 = perf0;
+    switch (__GXData->perf0)
     {
         case GX_PERF0_VERTICES :
             reg = 0x273;
@@ -255,8 +255,8 @@ GXSetGPMetric(GXPerf0 perf0, GXPerf1 perf1)
             break;
     }
 
-    gx->perf1 = perf1;
-    switch (gx->perf1)
+    __GXData->perf1 = perf1;
+    switch (__GXData->perf1)
     {
         case GX_PERF1_TEXELS :
             reg = 0x67000042;
@@ -295,36 +295,36 @@ GXSetGPMetric(GXPerf0 perf0, GXPerf1 perf1)
             GX_WRITE_RAS_REG(reg);
             break;
         case GX_PERF1_VC_ELEMQ_FULL :
-            SET_REG_FIELD(0, gx->perfSel, 4, 4, 2);
-            GX_WRITE_SOME_REG4(8, 0x20, gx->perfSel, -12);
+            SET_REG_FIELD(0, __GXData->perfSel, 4, 4, 2);
+            GX_WRITE_SOME_REG4(8, 0x20, __GXData->perfSel, -12);
             break;
         case GX_PERF1_VC_MISSQ_FULL :
-            SET_REG_FIELD(0, gx->perfSel, 4, 4, 3);
-            GX_WRITE_SOME_REG4(8, 0x20, gx->perfSel, -12);
+            SET_REG_FIELD(0, __GXData->perfSel, 4, 4, 3);
+            GX_WRITE_SOME_REG4(8, 0x20, __GXData->perfSel, -12);
             break;
         case GX_PERF1_VC_MEMREQ_FULL :
-            SET_REG_FIELD(0, gx->perfSel, 4, 4, 4);
-            GX_WRITE_SOME_REG4(8, 0x20, gx->perfSel, -12);
+            SET_REG_FIELD(0, __GXData->perfSel, 4, 4, 4);
+            GX_WRITE_SOME_REG4(8, 0x20, __GXData->perfSel, -12);
             break;
         case GX_PERF1_VC_STATUS7 :
-            SET_REG_FIELD(0, gx->perfSel, 4, 4, 5);
-            GX_WRITE_SOME_REG4(8, 0x20, gx->perfSel, -12);
+            SET_REG_FIELD(0, __GXData->perfSel, 4, 4, 5);
+            GX_WRITE_SOME_REG4(8, 0x20, __GXData->perfSel, -12);
             break;
         case GX_PERF1_VC_MISSREP_FULL :
-            SET_REG_FIELD(0, gx->perfSel, 4, 4, 6);
-            GX_WRITE_SOME_REG4(8, 0x20, gx->perfSel, -12);
+            SET_REG_FIELD(0, __GXData->perfSel, 4, 4, 6);
+            GX_WRITE_SOME_REG4(8, 0x20, __GXData->perfSel, -12);
             break;
         case GX_PERF1_VC_STREAMBUF_LOW :
-            SET_REG_FIELD(0, gx->perfSel, 4, 4, 7);
-            GX_WRITE_SOME_REG4(8, 0x20, gx->perfSel, -12);
+            SET_REG_FIELD(0, __GXData->perfSel, 4, 4, 7);
+            GX_WRITE_SOME_REG4(8, 0x20, __GXData->perfSel, -12);
             break;
         case GX_PERF1_VC_ALL_STALLS :
-            SET_REG_FIELD(0, gx->perfSel, 4, 4, 9);
-            GX_WRITE_SOME_REG4(8, 0x20, gx->perfSel, -12);
+            SET_REG_FIELD(0, __GXData->perfSel, 4, 4, 9);
+            GX_WRITE_SOME_REG4(8, 0x20, __GXData->perfSel, -12);
             break;
         case GX_PERF1_VERTICES :
-            SET_REG_FIELD(0, gx->perfSel, 4, 4, 8);
-            GX_WRITE_SOME_REG4(8, 0x20, gx->perfSel, -12);
+            SET_REG_FIELD(0, __GXData->perfSel, 4, 4, 8);
+            GX_WRITE_SOME_REG4(8, 0x20, __GXData->perfSel, -12);
             break;
         case GX_PERF1_FIFO_REQ :
             reg = 2;
@@ -353,7 +353,7 @@ GXSetGPMetric(GXPerf0 perf0, GXPerf1 perf1)
             break;
     }
 
-    gx->bpSent = 1;
+    __GXData->bpSent = 1;
 }
 
 void
@@ -362,7 +362,7 @@ GXReadGPMetric(u32 *cnt0, u32 *cnt1)
     u32 ctrl, ctrh;
     u32 cpCtr0, cpCtr1, cpCtr2, cpCtr3;
 
-    ASSERTMSGLINE(0x286, !gx->inDispList, "GXReadGPMetric: don't use in a display list");
+    ASSERTMSGLINE(0x286, !__GXData->inDispList, "GXReadGPMetric: don't use in a display list");
 
     ctrl = __cpRegs[32];
     ctrh = __cpReg[33];
@@ -380,7 +380,7 @@ GXReadGPMetric(u32 *cnt0, u32 *cnt1)
     ctrh = __cpReg[39];
     cpCtr3 = (ctrh << 16) | ctrl;
 
-    switch (gx->perf0)
+    switch (__GXData->perf0)
     {
         case GX_PERF0_CLIP_RATIO :
             *cnt0 = cpCtr1 * 0x3E8 / cpCtr0;
@@ -431,7 +431,7 @@ GXReadGPMetric(u32 *cnt0, u32 *cnt1)
             break;
     }
 
-    switch (gx->perf1)
+    switch (__GXData->perf1)
     {
         case GX_PERF1_TEXELS :
             *cnt1 = cpCtr3 * 4;
@@ -484,7 +484,7 @@ GXClearGPMetric(void)
 {
     u32 reg;
 
-    ASSERTMSGLINE(0x322, !gx->inDispList, "GXClearGPMetric: don't use in a display list");
+    ASSERTMSGLINE(0x322, !__GXData->inDispList, "GXClearGPMetric: don't use in a display list");
     reg = 4;
     __cpRegs[2] = reg;
 }
@@ -513,7 +513,7 @@ GXReadMemMetric(u32 *cp_req, u32 *tc_req, u32 *cpu_rd_req, u32 *cpu_wr_req, u32 
 {
     u32 ctrl, ctrh;
 
-    ASSERTMSGLINE(0x380, !gx->inDispList, "GXReadMemMetric: don't use in a display list");
+    ASSERTMSGLINE(0x380, !__GXData->inDispList, "GXReadMemMetric: don't use in a display list");
 
     ctrl = __memRegs[26];
     ctrh = __memReg[25];
@@ -559,7 +559,7 @@ GXReadMemMetric(u32 *cp_req, u32 *tc_req, u32 *cpu_rd_req, u32 *cpu_wr_req, u32 
 void
 GXClearMemMetric(void)
 {
-    ASSERTMSGLINE(0x3B9, !gx->inDispList, "GXClearMemMetric: don't use in a display list");
+    ASSERTMSGLINE(0x3B9, !__GXData->inDispList, "GXClearMemMetric: don't use in a display list");
 
     __memRegs[25] = 0;
     __memRegs[26] = 0;
@@ -589,7 +589,7 @@ GXReadPixMetric(u32 *top_pixels_in, u32 *top_pixels_out, u32 *bot_pixels_in, u32
 {
     u32 ctrl, ctrh;
 
-    ASSERTMSGLINE(0x3F1, !gx->inDispList, "GXReadPixMetric: don't use in a display list");
+    ASSERTMSGLINE(0x3F1, !__GXData->inDispList, "GXReadPixMetric: don't use in a display list");
 
     ctrl = __peRegs[12];
     ctrh = __peReg[13];
@@ -627,7 +627,7 @@ GXClearPixMetric(void)
     GX_WRITE_RAS_REG(reg);
     reg = 0x57000AAA;
     GX_WRITE_RAS_REG(reg);
-    gx->bpSent = 1;
+    __GXData->bpSent = 1;
 }
 
 void
@@ -635,8 +635,8 @@ GXSetVCacheMetric(GXVCachePerf attr)
 {
     u32 reg;
 
-    SET_REG_FIELD(0x43C, gx->perfSel, 4, 0, attr);
-    GX_WRITE_SOME_REG4(8, 0x20, gx->perfSel, -12);
+    SET_REG_FIELD(0x43C, __GXData->perfSel, 4, 0, attr);
+    GX_WRITE_SOME_REG4(8, 0x20, __GXData->perfSel, -12);
     reg = 1;
     GX_WRITE_SOME_REG4(8, 0x10, reg, -12);
 }
@@ -676,7 +676,7 @@ GXInitXfRasMetric(void)
     GX_WRITE_RAS_REG(reg);
     reg = 0x31000;
     GX_WRITE_XF_REG(6, reg);
-    gx->bpSent = 0;
+    __GXData->bpSent = 0;
 }
 
 void

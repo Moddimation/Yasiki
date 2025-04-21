@@ -19,16 +19,16 @@ GXSetMisc(GXMiscToken token, u32 val)
     switch (token)
     {
         case GX_MT_XF_FLUSH :
-            gx->vNum = val;
-            if (gx->vNum != 0)
+            __GXData->vNum = val;
+            if (__GXData->vNum != 0)
             {
-                gx->dirtyState |= 8;
+                __GXData->dirtyState |= 8;
             }
             break;
         case GX_MT_DL_SAVE_CONTEXT :
-            ASSERTMSGLINE(0xC4, !gx->inDispList,
+            ASSERTMSGLINE(0xC4, !__GXData->inDispList,
                           "GXSetMisc: Cannot change DL context setting while making a display list");
-            gx->dlSaveContext = (val > 0);
+            __GXData->dlSaveContext = (val > 0);
             break;
         case GX_MT_NULL :
             break;
@@ -46,7 +46,7 @@ GXFlush(void)
     u32 i;
 
     CHECK_GXBEGIN(0xF0, "GXFlush");
-    if (gx->dirtyState)
+    if (__GXData->dirtyState)
     {
         __GXSetDirtyState();
     }
@@ -105,7 +105,7 @@ GXSetDrawSync(u16 token)
     GX_WRITE_RAS_REG(reg);
     GXFlush();
     OSRestoreInterrupts(enabled);
-    gx->bpSent = 1;
+    __GXData->bpSent = 1;
 }
 
 u16
@@ -157,8 +157,8 @@ void
 GXPixModeSync(void)
 {
     CHECK_GXBEGIN(0x20D, "GXPixModeSync");
-    GX_WRITE_RAS_REG(gx->peCtrl);
-    gx->bpSent = 1;
+    GX_WRITE_RAS_REG(__GXData->peCtrl);
+    __GXData->bpSent = 1;
 }
 
 void
@@ -169,7 +169,7 @@ GXTexModeSync(void)
     CHECK_GXBEGIN(0x225, "GXTexModeSync");
     reg = 0x63000000;
     GX_WRITE_RAS_REG(reg);
-    gx->bpSent = 1;
+    __GXData->bpSent = 1;
 }
 
 #if DEBUG
@@ -178,7 +178,7 @@ __GXBypass(u32 reg)
 {
     CHECK_GXBEGIN(0x23B, "__GXBypass");
     GX_WRITE_RAS_REG(reg);
-    gx->bpSent = 1;
+    __GXData->bpSent = 1;
 }
 
 u16

@@ -10,27 +10,27 @@
 void
 __GXSetDirtyState(void)
 {
-    if (gx->dirtyState & 1)
+    if (__GXData->dirtyState & 1)
     {
         __GXSetSUTexRegs();
     }
-    if (gx->dirtyState & 2)
+    if (__GXData->dirtyState & 2)
     {
         __GXUpdateBPMask();
     }
-    if (gx->dirtyState & 4)
+    if (__GXData->dirtyState & 4)
     {
         __GXSetGenMode();
     }
-    if (gx->dirtyState & 8)
+    if (__GXData->dirtyState & 8)
     {
         __GXSetVCD();
     }
-    if (gx->dirtyState & 0x10)
+    if (__GXData->dirtyState & 0x10)
     {
         __GXSetVAT();
     }
-    gx->dirtyState = 0;
+    __GXData->dirtyState = 0;
 }
 
 void
@@ -39,18 +39,18 @@ GXBegin(GXPrimitive type, GXVtxFmt vtxfmt, u16 nverts)
     ASSERTMSGLINE(0x157, vtxfmt < 8, "GXBegin: Format Index is out of range");
     ASSERTMSGLINE(0x158, !__GXinBegin, "GXBegin: called inside another GXBegin/GXEnd");
 
-    if (gx->dirtyState != 0)
+    if (__GXData->dirtyState != 0)
     {
         __GXSetDirtyState();
     }
 #if DEBUG
-    if (!gx->inDispList)
+    if (!__GXData->inDispList)
     {
         __GXVerifyState(vtxfmt);
     }
     __GXinBegin = 1;
 #endif
-    if (*(u32 *)&gx->vNum != 0)
+    if (*(u32 *)&__GXData->vNum != 0)
     { // checks both vNum and bpSent
         __GXSendFlushPrim();
     }
@@ -62,25 +62,25 @@ void
 __GXSendFlushPrim(void)
 {
     u32 i;
-    u32 numD = gx->vNum * gx->vLim;
+    u32 numD = __GXData->vNum * __GXData->vLim;
 
     GX_WRITE_U8(0x98);
-    GX_WRITE_U16(gx->vNum);
+    GX_WRITE_U16(__GXData->vNum);
     for (i = 0; i < numD; i += 4)
     {
         GX_WRITE_U32(0);
     }
-    gx->bpSent = 0;
+    __GXData->bpSent = 0;
 }
 
 void
 GXSetLineWidth(u8 width, GXTexOffset texOffsets)
 {
     CHECK_GXBEGIN(0x1A8, "GXSetLineWidth");
-    SET_REG_FIELD(0x1A9, gx->lpSize, 8, 0, width);
-    SET_REG_FIELD(0x1AA, gx->lpSize, 3, 16, texOffsets);
-    GX_WRITE_RAS_REG(gx->lpSize);
-    gx->bpSent = 1;
+    SET_REG_FIELD(0x1A9, __GXData->lpSize, 8, 0, width);
+    SET_REG_FIELD(0x1AA, __GXData->lpSize, 3, 16, texOffsets);
+    GX_WRITE_RAS_REG(__GXData->lpSize);
+    __GXData->bpSent = 1;
 }
 
 void
@@ -88,18 +88,18 @@ GXGetLineWidth(u8 *width, GXTexOffset *texOffsets)
 {
     ASSERTMSGLINE(0x1BF, width != NULL && texOffsets != NULL, "GXGet*: invalid null pointer");
 
-    *width = GET_REG_FIELD(gx->lpSize, 8, 0);
-    *texOffsets = GET_REG_FIELD(gx->lpSize, 3, 16);
+    *width = GET_REG_FIELD(__GXData->lpSize, 8, 0);
+    *texOffsets = GET_REG_FIELD(__GXData->lpSize, 3, 16);
 }
 
 void
 GXSetPointSize(u8 pointSize, GXTexOffset texOffsets)
 {
     CHECK_GXBEGIN(0x1D4, "GXSetPointSize");
-    SET_REG_FIELD(0x1D5, gx->lpSize, 8, 8, pointSize);
-    SET_REG_FIELD(0x1D6, gx->lpSize, 3, 19, texOffsets);
-    GX_WRITE_RAS_REG(gx->lpSize);
-    gx->bpSent = 1;
+    SET_REG_FIELD(0x1D5, __GXData->lpSize, 8, 8, pointSize);
+    SET_REG_FIELD(0x1D6, __GXData->lpSize, 3, 19, texOffsets);
+    GX_WRITE_RAS_REG(__GXData->lpSize);
+    __GXData->bpSent = 1;
 }
 
 void
@@ -107,8 +107,8 @@ GXGetPointSize(u8 *pointSize, GXTexOffset *texOffsets)
 {
     ASSERTMSGLINE(0x1EB, pointSize != NULL && texOffsets != NULL, "GXGet*: invalid null pointer");
 
-    *pointSize = (int)GET_REG_FIELD(gx->lpSize, 8, 8);
-    *texOffsets = GET_REG_FIELD(gx->lpSize, 3, 19);
+    *pointSize = (int)GET_REG_FIELD(__GXData->lpSize, 8, 8);
+    *texOffsets = GET_REG_FIELD(__GXData->lpSize, 3, 19);
 }
 
 void
@@ -118,10 +118,10 @@ GXEnableTexOffsets(GXTexCoordID coord, u8 line_enable, u8 point_enable)
 
     ASSERTMSGLINE(0x203, coord < 8, "GXEnableTexOffsets: Invalid coordinate Id");
 
-    SET_REG_FIELD(0x205, gx->suTs0[coord], 1, 18, line_enable);
-    SET_REG_FIELD(0x206, gx->suTs0[coord], 1, 19, point_enable);
-    GX_WRITE_RAS_REG(gx->suTs0[coord]);
-    gx->bpSent = 1;
+    SET_REG_FIELD(0x205, __GXData->suTs0[coord], 1, 18, line_enable);
+    SET_REG_FIELD(0x206, __GXData->suTs0[coord], 1, 19, point_enable);
+    GX_WRITE_RAS_REG(__GXData->suTs0[coord]);
+    __GXData->bpSent = 1;
 }
 
 void
@@ -142,14 +142,14 @@ GXSetCullMode(GXCullMode mode)
             hwMode = mode;
             break;
     }
-    SET_REG_FIELD(0x225, gx->genMode, 2, 14, hwMode);
-    gx->dirtyState |= 4;
+    SET_REG_FIELD(0x225, __GXData->genMode, 2, 14, hwMode);
+    __GXData->dirtyState |= 4;
 }
 
 void
 GXGetCullMode(GXCullMode *mode)
 {
-    GXCullMode hwMode = GET_REG_FIELD(gx->genMode, 2, 14);
+    GXCullMode hwMode = GET_REG_FIELD(__GXData->genMode, 2, 14);
 
     switch (hwMode)
     {
@@ -172,15 +172,15 @@ GXSetCoPlanar(GXBool enable)
 
     CHECK_GXBEGIN(0x24A, "GXSetCoPlanar");
 
-    SET_REG_FIELD(0x24C, gx->genMode, 1, 19, enable);
+    SET_REG_FIELD(0x24C, __GXData->genMode, 1, 19, enable);
     reg = 0xFE080000;
     GX_WRITE_RAS_REG(reg);
-    GX_WRITE_RAS_REG(gx->genMode);
+    GX_WRITE_RAS_REG(__GXData->genMode);
 }
 
 void
 __GXSetGenMode(void)
 {
-    GX_WRITE_RAS_REG(gx->genMode);
-    gx->bpSent = 1;
+    GX_WRITE_RAS_REG(__GXData->genMode);
+    __GXData->bpSent = 1;
 }

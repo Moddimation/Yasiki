@@ -409,15 +409,15 @@ GXSetDispCopySrc(u16 left, u16 top, u16 wd, u16 ht)
 {
     CHECK_GXBEGIN(0x3B9, "GXSetDispCopySrc");
 
-    gx->cpDispSrc = 0;
-    SET_REG_FIELD(0x3BC, gx->cpDispSrc, 10, 0, left);
-    SET_REG_FIELD(0x3BD, gx->cpDispSrc, 10, 10, top);
-    SET_REG_FIELD(0x3BE, gx->cpDispSrc, 8, 24, 0x49);
+    __GXData->cpDispSrc = 0;
+    SET_REG_FIELD(0x3BC, __GXData->cpDispSrc, 10, 0, left);
+    SET_REG_FIELD(0x3BD, __GXData->cpDispSrc, 10, 10, top);
+    SET_REG_FIELD(0x3BE, __GXData->cpDispSrc, 8, 24, 0x49);
 
-    gx->cpDispSize = 0;
-    SET_REG_FIELD(0x3C1, gx->cpDispSize, 10, 0, wd - 1);
-    SET_REG_FIELD(0x3C2, gx->cpDispSize, 10, 10, ht - 1);
-    SET_REG_FIELD(0x3C3, gx->cpDispSize, 8, 24, 0x4A);
+    __GXData->cpDispSize = 0;
+    SET_REG_FIELD(0x3C1, __GXData->cpDispSize, 10, 0, wd - 1);
+    SET_REG_FIELD(0x3C2, __GXData->cpDispSize, 10, 10, ht - 1);
+    SET_REG_FIELD(0x3C3, __GXData->cpDispSize, 8, 24, 0x4A);
 }
 
 void
@@ -425,15 +425,15 @@ GXSetTexCopySrc(u16 left, u16 top, u16 wd, u16 ht)
 {
     CHECK_GXBEGIN(0x3D5, "GXSetTexCopySrc");
 
-    gx->cpTexSrc = 0;
-    SET_REG_FIELD(0x3D8, gx->cpTexSrc, 10, 0, left);
-    SET_REG_FIELD(0x3D9, gx->cpTexSrc, 10, 10, top);
-    SET_REG_FIELD(0x3DA, gx->cpTexSrc, 8, 24, 0x49);
+    __GXData->cpTexSrc = 0;
+    SET_REG_FIELD(0x3D8, __GXData->cpTexSrc, 10, 0, left);
+    SET_REG_FIELD(0x3D9, __GXData->cpTexSrc, 10, 10, top);
+    SET_REG_FIELD(0x3DA, __GXData->cpTexSrc, 8, 24, 0x49);
 
-    gx->cpTexSize = 0;
-    SET_REG_FIELD(0x3DD, gx->cpTexSize, 10, 0, wd - 1);
-    SET_REG_FIELD(0x3DE, gx->cpTexSize, 10, 10, ht - 1);
-    SET_REG_FIELD(0x3DF, gx->cpTexSize, 8, 24, 0x4A);
+    __GXData->cpTexSize = 0;
+    SET_REG_FIELD(0x3DD, __GXData->cpTexSize, 10, 0, wd - 1);
+    SET_REG_FIELD(0x3DE, __GXData->cpTexSize, 10, 10, ht - 1);
+    SET_REG_FIELD(0x3DF, __GXData->cpTexSize, 8, 24, 0x4A);
 }
 
 void
@@ -445,9 +445,9 @@ GXSetDispCopyDst(u16 wd, u16 ht)
     CHECK_GXBEGIN(0x3F4, "GXSetDispCopyDst");
 
     stride = (int)wd * 2;
-    gx->cpDispStride = 0;
-    SET_REG_FIELD(0x3FA, gx->cpDispStride, 10, 0, (stride >> 5));
-    SET_REG_FIELD(0x3FB, gx->cpDispStride, 8, 24, 0x4D);
+    __GXData->cpDispStride = 0;
+    SET_REG_FIELD(0x3FA, __GXData->cpDispStride, 10, 0, (stride >> 5));
+    SET_REG_FIELD(0x3FB, __GXData->cpDispStride, 8, 24, 0x4D);
 }
 
 void
@@ -461,7 +461,7 @@ GXSetTexCopyDst(u16 wd, u16 ht, GXTexFmt fmt, GXBool mipmap)
 
     CHECK_GXBEGIN(0x415, "GXSetTexCopyDst");
 
-    gx->cpTexZ = 0;
+    __GXData->cpTexZ = 0;
     peTexFmt = fmt & 0xF;
     ASSERTMSGLINEV(0x434, peTexFmt < 13, "%s: invalid texture format", "GXSetTexCopyDst");
 
@@ -476,33 +476,33 @@ GXSetTexCopyDst(u16 wd, u16 ht, GXTexFmt fmt, GXBool mipmap)
         case GX_TF_IA4 :
         case GX_TF_IA8 :
         case GX_CTF_YUVA8 :
-            SET_REG_FIELD(0, gx->cpTex, 2, 15, 3);
+            SET_REG_FIELD(0, __GXData->cpTex, 2, 15, 3);
             break;
         default :
-            SET_REG_FIELD(0, gx->cpTex, 2, 15, 2);
+            SET_REG_FIELD(0, __GXData->cpTex, 2, 15, 2);
             break;
     }
 
-    gx->cpTexZ = (fmt & _GX_TF_ZTF) == _GX_TF_ZTF;
+    __GXData->cpTexZ = (fmt & _GX_TF_ZTF) == _GX_TF_ZTF;
     peTexFmtH = (peTexFmt >> 3) & 1;
     !peTexFmt;
-    SET_REG_FIELD(0x44B, gx->cpTex, 1, 3, peTexFmtH);
+    SET_REG_FIELD(0x44B, __GXData->cpTex, 1, 3, peTexFmtH);
     peTexFmt = peTexFmt & 7;
     __GetImageTileCount(fmt, wd, ht, &rowTiles, &colTiles, &cmpTiles);
 
-    gx->cpTexStride = 0;
-    SET_REG_FIELD(0x454, gx->cpTexStride, 10, 0, rowTiles * cmpTiles);
-    SET_REG_FIELD(0x455, gx->cpTexStride, 8, 24, 0x4D);
-    SET_REG_FIELD(0x456, gx->cpTex, 1, 9, mipmap);
-    SET_REG_FIELD(0x457, gx->cpTex, 3, 4, peTexFmt);
+    __GXData->cpTexStride = 0;
+    SET_REG_FIELD(0x454, __GXData->cpTexStride, 10, 0, rowTiles * cmpTiles);
+    SET_REG_FIELD(0x455, __GXData->cpTexStride, 8, 24, 0x4D);
+    SET_REG_FIELD(0x456, __GXData->cpTex, 1, 9, mipmap);
+    SET_REG_FIELD(0x457, __GXData->cpTex, 3, 4, peTexFmt);
 }
 
 void
 GXSetDispCopyFrame2Field(GXCopyMode mode)
 {
     CHECK_GXBEGIN(0x468, "GXSetDispCopyFrame2Field");
-    SET_REG_FIELD(0x469, gx->cpDisp, 2, 12, mode);
-    SET_REG_FIELD(0x46A, gx->cpTex, 2, 12, 0);
+    SET_REG_FIELD(0x469, __GXData->cpDisp, 2, 12, mode);
+    SET_REG_FIELD(0x46A, __GXData->cpTex, 2, 12, 0);
 }
 
 void
@@ -516,11 +516,11 @@ GXSetCopyClamp(GXFBClamp clamp)
     clmpT = (clamp & 1) == 1;
     clmpB = (clamp & 2) == 2;
 
-    SET_REG_FIELD(0x481, gx->cpDisp, 1, 0, clmpT);
-    SET_REG_FIELD(0x482, gx->cpDisp, 1, 1, clmpB);
+    SET_REG_FIELD(0x481, __GXData->cpDisp, 1, 0, clmpT);
+    SET_REG_FIELD(0x482, __GXData->cpDisp, 1, 1, clmpB);
 
-    SET_REG_FIELD(0x484, gx->cpTex, 1, 0, clmpT);
-    SET_REG_FIELD(0x485, gx->cpTex, 1, 1, clmpB);
+    SET_REG_FIELD(0x484, __GXData->cpTex, 1, 0, clmpT);
+    SET_REG_FIELD(0x485, __GXData->cpTex, 1, 1, clmpB);
 }
 
 u32
@@ -544,9 +544,9 @@ GXSetDispCopyYScale(f32 vscale)
     SET_REG_FIELD(0x4A6, reg, 9, 0, iScale);
     SET_REG_FIELD(0x4A7, reg, 8, 24, 0x4E);
     GX_WRITE_RAS_REG(reg);
-    gx->bpSent = 1;
-    SET_REG_FIELD(0x4AB, gx->cpDisp, 1, 10, enable);
-    ht = GET_REG_FIELD(gx->cpDispSize, 10, 10) + 1;
+    __GXData->bpSent = 1;
+    SET_REG_FIELD(0x4AB, __GXData->cpDisp, 1, 10, enable);
+    ht = GET_REG_FIELD(__GXData->cpDispSize, 10, 10) + 1;
     return ht * fScale;
 }
 
@@ -574,7 +574,7 @@ GXSetCopyClear(GXColor clear_clr, u32 clear_z)
     SET_REG_FIELD(0x4D5, reg, 24, 0, clear_z);
     SET_REG_FIELD(0x4D6, reg, 8, 24, 0x51);
     GX_WRITE_RAS_REG(reg);
-    gx->bpSent = 1;
+    __GXData->bpSent = 1;
 }
 
 void
@@ -662,14 +662,14 @@ GXSetCopyFilter(GXBool aa, const u8 sample_pattern[12][2], GXBool vf, const u8 v
     }
     GX_WRITE_RAS_REG(coeff0);
     GX_WRITE_RAS_REG(coeff1);
-    gx->bpSent = 1;
+    __GXData->bpSent = 1;
 }
 
 void
 GXSetDispCopyGamma(GXGamma gamma)
 {
     CHECK_GXBEGIN(0x555, "GXSetDispCopyGamma");
-    SET_REG_FIELD(0x556, gx->cpDisp, 2, 7, gamma);
+    SET_REG_FIELD(0x556, __GXData->cpDisp, 2, 7, gamma);
 }
 
 #if DEBUG
@@ -685,17 +685,17 @@ __GXVerifCopy(void *dest, u8 clear)
 
     CHECK_GXBEGIN(0x56A, "GXCopyDisp");
 
-    clmpT = GET_REG_FIELD(gx->cpDisp, 1, 0);
-    clmpB = (u32)GET_REG_FIELD(gx->cpDisp, 1, 1);
-    x0 = GET_REG_FIELD(gx->cpDispSrc, 10, 0);
-    dx = GET_REG_FIELD(gx->cpDispSize, 10, 0) + 1;
-    y0 = GET_REG_FIELD(gx->cpDispSrc, 10, 10);
-    dy = GET_REG_FIELD(gx->cpDispSize, 10, 10) + 1;
+    clmpT = GET_REG_FIELD(__GXData->cpDisp, 1, 0);
+    clmpB = (u32)GET_REG_FIELD(__GXData->cpDisp, 1, 1);
+    x0 = GET_REG_FIELD(__GXData->cpDispSrc, 10, 0);
+    dx = GET_REG_FIELD(__GXData->cpDispSize, 10, 0) + 1;
+    y0 = GET_REG_FIELD(__GXData->cpDispSrc, 10, 10);
+    dy = GET_REG_FIELD(__GXData->cpDispSize, 10, 10) + 1;
 
     ASSERTMSGLINE(0x574, clmpT || y0 != 0, "GXCopy: Have to set GX_CLAMP_TOP if source top == 0");
     ASSERTMSGLINE(0x576, clmpB || y0 + dy <= 528, "GXCopy: Have to set GX_CLAMP_BOTTOM if source bottom > 528");
-    ASSERTMSGLINE(0x57B, (gx->peCtrl & 7) != 3 || clear == 0, "GXCopy: Can not do clear while pixel type is Z");
-    if ((u32)(gx->peCtrl & 7) == 5)
+    ASSERTMSGLINE(0x57B, (__GXData->peCtrl & 7) != 3 || clear == 0, "GXCopy: Can not do clear while pixel type is Z");
+    if ((u32)(__GXData->peCtrl & 7) == 5)
     {
         ASSERTMSGLINE(0x581, clear == 0, "GXCopy: Can not clear YUV framebuffer");
         ASSERTMSGLINE(0x583, (x0 & 3) == 0, "GXCopy: Source x is not multiple of 4 for YUV copy");
@@ -729,27 +729,27 @@ GXCopyDisp(void *dest, GXBool clear)
 #endif
     if (clear)
     {
-        reg = gx->zmode;
+        reg = __GXData->zmode;
         SET_REG_FIELD(0, reg, 1, 0, 1);
         SET_REG_FIELD(0, reg, 3, 1, 7);
         GX_WRITE_RAS_REG(reg);
 
-        reg = gx->cmode0;
+        reg = __GXData->cmode0;
         SET_REG_FIELD(0, reg, 1, 0, 0);
         SET_REG_FIELD(0, reg, 1, 1, 0);
         GX_WRITE_RAS_REG(reg);
     }
     changePeCtrl = FALSE;
-    if ((clear || (u32)GET_REG_FIELD(gx->peCtrl, 3, 0) == 3) && (u32)GET_REG_FIELD(gx->peCtrl, 1, 6) == 1)
+    if ((clear || (u32)GET_REG_FIELD(__GXData->peCtrl, 3, 0) == 3) && (u32)GET_REG_FIELD(__GXData->peCtrl, 1, 6) == 1)
     {
         changePeCtrl = TRUE;
-        tempPeCtrl = gx->peCtrl;
+        tempPeCtrl = __GXData->peCtrl;
         SET_REG_FIELD(0, tempPeCtrl, 1, 6, 0);
         GX_WRITE_RAS_REG(tempPeCtrl);
     }
-    GX_WRITE_RAS_REG(gx->cpDispSrc);
-    GX_WRITE_RAS_REG(gx->cpDispSize);
-    GX_WRITE_RAS_REG(gx->cpDispStride);
+    GX_WRITE_RAS_REG(__GXData->cpDispSrc);
+    GX_WRITE_RAS_REG(__GXData->cpDispSize);
+    GX_WRITE_RAS_REG(__GXData->cpDispStride);
 
     phyAddr = (u32)dest & 0x3FFFFFFF;
     reg = 0;
@@ -757,21 +757,21 @@ GXCopyDisp(void *dest, GXBool clear)
     SET_REG_FIELD(0x5D9, reg, 8, 24, 0x4B);
     GX_WRITE_RAS_REG(reg);
 
-    SET_REG_FIELD(0x5DC, gx->cpDisp, 1, 11, clear);
-    SET_REG_FIELD(0x5DD, gx->cpDisp, 1, 14, 1);
-    SET_REG_FIELD(0x5DE, gx->cpDisp, 8, 24, 0x52);
-    GX_WRITE_RAS_REG(gx->cpDisp);
+    SET_REG_FIELD(0x5DC, __GXData->cpDisp, 1, 11, clear);
+    SET_REG_FIELD(0x5DD, __GXData->cpDisp, 1, 14, 1);
+    SET_REG_FIELD(0x5DE, __GXData->cpDisp, 8, 24, 0x52);
+    GX_WRITE_RAS_REG(__GXData->cpDisp);
 
     if (clear)
     {
-        GX_WRITE_RAS_REG(gx->zmode);
-        GX_WRITE_RAS_REG(gx->cmode0);
+        GX_WRITE_RAS_REG(__GXData->zmode);
+        GX_WRITE_RAS_REG(__GXData->cmode0);
     }
     if (changePeCtrl)
     {
-        GX_WRITE_RAS_REG(gx->peCtrl);
+        GX_WRITE_RAS_REG(__GXData->peCtrl);
     }
-    gx->bpSent = 1;
+    __GXData->bpSent = 1;
 }
 
 void
@@ -789,19 +789,19 @@ GXCopyTex(void *dest, GXBool clear)
 #endif
     if (clear)
     {
-        reg = gx->zmode;
+        reg = __GXData->zmode;
         SET_REG_FIELD(0, reg, 1, 0, 1);
         SET_REG_FIELD(0, reg, 3, 1, 7);
         GX_WRITE_RAS_REG(reg);
 
-        reg = gx->cmode0;
+        reg = __GXData->cmode0;
         SET_REG_FIELD(0, reg, 1, 0, 0);
         SET_REG_FIELD(0, reg, 1, 1, 0);
         GX_WRITE_RAS_REG(reg);
     }
     changePeCtrl = 0;
-    tempPeCtrl = gx->peCtrl;
-    if (((u8)gx->cpTexZ != 0) && ((u32)(tempPeCtrl & 7) != 3))
+    tempPeCtrl = __GXData->peCtrl;
+    if (((u8)__GXData->cpTexZ != 0) && ((u32)(tempPeCtrl & 7) != 3))
     {
         changePeCtrl = 1;
         tempPeCtrl = (tempPeCtrl & 0xFFFFFFF8) | 3;
@@ -815,9 +815,9 @@ GXCopyTex(void *dest, GXBool clear)
     {
         GX_WRITE_RAS_REG(tempPeCtrl);
     }
-    GX_WRITE_RAS_REG(gx->cpTexSrc);
-    GX_WRITE_RAS_REG(gx->cpTexSize);
-    GX_WRITE_RAS_REG(gx->cpTexStride);
+    GX_WRITE_RAS_REG(__GXData->cpTexSrc);
+    GX_WRITE_RAS_REG(__GXData->cpTexSize);
+    GX_WRITE_RAS_REG(__GXData->cpTexStride);
 
     phyAddr = (u32)dest & 0x3FFFFFFF;
     reg = 0;
@@ -825,21 +825,21 @@ GXCopyTex(void *dest, GXBool clear)
     SET_REG_FIELD(0x636, reg, 8, 24, 0x4B);
     GX_WRITE_RAS_REG(reg);
 
-    SET_REG_FIELD(0x639, gx->cpTex, 1, 11, clear);
-    SET_REG_FIELD(0x63A, gx->cpTex, 1, 14, 0);
-    SET_REG_FIELD(0x63B, gx->cpTex, 8, 24, 0x52);
-    GX_WRITE_RAS_REG(gx->cpTex);
+    SET_REG_FIELD(0x639, __GXData->cpTex, 1, 11, clear);
+    SET_REG_FIELD(0x63A, __GXData->cpTex, 1, 14, 0);
+    SET_REG_FIELD(0x63B, __GXData->cpTex, 8, 24, 0x52);
+    GX_WRITE_RAS_REG(__GXData->cpTex);
 
     if (clear != 0)
     {
-        GX_WRITE_RAS_REG(gx->zmode);
-        GX_WRITE_RAS_REG(gx->cmode0);
+        GX_WRITE_RAS_REG(__GXData->zmode);
+        GX_WRITE_RAS_REG(__GXData->cmode0);
     }
     if (changePeCtrl)
     {
-        GX_WRITE_RAS_REG(gx->peCtrl);
+        GX_WRITE_RAS_REG(__GXData->peCtrl);
     }
-    gx->bpSent = 1;
+    __GXData->bpSent = 1;
 }
 
 void
@@ -852,7 +852,7 @@ GXClearBoundingBox(void)
     GX_WRITE_RAS_REG(reg);
     reg = 0x560003FF;
     GX_WRITE_RAS_REG(reg);
-    gx->bpSent = 1;
+    __GXData->bpSent = 1;
 }
 
 void
