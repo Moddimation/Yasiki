@@ -16,13 +16,15 @@
  *
  */
 
-#include <stdio.h>
 #include "ansi_files.h"
+
+#include <stdio.h>
+#include <stdlib.h>  
+#include <string.h>   
+
 #include "console_io.h"
 #include "critical_regions.h"
 #include "file_io.h"
-#include <stdlib.h>  
-#include <string.h>   
 #if macintosh && !defined(__dest_os)               /*- mm 960927 -*/
   #define __dest_os __mac_os                       /*- mm 960927 -*/
 #endif  /* macintosh && !defined(__dest_os)  */    /*- mm 960927 -*/
@@ -260,8 +262,9 @@ FILE * __find_unopened_file(void)
 	
 	while(p != NULL)   /*MW-mm 961203 */ 		/*- mm 981007 -*/
 	{
-		if (p->mode.file_kind == __closed_file)
+		if (p->mode.file_kind == __closed_file){
 			return(p);
+}
 		else									/*- mm 981007 -*/
 		{										/*- mm 981007 -*/
 			plast = p;							/*- mm 981007 -*/
@@ -290,10 +293,12 @@ void __init_file(FILE * file, __file_modes mode, char * buff, size_t size)
 	file->state.error       = 0;
 	file->position          = 0;
 	
-	if (size)
+	if (size){
 		setvbuf(file, buff, _IOFBF, size);
-	else
+}
+	else{
 		setvbuf(file, 0,    _IONBF, 0);
+}
 	
 	file->buffer_ptr = file->buffer;
 	file->buffer_len = 0;
@@ -326,29 +331,38 @@ void __close_all(void)
 	while(p != NULL)   											/*- mm 981007 -*/
 	{
 		if (p->mode.file_kind != __closed_file) 				/*- mm 981007 -*/
+{
 			fclose(p);
+}
 #ifndef _No_Disk_File_OS_Support								/*- mm 981020 -*/
 		plast = p;												/*- mm 981007 -*/
 		p     = p->next_file_struct;							/*- mm 981007 -*/
 		if (plast->is_dynamically_allocated)					/*- mm 981007 -*/
+{
 			free(plast);										/*- mm 981007 -*/
+}
 		else													/*- mm 981007 -*/
 		{														/*- mm 981007 -*/
 			plast->mode.file_kind = __unavailable_file;			/*- mm 981007 -*/
 			if ((p != NULL) && p->is_dynamically_allocated)		/*- mm 981007 -*/
+{
 				plast->next_file_struct = NULL;					/*- mm 981007 -*/
+}
 		}														/*- mm 981007 -*/
 #else															/*- mm 981020 -*/
 		if (file_index < _STATIC_FILES)							/*- mm 981020 -*/
+{
 			p = &__files[file_index++];							/*- mm 981020 -*/
+}
 		else													/*- mm 981020 -*/
+{
 			p = NULL;											/*- mm 981020 -*/
+}
 #endif	/* _No_Disk_File_OS_Support */							/*- mm 981020 -*/
 	}
 	
 	__end_critical_region(files_access);
 }
-
 
 int __flush_all(void)
 {
@@ -360,22 +374,26 @@ int __flush_all(void)
 	
 	while (p != NULL)											/*- mm 981007 -*/
 	{
-		if (p->mode.file_kind != __closed_file)
-			if (fflush(p))
+		if (p->mode.file_kind != __closed_file){
+			if (fflush(p)){
 				result = EOF;
+}}
 #ifndef _No_Disk_File_OS_Support								/*- mm 981020 -*/
 		p = p->next_file_struct;								/*- mm 981007 -*/
 #else															/*- mm 981020 -*/
 		if (file_index < _STATIC_FILES)							/*- mm 981020 -*/
+{
 			p = &__files[file_index++];							/*- mm 981020 -*/
+}
 		else													/*- mm 981020 -*/
+{
 			p = NULL;											/*- mm 981020 -*/
+}
 #endif	/* _No_Disk_File_OS_Support */							/*- mm 981020 -*/
 	}
 	
 	return(result);
 }
-
 
           /*- mm 970708 -*/
 int __flush_line_buffered_output_files(void)
@@ -401,15 +419,20 @@ int __flush_line_buffered_output_files(void)
 		p = p->next_file_struct;								/*- mm 981007 -*/
 #else															/*- mm 981020 -*/
 		if (file_index < _STATIC_FILES)							/*- mm 981020 -*/
+{
 			p = &__files[file_index++];							/*- mm 981020 -*/
+}
 		else													/*- mm 981020 -*/
+{
 			p = NULL;											/*- mm 981020 -*/
+}
 #endif	/* _No_Disk_File_OS_Support */							/*- mm 981020 -*/
 	}
 	
 	return(result);
 }
-          														/*- mm 970708 -*/
+
+                                                                /*- mm 970708 -*/
 
 
 /*  mm 981015a If these routines are really needed, they need updating to account for dynamically */

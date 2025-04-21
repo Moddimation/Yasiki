@@ -1,22 +1,22 @@
 /* Metrowerks Standard Library
  * Copyright ÃÂ¯ÃÂ½C 1995-2001 Metrowerks Corporation.  All rights reserved.
  *
- * $Date: 2001/03/08 21:13:24 $ 
- * $Revision: 1.13 $ 
+ * $Date: 2001/03/08 21:13:24 $
+ * $Revision: 1.13 $
  */
 
 // vector.h          // hh 971207 Changed filename from vector to vector.h
 
-#ifndef _VECTOR_H          // hh 971207 added standard include guards
-#define _VECTOR_H
+#ifndef _VECTOR_H                 // hh 971207 added standard include guards
+#    define _VECTOR_H
 
-#include <vector>
+#    include <vector>
 
-#ifndef _MSL_NO_CPP_NAMESPACE            // hh 971207 Added backward compatibility
-	using std::vector;
-#endif
+#    ifndef _MSL_NO_CPP_NAMESPACE // hh 971207 Added backward compatibility
+using std::vector;
+#    endif
 
-#endif  // _VECTOR_H
+#endif                            // _VECTOR_H
 
 // hh 971207 Changed filename from vector to vector.h
 // hh 971207 added standard include guards

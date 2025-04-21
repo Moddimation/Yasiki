@@ -1,6 +1,6 @@
 /*
  *	uart_console_config.h
- *	
+ *
  *		Copyright C 1997 Metrowerks, Inc.
  *		All rights reserved.
  */
@@ -10,6 +10,6 @@
 
 #include "UART.h"
 
-#define UART_CONSOLE_BAUD_RATE	kBaud57600
+#define UART_CONSOLE_BAUD_RATE kBaud57600
 
 #endif

@@ -17,11 +17,11 @@ BOOL EXIImmEx(s32 channel, void *buffer, s32 length, u32 type);
 BOOL EXIDma(s32 channel, void *buffer, s32 length, u32 type, EXICallback callback);
 BOOL EXISync(s32 channel);
 BOOL EXIProbe(s32 channel);
-s32 EXIProbeEx(s32 channel);
+s32  EXIProbeEx(s32 channel);
 BOOL EXIAttach(s32 channel, EXICallback callback);
 BOOL EXIDetach(s32 channel);
-u32 EXIGetState(s32 channel);
-s32 EXIGetID(s32 channel, u32 device, u32* id);
+u32  EXIGetState(s32 channel);
+s32  EXIGetID(s32 channel, u32 device, u32 *id);
 void EXIProbeReset(void);
 
 #endif

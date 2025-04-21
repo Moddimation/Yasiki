@@ -1,5 +1,5 @@
 
-#ifndef _No_Floating_Point  
+#ifndef _No_Floating_Point
 /* @(#)s_tanh.c 1.2 95/01/04 */
 /* $Id: s_tanh.c,v 1.2 1999/01/13 22:54:58 vscott Exp $ */
 /*
@@ -8,7 +8,7 @@
  *
  * Developed at SunPro, a Sun Microsystems, Inc. business.
  * Permission to use, copy, modify, and distribute this
- * software is freely granted, provided that this notice 
+ * software is freely granted, provided that this notice
  * is preserved.
  * ====================================================
  */
@@ -37,49 +37,66 @@
  *	only tanh(0)=0 is exact for finite argument.
  */
 
-#include "fdlibm.h"
+#    include "fdlibm.h"
 
-#ifdef __STDC__
-static const double one=1.0, two=2.0, tiny = 1.0e-300;
-#else
-static double one=1.0, two=2.0, tiny = 1.0e-300;
-#endif
+#    ifdef __STDC__
+static const double one = 1.0, two = 2.0, tiny = 1.0e-300;
+#    else
+static double one = 1.0, two = 2.0, tiny = 1.0e-300;
+#    endif
 
-#ifdef __STDC__
-	double tanh(double x)
-#else
-	double tanh(x)
-	double x;
-#endif
+#    ifdef __STDC__
+double
+tanh(double x)
+#    else
+double
+       tanh(x)
+double x;
+#    endif
 {
-	double t,z;
-	int jx,ix;
+    double t, z;
+    int    jx, ix;
 
     /* High word of |x|. */
-	jx = __HI(x);
-	ix = jx&0x7fffffff;
+    jx = __HI(x);
+    ix = jx & 0x7fffffff;
 
     /* x is INF or NaN */
-	if(ix>=0x7ff00000) { 
-	    if (jx>=0) return one/x+one;    /* tanh(+-inf)=+-1 */
-	    else       return one/x-one;    /* tanh(NaN) = NaN */
-	}
+    if (ix >= 0x7ff00000)
+    {
+        if (jx >= 0)
+        {
+            return one / x + one; /* tanh(+-inf)=+-1 */
+        }
+        else
+        {
+            return one / x - one; /* tanh(NaN) = NaN */
+        }
+    }
 
-    /* |x| < 22 */
-	if (ix < 0x40360000) {		/* |x|<22 */
-	    if (ix<0x3c800000) 		/* |x|<2**-55 */
-		return x*(one+x);    	/* tanh(small) = small */
-	    if (ix>=0x3ff00000) {	/* |x|>=1  */
-		t = expm1(two*fabs(x));
-		z = one - two/(t+two);
-	    } else {
-	        t = expm1(-two*fabs(x));
-	        z= -t/(t+two);
-	    }
-    /* |x| > 22, return +-1 */
-	} else {
-	    z = one - tiny;		/* raised inexact flag */
-	}
-	return (jx>=0)? z: -z;
+                                  /* |x| < 22 */
+    if (ix < 0x40360000)
+    {                             /* |x|<22 */
+        if (ix < 0x3c800000)      /* |x|<2**-55 */
+        {
+            return x * (one + x); /* tanh(small) = small */
+        }
+        if (ix >= 0x3ff00000)
+        {                         /* |x|>=1  */
+            t = expm1(two * fabs(x));
+            z = one - two / (t + two);
+        }
+        else
+        {
+            t = expm1(-two * fabs(x));
+            z = -t / (t + two);
+        }
+        /* |x| > 22, return +-1 */
+    }
+    else
+    {
+        z = one - tiny; /* raised inexact flag */
+    }
+    return (jx >= 0) ? z : -z;
 }
-#endif /* _No_Floating_Point  */
+#endif                  /* _No_Floating_Point  */

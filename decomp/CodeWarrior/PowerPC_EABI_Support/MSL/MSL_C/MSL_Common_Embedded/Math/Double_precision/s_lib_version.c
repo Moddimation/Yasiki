@@ -1,5 +1,5 @@
 
-#ifndef _No_Floating_Point  
+#ifndef _No_Floating_Point
 /* @(#)s_lib_version.c 1.2 95/01/04 */
 /* $Id: s_lib_version.c,v 1.2 1999/01/13 22:54:58 vscott Exp $ */
 /*
@@ -8,7 +8,7 @@
  *
  * Developed at SunPro, a Sun Microsystems, Inc. business.
  * Permission to use, copy, modify, and distribute this
- * software is freely granted, provided that this notice 
+ * software is freely granted, provided that this notice
  * is preserved.
  * ====================================================
  */
@@ -17,22 +17,22 @@
  * MACRO for standards
  */
 
-#include "fdlibm.h"
+#    include "fdlibm.h"
 
 /*
  * define and initialize _LIB_VERSION
  */
-#ifdef _POSIX_MODE
+#    ifdef _POSIX_MODE
 _LIB_VERSION_TYPE _LIB_VERSION = _POSIX_;
-#else
-#ifdef _XOPEN_MODE
+#    else
+#        ifdef _XOPEN_MODE
 _LIB_VERSION_TYPE _LIB_VERSION = _XOPEN_;
-#else
-#ifdef _SVID3_MODE
+#        else
+#            ifdef _SVID3_MODE
 _LIB_VERSION_TYPE _LIB_VERSION = _SVID_;
-#else					/* default _IEEE_MODE */
+#            else /* default _IEEE_MODE */
 _LIB_VERSION_TYPE _LIB_VERSION = _IEEE_;
-#endif
-#endif
-#endif
-#endif /* _No_Floating_Point  */
+#            endif
+#        endif
+#    endif
+#endif            /* _No_Floating_Point  */

@@ -1,22 +1,22 @@
 /* Metrowerks Standard Library
  * Copyright ÃÂ¯ÃÂ½C 1995-2001 Metrowerks Corporation.  All rights reserved.
  *
- * $Date: 2001/03/08 20:52:47 $ 
- * $Revision: 1.13 $ 
+ * $Date: 2001/03/08 20:52:47 $
+ * $Revision: 1.13 $
  */
 
 // bitset.h              // hh 971206 Filename changed from bitset to bitset.h
 
-#ifndef _BITSET_H              // hh 971206 Include guards given standard names
-#define _BITSET_H
+#ifndef _BITSET_H                 // hh 971206 Include guards given standard names
+#    define _BITSET_H
 
-#include <bitset>
+#    include <bitset>
 
-#ifndef _MSL_NO_CPP_NAMESPACE      // hh 971206 Backward compatibility added with "using"
-	using std::bitset;
-#endif
+#    ifndef _MSL_NO_CPP_NAMESPACE // hh 971206 Backward compatibility added with "using"
+using std::bitset;
+#    endif
 
-#endif  // _BITSET_H
+#endif                            // _BITSET_H
 
 // hh 971206 Filename changed from bitset to bitset.h
 // hh 971206 Include guards given standard names

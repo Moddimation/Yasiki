@@ -1,36 +1,38 @@
-#include <dolphin.h>
+#include <macros.h>
+
+#include <dolphin/db.h>
 #include <dolphin/exi.h>
 #include <dolphin/os.h>
-#include <dolphin/db.h>
-#include <macros.h>
+
+#include <dolphin.h>
 
 void EnableMetroTRKInterrupts(void);
 
 // internal headers
 #include "OSPrivate.h"
 
-#define OS_BI2_DEBUG_ADDRESS 0x800000F4
-#define DEBUGFLAG_ADDR 0x800030E8
-#define OS_DEBUG_ADDRESS_2 0x800030E9
+#define OS_BI2_DEBUG_ADDRESS    0x800000F4
+#define DEBUGFLAG_ADDR          0x800030E8
+#define OS_DEBUG_ADDRESS_2      0x800030E9
 #define OS_CURRENTCONTEXT_PADDR 0x00C0
 
-#define OS_EXCEPTIONTABLE_ADDR 0x3000
-#define OS_DBJUMPPOINT_ADDR 0x60
+#define OS_EXCEPTIONTABLE_ADDR  0x3000
+#define OS_DBJUMPPOINT_ADDR     0x60
 // memory locations for important stuff
 #define OS_CACHED_REGION_PREFIX 0x8000
-#define OS_BI2_DEBUG_ADDRESS 0x800000F4
+#define OS_BI2_DEBUG_ADDRESS    0x800000F4
 #define OS_BI2_DEBUGFLAG_OFFSET 0xC
-#define PAD3_BUTTON_ADDR 0x800030E4
-#define OS_DVD_DEVICECODE 0x800030E6
-#define DEBUGFLAG_ADDR 0x800030E8
-#define OS_DEBUG_ADDRESS_2 0x800030E9
-#define DB_EXCEPTIONRET_OFFSET 0xC
+#define PAD3_BUTTON_ADDR        0x800030E4
+#define OS_DVD_DEVICECODE       0x800030E6
+#define DEBUGFLAG_ADDR          0x800030E8
+#define OS_DEBUG_ADDRESS_2      0x800030E9
+#define DB_EXCEPTIONRET_OFFSET  0xC
 #define DB_EXCEPTIONDEST_OFFSET 0x8
 
 extern unsigned long __DVDLongFileNameFlag;
 extern unsigned long __PADSpec;
 extern unsigned char __ArenaLo[];
-extern char _stack_addr[];
+extern char          _stack_addr[];
 extern unsigned char __ArenaHi[];
 
 // dummy entry points to the OS Exception vector
@@ -47,18 +49,20 @@ void __OSDBJUMPEND(void);
 
 #define NOP 0x60000000
 
-static struct OSBootInfo_s * BootInfo;
-static unsigned long * BI2DebugFlag;
-static double ZeroF;
-static int AreWeInitialized;
-static void (* * OSExceptionTable)(unsigned char, struct OSContext *);
+static struct OSBootInfo_s* BootInfo;
+static unsigned long*       BI2DebugFlag;
+static double               ZeroF;
+static int                  AreWeInitialized;
+static void                 (**OSExceptionTable)(unsigned char, struct OSContext*);
 
 // functions
 static asm void __OSInitFPRs(void);
-static void OSExceptionInit(void);
-static void OSDefaultExceptionHandler(unsigned char exception /* r3 */, struct OSContext * context /* r4 */);
+static void     OSExceptionInit(void);
+static void     OSDefaultExceptionHandler(unsigned char exception /* r3 */, struct OSContext* context /* r4 */);
 
-unsigned long __OSIsDebuggerPresent() {
+unsigned long
+__OSIsDebuggerPresent()
+{
     return *(u32*)OSPhysicalToCached(0x40);
 }
 
@@ -312,10 +316,11 @@ entry __OSDBINTSTART
     mtmsr   r3
     blr
 entry __OSDBINTEND
-  /* clang-format on */
+    /* clang-format on */
 }
 
-static asm void __OSDBJump(void){
+static asm void
+__OSDBJump(void) {
     /* clang-format off */
 
     nofralloc
@@ -324,25 +329,30 @@ entry __OSDBJUMPSTART
 entry __OSDBJUMPEND
     /* clang-format on */
 
-} 
+}
 
-__OSExceptionHandler __OSSetExceptionHandler(__OSException exception, __OSExceptionHandler handler) {
+__OSExceptionHandler __OSSetExceptionHandler(__OSException exception, __OSExceptionHandler handler)
+{
     __OSExceptionHandler oldHandler;
-    
-    ASSERTMSGLINE(0x37F, exception < __OS_EXCEPTION_MAX, "__OSSetExceptionHandler(): unknown exception."); 
-    
+
+    ASSERTMSGLINE(0x37F, exception < __OS_EXCEPTION_MAX, "__OSSetExceptionHandler(): unknown exception.");
+
     oldHandler = OSExceptionTable[exception];
     OSExceptionTable[exception] = handler;
     return oldHandler;
 }
 
-__OSExceptionHandler __OSGetExceptionHandler(__OSException exception) {
+__OSExceptionHandler
+__OSGetExceptionHandler(__OSException exception)
+{
     ASSERTMSGLINE(0x396, exception < __OS_EXCEPTION_MAX, "__OSGetExceptionHandler(): unknown exception.");
     return OSExceptionTable[exception];
 }
 
-static asm void OSExceptionVector(void) {
-  /* clang-format off */
+static asm void
+OSExceptionVector(void)
+{
+    /* clang-format off */
     nofralloc
 
 entry __OSEVStart
@@ -422,12 +432,15 @@ recoverable:
 
 entry __OSEVEnd
     nop
-  /* clang-format on */
+    /* clang-format on */
 }
 
 void __OSUnhandledException(__OSException exception, OSContext* context, u32 dsisr, u32 dar);
-asm void OSDefaultExceptionHandler(register __OSException exception, register OSContext* context) {
-  /* clang-format off */
+
+asm void
+OSDefaultExceptionHandler(register __OSException exception, register OSContext* context)
+{
+    /* clang-format off */
     nofralloc
     OS_EXCEPTION_SAVE_GPRS(context)
     mfdsisr r5
@@ -448,5 +461,5 @@ void __OSPSInit(void)
         li      r3, 0
         mtspr   GQR0, r3
     }
-  // clang-format on
+    // clang-format on
 }

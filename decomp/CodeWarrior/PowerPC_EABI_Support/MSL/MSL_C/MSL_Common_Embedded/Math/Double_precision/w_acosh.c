@@ -1,5 +1,5 @@
 
-#ifndef _No_Floating_Point  
+#ifndef _No_Floating_Point
 /* @(#)w_acosh.c 1.2 95/01/04 */
 /* $Id: w_acosh.c,v 1.2 1999/01/13 22:54:58 vscott Exp $ */
 /*
@@ -8,35 +8,44 @@
  *
  * Developed at SunPro, a Sun Microsystems, Inc. business.
  * Permission to use, copy, modify, and distribute this
- * software is freely granted, provided that this notice 
+ * software is freely granted, provided that this notice
  * is preserved.
  * ====================================================
  *
  */
 
-/* 
+/*
  * wrapper acosh(x)
  */
 
-#include "fdlibm.h"
+#    include "fdlibm.h"
 
-#ifdef __STDC__
-	double acosh(double x)		/* wrapper acosh */
-#else
-	double acosh(x)			/* wrapper acosh */
-	double x;
-#endif
+#    ifdef __STDC__
+double
+acosh(double x) /* wrapper acosh */
+#    else
+double
+       acosh(x)                             /* wrapper acosh */
+double x;
+#    endif
 {
-#ifdef _IEEE_LIBM
-	return __ieee754_acosh(x);
-#else
-	double z;
-	z = __ieee754_acosh(x);
-	if(_LIB_VERSION == _IEEE_ || isnan(x)) return z;
-	if(x<1.0) {
-	        return __kernel_standard(x,x,29); /* acosh(x<1) */
-	} else
-	    return z;
-#endif
+#    ifdef _IEEE_LIBM
+    return __ieee754_acosh(x);
+#    else
+    double z;
+    z = __ieee754_acosh(x);
+    if (_LIB_VERSION == _IEEE_ || isnan(x))
+    {
+        return z;
+    }
+    if (x < 1.0)
+    {
+        return __kernel_standard(x, x, 29); /* acosh(x<1) */
+    }
+    else
+    {
+        return z;
+    }
+#    endif
 }
-#endif /* _No_Floating_Point  */
+#endif          /* _No_Floating_Point  */

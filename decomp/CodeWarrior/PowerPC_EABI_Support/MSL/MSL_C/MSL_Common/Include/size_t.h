@@ -6,19 +6,19 @@
  */
 
 #ifndef _MSL_SIZE_T_H
-#define _MSL_SIZE_T_H
+#    define _MSL_SIZE_T_H
 
-#include <ansi_parms.h> /*- mm 970905 -*/
+#    include <ansi_parms.h>       /*- mm 970905 -*/
 
-_MSL_BEGIN_NAMESPACE_STD /*- cc 010409 -*/
-    _MSL_BEGIN_EXTERN_C  /*- cc 010409 -*/
+_MSL_BEGIN_NAMESPACE_STD          /*- cc 010409 -*/
+    _MSL_BEGIN_EXTERN_C           /*- cc 010409 -*/
 
     typedef unsigned long size_t; /*- cc 010411 -*/
 
-_MSL_END_EXTERN_C          /*- cc 010409 -*/
-    _MSL_END_NAMESPACE_STD /*- cc 010409 -*/
+_MSL_END_EXTERN_C                 /*- cc 010409 -*/
+    _MSL_END_NAMESPACE_STD        /*- cc 010409 -*/
 
-#endif /* _MSL_SIZE_T_H */
+#endif                            /* _MSL_SIZE_T_H */
 
     /* Change record:
      * mm  970905 added include of ansi_parms.h to avoid need for prefix file
@@ -33,4 +33,3 @@ _MSL_END_EXTERN_C          /*- cc 010409 -*/
      * cc  010409 updated to JWW new namespace macros
      * cc  010411 updated hh cute definition of size_t
      */
-

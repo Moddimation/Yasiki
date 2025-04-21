@@ -1,30 +1,34 @@
-#include <dolphin.h>
 #include <dolphin/os.h>
+
+#include <dolphin.h>
 
 #include "OSPrivate.h"
 
-struct Timer {
-    void (* callback)();
-    unsigned long currval;
-    unsigned long startval;
+struct Timer
+{
+    void           (*callback)();
+    unsigned long  currval;
+    unsigned long  startval;
     unsigned short mode;
-    int stopped;
-    int initialized;
+    int            stopped;
+    int            initialized;
 };
 
 static struct Timer Timer; // .bss
 
-void (* OSSetTimerCallback(void (* callback)()))();
-void OSInitTimer(unsigned long time, unsigned short mode);
-void OSStartTimer(void);
-void OSStopTimer(void);
-static void DecrementerExceptionHandler(unsigned char exception, struct OSContext * context);
+void        (*OSSetTimerCallback(void (*callback)()))();
+void        OSInitTimer(unsigned long time, unsigned short mode);
+void        OSStartTimer(void);
+void        OSStopTimer(void);
+static void DecrementerExceptionHandler(unsigned char exception, struct OSContext* context);
 
-void (* OSSetTimerCallback(void (* callback)()))() {
-    void (* prevCallback)();
+void (*OSSetTimerCallback(void (*callback)()))()
+{
+    void (*prevCallback)();
 
 #if DEBUG
-    if(Timer.initialized == 0) {
+    if (Timer.initialized == 0)
+    {
         OSPanic("OSTimer.c", 127, "OSSetTimerCallback(): timer is not initialized.");
     }
 #endif
@@ -35,9 +39,12 @@ void (* OSSetTimerCallback(void (* callback)()))() {
     return prevCallback;
 }
 
-void OSInitTimer(unsigned long time, unsigned short mode) {
+void
+OSInitTimer(unsigned long time, unsigned short mode)
+{
 #if DEBUG
-    if (time >= 0x80000000) {
+    if (time >= 0x80000000)
+    {
         OSPanic("OSTimer.c", 0x97, "OSInitTimer(): time param must be less than 0x80000000.");
     }
 #endif
@@ -46,7 +53,8 @@ void OSInitTimer(unsigned long time, unsigned short mode) {
     Timer.currval = time;
     Timer.startval = time;
     Timer.mode = mode;
-    if (Timer.initialized == 0) {
+    if (Timer.initialized == 0)
+    {
         __OSSetExceptionHandler(8, &DecrementerExceptionHandler);
         Timer.initialized = 1;
         Timer.callback = 0;
@@ -56,11 +64,14 @@ void OSInitTimer(unsigned long time, unsigned short mode) {
     }
 }
 
-void OSStartTimer(void) {
+void
+OSStartTimer(void)
+{
     int enabled;
 
 #if DEBUG
-    if (Timer.initialized == 0) {
+    if (Timer.initialized == 0)
+    {
         OSPanic("OSTimer.c", 0xB8, "OSStartTimer(): timer is not initialized.");
     }
 #endif
@@ -70,39 +81,50 @@ void OSStartTimer(void) {
     OSRestoreInterrupts(enabled);
 }
 
-void OSStopTimer(void) {
+void
+OSStopTimer(void)
+{
     int enabled;
 
 #if DEBUG
-    if (Timer.initialized == 0) {
+    if (Timer.initialized == 0)
+    {
         OSPanic("OSTimer.c", 0xD0, "OSStopTimer(): timer is not initialized.");
     }
 #endif
 
     enabled = OSDisableInterrupts();
-    if (Timer.stopped == 0) {
+    if (Timer.stopped == 0)
+    {
         Timer.stopped = 1;
         Timer.currval = PPCMfdec();
-        if (Timer.currval & 0x80000000) {
+        if (Timer.currval & 0x80000000)
+        {
             Timer.currval = 0;
         }
     }
     OSRestoreInterrupts(enabled);
 }
 
-static void DecrementerExceptionCallback(unsigned char exception, struct OSContext * context) {
+static void
+DecrementerExceptionCallback(unsigned char exception, struct OSContext* context)
+{
     struct OSContext exceptionContext;
 
     OSClearContext(&exceptionContext);
     OSSetCurrentContext(&exceptionContext);
-    if (Timer.stopped == 0) {
-        if (Timer.mode == 1) {
+    if (Timer.stopped == 0)
+    {
+        if (Timer.mode == 1)
+        {
             PPCMtdec(Timer.startval);
         }
-        if (Timer.mode == 2) {
+        if (Timer.mode == 2)
+        {
             Timer.stopped = 1;
         }
-        if (Timer.callback != 0) {
+        if (Timer.callback != 0)
+        {
             Timer.callback();
         }
     }
@@ -111,8 +133,9 @@ static void DecrementerExceptionCallback(unsigned char exception, struct OSConte
     OSLoadContext(context);
 }
 
-static asm void DecrementerExceptionHandler(unsigned char exception,
-                                            register struct OSContext* context) {
+static asm void
+DecrementerExceptionHandler(unsigned char exception, register struct OSContext* context)
+{
     // clang-format off
     nofralloc
 

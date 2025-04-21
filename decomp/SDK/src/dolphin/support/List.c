@@ -1,35 +1,44 @@
 #include <charPipeline/structures/List.h>
 
-void DSInitList(DSListPtr list, Ptr obj, DSLinkPtr link)
+void
+DSInitList(DSListPtr list, Ptr obj, DSLinkPtr link)
 {
     list->Head = NULL;
     list->Tail = NULL;
     list->Offset = (Ptr)link - obj;
 }
 
-void DSInsertListObject(DSListPtr list, Ptr cursor, Ptr obj)
+void
+DSInsertListObject(DSListPtr list, Ptr cursor, Ptr obj)
 {
     DSLinkPtr link;
     DSLinkPtr linkNext;
     DSLinkPtr linkPrev;
 
     link = (DSLinkPtr)(obj + list->Offset);
-    if (list->Head) {
-        if (!cursor) {
+    if (list->Head)
+    {
+        if (!cursor)
+        {
             linkPrev = (DSLinkPtr)(list->Tail + list->Offset);
             linkPrev->Next = obj;
             link->Prev = list->Tail;
             link->Next = NULL;
             list->Tail = obj;
             return;
-        } else {
+        }
+        else
+        {
             linkNext = (DSLinkPtr)(cursor + list->Offset);
-            if (cursor == list->Head) {
+            if (cursor == list->Head)
+            {
                 list->Head = obj;
                 link->Next = cursor;
                 linkNext->Prev = obj;
                 return;
-            } else {
+            }
+            else
+            {
                 linkPrev = (DSLinkPtr)(linkNext->Prev + list->Offset);
                 link->Next = cursor;
                 link->Prev = linkNext->Prev;
@@ -37,26 +46,36 @@ void DSInsertListObject(DSListPtr list, Ptr cursor, Ptr obj)
                 linkPrev->Next = obj;
             }
         }
-    } else {
+    }
+    else
+    {
         list->Tail = obj;
         list->Head = obj;
         link->Next = link->Prev = NULL;
     }
 }
 
-void DSRemoveListObject(DSListPtr list, Ptr obj)
+void
+DSRemoveListObject(DSListPtr list, Ptr obj)
 {
     DSLinkPtr link = (DSLinkPtr)(obj + list->Offset);
 
-    if (obj) {
-        if (link->Prev) {
+    if (obj)
+    {
+        if (link->Prev)
+        {
             ((DSLinkPtr)(link->Prev + list->Offset))->Next = link->Next;
-        } else {
+        }
+        else
+        {
             list->Head = link->Next;
         }
-        if (link->Next) {
+        if (link->Next)
+        {
             ((DSLinkPtr)(link->Next + list->Offset))->Prev = link->Prev;
-        } else {
+        }
+        else
+        {
             list->Tail = link->Prev;
         }
         link->Prev = NULL;
@@ -64,14 +83,17 @@ void DSRemoveListObject(DSListPtr list, Ptr obj)
     }
 }
 
-void DSAttachList(DSListPtr baseList, DSListPtr attachList)
+void
+DSAttachList(DSListPtr baseList, DSListPtr attachList)
 {
     DSLinkPtr link;
     DSLinkPtr linkPrev;
 
-    if (baseList->Offset == attachList->Offset && (attachList->Head || attachList->Tail)) {
+    if (baseList->Offset == attachList->Offset && (attachList->Head || attachList->Tail))
+    {
         linkPrev = (DSLinkPtr)(attachList->Head + attachList->Offset);
-        if (baseList->Head) {
+        if (baseList->Head)
+        {
             link = (DSLinkPtr)(baseList->Tail + baseList->Offset);
             link->Next = attachList->Head;
             linkPrev->Prev = baseList->Tail;
@@ -80,16 +102,19 @@ void DSAttachList(DSListPtr baseList, DSListPtr attachList)
         }
         baseList->Head = attachList->Head;
         baseList->Tail = attachList->Tail;
-        linkPrev;  // needed to match
+        linkPrev; // needed to match
     }
 }
 
-void *DSNextListObj(DSListPtr list, Ptr obj)
+void *
+DSNextListObj(DSListPtr list, Ptr obj)
 {
-    if (!list) {
+    if (!list)
+    {
         return NULL;
     }
-    if (!obj) {
+    if (!obj)
+    {
         return list->Head;
     }
     return ((DSLinkPtr)(obj + list->Offset))->Next;

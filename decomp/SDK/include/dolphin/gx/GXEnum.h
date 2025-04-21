@@ -5,10 +5,10 @@
 
 typedef u8 GXBool;
 
-#define GX_FALSE ((GXBool)0)
-#define GX_TRUE ((GXBool)1)
+#define GX_FALSE   ((GXBool)0)
+#define GX_TRUE    ((GXBool)1)
 
-#define GX_ENABLE ((GXBool)1)
+#define GX_ENABLE  ((GXBool)1)
 #define GX_DISABLE ((GXBool)0)
 
 typedef enum _GXProjectionType
@@ -392,10 +392,10 @@ typedef enum _GXLogicOp
 
 typedef enum _GXCompCnt
 {
-    GX_POS_XY   = 0,
-    GX_POS_XYZ  = 1,
-    GX_NRM_XYZ  = 0,
-    GX_NRM_NBT  = 1,
+    GX_POS_XY = 0,
+    GX_POS_XYZ = 1,
+    GX_NRM_XYZ = 0,
+    GX_NRM_NBT = 1,
     GX_NRM_NBT3 = 2,
     GX_CLR_RGB = 0,
     GX_CLR_RGBA = 1,
@@ -633,18 +633,18 @@ typedef enum _GXTevScale
 
 typedef enum _GXTevKColorSel
 {
-    GX_TEV_KCSEL_1    = 0x00,
-    GX_TEV_KCSEL_7_8  = 0x01,
-    GX_TEV_KCSEL_3_4  = 0x02,
-    GX_TEV_KCSEL_5_8  = 0x03,
-    GX_TEV_KCSEL_1_2  = 0x04,
-    GX_TEV_KCSEL_3_8  = 0x05,
-    GX_TEV_KCSEL_1_4  = 0x06,
-    GX_TEV_KCSEL_1_8  = 0x07,
-    GX_TEV_KCSEL_K0   = 0x0C,
-    GX_TEV_KCSEL_K1   = 0x0D,
-    GX_TEV_KCSEL_K2   = 0x0E,
-    GX_TEV_KCSEL_K3   = 0x0F,
+    GX_TEV_KCSEL_1 = 0x00,
+    GX_TEV_KCSEL_7_8 = 0x01,
+    GX_TEV_KCSEL_3_4 = 0x02,
+    GX_TEV_KCSEL_5_8 = 0x03,
+    GX_TEV_KCSEL_1_2 = 0x04,
+    GX_TEV_KCSEL_3_8 = 0x05,
+    GX_TEV_KCSEL_1_4 = 0x06,
+    GX_TEV_KCSEL_1_8 = 0x07,
+    GX_TEV_KCSEL_K0 = 0x0C,
+    GX_TEV_KCSEL_K1 = 0x0D,
+    GX_TEV_KCSEL_K2 = 0x0E,
+    GX_TEV_KCSEL_K3 = 0x0F,
     GX_TEV_KCSEL_K0_R = 0x10,
     GX_TEV_KCSEL_K1_R = 0x11,
     GX_TEV_KCSEL_K2_R = 0x12,
@@ -665,14 +665,14 @@ typedef enum _GXTevKColorSel
 
 typedef enum _GXTevKAlphaSel
 {
-    GX_TEV_KASEL_1    = 0x00,
-    GX_TEV_KASEL_7_8  = 0x01,
-    GX_TEV_KASEL_3_4  = 0x02,
-    GX_TEV_KASEL_5_8  = 0x03,
-    GX_TEV_KASEL_1_2  = 0x04,
-    GX_TEV_KASEL_3_8  = 0x05,
-    GX_TEV_KASEL_1_4  = 0x06,
-    GX_TEV_KASEL_1_8  = 0x07,
+    GX_TEV_KASEL_1 = 0x00,
+    GX_TEV_KASEL_7_8 = 0x01,
+    GX_TEV_KASEL_3_4 = 0x02,
+    GX_TEV_KASEL_5_8 = 0x03,
+    GX_TEV_KASEL_1_2 = 0x04,
+    GX_TEV_KASEL_3_8 = 0x05,
+    GX_TEV_KASEL_1_4 = 0x06,
+    GX_TEV_KASEL_1_8 = 0x07,
     GX_TEV_KASEL_K0_R = 0x10,
     GX_TEV_KASEL_K1_R = 0x11,
     GX_TEV_KASEL_K2_R = 0x12,

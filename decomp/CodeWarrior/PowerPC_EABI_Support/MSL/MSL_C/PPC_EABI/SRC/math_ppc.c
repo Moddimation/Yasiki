@@ -1,19 +1,16 @@
-/* 
+/*
  * Define _INLINE to be a weak symbol. This is used by
- * cmath so that the symbols will be defined inside 
+ * cmath so that the symbols will be defined inside
  * MSL, as well as being available as an inline for the
  * user. Also see ctype.c for another example of this
  * sw 010918
  */
 
-
 #undef _INLINE
-#define _INLINE __declspec (weak)
+#define _INLINE __declspec(weak)
 #include <math.h>
 
-
-
-/* 
+/*
  * This file replaces all the calls to the single
  * precision functions with their inline counterparts
  * in <cmath>, and <math_ppc.h>

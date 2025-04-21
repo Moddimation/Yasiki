@@ -16,74 +16,76 @@
 */
 
 #ifndef _MSLGLOBALS_H
-#define _MSLGLOBALS_H
+#    define _MSLGLOBALS_H
 
 /*
     Project Specific
 */
 
-#ifdef GH_ACTION
-#define __PPCGEKKO__
-#define GEKKO
-#endif
+#    ifdef GH_ACTION
+#        define __PPCGEKKO__
+#        define GEKKO
+#    endif
 
-#ifndef __MWERKS__
-#define __option(x)   0
-#define __declspec(x) 0
-#define asm
-#endif
+#    ifndef __MWERKS__
+#        define __option(x)   0
+#        define __declspec(x) 0
+#        define __frsqrte(x)  0
+#        define __fabsf(x)    0
+#        define asm
+#    endif
 
-#ifndef __ansi_prefix__
+#    ifndef __ansi_prefix__
 
-#if defined(__MC68K__) /*- beb 990804 -*/
-#if defined(__embedded__)
-#include <ansi_prefix.e68k.h>
-#else
-#include <ansi_prefix.mac.h>
-#endif
-#elif (defined(__POWERPC__) && !defined(__PPC_EABI__)) && __MACH__
-#include <ansi_prefix.mach.h>
-#elif (defined(__POWERPC__) && !defined(__PPC_EABI__))
-#include <ansi_prefix.mac.h>
-#elif defined(__BEOS__) /*- bs 990121 -*/
-#include <ansi_prefix.be.h>
-#elif defined(__PPCGEKKO__)
-#include <ansi_prefix.PPCEABI.Gamecube.h>
-#elif defined(__PPC_EABI__)
-#include <ansi_prefix.PPCEABI.bare.h>
-#elif defined(__INTEL__)
-#if defined(__linux__)
-#include <ansi_prefix.Linux_x86.h>
-#elif !defined(UNDER_CE)
-#include <ansi_prefix.Win32.h>
-#endif
-#elif (defined(__MIPS__) && !defined(UNDER_CE))
-#if defined(__MIPS_PSX2__) /* for PS2 */
-#include <ansi_prefix.MIPS_PS2.h>
-#else
-#include <ansi_prefix.MIPS_bare.h>
-#endif
+#        if defined(__MC68K__)         /*- beb 990804 -*/
+#            if defined(__embedded__)
+#                include <ansi_prefix.e68k.h>
+#            else
+#                include <ansi_prefix.mac.h>
+#            endif
+#        elif (defined(__POWERPC__) && !defined(__PPC_EABI__)) && __MACH__
+#            include <ansi_prefix.mach.h>
+#        elif (defined(__POWERPC__) && !defined(__PPC_EABI__))
+#            include <ansi_prefix.mac.h>
+#        elif defined(__BEOS__)        /*- bs 990121 -*/
+#            include <ansi_prefix.be.h>
+#        elif defined(__PPCGEKKO__)
+#            include <ansi_prefix.PPCEABI.Gamecube.h>
+#        elif defined(__PPC_EABI__)
+#            include <ansi_prefix.PPCEABI.bare.h>
+#        elif defined(__INTEL__)
+#            if defined(__linux__)
+#                include <ansi_prefix.Linux_x86.h>
+#            elif !defined(UNDER_CE)
+#                include <ansi_prefix.Win32.h>
+#            endif
+#        elif (defined(__MIPS__) && !defined(UNDER_CE))
+#            if defined(__MIPS_PSX2__) /* for PS2 */
+#                include <ansi_prefix.MIPS_PS2.h>
+#            else
+#                include <ansi_prefix.MIPS_bare.h>
+#            endif
 
-#elif defined(__m56800E__) || defined(__m56800__)
-#include <ansi_prefix_dsp.h>
+#        elif defined(__m56800E__) || defined(__m56800__)
+#            include <ansi_prefix_dsp.h>
 
-#elif defined(__MCORE__)
-#include <ansi_prefix.MCORE_EABI_bare.h>
-#elif defined(__SH__)
-#include <ansi_prefix.SH_bare.h>
-#else
-#ifndef RC_INVOKED /*- hh 990525 -*/
-#error mslGlobals.h could not include prefix file
-#endif
-#endif
+#        elif defined(__MCORE__)
+#            include <ansi_prefix.MCORE_EABI_bare.h>
+#        elif defined(__SH__)
+#            include <ansi_prefix.SH_bare.h>
+#        else
+#            ifndef RC_INVOKED         /*- hh 990525 -*/
+#                error mslGlobals.h could not include prefix file
+#            endif
+#        endif
 
-#endif /* __ansi_prefix__ */
+#    endif                             /* __ansi_prefix__ */
 
-#if __option(longlong) && !defined(_No_LongLong)
-#define __MSL_LONGLONG_SUPPORT__
-#endif
+#    if __option(longlong) && !defined(_No_LongLong)
+#        define __MSL_LONGLONG_SUPPORT__
+#    endif
 
-#endif /* _MSLGLOBALS_H */
+#endif                                 /* _MSLGLOBALS_H */
 
 /* Change record:
  * hh  980120 created

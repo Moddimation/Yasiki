@@ -4,14 +4,15 @@
 #include <dolphin/types.h>
 
 #ifdef __cplusplus
-extern "C" {
+extern "C"
+{
 #endif
 
 typedef void (*OSResetCallback)(void);
 
 OSResetCallback OSSetResetCallback(OSResetCallback callback);
-BOOL OSGetResetSwitchState();
-BOOL OSGetResetButtonState(void);
+BOOL            OSGetResetSwitchState();
+BOOL            OSGetResetButtonState(void);
 
 #ifdef __cplusplus
 }

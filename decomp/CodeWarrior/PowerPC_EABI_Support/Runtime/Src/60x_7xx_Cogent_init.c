@@ -1,11 +1,13 @@
 //////////////////////////////////////////////////////////////////////////////
 //
-// Cogent PPC board-specific initialization code. 
+// Cogent PPC board-specific initialization code.
 //
 //
 //////////////////////////////////////////////////////////////////////////////
 
-#pragma section all_types ".init" ".init"	
+#pragma section all_types                                                                                              \
+    ".init"                                                                                                            \
+    ".init"
 
 //////////////////////////////////////////////////////////////////////
 //
@@ -18,9 +20,10 @@
 //
 //////////////////////////////////////////////////////////////////////
 
-asm void init_board()
+asm void
+init_board()
 {
-	nofralloc
-	
-	blr
+    nofralloc
+
+        blr
 }

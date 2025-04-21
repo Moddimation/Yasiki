@@ -1,9 +1,12 @@
-#include <dolphin.h>
 #include <dolphin/ax.h>
+
+#include <dolphin.h>
 
 #include "AXPrivate.h"
 
-void AXInit(void) {
+void
+AXInit(void)
+{
 #ifdef DEBUG
     OSReport("Initializing AX¥n");
 #endif
@@ -15,7 +18,9 @@ void AXInit(void) {
     __AXOutInit();
 }
 
-void AXQuit(void) {
+void
+AXQuit(void)
+{
 #ifdef DEBUG
     OSReport("Shutting down AX¥n");
 #endif

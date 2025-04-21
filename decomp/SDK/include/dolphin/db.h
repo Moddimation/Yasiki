@@ -2,10 +2,12 @@
 #define _DOLPHIN_DB_H_
 
 #include <dolphin/types.h>
+
 #include <dolphin/db/DBInterface.h>
 
 #ifdef __cplusplus
-extern "C" {
+extern "C"
+{
 #endif
 
 #define OS_DBINTERFACE_ADDR 0x00000040

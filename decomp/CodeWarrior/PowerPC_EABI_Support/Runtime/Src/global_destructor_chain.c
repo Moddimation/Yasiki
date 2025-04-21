@@ -29,11 +29,9 @@
 #include <MWCPlusLib.h>
 #include <NMWException.h>
 
-
-	/*	public data		*/
+/*	public data		*/
 
 DestructorChain *__global_destructor_chain;
-
 
 /************************************************************************/
 /*	Purpose..: 	Register a global object for later destruction			*/
@@ -42,34 +40,34 @@ DestructorChain *__global_destructor_chain;
 /*	Input....:	pointer to global registration structure				*/
 /*	Return...:	pointer to global object (pass thru)					*/
 /************************************************************************/
-extern void *__register_global_object(void *object,void *destructor,void *regmem)
+extern void *
+__register_global_object(void *object, void *destructor, void *regmem)
 {
-	((DestructorChain *)regmem)->next=__global_destructor_chain;
-	((DestructorChain *)regmem)->destructor=destructor;
-	((DestructorChain *)regmem)->object=object;
-	__global_destructor_chain=(DestructorChain *)regmem;
+    ((DestructorChain *)regmem)->next = __global_destructor_chain;
+    ((DestructorChain *)regmem)->destructor = destructor;
+    ((DestructorChain *)regmem)->object = object;
+    __global_destructor_chain = (DestructorChain *)regmem;
 
-	return object;
+    return object;
 }
-
 
 /************************************************************************/
 /* Purpose..: Destroy all constructed global objects					*/
 /* Input....: ---														*/
 /* Return...: ---														*/
 /************************************************************************/
-void __destroy_global_chain(void)
+void
+__destroy_global_chain(void)
 {
-	DestructorChain	*gdc;
+    DestructorChain *gdc;
 
-	while((gdc=__global_destructor_chain)!=0L)
-	{
-		__global_destructor_chain=gdc->next;
-		DTORCALL_COMPLETE(gdc->destructor,gdc->object);
-	}
+    while ((gdc = __global_destructor_chain) != 0L)
+    {
+        __global_destructor_chain = gdc->next;
+        DTORCALL_COMPLETE(gdc->destructor, gdc->object);
+    }
 }
 
-#if __MWERKS__ && __PPC_EABI__ && __dest_os!=__eppc_vxworks
-__declspec(section ".dtors") 
-	static void * const __destroy_global_chain_reference = __destroy_global_chain;
+#if __MWERKS__ && __PPC_EABI__ && __dest_os != __eppc_vxworks
+__declspec(section ".dtors") static void * const __destroy_global_chain_reference = __destroy_global_chain;
 #endif

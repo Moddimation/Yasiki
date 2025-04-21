@@ -1,14 +1,15 @@
 #ifndef _DOLPHIN_GX_GXFRAMEBUFFER_H_
 #define _DOLPHIN_GX_GXFRAMEBUFFER_H_
 
-#include <dolphin/gx/GXStruct.h>
 #include <dolphin/gx/GXEnum.h>
+#include <dolphin/gx/GXStruct.h>
 
 #ifdef __cplusplus
-extern "C" {
+extern "C"
+{
 #endif
 
-#define	GX_MAX_Z24	0x00ffffff
+#define GX_MAX_Z24 0x00ffffff
 
 extern GXRenderModeObj GXNtsc240Ds;
 extern GXRenderModeObj GXNtsc240DsAa;
@@ -41,7 +42,7 @@ void GXSetDispCopyDst(u16 wd, u16 ht);
 void GXSetTexCopyDst(u16 wd, u16 ht, GXTexFmt fmt, GXBool mipmap);
 void GXSetDispCopyFrame2Field(GXCopyMode mode);
 void GXSetCopyClamp(GXFBClamp clamp);
-u32 GXSetDispCopyYScale(f32 vscale);
+u32  GXSetDispCopyYScale(f32 vscale);
 void GXSetCopyClear(GXColor clear_clr, u32 clear_z);
 void GXSetCopyFilter(GXBool aa, const u8 sample_pattern[12][2], GXBool vf, const u8 vfilter[7]);
 void GXSetDispCopyGamma(GXGamma gamma);

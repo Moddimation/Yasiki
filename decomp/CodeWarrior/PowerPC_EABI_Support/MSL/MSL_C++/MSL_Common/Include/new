@@ -1,118 +1,156 @@
 /* Metrowerks Standard Library
  * Copyright ÃÂ¯ÃÂ½C 1995-2001 Metrowerks Corporation.  All rights reserved.
  *
- * $Date: 2001/04/02 18:28:18 $ 
- * $Revision: 1.17 $ 
+ * $Date: 2001/04/02 18:28:18 $
+ * $Revision: 1.17 $
  */
 
 // new        hh 971206  filename used to be new.h
- 
+
 #ifndef _NEW
-#define _NEW
+#    define _NEW
 
-#include <mslconfig>
-#include <cstddef>     // MW-mm 960723 // hh 971226 changed from <size_t.h>
-#include <exception>		//960902 bkoz
+#    include <cstddef>                // MW-mm 960723 // hh 971226 changed from <size_t.h>
+#    include <exception>              //960902 bkoz
+#    include <mslconfig>
 
-#ifndef RC_INVOKED // hh 971230
+#    ifndef RC_INVOKED                // hh 971230
 
-#pragma options align=native
+#        pragma options align = native
 
-#ifdef _MSL_FORCE_ENUMS_ALWAYS_INT
-	#if _MSL_FORCE_ENUMS_ALWAYS_INT
-		#pragma enumsalwaysint on
-	#else
-		#pragma enumsalwaysint off
-	#endif
-#endif
+#        ifdef _MSL_FORCE_ENUMS_ALWAYS_INT
+#            if _MSL_FORCE_ENUMS_ALWAYS_INT
+#                pragma enumsalwaysint on
+#            else
+#                pragma enumsalwaysint off
+#            endif
+#        endif
 
-#ifdef _MSL_FORCE_ENABLE_BOOL_SUPPORT
-	#if _MSL_FORCE_ENABLE_BOOL_SUPPORT
-		#pragma bool on
-	#else
-		#pragma bool off
-	#endif
-#endif
+#        ifdef _MSL_FORCE_ENABLE_BOOL_SUPPORT
+#            if _MSL_FORCE_ENABLE_BOOL_SUPPORT
+#                pragma bool on
+#            else
+#                pragma bool off
+#            endif
+#        endif
 
-#ifndef _MSL_NO_CPP_NAMESPACE  // MW-mm 960213b
-	namespace std {
-#endif
+#        ifndef _MSL_NO_CPP_NAMESPACE // MW-mm 960213b
+namespace std
+{
+#        endif
 
-	class bad_alloc : public exception {  // hh 971226 rewrite
-	public:
-		bad_alloc () _MSL_THROW {}
-		bad_alloc (const bad_alloc&) _MSL_THROW {}
-		bad_alloc& operator= (const bad_alloc&) _MSL_THROW {return *this;}
-		virtual ÃÂ¢ÃÂÃÂ¾bad_alloc () _MSL_THROW {};
-		virtual const char* what () const _MSL_THROW {return "bad_alloc";}
-	};
+class bad_alloc : public exception
+{                                     // hh 971226 rewrite
+public:
+    bad_alloc() _MSL_THROW {}
 
-	struct nothrow_t {};				//970415 bkoz
-	extern _MSL_IMP_EXP_RUNTIME nothrow_t nothrow; //990405 blc
-		
-	typedef void (*new_handler)(); 
-	
-	_MSL_IMP_EXP_RUNTIME new_handler set_new_handler(new_handler new_p) _MSL_THROW; 
+    bad_alloc(const bad_alloc&) _MSL_THROW {}
 
-#ifndef _MSL_NO_CPP_NAMESPACE // MW-mm 960213b
-	} // namespace std 
-#endif
+    bad_alloc&
+    operator=(const bad_alloc&) _MSL_THROW
+    {
+        return *this;
+    }
 
-#ifndef _MSL_NO_THROW_SPECS
-	_MSL_IMP_EXP_RUNTIME void* operator new(_CSTD::size_t size) throw(_STD::bad_alloc);
-#else
-	_MSL_IMP_EXP_RUNTIME void* operator new(_CSTD::size_t size);
-#endif
+    virtual ÃÂ¢ÃÂÃÂ¾bad_alloc() _MSL_THROW {}
+
+    virtual const char*
+    what() const _MSL_THROW
+    {
+        return "bad_alloc";
+    }
+};
+
+struct nothrow_t
+{
+}; // 970415 bkoz
+
+extern _MSL_IMP_EXP_RUNTIME nothrow_t nothrow; // 990405 blc
+
+typedef void (*new_handler)();
+
+_MSL_IMP_EXP_RUNTIME new_handler set_new_handler(new_handler new_p) _MSL_THROW;
+
+#        ifndef _MSL_NO_CPP_NAMESPACE          // MW-mm 960213b
+} // namespace std
+#        endif
+
+#        ifndef _MSL_NO_THROW_SPECS
+_MSL_IMP_EXP_RUNTIME void* operator new(_CSTD::size_t size) throw(_STD::bad_alloc);
+#        else
+_MSL_IMP_EXP_RUNTIME void* operator new(_CSTD::size_t size);
+#        endif
 _MSL_IMP_EXP_RUNTIME void* operator new(_CSTD::size_t size, const _STD::nothrow_t&) _MSL_THROW;
-inline void* operator new(_CSTD::size_t, void* ptr) _MSL_THROW {return ptr;}
-_MSL_IMP_EXP_RUNTIME void  operator delete(void* ptr) _MSL_THROW;
-#if __MWERKS__ >= 0x2020 || defined (__GNUC__)
-	#if __MWERKS__ >= 0x2400
-	_MSL_IMP_EXP_RUNTIME void  operator delete(void* ptr, const _STD::nothrow_t&) _MSL_THROW;
-	inline void  operator delete  (void*, void*) _MSL_THROW {}
-	#endif
-	#ifndef _MSL_NO_THROW_SPECS
-		_MSL_IMP_EXP_RUNTIME void* operator new[](_CSTD::size_t size) throw(_STD::bad_alloc);
-	#else
-		_MSL_IMP_EXP_RUNTIME void* operator new[](_CSTD::size_t size);
-	#endif
-	_MSL_IMP_EXP_RUNTIME void* operator new[](_CSTD::size_t size, const _STD::nothrow_t&) _MSL_THROW;
-	inline void* operator new[](_CSTD::size_t, void* ptr) _MSL_THROW {return ptr;}
-	_MSL_IMP_EXP_RUNTIME void  operator delete[](void* ptr) _MSL_THROW;
-	#if __MWERKS__ >= 0x2400
-	_MSL_IMP_EXP_RUNTIME void  operator delete[](void* ptr, const _STD::nothrow_t&) _MSL_THROW;
-	inline void  operator delete[](void*, void*) _MSL_THROW {}
-	#endif
-#endif
 
-#ifndef _MSL_NO_CPP_NAMESPACE   // hh 971206  put this stuff in std::
-	namespace std {
-#endif
+inline void*
+operator new(_CSTD::size_t, void* ptr) _MSL_THROW
+{
+    return ptr;
+}
+
+_MSL_IMP_EXP_RUNTIME void operator delete(void* ptr) _MSL_THROW;
+#        if __MWERKS__ >= 0x2020 || defined(__GNUC__)
+#            if __MWERKS__ >= 0x2400
+_MSL_IMP_EXP_RUNTIME void operator delete(void* ptr, const _STD::nothrow_t&) _MSL_THROW;
+
+inline void
+operator delete(void*, void*) _MSL_THROW
+{
+}
+#            endif
+#            ifndef _MSL_NO_THROW_SPECS
+_MSL_IMP_EXP_RUNTIME void* operator new[](_CSTD::size_t size) throw(_STD::bad_alloc);
+#            else
+_MSL_IMP_EXP_RUNTIME void* operator new[](_CSTD::size_t size);
+#            endif
+_MSL_IMP_EXP_RUNTIME void* operator new[](_CSTD::size_t size, const _STD::nothrow_t&) _MSL_THROW;
+
+inline void*
+operator new[](_CSTD::size_t, void* ptr) _MSL_THROW
+{
+    return ptr;
+}
+
+_MSL_IMP_EXP_RUNTIME void operator delete[](void* ptr) _MSL_THROW;
+#            if __MWERKS__ >= 0x2400
+_MSL_IMP_EXP_RUNTIME void operator delete[](void* ptr, const _STD::nothrow_t&) _MSL_THROW;
+
+inline void
+operator delete[](void*, void*) _MSL_THROW
+{
+}
+#            endif
+#        endif
+
+#        ifndef _MSL_NO_CPP_NAMESPACE // hh 971206  put this stuff in std::
+namespace std
+{
+#        endif
 
 //	non-standard functions
-extern char	__throws_bad_alloc;
+extern char __throws_bad_alloc;
 extern void __throw_bad_alloc();
-extern void _set_newpoolsize(size_t);		//	default: 0x00010000L
-extern void _set_newnonptrmax(size_t);		//	default: 0x00001000L
-extern char _prealloc_newpool(size_t);		//	preallocte a new buffer
+extern void _set_newpoolsize(size_t);  //	default: 0x00010000L
+extern void _set_newnonptrmax(size_t); //	default: 0x00001000L
+extern char _prealloc_newpool(size_t); //	preallocte a new buffer
 
-#ifndef _MSL_NO_CPP_NAMESPACE   // hh 971206
-	}
-#endif
+#        ifndef _MSL_NO_CPP_NAMESPACE  // hh 971206
+}
+#        endif
 
-#ifdef _MSL_FORCE_ENUMS_ALWAYS_INT
-	#pragma enumsalwaysint reset
-#endif
+#        ifdef _MSL_FORCE_ENUMS_ALWAYS_INT
+#            pragma enumsalwaysint reset
+#        endif
 
-#ifdef _MSL_FORCE_ENABLE_BOOL_SUPPORT
-	#pragma bool reset
-#endif
+#        ifdef _MSL_FORCE_ENABLE_BOOL_SUPPORT
+#            pragma bool reset
+#        endif
 
-#pragma options align=reset
+#        pragma options align = reset
 
-#endif // RC_INVOKED
+#    endif                             // RC_INVOKED
 
-#endif // _NEW
+#endif                                 // _NEW
 
 // MW-mm 960213a  Deleted the definition of the bad_except class
 // MW-mm 960213b  Put Modena wrappers around namespace

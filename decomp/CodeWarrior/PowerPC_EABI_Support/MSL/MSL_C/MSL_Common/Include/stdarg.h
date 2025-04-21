@@ -6,24 +6,24 @@
  */
 
 #ifndef _MSL_STDARG_H
-#define _MSL_STDARG_H
+#    define _MSL_STDARG_H
 
-#if __MACH__
-	#error You must have the /usr/include access path before the MSL access path
-#else
+#    if __MACH__
+#        error You must have the /usr/include access path before the MSL access path
+#    else
 
-#include <cstdarg>
+#        include <cstdarg>
 
-#if defined(__cplusplus) && defined(_MSL_USING_NAMESPACE)
-	using std::va_list;
-#endif
+#        if defined(__cplusplus) && defined(_MSL_USING_NAMESPACE)
+using std::va_list;
+#        endif
 
-#endif /* __MACH__ */
+#    endif /* __MACH__ */
 
-#endif /* _MSL_STDARG_H_ */
+#endif     /* _MSL_STDARG_H_ */
 
-/* Change record:
- * hh  971206 Created.
- * hh  991112 Fixed using bug.
- * JWW 001208 Added case for targeting Mach-O
- */
+           /* Change record:
+            * hh  971206 Created.
+            * hh  991112 Fixed using bug.
+            * JWW 001208 Added case for targeting Mach-O
+            */

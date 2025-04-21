@@ -10,30 +10,30 @@
  */
 
 #ifndef _MSL_STDBOOL_H
-#define _MSL_STDBOOL_H
+#    define _MSL_STDBOOL_H
 
-#if __MACH__
-	#error You must have the /usr/include access path before the MSL access path
-#else
+#    if __MACH__
+#        error You must have the /usr/include access path before the MSL access path
+#    else
 
-#include <ansi_parms.h>
+#        include <ansi_parms.h>
 
-#if !(__option(c9x) && !defined(__cplusplus))					/*- cc 010712 -*/
-	#pragma c9x on												/*- cc 010712 -*/
-	#warning "Compiler support for c99 has been turned on"		/*- cc 010712 -*/
-#endif
+#        if !(__option(c9x) && !defined(__cplusplus)) /*- cc 010712 -*/
+#            pragma c9x on                            /*- cc 010712 -*/
+#            warning "Compiler support for c99 has been turned on"		/*- cc 010712 -*/
+#        endif
 
-#define bool							_Bool
-#define true							1
-#define false							0
-#define __bool_true_false_are_defined	1
+#        define bool                          _Bool
+#        define true                          1
+#        define false                         0
+#        define __bool_true_false_are_defined 1
 
-#endif /* __MACH__ */
+#    endif                                            /* __MACH__ */
 
-#endif /* _MSL_STDBOOL_H */
+#endif                                                /* _MSL_STDBOOL_H */
 
-/* Change record:
- * blc 990323 Created.
- * JWW 001208 Added case for targeting Mach-O
- * cc  010712 Fixed c99 check
- */
+                                                      /* Change record:
+                                                       * blc 990323 Created.
+                                                       * JWW 001208 Added case for targeting Mach-O
+                                                       * cc  010712 Fixed c99 check
+                                                       */

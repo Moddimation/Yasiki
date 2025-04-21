@@ -1,5 +1,5 @@
 
-#ifndef _No_Floating_Point  
+#ifndef _No_Floating_Point
 /* @(#)s_matherr.c 1.2 95/01/04 */
 /* $Id: s_matherr.c,v 1.2 1999/01/13 22:54:58 vscott Exp $ */
 /*
@@ -8,22 +8,27 @@
  *
  * Developed at SunPro, a Sun Microsystems, Inc. business.
  * Permission to use, copy, modify, and distribute this
- * software is freely granted, provided that this notice 
+ * software is freely granted, provided that this notice
  * is preserved.
  * ====================================================
  */
 
-#include "fdlibm.h"
+#    include "fdlibm.h"
 
-#ifdef __STDC__
-	int matherr(struct exception *x)
-#else
-	int matherr(x)
-	struct exception *x;
-#endif
+#    ifdef __STDC__
+int
+matherr(struct exception *x)
+#    else
+int
+                  matherr(x)
+struct exception *x;
+#    endif
 {
-	int n=0;
-	if(x->arg1!=x->arg1) return 0;
-	return n;
+    int n = 0;
+    if (x->arg1 != x->arg1)
+    {
+        return 0;
+    }
+    return n;
 }
 #endif /* _No_Floating_Point  */

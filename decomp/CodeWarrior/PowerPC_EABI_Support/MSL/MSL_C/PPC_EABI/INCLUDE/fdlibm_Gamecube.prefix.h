@@ -1,10 +1,10 @@
 /*
- * Prefix for dolphin floating point library 
- */ 
- 
-/* 
+ * Prefix for dolphin floating point library
+ */
+
+/*
  * Turn off CATS information for this library, so it doesn't affect
- * Dolphin startup 
+ * Dolphin startup
  */
 
 #pragma cats off

@@ -1,48 +1,47 @@
 /*
- * GCN_mem_alloc.c	
+ * GCN_mem_alloc.c
  *
  * CopyrighC 1995-2001 Metrowerks, Inc. All Rights Reserved.
  *
  * This implements weakly linked symbols for allocating
- * memory in a default heap. This allows an MSL 
- * that expects the OS to do memory allocation to 
+ * memory in a default heap. This allows an MSL
+ * that expects the OS to do memory allocation to
  * do this by default. All memory allocation (new, malloc, free,
- * delete) will go through these functions. 
- * 
+ * delete) will go through these functions.
+ *
  * The memory is pooled when used this way, so instead
  * of allocating exactly the amount asked for, the pools
  * will be 64K. Hence less OSAlloc calls have to be made.
  *
  */
- 
+
 #include <os.h>
-#include <Stdio.h>
 #include <pool_alloc.h>
-
-
+#include <Stdio.h>
 
 /*
  * InitDefaultHeap ()
  * Allocate a default heap
- * It is possible for usr static constructors, 
+ * It is possible for usr static constructors,
  * or MSL C++ constructors to call new or malloc
  * In that case, generally the target would
  * crash since no heap has been allocated.
- * 
- * This allows the user to override the weakly 
+ *
+ * This allows the user to override the weakly
  * linked __sys_alloc and __sys_free to initialize
- * whatever heap they want and allocate anything they 
+ * whatever heap they want and allocate anything they
  * need.
- */ 
+ */
 
-static void InitDefaultHeap()
+static void
+InitDefaultHeap()
 {
-    void*    arenaLo;
-    void*    arenaHi;
-    
-    OSReport ( "GCN_Mem_Alloc.c : InitDefaultHeap. No Heap Available\n");
-	OSReport ( "Metrowerks CW runtime library initializing default heap\n");
-    
+    void* arenaLo;
+    void* arenaHi;
+
+    OSReport("GCN_Mem_Alloc.c : InitDefaultHeap. No Heap Available\n");
+    OSReport("Metrowerks CW runtime library initializing default heap\n");
+
     arenaLo = OSGetArenaLo();
     arenaHi = OSGetArenaHi();
 
@@ -59,12 +58,11 @@ static void InitDefaultHeap()
     OSSetCurrentHeap(OSCreateHeap(arenaLo, arenaHi));
     // From here on out, OSAlloc and OSFree behave like malloc and free
     // respectively
-    OSSetArenaLo(arenaLo=arenaHi);
+    OSSetArenaLo(arenaLo = arenaHi);
 }
 
-
 /*
- * __sys_alloc 
+ * __sys_alloc
  *
  * Default function whenever a malloc or new
  * is called. Note that only the first call to malloc
@@ -72,33 +70,34 @@ static void InitDefaultHeap()
  * pool of 64K will be used. Only after passing this
  * 64K limit will there be a need for another call to
  * sys_alloc.
- */ 
+ */
 
-__declspec (weak) extern void *	__sys_alloc(__std(size_t) blocksize )
+__declspec(weak) extern void*
+__sys_alloc(__std(size_t) blocksize)
 {
-	/* Check if there is already a default heap */
-	if ( __OSCurrHeap == -1 ) 
-	{
-		InitDefaultHeap();
-	}
+    /* Check if there is already a default heap */
+    if (__OSCurrHeap == -1)
+    {
+        InitDefaultHeap();
+    }
 
     return OSAllocFromHeap(__OSCurrHeap, blocksize);
 }
 
-
 /*
- * __sys_free 
+ * __sys_free
  *
  * Default function whenever a free or delete is called.
  *
- */ 
+ */
 
-__declspec (weak) extern void	__sys_free(void *  block)
+__declspec(weak) extern void
+__sys_free(void* block)
 {
-	if ( __OSCurrHeap == -1 )
-	{
-		InitDefaultHeap();
-	}
-		
+    if (__OSCurrHeap == -1)
+    {
+        InitDefaultHeap();
+    }
+
     OSFreeToHeap(__OSCurrHeap, block);
 }

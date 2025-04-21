@@ -1,19 +1,22 @@
+
 #include <dolphin/gx.h>
 #include <dolphin/os.h>
 
-#include "GXPrivate.h"
 #include <string.h>
+
+#include "GXPrivate.h"
 
 static __GXFifoObj           DisplayListFifo;
 static volatile __GXFifoObj* OldCPUFifo;
 static GXData                __savedGXdata;
 
-void                         GXBeginDisplayList(void* list, u32 size)
+void
+GXBeginDisplayList(void* list, u32 size)
 {
     __GXFifoObj* CPUFifo = (__GXFifoObj*)GXGetCPUFifo();
 
     CHECK_GXBEGIN(137, "GXBeginDisplayList");
-    ASSERTMSGLINE(138, ! __GXData->inDispList, "GXBeginDisplayList: display list already in progress");
+    ASSERTMSGLINE(138, !__GXData->inDispList, "GXBeginDisplayList: display list already in progress");
     ASSERTMSGLINE(139, (size & 0x1F) == 0, "GXBeginDisplayList: size is not 32 byte aligned");
     ASSERTMSGLINE(140, ((u32)list & 0x1F) == 0, "GXBeginDisplayList: list is not 32 byte aligned");
 
@@ -27,24 +30,23 @@ void                         GXBeginDisplayList(void* list, u32 size)
         memcpy(&__savedGXdata, __GXData, sizeof(__savedGXdata));
     }
 
-    DisplayListFifo.base  = (u8*)list;
-    DisplayListFifo.top   = (u8*)list + size - 4;
-    DisplayListFifo.size  = size;
+    DisplayListFifo.base = (u8*)list;
+    DisplayListFifo.top = (u8*)list + size - 4;
+    DisplayListFifo.size = size;
     DisplayListFifo.count = 0;
     DisplayListFifo.rdPtr = list;
     DisplayListFifo.wrPtr = list;
-    __GXData->inDispList  = 1;
+    __GXData->inDispList = 1;
     GXSaveCPUFifo((GXFifoObj*)CPUFifo);
     OldCPUFifo = CPUFifo;
     GXSetCPUFifo((GXFifoObj*)&DisplayListFifo);
 }
 
-u32 GXEndDisplayList(void)
+u32
+GXEndDisplayList(void)
 {
-    u32 ov;
-#ifdef DEBUG
-    u32 reg;
-#endif
+    u32  ov;
+    u32  reg;
     BOOL enabled;
     u32  cpenable;
 
@@ -56,36 +58,40 @@ u32 GXEndDisplayList(void)
     }
 #ifdef DEBUG
     reg = GX_GET_PI_REG(5);
-    ov  = (reg >> 26) & 1;
+    ov = (reg >> 26) & 1;
 #else
     ov = (GX_GET_PI_REG(5) >> 26) & 1;
 #endif
     __GXSaveCPUFifoAux(&DisplayListFifo);
-    ASSERTMSGLINE(213, ! ov, "GXEndDisplayList: display list commands overflowed buffer");
+    ASSERTMSGLINE(213, !ov, "GXEndDisplayList: display list commands overflowed buffer");
     GXSetCPUFifo((GXFifoObj*)OldCPUFifo);
 
     if (__GXData->dlSaveContext != 0)
     {
-        enabled  = OSDisableInterrupts();
+        enabled = OSDisableInterrupts();
         cpenable = __GXData->cpEnable;
         memcpy(__GXData, &__savedGXdata, sizeof(*__GXData));
         __GXData->cpEnable = cpenable;
         OSRestoreInterrupts(enabled);
     }
 
-    __GXData->inDispList = 0;
-    if (! ov)
+    __GXData->inDispList = FALSE;
+
+    if (ov == 0)
     {
         return DisplayListFifo.count;
     }
-
-    return 0;
+    else
+    {
+        return 0;
+    }
 }
 
-void GXCallDisplayList(void* list, u32 nbytes)
+void
+GXCallDisplayList(void* list, u32 nbytes)
 {
     CHECK_GXBEGIN(254, "GXCallDisplayList");
-    ASSERTMSGLINE(255, ! __GXData->inDispList, "GXCallDisplayList: display list already in progress");
+    ASSERTMSGLINE(255, !__GXData->inDispList, "GXCallDisplayList: display list already in progress");
     ASSERTMSGLINE(256, (nbytes & 0x1F) == 0, "GXCallDisplayList: nbytes is not 32 byte aligned");
     ASSERTMSGLINE(257, ((u32)list & 0x1F) == 0, "GXCallDisplayList: list is not 32 byte aligned");
 

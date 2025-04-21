@@ -2,10 +2,10 @@
 
 /*
  *	critical_regions.mac.c
- *	
+ *
  *		CopyrighC 1995-1996 Metrowerks, Inc.
  *		All rights reserved.
- *	
+ *
  *	Routines
  *	--------
  *		__init_critical_regions
@@ -28,26 +28,30 @@
 
 #if _MWMT
 
-void __init_critical_regions(void)
+void
+__init_critical_regions(void)
 {
 }
 
-void __kill_critical_regions(void)
+void
+__kill_critical_regions(void)
 {
 }
 
-void __begin_critical_region(int region)
+void
+__begin_critical_region(int region)
 {
-#pragma unused(region)
+#    pragma unused(region)
 }
 
-void __end_critical_region(int region)
+void
+__end_critical_region(int region)
 {
-#pragma unused(region)
+#    pragma unused(region)
 }
 
 #endif /* _MWMT */
 
-/*  Change Record
- *	16-Oct-95 JFH  First code release.
-*/
+       /*  Change Record
+        *	16-Oct-95 JFH  First code release.
+        */

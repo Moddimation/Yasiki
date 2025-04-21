@@ -6,20 +6,21 @@
  */
 
 #ifndef _MSL_MISC_IO_H
-#define _MSL_MISC_IO_H
+#    define _MSL_MISC_IO_H
 
-#include <ansi_parms.h>
+#    include <ansi_parms.h>
 
-_MSL_BEGIN_EXTERN_C	/*- cc 010409 -*/
+_MSL_BEGIN_EXTERN_C /*- cc 010409 -*/
 
-	void	__stdio_atexit(void);
+    void
+    __stdio_atexit(void);
 
-_MSL_END_EXTERN_C	/*- cc 010409 -*/
+_MSL_END_EXTERN_C   /*- cc 010409 -*/
 
-#endif /* _MSL_MISC_IO_H */
+#endif              /* _MSL_MISC_IO_H */
 
-/* Change record:
- * hh  971206 expanded _extern macro
- * cc  010405 removed pragma options align native and reset	
- * cc  010409 updated defines to JWW new namespace macros
- */
+                    /* Change record:
+                     * hh  971206 expanded _extern macro
+                     * cc  010405 removed pragma options align native and reset
+                     * cc  010409 updated defines to JWW new namespace macros
+                     */

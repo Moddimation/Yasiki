@@ -1,22 +1,22 @@
 /* Metrowerks Standard Library
  * Copyright ÃÂ¯ÃÂ½C 1995-2001 Metrowerks Corporation.  All rights reserved.
  *
- * $Date: 2001/03/08 20:57:27 $ 
- * $Revision: 1.12 $ 
+ * $Date: 2001/03/08 20:57:27 $
+ * $Revision: 1.12 $
  */
 
 // slist.h
 
 #ifndef _SLIST_H
-#define _SLIST_H
+#    define _SLIST_H
 
-#include <slist>
+#    include <slist>
 
-#ifndef _MSL_NO_CPP_NAMESPACE
-	using Metrowerks::slist;
-#endif
+#    ifndef _MSL_NO_CPP_NAMESPACE
+using Metrowerks::slist;
+#    endif
 
-#endif // _SLIST_H 
+#endif // _SLIST_H
 
 // hh 971220 fixed MOD_INCLUDE
 // hh 971223 added alignment wrapper

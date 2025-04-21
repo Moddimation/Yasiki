@@ -3,7 +3,7 @@
 // #undef _INLINE
 // #define _INLINE __declspec(weak)
 
-#include <math.h>
+#    include <math.h>
 
 /*
  Author:  Matthew D. Fassiotto
@@ -20,31 +20,40 @@
    x(round x -> -infinity)
 */
 
-extern float ceilf(float x)
+extern float
+ceilf(float x)
 {
-	_INT32 i = x;
-	float y  = x - (float)i;
-	if ((!__HI(y)) || (__HI(x) & 0x7f800000) >= 0x4B800000)
-		return x; // x is already an int
-	else if (__HI(x) & 0x80000000)
-		return (float)i;
-	return (float)++i;
+    _INT32 i = x;
+    float  y = x - (float)i;
+    if ((!__HI(y)) || (__HI(x) & 0x7f800000) >= 0x4B800000)
+    {
+        return x;            // x is already an int
+    }
+    else if (__HI(x) & 0x80000000)
+    {
+        return (float)i;
+    }
+    return (float)++i;
 }
-extern float floorf(float x)
-{
-	_INT32 i = x; // signed int
-	float y
-	    = (float)i - x; // since order of evaluation is NOT guaranteed
-	                    // this is not guaranteed to work with all compilers for
-	                    // -0 I currently have no "cheap" work around to this.
 
-	if ((!__HI(y)) || (__HI(x) & 0x7f800000) >= 0x4B800000)
-		return x; // x is already an int
-	else if (__HI(x) & 0x80000000)
-		return (float)--i;
-	// x < 0 -> int conversion of x above rounded toward zero(so decrement)
-	return (float)i;
+extern float
+floorf(float x)
+{
+    _INT32 i = x;            // signed int
+    float  y = (float)i - x; // since order of evaluation is NOT guaranteed
+                             // this is not guaranteed to work with all compilers for
+                             // -0 I currently have no "cheap" work around to this.
+
+    if ((!__HI(y)) || (__HI(x) & 0x7f800000) >= 0x4B800000)
+    {
+        return x;            // x is already an int
+    }
+    else if (__HI(x) & 0x80000000)
+    {
+        return (float)--i;
+    }
+    // x < 0 -> int conversion of x above rounded toward zero(so decrement)
+    return (float)i;
 }
 
 #endif /* !( __MIPS__ && __MIPS_ISA3__  && __MIPS_single_fpu__) */
-

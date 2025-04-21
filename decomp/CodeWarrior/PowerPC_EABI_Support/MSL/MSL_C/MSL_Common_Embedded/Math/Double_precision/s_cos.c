@@ -1,5 +1,5 @@
 
-#ifndef _No_Floating_Point  
+#ifndef _No_Floating_Point
 /* @(#)s_cos.c 1.2 95/01/04 */
 /* $Id: s_cos.c,v 1.2 1999/01/13 22:54:57 vscott Exp $ */
 /*
@@ -8,7 +8,7 @@
  *
  * Developed at SunPro, a Sun Microsystems, Inc. business.
  * Permission to use, copy, modify, and distribute this
- * software is freely granted, provided that this notice 
+ * software is freely granted, provided that this notice
  * is preserved.
  * ====================================================
  */
@@ -22,8 +22,8 @@
  *	__ieee754_rem_pio2	... argument reduction routine
  *
  * Method.
- *      Let S,C and T denote the sin, cos and tan respectively on 
- *	[-PI/4, +PI/4]. Reduce the argument x to y1+y2 = x-k*pi/2 
+ *      Let S,C and T denote the sin, cos and tan respectively on
+ *	[-PI/4, +PI/4]. Reduce the argument x to y1+y2 = x-k*pi/2
  *	in [-pi/4 , +pi/4], and let n = k mod 4.
  *	We have
  *
@@ -41,41 +41,54 @@
  *      trig(NaN)    is that NaN;
  *
  * Accuracy:
- *	TRIG(x) returns trig(x) nearly rounded 
+ *	TRIG(x) returns trig(x) nearly rounded
  */
 
-#include "fdlibm.h"
+#    include "fdlibm.h"
 
-#ifdef __STDC__
-	 double   cos(double x)	/* wrapper pow */
-#else
-	double cos(x)
-	double x;
-#endif
+#    ifdef __STDC__
+double
+cos(double x) /* wrapper pow */
+#    else
+double
+       cos(x)
+double x;
+#    endif
 {
-	double y[2],z=0.0;
-	int n, ix;
+    double y[2], z = 0.0;
+    int    n, ix;
 
-    /* High word of x. */
-	ix = __HI(x);
+              /* High word of x. */
+    ix = __HI(x);
 
     /* |x| ~< pi/4 */
-	ix &= 0x7fffffff;  /* cos even don't need sign */
-	if(ix <= 0x3fe921fb) return __kernel_cos(x,z);
+    ix &= 0x7fffffff; /* cos even don't need sign */
+    if (ix <= 0x3fe921fb)
+    {
+        return __kernel_cos(x, z);
+    }
 
-    /* cos(Inf or NaN) is NaN */
-	else if (ix>=0x7ff00000) return x-x;
+                      /* cos(Inf or NaN) is NaN */
+    else if (ix >= 0x7ff00000)
+    {
+        return x - x;
+    }
 
     /* argument reduction needed */
-	else {
-	    n = __ieee754_rem_pio2(x,y);
-	    switch(n&3) {
-		case 0: return  __kernel_cos(y[0],y[1]);
-		case 1: return -__kernel_sin(y[0],y[1],1);
-		case 2: return -__kernel_cos(y[0],y[1]);
-		default:
-		        return  __kernel_sin(y[0],y[1],1);
-	    }
-	}
+    else
+    {
+        n = __ieee754_rem_pio2(x, y);
+        switch (n & 3)
+        {
+            case 0 :
+                return __kernel_cos(y[0], y[1]);
+            case 1 :
+                return -__kernel_sin(y[0], y[1], 1);
+            case 2 :
+                return -__kernel_cos(y[0], y[1]);
+            default :
+                return __kernel_sin(y[0], y[1], 1);
+        }
+    }
 }
 #endif /* _No_Floating_Point  */

@@ -1,5 +1,5 @@
 
-#ifndef _No_Floating_Point  
+#ifndef _No_Floating_Point
 /* @(#)s_copysign.c 1.2 95/01/04 */
 /* $Id: s_copysign.c,v 1.2 1999/01/13 22:54:57 vscott Exp $ */
 /*
@@ -8,7 +8,7 @@
  *
  * Developed at SunPro, a Sun Microsystems, Inc. business.
  * Permission to use, copy, modify, and distribute this
- * software is freely granted, provided that this notice 
+ * software is freely granted, provided that this notice
  * is preserved.
  * ====================================================
  */
@@ -19,16 +19,18 @@
  * with the sign bit of y.
  */
 
-#include "fdlibm.h"
+#    include "fdlibm.h"
 
-#ifdef __STDC__
-	double copysign(double x, double y)
-#else
-	double __copysign(x,y)
-	double x,y;
-#endif
+#    ifdef __STDC__
+double
+copysign(double x, double y)
+#    else
+double
+       __copysign(x, y)
+double x, y;
+#    endif
 {
-	__HI(x) = (__HI(x)&0x7fffffff)|(__HI(y)&0x80000000);
-        return x;
+    __HI(x) = (__HI(x) & 0x7fffffff) | (__HI(y) & 0x80000000);
+    return x;
 }
 #endif /* _No_Floating_Point  */

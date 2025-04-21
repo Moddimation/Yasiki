@@ -26,25 +26,28 @@
 // swells on 08-22-00
 #include <dolphin/os.h>
 
-#define BIAS    ((100 * 365LU + 24) * 86400)    // Dolphin counts since midnight, 1/1/2000
+#define BIAS ((100 * 365LU + 24) * 86400) // Dolphin counts since midnight, 1/1/2000
 
 // __get_clock returns the processor time used so far
 // Dolphin returns -1 for now. Use OSGetTick or OSGetTime instead.
-clock_t __get_clock(void)
+clock_t
+__get_clock(void)
 {
-   return (clock_t) -1;
+    return (clock_t)-1;
 }
 
 // __get_time returns the current calendar time in seconds since midnight, 1/1/1900
-time_t __get_time(void)
+time_t
+__get_time(void)
 {
-    return (time_t) (OSTicksToSeconds(OSGetTime())) + BIAS;
+    return (time_t)(OSTicksToSeconds(OSGetTime())) + BIAS;
 }
 
 // Dolphin does not support time zone and just returns 0
-int __to_gm_time(time_t* time)
+int
+__to_gm_time(time_t* time)
 {
-    #pragma unused (time)
+#pragma unused(time)
     return 0;
 }
 
@@ -54,7 +57,8 @@ int __to_gm_time(time_t* time)
  * Currently the OS can override this if need be.
  * This always returns false
  */
-int     __isdst(void)
+int
+__isdst(void)
 {
-	return 0;
+    return 0;
 }

@@ -7,8 +7,8 @@
  */
 
 #ifndef _ALLOCA
-#define	_ALLOCA
+#define _ALLOCA
 
-#define	alloca(x)	__alloca(x)
+#define alloca(x) __alloca(x)
 
 #endif

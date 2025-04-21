@@ -7,7 +7,8 @@
 #include "GXPrivate.h"
 
 IGNORE_ALL
-void GXProject(f32 x, f32 y, f32 z, f32 mtx [3][4], f32 *pm, f32 *vp, f32 *sx, f32 *sy, f32 *sz)
+void
+GXProject(f32 x, f32 y, f32 z, f32 mtx[3][4], f32 *pm, f32 *vp, f32 *sx, f32 *sy, f32 *sz)
 {
     Vec peye;
     f32 xc;
@@ -17,87 +18,89 @@ void GXProject(f32 x, f32 y, f32 z, f32 mtx [3][4], f32 *pm, f32 *vp, f32 *sx, f
 
     ASSERTMSGLINE(0x93, pm && vp && sx && sy && sz, "GXGet*: invalid null pointer");
 
-    peye.x = mtx [0][3] + ((mtx [0][2] * z) + ((mtx [0][0] * x) + (mtx [0][1] * y)));
-    peye.y = mtx [1][3] + ((mtx [1][2] * z) + ((mtx [1][0] * x) + (mtx [1][1] * y)));
-    peye.z = mtx [2][3] + ((mtx [2][2] * z) + ((mtx [2][0] * x) + (mtx [2][1] * y)));
-    if (pm [0] == 0.0f)
+    peye.x = mtx[0][3] + ((mtx[0][2] * z) + ((mtx[0][0] * x) + (mtx[0][1] * y)));
+    peye.y = mtx[1][3] + ((mtx[1][2] * z) + ((mtx[1][0] * x) + (mtx[1][1] * y)));
+    peye.z = mtx[2][3] + ((mtx[2][2] * z) + ((mtx[2][0] * x) + (mtx[2][1] * y)));
+    if (pm[0] == 0.0f)
     {
-        xc = (peye.x * pm [1]) + (peye.z * pm [2]);
-        yc = (peye.y * pm [3]) + (peye.z * pm [4]);
-        zc = pm [6] + (peye.z * pm [5]);
+        xc = (peye.x * pm[1]) + (peye.z * pm[2]);
+        yc = (peye.y * pm[3]) + (peye.z * pm[4]);
+        zc = pm[6] + (peye.z * pm[5]);
         wc = 1.0f / -peye.z;
     }
     else
     {
-        xc = pm [2] + (peye.x * pm [1]);
-        yc = pm [4] + (peye.y * pm [3]);
-        zc = pm [6] + (peye.z * pm [5]);
+        xc = pm[2] + (peye.x * pm[1]);
+        yc = pm[4] + (peye.y * pm[3]);
+        zc = pm[6] + (peye.z * pm[5]);
         wc = 1.0f;
     }
-    *sx = (vp [2] / 2.0f) + (vp [0] + (wc * (xc * vp [2] / 2.0f)));
-    *sy = (vp [3] / 2.0f) + (vp [1] + (wc * (-yc * vp [3] / 2.0f)));
-    *sz = vp [5] + (wc * (zc * (vp [5] - vp [4])));
+    *sx = (vp[2] / 2.0f) + (vp[0] + (wc * (xc * vp[2] / 2.0f)));
+    *sy = (vp[3] / 2.0f) + (vp[1] + (wc * (-yc * vp[3] / 2.0f)));
+    *sz = vp[5] + (wc * (zc * (vp[5] - vp[4])));
 }
 
-void GXSetProjection(f32 mtx [4][4], GXProjectionType type)
+void
+GXSetProjection(f32 mtx[4][4], GXProjectionType type)
 {
     u32 reg;
 
     CHECK_GXBEGIN(0xCD, "GXSetProjection");
 
-    __GXData->projType    = type;
-    __GXData->projMtx [0] = mtx [0][0];
-    __GXData->projMtx [2] = mtx [1][1];
-    __GXData->projMtx [4] = mtx [2][2];
-    __GXData->projMtx [5] = mtx [2][3];
+    __GXData->projType = type;
+    __GXData->projMtx[0] = mtx[0][0];
+    __GXData->projMtx[2] = mtx[1][1];
+    __GXData->projMtx[4] = mtx[2][2];
+    __GXData->projMtx[5] = mtx[2][3];
     if (type == GX_ORTHOGRAPHIC)
     {
-        __GXData->projMtx [1] = mtx [0][3];
-        __GXData->projMtx [3] = mtx [1][3];
+        __GXData->projMtx[1] = mtx[0][3];
+        __GXData->projMtx[3] = mtx[1][3];
     }
     else
     {
-        __GXData->projMtx [1] = mtx [0][2];
-        __GXData->projMtx [3] = mtx [1][2];
+        __GXData->projMtx[1] = mtx[0][2];
+        __GXData->projMtx[3] = mtx[1][2];
     }
 
     reg = 0x00061020;
     GX_WRITE_U8(0x10);
     GX_WRITE_U32(reg);
-    GX_WRITE_XF_REG_F(32, __GXData->projMtx [0]);
-    GX_WRITE_XF_REG_F(33, __GXData->projMtx [1]);
-    GX_WRITE_XF_REG_F(34, __GXData->projMtx [2]);
-    GX_WRITE_XF_REG_F(35, __GXData->projMtx [3]);
-    GX_WRITE_XF_REG_F(36, __GXData->projMtx [4]);
-    GX_WRITE_XF_REG_F(37, __GXData->projMtx [5]);
+    GX_WRITE_XF_REG_F(32, __GXData->projMtx[0]);
+    GX_WRITE_XF_REG_F(33, __GXData->projMtx[1]);
+    GX_WRITE_XF_REG_F(34, __GXData->projMtx[2]);
+    GX_WRITE_XF_REG_F(35, __GXData->projMtx[3]);
+    GX_WRITE_XF_REG_F(36, __GXData->projMtx[4]);
+    GX_WRITE_XF_REG_F(37, __GXData->projMtx[5]);
     GX_WRITE_XF_REG_2(38, __GXData->projType);
     __GXData->bpSent = 0;
 }
 
 IGNORE_ALL
-void GXSetProjectionv(f32 *ptr)
+void
+GXSetProjectionv(f32 *ptr)
 {
     u32 reg;
 
     CHECK_GXBEGIN(0x109, "GXSetProjectionv");
 
-    __GXData->projType    = ptr [0];
-    __GXData->projMtx [0] = ptr [1];
-    __GXData->projMtx [1] = ptr [2];
-    __GXData->projMtx [2] = ptr [3];
-    __GXData->projMtx [3] = ptr [4];
-    __GXData->projMtx [4] = ptr [5];
-    __GXData->projMtx [5] = ptr [6];
+    __GXData->projType = ptr[0];
+    __GXData->projMtx[0] = ptr[1];
+    __GXData->projMtx[1] = ptr[2];
+    __GXData->projMtx[2] = ptr[3];
+    __GXData->projMtx[3] = ptr[4];
+    __GXData->projMtx[4] = ptr[5];
+    __GXData->projMtx[5] = ptr[6];
 
-    reg                   = 0x00061020;
+    reg = 0x00061020;
     GX_WRITE_U8(0x10);
     GX_WRITE_U32(reg);
-    GX_WRITE_XF_REG_F(32, __GXData->projMtx [0]);
-    GX_WRITE_XF_REG_F(33, __GXData->projMtx [1]);
-    GX_WRITE_XF_REG_F(34, __GXData->projMtx [2]);
-    GX_WRITE_XF_REG_F(35, __GXData->projMtx [3]);
-    GX_WRITE_XF_REG_F(36, __GXData->projMtx [4]);
-    GX_WRITE_XF_REG_F(37, __GXData->projMtx [5]);
+    GX_WRITE_XF_REG_F(32, __GXData->projMtx[0]);
+    GX_WRITE_XF_REG_F(33, __GXData->projMtx[1]);
+    GX_WRITE_XF_REG_F(34, __GXData->projMtx[2]);
+    GX_WRITE_XF_REG_F(35, __GXData->projMtx[3]);
+    GX_WRITE_XF_REG_F(36, __GXData->projMtx[4]);
+    GX_WRITE_XF_REG_F(37, __GXData->projMtx[5]);
     GX_WRITE_XF_REG_2(38, __GXData->projType);
     __GXData->bpSent = 0;
 }
@@ -105,28 +108,30 @@ void GXSetProjectionv(f32 *ptr)
 #define qr0 0
 
 IGNORE_ALL
-void GXGetProjectionv(f32 *ptr)
+void
+GXGetProjectionv(f32 *ptr)
 {
     ASSERTMSGLINE(0x12E, ptr, "GXGet*: invalid null pointer");
 
-    ptr [0] = __GXData->projType;
-    ptr [1] = __GXData->projMtx [0];
-    ptr [2] = __GXData->projMtx [1];
-    ptr [3] = __GXData->projMtx [2];
-    ptr [4] = __GXData->projMtx [3];
-    ptr [5] = __GXData->projMtx [4];
-    ptr [6] = __GXData->projMtx [5];
+    ptr[0] = __GXData->projType;
+    ptr[1] = __GXData->projMtx[0];
+    ptr[2] = __GXData->projMtx[1];
+    ptr[3] = __GXData->projMtx[2];
+    ptr[4] = __GXData->projMtx[3];
+    ptr[5] = __GXData->projMtx[4];
+    ptr[6] = __GXData->projMtx[5];
 }
 
-static asm void WriteMTXPS4x3(register f32 mtx [3][4], register volatile f32 *dest)
+static asm void
+WriteMTXPS4x3(register f32 mtx[3][4], register volatile f32 *dest)
 {
 #ifdef __MWERKS__
-    psq_l  f0, 0x00(mtx), 0, qr0;
-    psq_l  f1, 0x08(mtx), 0, qr0;
-    psq_l  f2, 0x10(mtx), 0, qr0;
-    psq_l  f3, 0x18(mtx), 0, qr0;
-    psq_l  f4, 0x20(mtx), 0, qr0;
-    psq_l  f5, 0x28(mtx), 0, qr0;
+    psq_l f0, 0x00(mtx), 0, qr0;
+    psq_l f1, 0x08(mtx), 0, qr0;
+    psq_l f2, 0x10(mtx), 0, qr0;
+    psq_l f3, 0x18(mtx), 0, qr0;
+    psq_l f4, 0x20(mtx), 0, qr0;
+    psq_l f5, 0x28(mtx), 0, qr0;
 
     psq_st f0, 0x00(dest), 0, qr0;
     psq_st f1, 0x00(dest), 0, qr0;
@@ -137,7 +142,8 @@ static asm void WriteMTXPS4x3(register f32 mtx [3][4], register volatile f32 *de
 #endif
 }
 
-static asm void WriteMTXPS3x3from3x4(register f32 mtx [3][4], register volatile f32 *dest)
+static asm void
+WriteMTXPS3x3from3x4(register f32 mtx[3][4], register volatile f32 *dest)
 {
 #ifdef __MWERKS__
     psq_l  f0, 0x00(mtx), 0, qr0;
@@ -155,7 +161,8 @@ static asm void WriteMTXPS3x3from3x4(register f32 mtx [3][4], register volatile 
 #endif
 }
 
-static asm void WriteMTXPS3x3(register f32 mtx [3][3], register volatile f32 *dest)
+static asm void
+WriteMTXPS3x3(register f32 mtx[3][3], register volatile f32 *dest)
 {
 #ifdef __MWERKS__
     psq_l  f0, 0x00(mtx), 0, qr0;
@@ -171,7 +178,8 @@ static asm void WriteMTXPS3x3(register f32 mtx [3][3], register volatile f32 *de
 #endif
 }
 
-static asm void WriteMTXPS4x2(register f32 mtx [2][4], register volatile f32 *dest)
+static asm void
+WriteMTXPS4x2(register f32 mtx[2][4], register volatile f32 *dest)
 {
 #ifdef __MWERKS__
     psq_l  f0, 0x00(mtx), 0, qr0;
@@ -193,7 +201,8 @@ static asm void WriteMTXPS4x2(register f32 mtx [2][4], register volatile f32 *de
         VERIF_MTXLIGHT((addr), *(u32 *)&xfData);                                                                       \
     } while (0)
 
-void GXLoadPosMtxImm(f32 mtx [3][4], u32 id)
+void
+GXLoadPosMtxImm(f32 mtx[3][4], u32 id)
 {
     u32 reg;
     u32 addr;
@@ -201,23 +210,23 @@ void GXLoadPosMtxImm(f32 mtx [3][4], u32 id)
     CHECK_GXBEGIN(0x1D8, "GXLoadPosMtxImm");
 
     addr = id * 4;
-    reg  = addr | 0xB0000;
+    reg = addr | 0xB0000;
 
     GX_WRITE_U8(0x10);
     GX_WRITE_U32(reg);
 #if DEBUG
-    GX_WRITE_MTX_ELEM(addr + 0, mtx [0][0]);
-    GX_WRITE_MTX_ELEM(addr + 1, mtx [0][1]);
-    GX_WRITE_MTX_ELEM(addr + 2, mtx [0][2]);
-    GX_WRITE_MTX_ELEM(addr + 3, mtx [0][3]);
-    GX_WRITE_MTX_ELEM(addr + 4, mtx [1][0]);
-    GX_WRITE_MTX_ELEM(addr + 5, mtx [1][1]);
-    GX_WRITE_MTX_ELEM(addr + 6, mtx [1][2]);
-    GX_WRITE_MTX_ELEM(addr + 7, mtx [1][3]);
-    GX_WRITE_MTX_ELEM(addr + 8, mtx [2][0]);
-    GX_WRITE_MTX_ELEM(addr + 9, mtx [2][1]);
-    GX_WRITE_MTX_ELEM(addr + 10, mtx [2][2]);
-    GX_WRITE_MTX_ELEM(addr + 11, mtx [2][3]);
+    GX_WRITE_MTX_ELEM(addr + 0, mtx[0][0]);
+    GX_WRITE_MTX_ELEM(addr + 1, mtx[0][1]);
+    GX_WRITE_MTX_ELEM(addr + 2, mtx[0][2]);
+    GX_WRITE_MTX_ELEM(addr + 3, mtx[0][3]);
+    GX_WRITE_MTX_ELEM(addr + 4, mtx[1][0]);
+    GX_WRITE_MTX_ELEM(addr + 5, mtx[1][1]);
+    GX_WRITE_MTX_ELEM(addr + 6, mtx[1][2]);
+    GX_WRITE_MTX_ELEM(addr + 7, mtx[1][3]);
+    GX_WRITE_MTX_ELEM(addr + 8, mtx[2][0]);
+    GX_WRITE_MTX_ELEM(addr + 9, mtx[2][1]);
+    GX_WRITE_MTX_ELEM(addr + 10, mtx[2][2]);
+    GX_WRITE_MTX_ELEM(addr + 11, mtx[2][3]);
 #else
     WriteMTXPS4x3(mtx, &GXWGFifo.f32);
 #endif
@@ -232,14 +241,15 @@ void GXLoadPosMtxImm(f32 mtx [3][4], u32 id)
     } while (0)
 
 IGNORE_ALL
-void GXLoadPosMtxIndx(u16 mtx_indx, u32 id)
+void
+GXLoadPosMtxIndx(u16 mtx_indx, u32 id)
 {
     u32 offset;
     u32 reg;
 
     CHECK_GXBEGIN(0x208, "GXLoadPosMtxIndx");
     offset = id * 4;
-    reg    = 0;
+    reg = 0;
     SET_REG_FIELD(0x20E, reg, 12, 0, offset);
     SET_REG_FIELD(0x20F, reg, 4, 12, 11);
     SET_REG_FIELD_(0x210, reg, 16, 16, mtx_indx);
@@ -250,7 +260,8 @@ void GXLoadPosMtxIndx(u16 mtx_indx, u32 id)
 #endif
 }
 
-void GXLoadNrmMtxImm(f32 mtx [3][4], u32 id)
+void
+GXLoadNrmMtxImm(f32 mtx[3][4], u32 id)
 {
     u32 reg;
     u32 addr;
@@ -258,26 +269,27 @@ void GXLoadNrmMtxImm(f32 mtx [3][4], u32 id)
     CHECK_GXBEGIN(0x229, "GXLoadNrmMtxImm");
 
     addr = id * 3 + 0x400;
-    reg  = addr | 0x80000;
+    reg = addr | 0x80000;
 
     GX_WRITE_U8(0x10);
     GX_WRITE_U32(reg);
 #if DEBUG
-    GX_WRITE_MTX_ELEM(addr + 0, mtx [0][0]);
-    GX_WRITE_MTX_ELEM(addr + 1, mtx [0][1]);
-    GX_WRITE_MTX_ELEM(addr + 2, mtx [0][2]);
-    GX_WRITE_MTX_ELEM(addr + 3, mtx [1][0]);
-    GX_WRITE_MTX_ELEM(addr + 4, mtx [1][1]);
-    GX_WRITE_MTX_ELEM(addr + 5, mtx [1][2]);
-    GX_WRITE_MTX_ELEM(addr + 6, mtx [2][0]);
-    GX_WRITE_MTX_ELEM(addr + 7, mtx [2][1]);
-    GX_WRITE_MTX_ELEM(addr + 8, mtx [2][2]);
+    GX_WRITE_MTX_ELEM(addr + 0, mtx[0][0]);
+    GX_WRITE_MTX_ELEM(addr + 1, mtx[0][1]);
+    GX_WRITE_MTX_ELEM(addr + 2, mtx[0][2]);
+    GX_WRITE_MTX_ELEM(addr + 3, mtx[1][0]);
+    GX_WRITE_MTX_ELEM(addr + 4, mtx[1][1]);
+    GX_WRITE_MTX_ELEM(addr + 5, mtx[1][2]);
+    GX_WRITE_MTX_ELEM(addr + 6, mtx[2][0]);
+    GX_WRITE_MTX_ELEM(addr + 7, mtx[2][1]);
+    GX_WRITE_MTX_ELEM(addr + 8, mtx[2][2]);
 #else
     WriteMTXPS3x3from3x4(mtx, &GXWGFifo.f32);
 #endif
 }
 
-void GXLoadNrmMtxImm3x3(f32 mtx [3][3], u32 id)
+void
+GXLoadNrmMtxImm3x3(f32 mtx[3][3], u32 id)
 {
     u32 reg;
     u32 addr;
@@ -285,34 +297,35 @@ void GXLoadNrmMtxImm3x3(f32 mtx [3][3], u32 id)
     CHECK_GXBEGIN(0x256, "GXLoadNrmMtxImm3x3");
 
     addr = id * 3 + 0x400;
-    reg  = addr | 0x80000;
+    reg = addr | 0x80000;
 
     GX_WRITE_U8(0x10);
     GX_WRITE_U32(reg);
 #if DEBUG
-    GX_WRITE_MTX_ELEM(addr + 0, mtx [0][0]);
-    GX_WRITE_MTX_ELEM(addr + 1, mtx [0][1]);
-    GX_WRITE_MTX_ELEM(addr + 2, mtx [0][2]);
-    GX_WRITE_MTX_ELEM(addr + 3, mtx [1][0]);
-    GX_WRITE_MTX_ELEM(addr + 4, mtx [1][1]);
-    GX_WRITE_MTX_ELEM(addr + 5, mtx [1][2]);
-    GX_WRITE_MTX_ELEM(addr + 6, mtx [2][0]);
-    GX_WRITE_MTX_ELEM(addr + 7, mtx [2][1]);
-    GX_WRITE_MTX_ELEM(addr + 8, mtx [2][2]);
+    GX_WRITE_MTX_ELEM(addr + 0, mtx[0][0]);
+    GX_WRITE_MTX_ELEM(addr + 1, mtx[0][1]);
+    GX_WRITE_MTX_ELEM(addr + 2, mtx[0][2]);
+    GX_WRITE_MTX_ELEM(addr + 3, mtx[1][0]);
+    GX_WRITE_MTX_ELEM(addr + 4, mtx[1][1]);
+    GX_WRITE_MTX_ELEM(addr + 5, mtx[1][2]);
+    GX_WRITE_MTX_ELEM(addr + 6, mtx[2][0]);
+    GX_WRITE_MTX_ELEM(addr + 7, mtx[2][1]);
+    GX_WRITE_MTX_ELEM(addr + 8, mtx[2][2]);
 #else
     WriteMTXPS3x3(mtx, &GXWGFifo.f32);
 #endif
 }
 
 IGNORE_ALL
-void GXLoadNrmMtxIndx3x3(u16 mtx_indx, u32 id)
+void
+GXLoadNrmMtxIndx3x3(u16 mtx_indx, u32 id)
 {
     u32 offset;
     u32 reg;
 
     CHECK_GXBEGIN(0x284, "GXLoadNrmMtxIndx3x3");
     offset = id * 3 + 0x400;
-    reg    = 0;
+    reg = 0;
     SET_REG_FIELD(0x28A, reg, 12, 0, offset);
     SET_REG_FIELD(0x28B, reg, 4, 12, 8);
     SET_REG_FIELD_(0x28C, reg, 16, 16, mtx_indx);
@@ -323,14 +336,16 @@ void GXLoadNrmMtxIndx3x3(u16 mtx_indx, u32 id)
 #endif
 }
 
-void GXSetCurrentMtx(u32 id)
+void
+GXSetCurrentMtx(u32 id)
 {
     CHECK_GXBEGIN(0x2A1, "GXSetCurrentMtx");
     SET_REG_FIELD(0x2A5, __GXData->matIdxA, 6, 0, id);
     __GXSetMatrixIndex(GX_VA_PNMTXIDX);
 }
 
-void GXLoadTexMtxImm(f32 mtx [][4], u32 id, GXTexMtxType type)
+void
+GXLoadTexMtxImm(f32 mtx[][4], u32 id, GXTexMtxType type)
 {
     u32 reg;
     u32 addr;
@@ -348,25 +363,25 @@ void GXLoadTexMtxImm(f32 mtx [][4], u32 id, GXTexMtxType type)
         addr = id * 4;
     }
     count = (type == GX_MTX2x4) ? 8 : 12;
-    reg   = addr | ((count - 1) << 16);
+    reg = addr | ((count - 1) << 16);
 
     GX_WRITE_U8(0x10);
     GX_WRITE_U32(reg);
 #if DEBUG
-    GX_WRITE_MTX_ELEM(addr + 0, mtx [0][0]);
-    GX_WRITE_MTX_ELEM(addr + 1, mtx [0][1]);
-    GX_WRITE_MTX_ELEM(addr + 2, mtx [0][2]);
-    GX_WRITE_MTX_ELEM(addr + 3, mtx [0][3]);
-    GX_WRITE_MTX_ELEM(addr + 4, mtx [1][0]);
-    GX_WRITE_MTX_ELEM(addr + 5, mtx [1][1]);
-    GX_WRITE_MTX_ELEM(addr + 6, mtx [1][2]);
-    GX_WRITE_MTX_ELEM(addr + 7, mtx [1][3]);
+    GX_WRITE_MTX_ELEM(addr + 0, mtx[0][0]);
+    GX_WRITE_MTX_ELEM(addr + 1, mtx[0][1]);
+    GX_WRITE_MTX_ELEM(addr + 2, mtx[0][2]);
+    GX_WRITE_MTX_ELEM(addr + 3, mtx[0][3]);
+    GX_WRITE_MTX_ELEM(addr + 4, mtx[1][0]);
+    GX_WRITE_MTX_ELEM(addr + 5, mtx[1][1]);
+    GX_WRITE_MTX_ELEM(addr + 6, mtx[1][2]);
+    GX_WRITE_MTX_ELEM(addr + 7, mtx[1][3]);
     if (type == GX_MTX3x4)
     {
-        GX_WRITE_MTX_ELEM(addr + 8, mtx [2][0]);
-        GX_WRITE_MTX_ELEM(addr + 9, mtx [2][1]);
-        GX_WRITE_MTX_ELEM(addr + 10, mtx [2][2]);
-        GX_WRITE_MTX_ELEM(addr + 11, mtx [2][3]);
+        GX_WRITE_MTX_ELEM(addr + 8, mtx[2][0]);
+        GX_WRITE_MTX_ELEM(addr + 9, mtx[2][1]);
+        GX_WRITE_MTX_ELEM(addr + 10, mtx[2][2]);
+        GX_WRITE_MTX_ELEM(addr + 11, mtx[2][3]);
     }
 #else
     if (type == GX_MTX3x4)
@@ -381,7 +396,8 @@ void GXLoadTexMtxImm(f32 mtx [][4], u32 id, GXTexMtxType type)
 }
 
 IGNORE_ALL
-void GXLoadTexMtxIndx(u16 mtx_indx, u32 id, GXTexMtxType type)
+void
+GXLoadTexMtxIndx(u16 mtx_indx, u32 id, GXTexMtxType type)
 {
     u32 offset;
     u32 reg;
@@ -400,7 +416,7 @@ void GXLoadTexMtxIndx(u16 mtx_indx, u32 id, GXTexMtxType type)
     }
     count = (type == GX_MTX2x4) ? 8 : 12;
 
-    reg   = 0;
+    reg = 0;
     SET_REG_FIELD(0x31B, reg, 12, 0, offset);
     SET_REG_FIELD(0x31C, reg, 4, 12, (count - 1));
     SET_REG_FIELD_(0x31D, reg, 16, 16, mtx_indx);
@@ -411,7 +427,8 @@ void GXLoadTexMtxIndx(u16 mtx_indx, u32 id, GXTexMtxType type)
 #endif
 }
 
-void GXSetViewportJitter(f32 left, f32 top, f32 wd, f32 ht, f32 nearz, f32 farz, u32 field)
+void
+GXSetViewportJitter(f32 left, f32 top, f32 wd, f32 ht, f32 nearz, f32 farz, u32 field)
 {
     f32 sx;
     f32 sy;
@@ -429,20 +446,20 @@ void GXSetViewportJitter(f32 left, f32 top, f32 wd, f32 ht, f32 nearz, f32 farz,
     {
         top -= 0.5f;
     }
-    sx                = wd / 2.0f;
-    sy                = -ht / 2.0f;
-    ox                = 340.0f + (left + (wd / 2.0f));
-    oy                = 340.0f + (top + (ht / 2.0f));
-    zmin              = 1.6777215e7f * nearz;
-    zmax              = 1.6777215e7f * farz;
-    sz                = zmax - zmin;
-    oz                = zmax;
-    __GXData->vpLeft  = left;
-    __GXData->vpTop   = top;
-    __GXData->vpWd    = wd;
-    __GXData->vpHt    = ht;
+    sx = wd / 2.0f;
+    sy = -ht / 2.0f;
+    ox = 340.0f + (left + (wd / 2.0f));
+    oy = 340.0f + (top + (ht / 2.0f));
+    zmin = 1.6777215e7f * nearz;
+    zmax = 1.6777215e7f * farz;
+    sz = zmax - zmin;
+    oz = zmax;
+    __GXData->vpLeft = left;
+    __GXData->vpTop = top;
+    __GXData->vpWd = wd;
+    __GXData->vpHt = ht;
     __GXData->vpNearz = nearz;
-    __GXData->vpFarz  = farz;
+    __GXData->vpFarz = farz;
     if (__GXData->fgRange != 0)
     {
         __GXSetRange(nearz, __GXData->fgSideX);
@@ -459,25 +476,28 @@ void GXSetViewportJitter(f32 left, f32 top, f32 wd, f32 ht, f32 nearz, f32 farz,
     __GXData->bpSent = 0;
 }
 
-void GXSetViewport(f32 left, f32 top, f32 wd, f32 ht, f32 nearz, f32 farz)
+void
+GXSetViewport(f32 left, f32 top, f32 wd, f32 ht, f32 nearz, f32 farz)
 {
     GXSetViewportJitter(left, top, wd, ht, nearz, farz, 1U);
 }
 
 IGNORE_ALL
-void GXGetViewportv(f32 *vp)
+void
+GXGetViewportv(f32 *vp)
 {
     ASSERTMSGLINE(0x397, vp, "GXGet*: invalid null pointer");
 
-    vp [0] = __GXData->vpLeft;
-    vp [1] = __GXData->vpTop;
-    vp [2] = __GXData->vpWd;
-    vp [3] = __GXData->vpHt;
-    vp [4] = __GXData->vpNearz;
-    vp [5] = __GXData->vpFarz;
+    vp[0] = __GXData->vpLeft;
+    vp[1] = __GXData->vpTop;
+    vp[2] = __GXData->vpWd;
+    vp[3] = __GXData->vpHt;
+    vp[4] = __GXData->vpNearz;
+    vp[5] = __GXData->vpFarz;
 }
 
-void GXSetScissor(u32 left, u32 top, u32 wd, u32 ht)
+void
+GXSetScissor(u32 left, u32 top, u32 wd, u32 ht)
 {
     u32 tp;
     u32 lf;
@@ -507,7 +527,8 @@ void GXSetScissor(u32 left, u32 top, u32 wd, u32 ht)
 }
 
 IGNORE_ALL
-void GXGetScissor(u32 *left, u32 *top, u32 *wd, u32 *ht)
+void
+GXGetScissor(u32 *left, u32 *top, u32 *wd, u32 *ht)
 {
     u32 tp;
     u32 lf;
@@ -516,18 +537,19 @@ void GXGetScissor(u32 *left, u32 *top, u32 *wd, u32 *ht)
 
     ASSERTMSGLINE(0x3DD, left && top && wd && ht, "GXGet*: invalid null pointer");
 
-    tp    = __GXData->suScis0 & 0x7FF;
-    lf    = (__GXData->suScis0 & 0x7FF000) >> 12;
-    bm    = __GXData->suScis1 & 0x7FF;
-    rt    = (__GXData->suScis1 & 0x7FF000) >> 12;
+    tp = __GXData->suScis0 & 0x7FF;
+    lf = (__GXData->suScis0 & 0x7FF000) >> 12;
+    bm = __GXData->suScis1 & 0x7FF;
+    rt = (__GXData->suScis1 & 0x7FF000) >> 12;
 
     *left = lf - 340;
-    *top  = tp - 340;
-    *wd   = rt - lf + 1;
-    *ht   = bm - tp + 1;
+    *top = tp - 340;
+    *wd = rt - lf + 1;
+    *ht = bm - tp + 1;
 }
 
-void GXSetScissorBoxOffset(s32 x_off, s32 y_off)
+void
+GXSetScissorBoxOffset(s32 x_off, s32 y_off)
 {
     u32 reg = 0;
     u32 hx;
@@ -548,14 +570,16 @@ void GXSetScissorBoxOffset(s32 x_off, s32 y_off)
     __GXData->bpSent = 1;
 }
 
-void GXSetClipMode(GXClipMode mode)
+void
+GXSetClipMode(GXClipMode mode)
 {
     CHECK_GXBEGIN(0x41B, "GXSetClipMode");
     GX_WRITE_XF_REG(5, mode);
     __GXData->bpSent = 0;
 }
 
-void __GXSetMatrixIndex(GXAttr matIdxAttr)
+void
+__GXSetMatrixIndex(GXAttr matIdxAttr)
 {
     if (matIdxAttr < GX_VA_TEX4MTXIDX)
     {

@@ -10,63 +10,74 @@
  *	--------
  *		signal
  *		raise
- *	
+ *
  *
  */
 
-#include "critical_regions.h"
 #include <errno.h>
 #include <signal.h>
 #include <stdlib.h>
 
-static __signal_func_ptr	signal_funcs[__signal_max];
+#include "critical_regions.h"
 
-__signal_func_ptr signal(int signal, __signal_func_ptr signal_func)
+static __signal_func_ptr signal_funcs[__signal_max];
+
+__signal_func_ptr
+signal(int signal, __signal_func_ptr signal_func)
 {
-	__signal_func_ptr	old_signal_func;
-	
-	if (signal < 1 || signal > __signal_max)
-	{
-		errno = ESIGPARM;
-		return(SIG_ERR);
-	}
-	
-	__begin_critical_region(signal_funcs_access);
-	
-	old_signal_func = signal_funcs[signal-1];
-	
-	signal_funcs[signal-1] = signal_func;
-	
-	__end_critical_region(signal_funcs_access);
-	
-	return(old_signal_func);
+    __signal_func_ptr old_signal_func;
+
+    if (signal < 1 || signal > __signal_max)
+    {
+        errno = ESIGPARM;
+        return (SIG_ERR);
+    }
+
+    __begin_critical_region(signal_funcs_access);
+
+    old_signal_func = signal_funcs[signal - 1];
+
+    signal_funcs[signal - 1] = signal_func;
+
+    __end_critical_region(signal_funcs_access);
+
+    return (old_signal_func);
 }
 
-int raise(int signal)
+int
+raise(int signal)
 {
-	__signal_func_ptr	signal_func;
-	
-	if (signal < 1 || signal > __signal_max)
-		return(-1);
-	
-	__begin_critical_region(signal_funcs_access);
-	
-	signal_func = signal_funcs[signal-1];
-	
-	if (signal_func != SIG_IGN)
-		signal_funcs[signal-1] = SIG_DFL;
-	
-	__end_critical_region(signal_funcs_access);
-	
-	if (signal_func == SIG_IGN || (signal_func == SIG_DFL && signal == SIGABRT))
-			return(0);
-	
-	if (signal_func == SIG_DFL)
-		exit(0);
-	
-	(*signal_func)(signal);
-	
-	return(0);
+    __signal_func_ptr signal_func;
+
+    if (signal < 1 || signal > __signal_max)
+    {
+        return (-1);
+    }
+
+    __begin_critical_region(signal_funcs_access);
+
+    signal_func = signal_funcs[signal - 1];
+
+    if (signal_func != SIG_IGN)
+    {
+        signal_funcs[signal - 1] = SIG_DFL;
+    }
+
+    __end_critical_region(signal_funcs_access);
+
+    if (signal_func == SIG_IGN || (signal_func == SIG_DFL && signal == SIGABRT))
+    {
+        return (0);
+    }
+
+    if (signal_func == SIG_DFL)
+    {
+        exit(0);
+    }
+
+    (*signal_func)(signal);
+
+    return (0);
 }
 
 /* Change record:

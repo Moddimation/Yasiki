@@ -4,7 +4,8 @@
 #include <dolphin/types.h>
 
 #ifdef __cplusplus
-extern "C" {
+extern "C"
+{
 #endif
 
 // Maximum number of segments allowed
@@ -22,11 +23,11 @@ typedef struct DolImage
     u32 bss;
     u32 bssLen;
     u32 entry;
-    u8 padding[28];
+    u8  padding[28];
 } DolImage;
 
 void *DOLLoadImage(u8 *buffer, BOOL verbose);
-void DOLRunApp(void *entryPoint);
+void  DOLRunApp(void *entryPoint);
 
 #ifdef __cplusplus
 }

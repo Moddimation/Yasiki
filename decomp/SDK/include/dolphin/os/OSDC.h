@@ -2,7 +2,8 @@
 #define _DOLPHIN_OSDC_H_
 
 #ifdef __cplusplus
-extern "C" {
+extern "C"
+{
 #endif
 
 void DCFlashInvalidate(void);

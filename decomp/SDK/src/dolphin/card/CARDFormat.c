@@ -1,28 +1,35 @@
-#include <dolphin.h>
 #include <dolphin/card.h>
 
-#include "os/__os.h"
+#include <dolphin.h>
+
 #include "CARDPrivate.h"
+#include "os/__os.h"
 
 #define formatStep mountStep // huh?
 
 // functions
 static void FormatCallback(s32 chan, s32 result);
 
-static void FormatCallback(s32 chan, s32 result) {
+static void
+FormatCallback(s32 chan, s32 result)
+{
     CARDControl *card;
     CARDCallback callback;
 
     card = &__CARDBlock[chan];
     if (result < 0)
+    {
         goto error;
+    }
 
     ++card->formatStep;
     if (card->formatStep < CARD_NUM_SYSTEM_BLOCK)
     {
         result = __CARDEraseSector(chan, (u32)card->sectorSize * card->formatStep, FormatCallback);
         if (result >= 0)
+        {
             return;
+        }
     }
     else if (card->formatStep < 2 * CARD_NUM_SYSTEM_BLOCK)
     {
@@ -30,7 +37,9 @@ static void FormatCallback(s32 chan, s32 result) {
         result = __CARDWrite(chan, (u32)card->sectorSize * step, CARD_SYSTEM_BLOCK_SIZE,
                              (u8 *)card->workArea + (CARD_SYSTEM_BLOCK_SIZE * step), FormatCallback);
         if (result >= 0)
+        {
             return;
+        }
     }
     else
     {
@@ -48,24 +57,28 @@ error:
     callback(chan, result);
 }
 
-s32 CARDFormatAsync(s32 chan, CARDCallback callback) {
+s32
+CARDFormatAsync(s32 chan, CARDCallback callback)
+{
     CARDControl *card;
-    CARDID *id;
-    CARDDir *dir;
-    u16 *fat;
-    s16 i;
-    s32 result;
-    OSSram *sram;
-    OSSramEx *sramEx;
-    u16 viDTVStatus;
-    OSTime time;
-    OSTime rand;
+    CARDID      *id;
+    CARDDir     *dir;
+    u16         *fat;
+    s16          i;
+    s32          result;
+    OSSram      *sram;
+    OSSramEx    *sramEx;
+    u16          viDTVStatus;
+    OSTime       time;
+    OSTime       rand;
 
     ASSERTLINE(0x9A, 0 <= chan && chan < 2);
 
     result = __CARDGetControlBlock(chan, &card);
     if (result < 0)
+    {
         return result;
+    }
 
     id = (CARDID *)card->workArea;
     memset(id, 0xff, CARD_SYSTEM_BLOCK_SIZE);
@@ -123,14 +136,19 @@ s32 CARDFormatAsync(s32 chan, CARDCallback callback) {
     card->formatStep = 0;
     result = __CARDEraseSector(chan, (u32)card->sectorSize * card->formatStep, FormatCallback);
     if (result < 0)
+    {
         __CARDPutControlBlock(card, result);
+    }
     return result;
 }
 
-long CARDFormat(long chan) {
+long
+CARDFormat(long chan)
+{
     long result = CARDFormatAsync(chan, &__CARDSyncCallback);
 
-    if (result < 0) {
+    if (result < 0)
+    {
         return result;
     }
     return __CARDSync(chan);

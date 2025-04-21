@@ -1,71 +1,71 @@
 /* Metrowerks Standard Library
  * Copyright ÃÂ¯ÃÂ½C 1995-2001 Metrowerks Corporation.  All rights reserved.
  *
- * $Date: 2001/03/08 20:54:57 $ 
- * $Revision: 1.14 $ 
+ * $Date: 2001/03/08 20:54:57 $
+ * $Revision: 1.14 $
  */
 
 // iosfwd.h             // hh 971207 Changed filename from iosfwd to iosfwd.h
 
-#ifndef _IOSFWD_H              // hh 971207 added standard include guards
-#define _IOSFWD_H
+#ifndef _IOSFWD_H                 // hh 971207 added standard include guards
+#    define _IOSFWD_H
 
-#include <iosfwd>
+#    include <iosfwd>
 
-#ifndef _MSL_NO_CPP_NAMESPACE              // hh 971207 Added backward compatibility
-	using std::char_traits;
-	using std::allocator;
-#ifndef _MSL_NO_IO
-	using std::basic_ios;
-	using std::basic_streambuf;
-	using std::basic_istream;
-	using std::basic_ostream;
-	using std::basic_iostream;
-	using std::basic_stringbuf;
-	using std::basic_istringstream;
-	using std::basic_ostringstream;
-	using std::basic_stringstream;
-	using std::basic_filebuf;
-	using std::basic_ifstream;
-	using std::basic_ofstream;
-	using std::basic_fstream;
-	using std::istreambuf_iterator;
-	using std::ostreambuf_iterator;
-	using std::ios;
-	using std::streambuf;
-	using std::istream;
-	using std::ostream;
-	using std::iostream;
-	using std::stringbuf;
-	using std::istringstream;
-	using std::ostringstream;
-	using std::stringstream;
-	using std::filebuf;
-	using std::ifstream;
-	using std::ofstream;
-	using std::fstream;
-	using std::fpos;
-	using std::streampos;
-#ifndef _MSL_NO_WCHART_CPP_SUPPORT
-	using std::wios;
-	using std::wstreambuf;
-	using std::wistream;
-	using std::wostream;
-	using std::wiostream;
-	using std::wstringbuf;
-	using std::wistringstream;
-	using std::wostringstream;
-	using std::wstringstream;
-	using std::wfilebuf;
-	using std::wifstream;
-	using std::wofstream;
-	using std::wfstream;
-	using std::wstreampos;
-#endif
-#endif
-#endif
+#    ifndef _MSL_NO_CPP_NAMESPACE // hh 971207 Added backward compatibility
+using std::allocator;
+using std::char_traits;
+#        ifndef _MSL_NO_IO
+using std::basic_filebuf;
+using std::basic_fstream;
+using std::basic_ifstream;
+using std::basic_ios;
+using std::basic_iostream;
+using std::basic_istream;
+using std::basic_istringstream;
+using std::basic_ofstream;
+using std::basic_ostream;
+using std::basic_ostringstream;
+using std::basic_streambuf;
+using std::basic_stringbuf;
+using std::basic_stringstream;
+using std::filebuf;
+using std::fpos;
+using std::fstream;
+using std::ifstream;
+using std::ios;
+using std::iostream;
+using std::istream;
+using std::istreambuf_iterator;
+using std::istringstream;
+using std::ofstream;
+using std::ostream;
+using std::ostreambuf_iterator;
+using std::ostringstream;
+using std::streambuf;
+using std::streampos;
+using std::stringbuf;
+using std::stringstream;
+#            ifndef _MSL_NO_WCHART_CPP_SUPPORT
+using std::wfilebuf;
+using std::wfstream;
+using std::wifstream;
+using std::wios;
+using std::wiostream;
+using std::wistream;
+using std::wistringstream;
+using std::wofstream;
+using std::wostream;
+using std::wostringstream;
+using std::wstreambuf;
+using std::wstreampos;
+using std::wstringbuf;
+using std::wstringstream;
+#            endif
+#        endif
+#    endif
 
-#endif  // _IOSFWD_H
+#endif                            // _IOSFWD_H
 
 // hh 971207 Changed filename from iosfwd to iosfwd.h
 // hh 971207 added standard include guards

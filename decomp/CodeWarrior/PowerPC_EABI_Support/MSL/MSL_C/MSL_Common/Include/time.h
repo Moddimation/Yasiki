@@ -6,44 +6,44 @@
  */
 
 #ifndef _MSL_TIME_H
-#define _MSL_TIME_H
+#    define _MSL_TIME_H
 
-#if __MACH__
-	#error You must have the /usr/include access path before the MSL access path
-#else
+#    if __MACH__
+#        error You must have the /usr/include access path before the MSL access path
+#    else
 
-#include <ctime>
+#        include <ctime>
 
-#if defined(__cplusplus) && defined(_MSL_USING_NAMESPACE)	
-	using std::size_t;
-	
-	using std::clock_t;
-	using std::time_t;
-	using std::tm;
-	
-	#ifndef _No_Time_OS_Support
-		using std::clock;
-	#endif
-	
-	#ifndef _No_Floating_Point
-		using std::difftime;
-	#endif
-	
-	using std::asctime;
-	using std::ctime;
-	using std::gmtime;
-	using std::localtime;
-	using std::mktime;
-	using std::strftime;
-	using std::time;
-#endif
+#        if defined(__cplusplus) && defined(_MSL_USING_NAMESPACE)
+using std::size_t;
 
-#endif /* __MACH__ */
+using std::clock_t;
+using std::time_t;
+using std::tm;
 
-#endif /* _MSL_TIME_H */
+#            ifndef _No_Time_OS_Support
+using std::clock;
+#            endif
 
-/* Change record:
- * hh  971206 Created.
- * hh  991112 Fixed using bug.
- * JWW 001208 Added case for targeting Mach-O
- */
+#            ifndef _No_Floating_Point
+using std::difftime;
+#            endif
+
+using std::asctime;
+using std::ctime;
+using std::gmtime;
+using std::localtime;
+using std::mktime;
+using std::strftime;
+using std::time;
+#        endif
+
+#    endif /* __MACH__ */
+
+#endif     /* _MSL_TIME_H */
+
+           /* Change record:
+            * hh  971206 Created.
+            * hh  991112 Fixed using bug.
+            * JWW 001208 Added case for targeting Mach-O
+            */

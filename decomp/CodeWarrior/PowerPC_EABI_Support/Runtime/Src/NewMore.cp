@@ -6,48 +6,50 @@
 /************************************************************************/
 
 #if __MWERKS__ && !__embedded_cplusplus
-#pragma exceptions on
+#    pragma exceptions on
 #endif
 
 #include <new>
 #if __dest_os == __mac_os
-#include <MacMemory.h>
-#include <CPlusLib.h>
+#    include <CPlusLib.h>
+#    include <MacMemory.h>
 #else __PPC_EABI__
-#include <MWMemory.h>
-#include <MWCPlusLib.h>
+#    include <MWCPlusLib.h>
+#    include <MWMemory.h>
 #endif
 #ifdef _MSL_NO_EXCEPTIONS
-#include <stdio.h>
-#include <stdlib.h>
+#    include <stdio.h>
+#    include <stdlib.h>
 #endif
 
-#ifndef _MSL_NO_CPP_NAMESPACE        // hh 971207 Added namespace support
-	namespace std {
+#ifndef _MSL_NO_CPP_NAMESPACE       // hh 971207 Added namespace support
+namespace std
+{
 #endif
 
 #ifdef __MC68K__
-#pragma a6frames on
+#    pragma a6frames on
 #endif
 
-char			__throws_bad_alloc = 1;		//	default: throw bad_alloc exception
-new_handler		__new_handler;
+char        __throws_bad_alloc = 1; //	default: throw bad_alloc exception
+new_handler __new_handler;
 
 /************************************************************************/
 /*	Purpose..: 	throw a bad_alloc excpetion								*/
 /*	Input....:	---														*/
 /*	Return...:	---														*/
 /************************************************************************/
-extern void __throw_bad_alloc()
+extern void
+__throw_bad_alloc()
 {
-	if(__throws_bad_alloc) 
+    if (__throws_bad_alloc)
 #ifndef _MSL_NO_EXCEPTIONS
-		throw bad_alloc ();
+        throw bad_alloc();
 #else
-	{
-		fprintf(stderr,"Could not allocate memory\n");
-		exit(1);
-	}
+    {
+        fprintf(stderr, "Could not allocate memory\n");
+        exit(1);
+    }
 #endif
 }
 
@@ -56,15 +58,16 @@ extern void __throw_bad_alloc()
 /*	Input....:	new_handler function pointer (or NULL)					*/
 /*	Return...:	old new_handler function pointer						*/
 /************************************************************************/
-extern new_handler set_new_handler(new_handler new_new_handler) _MSL_THROW
+extern new_handler
+set_new_handler(new_handler new_new_handler) _MSL_THROW
 {
-	new_handler old_new_handler = __new_handler;
-	__new_handler = new_new_handler;
-	return old_new_handler;
+    new_handler old_new_handler = __new_handler;
+    __new_handler = new_new_handler;
+    return old_new_handler;
 }
 
 #ifndef _MSL_NO_CPP_NAMESPACE
-	}
+}
 #endif
 
 #if __dest_os == __mac_os
@@ -74,21 +77,25 @@ extern new_handler set_new_handler(new_handler new_new_handler) _MSL_THROW
 /*	Input....:	size of memory to allocate								*/
 /*	Return...:	handle to memory or 0L									*/
 /************************************************************************/
-void *__new_hdl(size_t size)
+void *
+__new_hdl(size_t size)
 {
-	void *ptr;
+    void *ptr;
 
-	for(;;)
-	{
-		if((ptr=NewHandle(size))!=NULL) break;
-		if(!_STD::__new_handler)
-		{
-			_STD::__throw_bad_alloc();
-			break;
-		}
-		_STD::__new_handler();
-	}
-	return ptr;
+    for (;;)
+    {
+        if ((ptr = NewHandle(size)) != NULL)
+        {
+            break;
+        }
+        if (!_STD::__new_handler)
+        {
+            _STD::__throw_bad_alloc();
+            break;
+        }
+        _STD::__new_handler();
+    }
+    return ptr;
 }
 
 /************************************************************************/
@@ -96,9 +103,13 @@ void *__new_hdl(size_t size)
 /*	Input....:	handle to memory or 0L (no action if 0L)				*/
 /*	Return...:	---														*/
 /************************************************************************/
-void __del_hdl(void *hdl)
+void
+__del_hdl(void *hdl)
 {
-	if(hdl) DisposeHandle((Handle)hdl);
+    if (hdl)
+    {
+        DisposeHandle((Handle)hdl);
+    }
 }
 
 #endif /* __dest_os == __mac_os */

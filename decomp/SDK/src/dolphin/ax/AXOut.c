@@ -1,47 +1,55 @@
-#include <dolphin.h>
-#include <dolphin/dsp.h>
 #include <dolphin/ax.h>
+#include <dolphin/dsp.h>
+
+#include <dolphin.h>
 
 #include "AXPrivate.h"
 
-static s16 __AXOutBuffer[2][320];
+static s16  __AXOutBuffer[2][320];
 static long __AXOutSBuffer[160];
-AXPROFILE __AXLocalProfile;
+AXPROFILE   __AXLocalProfile;
 DSPTaskInfo task;
-u16 ax_dram_image[8192];
+u16         ax_dram_image[8192];
 
 volatile static unsigned long __AXOutFrame;
 volatile static unsigned long __AXOutDspReady;
-volatile static long long __AXOsTime;
-static void (* __AXUserFrameCallback)();
-volatile static int __AXDSPInitFlag;
-static int __AXDSPDoneFlag;
+volatile static long long     __AXOsTime;
+static void                   (*__AXUserFrameCallback)();
+volatile static int           __AXDSPInitFlag;
+static int                    __AXDSPDoneFlag;
 
 // functions
 static void __AXDSPInitCallback(void *task);
 static void __AXDSPResumeCallback(void *task);
 static void __AXDSPDoneCallback(void *task);
 
-void __AXOutNewFrame(u32 lessDspCycles) {
-    u32 cl;
-    int old;
-    AXPROFILE * profile;
+void
+__AXOutNewFrame(u32 lessDspCycles)
+{
+    u32        cl;
+    int        old;
+    AXPROFILE *profile;
 
     __AXLocalProfile.axFrameStart = OSGetTime();
     __AXSyncPBs(lessDspCycles);
     __AXPrintStudio();
     cl = __AXGetCommandListAddress();
     DSPSendMailToDSP(0xBABE0180);
-    do {} while (DSPCheckMailToDSP() != 0U);
+    do
+    {
+    } while (DSPCheckMailToDSP() != 0U);
     DSPSendMailToDSP(cl);
-    do {} while (DSPCheckMailToDSP() != 0U);
+    do
+    {
+    } while (DSPCheckMailToDSP() != 0U);
     old = OSEnableInterrupts();
     __AXServiceCallbackStack();
     __AXLocalProfile.auxProcessingStart = OSGetTime();
     __AXProcessAux();
     __AXLocalProfile.auxProcessingEnd = OSGetTime();
     __AXLocalProfile.userCallbackStart = OSGetTime();
-    if (__AXUserFrameCallback) {
+    if (__AXUserFrameCallback)
+    {
         __AXUserFrameCallback();
     }
     __AXLocalProfile.userCallbackEnd = OSGetTime();
@@ -51,18 +59,23 @@ void __AXOutNewFrame(u32 lessDspCycles) {
     AIInitDMA((u32)&__AXOutBuffer[__AXOutFrame][0], 0x280);
     __AXLocalProfile.axFrameEnd = OSGetTime();
     __AXLocalProfile.axNumVoices = __AXGetNumVoices();
-    profile = (void*)__AXGetCurrentProfile();
-    if (profile) {
+    profile = (void *)__AXGetCurrentProfile();
+    if (profile)
+    {
         memcpy(profile, &__AXLocalProfile, sizeof(AXPROFILE));
     }
     OSRestoreInterrupts(old);
 }
 
-void __AXOutAiCallback(void) {
-    if (__AXOutDspReady == 0) {
+void
+__AXOutAiCallback(void)
+{
+    if (__AXOutDspReady == 0)
+    {
         __AXOsTime = OSGetTime();
     }
-    if (__AXOutDspReady == 1) {
+    if (__AXOutDspReady == 1)
+    {
         __AXOutNewFrame(0);
         __AXOutDspReady = 0;
         return;
@@ -71,12 +84,17 @@ void __AXOutAiCallback(void) {
     DSPAssertTask(&task);
 }
 
-static void __AXDSPInitCallback(void *task) {
+static void
+__AXDSPInitCallback(void *task)
+{
     __AXDSPInitFlag = 1;
 }
 
-static void __AXDSPResumeCallback(void *task) {
-    if (__AXOutDspReady == 2) {
+static void
+__AXDSPResumeCallback(void *task)
+{
+    if (__AXOutDspReady == 2)
+    {
         __AXOutDspReady = 0;
         __AXOutNewFrame((u32)(OSGetTime() - __AXOsTime) / 4);
         return;
@@ -84,11 +102,15 @@ static void __AXDSPResumeCallback(void *task) {
     __AXOutDspReady = 1U;
 }
 
-static void __AXDSPDoneCallback(void *task) {
+static void
+__AXDSPDoneCallback(void *task)
+{
     __AXDSPDoneFlag = 1;
 }
 
-void __AXOutInitDSP(void) {
+void
+__AXOutInitDSP(void)
+{
     task.iram_mmem_addr = axDspSlave;
     task.iram_length = axDspSlaveLength;
     task.iram_addr = 0;
@@ -104,14 +126,19 @@ void __AXOutInitDSP(void) {
     task.priority = 0;
     __AXDSPInitFlag = 0;
     __AXDSPDoneFlag = 0;
-    if (DSPCheckInit() == 0) {
+    if (DSPCheckInit() == 0)
+    {
         DSPInit();
     }
     DSPAddTask(&task);
-    do {} while (__AXDSPInitFlag == 0);
+    do
+    {
+    } while (__AXDSPInitFlag == 0);
 }
 
-void __AXOutInit(void) {
+void
+__AXOutInit(void)
+{
 #ifdef DEBUG
     OSReport("Initializing AXOut code module¥n");
 #endif
@@ -132,7 +159,9 @@ void __AXOutInit(void) {
     AIStartDMA();
 }
 
-void __AXOutQuit(void) {
+void
+__AXOutQuit(void)
+{
     int old;
 
 #ifdef DEBUG
@@ -142,11 +171,15 @@ void __AXOutQuit(void) {
     __AXUserFrameCallback = NULL;
     AIStopDMA();
     DSPHalt();
-    do {} while (DSPGetDMAStatus() != 0U);
+    do
+    {
+    } while (DSPGetDMAStatus() != 0U);
     DSPReset();
     OSRestoreInterrupts(old);
 }
 
-void AXRegisterCallback(void (* callback)()) {
+void
+AXRegisterCallback(void (*callback)())
+{
     __AXUserFrameCallback = callback;
 }

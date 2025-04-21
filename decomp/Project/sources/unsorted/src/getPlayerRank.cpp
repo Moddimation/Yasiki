@@ -1,5 +1,7 @@
 #include "Unsorted/Rank.h"
 
-int getPlayerRank(void) {
+int
+getPlayerRank(void)
+{
     return playerRank;
 }

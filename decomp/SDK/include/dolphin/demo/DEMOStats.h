@@ -1,7 +1,8 @@
 #ifndef _DOLPHIN_DEMOSTATS_H_
 #define _DOLPHIN_DEMOSTATS_H_
 
-typedef enum DEMO_STAT_TYPE {
+typedef enum DEMO_STAT_TYPE
+{
     DEMO_STAT_GP0 = 0,
     DEMO_STAT_GP1 = 1,
     DEMO_STAT_MEM = 2,
@@ -14,14 +15,16 @@ typedef enum DEMO_STAT_TYPE {
     DEMO_STAT_MYR = 9,
 } DEMO_STAT_TYPE;
 
-typedef struct DemoStatData {
-    char text[50];
+typedef struct DemoStatData
+{
+    char           text[50];
     DEMO_STAT_TYPE stat_type;
-    unsigned long stat;
-    unsigned long count;
+    unsigned long  stat;
+    unsigned long  count;
 } DemoStatData;
 
-typedef enum {
+typedef enum
+{
     DEMO_STAT_TL = 0,
     DEMO_STAT_BL = 1,
     DEMO_STAT_TLD = 2,
@@ -31,7 +34,7 @@ typedef enum {
 
 extern unsigned char DemoStatEnable;
 
-void DEMOSetStats(DemoStatData * stat, unsigned long nstats, DEMO_STAT_DISP disp);
+void DEMOSetStats(DemoStatData *stat, unsigned long nstats, DEMO_STAT_DISP disp);
 void DEMOUpdateStats(unsigned char inc);
 void DEMOPrintStats(void);
 

@@ -1,6 +1,6 @@
 /*
  *	fdlibm.PPCEABI.h
- *	
+ *
  *	Please see copyright notice on source files.
  *
  */
