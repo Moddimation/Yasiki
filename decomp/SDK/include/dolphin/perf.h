@@ -4,36 +4,40 @@
 #include <dolphin/types.h>
 
 #ifdef __cplusplus
-extern "C" {
+extern "C"
+{
 #endif
 
 typedef u8 PERFId;
 
-typedef enum 
+typedef enum
 {
     PERF_CPU_EVENT,
     PERF_CPU_GP_EVENT,
     PERF_GP_EVENT,
 } PerfType;
 
-struct Frame {
+struct Frame
+{
     // total size: 0x10
-    struct PerfSample * samples; // offset 0x0, size 0x4
-    long lastSample; // offset 0x4, size 0x4
-    unsigned long end; // offset 0x8, size 0x4
-    unsigned long cachemisscycles; // offset 0xC, size 0x4
+    struct PerfSample *samples;         // offset 0x0, size 0x4
+    long               lastSample;      // offset 0x4, size 0x4
+    unsigned long      end;             // offset 0x8, size 0x4
+    unsigned long      cachemisscycles; // offset 0xC, size 0x4
 };
 
-struct PerfEvent {
+struct PerfEvent
+{
     // total size: 0x10
-    char * name; // offset 0x0, size 0x4
-    PerfType type; // offset 0x4, size 0x4
-    long currSample; // offset 0x8, size 0x4
-    struct _GXColor color; // offset 0xC, size 0x4
+    char           *name;               // offset 0x0, size 0x4
+    PerfType        type;               // offset 0x4, size 0x4
+    long            currSample;         // offset 0x8, size 0x4
+    struct _GXColor color;              // offset 0xC, size 0x4
 };
 
-typedef struct PerfSample {
-    /* 0x00 */ u8 id;
+typedef struct PerfSample
+{
+    /* 0x00 */ u8  id;
     /* 0x04 */ u32 cpuTimeStampStart;
     /* 0x08 */ u32 cpuTimeStampEnd;
     /* 0x0C */ u32 gpTimeStampStart;
@@ -60,13 +64,13 @@ typedef struct PerfSample {
 } PerfSample;
 
 typedef void *(*PERFAllocator)(u32 size);
-typedef void (*PERFDeallocator)(void *block);
-typedef void (*PERFDrawCallback)(void);
+typedef void  (*PERFDeallocator)(void *block);
+typedef void  (*PERFDrawCallback)(void);
 
-extern void (* GameDrawInit)(); // size: 0x4, address: 0x14
+extern void (*GameDrawInit)();          // size: 0x4, address: 0x14
 
-u32 PERFInit(u32 numSamples, u32 numFramesHistory, u32 numTypes,
-    PERFAllocator allocator, PERFDeallocator deallocator, PERFDrawCallback initDraw);
+u32  PERFInit(u32 numSamples, u32 numFramesHistory, u32 numTypes, PERFAllocator allocator, PERFDeallocator deallocator,
+              PERFDrawCallback initDraw);
 void PERFEventStart(PERFId id);
 void PERFEventEnd(PERFId id);
 void PERFSetEvent(PERFId id, char *name, PerfType type);
@@ -89,9 +93,9 @@ void PERFToggleDrawCPUBar();
 void PERFToggleDrawXFBars();
 void PERFToggleDrawRASBar();
 
-extern struct Frame * PERFFrames; // size: 0x4, address: 0x0
-extern unsigned long PERFCurrFrame; // size: 0x4, address: 0x0
-extern struct PerfEvent * PERFEvents; // size: 0x4, address: 0x0
+extern struct Frame     *PERFFrames;    // size: 0x4, address: 0x0
+extern unsigned long     PERFCurrFrame; // size: 0x4, address: 0x0
+extern struct PerfEvent *PERFEvents;    // size: 0x4, address: 0x0
 
 #ifdef __cplusplus
 }

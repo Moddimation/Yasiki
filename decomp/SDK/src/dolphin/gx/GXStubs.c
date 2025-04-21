@@ -2,6 +2,7 @@
 
 #include "GXPrivate.h"
 
-void __GXSetRange(float nearz, float fgSideX)
+void
+__GXSetRange(float nearz, float fgSideX)
 {
 }

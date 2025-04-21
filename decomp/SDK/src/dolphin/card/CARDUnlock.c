@@ -1,6 +1,7 @@
-#include <stdlib.h>
-#include <dolphin.h>
 #include <dolphin/card.h>
+
+#include <dolphin.h>
+#include <stdlib.h>
 
 #include "CARDPrivate.h"
 
@@ -27,16 +28,18 @@ static u8 CardData[352] ATTRIBUTE_ALIGN(32) = {
 };
 
 // functions
-static u32 exnor_1st(u32 data, u32 rshift);
-static u32 exnor(u32 data, u32 lshift);
-static u32 bitrev(u32 data);
-static s32 ReadArrayUnlock(s32 chan, u32 data, void *rbuf, s32 rlen, s32 mode);
-static u32 GetInitVal(void);
-static s32 DummyLen(void);
-static void InitCallback(void * _task);
-static void DoneCallback(void * _task);
+static u32  exnor_1st(u32 data, u32 rshift);
+static u32  exnor(u32 data, u32 lshift);
+static u32  bitrev(u32 data);
+static s32  ReadArrayUnlock(s32 chan, u32 data, void *rbuf, s32 rlen, s32 mode);
+static u32  GetInitVal(void);
+static s32  DummyLen(void);
+static void InitCallback(void *_task);
+static void DoneCallback(void *_task);
 
-static u32 exnor_1st(u32 data, u32 rshift) {
+static u32
+exnor_1st(u32 data, u32 rshift)
+{
     u32 wk;
     u32 work;
     u32 i;
@@ -50,7 +53,9 @@ static u32 exnor_1st(u32 data, u32 rshift) {
     return work;
 }
 
-static u32 exnor(u32 data, u32 lshift) {
+static u32
+exnor(u32 data, u32 lshift)
+{
     u32 wk;
     u32 work;
     u32 i;
@@ -65,7 +70,9 @@ static u32 exnor(u32 data, u32 lshift) {
     return work;
 }
 
-static u32 bitrev(u32 data) {
+static u32
+bitrev(u32 data)
+{
     u32 wk;
     u32 i;
     u32 k = 0;
@@ -77,7 +84,9 @@ static u32 bitrev(u32 data) {
         if (i > 15)
         {
             if (i == 31)
+            {
                 wk |= (((data & (0x01 << 31)) >> 31) & 0x01);
+            }
             else
             {
                 wk |= ((data & (0x01 << i)) >> j);
@@ -96,18 +105,22 @@ static u32 bitrev(u32 data) {
 #define SEC_AD1(x) ((u8)(((x) >> 29) & 0x03))
 #define SEC_AD2(x) ((u8)(((x) >> 21) & 0xff))
 #define SEC_AD3(x) ((u8)(((x) >> 19) & 0x03))
-#define SEC_BA(x) ((u8)(((x) >> 12) & 0x7f))
+#define SEC_BA(x)  ((u8)(((x) >> 12) & 0x7f))
 
-static s32 ReadArrayUnlock(s32 chan, u32 data, void *rbuf, s32 rlen, s32 mode) {
+static s32
+ReadArrayUnlock(s32 chan, u32 data, void *rbuf, s32 rlen, s32 mode)
+{
     CARDControl *card;
-    BOOL err;
-    u8 cmd[5];
+    BOOL         err;
+    u8           cmd[5];
 
     ASSERTLINE(0xD1, 0 <= chan && chan < 2);
 
     card = &__CARDBlock[chan];
     if (!EXISelect(chan, 0, 4))
+    {
         return CARD_RESULT_NOCARD;
+    }
 
     data &= 0xfffff000;
     memset(cmd, 0, 5);
@@ -134,7 +147,9 @@ static s32 ReadArrayUnlock(s32 chan, u32 data, void *rbuf, s32 rlen, s32 mode) {
     return err ? CARD_RESULT_NOCARD : CARD_RESULT_READY;
 }
 
-static u32 GetInitVal(void) {
+static u32
+GetInitVal(void)
+{
     u32 tmp;
     u32 tick;
 
@@ -146,7 +161,9 @@ static u32 GetInitVal(void) {
     return tmp;
 }
 
-static s32 DummyLen(void) {
+static s32
+DummyLen(void)
+{
     u32 tick;
     u32 wk;
     s32 tmp;
@@ -166,7 +183,9 @@ static s32 DummyLen(void) {
         tmp = (s32)(tick << wk);
         wk++;
         if (wk > 16)
+        {
             wk = 1;
+        }
         srand((u32)tmp);
         tmp = rand();
         tmp &= 0x0000001f;
@@ -174,12 +193,16 @@ static s32 DummyLen(void) {
         max++;
     }
     if (tmp < 4)
+    {
         tmp = 4;
+    }
 
     return tmp;
 }
 
-s32 __CARDUnlock(s32 chan, u8 flashID[12]) {
+s32
+__CARDUnlock(s32 chan, u8 flashID[12])
+{
     u32 init_val;
     u32 data;
 
@@ -187,22 +210,22 @@ s32 __CARDUnlock(s32 chan, u8 flashID[12]) {
     s32 rlen;
     u32 rshift;
 
-    u8 fsts;
-    u32 wk, wk1;
-    u32 Ans1 = 0;
-    u32 Ans2 = 0;
+    u8   fsts;
+    u32  wk, wk1;
+    u32  Ans1 = 0;
+    u32  Ans2 = 0;
     u32 *dp;
-    u8 rbuf[64];
-    u32 para1A = 0;
-    u32 para1B = 0;
-    u32 para2A = 0;
-    u32 para2B = 0;
+    u8   rbuf[64];
+    u32  para1A = 0;
+    u32  para1B = 0;
+    u32  para2A = 0;
+    u32  para2B = 0;
 
-    CARDControl *card;
-    DSPTaskInfo *task;
+    CARDControl  *card;
+    DSPTaskInfo  *task;
     CARDDecParam *param;
-    u8 *input;
-    u8 *output;
+    u8           *input;
+    u8           *output;
 
     card = &__CARDBlock[chan];
     task = &card->task;
@@ -217,7 +240,9 @@ s32 __CARDUnlock(s32 chan, u8 flashID[12]) {
     dummy = DummyLen();
     rlen = dummy;
     if (ReadArrayUnlock(chan, init_val, rbuf, rlen, 0) < 0)
+    {
         return CARD_RESULT_NOCARD;
+    }
 
     rshift = (u32)(dummy * 8 + 1);
     wk = exnor_1st(init_val, rshift);
@@ -228,7 +253,9 @@ s32 __CARDUnlock(s32 chan, u8 flashID[12]) {
     rlen = 20 + dummy;
     data = 0;
     if (ReadArrayUnlock(chan, data, rbuf, rlen, 1) < 0)
+    {
         return CARD_RESULT_NOCARD;
+    }
 
     dp = (u32 *)rbuf;
     para1A = *dp++;
@@ -297,11 +324,12 @@ s32 __CARDUnlock(s32 chan, u8 flashID[12]) {
     return CARD_RESULT_READY;
 }
 
-static void InitCallback(void *_task)
+static void
+InitCallback(void *_task)
 {
-    s32 chan;
-    CARDControl *card;
-    DSPTaskInfo *task;
+    s32           chan;
+    CARDControl  *card;
+    DSPTaskInfo  *task;
     CARDDecParam *param;
 
     task = _task;
@@ -309,11 +337,13 @@ static void InitCallback(void *_task)
     {
         card = &__CARDBlock[chan];
         if ((DSPTaskInfo *)&card->task == task)
+        {
             break;
+        }
     }
 
     ASSERTLINE(0x1E3, 0 <= chan && chan < 2);
-    
+
     param = (CARDDecParam *)card->workArea;
 
     DSPSendMailToDSP(0xff000000);
@@ -325,22 +355,23 @@ static void InitCallback(void *_task)
         ;
 }
 
-static void DoneCallback(void *_task)
+static void
+DoneCallback(void *_task)
 {
-    u8 rbuf[64];
+    u8  rbuf[64];
     u32 data;
     s32 dummy;
     s32 rlen;
     u32 rshift;
 
-    u8 unk;
+    u8  unk;
     u32 wk, wk1;
     u32 Ans2;
 
-    s32 chan;
-    CARDControl *card;
-    s32 result;
-    DSPTaskInfo *task;
+    s32           chan;
+    CARDControl  *card;
+    s32           result;
+    DSPTaskInfo  *task;
     CARDDecParam *param;
 
     u8 *input;
@@ -350,7 +381,9 @@ static void DoneCallback(void *_task)
     {
         card = &__CARDBlock[chan];
         if ((DSPTaskInfo *)&card->task == task)
+        {
             break;
+        }
     }
 
     ASSERTLINE(0x214, 0 <= chan && chan < 2);

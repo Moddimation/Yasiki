@@ -1,7 +1,7 @@
 #ifndef _H_MACROS_
 #define _H_MACROS_
 
-#define ARRAY_COUNT(arr)     (int)(sizeof(arr) / sizeof(arr [0]))
+#define ARRAY_COUNT(arr)     (int)(sizeof(arr) / sizeof(arr[0]))
 #define FLAG_ON(V, F)        (((V) & (F)) == 0)
 #define FLAG_OFF(V, F)       (((V) & (F)) != 0)
 
@@ -11,7 +11,7 @@
 #define IS_NOT_ALIGNED(X, N) (((X) & ((N) - 1)) != 0)
 
 #define READU32_BE(ptr, offset)                                                                                        \
-    (((u32)ptr [offset] << 24) | ((u32)ptr [offset + 1] << 16) | ((u32)ptr [offset + 2] << 8) | (u32)ptr [offset + 3]);
+    (((u32)ptr[offset] << 24) | ((u32)ptr[offset + 1] << 16) | ((u32)ptr[offset + 2] << 8) | (u32)ptr[offset + 3]);
 
 #ifdef DEBUG
 #    define ASSERTLINE(line, cond)                      ((cond) || (OSPanic(__FILE__, line, "Failed assertion " #cond), 0))
@@ -77,7 +77,7 @@
 #define IS_FLAG_SET(flags, bitsFromLSB) (((flags) >> (bitsFromLSB) & 1))
 
 #define ASSERT_HANG(cond)                                                                                              \
-    if (! (cond))                                                                                                      \
+    if (!(cond))                                                                                                       \
     {                                                                                                                  \
         while (true)                                                                                                   \
         {                                                                                                              \

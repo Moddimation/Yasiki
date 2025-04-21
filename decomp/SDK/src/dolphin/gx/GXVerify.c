@@ -1,11 +1,11 @@
 #if DEBUG
 
-#include <dolphin/gx.h>
+#    include <dolphin/gx.h>
 
-#include "GXPrivate.h"
+#    include "GXPrivate.h"
 
 static struct __GXVerifyData __gxVerifData;
-struct __GXVerifyData * __gxVerif = &__gxVerifData;
+struct __GXVerifyData       *__gxVerif = &__gxVerifData;
 
 char *__gxvWarnings[113] = {
     "Invalid Vertex Format. Normal count must be set to GX_NRM_NBT",
@@ -46,8 +46,10 @@ char *__gxvWarnings[113] = {
     "%s selects null texture in TEV alpha stage %ld.",
     "Color arg %s in TEV stage %ld accesses %s register %ld, which may be dirty.",
     "Alpha arg %s in TEV stage %ld accesses alpha register %ld, which may be dirty.",
-    "Color arg %s in TEV stage %ld accesses %s register %ld, which was last clamped linear high. Possible wrap-around effect.",
-    "Alpha arg C in TEV stage %ld accesses alpha register %ld, which was last clamped linear high. Possible wrap-around effect.",
+    "Color arg %s in TEV stage %ld accesses %s register %ld, which was last clamped linear high. Possible wrap-around "
+    "effect.",
+    "Alpha arg C in TEV stage %ld accesses alpha register %ld, which was last clamped linear high. Possible "
+    "wrap-around effect.",
     "Z texturing enabled, but no Z offset specified.",
     "Z texturing enabled, but no texture specified for final TEV stage.",
     "Final stage doesn't write color to TEV register 0.",
@@ -88,18 +90,22 @@ char *__gxvWarnings[113] = {
     "Regular texture %d specifying source row of texture %d, but this is not getting sent by the CP",
     "Regular texture %d is specifying an invalid source row of %d",
     "Texture texgen types are out of order. Must be defined as regular if any, then bumpmap if any, then color if any",
-    "Bumpmap textures are defined, which requires the binormals and tangents to be transformed by a normal matrix, but MATRIXINDEX0_REG.geom is set to an invalid value (%d)",
+    "Bumpmap textures are defined, which requires the binormals and tangents to be transformed by a normal matrix, but "
+    "MATRIXINDEX0_REG.geom is set to an invalid value (%d)",
     "Bumpmap %d (texture %d) is referencing texture %d as a source texture, which is not of texgen type regular",
     "Bumpmap %d (texture %d) using light source %d, but light's %c position is not defined",
     "Texture %d is defined as texgen type Bumpmap, but cp is not sending binormals and tangents",
     "Invalid regular texture number (%d)",
     "Regular texture %d specifying a source row of %d which only has 2 elements, but an input form of ABC1",
     "Output XF colors or color textures enabled, but register address 0x%04x uninitialized (%s)",
-    "Output XF colors or color textures enabled, COLOR%dCNTRL_REG.material_src == REGISTER, but Material %d register (0x%04x) is not initialized",
-    "Output XF colors or color textures enabled, COLOR%dCNTRL_REG.ambient_src == REGISTER, but Ambient %d register (0x%04x) is not initialized",
+    "Output XF colors or color textures enabled, COLOR%dCNTRL_REG.material_src == REGISTER, but Material %d register "
+    "(0x%04x) is not initialized",
+    "Output XF colors or color textures enabled, COLOR%dCNTRL_REG.ambient_src == REGISTER, but Ambient %d register "
+    "(0x%04x) is not initialized",
     "%sCNTRL_REG.attenselect == SPECULAR but %sCNTRL_REG.diffuseatten != NL_ONE",
     "Color %d lighting requires a normal, but cp is not sending it",
-    "Color %d lighting requires the normal to be transformed by a normal matrix, but MATRIXINDEX0_REG.geom is set to an invalid value (%d)",
+    "Color %d lighting requires the normal to be transformed by a normal matrix, but MATRIXINDEX0_REG.geom is set to "
+    "an invalid value (%d)",
     "%s has a value of %sinfinity (%08x), which is probably not intended",
     "%s has a value of NaN (%08x), which is probably not intended",
     "%s has a value of (%f 0x%08x), which might be unintentionally small",
@@ -114,10 +120,13 @@ char *__gxvWarnings[113] = {
     "Number of color texgens (%d) > max allowed %d",
     "First color texgen is not referencing COLOR0",
     "Color texgen from COLOR%d is used more than once",
-    "Bumpmap textures are defined, which requires the normal matrix values pointed to by MATRIXINDEX0_REG.geom (%d) to be loaded, however...",
-    "Texture %d is a regular texture, which requires that the matrix values pointed to by MATRIXINDEX0_REG.tex%d (%d) must be loaded, however...",
+    "Bumpmap textures are defined, which requires the normal matrix values pointed to by MATRIXINDEX0_REG.geom (%d) to "
+    "be loaded, however...",
+    "Texture %d is a regular texture, which requires that the matrix values pointed to by MATRIXINDEX0_REG.tex%d (%d) "
+    "must be loaded, however...",
     "Light %d is being referenced, however...",
-    "Color %d lighting requires the normal matrix values pointed to by MATRIXINDEX0_REG.geom (%d) to be loaded, however...",
+    "Color %d lighting requires the normal matrix values pointed to by MATRIXINDEX0_REG.geom (%d) to be loaded, "
+    "however...",
     "MatrixIndex0.Geometry matrix values must be loaded, however...",
     "Address 0x%04x is uninitialized",
     "Register (0x%04x) (%s) is not initialized"
@@ -125,27 +134,34 @@ char *__gxvWarnings[113] = {
 
 char __gxvDummyStr[256];
 
-static void __GXVerifyGlobal(void)
+static void
+__GXVerifyGlobal(void)
 {
 }
 
-static void __GXVerifyCP(GXVtxFmt fmt)
+static void
+__GXVerifyCP(GXVtxFmt fmt)
 {
     u32 nrmCnt = GET_REG_FIELD(gx->vatA[fmt], 1, 9);
-    
-    if (__gxVerif->verifyLevel >= GX_WARN_SEVERE) {
-        if (gx->hasNrms && nrmCnt != 0) {
+
+    if (__gxVerif->verifyLevel >= GX_WARN_SEVERE)
+    {
+        if (gx->hasNrms && nrmCnt != 0)
+        {
             __gxVerif->cb(1, 0, __gxvWarnings[0]);
         }
-        else if (gx->hasBiNrms && nrmCnt != 1 && nrmCnt != 2) {
+        else if (gx->hasBiNrms && nrmCnt != 1 && nrmCnt != 2)
+        {
             __gxVerif->cb(1, 0, __gxvWarnings[0]);
         }
     }
 }
 
-void __GXVerifyState(GXVtxFmt vtxfmt)
+void
+__GXVerifyState(GXVtxFmt vtxfmt)
 {
-    if (__gxVerif->verifyLevel != GX_WARN_NONE) {
+    if (__gxVerif->verifyLevel != GX_WARN_NONE)
+    {
         __GXVerifyGlobal();
         __GXVerifyCP(vtxfmt);
         __GXVerifyXF();
@@ -157,17 +173,19 @@ void __GXVerifyState(GXVtxFmt vtxfmt)
     }
 }
 
-void GXSetVerifyLevel(GXWarningLevel level)
+void
+GXSetVerifyLevel(GXWarningLevel level)
 {
     __gxVerif->verifyLevel = level;
 }
 
-GXVerifyCallback GXSetVerifyCallback(GXVerifyCallback cb)
+GXVerifyCallback
+GXSetVerifyCallback(GXVerifyCallback cb)
 {
     GXVerifyCallback old_cb = __gxVerif->cb;
-    
+
     __gxVerif->cb = cb;
     return old_cb;
 }
 
-#endif  // DEBUG
+#endif // DEBUG

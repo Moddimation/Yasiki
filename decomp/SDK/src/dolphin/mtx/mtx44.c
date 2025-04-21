@@ -1,5 +1,7 @@
-#include <dolphin.h>
 #include <dolphin/mtx.h>
+
+#include <dolphin.h>
+
 #include "fake_tgmath.h"
 
 // functions
@@ -7,7 +9,9 @@ void MTXFrustum(Mtx m, f32 t, f32 b, f32 l, f32 r, f32 n, f32 f);
 void MTXPerspective(Mtx m, f32 fovY, f32 aspect, f32 n, f32 f);
 void MTXOrtho(Mtx m, f32 t, f32 b, f32 l, f32 r, f32 n, f32 f);
 
-void MTXFrustum(Mtx m, f32 t, f32 b, f32 l, f32 r, f32 n, f32 f) {
+void
+MTXFrustum(Mtx m, f32 t, f32 b, f32 l, f32 r, f32 n, f32 f)
+{
     f32 tmp;
 
     ASSERTMSGLINE(0x4C, m, "MTXFrustum():  NULL Mtx44Ptr 'm' ");
@@ -35,7 +39,9 @@ void MTXFrustum(Mtx m, f32 t, f32 b, f32 l, f32 r, f32 n, f32 f) {
     m[3][3] = 0;
 }
 
-void MTXPerspective(Mtx m, f32 fovY, f32 aspect, f32 n, f32 f) {
+void
+MTXPerspective(Mtx m, f32 fovY, f32 aspect, f32 n, f32 f)
+{
     f32 angle;
     f32 cot;
     f32 tmp;
@@ -66,7 +72,9 @@ void MTXPerspective(Mtx m, f32 fovY, f32 aspect, f32 n, f32 f) {
     m[3][3] = 0;
 }
 
-void MTXOrtho(Mtx m, f32 t, f32 b, f32 l, f32 r, f32 n, f32 f) {
+void
+MTXOrtho(Mtx m, f32 t, f32 b, f32 l, f32 r, f32 n, f32 f)
+{
     f32 tmp;
 
     ASSERTMSGLINE(0xDB, m, "MTXOrtho():  NULL Mtx44Ptr 'm' ");

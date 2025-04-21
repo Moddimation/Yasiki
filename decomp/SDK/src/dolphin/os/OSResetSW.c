@@ -1,67 +1,88 @@
-#include <dolphin.h>
 #include <dolphin/os.h>
+
+#include <dolphin.h>
 
 #include "OSPrivate.h"
 
 static OSResetCallback ResetCallback;
-static int Down;
-static long long Hold;
+static int             Down;
+static long long       Hold;
 
-void __OSResetSWInterruptHandler(short exception, struct OSContext *context) {
+void
+__OSResetSWInterruptHandler(short exception, struct OSContext *context)
+{
     OSResetCallback callback;
 
     Down = 1;
     __PIRegs[0] = 2;
     __OSMaskInterrupts(0x200);
 
-    if (ResetCallback) {
+    if (ResetCallback)
+    {
         callback = ResetCallback;
         ResetCallback = NULL;
         callback();
     }
 }
 
-OSResetCallback OSSetResetCallback(OSResetCallback callback) {
-    int enabled;
+OSResetCallback
+OSSetResetCallback(OSResetCallback callback)
+{
+    int             enabled;
     OSResetCallback prevCallback;
 
     enabled = OSDisableInterrupts();
     prevCallback = ResetCallback;
     ResetCallback = callback;
 
-    if (callback) {
+    if (callback)
+    {
         __PIRegs[0] = 2;
         __OSUnmaskInterrupts(0x200);
-    } else {
+    }
+    else
+    {
         __OSMaskInterrupts(0x200);
     }
     OSRestoreInterrupts(enabled);
     return prevCallback;
 }
 
-int OSGetResetSwitchState() {
-    int enabled;
-    int state;
+int
+OSGetResetSwitchState()
+{
+    int           enabled;
+    int           state;
     unsigned long reg;
 
     enabled = OSDisableInterrupts();
     reg = __PIRegs[0];
 
-    if (!(reg & 0x10000)) {
+    if (!(reg & 0x10000))
+    {
         Down = 1;
         state = 1;
-    } else if (Down != 0) {
-        if (reg & 2) {
+    }
+    else if (Down != 0)
+    {
+        if (reg & 2)
+        {
             __PIRegs[0] = 2;
             Down = 1;
-        } else {
+        }
+        else
+        {
             Down = 0;
             Hold = __OSGetSystemTime();
         }
         state = 1;
-    } else if (Hold && (__OSGetSystemTime() - Hold) < OSMillisecondsToTicks(50)) {
+    }
+    else if (Hold && (__OSGetSystemTime() - Hold) < OSMillisecondsToTicks(50))
+    {
         state = 1;
-    } else {
+    }
+    else
+    {
         state = 0;
         Hold = 0;
     }

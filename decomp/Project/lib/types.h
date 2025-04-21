@@ -4,9 +4,8 @@
 #ifndef _DOLPHIN_STL_H
 #    include <cstdarg>
 #endif
-#include <macros.h>
-
 #include <dolphin/types.h>
+#include <macros.h>
 
 #include <cstddef>
 #include <cstring>

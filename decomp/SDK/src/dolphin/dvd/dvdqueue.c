@@ -1,29 +1,36 @@
-#include <dolphin.h>
 #include <dolphin/dvd.h>
+
+#include <dolphin.h>
 
 #include "DVDPrivate.h"
 
-static struct {
-    /* 0x00 */ struct DVDCommandBlock * next;
-    /* 0x04 */ struct DVDCommandBlock * prev;
+static struct
+{
+    /* 0x00 */ struct DVDCommandBlock *next;
+    /* 0x04 */ struct DVDCommandBlock *prev;
 } WaitingQueue[4];
 
-static struct DVDCommandBlock * PopWaitingQueuePrio(long prio);
+static struct DVDCommandBlock *PopWaitingQueuePrio(long prio);
 
-void __DVDClearWaitingQueue(void) {
-    unsigned long i;
-    struct DVDCommandBlock * q;
+void
+__DVDClearWaitingQueue(void)
+{
+    unsigned long           i;
+    struct DVDCommandBlock *q;
 
-    for(i = 0; i < 4; i++) {
+    for (i = 0; i < 4; i++)
+    {
         q = (struct DVDCommandBlock *)&WaitingQueue[i].next;
         q->next = q;
         q->prev = q;
     }
 }
 
-int __DVDPushWaitingQueue(long prio, struct DVDCommandBlock * block) {
-    int enabled = OSDisableInterrupts();
-    struct DVDCommandBlock * q = (struct DVDCommandBlock *)&WaitingQueue[prio];
+int
+__DVDPushWaitingQueue(long prio, struct DVDCommandBlock *block)
+{
+    int                     enabled = OSDisableInterrupts();
+    struct DVDCommandBlock *q = (struct DVDCommandBlock *)&WaitingQueue[prio];
 
     q->prev->next = block;
     block->prev = q->prev;
@@ -33,10 +40,12 @@ int __DVDPushWaitingQueue(long prio, struct DVDCommandBlock * block) {
     return 1;
 }
 
-static struct DVDCommandBlock * PopWaitingQueuePrio(long prio) {
-    struct DVDCommandBlock * tmp;
-    int enabled;
-    struct DVDCommandBlock * q;
+static struct DVDCommandBlock *
+PopWaitingQueuePrio(long prio)
+{
+    struct DVDCommandBlock *tmp;
+    int                     enabled;
+    struct DVDCommandBlock *q;
 
     enabled = OSDisableInterrupts();
     q = (struct DVDCommandBlock *)&WaitingQueue[prio];
@@ -50,15 +59,19 @@ static struct DVDCommandBlock * PopWaitingQueuePrio(long prio) {
     return tmp;
 }
 
-struct DVDCommandBlock * __DVDPopWaitingQueue(void) {
-    unsigned long i;
-    int enabled;
-    struct DVDCommandBlock * q;
+struct DVDCommandBlock *
+__DVDPopWaitingQueue(void)
+{
+    unsigned long           i;
+    int                     enabled;
+    struct DVDCommandBlock *q;
 
     enabled = OSDisableInterrupts();
-    for(i = 0; i < 4; i++) {
+    for (i = 0; i < 4; i++)
+    {
         q = (struct DVDCommandBlock *)&WaitingQueue[i];
-        if (q->next != q) {
+        if (q->next != q)
+        {
             return PopWaitingQueuePrio(i);
         }
     }
@@ -66,15 +79,19 @@ struct DVDCommandBlock * __DVDPopWaitingQueue(void) {
     return NULL;
 }
 
-int __DVDCheckWaitingQueue(void) {
-    unsigned long i;
-    int enabled;
-    struct DVDCommandBlock * q;
+int
+__DVDCheckWaitingQueue(void)
+{
+    unsigned long           i;
+    int                     enabled;
+    struct DVDCommandBlock *q;
 
     enabled = OSDisableInterrupts();
-    for(i = 0; i < 4; i++) {
+    for (i = 0; i < 4; i++)
+    {
         q = (struct DVDCommandBlock *)&WaitingQueue[i];
-        if (q->next != q) {
+        if (q->next != q)
+        {
             return 1;
         }
     }
@@ -82,15 +99,18 @@ int __DVDCheckWaitingQueue(void) {
     return 0;
 }
 
-int __DVDDequeueWaitingQueue(struct DVDCommandBlock * block) {
-    int enabled;
-    struct DVDCommandBlock * prev;
-    struct DVDCommandBlock * next;
+int
+__DVDDequeueWaitingQueue(struct DVDCommandBlock *block)
+{
+    int                     enabled;
+    struct DVDCommandBlock *prev;
+    struct DVDCommandBlock *next;
 
     enabled = OSDisableInterrupts();
     prev = block->prev;
     next = block->next;
-    if (prev == NULL || next == NULL) {
+    if (prev == NULL || next == NULL)
+    {
         OSRestoreInterrupts(enabled);
         return 0;
     }
@@ -100,18 +120,24 @@ int __DVDDequeueWaitingQueue(struct DVDCommandBlock * block) {
     return 1;
 }
 
-int __DVDIsBlockInWaitingQueue(struct DVDCommandBlock * block) {
-    unsigned long i;
-    struct DVDCommandBlock * start;
-    struct DVDCommandBlock * q;
+int
+__DVDIsBlockInWaitingQueue(struct DVDCommandBlock *block)
+{
+    unsigned long           i;
+    struct DVDCommandBlock *start;
+    struct DVDCommandBlock *q;
 
-    for(i = 0; i < 4; i++) {
+    for (i = 0; i < 4; i++)
+    {
         start = (struct DVDCommandBlock *)&WaitingQueue[i];
-        if (start->next == start) {
+        if (start->next == start)
+        {
             continue;
         }
-        for(q = start->next; q != start; q = q->next) {
-            if (q == block) {
+        for (q = start->next; q != start; q = q->next)
+        {
+            if (q == block)
+            {
                 return 1;
             }
         }
@@ -119,7 +145,7 @@ int __DVDIsBlockInWaitingQueue(struct DVDCommandBlock * block) {
     return 0;
 }
 
-static char * CommandNames[16] = {
+static char *CommandNames[16] = {
     "",
     "READ",
     "SEEK",
@@ -138,24 +164,34 @@ static char * CommandNames[16] = {
     "BS_CHANGE_DISK",
 };
 
-void DVDDumpWaitingQueue(void) {
-    unsigned long i;
-    struct DVDCommandBlock * start;
-    struct DVDCommandBlock * q;
+void
+DVDDumpWaitingQueue(void)
+{
+    unsigned long           i;
+    struct DVDCommandBlock *start;
+    struct DVDCommandBlock *q;
 
     OSReport("==== DVD Waiting Queue Status ====\n");
-    for(i = 0; i < 4; i++) {
+    for (i = 0; i < 4; i++)
+    {
         OSReport("< Queue #%d > ", i);
         start = (struct DVDCommandBlock *)&WaitingQueue[i];
-        if (start->next == start) {
+        if (start->next == start)
+        {
             OSReport("None\n");
-        } else {
+        }
+        else
+        {
             OSReport("\n");
-            for(q = start->next; q != start; q = q->next) {
+            for (q = start->next; q != start; q = q->next)
+            {
                 OSReport("0x%08x: Command: %s ", q, CommandNames[q->command]);
-                if (q->command == 1) {
+                if (q->command == 1)
+                {
                     OSReport("Disk offset: %d, Length: %d, Addr: 0x%08x\n", q->offset, q->length, q->addr);
-                } else {
+                }
+                else
+                {
                     OSReport("\n");
                 }
             }

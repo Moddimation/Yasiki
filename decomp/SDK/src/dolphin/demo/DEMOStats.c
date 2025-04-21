@@ -1,11 +1,12 @@
-#include <dolphin.h>
-#include <dolphin/gx.h>
 #include <dolphin/demo.h>
+#include <dolphin/gx.h>
+
+#include <dolphin.h>
 
 #include "DEMOPrivate.h"
 
-unsigned char DemoStatEnable = 0;
-static DemoStatData * DemoStat;
+unsigned char        DemoStatEnable = 0;
+static DemoStatData *DemoStat;
 static unsigned long DemoStatIndx;
 static unsigned long DemoStatMaxIndx;
 static unsigned long DemoStatClocks;
@@ -35,10 +36,15 @@ static unsigned long fiReq;
 static void DEMOWriteStats(unsigned char update);
 static void DEMOWriteStats(unsigned char update);
 
-void DEMOSetStats(DemoStatData * stat, unsigned long nstats, DEMO_STAT_DISP disp) {
-    if (!stat || nstats == 0) {
+void
+DEMOSetStats(DemoStatData *stat, unsigned long nstats, DEMO_STAT_DISP disp)
+{
+    if (!stat || nstats == 0)
+    {
         DemoStatEnable = FALSE;
-    } else {
+    }
+    else
+    {
         DemoStatEnable = TRUE;
         DemoStat = stat;
         DemoStatIndx = 0;
@@ -48,7 +54,9 @@ void DEMOSetStats(DemoStatData * stat, unsigned long nstats, DEMO_STAT_DISP disp
     }
 }
 
-static void DEMOWriteStats(unsigned char update) {
+static void
+DEMOWriteStats(unsigned char update)
+{
     unsigned long cnt0;
     unsigned long cnt1;
     unsigned long cnt2;
@@ -60,27 +68,31 @@ static void DEMOWriteStats(unsigned char update) {
     unsigned long cnt8;
     unsigned long cnt9;
 
-    switch (DemoStat[DemoStatIndx].stat_type) {
-        case DEMO_STAT_GP0:
+    switch (DemoStat[DemoStatIndx].stat_type)
+    {
+        case DEMO_STAT_GP0 :
             cnt0 = GXReadGP0Metric();
             GXSetGPMetric(DemoStat[DemoStatIndx].stat, 0x16);
             GXClearGPMetric();
-            if (update) {
+            if (update)
+            {
                 DemoStat[DemoStatIndx].count = cnt0;
             }
             break;
-        case DEMO_STAT_GP1:
+        case DEMO_STAT_GP1 :
             cnt0 = GXReadGP1Metric();
             GXSetGPMetric(0x23, DemoStat[DemoStatIndx].stat);
             GXClearGPMetric();
-            if (update) {
+            if (update)
+            {
                 DemoStat[DemoStatIndx].count = cnt0;
             }
             break;
-        case DEMO_STAT_MEM:
+        case DEMO_STAT_MEM :
             GXReadMemMetric(&cnt0, &cnt1, &cnt2, &cnt3, &cnt4, &cnt5, &cnt6, &cnt7, &cnt8, &cnt9);
             GXClearMemMetric();
-            if (update) {
+            if (update)
+            {
                 cpReq = cnt0;
                 tcReq = cnt1;
                 cpuRdReq = cnt2;
@@ -93,10 +105,11 @@ static void DEMOWriteStats(unsigned char update) {
                 fiReq = cnt9;
             }
             break;
-        case DEMO_STAT_PIX:
+        case DEMO_STAT_PIX :
             GXReadPixMetric(&cnt0, &cnt1, &cnt2, &cnt3, &cnt4, &cnt5);
             GXClearPixMetric();
-            if (update) {
+            if (update)
+            {
                 topPixIn = cnt0;
                 topPixOut = cnt1;
                 botPixIn = cnt2;
@@ -105,20 +118,22 @@ static void DEMOWriteStats(unsigned char update) {
                 copyClks = cnt5;
             }
             break;
-        case DEMO_STAT_VC:
+        case DEMO_STAT_VC :
             GXReadVCacheMetric(&cnt0, &cnt1, &cnt2);
             GXSetVCacheMetric(0);
             GXClearVCacheMetric();
-            if (update) {
+            if (update)
+            {
                 vcCheck = cnt0;
                 vcMiss = cnt1;
                 vcStall = cnt2;
             }
             break;
-        case DEMO_STAT_FR:
+        case DEMO_STAT_FR :
             GXReadPixMetric(&cnt0, &cnt1, &cnt2, &cnt3, &cnt4, &cnt5);
             GXClearPixMetric();
-            if (update) {
+            if (update)
+            {
                 topPixIn = cnt0;
                 topPixOut = cnt1;
                 botPixIn = cnt2;
@@ -130,11 +145,12 @@ static void DEMOWriteStats(unsigned char update) {
             GXSetGPMetric(0x22, 0x16);
             GXClearGPMetric();
             break;
-        case DEMO_STAT_TBW:
-        case DEMO_STAT_TBP:
+        case DEMO_STAT_TBW :
+        case DEMO_STAT_TBP :
             GXReadPixMetric(&cnt0, &cnt1, &cnt2, &cnt3, &cnt4, &cnt5);
             GXClearPixMetric();
-            if (update) {
+            if (update)
+            {
                 topPixIn = cnt0;
                 topPixOut = cnt1;
                 botPixIn = cnt2;
@@ -149,152 +165,167 @@ static void DEMOWriteStats(unsigned char update) {
             GXClearMemMetric();
             tcReq = cnt1;
             break;
-        case DEMO_STAT_MYC:
-        case DEMO_STAT_MYR:
+        case DEMO_STAT_MYC :
+        case DEMO_STAT_MYR :
             break;
-        default:
+        default :
             OSPanic("DEMOStats.c", 0x119, "DEMOSetStats: Unknown demo stat type\n");
     }
 }
 
-void DEMOUpdateStats(unsigned char inc) {
+void
+DEMOUpdateStats(unsigned char inc)
+{
     DEMOWriteStats(inc);
-    if (inc) {
+    if (inc)
+    {
         DemoStatIndx = DemoStatIndx + 1;
-        if (DemoStatIndx == DemoStatMaxIndx) {
+        if (DemoStatIndx == DemoStatMaxIndx)
+        {
             DemoStatIndx = 0;
         }
     }
 }
 
-void DEMOPrintStats(void) {
-    GXRenderModeObj * rmode;
-    unsigned long i;
-    signed short text_x;
-    signed short text_y;
-    signed short text_yinc;
-    unsigned short wd;
-    unsigned short ht;
-    float rate;
+void
+DEMOPrintStats(void)
+{
+    GXRenderModeObj *rmode;
+    unsigned long    i;
+    signed short     text_x;
+    signed short     text_y;
+    signed short     text_yinc;
+    unsigned short   wd;
+    unsigned short   ht;
+    float            rate;
 
-    if (DemoStatDisp == DEMO_STAT_IO) {
-        for (i = 0; i < DemoStatMaxIndx; i++) {
-            switch (DemoStat[i].stat_type) {
-                case DEMO_STAT_PIX:
-                    switch (DemoStat[i].stat) {
-                        case 0:
+    if (DemoStatDisp == DEMO_STAT_IO)
+    {
+        for (i = 0; i < DemoStatMaxIndx; i++)
+        {
+            switch (DemoStat[i].stat_type)
+            {
+                case DEMO_STAT_PIX :
+                    switch (DemoStat[i].stat)
+                    {
+                        case 0 :
                             OSReport("%s: %8d\n", DemoStat[i].text, topPixIn);
                             break;
-                        case 1:
+                        case 1 :
                             OSReport("%s: %8d\n", DemoStat[i].text, topPixOut);
                             break;
-                        case 2:
+                        case 2 :
                             OSReport("%s: %8d\n", DemoStat[i].text, botPixIn);
                             break;
-                        case 3:
+                        case 3 :
                             OSReport("%s: %8d\n", DemoStat[i].text, botPixOut);
                             break;
-                        case 4:
+                        case 4 :
                             OSReport("%s: %8d\n", DemoStat[i].text, clrPixIn);
                             break;
-                        case 5:
+                        case 5 :
                             OSReport("%s: %8d\n", DemoStat[i].text, copyClks);
                             break;
                     }
                     break;
-                case DEMO_STAT_FR:
-                    rate = 40.0F * (topPixIn + botPixIn) / (float) (DemoStatClocks - copyClks);
+                case DEMO_STAT_FR :
+                    rate = 40.0F * (topPixIn + botPixIn) / (float)(DemoStatClocks - copyClks);
                     OSReport("%s: %8.2f\n", DemoStat[i].text, rate);
                     break;
-                case DEMO_STAT_TBW:
-                    rate = 40.0F * (tcReq << 5) / (float) (DemoStatClocks - copyClks);
+                case DEMO_STAT_TBW :
+                    rate = 40.0F * (tcReq << 5) / (float)(DemoStatClocks - copyClks);
                     OSReport("%s: %8.2f\n", DemoStat[i].text, rate);
                     break;
-                case DEMO_STAT_TBP:
-                    rate = (tcReq << 5) / (float) (topPixIn + botPixIn);
+                case DEMO_STAT_TBP :
+                    rate = (tcReq << 5) / (float)(topPixIn + botPixIn);
                     OSReport("%s: %8.2f\n", DemoStat[i].text, rate);
                     break;
-                case DEMO_STAT_VC:
-                    switch (DemoStat[i].stat) {
-                        case 0:
+                case DEMO_STAT_VC :
+                    switch (DemoStat[i].stat)
+                    {
+                        case 0 :
                             OSReport("%s: %8d\n", DemoStat[i].text, vcCheck);
                             break;
-                        case 1:
+                        case 1 :
                             OSReport("%s: %8d\n", DemoStat[i].text, vcMiss);
                             break;
-                        case 2:
+                        case 2 :
                             OSReport("%s: %8d\n", DemoStat[i].text, vcStall);
                             break;
                     }
                     break;
-                case DEMO_STAT_MYR:
-                    rate = DemoStat[i].stat / (float) DemoStat[i].count;
+                case DEMO_STAT_MYR :
+                    rate = DemoStat[i].stat / (float)DemoStat[i].count;
                     OSReport("%s: %8.2f\n", DemoStat[i].text, rate);
                     break;
-                case DEMO_STAT_MEM:
-                    switch (DemoStat[i].stat) {
-                        case 0:
+                case DEMO_STAT_MEM :
+                    switch (DemoStat[i].stat)
+                    {
+                        case 0 :
                             OSReport("%s: %8d\n", DemoStat[i].text, cpReq);
                             break;
-                        case 1:
+                        case 1 :
                             OSReport("%s: %8d\n", DemoStat[i].text, tcReq);
                             break;
-                        case 2:
+                        case 2 :
                             OSReport("%s: %8d\n", DemoStat[i].text, cpuRdReq);
                             break;
-                        case 3:
+                        case 3 :
                             OSReport("%s: %8d\n", DemoStat[i].text, cpuWrReq);
                             break;
-                        case 4:
+                        case 4 :
                             OSReport("%s: %8d\n", DemoStat[i].text, dspReq);
                             break;
-                        case 5:
+                        case 5 :
                             OSReport("%s: %8d\n", DemoStat[i].text, ioReq);
                             break;
-                        case 6:
+                        case 6 :
                             OSReport("%s: %8d\n", DemoStat[i].text, viReq);
                             break;
-                        case 7:
+                        case 7 :
                             OSReport("%s: %8d\n", DemoStat[i].text, peReq);
                             break;
-                        case 8:
+                        case 8 :
                             OSReport("%s: %8d\n", DemoStat[i].text, rfReq);
                             break;
-                        case 9:
+                        case 9 :
                             OSReport("%s: %8d\n", DemoStat[i].text, fiReq);
                             break;
                     }
                     break;
-                default:
+                default :
                     OSReport("%s: %8d\n", DemoStat[i].text, DemoStat[i].count);
                     break;
             }
         }
-    } else {
+    }
+    else
+    {
         rmode = DEMOGetRenderModeObj();
-        switch (DemoStatDisp) {
-            case DEMO_STAT_TL:
+        switch (DemoStatDisp)
+        {
+            case DEMO_STAT_TL :
                 text_x = 0x10;
                 text_y = 0x10;
                 text_yinc = 0xA;
                 wd = rmode->fbWidth;
                 ht = rmode->xfbHeight;
                 break;
-            case DEMO_STAT_BL:
+            case DEMO_STAT_BL :
                 text_x = 0x10;
                 text_y = rmode->xfbHeight - 0x18;
                 text_yinc = -0xA;
                 wd = rmode->fbWidth;
                 ht = rmode->xfbHeight;
                 break;
-            case DEMO_STAT_TLD:
+            case DEMO_STAT_TLD :
                 text_x = 8;
                 text_y = 8;
                 text_yinc = 9;
                 wd = rmode->fbWidth / 2;
                 ht = rmode->xfbHeight / 2;
                 break;
-            case DEMO_STAT_BLD:
+            case DEMO_STAT_BLD :
                 text_x = 8;
                 text_y = (rmode->xfbHeight - 0x18) / 2;
                 text_yinc = -9;
@@ -303,99 +334,104 @@ void DEMOPrintStats(void) {
                 break;
         }
         DEMOInitCaption(0, wd, ht);
-        for (i = 0; i < DemoStatMaxIndx; i++) {
-            switch (DemoStat[i].stat_type) {
-                case DEMO_STAT_PIX:
-                    switch (DemoStat[i].stat) {
-                        case 0:
+        for (i = 0; i < DemoStatMaxIndx; i++)
+        {
+            switch (DemoStat[i].stat_type)
+            {
+                case DEMO_STAT_PIX :
+                    switch (DemoStat[i].stat)
+                    {
+                        case 0 :
                             DEMOPrintf(text_x, text_y, 0, "%s: %8d\n", DemoStat[i].text, topPixIn);
                             break;
-                        case 1:
+                        case 1 :
                             DEMOPrintf(text_x, text_y, 0, "%s: %8d\n", DemoStat[i].text, topPixOut);
                             break;
-                        case 2:
+                        case 2 :
                             DEMOPrintf(text_x, text_y, 0, "%s: %8d\n", DemoStat[i].text, botPixIn);
                             break;
-                        case 3:
+                        case 3 :
                             DEMOPrintf(text_x, text_y, 0, "%s: %8d\n", DemoStat[i].text, botPixOut);
                             break;
-                        case 4:
+                        case 4 :
                             DEMOPrintf(text_x, text_y, 0, "%s: %8d\n", DemoStat[i].text, clrPixIn);
                             break;
-                        case 5:
+                        case 5 :
                             DEMOPrintf(text_x, text_y, 0, "%s: %8d\n", DemoStat[i].text, copyClks);
                             break;
                     }
                     break;
-                case DEMO_STAT_FR:
-                    rate = 40.0F * (topPixIn + botPixIn) / (float) (DemoStatClocks - copyClks);
+                case DEMO_STAT_FR :
+                    rate = 40.0F * (topPixIn + botPixIn) / (float)(DemoStatClocks - copyClks);
                     DEMOPrintf(text_x, text_y, 0, "%s: %8.2f\n", DemoStat[i].text, rate);
                     break;
-                case DEMO_STAT_TBW:
-                    rate = 40.0F * (tcReq << 5) / (float) (DemoStatClocks - copyClks);
+                case DEMO_STAT_TBW :
+                    rate = 40.0F * (tcReq << 5) / (float)(DemoStatClocks - copyClks);
                     DEMOPrintf(text_x, text_y, 0, "%s: %8.2f\n", DemoStat[i].text, rate);
                     break;
-                case DEMO_STAT_TBP:
-                    rate = (tcReq << 5) / (float) (topPixIn - botPixIn);
+                case DEMO_STAT_TBP :
+                    rate = (tcReq << 5) / (float)(topPixIn - botPixIn);
                     DEMOPrintf(text_x, text_y, 0, "%s: %8.3f\n", DemoStat[i].text, rate);
                     break;
-                case DEMO_STAT_VC:
-                    switch (DemoStat[i].stat) {
-                        case 0:
+                case DEMO_STAT_VC :
+                    switch (DemoStat[i].stat)
+                    {
+                        case 0 :
                             DEMOPrintf(text_x, text_y, 0, "%s: %8d\n", DemoStat[i].text, vcCheck);
                             break;
-                        case 1:
+                        case 1 :
                             DEMOPrintf(text_x, text_y, 0, "%s: %8d\n", DemoStat[i].text, vcMiss);
                             break;
-                        case 2:
+                        case 2 :
                             DEMOPrintf(text_x, text_y, 0, "%s: %8d\n", DemoStat[i].text, vcStall);
                             break;
                     }
                     break;
-                case DEMO_STAT_MEM:
-                    switch (DemoStat[i].stat) {
-                        case 0:
+                case DEMO_STAT_MEM :
+                    switch (DemoStat[i].stat)
+                    {
+                        case 0 :
                             DEMOPrintf(text_x, text_y, 0, "%s: %8d\n", DemoStat[i].text, cpReq);
                             break;
-                        case 1:
+                        case 1 :
                             DEMOPrintf(text_x, text_y, 0, "%s: %8d\n", DemoStat[i].text, tcReq);
                             break;
-                        case 2:
+                        case 2 :
                             DEMOPrintf(text_x, text_y, 0, "%s: %8d\n", DemoStat[i].text, cpuRdReq);
                             break;
-                        case 3:
+                        case 3 :
                             DEMOPrintf(text_x, text_y, 0, "%s: %8d\n", DemoStat[i].text, cpuWrReq);
                             break;
-                        case 4:
+                        case 4 :
                             DEMOPrintf(text_x, text_y, 0, "%s: %8d\n", DemoStat[i].text, dspReq);
                             break;
-                        case 5:
+                        case 5 :
                             DEMOPrintf(text_x, text_y, 0, "%s: %8d\n", DemoStat[i].text, ioReq);
                             break;
-                        case 6:
+                        case 6 :
                             DEMOPrintf(text_x, text_y, 0, "%s: %8d\n", DemoStat[i].text, viReq);
                             break;
-                        case 7:
+                        case 7 :
                             DEMOPrintf(text_x, text_y, 0, "%s: %8d\n", DemoStat[i].text, peReq);
                             break;
-                        case 8:
+                        case 8 :
                             DEMOPrintf(text_x, text_y, 0, "%s: %8d\n", DemoStat[i].text, rfReq);
                             break;
-                        case 9:
+                        case 9 :
                             DEMOPrintf(text_x, text_y, 0, "%s: %8d\n", DemoStat[i].text, fiReq);
                             break;
                     }
                     break;
-                case DEMO_STAT_GP0:
-                case DEMO_STAT_GP1:
-                case DEMO_STAT_MYC:
+                case DEMO_STAT_GP0 :
+                case DEMO_STAT_GP1 :
+                case DEMO_STAT_MYC :
                     DEMOPrintf(text_x, text_y, 0, "%s: %8d", DemoStat[i].text, DemoStat[i].count);
                     break;
-                case DEMO_STAT_MYR:
-                    rate = DemoStat[i].stat / (float) DemoStat[i].count;
+                case DEMO_STAT_MYR :
+                    rate = DemoStat[i].stat / (float)DemoStat[i].count;
                     DEMOPrintf(text_x, text_y, 0, "%s: %8.3f", DemoStat[i].text, rate);
                     break;
-                default:
+                default :
                     OSReport("Undefined stat type %d in DEMOPrintStats()\n", DemoStat[i].stat_type);
                     break;
             }

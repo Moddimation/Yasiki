@@ -4,16 +4,18 @@
 #include <dolphin/os.h>
 
 #ifdef __cplusplus
-extern "C" {
+extern "C"
+{
 #endif
 
 typedef void (*MTRCallbackType)(s32);
 
-typedef struct DBInterface {
-	u32 bPresent;
-	u32 exceptionMask;
-	void (*ExceptionDestination)(void);
-	void* exceptionReturn;
+typedef struct DBInterface
+{
+    u32   bPresent;
+    u32   exceptionMask;
+    void  (*ExceptionDestination)(void);
+    void* exceptionReturn;
 } DBInterface;
 
 extern DBInterface* __DBInterface;

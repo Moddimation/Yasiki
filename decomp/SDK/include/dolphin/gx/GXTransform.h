@@ -4,11 +4,12 @@
 #include <dolphin/gx/GXEnum.h>
 
 #ifdef __cplusplus
-extern "C" {
+extern "C"
+{
 #endif
 
-#define GX_PROJECTION_SZ  7
-#define GX_VIEWPORT_SZ  6
+#define GX_PROJECTION_SZ 7
+#define GX_VIEWPORT_SZ   6
 
 void GXProject(f32 x, f32 y, f32 z, f32 mtx[3][4], f32 *pm, f32 *vp, f32 *sx, f32 *sy, f32 *sz);
 void GXSetProjection(f32 mtx[4][4], GXProjectionType type);

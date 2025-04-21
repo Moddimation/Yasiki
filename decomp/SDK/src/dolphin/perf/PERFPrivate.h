@@ -2,10 +2,11 @@
 #define _DOLPHIN_PERF_INTERNAL_H_
 
 #ifdef __cplusplus
-extern "C" {
+extern "C"
+{
 #endif
 
-void __PERFDrawInit(void (* id)());
+void __PERFDrawInit(void (*id)());
 
 #ifdef __cplusplus
 }

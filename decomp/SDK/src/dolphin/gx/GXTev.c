@@ -1,51 +1,55 @@
+#include <macros.h>
+
 #include <dolphin/gx.h>
 #include <dolphin/os.h>
-#include <macros.h>
 
 #include "GXPrivate.h"
 
-void GXSetTevOp(GXTevStageID id, GXTevMode mode)
+void
+GXSetTevOp(GXTevStageID id, GXTevMode mode)
 {
     GXTevColorArg carg = GX_CC_RASC;
     GXTevAlphaArg aarg = GX_CA_RASA;
 
     CHECK_GXBEGIN(0x72, "GXSetTevOp");
 
-    if (id != GX_TEVSTAGE0) {
+    if (id != GX_TEVSTAGE0)
+    {
         carg = GX_CC_CPREV;
         aarg = GX_CA_APREV;
     }
 
-    switch (mode) {
-    case GX_MODULATE:
-        GXSetTevColorIn(id, GX_CC_ZERO, GX_CC_TEXC, carg, GX_CC_ZERO);
-        GXSetTevAlphaIn(id, GX_CA_ZERO, GX_CA_TEXA, aarg, GX_CA_ZERO);
-        break;
-    case GX_DECAL:
-        GXSetTevColorIn(id, carg, GX_CC_TEXC, GX_CC_TEXA, GX_CC_ZERO);
-        GXSetTevAlphaIn(id, GX_CA_ZERO, GX_CA_ZERO, GX_CA_ZERO, aarg);
-        break;
-    case GX_BLEND:
-        GXSetTevColorIn(id, carg, GX_CC_ONE, GX_CC_TEXC, GX_CC_ZERO);
-        GXSetTevAlphaIn(id, GX_CA_ZERO, GX_CA_TEXA, aarg, GX_CA_ZERO);
-        break;
-    case GX_REPLACE:
-        GXSetTevColorIn(id, GX_CC_ZERO, GX_CC_ZERO, GX_CC_ZERO, GX_CC_TEXC);
-        GXSetTevAlphaIn(id, GX_CA_ZERO, GX_CA_ZERO, GX_CA_ZERO, GX_CA_TEXA);
-        break;
-    case GX_PASSCLR:
-        GXSetTevColorIn(id, GX_CC_ZERO, GX_CC_ZERO, GX_CC_ZERO, carg);
-        GXSetTevAlphaIn(id, GX_CA_ZERO, GX_CA_ZERO, GX_CA_ZERO, aarg);
-        break;
-    default:
-        ASSERTMSGLINE(0x8F, 0, "GXSetTevOp: Invalid Tev Mode");
+    switch (mode)
+    {
+        case GX_MODULATE :
+            GXSetTevColorIn(id, GX_CC_ZERO, GX_CC_TEXC, carg, GX_CC_ZERO);
+            GXSetTevAlphaIn(id, GX_CA_ZERO, GX_CA_TEXA, aarg, GX_CA_ZERO);
+            break;
+        case GX_DECAL :
+            GXSetTevColorIn(id, carg, GX_CC_TEXC, GX_CC_TEXA, GX_CC_ZERO);
+            GXSetTevAlphaIn(id, GX_CA_ZERO, GX_CA_ZERO, GX_CA_ZERO, aarg);
+            break;
+        case GX_BLEND :
+            GXSetTevColorIn(id, carg, GX_CC_ONE, GX_CC_TEXC, GX_CC_ZERO);
+            GXSetTevAlphaIn(id, GX_CA_ZERO, GX_CA_TEXA, aarg, GX_CA_ZERO);
+            break;
+        case GX_REPLACE :
+            GXSetTevColorIn(id, GX_CC_ZERO, GX_CC_ZERO, GX_CC_ZERO, GX_CC_TEXC);
+            GXSetTevAlphaIn(id, GX_CA_ZERO, GX_CA_ZERO, GX_CA_ZERO, GX_CA_TEXA);
+            break;
+        case GX_PASSCLR :
+            GXSetTevColorIn(id, GX_CC_ZERO, GX_CC_ZERO, GX_CC_ZERO, carg);
+            GXSetTevAlphaIn(id, GX_CA_ZERO, GX_CA_ZERO, GX_CA_ZERO, aarg);
+            break;
+        default :
+            ASSERTMSGLINE(0x8F, 0, "GXSetTevOp: Invalid Tev Mode");
     }
     GXSetTevColorOp(id, GX_TEV_ADD, GX_TB_ZERO, GX_CS_SCALE_1, GX_TRUE, GX_TEVPREV);
     GXSetTevAlphaOp(id, GX_TEV_ADD, GX_TB_ZERO, GX_CS_SCALE_1, GX_TRUE, GX_TEVPREV);
 }
 
-
-void GXSetTevColorIn(GXTevStageID stage, GXTevColorArg a, GXTevColorArg b, GXTevColorArg c, GXTevColorArg d)
+void
+GXSetTevColorIn(GXTevStageID stage, GXTevColorArg a, GXTevColorArg b, GXTevColorArg c, GXTevColorArg d)
 {
     u32 *pTevReg;
 
@@ -58,15 +62,16 @@ void GXSetTevColorIn(GXTevStageID stage, GXTevColorArg a, GXTevColorArg b, GXTev
 
     pTevReg = &gx->tevc[stage];
     SET_REG_FIELD(0xED, *pTevReg, 4, 12, a);
-    SET_REG_FIELD(0xEE, *pTevReg, 4,  8, b);
-    SET_REG_FIELD(0xEF, *pTevReg, 4,  4, c);
-    SET_REG_FIELD(0xF0, *pTevReg, 4,  0, d);
+    SET_REG_FIELD(0xEE, *pTevReg, 4, 8, b);
+    SET_REG_FIELD(0xEF, *pTevReg, 4, 4, c);
+    SET_REG_FIELD(0xF0, *pTevReg, 4, 0, d);
 
     GX_WRITE_RAS_REG(*pTevReg);
     gx->bpSent = 1;
 }
 
-void GXSetTevAlphaIn(GXTevStageID stage, GXTevAlphaArg a, GXTevAlphaArg b, GXTevAlphaArg c, GXTevAlphaArg d)
+void
+GXSetTevAlphaIn(GXTevStageID stage, GXTevAlphaArg a, GXTevAlphaArg b, GXTevAlphaArg c, GXTevAlphaArg d)
 {
     u32 *pTevReg;
 
@@ -80,14 +85,15 @@ void GXSetTevAlphaIn(GXTevStageID stage, GXTevAlphaArg a, GXTevAlphaArg b, GXTev
     pTevReg = &gx->teva[stage];
     SET_REG_FIELD(0x110, *pTevReg, 3, 13, a);
     SET_REG_FIELD(0x111, *pTevReg, 3, 10, b);
-    SET_REG_FIELD(0x112, *pTevReg, 3,  7, c);
-    SET_REG_FIELD(0x113, *pTevReg, 3,  4, d);
+    SET_REG_FIELD(0x112, *pTevReg, 3, 7, c);
+    SET_REG_FIELD(0x113, *pTevReg, 3, 4, d);
 
     GX_WRITE_RAS_REG(*pTevReg);
     gx->bpSent = 1;
 }
 
-void GXSetTevColorOp(GXTevStageID stage, GXTevOp op, GXTevBias bias, GXTevScale scale, GXBool clamp, GXTevRegID out_reg)
+void
+GXSetTevColorOp(GXTevStageID stage, GXTevOp op, GXTevBias bias, GXTevScale scale, GXBool clamp, GXTevRegID out_reg)
 {
     u32 *pTevReg;
 
@@ -96,10 +102,13 @@ void GXSetTevColorOp(GXTevStageID stage, GXTevOp op, GXTevBias bias, GXTevScale 
 
     pTevReg = &gx->tevc[stage];
     SET_REG_FIELD(0x137, *pTevReg, 1, 18, op & 1);
-    if (op <= 1) {
+    if (op <= 1)
+    {
         SET_REG_FIELD(0x139, *pTevReg, 2, 20, scale);
         SET_REG_FIELD(0x13A, *pTevReg, 2, 16, bias);
-    } else {
+    }
+    else
+    {
         SET_REG_FIELD(0x13C, *pTevReg, 2, 20, (op >> 1) & 3);
         SET_REG_FIELD(0x13D, *pTevReg, 2, 16, 3);
     }
@@ -110,7 +119,8 @@ void GXSetTevColorOp(GXTevStageID stage, GXTevOp op, GXTevBias bias, GXTevScale 
     gx->bpSent = 1;
 }
 
-void GXSetTevAlphaOp(GXTevStageID stage, GXTevOp op, GXTevBias bias, GXTevScale scale, GXBool clamp, GXTevRegID out_reg)
+void
+GXSetTevAlphaOp(GXTevStageID stage, GXTevOp op, GXTevBias bias, GXTevScale scale, GXBool clamp, GXTevRegID out_reg)
 {
     u32 *pTevReg;
 
@@ -119,10 +129,13 @@ void GXSetTevAlphaOp(GXTevStageID stage, GXTevOp op, GXTevBias bias, GXTevScale 
 
     pTevReg = &gx->teva[stage];
     SET_REG_FIELD(0x163, *pTevReg, 1, 18, op & 1);
-    if (op <= 1) {
+    if (op <= 1)
+    {
         SET_REG_FIELD(0x165, *pTevReg, 2, 20, scale);
         SET_REG_FIELD(0x166, *pTevReg, 2, 16, bias);
-    } else {
+    }
+    else
+    {
         SET_REG_FIELD(0x168, *pTevReg, 2, 20, (op >> 1) & 3);
         SET_REG_FIELD(0x169, *pTevReg, 2, 16, 3);
     }
@@ -133,7 +146,8 @@ void GXSetTevAlphaOp(GXTevStageID stage, GXTevOp op, GXTevBias bias, GXTevScale 
     gx->bpSent = 1;
 }
 
-void GXSetTevColor(GXTevRegID id, GXColor color)
+void
+GXSetTevColor(GXTevRegID id, GXColor color)
 {
     u32 regRA;
     u32 regBG;
@@ -141,14 +155,14 @@ void GXSetTevColor(GXTevRegID id, GXColor color)
     CHECK_GXBEGIN(0x182, "GXSetTevColor");
 
     regRA = 0;
-    SET_REG_FIELD(0x185, regRA, 11,  0, color.r);
+    SET_REG_FIELD(0x185, regRA, 11, 0, color.r);
     SET_REG_FIELD(0x186, regRA, 11, 12, color.a);
-    SET_REG_FIELD(0x187, regRA,  8, 24, 224 + id * 2);
+    SET_REG_FIELD(0x187, regRA, 8, 24, 224 + id * 2);
 
     regBG = 0;
-    SET_REG_FIELD(0x18A, regBG, 11,  0, color.b);
+    SET_REG_FIELD(0x18A, regBG, 11, 0, color.b);
     SET_REG_FIELD(0x18B, regBG, 11, 12, color.g);
-    SET_REG_FIELD(0x18C, regBG,  8, 24, 225 + id * 2);
+    SET_REG_FIELD(0x18C, regBG, 8, 24, 225 + id * 2);
 
     GX_WRITE_RAS_REG(regRA);
     GX_WRITE_RAS_REG(regBG);
@@ -157,7 +171,8 @@ void GXSetTevColor(GXTevRegID id, GXColor color)
     gx->bpSent = 1;
 }
 
-void GXSetTevColorS10(GXTevRegID id, GXColorS10 color)
+void
+GXSetTevColorS10(GXTevRegID id, GXColorS10 color)
 {
     u32 regRA;
     u32 regBG;
@@ -170,14 +185,14 @@ void GXSetTevColorS10(GXTevRegID id, GXColorS10 color)
     CHECK_GXBEGIN(0x1AC, "GXSetTevColorS10");
 
     regRA = 0;
-    SET_REG_FIELD(0x1AF, regRA, 11,  0, color.r & 0x7FF);
+    SET_REG_FIELD(0x1AF, regRA, 11, 0, color.r & 0x7FF);
     SET_REG_FIELD(0x1B0, regRA, 11, 12, color.a & 0x7FF);
-    SET_REG_FIELD(0x1B1, regRA,  8, 24, 224 + id * 2);
+    SET_REG_FIELD(0x1B1, regRA, 8, 24, 224 + id * 2);
 
     regBG = 0;
-    SET_REG_FIELD(0x1B4, regBG, 11,  0, color.b & 0x7FF);
+    SET_REG_FIELD(0x1B4, regBG, 11, 0, color.b & 0x7FF);
     SET_REG_FIELD(0x1B5, regBG, 11, 12, color.g & 0x7FF);
-    SET_REG_FIELD(0x1B6, regBG,  8, 24, 225 + id * 2);
+    SET_REG_FIELD(0x1B6, regBG, 8, 24, 225 + id * 2);
 
     GX_WRITE_RAS_REG(regRA);
     GX_WRITE_RAS_REG(regBG);
@@ -186,7 +201,8 @@ void GXSetTevColorS10(GXTevRegID id, GXColorS10 color)
     gx->bpSent = 1;
 }
 
-void GXSetTevKColor(GXTevKColorID id, GXColor color)
+void
+GXSetTevKColor(GXTevKColorID id, GXColor color)
 {
     u32 regRA;
     u32 regBG;
@@ -194,13 +210,13 @@ void GXSetTevKColor(GXTevKColorID id, GXColor color)
     CHECK_GXBEGIN(0x1DD, "GXSetTevKColor");
 
     regRA = 0;
-    SET_REG_FIELD(0x1E0, regRA, 8,  0, color.r);
+    SET_REG_FIELD(0x1E0, regRA, 8, 0, color.r);
     SET_REG_FIELD(0x1E1, regRA, 8, 12, color.a);
     SET_REG_FIELD(0x1E2, regRA, 4, 20, 8);
     SET_REG_FIELD(0x1E3, regRA, 8, 24, 224 + id * 2);
 
     regBG = 0;
-    SET_REG_FIELD(0x1E6, regBG, 8,  0, color.b);
+    SET_REG_FIELD(0x1E6, regBG, 8, 0, color.b);
     SET_REG_FIELD(0x1E7, regBG, 8, 12, color.g);
     SET_REG_FIELD(0x1E8, regBG, 4, 20, 8);
     SET_REG_FIELD(0x1E9, regBG, 8, 24, 225 + id * 2);
@@ -210,7 +226,8 @@ void GXSetTevKColor(GXTevKColorID id, GXColor color)
     gx->bpSent = 1;
 }
 
-void GXSetTevKColorSel(GXTevStageID stage, GXTevKColorSel sel)
+void
+GXSetTevKColorSel(GXTevStageID stage, GXTevKColorSel sel)
 {
     u32 *Kreg;
 
@@ -218,9 +235,12 @@ void GXSetTevKColorSel(GXTevStageID stage, GXTevKColorSel sel)
     ASSERTMSGLINE(0x205, stage < 16, "GXSetTevKColor*: Invalid Tev Stage Index");
 
     Kreg = &gx->tevKsel[stage >> 1];
-    if (stage & 1) {
+    if (stage & 1)
+    {
         SET_REG_FIELD(0x20A, *Kreg, 5, 14, sel);
-    } else {
+    }
+    else
+    {
         SET_REG_FIELD(0x20C, *Kreg, 5, 4, sel);
     }
 
@@ -228,7 +248,8 @@ void GXSetTevKColorSel(GXTevStageID stage, GXTevKColorSel sel)
     gx->bpSent = 1;
 }
 
-void GXSetTevKAlphaSel(GXTevStageID stage, GXTevKAlphaSel sel)
+void
+GXSetTevKAlphaSel(GXTevStageID stage, GXTevKAlphaSel sel)
 {
     u32 *Kreg;
 
@@ -236,9 +257,12 @@ void GXSetTevKAlphaSel(GXTevStageID stage, GXTevKAlphaSel sel)
     ASSERTMSGLINE(0x226, stage < 16, "GXSetTevKColor*: Invalid Tev Stage Index");
 
     Kreg = &gx->tevKsel[stage >> 1];
-    if (stage & 1) {
+    if (stage & 1)
+    {
         SET_REG_FIELD(0x22B, *Kreg, 5, 19, sel);
-    } else {
+    }
+    else
+    {
         SET_REG_FIELD(0x22D, *Kreg, 5, 9, sel);
     }
 
@@ -246,7 +270,8 @@ void GXSetTevKAlphaSel(GXTevStageID stage, GXTevKAlphaSel sel)
     gx->bpSent = 1;
 }
 
-void GXSetTevSwapMode(GXTevStageID stage, GXTevSwapSel ras_sel, GXTevSwapSel tex_sel)
+void
+GXSetTevSwapMode(GXTevStageID stage, GXTevSwapSel ras_sel, GXTevSwapSel tex_sel)
 {
     u32 *pTevReg;
 
@@ -261,7 +286,9 @@ void GXSetTevSwapMode(GXTevStageID stage, GXTevSwapSel ras_sel, GXTevSwapSel tex
     gx->bpSent = 1;
 }
 
-void GXSetTevSwapModeTable(GXTevSwapSel table, GXTevColorChan red, GXTevColorChan green, GXTevColorChan blue, GXTevColorChan alpha)
+void
+GXSetTevSwapModeTable(GXTevSwapSel table, GXTevColorChan red, GXTevColorChan green, GXTevColorChan blue,
+                      GXTevColorChan alpha)
 {
     u32 *Kreg;
 #if !DEBUG
@@ -290,12 +317,14 @@ void GXSetTevSwapModeTable(GXTevSwapSel table, GXTevColorChan red, GXTevColorCha
     gx->bpSent = 1;
 }
 
-void GXSetTevClampMode(void)
+void
+GXSetTevClampMode(void)
 {
     ASSERTMSGLINE(0x290, 0, "GXSetTevClampMode: not available on this hardware");
 }
 
-void GXSetAlphaCompare(GXCompare comp0, u8 ref0, GXAlphaOp op, GXCompare comp1, u8 ref1)
+void
+GXSetAlphaCompare(GXCompare comp0, u8 ref0, GXAlphaOp op, GXCompare comp1, u8 ref1)
 {
     u32 reg = 0;
 
@@ -312,7 +341,8 @@ void GXSetAlphaCompare(GXCompare comp0, u8 ref0, GXAlphaOp op, GXCompare comp1, 
     gx->bpSent = 1;
 }
 
-void GXSetZTexture(GXZTexOp op, GXTexFmt fmt, u32 bias)
+void
+GXSetZTexture(GXZTexOp op, GXTexFmt fmt, u32 bias)
 {
     u32 zenv0;
     u32 zenv1;
@@ -327,19 +357,19 @@ void GXSetZTexture(GXZTexOp op, GXTexFmt fmt, u32 bias)
     zenv1 = 0;
     switch (fmt)
     {
-    case GX_TF_Z8:
-        type = 0;
-        break;
-    case GX_TF_Z16:
-        type = 1;
-        break;
-    case GX_TF_Z24X8:
-        type = 2;
-        break;
-    default:
-        ASSERTMSGLINE(0x2DD, 0, "GXSetZTexture: Invalid z-texture format");
-        type = 2;
-        break;
+        case GX_TF_Z8 :
+            type = 0;
+            break;
+        case GX_TF_Z16 :
+            type = 1;
+            break;
+        case GX_TF_Z24X8 :
+            type = 2;
+            break;
+        default :
+            ASSERTMSGLINE(0x2DD, 0, "GXSetZTexture: Invalid z-texture format");
+            type = 2;
+            break;
     }
     SET_REG_FIELD(0x2E0, zenv1, 2, 0, type);
     SET_REG_FIELD(0x2E1, zenv1, 2, 2, op);
@@ -350,11 +380,12 @@ void GXSetZTexture(GXZTexOp op, GXTexFmt fmt, u32 bias)
     gx->bpSent = 1;
 }
 
-void GXSetTevOrder(GXTevStageID stage, GXTexCoordID coord, GXTexMapID map, GXChannelID color)
+void
+GXSetTevOrder(GXTevStageID stage, GXTexCoordID coord, GXTexMapID map, GXChannelID color)
 {
-    u32 *ptref;
-    u32 tmap;
-    u32 tcoord;
+    u32       *ptref;
+    u32        tmap;
+    u32        tcoord;
     static int c2r[] = { 0, 1, 0, 1, 0, 1, 7, 5, 6 };
 
     CHECK_GXBEGIN(0x307, "GXSetTevOrder");
@@ -367,12 +398,15 @@ void GXSetTevOrder(GXTevStageID stage, GXTexCoordID coord, GXTexMapID map, GXCha
     tmap = (tmap >= GX_MAX_TEXMAP) ? GX_TEXMAP0 : tmap;
     tcoord = (coord >= GX_MAX_TEXCOORD) ? GX_TEXCOORD0 : coord;
 
-    if (stage & 1) {
+    if (stage & 1)
+    {
         SET_REG_FIELD(0x314, *ptref, 3, 12, tmap);
         SET_REG_FIELD(0x315, *ptref, 3, 15, tcoord);
         SET_REG_FIELD(0x317, *ptref, 3, 19, (color == GX_COLOR_NULL) ? 7 : c2r[color]);
         SET_REG_FIELD(0x319, *ptref, 1, 18, (map != GX_TEXMAP_NULL && !(map & 0x100)));
-    } else {
+    }
+    else
+    {
         SET_REG_FIELD(0x31C, *ptref, 3, 0, tmap);
         SET_REG_FIELD(0x31D, *ptref, 3, 3, tcoord);
         SET_REG_FIELD(0x31F, *ptref, 3, 7, (color == GX_COLOR_NULL) ? 7 : c2r[color]);
@@ -384,7 +418,8 @@ void GXSetTevOrder(GXTevStageID stage, GXTexCoordID coord, GXTexMapID map, GXCha
     gx->dirtyState |= 1;
 }
 
-void GXSetNumTevStages(u8 nStages)
+void
+GXSetNumTevStages(u8 nStages)
 {
     CHECK_GXBEGIN(0x331, "GXSetNumTevStages");
 

@@ -4,7 +4,7 @@ AccessModifierOffset: -4
 AlignAfterOpenBracket: Align
 AlignArrayOfStructures: Right
 AlignConsecutiveAssignments:
-  Enabled: true
+  Enabled: false
   AcrossEmptyLines: true
   AcrossComments: true
   AlignCompound: true
@@ -19,7 +19,7 @@ AlignConsecutiveBitFields:
   PadOperators: true
 AlignConsecutiveDeclarations:
   Enabled: true
-  AcrossEmptyLines: true
+  AcrossEmptyLines: false
   AcrossComments: true
   AlignCompound: true
   AlignFunctionPointers: true
@@ -52,14 +52,15 @@ AllowShortFunctionsOnASingleLine: InlineOnly
 AllowShortIfStatementsOnASingleLine: Never
 AllowShortLambdasOnASingleLine: None
 AllowShortLoopsOnASingleLine: false
-AlwaysBreakAfterDefinitionReturnType: None
-AlwaysBreakAfterReturnType: None
+AlwaysBreakAfterDefinitionReturnType: true
 AlwaysBreakBeforeMultilineStrings: true
 AlwaysBreakTemplateDeclarations: MultiLine
 AttributeMacros:
   - __declspec
-BinPackArguments: false
-BinPackParameters: false
+  - __option
+  - __inline
+BinPackArguments: true
+BinPackParameters: true
 BitFieldColonSpacing: Both
 BraceWrapping:
   AfterCaseLabel: true
@@ -76,7 +77,7 @@ BraceWrapping:
   BeforeElse: true
   BeforeLambdaBody: true
   BeforeWhile: true
-  IndentBraces: true
+  IndentBraces: false
   SplitEmptyFunction: true
   SplitEmptyRecord: true
   SplitEmptyNamespace: true
@@ -85,7 +86,7 @@ BreakAfterAttributes: Never
 BreakAfterJavaFieldAnnotations: false
 BreakArrays: true
 BreakBeforeBinaryOperators: All
-BreakBeforeBraces: Allman
+BreakBeforeBraces: Custom
 BreakBeforeConceptDeclarations: Always
 BreakBeforeInlineASMColon: Always
 BreakBeforeTernaryOperators: true
@@ -106,17 +107,14 @@ ExperimentalAutoDetectBinPacking: false
 FixNamespaceComments: true
 IncludeBlocks: Regroup
 IncludeCategories:
-  - Regex: dolphin/
-    Priority: 2
-    SortPriority: 2
-    CaseSensitive: false
-  - Regex: ^(?!.*(macros\.h|types\.h)).*$
-    Priority: 3
-    SortPriority: 3
-    CaseSensitive: false
-  - Regex: ^(.*(macros\.h|types\.h)).*$
+  - Regex: '^<((macros\.h|types\.h))'
     Priority: 1
-    SortPriority: 1
+  - Regex: '^[<"]dolphin/.*[>"]$'
+    Priority: 2
+  - Regex: '^<'
+    Priority: 3
+  - Regex: '^"'
+    Priority: 4
 IncludeIsMainRegex: (Test)?$
 IncludeIsMainSourceRegex: ""
 IndentAccessModifiers: false
@@ -172,7 +170,7 @@ ReferenceAlignment: Pointer
 ReflowComments: true
 RemoveBracesLLVM: false
 RemoveParentheses: Leave
-RemoveSemicolon: false
+RemoveSemicolon: true
 RequiresClausePosition: OwnLine
 RequiresExpressionIndentation: OuterScope
 SeparateDefinitionBlocks: Always
@@ -182,7 +180,7 @@ SortIncludes: CaseInsensitive
 SortJavaStaticImport: Before
 SortUsingDeclarations: LexicographicNumeric
 SpaceAfterCStyleCast: false
-SpaceAfterLogicalNot: true
+SpaceAfterLogicalNot: false
 SpaceAfterTemplateKeyword: true
 SpaceAroundPointerQualifiers: Both
 SpaceBeforeAssignmentOperators: true
@@ -204,7 +202,7 @@ SpaceBeforeParensOptions:
   AfterRequiresInExpression: true
   BeforeNonEmptyParentheses: true
 SpaceBeforeRangeBasedForLoopColon: true
-SpaceBeforeSquareBrackets: true
+SpaceBeforeSquareBrackets: false
 SpaceInEmptyBlock: false
 SpacesBeforeTrailingComments: 1
 SpacesInAngles: Never
@@ -219,7 +217,6 @@ SpacesInParensOptions:
   InEmptyParentheses: true
   Other: true
 SpacesInSquareBrackets: false
-Standard: c++03
 StatementAttributeLikeMacros:
   - Q_EMIT
 StatementMacros:
@@ -236,4 +233,5 @@ WhitespaceSensitiveMacros:
   - STRINGIZE
 BracedInitializerIndentWidth: 2
 Language: Cpp
+Standard: Cpp03
 

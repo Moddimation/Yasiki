@@ -7,18 +7,23 @@ int AD16Init(void);
 int AD16WriteReg(unsigned long word);
 int AD16ReadReg(unsigned long *word);
 
-int AD16Init(void) {
-    int err;
+int
+AD16Init(void)
+{
+    int           err;
     unsigned long cmd;
     unsigned long id;
 
-    if (Initialized != 0) {
+    if (Initialized != 0)
+    {
         return 1;
     }
-    if (EXILock(2, 0, 0) == 0) {
+    if (EXILock(2, 0, 0) == 0)
+    {
         return 0;
     }
-    if (EXISelect(2, 0, 0) == 0) {
+    if (EXISelect(2, 0, 0) == 0)
+    {
         EXIUnlock(2);
         return 0;
     }
@@ -30,21 +35,26 @@ int AD16Init(void) {
     err |= !EXISync(2);
     err |= !EXIDeselect(2);
     EXIUnlock(2);
-    if (err != 0 || id != 0x4120000) {
+    if (err != 0 || id != 0x4120000)
+    {
         return 0;
     }
     Initialized = 1;
     return 1;
 }
 
-int AD16WriteReg(unsigned long word) {
-    int err;
+int
+AD16WriteReg(unsigned long word)
+{
+    int           err;
     unsigned long cmd;
 
-    if (Initialized == 0 || EXILock(2, 0, 0) == 0) {
+    if (Initialized == 0 || EXILock(2, 0, 0) == 0)
+    {
         return 0;
     }
-    if (EXISelect(2, 0, 3) == 0) {
+    if (EXISelect(2, 0, 3) == 0)
+    {
         EXIUnlock(2);
         return 0;
     }
@@ -56,20 +66,25 @@ int AD16WriteReg(unsigned long word) {
     err |= !EXISync(2);
     err |= !EXIDeselect(2);
     EXIUnlock(2);
-    if (err) {
+    if (err)
+    {
         return 0;
     }
     return 1;
 }
 
-int AD16ReadReg(unsigned long * word) {
-    int err;
+int
+AD16ReadReg(unsigned long *word)
+{
+    int           err;
     unsigned long cmd;
 
-    if (Initialized == 0 || EXILock(2, 0, 0) == 0) {
+    if (Initialized == 0 || EXILock(2, 0, 0) == 0)
+    {
         return 0;
     }
-    if (EXISelect(2, 0, 3) == 0) {
+    if (EXISelect(2, 0, 3) == 0)
+    {
         EXIUnlock(2);
         return 0;
     }
@@ -81,7 +96,8 @@ int AD16ReadReg(unsigned long * word) {
     err |= !EXISync(2);
     err |= !EXIDeselect(2);
     EXIUnlock(2);
-    if (err) {
+    if (err)
+    {
         return 0;
     }
     return 1;

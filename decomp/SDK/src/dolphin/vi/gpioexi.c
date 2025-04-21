@@ -10,25 +10,28 @@ static u8 shadowGPIOData;
 static void initGpioExi(void);
 static void setVideoReset(int value);
 static void setI2CEnable(int value);
-static int gpioOutput(u8 value);
-static int gpioOE(u8 value);
-static int gpioOut(u32 addr, u8 value);
-static int gpioInput(u8 *p);
+static int  gpioOutput(u8 value);
+static int  gpioOE(u8 value);
+static int  gpioOut(u32 addr, u8 value);
+static int  gpioInput(u8 *p);
 
-void __VIInitI2C(void)
+void
+__VIInitI2C(void)
 {
     OSTime time;
 
     initGpioExi();
     setVideoReset(0);
     time = OSGetTime();
-    while (OSGetTime() - time < OS_USEC_TO_TICKS(100)) {
+    while (OSGetTime() - time < OS_USEC_TO_TICKS(100))
+    {
     }
     setVideoReset(1);
     setI2CEnable(1);
 }
 
-static void initGpioExi(void)
+static void
+initGpioExi(void)
 {
     shadowGPIOOE = 0;
     shadowGPIOData = 0;
@@ -36,53 +39,69 @@ static void initGpioExi(void)
     gpioOE(shadowGPIOOE);
 }
 
-void __VISetSCL(int value)
+void
+__VISetSCL(int value)
 {
     shadowGPIOOE &= 0xFFFFFFFD;
-    if (value == 0) {
+    if (value == 0)
+    {
         shadowGPIOOE |= 2;
     }
     gpioOE(shadowGPIOOE);
 }
 
-int __VIGetSCL(void)
+int
+__VIGetSCL(void)
 {
     u8 value;
 
     gpioInput(&value);
-    if (value & 2) {
+    if (value & 2)
+    {
         return 1;
-    } else {
+    }
+    else
+    {
         return 0;
     }
 }
 
-void __VISetSDA(int value)
+void
+__VISetSDA(int value)
 {
     shadowGPIOOE &= 0xFFFFFFFE;
-    if (value == 0) {
+    if (value == 0)
+    {
         shadowGPIOOE |= 1;
     }
     gpioOE(shadowGPIOOE);
 }
 
-int __VIGetSDA(void)
+int
+__VIGetSDA(void)
 {
     u8 value;
 
     gpioInput(&value);
-    if (value & 1) {
+    if (value & 1)
+    {
         return 1;
-    } else {
+    }
+    else
+    {
         return 0;
     }
 }
 
-static void setVideoReset(int value)
+static void
+setVideoReset(int value)
 {
-    if (value != 0) {
+    if (value != 0)
+    {
         shadowGPIOData |= 4;
-    } else {
+    }
+    else
+    {
         shadowGPIOData &= 0xFFFFFFFB;
     }
     shadowGPIOOE |= 4;
@@ -90,11 +109,15 @@ static void setVideoReset(int value)
     gpioOE(shadowGPIOOE);
 }
 
-static void setI2CEnable(int value)
+static void
+setI2CEnable(int value)
 {
-    if (value != 0) {
+    if (value != 0)
+    {
         shadowGPIOData &= 0xFFFFFFEF;
-    } else {
+    }
+    else
+    {
         shadowGPIOData |= 0x10;
     }
     shadowGPIOOE |= 0x10;
@@ -102,25 +125,30 @@ static void setI2CEnable(int value)
     gpioOE(shadowGPIOOE);
 }
 
-static int gpioOutput(u8 value)
+static int
+gpioOutput(u8 value)
 {
     return gpioOut(0x800404U, value);
 }
 
-static int gpioOE(u8 value)
+static int
+gpioOE(u8 value)
 {
     return gpioOut(0x800408U, value);
 }
 
-static int gpioOut(u32 addr, u8 value)
+static int
+gpioOut(u32 addr, u8 value)
 {
     u32 cmd;
 
     cmd = (addr | 0x02000000) << 6;
-    if (EXILock(0, 1, 0) == 0) {
+    if (EXILock(0, 1, 0) == 0)
+    {
         return 0;
     }
-    if (EXISelect(0, 1, 4) == 0) {
+    if (EXISelect(0, 1, 4) == 0)
+    {
         EXIUnlock(0);
         return 0;
     }
@@ -134,14 +162,17 @@ static int gpioOut(u32 addr, u8 value)
     return 1;
 }
 
-static int gpioInput(u8 *p)
+static int
+gpioInput(u8 *p)
 {
     u32 cmd;
 
-    if (EXILock(0, 1, 0) == 0) {
+    if (EXILock(0, 1, 0) == 0)
+    {
         return 0;
     }
-    if (EXISelect(0, 1, 4) == 0) {
+    if (EXISelect(0, 1, 4) == 0)
+    {
         EXIUnlock(0);
         return 0;
     }

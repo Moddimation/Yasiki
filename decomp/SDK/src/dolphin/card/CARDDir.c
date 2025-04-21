@@ -1,24 +1,29 @@
-#include <dolphin.h>
 #include <dolphin/card.h>
+
+#include <dolphin.h>
 
 #include "CARDPrivate.h"
 
 static void WriteCallback(s32 chan, s32 result);
 static void EraseCallback(s32 chan, s32 result);
 
-CARDDir *__CARDGetDirBlock(CARDControl* card) {
+CARDDir *
+__CARDGetDirBlock(CARDControl *card)
+{
     ASSERTLINE(0x36, card->currentDir);
     return card->currentDir;
 }
 
-static void WriteCallback(s32 chan, s32 result) {
+static void
+WriteCallback(s32 chan, s32 result)
+{
     CARDControl *card = &__CARDBlock[chan];
     CARDCallback callback;
 
     if (result >= 0)
     {
-        CARDDir *dir0 = (CARDDir*)((u8*)card->workArea + 0x2000);
-        CARDDir *dir1 = (CARDDir*)((u8*)card->workArea + 0x4000);
+        CARDDir *dir0 = (CARDDir *)((u8 *)card->workArea + 0x2000);
+        CARDDir *dir1 = (CARDDir *)((u8 *)card->workArea + 0x4000);
 
         ASSERTLINE(0x4F, card->currentDir);
 
@@ -36,7 +41,9 @@ static void WriteCallback(s32 chan, s32 result) {
     }
 
     if (!card->apiCallback)
+    {
         __CARDPutControlBlock(card, result);
+    }
     callback = card->eraseCallback;
     if (callback)
     {
@@ -45,11 +52,13 @@ static void WriteCallback(s32 chan, s32 result) {
     }
 }
 
-static void EraseCallback(s32 chan, s32 result) {
+static void
+EraseCallback(s32 chan, s32 result)
+{
     CARDControl *card = &__CARDBlock[chan];
     CARDCallback callback;
-    CARDDir *dir;
-    u32 addr;
+    CARDDir     *dir;
+    u32          addr;
 
     if (result >= 0)
     {
@@ -57,11 +66,15 @@ static void EraseCallback(s32 chan, s32 result) {
         addr = ((u32)dir - (u32)card->workArea) / 0x2000 * card->sectorSize;
         result = __CARDWrite(chan, addr, 0x2000, dir, WriteCallback);
         if (result >= 0)
+        {
             return;
+        }
     }
 
     if (!card->apiCallback)
+    {
         __CARDPutControlBlock(card, result);
+    }
     callback = card->eraseCallback;
     if (callback)
     {
@@ -70,17 +83,21 @@ static void EraseCallback(s32 chan, s32 result) {
     }
 }
 
-s32 __CARDUpdateDir(s32 chan, CARDCallback callback) {
-    CARDControl *card;
+s32
+__CARDUpdateDir(s32 chan, CARDCallback callback)
+{
+    CARDControl  *card;
     CARDDirCheck *check;
-    u32 addr;
-    CARDDir *dir;
+    u32           addr;
+    CARDDir      *dir;
 
     ASSERTLINE(0xAD, 0 <= chan && chan < 2);
 
     card = &__CARDBlock[chan];
     if (!card->attached)
+    {
         return CARD_RESULT_NOCARD;
+    }
 
     dir = __CARDGetDirBlock(card);
     check = CARDGetDirCheck(dir);

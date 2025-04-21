@@ -430,10 +430,24 @@ def GameSource(lib_name: str, files: List[Tuple[bool, str]], conf: Dict[str, str
         "objects": objects,
         **conf
     }
+def GameMain(file: Tuple[bool, str], conf: Dict[str, str]={"":""}) -> Dict[str, Any]:
+    objects = []
+    filepath = f"sources/{file}"
+    objects.append(Object(matching, filepath))
 
-#Matching = True                   # Object matches and should be linked
-# The names of some vars (@149) keep changing, lets keep it this way until we are 100%...
-Matching = False                  # Object matches and should be linked
+    __cflags = cflags_game + [f"-i {os.path.dirname(f'decomp/{filepath}')}"]
+
+    return {
+        "lib": lib_name,
+        "mw_version": config.linker_version,
+        "cflags": cflags_game,
+        "progress_category": "game",
+        "src_dir": f"decomp/Project",
+        "objects": objects,
+        **conf
+    }
+
+Matching = True                   # Object matches and should be linked
 NonMatching = False               # Object does not match and should not be linked
 Equivalent = config.non_matching  # Object should be linked when configured with --non-matching
 
@@ -449,25 +463,18 @@ config.libs = [
 
     # Game source folders
 
+#    GameMain("sysMain.cpp")
 #    GameSource("system", [
 #        (NonMatching, "initthread.cpp"),
 #        (NonMatching, "memory.cpp"),
 #        (NonMatching, "dvd.cpp"),
-#    ]),
-#    GameSource("someGraphicsFolder", [
-#        (NonMatching, ""),
 #    ]),
 #    GameSource("Kawano", [
 #        (NonMatching, ""),
 #    ]),
 #    GameSource("sequence", [
 #        (NonMatching, "sequence.cpp"),
-#        (NonMatching, "booting.cpp"),
-#        (NonMatching, "titlescreen.cpp"),
-#        (NonMatching, "dataselect.cpp"),
-#        (NonMatching, "opening.cpp"),
 #        (NonMatching, "rolling.cpp"),
-#        (NonMatching, "ending.cpp"),
 #    ]),
 #    GameSource("Iwamoto", [
 #        (NonMatching, ""),
@@ -566,9 +573,9 @@ config.libs = [
     # SDK
 
     DolphinLib("gx", [
-        (NonMatching, "GXDraw.c"),
-        (NonMatching, "GXStubs.c"),
-        (NonMatching, "GXDisplayList.c"),
+        (Matching, "GXDraw.c"),
+        (Matching, "GXStubs.c"),
+        (Matching, "GXDisplayList.c"),
         (Matching, "GXTransform.c"),
     ]),
 
@@ -618,7 +625,7 @@ config.libs = [
 config.progress_categories = [
     ProgressCategory("game", "Game App"),
     ProgressCategory("jsys", "JSystem"),
-    ProgressCategory("sdk", "Dolphin SDK (Jul 19 2001)"),
+    ProgressCategory("sdk", "Dolphin SDK (2001)"),
     ProgressCategory("cw", "CodeWarrior Runtime"),
 ]
 config.progress_each_module = args.verbose
