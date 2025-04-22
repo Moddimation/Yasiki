@@ -572,6 +572,22 @@ config.libs = [
 
     # SDK
 
+    DolphinLib("card", [
+        (Matching, "CARDBios.c"),
+        (Matching, "CARDUnlock.c"),
+        (Matching, "CARDRdwr.c"),
+        (Matching, "CARDBlock.c"),
+        (Matching, "CARDDir.c"),
+        (Matching, "CARDCheck.c"),
+        (Matching, "CARDMount.c"),
+        (Matching, "CARDFormat.c"),
+        (Matching, "CARDOpen.c"),
+        (Matching, "CARDCreate.c"),
+        (Matching, "CARDRead.c"),
+        (Matching, "CARDWrite.c"),
+        (Matching, "CARDStat.c"),
+    ]),
+
     DolphinLib("gx", [
         (Matching, "GXInit.c"),
         (Matching, "GXFifo.c"),

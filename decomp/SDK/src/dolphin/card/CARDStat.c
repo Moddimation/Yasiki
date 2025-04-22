@@ -18,6 +18,7 @@ UpdateIconOffsets(CARDDir* ent, CARDStat* stat)
     offset = ent->iconAddr;
     if (offset == 0xffffffff)
     {
+        offset = 0;
         stat->bannerFormat = 0;
         stat->iconFormat = 0;
         stat->iconSpeed = 0;
@@ -130,7 +131,8 @@ CARDSetStatusAsync(s32 chan, s32 fileNo, CARDStat* stat, CARDCallback callback)
     ASSERTLINE(0xD5, 0 <= fileNo && fileNo < CARD_MAX_FILE);
     ASSERTLINE(0xD6, 0 <= chan && chan < 2);
 
-    if (fileNo < 0 || CARD_MAX_FILE <= fileNo)
+    if (fileNo < 0 || CARD_MAX_FILE <= fileNo || (stat->iconAddr != 0xffffffff && stat->iconAddr >= 0x200)
+        || (stat->commentAddr != 0xffffffff && (stat->commentAddr & 0x1fff) > 0x1fc0))
     {
         return CARD_RESULT_FATAL_ERROR;
     }
@@ -155,6 +157,11 @@ CARDSetStatusAsync(s32 chan, s32 fileNo, CARDStat* stat, CARDCallback callback)
     ent->iconSpeed = stat->iconSpeed;
     ent->commentAddr = stat->commentAddr;
     UpdateIconOffsets(ent, stat);
+
+    if (ent->iconAddr == 0xffffffff)
+    {
+        CARDSetIconSpeed(ent, 0, CARD_STAT_SPEED_FAST);
+    }
 
     ent->time = (u32)OSTicksToSeconds(OSGetTime());
     result = __CARDUpdateDir(chan, callback);

@@ -2,8 +2,8 @@
 
 #include <dolphin.h>
 
+#include "../os/OSPrivate.h"
 #include "CARDPrivate.h"
-#include "os/__os.h"
 
 #define formatStep mountStep // huh?
 
