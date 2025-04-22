@@ -41,8 +41,7 @@ GXSetTevOp(GXTevStageID id, GXTevMode mode)
             GXSetTevColorIn(id, GX_CC_ZERO, GX_CC_ZERO, GX_CC_ZERO, carg);
             GXSetTevAlphaIn(id, GX_CA_ZERO, GX_CA_ZERO, GX_CA_ZERO, aarg);
             break;
-        default :
-            ASSERTMSGLINE(0x8F, 0, "GXSetTevOp: Invalid Tev Mode");
+        default : ASSERTMSGLINE(0x8F, 0, "GXSetTevOp: Invalid Tev Mode");
     }
     GXSetTevColorOp(id, GX_TEV_ADD, GX_TB_ZERO, GX_CS_SCALE_1, GX_TRUE, GX_TEVPREV);
     GXSetTevAlphaOp(id, GX_TEV_ADD, GX_TB_ZERO, GX_CS_SCALE_1, GX_TRUE, GX_TEVPREV);
@@ -51,7 +50,7 @@ GXSetTevOp(GXTevStageID id, GXTevMode mode)
 void
 GXSetTevColorIn(GXTevStageID stage, GXTevColorArg a, GXTevColorArg b, GXTevColorArg c, GXTevColorArg d)
 {
-    u32 *pTevReg;
+    u32* pTevReg;
 
     CHECK_GXBEGIN(0xE5, "GXSetTevColorIn");
     ASSERTMSGLINE(0xE6, stage < 16, "GXSetTevColor: Invalid Tev Stage Index");
@@ -73,7 +72,7 @@ GXSetTevColorIn(GXTevStageID stage, GXTevColorArg a, GXTevColorArg b, GXTevColor
 void
 GXSetTevAlphaIn(GXTevStageID stage, GXTevAlphaArg a, GXTevAlphaArg b, GXTevAlphaArg c, GXTevAlphaArg d)
 {
-    u32 *pTevReg;
+    u32* pTevReg;
 
     CHECK_GXBEGIN(0x108, "GXSetTevAlphaIn");
     ASSERTMSGLINE(0x109, stage < 16, "GXSetTevAlpha: Invalid Tev Stage Index");
@@ -95,7 +94,7 @@ GXSetTevAlphaIn(GXTevStageID stage, GXTevAlphaArg a, GXTevAlphaArg b, GXTevAlpha
 void
 GXSetTevColorOp(GXTevStageID stage, GXTevOp op, GXTevBias bias, GXTevScale scale, GXBool clamp, GXTevRegID out_reg)
 {
-    u32 *pTevReg;
+    u32* pTevReg;
 
     CHECK_GXBEGIN(0x12E, "GXSetTevColorOp");
     ASSERTMSGLINE(0x12F, stage < 16, "GXSetTevColor: Invalid Tev Stage Index");
@@ -122,7 +121,7 @@ GXSetTevColorOp(GXTevStageID stage, GXTevOp op, GXTevBias bias, GXTevScale scale
 void
 GXSetTevAlphaOp(GXTevStageID stage, GXTevOp op, GXTevBias bias, GXTevScale scale, GXBool clamp, GXTevRegID out_reg)
 {
-    u32 *pTevReg;
+    u32* pTevReg;
 
     CHECK_GXBEGIN(0x15A, "GXSetTevAlphaOp");
     ASSERTMSGLINE(0x15B, stage < 16, "GXSetTevAlpha: Invalid Tev Stage Index");
@@ -229,7 +228,7 @@ GXSetTevKColor(GXTevKColorID id, GXColor color)
 void
 GXSetTevKColorSel(GXTevStageID stage, GXTevKColorSel sel)
 {
-    u32 *Kreg;
+    u32* Kreg;
 
     CHECK_GXBEGIN(0x204, "GXSetTevKColorSel");
     ASSERTMSGLINE(0x205, stage < 16, "GXSetTevKColor*: Invalid Tev Stage Index");
@@ -251,7 +250,7 @@ GXSetTevKColorSel(GXTevStageID stage, GXTevKColorSel sel)
 void
 GXSetTevKAlphaSel(GXTevStageID stage, GXTevKAlphaSel sel)
 {
-    u32 *Kreg;
+    u32* Kreg;
 
     CHECK_GXBEGIN(0x225, "GXSetTevKAlphaSel");
     ASSERTMSGLINE(0x226, stage < 16, "GXSetTevKColor*: Invalid Tev Stage Index");
@@ -273,7 +272,7 @@ GXSetTevKAlphaSel(GXTevStageID stage, GXTevKAlphaSel sel)
 void
 GXSetTevSwapMode(GXTevStageID stage, GXTevSwapSel ras_sel, GXTevSwapSel tex_sel)
 {
-    u32 *pTevReg;
+    u32* pTevReg;
 
     CHECK_GXBEGIN(0x24A, "GXSetTevSwapMode");
     ASSERTMSGLINE(0x24B, stage < 16, "GXSetTevSwapMode: Invalid Tev Stage Index");
@@ -290,7 +289,7 @@ void
 GXSetTevSwapModeTable(GXTevSwapSel table, GXTevColorChan red, GXTevColorChan green, GXTevColorChan blue,
                       GXTevColorChan alpha)
 {
-    u32 *Kreg;
+    u32* Kreg;
 
     CHECK_GXBEGIN(0x26E, "GXSetTevSwapModeTable");
     ASSERTMSGLINE(0x26F, table < 4, "GXSetTevSwapModeTable: Invalid Swap Selection Index");
@@ -309,7 +308,6 @@ GXSetTevSwapModeTable(GXTevSwapSel table, GXTevColorChan red, GXTevColorChan gre
     __GXData->bpSent = 1;
 }
 
-IGNORE_ALL
 void
 GXSetTevClampMode(void)
 {
@@ -350,15 +348,9 @@ GXSetZTexture(GXZTexOp op, GXTexFmt fmt, u32 bias)
     zenv1 = 0;
     switch (fmt)
     {
-        case GX_TF_Z8 :
-            type = 0;
-            break;
-        case GX_TF_Z16 :
-            type = 1;
-            break;
-        case GX_TF_Z24X8 :
-            type = 2;
-            break;
+        case GX_TF_Z8    : type = 0; break;
+        case GX_TF_Z16   : type = 1; break;
+        case GX_TF_Z24X8 : type = 2; break;
         default :
             ASSERTMSGLINE(0x2DD, 0, "GXSetZTexture: Invalid z-texture format");
             type = 2;
@@ -376,7 +368,7 @@ GXSetZTexture(GXZTexOp op, GXTexFmt fmt, u32 bias)
 void
 GXSetTevOrder(GXTevStageID stage, GXTexCoordID coord, GXTexMapID map, GXChannelID color)
 {
-    u32       *ptref;
+    u32*       ptref;
     u32        tmap;
     u32        tcoord;
     static int c2r[] = { 0, 1, 0, 1, 0, 1, 7, 5, 6 };

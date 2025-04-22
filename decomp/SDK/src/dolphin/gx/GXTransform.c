@@ -6,9 +6,8 @@
 
 #include "GXPrivate.h"
 
-IGNORE_ALL
 void
-GXProject(f32 x, f32 y, f32 z, f32 mtx[3][4], f32 *pm, f32 *vp, f32 *sx, f32 *sy, f32 *sz)
+GXProject(f32 x, f32 y, f32 z, f32 mtx[3][4], f32* pm, f32* vp, f32* sx, f32* sy, f32* sz)
 {
     Vec peye;
     f32 xc;
@@ -76,9 +75,8 @@ GXSetProjection(f32 mtx[4][4], GXProjectionType type)
     __GXData->bpSent = 0;
 }
 
-IGNORE_ALL
 void
-GXSetProjectionv(f32 *ptr)
+GXSetProjectionv(f32* ptr)
 {
     u32 reg;
 
@@ -107,9 +105,8 @@ GXSetProjectionv(f32 *ptr)
 
 #define qr0 0
 
-IGNORE_ALL
 void
-GXGetProjectionv(f32 *ptr)
+GXGetProjectionv(f32* ptr)
 {
     ASSERTMSGLINE(0x12E, ptr, "GXGet*: invalid null pointer");
 
@@ -123,7 +120,7 @@ GXGetProjectionv(f32 *ptr)
 }
 
 static asm void
-WriteMTXPS4x3(register f32 mtx[3][4], register volatile f32 *dest)
+WriteMTXPS4x3(register f32 mtx[3][4], register volatile f32* dest)
 {
 #ifdef __MWERKS__
     psq_l f0, 0x00(mtx), 0, qr0;
@@ -143,7 +140,7 @@ WriteMTXPS4x3(register f32 mtx[3][4], register volatile f32 *dest)
 }
 
 static asm void
-WriteMTXPS3x3from3x4(register f32 mtx[3][4], register volatile f32 *dest)
+WriteMTXPS3x3from3x4(register f32 mtx[3][4], register volatile f32* dest)
 {
 #ifdef __MWERKS__
     psq_l  f0, 0x00(mtx), 0, qr0;
@@ -162,7 +159,7 @@ WriteMTXPS3x3from3x4(register f32 mtx[3][4], register volatile f32 *dest)
 }
 
 static asm void
-WriteMTXPS3x3(register f32 mtx[3][3], register volatile f32 *dest)
+WriteMTXPS3x3(register f32 mtx[3][3], register volatile f32* dest)
 {
 #ifdef __MWERKS__
     psq_l  f0, 0x00(mtx), 0, qr0;
@@ -179,7 +176,7 @@ WriteMTXPS3x3(register f32 mtx[3][3], register volatile f32 *dest)
 }
 
 static asm void
-WriteMTXPS4x2(register f32 mtx[2][4], register volatile f32 *dest)
+WriteMTXPS4x2(register f32 mtx[2][4], register volatile f32* dest)
 {
 #ifdef __MWERKS__
     psq_l  f0, 0x00(mtx), 0, qr0;
@@ -194,12 +191,12 @@ WriteMTXPS4x2(register f32 mtx[2][4], register volatile f32 *dest)
 }
 
 #define GX_WRITE_MTX_ELEM(addr, value)                                                                                 \
-    do                                                                                                                 \
-    {                                                                                                                  \
+    do {                                                                                                               \
         f32 xfData = (value);                                                                                          \
         GX_WRITE_F32(value);                                                                                           \
-        VERIF_MTXLIGHT((addr), *(u32 *)&xfData);                                                                       \
-    } while (0)
+        VERIF_MTXLIGHT((addr), *(u32*)&xfData);                                                                        \
+    }                                                                                                                  \
+    while (0)
 
 void
 GXLoadPosMtxImm(f32 mtx[3][4], u32 id)
@@ -234,13 +231,12 @@ GXLoadPosMtxImm(f32 mtx[3][4], u32 id)
 
 // this one uses cmpwi instead of cmplwi for some reason
 #define SET_REG_FIELD_(line, reg, size, shift, val)                                                                    \
-    do                                                                                                                 \
-    {                                                                                                                  \
+    do {                                                                                                               \
         ASSERTMSGLINE(line, ((s32)(val) & ~((1 << (size)) - 1)) == 0, "GX Internal: Register field out of range");     \
         (reg) = ((u32)(reg) & ~(((1 << (size)) - 1) << (shift))) | ((u32)(val) << (shift));                            \
-    } while (0)
+    }                                                                                                                  \
+    while (0)
 
-IGNORE_ALL
 void
 GXLoadPosMtxIndx(u16 mtx_indx, u32 id)
 {
@@ -316,7 +312,6 @@ GXLoadNrmMtxImm3x3(f32 mtx[3][3], u32 id)
 #endif
 }
 
-IGNORE_ALL
 void
 GXLoadNrmMtxIndx3x3(u16 mtx_indx, u32 id)
 {
@@ -395,7 +390,6 @@ GXLoadTexMtxImm(f32 mtx[][4], u32 id, GXTexMtxType type)
 #endif
 }
 
-IGNORE_ALL
 void
 GXLoadTexMtxIndx(u16 mtx_indx, u32 id, GXTexMtxType type)
 {
@@ -482,9 +476,8 @@ GXSetViewport(f32 left, f32 top, f32 wd, f32 ht, f32 nearz, f32 farz)
     GXSetViewportJitter(left, top, wd, ht, nearz, farz, 1U);
 }
 
-IGNORE_ALL
 void
-GXGetViewportv(f32 *vp)
+GXGetViewportv(f32* vp)
 {
     ASSERTMSGLINE(0x397, vp, "GXGet*: invalid null pointer");
 
@@ -526,9 +519,8 @@ GXSetScissor(u32 left, u32 top, u32 wd, u32 ht)
     __GXData->bpSent = 1;
 }
 
-IGNORE_ALL
 void
-GXGetScissor(u32 *left, u32 *top, u32 *wd, u32 *ht)
+GXGetScissor(u32* left, u32* top, u32* wd, u32* ht)
 {
     u32 tp;
     u32 lf;

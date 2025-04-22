@@ -376,7 +376,7 @@ GXRenderModeObj GXRmHW = {
 };
 
 void
-GXAdjustForOverscan(GXRenderModeObj *rmin, GXRenderModeObj *rmout, u16 hor, u16 ver)
+GXAdjustForOverscan(GXRenderModeObj* rmin, GXRenderModeObj* rmout, u16 hor, u16 ver)
 {
     unsigned short hor2 = hor * 2;
     unsigned short ver2 = ver * 2;
@@ -475,12 +475,8 @@ GXSetTexCopyDst(u16 wd, u16 ht, GXTexFmt fmt, GXBool mipmap)
         case GX_TF_I8 :
         case GX_TF_IA4 :
         case GX_TF_IA8 :
-        case GX_CTF_YUVA8 :
-            SET_REG_FIELD(0, __GXData->cpTex, 2, 15, 3);
-            break;
-        default :
-            SET_REG_FIELD(0, __GXData->cpTex, 2, 15, 2);
-            break;
+        case GX_CTF_YUVA8 : SET_REG_FIELD(0, __GXData->cpTex, 2, 15, 3); break;
+        default           : SET_REG_FIELD(0, __GXData->cpTex, 2, 15, 2); break;
     }
 
     __GXData->cpTexZ = (fmt & _GX_TF_ZTF) == _GX_TF_ZTF;
@@ -674,7 +670,7 @@ GXSetDispCopyGamma(GXGamma gamma)
 
 #if DEBUG
 static void
-__GXVerifCopy(void *dest, u8 clear)
+__GXVerifCopy(void* dest, u8 clear)
 {
     u8  clmpT;
     u8  clmpB;
@@ -715,7 +711,7 @@ __GXVerifCopy(void *dest, u8 clear)
 #endif
 
 void
-GXCopyDisp(void *dest, GXBool clear)
+GXCopyDisp(void* dest, GXBool clear)
 {
     u32 reg;
     u32 tempPeCtrl;
@@ -775,7 +771,7 @@ GXCopyDisp(void *dest, GXBool clear)
 }
 
 void
-GXCopyTex(void *dest, GXBool clear)
+GXCopyTex(void* dest, GXBool clear)
 {
     u32 reg;
     u32 tempPeCtrl;
@@ -856,11 +852,11 @@ GXClearBoundingBox(void)
 }
 
 void
-GXReadBoundingBox(u16 *left, u16 *top, u16 *right, u16 *bottom)
+GXReadBoundingBox(u16* left, u16* top, u16* right, u16* bottom)
 {
     CHECK_GXBEGIN(0x671, "GXReadBoundingBox");
-    *left = __peRegs[8];
-    *top = __peRegs[10];
-    *right = __peRegs[9];
-    *bottom = __peRegs[11];
+    *left = __PERegs[PE_PI_XBOUND0_ID];
+    *top = __PERegs[PE_PI_YBOUND0_ID];
+    *right = __PERegs[PE_PI_XBOUND1_ID];
+    *bottom = __PERegs[PE_PI_YBOUND1_ID];
 }
