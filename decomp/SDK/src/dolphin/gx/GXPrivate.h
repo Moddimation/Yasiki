@@ -180,6 +180,7 @@ extern "C"
     while (0)
 
 #define CHECK_GXBEGIN(line, name) ASSERTMSGLINE(line, !__GXinBegin, "'" name "' is not allowed between GXBegin/GXEnd")
+#define CHECK_IN_BEGIN(line, f)   ASSERTMSGLINE(line, !__GXinBegin, "'" #f "' is not allowed between GXBegin/GXEnd")
 
 /* GXAttr */
 void __GXSetVCD(void);
