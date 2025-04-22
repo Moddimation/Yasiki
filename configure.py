@@ -574,6 +574,10 @@ config.libs = [
 
     # SDK
 
+    DolphinLib("ai", [
+        (Matching, "ai.c"),
+    ]),
+
     DolphinLib("dsp", [
         (Matching, "dsp.c"),
     ]),

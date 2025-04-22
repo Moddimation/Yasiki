@@ -5,7 +5,7 @@
 #include <dolphin/hw_regs.h>
 #include <dolphin/os.h>
 
-#include "GXPrivate.h"
+#include "../gx/GXPrivate.h"
 
 static AISCallback __AIS_Callback;
 static AIDCallback __AID_Callback;
@@ -60,47 +60,47 @@ AIInitDMA(u32 start_addr, u32 length)
     BOOL old;
 
     old = OSDisableInterrupts();
-    __DSPRegs[24] = (__DSPRegs[24] & 0xFFFFFC00) | (start_addr >> 16);
-    __DSPRegs[25] = (__DSPRegs[25] & 0xFFFF001F) | (start_addr & 0xFFFF);
+    __DSPReg[24] = (__DSPReg[24] & 0xFFFFFC00) | (start_addr >> 16);
+    __DSPReg[25] = (__DSPReg[25] & 0xFFFF001F) | (start_addr & 0xFFFF);
     ASSERTMSGLINE(0x12E, (length & 0x1F) == 0, "AIStartDMA: length must be multiple of 32 bytes");
-    __DSPRegs[27] = (__DSPRegs[27] & 0xFFFF8000) | ((length >> 5) & 0xFFFF);
+    __DSPReg[27] = (__DSPReg[27] & 0xFFFF8000) | ((length >> 5) & 0xFFFF);
     OSRestoreInterrupts(old);
 }
 
 BOOL
 AIGetDMAEnableFlag(void)
 {
-    return (__DSPRegs[27] & (1 << 15)) >> 15;
+    return (__DSPReg[27] & (1 << 15)) >> 15;
 }
 
 void
 AIStartDMA(void)
 {
-    __DSPRegs[27] = __DSPRegs[27] | 0x8000;
+    __DSPReg[27] = __DSPReg[27] | 0x8000;
 }
 
 void
 AIStopDMA(void)
 {
-    __DSPRegs[27] = __DSPRegs[27] & ~0x8000;
+    __DSPReg[27] = __DSPReg[27] & ~0x8000;
 }
 
 u32
 AIGetDMABytesLeft(void)
 {
-    return (__DSPRegs[29] & 0x7FFF) << 5;
+    return (__DSPReg[29] & 0x7FFF) << 5;
 }
 
 u32
 AIGetDMAStartAddr(void)
 {
-    return ((__DSPRegs[24] << 16) & 0x03FF0000) | (__DSPRegs[25] & 0xFFE0);
+    return ((__DSPReg[24] << 16) & 0x03FF0000) | (__DSPReg[25] & 0xFFE0);
 }
 
 u32
 AIGetDMALength(void)
 {
-    return (__DSPRegs[27] & 0x7FFF) << 5;
+    return (__DSPReg[27] & 0x7FFF) << 5;
 }
 
 BOOL
@@ -360,9 +360,9 @@ __AIDHandler(__OSInterrupt interrupt, OSContext* context)
     OSContext exceptionContext;
     u16       tmp;
 
-    tmp = __DSPRegs[5];
+    tmp = __DSPReg[5];
     tmp = (tmp & ~0xA0) | 8;
-    __DSPRegs[5] = tmp;
+    __DSPReg[5] = tmp;
     OSClearContext(&exceptionContext);
     OSSetCurrentContext(&exceptionContext);
     if (__AID_Callback)
@@ -383,10 +383,29 @@ __AIDHandler(__OSInterrupt interrupt, OSContext* context)
 static asm void
 __AICallbackStackSwitch(register void* cb)
 {
-    nofralloc mflr r0 stw r0, 0x4(r1)stwu r1, -0x18(r1)stw r31, 0x14(r1)mr r31, r3 lis r5, __OldStack @ha addi r5, r5,
-        __OldStack @l stw r1, 0x0(r5)lis r5, __CallbackStack @ha addi r5, r5, __CallbackStack @l lwz r1, 0x0(r5)subi r1,
-        r1, 0x8 mtlr r31 blrl lis r5, __OldStack @ha addi r5, r5, __OldStack @l lwz r1, 0x0(r5)lwz r0, 0x1c(r1)lwz r31,
-        0x14(r1)addi r1, r1, 0x18 mtlr r0 blr
+    nofralloc;
+    mflr r0;
+    stw  r0, 0x4(r1);
+    stwu r1, -0x18(r1);
+    stw  r31, 0x14(r1);
+    mr   r31, r3;
+    lis  r5, __OldStack @ha;
+    addi r5, r5, __OldStack @l;
+    stw  r1, 0x0(r5);
+    lis  r5, __CallbackStack @ha;
+    addi r5, r5, __CallbackStack @l;
+    lwz  r1, 0x0(r5);
+    subi r1, r1, 0x8;
+    mtlr r31;
+    blrl;
+    lis  r5, __OldStack @ha;
+    addi r5, r5, __OldStack @l;
+    lwz  r1, 0x0(r5);
+    lwz  r0, 0x1c(r1);
+    lwz  r31, 0x14(r1);
+    addi r1, r1, 0x18;
+    mtlr r0;
+    blr
 }
 
 void
