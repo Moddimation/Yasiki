@@ -577,7 +577,7 @@ config.libs = [
         (Matching, "GXBump.c"),
         (Matching, "GXTev.c"),
         (Matching, "GXPixel.c"),
-        (Matching, "GXDraw.c"),
+        (NonMatching, "GXDraw.c"),
         (Matching, "GXStubs.c"),
         (Matching, "GXDisplayList.c"),
         (Matching, "GXTransform.c"),
