@@ -32,6 +32,7 @@
 #        define __declspec(x) 0
 #        define __frsqrte(x)  0
 #        define __fabsf(x)    0
+#        define __sync()      0
 #        define asm
 #    endif
 

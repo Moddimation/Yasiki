@@ -10,20 +10,26 @@
 #include "GXPrivate.h"
 
 static struct __GXData_struct gxData;
-struct __GXData_struct*       gx = &gxData;
+struct __GXData_struct*       __GXData = &gxData;
 // DWARF info lists all of these as "void *", but these types make more sense.
-u16*                          __memReg;
-u16*                          __peReg;
-u16*                          __cpReg;
-u32*                          __piReg;
+void*                         __memReg;
+void*                         __peReg;
+void*                         __cpReg;
+void*                         __piReg;
 #if DEBUG
 GXBool __GXinBegin;
 #endif
 
 asm BOOL
-IsWriteGatherBufferEmpty(void) { sync mfspr r3, WPAR andi.r3, r3, 1 }
+IsWriteGatherBufferEmpty(void)
+{
+    sync;
+    mfspr r3, WPAR;
+    andi.r3, r3, 1
+}
 
-static void EnableWriteGatherPipe(void)
+static void
+EnableWriteGatherPipe(void)
 {
     u32 hid2 = PPCMfhid2();
 
@@ -201,15 +207,9 @@ GXInit(void* base, u32 size)
     }
     switch (VIGetTvFormat())
     {
-        case VI_NTSC :
-            rmode = &GXNtsc480IntDf;
-            break;
-        case VI_PAL :
-            rmode = &GXPal528IntDf;
-            break;
-        case VI_MPAL :
-            rmode = &GXMpal480IntDf;
-            break;
+        case VI_NTSC : rmode = &GXNtsc480IntDf; break;
+        case VI_PAL  : rmode = &GXPal528IntDf; break;
+        case VI_MPAL : rmode = &GXMpal480IntDf; break;
         default :
             ASSERTMSGLINE(0x38B, 0, "GXInit: invalid TV format");
             rmode = &GXNtsc480IntDf;

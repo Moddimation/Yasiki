@@ -573,6 +573,8 @@ config.libs = [
     # SDK
 
     DolphinLib("gx", [
+        (Matching, "GXInit.c"),
+        (Matching, "GXFifo.c"),
         (Matching, "GXAttr.c"),
         (Matching, "GXMisc.c"),
         (Matching, "GXGeometry.c"),
