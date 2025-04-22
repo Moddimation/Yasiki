@@ -574,7 +574,6 @@ config.libs = [
 
     DolphinLib("card", [
         (Matching, "CARDBios.c"),
-        (Matching, "CARDUnlock.c"),
         (Matching, "CARDRdwr.c"),
         (Matching, "CARDBlock.c"),
         (Matching, "CARDDir.c"),

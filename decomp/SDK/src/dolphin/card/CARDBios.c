@@ -1,10 +1,11 @@
+#include "dolphin/os/OSAlarm.h"
 #include <dolphin/card.h>
 #include <dolphin/os.h>
 
 #include <dolphin.h>
 
+#include "../os/OSPrivate.h"
 #include "CARDPrivate.h"
-#include "os/__os.h"
 
 struct CARDControl __CARDBlock[2];
 
@@ -49,6 +50,7 @@ __CARDExtHandler(s32 chan, OSContext* context)
         card->attached = FALSE;
         card->result = CARD_RESULT_NOCARD;
         EXISetExiCallback(chan, 0);
+        OSCancelAlarm(&card->alarm);
         callback = card->exiCallback;
 
         if (callback)
@@ -124,17 +126,18 @@ __CARDTxHandler(s32 chan, OSContext* context)
 {
     CARDControl* card;
     CARDCallback callback;
+    int          err;
 
     ASSERTLINE(0x12D, 0 <= chan && chan < 2);
 
     card = &__CARDBlock[chan];
-    !EXIDeselect(chan);
-    !EXIUnlock(chan);
+    err = !EXIDeselect(chan);
+    EXIUnlock(chan);
     callback = card->txCallback;
     if (callback)
     {
         card->txCallback = NULL;
-        callback(chan, (EXIProbe(chan)) ? CARD_RESULT_READY : CARD_RESULT_NOCARD);
+        callback(chan, (!err && EXIProbe(chan)) ? CARD_RESULT_READY : CARD_RESULT_NOCARD);
     }
 }
 
@@ -317,6 +320,11 @@ TimeoutHandler(OSAlarm* alarm, OSContext* context)
 
     ASSERTLINE(0x20E, 0 <= chan && chan < 2);
 
+    if (!card->attached)
+    {
+        return;
+    }
+
     EXISetExiCallback(chan, NULL);
     callback = card->exiCallback;
     if (callback)
@@ -332,10 +340,10 @@ SetupTimeoutAlarm(CARDControl* card)
     OSCancelAlarm(&card->alarm);
     switch (card->cmd[0])
     {
+        case 0xF2 : OSSetAlarm(&card->alarm, OSMillisecondsToTicks(100), TimeoutHandler); break;
         case 0xF3 : break;
         case 0xF4 :
         case 0xF1 :
-        case 0xF2 :
             OSSetAlarm(&card->alarm, OSSecondsToTicks((OSTime)2) * (card->sectorSize / 0x2000), TimeoutHandler);
             break;
     }
@@ -773,15 +781,20 @@ CARDFreeBlocks(s32 chan, s32* byteNotUsed, s32* filesNotUsed)
         return __CARDPutControlBlock(card, CARD_RESULT_BROKEN);
     }
 
-    *byteNotUsed = (s32)(card->sectorSize * fat[CARD_FAT_FREEBLOCKS]);
-
-    *filesNotUsed = 0;
-    for (fileNo = 0; fileNo < CARD_MAX_FILE; fileNo++)
+    if (byteNotUsed != 0)
     {
-        ent = &dir[fileNo];
-        if (ent->fileName[0] == 0xff)
+        *byteNotUsed = (s32)(card->sectorSize * fat[CARD_FAT_FREEBLOCKS]);
+    }
+    if (filesNotUsed != 0)
+    {
+        *filesNotUsed = 0;
+        for (fileNo = 0; fileNo < CARD_MAX_FILE; fileNo++)
         {
-            ++*filesNotUsed;
+            ent = &dir[fileNo];
+            if (ent->fileName[0] == 0xff)
+            {
+                ++*filesNotUsed;
+            }
         }
     }
 
