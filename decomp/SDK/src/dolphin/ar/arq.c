@@ -2,7 +2,7 @@
 
 #include <dolphin.h>
 
-#include "ARPrivate.h"
+#include "ar_private.h"
 
 static struct ARQRequest* __ARQRequestQueueHi;
 static struct ARQRequest* __ARQRequestTailHi;
