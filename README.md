@@ -1,3 +1,4 @@
+
 Luigi's Mansion                 
 [![Discord Badge]][discord]
 =============
@@ -25,6 +26,11 @@ Supported versions (to be worked on):
 > [!IMPORTANT]
 > Reminder: **this will not produce a playable game.** 
 > This project will not allow you to play the game if you don't provide your own copy.
+
+> [!WARNING]
+> This game does *no*t ship with *symbols*, so information is scraped together with *RTTI* and *LM* for *3DS*.
+> 
+> Not recommended for beginners, but noone shall remove your right to advance.
 
 Information
 ===========
