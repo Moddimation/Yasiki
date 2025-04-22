@@ -33,6 +33,7 @@ CreateCallbackFat(long chan, long result)
         ent->iconFormat = 0;
         ent->iconSpeed = 0;
         ent->commentAddr = -1;
+        CARDSetIconSpeed(ent, 0, CARD_STAT_SPEED_FAST);
         card->fileInfo->offset = 0;
         card->fileInfo->iBlock = ent->startBlock;
         ent->time = OSTicksToSeconds(OSGetTime());
@@ -54,7 +55,7 @@ CreateCallbackFat(long chan, long result)
 }
 
 s32
-CARDCreateAsync(s32 chan, const char* fileName, u32 size, CARDFileInfo* fileInfo, CARDCallback callback)
+CARDCreateAsync(s32 chan, char* fileName, u32 size, CARDFileInfo* fileInfo, CARDCallback callback)
 {
     CARDControl* card;
     CARDDir*     dir;

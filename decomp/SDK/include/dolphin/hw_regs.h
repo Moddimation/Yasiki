@@ -5,18 +5,18 @@
 
 // Register base adresses
 
-volatile u32* __RAMRegs AT_ADDRESS(0x80000000); // RAM Register
-volatile u16* __CPRegs  AT_ADDRESS(0xCC000000); // Command Processor Register
-volatile u16* __PERegs  AT_ADDRESS(0xCC001000); // Pixel Engine Register
-volatile u16* __VIRegs  AT_ADDRESS(0xCC002000); // Video Interface Register
-volatile u32* __PIRegs  AT_ADDRESS(0xCC003000); // Process Interrupt Register
-volatile u16* __MIRegs  AT_ADDRESS(0xCC004000); // Memory Interrupt Register
-volatile u16* __DSPReg  AT_ADDRESS(0xCC005000); // Digital Signal Processor Register
-volatile u32* __DIRegs  AT_ADDRESS(0xCC006000); // DVD Interface Register
-volatile u32* __SIRegs  AT_ADDRESS(0xCC006400); // Serial Interface Register
-volatile u32* __EXIRegs AT_ADDRESS(0xCC006800); // External Interface Register
-volatile u32* __AIRegs  AT_ADDRESS(0xCC006C00); // Audio Interface Register
-volatile u8* __GXRegs   AT_ADDRESS(0xCC008000); // Graphics FIFO Register
+volatile u32 __RAMRegs[] AT_ADDRESS(0x80000000); // RAM Register
+volatile u16 __CPRegs[] AT_ADDRESS(0xCC000000);  // Command Processor Register
+volatile u16 __PERegs[] AT_ADDRESS(0xCC001000);  // Pixel Engine Register
+volatile u16 __VIRegs[] AT_ADDRESS(0xCC002000);  // Video Interface Register
+volatile u32 __PIRegs[] AT_ADDRESS(0xCC003000);  // Process Interrupt Register
+volatile u16 __MIRegs[] AT_ADDRESS(0xCC004000);  // Memory Interrupt Register
+volatile u16 __DSPReg[] AT_ADDRESS(0xCC005000);  // Digital Signal Processor Register
+volatile u32 __DIRegs[] AT_ADDRESS(0xCC006000);  // DVD Interface Register
+volatile u32 __SIRegs[] AT_ADDRESS(0xCC006400);  // Serial Interface Register
+volatile u32 __EXIRegs[] AT_ADDRESS(0xCC006800); // External Interface Register
+volatile u32 __AIRegs[] AT_ADDRESS(0xCC006C00);  // Audio Interface Register
+volatile u8  __GXRegs[] AT_ADDRESS(0xCC008000);  // Graphics FIFO Register
 
 // Register offsets
 

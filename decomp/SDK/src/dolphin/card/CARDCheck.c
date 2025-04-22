@@ -2,8 +2,8 @@
 
 #include <dolphin.h>
 
+#include "../os/OSPrivate.h"
 #include "CARDPrivate.h"
-#include "os/__os.h"
 
 static s32 VerifyID(CARDControl* card);
 static s32 VerifyDir(CARDControl* card, int* outCurrent);
@@ -229,7 +229,7 @@ __CARDVerify(CARDControl* card)
 }
 
 s32
-CARDCheckAsync(s32 chan, CARDCallback callback)
+CARDCheckExAsync(s32 chan, s32* xferBytes, CARDCallback callback)
 {
     CARDControl* card;
     CARDDir*     dir[2];
@@ -247,7 +247,13 @@ CARDCheckAsync(s32 chan, CARDCallback callback)
     BOOL         updateDir = FALSE;
     BOOL         updateOrphan = FALSE;
 
-    ASSERTLINE(0x14A, 0 <= chan && chan < 2);
+    ASSERTLINE(346, 0 <= chan && chan < 2);
+
+    if (xferBytes)
+    {
+        *xferBytes = 0;
+    }
+
     result = __CARDGetControlBlock(chan, &card);
     if (result < 0)
     {
@@ -355,30 +361,60 @@ CARDCheckAsync(s32 chan, CARDCallback callback)
         __CARDCheckSum(&card->currentFat[CARD_FAT_CHECKCODE], CARD_SYSTEM_BLOCK_SIZE - sizeof(u32),
                        &card->currentFat[CARD_FAT_CHECKSUM], &card->currentFat[CARD_FAT_CHECKSUMINV]);
     }
-
     memcpy(fat[currentFat ^ 1], fat[currentFat], CARD_SYSTEM_BLOCK_SIZE);
 
     if (updateDir)
     {
+        if (xferBytes)
+        {
+            *xferBytes = CARD_SYSTEM_BLOCK_SIZE;
+        }
         return __CARDUpdateDir(chan, callback);
     }
 
     if (updateFat | updateOrphan)
     {
+        if (xferBytes)
+        {
+            *xferBytes = CARD_SYSTEM_BLOCK_SIZE;
+        }
         return __CARDUpdateFatBlock(chan, card->currentFat, callback);
     }
 
-    return __CARDPutControlBlock(card, CARD_RESULT_READY);
+    __CARDPutControlBlock(card, CARD_RESULT_READY);
+    if (callback)
+    {
+        BOOL enabled = OSDisableInterrupts();
+        callback(chan, CARD_RESULT_READY);
+        OSRestoreInterrupts(enabled);
+    }
+    return CARD_RESULT_READY;
 }
 
-long
-CARDCheck(long chan)
+s32
+CARDCheckAsync(s32 chan, CARDCallback callback)
 {
-    long result = CARDCheckAsync(chan, __CARDSyncCallback);
+    s32 xferBytes;
 
-    if (result < 0)
+    return CARDCheckExAsync(chan, &xferBytes, callback);
+}
+
+s32
+CARDCheckEx(s32 chan, s32* xferBytes)
+{
+    s32 result = CARDCheckExAsync(chan, xferBytes, __CARDSyncCallback);
+    if (result < 0 || xferBytes == 0)
     {
         return result;
     }
+
     return __CARDSync(chan);
+}
+
+s32
+CARDCheck(s32 chan)
+{
+    s32 xferBytes;
+
+    return CARDCheckEx(chan, &xferBytes);
 }
