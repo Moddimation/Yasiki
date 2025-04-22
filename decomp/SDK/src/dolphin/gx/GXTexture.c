@@ -54,11 +54,8 @@ u8        GXTexImage2Ids[8] = { 0x90, 0x91, 0x92, 0x93, 0xB0, 0xB1, 0xB2, 0xB3 }
 u8        GXTexImage3Ids[8] = { 0x94, 0x95, 0x96, 0x97, 0xB4, 0xB5, 0xB6, 0xB7 };
 u8        GXTexTlutIds[8] = { 0x98, 0x99, 0x9A, 0x9B, 0xB8, 0xB9, 0xBA, 0xBB };
 static u8 GX2HWFiltConv[6] = { 0x00, 0x04, 0x01, 0x05, 0x02, 0x06 };
+static u8 HW2GXFiltConv[8] = { 0x00, 0x02, 0x04, 0x00, 0x01, 0x03, 0x05, 0x00 };
 
-// static u8 HW2GXFiltConv[8] = { 0x00, 0x02, 0x04, 0x00, 0x01, 0x03, 0x05, 0x00
-// };
-
-IGNORE_ALL
 static void
 __GXGetTexTileShift(GXTexFmt fmt, u32* rowTileS, u32* colTileS)
 {
@@ -349,7 +346,6 @@ GXInitTexObjLOD(GXTexObj* obj, GXTexFilter min_filt, GXTexFilter mag_filt, f32 m
     SET_REG_FIELD(0x2E6, t->mode1, 8, 8, lmax);
 }
 
-IGNORE_ALL
 void
 GXInitTexObjData(GXTexObj* obj, void* image_ptr)
 {
@@ -364,7 +360,6 @@ GXInitTexObjData(GXTexObj* obj, void* image_ptr)
     SET_REG_FIELD(0x301, t->image3, 21, 0, imageBase);
 }
 
-IGNORE_ALL
 void
 GXInitTexObjWrapMode(GXTexObj* obj, GXTexWrapMode sm, GXTexWrapMode tm)
 {
@@ -376,7 +371,6 @@ GXInitTexObjWrapMode(GXTexObj* obj, GXTexWrapMode sm, GXTexWrapMode tm)
     SET_REG_FIELD(0x318, t->mode0, 2, 2, tm);
 }
 
-IGNORE_ALL
 void
 GXInitTexObjTlut(GXTexObj* obj, u32 tlut_name)
 {
@@ -387,7 +381,6 @@ GXInitTexObjTlut(GXTexObj* obj, u32 tlut_name)
     t->tlutName = tlut_name;
 }
 
-IGNORE_ALL
 void
 GXInitTexObjUserData(GXTexObj* obj, void* user_data)
 {
@@ -398,7 +391,6 @@ GXInitTexObjUserData(GXTexObj* obj, void* user_data)
     t->userData = user_data;
 }
 
-IGNORE_ALL
 void*
 GXGetTexObjUserData(const GXTexObj* obj)
 {
@@ -408,7 +400,6 @@ GXGetTexObjUserData(const GXTexObj* obj)
     return t->userData;
 }
 
-IGNORE_ALL
 void
 GXGetTexObjAll(const GXTexObj* obj, void** image_ptr, u16* width, u16* height, GXTexFmt* format, GXTexWrapMode* wrap_s,
                GXTexWrapMode* wrap_t, u8* mipmap)
@@ -425,7 +416,6 @@ GXGetTexObjAll(const GXTexObj* obj, void** image_ptr, u16* width, u16* height, G
     *mipmap = (t->flags & 1) == 1;
 }
 
-IGNORE_ALL
 void*
 GXGetTexObjData(const GXTexObj* to)
 {
@@ -435,7 +425,6 @@ GXGetTexObjData(const GXTexObj* to)
     return (void*)(GET_REG_FIELD(t->image3, 21, 0) << 5);
 }
 
-IGNORE_ALL
 u16
 GXGetTexObjWidth(const GXTexObj* to)
 {
@@ -445,7 +434,6 @@ GXGetTexObjWidth(const GXTexObj* to)
     return (u32)GET_REG_FIELD(t->image0, 10, 0) + 1;
 }
 
-IGNORE_ALL
 u16
 GXGetTexObjHeight(const GXTexObj* to)
 {
@@ -455,7 +443,6 @@ GXGetTexObjHeight(const GXTexObj* to)
     return (u32)GET_REG_FIELD(t->image0, 10, 10) + 1;
 }
 
-IGNORE_ALL
 GXTexFmt
 GXGetTexObjFmt(const GXTexObj* to)
 {
@@ -465,7 +452,6 @@ GXGetTexObjFmt(const GXTexObj* to)
     return t->fmt;
 }
 
-IGNORE_ALL
 GXTexWrapMode
 GXGetTexObjWrapS(const GXTexObj* to)
 {
@@ -475,7 +461,7 @@ GXGetTexObjWrapS(const GXTexObj* to)
     return GET_REG_FIELD(t->mode0, 2, 0);
 }
 
-GXTexWrapMode IGNORE_ALL
+GXTexWrapMode
 GXGetTexObjWrapT(const GXTexObj* to)
 {
     const __GXTexObjInt* t = (const __GXTexObjInt*)to;
@@ -484,7 +470,6 @@ GXGetTexObjWrapT(const GXTexObj* to)
     return GET_REG_FIELD(t->mode0, 2, 2);
 }
 
-IGNORE_ALL
 GXBool
 GXGetTexObjMipMap(const GXTexObj* to)
 {
@@ -494,15 +479,12 @@ GXGetTexObjMipMap(const GXTexObj* to)
     return (t->flags & 1) == 1;
 }
 
-/*
-IGNORE_ALL
 void
-GXGetTexObjLODAll(const GXTexObj *tex_obj, GXTexFilter *min_filt, GXTexFilter
-*mag_filt, f32 *min_lod, f32 *max_lod, f32 *lod_bias, u8 *bias_clamp, u8
-*do_edge_lod, GXAnisotropy *max_aniso)
+GXGetTexObjLODAll(const GXTexObj* tex_obj, GXTexFilter* min_filt, GXTexFilter* mag_filt, f32* min_lod, f32* max_lod,
+                  f32* lod_bias, u8* bias_clamp, u8* do_edge_lod, GXAnisotropy* max_aniso)
 {
     s16                  tmp;
-    const __GXTexObjInt *t = (const __GXTexObjInt *)tex_obj;
+    const __GXTexObjInt* t = (const __GXTexObjInt*)tex_obj;
 
     ASSERTMSGLINE(0x3A0, tex_obj, "Texture Object Pointer is null");
     *min_filt = HW2GXFiltConv[GET_REG_FIELD(t->mode0, 3, 5)];
@@ -520,17 +502,15 @@ GXGetTexObjLODAll(const GXTexObj *tex_obj, GXTexFilter *min_filt, GXTexFilter
     *max_aniso = GET_REG_FIELD(t->mode0, 2, 19);
 }
 
-IGNORE_ALL
 GXTexFilter
-GXGetTexObjMinFilt(const GXTexObj *tex_obj)
+GXGetTexObjMinFilt(const GXTexObj* tex_obj)
 {
-    const __GXTexObjInt *t = (const __GXTexObjInt *)tex_obj;
+    const __GXTexObjInt* t = (const __GXTexObjInt*)tex_obj;
 
     ASSERTMSGLINE(0x3B2, tex_obj, "Texture Object Pointer is null");
     return HW2GXFiltConv[GET_REG_FIELD(t->mode0, 3, 5)];
 }
-*/
-IGNORE_ALL
+
 GXTexFilter
 GXGetTexObjMagFilt(const GXTexObj* tex_obj)
 {
@@ -540,7 +520,6 @@ GXGetTexObjMagFilt(const GXTexObj* tex_obj)
     return GET_REG_FIELD(t->mode0, 1, 4);
 }
 
-IGNORE_ALL
 f32
 GXGetTexObjMinLOD(const GXTexObj* tex_obj)
 {
@@ -550,7 +529,6 @@ GXGetTexObjMinLOD(const GXTexObj* tex_obj)
     return (u32)GET_REG_FIELD(t->mode1, 8, 0) / 16.0f;
 }
 
-IGNORE_ALL
 f32
 GXGetTexObjMaxLOD(const GXTexObj* tex_obj)
 {
@@ -560,7 +538,6 @@ GXGetTexObjMaxLOD(const GXTexObj* tex_obj)
     return (u32)GET_REG_FIELD(t->mode1, 8, 8) / 16.0f;
 }
 
-IGNORE_ALL
 f32
 GXGetTexObjLODBias(const GXTexObj* tex_obj)
 {
@@ -576,7 +553,6 @@ GXGetTexObjLODBias(const GXTexObj* tex_obj)
     return 32.0f * tmp;
 }
 
-IGNORE_ALL
 GXBool
 GXGetTexObjBiasClamp(const GXTexObj* tex_obj)
 {
@@ -586,7 +562,6 @@ GXGetTexObjBiasClamp(const GXTexObj* tex_obj)
     return (u32)GET_REG_FIELD(t->mode0, 1, 21);
 }
 
-IGNORE_ALL
 GXBool
 GXGetTexObjEdgeLOD(const GXTexObj* tex_obj)
 {
@@ -596,7 +571,6 @@ GXGetTexObjEdgeLOD(const GXTexObj* tex_obj)
     return !GET_REG_FIELD(t->mode0, 1, 8);
 }
 
-IGNORE_ALL
 GXAnisotropy
 GXGetTexObjMaxAniso(const GXTexObj* tex_obj)
 {
@@ -686,7 +660,6 @@ GXInitTlutObj(GXTlutObj* tlut_obj, void* lut, GXTlutFmt fmt, u16 n_entries)
     t->numEntries = n_entries;
 }
 
-IGNORE_ALL
 void
 GXGetTlutObjAll(const GXTlutObj* tlut_obj, void** data, GXTlutFmt* format, u16* numEntries)
 {
@@ -698,7 +671,6 @@ GXGetTlutObjAll(const GXTlutObj* tlut_obj, void** data, GXTlutFmt* format, u16* 
     *numEntries = t->numEntries;
 }
 
-IGNORE_ALL
 void*
 GXGetTlutObjData(const GXTlutObj* tlut_obj)
 {
@@ -708,7 +680,6 @@ GXGetTlutObjData(const GXTlutObj* tlut_obj)
     return (void*)(GET_REG_FIELD(t->loadTlut0, 21, 0) << 5);
 }
 
-IGNORE_ALL
 GXTlutFmt
 GXGetTlutObjFmt(const GXTlutObj* tlut_obj)
 {
@@ -718,7 +689,6 @@ GXGetTlutObjFmt(const GXTlutObj* tlut_obj)
     return GET_REG_FIELD(t->tlut, 2, 10);
 }
 
-IGNORE_ALL
 u16
 GXGetTlutObjNumEntries(const GXTlutObj* tlut_obj)
 {
@@ -790,7 +760,6 @@ GXInitTexCacheRegion(GXTexRegion* region, u8 is_32b_mipmap, u32 tmem_even, GXTex
     t->isCached = 1;
 }
 
-IGNORE_ALL
 void
 GXInitTexPreLoadRegion(GXTexRegion* region, u32 tmem_even, u32 size_even, u32 tmem_odd, u32 size_odd)
 {
@@ -823,7 +792,6 @@ GXInitTexPreLoadRegion(GXTexRegion* region, u32 tmem_even, u32 size_even, u32 tm
     t->sizeOdd = (u16)(size_odd >> 5U);
 }
 
-IGNORE_ALL
 void
 GXGetTexRegionAll(const GXTexRegion* region, u8* is_cached, u8* is_32b_mipmap, u32* tmem_even, u32* size_even,
                   u32* tmem_odd, u32* size_odd)
@@ -875,7 +843,6 @@ GXInitTlutRegion(GXTlutRegion* region, u32 tmem_addr, GXTlutSize tlut_size)
     SET_REG_FIELD(0x58A, t->loadTlut1, 8, 24, 0x65);
 }
 
-IGNORE_ALL
 void
 GXGetTlutRegionAll(const GXTlutRegion* region, u32* tmem_addr, GXTlutSize* tlut_size)
 {
@@ -886,7 +853,6 @@ GXGetTlutRegionAll(const GXTlutRegion* region, u32* tmem_addr, GXTlutSize* tlut_
     *tlut_size = GET_REG_FIELD(t->loadTlut1, 11, 10);
 }
 
-IGNORE_ALL
 void
 GXInvalidateTexRegion(GXTexRegion* region)
 {
@@ -972,7 +938,6 @@ GXSetTlutRegionCallback(GXTlutRegionCallback f)
     return oldcb;
 }
 
-IGNORE_ALL
 void
 GXPreLoadEntireTexture(GXTexObj* tex_obj, GXTexRegion* region)
 {
@@ -1178,7 +1143,6 @@ GXPreLoadEntireTexture(GXTexObj* tex_obj, GXTexRegion* region)
     tmem2;
 }
 
-IGNORE_ALL
 void
 GXSetTexCoordScaleManually(GXTexCoordID coord, u8 enable, u16 ss, u16 ts)
 {
@@ -1195,7 +1159,6 @@ GXSetTexCoordScaleManually(GXTexCoordID coord, u8 enable, u16 ss, u16 ts)
     }
 }
 
-IGNORE_ALL
 void
 GXSetTexCoordCylWrap(GXTexCoordID coord, u8 s_enable, u8 t_enable)
 {
@@ -1211,7 +1174,6 @@ GXSetTexCoordCylWrap(GXTexCoordID coord, u8 s_enable, u8 t_enable)
     }
 }
 
-IGNORE_ALL
 void
 GXSetTexCoordBias(GXTexCoordID coord, u8 s_enable, u8 t_enable)
 {
@@ -1311,7 +1273,6 @@ __GXSetSUTexRegs(void)
     }
 }
 
-IGNORE_ALL
 void
 __GXGetSUTexSize(GXTexCoordID coord, u16* width, u16* height)
 {

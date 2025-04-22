@@ -5,18 +5,18 @@
 
 // Register base adresses
 
-volatile u32 __RAMRegs[] AT_ADDRESS(0x80000000); // RAM Register
-volatile u16 __CPRegs[] AT_ADDRESS(0xCC000000);  // Command Processor Register
-volatile u16 __PERegs[] AT_ADDRESS(0xCC001000);  // Pixel Engine Register
-volatile u16 __VIRegs[] AT_ADDRESS(0xCC002000);  // Video Interface Register
-volatile u32 __PIRegs[] AT_ADDRESS(0xCC003000);  // Process Interrupt Register
-volatile u16 __MIRegs[] AT_ADDRESS(0xCC004000);  // Memory Interrupt Register
-volatile u16 __DSPRegs[] AT_ADDRESS(0xCC005000); // Digital Signal Processor Register
-volatile u32 __DIRegs[] AT_ADDRESS(0xCC006000);  // DVD Interface Register
-volatile u32 __SIRegs[] AT_ADDRESS(0xCC006400);  // Serial Interface Register
-volatile u32 __EXIRegs[] AT_ADDRESS(0xCC006800); // External Interface Register
-volatile u32 __AIRegs[] AT_ADDRESS(0xCC006C00);  // Audio Interface Register
-volatile u8  __GXRegs[] AT_ADDRESS(0xCC008000);  // Graphics FIFO Register
+volatile u32* __RAMRegs AT_ADDRESS(0x80000000); // RAM Register
+volatile u16* __CPRegs  AT_ADDRESS(0xCC000000); // Command Processor Register
+volatile u16* __PERegs  AT_ADDRESS(0xCC001000); // Pixel Engine Register
+volatile u16* __VIRegs  AT_ADDRESS(0xCC002000); // Video Interface Register
+volatile u32* __PIRegs  AT_ADDRESS(0xCC003000); // Process Interrupt Register
+volatile u16* __MIRegs  AT_ADDRESS(0xCC004000); // Memory Interrupt Register
+volatile u16* __DSPReg  AT_ADDRESS(0xCC005000); // Digital Signal Processor Register
+volatile u32* __DIRegs  AT_ADDRESS(0xCC006000); // DVD Interface Register
+volatile u32* __SIRegs  AT_ADDRESS(0xCC006400); // Serial Interface Register
+volatile u32* __EXIRegs AT_ADDRESS(0xCC006800); // External Interface Register
+volatile u32* __AIRegs  AT_ADDRESS(0xCC006C00); // Audio Interface Register
+volatile u8* __GXRegs   AT_ADDRESS(0xCC008000); // Graphics FIFO Register
 
 // Register offsets
 
@@ -111,13 +111,18 @@ volatile u8  __GXRegs[] AT_ADDRESS(0xCC008000);  // Graphics FIFO Register
 //
 // offsets for PE Regs
 //
-#define PE_Z                        (0) // z configuration
-#define PE_ALPHA                    (1) // alpha configuration
-#define PE_DEST_ALPHA               (2) // destination alpha
-#define PE_ALPHA_MODE               (3) // alpha mode
-#define PE_ALPHA_READ               (4) // alpha read
-#define PE_IST                      (5) // interrupt status register
-#define PE_TOKEN                    (6) // pe token
+#define PE_PI_ZMODE_ID              (0x00) // z configuration
+#define PE_PI_CMODE0_ID             (0x01) // alpha configuration
+#define PE_PI_CMODE1_ID             (0x02) // destination alpha
+#define PE_PI_ALPHA_THRESHOLD_ID    (0x03) // alpha mode
+#define PE_PI_CTL_ID                (0x04) // alpha read
+#define PE_PI_INTRCTL_ID            (0x05) // interrupt status register
+#define PE_PI_INTRSTAT_ID           (0x06) // interrupt status register
+#define PE_PI_TOKEN_ID              (0x07) // pe token
+#define PE_PI_XBOUND0_ID            (0x08) //
+#define PE_PI_XBOUND1_ID            (0x09) //
+#define PE_PI_YBOUND0_ID            (0x0A) //
+#define PE_PI_YBOUND1_ID            (0x0B) //
 
 //
 // offsets for VI Regs

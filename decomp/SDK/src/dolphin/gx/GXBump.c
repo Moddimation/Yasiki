@@ -7,8 +7,7 @@
 
 #if DEBUG
 #    define GX_WRITE_SOME_REG5(a, b)                                                                                   \
-        do                                                                                                             \
-        {                                                                                                              \
+        do {                                                                                                           \
             GX_WRITE_U8(a);                                                                                            \
             GX_WRITE_U32(b);                                                                                           \
             __gxVerif->rasRegs[(b >> 24) & 0xFF] = b;                                                                  \
@@ -16,8 +15,7 @@
         while (0)
 #else
 #    define GX_WRITE_SOME_REG5(a, b)                                                                                   \
-        do                                                                                                             \
-        {                                                                                                              \
+        do {                                                                                                           \
             GX_WRITE_U8(a);                                                                                            \
             GX_WRITE_U32(b);                                                                                           \
         }                                                                                                              \
@@ -60,22 +58,14 @@ GXSetIndTexMtx(GXIndTexMtxID mtx_id, f32 offset[2][3], s8 scale_exp)
     {
         case GX_ITM_0 :
         case GX_ITM_1 :
-        case GX_ITM_2 :
-            id = mtx_id - 1;
-            break;
+        case GX_ITM_2  : id = mtx_id - 1; break;
         case GX_ITM_S0 :
         case GX_ITM_S1 :
-        case GX_ITM_S2 :
-            id = mtx_id - 5;
-            break;
+        case GX_ITM_S2 : id = mtx_id - 5; break;
         case GX_ITM_T0 :
         case GX_ITM_T1 :
-        case GX_ITM_T2 :
-            id = mtx_id - 9;
-            break;
-        default :
-            id = 0;
-            break;
+        case GX_ITM_T2 : id = mtx_id - 9; break;
+        default        : id = 0; break;
     }
 
     mtx[0] = (int)(1024.0f * offset[0][0]) & 0x7FF;
@@ -140,9 +130,7 @@ GXSetIndTexCoordScale(GXIndTexStageID ind_state, GXIndTexScale scale_s, GXIndTex
             SET_REG_FIELD(0xFE, __GXData->IndTexScale1, 8, 24, 0x26);
             GX_WRITE_SOME_REG5(0x61, __GXData->IndTexScale1);
             break;
-        default :
-            ASSERTMSGLINE(0x102, 0, "GXSetIndTexCoordScale: Invalid Indirect Stage Id");
-            break;
+        default : ASSERTMSGLINE(0x102, 0, "GXSetIndTexCoordScale: Invalid Indirect Stage Id"); break;
     }
     __GXData->bpSent = 1;
 }
@@ -173,9 +161,7 @@ GXSetIndTexOrder(GXIndTexStageID ind_stage, GXTexCoordID tex_coord, GXTexMapID t
             SET_REG_FIELD(0x12E, __GXData->iref, 3, 18, tex_map);
             SET_REG_FIELD(0x12F, __GXData->iref, 3, 21, tex_coord);
             break;
-        default :
-            ASSERTMSGLINE(0x132, 0, "GXSetIndTexOrder: Invalid Indirect Stage Id");
-            break;
+        default : ASSERTMSGLINE(0x132, 0, "GXSetIndTexOrder: Invalid Indirect Stage Id"); break;
     }
     GX_WRITE_SOME_REG5(0x61, __GXData->iref);
     __GXData->dirtyState |= 3;
@@ -209,7 +195,6 @@ GXSetTevIndWarp(GXTevStageID tev_stage, GXIndTexStageID ind_stage, u8 signed_off
                      wrap, 0U, 0, 0);
 }
 
-IGNORE_ALL
 void
 GXSetTevIndTile(GXTevStageID tev_stage, GXIndTexStageID ind_stage, u16 tilesize_s, u16 tilesize_t, u16 tilespacing_s,
                 u16 tilespacing_t, GXIndTexFormat format, GXIndTexMtxID matrix_sel, GXIndTexBiasSel bias_sel,
@@ -224,21 +209,11 @@ GXSetTevIndTile(GXTevStageID tev_stage, GXIndTexStageID ind_stage, u16 tilesize_
     ASSERTMSGLINE(0x192, ind_stage < 4, "GXSetTevIndTile: Invalid indirect stage id");
     switch (tilesize_s)
     {
-        case 256 :
-            wrap_s = GX_ITW_256;
-            break;
-        case 128 :
-            wrap_s = GX_ITW_128;
-            break;
-        case 64 :
-            wrap_s = GX_ITW_64;
-            break;
-        case 32 :
-            wrap_s = GX_ITW_32;
-            break;
-        case 16 :
-            wrap_s = GX_ITW_16;
-            break;
+        case 256 : wrap_s = GX_ITW_256; break;
+        case 128 : wrap_s = GX_ITW_128; break;
+        case 64  : wrap_s = GX_ITW_64; break;
+        case 32  : wrap_s = GX_ITW_32; break;
+        case 16  : wrap_s = GX_ITW_16; break;
         default :
             ASSERTMSGLINE(0x19B, 0, "GXSetTevIndTile: Invalid tilesize for S coordinate");
             wrap_s = GX_ITW_OFF;
@@ -246,21 +221,11 @@ GXSetTevIndTile(GXTevStageID tev_stage, GXIndTexStageID ind_stage, u16 tilesize_
     }
     switch (tilesize_t)
     {
-        case 256 :
-            wrap_t = GX_ITW_256;
-            break;
-        case 128 :
-            wrap_t = GX_ITW_128;
-            break;
-        case 64 :
-            wrap_t = GX_ITW_64;
-            break;
-        case 32 :
-            wrap_t = GX_ITW_32;
-            break;
-        case 16 :
-            wrap_t = GX_ITW_16;
-            break;
+        case 256 : wrap_t = GX_ITW_256; break;
+        case 128 : wrap_t = GX_ITW_128; break;
+        case 64  : wrap_t = GX_ITW_64; break;
+        case 32  : wrap_t = GX_ITW_32; break;
+        case 16  : wrap_t = GX_ITW_16; break;
         default :
             ASSERTMSGLINE(0x1A7, 0, "GXSetTevIndTile: Invalid tilesize for T coordinate");
             wrap_t = GX_ITW_OFF;
@@ -274,7 +239,6 @@ GXSetTevIndTile(GXTevStageID tev_stage, GXIndTexStageID ind_stage, u16 tilesize_
     GXSetTevIndirect(tev_stage, ind_stage, format, bias_sel, matrix_sel, wrap_s, wrap_t, 0U, 1, alpha_sel);
 }
 
-IGNORE_ALL
 void
 GXSetTevIndBumpST(GXTevStageID tev_stage, GXIndTexStageID ind_stage, GXIndTexMtxID matrix_sel)
 {
@@ -296,16 +260,13 @@ GXSetTevIndBumpST(GXTevStageID tev_stage, GXIndTexStageID ind_stage, GXIndTexMtx
             sm = GX_ITM_S2;
             tm = GX_ITM_T2;
             break;
-        default :
-            ASSERTMSGLINE(0x1E0, 0, "GXSetTevIndBumpST: Invalid matrix selection");
-            break;
+        default : ASSERTMSGLINE(0x1E0, 0, "GXSetTevIndBumpST: Invalid matrix selection"); break;
     }
     GXSetTevIndirect(tev_stage, ind_stage, GX_ITF_8, GX_ITB_ST, sm, GX_ITW_0, GX_ITW_0, 0U, 0, 0);
     GXSetTevIndirect(tev_stage + 1, ind_stage, GX_ITF_8, GX_ITB_ST, tm, GX_ITW_0, GX_ITW_0, 1U, 0, 0);
     GXSetTevIndirect(tev_stage + 2, ind_stage, GX_ITF_8, GX_ITB_NONE, GX_ITM_OFF, GX_ITW_OFF, GX_ITW_OFF, 1U, 0, 0);
 }
 
-IGNORE_ALL
 void
 GXSetTevIndBumpXYZ(GXTevStageID tev_stage, GXIndTexStageID ind_stage, GXIndTexMtxID matrix_sel)
 {
@@ -313,7 +274,6 @@ GXSetTevIndBumpXYZ(GXTevStageID tev_stage, GXIndTexStageID ind_stage, GXIndTexMt
     GXSetTevIndirect(tev_stage, ind_stage, GX_ITF_8, GX_ITB_STU, matrix_sel, GX_ITW_OFF, GX_ITW_OFF, 0U, 0, 0);
 }
 
-IGNORE_ALL
 void
 GXSetTevIndRepeat(GXTevStageID tev_stage)
 {
@@ -338,18 +298,10 @@ __GXUpdateBPMask(void)
     {
         switch (i)
         {
-            case 0 :
-                tmap = GET_REG_FIELD(__GXData->iref, 3, 0);
-                break;
-            case 1 :
-                tmap = GET_REG_FIELD(__GXData->iref, 3, 6);
-                break;
-            case 2 :
-                tmap = GET_REG_FIELD(__GXData->iref, 3, 12);
-                break;
-            case 3 :
-                tmap = GET_REG_FIELD(__GXData->iref, 3, 18);
-                break;
+            case 0 : tmap = GET_REG_FIELD(__GXData->iref, 3, 0); break;
+            case 1 : tmap = GET_REG_FIELD(__GXData->iref, 3, 6); break;
+            case 2 : tmap = GET_REG_FIELD(__GXData->iref, 3, 12); break;
+            case 3 : tmap = GET_REG_FIELD(__GXData->iref, 3, 18); break;
         }
         new_imask |= 1 << tmap;
     }

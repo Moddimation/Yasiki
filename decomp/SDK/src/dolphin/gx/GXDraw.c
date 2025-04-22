@@ -10,7 +10,6 @@
 static GXVtxDescList    vcd[27];
 static GXVtxAttrFmtList vat[27];
 
-IGNORE_ALL
 static void
 GetVertState(void)
 {
@@ -23,7 +22,6 @@ GetVertState(void)
     GXSetVtxAttrFmt(GX_VTXFMT3, GX_VA_NRM, GX_NRM_XYZ, GX_F32, 0);
 }
 
-IGNORE_ALL
 static void
 RestoreVertState(void)
 {
@@ -73,7 +71,6 @@ myvertex(f32 v[3], f32 n[3])
     GXNormal3f32(n[0], n[1], n[2]);
 }
 
-IGNORE_ALL
 static void
 DumpTriangle(f32 v0[3], f32 v1[3], f32 v2[3])
 {
@@ -113,13 +110,12 @@ Subdivide(u8 depth, f32 v0[3], f32 v1[3], f32 v2[3])
     Subdivide(depth - 1, v01, v12, v20);
 }
 
-IGNORE_ALL
 static void
 SubDivTriangle(u8 depth, u8 i, f32 (*data)[3], u8 (*ndx)[3])
 {
-    f32 *x0 = data[ndx[i][0]];
-    f32 *x1 = data[ndx[i][1]];
-    f32 *x2 = data[ndx[i][2]];
+    f32* x0 = data[ndx[i][0]];
+    f32* x1 = data[ndx[i][1]];
+    f32* x2 = data[ndx[i][2]];
 
     Subdivide(depth, x0, x1, x2);
 }
@@ -180,7 +176,6 @@ GXDrawCylinder(u8 numEdges)
     RestoreVertState();
 }
 
-IGNORE_ALL
 void
 GXDrawTorus(f32 rc, u8 numc, u8 numt)
 {
@@ -229,7 +224,6 @@ GXDrawTorus(f32 rc, u8 numc, u8 numt)
     RestoreVertState();
 }
 
-IGNORE_ALL
 void
 GXDrawSphere(u8 numMajor, u8 numMinor)
 {
@@ -403,14 +397,13 @@ static f32 verts[20][3] = {
     {       0.5f,       0.5f,        0.5 },
 };
 
-IGNORE_ALL
 void
 GXDrawDodeca(void)
 {
     u32  i;
-    f32 *p0;
-    f32 *p1;
-    f32 *p2;
+    f32* p0;
+    f32* p1;
+    f32* p2;
     f32  u[3];
     f32  v[3];
     f32  n[3];
@@ -456,7 +449,6 @@ static u8 ondex[8][3] = {
     { 1, 3, 5 },
 };
 
-IGNORE_ALL
 void
 GXDrawOctahedron(void)
 {
@@ -508,7 +500,6 @@ static u8 index[20][3] = {
     {  7,  2, 11 },
 };
 
-IGNORE_ALL
 void
 GXDrawIcosahedron(void)
 {
@@ -535,7 +526,6 @@ GXDrawSphere1(u8 depth)
     RestoreVertState();
 }
 
-IGNORE_ALL
 static u32
 CmpNormal32(f32 n1[3], f32 n2[3])
 {
@@ -551,11 +541,11 @@ CmpNormal32(f32 n1[3], f32 n2[3])
     return TRUE;
 }
 
-/*static u32  nrm_cnt;
-static f32 *nrm_tab;
+static u32  nrm_cnt;
+static f32* nrm_tab;
 
-IGNORE_ALL
-static void AddNormal(f32 n[3])
+static void
+AddNormal(f32 n[3])
 {
     u32 indx;
     u32 i;
@@ -574,8 +564,8 @@ static void AddNormal(f32 n[3])
     nrm_cnt++;
 }
 
-IGNORE_ALL
-static void SubdivideNrm(u8 depth, f32 v0[3], f32 v1[3], f32 v2[3])
+static void
+SubdivideNrm(u8 depth, f32 v0[3], f32 v1[3], f32 v2[3])
 {
     f32 v01[3];
     f32 v12[3];
@@ -605,18 +595,18 @@ static void SubdivideNrm(u8 depth, f32 v0[3], f32 v1[3], f32 v2[3])
     SubdivideNrm(depth - 1, v01, v12, v20);
 }
 
-IGNORE_ALL
-static void SubDivNrm(u8 depth, u8 i, f32 (*data)[3], u8 (*ndx)[3])
+static void
+SubDivNrm(u8 depth, u8 i, f32 (*data)[3], u8 (*ndx)[3])
 {
-    f32 *x0 = data[ndx[i][0]];
-    f32 *x1 = data[ndx[i][1]];
-    f32 *x2 = data[ndx[i][2]];
+    f32* x0 = data[ndx[i][0]];
+    f32* x1 = data[ndx[i][1]];
+    f32* x2 = data[ndx[i][2]];
 
     SubdivideNrm(depth, x0, x1, x2);
 }
 
-IGNORE_ALL
-u32 GXGenNormalTable(u8 depth, f32 *table)
+u32
+GXGenNormalTable(u8 depth, f32* table)
 {
     s32 i;
 
@@ -627,4 +617,4 @@ u32 GXGenNormalTable(u8 depth, f32 *table)
         SubDivNrm(depth, i, odata, ondex);
     }
     return nrm_cnt;
-}*/
+}
