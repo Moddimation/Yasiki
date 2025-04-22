@@ -1514,19 +1514,19 @@ __cvt_sll_dbl(void)
             // count the leading zeroes in r3:r4
             cntlzw         r7,
         MSW(r3, r4) cntlzw r8, LSW(r3, r4) rlwinm r9, r7, 26, 0,
-        4  // (i.e. slwi r9,r7,26)
+        4                      // (i.e. slwi r9,r7,26)
         srawi r9,
         r9, 31 and r9, r9, r8 add r7, r7,
-        r9 // r7 contains number of leading zeroes
-           // shift r3:r4 left by r7 bits
+        r9                     // r7 contains number of leading zeroes
+                               // shift r3:r4 left by r7 bits
             subfic r8,
         r7, 32 subic r9, r7, 32 slw MSW(r3, r4), MSW(r3, r4), r7 srw r10, LSW(r3, r4), r8 or MSW(r3, r4), MSW(r3, r4),
         r10 slw r10, LSW(r3, r4), r9 or MSW(r3, r4), MSW(r3, r4),
-        r10 // high word
+        r10                    // high word
             slw LSW(r3, r4),
         LSW(r3, r4),
-        r7  // low word
-           // subtract the number of leading 0's from exponent
+        r7                     // low word
+                               // subtract the number of leading 0's from exponent
             sub r6,
         r6,
         r7
@@ -1632,19 +1632,19 @@ __cvt_ull_dbl(void)
             // count the leading zeroes in r3:r4
             cntlzw         r7,
         MSW(r3, r4) cntlzw r8, LSW(r3, r4) rlwinm r9, r7, 26, 0,
-        4  // (i.e. slwi r9,r7,26)
+        4                      // (i.e. slwi r9,r7,26)
         srawi r9,
         r9, 31 and r9, r9, r8 add r7, r7,
-        r9 // r7 contains number of leading zeroes
-           // shift r3:r4 left by r7 bits
+        r9                     // r7 contains number of leading zeroes
+                               // shift r3:r4 left by r7 bits
             subfic r8,
         r7, 32 subic r9, r7, 32 slw MSW(r3, r4), MSW(r3, r4), r7 srw r10, LSW(r3, r4), r8 or MSW(r3, r4), MSW(r3, r4),
         r10 slw r10, LSW(r3, r4), r9 or MSW(r3, r4), MSW(r3, r4),
-        r10 // high word
+        r10                    // high word
             slw LSW(r3, r4),
         LSW(r3, r4),
-        r7  // low word
-           // subtract the number of leading 0's from exponent
+        r7                     // low word
+                               // subtract the number of leading 0's from exponent
             sub r6,
         r6,
         r7
@@ -1750,19 +1750,19 @@ __cvt_sll_flt(void)
             // count the leading zeroes in r3:r4
             cntlzw         r7,
         MSW(r3, r4) cntlzw r8, LSW(r3, r4) rlwinm r9, r7, 26, 0,
-        4  // (i.e. slwi r9,r7,26)
+        4                      // (i.e. slwi r9,r7,26)
         srawi r9,
         r9, 31 and r9, r9, r8 add r7, r7,
-        r9 // r7 contains number of leading zeroes
-           // shift r3:r4 left by r7 bits
+        r9                     // r7 contains number of leading zeroes
+                               // shift r3:r4 left by r7 bits
             subfic r8,
         r7, 32 subic r9, r7, 32 slw MSW(r3, r4), MSW(r3, r4), r7 srw r10, LSW(r3, r4), r8 or MSW(r3, r4), MSW(r3, r4),
         r10 slw r10, LSW(r3, r4), r9 or MSW(r3, r4), MSW(r3, r4),
-        r10 // high word
+        r10                    // high word
             slw LSW(r3, r4),
         LSW(r3, r4),
-        r7  // low word
-           // subtract the number of leading 0's from exponent
+        r7                     // low word
+                               // subtract the number of leading 0's from exponent
             sub r6,
         r6,
         r7
@@ -1868,19 +1868,19 @@ __cvt_ull_flt(void)
             // count the leading zeroes in r3:r4
             cntlzw         r7,
         MSW(r3, r4) cntlzw r8, LSW(r3, r4) rlwinm r9, r7, 26, 0,
-        4  // (i.e. slwi r9,r7,26)
+        4                      // (i.e. slwi r9,r7,26)
         srawi r9,
         r9, 31 and r9, r9, r8 add r7, r7,
-        r9 // r7 contains number of leading zeroes
-           // shift r3:r4 left by r7 bits
+        r9                     // r7 contains number of leading zeroes
+                               // shift r3:r4 left by r7 bits
             subfic r8,
         r7, 32 subic r9, r7, 32 slw MSW(r3, r4), MSW(r3, r4), r7 srw r10, LSW(r3, r4), r8 or MSW(r3, r4), MSW(r3, r4),
         r10 slw r10, LSW(r3, r4), r9 or MSW(r3, r4), MSW(r3, r4),
-        r10 // high word
+        r10                    // high word
             slw LSW(r3, r4),
         LSW(r3, r4),
-        r7  // low word
-           // subtract the number of leading 0's from exponent
+        r7                     // low word
+                               // subtract the number of leading 0's from exponent
             sub r6,
         r6,
         r7

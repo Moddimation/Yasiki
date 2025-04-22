@@ -38,7 +38,7 @@ __get_time(void)
 }
 
 int
-__to_gm_time(time_t *time)
+__to_gm_time(time_t* time)
 {
 #warning "replace 0 with an OS call"
     return 0;

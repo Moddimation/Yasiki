@@ -10,15 +10,15 @@ static unsigned char bb2Buf[63]; // size: 0x3F, address: 0x0
 
 // .sbss
 static unsigned long     status; // size: 0x4, address: 0x0
-static struct DVDBB2    *bb2;    // size: 0x4, address: 0x4
-static struct DVDDiskID *idTmp;  // size: 0x4, address: 0x8
+static struct DVDBB2*    bb2;    // size: 0x4, address: 0x4
+static struct DVDDiskID* idTmp;  // size: 0x4, address: 0x8
 
 // functions
-static void cb(long result, struct DVDCommandBlock *block);
+static void cb(long result, struct DVDCommandBlock* block);
 void        __fstLoad();
 
 static void
-cb(long result, struct DVDCommandBlock *block)
+cb(long result, struct DVDCommandBlock* block)
 {
     if (result > 0)
     {
@@ -32,8 +32,7 @@ cb(long result, struct DVDCommandBlock *block)
                 status = 2;
                 DVDReadAbsAsyncForBS(block, bb2->FSTAddress, (bb2->FSTLength + 0x1F) & 0xFFFFFFE0, bb2->FSTPosition,
                                      cb);
-            default :
-                return;
+            default : return;
         }
     }
     if (result == -1)
@@ -51,17 +50,17 @@ cb(long result, struct DVDCommandBlock *block)
 void
 __fstLoad()
 {
-    struct OSBootInfo_s          *bootInfo;
-    struct DVDDiskID             *id;
+    struct OSBootInfo_s*          bootInfo;
+    struct DVDDiskID*             id;
     unsigned char                 idTmpBuf[63];
     long                          state;
-    void                         *arenaHi;
+    void*                         arenaHi;
     static struct DVDCommandBlock block;
 
     arenaHi = OSGetArenaHi();
-    bootInfo = (void *)OSPhysicalToCached(0);
-    idTmp = (void *)OSRoundUp32B(idTmpBuf);
-    bb2 = (void *)OSRoundUp32B(bb2Buf);
+    bootInfo = (void*)OSPhysicalToCached(0);
+    idTmp = (void*)OSRoundUp32B(idTmpBuf);
+    bb2 = (void*)OSRoundUp32B(bb2Buf);
     DVDReset();
     DVDReadDiskID(&block, idTmp, cb);
     while (1)
@@ -76,23 +75,16 @@ __fstLoad()
         // development pre-hardware?
         switch (state)
         {
-            case DVD_STATE_FATAL_ERROR :
-                break;
-            case DVD_STATE_BUSY :
-                break;
-            case DVD_STATE_WAITING :
-                break;
-            case DVD_STATE_COVER_CLOSED :
-                break;
-            case DVD_STATE_NO_DISK :
-                break;
-            case DVD_STATE_COVER_OPEN :
-                break;
-            case DVD_STATE_MOTOR_STOPPED :
-                break;
+            case DVD_STATE_FATAL_ERROR   : break;
+            case DVD_STATE_BUSY          : break;
+            case DVD_STATE_WAITING       : break;
+            case DVD_STATE_COVER_CLOSED  : break;
+            case DVD_STATE_NO_DISK       : break;
+            case DVD_STATE_COVER_OPEN    : break;
+            case DVD_STATE_MOTOR_STOPPED : break;
         }
     }
-    bootInfo->FSTLocation = (void *)bb2->FSTAddress;
+    bootInfo->FSTLocation = (void*)bb2->FSTAddress;
     bootInfo->FSTMaxLength = bb2->FSTMaxLength;
     id = &bootInfo->DVDDiskID;
     memcpy(id, idTmp, 0x20);

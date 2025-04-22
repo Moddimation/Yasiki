@@ -35,23 +35,23 @@ COPYRIGHT
 #include <__mem.h>
 #include <string.h>
 
-void *
-memcpy(void *dst, const void *src, size_t n)
+void*
+memcpy(void* dst, const void* src, size_t n)
 {
-    const char *p;
-    char       *q;
+    const char* p;
+    char*       q;
     int         rev = ((unsigned long)src < (unsigned long)dst);
 
     if (!rev)
     {
-        for (p = (const char *)src - 1, q = (char *)dst - 1, n++; --n;)
+        for (p = (const char*)src - 1, q = (char*)dst - 1, n++; --n;)
         {
             *++q = *++p;
         }
     }
     else
     {
-        for (p = (const char *)src + n, q = (char *)dst + n, n++; --n;)
+        for (p = (const char*)src + n, q = (char*)dst + n, n++; --n;)
         {
             *--q = *--p;
         }
@@ -63,19 +63,19 @@ memcpy(void *dst, const void *src, size_t n)
     mem_funcs.c
 */
 
-#define cps               ((unsigned char *)src)
-#define cpd               ((unsigned char *)dst)
-#define lps               ((unsigned long *)src)
-#define lpd               ((unsigned long *)dst)
+#define cps               ((unsigned char*)src)
+#define cpd               ((unsigned char*)dst)
+#define lps               ((unsigned long*)src)
+#define lpd               ((unsigned long*)dst)
 #define deref_auto_inc(p) *++(p)
 
 void
-__fill_mem(void *dst, int val, unsigned long n)
+__fill_mem(void* dst, int val, unsigned long n)
 {
     unsigned long v = (unsigned char)val;
     unsigned long i;
 
-    cpd = ((unsigned char *)dst) - 1;
+    cpd = ((unsigned char*)dst) - 1;
 
     if (n >= 32)
     {
@@ -85,10 +85,10 @@ __fill_mem(void *dst, int val, unsigned long n)
         {
             n -= i;
 
-            do
-            {
+            do {
                 deref_auto_inc(cpd) = v;
-            } while (--i);
+            }
+            while (--i);
         }
 
         if (v)
@@ -96,14 +96,13 @@ __fill_mem(void *dst, int val, unsigned long n)
             v |= v << 24 | v << 16 | v << 8;
         }
 
-        lpd = ((unsigned long *)(cpd + 1)) - 1;
+        lpd = ((unsigned long*)(cpd + 1)) - 1;
 
         i = n >> 5;
 
         if (i)
         {
-            do
-            {
+            do {
                 deref_auto_inc(lpd) = v;
                 deref_auto_inc(lpd) = v;
                 deref_auto_inc(lpd) = v;
@@ -112,37 +111,38 @@ __fill_mem(void *dst, int val, unsigned long n)
                 deref_auto_inc(lpd) = v;
                 deref_auto_inc(lpd) = v;
                 deref_auto_inc(lpd) = v;
-            } while (--i);
+            }
+            while (--i);
         }
 
         i = (n & 31) >> 2;
 
         if (i)
         {
-            do
-            {
+            do {
                 deref_auto_inc(lpd) = v;
-            } while (--i);
+            }
+            while (--i);
         }
 
-        cpd = ((unsigned char *)(lpd + 1)) - 1;
+        cpd = ((unsigned char*)(lpd + 1)) - 1;
 
         n &= 3;
     }
 
     if (n)
     {
-        do
-        {
+        do {
             deref_auto_inc(cpd) = v;
-        } while (--n);
+        }
+        while (--n);
     }
 
     return;
 }
 
-void *
-memset(void *dst, int val, size_t n)
+void*
+memset(void* dst, int val, size_t n)
 {
     __fill_mem(dst, val, n);
 
@@ -151,18 +151,18 @@ memset(void *dst, int val, size_t n)
 
 #if !__MC68K__ || _No_String_Inlines || !defined(__cplusplus)
 
-#    pragma overload size_t(strlen)(const char *str);
+#    pragma overload size_t(strlen)(const char* str);
 
-size_t(strlen)(const char *str)
+size_t(strlen)(const char* str)
 {
     size_t len = -1;
 
-    unsigned char *p = (unsigned char *)str - 1;
+    unsigned char* p = (unsigned char*)str - 1;
 
-    do
-    {
+    do {
         len++;
-    } while (*++p);
+    }
+    while (*++p);
 
     return (len);
 }

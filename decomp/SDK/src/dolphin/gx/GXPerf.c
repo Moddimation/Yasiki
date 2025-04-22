@@ -681,4 +681,3 @@ GXReadClksPerVtx(void)
     perfCnt = ctrh >> 8;
     return perfCnt;
 }
-

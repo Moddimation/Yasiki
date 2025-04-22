@@ -51,19 +51,19 @@ __file_modes __temp_file_mode =
 #    endif /* not __NO_WIDE_CHAR */ /*- mm 980707 -*/
 
 int
-remove(const char *name)
+remove(const char* name)
 {
     return ((__delete_file(name) == __no_io_error) ? 0 : -1);
 }
 
 int
-rename(const char *old_name, const char *new_name)
+rename(const char* old_name, const char* new_name)
 {
     return ((__rename_file(old_name, new_name) == __no_io_error) ? 0 : -1);
 }
 
-char *
-tmpnam(char *name)
+char*
+tmpnam(char* name)
 {
     /*- BLC 991210 -*/
 #    if !(_MWMT && (__dest_os == __win32_os || __dest_os == __wince_os))
@@ -88,10 +88,10 @@ tmpnam(char *name)
     }
 }
 
-FILE *
+FILE*
 tmpfile(void)
 {
-    FILE *file;
+    FILE* file;
 
     __stdio_atexit();
 
@@ -116,7 +116,7 @@ tmpfile(void)
 #endif                                                                            /* ndef _No_Disk_File_OS_Support */
 
 int
-fclose(FILE *file)
+fclose(FILE* file)
 {
     int flush_result, close_result;
 
@@ -149,7 +149,7 @@ fclose(FILE *file)
 #if !defined(_Old_DSP_IO_Interface)
 
 int
-fflush(FILE *file)
+fflush(FILE* file)
 {
     fpos_t position;                                                              /*- mm 970708 -*/
 
@@ -210,10 +210,10 @@ fflush(FILE *file)
 
 #ifndef _No_Disk_File_OS_Support
 
-FILE *
-fopen(const char *name, const char *mode)
+FILE*
+fopen(const char* name, const char* mode)
 {
-    FILE *file;
+    FILE* file;
 
     __begin_critical_region(files_access);
 
@@ -224,8 +224,8 @@ fopen(const char *name, const char *mode)
     return (file);
 }
 
-FILE *
-freopen(const char *name, const char *mode, FILE *file)
+FILE*
+freopen(const char* name, const char* mode, FILE* file)
 {
     __file_modes modes;
 
@@ -270,8 +270,8 @@ freopen(const char *name, const char *mode, FILE *file)
    will take no action and return the value NULL.
 */
 
-FILE *
-__reopen(FILE *file)
+FILE*
+__reopen(FILE* file)
 {
     if ((file == stdin) || (file == stdout) || (file == stderr))
     {
@@ -289,10 +289,10 @@ __reopen(FILE *file)
 
 /*- mm 990609 -*/
 
-FILE *
-__handle_open(__file_handle handle, const char *mode)
+FILE*
+__handle_open(__file_handle handle, const char* mode)
 {
-    FILE *file;
+    FILE* file;
 
     __begin_critical_region(files_access);
 
@@ -303,8 +303,8 @@ __handle_open(__file_handle handle, const char *mode)
     return (file);
 }
 
-FILE *
-__handle_reopen(__file_handle handle, const char *mode, FILE *file)
+FILE*
+__handle_reopen(__file_handle handle, const char* mode, FILE* file)
 {
     __file_modes modes;
 
@@ -331,9 +331,9 @@ __handle_reopen(__file_handle handle, const char *mode, FILE *file)
 }
 
 int
-__get_file_modes(const char *mode, __file_modes *modes)
+__get_file_modes(const char* mode, __file_modes* modes)
 {
-    const char   *mode_ptr = mode;
+    const char*   mode_ptr = mode;
     unsigned long mode_str;
     unsigned char open_mode, io_mode;
 
@@ -353,20 +353,13 @@ __get_file_modes(const char *mode, __file_modes *modes)
 
     switch (mode_str)
     {
-        case 'r' :
-            open_mode = __must_exist;
-            break;
+        case 'r' : open_mode = __must_exist; break;
 
-        case 'w' :
-            open_mode = __create_or_truncate;
-            break;
+        case 'w' : open_mode = __create_or_truncate; break;
 
-        case 'a' :
-            open_mode = __create_if_necessary;
-            break;
+        case 'a' : open_mode = __create_if_necessary; break;
 
-        default :
-            return (0);
+        default  : return (0);
     }
 
     modes->open_mode = open_mode;
@@ -396,29 +389,17 @@ __get_file_modes(const char *mode, __file_modes *modes)
 
     switch (mode_str)
     {
-        case 'r' :
-            io_mode = __read;
-            break;
+        case 'r'  : io_mode = __read; break;
 
-        case 'w' :
-            io_mode = __write;
-            break;
+        case 'w'  : io_mode = __write; break;
 
-        case 'a' :
-            io_mode = __write | __append;
-            break;
+        case 'a'  : io_mode = __write | __append; break;
 
-        case 'r+' :
-            io_mode = __read_write;
-            break;
+        case 'r+' : io_mode = __read_write; break;
 
-        case 'w+' :
-            io_mode = __read_write;
-            break;
+        case 'w+' : io_mode = __read_write; break;
 
-        case 'a+' :
-            io_mode = __read_write | __append;
-            break;
+        case 'a+' : io_mode = __read_write | __append; break;
     }
 
     modes->io_mode = io_mode;
@@ -429,7 +410,7 @@ __get_file_modes(const char *mode, __file_modes *modes)
 #endif /* ndef _No_Disk_File_OS_Support */
 
 void
-__set_idle_proc(FILE *file, __idle_proc idle_proc)
+__set_idle_proc(FILE* file, __idle_proc idle_proc)
 {
     file->idle_proc = idle_proc;
 }
@@ -437,7 +418,7 @@ __set_idle_proc(FILE *file, __idle_proc idle_proc)
 /* Compare lexigraphically two strings up to a max length */
 
 int
-__msl_strnicmp(const char *s1, const char *s2, int n) /*- cc 010605 -*/
+__msl_strnicmp(const char* s1, const char* s2, int n) /*- cc 010605 -*/
 {
     int  i;
     char c1, c2;
@@ -463,8 +444,8 @@ __msl_strnicmp(const char *s1, const char *s2, int n) /*- cc 010605 -*/
 
 /* reverse a string in place */
 
-char *
-__msl_strrev(char *str)   /*- cc 010605 -*/
+char*
+__msl_strrev(char* str)   /*- cc 010605 -*/
 {
     int SmallIndex = 0;
     int BigIndex = strlen(str) - 1;
@@ -483,8 +464,8 @@ __msl_strrev(char *str)   /*- cc 010605 -*/
     return str;
 }
 
-char *
-__msl_itoa(int val, char *str, int radix)
+char*
+__msl_itoa(int val, char* str, int radix)
 {
     char         IsNegative = 0;
     int          theNum = val;
@@ -501,8 +482,7 @@ __msl_itoa(int val, char *str, int radix)
         theUNum = val;                  /*- mm 000209 -*/
     }
 
-    do
-    {
+    do {
         int CurDigit = theUNum % radix; /*- mm 000209 -*/
         if (CurDigit > 9)
         {
@@ -514,7 +494,8 @@ __msl_itoa(int val, char *str, int radix)
         }
 
         theUNum /= radix;               /*- mm 000209 -*/
-    } while (theUNum); /*- mm 000209 -*/
+    }
+    while (theUNum); /*- mm 000209 -*/
 
     if (IsNegative)
     {
@@ -527,10 +508,10 @@ __msl_itoa(int val, char *str, int radix)
     return str;
 }
 
-char *
-__msl_strdup(const char *str) /*- cc 010725 -*/
+char*
+__msl_strdup(const char* str) /*- cc 010725 -*/
 {
-    char *rval = (char *)__std(malloc)(__std(strlen)(str) + 1);
+    char* rval = (char*)__std(malloc)(__std(strlen)(str) + 1);
 
     if (rval)
     {

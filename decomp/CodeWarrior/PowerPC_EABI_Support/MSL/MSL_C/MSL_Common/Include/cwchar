@@ -52,12 +52,12 @@ _MSL_IMP_EXP_C wint_t      btowc(char c); /*- mm 010529 -*/
 #                endif /* __cplusplus */       /*- mm 990401 -*/
 
     _MSL_IMP_EXP_C size_t
-    mbrlen(const char *s, size_t n, mbstate_t *ps);                                         /*- mm 010529 -*/
+    mbrlen(const char* s, size_t n, mbstate_t* ps);                                         /*- mm 010529 -*/
 #                ifndef __NO_WIDE_CHAR         /*- mm 010529 -*/
-_MSL_IMP_EXP_C size_t mbrtowc(wchar_t *pwc, const char *s, size_t n, mbstate_t *ps);        /*- mm 010529 -*/
-_MSL_IMP_EXP_C size_t wcrtomb(char *s, wchar_t wc, mbstate_t *ps);                          /*- mm 010529 -*/
-_MSL_IMP_EXP_C size_t mbsrtowcs(wchar_t *dst, const char **src, size_t len, mbstate_t *ps); /*- mm 010529 -*/
-_MSL_IMP_EXP_C size_t wcsrtombs(char *dst, const wchar_t **src, size_t len, mbstate_t *ps); /*- mm 010529 -*/
+_MSL_IMP_EXP_C size_t mbrtowc(wchar_t* pwc, const char* s, size_t n, mbstate_t* ps);        /*- mm 010529 -*/
+_MSL_IMP_EXP_C size_t wcrtomb(char* s, wchar_t wc, mbstate_t* ps);                          /*- mm 010529 -*/
+_MSL_IMP_EXP_C size_t mbsrtowcs(wchar_t* dst, const char** src, size_t len, mbstate_t* ps); /*- mm 010529 -*/
+_MSL_IMP_EXP_C size_t wcsrtombs(char* dst, const wchar_t** src, size_t len, mbstate_t* ps); /*- mm 010529 -*/
 #                endif                         /*- mm 010529 -*/
 
 _MSL_END_EXTERN_C                                                                           /*- cc 010410 -*/

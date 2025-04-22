@@ -162,20 +162,20 @@ sqrtf(float x)
 
     const _UINT32 bit_shift = 23 - numbits;
     const _UINT32 bit_mask = 0x007fffff & (~(sizeof(sqrt_guess) >> 2) << bit_shift);
-    const _UINT32 first_several_sig_bits_of_x = (*(_UINT32 *)&x) & bit_mask;
-    const _INT32  biased_exp = (*(_UINT32 *)&x) & 0x7f800000;
+    const _UINT32 first_several_sig_bits_of_x = (*(_UINT32*)&x) & bit_mask;
+    const _INT32  biased_exp = (*(_UINT32*)&x) & 0x7f800000;
     float         guess;
     float         scaled_x;
 
-    if (*(_UINT32 *)&x & 0x80000000) /* either < 0 or -0 */
+    if (*(_UINT32*)&x & 0x80000000) /* either < 0 or -0 */
     {
-        if ((*(_UINT32 *)&x) & 0x7fffffff)
+        if ((*(_UINT32*)&x) & 0x7fffffff)
         {
             return NAN;
         }
         else
         {
-            return x;                /* x = -0 */
+            return x;               /* x = -0 */
         }
     }
 
@@ -190,17 +190,17 @@ sqrtf(float x)
     if (biased_exp & 0x00800000) // if biased_exp is odd then the sqrt of the
                                  // exponent is 2^^intsqrt(2)
     {
-        (*(_UINT32 *)&scaled_x) = 0x3E800000 + ((*(_UINT32 *)&x) & 0x007fffff); // scaled_x in [.25,.5)
-        (*(_UINT32 *)&guess) = sqrt_guess2[(first_several_sig_bits_of_x >> bit_shift)];
+        (*(_UINT32*)&scaled_x) = 0x3E800000 + ((*(_UINT32*)&x) & 0x007fffff); // scaled_x in [.25,.5)
+        (*(_UINT32*)&guess) = sqrt_guess2[(first_several_sig_bits_of_x >> bit_shift)];
     }
     else
     {
-        (*(_UINT32 *)&scaled_x) = 0x3f000000 + ((*(_INT32 *)&x) & 0x007fffff);  // scaled_x in [.5,1.0)
-        (*(_UINT32 *)&guess) = sqrt_guess[(first_several_sig_bits_of_x >> bit_shift)];
+        (*(_UINT32*)&scaled_x) = 0x3f000000 + ((*(_INT32*)&x) & 0x007fffff);  // scaled_x in [.5,1.0)
+        (*(_UINT32*)&guess) = sqrt_guess[(first_several_sig_bits_of_x >> bit_shift)];
     }
 
-    guess += scaled_x / guess;                                                  // now have 12 sig bits
-    guess = .25f * guess + (scaled_x / guess);                                  // now we have about 24 sig bits
+    guess += scaled_x / guess;                                                // now have 12 sig bits
+    guess = .25f * guess + (scaled_x / guess);                                // now we have about 24 sig bits
 
     /* we now reduce x to 2^^n*y  where y is in [.5,1) we then calculate
        sqrt(x)=sqrt(2^^n)*sqrt(y) where if n is even we simply shift the
@@ -210,20 +210,20 @@ sqrtf(float x)
 
     if (biased_exp > 0x3f000000)
     {
-        (*(_INT32 *)&guess)
+        (*(_INT32*)&guess)
             += (((biased_exp - 0x3e800000) >> 1) & 0xffbfffff); // this subtracts off bias(127=0x3f80...) // from
                                                                 // biased_exp and one more which divides by two
     }
     else
     {
-        (*(_INT32 *)&guess) -= ((0x3f000000 - biased_exp) >> 1) & 0xffbfffff;
+        (*(_INT32*)&guess) -= ((0x3f000000 - biased_exp) >> 1) & 0xffbfffff;
     }
 
     return guess;
 #    else
     if (x <= 0.0f)    /* either < 0 or -0 */
     {
-        if ((*(_UINT32 *)&x) & 0x7fffffff)
+        if ((*(_UINT32*)&x) & 0x7fffffff)
         {
             return NAN;
         }

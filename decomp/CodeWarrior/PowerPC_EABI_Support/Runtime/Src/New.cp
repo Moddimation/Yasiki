@@ -47,24 +47,24 @@ extern void __throw_bad_alloc();
 //	allow user definined replacements of operator new/delete
 //
 
-#pragma overload extern void *operator new (_CSTD::size_t) _MSL_THROW_BAD_ALLOC;
+#pragma overload extern void* operator new (_CSTD::size_t) _MSL_THROW_BAD_ALLOC;
 #ifndef _MSL_NO_EXCEPTIONS
-#    pragma overload extern void *operator new (_CSTD::size_t, const _STD::nothrow_t &) _MSL_THROW;
+#    pragma overload extern void* operator new (_CSTD::size_t, const _STD::nothrow_t&) _MSL_THROW;
 #endif
-#pragma overload extern void operator delete (void *) _MSL_THROW;
+#pragma overload extern void operator delete (void*) _MSL_THROW;
 
 #if __MWERKS__ >= 0x2020
-#    pragma overload extern void *operator new[](_CSTD::size_t) _MSL_THROW_BAD_ALLOC;
+#    pragma overload extern void* operator new[](_CSTD::size_t) _MSL_THROW_BAD_ALLOC;
 #    ifndef _MSL_NO_EXCEPTIONS
-#        pragma overload extern void *operator new[](_CSTD::size_t, const _STD::nothrow_t &) _MSL_THROW;
+#        pragma overload extern void* operator new[](_CSTD::size_t, const _STD::nothrow_t&) _MSL_THROW;
 #    endif
-#    pragma overload extern void operator delete[](void *) _MSL_THROW;
+#    pragma overload extern void operator delete[](void*) _MSL_THROW;
 #endif
 
 #if __MWERKS__ >= 0x2400
 #    ifndef _MSL_NO_EXCEPTIONS
-#        pragma overload extern void operator delete (void *, const _STD::nothrow_t &) _MSL_THROW;
-#        pragma overload extern void operator delete[](void *, const _STD::nothrow_t &) _MSL_THROW;
+#        pragma overload extern void operator delete (void*, const _STD::nothrow_t&) _MSL_THROW;
+#        pragma overload extern void operator delete[](void*, const _STD::nothrow_t&) _MSL_THROW;
 #    endif
 #endif
 
@@ -98,11 +98,11 @@ namespace std
 #elif NEWMODE == NEWMODE_MALLOC
 #    define MALLOCFUNC(x) _CSTD::malloc(x)
 #    define MFREEFUNC(x)  _CSTD::free(x)
-#    define PTRTYPE       void *
+#    define PTRTYPE       void*
 #elif NEWMODE == NEWMODE_NORMAL || NEWMODE == NEWMODE_FAST
 #    define MALLOCFUNC(x) _STD::my_alloc(x)
 #    define MFREEFUNC(x)  _STD::my_free(x)
-#    define PTRTYPE       void *
+#    define PTRTYPE       void*
 #endif
 
 extern new_handler __new_handler;
@@ -137,7 +137,7 @@ nothrow_t nothrow;                     // hh 980124 added nothrow
 
 typedef struct FreeMemList
 {
-    struct FreeMemList *next;
+    struct FreeMemList* next;
     long                size;
 } FreeMemList;
 
@@ -175,9 +175,9 @@ _set_newnonptrmax(size_t size)
 char
 _prealloc_newpool(size_t size)
 {
-    FreeMemList *list;
+    FreeMemList* list;
 
-    if ((list = (FreeMemList *)NewPtr(size)) == NULL)
+    if ((list = (FreeMemList*)NewPtr(size)) == NULL)
     {
         return 0;
     }
@@ -192,9 +192,9 @@ _prealloc_newpool(size_t size)
 /*	Input....:	size of memory to allocate								*/
 /*	Return...:	pointer to memory or 0L									*/
 /************************************************************************/
-void *my_alloc(size_t size);
+void* my_alloc(size_t size);
 
-void *
+void*
 my_alloc(size_t size)
 {
     Ptr ptr;
@@ -207,12 +207,12 @@ my_alloc(size_t size)
 
     if (size >= _newnonptrmax)
     {                                       //	try to get pointer from OS
-        if ((ptr = (char *)NewPtr(size)) == NULL)
+        if ((ptr = (char*)NewPtr(size)) == NULL)
         {
             return NULL;
         }
 
-        *(long *)ptr = -1L;
+        *(long*)ptr = -1L;
         return ptr + 4;
     }
 
@@ -229,22 +229,22 @@ my_alloc(size_t size)
                 {                           //	split this free block
                     list->size -= size;
                     ptr = (Ptr)list + list->size;
-                    *(long *)ptr = size;
+                    *(long*)ptr = size;
                     return (ptr + 4);
                 }
                 //	remove this block from list
                 prev->next = list->next;
-                *(long *)list = list->size;
+                *(long*)list = list->size;
                 return ((Ptr)list + 4);
             }
         }
 
         //	not enough free memory in memlist (try to allocate a new Ptr from OS
-        if ((list = (FreeMemList *)NewPtr(_newpoolsize)) == NULL)
+        if ((list = (FreeMemList*)NewPtr(_newpoolsize)) == NULL)
         { //	try to allocate a system block
             if ((ptr = NewPtr(size)) != NULL)
             {
-                *(long *)ptr = -1L;
+                *(long*)ptr = -1L;
                 return (ptr + 4);
             }
             return (NULL);
@@ -265,22 +265,22 @@ my_alloc(size_t size)
 /*	Input....:	pointer to memory or 0L (no action if 0L)				*/
 /*	Return...:	---														*/
 /************************************************************************/
-void my_free(void *ptr);
+void my_free(void* ptr);
 
 void
-my_free(void *ptr)
+my_free(void* ptr)
 {
     if (ptr)
     {
         long size;
 
         ptr = (Ptr)ptr - 4;
-        size = *(long *)ptr;
+        size = *(long*)ptr;
         if (size != -1L)
         {
-            FreeMemList *list;
+            FreeMemList* list;
 #    if !NEWMODE_NORMAL_FASTFREE
-            FreeMemList *prev;
+            FreeMemList* prev;
             char         merge = 0;
 
             for (prev = &memlist, list = prev->next; list; prev = list, list = list->next)
@@ -318,7 +318,7 @@ my_free(void *ptr)
                 }
             }
 #    endif
-            list = (FreeMemList *)ptr;
+            list = (FreeMemList*)ptr;
             list->next = memlist.next;
             list->size = size;
             memlist.next = list;
@@ -334,14 +334,14 @@ my_free(void *ptr)
 
 typedef struct MemPool
 {
-    struct MemPool *next;                    //	pointer to next pool
+    struct MemPool* next;                    //	pointer to next pool
     size_t          size;                    //	number of bytes in pool (including header)
     char            data[];                  //	variable size user data section
 } MemPool;
 
-static MemPool *mempools;                    //	list of memory pools
-static char    *lastfree;                    //	pointer to last free block
-static char    *lastend;                     //	pointer to last end
+static MemPool* mempools;                    //	list of memory pools
+static char*    lastfree;                    //	pointer to last free block
+static char*    lastend;                     //	pointer to last end
 static size_t   _newpoolsize = 0x00010000L;  //	number of bytes allocated for a new pool
 static size_t   _newnonptrmax = 0x00001000L; //	any object bigger than this will call NewPtr(...) directly
 
@@ -375,9 +375,9 @@ _set_newnonptrmax(size_t size)
 char
 _prealloc_newpool(size_t size)
 {
-    MemPool *pool;
+    MemPool* pool;
 
-    if ((pool = (MemPool *)NewPtr(size)) == NULL)
+    if ((pool = (MemPool*)NewPtr(size)) == NULL)
     {
         return 0;
     }
@@ -385,7 +385,7 @@ _prealloc_newpool(size_t size)
     pool->next = mempools;
     mempools = pool;
     pool->size = size;
-    *(long *)pool->data = pool->size - sizeof(MemPool);
+    *(long*)pool->data = pool->size - sizeof(MemPool);
 
     return 1;
 }
@@ -395,13 +395,13 @@ _prealloc_newpool(size_t size)
 /*	Input....:	size of memory to allocate								*/
 /*	Return...:	pointer to memory or 0L									*/
 /************************************************************************/
-void *my_alloc(size_t size);
+void* my_alloc(size_t size);
 
-void *
+void*
 my_alloc(size_t size)
 {
-    MemPool *pool;
-    char    *ptr, *end;
+    MemPool* pool;
+    char *   ptr, *end;
     long     bsize, nsize;
 
     if (size > 0x7FFFFFF0)
@@ -414,16 +414,16 @@ my_alloc(size_t size)
     {
         if (size >= _newnonptrmax)
         {
-            if ((ptr = (char *)NewPtr(size)) == NULL)
+            if ((ptr = (char*)NewPtr(size)) == NULL)
             {
                 return NULL;
             }
 
-            *(long *)ptr = 0L;
+            *(long*)ptr = 0L;
             return ptr + 4;
         }
 
-        if ((ptr = lastfree) != 0L && (bsize = *(long *)ptr) >= (long)size)
+        if ((ptr = lastfree) != 0L && (bsize = *(long*)ptr) >= (long)size)
         {                                   //	last free block has enough memory left
             end = lastend;
             goto alloc2;
@@ -434,13 +434,13 @@ my_alloc(size_t size)
         alloc:
             for (ptr = pool->data, end = (Ptr)pool + pool->size; ptr < end;)
             {
-                if ((bsize = *(long *)ptr) > 0)
+                if ((bsize = *(long*)ptr) > 0)
                 {
                 alloc2:
                     lastfree = 0L;
-                    while (ptr + bsize < end && (nsize = *(long *)(ptr + bsize)) > 0)
+                    while (ptr + bsize < end && (nsize = *(long*)(ptr + bsize)) > 0)
                     {                       //	merge block with the next block
-                        *(long *)ptr = bsize = bsize + nsize;
+                        *(long*)ptr = bsize = bsize + nsize;
                     }
                     if (bsize >= size)
                     {                       //	pool block is big enough
@@ -449,14 +449,14 @@ my_alloc(size_t size)
                             lastfree = ptr;
                             lastend = end;
                             bsize -= size;
-                            *(long *)ptr = bsize;
+                            *(long*)ptr = bsize;
                             ptr += bsize;
-                            *(long *)ptr = -size;
+                            *(long*)ptr = -size;
                             return ptr + 4;
                         }
                         else
                         {                   //	allocate whole block
-                            *(long *)ptr = -bsize;
+                            *(long*)ptr = -bsize;
                             return ptr + 4;
                         }
                     }
@@ -478,19 +478,19 @@ my_alloc(size_t size)
         }
 
         //	not enough free memory in mempools (try to allocate a new Ptr from OS)
-        if ((pool = (MemPool *)NewPtr(_newpoolsize)) != NULL)
+        if ((pool = (MemPool*)NewPtr(_newpoolsize)) != NULL)
         {
             pool->next = mempools;
             mempools = pool;
             pool->size = _newpoolsize;
-            *(long *)pool->data = pool->size - sizeof(MemPool);
+            *(long*)pool->data = pool->size - sizeof(MemPool);
             goto alloc;
         }
         else
         { //	try to allocate a system block
-            if ((ptr = (char *)NewPtr(size)) != NULL)
+            if ((ptr = (char*)NewPtr(size)) != NULL)
             {
-                *(long *)ptr = 0L;
+                *(long*)ptr = 0L;
                 return ptr + 4;
             }
         }
@@ -504,15 +504,15 @@ my_alloc(size_t size)
 /*	Input....:	pointer to memory or 0L (no action if 0L)				*/
 /*	Return...:	---														*/
 /************************************************************************/
-void my_free(void *ptr);
+void my_free(void* ptr);
 
 void
-my_free(void *ptr)
+my_free(void* ptr)
 {
     if (ptr)
     {
-        ptr = (char *)ptr - 4;
-        if ((*(long *)ptr = -*(long *)ptr) == 0L)
+        ptr = (char*)ptr - 4;
+        if ((*(long*)ptr = -*(long*)ptr) == 0L)
         {
             DisposePtr((Ptr)ptr);
         }
@@ -532,10 +532,10 @@ my_free(void *ptr)
 /*	Input....:	size of memory to allocate								*/
 /*	Return...:	pointer to memory or 0L									*/
 /************************************************************************/
-_MSL_IMP_EXP_RUNTIME void *
+_MSL_IMP_EXP_RUNTIME void*
 OPERATOR_NEW(_CSTD::size_t size) _MSL_THROW_BAD_ALLOC
 {
-    void *ptr;
+    void* ptr;
 
 #    if defined(__MODENALIB__) && NEWMODE == NEWMODE_MALLOC
     if (size == 0)
@@ -566,8 +566,8 @@ OPERATOR_NEW(_CSTD::size_t size) _MSL_THROW_BAD_ALLOC
 /*	Return...:	pointer to memory or 0L									*/
 /************************************************************************/
 #    ifndef _MSL_NO_EXCEPTIONS
-_MSL_IMP_EXP_RUNTIME void *
-OPERATOR_NEW(_CSTD::size_t size, const _STD::nothrow_t &) _MSL_THROW
+_MSL_IMP_EXP_RUNTIME void*
+OPERATOR_NEW(_CSTD::size_t size, const _STD::nothrow_t&) _MSL_THROW
 {
     try
     {
@@ -586,7 +586,7 @@ OPERATOR_NEW(_CSTD::size_t size, const _STD::nothrow_t &) _MSL_THROW
 /*	Return...:	---														*/
 /************************************************************************/
 _MSL_IMP_EXP_RUNTIME void
-OPERATOR_DELETE(void *ptr) _MSL_THROW
+OPERATOR_DELETE(void* ptr) _MSL_THROW
 {
     if (ptr)
     {
@@ -600,20 +600,20 @@ OPERATOR_DELETE(void *ptr) _MSL_THROW
 /*	Return...:	---														*/
 /************************************************************************/
 #    if __MWERKS__ >= 0x2020
-_MSL_IMP_EXP_RUNTIME extern void *
+_MSL_IMP_EXP_RUNTIME extern void*
 OPERATOR_ARRAY_NEW(_CSTD::size_t size) _MSL_THROW_BAD_ALLOC
 {
     return OPERATOR_NEW(size);
 }
 #        ifndef _MSL_NO_EXCEPTIONS
-_MSL_IMP_EXP_RUNTIME extern void *
-OPERATOR_ARRAY_NEW(_CSTD::size_t size, const _STD::nothrow_t &nt) _MSL_THROW
+_MSL_IMP_EXP_RUNTIME extern void*
+OPERATOR_ARRAY_NEW(_CSTD::size_t size, const _STD::nothrow_t& nt) _MSL_THROW
 {
     return OPERATOR_NEW(size, nt);
 }
 #        endif
 _MSL_IMP_EXP_RUNTIME extern void
-OPERATOR_ARRAY_DELETE(void *ptr) _MSL_THROW
+OPERATOR_ARRAY_DELETE(void* ptr) _MSL_THROW
 {
     OPERATOR_DELETE(ptr);
 }
@@ -622,13 +622,13 @@ OPERATOR_ARRAY_DELETE(void *ptr) _MSL_THROW
 #    if __MWERKS__ >= 0x2400
 #        ifndef _MSL_NO_EXCEPTIONS
 _MSL_IMP_EXP_RUNTIME extern __declspec(weak) void
-OPERATOR_DELETE(void *ptr, const _STD::nothrow_t &) _MSL_THROW
+OPERATOR_DELETE(void* ptr, const _STD::nothrow_t&) _MSL_THROW
 {
     OPERATOR_DELETE(ptr);
 }
 
 _MSL_IMP_EXP_RUNTIME extern __declspec(weak) void
-OPERATOR_ARRAY_DELETE(void *ptr, const _STD::nothrow_t &) _MSL_THROW
+OPERATOR_ARRAY_DELETE(void* ptr, const _STD::nothrow_t&) _MSL_THROW
 {
     OPERATOR_DELETE(ptr);
 }

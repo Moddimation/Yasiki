@@ -47,10 +47,10 @@
 
 #define SI_MAX_CHAN           4
 
-typedef void (*SICallback)(s32 chan, u32 sr, OSContext *context);
+typedef void (*SICallback)(s32 chan, u32 sr, OSContext* context);
 typedef void (*SITypeAndStatusCallback)(s32 chan, u32 type);
 
-BOOL SITransfer(s32 chan, void *output, u32 outputBytes, void *input, u32 inputBytes, SICallback callback,
+BOOL SITransfer(s32 chan, void* output, u32 outputBytes, void* input, u32 inputBytes, SICallback callback,
                 OSTime delay);
 u32  SIGetCommand(long chan);
 u32  SIEnablePolling(u32 poll);

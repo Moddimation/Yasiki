@@ -21,7 +21,7 @@ atanf(float x)
 {
     float     z, z_square;
     int       index = -1, inv = 0;
-    const int sign = (*(_INT32 *)&x) & 0x80000000;
+    const int sign = (*(_INT32*)&x) & 0x80000000;
 
     /* poly # 4964-- poly for  [0,tan(pi/8)]  */
 
@@ -47,7 +47,7 @@ atanf(float x)
 
     static const float one_over_xi_lo[] = { .000000562f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f };
 
-    (*(_INT32 *)&x) &= 0x7fffffff;                                                 /*  |x| */
+    (*(_INT32*)&x) &= 0x7fffffff;                                                  /*  |x| */
 
     if (x >= 2.414213565f) /* x is <= 1.0 */                                       // 0x401A827A
     {
@@ -80,9 +80,7 @@ atanf(float x)
                     index++;                                                       // 1.8708684
                 }
                 break;
-            case 0x40000000 :                                                      /* 2 <= x <  2.414213565f   */
-                index += 4;
-                break;
+            case 0x40000000 : /* 2 <= x <  2.414213565f   */ index += 4; break;
         }
 
         z = 1.0f / (one_over_xi_hi[index] + (one_over_xi_lo[index] + x));
@@ -116,7 +114,7 @@ atanf(float x)
         return -z;
     }
 
-    (*(_INT32 *)&z) |= sign;
+    (*(_INT32*)&z) |= sign;
     return z;
 }
 

@@ -18,25 +18,25 @@ static volatile unsigned long CurrToken = 0x0000FFFF;      // size: 0x4, address
 
 // .sbss
 static volatile unsigned char magic;                       // size: 0x1, address: 0x0
-static void                  *(*PerfAlloc)(unsigned long); // size: 0x4, address: 0x4
-static void                   (*PerfFree)(void *);         // size: 0x4, address: 0x8
+static void*                  (*PerfAlloc)(unsigned long); // size: 0x4, address: 0x4
+static void                   (*PerfFree)(void*);          // size: 0x4, address: 0x8
 static void                   (*DSCB)(unsigned short);     // size: 0x4, address: 0xC
 unsigned long                 PERFNumFrames;               // size: 0x4, address: 0x28
 unsigned long                 PERFNumEvents;               // size: 0x4, address: 0x24
 unsigned long                 PERFNumSamples;              // size: 0x4, address: 0x20
-struct Frame                 *PERFFrames;                  // size: 0x4, address: 0x1C
-struct PerfEvent             *PERFEvents;                  // size: 0x4, address: 0x18
+struct Frame*                 PERFFrames;                  // size: 0x4, address: 0x1C
+struct PerfEvent*             PERFEvents;                  // size: 0x4, address: 0x18
 unsigned long                 PERFCurrFrame;               // size: 0x4, address: 0x14
 volatile long                 PERFCurrSample;              // size: 0x4, address: 0x10
 
 // functions
 static void           PERFResetAllMemMetrics();
-static void           PERFGetAllMemMetrics(struct PerfSample *s, unsigned long i);
+static void           PERFGetAllMemMetrics(struct PerfSample* s, unsigned long i);
 void                  PERFSetDrawSyncCallback(void (*cb)(unsigned short));
 static void           PERFTokenCallback(unsigned short token);
 unsigned long         PERFInit(unsigned long numSamples, unsigned long numFramesHistory, unsigned long numTypes,
-                               void *(*allocator)(unsigned long), void (*deallocator)(void *), void (*initDraw)());
-void                  PERFSetEvent(unsigned char id, char *name, PerfType type);
+                               void* (*allocator)(unsigned long), void (*deallocator)(void*), void (*initDraw)());
+void                  PERFSetEvent(unsigned char id, char* name, PerfType type);
 void                  PERFSetEventColor(unsigned char id, GXColor color);
 void                  PERFStartFrame();
 void                  PERFEndFrame();
@@ -45,7 +45,7 @@ __declspec(weak) long PERFGetNewSample();
 void                  PERFEventEnd(unsigned char id);
 static void           PERFStartAutoSample();
 static void           PERFEndAutoSample();
-static void           PERFTimerCallback(OSAlarm *alarm, OSContext *context);
+static void           PERFTimerCallback(OSAlarm* alarm, OSContext* context);
 void                  PERFStartAutoSampling(float msInterval);
 void                  PERFStopAutoSampling();
 
@@ -65,74 +65,74 @@ PERFGetNewSample()
 static void
 PERFResetAllMemMetrics()
 {
-    ((u16 *)__memReg)[25] = 0;
-    ((u16 *)__memReg)[26] = 0;
-    ((u16 *)__memReg)[27] = 0;
-    ((u16 *)__memReg)[28] = 0;
-    ((u16 *)__memReg)[30] = 0;
-    ((u16 *)__memReg)[29] = 0;
-    ((u16 *)__memReg)[32] = 0;
-    ((u16 *)__memReg)[31] = 0;
-    ((u16 *)__memReg)[34] = 0;
-    ((u16 *)__memReg)[33] = 0;
-    ((u16 *)__memReg)[36] = 0;
-    ((u16 *)__memReg)[35] = 0;
-    ((u16 *)__memReg)[38] = 0;
-    ((u16 *)__memReg)[37] = 0;
-    ((u16 *)__memReg)[40] = 0;
-    ((u16 *)__memReg)[39] = 0;
-    ((u16 *)__memReg)[42] = 0;
-    ((u16 *)__memReg)[41] = 0;
-    ((u16 *)__memReg)[44] = 0;
-    ((u16 *)__memReg)[43] = 0;
+    ((u16*)__memReg)[25] = 0;
+    ((u16*)__memReg)[26] = 0;
+    ((u16*)__memReg)[27] = 0;
+    ((u16*)__memReg)[28] = 0;
+    ((u16*)__memReg)[30] = 0;
+    ((u16*)__memReg)[29] = 0;
+    ((u16*)__memReg)[32] = 0;
+    ((u16*)__memReg)[31] = 0;
+    ((u16*)__memReg)[34] = 0;
+    ((u16*)__memReg)[33] = 0;
+    ((u16*)__memReg)[36] = 0;
+    ((u16*)__memReg)[35] = 0;
+    ((u16*)__memReg)[38] = 0;
+    ((u16*)__memReg)[37] = 0;
+    ((u16*)__memReg)[40] = 0;
+    ((u16*)__memReg)[39] = 0;
+    ((u16*)__memReg)[42] = 0;
+    ((u16*)__memReg)[41] = 0;
+    ((u16*)__memReg)[44] = 0;
+    ((u16*)__memReg)[43] = 0;
 }
 
 static void
-PERFGetAllMemMetrics(struct PerfSample *s, unsigned long i)
+PERFGetAllMemMetrics(struct PerfSample* s, unsigned long i)
 {
     unsigned long ctrl;
     unsigned long ctrh;
 
     GXReadXfRasMetric(&s->xfWaitIn[i], &s->xfWaitOut[i], &s->rasBusy[i], &s->rasClocks[i]);
 
-    ctrl = ((u16 *)__memReg)[26];
-    ctrh = ((u16 *)__memReg)[25];
+    ctrl = ((u16*)__memReg)[26];
+    ctrh = ((u16*)__memReg)[25];
     s->cpReq[i] = ((ctrh << 0x10) | ctrl);
 
-    ctrl = ((u16 *)__memReg)[28];
-    ctrh = ((u16 *)__memReg)[27];
+    ctrl = ((u16*)__memReg)[28];
+    ctrh = ((u16*)__memReg)[27];
     s->tcReq[i] = ((ctrh << 0x10) | ctrl);
 
-    ctrl = ((u16 *)__memReg)[30];
-    ctrh = ((u16 *)__memReg)[29];
+    ctrl = ((u16*)__memReg)[30];
+    ctrh = ((u16*)__memReg)[29];
     s->cpuRdReq[i] = ((ctrh << 0x10) | ctrl);
 
-    ctrl = ((u16 *)__memReg)[32];
-    ctrh = ((u16 *)__memReg)[31];
+    ctrl = ((u16*)__memReg)[32];
+    ctrh = ((u16*)__memReg)[31];
     s->cpuWrReq[i] = ((ctrh << 0x10) | ctrl);
 
-    ctrl = ((u16 *)__memReg)[34];
-    ctrh = ((u16 *)__memReg)[33];
+    ctrl = ((u16*)__memReg)[34];
+    ctrh = ((u16*)__memReg)[33];
     s->dspReq[i] = ((ctrh << 0x10) | ctrl);
 
-    ctrl = ((u16 *)__memReg)[36];
-    ctrh = ((u16 *)__memReg)[35];
+    ctrl = ((u16*)__memReg)[36];
+    ctrh = ((u16*)__memReg)[35];
     s->ioReq[i] = ((ctrh << 0x10) | ctrl);
 
-    ctrl = ((u16 *)__memReg)[38];
-    ctrh = ((u16 *)__memReg)[37];
+    ctrl = ((u16*)__memReg)[38];
+    ctrh = ((u16*)__memReg)[37];
     s->viReq[i] = ((ctrh << 0x10) | ctrl);
 
-    ctrl = ((u16 *)__memReg)[40];
-    ctrh = ((u16 *)__memReg)[39];
+    ctrl = ((u16*)__memReg)[40];
+    ctrh = ((u16*)__memReg)[39];
     s->peReq[i] = ((ctrh << 0x10) | ctrl);
 
-    ctrl = ((u16 *)__memReg)[42];
-    ctrh = ((u16 *)__memReg)[41];
+    ctrl = ((u16*)__memReg)[42];
+    ctrh = ((u16*)__memReg)[41];
     s->rfReq[i] = ((ctrh << 0x10) | ctrl);
 
-    ctrl = ((u16 *)__memReg)[44];
-    ctrh = ((u16 *)__memReg)[43];
+    ctrl = ((u16*)__memReg)[44];
+    ctrh = ((u16*)__memReg)[43];
     s->fiReq[i] = ((ctrh << 0x10) | ctrl);
 }
 
@@ -210,7 +210,7 @@ PERFTokenCallback(unsigned short token)
 
 unsigned long
 PERFInit(unsigned long numSamples, unsigned long numFramesHistory, unsigned long numTypes,
-         void *(*allocator)(unsigned long), void (*deallocator)(void *), void (*initDraw)())
+         void* (*allocator)(unsigned long), void (*deallocator)(void*), void (*initDraw)())
 {
     unsigned long i;
     unsigned long size;
@@ -225,14 +225,14 @@ PERFInit(unsigned long numSamples, unsigned long numFramesHistory, unsigned long
     size += (numFramesHistory * (numSamples * 0xB0));
     size += (numTypes * 0x10);
 
-    PERFFrames = (struct Frame *)PerfAlloc(numFramesHistory * 0x10);
+    PERFFrames = (struct Frame*)PerfAlloc(numFramesHistory * 0x10);
 
     for (i = 0; i < PERFNumFrames; i++)
     {
-        PERFFrames[i].samples = (PerfSample *)PerfAlloc(numSamples * 0xB0);
+        PERFFrames[i].samples = (PerfSample*)PerfAlloc(numSamples * 0xB0);
         PERFFrames[i].lastSample = 0;
     }
-    PERFEvents = (struct PerfEvent *)PerfAlloc(numTypes * 0x10);
+    PERFEvents = (struct PerfEvent*)PerfAlloc(numTypes * 0x10);
     for (i = 0; i < numTypes; i++)
     {
         PERFEvents[i].name = 0;
@@ -246,7 +246,7 @@ PERFInit(unsigned long numSamples, unsigned long numFramesHistory, unsigned long
 }
 
 void
-PERFSetEvent(unsigned char id, char *name, PerfType type)
+PERFSetEvent(unsigned char id, char* name, PerfType type)
 {
     GXColor def = { 0xFF, 0x19, 0x00, 0xC8 };
 
@@ -349,9 +349,7 @@ PERFEventStart(unsigned char id)
                     = PERFFrames[PERFCurrFrame].samples[sample].cpuTimeStampStart = PPCMfpmc4();
                 PERFFrames[PERFCurrFrame].samples[sample].cpuTimeStampEnd = 0;
                 break;
-            default :
-                OSReport("PERF : Unknown event type for ID %d - possibly out of memory\n", id);
-                break;
+            default : OSReport("PERF : Unknown event type for ID %d - possibly out of memory\n", id); break;
         }
     }
     else
@@ -390,11 +388,8 @@ PERFEventEnd(unsigned char id)
     }
     switch (PERFEvents[id].type)
     {
-        case PERF_GP_EVENT :
-            GXSetDrawSync(((u16)sample + 0x10000) + (((u16)magic << 8) & 0xFF00) - 0x1000);
-            break;
-        case PERF_CPU_GP_EVENT :
-            GXSetDrawSync(((u16)sample + 0x10000) + (((u16)magic << 8) & 0xFF00) - 0x1000);
+        case PERF_GP_EVENT     : GXSetDrawSync(((u16)sample + 0x10000) + (((u16)magic << 8) & 0xFF00) - 0x1000); break;
+        case PERF_CPU_GP_EVENT : GXSetDrawSync(((u16)sample + 0x10000) + (((u16)magic << 8) & 0xFF00) - 0x1000);
         case PERF_CPU_EVENT :
             PERFFrames[PERFCurrFrame].samples[sample].cpuTimeStampEnd = PPCMfpmc4();
             PERFFrames[PERFCurrFrame].samples[sample].cacheMisses[3] = PPCMfpmc3();
@@ -432,7 +427,7 @@ PERFEndAutoSample()
 }
 
 static void
-PERFTimerCallback(OSAlarm *alarm, OSContext *context)
+PERFTimerCallback(OSAlarm* alarm, OSContext* context)
 {
     long sample;
     long newsample;

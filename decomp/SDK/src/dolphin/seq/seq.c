@@ -148,9 +148,7 @@ __SEQHandleMetaEvent(SEQTRACK* track)
     track->current += 1;
     switch (type)
     {
-        case 0x2F :
-            __SEQTrackEnd(track);
-            return;
+        case 0x2F : __SEQTrackEnd(track); return;
         case 0x51 :
             __SEQGetIntTrack(track);
             __SEQTempoMetaEvent(track);
@@ -173,8 +171,7 @@ __SEQHandleSynthEvent(struct SYNSYNTH* synth, SEQTRACK* track)
     ch[0] = track->status;
     switch (bytes)
     {
-        case 0 :
-            break;
+        case 0 : break;
         case 1 :
             ch[1] = *track->current;
             track->current += 1;
@@ -213,15 +210,9 @@ __SEQRunEvent(struct SYNSYNTH* synth, SEQTRACK* track)
     switch (track->status)
     {
         case 0xF7 :
-        case 0xF0 :
-            __SEQHandleSysExEvent(track);
-            break;
-        case 0xFF :
-            __SEQHandleMetaEvent(track);
-            break;
-        default :
-            __SEQHandleSynthEvent(synth, track);
-            break;
+        case 0xF0 : __SEQHandleSysExEvent(track); break;
+        case 0xFF : __SEQHandleMetaEvent(track); break;
+        default   : __SEQHandleSynthEvent(synth, track); break;
     }
     if (track->current >= track->end)
     {
@@ -298,9 +289,7 @@ __SEQReadHeader(SEQSEQUENCE* sequence, u8* midiStream)
             ASSERTMSGLINE(0x1AD, sequence->nTracks < 0x40, "exceeded SEQ_MAX_TRACKS, please increase SEQ_MAX_TRACKS¥n");
             __SEQInitTracks(sequence, read, sequence->nTracks);
             break;
-        default :
-            ASSERTMSGLINE(0x1B5, 0, "!!!Invalid MIDI file type¥n!!!");
-            break;
+        default : ASSERTMSGLINE(0x1B5, 0, "!!!Invalid MIDI file type¥n!!!"); break;
     }
     sequence->tracksRunning = sequence->nTracks;
 }

@@ -3,7 +3,7 @@
 #include <dolphin.h>
 
 void
-OSInitStopwatch(struct OSStopwatch *sw, char *name)
+OSInitStopwatch(struct OSStopwatch* sw, char* name)
 {
     sw->name = name;
     sw->total = 0;
@@ -13,14 +13,14 @@ OSInitStopwatch(struct OSStopwatch *sw, char *name)
 }
 
 void
-OSStartStopwatch(struct OSStopwatch *sw)
+OSStartStopwatch(struct OSStopwatch* sw)
 {
     sw->running = 1;
     sw->last = OSGetTime();
 }
 
 void
-OSStopStopwatch(struct OSStopwatch *sw)
+OSStopStopwatch(struct OSStopwatch* sw)
 {
     long long interval;
 
@@ -42,7 +42,7 @@ OSStopStopwatch(struct OSStopwatch *sw)
 }
 
 long long
-OSCheckStopwatch(struct OSStopwatch *sw)
+OSCheckStopwatch(struct OSStopwatch* sw)
 {
     long long currTotal;
 
@@ -55,13 +55,13 @@ OSCheckStopwatch(struct OSStopwatch *sw)
 }
 
 void
-OSResetStopwatch(struct OSStopwatch *sw)
+OSResetStopwatch(struct OSStopwatch* sw)
 {
     OSInitStopwatch(sw, sw->name);
 }
 
 void
-OSDumpStopwatch(struct OSStopwatch *sw)
+OSDumpStopwatch(struct OSStopwatch* sw)
 {
     OSReport("Stopwatch [%s]	:\n", sw->name);
     OSReport("\tTotal= %lld us\n", OSTicksToMicroseconds(sw->total));

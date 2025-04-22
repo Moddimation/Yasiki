@@ -32,7 +32,7 @@ _MSL_BEGIN_EXTERN_C                  /*- cc 010409 -*/
     char machine[_UTSNAME_FIELD_LENGTH];  /*- mm 990104 -*/
 };
 
-_MSL_IMP_EXP_C int uname(struct utsname *);
+_MSL_IMP_EXP_C int uname(struct utsname*);
 
 #    if (__dest_os == __win32_os)
 #        include <utsname.win32.h>

@@ -49,22 +49,18 @@ __count4bits(unsigned char flag)
         case 1 :
         case 2 :
         case 4 :
-        case 8 :
-            return 1;
-        case 3 :
-        case 5 :
-        case 6 :
-        case 9 :
+        case 8  : return 1;
+        case 3  :
+        case 5  :
+        case 6  :
+        case 9  :
         case 10 :
-        case 12 :
-            return 2;
-        case 7 :
+        case 12 : return 2;
+        case 7  :
         case 11 :
         case 13 :
-        case 14 :
-            return 3;
-        case 15 :
-            return 4;
+        case 14 : return 3;
+        case 15 : return 4;
     }
     return 0;
 }
@@ -864,11 +860,8 @@ bitset<N>::bitset(const basic_string<charT, traits, Allocator>&              str
         char c = char(str[pos + n - 1 - i]);
         switch (c)
         {
-            case '0' :
-                break;
-            case '1' :
-                set(i);
-                break;
+            case '0' : break;
+            case '1' : set(i); break;
             default :
 #            ifndef _MSL_NO_EXCEPTIONS
                 throw invalid_argument("str contains invalid characters in bitset constructor");
@@ -902,11 +895,8 @@ bitset<N>::bitset(const basic_string<charT, traits, Allocator>&              str
             char c = char(str[pos + n - 1 - i]);
             switch (c)
             {
-                case '0' :
-                    break;
-                case '1' :
-                    set(i);
-                    break;
+                case '0' : break;
+                case '1' : set(i); break;
                 default :
 #            ifndef _MSL_NO_EXCEPTIONS
                     throw invalid_argument("str contains invalid characters in bitset constructor");

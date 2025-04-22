@@ -325,15 +325,9 @@ numget(InputIterator in, InputIterator end, ios_base& str, ios_base::iostate& er
 #            endif
             switch (i - const_names)
             {
-                case 0 :
-                    val = false;
-                    break;
-                case 1 :
-                    val = true;
-                    break;
-                default :
-                    err |= ios_base::failbit;
-                    break;
+                case 0  : val = false; break;
+                case 1  : val = true; break;
+                default : err |= ios_base::failbit; break;
             }
         }
         else
@@ -526,18 +520,10 @@ __parseDigits(InputIterator& in, InputIterator end, ios_base& str, ios_base::ios
     int lastDigit;
     switch (base)
     {
-        case 8 :
-            lastDigit = numeric_limits<T>::digits / 3;
-            break;
-        case 10 :
-            lastDigit = numeric_limits<T>::digits10;
-            break;
-        case 16 :
-            lastDigit = numeric_limits<T>::digits / 4;
-            break;
-        case 0 :
-            lastDigit = 3;
-            break;
+        case 8  : lastDigit = numeric_limits<T>::digits / 3; break;
+        case 10 : lastDigit = numeric_limits<T>::digits10; break;
+        case 16 : lastDigit = numeric_limits<T>::digits / 4; break;
+        case 0  : lastDigit = 3; break;
     }
     val = 0;
     int  count = 0;
@@ -750,18 +736,10 @@ __get_integral(InputIterator in, InputIterator end, ios_base& str, ios_base::ios
     unsigned int base;
     switch (str.flags() & ios_base::basefield)
     {
-        case ios_base::oct :
-            base = 8;
-            break;
-        case ios_base::hex :
-            base = 16;
-            break;
-        case 0 :
-            base = 0;
-            break;
-        default :
-            base = 10;
-            break;
+        case ios_base::oct : base = 8; break;
+        case ios_base::hex : base = 16; break;
+        case 0             : base = 0; break;
+        default            : base = 10; break;
     }
     T i;
 #            ifndef _MSL_NO_LOCALE
@@ -1087,15 +1065,9 @@ __parse_nan_inf(InputIterator& in, InputIterator end, ios_base::iostate& err, _B
     switch (i - const_names)
     {
         case 0 :
-        case 1 :
-            bcd = _BCD(INFINITY);
-            break;
-        case 2 :
-            bcd = _BCD(NAN);
-            break;
-        default :
-            err |= ios_base::failbit;
-            break;
+        case 1  : bcd = _BCD(INFINITY); break;
+        case 2  : bcd = _BCD(NAN); break;
+        default : err |= ios_base::failbit; break;
     }
 }
 
@@ -1631,12 +1603,8 @@ __putdigits(ios_base& str, T val, charT* digits)
     unsigned int base = 10;
     switch (str.flags() & ios_base::basefield)
     {
-        case ios_base::oct :
-            base = 8;
-            break;
-        case ios_base::hex :
-            base = 16;
-            break;
+        case ios_base::oct : base = 8; break;
+        case ios_base::hex : base = 16; break;
     }
     // Print digits (in reverse order)
     charT* d = digits;
@@ -1867,10 +1835,8 @@ numput(OutputIterator out, ios_base& str, charT fill, long val)
 {
     switch (str.flags() & ios_base::basefield)
     {
-        case ios_base::oct :
-            return __putoct(out, str, fill, (unsigned long)val);
-        case ios_base::hex :
-            return __puthex(out, str, fill, (unsigned long)val);
+        case ios_base::oct : return __putoct(out, str, fill, (unsigned long)val);
+        case ios_base::hex : return __puthex(out, str, fill, (unsigned long)val);
     }
     return __putdec(out, str, fill, val);
 }
@@ -1891,10 +1857,8 @@ numput(OutputIterator out, ios_base& str, charT fill, unsigned long val)
 {
     switch (str.flags() & ios_base::basefield)
     {
-        case ios_base::oct :
-            return __putoct(out, str, fill, val);
-        case ios_base::hex :
-            return __puthex(out, str, fill, val);
+        case ios_base::oct : return __putoct(out, str, fill, val);
+        case ios_base::hex : return __puthex(out, str, fill, val);
     }
     return __putdec(out, str, fill, val);
 }
@@ -1913,10 +1877,8 @@ numput(OutputIterator out, ios_base& str, charT fill, long long val)
 {
     switch (str.flags() & ios_base::basefield)
     {
-        case ios_base::oct :
-            return __putoct(out, str, fill, (unsigned long long)val);
-        case ios_base::hex :
-            return __puthex(out, str, fill, (unsigned long long)val);
+        case ios_base::oct : return __putoct(out, str, fill, (unsigned long long)val);
+        case ios_base::hex : return __puthex(out, str, fill, (unsigned long long)val);
     }
     return __putdec(out, str, fill, val);
 }
@@ -1933,10 +1895,8 @@ numput(OutputIterator out, ios_base& str, charT fill, unsigned long long val)
 {
     switch (str.flags() & ios_base::basefield)
     {
-        case ios_base::oct :
-            return __putoct(out, str, fill, val);
-        case ios_base::hex :
-            return __puthex(out, str, fill, val);
+        case ios_base::oct : return __putoct(out, str, fill, val);
+        case ios_base::hex : return __puthex(out, str, fill, val);
     }
     return __putdec(out, str, fill, val);
 }
@@ -2410,15 +2370,9 @@ numput(OutputIterator out, ios_base& str, charT fill, long double val)
     {
         switch (str.flags() & ios_base::floatfield)
         {
-            case ios_base::fixed :
-                __put_f_digits(str, val, digits);
-                break;
-            case ios_base::scientific :
-                __put_e_digits(str, val, digits);
-                break;
-            default :
-                __put_g_digits(str, val, digits);
-                break;
+            case ios_base::fixed      : __put_f_digits(str, val, digits); break;
+            case ios_base::scientific : __put_e_digits(str, val, digits); break;
+            default                   : __put_g_digits(str, val, digits); break;
         }
     }
     else

@@ -12,21 +12,21 @@
 #    include <file_struc.h>
 #    include <va_list.h>
 
-_MSL_BEGIN_NAMESPACE_STD                                        /*- cc 010409 -*/
-    _MSL_BEGIN_EXTERN_C                                         /*- cc 010409 -*/
+_MSL_BEGIN_NAMESPACE_STD                                      /*- cc 010409 -*/
+    _MSL_BEGIN_EXTERN_C                                       /*- cc 010409 -*/
 
         _MSL_IMP_EXP_C int
-                   fwprintf(FILE *, const wchar_t *, ...);      /*- mf 990715 -*/
-_MSL_IMP_EXP_C int wprintf(const wchar_t *, ...);
-_MSL_IMP_EXP_C int swprintf(wchar_t *, size_t, const wchar_t *, ...);
-_MSL_IMP_EXP_C int vfwprintf(FILE *, const wchar_t *, va_list); /*- mf 990715 -*/
-_MSL_IMP_EXP_C int vswprintf(wchar_t *, size_t, const wchar_t *, va_list);
-_MSL_IMP_EXP_C int vwprintf(const wchar_t *, va_list);
+                   fwprintf(FILE*, const wchar_t*, ...);      /*- mf 990715 -*/
+_MSL_IMP_EXP_C int wprintf(const wchar_t*, ...);
+_MSL_IMP_EXP_C int swprintf(wchar_t*, size_t, const wchar_t*, ...);
+_MSL_IMP_EXP_C int vfwprintf(FILE*, const wchar_t*, va_list); /*- mf 990715 -*/
+_MSL_IMP_EXP_C int vswprintf(wchar_t*, size_t, const wchar_t*, va_list);
+_MSL_IMP_EXP_C int vwprintf(const wchar_t*, va_list);
 
-_MSL_END_EXTERN_C                                               /*- cc 010409 -*/
-    _MSL_END_NAMESPACE_STD                                      /*- cc 010409 -*/
+_MSL_END_EXTERN_C                                             /*- cc 010409 -*/
+    _MSL_END_NAMESPACE_STD                                    /*- cc 010409 -*/
 
-#endif                                                          /* ifndef _MSL_WPRINTF_H */
+#endif                                                        /* ifndef _MSL_WPRINTF_H */
 
     /* Change record:
      * mf  990715 remove arg names in prototypes

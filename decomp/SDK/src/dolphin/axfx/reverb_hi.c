@@ -6,19 +6,19 @@
 #include "fake_tgmath.h"
 
 // functions
-static void DLsetdelay(struct AXFX_REVHI_DELAYLINE *dl, long lag);
-static void DLcreate(struct AXFX_REVHI_DELAYLINE *dl, long max_length);
-static void DLdelete(struct AXFX_REVHI_DELAYLINE *dl);
-static int  ReverbHICreate(struct AXFX_REVHI_WORK *rv, float coloration, float time, float mix, float damping,
+static void DLsetdelay(struct AXFX_REVHI_DELAYLINE* dl, long lag);
+static void DLcreate(struct AXFX_REVHI_DELAYLINE* dl, long max_length);
+static void DLdelete(struct AXFX_REVHI_DELAYLINE* dl);
+static int  ReverbHICreate(struct AXFX_REVHI_WORK* rv, float coloration, float time, float mix, float damping,
                            float preDelay, float crosstalk);
-static int  ReverbHIModify(struct AXFX_REVHI_WORK *rv, float coloration, float time, float mix, float damping,
+static int  ReverbHIModify(struct AXFX_REVHI_WORK* rv, float coloration, float time, float mix, float damping,
                            float preDelay, float crosstalk);
-static void HandleReverb(long *sptr, struct AXFX_REVHI_WORK *rv, long k);
-static void ReverbHICallback(long *left, long *right, long *surround, struct AXFX_REVHI_WORK *rv);
-static void ReverbHIFree(struct AXFX_REVHI_WORK *rv);
+static void HandleReverb(long* sptr, struct AXFX_REVHI_WORK* rv, long k);
+static void ReverbHICallback(long* left, long* right, long* surround, struct AXFX_REVHI_WORK* rv);
+static void ReverbHIFree(struct AXFX_REVHI_WORK* rv);
 
 static void
-DLsetdelay(struct AXFX_REVHI_DELAYLINE *dl, long lag)
+DLsetdelay(struct AXFX_REVHI_DELAYLINE* dl, long lag)
 {
     dl->outPoint = dl->inPoint - (lag * 4);
     while (dl->outPoint < 0)
@@ -28,7 +28,7 @@ DLsetdelay(struct AXFX_REVHI_DELAYLINE *dl, long lag)
 }
 
 static void
-DLcreate(struct AXFX_REVHI_DELAYLINE *dl, long max_length)
+DLcreate(struct AXFX_REVHI_DELAYLINE* dl, long max_length)
 {
     dl->length = (max_length * 4);
     dl->inputs = OSAllocFromHeap(__OSCurrHeap, max_length << 2);
@@ -40,13 +40,13 @@ DLcreate(struct AXFX_REVHI_DELAYLINE *dl, long max_length)
 }
 
 static void
-DLdelete(struct AXFX_REVHI_DELAYLINE *dl)
+DLdelete(struct AXFX_REVHI_DELAYLINE* dl)
 {
     OSFreeToHeap(__OSCurrHeap, dl->inputs);
 }
 
 static int
-ReverbHICreate(struct AXFX_REVHI_WORK *rv, float coloration, float time, float mix, float damping, float preDelay,
+ReverbHICreate(struct AXFX_REVHI_WORK* rv, float coloration, float time, float mix, float damping, float preDelay,
                float crosstalk)
 {
     u8          i;
@@ -110,7 +110,7 @@ ReverbHICreate(struct AXFX_REVHI_WORK *rv, float coloration, float time, float m
 }
 
 static int
-ReverbHIModify(struct AXFX_REVHI_WORK *rv, float coloration, float time, float mix, float damping, float preDelay,
+ReverbHIModify(struct AXFX_REVHI_WORK* rv, float coloration, float time, float mix, float damping, float preDelay,
                float crosstalk)
 {
     u8 i;
@@ -153,7 +153,7 @@ const static double i2fMagic = 4503601774854144.0;
 const static float  value0_6 = 0.6f;
 
 asm static void
-DoCrossTalk(register long *l, register long *r, register float cross, register float invcross)
+DoCrossTalk(register long* l, register long* r, register float cross, register float invcross)
 {
     nofralloc stwu r1, -48(r1)stfd f14, 40(r1)lis r5, i2fMagic @ha lfd f0, i2fMagic @l(r5) lis r5,
         0x4330                         // 176.0f (0x43300000)
@@ -276,7 +276,7 @@ DoCrossTalk(register long *l, register long *r, register float cross, register f
 const static float value0_3 = 0.3f;
 
 asm static void
-HandleReverb(register long *sptr, register struct AXFX_REVHI_WORK *rv, register long k)
+HandleReverb(register long* sptr, register struct AXFX_REVHI_WORK* rv, register long k)
 {
     nofralloc stwu r1, -0xc0(r1)stmw r14, 0x8(r1)stfd f14, 0x60(r1)stfd f15, 0x68(r1)stfd f16, 0x70(r1)stfd f17,
         0x78(r1)stfd f18, 0x80(r1)stfd f19, 0x88(r1)stfd f20, 0x90(r1)stfd f21, 0x98(r1)stfd f22, 0xa0(r1)stfd f23,
@@ -778,7 +778,7 @@ HandleReverb(register long *sptr, register struct AXFX_REVHI_WORK *rv, register 
 }
 
 static void
-ReverbHICallback(long *left, long *right, long *surround, struct AXFX_REVHI_WORK *rv)
+ReverbHICallback(long* left, long* right, long* surround, struct AXFX_REVHI_WORK* rv)
 {
     u8 k;
 
@@ -793,18 +793,14 @@ ReverbHICallback(long *left, long *right, long *surround, struct AXFX_REVHI_WORK
                 }
                 HandleReverb(left, rv, 0);
                 break;
-            case 1 :
-                HandleReverb(right, rv, 1);
-                break;
-            case 2 :
-                HandleReverb(surround, rv, 2);
-                break;
+            case 1 : HandleReverb(right, rv, 1); break;
+            case 2 : HandleReverb(surround, rv, 2); break;
         }
     }
 }
 
 static void
-ReverbHIFree(struct AXFX_REVHI_WORK *rv)
+ReverbHIFree(struct AXFX_REVHI_WORK* rv)
 {
     u8 i;
 
@@ -826,7 +822,7 @@ ReverbHIFree(struct AXFX_REVHI_WORK *rv)
 }
 
 int
-AXFXReverbHiInit(struct AXFX_REVERBHI *rev)
+AXFXReverbHiInit(struct AXFX_REVERBHI* rev)
 {
     int ret;
     int old;
@@ -839,7 +835,7 @@ AXFXReverbHiInit(struct AXFX_REVERBHI *rev)
 }
 
 int
-AXFXReverbHiShutdown(struct AXFX_REVERBHI *rev)
+AXFXReverbHiShutdown(struct AXFX_REVERBHI* rev)
 {
     int old;
 
@@ -850,7 +846,7 @@ AXFXReverbHiShutdown(struct AXFX_REVERBHI *rev)
 }
 
 int
-AXFXReverbHiSettings(struct AXFX_REVERBHI *rev)
+AXFXReverbHiSettings(struct AXFX_REVERBHI* rev)
 {
     int old;
 
@@ -863,7 +859,7 @@ AXFXReverbHiSettings(struct AXFX_REVERBHI *rev)
 }
 
 void
-AXFXReverbHiCallback(struct AXFX_BUFFERUPDATE *bufferUpdate, struct AXFX_REVERBHI *reverb)
+AXFXReverbHiCallback(struct AXFX_BUFFERUPDATE* bufferUpdate, struct AXFX_REVERBHI* reverb)
 {
     if (reverb->tempDisableFX == 0)
     {

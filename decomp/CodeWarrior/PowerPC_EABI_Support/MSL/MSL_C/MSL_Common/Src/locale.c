@@ -24,9 +24,9 @@
 
 /* begin revision to match with C99 */                                              /*- mm 010507 -*/
 struct lconv __lconv = {
-    "." /* decimal_point		*/,     "" /* thousands_sep		*/,      "" /* grouping			*/,
-    "" /* mon_decimal_point	*/,         "" /* mon_thousands_sep	*/,       "" /* mon_grouping		*/,
-    "" /* positive_sign		*/,         "" /* negative_sign		*/,       "" /* currency_symbol		*/,
+    "." /* decimal_point		*/,     "" /* thousands_sep		*/,         "" /* grouping			*/,
+    "" /* mon_decimal_point	*/,         "" /* mon_thousands_sep	*/,         "" /* mon_grouping		*/,
+    "" /* positive_sign		*/,         "" /* negative_sign		*/,         "" /* currency_symbol		*/,
     CHAR_MAX /* frac_digits			*/, CHAR_MAX /* p_cs_precedes		*/, CHAR_MAX /* n_cs_precedes		*/,
     CHAR_MAX /* p_sep_by_space		*/, CHAR_MAX /* n_sep_by_space		*/, CHAR_MAX /* p_sign_posn			*/,
     CHAR_MAX /* n_sign_posn			*/, "" /* int_curr_symbol		*/,     CHAR_MAX /* int_frac_digits		*/,
@@ -37,11 +37,11 @@ struct lconv __lconv = {
 
 #if !(_MWMT && (__dest_os == __win32_os || __dest_os == __wince_os))                /*- mm 010521 -*/
 __tls static struct lconv public_lconv;                                             /*- mm 010503 -*/
-__tls static char        *locale_name = "C";                                        /*- mm 010503 -*/
+__tls static char*        locale_name = "C";                                        /*- mm 010503 -*/
 #endif                                                                              /*- mm 010503 -*/
 
-char *
-setlocale(int category, const char *locale)
+char*
+setlocale(int category, const char* locale)
 {
     if (!locale || !strcmp(locale, "C") || !strcmp(locale, ""))
     {
@@ -56,7 +56,7 @@ setlocale(int category, const char *locale)
     return (NULL);
 }
 
-struct lconv *
+struct lconv*
 localeconv(void)
 {
 #if (_MWMT && (__dest_os == __win32_os || __dest_os == __wince_os))                 /*- mm 010521 -*/

@@ -3079,8 +3079,7 @@ basic_string<charT, traits, Allocator>::rfind(const charT* s, size_type pos, siz
     }
     const charT*   sn = s + n;
     const_iterator p = begin() + pos;
-    do
-    {
+    do {
         const_iterator p1 = p;
         for (const charT* s1 = s; s1 < sn; ++s1, ++p1)
         {
@@ -3091,7 +3090,8 @@ basic_string<charT, traits, Allocator>::rfind(const charT* s, size_type pos, siz
         }
         return static_cast<size_type>(p - begin());
     loop:;
-    } while (p > begin() && (--p, true));
+    }
+    while (p > begin() && (--p, true));
     return npos;
 }
 
@@ -3115,13 +3115,13 @@ basic_string<charT, traits, Allocator>::rfind(charT c, size_type pos) const
         pos = size() - 1;
     }
     const_iterator p = begin() + pos;
-    do
-    {
+    do {
         if (traits::eq(c, *p))
         {
             return static_cast<size_type>(p - begin());
         }
-    } while (p > begin() && (--p, true));
+    }
+    while (p > begin() && (--p, true));
     return npos;
 }
 

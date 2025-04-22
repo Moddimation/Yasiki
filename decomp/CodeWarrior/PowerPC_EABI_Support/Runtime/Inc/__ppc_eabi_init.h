@@ -45,7 +45,7 @@ extern "C"
 __declspec(section ".init") extern void __init_hardware(void);
 extern void                             __init_user(void);
 extern void                             _ExitProcess(void);
-__declspec(section ".init") extern void __flush_cache(void *address, unsigned int size);
+__declspec(section ".init") extern void __flush_cache(void* address, unsigned int size);
 __declspec(section ".init") extern void ADSInit();
 
 #ifdef __cplusplus

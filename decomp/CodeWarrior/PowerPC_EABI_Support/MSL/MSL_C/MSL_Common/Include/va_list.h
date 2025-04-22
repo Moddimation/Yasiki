@@ -20,15 +20,15 @@ _MSL_BEGIN_NAMESPACE_STD    /*- cc 010409 -*/
     char  gpr;
     char  fpr;
     char  reserved[2];
-    char *input_arg_area;
-    char *reg_save_area;
+    char* input_arg_area;
+    char* reg_save_area;
 } __va_list[1];
 
 typedef __va_list va_list;
 
 #    else
 
-    typedef char *va_list;
+    typedef char* va_list;
 
 #    endif
 

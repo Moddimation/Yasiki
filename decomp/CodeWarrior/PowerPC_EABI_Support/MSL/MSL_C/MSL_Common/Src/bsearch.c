@@ -15,15 +15,15 @@
 
 #include <stdlib.h>
 
-#define table_ptr(i) (((char *)table_base) + (member_size * (i)))
+#define table_ptr(i) (((char*)table_base) + (member_size * (i)))
 
-void *
-bsearch(const void *key, const void *table_base, size_t num_members, size_t member_size,
+void*
+bsearch(const void* key, const void* table_base, size_t num_members, size_t member_size,
         _compare_function compare_members) /*- mm 961031 -*/
 {
     size_t l, r, m;
     int    c;
-    char  *mp;
+    char*  mp;
 
     if (!key || !table_base || !num_members || !member_size || !compare_members)
     {

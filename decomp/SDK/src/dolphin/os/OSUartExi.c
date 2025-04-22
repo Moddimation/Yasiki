@@ -6,7 +6,7 @@ static unsigned long serEnabled;
 // None of the functions in this file were ever used or made public
 int InitializeUART();
 int ReadUARTN();
-int WriteUARTN(void *buf, u32 len);
+int WriteUARTN(void* buf, u32 len);
 
 int
 InitializeUART()
@@ -45,12 +45,12 @@ QueueLength(void)
 }
 
 int
-WriteUARTN(void *buf, u32 len)
+WriteUARTN(void* buf, u32 len)
 {
     unsigned long cmd;
     long          xLen;
     int           qLen;
-    char         *ptr;
+    char*         ptr;
     int           locked;
     int           error;
 
@@ -66,12 +66,12 @@ WriteUARTN(void *buf, u32 len)
     }
     else
     {
-        ptr = (char *)buf;
+        ptr = (char*)buf;
     }
 
     while ((u32)ptr - (u32)buf < len)
     {
-        if (*(s8 *)ptr == 0xA)
+        if (*(s8*)ptr == 0xA)
         {
             *ptr = 0xD;
         }
@@ -110,7 +110,7 @@ WriteUARTN(void *buf, u32 len)
                 xLen = len < 4 ? (long)len : 4;
 
                 EXIImm(0, buf, xLen, 1, 0);
-                (char *)buf += xLen;
+                (char*)buf += xLen;
                 len -= xLen;
                 qLen -= xLen;
                 EXISync(0);

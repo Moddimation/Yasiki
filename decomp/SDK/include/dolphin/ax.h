@@ -129,11 +129,11 @@ typedef struct _AXPB
 
 typedef struct _AXVPB
 {
-    /* 0x000 */ void *next;
-    /* 0x004 */ void *prev;
-    /* 0x008 */ void *next1;
+    /* 0x000 */ void* next;
+    /* 0x004 */ void* prev;
+    /* 0x008 */ void* next1;
     /* 0x00C */ u32   priority;
-    /* 0x010 */ void  (*callback)(void *);
+    /* 0x010 */ void  (*callback)(void*);
     /* 0x014 */ u32   userContext;
     /* 0x018 */ u32   index;
     /* 0x01C */ u32   sync;
@@ -141,9 +141,9 @@ typedef struct _AXVPB
     /* 0x024 */ u32   updateMS;
     /* 0x028 */ u32   updateCounter;
     /* 0x02C */ u32   updateTotal;
-    /* 0x030 */ u16  *updateWrite;
+    /* 0x030 */ u16*  updateWrite;
     /* 0x034 */ u16   updateData[128];
-    /* 0x134 */ void *itdBuffer;
+    /* 0x134 */ void* itdBuffer;
     /* 0x138 */ AXPB  pb;
 } AXVPB;
 
@@ -201,9 +201,9 @@ typedef struct _AXPROFILE
 
 struct AX_AUX_DATA
 {
-    /* 0x00 */ long *l;
-    /* 0x00 */ long *r;
-    /* 0x00 */ long *s;
+    /* 0x00 */ long* l;
+    /* 0x00 */ long* r;
+    /* 0x00 */ long* s;
 };
 
 #define AX_DSP_SLAVE_LENGTH        3264
@@ -256,13 +256,13 @@ void AXInit(void);
 void AXQuit(void);
 
 // AXAlloc.c
-void   AXFreeVoice(AXVPB *p);
-AXVPB *AXAcquireVoice(u32 priority, void (*callback)(void *), u32 userContext);
-void   AXSetVoicePriority(AXVPB *p, u32 priority);
+void   AXFreeVoice(AXVPB* p);
+AXVPB* AXAcquireVoice(u32 priority, void (*callback)(void*), u32 userContext);
+void   AXSetVoicePriority(AXVPB* p, u32 priority);
 
 // AXAux.c
-void AXRegisterAuxACallback(void (*callback)(void *, void *), void *context);
-void AXRegisterAuxBCallback(void (*callback)(void *, void *), void *context);
+void AXRegisterAuxACallback(void (*callback)(void*, void*), void* context);
+void AXRegisterAuxBCallback(void (*callback)(void*, void*), void* context);
 
 // AXCL.c
 void AXSetMode(u32 mode);
@@ -276,31 +276,31 @@ extern u16         ax_dram_image[8192];
 void AXRegisterCallback(void (*callback)());
 
 // AXProf.c
-void AXInitProfile(AXPROFILE *profile, u32 maxProfiles);
+void AXInitProfile(AXPROFILE* profile, u32 maxProfiles);
 u32  AXGetProfile(void);
 
 // AXVPB.c
-void AXSetVoiceSrcType(AXVPB *p, u32 type);
-void AXSetVoiceState(AXVPB *p, u16 state);
-void AXSetVoiceType(AXVPB *p, u16 type);
-void AXSetVoiceMix(AXVPB *p, AXPBMIX *mix);
-void AXSetVoiceItdOn(AXVPB *p);
-void AXSetVoiceItdTarget(AXVPB *p, u16 lShift, u16 rShift);
-void AXSetVoiceUpdateIncrement(AXVPB *p);
-void AXSetVoiceUpdateWrite(AXVPB *p, u16 param, u16 data);
-void AXSetVoiceDpop(AXVPB *p, AXPBDPOP *dpop);
-void AXSetVoiceVe(AXVPB *p, AXPBVE *ve);
-void AXSetVoiceVeDelta(AXVPB *p, s16 delta);
-void AXSetVoiceFir(AXVPB *p, AXPBFIR *fir);
-void AXSetVoiceAddr(AXVPB *p, AXPBADDR *addr);
-void AXSetVoiceLoop(AXVPB *p, u16 loop);
-void AXSetVoiceLoopAddr(AXVPB *p, u32 addr);
-void AXSetVoiceEndAddr(AXVPB *p, u32 addr);
-void AXSetVoiceCurrentAddr(AXVPB *p, u32 addr);
-void AXSetVoiceAdpcm(AXVPB *p, AXPBADPCM *adpcm);
-void AXSetVoiceSrc(AXVPB *p, AXPBSRC *src_);
-void AXSetVoiceSrcRatio(AXVPB *p, float ratio);
-void AXSetVoiceAdpcmLoop(AXVPB *p, AXPBADPCMLOOP *adpcmloop);
+void AXSetVoiceSrcType(AXVPB* p, u32 type);
+void AXSetVoiceState(AXVPB* p, u16 state);
+void AXSetVoiceType(AXVPB* p, u16 type);
+void AXSetVoiceMix(AXVPB* p, AXPBMIX* mix);
+void AXSetVoiceItdOn(AXVPB* p);
+void AXSetVoiceItdTarget(AXVPB* p, u16 lShift, u16 rShift);
+void AXSetVoiceUpdateIncrement(AXVPB* p);
+void AXSetVoiceUpdateWrite(AXVPB* p, u16 param, u16 data);
+void AXSetVoiceDpop(AXVPB* p, AXPBDPOP* dpop);
+void AXSetVoiceVe(AXVPB* p, AXPBVE* ve);
+void AXSetVoiceVeDelta(AXVPB* p, s16 delta);
+void AXSetVoiceFir(AXVPB* p, AXPBFIR* fir);
+void AXSetVoiceAddr(AXVPB* p, AXPBADDR* addr);
+void AXSetVoiceLoop(AXVPB* p, u16 loop);
+void AXSetVoiceLoopAddr(AXVPB* p, u32 addr);
+void AXSetVoiceEndAddr(AXVPB* p, u32 addr);
+void AXSetVoiceCurrentAddr(AXVPB* p, u32 addr);
+void AXSetVoiceAdpcm(AXVPB* p, AXPBADPCM* adpcm);
+void AXSetVoiceSrc(AXVPB* p, AXPBSRC* src_);
+void AXSetVoiceSrcRatio(AXVPB* p, float ratio);
+void AXSetVoiceAdpcmLoop(AXVPB* p, AXPBADPCMLOOP* adpcmloop);
 void AXSetMaxDspCycles(u32 cycles);
 u32  AXGetMaxDspCycles(void);
 u32  AXGetDspCycles(void);

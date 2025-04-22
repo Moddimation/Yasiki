@@ -5,9 +5,9 @@
 #include "CARDPrivate.h"
 
 BOOL
-__CARDCompareFileName(CARDDir *ent, const char *fileName)
+__CARDCompareFileName(CARDDir* ent, const char* fileName)
 {
-    char *entName = (char *)ent->fileName;
+    char* entName = (char*)ent->fileName;
     char  c1;
     char  c2;
     int   n = CARD_FILENAME_MAX;
@@ -32,7 +32,7 @@ __CARDCompareFileName(CARDDir *ent, const char *fileName)
 }
 
 s32
-__CARDAccess(CARDDir *ent)
+__CARDAccess(CARDDir* ent)
 {
     if (ent->gameName[0] == 0xFF)
     {
@@ -50,7 +50,7 @@ __CARDAccess(CARDDir *ent)
 }
 
 s32
-__CARDIsPublic(CARDDir *ent)
+__CARDIsPublic(CARDDir* ent)
 {
     if (ent->gameName[0] == 0xFF)
     {
@@ -64,9 +64,9 @@ __CARDIsPublic(CARDDir *ent)
 }
 
 s32
-__CARDGetFileNo(CARDControl *card, const char *fileName, s32 *pfileNo)
+__CARDGetFileNo(CARDControl* card, const char* fileName, s32* pfileNo)
 {
-    CARDDir *dir;
+    CARDDir* dir;
     s32      fileNo;
 
     if (!card->attached)
@@ -77,7 +77,7 @@ __CARDGetFileNo(CARDControl *card, const char *fileName, s32 *pfileNo)
     dir = __CARDGetDirBlock(card);
     for (fileNo = 0; fileNo < CARD_MAX_FILE; fileNo++)
     {
-        CARDDir *ent = &dir[fileNo];
+        CARDDir* ent = &dir[fileNo];
         s32      result = __CARDAccess(ent);
 
         if (result < 0)
@@ -94,12 +94,12 @@ __CARDGetFileNo(CARDControl *card, const char *fileName, s32 *pfileNo)
 }
 
 s32
-CARDFastOpen(s32 chan, s32 fileNo, CARDFileInfo *fileInfo)
+CARDFastOpen(s32 chan, s32 fileNo, CARDFileInfo* fileInfo)
 {
-    CARDControl *card;
+    CARDControl* card;
     s32          result;
-    CARDDir     *dir;
-    CARDDir     *ent;
+    CARDDir*     dir;
+    CARDDir*     ent;
 
     ASSERTLINE(0xDC, 0 <= fileNo && fileNo < CARD_MAX_FILE);
     ASSERTLINE(0xDD, 0 <= chan && chan < 2);
@@ -141,12 +141,12 @@ CARDFastOpen(s32 chan, s32 fileNo, CARDFileInfo *fileInfo)
 }
 
 s32
-CARDOpen(s32 chan, char *fileName, CARDFileInfo *fileInfo)
+CARDOpen(s32 chan, char* fileName, CARDFileInfo* fileInfo)
 {
-    CARDControl *card;
+    CARDControl* card;
     s32          result;
-    CARDDir     *dir;
-    CARDDir     *ent;
+    CARDDir*     dir;
+    CARDDir*     ent;
     s32          fileNo;
 
     ASSERTLINE(0x11A, 0 <= chan && chan < 2);
@@ -179,9 +179,9 @@ CARDOpen(s32 chan, char *fileName, CARDFileInfo *fileInfo)
 }
 
 s32
-CARDClose(CARDFileInfo *fileInfo)
+CARDClose(CARDFileInfo* fileInfo)
 {
-    CARDControl *card;
+    CARDControl* card;
     s32          result;
 
     ASSERTLINE(0x146, 0 <= fileInfo->chan && fileInfo->chan < 2);
@@ -198,7 +198,7 @@ CARDClose(CARDFileInfo *fileInfo)
 }
 
 BOOL
-__CARDIsOpened(CARDControl *card, s32 fileNo)
+__CARDIsOpened(CARDControl* card, s32 fileNo)
 {
     return FALSE;
 }

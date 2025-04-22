@@ -24,15 +24,15 @@ _MSL_BEGIN_NAMESPACE_STD                   /*- cc 010409 -*/
     /* begin revision to match with C99 */ /*- mm 010507 -*/
     struct lconv
 {
-    char *decimal_point;
-    char *thousands_sep;
-    char *grouping;
-    char *mon_decimal_point;
-    char *mon_thousands_sep;
-    char *mon_grouping;
-    char *positive_sign;
-    char *negative_sign;
-    char *currency_symbol;
+    char* decimal_point;
+    char* thousands_sep;
+    char* grouping;
+    char* mon_decimal_point;
+    char* mon_thousands_sep;
+    char* mon_grouping;
+    char* positive_sign;
+    char* negative_sign;
+    char* currency_symbol;
     char  frac_digits;
     char  p_cs_precedes;
     char  n_cs_precedes;
@@ -40,7 +40,7 @@ _MSL_BEGIN_NAMESPACE_STD                   /*- cc 010409 -*/
     char  n_sep_by_space;
     char  p_sign_posn;
     char  n_sign_posn;
-    char *int_curr_symbol;
+    char* int_curr_symbol;
     char  int_frac_digits;
     char  int_p_cs_precedes;
     char  int_n_cs_precedes;
@@ -62,8 +62,8 @@ _MSL_BEGIN_NAMESPACE_STD                   /*- cc 010409 -*/
 #            define LC_ALL      0x3F
 #            define LC_LAST     LC_ALL
 
-_MSL_IMP_EXP_C char         *setlocale(int, const char *);
-_MSL_IMP_EXP_C struct lconv *localeconv(void);
+_MSL_IMP_EXP_C char*         setlocale(int, const char*);
+_MSL_IMP_EXP_C struct lconv* localeconv(void);
 
 _MSL_END_EXTERN_C                          /*- cc 010409 -*/
     _MSL_END_NAMESPACE_STD                 /*- cc 010409 -*/

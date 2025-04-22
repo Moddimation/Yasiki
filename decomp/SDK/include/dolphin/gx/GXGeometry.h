@@ -9,11 +9,11 @@ extern "C"
 #endif
 
 void GXSetVtxDesc(GXAttr attr, GXAttrType type);
-void GXSetVtxDescv(const GXVtxDescList *attrPtr);
+void GXSetVtxDescv(const GXVtxDescList* attrPtr);
 void GXClearVtxDesc(void);
 void GXSetVtxAttrFmt(GXVtxFmt vtxfmt, GXAttr attr, GXCompCnt cnt, GXCompType type, u8 frac);
-void GXSetVtxAttrFmtv(GXVtxFmt vtxfmt, const GXVtxAttrFmtList *list);
-void GXSetArray(GXAttr attr, const void *base_ptr, u8 stride);
+void GXSetVtxAttrFmtv(GXVtxFmt vtxfmt, const GXVtxAttrFmtList* list);
+void GXSetArray(GXAttr attr, const void* base_ptr, u8 stride);
 void GXInvalidateVtxCache(void);
 void GXSetTexCoordGen2(GXTexCoordID dst_coord, GXTexGenType func, GXTexGenSrc src_param, u32 mtx, GXBool normalize,
                        u32 pt_texmtx);
@@ -32,7 +32,7 @@ GXEnd(void)
 {
 #if DEBUG
     extern GXBool __GXinBegin;
-    extern void   OSPanic(char *file, int line, char *msg, ...);
+    extern void   OSPanic(char* file, int line, char* msg, ...);
     if (!__GXinBegin)
     {
         OSPanic(__FILE__, 0x6D, "GXEnd: called without a GXBegin");

@@ -166,9 +166,9 @@ enum hex_scan_states
 #    define unfetch(c) (*ReadProc)(ReadProcArg, c, __UngetAChar)          /*- mm 990325 -*/
 
 long double
-__strtold(int max_width, int (*ReadProc)(void *, int, int),               /*- mm 990325 -*/
-          void *ReadProcArg,                                              /*- mm 990325 -*/
-          int *chars_scanned, int *overflow)
+__strtold(int max_width, int (*ReadProc)(void*, int, int),                /*- mm 990325 -*/
+          void* ReadProcArg,                                              /*- mm 990325 -*/
+          int* chars_scanned, int* overflow)
 {
     int     scan_state = start;
     int     hex_scan_state = not_hex;
@@ -185,7 +185,7 @@ __strtold(int max_width, int (*ReadProc)(void *, int, int),               /*- mm
     long double result;
     int         sign_detected = 0;                                        /*- mm 990921 -*/
 
-    unsigned char *chptr = (unsigned char *)&result;
+    unsigned char* chptr = (unsigned char*)&result;
     unsigned char  uch, uch1;
     int            ui;
     int            chindex;
@@ -197,10 +197,10 @@ __strtold(int max_width, int (*ReadProc)(void *, int, int),               /*- mm
     short          exponent = 0;
     int            dot;
 #    if !((__dest_os == __win32_os || __dest_os == __wince_os) && _MWMT)  /*- mm 010521 -*/
-    dot = *(unsigned char *)__lconv.decimal_point;
+    dot = *(unsigned char*)__lconv.decimal_point;
 #    else                                                                 /*- mm 010503 -*/
-    struct lconv *lconvptr = _GetThreadLocalData(_MSL_TRUE)->tls_lconv; /*- mm 010503 -*/ /*- cc 010531 -*/
-    dot = *(unsigned char *)lconvptr->decimal_point;                                      /*- mm 010503 -*/
+    struct lconv* lconvptr = _GetThreadLocalData(_MSL_TRUE)->tls_lconv; /*- mm 010503 -*/ /*- cc 010531 -*/
+    dot = *(unsigned char*)lconvptr->decimal_point;                                       /*- mm 010503 -*/
 #    endif                                                                /*- mm 010503 -*/
     *overflow = 0;
     c = fetch();
@@ -221,8 +221,7 @@ __strtold(int max_width, int (*ReadProc)(void *, int, int),               /*- mm
                 /*- mm 990921 -*/
                 switch (toupper(c))
                 {
-                    case '-' :
-                        sig_negative = 1;
+                    case '-' : sig_negative = 1;
 
                     case '+' :
                         c = fetch();
@@ -240,9 +239,7 @@ __strtold(int max_width, int (*ReadProc)(void *, int, int),               /*- mm
                         scan_state = nan_state;
                         break;
 
-                    default :
-                        scan_state = sig_start;
-                        break;
+                    default : scan_state = sig_start; break;
                 }
                 break;
 
@@ -675,7 +672,7 @@ __strtold(int max_width, int (*ReadProc)(void *, int, int),               /*- mm
 
         {
             int            n = d.sig.length;
-            unsigned char *p = &d.sig.text[n];
+            unsigned char* p = &d.sig.text[n];
 
             while (n-- && *--p == '0')
             {
@@ -739,9 +736,9 @@ __strtold(int max_width, int (*ReadProc)(void *, int, int),               /*- mm
     else
     {                                            /* The input was in hex */
 #    ifdef __MSL_LONGLONG_SUPPORT__
-        unsigned long long *uptr = (unsigned long long *)&result;
+        unsigned long long* uptr = (unsigned long long*)&result;
 #    else
-        unsigned long *uptr = (unsigned long *)&result;
+        unsigned long* uptr = (unsigned long*)&result;
 #    endif
 
         if (result)                              /*- mm 010517 -*/
@@ -750,14 +747,14 @@ __strtold(int max_width, int (*ReadProc)(void *, int, int),               /*- mm
             {
                 exponent = -exponent;
             }
-            while ((*(short *)(&result) & 0x00f0) != 0x0010)
+            while ((*(short*)(&result) & 0x00f0) != 0x0010)
             {
                 *uptr >>= 1;
                 exponent++;
             }
             exponent += 4 * (intdigits - 1);
-            *(short *)&result &= 0x000f;
-            *(short *)(&result) |= ((exponent + 1023) << 4);
+            *(short*)&result &= 0x000f;
+            *(short*)(&result) |= ((exponent + 1023) << 4);
 
             *chars_scanned = spaces + sign_detected + NibbleIndex + 1 + exp_digits;
             if (result != 0.0 && result < LDBL_MIN)
@@ -772,7 +769,7 @@ __strtold(int max_width, int (*ReadProc)(void *, int, int),               /*- mm
             }
             if (sig_negative)
             {
-                *(short *)(&result) |= 0x8000;
+                *(short*)(&result) |= 0x8000;
             }
         } /*- mm 010517 -*/
         else              /*- mm 010517 -*/
@@ -785,20 +782,20 @@ __strtold(int max_width, int (*ReadProc)(void *, int, int),               /*- mm
 
 /*- mm 990930 -*/
 long double
-strtold(const char *nptr, char **endptr)
+strtold(const char* nptr, char** endptr)
 {
     long double value, abs_value;
     int         count, overflow;
 
     __InStrCtrl isc;
-    isc.NextChar = (char *)nptr;
+    isc.NextChar = (char*)nptr;
     isc.NullCharDetected = 0;
 
-    value = __strtold(INT_MAX, &__StringRead, (void *)&isc, &count, &overflow);
+    value = __strtold(INT_MAX, &__StringRead, (void*)&isc, &count, &overflow);
 
     if (endptr)
     {
-        *endptr = (char *)nptr + count;
+        *endptr = (char*)nptr + count;
     }
 
     abs_value = fabs(value);
@@ -814,20 +811,20 @@ strtold(const char *nptr, char **endptr)
 /*- mm 990930 -*/
 
 double
-strtod(const char *str, char **end)
+strtod(const char* str, char** end)
 {
     long double value, abs_value;
     int         count, overflow;
 
     __InStrCtrl isc;
-    isc.NextChar = (char *)str;
+    isc.NextChar = (char*)str;
     isc.NullCharDetected = 0;
 
-    value = __strtold(INT_MAX, &__StringRead, (void *)&isc, &count, &overflow);
+    value = __strtold(INT_MAX, &__StringRead, (void*)&isc, &count, &overflow);
 
     if (end)
     {
-        *end = (char *)str + count;
+        *end = (char*)str + count;
     }
 
     abs_value = fabs(value);
@@ -841,7 +838,7 @@ strtod(const char *str, char **end)
 }
 
 double
-atof(const char *str)
+atof(const char* str)
 {
     return (strtod(str, NULL));
 }

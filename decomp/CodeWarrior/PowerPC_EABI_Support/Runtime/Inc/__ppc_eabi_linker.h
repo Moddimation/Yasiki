@@ -114,8 +114,8 @@ __declspec(section ".init") extern char _SDA2_BASE_[]; /* Small Data Area 2 (<=8
 
 typedef struct __rom_copy_info
 {
-    char        *rom;  /* address in rom */
-    char        *addr; /* address in ram (executing address) */
+    char*        rom;  /* address in rom */
+    char*        addr; /* address in ram (executing address) */
     unsigned int size; /* size of section */
 } __rom_copy_info;
 
@@ -130,7 +130,7 @@ __declspec(section ".init") extern __rom_copy_info
 
 typedef struct __bss_init_info
 {
-    char        *addr;                                               /* address in ram (executing address) */
+    char*        addr;                                               /* address in ram (executing address) */
     unsigned int size;                                               /* size of section */
 } __bss_init_info;
 
@@ -144,9 +144,9 @@ __declspec(section ".init") extern __bss_init_info _bss_init_info[]; /* An array
 
 typedef struct __eti_init_info
 {
-    void         *eti_start;  /* address of start of exception data for this code segment */
-    void         *eti_end;    /* address of end of exception data for this code segment */
-    void         *code_start; /* address of first function */
+    void*         eti_start;  /* address of start of exception data for this code segment */
+    void*         eti_end;    /* address of end of exception data for this code segment */
+    void*         code_start; /* address of first function */
     unsigned long code_size;  /* ((funcN.address - func1.address) + funcN.size) */
 } __eti_init_info;
 

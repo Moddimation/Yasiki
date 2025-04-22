@@ -30,7 +30,7 @@
 #    include <wchar.h>
 
 int
-mblen(const char *s, size_t n)
+mblen(const char* s, size_t n)
 {
     if (s && *s)
     {
@@ -42,10 +42,10 @@ mblen(const char *s, size_t n)
     }
 }
 
-static int is_utf8_complete(const char *s, size_t n);
+static int is_utf8_complete(const char* s, size_t n);
 
 static int
-is_utf8_complete(const char *s, size_t n)
+is_utf8_complete(const char* s, size_t n)
 {
     if (n <= 0)                   /* 0 or fewer characters do not form a valid multibyte character */
     {
@@ -108,14 +108,14 @@ is_utf8_complete(const char *s, size_t n)
     }
 }
 
-static int utf8_to_unicode(wchar_t *pwc, const char *s, size_t n);
+static int utf8_to_unicode(wchar_t* pwc, const char* s, size_t n);
 
 static int
-utf8_to_unicode(wchar_t *pwc, const char *s, size_t n)
+utf8_to_unicode(wchar_t* pwc, const char* s, size_t n)
 {
     int     number_of_bytes;
     int     check_byte_count;     /*- mm 010607 -*/
-    char   *source;
+    char*   source;
     wchar_t result_chr = 0;
 
     if (!s)                       /* We are assuming UTF-8 encoding so return 0 */
@@ -135,17 +135,12 @@ utf8_to_unicode(wchar_t *pwc, const char *s, size_t n)
     }
 
     /* if we get this far, we have a valid UTF-8 encoding */
-    source = (char *)s;
+    source = (char*)s;
     switch (number_of_bytes)                 /* the cases are meant to drop through! */
     {
-        case 3 :
-            result_chr |= (*source++ & 0x0f);
-            result_chr <<= 6;
-        case 2 :
-            result_chr |= (*source++ & 0x3f);
-            result_chr <<= 6;
-        case 1 :
-            result_chr |= (*source++ & 0x7f);
+        case 3 : result_chr |= (*source++ & 0x0f); result_chr <<= 6;
+        case 2 : result_chr |= (*source++ & 0x3f); result_chr <<= 6;
+        case 1 : result_chr |= (*source++ & 0x7f);
     }
 
     if (result_chr == 0x0000)                /*- mm 010607 -*/
@@ -179,19 +174,19 @@ utf8_to_unicode(wchar_t *pwc, const char *s, size_t n)
 }
 
 int
-mbtowc(wchar_t *pwc, const char *s, size_t n)
+mbtowc(wchar_t* pwc, const char* s, size_t n)
 {
     return (utf8_to_unicode(pwc, s, n));
 }
 
-static int unicode_to_UTF8(char *s, wchar_t wchar);
+static int unicode_to_UTF8(char* s, wchar_t wchar);
 
 static int
-unicode_to_UTF8(char *s, wchar_t wchar)
+unicode_to_UTF8(char* s, wchar_t wchar)
 {
     int     number_of_bytes;
     wchar_t wide_char;
-    char   *target_ptr;
+    char*   target_ptr;
     char    first_byte_mark[4] = { 0x00, 0x00, 0xc0, 0xe0 };
 
     if (!s)                                  /* We are assuming UTF-8 encoding so return 0 */
@@ -217,30 +212,25 @@ unicode_to_UTF8(char *s, wchar_t wchar)
 
     switch (number_of_bytes)
     {                                        /* Note: the cases are meant to fall through! */
-        case 3 :
-            *--target_ptr = (wide_char & 0x003f) | 0x80;
-            wide_char >>= 6;
-        case 2 :
-            *--target_ptr = (wide_char & 0x003f) | 0x80;
-            wide_char >>= 6;
-        case 1 :
-            *--target_ptr = wide_char | first_byte_mark[number_of_bytes];
+        case 3 : *--target_ptr = (wide_char & 0x003f) | 0x80; wide_char >>= 6;
+        case 2 : *--target_ptr = (wide_char & 0x003f) | 0x80; wide_char >>= 6;
+        case 1 : *--target_ptr = wide_char | first_byte_mark[number_of_bytes];
     }
 
     return (number_of_bytes);
 }
 
 int
-wctomb(char *s, wchar_t wchar)
+wctomb(char* s, wchar_t wchar)
 {
     return (unicode_to_UTF8(s, wchar));
 }
 
 size_t
-mbstowcs(wchar_t *pwcs, const char *s, size_t n)
+mbstowcs(wchar_t* pwcs, const char* s, size_t n)
 {
     int    result;
-    char  *source;
+    char*  source;
     int    count;
     size_t source_len;
 
@@ -248,7 +238,7 @@ mbstowcs(wchar_t *pwcs, const char *s, size_t n)
 
     if (pwcs)
     {
-        source = (char *)s;
+        source = (char*)s;
         for (count = 0; count < n; count++)
         {
             if (*source)
@@ -280,19 +270,19 @@ mbstowcs(wchar_t *pwcs, const char *s, size_t n)
 }
 
 size_t
-wcstombs(char *s, const wchar_t *pwcs, size_t n)
+wcstombs(char* s, const wchar_t* pwcs, size_t n)
 {
     int      chars_written = 0;
     int      result;
     char     temp[3];
-    wchar_t *source;
+    wchar_t* source;
 
     if (!s || !pwcs)
     {
         return (0);
     }
 
-    source = (wchar_t *)pwcs;
+    source = (wchar_t*)pwcs;
     while (chars_written <= n)
     {
         if (!*source)
@@ -319,18 +309,18 @@ wcstombs(char *s, const wchar_t *pwcs, size_t n)
 }
 
 size_t
-mbrlen(const char *s, size_t n, mbstate_t *ps)
+mbrlen(const char* s, size_t n, mbstate_t* ps)
 {
 #    pragma unused(ps)
 
     mbstate_t  internal;
-    mbstate_t *mbs = ps;
+    mbstate_t* mbs = ps;
 
     return (mbrtowc(NULL, s, n, mbs != NULL ? mbs : &internal));
 }
 
 size_t
-mbrtowc(wchar_t *pwc, const char *s, size_t n, mbstate_t *ps)
+mbrtowc(wchar_t* pwc, const char* s, size_t n, mbstate_t* ps)
 {
 #    pragma unused(ps)
     size_t num_of_chars;
@@ -360,7 +350,7 @@ mbrtowc(wchar_t *pwc, const char *s, size_t n, mbstate_t *ps)
 }
 
 size_t
-wcrtomb(char *s, wchar_t wc, mbstate_t *ps)
+wcrtomb(char* s, wchar_t wc, mbstate_t* ps)
 {
 #    pragma unused(ps)
 
@@ -373,17 +363,17 @@ wcrtomb(char *s, wchar_t wc, mbstate_t *ps)
 }
 
 size_t
-mbsrtowcs(wchar_t *dst, const char **src, size_t len, mbstate_t *ps)
+mbsrtowcs(wchar_t* dst, const char** src, size_t len, mbstate_t* ps)
 {
     int     result;
-    char   *source;
+    char*   source;
     int     count;
     size_t  source_len;
     wchar_t local_target;
 
     source_len = strlen(*src);
 
-    source = (char *)*src;
+    source = (char*)*src;
     for (count = 0; count < len; count++)
     {
         if (*source)
@@ -410,19 +400,19 @@ mbsrtowcs(wchar_t *dst, const char **src, size_t len, mbstate_t *ps)
 }
 
 size_t
-wcsrtombs(char *dst, const wchar_t **src, size_t len, mbstate_t *ps)
+wcsrtombs(char* dst, const wchar_t** src, size_t len, mbstate_t* ps)
 {
     int      chars_written = 0;
     int      result;
     char     temp[3];
-    wchar_t *source;
+    wchar_t* source;
 
     if (!src)
     {
         return (0);
     }
 
-    source = (wchar_t *)*src;
+    source = (wchar_t*)*src;
     while (chars_written <= len)
     {
         if (!*source)

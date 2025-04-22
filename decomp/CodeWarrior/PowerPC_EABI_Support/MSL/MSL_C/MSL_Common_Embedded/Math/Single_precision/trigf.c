@@ -24,7 +24,7 @@ extern const float __sincos_on_quadrant[];
 const int tmp_float[4] = { 0x3E800000, 0x3Cbe6080, 0x34372200, 0x2da44152 };
 
 static const float __four_over_pi_m1[]
-    = { *(float *)&tmp_float[0], *(float *)&tmp_float[1], *(float *)&tmp_float[2], *(float *)&tmp_float[3] };
+    = { *(float*)&tmp_float[0], *(float*)&tmp_float[1], *(float*)&tmp_float[2], *(float*)&tmp_float[3] };
 
 extern "C" float
 sinf(float x)

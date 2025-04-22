@@ -34,11 +34,11 @@ ldexpf(float x, _INT32 n)
             {
                 return x;                               // return only if x==0
             }
-            do
-            {
+            do {
                 (*(_UINT32*)&x) = (*(_UINT32*)&x) << 1; // the more we shift the less significance
                 n--;
-            } while (!((*(_UINT32*)&x) & 0x00800000));
+            }
+            while (!((*(_UINT32*)&x) & 0x00800000));
             // no break so we drop down, x is now guaranteed to be normal
             // The multiplication of x and 2^^n may still produce a denormalized result
 #endif

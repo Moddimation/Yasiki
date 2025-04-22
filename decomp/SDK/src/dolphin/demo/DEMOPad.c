@@ -21,12 +21,12 @@ DEMODMPad               DemoPad[4];
 u32 DemoNumValidPads;
 
 // functions
-static void DEMOPadCopy(struct PADStatus *pad, DEMODMPad *dmpad);
+static void DEMOPadCopy(struct PADStatus* pad, DEMODMPad* dmpad);
 void        DEMOPadRead();
 void        DEMOPadInit();
 
 static void
-DEMOPadCopy(struct PADStatus *pad, DEMODMPad *dmpad)
+DEMOPadCopy(struct PADStatus* pad, DEMODMPad* dmpad)
 {
     unsigned short dirs;
 

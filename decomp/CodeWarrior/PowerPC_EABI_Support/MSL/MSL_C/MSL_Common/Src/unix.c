@@ -42,7 +42,7 @@ umask(_MSL_POSIX_PARAMS __pmode)                     /*- cc 010622 -*/
  */
 
 int
-fileno(FILE *stream)
+fileno(FILE* stream)
 {
     return (stream->handle);
 }

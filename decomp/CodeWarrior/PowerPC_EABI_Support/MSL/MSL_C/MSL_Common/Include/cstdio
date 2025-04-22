@@ -30,100 +30,100 @@
 
 #            pragma options align = native
 
-_MSL_BEGIN_NAMESPACE_STD                                                               /*- cc  010410 -*/
-    _MSL_BEGIN_EXTERN_C                                                                /*- cc  010410 -*/
+_MSL_BEGIN_NAMESPACE_STD                                                             /*- cc  010410 -*/
+    _MSL_BEGIN_EXTERN_C                                                              /*- cc  010410 -*/
 
 #            ifndef _No_Disk_File_OS_Support
         _MSL_IMP_EXP_C int
-                   remove(const char *);
-_MSL_IMP_EXP_C int rename(const char *, const char *);
+                   remove(const char*);
+_MSL_IMP_EXP_C int rename(const char*, const char*);
 
-_MSL_IMP_EXP_C char *tmpnam(char *);
-_MSL_IMP_EXP_C FILE *tmpfile(void);
+_MSL_IMP_EXP_C char* tmpnam(char*);
+_MSL_IMP_EXP_C FILE* tmpfile(void);
 #            endif                          /* ndef _No_Disk_File_OS_Support */
 
-_MSL_IMP_EXP_C void setbuf(FILE *, char *);                                            /*- mf 990715 -*/
-_MSL_IMP_EXP_C int  setvbuf(FILE *, char *, int, size_t);                              /*- mf 990715 -*/
-_MSL_IMP_EXP_C int  fclose(FILE *);                                                    /*- mf 990715 -*/
-_MSL_IMP_EXP_C int  fflush(FILE *);                                                    /*- mf 990715 -*/
+_MSL_IMP_EXP_C void setbuf(FILE*, char*);                                            /*- mf 990715 -*/
+_MSL_IMP_EXP_C int  setvbuf(FILE*, char*, int, size_t);                              /*- mf 990715 -*/
+_MSL_IMP_EXP_C int  fclose(FILE*);                                                   /*- mf 990715 -*/
+_MSL_IMP_EXP_C int  fflush(FILE*);                                                   /*- mf 990715 -*/
 
 #            ifndef _No_Disk_File_OS_Support
-_MSL_IMP_EXP_C FILE *fopen(const char *, const char *);
-_MSL_IMP_EXP_C FILE *freopen(const char *, const char *, FILE *);                      /*- mf 990715 -*/
+_MSL_IMP_EXP_C FILE* fopen(const char*, const char*);
+_MSL_IMP_EXP_C FILE* freopen(const char*, const char*, FILE*);                       /*- mf 990715 -*/
 #            endif                          /* ndef _No_Disk_File_OS_Support */
 
 #            ifndef __NO_WIDE_CHAR          /*- mm 980204 -*/
-_MSL_IMP_EXP_C int fwide(FILE *, int);                                                 /*- mm 980825 -*/
+_MSL_IMP_EXP_C int fwide(FILE*, int);                                                /*- mm 980825 -*/
 #            endif /* __NO_WIDE_CHAR */     /*- mm 980204 -*/
 
-_MSL_IMP_EXP_C void setbuf(FILE *, char *);                                            /*- mf 990715-*/
-_MSL_IMP_EXP_C int  setvbuf(FILE *, char *, int, size_t);                              /*- mf 990715 -*/
-_MSL_IMP_EXP_C int  fprintf(FILE *, const char *, ...);                                /*- mf 990715 -*/
-_MSL_IMP_EXP_C int  fscanf(FILE *, const char *, ...);                                 /*- mf 990715 -*/
+_MSL_IMP_EXP_C void setbuf(FILE*, char*);                                            /*- mf 990715-*/
+_MSL_IMP_EXP_C int  setvbuf(FILE*, char*, int, size_t);                              /*- mf 990715 -*/
+_MSL_IMP_EXP_C int  fprintf(FILE*, const char*, ...);                                /*- mf 990715 -*/
+_MSL_IMP_EXP_C int  fscanf(FILE*, const char*, ...);                                 /*- mf 990715 -*/
 
 #            if (__dest_os == __n64_os)     /*- ad 990128 -*/
-extern void printf(const char *format, ...);
+extern void printf(const char* format, ...);
 #            else
-_MSL_IMP_EXP_C int printf(const char *, ...);
+_MSL_IMP_EXP_C int printf(const char*, ...);
 #            endif
 
-_MSL_IMP_EXP_C int scanf(const char *, ...);
-_MSL_IMP_EXP_C int sprintf(char *, const char *, ...);
-_MSL_IMP_EXP_C int snprintf(char *, size_t, const char *, ...);
-_MSL_IMP_EXP_C int sscanf(const char *, const char *, ...);
+_MSL_IMP_EXP_C int scanf(const char*, ...);
+_MSL_IMP_EXP_C int sprintf(char*, const char*, ...);
+_MSL_IMP_EXP_C int snprintf(char*, size_t, const char*, ...);
+_MSL_IMP_EXP_C int sscanf(const char*, const char*, ...);
 
 #            if (__INTEL__ || __MIPS__)
-_MSL_IMP_EXP_C int swprintf(wchar_t *, size_t, const wchar_t *, ...);                  /*- JCM 980226 -*/
+_MSL_IMP_EXP_C int swprintf(wchar_t*, size_t, const wchar_t*, ...);                  /*- JCM 980226 -*/
 #            endif
 
-_MSL_IMP_EXP_C int    vfscanf(FILE *, const char *, va_list arg); /*- mf 990715 -*/    /*- mm 990921 -*/
-_MSL_IMP_EXP_C int    vsscanf(const char *s, const char *format, va_list arg);         /*- mm 990921 -*/
-_MSL_IMP_EXP_C int    vscanf(const char *format, va_list arg);                         /*- mm 000831 -*/
-_MSL_IMP_EXP_C int    vfprintf(FILE *, const char *format, va_list arg);               /*- mf 990715 -*/
-_MSL_IMP_EXP_C int    vprintf(const char *format, va_list arg);
-_MSL_IMP_EXP_C int    vsprintf(char *s, const char *format, va_list arg);
-_MSL_IMP_EXP_C int    vsnprintf(char *s, size_t n, const char *format, va_list arg);
-_MSL_IMP_EXP_C int    fgetc(FILE *);                                                   /*- mf 990715 -*/
-_MSL_IMP_EXP_C char  *fgets(char *, int, FILE *);                                      /*- mf 990715 -*/
-_MSL_IMP_EXP_C int    fputc(int, FILE *);                                              /*- mf 990715 -*/
-_MSL_IMP_EXP_C int    fputs(const char *, FILE *);                                     /*- mf 990715 -*/
-_MSL_IMP_EXP_C char  *gets(char *);
-_MSL_IMP_EXP_C int    puts(const char *);
-_MSL_IMP_EXP_C int    ungetc(int, FILE *);                                             /*- mf 990715 -*/
-_MSL_IMP_EXP_C size_t fread(void *, size_t memb_size, size_t num_memb, FILE *);        /*- mf 990715 -*/
-_MSL_IMP_EXP_C size_t __fread(void *, size_t, size_t, FILE *);                         /*- mm 001018 -*/
-_MSL_IMP_EXP_C size_t fwrite(const void *, size_t memb_size, size_t num_memb, FILE *); /*- mf 990715 -*/
-_MSL_IMP_EXP_C size_t __fwrite(const void *, size_t, size_t, FILE *);                  /*- mm 001018 -*/
-_MSL_IMP_EXP_C int    fgetpos(FILE *, fpos_t *pos);                                    /*- mf 990715 -*/
-_MSL_IMP_EXP_C long   ftell(FILE *);                                                   /*- mf 990715 -*/
-_MSL_IMP_EXP_C fpos_t _ftell(FILE *);                                                  /*- mm 970708 -*/
-_MSL_IMP_EXP_C int    fsetpos(FILE *, const fpos_t *pos);                              /*- mf 990715 -*/
-_MSL_IMP_EXP_C int    fseek(FILE *, long, int);                                        /*- mf 990715 -*/
-_MSL_IMP_EXP_C int    _fseek(FILE *, fpos_t, int);                                     /*- mm 970708 -*/
-_MSL_IMP_EXP_C void   rewind(FILE *);                                                  /*- mf 990715 -*/
-_MSL_IMP_EXP_C void   clearerr(FILE *);                                                /*- mf 990715 -*/
-_MSL_IMP_EXP_C void   perror(const char *);
-_MSL_IMP_EXP_C int    __get_char(FILE *);                                              /*- mf 990715 -*/
-_MSL_IMP_EXP_C int    __put_char(int c, FILE *);                                       /*- mf 990715 -*/
+_MSL_IMP_EXP_C int    vfscanf(FILE*, const char*, va_list arg); /*- mf 990715 -*/    /*- mm 990921 -*/
+_MSL_IMP_EXP_C int    vsscanf(const char* s, const char* format, va_list arg);       /*- mm 990921 -*/
+_MSL_IMP_EXP_C int    vscanf(const char* format, va_list arg);                       /*- mm 000831 -*/
+_MSL_IMP_EXP_C int    vfprintf(FILE*, const char* format, va_list arg);              /*- mf 990715 -*/
+_MSL_IMP_EXP_C int    vprintf(const char* format, va_list arg);
+_MSL_IMP_EXP_C int    vsprintf(char* s, const char* format, va_list arg);
+_MSL_IMP_EXP_C int    vsnprintf(char* s, size_t n, const char* format, va_list arg);
+_MSL_IMP_EXP_C int    fgetc(FILE*);                                                  /*- mf 990715 -*/
+_MSL_IMP_EXP_C char*  fgets(char*, int, FILE*);                                      /*- mf 990715 -*/
+_MSL_IMP_EXP_C int    fputc(int, FILE*);                                             /*- mf 990715 -*/
+_MSL_IMP_EXP_C int    fputs(const char*, FILE*);                                     /*- mf 990715 -*/
+_MSL_IMP_EXP_C char*  gets(char*);
+_MSL_IMP_EXP_C int    puts(const char*);
+_MSL_IMP_EXP_C int    ungetc(int, FILE*);                                            /*- mf 990715 -*/
+_MSL_IMP_EXP_C size_t fread(void*, size_t memb_size, size_t num_memb, FILE*);        /*- mf 990715 -*/
+_MSL_IMP_EXP_C size_t __fread(void*, size_t, size_t, FILE*);                         /*- mm 001018 -*/
+_MSL_IMP_EXP_C size_t fwrite(const void*, size_t memb_size, size_t num_memb, FILE*); /*- mf 990715 -*/
+_MSL_IMP_EXP_C size_t __fwrite(const void*, size_t, size_t, FILE*);                  /*- mm 001018 -*/
+_MSL_IMP_EXP_C int    fgetpos(FILE*, fpos_t* pos);                                   /*- mf 990715 -*/
+_MSL_IMP_EXP_C long   ftell(FILE*);                                                  /*- mf 990715 -*/
+_MSL_IMP_EXP_C fpos_t _ftell(FILE*);                                                 /*- mm 970708 -*/
+_MSL_IMP_EXP_C int    fsetpos(FILE*, const fpos_t* pos);                             /*- mf 990715 -*/
+_MSL_IMP_EXP_C int    fseek(FILE*, long, int);                                       /*- mf 990715 -*/
+_MSL_IMP_EXP_C int    _fseek(FILE*, fpos_t, int);                                    /*- mm 970708 -*/
+_MSL_IMP_EXP_C void   rewind(FILE*);                                                 /*- mf 990715 -*/
+_MSL_IMP_EXP_C void   clearerr(FILE*);                                               /*- mf 990715 -*/
+_MSL_IMP_EXP_C void   perror(const char*);
+_MSL_IMP_EXP_C int    __get_char(FILE*);                                             /*- mf 990715 -*/
+_MSL_IMP_EXP_C int    __put_char(int c, FILE*);                                      /*- mf 990715 -*/
 
 /* The following section inserted  mm 990325 */
 typedef struct
 {
-    char  *CharStr;
+    char*  CharStr;
     size_t MaxCharCount;
     size_t CharsWritten;
 } __OutStrCtrl;
 
 typedef struct
 {
-    char *NextChar;
+    char* NextChar;
     int   NullCharDetected;
 } __InStrCtrl;
 
-void *__FileWrite(void *, const char *, size_t);
-void *__StringWrite(void *, const char *, size_t);
-int   __FileRead(void *, int, int);
-int   __StringRead(void *, int, int);
+void* __FileWrite(void*, const char*, size_t);
+void* __StringWrite(void*, const char*, size_t);
+int   __FileRead(void*, int, int);
+int   __StringRead(void*, int, int);
 
 enum __ReadProcActions
 {
@@ -136,21 +136,21 @@ enum __ReadProcActions
 
 typedef struct
 {
-    wchar_t *wCharStr;
+    wchar_t* wCharStr;
     size_t   MaxCharCount;
     size_t   CharsWritten;
 } __wOutStrCtrl;
 
 typedef struct
 {
-    wchar_t *wNextChar;
+    wchar_t* wNextChar;
     int      wNullCharDetected;
 } __wInStrCtrl;
 
-void  *__wFileWrite(void *, const wchar_t *, size_t);
-void  *__wStringWrite(void *, const wchar_t *, size_t);
-wint_t __wFileRead(void *, wint_t, int);
-wint_t __wStringRead(void *, wint_t, int);
+void*  __wFileWrite(void*, const wchar_t*, size_t);
+void*  __wStringWrite(void*, const wchar_t*, size_t);
+wint_t __wFileRead(void*, wint_t, int);
+wint_t __wStringRead(void*, wint_t, int);
 
 enum __WReadProcActions
 {
@@ -162,10 +162,10 @@ enum __WReadProcActions
 
 /*- mm 990325 -*/
 
-_MSL_IMP_EXP_C FILE *__handle_open(__file_handle handle, const char *mode);
-FILE                *__handle_reopen(__file_handle handle, const char *mode, FILE *); /*- mf 990715 -*/
+_MSL_IMP_EXP_C FILE* __handle_open(__file_handle handle, const char* mode);
+FILE*                __handle_reopen(__file_handle handle, const char* mode, FILE*); /*- mf 990715 -*/
 
-void __set_idle_proc(FILE *, __idle_proc idle_proc);                                  /*- mf 990715 -*/
+void __set_idle_proc(FILE*, __idle_proc idle_proc);                                  /*- mf 990715 -*/
 
 #            if (__dest_os == __win32_os || __dest_os == __wince_os)
 /*
@@ -185,7 +185,7 @@ void __set_idle_proc(FILE *, __idle_proc idle_proc);                            
 _MSL_END_EXTERN_C                         /*- cc  010410 -*/
 
     inline int
-    getc(FILE *file)
+    getc(FILE* file)
 
 #                ifndef __NO_WIDE_CHAR      /*- mm 980204 -*/
 {
@@ -200,7 +200,7 @@ _MSL_END_EXTERN_C                         /*- cc  010410 -*/
 #                endif /* __NO_WIDE_CHAR */ /*- mm 980204 -*/
 
 inline int
-putc(int c, FILE *file)
+putc(int c, FILE* file)
 
 #                ifndef __NO_WIDE_CHAR      /*- mm 980204 -*/
 {
@@ -229,21 +229,21 @@ putchar(int c)
 }
 
 inline int
-feof(FILE *file)
+feof(FILE* file)
 {
     return file->state.eof;
 }
 
 inline int
-ferror(FILE *file)
+ferror(FILE* file)
 {
     return file->state.error;
 }
 
 #            else
 
-_MSL_IMP_EXP_C int getc(FILE *);        /*- mf 990715 -*/
-_MSL_IMP_EXP_C int putc(int c, FILE *); /*- mf 990715 -*/
+_MSL_IMP_EXP_C int getc(FILE*);        /*- mf 990715 -*/
+_MSL_IMP_EXP_C int putc(int c, FILE*); /*- mf 990715 -*/
 
 #                ifndef __NO_WIDE_CHAR      /*- mm 980204 -*/
 #                    define getc(file)                                                                                 \
@@ -271,8 +271,8 @@ _MSL_IMP_EXP_C int putchar(int c);
 #                define getchar()    __std(getc)(stdin)
 #                define putchar(c)   __std(putc)(c, stdout)
 
-_MSL_IMP_EXP_C int feof(FILE *);        /*- mf 990715 -*/
-_MSL_IMP_EXP_C int ferror(FILE *);      /*- mf 990715 -*/
+_MSL_IMP_EXP_C int feof(FILE*);        /*- mf 990715 -*/
+_MSL_IMP_EXP_C int ferror(FILE*);      /*- mf 990715 -*/
 
 #                define feof(file)   ((file)->state.eof)
 #                define ferror(file) ((file)->state.error)

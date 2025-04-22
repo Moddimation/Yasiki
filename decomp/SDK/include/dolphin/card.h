@@ -60,9 +60,9 @@ typedef struct CARDControl
     /*0x28*/ u32           scramble;
     /*0x2C*/ int           formatStep;
     DSPTaskInfo            task;
-    void                  *workArea;
-    /*0x84*/ CARDDir      *currentDir;
-    u16                   *currentFat;
+    void*                  workArea;
+    /*0x84*/ CARDDir*      currentDir;
+    u16*                   currentFat;
     OSThreadQueue          threadQueue;
     u8                     cmd[9];
     s32                    cmdlen;
@@ -70,11 +70,11 @@ typedef struct CARDControl
     int                    retry;
     int                    repeat;
     u32                    addr;
-    void                  *buffer;
+    void*                  buffer;
     s32                    xferred;
     u16                    freeNo;
     u16                    startBlock;
-    /*0xC0*/ CARDFileInfo *fileInfo;
+    /*0xC0*/ CARDFileInfo* fileInfo;
     CARDCallback           extCallback;
     CARDCallback           txCallback;
     CARDCallback           exiCallback;
@@ -87,10 +87,10 @@ typedef struct CARDControl
 
 typedef struct CARDDecParam
 {
-    /* 0x00 */ u8 *inputAddr;
+    /* 0x00 */ u8* inputAddr;
     /* 0x04 */ u32 inputLength;
     /* 0x08 */ u32 aramAddr;
-    /* 0x0C */ u8 *outputAddr;
+    /* 0x0C */ u8* outputAddr;
 } CARDDecParam;
 
 typedef struct CARDID
@@ -189,13 +189,13 @@ typedef struct CARDID
 
 #define CARDGetBannerFormat(stat)         (((stat)->bannerFormat) & CARD_STAT_BANNER_MASK)
 #define CARDGetIconFormat(stat, n)        (((stat)->iconFormat >> (2 * (n))) & CARD_STAT_ICON_MASK)
-#define CARDGetDirCheck(dir)              ((CARDDirCheck *)&(dir)[CARD_MAX_FILE])
+#define CARDGetDirCheck(dir)              ((CARDDirCheck*)&(dir)[CARD_MAX_FILE])
 
 void CARDInit(void);
 s32  CARDGetResultCode(s32 chan);
 s32  CARDCheckAsync(s32 chan, CARDCallback callback);
-s32  CARDFreeBlocks(s32 chan, s32 *byteNotUsed, s32 *filesNotUsed);
-s32  CARDRenameAsync(s32 chan, const char *oldName, const char *newName, CARDCallback callback);
+s32  CARDFreeBlocks(s32 chan, s32* byteNotUsed, s32* filesNotUsed);
+s32  CARDRenameAsync(s32 chan, const char* oldName, const char* newName, CARDCallback callback);
 
 #ifdef __cplusplus
 }

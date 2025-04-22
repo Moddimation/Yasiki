@@ -5,9 +5,8 @@
 #include "OSPrivate.h"
 
 #define ENQUEUE_MUTEX(mutex, queue, link)                                                                              \
-    do                                                                                                                 \
-    {                                                                                                                  \
-        struct OSMutex *__prev = (queue)->tail;                                                                        \
+    do {                                                                                                               \
+        struct OSMutex* __prev = (queue)->tail;                                                                        \
         if (__prev == NULL)                                                                                            \
         {                                                                                                              \
             (queue)->head = (mutex);                                                                                   \
@@ -19,13 +18,13 @@
         (mutex)->link.prev = __prev;                                                                                   \
         (mutex)->link.next = 0;                                                                                        \
         (queue)->tail = (mutex);                                                                                       \
-    } while (0);
+    }                                                                                                                  \
+    while (0);
 
 #define DEQUEUE_MUTEX(mutex, queue, link)                                                                              \
-    do                                                                                                                 \
-    {                                                                                                                  \
-        struct OSMutex *__next = (mutex)->link.next;                                                                   \
-        struct OSMutex *__prev = (mutex)->link.prev;                                                                   \
+    do {                                                                                                               \
+        struct OSMutex* __next = (mutex)->link.next;                                                                   \
+        struct OSMutex* __prev = (mutex)->link.prev;                                                                   \
         if (__next == NULL)                                                                                            \
         {                                                                                                              \
             (queue)->tail = __prev;                                                                                    \
@@ -42,12 +41,12 @@
         {                                                                                                              \
             __prev->link.next = __next;                                                                                \
         }                                                                                                              \
-    } while (0);
+    }                                                                                                                  \
+    while (0);
 
 #define DEQUEUE_HEAD(mutex, queue, link)                                                                               \
-    do                                                                                                                 \
-    {                                                                                                                  \
-        struct OSMutex *__next = mutex->link.next;                                                                     \
+    do {                                                                                                               \
+        struct OSMutex* __next = mutex->link.next;                                                                     \
         if (__next == NULL)                                                                                            \
         {                                                                                                              \
             (queue)->tail = 0;                                                                                         \
@@ -57,15 +56,16 @@
             __next->link.prev = 0;                                                                                     \
         }                                                                                                              \
         (queue)->head = __next;                                                                                        \
-    } while (0);
+    }                                                                                                                  \
+    while (0);
 
-static int IsMember(struct OSMutexQueue *queue, struct OSMutex *mutex);
-int        __OSCheckMutex(struct OSMutex *mutex);
-int        __OSCheckDeadLock(struct OSThread *thread);
-int        __OSCheckMutexes(struct OSThread *thread);
+static int IsMember(struct OSMutexQueue* queue, struct OSMutex* mutex);
+int        __OSCheckMutex(struct OSMutex* mutex);
+int        __OSCheckDeadLock(struct OSThread* thread);
+int        __OSCheckMutexes(struct OSThread* thread);
 
 void
-OSInitMutex(struct OSMutex *mutex)
+OSInitMutex(struct OSMutex* mutex)
 {
     OSInitThreadQueue(&mutex->queue);
     mutex->thread = 0;
@@ -73,17 +73,17 @@ OSInitMutex(struct OSMutex *mutex)
 }
 
 void
-OSLockMutex(struct OSMutex *mutex)
+OSLockMutex(struct OSMutex* mutex)
 {
     int              enabled = OSDisableInterrupts();
-    struct OSThread *currentThread = OSGetCurrentThread();
+    struct OSThread* currentThread = OSGetCurrentThread();
 
     ASSERTMSGLINE(0x8C, currentThread, "OSLockMutex(): current thread does not exist.");
     ASSERTMSGLINE(0x8E, currentThread->state == 2, "OSLockMutex(): current thread is not running.");
 
     while (1)
     {
-        struct OSThread *ownerThread = mutex->thread;
+        struct OSThread* ownerThread = mutex->thread;
         if (ownerThread == 0)
         {
             mutex->thread = currentThread;
@@ -110,10 +110,10 @@ OSLockMutex(struct OSMutex *mutex)
 }
 
 void
-OSUnlockMutex(struct OSMutex *mutex)
+OSUnlockMutex(struct OSMutex* mutex)
 {
     int              enabled = OSDisableInterrupts();
-    struct OSThread *currentThread = OSGetCurrentThread();
+    struct OSThread* currentThread = OSGetCurrentThread();
 
     ASSERTMSGLINE(0xBD, currentThread, "OSUnlockMutex(): current thread does not exist.");
     ASSERTMSGLINE(0xBF, currentThread->state == 2, "OSUnlockMutex(): current thread is not running.");
@@ -138,9 +138,9 @@ OSUnlockMutex(struct OSMutex *mutex)
 }
 
 void
-__OSUnlockAllMutex(struct OSThread *thread)
+__OSUnlockAllMutex(struct OSThread* thread)
 {
-    struct OSMutex *mutex;
+    struct OSMutex* mutex;
 
     while (thread->queueMutex.head)
     {
@@ -154,10 +154,10 @@ __OSUnlockAllMutex(struct OSThread *thread)
 }
 
 int
-OSTryLockMutex(struct OSMutex *mutex)
+OSTryLockMutex(struct OSMutex* mutex)
 {
     int              enabled = OSDisableInterrupts();
-    struct OSThread *currentThread = OSGetCurrentThread();
+    struct OSThread* currentThread = OSGetCurrentThread();
     int              locked;
 
     ASSERTMSGLINE(0xFF, currentThread, "OSTryLockMutex(): current thread does not exist.");
@@ -184,16 +184,16 @@ OSTryLockMutex(struct OSMutex *mutex)
 }
 
 void
-OSInitCond(struct OSCond *cond)
+OSInitCond(struct OSCond* cond)
 {
     OSInitThreadQueue(&cond->queue);
 }
 
 void
-OSWaitCond(struct OSCond *cond, struct OSMutex *mutex)
+OSWaitCond(struct OSCond* cond, struct OSMutex* mutex)
 {
     int              enabled = OSDisableInterrupts();
-    struct OSThread *currentThread = OSGetCurrentThread();
+    struct OSThread* currentThread = OSGetCurrentThread();
 
     ASSERTMSGLINE(0x139, currentThread, "OSWaitCond(): current thread does not exist.");
     ASSERTMSGLINE(0x13B, currentThread->state == 2, "OSWaitCond(): current thread is not running.");
@@ -221,15 +221,15 @@ OSWaitCond(struct OSCond *cond, struct OSMutex *mutex)
 }
 
 void
-OSSignalCond(struct OSCond *cond)
+OSSignalCond(struct OSCond* cond)
 {
     OSWakeupThread(&cond->queue);
 }
 
 static int
-IsMember(struct OSMutexQueue *queue, struct OSMutex *mutex)
+IsMember(struct OSMutexQueue* queue, struct OSMutex* mutex)
 {
-    struct OSMutex *member = queue->head;
+    struct OSMutex* member = queue->head;
 
     while (member)
     {
@@ -243,10 +243,10 @@ IsMember(struct OSMutexQueue *queue, struct OSMutex *mutex)
 }
 
 int
-__OSCheckMutex(struct OSMutex *mutex)
+__OSCheckMutex(struct OSMutex* mutex)
 {
-    struct OSThread      *thread;
-    struct OSThreadQueue *queue;
+    struct OSThread*      thread;
+    struct OSThreadQueue* queue;
     long                  priority;
 
     priority = 0;
@@ -297,9 +297,9 @@ __OSCheckMutex(struct OSMutex *mutex)
 }
 
 int
-__OSCheckDeadLock(struct OSThread *thread)
+__OSCheckDeadLock(struct OSThread* thread)
 {
-    struct OSMutex *mutex = thread->mutex;
+    struct OSMutex* mutex = thread->mutex;
 
     while (mutex && mutex->thread)
     {
@@ -313,9 +313,9 @@ __OSCheckDeadLock(struct OSThread *thread)
 }
 
 int
-__OSCheckMutexes(struct OSThread *thread)
+__OSCheckMutexes(struct OSThread* thread)
 {
-    struct OSMutex *mutex = thread->queueMutex.head;
+    struct OSMutex* mutex = thread->queueMutex.head;
 
     while (mutex)
     {

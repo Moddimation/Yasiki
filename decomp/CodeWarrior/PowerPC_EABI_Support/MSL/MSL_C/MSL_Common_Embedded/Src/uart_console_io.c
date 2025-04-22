@@ -40,7 +40,7 @@
  * not be handled, and hence a exception would occur
  */
 
-int __TRK_write_console(__file_handle handle, unsigned char *buffer, size_t *count, __idle_proc idle_proc);
+int __TRK_write_console(__file_handle handle, unsigned char* buffer, size_t* count, __idle_proc idle_proc);
 
 static UARTError __init_uart_console(void);
 
@@ -86,11 +86,11 @@ int		__read_console	  (__file_handle handle, unsigned char * buffer,
 #    endif
 
 /************************************************************************/
-#    pragma overload int __write_console(__file_handle handle, unsigned char *buffer, size_t *count,                   \
+#    pragma overload int __write_console(__file_handle handle, unsigned char* buffer, size_t* count,                   \
                                          __idle_proc idle_proc);
 
 int
-__write_console(__file_handle handle, unsigned char *buffer, size_t *count, __idle_proc idle_proc)
+__write_console(__file_handle handle, unsigned char* buffer, size_t* count, __idle_proc idle_proc)
 {
 #    pragma unused(handle, idle_proc)
 
@@ -161,7 +161,7 @@ __init_uart_console(void)
  */
 
 int
-__delete_file(const char *name)
+__delete_file(const char* name)
 {
     return kUARTNoError;
 }
@@ -171,7 +171,7 @@ __delete_file(const char *name)
  */
 
 int
-__rename_file(const char *old_name, const char *new_name)
+__rename_file(const char* old_name, const char* new_name)
 {
     return kUARTNoError;
 }
@@ -180,7 +180,7 @@ __rename_file(const char *old_name, const char *new_name)
  * Unimplemented for GCN  - Host IO does not support this
  */
 void
-__temp_file_name(char *name_str, void *ptr)
+__temp_file_name(char* name_str, void* ptr)
 {
     if (name_str)
     {

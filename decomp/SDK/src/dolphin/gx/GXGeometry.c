@@ -50,7 +50,7 @@ GXBegin(GXPrimitive type, GXVtxFmt vtxfmt, u16 nverts)
     }
     __GXinBegin = 1;
 #endif
-    if (*(u32 *)&__GXData->vNum != 0)
+    if (*(u32*)&__GXData->vNum != 0)
     { // checks both vNum and bpSent
         __GXSendFlushPrim();
     }
@@ -84,7 +84,7 @@ GXSetLineWidth(u8 width, GXTexOffset texOffsets)
 }
 
 void
-GXGetLineWidth(u8 *width, GXTexOffset *texOffsets)
+GXGetLineWidth(u8* width, GXTexOffset* texOffsets)
 {
     ASSERTMSGLINE(0x1BF, width != NULL && texOffsets != NULL, "GXGet*: invalid null pointer");
 
@@ -103,7 +103,7 @@ GXSetPointSize(u8 pointSize, GXTexOffset texOffsets)
 }
 
 void
-GXGetPointSize(u8 *pointSize, GXTexOffset *texOffsets)
+GXGetPointSize(u8* pointSize, GXTexOffset* texOffsets)
 {
     ASSERTMSGLINE(0x1EB, pointSize != NULL && texOffsets != NULL, "GXGet*: invalid null pointer");
 
@@ -132,36 +132,24 @@ GXSetCullMode(GXCullMode mode)
     CHECK_GXBEGIN(0x21D, "GXSetCullMode");
     switch (mode)
     {
-        case GX_CULL_FRONT :
-            hwMode = GX_CULL_BACK;
-            break;
-        case GX_CULL_BACK :
-            hwMode = GX_CULL_FRONT;
-            break;
-        default :
-            hwMode = mode;
-            break;
+        case GX_CULL_FRONT : hwMode = GX_CULL_BACK; break;
+        case GX_CULL_BACK  : hwMode = GX_CULL_FRONT; break;
+        default            : hwMode = mode; break;
     }
     SET_REG_FIELD(0x225, __GXData->genMode, 2, 14, hwMode);
     __GXData->dirtyState |= 4;
 }
 
 void
-GXGetCullMode(GXCullMode *mode)
+GXGetCullMode(GXCullMode* mode)
 {
     GXCullMode hwMode = GET_REG_FIELD(__GXData->genMode, 2, 14);
 
     switch (hwMode)
     {
-        case GX_CULL_FRONT :
-            *mode = GX_CULL_BACK;
-            break;
-        case GX_CULL_BACK :
-            *mode = GX_CULL_FRONT;
-            break;
-        default :
-            *mode = hwMode;
-            break;
+        case GX_CULL_FRONT : *mode = GX_CULL_BACK; break;
+        case GX_CULL_BACK  : *mode = GX_CULL_FRONT; break;
+        default            : *mode = hwMode; break;
     }
 }
 

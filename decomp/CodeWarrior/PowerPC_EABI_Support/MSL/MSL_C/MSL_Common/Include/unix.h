@@ -26,11 +26,11 @@ _MSL_BEGIN_EXTERN_C                                                             
 #    endif
 
     _MSL_IMP_EXP_C int
-                                 chmod(const char *, mode_t);
+                                 chmod(const char*, mode_t);
 _MSL_IMP_EXP_C _MSL_POSIX_PARAMS umask(_MSL_POSIX_PARAMS);
 
 #    if (__dest_os == __win32_os || __dest_os == __wince_os)
-_MSL_IMP_EXP_C int               _chmod(const char *, mode_t);
+_MSL_IMP_EXP_C int               _chmod(const char*, mode_t);
 _MSL_IMP_EXP_C _MSL_POSIX_PARAMS _umask(_MSL_POSIX_PARAMS);                     /*- cc 000210 -*/
 #    endif
 

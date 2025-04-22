@@ -7,9 +7,8 @@
 // These macros are copied from OSThread.c. Or ARE they the same
 // macros? They dont seem to be in the SDK headers.
 #define ENQUEUE_INFO(info, queue)                                                                                      \
-    do                                                                                                                 \
-    {                                                                                                                  \
-        struct OSResetFunctionInfo *__prev = (queue)->tail;                                                            \
+    do {                                                                                                               \
+        struct OSResetFunctionInfo* __prev = (queue)->tail;                                                            \
         if (__prev == 0)                                                                                               \
         {                                                                                                              \
             (queue)->head = (info);                                                                                    \
@@ -21,13 +20,13 @@
         (info)->prev = __prev;                                                                                         \
         (info)->next = 0;                                                                                              \
         (queue)->tail = (info);                                                                                        \
-    } while (0);
+    }                                                                                                                  \
+    while (0);
 
 #define DEQUEUE_INFO(info, queue)                                                                                      \
-    do                                                                                                                 \
-    {                                                                                                                  \
-        struct OSResetFunctionInfo *__next = (info)->next;                                                             \
-        struct OSResetFunctionInfo *__prev = (info)->prev;                                                             \
+    do {                                                                                                               \
+        struct OSResetFunctionInfo* __next = (info)->next;                                                             \
+        struct OSResetFunctionInfo* __prev = (info)->prev;                                                             \
         if (__next == 0)                                                                                               \
         {                                                                                                              \
             (queue)->tail = __prev;                                                                                    \
@@ -44,15 +43,14 @@
         {                                                                                                              \
             __prev->next = __next;                                                                                     \
         }                                                                                                              \
-    } while (0);
+    }                                                                                                                  \
+    while (0);
 
 #define ENQUEUE_INFO_PRIO(info, queue)                                                                                 \
-    do                                                                                                                 \
-    {                                                                                                                  \
-        struct OSResetFunctionInfo *__prev;                                                                            \
-        struct OSResetFunctionInfo *__next;                                                                            \
-        for (__next = (queue)->head; __next && (__next->priority <= (info)->priority); __next = __next->next)          \
-            ;                                                                                                          \
+    do {                                                                                                               \
+        struct OSResetFunctionInfo* __prev;                                                                            \
+        struct OSResetFunctionInfo* __next;                                                                            \
+        for (__next = (queue)->head; __next && (__next->priority <= (info)->priority); __next = __next->next);         \
                                                                                                                        \
         if (__next == 0)                                                                                               \
         {                                                                                                              \
@@ -73,7 +71,8 @@
                 __prev->next = (info);                                                                                 \
             }                                                                                                          \
         }                                                                                                              \
-    } while (0);
+    }                                                                                                                  \
+    while (0);
 
 static struct OSResetFunctionQueue ResetFunctionQueue;
 
@@ -81,7 +80,7 @@ static int      CallResetFunctions(int final);
 static asm void Reset(unsigned long resetCode);
 
 void
-OSRegisterResetFunction(struct OSResetFunctionInfo *info)
+OSRegisterResetFunction(struct OSResetFunctionInfo* info)
 {
     ASSERTLINE(0x76, info->func);
 
@@ -89,7 +88,7 @@ OSRegisterResetFunction(struct OSResetFunctionInfo *info)
 }
 
 void
-OSUnregisterResetFunction(struct OSResetFunctionInfo *info)
+OSUnregisterResetFunction(struct OSResetFunctionInfo* info)
 {
     DEQUEUE_INFO(info, &ResetFunctionQueue);
 }
@@ -97,7 +96,7 @@ OSUnregisterResetFunction(struct OSResetFunctionInfo *info)
 static int
 CallResetFunctions(int final)
 {
-    struct OSResetFunctionInfo *info;
+    struct OSResetFunctionInfo* info;
     int                         err = 0;
 
     for (info = ResetFunctionQueue.head; info; info = info->next)
@@ -140,22 +139,22 @@ OSResetSystem(int reset, unsigned long resetCode, int forceMenu)
 {
     int            rc;
     int            enabled;
-    struct OSSram *sram;
+    struct OSSram* sram;
 
     OSDisableScheduler();
     __OSStopAudioSystem();
-    do
-    {
-    } while (CallResetFunctions(0) == 0);
+    do {
+    }
+    while (CallResetFunctions(0) == 0);
 
     if ((reset != 0 && (forceMenu != 0)))
     {
         sram = __OSLockSram();
         sram->flags |= 0x40;
         __OSUnlockSram(1);
-        do
-        {
-        } while (__OSSyncSram() == 0);
+        do {
+        }
+        while (__OSSyncSram() == 0);
     }
     enabled = OSDisableInterrupts();
     rc = CallResetFunctions(1);

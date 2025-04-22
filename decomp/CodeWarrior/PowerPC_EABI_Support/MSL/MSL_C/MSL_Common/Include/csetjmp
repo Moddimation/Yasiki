@@ -27,10 +27,10 @@ _MSL_BEGIN_NAMESPACE_STD   /*- cc  010410 -*/
     typedef __vector unsigned long jmp_buf[29];
 #                    define setjmp(jmp_buf) __std(__vec_setjmp(jmp_buf)) /*- hh 990521 -*/
 #                elif __PPCGEKKO__
-    typedef long *jmp_buf[100];
+    typedef long* jmp_buf[100];
 #                    define setjmp(jmp_buf) __std(__setjmp(jmp_buf))     /*- hh 990521 -*/
 #                else
-    typedef long *jmp_buf[70];
+    typedef long* jmp_buf[70];
 #                    define setjmp(jmp_buf) __std(__setjmp(jmp_buf))     /*- hh 990521 -*/
 #                endif
 
@@ -45,8 +45,8 @@ _MSL_BEGIN_NAMESPACE_STD   /*- cc  010410 -*/
 #                endif
 } __jmp_buf;
 typedef struct __jmp_buf jmp_buf;
-_MSL_IMP_EXP_C void      __longjmp(register __jmp_buf *, int);
-_MSL_IMP_EXP_C int       __setjmp(register __jmp_buf *);
+_MSL_IMP_EXP_C void      __longjmp(register __jmp_buf*, int);
+_MSL_IMP_EXP_C int       __setjmp(register __jmp_buf*);
 #                define setjmp(jmp_buf) __std(__setjmp(&jmp_buf))        /*- hh 990521 -*/
 #                ifdef __cplusplus
 inline void
@@ -86,8 +86,8 @@ _MSL_IMP_EXP_C int _Setjmp(jmp_buf);
 } __jmp_buf;
 
 typedef struct __jmp_buf jmp_buf;
-_MSL_IMP_EXP_C int       __setjmp(__jmp_buf *);
-_MSL_IMP_EXP_C void      __longjmp(__jmp_buf *, int);
+_MSL_IMP_EXP_C int       __setjmp(__jmp_buf*);
+_MSL_IMP_EXP_C void      __longjmp(__jmp_buf*, int);
 #                define setjmp(jmp_buf)   __setjmp(&jmp_buf)
 #                define longjmp(env, val) __longjmp(&env, val)
 
@@ -97,7 +97,7 @@ _MSL_IMP_EXP_C void      __longjmp(__jmp_buf *, int);
 
 #            else
 
-    typedef long *jmp_buf[13]; /*	D3-D7,PC,A2-A6,SP,__local_destructor_chain */
+    typedef long* jmp_buf[13]; /*	D3-D7,PC,A2-A6,SP,__local_destructor_chain */
 
 #            endif
 

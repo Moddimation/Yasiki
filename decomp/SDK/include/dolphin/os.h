@@ -48,16 +48,16 @@ u32 OSGetConsoleSimulatedMemSize(void);
 #ifdef __MWERKS__
 u32           __OSPhysicalMemSize : (OS_BASE_CACHED | 0x0028);
 volatile int  __OSTVMode : (OS_BASE_CACHED | 0x00CC);
-OSThread     *__gUnkThread1 : (OS_BASE_CACHED | 0x00D8);
+OSThread*     __gUnkThread1 : (OS_BASE_CACHED | 0x00D8);
 OSThreadQueue __OSActiveThreadQueue : (OS_BASE_CACHED | 0x00DC);
-OSThread     *__gCurrentThread : (OS_BASE_CACHED | 0x00E4);
+OSThread*     __gCurrentThread : (OS_BASE_CACHED | 0x00E4);
 u32           __OSSimulatedMemSize : (OS_BASE_CACHED | 0x00F0);
 u32           __OSBusClock : (OS_BASE_CACHED | 0x00F8);
 u32           __OSCoreClock : (OS_BASE_CACHED | 0x00FC);
 unsigned int  __gUnknown800030C0[2] : (OS_BASE_CACHED | 0x30C0);
 #else
-#    define __OSBusClock  (*(u32 *)(OS_BASE_CACHED | 0x00F8))
-#    define __OSCoreClock (*(u32 *)(OS_BASE_CACHED | 0x00FC))
+#    define __OSBusClock  (*(u32*)(OS_BASE_CACHED | 0x00F8))
+#    define __OSCoreClock (*(u32*)(OS_BASE_CACHED | 0x00FC))
 #endif
 #define OS_BUS_CLOCK                 __OSBusClock
 #define OS_CORE_CLOCK                __OSCoreClock
@@ -74,12 +74,12 @@ unsigned int  __gUnknown800030C0[2] : (OS_BASE_CACHED | 0x30C0);
 unsigned long OSGetConsoleType(void);
 void          OSInit(void);
 
-void *OSGetArenaHi(void);
-void *OSGetArenaLo(void);
-void  OSSetArenaHi(void *);
-void  OSSetArenaLo(void *);
-void *OSAllocFromArenaLo(u32 size, u32 align);
-void *OSAllocFromArenaHi(u32 size, u32 align);
+void* OSGetArenaHi(void);
+void* OSGetArenaLo(void);
+void  OSSetArenaHi(void*);
+void  OSSetArenaLo(void*);
+void* OSAllocFromArenaLo(u32 size, u32 align);
+void* OSAllocFromArenaHi(u32 size, u32 align);
 
 u32 OSGetPhysicalMemSize(void);
 
@@ -109,16 +109,16 @@ typedef struct OSBootInfo_s
     unsigned long version;      // offset 0x24, size 0x4
     unsigned long memorySize;   // offset 0x28, size 0x4
     unsigned long consoleType;  // offset 0x2C, size 0x4
-    void         *arenaLo;      // offset 0x30, size 0x4
-    void         *arenaHi;      // offset 0x34, size 0x4
-    void         *FSTLocation;  // offset 0x38, size 0x4
+    void*         arenaLo;      // offset 0x30, size 0x4
+    void*         arenaHi;      // offset 0x34, size 0x4
+    void*         FSTLocation;  // offset 0x38, size 0x4
     unsigned long FSTMaxLength; // offset 0x3C, size 0x4
 } OSBootInfo;
 
 OSTick OSGetTick(void);
 OSTime OSGetTime(void);
-void   OSTicksToCalendarTime(OSTime ticks, OSCalendarTime *td);
-OSTime OSCalendarTimeToTicks(OSCalendarTime *td);
+void   OSTicksToCalendarTime(OSTime ticks, OSCalendarTime* td);
+OSTime OSCalendarTimeToTicks(OSCalendarTime* td);
 BOOL   OSEnableInterrupts(void);
 BOOL   OSDisableInterrupts(void);
 BOOL   OSRestoreInterrupts(BOOL level);
@@ -151,25 +151,25 @@ BOOL   OSRestoreInterrupts(BOOL level);
 u32  OSGetSoundMode(void);
 void OSSetSoundMode(u32 mode);
 
-void OSReport(char *, ...);
-void OSPanic(char *file, int line, char *msg, ...);
+void OSReport(char*, ...);
+void OSPanic(char* file, int line, char* msg, ...);
 
 #define OSRoundUp32B(x)   (((u32)(x) + 32 - 1) & ~(32 - 1))
 #define OSRoundDown32B(x) (((u32)(x)) & ~(32 - 1))
 
-void *OSPhysicalToCached(u32 paddr);
-void *OSPhysicalToUncached(u32 paddr);
-u32   OSCachedToPhysical(void *caddr);
-u32   OSUncachedToPhysical(void *ucaddr);
-void *OSCachedToUncached(void *caddr);
-void *OSUncachedToCached(void *ucaddr);
+void* OSPhysicalToCached(u32 paddr);
+void* OSPhysicalToUncached(u32 paddr);
+u32   OSCachedToPhysical(void* caddr);
+u32   OSUncachedToPhysical(void* ucaddr);
+void* OSCachedToUncached(void* caddr);
+void* OSUncachedToCached(void* ucaddr);
 #if !DEBUG
-#    define OSPhysicalToCached(paddr)    ((void *)((u32)(OS_BASE_CACHED + (u32)(paddr))))
-#    define OSPhysicalToUncached(paddr)  ((void *)((u32)(OS_BASE_UNCACHED + (u32)(paddr))))
+#    define OSPhysicalToCached(paddr)    ((void*)((u32)(OS_BASE_CACHED + (u32)(paddr))))
+#    define OSPhysicalToUncached(paddr)  ((void*)((u32)(OS_BASE_UNCACHED + (u32)(paddr))))
 #    define OSCachedToPhysical(caddr)    ((u32)((u32)(caddr) - OS_BASE_CACHED))
 #    define OSUncachedToPhysical(ucaddr) ((u32)((u32)(ucaddr) - OS_BASE_UNCACHED))
-#    define OSCachedToUncached(caddr)    ((void *)((u8 *)(caddr) + (OS_BASE_UNCACHED - OS_BASE_CACHED)))
-#    define OSUncachedToCached(ucaddr)   ((void *)((u8 *)(ucaddr) - (OS_BASE_UNCACHED - OS_BASE_CACHED)))
+#    define OSCachedToUncached(caddr)    ((void*)((u8*)(caddr) + (OS_BASE_UNCACHED - OS_BASE_CACHED)))
+#    define OSUncachedToCached(ucaddr)   ((void*)((u8*)(ucaddr) - (OS_BASE_UNCACHED - OS_BASE_CACHED)))
 #endif
 
 #ifdef __cplusplus

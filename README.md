@@ -28,7 +28,7 @@ Supported versions (to be worked on):
 > This project will not allow you to play the game if you don't provide your own copy.
 
 > [!WARNING]
-> This game does *no*t ship with *symbols*, so information is scraped together with *RTTI* and *LM* for *3DS*.
+> This game does *no*t ship with *symbols*, so information is scraped together with *RTTI* and *LM* for *3DS* (has a few folder /file names).
 > 
 > Not recommended for beginners, but noone shall remove your right to advance.
 
@@ -37,7 +37,8 @@ Information
 I heavily restructured the source layout of the original repo from [Sage-of-Mirrors](https://github.com/Sage-of-Mirrors/zmansion). This was not forked directly from it, but from [CoNesTra](https://github.com/CoNesTra/zmansion), as he put in effort to add Luigi's Mansion 3DS information to the repo and updated the [DTK](https://github.com/encounter/decomp-toolkit) tools.
 I did reset the splits and the symbol list, so the % were brought back to 0.
 ### Current State of Progress
-I am currently trying to fill out the symbols in the Ghidra repository (read further to learn how to connect to the server).
+I was trying to fill out the symbols in the Ghidra repository (read further to learn how to connect to the server),
+but decided to start filling out libraries instead, as labelling the symbols also requires filling in struct data etc.
 ### Code Structure
 The code categories are put inside of the 'decomp' folder in root, as follows:  
  `/decomp/<category>/...`

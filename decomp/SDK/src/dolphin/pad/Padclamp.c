@@ -6,11 +6,11 @@ static unsigned char TriggerMin;
 static unsigned char TriggerMax;
 
 // functions
-static void ClampStick(signed char *px, signed char *py);
-static void ClampTrigger(unsigned char *trigger);
+static void ClampStick(signed char* px, signed char* py);
+static void ClampTrigger(unsigned char* trigger);
 
 static void
-ClampStick(signed char *px, signed char *py)
+ClampStick(signed char* px, signed char* py)
 {
     int x;
     int y;
@@ -83,7 +83,7 @@ ClampStick(signed char *px, signed char *py)
 }
 
 static void
-ClampTrigger(unsigned char *trigger)
+ClampTrigger(unsigned char* trigger)
 {
     if (*trigger <= TriggerMin)
     {
@@ -98,7 +98,7 @@ ClampTrigger(unsigned char *trigger)
 }
 
 void
-PADClamp(PADStatus *status)
+PADClamp(PADStatus* status)
 {
     int i;
 

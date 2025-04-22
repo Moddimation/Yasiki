@@ -244,39 +244,20 @@ basic_filebuf<charT, traits>::open(const char* s, ios_base::openmode mode)
     switch (mode & ÃÂ¢ÃÂÃÂ¾ios_base::ate)
     {
         case ios_base::out :
-        case (int)ios_base::out | (int)ios_base::trunc :
-            modstr = "w";
-            break;
-        case (int)ios_base::out | (int)ios_base::app :
-            modstr = "a";
-            break;
-        case ios_base::in :
-            modstr = "r";
-            break;
-        case (int)ios_base::in | (int)ios_base::out :
-            modstr = "r+";
-            break;
-        case (int)ios_base::in | (int)ios_base::out | (int)ios_base::trunc :
-            modstr = "w+";
-            break;
-        case (int)ios_base::binary | (int)ios_base::out :
-        case (int)ios_base::binary | (int)ios_base::out | (int)ios_base::trunc :
-            modstr = "wb";
-            break;
-        case (int)ios_base::binary | (int)ios_base::out | (int)ios_base::app :
-            modstr = "ab";
-            break;
-        case (int)ios_base::binary | (int)ios_base::in :
-            modstr = "rb";
-            break;
-        case (int)ios_base::binary | (int)ios_base::in | (int)ios_base::out :
-            modstr = "r+b";
-            break;
+        case (int)ios_base::out | (int)ios_base::trunc                         : modstr = "w"; break;
+        case (int)ios_base::out | (int)ios_base::app                           : modstr = "a"; break;
+        case ios_base::in                                                      : modstr = "r"; break;
+        case (int)ios_base::in | (int)ios_base::out                            : modstr = "r+"; break;
+        case (int)ios_base::in | (int)ios_base::out | (int)ios_base::trunc     : modstr = "w+"; break;
+        case (int)ios_base::binary | (int)ios_base::out                        :
+        case (int)ios_base::binary | (int)ios_base::out | (int)ios_base::trunc : modstr = "wb"; break;
+        case (int)ios_base::binary | (int)ios_base::out | (int)ios_base::app   : modstr = "ab"; break;
+        case (int)ios_base::binary | (int)ios_base::in                         : modstr = "rb"; break;
+        case (int)ios_base::binary | (int)ios_base::in | (int)ios_base::out    : modstr = "r+b"; break;
         case (int)ios_base::binary | (int)ios_base::in | (int)ios_base::out | (int)ios_base::trunc :
             modstr = "w+b";
             break;
-        default :
-            return 0;
+        default : return 0;
     }
     file_ = fopen(s, modstr);
     if (file_ == 0)
@@ -386,13 +367,9 @@ basic_filebuf<charT, traits>::read2(int n, bool peek)
     switch (r)
     {
         case codecvt_base::error :
-        case codecvt_base::partial :
-            return traits::eof();
-        case codecvt_base::noconv :
-            intern_buf = *(char_type*)extern_buf;
-            break;
-        case codecvt_base::ok :
-            break;
+        case codecvt_base::partial : return traits::eof();
+        case codecvt_base::noconv  : intern_buf = *(char_type*)extern_buf; break;
+        case codecvt_base::ok      : break;
     }
 #            else
     memcpy(&intern_buf, extern_buf, static_cast<size_t>(n));
@@ -438,12 +415,9 @@ basic_filebuf<charT, traits>::read3(bool peek)
                            intern_end);
         switch (r)
         {
-            case codecvt_base::error :
-                return traits::eof();
-            case codecvt_base::ok :
-            case codecvt_base::partial :
-                offset = static_cast<size_t>(extern_end - extern_buf);
-                break;
+            case codecvt_base::error   : return traits::eof();
+            case codecvt_base::ok      :
+            case codecvt_base::partial : offset = static_cast<size_t>(extern_end - extern_buf); break;
             case codecvt_base::noconv :
                 intern_buf = *(char_type*)extern_buf;
                 intern_end = &intern_buf + 1;
@@ -668,15 +642,12 @@ basic_filebuf<charT, traits>::write2(int n, char_type intern_buf)
     switch (r)
     {
         case codecvt_base::error :
-        case codecvt_base::partial :
-            return traits::eof();
+        case codecvt_base::partial : return traits::eof();
         case codecvt_base::noconv :
             n = sizeof(char_type);
             memcpy(extern_buf, &intern_buf, static_cast<size_t>(n));
             break;
-        case codecvt_base::ok :
-            n = static_cast<int>(extern_end - extern_buf);
-            break;
+        case codecvt_base::ok : n = static_cast<int>(extern_end - extern_buf); break;
     }
 #            else
     memcpy(extern_buf, &intern_buf, static_cast<size_t>(n));
@@ -793,9 +764,7 @@ basic_filebuf<charT, traits>::seekoff(off_type off, ios_base::seekdir way, ios_b
     int whence;
     switch (way)
     {
-        case ios_base::beg :
-            whence = SEEK_SET;
-            break;
+        case ios_base::beg : whence = SEEK_SET; break;
         case ios_base::cur :
             whence = SEEK_CUR;
             if ((which & ios_base::in) != 0)
@@ -803,11 +772,8 @@ basic_filebuf<charT, traits>::seekoff(off_type off, ios_base::seekdir way, ios_b
                 off -= base::egptr() - base::gptr();
             }
             break;
-        case ios_base::end :
-            whence = SEEK_END;
-            break;
-        default :
-            return pos_type(-1);
+        case ios_base::end : whence = SEEK_END; break;
+        default            : return pos_type(-1);
     }
     if (width < 0)
     {
@@ -898,10 +864,8 @@ inline
         r = a_codecvt_->unshift(state_, to, to + 4, to_next);
         switch (r)
         {
-            case codecvt_base::error :
-                return 0;
-            case codecvt_base::noconv :
-                break;
+            case codecvt_base::error  : return 0;
+            case codecvt_base::noconv : break;
             case codecvt_base::ok :
             case codecvt_base::partial :
                 {

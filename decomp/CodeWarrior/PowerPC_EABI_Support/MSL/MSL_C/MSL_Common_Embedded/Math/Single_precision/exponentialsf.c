@@ -63,10 +63,10 @@
 #include <cmath>
 
 static const _INT32 _inf = 0x7f800000;
-#define __INFINITY (*(float *)&_inf)
+#define __INFINITY (*(float*)&_inf)
 
 static const _INT32 _nan = 0x7fffffff;
-#define __NAN (*(float *)&_nan)
+#define __NAN (*(float*)&_nan)
 
 #pragma cplusplus on
 #define __LOG2_FOR_POWONLY 1 // prevents log2 from rechecking for bad values
@@ -130,7 +130,7 @@ __2_to_x(float x)
 
     // reassemble
 
-    return (*(float *)&int_part) * (.75f + (z + .25f));
+    return (*(float*)&int_part) * (.75f + (z + .25f));
 }
 
 extern "C" const float __two_to_log2e_m1_tI[];
@@ -155,9 +155,9 @@ expf(float x)
     const float  frac_part = x - (float)int_part;
     _INT32       int_index = int_part + 88;
     float        power_of_two, z = 0.0f;
-    *(_UINT32 *)&power_of_two = (int_index) + 39 << 23; // 127-88=39;
+    *(_UINT32*)&power_of_two = (int_index) + 39 << 23; // 127-88=39;
 
-#if __INTEL__ && __option(k63d)
+#if __INTEL__&& __option(k63d)
     const _INT32 table_address = 4 * int_index;
     asm
         {   
@@ -180,7 +180,7 @@ expf(float x)
                                                      * (__exp_to_x[5]
                                                         + frac_part * (__exp_to_x[6] + frac_part * __exp_to_x[7])))))));
 
-                                                        // the above poly is (e^frac_part) - 1
+                                                       // the above poly is (e^frac_part) - 1
     // Note: due to the non-transitive nature of floating point arithmetic, the above poly would
     // be much less accurate if vectorization is attempted(e.g. accumulating odd and even terms then accumulating).
     // The order of operations above must be maintained to acheive this level of accuracy.
@@ -240,13 +240,9 @@ powf(float x, float y)
 
     switch (fpclassify(y))
     {
-        case FP_ZERO :
-            return 1.0f;
-            break;
-        case FP_NAN :
-        case FP_INFINITE :
-            return __NAN;
-            break;
+        case FP_ZERO     : return 1.0f; break;
+        case FP_NAN      :
+        case FP_INFINITE : return __NAN; break;
         case FP_NORMAL :
         case FP_SUBNORMAL :
             if (y < 0.0f)

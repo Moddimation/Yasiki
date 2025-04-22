@@ -189,17 +189,10 @@ strstreambuf::seekoff(off_type off, ios_base::seekdir way, ios_base::openmode wh
     {
         switch (way)
         {
-            case ios_base::beg :
-                newoff = 0;
-                break;
-            case ios_base::cur :
-                newoff = gptr() - eback();
-                break;
-            case ios_base::end :
-                newoff = egptr() - eback();
-                break;
-            default :
-                return pos_type(-1);
+            case ios_base::beg : newoff = 0; break;
+            case ios_base::cur : newoff = gptr() - eback(); break;
+            case ios_base::end : newoff = egptr() - eback(); break;
+            default            : return pos_type(-1);
         }
         newoff += off;
         if (newoff < 0 || newoff > egptr() - eback())
@@ -212,17 +205,10 @@ strstreambuf::seekoff(off_type off, ios_base::seekdir way, ios_base::openmode wh
     {
         switch (way)
         {
-            case ios_base::beg :
-                newoff = 0;
-                break;
-            case ios_base::cur :
-                newoff = pptr() - pbase();
-                break;
-            case ios_base::end :
-                newoff = epptr() - pbase();
-                break;
-            default :
-                return pos_type(-1);
+            case ios_base::beg : newoff = 0; break;
+            case ios_base::cur : newoff = pptr() - pbase(); break;
+            case ios_base::end : newoff = epptr() - pbase(); break;
+            default            : return pos_type(-1);
         }
         newoff += off;
         if (newoff < 0 || newoff > epptr() - pbase())

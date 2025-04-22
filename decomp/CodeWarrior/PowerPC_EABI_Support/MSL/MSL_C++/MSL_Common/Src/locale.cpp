@@ -857,15 +857,13 @@ __two_exp(short x)
                 static const _BCD one_fourth("25", -1);
                 return one_fourth;
             }
-        case -1 :
-            return one_half;
+        case -1 : return one_half;
         case 0 :
             {
                 static const _BCD one("1", 0);
                 return one;
             }
-        case 1 :
-            return two;
+        case 1 : return two;
         case 2 :
             {
                 static const _BCD four("4", 0);

@@ -44,9 +44,9 @@ const short __month_to_days[2][13] = {
     { 0, 31, 60, 91, 121, 152, 182, 213, 244, 274, 305, 335, 366 }
 };
 
-static const char *day_name[] = { "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday" };
+static const char* day_name[] = { "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday" };
 
-static const char *month_name[] = { "January", "February", "March",     "April",   "May",      "June",
+static const char* month_name[] = { "January", "February", "March",     "April",   "May",      "June",
                                     "July",    "August",   "September", "October", "November", "December" };
 
 /*
@@ -127,7 +127,7 @@ leap_days(int year, int mon)
  */
 
 static int
-adjust(int *x, int y, int *z)
+adjust(int* x, int y, int* z)
 {
     div_t q;
 
@@ -148,7 +148,7 @@ adjust(int *x, int y, int *z)
  */
 
 static void
-__time2tm(time_t inTime, struct tm *tm) /*- mm 000127 -*/
+__time2tm(time_t inTime, struct tm* tm) /*- mm 000127 -*/
 {
     unsigned long years, months, days, seconds;
     int           is_leap_year;
@@ -235,7 +235,7 @@ __time2tm(time_t inTime, struct tm *tm) /*- mm 000127 -*/
  */
 
 static int
-__tm2time(struct tm *tm, time_t *time)
+__tm2time(struct tm* tm, time_t* time)
 {
     long   days;
     time_t seconds, day_secs;
@@ -330,7 +330,7 @@ no_exit:
  */
 
 static void
-asciitime(struct tm tm, char *str)
+asciitime(struct tm tm, char* str)
 {
     if (mktime(&tm) == (time_t)-1)
     {
@@ -360,7 +360,7 @@ asciitime(struct tm tm, char *str)
  */
 
 static void
-clear_tm(struct tm *tm)
+clear_tm(struct tm* tm)
 {
     tm->tm_sec = 0;
     tm->tm_min = 0;
@@ -407,7 +407,7 @@ difftime(time_t time1, time_t time0)
 #endif /* ndef _No_Floating_Point */                                                        /*- scm 970715 -*/
 
 time_t
-mktime(struct tm *timeptr)
+mktime(struct tm* timeptr)
 {
     struct tm tm = *timeptr;
     time_t    time;
@@ -425,7 +425,7 @@ mktime(struct tm *timeptr)
 #ifndef _No_Time_OS_Support                                                                 /*- mea 970720 -*/
 
 time_t
-time(time_t *timer)
+time(time_t* timer)
 {
     time_t time = __get_time();
 
@@ -439,8 +439,8 @@ time(time_t *timer)
 
 #endif /* ndef _No_Time_OS_Support */                                                       /*- mea 970720 -*/
 
-char *
-asctime(const struct tm *tm)
+char*
+asctime(const struct tm* tm)
 {
     static const struct tm err_tm = { 0, 0, 0, 1, 0, -1, 1, 0, -1 };
 
@@ -471,16 +471,16 @@ asctime(const struct tm *tm)
 #endif
 }
 
-char *
-ctime(const time_t *timer)
+char*
+ctime(const time_t* timer)
 {
     return (asctime(localtime(timer)));
 }
 
 #ifndef _No_Time_OS_Support                                                                 /*- mea 970720 -*/
 
-struct tm *
-gmtime(const time_t *timer)
+struct tm*
+gmtime(const time_t* timer)
 {
     time_t time;
 
@@ -522,8 +522,8 @@ gmtime(const time_t *timer)
 
 #endif /* ndef _No_Time_OS_Support */                                                       /*- mea 970720 -*/
 
-struct tm *
-localtime(const time_t *timer)
+struct tm*
+localtime(const time_t* timer)
 {
 #if (__dest_os == __win32_os || __dest_os == __wince_os)                                    /*- mm 010516 -*/
     if (!timer)
@@ -557,7 +557,7 @@ localtime(const time_t *timer)
 }
 
 static int
-emit(char *str, size_t size, size_t *max_size, const char *format_str, ...)
+emit(char* str, size_t size, size_t* max_size, const char* format_str, ...)
 {
 #if __PPC_EABI__ || __MIPS__                                                                /*- scm 970709 -*/
     va_list args;                                                                           /*- scm 970709 -*/
@@ -579,7 +579,7 @@ emit(char *str, size_t size, size_t *max_size, const char *format_str, ...)
 }
 
 static int
-week_num(const struct tm *tm, int starting_day)
+week_num(const struct tm* tm, int starting_day)
 {
     int days = tm->tm_yday;
 
@@ -648,10 +648,10 @@ ISO8601NewYear(int year)
     return (mktime(&ts0));
 }
 
-static int ISO8601Week(const struct tm *tmptr, int *WYear);
+static int ISO8601Week(const struct tm* tmptr, int* WYear);
 
 static int
-ISO8601Week(const struct tm *tmptr, int *WYear)
+ISO8601Week(const struct tm* tmptr, int* WYear)
 {
     struct WeekYear
     {
@@ -659,7 +659,7 @@ ISO8601Week(const struct tm *tmptr, int *WYear)
         time_t Start;
     };
     struct WeekYear  LastYear, ThisYear, NextYear;
-    struct WeekYear *WyPtr;
+    struct WeekYear* WyPtr;
     struct tm        Localtm = *tmptr;
     double           Days;
     int              WeekNo;
@@ -695,13 +695,13 @@ ISO8601Week(const struct tm *tmptr, int *WYear)
 #endif                                                                                              /*  _MSL_C9X_  */
 
 size_t
-strftime(char *str, size_t max_size, const char *format_str, const struct tm *timeptr)
+strftime(char* str, size_t max_size, const char* format_str, const struct tm* timeptr)
 {
     struct tm              tm;
     static const struct tm default_tm = { 0, 0, 0, 1, 0, 0, 1, 0, -1 };
     size_t                 num_chars, chars_written, space_remaining;                               /*- mm 980501 -*/
-    const char            *format_ptr;
-    const char            *curr_format;
+    const char*            format_ptr;
+    const char*            curr_format;
     int                    n, ISO8601Year, ISO8601WeekNo;                                           /*- mm 990709 -*/
 
     if ((space_remaining = --max_size) <= 0)                                                        /*- mm 980501 -*/
@@ -1000,10 +1000,7 @@ strftime(char *str, size_t max_size, const char *format_str, const struct tm *ti
                 }
 #endif
 
-            case 'Z' :
-
-                ++format_ptr;
-                continue;
+            case 'Z' : ++format_ptr; continue;
 
             case '%' :                                                                 /*- mf 092497 -*/
 

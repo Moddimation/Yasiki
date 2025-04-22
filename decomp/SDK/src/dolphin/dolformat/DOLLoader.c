@@ -4,13 +4,13 @@
 #include <stddef.h>
 #include <string.h>
 
-void bzero(void *start, unsigned long len);
+void bzero(void* start, unsigned long len);
 
 void
-bzero(void *start, unsigned long len)
+bzero(void* start, unsigned long len)
 {
     unsigned long  i;
-    unsigned char *a = start;
+    unsigned char* a = start;
 
     for (i = 0; i < len; i++)
     {
@@ -18,13 +18,13 @@ bzero(void *start, unsigned long len)
     }
 }
 
-void *
-DOLLoadImage(u8 *buffer, BOOL verbose)
+void*
+DOLLoadImage(u8* buffer, BOOL verbose)
 {
-    struct DolImage *ip;
+    struct DolImage* ip;
     s32              segment;
 
-    ip = (struct DolImage *)buffer;
+    ip = (struct DolImage*)buffer;
     if (verbose)
     {
         DBPrintf("DOLLoadImage header :¥n");
@@ -47,7 +47,7 @@ DOLLoadImage(u8 *buffer, BOOL verbose)
         DBPrintf("BSS segment length %d -> VA 0x%x¥n", ip->bssLen, ip->bss);
         DBPrintf("ENTRY POINT -> VA 0x%x¥n¥n", ip->entry);
     }
-    bzero((void *)ip->bss, ip->bssLen);
+    bzero((void*)ip->bss, ip->bssLen);
     if (verbose)
     {
         DBPrintf("Loading TEXT...");
@@ -60,8 +60,8 @@ DOLLoadImage(u8 *buffer, BOOL verbose)
             {
                 DBPrintf("[%d]", segment);
             }
-            memcpy((void *)ip->text[segment], buffer + (u32)ip->textData[segment], ip->textLen[segment]);
-            DCFlushRange((void *)ip->text[segment], ip->textLen[segment]);
+            memcpy((void*)ip->text[segment], buffer + (u32)ip->textData[segment], ip->textLen[segment]);
+            DCFlushRange((void*)ip->text[segment], ip->textLen[segment]);
         }
     }
     if (verbose)
@@ -77,8 +77,8 @@ DOLLoadImage(u8 *buffer, BOOL verbose)
             {
                 DBPrintf("[%d]", segment);
             }
-            memcpy((void *)ip->data[segment], buffer + (u32)ip->dataData[segment], ip->dataLen[segment]);
-            DCFlushRange((void *)ip->data[segment], ip->dataLen[segment]);
+            memcpy((void*)ip->data[segment], buffer + (u32)ip->dataData[segment], ip->dataLen[segment]);
+            DCFlushRange((void*)ip->data[segment], ip->dataLen[segment]);
         }
     }
     if (verbose)
@@ -87,11 +87,11 @@ DOLLoadImage(u8 *buffer, BOOL verbose)
     }
     ICFlashInvalidate();
     ICSync();
-    return (void *)ip->entry;
+    return (void*)ip->entry;
 }
 
 asm void
-DOLRunApp(register void *entryPoint)
+DOLRunApp(register void* entryPoint)
 {
     nofralloc mtlr entryPoint blr
 }

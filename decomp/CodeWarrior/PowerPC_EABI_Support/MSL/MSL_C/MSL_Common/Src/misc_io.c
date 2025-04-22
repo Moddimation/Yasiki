@@ -30,24 +30,24 @@
 #include "file_io.h"
 
 void
-clearerr(FILE *file)
+clearerr(FILE* file)
 {
     file->state.eof = 0;
     file->state.error = 0;
 }
 
-int(feof)(FILE *file)
+int(feof)(FILE* file)
 {
     return (feof(file));
 }
 
-int(ferror)(FILE *file)
+int(ferror)(FILE* file)
 {
     return (ferror(file));
 }
 
 void
-perror(const char *s)
+perror(const char* s)
 {
     char errstr[__max_errstr];
 

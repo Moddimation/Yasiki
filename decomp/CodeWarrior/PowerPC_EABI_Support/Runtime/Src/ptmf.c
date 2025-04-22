@@ -33,7 +33,7 @@ typedef struct PTMF
 
     union
     {
-        void *func_addr;     //	nonvirtual function address
+        void* func_addr;     //	nonvirtual function address
         long  ventry_offset; //	offset of virtual function entry in vtable
     } func_data;
 } PTMF;
@@ -53,13 +53,13 @@ extern "C"
 {
 #endif
 
-long  __ptmf_test(PTMF *ptmf);
-long  __ptmf_cmpr(PTMF *ptmf1, PTMF *ptmf2);
+long  __ptmf_test(PTMF* ptmf);
+long  __ptmf_cmpr(PTMF* ptmf1, PTMF* ptmf2);
 void  __ptmf_call(...);
 void  __ptmf_call4(...);
 void  __ptmf_scall(...);
 void  __ptmf_scall4(...);
-PTMF *__ptmf_cast(long offset, const PTMF *ptmfrom, PTMF *ptmto);
+PTMF* __ptmf_cast(long offset, const PTMF* ptmfrom, PTMF* ptmto);
 
 #ifdef __cplusplus
 }
@@ -71,7 +71,7 @@ PTMF *__ptmf_cast(long offset, const PTMF *ptmfrom, PTMF *ptmto);
 //
 
 asm long
-__ptmf_test(register PTMF *ptmf)
+__ptmf_test(register PTMF* ptmf)
 {
 #if __PPC_EABI__
     nofralloc
@@ -89,7 +89,7 @@ __ptmf_test(register PTMF *ptmf)
 //
 
 asm long
-__ptmf_cmpr(register PTMF *ptmf1, register PTMF *ptmf2)
+__ptmf_cmpr(register PTMF* ptmf1, register PTMF* ptmf2)
 {
 #if __PPC_EABI__
     nofralloc
@@ -271,8 +271,8 @@ __ptmf_scall4(...)
 /* Input....: pointer to destiniation pointer to function member		*/
 /* Return...: pointer to destiniation pointer to function member		*/
 /************************************************************************/
-extern PTMF *
-__ptmf_cast(long offset, const PTMF *ptmfrom, PTMF *ptmto)
+extern PTMF*
+__ptmf_cast(long offset, const PTMF* ptmfrom, PTMF* ptmto)
 {
     ptmto->this_delta = ptmfrom->this_delta + offset;
     ptmto->vtbl_offset = ptmfrom->vtbl_offset;

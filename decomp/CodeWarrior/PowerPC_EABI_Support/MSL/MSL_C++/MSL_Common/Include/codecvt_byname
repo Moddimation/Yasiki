@@ -326,8 +326,7 @@ __jis<internT>::do_unshift(mbstate_t& state, char* to, char* to_limit, char*& to
     to_next = to;
     switch (state)
     {
-        case 0 :
-            return base::noconv;
+        case 0 : return base::noconv;
         case 1 :
             if (to_next == to_limit)
             {
@@ -1428,8 +1427,7 @@ codecvt_byname<internT, externT, stateT>::codecvt_byname(const char* std_name, s
                     case 5 : // UTF-8
                         __codecvt_ = new __utf_8<internT>;
                         break;
-                    default :
-                        goto skip_success;
+                    default : goto skip_success;
                 }
                 success = true;
             skip_success:;

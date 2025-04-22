@@ -7,14 +7,14 @@
 #include <charPipeline/fileCache.h>
 #include <charPipeline/texPalette.h>
 
-static void LoadTexPalette(TEXPalettePtr *pal, char *name);
+static void LoadTexPalette(TEXPalettePtr* pal, char* name);
 static void UnpackTexPalette(TEXPalettePtr pal);
 static void TexFreeFunc(TEXPalettePtr pal);
 
 void
-TEXGetPalette(TEXPalettePtr *pal, char *name)
+TEXGetPalette(TEXPalettePtr* pal, char* name)
 {
-    void *p = TexFreeFunc;
+    void* p = TexFreeFunc;
 
     if (DOCacheInitialized)
     {
@@ -32,7 +32,7 @@ TEXGetPalette(TEXPalettePtr *pal, char *name)
 }
 
 static void
-LoadTexPalette(TEXPalettePtr *pal, char *name)
+LoadTexPalette(TEXPalettePtr* pal, char* name)
 {
     DVDFileInfo dfi;
 
@@ -71,7 +71,7 @@ UnpackTexPalette(TEXPalettePtr pal)
         }
         if (pal->descriptorArray[i].CLUTHeader)
         {
-            pal->descriptorArray[i].CLUTHeader = (CLUTHeaderPtr)((u8 *)pal + (u32)pal->descriptorArray[i].CLUTHeader);
+            pal->descriptorArray[i].CLUTHeader = (CLUTHeaderPtr)((u8*)pal + (u32)pal->descriptorArray[i].CLUTHeader);
             if (!pal->descriptorArray[i].CLUTHeader->unpacked)
             {
                 pal->descriptorArray[i].CLUTHeader->data = (Ptr)pal + (u32)pal->descriptorArray[i].CLUTHeader->data;
@@ -95,7 +95,7 @@ TexFreeFunc(TEXPalettePtr pal)
 }
 
 void
-TEXReleasePalette(TEXPalettePtr *pal)
+TEXReleasePalette(TEXPalettePtr* pal)
 {
     if (DOCacheInitialized)
     {
@@ -109,7 +109,7 @@ TEXReleasePalette(TEXPalettePtr *pal)
 }
 
 void
-TEXGetGXTexObjFromPalette(TEXPalettePtr pal, GXTexObj *to, u32 id)
+TEXGetGXTexObjFromPalette(TEXPalettePtr pal, GXTexObj* to, u32 id)
 {
     TEXDescriptorPtr tdp;
     GXBool           mipMap;
@@ -131,7 +131,7 @@ TEXGetGXTexObjFromPalette(TEXPalettePtr pal, GXTexObj *to, u32 id)
 }
 
 void
-TEXGetGXTexObjFromPaletteCI(TEXPalettePtr pal, GXTexObj *to, GXTlutObj *tlo, GXTlut tluts, u32 id)
+TEXGetGXTexObjFromPaletteCI(TEXPalettePtr pal, GXTexObj* to, GXTlutObj* tlo, GXTlut tluts, u32 id)
 {
     GXBool           mipMap;
     TEXDescriptorPtr tdp;

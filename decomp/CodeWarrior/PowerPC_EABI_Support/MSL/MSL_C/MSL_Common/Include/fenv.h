@@ -160,7 +160,7 @@ _MSL_IMP_EXP_C void feclearexcept(int);
 /* currently the variable fexcept_t is just the status word. For this reason fegetexceptflag
    is functionally equivalent to fetestexcept.  fetestexcept is slightly more efficient.
 */
-_MSL_IMP_EXP_C void fegetexceptflag(fexcept_t *, int);
+_MSL_IMP_EXP_C void fegetexceptflag(fexcept_t*, int);
 
 /*******************************************************************************
  *     The function "fesetexcept" or "fesetexceptflag"sets or clears the        *
@@ -172,13 +172,13 @@ _MSL_IMP_EXP_C void fegetexceptflag(fexcept_t *, int);
  *     the flags.                                                               *
  *******************************************************************************/
 
-_MSL_IMP_EXP_C void fesetexceptflag(const fexcept_t *, int);
+_MSL_IMP_EXP_C void fesetexceptflag(const fexcept_t*, int);
 
 #            define fegetexcept fegetexceptflag
 #            define fesetexcept fesetexceptflag
 #        else
-_MSL_IMP_EXP_C void fegetexcept(fexcept_t *, int);
-_MSL_IMP_EXP_C void fesetexcept(const fexcept_t *, int);
+_MSL_IMP_EXP_C void fegetexcept(fexcept_t*, int);
+_MSL_IMP_EXP_C void fesetexcept(const fexcept_t*, int);
 #        endif
 
 _MSL_IMP_EXP_C void feraiseexcept(int);
@@ -222,7 +222,7 @@ _MSL_IMP_EXP_C int fesetround(int);
  *     in the object pointed to by its pointer argument "envp".                 *
  *******************************************************************************/
 
-_MSL_IMP_EXP_C void fegetenv(fenv_t *);
+_MSL_IMP_EXP_C void fegetenv(fenv_t*);
 
 /*******************************************************************************
  *     The function "feholdexcept" saves the current environment in the object  *
@@ -232,7 +232,7 @@ _MSL_IMP_EXP_C void fegetenv(fenv_t *);
  *     rounding direction mode.                                                 *
  *******************************************************************************/
 
-_MSL_IMP_EXP_C int feholdexcept(fenv_t *);
+_MSL_IMP_EXP_C int feholdexcept(fenv_t*);
 
 /*******************************************************************************
  *     The function "fesetenv" installs the floating-point environment          *
@@ -241,7 +241,7 @@ _MSL_IMP_EXP_C int feholdexcept(fenv_t *);
  *     "feholdexcept", by an implementation-defined macro of type "fenv_t",     *
  *     or by the use of the pointer macro FE_DFL_ENV as the argument.           *
  *******************************************************************************/
-_MSL_IMP_EXP_C void fesetenv(const fenv_t *);
+_MSL_IMP_EXP_C void fesetenv(const fenv_t*);
 
 /*******************************************************************************
  *     The function "feupdateenv" saves the current exceptions into its         *
@@ -252,7 +252,7 @@ _MSL_IMP_EXP_C void fesetenv(const fenv_t *);
  *     spurious exceptions from their callers.                                  *
  *******************************************************************************/
 
-_MSL_IMP_EXP_C void feupdateenv(const fenv_t *);
+_MSL_IMP_EXP_C void feupdateenv(const fenv_t*);
 
 #        if __MC68K__ || __INTEL__
 

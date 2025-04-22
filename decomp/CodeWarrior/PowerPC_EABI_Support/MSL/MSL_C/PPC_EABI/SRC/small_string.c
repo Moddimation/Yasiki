@@ -22,22 +22,21 @@
 
 #pragma warn_possunwant off
 
-char *(strcpy)(char *dst, const char *src)
+char*(strcpy)(char* dst, const char* src)
 {
-    const unsigned char *p = (unsigned char *)src - 1;
-    unsigned char       *q = (unsigned char *)dst - 1;
+    const unsigned char* p = (unsigned char*)src - 1;
+    unsigned char*       q = (unsigned char*)dst - 1;
 
-    while (*++q = *++p)
-        ;
+    while (*++q = *++p);
 
     return (dst);
 }
 
 int
-strcmp(const char *str1, const char *str2)
+strcmp(const char* str1, const char* str2)
 {
-    const unsigned char *p1 = (unsigned char *)str1 - 1;
-    const unsigned char *p2 = (unsigned char *)str2 - 1;
+    const unsigned char* p1 = (unsigned char*)str1 - 1;
+    const unsigned char* p2 = (unsigned char*)str2 - 1;
     unsigned long        c1, c2;
 
     while ((c1 = *++p1) == (c2 = *++p2))

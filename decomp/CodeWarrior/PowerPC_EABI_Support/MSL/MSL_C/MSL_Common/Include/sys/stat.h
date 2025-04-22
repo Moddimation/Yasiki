@@ -96,9 +96,9 @@ _MSL_BEGIN_EXTERN_C                                                /*- cc 010409
 
 #        pragma options align = reset
 
-_MSL_IMP_EXP_C int stat(const char *, struct stat *);
-_MSL_IMP_EXP_C int fstat(int, struct stat *);
-_MSL_IMP_EXP_C int mkdir(const char *, ...);
+_MSL_IMP_EXP_C int stat(const char*, struct stat*);
+_MSL_IMP_EXP_C int fstat(int, struct stat*);
+_MSL_IMP_EXP_C int mkdir(const char*, ...);
 
 _MSL_END_EXTERN_C                                                  /*- cc 010409 -*/
 

@@ -12,25 +12,25 @@
 #    include <cstdio>                                                                 /*- hh 971206 -*/
 
 #    define set_eof(file)                                                                                              \
-        do                                                                                                             \
-        {                                                                                                              \
+        do {                                                                                                           \
             (file)->state.io_state = __neutral;                                                                        \
             (file)->state.eof = 1;                                                                                     \
             (file)->buffer_len = 0;                                                                                    \
-        } while (0)
+        }                                                                                                              \
+        while (0)
 
 #    define set_error(file)                                                                                            \
-        do                                                                                                             \
-        {                                                                                                              \
+        do {                                                                                                           \
             (file)->state.error = 1;                                                                                   \
             (file)->buffer_len = 0;                                                                                    \
-        } while (0)
+        }                                                                                                              \
+        while (0)
 
 _MSL_BEGIN_EXTERN_C                                                                   /*- cc 010409 -*/
 
         __std(FILE)
     * __find_unopened_file(void);                                                     /*- hh 990121 -*/
-void __init_file(__std(FILE) *, __std(__file_modes) mode, char *buff, __std(size_t)); /*- mf 990715 -*/
+void __init_file(__std(FILE) *, __std(__file_modes) mode, char* buff, __std(size_t)); /*- mf 990715 -*/
 void __close_all(void);
 int  __flush_all(void);
 int  __flush_line_buffered_output_files(void);

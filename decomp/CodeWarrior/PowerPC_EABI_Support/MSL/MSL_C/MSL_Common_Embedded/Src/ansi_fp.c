@@ -92,7 +92,7 @@ __count_trailing_zerol(unsigned long x)
 static int
 __count_trailing_zero(double x)
 {
-    unsigned long *l = (unsigned long *)&x;
+    unsigned long* l = (unsigned long*)&x;
 #    if __option(little_endian)
     if (l[0] != 0)
     {
@@ -115,9 +115,9 @@ __count_trailing_zero(double x)
     Round towards even for half way
 */
 static int
-__must_round(const decimal *d, int pos)
+__must_round(const decimal* d, int pos)
 {
-    unsigned char const *i = d->sig.text + pos;
+    unsigned char const * i = d->sig.text + pos;
     if (*i > 5)
     {
         return 1;
@@ -127,7 +127,7 @@ __must_round(const decimal *d, int pos)
         return -1;
     }
     { /* if there are any non-zeroes after the 5 round up */
-        unsigned char const *e = d->sig.text + d->sig.length;
+        unsigned char const * e = d->sig.text + d->sig.length;
         for (++i; i < e; ++i)
         {
             if (*i != 0)
@@ -148,10 +148,10 @@ __must_round(const decimal *d, int pos)
     Round decimal up, using the left most digits digits
 */
 static void
-__dorounddecup(decimal *d, int digits)
+__dorounddecup(decimal* d, int digits)
 {
-    unsigned char *b = d->sig.text;
-    unsigned char *i = b + digits - 1;
+    unsigned char* b = d->sig.text;
+    unsigned char* i = b + digits - 1;
     while (1)
     {
         if (*i < 9)
@@ -173,7 +173,7 @@ __dorounddecup(decimal *d, int digits)
     Round decimal to specified digits according to value in decimal
 */
 static void
-__rounddec(decimal *d, int digits)
+__rounddec(decimal* d, int digits)
 {
     if (digits <= 0 || digits >= d->sig.length)
     {
@@ -194,7 +194,7 @@ __rounddec(decimal *d, int digits)
     Convert unsigned long long to decimal
 */
 static void
-__ull2dec(decimal *result, unsigned long long integer)
+__ull2dec(decimal* result, unsigned long long integer)
 {
     result->sgn = 0;
     if (integer == 0)
@@ -215,8 +215,8 @@ __ull2dec(decimal *result, unsigned long long integer)
         result->sig.text[result->sig.length++] = (unsigned char)(integer % 10);
     }
     {
-        unsigned char *i = result->sig.text;
-        unsigned char *j = result->sig.text + result->sig.length;
+        unsigned char* i = result->sig.text;
+        unsigned char* j = result->sig.text + result->sig.length;
         for (; i < --j; ++i)
         {
             unsigned char t = *i;
@@ -231,14 +231,14 @@ __ull2dec(decimal *result, unsigned long long integer)
     result = x * y
 */
 static void
-__timesdec(decimal *result, const decimal *x, const decimal *y)
+__timesdec(decimal* result, const decimal* x, const decimal* y)
 {
     /* Assume x and y are finite and positive */
     unsigned long  accumulator = 0;
     unsigned char  mantissa[2 * SIGDIGLEN];
     int            i = x->sig.length + y->sig.length - 1;
-    unsigned char *ip = mantissa + i + 1;
-    unsigned char *ep = ip;
+    unsigned char* ip = mantissa + i + 1;
+    unsigned char* ep = ip;
     result->sgn = 0;
     for (; i > 0; --i)
     {
@@ -282,7 +282,7 @@ __timesdec(decimal *result, const decimal *x, const decimal *y)
     {
         if (*ip == 5)
         {
-            unsigned char *jp = ip + 1;
+            unsigned char* jp = ip + 1;
             for (; jp < ep; ++jp)
             {
                 if (*jp != 0)
@@ -307,7 +307,7 @@ __timesdec(decimal *result, const decimal *x, const decimal *y)
     is too long to fit in the mantissa, rounding is performed.
 */
 static void
-__str2dec(decimal *d, const char *s, short exp)
+__str2dec(decimal* d, const char* s, short exp)
 {
     int i;
     d->exp = exp;
@@ -324,7 +324,7 @@ __str2dec(decimal *d, const char *s, short exp)
             return;
         }
         {
-            const char *p = s + 1;
+            const char* p = s + 1;
             for (; *p != 0; ++p)
             {
                 if (*p != '0')
@@ -346,73 +346,31 @@ __str2dec(decimal *d, const char *s, short exp)
     decimal = pow(2, exp)
 */
 static void
-__two_exp(decimal *result, short exp)
+__two_exp(decimal* result, short exp)
 {
     switch (exp)
     {
-        case -64 :
-            __str2dec(result, "542101086242752217003726400434970855712890625", -20);
-            return;
-        case -53 :
-            __str2dec(result, "11102230246251565404236316680908203125", -16);
-            return;
-        case -32 :
-            __str2dec(result, "23283064365386962890625", -10);
-            return;
-        case -16 :
-            __str2dec(result, "152587890625", -5);
-            return;
-        case -8 :
-            __str2dec(result, "390625", -3);
-            return;
-        case -7 :
-            __str2dec(result, "78125", -3);
-            return;
-        case -6 :
-            __str2dec(result, "15625", -2);
-            return;
-        case -5 :
-            __str2dec(result, "3125", -2);
-            return;
-        case -4 :
-            __str2dec(result, "625", -2);
-            return;
-        case -3 :
-            __str2dec(result, "125", -1);
-            return;
-        case -2 :
-            __str2dec(result, "25", -1);
-            return;
-        case -1 :
-            __str2dec(result, "5", -1);
-            return;
-        case 0 :
-            __str2dec(result, "1", 0);
-            return;
-        case 1 :
-            __str2dec(result, "2", 0);
-            return;
-        case 2 :
-            __str2dec(result, "4", 0);
-            return;
-        case 3 :
-            __str2dec(result, "8", 0);
-            return;
-        case 4 :
-            __str2dec(result, "16", 1);
-            return;
-        case 5 :
-            __str2dec(result, "32", 1);
-            return;
-        case 6 :
-            __str2dec(result, "64", 1);
-            return;
-        case 7 :
-            __str2dec(result, "128", 2);
-            return;
-        case 8 :
-            __str2dec(result, "256", 2);
-            return;
+        case -64 : __str2dec(result, "542101086242752217003726400434970855712890625", -20); return;
+        case -53 : __str2dec(result, "11102230246251565404236316680908203125", -16); return;
+        case -32 : __str2dec(result, "23283064365386962890625", -10); return;
+        case -16 : __str2dec(result, "152587890625", -5); return;
+        case -8  : __str2dec(result, "390625", -3); return;
+        case -7  : __str2dec(result, "78125", -3); return;
+        case -6  : __str2dec(result, "15625", -2); return;
+        case -5  : __str2dec(result, "3125", -2); return;
+        case -4  : __str2dec(result, "625", -2); return;
+        case -3  : __str2dec(result, "125", -1); return;
+        case -2  : __str2dec(result, "25", -1); return;
+        case -1  : __str2dec(result, "5", -1); return;
+        case 0   : __str2dec(result, "1", 0); return;
+        case 1   : __str2dec(result, "2", 0); return;
+        case 2   : __str2dec(result, "4", 0); return;
+        case 3   : __str2dec(result, "8", 0); return;
+        case 4   : __str2dec(result, "16", 1); return;
+        case 5   : __str2dec(result, "32", 1); return;
+        case 6   : __str2dec(result, "64", 1); return;
+        case 7   : __str2dec(result, "128", 2); return;
+        case 8   : __str2dec(result, "256", 2); return;
     }
     {
         decimal x2;
@@ -438,7 +396,7 @@ __two_exp(decimal *result, short exp)
 }
 
 static int
-__equals_dec(const decimal *x, const decimal *y)
+__equals_dec(const decimal* x, const decimal* y)
 {
     /* Assume x and y are finite and non-negative */
     /* First check for x or y to be 0 */
@@ -500,7 +458,7 @@ __equals_dec(const decimal *x, const decimal *y)
 }
 
 static int
-__less_dec(const decimal *x, const decimal *y)
+__less_dec(const decimal* x, const decimal* y)
 {
     /* Assume x and y are finite and non-negative */
     /* First check for x or y to be 0 */
@@ -552,12 +510,12 @@ __less_dec(const decimal *x, const decimal *y)
 }
 
 static void
-__minus_dec(decimal *z, const decimal *x, const decimal *y)
+__minus_dec(decimal* z, const decimal* x, const decimal* y)
 {
     /* Assume x and y are finite and non-negative */
     /* Also assume y < x */
     int                  zlen, dexp;
-    unsigned char       *ib, *i, *ie;
+    unsigned char *      ib, *i, *ie;
     unsigned char const *jb, *j, *jn;
     *z = *x;
     if (y->sig.text[0] == 0)
@@ -594,7 +552,7 @@ __minus_dec(decimal *z, const decimal *x, const decimal *y)
         --j;
         if (*i < *j)
         {
-            unsigned char *k = i - 1;
+            unsigned char* k = i - 1;
             while (*k == 0)
             {
                 --k;
@@ -617,7 +575,7 @@ __minus_dec(decimal *z, const decimal *x, const decimal *y)
         }
         else if (*jn == 5)
         {
-            unsigned char const *je = y->sig.text + y->sig.length;
+            unsigned char const * je = y->sig.text + y->sig.length;
             for (j = jn + 1; j < je; ++j)
             {
                 if (*j != 0)
@@ -635,7 +593,7 @@ __minus_dec(decimal *z, const decimal *x, const decimal *y)
         {
             if (*i < 1)
             {
-                unsigned char *k = i - 1;
+                unsigned char* k = i - 1;
                 while (*k == 0)
                 {
                     --k;
@@ -679,7 +637,7 @@ done:
 }
 
 static void
-__num2dec_internal(decimal *d, double x)
+__num2dec_internal(decimal* d, double x)
 {
     char sgn = signbit(x) != 0;
     /* Special cases */
@@ -719,7 +677,7 @@ __num2dec_internal(decimal *d, double x)
 }
 
 void
-__num2dec(const decform *f, double x, decimal *d)
+__num2dec(const decform* f, double x, decimal* d)
 {
     short digits = f->digits;
     int   i;
@@ -750,7 +708,7 @@ __num2dec(const decform *f, double x, decimal *d)
 }
 
 double
-__dec2num(const decimal *d)
+__dec2num(const decimal* d)
 {
     if (d->sig.length <= 0)
     {
@@ -758,14 +716,12 @@ __dec2num(const decimal *d)
     }
     switch (d->sig.text[0])
     {
-        case '0' :
-            return copysign(0.0, d->sgn == 0 ? 1.0 : -1.0);
-        case 'I' :
-            return copysign((double)INFINITY, d->sgn == 0 ? 1.0 : -1.0);
+        case '0' : return copysign(0.0, d->sgn == 0 ? 1.0 : -1.0);
+        case 'I' : return copysign((double)INFINITY, d->sgn == 0 ? 1.0 : -1.0);
         case 'N' :
             {
                 double              result;
-                unsigned long long *ll = (unsigned long long *)&result;
+                unsigned long long* ll = (unsigned long long*)&result;
                 *ll = 0x7FF0000000000000;
                 if (d->sgn)
                 {
@@ -778,9 +734,9 @@ __dec2num(const decimal *d)
                 else
                 {
 #    if __option(little_endian)
-                    unsigned char *p = (unsigned char *)&result + 6;
+                    unsigned char* p = (unsigned char*)&result + 6;
 #    else
-                    unsigned char *p = (unsigned char *)&result + 1;
+                    unsigned char* p = (unsigned char*)&result + 1;
 #    endif
                     int placed_non_zero = 0;
                     int low = 1;
@@ -829,8 +785,8 @@ __dec2num(const decimal *d)
         static double  pow_10[8] = { 1e1, 1e2, 1e3, 1e4, 1e5, 1e6, 1e7, 1e8 };
         /* Store *d in dec in internal format */
         decimal        dec = *d;
-        unsigned char *i = dec.sig.text;
-        unsigned char *e = i + dec.sig.length;
+        unsigned char* i = dec.sig.text;
+        unsigned char* e = i + dec.sig.length;
         double         first_guess;
         int            exponent;
         for (; i < e; ++i)
@@ -921,7 +877,7 @@ __dec2num(const decimal *d)
                 if (__equals_dec(&difflow, &diffhigh))
                 {
                     /* break tie with round to even */
-                    if (*(unsigned long long *)&first_guess & 1)
+                    if (*(unsigned long long*)&first_guess & 1)
                     {
                         first_guess = next_guess;
                     }
@@ -950,7 +906,7 @@ __dec2num(const decimal *d)
                 if (__equals_dec(&difflow, &diffhigh))
                 {
                     /* break tie with round to even */
-                    if (*(unsigned long long *)&first_guess & 1)
+                    if (*(unsigned long long*)&first_guess & 1)
                     {
                         first_guess = next_guess;
                     }

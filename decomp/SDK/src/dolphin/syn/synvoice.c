@@ -12,15 +12,15 @@
 struct SYNVOICE __SYNVoice[64];
 
 void
-__SYNClearVoiceReferences(void *p)
+__SYNClearVoiceReferences(void* p)
 {
-    AXVPB           *axvpb;
-    struct SYNSYNTH *synth;
-    struct SYNVOICE *voice;
+    AXVPB*           axvpb;
+    struct SYNSYNTH* synth;
+    struct SYNVOICE* voice;
 
     ASSERTLINE(0x21, p);
     axvpb = p;
-    synth = (void *)axvpb->userContext;
+    synth = (void*)axvpb->userContext;
     voice = &__SYNVoice[axvpb->index];
     ASSERTLINE(0x26, synth);
     ASSERTLINE(0x27, axvpb->index < AX_MAX_VOICES);
@@ -38,7 +38,7 @@ __SYNClearVoiceReferences(void *p)
 }
 
 void
-__SYNSetVoiceToRelease(struct SYNVOICE *voice, unsigned long priority)
+__SYNSetVoiceToRelease(struct SYNVOICE* voice, unsigned long priority)
 {
     ASSERTLINE(0x3F, voice);
     voice->veState = 3;
@@ -49,8 +49,8 @@ __SYNSetVoiceToRelease(struct SYNVOICE *voice, unsigned long priority)
 void
 __SYNServiceVoice(int i)
 {
-    struct SYNVOICE *voice;
-    struct SYNSYNTH *synth;
+    struct SYNVOICE* voice;
+    struct SYNSYNTH* synth;
 
     voice = &__SYNVoice[i];
     synth = voice->synth;

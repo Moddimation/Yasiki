@@ -8,8 +8,8 @@
 #ifndef __MWMEMORY_H__
 #define __MWMEMORY_H__
 
-typedef char *Ptr;
-typedef Ptr  *Handle;
+typedef char* Ptr;
+typedef Ptr*  Handle;
 typedef int   OSErr;
 
 extern pascal Handle NewHandle(long dataSize);

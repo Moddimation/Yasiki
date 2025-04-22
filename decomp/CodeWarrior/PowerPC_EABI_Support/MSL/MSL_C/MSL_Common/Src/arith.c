@@ -178,7 +178,7 @@ lldiv(long long numerator, long long denominator)
 #endif /* #ifdef __MSL_LONGLONG_SUPPORT__	*/ /*- mm 981023 -*/
 
 int
-__msl_add(int *x, int y)                       /*- cc 010510 -*/
+__msl_add(int* x, int y)                       /*- cc 010510 -*/
 {
     int _x = *x;
 
@@ -200,7 +200,7 @@ __msl_add(int *x, int y)                       /*- cc 010510 -*/
 }
 
 int
-__msl_ladd(long *x, long y)                    /*- cc 010510 -*/
+__msl_ladd(long* x, long y)                    /*- cc 010510 -*/
 {
     long _x = *x;
 
@@ -224,7 +224,7 @@ __msl_ladd(long *x, long y)                    /*- cc 010510 -*/
 /* hh 980122 added long long support */
 #ifdef __MSL_LONGLONG_SUPPORT__                /*- mm 981023 -*/
 int
-__lladd(long long *x, long long y)
+__lladd(long long* x, long long y)
 {
     long long _x = *x;
 
@@ -247,7 +247,7 @@ __lladd(long long *x, long long y)
 #endif /* #ifdef __MSL_LONGLONG_SUPPORT__	*/ /*- mm 981023 -*/
 
 int
-__msl_mul(int *x, int y)                       /*- cc 010510 -*/
+__msl_mul(int* x, int y)                       /*- cc 010510 -*/
 {
     int _x = *x;
     int sign;
@@ -274,7 +274,7 @@ __msl_mul(int *x, int y)                       /*- cc 010510 -*/
 }
 
 int
-__msl_lmul(long *x, long y)                    /*- cc 010510 -*/
+__msl_lmul(long* x, long y)                    /*- cc 010510 -*/
 {
     long _x = *x;
     int  sign;
@@ -303,7 +303,7 @@ __msl_lmul(long *x, long y)                    /*- cc 010510 -*/
 /*- hh 980122 -*/
 #ifdef __MSL_LONGLONG_SUPPORT__                /*- mm 981023 -*/
 int
-__llmul(long long *x, long long y)
+__llmul(long long* x, long long y)
 {
     long long _x = *x;
     int       sign;

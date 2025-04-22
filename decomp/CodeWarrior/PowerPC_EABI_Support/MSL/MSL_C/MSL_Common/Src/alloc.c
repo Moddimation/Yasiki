@@ -900,8 +900,7 @@ Block_report(Block* ths, int verbose)
         exit(1);
     }
     prev_free = 0;
-    do
-    {
+    do {
         if (SubBlock_is_free(st))
         {
             if (verbose)
@@ -923,29 +922,30 @@ Block_report(Block* ths, int verbose)
         }
         st = (SubBlock*)((char*)st + SubBlock_size(st));
         ++i;
-    } while (st != end);
+    }
+    while (st != end);
     sb = Block_start(ths);
     if (sb != 0)
     {
-        do
-        {
+        do {
             if (SubBlock_size(sb) > 1042 * 1024)
             {
                 printf("\t**ERROR** SubBlock size suspiciously large %d\n", SubBlock_size(sb));
                 exit(1);
             }
             sb = sb->next_;
-        } while (sb != Block_start(ths));
+        }
+        while (sb != Block_start(ths));
         sb = Block_start(ths);
-        do
-        {
+        do {
             if (SubBlock_size(sb) > 1042 * 1024)
             {
                 printf("\t**ERROR** SubBlock size suspiciously large %d\n", SubBlock_size(sb));
                 exit(1);
             }
             sb = sb->prev_;
-        } while (sb != Block_start(ths));
+        }
+        while (sb != Block_start(ths));
     }
 }
 
@@ -1157,8 +1157,7 @@ allocate_from_var_pools(__mem_pool_obj* pool_obj, mem_size size)
     {
         return 0;
     }
-    do
-    {
+    do {
         if (size <= Block_max_possible_size(bp))
         {
             ptr = Block_subBlock(bp, size);
@@ -1179,7 +1178,8 @@ allocate_from_var_pools(__mem_pool_obj* pool_obj, mem_size size)
             ptr = Block_subBlock(bp, size);
             break;
         }
-    } while (1);
+    }
+    while (1);
     return SubBlock_client_space(ptr);
 }
 
@@ -1201,8 +1201,7 @@ soft_allocate_from_var_pools(__mem_pool_obj* pool_obj, mem_size size, mem_size* 
     {
         return 0;
     }
-    do
-    {
+    do {
         if (size <= Block_max_possible_size(bp))
         {
             ptr = Block_subBlock(bp, size);
@@ -1222,7 +1221,8 @@ soft_allocate_from_var_pools(__mem_pool_obj* pool_obj, mem_size size, mem_size* 
         {
             return 0;
         }
-    } while (1);
+    }
+    while (1);
     return SubBlock_client_space(ptr);
 }
 
@@ -1497,8 +1497,7 @@ __report_on_pool_heap(__mem_pool_obj* pool_obj, int verbose)
         return;
     }
     i = 1;
-    do
-    {
+    do {
         if (verbose)
         {
             printf("\nBlock %d at %p\n", i, bp);
@@ -1506,7 +1505,8 @@ __report_on_pool_heap(__mem_pool_obj* pool_obj, int verbose)
         Block_report(bp, verbose);
         bp = bp->next_;
         ++i;
-    } while (bp != pool_obj->start_);
+    }
+    while (bp != pool_obj->start_);
 }
 
 void __report_on_heap(int verbose);
@@ -1755,12 +1755,12 @@ __pool_free_all(__mem_pool* pool)
     {
         return;
     }
-    do
-    {
+    do {
         bpn = bp->next_;
         __sys_free(bp);
         bp = bpn;
-    } while (bp != pool_obj->start_);
+    }
+    while (bp != pool_obj->start_);
     __init_pool_obj(pool);
 }
 

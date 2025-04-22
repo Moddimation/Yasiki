@@ -318,12 +318,12 @@ sincosf_f(register __vec2x32float__ x)
     const long long sincos_result = 0x3bf95d4f3d17c1be;
     const long long sincos_const1 = 0x3e2a09033efe4f76;
 
-    register const long long * const pone_negone = &one_negone;
-    register const long long * const pnegone_one = &negone_one;
-    register const long long * const ppi_po2 = &pi_po2;
+    register const long long* const pone_negone = &one_negone;
+    register const long long* const pnegone_one = &negone_one;
+    register const long long* const ppi_po2 = &pi_po2;
 
-    register const long long * const psincos_result = &sincos_result;
-    register const long long * const psincos_const1 = &sincos_const1;
+    register const long long* const psincos_result = &sincos_result;
+    register const long long* const psincos_const1 = &sincos_const1;
 
     register __vec2x32float__ square_x;
 
@@ -434,15 +434,15 @@ sincosf_a(register __vec2x32float__ x)
     const long long sincos_const3 = 0x3c0888873d2aaaa4;
     const long long sincos_const4 = 0x3e2aaaab3f000000;
 
-    register const long long * const pone_negone = &one_negone;
-    register const long long * const pnegone_one = &negone_one;
-    register const long long * const ppi_po2 = &pi_po2;
+    register const long long* const pone_negone = &one_negone;
+    register const long long* const pnegone_one = &negone_one;
+    register const long long* const ppi_po2 = &pi_po2;
 
-    register const long long * const psincos_result = &sincos_result;
-    register const long long * const psincos_const1 = &sincos_const1;
-    register const long long * const psincos_const2 = &sincos_const2;
-    register const long long * const psincos_const3 = &sincos_const3;
-    register const long long * const psincos_const4 = &sincos_const4;
+    register const long long* const psincos_result = &sincos_result;
+    register const long long* const psincos_const1 = &sincos_const1;
+    register const long long* const psincos_const2 = &sincos_const2;
+    register const long long* const psincos_const3 = &sincos_const3;
+    register const long long* const psincos_const4 = &sincos_const4;
 
     register __vec2x32float__ square_x;
 

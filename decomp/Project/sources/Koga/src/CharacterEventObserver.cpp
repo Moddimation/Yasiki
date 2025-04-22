@@ -21,60 +21,24 @@ Koga::CharacterEventObserver::receiveMessage(CharacterEvent* msg)
 
     switch (msg->mMessage)
     {
-        default :
-            bResult = false;
-            break;
-        case 0 :
-            bResult = true;
-            break;
-        case 2 :
-            bResult = onEnteredFlashlightBeam(msg);
-            break;
-        case 3 :
-            bResult = onCaptureBegin(msg);
-            break;
-        case 4 :
-            bResult = onCaptureEnd(msg);
-            break;
-        case 8 :
-            bResult = FUN_800ea380(msg);
-            break;
-        case 12 :
-            bResult = onCollideWithPlayer(msg);
-            break;
-        case 13 :
-            bResult = onSprayedWithFire(msg);
-            break;
-        case 14 :
-            bResult = onSprayedWithIce(msg);
-            break;
-        case 15 :
-            bResult = onSprayedWithWater(msg);
-            break;
-        case 16 :
-            bResult = onHitWithFireBall(msg);
-            break;
-        case 17 :
-            bResult = onHitWithIceBall(msg);
-            break;
-        case 18 :
-            bResult = onHitWithWaterBall(msg);
-            break;
-        case 9 :
-            bResult = onFishingBegin(msg);
-            break;
-        case 10 :
-            bResult = onPlayerLeftRoom(msg);
-            break;
-        case 11 :
-            bResult = onPlayerEnteredRoom(msg);
-            break;
-        case 19 :
-            bResult = onPlayerTapped(msg);
-            break;
-        case 29 :
-            bResult = FUN_800ea44c(msg);
-            break;
+        default : bResult = false; break;
+        case 0  : bResult = true; break;
+        case 2  : bResult = onEnteredFlashlightBeam(msg); break;
+        case 3  : bResult = onCaptureBegin(msg); break;
+        case 4  : bResult = onCaptureEnd(msg); break;
+        case 8  : bResult = FUN_800ea380(msg); break;
+        case 12 : bResult = onCollideWithPlayer(msg); break;
+        case 13 : bResult = onSprayedWithFire(msg); break;
+        case 14 : bResult = onSprayedWithIce(msg); break;
+        case 15 : bResult = onSprayedWithWater(msg); break;
+        case 16 : bResult = onHitWithFireBall(msg); break;
+        case 17 : bResult = onHitWithIceBall(msg); break;
+        case 18 : bResult = onHitWithWaterBall(msg); break;
+        case 9  : bResult = onFishingBegin(msg); break;
+        case 10 : bResult = onPlayerLeftRoom(msg); break;
+        case 11 : bResult = onPlayerEnteredRoom(msg); break;
+        case 19 : bResult = onPlayerTapped(msg); break;
+        case 29 : bResult = FUN_800ea44c(msg); break;
     }
 
     return bResult;

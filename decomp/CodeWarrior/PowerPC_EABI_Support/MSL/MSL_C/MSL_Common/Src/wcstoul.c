@@ -80,10 +80,9 @@
 
 #    pragma ANSI_strict reset
 
-#    include <inttypes.h>
-
 #    include <ctype.h>
 #    include <errno.h>
+#    include <inttypes.h>
 #    include <limits.h>
 #    include <stdio.h>
 #    include <stdlib.h>
@@ -110,9 +109,9 @@ enum scan_states
 #    define unfetch(c)              (*wReadProc)(wReadProcArg, c, __UngetAwChar)          /*- mm 990311 -*/
 
 unsigned long
-__wcstoul(int base, int max_width, wint_t (*wReadProc)(void *, wint_t, int),              /*- mm 990311 -*/
-          void *wReadProcArg,                                                             /*- mm 990311 -*/
-          int *chars_scanned, int *negative, int *overflow)
+__wcstoul(int base, int max_width, wint_t (*wReadProc)(void*, wint_t, int),               /*- mm 990311 -*/
+          void* wReadProcArg,                                                             /*- mm 990311 -*/
+          int* chars_scanned, int* negative, int* overflow)
 {
     int           scan_state = start;
     int           count = 0;
@@ -293,15 +292,15 @@ __wcstoul(int base, int max_width, wint_t (*wReadProc)(void *, wint_t, int),    
 
 #    ifdef __MSL_LONGLONG_SUPPORT__      /*- mm 970110 -*/
 unsigned long long
-__wcstoull(int base, int max_width, wint_t (*wReadProc)(void *, wint_t, int), /*- mm 990311 -*/
-           void *wReadProcArg,                                                /*- mm 990311 -*/
-           int *chars_scanned, int *negative, int *overflow)
+__wcstoull(int base, int max_width, wint_t (*wReadProc)(void*, wint_t, int), /*- mm 990311 -*/
+           void* wReadProcArg,                                               /*- mm 990311 -*/
+           int* chars_scanned, int* negative, int* overflow)
 {
     int                scan_state = start;
     int                count = 0;
     unsigned long long value = 0;
     unsigned long long value_max = 0;
-    unsigned long long ullmax = ULLONG_MAX;                                   /*- mm 970102 -*/
+    unsigned long long ullmax = ULLONG_MAX;                                  /*- mm 970102 -*/
     wchar_t            c;
 
     *negative = *overflow = 0;
@@ -317,7 +316,7 @@ __wcstoull(int base, int max_width, wint_t (*wReadProc)(void *, wint_t, int), /*
 
     if (base)
     {
-        value_max = ullmax / base;                                            /*- mm 970102 -*/
+        value_max = ullmax / base;                                           /*- mm 970102 -*/
     }
 
     while (count <= max_width && c != EOF && !final_state(scan_state))
@@ -398,7 +397,7 @@ __wcstoull(int base, int max_width, wint_t (*wReadProc)(void *, wint_t, int), /*
 
                 if (!value_max)
                 {
-                    value_max = ullmax / base;                                /*- mm 970102 -*/
+                    value_max = ullmax / base;                               /*- mm 970102 -*/
                 }
 
                 if (iswdigit(c))
@@ -444,7 +443,7 @@ __wcstoull(int base, int max_width, wint_t (*wReadProc)(void *, wint_t, int), /*
 
                 value *= base;
 
-                if (c > (ullmax - value))                                     /*- mm 970102 -*/
+                if (c > (ullmax - value))                                    /*- mm 970102 -*/
                 {
                     *overflow = 1;
                 }
@@ -477,20 +476,20 @@ __wcstoull(int base, int max_width, wint_t (*wReadProc)(void *, wint_t, int), /*
 #    endif /* __MSL_LONGLONG_SUPPORT__    */             /*- mm 970110 -*/
 
 unsigned long
-wcstoul(const wchar_t *str, wchar_t **end, int base)
+wcstoul(const wchar_t* str, wchar_t** end, int base)
 {
     unsigned long value;
     int           count, negative, overflow;
 
     __wInStrCtrl wisc;
-    wisc.wNextChar = (wchar_t *)str;
+    wisc.wNextChar = (wchar_t*)str;
     wisc.wNullCharDetected = 0;
 
-    value = __wcstoul(base, INT_MAX, &__wStringRead, (void *)&wisc, &count, &negative, &overflow);
+    value = __wcstoul(base, INT_MAX, &__wStringRead, (void*)&wisc, &count, &negative, &overflow);
 
     if (end)
     {
-        *end = (wchar_t *)str + count;
+        *end = (wchar_t*)str + count;
     }
 
     if (overflow)
@@ -508,20 +507,20 @@ wcstoul(const wchar_t *str, wchar_t **end, int base)
 
 #    ifdef __MSL_LONGLONG_SUPPORT__                      /*- mm 970110 -*/
 unsigned long long
-wcstoull(const wchar_t *str, wchar_t **end, int base)
+wcstoull(const wchar_t* str, wchar_t** end, int base)
 {
     unsigned long long value;
     int                count, negative, overflow;
 
     __wInStrCtrl wisc;
-    wisc.wNextChar = (wchar_t *)str;
+    wisc.wNextChar = (wchar_t*)str;
     wisc.wNullCharDetected = 0;
 
-    value = __wcstoull(base, INT_MAX, &__wStringRead, (void *)&wisc, &count, &negative, &overflow);
+    value = __wcstoull(base, INT_MAX, &__wStringRead, (void*)&wisc, &count, &negative, &overflow);
 
     if (end)
     {
-        *end = (wchar_t *)str + count;
+        *end = (wchar_t*)str + count;
     }
 
     if (overflow)
@@ -539,21 +538,21 @@ wcstoull(const wchar_t *str, wchar_t **end, int base)
 #    endif /*__MSL_LONGLONG_SUPPORT__*/                  /*- mm 970110 -*/
 
 long
-wcstol(const wchar_t *str, wchar_t **end, int base)
+wcstol(const wchar_t* str, wchar_t** end, int base)
 {
     unsigned long uvalue;
     long          svalue;
     int           count, negative, overflow;
 
     __wInStrCtrl wisc;
-    wisc.wNextChar = (wchar_t *)str;
+    wisc.wNextChar = (wchar_t*)str;
     wisc.wNullCharDetected = 0;
 
-    uvalue = __wcstoul(base, INT_MAX, &__wStringRead, (void *)&wisc, &count, &negative, &overflow);
+    uvalue = __wcstoul(base, INT_MAX, &__wStringRead, (void*)&wisc, &count, &negative, &overflow);
 
     if (end)
     {
-        *end = (wchar_t *)str + count;
+        *end = (wchar_t*)str + count;
     }
 
     if (overflow || (!negative && uvalue > LONG_MAX) || (negative && uvalue > -LONG_MIN))
@@ -571,21 +570,21 @@ wcstol(const wchar_t *str, wchar_t **end, int base)
 
 #    ifdef __MSL_LONGLONG_SUPPORT__                      /*- mm 970110 -*/
 long long
-wcstoll(const wchar_t *str, wchar_t **end, int base)
+wcstoll(const wchar_t* str, wchar_t** end, int base)
 {
     unsigned long long uvalue;
     long long          svalue;
     int                count, negative, overflow;
 
     __wInStrCtrl wisc;
-    wisc.wNextChar = (wchar_t *)str;
+    wisc.wNextChar = (wchar_t*)str;
     wisc.wNullCharDetected = 0;
 
-    uvalue = __wcstoull(base, INT_MAX, &__wStringRead, (void *)&wisc, &count, &negative, &overflow);
+    uvalue = __wcstoull(base, INT_MAX, &__wStringRead, (void*)&wisc, &count, &negative, &overflow);
 
     if (end)
     {
-        *end = (wchar_t *)str + count;
+        *end = (wchar_t*)str + count;
     }
 
     if (overflow || (!negative && uvalue > LLONG_MAX) || /*- mm 970102 -*/
@@ -604,13 +603,13 @@ wcstoll(const wchar_t *str, wchar_t **end, int base)
 #    endif /*__MSL_LONGLONG_SUPPORT__*/                  /*- mm 970110 -*/
 
 int
-watoi(const wchar_t *str)
+watoi(const wchar_t* str)
 {
     return (wcstol(str, NULL, 10));
 }
 
 long
-watol(const wchar_t *str)
+watol(const wchar_t* str)
 {
     return (wcstol(str, NULL, 10));
 }

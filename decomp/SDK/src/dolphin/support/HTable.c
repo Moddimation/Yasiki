@@ -2,7 +2,7 @@
 #include <charPipeline/structures/List.h>
 
 void
-DSInitHTable(DSHashTable *hTable, u16 size, DSList *listArray, DSHashFunc *hashFunc, Ptr obj, DSLinkPtr link)
+DSInitHTable(DSHashTable* hTable, u16 size, DSList* listArray, DSHashFunc* hashFunc, Ptr obj, DSLinkPtr link)
 {
     u16 i;
 
@@ -16,16 +16,16 @@ DSInitHTable(DSHashTable *hTable, u16 size, DSList *listArray, DSHashFunc *hashF
 }
 
 void
-DSInsertHTableObj(DSHashTable *hTable, Ptr obj)
+DSInsertHTableObj(DSHashTable* hTable, Ptr obj)
 {
-    DSList *list = &hTable->table[hTable->hash(obj)];
+    DSList* list = &hTable->table[hTable->hash(obj)];
     DSInsertListObject(list, 0, obj);
 }
 
 void
-DSHTableToList(DSHashTable *hTable, DSList *list)
+DSHTableToList(DSHashTable* hTable, DSList* list)
 {
-    DSLink *link = NULL;
+    DSLink* link = NULL;
     u16     i = 0;
 
     list->Offset = hTable->table[i].Offset;
@@ -35,11 +35,11 @@ DSHTableToList(DSHashTable *hTable, DSList *list)
     }
 }
 
-void *
-DSNextHTableObj(DSHashTable *hTable, Ptr obj)
+void*
+DSNextHTableObj(DSHashTable* hTable, Ptr obj)
 {
     s32   currentIndex;
-    void *cursor;
+    void* cursor;
 
     if (!hTable)
     {
@@ -68,7 +68,7 @@ DSNextHTableObj(DSHashTable *hTable, Ptr obj)
 }
 
 s32
-DSHTableIndex(DSHashTable *hTable, Ptr obj)
+DSHTableIndex(DSHashTable* hTable, Ptr obj)
 {
     if (!hTable || !obj)
     {
@@ -77,8 +77,8 @@ DSHTableIndex(DSHashTable *hTable, Ptr obj)
     return hTable->hash(obj);
 }
 
-void *
-DSHTableHead(DSHashTable *hTable, s32 index)
+void*
+DSHTableHead(DSHashTable* hTable, s32 index)
 {
     if (index < 0 || index >= hTable->tableSize)
     {

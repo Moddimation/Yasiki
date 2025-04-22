@@ -1,10 +1,10 @@
 #include <charPipeline/structures/dolphinString.h>
 
 u8
-Strcat(char *str1, char *str2, char *dst)
+Strcat(char* str1, char* str2, char* dst)
 {
-    char *srcCursor = str1;
-    char *dstCursor = dst;
+    char* srcCursor = str1;
+    char* dstCursor = dst;
     ;
 
     if (!dst)
@@ -37,21 +37,21 @@ Strcat(char *str1, char *str2, char *dst)
 }
 
 void
-Strcpy(char *dst, char *src)
+Strcpy(char* dst, char* src)
 {
-    do
-    {
+    do {
         *dst = *src;
         dst++;
         src++;
-    } while ((s8)*src != 0);
+    }
+    while ((s8)*src != 0);
 }
 
 s8
-Strcmp(char *str1, char *str2)
+Strcmp(char* str1, char* str2)
 {
-    char *cursor1 = str1;
-    char *cursor2 = str2;
+    char* cursor1 = str1;
+    char* cursor2 = str2;
     while (1)
     {
         if ((s8)*cursor1 < (s8)*cursor2)
@@ -72,9 +72,9 @@ Strcmp(char *str1, char *str2)
 }
 
 u32
-Strlen(char *str)
+Strlen(char* str)
 {
-    char *cursor = str;
+    char* cursor = str;
     u32   counter = 0;
 
     if (!str)

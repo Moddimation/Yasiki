@@ -1187,12 +1187,8 @@ basic_istream<charT, traits>::readsome(char_type* s, streamsize n)
             gcount_ = 0;
             base::setstate(ios_base::eofbit);
             break;
-        case 0 :
-            gcount_ = 0;
-            break;
-        default :
-            read(s, min(n, t));
-            break;
+        case 0  : gcount_ = 0; break;
+        default : read(s, min(n, t)); break;
     }
     return gcount_;
 }
@@ -1600,39 +1596,17 @@ __read_escaped_char(InputIterator& first, InputIterator last, charT& c)
         {
             switch (char(*first))
             {
-                case 'n' :
-                    c = '\n';
-                    break;
-                case 't' :
-                    c = '\t';
-                    break;
-                case 'v' :
-                    c = '\v';
-                    break;
-                case 'b' :
-                    c = '\b';
-                    break;
-                case 'r' :
-                    c = '\r';
-                    break;
-                case 'f' :
-                    c = '\f';
-                    break;
-                case 'a' :
-                    c = '\a';
-                    break;
-                case '\\' :
-                    c = '\\';
-                    break;
-                case '\?' :
-                    c = '\?';
-                    break;
-                case '\"' :
-                    c = '\"';
-                    break;
-                case '\'' :
-                    c = '\'';
-                    break;
+                case 'n'  : c = '\n'; break;
+                case 't'  : c = '\t'; break;
+                case 'v'  : c = '\v'; break;
+                case 'b'  : c = '\b'; break;
+                case 'r'  : c = '\r'; break;
+                case 'f'  : c = '\f'; break;
+                case 'a'  : c = '\a'; break;
+                case '\\' : c = '\\'; break;
+                case '\?' : c = '\?'; break;
+                case '\"' : c = '\"'; break;
+                case '\'' : c = '\''; break;
                 case 'u' :
                 case 'U' :
                 case 'x' :
@@ -1694,9 +1668,7 @@ __read_escaped_char(InputIterator& first, InputIterator last, charT& c)
                         }
                         return true;
                     }
-                default :
-                    c = '\\';
-                    return escaped;
+                default : c = '\\'; return escaped;
             }
             escaped = true;
         }

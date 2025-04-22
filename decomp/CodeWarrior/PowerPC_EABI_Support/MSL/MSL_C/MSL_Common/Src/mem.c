@@ -37,7 +37,7 @@
 
 #    if !(__MC68K__ && !defined(_No_BlockMove))
 #        if /*(__dest_os != __be_os) && */ (!__PPC_EABI__) /*- mm 010406 -*/
-void *(memcpy)(register void *dst, register const void *src, register size_t n)
+void*(memcpy)(register void* dst, register const void* src, register size_t n)
 {
 #            if __dest_os == __mac_os && !defined(_No_BlockMove)
 
@@ -56,8 +56,8 @@ void *(memcpy)(register void *dst, register const void *src, register size_t n)
      *   unroll the loops.
      *
      */
-    const char *p;
-    char       *q;
+    const char* p;
+    char*       q;
 
     size_t i;
     size_t n2;
@@ -66,8 +66,8 @@ void *(memcpy)(register void *dst, register const void *src, register size_t n)
     {
         if (n > 0)
         {
-            q = ((char *)dst) - 1;
-            p = ((const char *)src) - 1;
+            q = ((char*)dst) - 1;
+            p = ((const char*)src) - 1;
 
             for (i = 0; i < n; i++)
             {
@@ -79,17 +79,17 @@ void *(memcpy)(register void *dst, register const void *src, register size_t n)
 
     /* doing a large copy */
 
-    q = (char *)dst;
-    p = ((const char *)src);
+    q = (char*)dst;
+    p = ((const char*)src);
     if (((unsigned long)q) & 0x07)
     {
-        p = ((char *)p) - 1;
+        p = ((char*)p) - 1;
 
-        do
-        {
+        do {
             *q++ = *++p;
             n--;
-        } while (((unsigned long)q) & 0x07);
+        }
+        while (((unsigned long)q) & 0x07);
         p++;
     }
 
@@ -107,7 +107,7 @@ void *(memcpy)(register void *dst, register const void *src, register size_t n)
         {
             q += sizeof(unsigned long);
             p += sizeof(unsigned long);
-            *((unsigned long *)q) = *((unsigned long *)p);
+            *((unsigned long*)q) = *((unsigned long*)p);
 
             n = n - 4;
         }
@@ -126,7 +126,7 @@ void *(memcpy)(register void *dst, register const void *src, register size_t n)
         {
             q += sizeof(double);
             p += sizeof(double);
-            *((double *)q) = *((double *)p);
+            *((double*)q) = *((double*)p);
             n -= 8;
         }
         p = p + 8;
@@ -150,8 +150,8 @@ void *(memcpy)(register void *dst, register const void *src, register size_t n)
 
 #            else                                          /* __dest_os != __mac_os || _No_BlockMove */
 
-    const char *p = (char *)src;
-    char       *q = (char *)dst;
+    const char* p = (char*)src;
+    char*       q = (char*)dst;
 
 #                if !defined(__MIPS__) && !defined(__SH__) && !defined(__MCORE__) && !defined(__m56800__)              \
                     && !defined(__m56800E__)               /*- ah 010129 -*/
@@ -181,7 +181,7 @@ void *(memcpy)(register void *dst, register const void *src, register size_t n)
 
 #                else
 
-    for (p = (const char *)src - 1, q = (char *)dst - 1, n++; --n;)
+    for (p = (const char*)src - 1, q = (char*)dst - 1, n++; --n;)
     {
         *++q = *++p;
     }
@@ -195,7 +195,7 @@ void *(memcpy)(register void *dst, register const void *src, register size_t n)
 
 #        endif /*  (!__PPC_EABI__) */                      /*- mm 010406 -*/
 
-void *(memmove)(void *dst, const void *src, size_t n)
+void*(memmove)(void* dst, const void* src, size_t n)
 {
 #        if __dest_os == __mac_os && !defined(_No_BlockMove)
 
@@ -215,8 +215,8 @@ void *(memmove)(void *dst, const void *src, size_t n)
      *
      */
 
-    const char *p;
-    char       *q;
+    const char* p;
+    char*       q;
 
     size_t i;
     size_t n2;
@@ -230,8 +230,8 @@ void *(memmove)(void *dst, const void *src, size_t n)
         return dst;
     }
 
-    p = (const char *)src + n;
-    q = (char *)dst + n;
+    p = (const char*)src + n;
+    q = (char*)dst + n;
 
     if (n < __min_bytes_for_long_copy)
     {
@@ -264,7 +264,7 @@ void *(memmove)(void *dst, const void *src, size_t n)
             {
                 q -= sizeof(unsigned long);
                 p -= sizeof(unsigned long);
-                *((unsigned long *)q) = *((unsigned long *)p);
+                *((unsigned long*)q) = *((unsigned long*)p);
                 n -= 4;
             }
         }
@@ -277,7 +277,7 @@ void *(memmove)(void *dst, const void *src, size_t n)
             {
                 q -= sizeof(double);
                 p -= sizeof(double);
-                *((double *)q) = *((double *)p);
+                *((double*)q) = *((double*)p);
                 n -= 8;
             }
         }
@@ -299,8 +299,8 @@ void *(memmove)(void *dst, const void *src, size_t n)
 
 #        else                                              /* __dest_os != __mac_os || _No_BlockMove */
 
-    const char *p;
-    char       *q;
+    const char* p;
+    char*       q;
     int         rev = ((unsigned long)src < (unsigned long)dst);
 
 #            ifndef __MIPS__
@@ -344,7 +344,7 @@ void *(memmove)(void *dst, const void *src, size_t n)
 
 #            else
 
-        for (p = (const char *)src - 1, q = (char *)dst - 1, n++; --n;)
+        for (p = (const char*)src - 1, q = (char*)dst - 1, n++; --n;)
         {
             *++q = *++p;
         }
@@ -353,7 +353,7 @@ void *(memmove)(void *dst, const void *src, size_t n)
     }
     else
     {
-        for (p = (const char *)src + n, q = (char *)dst + n, n++; --n;)
+        for (p = (const char*)src + n, q = (char*)dst + n, n++; --n;)
         {
             *--q = *--p;
         }
@@ -368,8 +368,8 @@ void *(memmove)(void *dst, const void *src, size_t n)
 
 #    if !__PPC_EABI__
 
-void *
-memset(void *dst, int val, size_t n)
+void*
+memset(void* dst, int val, size_t n)
 {
     __fill_mem(dst, val, n);
 
@@ -380,19 +380,19 @@ memset(void *dst, int val, size_t n)
 
 #    ifndef UNDER_CE
 
-void *
-memchr(const void *src, int val, size_t n)
+void*
+memchr(const void* src, int val, size_t n)
 {
-    const unsigned char *p;
+    const unsigned char* p;
 
 #        if !__POWERPC__
     unsigned long v = (val & 0xff); /*- hh 980624 -*/
 
-    for (p = (unsigned char *)src, n++; --n;)
+    for (p = (unsigned char*)src, n++; --n;)
     {
         if (*p++ == v)
         {
-            return ((void *)(p - 1));
+            return ((void*)(p - 1));
         }
     }
 
@@ -400,11 +400,11 @@ memchr(const void *src, int val, size_t n)
 
     unsigned long v = (val & 0xff); /*- mm 980425 -*/
 
-    for (p = (unsigned char *)src - 1, n++; --n;)
+    for (p = (unsigned char*)src - 1, n++; --n;)
     {
         if ((*++p & 0xff) == v)     /*- mm 980425 -*/
         {
-            return ((void *)p);
+            return ((void*)p);
         }
     }
 
@@ -414,20 +414,20 @@ memchr(const void *src, int val, size_t n)
 }
 #    endif
 
-void *
-__memrchr(const void *src, int val, size_t n)
+void*
+__memrchr(const void* src, int val, size_t n)
 {
-    const unsigned char *p;
+    const unsigned char* p;
 
 #    if !__POWERPC__
 
     unsigned char v = (val & 0xff); /*- hh 980624 -*/
 
-    for (p = (unsigned char *)src + n, n++; --n;)
+    for (p = (unsigned char*)src + n, n++; --n;)
     {
         if (*--p == v)
         {
-            return ((void *)p);
+            return ((void*)p);
         }
     }
 
@@ -435,11 +435,11 @@ __memrchr(const void *src, int val, size_t n)
 
     unsigned long v = (val & 0xff); /*- hh 980624 -*/
 
-    for (p = (unsigned char *)src + n, n++; --n;)
+    for (p = (unsigned char*)src + n, n++; --n;)
     {
         if (*--p == v)
         {
-            return ((void *)p);
+            return ((void*)p);
         }
     }
 
@@ -449,14 +449,14 @@ __memrchr(const void *src, int val, size_t n)
 }
 
 int
-memcmp(const void *src1, const void *src2, size_t n)
+memcmp(const void* src1, const void* src2, size_t n)
 {
-    const unsigned char *p1;
-    const unsigned char *p2;
+    const unsigned char* p1;
+    const unsigned char* p2;
 
 #    if !__POWERPC__
 
-    for (p1 = (const unsigned char *)src1, p2 = (const unsigned char *)src2, n++; --n;)
+    for (p1 = (const unsigned char*)src1, p2 = (const unsigned char*)src2, n++; --n;)
     {
         if (*p1++ != *p2++)
         {
@@ -466,7 +466,7 @@ memcmp(const void *src1, const void *src2, size_t n)
 
 #    else
 
-    for (p1 = (const unsigned char *)src1 - 1, p2 = (const unsigned char *)src2 - 1, n++; --n;)
+    for (p1 = (const unsigned char*)src1 - 1, p2 = (const unsigned char*)src2 - 1, n++; --n;)
     {
         if (*++p1 != *++p2)
         {

@@ -777,7 +777,7 @@ __use_facet(const locale& loc, NonStandardFacet*, __chooser<false>)
 #                else
         __msl_error("bad cast in use_facet");
 #                endif
-#                if defined(_MWERKS_) && __option(RTTI)
+#                if defined(_MWERKS_)&& __option(RTTI)
     return dynamic_cast<const NonStandardFacet&>(*fp);
 #                else
     return static_cast<const NonStandardFacet&>(*fp);
@@ -833,7 +833,7 @@ __has_facet(const locale& loc, NonStandardFacet*, __chooser<false>) _MSL_THROW
     {
         return false;
     }
-#                if defined(_MWERKS_) && __option(RTTI)
+#                if defined(_MWERKS_)&& __option(RTTI)
     return dynamic_cast<const NonStandardFacet*>((*loc.imp_)[id]) != 0;
 #                else
     return static_cast<const NonStandardFacet*>((*loc.imp_)[id]) != 0;

@@ -14,19 +14,19 @@
 _MSL_BEGIN_EXTERN_C                                    /*- cc 010409 -*/
 
     int
-    __msl_add(int *x, int y);                          /*- cc 010510 -*/
+    __msl_add(int* x, int y);                          /*- cc 010510 -*/
 
-int __msl_ladd(long *x, long y);                       /*- cc 010510 -*/
+int __msl_ladd(long* x, long y);                       /*- cc 010510 -*/
 
 #    ifdef __MSL_LONGLONG_SUPPORT__                    /*- mm 981023 -*/
-int __lladd(long long *x, long long y);
+int __lladd(long long* x, long long y);
 #    endif /* #ifdef __MSL_LONGLONG_SUPPORT__	 */    /*- mm 981023 -*/
 
-int __msl_mul(int *x, int y);                          /*- cc 010510 -*/
-int __msl_lmul(long *x, long y);                       /*- cc 010510 -*/
+int __msl_mul(int* x, int y);                          /*- cc 010510 -*/
+int __msl_lmul(long* x, long y);                       /*- cc 010510 -*/
 
 #    ifdef __MSL_LONGLONG_SUPPORT__                    /*- mm 981023 -*/
-int __llmul(long long *x, long long y);
+int __llmul(long long* x, long long y);
 #    endif /* #ifdef __MSL_LONGLONG_SUPPORT__	*/     /*- mm 981023 -*/
 
 #    if defined(__m56800__) || defined(__m56800E__)

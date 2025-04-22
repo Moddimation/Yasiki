@@ -8,7 +8,7 @@ static u16 __AXHRTFHistory[128];
 static u16 __AXCommandList[2][384];
 
 static u32  __AXCommandListPosition;
-static u16 *__AXClWrite;
+static u16* __AXClWrite;
 static u32  __AXCommandListCycles;
 u32         __AXClMode;
 
@@ -26,7 +26,7 @@ __AXGetCommandListAddress(void)
     address = (u32)&__AXCommandList[__AXCommandListPosition][0];
     __AXCommandListPosition += 1;
     __AXCommandListPosition &= 1;
-    __AXClWrite = (void *)&__AXCommandList[__AXCommandListPosition][0];
+    __AXClWrite = (void*)&__AXCommandList[__AXCommandListPosition][0];
     return address;
 }
 
@@ -38,10 +38,10 @@ __AXWriteToCommandList(u16 data)
 }
 
 void
-__AXNextFrame(void *sbuffer, void *buffer)
+__AXNextFrame(void* sbuffer, void* buffer)
 {
     u32  data;
-    u16 *pCommandList;
+    u16* pCommandList;
 
     __AXCommandListCycles = 0x1A9;
     pCommandList = __AXClWrite;
@@ -68,8 +68,7 @@ __AXNextFrame(void *sbuffer, void *buffer)
             __AXWriteToCommandList((u32)sbuffer);
             __AXCommandListCycles += 0x5E6;
             break;
-        default :
-            ASSERTLINE(0x96, 0);
+        default : ASSERTLINE(0x96, 0);
     }
     data = (u32)__AXGetPBs();
     __AXWriteToCommandList(2U);
@@ -127,7 +126,7 @@ __AXClInit(void)
     ASSERTLINE(0xF3, ((u32)&__AXCommandList[1][0] & 0x1F) == 0);
     __AXClMode = 0;
     __AXCommandListPosition = 0;
-    __AXClWrite = (void *)&__AXCommandList;
+    __AXClWrite = (void*)&__AXCommandList;
 }
 
 void

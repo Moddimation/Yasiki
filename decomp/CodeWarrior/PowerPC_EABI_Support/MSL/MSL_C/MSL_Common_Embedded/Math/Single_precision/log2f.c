@@ -5,10 +5,10 @@
 #        include <cmath>
 #        ifndef __INFINITY
 static const _INT32 _inf=0x7f800000;
-#            define __INFINITY (*(float *)&_inf)
+#            define __INFINITY (*(float*)&_inf)
 
 static const _INT32 _nan=0x7fffffff;
-#            define __NAN      (*(float *)&_nan)
+#            define __NAN      (*(float*)&_nan)
 #        endif
 #        pragma cplusplus on
 #        if 0
@@ -71,7 +71,7 @@ switch( (*(_INT32*)&x)&0x7f800000 )
     float z;
     _UINT32 index=((*(_UINT32*)&x)&0x007fffff)>>16;
 
-#            if __INTEL__ && __option(k63d)
+#            if __INTEL__&& __option(k63d)
    const _INT32 table_address=4*index;
    asm
     {   

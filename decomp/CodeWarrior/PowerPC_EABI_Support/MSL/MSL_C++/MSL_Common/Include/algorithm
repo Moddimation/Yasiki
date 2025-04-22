@@ -1275,10 +1275,10 @@ __scaled_random_number(unsigned long __n)
     unsigned long __slab = __slab_size<_NBits>(__n);
     unsigned long __usable = __slab * __n;
     unsigned long __raw;
-    do
-    {
+    do {
         __raw = __random_bits<_NBits>();
-    } while (__usable != 0 && __raw >= __usable);
+    }
+    while (__usable != 0 && __raw >= __usable);
     return __raw / __slab;
 }
 
@@ -1288,10 +1288,8 @@ __rs_default(unsigned long __n = 0)
 {
     switch (__n)
     {
-        case 0 :
-            return __random_bits<__lbits>();
-        case 1 :
-            return 0;
+        case 0 : return __random_bits<__lbits>();
+        case 1 : return 0;
     }
     int __nb = __rbits;
     while (__nb < __lbits && __n > (1UL << __nb))
@@ -1300,10 +1298,8 @@ __rs_default(unsigned long __n = 0)
     }
     switch (__nb)
     {
-        case __rbits :
-            return __scaled_random_number<__rbits>(__n);
-        case 2 * __rbits :
-            return __scaled_random_number<2 * __rbits>(__n);
+        case __rbits     : return __scaled_random_number<__rbits>(__n);
+        case 2 * __rbits : return __scaled_random_number<2 * __rbits>(__n);
     }
     return __scaled_random_number<__lbits>(__n);
 }
@@ -1581,10 +1577,8 @@ __stable_partition(BidirectionalIterator first, BidirectionalIterator last, Pred
     // check for trivial cases
     switch (len)
     {
-        case 0 :
-            return last;
-        case 1 :
-            return pred(*first) ? last : first;
+        case 0 : return last;
+        case 1 : return pred(*first) ? last : first;
         case 2 :
             if (pred(*first))
             {
@@ -1684,8 +1678,7 @@ stable_partition(BidirectionalIterator first, BidirectionalIterator last, Predic
     switch (len)
     {
         case 0 :
-        case 1 :
-            return first;
+        case 1 : return first;
         case 2 :
             if (pred(*--last))
             {
@@ -2180,8 +2173,7 @@ push_heap(RandomAccessIterator first, RandomAccessIterator last)
     if (*parent_ptr < *hole_ptr)
     {
         T tmp(*hole_ptr);
-        do
-        {
+        do {
             *hole_ptr = *parent_ptr;
             hole_ptr = parent_ptr;
             if (hole_ptr == first)
@@ -2191,7 +2183,8 @@ push_heap(RandomAccessIterator first, RandomAccessIterator last)
             --parent;
             parent /= 2;
             parent_ptr = first + parent;
-        } while (*parent_ptr < tmp);
+        }
+        while (*parent_ptr < tmp);
         *hole_ptr = tmp;
     }
 }
@@ -2214,8 +2207,7 @@ push_heap(RandomAccessIterator first, RandomAccessIterator last, Compare comp)
     if (comp(*parent_ptr, *hole_ptr))
     {
         T tmp(*hole_ptr);
-        do
-        {
+        do {
             *hole_ptr = *parent_ptr;
             hole_ptr = parent_ptr;
             if (hole_ptr == first)
@@ -2225,7 +2217,8 @@ push_heap(RandomAccessIterator first, RandomAccessIterator last, Compare comp)
             --parent;
             parent /= 2;
             parent_ptr = first + parent;
-        } while (comp(*parent_ptr, tmp));
+        }
+        while (comp(*parent_ptr, tmp));
         *hole_ptr = tmp;
     }
 }
@@ -3079,11 +3072,8 @@ partial_sort(RandomAccessIterator first, RandomAccessIterator middle, RandomAcce
     D                                                                       midlen = middle - first;
     switch (midlen)
     {
-        case 0 :
-            return;
-        case 1 :
-            _STD::iter_swap(first, _STD::min_element(first, last));
-            return;
+        case 0 : return;
+        case 1 : _STD::iter_swap(first, _STD::min_element(first, last)); return;
     }
     _STD::make_heap(first, middle);
     for (RandomAccessIterator i = middle; i != last; ++i)
@@ -3107,11 +3097,8 @@ partial_sort(RandomAccessIterator first, RandomAccessIterator middle, RandomAcce
     D                                                                       midlen = middle - first;
     switch (midlen)
     {
-        case 0 :
-            return;
-        case 1 :
-            _STD::iter_swap(first, _STD::min_element(first, last, comp));
-            return;
+        case 0 : return;
+        case 1 : _STD::iter_swap(first, _STD::min_element(first, last, comp)); return;
     }
     _STD::make_heap(first, middle, comp);
     for (RandomAccessIterator i = middle; i != last; ++i)
@@ -3285,9 +3272,7 @@ nth_element(RandomAccessIterator first, RandomAccessIterator nth, RandomAccessIt
                 }
             }
             break;
-        case 3 :
-            __sort3(first, first + 1, first + 2, comp);
-            break;
+        case 3 : __sort3(first, first + 1, first + 2, comp); break;
     }
 }
 

@@ -52,25 +52,25 @@
 #elif !__MC68K__ || _No_String_Inlines || !defined(__cplusplus)
 
 #    if __dest_os != __n64_os                                       /*- ad 990128 -*/
-size_t(strlen)(const char *str)
+size_t(strlen)(const char* str)
 {
     size_t len = -1;
 
 #        if !__POWERPC__
 
-    do
-    {
+    do {
         len++;
-    } while (*str++);
+    }
+    while (*str++);
 
 #        else
 
-    unsigned char *p = (unsigned char *)str - 1;
+    unsigned char* p = (unsigned char*)str - 1;
 
-    do
-    {
+    do {
         len++;
-    } while (*++p);
+    }
+    while (*++p);
 
 #        endif
 
@@ -83,15 +83,14 @@ size_t(strlen)(const char *str)
 
 #    pragma ANSI_strict off
 
-char *(strcpy)(char *dst, const char *src)
+char*(strcpy)(char* dst, const char* src)
 {
 #    if !__POWERPC__ && !__MIPS__
 
-    const char *p = src;
-    char       *q = dst;
+    const char* p = src;
+    char*       q = dst;
 
-    while (*q++ = *p++)
-        ;
+    while (*q++ = *p++);
 
 #    elif __PPC_EABI__ || __MIPS__
 
@@ -106,8 +105,8 @@ char *(strcpy)(char *dst, const char *src)
     register unsigned int   k1;
     register unsigned int   k2;
 
-    fromb = (unsigned char *)src;
-    destb = (unsigned char *)dst;
+    fromb = (unsigned char*)src;
+    destb = (unsigned char*)dst;
 
     /*
      *	If either the destination or the source are not
@@ -142,7 +141,7 @@ char *(strcpy)(char *dst, const char *src)
     k2 = K2;
 
     /*	Load a word and test for a null byte. */
-    w = *((int *)(fromb));
+    w = *((int*)(fromb));
     /*
      *	Here we need to test if one of the bytes in w is 0, in
      *	which case we have reached the end of the string.  If we
@@ -181,14 +180,13 @@ char *(strcpy)(char *dst, const char *src)
     {
         goto bytecopy;
     }
-    --((int *)(destb));
+    --((int*)(destb));
 
-    do
-    {
+    do {
         /*	Put the tested word into the incremented destination. */
-        *(++((int *)(destb))) = w;
+        *(++((int*)(destb))) = w;
         /*	Load a word and increment source for testing. */
-        w = *(++((int *)(fromb)));
+        w = *(++((int*)(fromb)));
 
         t = w + k2;
         t &= k1;
@@ -196,29 +194,29 @@ char *(strcpy)(char *dst, const char *src)
         {
             goto adjust;
         }
-    } while (1);
+    }
+    while (1);
 
 adjust:
-    ++((int *)(destb));
+    ++((int*)(destb));
 bytecopy:
     if ((*destb = *fromb) == 0)
     {
         return (dst);
     }
-    do
-    {
+    do {
         if ((*(++destb) = *(++fromb)) == 0)
         {
             return (dst);
         }
-    } while (1);
+    }
+    while (1);
 #    else
 
-    const unsigned char *p = (unsigned char *)src - 1;
-    unsigned char       *q = (unsigned char *)dst - 1;
+    const unsigned char* p = (unsigned char*)src - 1;
+    unsigned char*       q = (unsigned char*)dst - 1;
 
-    while (*++q = *++p)
-        ;
+    while (*++q = *++p);
 #    endif
 
     return (dst);
@@ -229,13 +227,13 @@ bytecopy:
 
 #if !defined(__INTEL__)
 
-char *
-strncpy(char *dst, const char *src, size_t n)
+char*
+strncpy(char* dst, const char* src, size_t n)
 {
 #    if !__POWERPC__
 
-    const char *p = src;
-    char       *q = dst;
+    const char* p = src;
+    char*       q = dst;
 
     n++;
 
@@ -253,8 +251,8 @@ strncpy(char *dst, const char *src, size_t n)
 
 #    else
 
-    const unsigned char *p = (const unsigned char *)src - 1;
-    unsigned char       *q = (unsigned char *)dst - 1;
+    const unsigned char* p = (const unsigned char*)src - 1;
+    unsigned char*       q = (unsigned char*)dst - 1;
     unsigned char        zero = 0;
 
     n++;
@@ -276,50 +274,45 @@ strncpy(char *dst, const char *src, size_t n)
     return (dst);
 }
 
-char *
-strcat(char *dst, const char *src)
+char*
+strcat(char* dst, const char* src)
 {
 #    if !__POWERPC__
 
-    const char *p = src;
-    char       *q = dst;
+    const char* p = src;
+    char*       q = dst;
 
-    while (*q++)
-        ;
+    while (*q++);
 
     q--;
 
-    while (*q++ = *p++)
-        ;
+    while (*q++ = *p++);
 
 #    else
 
-    const unsigned char *p = (unsigned char *)src - 1;
-    unsigned char       *q = (unsigned char *)dst - 1;
+    const unsigned char* p = (unsigned char*)src - 1;
+    unsigned char*       q = (unsigned char*)dst - 1;
 
-    while (*++q)
-        ;
+    while (*++q);
 
     q--;
 
-    while (*++q = *++p)
-        ;
+    while (*++q = *++p);
 
 #    endif
 
     return (dst);
 }
 
-char *
-strncat(char *dst, const char *src, size_t n)
+char*
+strncat(char* dst, const char* src, size_t n)
 {
 #    if !__POWERPC__
 
-    const char *p = src;
-    char       *q = dst;
+    const char* p = src;
+    char*       q = dst;
 
-    while (*q++)
-        ;
+    while (*q++);
 
     q--;
     n++;
@@ -337,11 +330,10 @@ strncat(char *dst, const char *src, size_t n)
 
 #    else
 
-    const unsigned char *p = (unsigned char *)src - 1;
-    unsigned char       *q = (unsigned char *)dst - 1;
+    const unsigned char* p = (unsigned char*)src - 1;
+    unsigned char*       q = (unsigned char*)dst - 1;
 
-    while (*++q)
-        ;
+    while (*++q);
 
     q--;
     n++;
@@ -365,12 +357,12 @@ strncat(char *dst, const char *src, size_t n)
 #    pragma ANSI_strict off
 
 int
-strcmp(const char *str1, const char *str2)
+strcmp(const char* str1, const char* str2)
 {
 #    if !__POWERPC__ && !__MIPS__ && !__MC68K__
 
-    const unsigned char *p1 = (unsigned char *)str1;
-    const unsigned char *p2 = (unsigned char *)str2;
+    const unsigned char* p1 = (unsigned char*)str1;
+    const unsigned char* p2 = (unsigned char*)str2;
     unsigned char        c1, c2;
 
     while ((c1 = *p1++) == (c2 = *p2++))
@@ -391,8 +383,8 @@ strcmp(const char *str1, const char *str2)
      *  stores are properly aligned.
      *
      */
-    register unsigned char *left = (unsigned char *)str1;
-    register unsigned char *right = (unsigned char *)str2;
+    register unsigned char* left = (unsigned char*)str1;
+    register unsigned char* right = (unsigned char*)str2;
     unsigned int            k1, k2, align, l1, r1, x;
 
     /*	Check the simple case of the first byte being different. */
@@ -442,8 +434,8 @@ strcmp(const char *str1, const char *str2)
     k2 = K2;
 
     /*	Load a word from each string. */
-    l1 = *(int *)left;
-    r1 = *(int *)right;
+    l1 = *(int*)left;
+    r1 = *(int*)right;
     /*	See comments in strcpy function. */
     x = l1 + k2;
     if (x & k1)
@@ -453,8 +445,8 @@ strcmp(const char *str1, const char *str2)
     while (l1 == r1)
     {
         /*	Load a word and increment strings. */
-        l1 = *(++((int *)(left)));
-        r1 = *(++((int *)(right)));
+        l1 = *(++((int*)(left)));
+        r1 = *(++((int*)(right)));
         x = l1 + k2;
         if (x & k1)
         {
@@ -480,8 +472,7 @@ bytecopy:
     {
         return (0);
     }
-    do
-    {
+    do {
         l1 = *(++left);
         r1 = *(++right);
         if (l1 - r1)
@@ -492,12 +483,13 @@ bytecopy:
         {
             return (0);
         }
-    } while (1);
+    }
+    while (1);
 
 #    else
 
-    const unsigned char *p1 = (unsigned char *)str1 - 1;
-    const unsigned char *p2 = (unsigned char *)str2 - 1;
+    const unsigned char* p1 = (unsigned char*)str1 - 1;
+    const unsigned char* p2 = (unsigned char*)str2 - 1;
     unsigned long        c1, c2;
 
     while ((c1 = *++p1) == (c2 = *++p2))
@@ -515,12 +507,12 @@ bytecopy:
 #    pragma ANSI_strict reset
 
 int
-strncmp(const char *str1, const char *str2, size_t n)
+strncmp(const char* str1, const char* str2, size_t n)
 {
 #    if !__POWERPC__
 
-    const unsigned char *p1 = (unsigned char *)str1;
-    const unsigned char *p2 = (unsigned char *)str2;
+    const unsigned char* p1 = (unsigned char*)str1;
+    const unsigned char* p2 = (unsigned char*)str2;
     unsigned char        c1, c2;
 
     n++;
@@ -539,8 +531,8 @@ strncmp(const char *str1, const char *str2, size_t n)
 
 #    else
 
-    const unsigned char *p1 = (unsigned char *)str1 - 1;
-    const unsigned char *p2 = (unsigned char *)str2 - 1;
+    const unsigned char* p1 = (unsigned char*)str1 - 1;
+    const unsigned char* p2 = (unsigned char*)str2 - 1;
     unsigned long        c1, c2;
 
     n++;
@@ -563,12 +555,12 @@ strncmp(const char *str1, const char *str2, size_t n)
 }
 
 #    if __dest_os != __n64_os       /*- ad 990128 -*/
-char *
-strchr(const char *str, int chr)
+char*
+strchr(const char* str, int chr)
 {
 #        if !__POWERPC__
 
-    const char *p = str;
+    const char* p = str;
     char        c = chr;
     char        ch;
 
@@ -576,15 +568,15 @@ strchr(const char *str, int chr)
     {
         if (ch == c)
         {
-            return ((char *)(p - 1));
+            return ((char*)(p - 1));
         }
     }
 
-    return (c ? 0 : (char *)(p - 1));
+    return (c ? 0 : (char*)(p - 1));
 
 #        else
 
-    const unsigned char *p = (unsigned char *)str - 1;
+    const unsigned char* p = (unsigned char*)str - 1;
     unsigned long        c = (chr & 0xff); /*- mm 970327 -*/
     unsigned long        ch;
 
@@ -592,11 +584,11 @@ strchr(const char *str, int chr)
     {
         if (ch == c)
         {
-            return ((char *)p);
+            return ((char*)p);
         }
     }
 
-    return (c ? 0 : (char *)p);
+    return (c ? 0 : (char*)p);
 
 #        endif
 }
@@ -605,13 +597,13 @@ strchr(const char *str, int chr)
 #endif                              /* __dest_os != __win32_os */
 
 int
-strcoll(const char *str1, const char *str2)
+strcoll(const char* str1, const char* str2)
 {
     return (strcmp(str1, str2));
 }
 
 size_t
-strxfrm(char *str1, const char *str2, size_t n)
+strxfrm(char* str1, const char* str2, size_t n)
 {
     int len = strlen(str2);
     if (n > 0)                      /*- mm 990630 -*/
@@ -625,13 +617,13 @@ strxfrm(char *str1, const char *str2, size_t n)
     return (len);
 }
 
-char *
-strrchr(const char *str, int chr)
+char*
+strrchr(const char* str, int chr)
 {
 #if !__POWERPC__
 
-    const char *p = str;
-    const char *q = 0;
+    const char* p = str;
+    const char* q = 0;
     char        c = chr;
     char        ch;
 
@@ -645,15 +637,15 @@ strrchr(const char *str, int chr)
 
     if (q)
     {
-        return ((char *)q);
+        return ((char*)q);
     }
 
-    return (c ? 0 : (char *)(p - 1));
+    return (c ? 0 : (char*)(p - 1));
 
 #else
 
-    const unsigned char *p = (unsigned char *)str - 1;
-    const unsigned char *q = 0;
+    const unsigned char* p = (unsigned char*)str - 1;
+    const unsigned char* q = 0;
     unsigned long        c = (chr & 0xff);    /*- bb 970530 -*/
     unsigned long        ch;
 
@@ -667,10 +659,10 @@ strrchr(const char *str, int chr)
 
     if (q)
     {
-        return ((char *)q);
+        return ((char*)q);
     }
 
-    return (c ? 0 : (char *)p);
+    return (c ? 0 : (char*)p);
 
 #endif
 }
@@ -680,29 +672,29 @@ typedef unsigned char char_map[32];
 #define set_char_map(map, ch) map[(unsigned char)ch >> 3] |= (1 << (ch & 7))                 /*- mm 990913 -*/
 #define tst_char_map(map, ch) (map[(unsigned char)ch >> 3] & (1 << (ch & 7)))                /*- mm 990913 -*/
 
-char *
-strpbrk(const char *str, const char *set)
+char*
+strpbrk(const char* str, const char* set)
 {
-    const unsigned char *p;
+    const unsigned char* p;
     int                  c;
     char_map             map = { 0 };
 
 #if !__POWERPC__
 
-    p = (unsigned char *)set;
+    p = (unsigned char*)set;
 
     while (c = *p++)
     {
         set_char_map(map, c);
     }
 
-    p = (unsigned char *)str;
+    p = (unsigned char*)str;
 
     while (c = *p++)
     {
         if (tst_char_map(map, c))
         {
-            return ((char *)(p - 1));
+            return ((char*)(p - 1));
         }
     }
 
@@ -710,20 +702,20 @@ strpbrk(const char *str, const char *set)
 
 #else
 
-    p = (unsigned char *)set - 1;
+    p = (unsigned char*)set - 1;
 
     while (c = *++p)
     {
         set_char_map(map, c);
     }
 
-    p = (unsigned char *)str - 1;
+    p = (unsigned char*)str - 1;
 
     while (c = *++p)
     {
         if (tst_char_map(map, c))
         {
-            return ((char *)p);
+            return ((char*)p);
         }
     }
 
@@ -733,22 +725,22 @@ strpbrk(const char *str, const char *set)
 }
 
 size_t
-strspn(const char *str, const char *set)
+strspn(const char* str, const char* set)
 {
-    const unsigned char *p;
+    const unsigned char* p;
     int                  c;
     char_map             map = { 0 };
 
 #if !__POWERPC__
 
-    p = (unsigned char *)set;
+    p = (unsigned char*)set;
 
     while (c = *p++)
     {
         set_char_map(map, c);
     }
 
-    p = (unsigned char *)str;
+    p = (unsigned char*)str;
 
     while (c = *p++)
     {
@@ -758,18 +750,18 @@ strspn(const char *str, const char *set)
         }
     }
 
-    return (p - (unsigned char *)str - 1);
+    return (p - (unsigned char*)str - 1);
 
 #else
 
-    p = (unsigned char *)set - 1;
+    p = (unsigned char*)set - 1;
 
     while (c = *++p)
     {
         set_char_map(map, c);
     }
 
-    p = (unsigned char *)str - 1;
+    p = (unsigned char*)str - 1;
 
     while (c = *++p)
     {
@@ -779,28 +771,28 @@ strspn(const char *str, const char *set)
         }
     }
 
-    return (p - (unsigned char *)str);
+    return (p - (unsigned char*)str);
 
 #endif
 }
 
 size_t
-strcspn(const char *str, const char *set)
+strcspn(const char* str, const char* set)
 {
-    const unsigned char *p;
+    const unsigned char* p;
     int                  c;
     char_map             map = { 0 };
 
 #if !__POWERPC__
 
-    p = (unsigned char *)set;
+    p = (unsigned char*)set;
 
     while (c = *p++)
     {
         set_char_map(map, c);
     }
 
-    p = (unsigned char *)str;
+    p = (unsigned char*)str;
 
     while (c = *p++)
     {
@@ -810,18 +802,18 @@ strcspn(const char *str, const char *set)
         }
     }
 
-    return (p - (unsigned char *)str - 1);
+    return (p - (unsigned char*)str - 1);
 
 #else
 
-    p = (unsigned char *)set - 1;
+    p = (unsigned char*)set - 1;
 
     while (c = *++p)
     {
         set_char_map(map, c);
     }
 
-    p = (unsigned char *)str - 1;
+    p = (unsigned char*)str - 1;
 
     while (c = *++p)
     {
@@ -831,15 +823,15 @@ strcspn(const char *str, const char *set)
         }
     }
 
-    return (p - (unsigned char *)str);
+    return (p - (unsigned char*)str);
 
 #endif
 }
 
 #if (_MWMT && (__dest_os == __win32_os || __dest_os == __wince_os))                          /*- mm 010521 -*/
 
-char *
-strtok(char *str, const char *set)
+char*
+strtok(char* str, const char* set)
 {
     unsigned char *p, *q;
     int            c;
@@ -847,10 +839,10 @@ strtok(char *str, const char *set)
 
     if (str)
     {
-        _GetThreadLocalData(_MSL_TRUE)->strtok_s = (unsigned char *)str;                     /*- cc 010531 -*/
+        _GetThreadLocalData(_MSL_TRUE)->strtok_s = (unsigned char*)str;                      /*- cc 010531 -*/
     }
 
-    p = (unsigned char *)set;
+    p = (unsigned char*)set;
 
     while (c = *p++)
     {
@@ -893,28 +885,28 @@ strtok(char *str, const char *set)
         *--p = 0;
     }
 
-    return ((char *)q);
+    return ((char*)q);
 }
 
 #else  /* !(_MWMT && (__dest_os == __win32_os || __dest_os	== __wince_os)) */
 
-char *
-strtok(char *str, const char *set)
+char*
+strtok(char* str, const char* set)
 {
-    unsigned char              *p, *q;
-    __tls static unsigned char *n = (unsigned char *)"";
-    __tls static unsigned char *s = (unsigned char *)"";
+    unsigned char *             p, *q;
+    __tls static unsigned char* n = (unsigned char*)"";
+    __tls static unsigned char* s = (unsigned char*)"";
     int                         c;
     char_map                    map = { 0 };
 
     if (str)
     {
-        s = (unsigned char *)str;
+        s = (unsigned char*)str;
     }
 
 #    if !__POWERPC__
 
-    p = (unsigned char *)set;
+    p = (unsigned char*)set;
 
     while (c = *p++)
     {
@@ -957,11 +949,11 @@ strtok(char *str, const char *set)
         *--p = 0;
     }
 
-    return ((char *)q);
+    return ((char*)q);
 
 #    else
 
-    p = (unsigned char *)set - 1;
+    p = (unsigned char*)set - 1;
 
     while (c = *++p)
     {
@@ -1004,41 +996,40 @@ strtok(char *str, const char *set)
         *p = 0;
     }
 
-    return ((char *)q);
+    return ((char*)q);
 
 #    endif
 }
 #endif /*(_MWMT && (__dest_os == __win32_os || __dest_os	== __wince_os))*/
 
-char *
-strstr(const char *str, const char *pat)
+char*
+strstr(const char* str, const char* pat)
 {
 #if !__POWERPC__
 
-    unsigned char *s1 = (unsigned char *)str;
-    unsigned char *p1 = (unsigned char *)pat;
+    unsigned char* s1 = (unsigned char*)str;
+    unsigned char* p1 = (unsigned char*)pat;
     unsigned char  firstc, c1, c2;
 
     if ((pat == NULL) || (!(firstc = *p1++)))
     {
         /*- mm 980424 -*/
         /*- beb 971017 -*/
-        return ((char *)str);
+        return ((char*)str);
     }
 
     while (c1 = *s1++)
     {
         if (c1 == firstc)
         {
-            const unsigned char *s2 = s1;
-            const unsigned char *p2 = p1;
+            const unsigned char* s2 = s1;
+            const unsigned char* p2 = p1;
 
-            while ((c1 = *s2++) == (c2 = *p2++) && c1)
-                ;
+            while ((c1 = *s2++) == (c2 = *p2++) && c1);
 
             if (!c2)
             {
-                return ((char *)s1 - 1);
+                return ((char*)s1 - 1);
             }
         }
     }
@@ -1047,30 +1038,29 @@ strstr(const char *str, const char *pat)
 
 #else
 
-    unsigned char *s1 = (unsigned char *)str - 1;
-    unsigned char *p1 = (unsigned char *)pat - 1;
+    unsigned char* s1 = (unsigned char*)str - 1;
+    unsigned char* p1 = (unsigned char*)pat - 1;
     unsigned long  firstc, c1, c2;
 
     if ((pat == NULL) || (!(firstc = *++p1))) /*- vss 980807 -*/
     {
         /*- mm 980424  -*/
         /*- beb 971017 -*/
-        return ((char *)str);
+        return ((char*)str);
     }
 
     while (c1 = *++s1)
     {
         if (c1 == firstc)
         {
-            const unsigned char *s2 = s1 - 1;
-            const unsigned char *p2 = p1 - 1;
+            const unsigned char* s2 = s1 - 1;
+            const unsigned char* p2 = p1 - 1;
 
-            while ((c1 = *++s2) == (c2 = *++p2) && c1)
-                ;
+            while ((c1 = *++s2) == (c2 = *++p2) && c1);
 
             if (!c2)
             {
-                return ((char *)s1);
+                return ((char*)s1);
             }
         }
     }
@@ -1080,7 +1070,7 @@ strstr(const char *str, const char *pat)
 #endif
 }
 
-char *
+char*
 strerror(int errnum)
 {
     static char errstr[__max_errstr];
@@ -1088,147 +1078,59 @@ strerror(int errnum)
     return (__strerror(errnum, errstr));
 }
 
-char *
-__strerror(int errnum, char *str)
+char*
+__strerror(int errnum, char* str)
 {
     switch (errnum)
     {
         /* begin mm 010412 changes */ /*- mm 010412 -*/
-        case E2BIG :
-            strcpy(str, "Argument list too long");
-            break;
-        case EACCES :
-            strcpy(str, "Permission denied");
-            break;
-        case EAGAIN :
-            strcpy(str, "Resource temporarily unavailable");
-            break;
-        case EBADF :
-            strcpy(str, "Bad file descriptor");
-            break;
-        case EBUSY :
-            strcpy(str, "Device busy");
-            break;
-        case ECHILD :
-            strcpy(str, "No child processes");
-            break;
-        case EDEADLK :
-            strcpy(str, "Resource deadlock avoided");
-            break;
-        case EDOM :
-            strcpy(str, "Numerical argument out of domain");
-            break;
-        case EEXIST :
-            strcpy(str, "File exists");
-            break;
-        case EFAULT :
-            strcpy(str, "Bad address");
-            break;
-        case EFBIG :
-            strcpy(str, "File too large");
-            break;
-        case EFPOS :
-            strcpy(str, "File Position Error");
-            break;
-        case EILSEQ :
-            strcpy(str, "Wide character encoding error");
-            break;
-        case EINTR :
-            strcpy(str, "Interrupted system call");
-            break;
-        case EINVAL :
-            strcpy(str, "Invalid argument");
-            break;
-        case EIO :
-            strcpy(str, "Input/output error");
-            break;
-        case EISDIR :
-            strcpy(str, "Is a directory");
-            break;
+        case E2BIG   : strcpy(str, "Argument list too long"); break;
+        case EACCES  : strcpy(str, "Permission denied"); break;
+        case EAGAIN  : strcpy(str, "Resource temporarily unavailable"); break;
+        case EBADF   : strcpy(str, "Bad file descriptor"); break;
+        case EBUSY   : strcpy(str, "Device busy"); break;
+        case ECHILD  : strcpy(str, "No child processes"); break;
+        case EDEADLK : strcpy(str, "Resource deadlock avoided"); break;
+        case EDOM    : strcpy(str, "Numerical argument out of domain"); break;
+        case EEXIST  : strcpy(str, "File exists"); break;
+        case EFAULT  : strcpy(str, "Bad address"); break;
+        case EFBIG   : strcpy(str, "File too large"); break;
+        case EFPOS   : strcpy(str, "File Position Error"); break;
+        case EILSEQ  : strcpy(str, "Wide character encoding error"); break;
+        case EINTR   : strcpy(str, "Interrupted system call"); break;
+        case EINVAL  : strcpy(str, "Invalid argument"); break;
+        case EIO     : strcpy(str, "Input/output error"); break;
+        case EISDIR  : strcpy(str, "Is a directory"); break;
 #if ((__dest_os == __mac_os) || (__dest_os == __mac_os_x))
-        case EMACOSERR :
-            sprintf(str, "Mac OS error  (%d)", __MacOSErrNo);
-            break;
+        case EMACOSERR : sprintf(str, "Mac OS error  (%d)", __MacOSErrNo); break;
 #endif
-        case EMFILE :
-            strcpy(str, "Too many open files");
-            break;
-        case EMLINK :
-            strcpy(str, "Too many links");
-            break;
-        case ENAMETOOLONG :
-            strcpy(str, "File name too long");
-            break;
-        case ENFILE :
-            strcpy(str, "Too many open files in system");
-            break;
-        case ENODEV :
-            strcpy(str, "Operation not supported by device");
-            break;
-        case ENOENT :
-            strcpy(str, "No such file or directory");
-            break;
-        case ENOERR :
-            strcpy(str, "No error detected");
-            break;
-        case ENOEXEC :
-            strcpy(str, "Exec format error");
-            break;
-        case ENOLCK :
-            strcpy(str, "No locks available");
-            break;
-        case ENOMEM :
-            strcpy(str, "Cannot allocate memory");
-            break;
-        case ENOSPC :
-            strcpy(str, "No space left on device");
-            break;
-        case ENOSYS :
-            strcpy(str, "Function not implemented");
-            break;
-        case ENOTDIR :
-            strcpy(str, "Not a directory");
-            break;
-        case ENOTEMPTY :
-            strcpy(str, "Directory not empty");
-            break;
-        case ENOTTY :
-            strcpy(str, "Inappropriate ioctl for device");
-            break;
-        case ENXIO :
-            strcpy(str, "Device not configured");
-            break;
-        case EPERM :
-            strcpy(str, "Operation not permitted");
-            break;
-        case EPIPE :
-            strcpy(str, "Broken pipe");
-            break;
-        case ERANGE :
-            strcpy(str, "Result too large");
-            break;
-        case EROFS :
-            strcpy(str, "Read-only file system");
-            break;
-        case ESIGPARM :
-            strcpy(str, "Signal error");
-            break;
-        case ESPIPE :
-            strcpy(str, "Illegal seek");
-            break;
-        case ESRCH :
-            strcpy(str, "No such process");
-            break;
-        case EUNKNOWN :
-            strcpy(str, "Unknown error");
-            break;
-        case EXDEV :
-            strcpy(str, "Cross-device link");
-            break;
+        case EMFILE       : strcpy(str, "Too many open files"); break;
+        case EMLINK       : strcpy(str, "Too many links"); break;
+        case ENAMETOOLONG : strcpy(str, "File name too long"); break;
+        case ENFILE       : strcpy(str, "Too many open files in system"); break;
+        case ENODEV       : strcpy(str, "Operation not supported by device"); break;
+        case ENOENT       : strcpy(str, "No such file or directory"); break;
+        case ENOERR       : strcpy(str, "No error detected"); break;
+        case ENOEXEC      : strcpy(str, "Exec format error"); break;
+        case ENOLCK       : strcpy(str, "No locks available"); break;
+        case ENOMEM       : strcpy(str, "Cannot allocate memory"); break;
+        case ENOSPC       : strcpy(str, "No space left on device"); break;
+        case ENOSYS       : strcpy(str, "Function not implemented"); break;
+        case ENOTDIR      : strcpy(str, "Not a directory"); break;
+        case ENOTEMPTY    : strcpy(str, "Directory not empty"); break;
+        case ENOTTY       : strcpy(str, "Inappropriate ioctl for device"); break;
+        case ENXIO        : strcpy(str, "Device not configured"); break;
+        case EPERM        : strcpy(str, "Operation not permitted"); break;
+        case EPIPE        : strcpy(str, "Broken pipe"); break;
+        case ERANGE       : strcpy(str, "Result too large"); break;
+        case EROFS        : strcpy(str, "Read-only file system"); break;
+        case ESIGPARM     : strcpy(str, "Signal error"); break;
+        case ESPIPE       : strcpy(str, "Illegal seek"); break;
+        case ESRCH        : strcpy(str, "No such process"); break;
+        case EUNKNOWN     : strcpy(str, "Unknown error"); break;
+        case EXDEV        : strcpy(str, "Cross-device link"); break;
         /* end mm 010412 changes */   /*- mm 010412 -*/
-        default :
-            sprintf(str, "Unknown Error (%d)", errnum);
-            break;
+        default           : sprintf(str, "Unknown Error (%d)", errnum); break;
     }
 
     return (str);

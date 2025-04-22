@@ -46,7 +46,7 @@ static int fragmentID = -2;    /* ID given to fragment by exception-handling		*/
                                /* valid numbers are 0 - MAX_INT; if -1 then		*/
 /* too many fragments were loaded					*/
 
-static asm char *
+static asm char*
 GetR2(void)
 {
     /*
@@ -58,7 +58,7 @@ GetR2(void)
 extern void
 __init_cpp_exceptions(void)
 {
-    char *R2; /* r2 register contents								*/
+    char* R2; /* r2 register contents								*/
 
     if (fragmentID == -2)
     {
@@ -87,9 +87,9 @@ __fini_cpp_exceptions(void)
 }
 
 #if __MWERKS__ && __PPC_EABI__
-__declspec(section ".ctors") static void * const __init_cpp_exceptions_reference = __init_cpp_exceptions;
+__declspec(section ".ctors") static void* const __init_cpp_exceptions_reference = __init_cpp_exceptions;
 #    if __dest_os != __eppc_vxworks
-__declspec(section ".dtors") static void * const __destroy_global_chain_reference = __destroy_global_chain;
-__declspec(section ".dtors") static void * const __fini_cpp_exceptions_reference = __fini_cpp_exceptions;
+__declspec(section ".dtors") static void* const __destroy_global_chain_reference = __destroy_global_chain;
+__declspec(section ".dtors") static void* const __fini_cpp_exceptions_reference = __fini_cpp_exceptions;
 #    endif
 #endif

@@ -15,10 +15,10 @@ _MSL_BEGIN_EXTERN_C         /*- cc 010409 -*/
 
     /*- hh 990121 -*/
     int
-    __open_string_file(__std(FILE) *, char *str, __std(size_t) n, int io_state); /*- mf 990715 -*/
-int __read_string(__std(__file_handle) handle, unsigned char *buffer, __std(size_t) * count,
+    __open_string_file(__std(FILE) *, char* str, __std(size_t) n, int io_state); /*- mf 990715 -*/
+int __read_string(__std(__file_handle) handle, unsigned char* buffer, __std(size_t) * count,
                   __std(__idle_proc) idle_proc);
-int __write_string(__std(__file_handle) handle, unsigned char *buffer, __std(size_t) * count,
+int __write_string(__std(__file_handle) handle, unsigned char* buffer, __std(size_t) * count,
                    __std(__idle_proc) idle_proc);
 int __close_string(__std(__file_handle) handle);
 

@@ -42,9 +42,9 @@ static const short month_to_days[2][13] = {
     { 0, 31, 60, 91, 121, 152, 182, 213, 244, 274, 305, 335, 366 }
 };
 
-static const char *day_name[] = { "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday" };
+static const char* day_name[] = { "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday" };
 
-static const char *month_name[] = { "January", "February", "March",     "April",   "May",      "June",
+static const char* month_name[] = { "January", "February", "March",     "April",   "May",      "June",
                                     "July",    "August",   "September", "October", "November", "December" };
 
 /*
@@ -115,7 +115,7 @@ leap_days(int year, int mon)
  */
 
 static int
-adjust(int *x, int y, int *z)
+adjust(int* x, int y, int* z)
 {
     div_t q;
 
@@ -133,10 +133,10 @@ adjust(int *x, int y, int *z)
 
 #    if (__dest_os == __win32_os || __dest_os == __wince_os)
 static void
-__time2tm(time_t inTime, struct tm *tm)
+__time2tm(time_t inTime, struct tm* tm)
 #    else
 static void
-__time2tm(time_t time, struct tm *tm)
+__time2tm(time_t time, struct tm* tm)
 #    endif
 {
     unsigned long years, months, days, seconds;
@@ -228,7 +228,7 @@ __time2tm(time_t time, struct tm *tm)
  */
 
 static int
-__tm2time(struct tm *tm, time_t *time)
+__tm2time(struct tm* tm, time_t* time)
 {
     long   days;
     time_t seconds, day_secs;
@@ -327,7 +327,7 @@ string as input
  */
 
 static void
-wasciitime(struct tm tm, wchar_t *str)
+wasciitime(struct tm tm, wchar_t* str)
 {
     size_t n;
 
@@ -361,7 +361,7 @@ wasciitime(struct tm tm, wchar_t *str)
  */
 
 static void
-clear_tm(struct tm *tm)
+clear_tm(struct tm* tm)
 {
     tm->tm_sec = 0;
     tm->tm_min = 0;
@@ -379,7 +379,7 @@ clear_tm(struct tm *tm)
  */
 
 static int
-wemit(wchar_t *str, size_t size, size_t *max_size, const wchar_t *format_str, ...)
+wemit(wchar_t* str, size_t size, size_t* max_size, const wchar_t* format_str, ...)
 {
 #    if __PPC_EABI__ || __MIPS__ /* __dest_os == __mips_bare */                               /*- scm 970709 -*/
     va_list args;                                                                             /*- scm 970709 -*/
@@ -401,7 +401,7 @@ wemit(wchar_t *str, size_t size, size_t *max_size, const wchar_t *format_str, ..
 }
 
 static int
-week_num(const struct tm *tm, int starting_day)
+week_num(const struct tm* tm, int starting_day)
 {
     int days = tm->tm_yday;
 
@@ -416,13 +416,13 @@ week_num(const struct tm *tm, int starting_day)
 }
 
 size_t
-wcsftime(wchar_t *str, size_t max_size, const wchar_t *format_str, const struct tm *timeptr)
+wcsftime(wchar_t* str, size_t max_size, const wchar_t* format_str, const struct tm* timeptr)
 {
     struct tm              tm;
     static const struct tm default_tm = { 0, 0, 0, 1, 0, 0, 1, 0, -1 };
     size_t                 num_chars, chars_written;
-    const wchar_t         *format_ptr;
-    const wchar_t         *curr_format;
+    const wchar_t*         format_ptr;
+    const wchar_t*         curr_format;
     int                    n;
 
     if (--max_size <= 0)
@@ -472,10 +472,7 @@ wcsftime(wchar_t *str, size_t max_size, const wchar_t *format_str, const struct 
 
         switch (*++format_ptr)
         {
-            case L'a' :
-
-                num_chars = wemit(str, 3, &max_size, L"%.3s", day_name[tm.tm_wday]);
-                break;
+            case L'a' : num_chars = wemit(str, 3, &max_size, L"%.3s", day_name[tm.tm_wday]); break;
 
             case L'A' :
 
@@ -483,10 +480,7 @@ wcsftime(wchar_t *str, size_t max_size, const wchar_t *format_str, const struct 
                                   day_name[tm.tm_wday]);                                      /*- mm 990331 -*/
                 break;
 
-            case L'b' :
-
-                num_chars = wemit(str, 3, &max_size, L"%.3s", month_name[tm.tm_mon]);
-                break;
+            case L'b' : num_chars = wemit(str, 3, &max_size, L"%.3s", month_name[tm.tm_mon]); break;
 
             case L'B' :
 
@@ -500,59 +494,30 @@ wcsftime(wchar_t *str, size_t max_size, const wchar_t *format_str, const struct 
                 max_size -= num_chars;
                 break;
 
-            case L'd' :
+            case L'd' : num_chars = wemit(str, 2, &max_size, L"%.2d", tm.tm_mday); break;
 
-                num_chars = wemit(str, 2, &max_size, L"%.2d", tm.tm_mday);
-                break;
+            case L'H' : num_chars = wemit(str, 2, &max_size, L"%.2d", tm.tm_hour); break;
 
-            case L'H' :
+            case L'I' : num_chars = wemit(str, 2, &max_size, L"%.2d", (n = tm.tm_hour % 12) ? n : 12); break;
 
-                num_chars = wemit(str, 2, &max_size, L"%.2d", tm.tm_hour);
-                break;
+            case L'j' : num_chars = wemit(str, 3, &max_size, L"%.3d", tm.tm_yday + 1); break;
 
-            case L'I' :
-                num_chars = wemit(str, 2, &max_size, L"%.2d", (n = tm.tm_hour % 12) ? n : 12);
-                break;
+            case L'm' : num_chars = wemit(str, 2, &max_size, L"%.2d", tm.tm_mon + 1); break;
 
-            case L'j' :
-
-                num_chars = wemit(str, 3, &max_size, L"%.3d", tm.tm_yday + 1);
-                break;
-
-            case L'm' :
-
-                num_chars = wemit(str, 2, &max_size, L"%.2d", tm.tm_mon + 1);
-                break;
-
-            case L'M' :
-
-                num_chars = wemit(str, 2, &max_size, L"%.2d", tm.tm_min);
-                break;
+            case L'M' : num_chars = wemit(str, 2, &max_size, L"%.2d", tm.tm_min); break;
 
             case L'p' :
 
                 num_chars = wemit(str, 2, &max_size, L"%.2s", tm.tm_hour < 12 ? "AM" : "PM"); /*- mm 990322 -*/
                 break;
 
-            case L'S' :
+            case L'S' : num_chars = wemit(str, 2, &max_size, L"%.2d", tm.tm_sec); break;
 
-                num_chars = wemit(str, 2, &max_size, L"%.2d", tm.tm_sec);
-                break;
+            case L'U' : num_chars = wemit(str, 2, &max_size, L"%.2d", week_num(&tm, 0)); break;
 
-            case L'U' :
+            case L'w' : num_chars = wemit(str, 1, &max_size, L"%.1d", tm.tm_wday); break;
 
-                num_chars = wemit(str, 2, &max_size, L"%.2d", week_num(&tm, 0));
-                break;
-
-            case L'w' :
-
-                num_chars = wemit(str, 1, &max_size, L"%.1d", tm.tm_wday);
-                break;
-
-            case L'W' :
-
-                num_chars = wemit(str, 2, &max_size, L"%.2d", week_num(&tm, 1));
-                break;
+            case L'W' : num_chars = wemit(str, 2, &max_size, L"%.2d", week_num(&tm, 1)); break;
 
             case L'x' :
 
@@ -571,25 +536,12 @@ wcsftime(wchar_t *str, size_t max_size, const wchar_t *format_str, const struct 
                 num_chars = wemit(str, 2, &max_size, L"%.2d", tm.tm_year % 100);              /*- mm 970728 -*/
                 break;
 
-            case L'Y' :
+            case L'Y' : num_chars = wemit(str, 4, &max_size, L"%.4d", tm.tm_year + 1900); break;
 
-                num_chars = wemit(str, 4, &max_size, L"%.4d", tm.tm_year + 1900);
-                break;
+            case L'Z' : ++format_ptr; continue;
+            case L'%' : /*- mf 092497 -*/ num_chars = wemit(str, 2, &max_size, L"%%", *format_ptr); break;
 
-            case L'Z' :
-
-                ++format_ptr;
-
-                continue;
-            case L'%' :                                                                       /*- mf 092497 -*/
-
-                num_chars = wemit(str, 2, &max_size, L"%%", *format_ptr);
-                break;
-
-            default :
-
-                num_chars = wemit(str, 2, &max_size, L"%%%c", *format_ptr);
-                break;
+            default   : num_chars = wemit(str, 2, &max_size, L"%%%c", *format_ptr); break;
         }
 
         if (!num_chars)

@@ -548,8 +548,7 @@ G2DDrawLayer(G2DLayer* layer, s8* aSortBuffer)
 
         switch (layer->matDesc[nMaterial].nCategory)
         {
-            case G2D_CTG_EMPTY :
-                continue;
+            case G2D_CTG_EMPTY : continue;
 
             case G2D_CTG_RGBA_INDEX8 :
                 {

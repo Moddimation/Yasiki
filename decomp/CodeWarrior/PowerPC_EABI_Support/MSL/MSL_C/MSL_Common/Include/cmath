@@ -105,15 +105,15 @@ typedef long double double_t;
 #            include <msl_t.h>
 
 #            if __option(little_endian)
-#                define __HI(x)  (sizeof(x) == 8 ? *(1 + (_INT32 *)&x) : (*(_INT32 *)&x))
-#                define __LO(x)  (*(_INT32 *)&x)
-#                define __UHI(x) (sizeof(x) == 8 ? *(1 + (_UINT32 *)&x) : (*(_UINT32 *)&x))
-#                define __ULO(x) (*(_UINT32 *)&x)
+#                define __HI(x)  (sizeof(x) == 8 ? *(1 + (_INT32*)&x) : (*(_INT32*)&x))
+#                define __LO(x)  (*(_INT32*)&x)
+#                define __UHI(x) (sizeof(x) == 8 ? *(1 + (_UINT32*)&x) : (*(_UINT32*)&x))
+#                define __ULO(x) (*(_UINT32*)&x)
 #            else
-#                define __LO(x)  (sizeof(x) == 8 ? *(1 + (_INT32 *)&x) : (*(_INT32 *)&x))
-#                define __HI(x)  (*(_INT32 *)&x)
-#                define __ULO(x) (sizeof(x) == 8 ? *(1 + (_UINT32 *)&x) : (*(_UINT32 *)&x))
-#                define __UHI(x) (*(_UINT32 *)&x)
+#                define __LO(x)  (sizeof(x) == 8 ? *(1 + (_INT32*)&x) : (*(_INT32*)&x))
+#                define __HI(x)  (*(_INT32*)&x)
+#                define __ULO(x) (sizeof(x) == 8 ? *(1 + (_UINT32*)&x) : (*(_UINT32*)&x))
+#                define __UHI(x) (*(_UINT32*)&x)
 #            endif
 
 /* start out w/ definitions of inlines/macros which are neither extern "C" nor in namespace std */
@@ -123,11 +123,11 @@ typedef long double double_t;
 _INLINE int
 __fpclassifyf(float x)
 {
-    switch ((*(_INT32 *)&x) & 0x7f800000)
+    switch ((*(_INT32*)&x) & 0x7f800000)
     {
         case 0x7f800000 :
             {
-                if ((*(_INT32 *)&x) & 0x007fffff)
+                if ((*(_INT32*)&x) & 0x007fffff)
                 {
                     return FP_NAN;
                 }
@@ -139,7 +139,7 @@ __fpclassifyf(float x)
             }
         case 0 :
             {
-                if ((*(_INT32 *)&x) & 0x007fffff)
+                if ((*(_INT32*)&x) & 0x007fffff)
                 {
                     return FP_SUBNORMAL;
                 }
@@ -234,11 +234,11 @@ _MSL_IMP_EXP _INT32     __extended_huge[];
 
 /*  special number macros */
 
-#            define HUGE_VAL    (*(double *)__double_huge)
-#            define INFINITY    (*(float *)__float_huge)
-#            define NAN         (*(float *)__float_nan)
-#            define HUGE_VALF   (*(float *)__float_huge)
-#            define HUGE_VALL   (*(long double *)__extended_huge)
+#            define HUGE_VAL    (*(double*)__double_huge)
+#            define INFINITY    (*(float*)__float_huge)
+#            define NAN         (*(float*)__float_nan)
+#            define HUGE_VALF   (*(float*)__float_huge)
+#            define HUGE_VALL   (*(long double*)__extended_huge)
 
 /* macros map onto condtion codes of x86 fpu status word
   (it is more efficient to return the condition codes of the status word)
@@ -308,11 +308,11 @@ double atan2(double, double);
 double fmod(double, double);
 double fabs(double);
 double sqrt(double);
-double frexp(double, int *exp);
+double frexp(double, int* exp);
 double ldexp(double, int exp);
 double log(double);
 double log10(double);
-double modf(double, double *iptr);
+double modf(double, double* iptr);
 double ceil(double);
 double floor(double);
 double log2(double);
@@ -361,7 +361,7 @@ long   roundtol(double);
 double trunc(double);
 
 double remainder(double, double);
-double remquo(double, double, int *quo);
+double remquo(double, double, int* quo);
 double fdim(double, double);
 double fmax(double, double);
 double fmin(double, double);
@@ -374,11 +374,11 @@ long long llround(double);
 #            endif /*__MSL_LONGLONG_SUPPORT__*/ /*- mm 961220 -*/
 
 #            if ((__dest_os == __mac_os) || __INTEL__)  /*- mm 991216 -*/
-double nan(const char *);        /*- mm 991216 -*/
+double nan(const char*);         /*- mm 991216 -*/
 #            else                                       /*- mm 991216 -*/
 #                ifdef __cplusplus                      /*- hh 010411 -*/
 inline double
-nan(const char *)
+nan(const char*)
 {
     return NAN;
 } /*- hh 010411 -*/
@@ -481,7 +481,7 @@ expl(long double x)
 }
 
 _INLINE long double
-frexpl(long double x, int *exp)
+frexpl(long double x, int* exp)
 {
     return frexp((double_t)x, exp);
 }
@@ -505,7 +505,7 @@ log10l(long double x)
 }
 
 _INLINE long double
-modfl(long double x, long double *iptr)
+modfl(long double x, long double* iptr)
 {
     double      iptrd;
     long double result = modf((double)x, &iptrd);
@@ -691,7 +691,7 @@ copysignl(long double x, long double y)
 }
 
 _INLINE long double
-remquol(long double x, long double y, int *quo)
+remquol(long double x, long double y, int* quo)
 {
     return remquo((double_t)x, (double_t)y, quo);
 }
@@ -720,7 +720,7 @@ fminl(long double x, long double y)
 
 _MSL_END_NAMESPACE_STD       /*- cc 010409 -*/
 
-#            if !(__INTEL__ && __option(k63d) || __SH__)
+#            if !(__INTEL__&& __option(k63d) || __SH__)
 
     _MSL_BEGIN_NAMESPACE_STD /*- cc 010409 -*/
 
@@ -728,14 +728,13 @@ _MSL_END_NAMESPACE_STD       /*- cc 010409 -*/
       coshf(float x);
 float sinhf(float x);
 float tanhf(float x);
-float frexpf(float x, int *exp);
+float frexpf(float x, int* exp);
 float ldexpf(float x, int exp);
 float expf(float x);
 float logf(float x);
 float log10f(float x);
 
-_INLINE float
-fabsf(float x);
+_INLINE float fabsf(float x);
 
 _INLINE float
 powf(float x, float y)
@@ -787,7 +786,7 @@ _MSL_END_NAMESPACE_STD       /*- cc 010409 -*/
 /*modff is the same everywhere */
 #            pragma cplusplus on
         _INLINE float
-        modff(float x, float *iptr)
+        modff(float x, float* iptr)
 {
     switch (fpclassify(x))
     {
@@ -807,7 +806,7 @@ _MSL_END_NAMESPACE_STD       /*- cc 010409 -*/
         default :                             /*normal case */
             const _INT32 i = (_INT32)x;       /*truncated toward zero */
             const float  frac = x - (float)i; /* fractional part of x(subtraction is exact in this case) */
-            if ((!(*(_INT32 *)&frac)) || ((*(_INT32 *)&x) & 0x7f800000) >= 0x4B800000)
+            if ((!(*(_INT32*)&frac)) || ((*(_INT32*)&x) & 0x7f800000) >= 0x4B800000)
             {
                 *iptr = x;
                 return 0.0f;
@@ -972,7 +971,7 @@ copysignf(float x, float y)
 }
 
 _INLINE float
-remquof(float x, float y, int *quo)
+remquof(float x, float y, int* quo)
 {
     return (float)remquo((double_t)x, (double_t)y, quo);
 }
@@ -1185,7 +1184,7 @@ copysign(float x, float y)
 }
 
 _INLINE float
-remquo(float x, float y, int *quo)
+remquo(float x, float y, int* quo)
 {
     return remquof(x, y, quo);
 }
@@ -1358,7 +1357,7 @@ copysign(long double x, long double y)
 }
 
 _INLINE long double
-remquo(long double x, long double y, int *quo)
+remquo(long double x, long double y, int* quo)
 {
     return remquol(x, y, quo);
 }

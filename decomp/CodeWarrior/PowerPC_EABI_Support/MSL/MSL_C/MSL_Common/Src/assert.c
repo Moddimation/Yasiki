@@ -28,15 +28,15 @@
 
 #if (defined(UNICODE))
 void
-__wchar_assertion_failed(TCHAR const *condition, char const *filename, /*- mm 990419 -*/
+__wchar_assertion_failed(TCHAR const * condition, char const * filename, /*- mm 990419 -*/
                          int lineno)
 {
 #    define BUFFSIZE 1024
-    TCHAR       buf[2 * BUFFSIZE];
+    TCHAR        buf[2 * BUFFSIZE];
     /* need to convert filename into a L string literal */
-    int         i = 0;
-    wchar_t     tmpfile[BUFFSIZE];
-    char const *p = filename; /*- mm 990419 -*/
+    int          i = 0;
+    wchar_t      tmpfile[BUFFSIZE];
+    char const * p = filename; /*- mm 990419 -*/
     while (*p != 0x00 && i < (BUFFSIZE - 1))
     {
         tmpfile[i] = (wchar_t) * (p++);
@@ -54,7 +54,7 @@ __wchar_assertion_failed(TCHAR const *condition, char const *filename, /*- mm 99
 #        error "the macro UNICODE must be defined when compiling MSL C for Windows CE"
 #    endif
 void
-__assertion_failed(char const *condition, char const *filename, int lineno) /*- mm 990419 -*/
+__assertion_failed(char const * condition, char const * filename, int lineno) /*- mm 990419 -*/
 {
 #    if (__dest_os == __win32_os)
 
@@ -72,13 +72,13 @@ __assertion_failed(char const *condition, char const *filename, int lineno) /*- 
 
 #    endif
 
-#    if _WINSIOUX             /*- mm 981109 -*/
-    WinSIOUXAbort();                                                        /*- mm 981109 -*/
-#    else                     /*- mm 981109 -*/
+#    if _WINSIOUX              /*- mm 981109 -*/
+    WinSIOUXAbort();                                                          /*- mm 981109 -*/
+#    else                      /*- mm 981109 -*/
     abort();
-#    endif /* _WINSIOUX */    /*- mm 981109 -*/
+#    endif /* _WINSIOUX */     /*- mm 981109 -*/
 }
-#endif                        /*  UNICODE */
+#endif                         /*  UNICODE */
 
 /* Change record:
  * JFH 950612 First code release.

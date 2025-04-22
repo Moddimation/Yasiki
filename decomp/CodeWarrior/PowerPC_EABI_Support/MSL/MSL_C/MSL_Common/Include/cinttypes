@@ -9,9 +9,8 @@
 #    define _MSL_CINTTYPES
 
 #    if __MACH__
-#        include <inttypes.h>
-
 #        include <ansi_parms.h>
+#        include <inttypes.h>
 #    else
 
 /*
@@ -354,25 +353,25 @@ Forward references: the strtol, strtoll, strtoul, and strtoull functions
 */
 #            ifdef __MSL_LONGLONG_SUPPORT__
 __inline intmax_t
-strtoimax(const char *nptr, char **endptr, int base)
+strtoimax(const char* nptr, char** endptr, int base)
 {
     return (strtoll(nptr, endptr, base));
 }
 
 __inline uintmax_t
-strtoumax(const char *nptr, char **endptr, int base)
+strtoumax(const char* nptr, char** endptr, int base)
 {
     return (strtoull(nptr, endptr, base));
 }
 #            else
 __inline intmax_t
-strtoimax(const char *nptr, char **endptr, int base)
+strtoimax(const char* nptr, char** endptr, int base)
 {
     return (strtol(nptr, endptr, base));
 }
 
 __inline uintmax_t
-strtoumax(const char *nptr, char **endptr, int base)
+strtoumax(const char* nptr, char** endptr, int base)
 {
     return (strtoul(nptr, endptr, base));
 }
@@ -403,25 +402,25 @@ Forward references: the wcstol, wcstoll, wcstoul, and wcstoull functions
 #            ifndef __NO_WIDE_CHAR
 #                ifdef __MSL_LONGLONG_SUPPORT__
 __inline intmax_t
-wcstoimax(const wchar_t *nptr, wchar_t **endptr, int base)
+wcstoimax(const wchar_t* nptr, wchar_t** endptr, int base)
 {
     return (wcstoll(nptr, endptr, base));
 }
 
 __inline uintmax_t
-wcstoumax(const wchar_t *nptr, wchar_t **endptr, int base)
+wcstoumax(const wchar_t* nptr, wchar_t** endptr, int base)
 {
     return (wcstoull(nptr, endptr, base));
 }
 #                else
 __inline intmax_t
-wcstoimax(const wchar_t *nptr, wchar_t **endptr, int base)
+wcstoimax(const wchar_t* nptr, wchar_t** endptr, int base)
 {
     return (wcstol(nptr, endptr, base));
 }
 
 __inline uintmax_t
-wcstoumax(const wchar_t *nptr, wchar_t **endptr, int base)
+wcstoumax(const wchar_t* nptr, wchar_t** endptr, int base)
 {
     return (wcstoul(nptr, endptr, base));
 }

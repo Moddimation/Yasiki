@@ -53,14 +53,14 @@
 
 /* threadsafety protection is in fwrite */
 wchar_t
-putwc(wchar_t c, FILE *file)
+putwc(wchar_t c, FILE* file)
 {
-    if (fwide(file, 1) <= 0)                         /*- mm 980206 -*/
+    if (fwide(file, 1) <= 0)                        /*- mm 980206 -*/
     {
-        return (WEOF);                               /*- mm 980206 -*/
+        return (WEOF);                              /*- mm 980206 -*/
     }
 
-    if (fwrite((char *)&c, sizeof(c), 1, file) == 0) /*- mm 980130 -*/
+    if (fwrite((char*)&c, sizeof(c), 1, file) == 0) /*- mm 980130 -*/
     {
         return WEOF;
     }
@@ -77,11 +77,11 @@ putwc(wchar_t c, FILE *file)
 wchar_t
 putwchar(wchar_t c)
 {
-    if (fwide(stdout, 1) <= 0)                            /*- mm 980206 -*/
+    if (fwide(stdout, 1) <= 0)                           /*- mm 980206 -*/
     {
-        return (WEOF);                                    /*- mm 980206 -*/
+        return (WEOF);                                   /*- mm 980206 -*/
     }
-    if (fwrite((char *)&c, sizeof(c), 1, stdout) == WEOF) /*- mm 980130 -*/
+    if (fwrite((char*)&c, sizeof(c), 1, stdout) == WEOF) /*- mm 980130 -*/
     {
         return WEOF;
     }
@@ -94,7 +94,7 @@ putwchar(wchar_t c)
 */
 
 wchar_t
-fputwc(wchar_t c, FILE *file)
+fputwc(wchar_t c, FILE* file)
 {
     return (putwc(c, file));
 }
@@ -125,7 +125,7 @@ fputwc(wchar_t c, FILE *file)
 */
 
 wchar_t
-getwc(FILE *file)            /*- jcm 971208 -*/
+getwc(FILE* file)            /*- jcm 971208 -*/
 {
     wchar_t c;               /* wide char to hold the final result */
 
@@ -134,7 +134,7 @@ getwc(FILE *file)            /*- jcm 971208 -*/
         return (WEOF);       /*- mm 980206 -*/
     }
     /* threadsafety protection is in fread to add a critical region here would deadlock */
-    if (fread((char *)&c, sizeof(c), 1, file) == 0)  /*- mm 980130 -*/
+    if (fread((char*)&c, sizeof(c), 1, file) == 0)  /*- mm 980130 -*/
     {
         return WEOF;
     }
@@ -142,16 +142,16 @@ getwc(FILE *file)            /*- jcm 971208 -*/
 }
 
 wchar_t
-getwchar(void)                                       /*- jcm 971208 -*/
+getwchar(void)                                      /*- jcm 971208 -*/
 {
-    wchar_t c;                                       /* wide char to hold the final result */
+    wchar_t c;                                      /* wide char to hold the final result */
 
-    if (fwide(stdin, 1) <= 0)                        /*- mm 980206 -*/
+    if (fwide(stdin, 1) <= 0)                       /*- mm 980206 -*/
     {
-        return (WEOF);                               /*- mm 980206 -*/
+        return (WEOF);                              /*- mm 980206 -*/
     }
-    /* fread has threadsafety  */                    /*- mm 001018 -*/
-    if (fread((char *)&c, sizeof(c), 1, stdin) == 0) /*- mm 980102 -*/
+    /* fread has threadsafety  */                   /*- mm 001018 -*/
+    if (fread((char*)&c, sizeof(c), 1, stdin) == 0) /*- mm 980102 -*/
     {
         return WEOF;
     }
@@ -164,7 +164,7 @@ getwchar(void)                                       /*- jcm 971208 -*/
 */
 
 wchar_t
-fgetwc(FILE *file) /*- jcm 971208 -*/
+fgetwc(FILE* file) /*- jcm 971208 -*/
 {
     wchar_t c;
 
@@ -175,7 +175,7 @@ fgetwc(FILE *file) /*- jcm 971208 -*/
 }
 
 wchar_t
-ungetwc(wchar_t c, FILE *file)
+ungetwc(wchar_t c, FILE* file)
 {
     int state = file->state.io_state;
     if (fwide(file, 1) <= 0)               /*- mm 980206 -*/
@@ -225,7 +225,7 @@ ungetwc(wchar_t c, FILE *file)
 */
 
 int
-fputws(const wchar_t *s, FILE *file)
+fputws(const wchar_t* s, FILE* file)
 {
     int     i;
     /*int		errno;*/                   /*- mm 010404 -*/
@@ -243,7 +243,7 @@ fputws(const wchar_t *s, FILE *file)
         /*errno = 0; 									/* initialize errno to zero */ /*- mm 010404 -*/
         c = s[i];                                                                      /* get the current character */
 
-        if (__fwrite((void *)&c, sizeof(c), 1, file) == 0)                             /*- mm 001018 -*/
+        if (__fwrite((void*)&c, sizeof(c), 1, file) == 0)                              /*- mm 001018 -*/
         {
             retval = WEOF;                                                             /* return wide EOF error */
         }
@@ -276,11 +276,11 @@ fputws(const wchar_t *s, FILE *file)
     and a null pointer is returned.
 */
 
-wchar_t *
-fgetws(wchar_t *s, int n, FILE *file)
+wchar_t*
+fgetws(wchar_t* s, int n, FILE* file)
 {
-    wchar_t *p = s;
-    wchar_t *retval = s;
+    wchar_t* p = s;
+    wchar_t* retval = s;
     wchar_t  c;
 
     if (fwide(file, 1) <= 0)                                           /*- mm 980206 -*/
@@ -296,9 +296,8 @@ fgetws(wchar_t *s, int n, FILE *file)
     __begin_critical_region(files_access);                             /*-mm 001013 -*/
     if (n)
     {
-        do
-        {
-            if (__fread((void *)&c, sizeof(c), 1, file) == 0)          /*- mm 001018 -*/
+        do {
+            if (__fread((void*)&c, sizeof(c), 1, file) == 0)           /*- mm 001018 -*/
             {
                 if (file->state.eof && p == s)
                 {
@@ -307,7 +306,8 @@ fgetws(wchar_t *s, int n, FILE *file)
                 break;
             }
             *p++ = c;
-        } while (c != L'\n' && --n);
+        }
+        while (c != L'\n' && --n);
     }
 
     if (retval != NULL)
@@ -319,7 +319,7 @@ fgetws(wchar_t *s, int n, FILE *file)
 }
 
 int
-fwide(FILE *stream, int mode)
+fwide(FILE* stream, int mode)
 {
     int orientation;
     int result;
@@ -343,13 +343,9 @@ fwide(FILE *stream, int mode)
             result = mode;
             break;
 
-        case __wide_oriented :
-            result = 1;
-            break;
+        case __wide_oriented : result = 1; break;
 
-        case __char_oriented :
-            result = -1;
-            break;
+        case __char_oriented : result = -1; break;
     }
     return result;
 }

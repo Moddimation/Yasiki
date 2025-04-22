@@ -7,7 +7,7 @@
 #define qr0 0
 
 void
-C_MTXMultVec(Mtx44 m, Vec *src, Vec *dst)
+C_MTXMultVec(Mtx44 m, Vec* src, Vec* dst)
 {
     Vec vTmp;
 
@@ -24,7 +24,7 @@ C_MTXMultVec(Mtx44 m, Vec *src, Vec *dst)
 }
 
 asm void
-PSMTXMultVec(register Mtx44 m, register Vec *src, register Vec *dst)
+PSMTXMultVec(register Mtx44 m, register Vec* src, register Vec* dst)
 {
     nofralloc psq_l f0, Vec.x(src), 0, qr0 psq_l f2, 0(m), 0, qr0 psq_l f1, Vec.z(src), 1, qr0 ps_mul f4, f2,
         f0 psq_l f3, 8(m), 0, qr0 ps_madd f5, f3, f1, f4 psq_l f8, 16(m), 0, qr0 ps_sum0 f6, f5, f6, f5 psq_l f9, 24(m),
@@ -34,7 +34,7 @@ PSMTXMultVec(register Mtx44 m, register Vec *src, register Vec *dst)
 }
 
 void
-C_MTXMultVecArray(Mtx m, Vec *srcBase, Vec *dstBase, u32 count)
+C_MTXMultVecArray(Mtx m, Vec* srcBase, Vec* dstBase, u32 count)
 {
     u32 i;
     Vec vTmp;
@@ -57,7 +57,7 @@ C_MTXMultVecArray(Mtx m, Vec *srcBase, Vec *dstBase, u32 count)
 }
 
 asm void
-PSMTXMultVecArray(register Mtx m, register Vec *srcBase, register Vec *dstBase, register u32 count)
+PSMTXMultVecArray(register Mtx m, register Vec* srcBase, register Vec* dstBase, register u32 count)
 {
     psq_l f0, 0(m), 0, qr0 subi count, count, 1 psq_l f6, Vec.x(srcBase), 0, qr0 mtctr count psq_l f7, Vec.z(srcBase),
         1, qr0 psq_l f1, 8(m), 0, qr0 addi srcBase, srcBase, 8 psq_l f2, 16(m), 0, qr0 subi dstBase, dstBase,
@@ -124,7 +124,7 @@ PSMTXMultVecArray(register Mtx m, register Vec *srcBase, register Vec *dstBase, 
 }
 
 void
-MTXMultVecSR(Mtx44 m, Vec *src, Vec *dst)
+MTXMultVecSR(Mtx44 m, Vec* src, Vec* dst)
 {
     Vec vTmp;
 
@@ -140,7 +140,7 @@ MTXMultVecSR(Mtx44 m, Vec *src, Vec *dst)
 }
 
 void
-MTXMultVecArraySR(Mtx44 m, Vec *srcBase, Vec *dstBase, u32 count)
+MTXMultVecArraySR(Mtx44 m, Vec* srcBase, Vec* dstBase, u32 count)
 {
     u32 i;
     Vec vTmp;

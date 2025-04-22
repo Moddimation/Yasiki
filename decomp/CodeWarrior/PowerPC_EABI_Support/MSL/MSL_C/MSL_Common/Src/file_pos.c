@@ -42,7 +42,7 @@ extern int txtbinFlag;
 */
 
 fpos_t
-_ftell(FILE *file)
+_ftell(FILE* file)
 {
     int    charsInUndoBuffer = 0; /*- jz/ma 971105 -*/
     fpos_t position;
@@ -78,7 +78,7 @@ _ftell(FILE *file)
             there are characters in the undo buffer then we need to not
             consider those, so we subtract charsInUndoBuffe from n. */
         ptrdiff_t      n = file->buffer_ptr - file->buffer - charsInUndoBuffer;
-        unsigned char *p = file->buffer;
+        unsigned char* p = file->buffer;
 
         while (n--)
         {
@@ -96,7 +96,7 @@ _ftell(FILE *file)
 }
 
 long
-ftell(FILE *file)
+ftell(FILE* file)
 {
     long retval;                           /*- mm 001013 -*/
 
@@ -110,7 +110,7 @@ ftell(FILE *file)
 }
 
 int
-fgetpos(FILE *file, fpos_t *pos)
+fgetpos(FILE* file, fpos_t* pos)
 {
     __begin_critical_region(files_access); /*- mm 001013 -*/
 
@@ -122,7 +122,7 @@ fgetpos(FILE *file, fpos_t *pos)
 }
 
 int
-_fseek(FILE *file, fpos_t offset, int mode)
+_fseek(FILE* file, fpos_t offset, int mode)
 {
     fpos_t     position;
     __pos_proc pos_proc;
@@ -219,7 +219,7 @@ _fseek(FILE *file, fpos_t offset, int mode)
 }
 
 int
-fseek(FILE *file, long offset, int mode)
+fseek(FILE* file, long offset, int mode)
 {
     fpos_t real_offset = (fpos_t)offset;
     int    retval;                            /*- mm 001013 -*/
@@ -234,7 +234,7 @@ fseek(FILE *file, long offset, int mode)
 }
 
 int
-fsetpos(FILE *file, const fpos_t *pos)
+fsetpos(FILE* file, const fpos_t* pos)
 {
     int retval;                               /*- mm 001013 -*/
 
@@ -250,7 +250,7 @@ fsetpos(FILE *file, const fpos_t *pos)
                                               /*- mm 970708 -*/
 
 void
-rewind(FILE *file)
+rewind(FILE* file)
 {
     file->state.error = 0; /* give the seek some hope of success */
 

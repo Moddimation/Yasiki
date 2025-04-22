@@ -205,20 +205,11 @@ __collation_rule<charT>::do_command(charT c, value& v, int& state)
     {
         switch (c)
         {
-            case charT('<') :
-                v.primary++;
-                v.secondary = numeric_limits<charT>::min();
-            case charT(';') :
-                v.secondary++;
-                v.tertiary = numeric_limits<charT>::min();
-            case charT(',') :
-                v.tertiary++;
-            case charT('=') :
-                state = 1;
-                break;
-            case charT('&') :
-                state = 1;
-                break;
+            case charT('<') : v.primary++; v.secondary = numeric_limits<charT>::min();
+            case charT(';') : v.secondary++; v.tertiary = numeric_limits<charT>::min();
+            case charT(',') : v.tertiary++;
+            case charT('=') : state = 1; break;
+            case charT('&') : state = 1; break;
             default :
 #                    ifndef _MSL_NO_EXCEPTIONS
                 throw runtime_error("invalid collation rule");
@@ -304,9 +295,7 @@ __collation_rule<charT>::set_rule(const basic_string<charT>& rule)
                                 last_command = c;
                                 do_command(c, v, state);
                                 break;
-                            default :
-                                word += c;
-                                break;
+                            default : word += c; break;
                         }
                     }
             }

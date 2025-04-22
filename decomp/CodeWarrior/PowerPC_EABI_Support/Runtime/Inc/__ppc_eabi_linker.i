@@ -124,9 +124,9 @@
 typedef struct __rom_copy_info
 {
     ;
-    char *rom;          // address in rom
+    char* rom;          // address in rom
     ;
-    char *addr;         // address in ram (executing address)
+    char* addr;         // address in ram (executing address)
     ;
     unsigned int size;  // size of section
     ;
@@ -145,7 +145,7 @@ typedef struct __rom_copy_info
 typedef struct __bss_init_info
 {
     ;
-    char *addr;         // address in ram (executing address)
+    char* addr;         // address in ram (executing address)
     ;
     unsigned int size;  // size of section
     ;

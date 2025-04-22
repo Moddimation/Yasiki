@@ -4,14 +4,14 @@
 
 #include "ARPrivate.h"
 
-static struct ARQRequest *__ARQRequestQueueHi;
-static struct ARQRequest *__ARQRequestTailHi;
-static struct ARQRequest *__ARQRequestQueueLo;
-static struct ARQRequest *__ARQRequestTailLo;
-static struct ARQRequest *__ARQRequestQueueTemp;
-static struct ARQRequest *__ARQRequestTailTemp;
-static struct ARQRequest *__ARQRequestPendingHi;
-static struct ARQRequest *__ARQRequestPendingLo;
+static struct ARQRequest* __ARQRequestQueueHi;
+static struct ARQRequest* __ARQRequestTailHi;
+static struct ARQRequest* __ARQRequestQueueLo;
+static struct ARQRequest* __ARQRequestTailLo;
+static struct ARQRequest* __ARQRequestQueueTemp;
+static struct ARQRequest* __ARQRequestTailTemp;
+static struct ARQRequest* __ARQRequestPendingHi;
+static struct ARQRequest* __ARQRequestPendingLo;
 static ARQCallback        __ARQCallbackHi;
 static ARQCallback        __ARQCallbackLo;
 static u32                __ARQChunkSize;
@@ -113,7 +113,7 @@ __ARQInitTempQueue(void)
 }
 
 void
-__ARQPushTempQueue(struct ARQRequest *task)
+__ARQPushTempQueue(struct ARQRequest* task)
 {
     if (!__ARQRequestQueueTemp)
     {
@@ -148,7 +148,7 @@ ARQReset(void)
 }
 
 void
-ARQPostRequest(struct ARQRequest *request, u32 owner, u32 type, u32 priority, u32 source, u32 dest, u32 length,
+ARQPostRequest(struct ARQRequest* request, u32 owner, u32 type, u32 priority, u32 source, u32 dest, u32 length,
                ARQCallback callback)
 {
     int level;
@@ -209,9 +209,9 @@ ARQPostRequest(struct ARQRequest *request, u32 owner, u32 type, u32 priority, u3
 }
 
 void
-ARQRemoveRequest(struct ARQRequest *request)
+ARQRemoveRequest(struct ARQRequest* request)
 {
-    struct ARQRequest *thisRequest;
+    struct ARQRequest* thisRequest;
     int                level;
 
     level = OSDisableInterrupts();
@@ -245,7 +245,7 @@ ARQRemoveRequest(struct ARQRequest *request)
 void
 ARQRemoveOwnerRequest(u32 owner)
 {
-    struct ARQRequest *thisRequest;
+    struct ARQRequest* thisRequest;
     int                level;
 
     level = OSDisableInterrupts();

@@ -166,8 +166,7 @@ DVDConvertPathToEntrynum(char* pathPtr)
         }
         else
         {
-            for (ptr = pathPtr; (*ptr != '\0') && (*ptr != '/'); ptr++)
-                ;
+            for (ptr = pathPtr; (*ptr != '\0') && (*ptr != '/'); ptr++);
         }
 
         isDir = (*ptr == '\0') ? FALSE : TRUE;
@@ -772,18 +771,10 @@ DVDGetTransferredSize(DVDFileInfo* fileinfo)
         case DVD_STATE_FATAL_ERROR :
         case DVD_STATE_MOTOR_STOPPED :
         case DVD_STATE_CANCELED :
-        case DVD_STATE_END :
-            bytes = (s32)cb->transferredSize;
-            break;
-        case DVD_STATE_WAITING :
-            bytes = 0;
-            break;
-        case DVD_STATE_BUSY :
-            bytes = (s32)(cb->transferredSize + (cb->currTransferSize - __DIRegs[6]));
-            break;
-        default :
-            ASSERTLINE(0x524, FALSE);
-            break;
+        case DVD_STATE_END           : bytes = (s32)cb->transferredSize; break;
+        case DVD_STATE_WAITING       : bytes = 0; break;
+        case DVD_STATE_BUSY          : bytes = (s32)(cb->transferredSize + (cb->currTransferSize - __DIRegs[6])); break;
+        default                      : ASSERTLINE(0x524, FALSE); break;
     }
     return bytes;
 }

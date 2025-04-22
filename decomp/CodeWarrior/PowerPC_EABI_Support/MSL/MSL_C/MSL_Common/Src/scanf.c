@@ -57,8 +57,8 @@ typedef struct
 #if __ALTIVEC__
     int   vec;                /* doing vector conversion						*/
     int   vecCount;           /* number of vec fields to convert (4, 8, 16) 	*/
-    char *vecSeperator;       /* separator string to insert between vec fields*/
-    char *c_vecSeperator;     /* separator string to use for %c vec conversion*/
+    char* vecSeperator;       /* separator string to insert between vec fields*/
+    char* c_vecSeperator;     /* separator string to use for %c vec conversion*/
     int   vecSepLen;          /* length of *vecSeperator or *c_vecSeperator 	*/
 #endif
     char_map char_set;
@@ -66,8 +66,8 @@ typedef struct
 
 #if __ALTIVEC__
 #    if !__VEC__
-#        define vec_va_arg(ap)                   (*(((MWVector128 *)(ap = (char *)((((unsigned long)ap + 15) & ~(15)) + 16))) - 1))
-#        define va_arg_replacement2(ap, vec_val) (*va_arg(ap, MWVector128 *) = vec_val)
+#        define vec_va_arg(ap)                   (*(((MWVector128*)(ap = (char*)((((unsigned long)ap + 15) & ~(15)) + 16))) - 1))
+#        define va_arg_replacement2(ap, vec_val) (*va_arg(ap, MWVector128*) = vec_val)
 #    endif
 union MWVector128
 {                             /* used to get at the vec field values 				*/
@@ -97,14 +97,14 @@ typedef union MWVector128 MWVector128;
 #define tst_char_map(map, ch) (map[(unsigned char)ch >> 3] & (1 << (ch & 7))) /*- mm 990716 -*/
 
 #if __ALTIVEC__
-static const char *
-parse_format(const char *format_string, va_list *arg, scan_format *format)
+static const char*
+parse_format(const char* format_string, va_list* arg, scan_format* format)
 #else
-static const char *
-parse_format(const char *format_string, scan_format *format)
+static const char*
+parse_format(const char* format_string, scan_format* format)
 #endif
 {
-    const char *s = format_string;
+    const char* s = format_string;
     int         c;
     int         flag_found, invert;
 #if __ALTIVEC__
@@ -118,7 +118,7 @@ parse_format(const char *format_string, scan_format *format)
     {
         f.conversion_char = c;
         *format = f;
-        return ((const char *)s + 1);
+        return ((const char*)s + 1);
     }
 
     if (c == '*')
@@ -136,17 +136,17 @@ GetWidth:                 /* goto here when we see we had a vec sep char flag */
     {
         f.field_width = 0;
 
-        do
-        {
+        do {
             f.field_width = (f.field_width * 10) + (c - '0');
             c = *++s;
-        } while (isdigit(c));
+        }
+        while (isdigit(c));
 
         if (f.field_width == 0)
         {
             f.conversion_char = bad_conversion;
             *format = f;  /*- mm 981104 -*/
-            return ((const char *)s + 1);
+            return ((const char*)s + 1);
         }
 
         f.field_width_specified = 1;
@@ -181,9 +181,7 @@ GetWidth:                 /* goto here when we see we had a vec sep char flag */
 
             break;
 
-        case 'l' :
-
-            f.argument_options = long_argument;
+        case 'l' : f.argument_options = long_argument;
 
 #ifdef __MSL_LONGLONG_SUPPORT__
             if (s[1] == 'l')
@@ -201,15 +199,9 @@ GetWidth:                 /* goto here when we see we had a vec sep char flag */
 
             break;
 
-        case 'L' :
+        case 'L' : f.argument_options = long_double_argument; break;
 
-            f.argument_options = long_double_argument;
-
-            break;
-
-        default :
-
-            flag_found = 0;
+        default  : flag_found = 0;
 #if __ALTIVEC__
             f.vecCount = 16;
 #endif
@@ -321,7 +313,7 @@ GetWidth:                 /* goto here when we see we had a vec sep char flag */
 
             {
                 int            i;
-                unsigned char *p;
+                unsigned char* p;
 
                 for (i = sizeof(f.char_set), p = f.char_set; i; --i)
                 {
@@ -334,9 +326,7 @@ GetWidth:                 /* goto here when we see we had a vec sep char flag */
 
             break;
 
-        case 'n' :
-
-            break;
+        case 'n' : break;
 
         case '[' :
             if (f.argument_options == long_argument)     /*- mm 990407 -*/
@@ -395,7 +385,7 @@ GetWidth:                 /* goto here when we see we had a vec sep char flag */
             if (invert)
             {
                 int            i;
-                unsigned char *p;
+                unsigned char* p;
 
                 for (i = sizeof(f.char_set), p = f.char_set; i; --i, ++p)
                 {
@@ -412,7 +402,7 @@ GetWidth:                 /* goto here when we see we had a vec sep char flag */
                 vec_sep_ok = 0;
                 if (c == '@')
                 {
-                    f.vecSeperator = va_arg(*arg, char *);
+                    f.vecSeperator = va_arg(*arg, char*);
                     f.vecSepLen = strlen(f.vecSeperator);
                     while (f.vecSepLen > 0 && *f.vecSeperator == ' ')
                     {
@@ -426,7 +416,7 @@ GetWidth:                 /* goto here when we see we had a vec sep char flag */
                 }
                 else
                 {
-                    f.vecSeperator = (char *)s;
+                    f.vecSeperator = (char*)s;
                     f.vecSepLen = 1;
                 }
                 f.c_vecSeperator = f.vecSeperator;
@@ -469,33 +459,32 @@ GetWidth:                 /* goto here when we see we had a vec sep char flag */
 #    endif
 #endif
 
-    return ((const char *)s + 1);
+    return ((const char*)s + 1);
 }
 
 static int
-__sformatter(int (*ReadProc)(void *, int, int), void *ReadProcArg, const char *format_str,
-             va_list arg)                                /*- mm 990325 -*/
+__sformatter(int (*ReadProc)(void*, int, int), void* ReadProcArg, const char* format_str, va_list arg) /*- mm 990325 -*/
 {
     int           num_chars, chars_read, items_assigned, conversions;
     int           base, negative, overflow;
-    const char   *format_ptr;
-    char          format_char;                           /*- mm 961002 -*/
-    char          c; /*- mm 961002 -*/                   /*- mm 990409 -*/
+    const char*   format_ptr;
+    char          format_char;                                                                         /*- mm 961002 -*/
+    char          c; /*- mm 961002 -*/                                                                 /*- mm 990409 -*/
     scan_format   format;
     long          long_num;
     unsigned long u_long_num;
-#ifdef __MSL_LONGLONG_SUPPORT__                          /*- mm 961219 -*/
-    long long          long_long_num;                    /*- mm 961219 -*/
-    unsigned long long u_long_long_num;                  /*- mm 961219 -*/
-#endif                                                   /*- mm 961219 -*/
+#ifdef __MSL_LONGLONG_SUPPORT__                                                                        /*- mm 961219 -*/
+    long long          long_long_num;                                                                  /*- mm 961219 -*/
+    unsigned long long u_long_long_num;                                                                /*- mm 961219 -*/
+#endif                                                                                                 /*- mm 961219 -*/
 #ifndef _No_Floating_Point
     long double long_double_num;
 #endif
-    char *arg_ptr;
-    int   terminate = 0;                                 /*- mm 990608 -*/
+    char* arg_ptr;
+    int   terminate = 0;                                                                               /*- mm 990608 -*/
 
 #if __ALTIVEC__
-    int         vecIndex;                                /* counts vector elements */
+    int         vecIndex;                                                    /* counts vector elements */
     MWVector128 vec_val;
 
 #    define GOTO_GET_REMAINING_VEC_FIELDS(lbl)                                                                         \
@@ -547,10 +536,10 @@ __sformatter(int (*ReadProc)(void *, int, int), void *ReadProcArg, const char *f
     {
         if (isspace(format_char))
         {
-            do
-            {
+            do {
                 format_char = *++format_ptr;
-            } while (isspace(format_char));
+            }
+            while (isspace(format_char));
 
             while (isspace(c = (*ReadProc)(ReadProcArg, 0, __GetAChar)))     /*- mm 990325 -*/
             {
@@ -579,7 +568,7 @@ __sformatter(int (*ReadProc)(void *, int, int), void *ReadProcArg, const char *f
 #if !__ALTIVEC__
         format_ptr = parse_format(format_ptr, &format);
 #else
-        format_ptr = parse_format(format_ptr, (va_list *)&arg, &format);
+        format_ptr = parse_format(format_ptr, (va_list*)&arg, &format);
 
         if (format.vec)
         {
@@ -591,11 +580,11 @@ __sformatter(int (*ReadProc)(void *, int, int), void *ReadProcArg, const char *f
 
             /* Why aren't leading input blanks skipped in non-vector cases ? */
 
-            while (isspace(c = (*ReadProc)(ReadProcArg, 0, __GetAChar)))           /*- mm 990325 -*/
+            while (isspace(c = (*ReadProc)(ReadProcArg, 0, __GetAChar)))          /*- mm 990325 -*/
             {
                 ++chars_read;
             }
-            (*ReadProc)(ReadProcArg, c, __UngetAChar);                             /*- mm 990325 -*/
+            (*ReadProc)(ReadProcArg, c, __UngetAChar);                            /*- mm 990325 -*/
         }
         else
 #endif
@@ -604,7 +593,7 @@ __sformatter(int (*ReadProc)(void *, int, int), void *ReadProcArg, const char *f
         /*- mm 990608 -*/
         if (!format.suppress_assignment && format.conversion_char != '%')
         {
-            arg_ptr = va_arg(arg, char *);
+            arg_ptr = va_arg(arg, char*);
         }
         else
 #endif
@@ -618,17 +607,11 @@ __sformatter(int (*ReadProc)(void *, int, int), void *ReadProcArg, const char *f
 
         switch (format.conversion_char)
         {
-            case 'd' :
+            case 'd' : base = 10; goto signed_int;
 
-                base = 10;
+            case 'i' : base = 0;
 
-                goto signed_int;
-
-            case 'i' :
-
-                base = 0;
-
-            signed_int:
+                signed_int:
 
 #ifdef __MSL_LONGLONG_SUPPORT__                                                                 /*- mm 961219 -*/
                 if (format.argument_options == long_long_argument)                              /*- mm 961219 -*/
@@ -664,20 +647,14 @@ __sformatter(int (*ReadProc)(void *, int, int), void *ReadProcArg, const char *f
                     {
                         switch (format.argument_options)
                         {
-                            case normal_argument :
-                                vec_val.s8[vecIndex] = long_num;
-                                break;
-                            case short_argument :
-                                vec_val.s16[vecIndex] = long_num;
-                                break;
-                            case long_argument :
-                                vec_val.s32[vecIndex] = long_num;
-                                break;
+                            case normal_argument : vec_val.s8[vecIndex] = long_num; break;
+                            case short_argument  : vec_val.s16[vecIndex] = long_num; break;
+                            case long_argument   : vec_val.s32[vecIndex] = long_num; break;
                         }
                         GOTO_GET_REMAINING_VEC_FIELDS(signed_int);
 
 #    if __VEC__
-                        *va_arg(arg, MWVector128 *) = vec_val;
+                        *va_arg(arg, MWVector128*) = vec_val;
 #    else
                         va_arg_replacement2(arg, vec_val);
 #    endif
@@ -693,14 +670,14 @@ __sformatter(int (*ReadProc)(void *, int, int), void *ReadProcArg, const char *f
 
 #ifdef __m56800E__
                 {
-                    int *arg_iptr = 0;
+                    int* arg_iptr = 0;
                     if (format.argument_options == char_argument)
                     {
-                        arg_ptr = va_arg(arg, char *);
+                        arg_ptr = va_arg(arg, char*);
                     }
                     else
                     {
-                        arg_iptr = va_arg(arg, int *);
+                        arg_iptr = va_arg(arg, int*);
                     }
 
                     switch (format.argument_options)
@@ -708,32 +685,32 @@ __sformatter(int (*ReadProc)(void *, int, int), void *ReadProcArg, const char *f
                         case normal_argument :
                             if (arg_iptr)
                             {
-                                (*((int *)arg_iptr)) = long_num;
+                                (*((int*)arg_iptr)) = long_num;
                             }
                             break;
                         case short_argument :
                             if (arg_iptr)
                             {
-                                (*((short *)arg_iptr)) = long_num;
+                                (*((short*)arg_iptr)) = long_num;
                             }
                             break;
                         case long_argument :
                             if (arg_iptr)
                             {
-                                (*((long *)arg_iptr)) = long_num;
+                                (*((long*)arg_iptr)) = long_num;
                             }
                             break;
                         case char_argument :
                             if (arg_ptr)
                             {
-                                (*((signed char *)arg_ptr)) = long_num;
+                                (*((signed char*)arg_ptr)) = long_num;
                             }
                             break;
 #    ifdef __MSL_LONGLONG_SUPPORT__                                                             /*- mm 961219 -*/
                         case long_long_argument :
                             if (arg_iptr)
                             {
-                                (*((long long *)arg_iptr)) = long_long_num;
+                                (*((long long*)arg_iptr)) = long_long_num;
                             }
                             break;
 #    endif                                                                                      /*- mm 961219 -*/
@@ -746,22 +723,12 @@ __sformatter(int (*ReadProc)(void *, int, int), void *ReadProcArg, const char *f
                 {
                     switch (format.argument_options)
                     {
-                        case normal_argument :
-                            *(int *)arg_ptr = long_num;
-                            break;
-                        case char_argument :
-                            *(signed char *)arg_ptr = long_num;
-                            break;
-                        case short_argument :
-                            *(short *)arg_ptr = long_num;
-                            break;
-                        case long_argument :
-                            *(long *)arg_ptr = long_num;
-                            break;
+                        case normal_argument : *(int*)arg_ptr = long_num; break;
+                        case char_argument   : *(signed char*)arg_ptr = long_num; break;
+                        case short_argument  : *(short*)arg_ptr = long_num; break;
+                        case long_argument   : *(long*)arg_ptr = long_num; break;
 #    ifdef __MSL_LONGLONG_SUPPORT__                                                             /*- mm 961219 -*/
-                        case long_long_argument :
-                            *(long long *)arg_ptr = long_long_num;
-                            break;
+                        case long_long_argument : *(long long*)arg_ptr = long_long_num; break;
 #    endif                                                                                      /*- mm 961219 -*/
                     }
                     ++items_assigned;
@@ -771,24 +738,14 @@ __sformatter(int (*ReadProc)(void *, int, int), void *ReadProcArg, const char *f
 
                 break;
 
-            case 'o' :
+            case 'o' : base = 8; goto unsigned_int;
 
-                base = 8;
-
-                goto unsigned_int;
-
-            case 'u' :
-
-                base = 10;
-
-                goto unsigned_int;
+            case 'u' : base = 10; goto unsigned_int;
 
             case 'x' :
-            case 'X' :
+            case 'X' : base = 16;
 
-                base = 16;
-
-            unsigned_int:
+                unsigned_int:
 
 #ifdef __MSL_LONGLONG_SUPPORT__                                                                 /*- mm 961219 -*/
                 if (format.argument_options == long_long_argument)                              /*- mm 961219 -*/
@@ -824,20 +781,14 @@ __sformatter(int (*ReadProc)(void *, int, int), void *ReadProcArg, const char *f
                     {
                         switch (format.argument_options)
                         {
-                            case normal_argument :
-                                vec_val.u8[vecIndex] = u_long_num;
-                                break;
-                            case short_argument :
-                                vec_val.u16[vecIndex] = u_long_num;
-                                break;
-                            case long_argument :
-                                vec_val.u32[vecIndex] = u_long_num;
-                                break;
+                            case normal_argument : vec_val.u8[vecIndex] = u_long_num; break;
+                            case short_argument  : vec_val.u16[vecIndex] = u_long_num; break;
+                            case long_argument   : vec_val.u32[vecIndex] = u_long_num; break;
                         }
                         GOTO_GET_REMAINING_VEC_FIELDS(unsigned_int);
 
 #    if __VEC__
-                        *va_arg(arg, MWVector128 *) = vec_val;
+                        *va_arg(arg, MWVector128*) = vec_val;
 #    else
                         va_arg_replacement2(arg, vec_val);
 #    endif
@@ -852,14 +803,14 @@ __sformatter(int (*ReadProc)(void *, int, int), void *ReadProcArg, const char *f
 #endif
 #ifdef __m56800E__
                 {
-                    int *arg_iptr = 0;
+                    int* arg_iptr = 0;
                     if (format.argument_options == char_argument)
                     {
-                        arg_ptr = va_arg(arg, char *);
+                        arg_ptr = va_arg(arg, char*);
                     }
                     else
                     {
-                        arg_iptr = va_arg(arg, int *);
+                        arg_iptr = va_arg(arg, int*);
                     }
 
                     switch (format.argument_options)
@@ -867,32 +818,32 @@ __sformatter(int (*ReadProc)(void *, int, int), void *ReadProcArg, const char *f
                         case normal_argument :
                             if (arg_iptr)
                             {
-                                (*((unsigned int *)arg_iptr)) = u_long_num;
+                                (*((unsigned int*)arg_iptr)) = u_long_num;
                             }
                             break;
                         case short_argument :
                             if (arg_iptr)
                             {
-                                (*((unsigned short *)arg_iptr)) = u_long_num;
+                                (*((unsigned short*)arg_iptr)) = u_long_num;
                             }
                             break;
                         case long_argument :
                             if (arg_iptr)
                             {
-                                (*((unsigned long *)arg_iptr)) = u_long_num;
+                                (*((unsigned long*)arg_iptr)) = u_long_num;
                             }
                             break;
                         case char_argument :
                             if (arg_ptr)
                             {
-                                (*((unsigned char *)arg_ptr)) = u_long_num;
+                                (*((unsigned char*)arg_ptr)) = u_long_num;
                             }
                             break;
 #    ifdef __MSL_LONGLONG_SUPPORT__                                                             /*- mm 961219 -*/
                         case long_long_argument :
                             if (arg_iptr)
                             {
-                                (*((unsigned long long *)arg_iptr)) = u_long_long_num;
+                                (*((unsigned long long*)arg_iptr)) = u_long_long_num;
                             }
                             break;
 #    endif                                                                                      /*- mm 961219 -*/
@@ -904,22 +855,12 @@ __sformatter(int (*ReadProc)(void *, int, int), void *ReadProcArg, const char *f
                 {
                     switch (format.argument_options)
                     {
-                        case normal_argument :
-                            *(unsigned int *)arg_ptr = u_long_num;
-                            break;
-                        case char_argument :
-                            *(unsigned char *)arg_ptr = u_long_num;
-                            break;
-                        case short_argument :
-                            *(unsigned short *)arg_ptr = u_long_num;
-                            break;
-                        case long_argument :
-                            *(unsigned long *)arg_ptr = u_long_num;
-                            break;
+                        case normal_argument : *(unsigned int*)arg_ptr = u_long_num; break;
+                        case char_argument   : *(unsigned char*)arg_ptr = u_long_num; break;
+                        case short_argument  : *(unsigned short*)arg_ptr = u_long_num; break;
+                        case long_argument   : *(unsigned long*)arg_ptr = u_long_num; break;
 #    ifdef __MSL_LONGLONG_SUPPORT__                                                             /*- mm 961219 -*/
-                        case long_long_argument :
-                            *(unsigned long long *)arg_ptr = u_long_long_num;
-                            break;
+                        case long_long_argument : *(unsigned long long*)arg_ptr = u_long_long_num; break;
 #    endif                                                                                      /*- mm 961219 -*/
                     }
 
@@ -962,7 +903,7 @@ __sformatter(int (*ReadProc)(void *, int, int), void *ReadProcArg, const char *f
                         GOTO_GET_REMAINING_VEC_FIELDS(flt);
 
 #        if __VEC__
-                        *va_arg(arg, MWVector128 *) = vec_val;
+                        *va_arg(arg, MWVector128*) = vec_val;
 #        else
                         va_arg_replacement2(arg, vec_val);
 #        endif
@@ -977,23 +918,17 @@ __sformatter(int (*ReadProc)(void *, int, int), void *ReadProcArg, const char *f
 #    endif
 #    ifdef __m56800E__
                 {
-                    float *arg_fptr;
+                    float* arg_fptr;
 #        define arg_ptr arg_fptr
-                    arg_fptr = va_arg(arg, float *);
+                    arg_fptr = va_arg(arg, float*);
 #    endif
                     if (arg_ptr)
                     {
                         switch (format.argument_options)
                         {
-                            case normal_argument :
-                                *(float *)arg_ptr = long_double_num;
-                                break;
-                            case double_argument :
-                                *(double *)arg_ptr = long_double_num;
-                                break;
-                            case long_double_argument :
-                                *(long double *)arg_ptr = long_double_num;
-                                break;
+                            case normal_argument      : *(float*)arg_ptr = long_double_num; break;
+                            case double_argument      : *(double*)arg_ptr = long_double_num; break;
+                            case long_double_argument : *(long double*)arg_ptr = long_double_num; break;
                         }
 
                         ++items_assigned;
@@ -1020,7 +955,7 @@ __sformatter(int (*ReadProc)(void *, int, int), void *ReadProcArg, const char *f
                 {
                     if (!format.suppress_assignment)
                     {
-                        char *ptr;
+                        char* ptr;
                         int   width;
 
                         if (vecIndex == 0)
@@ -1036,21 +971,21 @@ __sformatter(int (*ReadProc)(void *, int, int), void *ReadProcArg, const char *f
                                 {
                                     goto exit;
                                 }
-                                ptr = (char *)&vec_val.u8[4 * vecIndex + 4 - format.field_width];
+                                ptr = (char*)&vec_val.u8[4 * vecIndex + 4 - format.field_width];
                                 break;
                             case short_argument :
                                 if (format.field_width > 2)
                                 {
                                     goto exit;
                                 }
-                                ptr = (char *)&vec_val.u8[2 * vecIndex + 2 - format.field_width];
+                                ptr = (char*)&vec_val.u8[2 * vecIndex + 2 - format.field_width];
                                 break;
                             case normal_argument :
                                 if (format.field_width > 1)
                                 {
                                     goto exit;
                                 }
-                                ptr = (char *)&vec_val.u8[vecIndex];
+                                ptr = (char*)&vec_val.u8[vecIndex];
                                 break;
                         }
 
@@ -1072,7 +1007,7 @@ __sformatter(int (*ReadProc)(void *, int, int), void *ReadProcArg, const char *f
                         chars_read += num_chars;
                         GOTO_GET_REMAINING_VEC_FIELDS(str1);
 #    if __VEC__
-                        *va_arg(arg, MWVector128 *) = vec_val;
+                        *va_arg(arg, MWVector128*) = vec_val;
 #    else
                         va_arg_replacement2(arg, vec_val);
 #    endif
@@ -1102,7 +1037,7 @@ __sformatter(int (*ReadProc)(void *, int, int), void *ReadProcArg, const char *f
                 else
 #endif
 #ifdef __m56800E__
-                    arg_ptr = va_arg(arg, char *);
+                    arg_ptr = va_arg(arg, char*);
 #endif
                 if (arg_ptr)
                 {
@@ -1117,8 +1052,8 @@ __sformatter(int (*ReadProc)(void *, int, int), void *ReadProcArg, const char *f
 #ifndef __NO_WIDE_CHAR
                         if (format.argument_options == wchar_argument)                  /*- mm 990407 -*/
                         {
-                            mbtowc(((wchar_t *)arg_ptr), (char *)&c, 1);
-                            (wchar_t *)arg_ptr++;
+                            mbtowc(((wchar_t*)arg_ptr), (char*)&c, 1);
+                            (wchar_t*)arg_ptr++;
                         }
                         else
 #endif                                                                                  /*- mm 990407 -*/
@@ -1191,7 +1126,7 @@ __sformatter(int (*ReadProc)(void *, int, int), void *ReadProcArg, const char *f
                     c = (*ReadProc)(ReadProcArg, 0, __GetAChar); /*- mm 970218 -*/      /*- mm 990325 -*/
                 } /*- mm 970218 -*/
 
-                (*ReadProc)(ReadProcArg, c, __UngetAChar);               /*- mm 990325 -*/
+                (*ReadProc)(ReadProcArg, c, __UngetAChar);             /*- mm 990325 -*/
 
             case '[' :
 #if __ALTIVEC__
@@ -1201,20 +1136,20 @@ __sformatter(int (*ReadProc)(void *, int, int), void *ReadProcArg, const char *f
                 }
 #endif
 #ifdef __m56800E__
-                arg_ptr = va_arg(arg, char *);
+                arg_ptr = va_arg(arg, char*);
 #endif
                 if (arg_ptr)
                 {
                     num_chars = 0;
 
                     while (format.field_width-- && (c = (*ReadProc)(ReadProcArg, 0, __GetAChar)) != EOF
-                           && tst_char_map(format.char_set, c))          /* mm 990325 */
+                           && tst_char_map(format.char_set, c))        /* mm 990325 */
                     {
 #ifndef __NO_WIDE_CHAR
-                        if (format.argument_options == wchar_argument)   /*- mm 990420 -*/
-                        {                                                /*- mm 990420 -*/
-                            mbtowc(((wchar_t *)arg_ptr), (char *)&c, 1); /*- mm 990420 -*/
-                            arg_ptr = (char *)((wchar_t *)arg_ptr + 1);  /*- mm 990420 -*/
+                        if (format.argument_options == wchar_argument) /*- mm 990420 -*/
+                        {                                              /*- mm 990420 -*/
+                            mbtowc(((wchar_t*)arg_ptr), (char*)&c, 1); /*- mm 990420 -*/
+                            arg_ptr = (char*)((wchar_t*)arg_ptr + 1);  /*- mm 990420 -*/
                         } /*- mm 990420 -*/
                         else
 #endif                                                                               /*- mm 990420 -*/
@@ -1233,7 +1168,7 @@ __sformatter(int (*ReadProc)(void *, int, int), void *ReadProcArg, const char *f
 
                     if (format.argument_options == wchar_argument)                   /*- mm 990420 -*/
                     {
-                        *(wchar_t *)arg_ptr = L'\0';                                 /*- mm 990420 -*/
+                        *(wchar_t*)arg_ptr = L'\0';                                  /*- mm 990420 -*/
                     }
                     else                                                             /*- mm 990420 -*/
                     {
@@ -1273,14 +1208,14 @@ __sformatter(int (*ReadProc)(void *, int, int), void *ReadProcArg, const char *f
 
 #ifdef __m56800E__
                 {
-                    int *arg_iptr = 0;
+                    int* arg_iptr = 0;
                     if (format.argument_options == char_argument)
                     {
-                        arg_ptr = va_arg(arg, char *);
+                        arg_ptr = va_arg(arg, char*);
                     }
                     else
                     {
-                        arg_iptr = va_arg(arg, int *);
+                        arg_iptr = va_arg(arg, int*);
                     }
 
                     switch (format.argument_options)
@@ -1288,32 +1223,32 @@ __sformatter(int (*ReadProc)(void *, int, int), void *ReadProcArg, const char *f
                         case normal_argument :
                             if (arg_iptr)
                             {
-                                (*((int *)arg_iptr)) = chars_read;
+                                (*((int*)arg_iptr)) = chars_read;
                             }
                             break;
                         case short_argument :
                             if (arg_iptr)
                             {
-                                (*((short *)arg_iptr)) = chars_read;
+                                (*((short*)arg_iptr)) = chars_read;
                             }
                             break;
                         case long_argument :
                             if (arg_iptr)
                             {
-                                (*((long *)arg_iptr)) = chars_read;
+                                (*((long*)arg_iptr)) = chars_read;
                             }
                             break;
                         case char_argument :
                             if (arg_ptr)
                             {
-                                (*((char *)arg_ptr)) = chars_read;
+                                (*((char*)arg_ptr)) = chars_read;
                             }
                             break;
 #    ifdef __MSL_LONGLONG_SUPPORT__                                                  /*- mm 961219 -*/
                         case long_long_argument :
                             if (arg_iptr)
                             {
-                                (*((long long *)arg_iptr)) = chars_read;
+                                (*((long long*)arg_iptr)) = chars_read;
                             }
                             break;
 #    endif                                                                           /*- mm 961219 -*/
@@ -1324,22 +1259,12 @@ __sformatter(int (*ReadProc)(void *, int, int), void *ReadProcArg, const char *f
                 {
                     switch (format.argument_options)
                     {
-                        case normal_argument :
-                            *(int *)arg_ptr = chars_read;
-                            break;
-                        case short_argument :
-                            *(short *)arg_ptr = chars_read;
-                            break;
-                        case long_argument :
-                            *(long *)arg_ptr = chars_read;
-                            break;
-                        case char_argument :
-                            *(char *)arg_ptr = chars_read;
-                            break;                                                 /*- mm 990414 -*/
+                        case normal_argument : *(int*)arg_ptr = chars_read; break;
+                        case short_argument  : *(short*)arg_ptr = chars_read; break;
+                        case long_argument   : *(long*)arg_ptr = chars_read; break;
+                        case char_argument   : *(char*)arg_ptr = chars_read; break; /*- mm 990414 -*/
 #    ifdef __MSL_LONGLONG_SUPPORT__                                                  /*- mm 961219 -*/
-                        case long_long_argument :
-                            *(long long *)arg_ptr = chars_read;
-                            break;
+                        case long_long_argument : *(long long*)arg_ptr = chars_read; break;
 #    endif                                                                           /*- mm 961219 -*/
                     }
                 }
@@ -1347,9 +1272,7 @@ __sformatter(int (*ReadProc)(void *, int, int), void *ReadProcArg, const char *f
                 continue;
 
             case bad_conversion :
-            default :
-
-                goto exit;
+            default             : goto exit;
         }
     }
 
@@ -1365,25 +1288,22 @@ exit:
 
 /*- mm 990325 -*/
 int
-__FileRead(void *File, int ch, int Action)
+__FileRead(void* File, int ch, int Action)
 {
     switch (Action)
     {
-        case __GetAChar :
-            return (fgetc((FILE *)File));
-        case __UngetAChar :
-            return (ungetc(ch, (FILE *)File));
-        case __TestForError :
-            return (ferror((FILE *)File) || feof((FILE *)File));
+        case __GetAChar     : return (fgetc((FILE*)File));
+        case __UngetAChar   : return (ungetc(ch, (FILE*)File));
+        case __TestForError : return (ferror((FILE*)File) || feof((FILE*)File));
     }
-    return 0;                                                       /* to satisfy compiler */
+    return 0;                                                      /* to satisfy compiler */
 }
 
 int
-__StringRead(void *isc, int ch, int Action)
+__StringRead(void* isc, int ch, int Action)
 {
     char         RetVal;
-    __InStrCtrl *Iscp = (__InStrCtrl *)isc;
+    __InStrCtrl* Iscp = (__InStrCtrl*)isc;
     switch (Action)
     {
         case __GetAChar :
@@ -1396,146 +1316,145 @@ __StringRead(void *isc, int ch, int Action)
             else
             {
                 Iscp->NextChar++;
-                return ((unsigned char)RetVal);                     /*- mm 010426 -*/
+                return ((unsigned char)RetVal);                    /*- mm 010426 -*/
             }
         case __UngetAChar :
-            if (!Iscp->NullCharDetected)                            /*- mm 990413 -*/
+            if (!Iscp->NullCharDetected)                           /*- mm 990413 -*/
             {
-                Iscp->NextChar--;                                   /*- mm 990413 -*/
+                Iscp->NextChar--;                                  /*- mm 990413 -*/
             }
-            else                                                    /*- mm 990413 -*/
+            else                                                   /*- mm 990413 -*/
             {
-                Iscp->NullCharDetected = 0;                         /*- mm 990413 -*/
+                Iscp->NullCharDetected = 0;                        /*- mm 990413 -*/
             }
             return (ch);
-        case __TestForError :
-            return (Iscp->NullCharDetected);
+        case __TestForError : return (Iscp->NullCharDetected);
     }
-    return 0;                                                       /* to satisfy compiler */
+    return 0;                                                      /* to satisfy compiler */
 }
 
 int
-fscanf(FILE *file, const char *format, ...)
+fscanf(FILE* file, const char* format, ...)
 {
-    int retval;                                                     /*- mm 001013 -*/
-#if __PPC_EABI__ || __MIPS__                                        /*__dest_os == __mips_bare  */
+    int retval;                                                    /*- mm 001013 -*/
+#if __PPC_EABI__ || __MIPS__                                       /*__dest_os == __mips_bare  */
     va_list args;
-    if (file == NULL)                                               /*- mm 000404 -*/
+    if (file == NULL)                                              /*- mm 000404 -*/
     {
-        return (EOF);                                               /*- mm 000404 -*/
+        return (EOF);                                              /*- mm 000404 -*/
     }
-#    ifndef __NO_WIDE_CHAR                                          /*- mm 980205 -*/
-    if (fwide(file, -1) >= 0) /*- mm 990618 -*/                     /*- mm 000404 -*/
+#    ifndef __NO_WIDE_CHAR                                         /*- mm 980205 -*/
+    if (fwide(file, -1) >= 0) /*- mm 990618 -*/                    /*- mm 000404 -*/
     {
         return (EOF);
     }
-#    endif /* __NO_WIDE_CHAR */                                     /*- mm 980205 -*/
+#    endif /* __NO_WIDE_CHAR */                                    /*- mm 980205 -*/
     va_start(args, format);
-    __begin_critical_region(files_access);                          /*- mm 001013 -*/
-    retval = __sformatter(&__FileRead, (void *)file, format, args); /*- mm 001013 -*/
+    __begin_critical_region(files_access);                         /*- mm 001013 -*/
+    retval = __sformatter(&__FileRead, (void*)file, format, args); /*- mm 001013 -*/
 #else
-    if (file == NULL)                                                              /*- mm 000404 -*/
+    if (file == NULL)                                                             /*- mm 000404 -*/
     {
-        return (EOF);                                                              /*- mm 000404 -*/
+        return (EOF);                                                             /*- mm 000404 -*/
     }
-#    ifndef __NO_WIDE_CHAR                                          /*- mm 980205 -*/
-    if (fwide(file, -1) >= 0) /*- mm 990618 -*/                                    /*- mm 000404 -*/
+#    ifndef __NO_WIDE_CHAR                                         /*- mm 980205 -*/
+    if (fwide(file, -1) >= 0) /*- mm 990618 -*/                                   /*- mm 000404 -*/
     {
         return (EOF);
     }
-#    endif /* __NO_WIDE_CHAR */                                     /*- mm 980205 -*/
-    __begin_critical_region(files_access);                                         /*- mm 001013 -*/
-    retval = __sformatter(&__FileRead, (void *)file, format, __va_start(format));  /*- mm 001013 -*/
+#    endif /* __NO_WIDE_CHAR */                                    /*- mm 980205 -*/
+    __begin_critical_region(files_access);                                        /*- mm 001013 -*/
+    retval = __sformatter(&__FileRead, (void*)file, format, __va_start(format));  /*- mm 001013 -*/
 #endif
-    __end_critical_region(files_access);                            /*- mm 001013 -*/
-    return (retval);                                                /*- mm 001013 -*/
+    __end_critical_region(files_access);                           /*- mm 001013 -*/
+    return (retval);                                               /*- mm 001013 -*/
 }
 
 /*- mm 000831 -*/
 int
-vscanf(const char *format, va_list arg)
+vscanf(const char* format, va_list arg)
 {
-    int retval;                                                     /*- mm 001013 -*/
+    int retval;                                                    /*- mm 001013 -*/
 #ifndef __NO_WIDE_CHAR
     if (fwide(stdout, -1) >= 0)
     {
         return (EOF);
     }
-#endif                                                              /* __NO_WIDE_CHAR */
-    __begin_critical_region(files_access);                          /*- mm 001013 -*/
-    retval = __sformatter(&__FileRead, (void *)stdin, format, arg); /*- mm 001013 -*/
-    __end_critical_region(files_access);                            /*- mm 001013 -*/
-    return (retval);                                                /*- mm 001013 -*/
+#endif                                                             /* __NO_WIDE_CHAR */
+    __begin_critical_region(files_access);                         /*- mm 001013 -*/
+    retval = __sformatter(&__FileRead, (void*)stdin, format, arg); /*- mm 001013 -*/
+    __end_critical_region(files_access);                           /*- mm 001013 -*/
+    return (retval);                                               /*- mm 001013 -*/
 }
 
 /*- mm 000831 -*/
 
 int
-scanf(const char *format, ...)
+scanf(const char* format, ...)
 {
-    int retval;                                                      /*- mm 001013 -*/
-#if __PPC_EABI__ || __MIPS__                                         /*__dest_os == __mips_bare */
+    int retval;                                                     /*- mm 001013 -*/
+#if __PPC_EABI__ || __MIPS__                                        /*__dest_os == __mips_bare */
     va_list args;
-#    ifndef __NO_WIDE_CHAR                                           /*- mm 980205 -*/
+#    ifndef __NO_WIDE_CHAR                                          /*- mm 980205 -*/
     if (fwide(stdin, -1) >= 0)
     {
         return (EOF);
     }
-#    endif /* __NO_WIDE_CHAR */                                      /*- mm 980205 -*/
+#    endif /* __NO_WIDE_CHAR */                                     /*- mm 980205 -*/
 
     va_start(args, format);
-    __begin_critical_region(files_access);                           /*- mm 001013 -*/
-    retval = __sformatter(&__FileRead, (void *)stdin, format, args); /*- mm 001013 -*/
+    __begin_critical_region(files_access);                          /*- mm 001013 -*/
+    retval = __sformatter(&__FileRead, (void*)stdin, format, args); /*- mm 001013 -*/
 #else
-#    ifndef __NO_WIDE_CHAR                                           /*- mm 980205 -*/
+#    ifndef __NO_WIDE_CHAR                                          /*- mm 980205 -*/
     if (fwide(stdin, -1) >= 0)
     {
         return (EOF);
     }
-#    endif /* __NO_WIDE_CHAR */                                      /*- mm 980205 -*/
-    __begin_critical_region(files_access);                                         /*- mm 001013 -*/
-    retval = __sformatter(&__FileRead, (void *)stdin, format, __va_start(format)); /*- mm 001013 -*/
+#    endif /* __NO_WIDE_CHAR */                                     /*- mm 980205 -*/
+    __begin_critical_region(files_access);                                        /*- mm 001013 -*/
+    retval = __sformatter(&__FileRead, (void*)stdin, format, __va_start(format)); /*- mm 001013 -*/
 #endif
-    __end_critical_region(files_access);                             /*- mm 001013 -*/
-    return (retval);                                                 /*- mm 001013 -*/
+    __end_critical_region(files_access);                            /*- mm 001013 -*/
+    return (retval);                                                /*- mm 001013 -*/
 }
 
 int
-vfscanf(FILE *file, const char *format, va_list arg)                 /*- mm 990828 -*/
+vfscanf(FILE* file, const char* format, va_list arg)                /*- mm 990828 -*/
 {
-    int retval;                                                      /*- mm 001013 -*/
-    if (file == NULL)                                                /*- mm 000404 -*/
+    int retval;                                                     /*- mm 001013 -*/
+    if (file == NULL)                                               /*- mm 000404 -*/
     {
-        return (EOF); /*- mm 000404 -*/                              /* mm 990828 */
+        return (EOF); /*- mm 000404 -*/                             /* mm 990828 */
     }
-#ifndef __NO_WIDE_CHAR                                               /*- mm 990828 -*/
-    if (fwide(file, -1) >= 0)                                        /*- mm 990828 -*/
+#ifndef __NO_WIDE_CHAR                                              /*- mm 990828 -*/
+    if (fwide(file, -1) >= 0)                                       /*- mm 990828 -*/
     {
-        return (EOF);                                                /*- mm 990828 -*/
+        return (EOF);                                               /*- mm 990828 -*/
     }
-#endif /* __NO_WIDE_CHAR */                                          /*- mm 990828 -*/
-    __begin_critical_region(files_access);                           /*- mm 001013 -*/
-    retval = __sformatter(&__FileRead, (void *)file, format, arg);   /*- mm 001013 -*/
-    __end_critical_region(files_access);                             /*- mm 001013 -*/
-    return (retval);                                                 /*- mm 001013 -*/
+#endif /* __NO_WIDE_CHAR */                                         /*- mm 990828 -*/
+    __begin_critical_region(files_access);                          /*- mm 001013 -*/
+    retval = __sformatter(&__FileRead, (void*)file, format, arg);   /*- mm 001013 -*/
+    __end_critical_region(files_access);                            /*- mm 001013 -*/
+    return (retval);                                                /*- mm 001013 -*/
 } /*- mm 990828 -*/
 
 int
-vsscanf(const char *s, const char *format, va_list arg) /*- mm 990828 -*/
+vsscanf(const char* s, const char* format, va_list arg) /*- mm 990828 -*/
 {
     __InStrCtrl isc;
-    isc.NextChar = (char *)s;
+    isc.NextChar = (char*)s;
     if ((s == NULL) || (*isc.NextChar == '\0'))         /*- mm 990617 -*/
     {
         return (EOF);                                   /*- mm 990617 -*/
     }
     isc.NullCharDetected = 0;
 
-    return (__sformatter(&__StringRead, (void *)&isc, format, arg));
+    return (__sformatter(&__StringRead, (void*)&isc, format, arg));
 }
 
 int
-sscanf(const char *s, const char *format, ...)
+sscanf(const char* s, const char* format, ...)
 {
 #if __PPC_EABI__ || __MIPS__                            /*   __dest_os == __mips_bare */
     va_list args;
@@ -1543,7 +1462,7 @@ sscanf(const char *s, const char *format, ...)
     va_start(args, format);
     return (vsscanf(s, format, args));                  /*- mm 990828 -*/
 #else
-    return (vsscanf(s, format, __va_start(format)));                               /*- mm 990828 -*/
+    return (vsscanf(s, format, __va_start(format)));                              /*- mm 990828 -*/
 #endif
 }
 

@@ -13,7 +13,7 @@ static MCC_Info        channelInfo[16] ATTRIBUTE_ALIGN(32);
 volatile static int gIsChannelinfoDirty = 1;
 
 // .sbss
-static void                    (                   *volatile gCallbackSysEvent)(enum MCC_SYSEVENT);
+static void                    (* volatile gCallbackSysEvent)(enum MCC_SYSEVENT);
 static int                     gOtherSideInitDone;
 volatile static unsigned char  gLastError;
 static int                     gMccInitialized;
@@ -22,7 +22,7 @@ volatile static int            gPingFlag;
 volatile static unsigned short gAsyncResourceStatus;
 
 // functions
-static void mccDebugPrint(char *str);
+static void mccDebugPrint(char* str);
 static void callbackEventStream(enum MCC_CHANNEL chID, u32 event, u32 value);
 static int  SetUsbAdapterMode(u8 mode);
 static u8   GetUsbAdapterMode(void);
@@ -37,18 +37,18 @@ static u16  AsyncResourceGetStat(void);
 static u16  AsyncResourceGetMode(void);
 static u8   AsyncResourceGetChannel(void);
 static int  AsyncResourceIsBusy(void);
-static int  LoadChannelInfo(MCC_ChannelInfo *info);
-static int  FlushChannelInfo(MCC_ChannelInfo *info);
+static int  LoadChannelInfo(MCC_ChannelInfo* info);
+static int  FlushChannelInfo(MCC_ChannelInfo* info);
 static void SetChannelInfoDirty(int dirty);
 static void ClearChannelInfo(int i);
-static void MakeMemoryMap(u8 *map);
+static void MakeMemoryMap(u8* map);
 static int  IsChannelOpened(enum MCC_CHANNEL chID);
-static u8   SearchFreeBlocks(enum MCC_MODE mode, u8 *index);
+static u8   SearchFreeBlocks(enum MCC_MODE mode, u8* index);
 static int  NotifyCompulsorily(enum MCC_CHANNEL chID, u32 notify, u32 timeout);
 static int  NotifyInit(void);
 static int  NotifyInitDone(void);
 static int  NotifyChannelEvent(enum MCC_CHANNEL chID, u32 notify);
-static int  WaitAMinute(int timeout, volatile int *flag, int value);
+static int  WaitAMinute(int timeout, volatile int* flag, int value);
 static void MailboxCheck(void);
 static void MCCExiCallback(void);
 static void MCCTxCallback(void);
@@ -56,7 +56,7 @@ static void MCCRxCallback(void);
 static int  mccInitializeCheck(u8 timeout);
 
 static void
-mccDebugPrint(char *str)
+mccDebugPrint(char* str)
 {
 }
 
@@ -104,10 +104,10 @@ MCCStreamClose(enum MCC_CHANNEL chID)
 }
 
 int
-MCCStreamWrite(enum MCC_CHANNEL chID, void *data, u32 dataBlockSize)
+MCCStreamWrite(enum MCC_CHANNEL chID, void* data, u32 dataBlockSize)
 {
     MCC_Info chanInfo;
-    char    *dataAddress;
+    char*    dataAddress;
     u32      lastBlocks;
 
     if (gMccInitialized == 0)
@@ -131,7 +131,7 @@ MCCStreamWrite(enum MCC_CHANNEL chID, void *data, u32 dataBlockSize)
         gChannelInfo[chID].isStreamConnection = 0;
         if (MCCGetChannelInfo(chID, &chanInfo) != 0)
         {
-            *(u32 *)&gStreamWork = dataBlockSize;
+            *(u32*)&gStreamWork = dataBlockSize;
             if (MCCWrite(chID, 0, gStreamWork, 0x20, 0) != 0)
             {
                 if (WaitAMinute(5, &gChannelInfo[chID].isStreamDone, 1) == 0)
@@ -179,10 +179,10 @@ exit:;
 }
 
 u32
-MCCStreamRead(enum MCC_CHANNEL chID, void *data)
+MCCStreamRead(enum MCC_CHANNEL chID, void* data)
 {
     MCC_Info chanInfo;
-    char    *dataAddress;
+    char*    dataAddress;
     u32      allBlocks;
     u32      lastBlocks;
 
@@ -217,7 +217,7 @@ MCCStreamRead(enum MCC_CHANNEL chID, void *data)
                 if (MCCRead(chID, 0, gStreamWork, 0x20, 0) != 0)
                 {
                     dataAddress = data;
-                    allBlocks = lastBlocks = *(u32 *)&gStreamWork[0];
+                    allBlocks = lastBlocks = *(u32*)&gStreamWork[0];
                     while (lastBlocks)
                     {
                         if (WaitAMinute(5, &gChannelInfo[chID].isStreamDone, 1) == 0)
@@ -369,7 +369,7 @@ AsyncResourceIsBusy(void)
 }
 
 static int
-LoadChannelInfo(MCC_ChannelInfo *info)
+LoadChannelInfo(MCC_ChannelInfo* info)
 {
     volatile int result = 0;
     u8           count;
@@ -407,7 +407,7 @@ LoadChannelInfo(MCC_ChannelInfo *info)
 }
 
 static int
-FlushChannelInfo(MCC_ChannelInfo *info)
+FlushChannelInfo(MCC_ChannelInfo* info)
 {
     volatile int result;
     u8           count;
@@ -454,7 +454,7 @@ ClearChannelInfo(int i)
 }
 
 static void
-MakeMemoryMap(u8 *map)
+MakeMemoryMap(u8* map)
 {
     u8 iMap;
     u8 jMap;
@@ -499,7 +499,7 @@ exit:;
 }
 
 static u8
-SearchFreeBlocks(enum MCC_MODE mode, u8 *index)
+SearchFreeBlocks(enum MCC_MODE mode, u8* index)
 {
     u8 map[16];
     u8 iMap;
@@ -638,7 +638,7 @@ NotifyChannelEvent(enum MCC_CHANNEL chID, u32 notify)
 }
 
 static int
-WaitAMinute(int timeout, volatile int *flag, int value)
+WaitAMinute(int timeout, volatile int* flag, int value)
 {
     u32 tickStart;
     u32 tickDist;
@@ -689,12 +689,8 @@ MailboxCheck(void)
                 gMccSession = 1;
                 gOtherSideInitDone = 1;
                 break;
-            case 3 :
-                NotifyCompulsorily(0, 4, 0xAU);
-                break;
-            case 1 :
-                gMccSession = 0;
-                break;
+            case 3 : NotifyCompulsorily(0, 4, 0xAU); break;
+            case 1 : gMccSession = 0; break;
             case 4 :
                 if (gPingFlag == 0)
                 {
@@ -702,9 +698,7 @@ MailboxCheck(void)
                 }
                 gPingFlag = 0;
                 break;
-            case 5 :
-                SetChannelInfoDirty(1);
-                break;
+            case 5 : SetChannelInfoDirty(1); break;
             default :
                 if (value == 8U)
                 {
@@ -1018,7 +1012,7 @@ MCCGetLastError(void)
 }
 
 int
-MCCGetChannelInfo(enum MCC_CHANNEL chID, MCC_Info *info)
+MCCGetChannelInfo(enum MCC_CHANNEL chID, MCC_Info* info)
 {
 #ifndef DEBUG
     int unused[3];                       // fake but blah
@@ -1056,7 +1050,7 @@ MCCGetChannelInfo(enum MCC_CHANNEL chID, MCC_Info *info)
 }
 
 int
-MCCGetConnectionStatus(enum MCC_CHANNEL chID, enum MCC_CONNECT *connect)
+MCCGetConnectionStatus(enum MCC_CHANNEL chID, enum MCC_CONNECT* connect)
 {
     MCC_Info info;
 #ifndef DEBUG
@@ -1470,7 +1464,7 @@ exit:
 }
 
 int
-MCCRead(enum MCC_CHANNEL chID, u32 offset, void *data, long size, enum MCC_SYNC_STATE async)
+MCCRead(enum MCC_CHANNEL chID, u32 offset, void* data, long size, enum MCC_SYNC_STATE async)
 {
 #ifndef DEBUG
     int unused[11];                      // fake but blah
@@ -1567,7 +1561,7 @@ exit:;
 }
 
 int
-MCCWrite(enum MCC_CHANNEL chID, u32 offset, void *data, long size, enum MCC_SYNC_STATE async)
+MCCWrite(enum MCC_CHANNEL chID, u32 offset, void* data, long size, enum MCC_SYNC_STATE async)
 {
 #ifndef DEBUG
     int unused[11];                      // fake but blah

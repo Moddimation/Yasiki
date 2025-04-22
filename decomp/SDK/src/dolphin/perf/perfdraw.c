@@ -13,8 +13,7 @@ extern Mtx mID;
 
 // internal macro for Perfdraw.
 #define DRAW_RECT(x1, x2, y1, y2, color)                                                                               \
-    do                                                                                                                 \
-    {                                                                                                                  \
+    do {                                                                                                               \
         GXSetChanMatColor(GX_COLOR0A0, color);                                                                         \
         GXBegin(GX_QUADS, GX_VTXFMT0, 4U);                                                                             \
         GXPosition3f32((x1), (y1), -1.0f);                                                                             \
@@ -22,7 +21,8 @@ extern Mtx mID;
         GXPosition3f32((x2), (y2), -1.0f);                                                                             \
         GXPosition3f32((x2), (y1), -1.0f);                                                                             \
         GXEnd();                                                                                                       \
-    } while (0)
+    }                                                                                                                  \
+    while (0)
 
 static unsigned long DrawFrameMax;       // size: 0x4, address: 0x0
 static float         DrawFrameH;         // size: 0x4, address: 0x4
@@ -164,7 +164,7 @@ PERFPreDraw()
 }
 
 static void
-DrawBWBar(struct PerfSample *s)
+DrawBWBar(struct PerfSample* s)
 {
     unsigned long delta;
     unsigned long interval;
@@ -427,7 +427,7 @@ DrawKey()
 void
 PERFDumpScreen()
 {
-    struct PerfSample *samples; // r30
+    struct PerfSample* samples; // r30
     unsigned long      s;       // r31
     unsigned long      id;      // r28
     unsigned long      i;       // r26

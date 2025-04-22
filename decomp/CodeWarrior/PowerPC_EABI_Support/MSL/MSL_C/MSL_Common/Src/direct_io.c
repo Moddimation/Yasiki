@@ -24,7 +24,7 @@
 #include "misc_io.h"
 
 size_t
-fread(void *ptr, size_t memb_size, size_t num_memb, FILE *file)
+fread(void* ptr, size_t memb_size, size_t num_memb, FILE* file)
 {
     size_t retval;
     __begin_critical_region(files_access);            /*- mm 001013 -*/
@@ -36,9 +36,9 @@ fread(void *ptr, size_t memb_size, size_t num_memb, FILE *file)
 /* This does all the work of fread but is not threadsafe it exists so that other
    library functions can do freads in a loop from within a critical region mm 001018*/
 size_t
-__fread(void *ptr, size_t memb_size, size_t num_memb, FILE *file)
+__fread(void* ptr, size_t memb_size, size_t num_memb, FILE* file)
 {
-    unsigned char *read_ptr;
+    unsigned char* read_ptr;
     size_t         num_bytes, bytes_to_go, bytes_read;
     int            ioresult, always_buffer;
 
@@ -84,17 +84,16 @@ __fread(void *ptr, size_t memb_size, size_t num_memb, FILE *file)
     }
     /*- mm 970708 -*/
 
-    read_ptr = (unsigned char *)ptr;
+    read_ptr = (unsigned char*)ptr;
     bytes_read = 0;
 
     if (bytes_to_go && file->state.io_state >= __rereading)
     {
-        do
-        {
+        do {
 #ifndef __NO_WIDE_CHAR                                 /*- mm 980205 -*/
             if (fwide(file, 0) == 1)
             {
-                *(wchar_t *)read_ptr = file->ungetwc_buffer[file->state.io_state - __rereading];
+                *(wchar_t*)read_ptr = file->ungetwc_buffer[file->state.io_state - __rereading];
                 read_ptr += sizeof(wchar_t);
                 bytes_read += sizeof(wchar_t);
                 bytes_to_go -= sizeof(wchar_t);
@@ -112,7 +111,8 @@ __fread(void *ptr, size_t memb_size, size_t num_memb, FILE *file)
 #endif /* __NO_WIDE_CHAR */                            /*- mm 980205 -*/
 
             file->state.io_state--;
-        } while (bytes_to_go && file->state.io_state >= __rereading);
+        }
+        while (bytes_to_go && file->state.io_state >= __rereading);
 
         if (file->state.io_state == __reading)
         {
@@ -122,8 +122,7 @@ __fread(void *ptr, size_t memb_size, size_t num_memb, FILE *file)
 
     if (bytes_to_go && (file->buffer_len || always_buffer))
     {
-        do
-        {
+        do {
             if (!file->buffer_len)
             {
                 ioresult = __load_buffer(file, NULL, __align_buffer);
@@ -158,12 +157,13 @@ __fread(void *ptr, size_t memb_size, size_t num_memb, FILE *file)
 
             file->buffer_ptr += num_bytes;
             file->buffer_len -= num_bytes;
-        } while (bytes_to_go && always_buffer);
+        }
+        while (bytes_to_go && always_buffer);
     }
 
     if (bytes_to_go && !always_buffer)
     {
-        unsigned char *save_buffer = file->buffer;
+        unsigned char* save_buffer = file->buffer;
         size_t         save_size = file->buffer_size;
 
         file->buffer = read_ptr;
@@ -197,7 +197,7 @@ __fread(void *ptr, size_t memb_size, size_t num_memb, FILE *file)
 }
 
 size_t
-fwrite(const void *ptr, size_t memb_size, size_t num_memb, FILE *file)
+fwrite(const void* ptr, size_t memb_size, size_t num_memb, FILE* file)
 {
     size_t retval;
     __begin_critical_region(files_access);             /*- mm 001013 -*/
@@ -209,9 +209,9 @@ fwrite(const void *ptr, size_t memb_size, size_t num_memb, FILE *file)
 /* This does all the work of fwrite but is not threadsafe it exists so that other
    library functions can do fwrites in a loop from within a critical region mm 001018*/
 size_t
-__fwrite(const void *ptr, size_t memb_size, size_t num_memb, FILE *file)
+__fwrite(const void* ptr, size_t memb_size, size_t num_memb, FILE* file)
 {
-    unsigned char *write_ptr;
+    unsigned char* write_ptr;
     size_t         num_bytes, bytes_to_go, bytes_written;
     int            ioresult, always_buffer;
 
@@ -263,16 +263,15 @@ __fwrite(const void *ptr, size_t memb_size, size_t num_memb, FILE *file)
         return (0);
     }
 
-    write_ptr = (unsigned char *)ptr;
+    write_ptr = (unsigned char*)ptr;
     bytes_written = 0;
 
     if (bytes_to_go && (file->buffer_ptr != file->buffer || always_buffer))
     {
         file->buffer_len = file->buffer_size - (file->buffer_ptr - file->buffer);
 
-        do
-        {
-            unsigned char *newline = NULL;
+        do {
+            unsigned char* newline = NULL;
 
             num_bytes = file->buffer_len;
 
@@ -285,7 +284,7 @@ __fwrite(const void *ptr, size_t memb_size, size_t num_memb, FILE *file)
 
             if (file->mode.buffer_mode == _IOLBF && num_bytes)
             {
-                if ((newline = (unsigned char *)__memrchr(write_ptr, '\n', num_bytes)) != NULL)
+                if ((newline = (unsigned char*)__memrchr(write_ptr, '\n', num_bytes)) != NULL)
                 {
                     num_bytes = newline + 1 - write_ptr;
                 }
@@ -315,12 +314,13 @@ __fwrite(const void *ptr, size_t memb_size, size_t num_memb, FILE *file)
                     break;
                 }
             }
-        } while (bytes_to_go && always_buffer);
+        }
+        while (bytes_to_go && always_buffer);
     }
 
     if (bytes_to_go && !always_buffer)
     {
-        unsigned char *save_buffer = file->buffer;
+        unsigned char* save_buffer = file->buffer;
         size_t         save_size = file->buffer_size;
 
         file->buffer = write_ptr;

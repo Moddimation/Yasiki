@@ -9,8 +9,8 @@
 
 static AISCallback __AIS_Callback;
 static AIDCallback __AID_Callback;
-static u8         *__CallbackStack;
-static u8         *__OldStack;
+static u8*         __CallbackStack;
+static u8*         __OldStack;
 static BOOL        __AI_init_flag;
 static OSTime      bound_32KHz;
 static OSTime      bound_48KHz;
@@ -33,12 +33,12 @@ OSTime                __ai_src_time_end;
 OSTime                __ai_src_time_start;
 
 void                   __AI_DEBUG_set_stream_sample_rate(u32 rate);
-struct STRUCT_TIMELOG *__ai_src_get_time(void);
+struct STRUCT_TIMELOG* __ai_src_get_time(void);
 
 static void __AI_set_stream_sample_rate(u32 rate);
-static void __AIDHandler(__OSInterrupt interrupt, OSContext *context);
-static void __AISHandler(__OSInterrupt interrupt, OSContext *context);
-static void __AICallbackStackSwitch(void *cb);
+static void __AIDHandler(__OSInterrupt interrupt, OSContext* context);
+static void __AISHandler(__OSInterrupt interrupt, OSContext* context);
+static void __AICallbackStackSwitch(void* cb);
 static void __AI_SRC_INIT(void);
 
 AIDCallback
@@ -299,7 +299,7 @@ AIGetStreamVolRight(void)
 }
 
 void
-AIInit(u8 *stack)
+AIInit(u8* stack)
 {
     if (__AI_init_flag != TRUE)
     {
@@ -339,7 +339,7 @@ AIReset(void)
 }
 
 static void
-__AISHandler(__OSInterrupt interrupt, OSContext *context)
+__AISHandler(__OSInterrupt interrupt, OSContext* context)
 {
     OSContext exceptionContext;
 
@@ -355,7 +355,7 @@ __AISHandler(__OSInterrupt interrupt, OSContext *context)
 }
 
 static void
-__AIDHandler(__OSInterrupt interrupt, OSContext *context)
+__AIDHandler(__OSInterrupt interrupt, OSContext* context)
 {
     OSContext exceptionContext;
     u16       tmp;
@@ -381,7 +381,7 @@ __AIDHandler(__OSInterrupt interrupt, OSContext *context)
 }
 
 static asm void
-__AICallbackStackSwitch(register void *cb)
+__AICallbackStackSwitch(register void* cb)
 {
     nofralloc mflr r0 stw r0, 0x4(r1)stwu r1, -0x18(r1)stw r31, 0x14(r1)mr r31, r3 lis r5, __OldStack @ha addi r5, r5,
         __OldStack @l stw r1, 0x0(r5)lis r5, __CallbackStack @ha addi r5, r5, __CallbackStack @l lwz r1, 0x0(r5)subi r1,
@@ -459,7 +459,7 @@ __AI_SRC_INIT(void)
 #endif
 }
 
-struct STRUCT_TIMELOG *
+struct STRUCT_TIMELOG*
 __ai_src_get_time(void)
 {
 #if DEBUG

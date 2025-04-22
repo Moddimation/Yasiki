@@ -221,7 +221,7 @@ __init_user(void)
 static void
 __init_cpp(void)
 {
-    voidfunctionptr *constructor;
+    voidfunctionptr* constructor;
 
     /*
      *	call static initializers
@@ -235,7 +235,7 @@ __init_cpp(void)
 static void
 __fini_cpp(void)
 {
-    voidfunctionptr *destructor;
+    voidfunctionptr* destructor;
 
     /*
      *	call destructors
@@ -290,7 +290,7 @@ _ExitProcess(void) {
  *
  */
 /****************************************************************************/
-asm void __flush_cache(register void *address, register unsigned int size)
+asm void __flush_cache(register void* address, register unsigned int size)
 {
 #pragma unused(address, size)
     /* r3 is address, r4 is size */

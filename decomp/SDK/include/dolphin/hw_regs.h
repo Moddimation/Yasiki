@@ -328,4 +328,3 @@ volatile u8* __GXRegs   AT_ADDRESS(0xCC008000); // Graphics FIFO Register
 #define AI_IT                       (3) // ai interface timing
 
 #endif
-

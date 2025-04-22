@@ -6,7 +6,7 @@
 #include "CARDPrivate.h"
 #include "os/__os.h"
 
-typedef void (*EXICallback)(s32 chan, OSContext *context);
+typedef void (*EXICallback)(s32 chan, OSContext* context);
 
 static u32 SectorSizeTable[8] = {
     8 * 1024, 16 * 1024, 32 * 1024, 64 * 1024, 128 * 1024, 256 * 1024, 0, 0,
@@ -27,10 +27,10 @@ CARDProbe(long chan)
 }
 
 s32
-CARDProbeEx(s32 chan, s32 *memSize, s32 *sectorSize)
+CARDProbeEx(s32 chan, s32* memSize, s32* sectorSize)
 {
     u32          id;
-    CARDControl *card;
+    CARDControl* card;
     BOOL         enabled;
     s32          result;
 
@@ -85,11 +85,11 @@ CARDProbeEx(s32 chan, s32 *memSize, s32 *sectorSize)
 static s32
 DoMount(s32 chan)
 {
-    CARDControl     *card;
+    CARDControl*     card;
     u32              id;
     u8               status;
     s32              result;
-    struct OSSramEx *sram;
+    struct OSSramEx* sram;
     int              i;
     u8               checkSum;
     int              step;
@@ -188,7 +188,7 @@ DoMount(s32 chan)
 
     step = card->mountStep - 2;
     result = __CARDRead(chan, (u32)card->sectorSize * step, CARD_SYSTEM_BLOCK_SIZE,
-                        (u8 *)card->workArea + (CARD_SYSTEM_BLOCK_SIZE * step), __CARDMountCallback);
+                        (u8*)card->workArea + (CARD_SYSTEM_BLOCK_SIZE * step), __CARDMountCallback);
     if (result < 0)
     {
         __CARDPutControlBlock(card, result);
@@ -204,7 +204,7 @@ error:
 void
 __CARDMountCallback(s32 chan, s32 result)
 {
-    CARDControl *card;
+    CARDControl* card;
     CARDCallback callback;
 
     ASSERTLINE(0x181, 0 <= chan && chan < 2);
@@ -234,9 +234,7 @@ __CARDMountCallback(s32 chan, s32 result)
             }
             break;
         case CARD_RESULT_IOERROR :
-        case CARD_RESULT_NOCARD :
-            DoUnmount(chan);
-            break;
+        case CARD_RESULT_NOCARD  : DoUnmount(chan); break;
     }
 
     callback = card->apiCallback;
@@ -247,9 +245,9 @@ __CARDMountCallback(s32 chan, s32 result)
 }
 
 s32
-CARDMountAsync(s32 chan, void *workArea, CARDCallback detachCallback, CARDCallback attachCallback)
+CARDMountAsync(s32 chan, void* workArea, CARDCallback detachCallback, CARDCallback attachCallback)
 {
-    CARDControl *card;
+    CARDControl* card;
     BOOL         enabled;
 
     ASSERTLINE(0x1CB, workArea && ((u32)workArea % 32 == 0));
@@ -308,7 +306,7 @@ CARDMountAsync(s32 chan, void *workArea, CARDCallback detachCallback, CARDCallba
 }
 
 s32
-CARDMount(s32 chan, void *workArea, CARDCallback detachCallback)
+CARDMount(s32 chan, void* workArea, CARDCallback detachCallback)
 {
     s32 result = CARDMountAsync(chan, workArea, detachCallback, __CARDSyncCallback);
 
@@ -322,7 +320,7 @@ CARDMount(s32 chan, void *workArea, CARDCallback detachCallback)
 static void
 DoUnmount(s32 chan)
 {
-    CARDControl *card;
+    CARDControl* card;
     BOOL         enabled;
 
     ASSERTLINE(0x22F, 0 <= chan && chan < 2);
@@ -343,7 +341,7 @@ DoUnmount(s32 chan)
 s32
 CARDUnmount(s32 chan)
 {
-    CARDControl *card;
+    CARDControl* card;
     s32          result;
 
     ASSERTLINE(0x252, 0 <= chan && chan < 2);

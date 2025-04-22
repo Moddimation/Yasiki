@@ -8,9 +8,9 @@
 
 // functions
 static u32  __SYNGetNibbleAddress(u32 count);
-static void __SYNSetupAdpcm(struct SYNVOICE *voice);
-static void __SYNSetupPcm16(struct SYNVOICE *voice);
-static void __SYNSetupPcm8(struct SYNVOICE *voice);
+static void __SYNSetupAdpcm(struct SYNVOICE* voice);
+static void __SYNSetupPcm16(struct SYNVOICE* voice);
+static void __SYNSetupPcm8(struct SYNVOICE* voice);
 
 static u32
 __SYNGetNibbleAddress(u32 count)
@@ -23,20 +23,20 @@ __SYNGetNibbleAddress(u32 count)
 }
 
 static void
-__SYNSetupAdpcm(struct SYNVOICE *voice)
+__SYNSetupAdpcm(struct SYNVOICE* voice)
 {
-    AXVPB *axvpb = voice->axvpb;
+    AXVPB* axvpb = voice->axvpb;
 
     if ((voice->region->loopStart + voice->region->loopLength) != 0)
     {
         u32  sampleStart;
         u32  sampleLoop;
         u32  sampleEnd;
-        u32 *p;
-        u32 *adpcm;
-        u16 *adpcmloop;
+        u32* p;
+        u32* adpcm;
+        u16* adpcmloop;
 
-        adpcm = (void *)&voice->adpcm->a;
+        adpcm = (void*)&voice->adpcm->a;
         voice->type = 1;
         sampleStart = voice->synth->aramBaseNibble + voice->sample->offset;
         sampleLoop = sampleStart + __SYNGetNibbleAddress(voice->region->loopStart - 1);
@@ -48,7 +48,7 @@ __SYNSetupAdpcm(struct SYNVOICE *voice)
         // the hell? why not just write the struct members??? what is this doing???
         // why not just write to the members directly?
         sampleStart = sampleStart + 2;
-        p = (u32 *)&axvpb->pb.addr;
+        p = (u32*)&axvpb->pb.addr;
         *(p) = 0x10000;
         p += 1;
         *(p) = sampleLoop;
@@ -77,7 +77,7 @@ __SYNSetupAdpcm(struct SYNVOICE *voice)
         p += 1, adpcm += 1;
         *(p) = *(adpcm);
         p += 1, adpcm += 1;
-        adpcmloop = (void *)(adpcm);
+        adpcmloop = (void*)(adpcm);
         axvpb->pb.adpcmLoop.loop_pred_scale = *(adpcmloop);
         adpcmloop += 1;
         axvpb->pb.adpcmLoop.loop_yn1 = *(adpcmloop);
@@ -91,10 +91,10 @@ __SYNSetupAdpcm(struct SYNVOICE *voice)
     {
         u32  sampleStart;
         u32  sampleEnd;
-        u32 *p;
-        u32 *adpcm;
+        u32* p;
+        u32* adpcm;
 
-        adpcm = (void *)&voice->adpcm->a;
+        adpcm = (void*)&voice->adpcm->a;
         voice->type = 0;
         sampleStart = voice->synth->aramBaseNibble + voice->sample->offset;
         sampleEnd = sampleStart + __SYNGetNibbleAddress(voice->sample->length - 1);
@@ -104,7 +104,7 @@ __SYNSetupAdpcm(struct SYNVOICE *voice)
 
         // same wtf writes here
         sampleStart = sampleStart + 2;
-        p = (void *)&axvpb->pb.addr;
+        p = (void*)&axvpb->pb.addr;
         *(p) = 0;
         p += 1;
         *(p) = 0;
@@ -139,23 +139,23 @@ __SYNSetupAdpcm(struct SYNVOICE *voice)
 }
 
 static void
-__SYNSetupPcm16(struct SYNVOICE *voice)
+__SYNSetupPcm16(struct SYNVOICE* voice)
 {
-    AXVPB *axvpb = voice->axvpb;
+    AXVPB* axvpb = voice->axvpb;
 
     if ((voice->region->loopStart + voice->region->loopLength) != 0)
     {
         u32  sampleStart;
         u32  sampleLoop;
         u32  sampleEnd;
-        u32 *p;
+        u32* p;
 
         voice->type = 1;
         sampleStart = voice->synth->aramBaseWord + voice->sample->offset;
         sampleLoop = sampleStart + voice->region->loopStart - 1;
         sampleEnd = sampleLoop + voice->region->loopLength - 1;
 
-        p = (u32 *)&axvpb->pb.addr;
+        p = (u32*)&axvpb->pb.addr;
         *(p) = 0x1000A;
         p += 1;
         *(p) = sampleLoop;
@@ -189,13 +189,13 @@ __SYNSetupPcm16(struct SYNVOICE *voice)
     {
         u32  sampleStart;
         u32  sampleEnd;
-        u32 *p;
+        u32* p;
 
         voice->type = 0;
         sampleStart = voice->synth->aramBaseWord + voice->sample->offset;
         sampleEnd = sampleStart + voice->sample->length - 1;
 
-        p = (u32 *)&axvpb->pb.addr;
+        p = (u32*)&axvpb->pb.addr;
         *(p) = 0x0000A;
         p += 1;
         *(p) = 0;
@@ -230,22 +230,22 @@ __SYNSetupPcm16(struct SYNVOICE *voice)
 }
 
 static void
-__SYNSetupPcm8(struct SYNVOICE *voice)
+__SYNSetupPcm8(struct SYNVOICE* voice)
 {
-    AXVPB *axvpb = voice->axvpb;
+    AXVPB* axvpb = voice->axvpb;
 
     if ((voice->region->loopStart + voice->region->loopLength) != 0)
     {
         u32  sampleStart;
         u32  sampleLoop;
         u32  sampleEnd;
-        u32 *p;
+        u32* p;
 
         voice->type = 1;
         sampleStart = voice->synth->aramBaseByte + voice->sample->offset;
         sampleLoop = sampleStart + voice->region->loopStart - 1;
         sampleEnd = sampleLoop + voice->region->loopLength - 1;
-        p = (u32 *)&axvpb->pb.addr;
+        p = (u32*)&axvpb->pb.addr;
         *(p) = 0x10019;
         p += 1;
         *(p) = sampleLoop;
@@ -279,12 +279,12 @@ __SYNSetupPcm8(struct SYNVOICE *voice)
     {
         u32  sampleStart;
         u32  sampleEnd;
-        u32 *p;
+        u32* p;
 
         voice->type = 0;
         sampleStart = voice->synth->aramBaseByte + voice->sample->offset;
         sampleEnd = sampleStart + voice->sample->length - 1;
-        p = (u32 *)&axvpb->pb.addr;
+        p = (u32*)&axvpb->pb.addr;
         *(p) = 0x19;
         p += 1;
         *(p) = 0;
@@ -319,22 +319,14 @@ __SYNSetupPcm8(struct SYNVOICE *voice)
 }
 
 void
-__SYNSetupSample(struct SYNVOICE *voice)
+__SYNSetupSample(struct SYNVOICE* voice)
 {
     ASSERTLINE(0x15C, voice);
     switch (voice->sample->format)
     {
-        case SYN_SAMPLE_FORMAT_ADPCM :
-            __SYNSetupAdpcm(voice);
-            return;
-        case SYN_SAMPLE_FORMAT_PCM16 :
-            __SYNSetupPcm16(voice);
-            return;
-        case SYN_SAMPLE_FORMAT_PCM8 :
-            __SYNSetupPcm8(voice);
-            return;
-        default :
-            ASSERTMSGLINE(0x174, FALSE, "unknown sample format¥n");
-            return;
+        case SYN_SAMPLE_FORMAT_ADPCM : __SYNSetupAdpcm(voice); return;
+        case SYN_SAMPLE_FORMAT_PCM16 : __SYNSetupPcm16(voice); return;
+        case SYN_SAMPLE_FORMAT_PCM8  : __SYNSetupPcm8(voice); return;
+        default                      : ASSERTMSGLINE(0x174, FALSE, "unknown sample format¥n"); return;
     }
 }

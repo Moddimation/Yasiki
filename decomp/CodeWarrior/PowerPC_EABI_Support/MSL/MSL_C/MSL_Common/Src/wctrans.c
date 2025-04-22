@@ -28,15 +28,15 @@
 
 static const struct wctable
 {
-    const char *string;
+    const char* string;
     wctype_t    value;
 }
 
 wtable[]
     = {
-          {       "tolower", 0 },
-          {       "toupper", 1 },
-          { (const char *)0, 0 }
+          {      "tolower", 0 },
+          {      "toupper", 1 },
+          { (const char*)0, 0 }
 };
 
 wint_t
@@ -46,7 +46,7 @@ towctrans(wint_t c, wctrans_t value)
 }
 
 wctrans_t
-wctrans(const char *name)
+wctrans(const char* name)
 {
     int i;
 

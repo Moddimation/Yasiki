@@ -6,11 +6,11 @@
 #include "CARDPrivate.h"
 
 s32
-CARDRenameAsync(s32 chan, const char *old, const char *new, CARDCallback callback)
+CARDRenameAsync(s32 chan, const char* old, const char* new, CARDCallback callback)
 {
-    CARDControl *card;
-    CARDDir     *dir;
-    CARDDir     *ent;
+    CARDControl* card;
+    CARDDir*     dir;
+    CARDDir*     ent;
     s32          result;
     int          fileNo;
     int          newNo;
@@ -75,7 +75,7 @@ CARDRenameAsync(s32 chan, const char *old, const char *new, CARDCallback callbac
         return __CARDPutControlBlock(card, result);
     }
 
-    strncpy((char *)ent->fileName, new, CARD_FILENAME_MAX);
+    strncpy((char*)ent->fileName, new, CARD_FILENAME_MAX);
     ent->time = (u32)OSTicksToSeconds(OSGetTime());
 
     result = __CARDUpdateDir(chan, callback);
@@ -88,7 +88,7 @@ CARDRenameAsync(s32 chan, const char *old, const char *new, CARDCallback callbac
 }
 
 s32
-CARDRename(s32 chan, char *oldName, char *newName)
+CARDRename(s32 chan, char* oldName, char* newName)
 {
     s32 result = CARDRenameAsync(chan, oldName, newName, __CARDSyncCallback);
 

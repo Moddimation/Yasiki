@@ -52,61 +52,59 @@
     This routine returns the length of the wide character string str
 
 */
-size_t(wcslen)(const wchar_t *str)
+size_t(wcslen)(const wchar_t* str)
 {
     size_t len = -1;
 
 #    if !__POWERPC__
 
-    do
-    {
+    do {
         len++;
-    } while (*str++);
+    }
+    while (*str++);
 
 #    else
 
-    wchar_t *p = (wchar_t *)str - 1;
+    wchar_t* p = (wchar_t*)str - 1;
 
-    do
-    {
+    do {
         len++;
-    } while (*++p);
+    }
+    while (*++p);
 
 #    endif
 
     return (len);
 }
 
-wchar_t *(wcscpy)(wchar_t *dst, const wchar_t *src)
+wchar_t*(wcscpy)(wchar_t* dst, const wchar_t* src)
 {
 #    if !__POWERPC__
 
-    const wchar_t *p = src;
-    wchar_t       *q = dst;
+    const wchar_t* p = src;
+    wchar_t*       q = dst;
 
-    while (*q++ = *p++)
-        ;
+    while (*q++ = *p++);
 
 #    else
 
-    const wchar_t *p = (wchar_t *)src - 1;
-    wchar_t       *q = (wchar_t *)dst - 1;
+    const wchar_t* p = (wchar_t*)src - 1;
+    wchar_t*       q = (wchar_t*)dst - 1;
 
-    while (*++q = *++p)
-        ;
+    while (*++q = *++p);
 
 #    endif
 
     return (dst);
 }
 
-wchar_t *
-wcsncpy(wchar_t *dst, const wchar_t *src, size_t n)
+wchar_t*
+wcsncpy(wchar_t* dst, const wchar_t* src, size_t n)
 {
 #    if !__POWERPC__
 
-    const wchar_t *p = src;
-    wchar_t       *q = dst;
+    const wchar_t* p = src;
+    wchar_t*       q = dst;
 
     n++;
 
@@ -124,8 +122,8 @@ wcsncpy(wchar_t *dst, const wchar_t *src, size_t n)
 
 #    else
 
-    const wchar_t *p = (const wchar_t *)src - 1;
-    wchar_t       *q = (wchar_t *)dst - 1;
+    const wchar_t* p = (const wchar_t*)src - 1;
+    wchar_t*       q = (wchar_t*)dst - 1;
     wchar_t        zero = 0;
 
     n++;
@@ -147,50 +145,45 @@ wcsncpy(wchar_t *dst, const wchar_t *src, size_t n)
     return (dst);
 }
 
-wchar_t *
-wcscat(wchar_t *dst, const wchar_t *src)
+wchar_t*
+wcscat(wchar_t* dst, const wchar_t* src)
 {
 #    if !__POWERPC__
 
-    const wchar_t *p = src;
-    wchar_t       *q = dst;
+    const wchar_t* p = src;
+    wchar_t*       q = dst;
 
-    while (*q++)
-        ;
+    while (*q++);
 
     q--;
 
-    while (*q++ = *p++)
-        ;
+    while (*q++ = *p++);
 
 #    else
 
-    const wchar_t *p = (wchar_t *)src - 1;
-    wchar_t       *q = (wchar_t *)dst - 1;
+    const wchar_t* p = (wchar_t*)src - 1;
+    wchar_t*       q = (wchar_t*)dst - 1;
 
-    while (*++q)
-        ;
+    while (*++q);
 
     q--;
 
-    while (*++q = *++p)
-        ;
+    while (*++q = *++p);
 
 #    endif
 
     return (dst);
 }
 
-wchar_t *
-wcsncat(wchar_t *dst, const wchar_t *src, size_t n)
+wchar_t*
+wcsncat(wchar_t* dst, const wchar_t* src, size_t n)
 {
 #    if !__POWERPC__
 
-    const wchar_t *p = src;
-    wchar_t       *q = dst;
+    const wchar_t* p = src;
+    wchar_t*       q = dst;
 
-    while (*q++)
-        ;
+    while (*q++);
 
     q--;
     n++;
@@ -208,11 +201,10 @@ wcsncat(wchar_t *dst, const wchar_t *src, size_t n)
 
 #    else
 
-    const wchar_t *p = (wchar_t *)src - 1;
-    wchar_t       *q = (wchar_t *)dst - 1;
+    const wchar_t* p = (wchar_t*)src - 1;
+    wchar_t*       q = (wchar_t*)dst - 1;
 
-    while (*++q)
-        ;
+    while (*++q);
 
     q--;
     n++;
@@ -234,12 +226,12 @@ wcsncat(wchar_t *dst, const wchar_t *src, size_t n)
 }
 
 int
-wcscmp(const wchar_t *str1, const wchar_t *str2)
+wcscmp(const wchar_t* str1, const wchar_t* str2)
 {
 #    if !__POWERPC__
 
-    const wchar_t *p1 = (wchar_t *)str1;
-    const wchar_t *p2 = (wchar_t *)str2;
+    const wchar_t* p1 = (wchar_t*)str1;
+    const wchar_t* p2 = (wchar_t*)str2;
     wchar_t        c1, c2;
 
     while ((c1 = *p1++) == (c2 = *p2++))
@@ -252,8 +244,8 @@ wcscmp(const wchar_t *str1, const wchar_t *str2)
 
 #    else
 
-    const wchar_t *p1 = (wchar_t *)str1 - 1;
-    const wchar_t *p2 = (wchar_t *)str2 - 1;
+    const wchar_t* p1 = (wchar_t*)str1 - 1;
+    const wchar_t* p2 = (wchar_t*)str2 - 1;
     wchar_t        c1, c2;
 
     while ((c1 = *++p1) == (c2 = *++p2))
@@ -270,12 +262,12 @@ wcscmp(const wchar_t *str1, const wchar_t *str2)
 }
 
 int
-wcsncmp(const wchar_t *str1, const wchar_t *str2, size_t n)
+wcsncmp(const wchar_t* str1, const wchar_t* str2, size_t n)
 {
 #    if !__POWERPC__
 
-    const wchar_t *p1 = (wchar_t *)str1;
-    const wchar_t *p2 = (wchar_t *)str2;
+    const wchar_t* p1 = (wchar_t*)str1;
+    const wchar_t* p2 = (wchar_t*)str2;
     wchar_t        c1, c2;
 
     n++;
@@ -294,8 +286,8 @@ wcsncmp(const wchar_t *str1, const wchar_t *str2, size_t n)
 
 #    else
 
-    const wchar_t *p1 = (wchar_t *)str1 - 1;
-    const wchar_t *p2 = (wchar_t *)str2 - 1;
+    const wchar_t* p1 = (wchar_t*)str1 - 1;
+    const wchar_t* p2 = (wchar_t*)str2 - 1;
     wchar_t        c1, c2;
 
     n++;
@@ -317,12 +309,12 @@ wcsncmp(const wchar_t *str1, const wchar_t *str2, size_t n)
     return (0);
 }
 
-wchar_t *
-wcschr(const wchar_t *str, const wchar_t chr)
+wchar_t*
+wcschr(const wchar_t* str, const wchar_t chr)
 {
 #    if !__POWERPC__
 
-    const wchar_t *p = str;
+    const wchar_t* p = str;
     wchar_t        c = chr;
     wchar_t        ch;
 
@@ -330,15 +322,15 @@ wcschr(const wchar_t *str, const wchar_t chr)
     {
         if (ch == c)
         {
-            return ((wchar_t *)(p - 1));
+            return ((wchar_t*)(p - 1));
         }
     }
 
-    return (c ? 0 : (wchar_t *)(p - 1));
+    return (c ? 0 : (wchar_t*)(p - 1));
 
 #    else
 
-    const wchar_t *p = (wchar_t *)str - 1;
+    const wchar_t* p = (wchar_t*)str - 1;
     wchar_t        c = (chr & 0xffff); /*- mm 970327 -*/
     wchar_t        ch;
 
@@ -346,23 +338,23 @@ wcschr(const wchar_t *str, const wchar_t chr)
     {
         if (ch == c)
         {
-            return ((wchar_t *)p);
+            return ((wchar_t*)p);
         }
     }
 
-    return (c ? 0 : (wchar_t *)p);
+    return (c ? 0 : (wchar_t*)p);
 
 #    endif
 }
 
 int
-wcscoll(const wchar_t *str1, const wchar_t *str2)
+wcscoll(const wchar_t* str1, const wchar_t* str2)
 {
     return (wcscmp(str1, str2));
 }
 
 size_t
-wcsxfrm(wchar_t *str1, const wchar_t *str2, size_t n)
+wcsxfrm(wchar_t* str1, const wchar_t* str2, size_t n)
 {
     size_t len = wcslen(str2);      /*- mm 990630 -*/
     if (n > 0)                      /*- mm 990630 -*/
@@ -376,13 +368,13 @@ wcsxfrm(wchar_t *str1, const wchar_t *str2, size_t n)
     return (len);
 }
 
-wchar_t *
-wcsrchr(const wchar_t *str, wchar_t chr)
+wchar_t*
+wcsrchr(const wchar_t* str, wchar_t chr)
 {
 #    if !__POWERPC__
 
-    const wchar_t *p = str;
-    const wchar_t *q = 0;
+    const wchar_t* p = str;
+    const wchar_t* q = 0;
     wchar_t        c = chr;
     wchar_t        ch;
 
@@ -396,15 +388,15 @@ wcsrchr(const wchar_t *str, wchar_t chr)
 
     if (q)
     {
-        return ((wchar_t *)q);
+        return ((wchar_t*)q);
     }
 
-    return (c ? 0 : (wchar_t *)(p - 1));
+    return (c ? 0 : (wchar_t*)(p - 1));
 
 #    else
 
-    const wchar_t *p = (wchar_t *)str - 1;
-    const wchar_t *q = 0;
+    const wchar_t* p = (wchar_t*)str - 1;
+    const wchar_t* q = 0;
     wchar_t        c = (chr & 0xff);   /*- bb 970530 -*/
     wchar_t        ch;
 
@@ -418,10 +410,10 @@ wcsrchr(const wchar_t *str, wchar_t chr)
 
     if (q)
     {
-        return ((wchar_t *)q);
+        return ((wchar_t*)q);
     }
 
-    return (c ? 0 : (wchar_t *)p);
+    return (c ? 0 : (wchar_t*)p);
 
 #    endif
 }
@@ -430,30 +422,30 @@ typedef char char_map[8192];                                /*- mm 990914 -*/
 #    define set_char_map(map, ch) map[ch >> 3] |= (1 << (ch & 7))
 #    define tst_char_map(map, ch) (map[ch >> 3] & (1 << (ch & 7)))
 
-wchar_t *
-wcspbrk(const wchar_t *str, const wchar_t *set)
+wchar_t*
+wcspbrk(const wchar_t* str, const wchar_t* set)
 {
-    const wchar_t *p;
+    const wchar_t* p;
     wchar_t        c;
     char_map       map;                                     /*- mm 000419 -*/
     memset(&map, 0, sizeof(char_map)); /* initialize map */ /*- mm 000419 -*/
 
 #    if !__POWERPC__
 
-    p = (wchar_t *)set;
+    p = (wchar_t*)set;
 
     while (c = *p++)
     {
         set_char_map(map, c);
     }
 
-    p = (wchar_t *)str;
+    p = (wchar_t*)str;
 
     while (c = *p++)
     {
         if (tst_char_map(map, c))
         {
-            return ((wchar_t *)(p - 1));
+            return ((wchar_t*)(p - 1));
         }
     }
 
@@ -461,20 +453,20 @@ wcspbrk(const wchar_t *str, const wchar_t *set)
 
 #    else
 
-    p = (wchar_t *)set - 1;
+    p = (wchar_t*)set - 1;
 
     while (c = *++p)
     {
         set_char_map(map, c);
     }
 
-    p = (wchar_t *)str - 1;
+    p = (wchar_t*)str - 1;
 
     while (c = *++p)
     {
         if (tst_char_map(map, c))
         {
-            return ((wchar_t *)p);
+            return ((wchar_t*)p);
         }
     }
 
@@ -484,23 +476,23 @@ wcspbrk(const wchar_t *str, const wchar_t *set)
 }
 
 size_t
-wcsspn(const wchar_t *str, const wchar_t *set)
+wcsspn(const wchar_t* str, const wchar_t* set)
 {
-    const wchar_t *p;
+    const wchar_t* p;
     wchar_t        c;
     char_map       map;                                     /*- mm 000419 -*/
     memset(&map, 0, sizeof(char_map)); /* initialize map */ /*- mm 000419 -*/
 
 #    if !__POWERPC__
 
-    p = (wchar_t *)set;
+    p = (wchar_t*)set;
 
     while (c = *p++)
     {
         set_char_map(map, c);
     }
 
-    p = (wchar_t *)str;
+    p = (wchar_t*)str;
 
     while (c = *p++)
     {
@@ -510,18 +502,18 @@ wcsspn(const wchar_t *str, const wchar_t *set)
         }
     }
 
-    return (p - (wchar_t *)str - 1);
+    return (p - (wchar_t*)str - 1);
 
 #    else
 
-    p = (wchar_t *)set - 1;
+    p = (wchar_t*)set - 1;
 
     while (c = *++p)
     {
         set_char_map(map, c);
     }
 
-    p = (wchar_t *)str - 1;
+    p = (wchar_t*)str - 1;
 
     while (c = *++p)
     {
@@ -531,29 +523,29 @@ wcsspn(const wchar_t *str, const wchar_t *set)
         }
     }
 
-    return (p - (wchar_t *)str);
+    return (p - (wchar_t*)str);
 
 #    endif
 }
 
 size_t
-wcscspn(const wchar_t *str, const wchar_t *set)
+wcscspn(const wchar_t* str, const wchar_t* set)
 {
-    const wchar_t *p;
+    const wchar_t* p;
     wchar_t        c;
     char_map       map;                                     /*- mm 000419 -*/
     memset(&map, 0, sizeof(char_map)); /* initialize map */ /*- mm 000419 -*/
 
 #    if !__POWERPC__
 
-    p = (wchar_t *)set;
+    p = (wchar_t*)set;
 
     while (c = *p++)
     {
         set_char_map(map, c);
     }
 
-    p = (wchar_t *)str;
+    p = (wchar_t*)str;
 
     while (c = *p++)
     {
@@ -563,18 +555,18 @@ wcscspn(const wchar_t *str, const wchar_t *set)
         }
     }
 
-    return (p - (wchar_t *)str - 1);
+    return (p - (wchar_t*)str - 1);
 
 #    else
 
-    p = (wchar_t *)set - 1;
+    p = (wchar_t*)set - 1;
 
     while (c = *++p)
     {
         set_char_map(map, c);
     }
 
-    p = (wchar_t *)str - 1;
+    p = (wchar_t*)str - 1;
 
     while (c = *++p)
     {
@@ -584,7 +576,7 @@ wcscspn(const wchar_t *str, const wchar_t *set)
         }
     }
 
-    return (p - (wchar_t *)str);
+    return (p - (wchar_t*)str);
 
 #    endif
 }
@@ -595,23 +587,23 @@ wcscspn(const wchar_t *str, const wchar_t *set)
    requiring a state that the library had to look after was a bad thing and so they gave wcstok an
    extra parameter so that thread-local storage is no longer needed for it.                         */
 
-wchar_t *
-wcstok(wchar_t *str, const wchar_t *set, wchar_t **ptr)     /*- mm 000422 -*/
+wchar_t*
+wcstok(wchar_t* str, const wchar_t* set, wchar_t** ptr)     /*- mm 000422 -*/
 {
-    wchar_t              *p, *q;
-    __tls static wchar_t *n = (wchar_t *)L"";
-    __tls static wchar_t *s = (wchar_t *)L"";
+    wchar_t *             p, *q;
+    __tls static wchar_t* n = (wchar_t*)L"";
+    __tls static wchar_t* s = (wchar_t*)L"";
     wchar_t               c;
     char_map              map;                              /*- mm 000419 -*/
     memset(&map, 0, sizeof(char_map)); /* initialize map */ /*- mm 000419 -*/
 
     if (str)
     {
-        s = (wchar_t *)str;
+        s = (wchar_t*)str;
     }
     else if (*ptr)                                          /*- mm 000422 -*/
     {
-        s = (wchar_t *)*ptr;                                /*- mm 000422 -*/
+        s = (wchar_t*)*ptr;                                 /*- mm 000422 -*/
     }
     else                                                    /*- mm 000422 -*/
     {
@@ -620,7 +612,7 @@ wcstok(wchar_t *str, const wchar_t *set, wchar_t **ptr)     /*- mm 000422 -*/
 
 #    if !__POWERPC__
 
-    p = (wchar_t *)set;
+    p = (wchar_t*)set;
 
     while (c = *p++)
     {
@@ -672,11 +664,11 @@ wcstok(wchar_t *str, const wchar_t *set, wchar_t **ptr)     /*- mm 000422 -*/
     {
         *ptr = s;                                           /*- mm 000422 -*/
     }
-    return ((wchar_t *)q);
+    return ((wchar_t*)q);
 
 #    else                                                   /* __POWERPC__ */
 
-    p = (wchar_t *)set - 1;
+    p = (wchar_t*)set - 1;
 
     while (c = *++p)
     {
@@ -728,38 +720,37 @@ wcstok(wchar_t *str, const wchar_t *set, wchar_t **ptr)     /*- mm 000422 -*/
     {
         *ptr = s;                      /*- mm 000422 -*/
     }
-    return ((wchar_t *)q);
+    return ((wchar_t*)q);
 
 #    endif                                                  /* __POWERPC__ */
 }
 
-wchar_t *
-wcsstr(const wchar_t *str, const wchar_t *pat)
+wchar_t*
+wcsstr(const wchar_t* str, const wchar_t* pat)
 {
 #    if !__POWERPC__
 
-    wchar_t *s1 = (wchar_t *)str;
-    wchar_t *p1 = (wchar_t *)pat;
+    wchar_t* s1 = (wchar_t*)str;
+    wchar_t* p1 = (wchar_t*)pat;
     wchar_t  firstc, c1, c2;
 
     if (!(firstc = *p1++))                                  /* if pat is an empty string we return str */
     {
-        return ((wchar_t *)str);
+        return ((wchar_t*)str);
     }
 
     while (c1 = *s1++)
     {
         if (c1 == firstc)
         {
-            const wchar_t *s2 = s1;
-            const wchar_t *p2 = p1;
+            const wchar_t* s2 = s1;
+            const wchar_t* p2 = p1;
 
-            while ((c1 = *s2++) == (c2 = *p2++) && c1)
-                ;
+            while ((c1 = *s2++) == (c2 = *p2++) && c1);
 
             if (!c2)
             {
-                return ((wchar_t *)s1 - 1);
+                return ((wchar_t*)s1 - 1);
             }
         }
     }
@@ -768,28 +759,27 @@ wcsstr(const wchar_t *str, const wchar_t *pat)
 
 #    else
 
-    wchar_t *s1 = (wchar_t *)str - 1;
-    wchar_t *p1 = (wchar_t *)pat - 1;
+    wchar_t* s1 = (wchar_t*)str - 1;
+    wchar_t* p1 = (wchar_t*)pat - 1;
     wchar_t  firstc, c1, c2;
 
     if (!(firstc = *++p1))             /* if pat is an empty string we return str */
     {
-        return ((wchar_t *)str);
+        return ((wchar_t*)str);
     }
 
     while (c1 = *++s1)
     {
         if (c1 == firstc)
         {
-            const wchar_t *s2 = s1 - 1;
-            const wchar_t *p2 = p1 - 1;
+            const wchar_t* s2 = s1 - 1;
+            const wchar_t* p2 = p1 - 1;
 
-            while ((c1 = *++s2) == (c2 = *++p2) && c1)
-                ;
+            while ((c1 = *++s2) == (c2 = *++p2) && c1);
 
             if (!c2)
             {
-                return ((wchar_t *)s1);
+                return ((wchar_t*)s1);
             }
         }
     }

@@ -115,13 +115,13 @@ unexpected()
 /************************************************************************/
 #if !defined(__POWERPC__) && !defined(__CFM68K__) //	only needed for classic 68K ...
 
-extern void *
-__register_global_object(void *object, void *destructor, void *regmem)
+extern void*
+__register_global_object(void* object, void* destructor, void* regmem)
 {
-    ((DestructorChain *)regmem)->next = __global_destructor_chain;
-    ((DestructorChain *)regmem)->destructor = destructor;
-    ((DestructorChain *)regmem)->object = object;
-    __global_destructor_chain = (DestructorChain *)regmem;
+    ((DestructorChain*)regmem)->next = __global_destructor_chain;
+    ((DestructorChain*)regmem)->destructor = destructor;
+    ((DestructorChain*)regmem)->object = object;
+    __global_destructor_chain = (DestructorChain*)regmem;
 
     return object;
 }
@@ -135,19 +135,19 @@ __register_global_object(void *object, void *destructor, void *regmem)
 /* Return...: true: can catch; false: cannot catch						*/
 /************************************************************************/
 extern char
-__throw_catch_compare(const char *throwtype, const char *catchtype, long *offset_result)
+__throw_catch_compare(const char* throwtype, const char* catchtype, long* offset_result)
 {
     const char *cptr1, *cptr2;
 
     *offset_result = 0;
     if ((cptr2 = catchtype) == 0)
-    {                                      //	catch(...)
+    {                                        //	catch(...)
         return true;
     }
     cptr1 = throwtype;
 
     if (*cptr2 == 'P')
-    {                                      //	catch(cv T *)
+    {                                        //	catch(cv T *)
         cptr2++;
         if (*cptr2 == 'C')
         {
@@ -158,9 +158,9 @@ __throw_catch_compare(const char *throwtype, const char *catchtype, long *offset
             cptr2++;
         }
         if (*cptr2 == 'v')
-        {                                  //	catch(cv void *)
+        {                                    //	catch(cv void *)
             if (*cptr1 == 'P' || *cptr1 == '*')
-            {                              //	throw T*;
+            {                                //	throw T*;
                 return true;
             }
         }
@@ -168,7 +168,7 @@ __throw_catch_compare(const char *throwtype, const char *catchtype, long *offset
     }
 
     switch (*cptr1)
-    {                                      //	class pointer/reference throw
+    {                                        //	class pointer/reference throw
         case '*' :
         case '!' :
             if (*cptr1++ != *cptr2++)
@@ -176,11 +176,11 @@ __throw_catch_compare(const char *throwtype, const char *catchtype, long *offset
                 return false;
             }
             for (;;)
-            {                              //	class name compare loop
+            {                                //	class name compare loop
                 if (*cptr1 == *cptr2++)
                 {
                     if (*cptr1++ == '!')
-                    {                      //	class match found / get offset
+                    {                        //	class match found / get offset
                         long offset;
 
                         for (offset = 0; *cptr1 != '!';)
@@ -193,26 +193,24 @@ __throw_catch_compare(const char *throwtype, const char *catchtype, long *offset
                 }
                 else
                 {
-                    while (*cptr1++ != '!')
-                        ;                  //	skip class name
-                    while (*cptr1++ != '!')
-                        ;                  //	skip offset
+                    while (*cptr1++ != '!'); //	skip class name
+                    while (*cptr1++ != '!'); //	skip offset
                     if (*cptr1 == 0)
                     {
-                        return false;      //	no more class names => no match
+                        return false;        //	no more class names => no match
                     }
-                    cptr2 = catchtype + 1; //	retry with next class name
+                    cptr2 = catchtype + 1;   //	retry with next class name
                 }
             }
             return false;
     }
 
     while ((*cptr1 == 'P' || *cptr1 == 'R') && *cptr1 == *cptr2)
-    {                                      //	pointer/reference catch => match cv-qualifiers
+    {                                        //	pointer/reference catch => match cv-qualifiers
         cptr1++;
         cptr2++;
         if (*cptr2 == 'C')
-        {                                  //	ignore 'const' in throw type
+        {                                    //	ignore 'const' in throw type
             if (*cptr1 == 'C')
             {
                 cptr1++;
@@ -221,11 +219,11 @@ __throw_catch_compare(const char *throwtype, const char *catchtype, long *offset
         }
         if (*cptr1 == 'C')
         {
-            return false;                  //	throw type is more cv-qualified
+            return false;                    //	throw type is more cv-qualified
         }
 
         if (*cptr2 == 'V')
-        {                                  //	ignore 'volatile' in throw type
+        {                                    //	ignore 'volatile' in throw type
             if (*cptr1 == 'V')
             {
                 cptr1++;
@@ -234,7 +232,7 @@ __throw_catch_compare(const char *throwtype, const char *catchtype, long *offset
         }
         if (*cptr1 == 'V')
         {
-            return false;                  //	throw type is more cv-qualified
+            return false;                    //	throw type is more cv-qualified
         }
     }
 
@@ -260,14 +258,14 @@ __throw_catch_compare(const char *throwtype, const char *catchtype, long *offset
 /*	Input....:	number of array elements								*/
 /*	Return...:	pointer to first object in array						*/
 /************************************************************************/
-extern void *
-__construct_new_array(void *block, ConstructorDestructor ctor, ConstructorDestructor dtor_arg, size_t size, size_t n)
+extern void*
+__construct_new_array(void* block, ConstructorDestructor ctor, ConstructorDestructor dtor_arg, size_t size, size_t n)
 {
-    char *ptr;
+    char* ptr;
 
-    if ((ptr = (char *)block) != 0L)
+    if ((ptr = (char*)block) != 0L)
     {
-        size_t *p = (size_t *)ptr;
+        size_t* p = (size_t*)ptr;
         //	store number of allocated objects and size of one object at the beginnig of the allocated block
         p[0] = size;
         p[1] = n;
@@ -276,7 +274,7 @@ __construct_new_array(void *block, ConstructorDestructor ctor, ConstructorDestru
         if (ctor)
         {                                                   //	call constructor to initialize array
             volatile ConstructorDestructor dtor = dtor_arg; //	force reference to dtor
-            char                          *p;
+            char*                          p;
             size_t                         i;
 
 #    pragma exception_arrayinit
@@ -301,16 +299,16 @@ __construct_new_array(void *block, ConstructorDestructor ctor, ConstructorDestru
 /*	Return...:	---														*/
 /************************************************************************/
 extern void
-__construct_array(void *ptr, ConstructorDestructor ctor, ConstructorDestructor dtor_arg, size_t size, size_t n)
+__construct_array(void* ptr, ConstructorDestructor ctor, ConstructorDestructor dtor_arg, size_t size, size_t n)
 {
     volatile ConstructorDestructor dtor = dtor_arg; //	force reference to dtor
-    char                          *p;
+    char*                          p;
     size_t                         i;
 
 #    pragma exception_arrayinit
     //	this #pragma adds partial array construction exception action (ptr,dtor,size,i)
 
-    for (i = 0, p = (char *)ptr; i < n; i++, p += size)
+    for (i = 0, p = (char*)ptr; i < n; i++, p += size)
     {
         CTORCALL_COMPLETE(ctor, p);
     }
@@ -330,7 +328,7 @@ __construct_array(void *ptr, ConstructorDestructor ctor, ConstructorDestructor d
 class __partial_array_destructor
 {
 private:
-    void                 *p;    //	pointer to start of array being constructed
+    void*                 p;    //	pointer to start of array being constructed
     size_t                size; //	size of each array element
     size_t                n;    //	# of elements being constructed
     ConstructorDestructor dtor; //	pointer to destructor for elements or 0
@@ -338,7 +336,7 @@ private:
 public:
     size_t i;                   //	current element being constructed
 
-    __partial_array_destructor(void *array, size_t elementsize, size_t nelements, ConstructorDestructor destructor)
+    __partial_array_destructor(void* array, size_t elementsize, size_t nelements, ConstructorDestructor destructor)
     {
         p = array;
         size = elementsize;
@@ -349,11 +347,11 @@ public:
 
     _MSL_IMP_EXP_RUNTIME ~__partial_array_destructor()
     {
-        char *ptr;
+        char* ptr;
 
         if (i < n && dtor)
         {
-            for (ptr = (char *)p + size * i; i > 0; i--)
+            for (ptr = (char*)p + size * i; i > 0; i--)
             {
                 ptr -= size;
                 DTORCALL_COMPLETE(dtor, ptr);
@@ -371,14 +369,14 @@ public:
 /*	Input....:	number of array elements								*/
 /*	Return...:	pointer to first object in array						*/
 /************************************************************************/
-extern void *
-__construct_new_array(void *block, ConstructorDestructor ctor, ConstructorDestructor dtor, size_t size, size_t n)
+extern void*
+__construct_new_array(void* block, ConstructorDestructor ctor, ConstructorDestructor dtor, size_t size, size_t n)
 {
-    char *ptr;
+    char* ptr;
 
-    if ((ptr = (char *)block) != 0L)
+    if ((ptr = (char*)block) != 0L)
     {
-        size_t *p = (size_t *)ptr;
+        size_t* p = (size_t*)ptr;
         //	store number of allocated objects and size of one object at the beginnig of the allocated block
         p[0] = size;
         p[1] = n;
@@ -387,9 +385,9 @@ __construct_new_array(void *block, ConstructorDestructor ctor, ConstructorDestru
         if (ctor)
         {       //	call constructor to initialize array
             __partial_array_destructor pad(ptr, size, n, dtor);
-            char                      *p;
+            char*                      p;
 
-            for (pad.i = 0, p = (char *)ptr; pad.i < n; pad.i++, p += size)
+            for (pad.i = 0, p = (char*)ptr; pad.i < n; pad.i++, p += size)
             {
                 CTORCALL_COMPLETE(ctor, p);
             }
@@ -408,12 +406,12 @@ __construct_new_array(void *block, ConstructorDestructor ctor, ConstructorDestru
 /*	Return...:	---														*/
 /************************************************************************/
 extern void
-__construct_array(void *ptr, ConstructorDestructor ctor, ConstructorDestructor dtor, size_t size, size_t n)
+__construct_array(void* ptr, ConstructorDestructor ctor, ConstructorDestructor dtor, size_t size, size_t n)
 {
     __partial_array_destructor pad(ptr, size, n, dtor);
-    char                      *p;
+    char*                      p;
 
-    for (pad.i = 0, p = (char *)ptr; pad.i < n; pad.i++, p += size)
+    for (pad.i = 0, p = (char*)ptr; pad.i < n; pad.i++, p += size)
     {
         CTORCALL_COMPLETE(ctor, p);
     }
@@ -430,11 +428,11 @@ __construct_array(void *ptr, ConstructorDestructor ctor, ConstructorDestructor d
 /*	Return...:	---														*/
 /************************************************************************/
 extern void
-__destroy_arr(void *block, ConstructorDestructor dtor, size_t size, size_t n)
+__destroy_arr(void* block, ConstructorDestructor dtor, size_t size, size_t n)
 {
-    char *p;
+    char* p;
 
-    for (p = (char *)block + size * n; n > 0; n--)
+    for (p = (char*)block + size * n; n > 0; n--)
     {
         p -= size;
         DTORCALL_COMPLETE(dtor, p);
@@ -448,18 +446,18 @@ __destroy_arr(void *block, ConstructorDestructor dtor, size_t size, size_t n)
 /*	Return...:	---														*/
 /************************************************************************/
 extern void
-__destroy_new_array(void *block, ConstructorDestructor dtor)
+__destroy_new_array(void* block, ConstructorDestructor dtor)
 {
     if (block)
     {
         if (dtor)
         {
             size_t i, objects, objectsize;
-            char  *p;
+            char*  p;
 
-            objectsize = *(size_t *)((char *)block - ARRAY_HEADER_SIZE);
-            objects = ((size_t *)((char *)block - ARRAY_HEADER_SIZE))[1];
-            p = (char *)block + objectsize * objects;
+            objectsize = *(size_t*)((char*)block - ARRAY_HEADER_SIZE);
+            objects = ((size_t*)((char*)block - ARRAY_HEADER_SIZE))[1];
+            p = (char*)block + objectsize * objects;
             for (i = 0; i < objects; i++)
             {
                 p -= objectsize;
@@ -467,9 +465,9 @@ __destroy_new_array(void *block, ConstructorDestructor dtor)
             }
         }
 #if __MWERKS__ >= 0x2020
-        ::operator delete[]((char *)block - ARRAY_HEADER_SIZE);
+        ::operator delete[]((char*)block - ARRAY_HEADER_SIZE);
 #else
-        ::operator delete((char *)block - ARRAY_HEADER_SIZE);
+        ::operator delete((char*)block - ARRAY_HEADER_SIZE);
 #endif
     }
 }
@@ -480,11 +478,11 @@ __destroy_new_array(void *block, ConstructorDestructor dtor)
 /*	Input....:	pointer to destructor function (not NULL)				*/
 /*	Return...:	pointer to complete array block							*/
 /************************************************************************/
-extern void *
-__destroy_new_array2(void *block, ConstructorDestructor dtor)
+extern void*
+__destroy_new_array2(void* block, ConstructorDestructor dtor)
 {
     size_t i, objects, objectsize;
-    char  *p;
+    char*  p;
 
     if (block == NULL)
     {
@@ -493,9 +491,9 @@ __destroy_new_array2(void *block, ConstructorDestructor dtor)
 
     if (dtor)
     { //	destroy array members
-        objectsize = *(size_t *)((char *)block - ARRAY_HEADER_SIZE);
-        objects = ((size_t *)((char *)block - ARRAY_HEADER_SIZE))[1];
-        p = (char *)block + objectsize * objects;
+        objectsize = *(size_t*)((char*)block - ARRAY_HEADER_SIZE);
+        objects = ((size_t*)((char*)block - ARRAY_HEADER_SIZE))[1];
+        p = (char*)block + objectsize * objects;
         for (i = 0; i < objects; i++)
         {
             p -= objectsize;
@@ -504,7 +502,7 @@ __destroy_new_array2(void *block, ConstructorDestructor dtor)
     }
 
     //	return pointer to complete array block
-    return (char *)block - ARRAY_HEADER_SIZE;
+    return (char*)block - ARRAY_HEADER_SIZE;
 }
 
 /************************************************************************/
@@ -516,19 +514,19 @@ __destroy_new_array2(void *block, ConstructorDestructor dtor)
 /*	Return...:	pointer to complete array block							*/
 /************************************************************************/
 extern void
-__destroy_new_array3(void *block, ConstructorDestructor dtor, void *dealloc_func, short has_size_t_param)
+__destroy_new_array3(void* block, ConstructorDestructor dtor, void* dealloc_func, short has_size_t_param)
 {
     size_t i, elements, elementsize;
-    char  *p;
+    char*  p;
 
     if (block)
     {
-        elements = ((size_t *)((char *)block - ARRAY_HEADER_SIZE))[1];
-        elementsize = *(size_t *)((char *)block - ARRAY_HEADER_SIZE);
+        elements = ((size_t*)((char*)block - ARRAY_HEADER_SIZE))[1];
+        elementsize = *(size_t*)((char*)block - ARRAY_HEADER_SIZE);
 
         if (dtor != NULL)
         { //	destroy array elements
-            p = (char *)block + elements * elementsize;
+            p = (char*)block + elements * elementsize;
             for (i = 0; i < elements; i++)
             {
                 p -= elementsize;
@@ -538,14 +536,14 @@ __destroy_new_array3(void *block, ConstructorDestructor dtor, void *dealloc_func
 
         if (dealloc_func != NULL)
         { //	call deallocation functiuon
-            p = (char *)block - ARRAY_HEADER_SIZE;
+            p = (char*)block - ARRAY_HEADER_SIZE;
             if (has_size_t_param)
             {
-                ((void (*)(void *, size_t))dealloc_func)(p, elements * elementsize + ARRAY_HEADER_SIZE);
+                ((void (*)(void*, size_t))dealloc_func)(p, elements * elementsize + ARRAY_HEADER_SIZE);
             }
             else
             {
-                ((void (*)(void *))dealloc_func)(p);
+                ((void (*)(void*))dealloc_func)(p);
             }
         }
     }

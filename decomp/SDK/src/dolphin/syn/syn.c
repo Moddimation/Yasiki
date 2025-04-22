@@ -9,14 +9,14 @@
 #include "SYNPrivate.h"
 
 // .sbss
-struct SYNSYNTH *__SYNSynthList;
+struct SYNSYNTH* __SYNSynthList;
 
 // functions
-static void __SYNAddSynthToList(struct SYNSYNTH *synth);
-static void __SYNRemoveSynthFromList(struct SYNSYNTH *synth);
+static void __SYNAddSynthToList(struct SYNSYNTH* synth);
+static void __SYNRemoveSynthFromList(struct SYNSYNTH* synth);
 
 static void
-__SYNAddSynthToList(struct SYNSYNTH *synth)
+__SYNAddSynthToList(struct SYNSYNTH* synth)
 {
     int old = OSDisableInterrupts();
 
@@ -33,10 +33,10 @@ __SYNAddSynthToList(struct SYNSYNTH *synth)
 }
 
 static void
-__SYNRemoveSynthFromList(struct SYNSYNTH *synth)
+__SYNRemoveSynthFromList(struct SYNSYNTH* synth)
 {
-    struct SYNSYNTH *tempList;
-    struct SYNSYNTH *tempSynth;
+    struct SYNSYNTH* tempList;
+    struct SYNSYNTH* tempSynth;
     int              old;
 
     old = OSDisableInterrupts();
@@ -83,7 +83,7 @@ void
 SYNRunAudioFrame()
 {
     int              i;
-    struct SYNSYNTH *synth;
+    struct SYNSYNTH* synth;
 
     for (i = 0; i < 64; i++)
     {
@@ -96,10 +96,10 @@ SYNRunAudioFrame()
 }
 
 void
-SYNInitSynth(struct SYNSYNTH *synth, void *wavetable, u32 aramBase, u32 priorityVoiceAlloc, u32 priorityNoteOn,
+SYNInitSynth(struct SYNSYNTH* synth, void* wavetable, u32 aramBase, u32 priorityVoiceAlloc, u32 priorityNoteOn,
              u32 priorityNoteRelease)
 {
-    u32 *p;
+    u32* p;
     u32  midiChannel;
     u32  noteNumber;
 
@@ -107,17 +107,17 @@ SYNInitSynth(struct SYNSYNTH *synth, void *wavetable, u32 aramBase, u32 priority
     ASSERTLINE(0x85, wavetable);
     ASSERTLINE(0x86, aramBase);
     p = wavetable;
-    synth->percussiveInst = (void *)((u32)wavetable + *(p));
+    synth->percussiveInst = (void*)((u32)wavetable + *(p));
     p += 1;
-    synth->melodicInst = (void *)((u32)wavetable + *(p));
+    synth->melodicInst = (void*)((u32)wavetable + *(p));
     p += 1;
-    synth->region = (void *)((u32)wavetable + *(p));
+    synth->region = (void*)((u32)wavetable + *(p));
     p += 1;
-    synth->art = (void *)((u32)wavetable + *(p));
+    synth->art = (void*)((u32)wavetable + *(p));
     p += 1;
-    synth->sample = (void *)((u32)wavetable + *(p));
+    synth->sample = (void*)((u32)wavetable + *(p));
     p += 1;
-    synth->adpcm = (void *)((u32)wavetable + *(p));
+    synth->adpcm = (void*)((u32)wavetable + *(p));
     p += 1;
     synth->aramBaseWord = (aramBase >> 1);
     synth->aramBaseByte = aramBase;
@@ -148,11 +148,11 @@ SYNInitSynth(struct SYNSYNTH *synth, void *wavetable, u32 aramBase, u32 priority
 }
 
 void
-SYNQuitSynth(struct SYNSYNTH *synth)
+SYNQuitSynth(struct SYNSYNTH* synth)
 {
     int              i;
     int              old;
-    struct SYNVOICE *voice;
+    struct SYNVOICE* voice;
 
     old = OSDisableInterrupts();
     if (synth->notes)
@@ -173,9 +173,9 @@ SYNQuitSynth(struct SYNSYNTH *synth)
 }
 
 void
-SYNMidiInput(struct SYNSYNTH *synth, u8 *input)
+SYNMidiInput(struct SYNSYNTH* synth, u8* input)
 {
-    u8 *src;
+    u8* src;
 
     ASSERTLINE(0xD7, synth);
     ASSERTLINE(0xD8, input);
@@ -198,21 +198,21 @@ SYNMidiInput(struct SYNSYNTH *synth, u8 *input)
 }
 
 void
-SYNSetMasterVolume(struct SYNSYNTH *synth, long dB)
+SYNSetMasterVolume(struct SYNSYNTH* synth, long dB)
 {
     ASSERTLINE(0xEE, synth);
     synth->masterVolume = (dB << 0x10);
 }
 
 long
-SYNGetMasterVolume(struct SYNSYNTH *synth)
+SYNGetMasterVolume(struct SYNSYNTH* synth)
 {
     ASSERTLINE(0xF9, synth);
     return synth->masterVolume << 0x10;
 }
 
 u32
-SYNGetActiveNotes(struct SYNSYNTH *synth)
+SYNGetActiveNotes(struct SYNSYNTH* synth)
 {
     ASSERTLINE(0x104, synth);
     return synth->notes;

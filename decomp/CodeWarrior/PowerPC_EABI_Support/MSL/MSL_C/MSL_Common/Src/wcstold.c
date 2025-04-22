@@ -157,9 +157,9 @@ enum scan_states
 #        define unfetch(c) (*wReadProc)(wReadProcArg, c, __UngetAwChar)          /*- mm 990311 -*/
 
 long double
-__wcstold(int max_width, wint_t (*wReadProc)(void *, wint_t, int),               /*- mm 990311 -*/
-          void *wReadProcArg,                                                    /*- mm 990311 -*/
-          int *chars_scanned, int *overflow)
+__wcstold(int max_width, wint_t (*wReadProc)(void*, wint_t, int),                /*- mm 990311 -*/
+          void* wReadProcArg,                                                    /*- mm 990311 -*/
+          int* chars_scanned, int* overflow)
 {
     int     scan_state = start;
     int     count = 0;
@@ -175,10 +175,10 @@ __wcstold(int max_width, wint_t (*wReadProc)(void *, wint_t, int),              
     long double result;
     wchar_t     dot;                                                             /*- mm 990315 -*/
 #        if !(_MWMT && (__dest_os == __win32_os || __dest_os == __wince_os)) /*- mm 010521 -*/
-    dot = (wchar_t)(*(unsigned char *)__lconv.decimal_point);
+    dot = (wchar_t)(*(unsigned char*)__lconv.decimal_point);
 #        else                                                                    /*- mm 010503 -*/
-    struct lconv *lconvptr = _GetThreadLocalData(_MSL_TRUE)->tls_lconv; /*- mm 010503 -*/ /*- cc 010531 -*/
-    dot = (wchar_t)(*(unsigned char *)lconvptr->decimal_point);                           /*- mm 010503 -*/
+    struct lconv* lconvptr = _GetThreadLocalData(_MSL_TRUE)->tls_lconv; /*- mm 010503 -*/ /*- cc 010531 -*/
+    dot = (wchar_t)(*(unsigned char*)lconvptr->decimal_point);                            /*- mm 010503 -*/
 #        endif                                                                   /*- mm 010503 -*/
 
     *overflow = 0;
@@ -434,7 +434,7 @@ __wcstold(int max_width, wint_t (*wReadProc)(void *, wint_t, int),              
 
     {
         int            n = d.sig.length;
-        unsigned char *p = &d.sig.text[n];
+        unsigned char* p = &d.sig.text[n];
 
         while (n-- && *--p == '0')
         {
@@ -498,19 +498,19 @@ __wcstold(int max_width, wint_t (*wReadProc)(void *, wint_t, int),              
 }
 
 double
-wcstod(const wchar_t *str, wchar_t **end)
+wcstod(const wchar_t* str, wchar_t** end)
 {
     long double  value, abs_value;
     int          count, overflow;
     __wInStrCtrl wisc;
-    wisc.wNextChar = (wchar_t *)str;
+    wisc.wNextChar = (wchar_t*)str;
     wisc.wNullCharDetected = 0;
 
-    value = __wcstold(INT_MAX, &__wStringRead, (void *)&wisc, &count, &overflow);
+    value = __wcstold(INT_MAX, &__wStringRead, (void*)&wisc, &count, &overflow);
 
     if (end)
     {
-        *end = (wchar_t *)str + count;
+        *end = (wchar_t*)str + count;
     }
 
     abs_value = fabs(value);
@@ -524,7 +524,7 @@ wcstod(const wchar_t *str, wchar_t **end)
 }
 
 double
-watof(const wchar_t *str)
+watof(const wchar_t* str)
 {
     return (wcstod(str, NULL));
 }

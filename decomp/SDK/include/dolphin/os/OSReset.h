@@ -14,8 +14,8 @@ extern "C"
 
 struct OSResetFunctionQueue
 {
-    struct OSResetFunctionInfo *head;
-    struct OSResetFunctionInfo *tail;
+    struct OSResetFunctionInfo* head;
+    struct OSResetFunctionInfo* tail;
 };
 
 typedef BOOL (*OSResetFunction)(BOOL);
@@ -26,12 +26,12 @@ struct OSResetFunctionInfo
 {
     OSResetFunction      func;
     u32                  priority;
-    OSResetFunctionInfo *next;
-    OSResetFunctionInfo *prev;
+    OSResetFunctionInfo* next;
+    OSResetFunctionInfo* prev;
 };
 
-void          OSRegisterResetFunction(OSResetFunctionInfo *info);
-void          OSUnregisterResetFunction(OSResetFunctionInfo *info);
+void          OSRegisterResetFunction(OSResetFunctionInfo* info);
+void          OSUnregisterResetFunction(OSResetFunctionInfo* info);
 void          OSResetSystem(int reset, u32 resetCode, BOOL forceMenu);
 unsigned long OSGetResetCode();
 

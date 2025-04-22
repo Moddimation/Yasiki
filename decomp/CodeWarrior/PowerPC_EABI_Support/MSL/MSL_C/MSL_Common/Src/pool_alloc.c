@@ -382,9 +382,9 @@ typedef struct mem_pool_obj {
  *	pointer to the trailer of the previous sequential block in memory.
  */
 
-#    define next_header(block, block_size) ((block_header *)(((char *)block) + block_size))
-#    define prev_size(block)               ((block_trailer *)(((char *)block) - sizeof(block_trailer)))
-#    define prev_header(block, block_size) ((block_header *)(((char *)block) - block_size))
+#    define next_header(block, block_size) ((block_header*)(((char*)block) + block_size))
+#    define prev_size(block)               ((block_trailer*)(((char*)block) - sizeof(block_trailer)))
+#    define prev_header(block, block_size) ((block_header*)(((char*)block) - block_size))
 
 /* internal functions */
 
@@ -395,19 +395,19 @@ enum
     block_dont_care = 4
 };
 
-static block_header *init_new_heap(char *new_heap, mem_size size, mem_pool_obj *);
-static void          list_insert(list_header *free_list, block_header *block);
-static void          list_remove(list_header *free_list, block_header *block);
-static block_header *list_search(list_header *free_list, mem_size size_needed);
-static int           block_ok(list_header *free_list, block_header *block, int expected_status);
-static block_header *merge_block(list_header *free_list, block_header *block);
+static block_header* init_new_heap(char* new_heap, mem_size size, mem_pool_obj*);
+static void          list_insert(list_header* free_list, block_header* block);
+static void          list_remove(list_header* free_list, block_header* block);
+static block_header* list_search(list_header* free_list, mem_size size_needed);
+static int           block_ok(list_header* free_list, block_header* block, int expected_status);
+static block_header* merge_block(list_header* free_list, block_header* block);
 
 #    if __ALTIVEC__
-static mem_size split_block(list_header *free_list, block_header *block, mem_size new_size, mem_pool_obj *pool_obj);
-static mem_size grow_block(list_header *free_list, block_header *block, mem_size new_size, mem_pool_obj *pool_obj);
+static mem_size split_block(list_header* free_list, block_header* block, mem_size new_size, mem_pool_obj* pool_obj);
+static mem_size grow_block(list_header* free_list, block_header* block, mem_size new_size, mem_pool_obj* pool_obj);
 #    else
-static mem_size split_block(list_header *free_list, block_header *block, mem_size new_size);
-static mem_size grow_block(list_header *free_list, block_header *block, mem_size new_size);
+static mem_size split_block(list_header* free_list, block_header* block, mem_size new_size);
+static mem_size grow_block(list_header* free_list, block_header* block, mem_size new_size);
 #    endif
 
 #    if __ALTIVEC__
@@ -420,9 +420,9 @@ static mem_size grow_block(list_header *free_list, block_header *block, mem_size
  */
 
 void
-__init_align_pool_obj(mem_pool_obj *pool_obj, char block_alignment)
+__init_align_pool_obj(mem_pool_obj* pool_obj, char block_alignment)
 {
-    list_header *p = &pool_obj->free_list;
+    list_header* p = &pool_obj->free_list;
 
     assert(sizeof(mem_size) == sizeof(long));                  /* make sure fields will be compatible  */
     assert(sizeof(long) >= 4);                                 /* make sure fields will be big enough  */
@@ -452,9 +452,9 @@ __init_align_pool_obj(mem_pool_obj *pool_obj, char block_alignment)
  */
 
 void
-__init_pool_obj(mem_pool_obj *pool_obj)
+__init_pool_obj(mem_pool_obj* pool_obj)
 {
-    list_header *p = &pool_obj->free_list;
+    list_header* p = &pool_obj->free_list;
 
     assert(sizeof(mem_size) == sizeof(long));            /* make sure fields will be compatible  */
     assert(sizeof(long) >= 4);                           /* make sure fields will be big enough  */
@@ -502,16 +502,16 @@ __init_pool_obj(mem_pool_obj *pool_obj)
  */
 
 int
-__pool_preallocate(mem_pool_obj *pool_obj, mem_size size)
+__pool_preallocate(mem_pool_obj* pool_obj, mem_size size)
 {
 #    ifndef _No_Alloc_OS_Support
     sys_free_ptr save_sys_free;
-    char        *block;
+    char*        block;
 
     save_sys_free = pool_obj->options.sys_free_func;
     pool_obj->options.sys_free_func = 0;
 
-    block = (char *)__pool_alloc(pool_obj, size);
+    block = (char*)__pool_alloc(pool_obj, size);
 
     __pool_free(pool_obj, block);
 
@@ -546,16 +546,16 @@ __pool_preallocate(mem_pool_obj *pool_obj, mem_size size)
  */
 
 void
-__pool_preassign(mem_pool_obj *pool_obj, void *ptr, mem_size size)
+__pool_preassign(mem_pool_obj* pool_obj, void* ptr, mem_size size)
 {
-    list_header *free_list = &pool_obj->free_list;
+    list_header* free_list = &pool_obj->free_list;
 
     if (!ptr || size < (heap_overhead + block_overhead))
     {
         return;
     }
 
-    list_insert(free_list, init_new_heap((char *)ptr, size, pool_obj));
+    list_insert(free_list, init_new_heap((char*)ptr, size, pool_obj));
 
 #    ifndef _No_Alloc_OS_Support
     pool_obj->options.sys_alloc_func = 0;
@@ -571,12 +571,12 @@ __pool_preassign(mem_pool_obj *pool_obj, void *ptr, mem_size size)
  *		pointer if the block couldn't be allocated.
  */
 
-void *
-__pool_alloc(mem_pool_obj *pool_obj, mem_size size)
+void*
+__pool_alloc(mem_pool_obj* pool_obj, mem_size size)
 {
-    list_header  *free_list = &pool_obj->free_list;
-    char         *new_heap;
-    block_header *block;
+    list_header*  free_list = &pool_obj->free_list;
+    char*         new_heap;
+    block_header* block;
     mem_size      heap_size;
 
     /*if (size = 0 || size > ULONG_MAX - (sizeof(tag_word) + alignment)) bkoz 4 malloc(0), fixed in new.cp*/
@@ -603,7 +603,7 @@ __pool_alloc(mem_pool_obj *pool_obj, mem_size size)
     {
         heap_size = size + heap_overhead;
 
-        new_heap = (char *)(*pool_obj->options.sys_alloc_func)(heap_size, pool_obj);
+        new_heap = (char*)(*pool_obj->options.sys_alloc_func)(heap_size, pool_obj);
 
         block = init_new_heap(new_heap, heap_size, pool_obj);
 
@@ -640,7 +640,7 @@ __pool_alloc(mem_pool_obj *pool_obj, mem_size size)
                     heap_size = size + heap_overhead;
                 }
 
-                new_heap = (char *)(*pool_obj->options.sys_alloc_func)(heap_size, pool_obj);
+                new_heap = (char*)(*pool_obj->options.sys_alloc_func)(heap_size, pool_obj);
 
                 block = init_new_heap(new_heap, heap_size, pool_obj);
             }
@@ -681,7 +681,7 @@ __pool_alloc(mem_pool_obj *pool_obj, mem_size size)
 
     next_header(block, size)->tag |= prev_in_use;
 
-    return ((char *)block + sizeof(tag_word));
+    return ((char*)block + sizeof(tag_word));
 }
 
 /*
@@ -691,17 +691,17 @@ __pool_alloc(mem_pool_obj *pool_obj, mem_size size)
  *	the allocated block.
  */
 
-void *
-__pool_alloc_clear(mem_pool_obj *pool_obj, mem_size size)
+void*
+__pool_alloc_clear(mem_pool_obj* pool_obj, mem_size size)
 {
-    long *ptr;
-    long *p;
+    long* ptr;
+    long* p;
 
 #    if !__ALTIVEC__
 
     size = (size + alignment) & ~alignment;
 
-    ptr = (long *)__pool_alloc(pool_obj, size);
+    ptr = (long*)__pool_alloc(pool_obj, size);
 
     if (!ptr)
     {
@@ -728,7 +728,7 @@ __pool_alloc_clear(mem_pool_obj *pool_obj, mem_size size)
 
     size = (size + pool_obj->options.block_alignment) & ~pool_obj->options.block_alignment;
 
-    ptr = (long *)__pool_alloc(pool_obj, size);
+    ptr = (long*)__pool_alloc(pool_obj, size);
 
     if (!ptr)
     {
@@ -767,15 +767,15 @@ __pool_alloc_clear(mem_pool_obj *pool_obj, mem_size size)
  *	pointer.
  */
 
-void *
-__pool_realloc(mem_pool_obj *pool_obj, void *ptr, mem_size size)
+void*
+__pool_realloc(mem_pool_obj* pool_obj, void* ptr, mem_size size)
 {
-    list_header  *free_list = &pool_obj->free_list;
-    block_header *block;
+    list_header*  free_list = &pool_obj->free_list;
+    block_header* block;
     mem_size      block_size, i;
-    char         *new_block;
-    long         *p;
-    long         *q;
+    char*         new_block;
+    long*         p;
+    long*         q;
 
     if (!ptr)
     {
@@ -788,7 +788,7 @@ __pool_realloc(mem_pool_obj *pool_obj, void *ptr, mem_size size)
         return (0);
     }
 
-    block = (block_header *)((char *)ptr - sizeof(tag_word));
+    block = (block_header*)((char*)ptr - sizeof(tag_word));
 
     assert(block_ok(free_list, block, block_used | !block_in_list));
 
@@ -832,7 +832,7 @@ __pool_realloc(mem_pool_obj *pool_obj, void *ptr, mem_size size)
         return (ptr);
     }
 
-    new_block = (char *)__pool_alloc(pool_obj, size - sizeof(tag_word));
+    new_block = (char*)__pool_alloc(pool_obj, size - sizeof(tag_word));
 
     if (!new_block)
     {
@@ -841,14 +841,14 @@ __pool_realloc(mem_pool_obj *pool_obj, void *ptr, mem_size size)
 
 #    if !__POWERPC__
 
-    for (i = block_size / sizeof(long), p = (long *)ptr, q = (long *)new_block; --i;)
+    for (i = block_size / sizeof(long), p = (long*)ptr, q = (long*)new_block; --i;)
     {
         *q++ = *p++;
     }
 
 #    else
 
-    for (i = block_size / sizeof(long), p = (long *)ptr - 1, q = (long *)new_block - 1; --i;)
+    for (i = block_size / sizeof(long), p = (long*)ptr - 1, q = (long*)new_block - 1; --i;)
     {
         *++q = *++p;
     }
@@ -871,11 +871,11 @@ __pool_realloc(mem_pool_obj *pool_obj, void *ptr, mem_size size)
  */
 
 void
-__pool_free(mem_pool_obj *pool_obj, void *ptr)
+__pool_free(mem_pool_obj* pool_obj, void* ptr)
 {
-    list_header  *free_list = &pool_obj->free_list;
-    block_header *block;
-    block_header *other_block;
+    list_header*  free_list = &pool_obj->free_list;
+    block_header* block;
+    block_header* other_block;
     size_word     block_size;
 
     if (!ptr)
@@ -883,7 +883,7 @@ __pool_free(mem_pool_obj *pool_obj, void *ptr)
         return;
     }
 
-    block = (block_header *)((char *)ptr - sizeof(tag_word));
+    block = (block_header*)((char*)ptr - sizeof(tag_word));
 
     assert(block_ok(free_list, block, block_used | !block_in_list));
 
@@ -907,7 +907,7 @@ __pool_free(mem_pool_obj *pool_obj, void *ptr)
     if (pool_obj->options.sys_free_func && !(block->tag & prev_in_use) && *prev_size(block) < 0 && other_block->tag < 0)
     {
         /* unlink the heap from the heap list */
-        heap_header *header = (heap_header *)((char *)block - sizeof(tag_word) - sizeof(heap_header));
+        heap_header* header = (heap_header*)((char*)block - sizeof(tag_word) - sizeof(heap_header));
         if (header->prev)
         {
             header->prev->next = header->next;
@@ -921,7 +921,7 @@ __pool_free(mem_pool_obj *pool_obj, void *ptr)
             header->next->prev = header->prev;
         }
 
-        (*pool_obj->options.sys_free_func)((char *)header, pool_obj);
+        (*pool_obj->options.sys_free_func)((char*)header, pool_obj);
     }
     else
 #    endif
@@ -936,11 +936,11 @@ __pool_free(mem_pool_obj *pool_obj, void *ptr)
  */
 
 void
-__pool_free_all(mem_pool_obj *pool_obj)
+__pool_free_all(mem_pool_obj* pool_obj)
 {
 #    ifndef _No_Alloc_OS_Support
-    heap_header *header;
-    list_header *p;
+    heap_header* header;
+    list_header* p;
 
     if (!pool_obj->options.sys_free_func)
     {
@@ -950,8 +950,8 @@ __pool_free_all(mem_pool_obj *pool_obj)
     header = pool_obj->heap_list;
     while (header)
     {
-        heap_header *next = header->next;
-                     (*pool_obj->options.sys_free_func)((char *)header, pool_obj);
+        heap_header* next = header->next;
+                     (*pool_obj->options.sys_free_func)((char*)header, pool_obj);
         header = next;
     }
     pool_obj->heap_list = 0;
@@ -970,11 +970,11 @@ __pool_free_all(mem_pool_obj *pool_obj)
  *	to the header.
  */
 
-static block_header *
-init_new_heap(char *new_heap, mem_size size, mem_pool_obj *pool_obj)
+static block_header*
+init_new_heap(char* new_heap, mem_size size, mem_pool_obj* pool_obj)
 {
-    char        *p;
-    heap_header *header;
+    char*        p;
+    heap_header* header;
 
     if (!new_heap)
     {
@@ -989,7 +989,7 @@ init_new_heap(char *new_heap, mem_size size, mem_pool_obj *pool_obj)
 
 #    ifndef _No_Alloc_OS_Support
     /* insert the new heap at the head of the heap list */
-    header = (heap_header *)p;
+    header = (heap_header*)p;
     if (pool_obj->heap_list)
     {
         pool_obj->heap_list->prev = header;
@@ -1000,18 +1000,18 @@ init_new_heap(char *new_heap, mem_size size, mem_pool_obj *pool_obj)
     p += sizeof(heap_header);
 #    endif
 
-    *(tag_word *)p = -1 & this_size;
-    p += sizeof(tag_word);           /* guard tag */
-    *(tag_word *)p = size;
-    p += size - sizeof(tag_word);    /* block header tag */
-    *(tag_word *)p = size;
-    p += sizeof(tag_word);           /* block trailer tag */
-    *(tag_word *)p = -1 & this_size; /* guard tag */
+    *(tag_word*)p = -1 & this_size;
+    p += sizeof(tag_word);          /* guard tag */
+    *(tag_word*)p = size;
+    p += size - sizeof(tag_word);   /* block header tag */
+    *(tag_word*)p = size;
+    p += sizeof(tag_word);          /* block trailer tag */
+    *(tag_word*)p = -1 & this_size; /* guard tag */
 
 #    ifdef _No_Alloc_OS_Support
-    return ((block_header *)(new_heap + sizeof(tag_word)));
+    return ((block_header*)(new_heap + sizeof(tag_word)));
 #    else
-    return ((block_header *)(new_heap + sizeof(tag_word) + sizeof(heap_header)));
+    return ((block_header*)(new_heap + sizeof(tag_word) + sizeof(heap_header)));
 #    endif
 }
 
@@ -1023,7 +1023,7 @@ init_new_heap(char *new_heap, mem_size size, mem_pool_obj *pool_obj)
  */
 
 static void
-list_insert(list_header *free_list, block_header *block)
+list_insert(list_header* free_list, block_header* block)
 {
     assert(block_ok(free_list, block, !block_used | !block_in_list));
 
@@ -1046,7 +1046,7 @@ list_insert(list_header *free_list, block_header *block)
  */
 
 static void
-list_remove(list_header *free_list, block_header *block)
+list_remove(list_header* free_list, block_header* block)
 {
     assert(block_ok(free_list, block, !block_used | block_in_list));
 
@@ -1068,16 +1068,15 @@ list_remove(list_header *free_list, block_header *block)
  *	Return a pointer to the first suitable block found, if any.
  */
 
-static block_header *
-list_search(list_header *free_list, mem_size size_needed)
+static block_header*
+list_search(list_header* free_list, mem_size size_needed)
 {
-    block_header *curr_block;
-    block_header *last_block;
+    block_header* curr_block;
+    block_header* last_block;
 
     last_block = curr_block = free_list->rover;
 
-    do
-    {
+    do {
         if ((curr_block->tag & this_size) >= size_needed)
         {
             free_list->rover = curr_block;
@@ -1085,7 +1084,8 @@ list_search(list_header *free_list, mem_size size_needed)
         }
 
         curr_block = curr_block->next;
-    } while (curr_block != last_block);
+    }
+    while (curr_block != last_block);
 
     return (0);
 }
@@ -1123,10 +1123,10 @@ list_search(list_header *free_list, mem_size size_needed)
  */
 
 static int
-block_ok(list_header *free_list, block_header *block, int expected_status)
+block_ok(list_header* free_list, block_header* block, int expected_status)
 {
-    block_header *curr_block;
-    block_header *last_block;
+    block_header* curr_block;
+    block_header* last_block;
 
     assert(block != 0 && (block->tag & this_size) >= block_overhead);
 
@@ -1154,15 +1154,15 @@ block_ok(list_header *free_list, block_header *block, int expected_status)
 
     last_block = curr_block = &free_list->header;
 
-    do
-    {
+    do {
         if (curr_block == block)
         {
             break;
         }
 
         curr_block = curr_block->next;
-    } while (curr_block != last_block);
+    }
+    while (curr_block != last_block);
 
     if (expected_status & block_in_list)
     {
@@ -1191,16 +1191,16 @@ block_ok(list_header *free_list, block_header *block, int expected_status)
 
 #    if !__ALTIVEC__
 static mem_size
-split_block(list_header *free_list, block_header *block, mem_size new_size)
+split_block(list_header* free_list, block_header* block, mem_size new_size)
 #    else
 static mem_size
-split_block(list_header *free_list, block_header *block, mem_size new_size, mem_pool_obj *pool_obj)
+split_block(list_header* free_list, block_header* block, mem_size new_size, mem_pool_obj* pool_obj)
 #    endif
 {
     tag_word      block_tag, other_tag;
     mem_size      block_size, split_size, other_size;
-    block_header *split_block;
-    block_header *other_block;
+    block_header* split_block;
+    block_header* other_block;
 
     assert(block_ok(free_list, block, block_dont_care));
 
@@ -1263,10 +1263,10 @@ split_block(list_header *free_list, block_header *block, mem_size new_size, mem_
  *	to the final merged block is returned.
  */
 
-static block_header *
-merge_block(list_header *free_list, block_header *block)
+static block_header*
+merge_block(list_header* free_list, block_header* block)
 {
-    block_header *other_block;
+    block_header* other_block;
     tag_word      other_tag;
     size_word     size, other_size;
 
@@ -1327,13 +1327,13 @@ merge_block(list_header *free_list, block_header *block)
 
 #    if !__ALTIVEC__
 static mem_size
-grow_block(list_header *free_list, block_header *block, mem_size new_size)
+grow_block(list_header* free_list, block_header* block, mem_size new_size)
 #    else
 static mem_size
-grow_block(list_header *free_list, block_header *block, mem_size new_size, mem_pool_obj *pool_obj)
+grow_block(list_header* free_list, block_header* block, mem_size new_size, mem_pool_obj* pool_obj)
 #    endif
 {
-    block_header *other_block;
+    block_header* other_block;
     tag_word      block_tag, other_tag;
     size_word     size, other_size;
 

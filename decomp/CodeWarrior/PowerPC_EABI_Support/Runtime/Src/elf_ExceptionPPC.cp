@@ -151,52 +151,52 @@ typedef struct ThrowContext
     long GPR[32]; //	GPR0-GPR31	(not all are saved/restored)
 #endif
     long       CR;                            //	CR0-CR7
-    char      *SP;                            //	stack pointer during unwind (used for linkage)
-    char      *FP;                            //	frame pointer during unwind (used for locals)
-    char      *throwSP;                       //	stack pointer at throw
-    char      *returnaddr;                    //	return address
-    char      *throwtype;                     //	throw type argument (0L: rethrow: throw; )
-    void      *location;                      //	location argument (0L: rethrow: throw; )
-    void      *dtor;                          //	dtor argument
-    CatchInfo *catchinfo;                     //	pointer to rethrow CatchInfo (or 0L)
+    char*      SP;                            //	stack pointer during unwind (used for linkage)
+    char*      FP;                            //	frame pointer during unwind (used for locals)
+    char*      throwSP;                       //	stack pointer at throw
+    char*      returnaddr;                    //	return address
+    char*      throwtype;                     //	throw type argument (0L: rethrow: throw; )
+    void*      location;                      //	location argument (0L: rethrow: throw; )
+    void*      dtor;                          //	dtor argument
+    CatchInfo* catchinfo;                     //	pointer to rethrow CatchInfo (or 0L)
 } ThrowContext;
 
-typedef ThrowContext *ThrowContextPtr;
+typedef ThrowContext* ThrowContextPtr;
 
 typedef struct MWExceptionInfo
 {
-    ExceptionTableSmall *exception_record;    //	pointer to exception table (small or large)
-    char                *current_function;    //	pointer to current function
-    char                *action_pointer;      //	pointer to action
-    char                *code_section;        //	base of code section for fragment containing table
-    char                *data_section;        //	base of data section for fragment containing table
-    char                *TOC;                 //	TOC pointer for fragment containing table
+    ExceptionTableSmall* exception_record;    //	pointer to exception table (small or large)
+    char*                current_function;    //	pointer to current function
+    char*                action_pointer;      //	pointer to action
+    char*                code_section;        //	base of code section for fragment containing table
+    char*                data_section;        //	base of data section for fragment containing table
+    char*                TOC;                 //	TOC pointer for fragment containing table
 } MWExceptionInfo;
 
 typedef struct FragmentInfo
 {
-    ExceptionTableIndex *exception_start;     //	start of exception table index for fragment
-    ExceptionTableIndex *exception_end;       //	end of exception table index for fragment
-    char                *code_start;          //	start of code section for fragment
-    char                *code_end;            //	end of code section for fragment
-    char                *data_start;          //	start of data section for fragment
-    char                *data_end;            //	end of data section for fragment
-    char                *TOC;                 //	TOC pointer for fragment
+    ExceptionTableIndex* exception_start;     //	start of exception table index for fragment
+    ExceptionTableIndex* exception_end;       //	end of exception table index for fragment
+    char*                code_start;          //	start of code section for fragment
+    char*                code_end;            //	end of code section for fragment
+    char*                data_start;          //	start of data section for fragment
+    char*                data_end;            //	end of data section for fragment
+    char*                TOC;                 //	TOC pointer for fragment
     int                  active;              //	true: fragmentinfo element is registered
 } FragmentInfo;
 
 typedef struct ProcessInfo
 {
-    __eti_init_info *exception_info;          //	start of exception table index for fragment
-    char            *TOC;                     //	TOC pointer for fragment
+    __eti_init_info* exception_info;          //	start of exception table index for fragment
+    char*            TOC;                     //	TOC pointer for fragment
     int              active;                  //	true: fragmentinfo element is registered
 } ProcessInfo;
 
 typedef struct ActionIterator
 {
     MWExceptionInfo info;                     //	pointer to exception record
-    char           *current_SP;               //	current stack pointer
-    char           *current_FP;               //	current frame pointer (SP or R31)
+    char*           current_SP;               //	current stack pointer
+    char*           current_FP;               //	current frame pointer (SP or R31)
     long            current_R31;              //	current R31
 } ActionIterator;
 
@@ -212,7 +212,7 @@ static ProcessInfo fragmentinfo[MAXFRAGMENTS];
 static FragmentInfo fragmentinfo[MAXFRAGMENTS];
 #endif
 
-typedef void (*DeleteFunc)(void *);
+typedef void (*DeleteFunc)(void*);
 
 #if __PPC_EABI__
 /************************************************************************/
@@ -222,9 +222,9 @@ typedef void (*DeleteFunc)(void *);
 /* Return...: unique ID for __ex_unregister_fragment					*/
 /************************************************************************/
 int
-__register_fragment(struct __eti_init_info *info, char *TOC)
+__register_fragment(struct __eti_init_info* info, char* TOC)
 {
-    ProcessInfo *f;
+    ProcessInfo* f;
     int          i;
 
     //	find a free entry in the fragment table
@@ -254,10 +254,10 @@ __register_fragment(struct __eti_init_info *info, char *TOC)
 /* Return...: unique ID for __ex_unregister_fragment					*/
 /************************************************************************/
 int
-__register_fragment(char *code_start, char *code_end, char *data_start, char *data_end, char *exception_start,
-                    char *exception_end, char *TOC)
+__register_fragment(char* code_start, char* code_end, char* data_start, char* data_end, char* exception_start,
+                    char* exception_end, char* TOC)
 {
-    FragmentInfo *f;
+    FragmentInfo* f;
     int           i;
 
     //	find a free entry in the fragment table
@@ -269,8 +269,8 @@ __register_fragment(char *code_start, char *code_end, char *data_start, char *da
             f->code_end = code_end;
             f->data_start = data_start;
             f->data_end = data_end;
-            f->exception_start = (ExceptionTableIndex *)exception_start;
-            f->exception_end = (ExceptionTableIndex *)exception_end;
+            f->exception_start = (ExceptionTableIndex*)exception_start;
+            f->exception_end = (ExceptionTableIndex*)exception_end;
             f->TOC = TOC;
             f->active = 1;
             return (i);
@@ -290,7 +290,7 @@ __register_fragment(char *code_start, char *code_end, char *data_start, char *da
 void
 __unregister_fragment(int fragmentID)
 {
-    ProcessInfo *f;
+    ProcessInfo* f;
 
     if (fragmentID >= 0 && fragmentID < MAXFRAGMENTS)
     {
@@ -304,7 +304,7 @@ __unregister_fragment(int fragmentID)
 void
 __unregister_fragment(int fragmentID)
 {
-    FragmentInfo *f;
+    FragmentInfo* f;
 
     if (fragmentID >= 0 && fragmentID < MAXFRAGMENTS)
     {
@@ -328,11 +328,11 @@ __unregister_fragment(int fragmentID)
 /************************************************************************/
 #if __PPC_EABI__
 static int
-ExPPC_FindExceptionFragment(char *returnaddr, FragmentInfo *frag)
+ExPPC_FindExceptionFragment(char* returnaddr, FragmentInfo* frag)
 {
-    ProcessInfo     *f;
+    ProcessInfo*     f;
     int              i;
-    __eti_init_info *eti_info;
+    __eti_init_info* eti_info;
 
     for (i = 0, f = fragmentinfo; i < MAXFRAGMENTS; ++i, ++f)
     {
@@ -347,16 +347,16 @@ ExPPC_FindExceptionFragment(char *returnaddr, FragmentInfo *frag)
                 }
 #    if ELF_PROCESSOR
                 if (returnaddr >= eti_info->code_start
-                    && returnaddr < (char *)eti_info->code_start + eti_info->code_size)
+                    && returnaddr < (char*)eti_info->code_start + eti_info->code_size)
                 {
-                    frag->exception_start = (ExceptionTableIndex *)eti_info->eti_start;
-                    frag->exception_end = (ExceptionTableIndex *)eti_info->eti_end;
+                    frag->exception_start = (ExceptionTableIndex*)eti_info->eti_start;
+                    frag->exception_end = (ExceptionTableIndex*)eti_info->eti_end;
 #    else
                 if (returnaddr >= f->exception_info->code_start
-                    && returnaddr < (char *)f->exception_info->code_start + f->exception_info->code_size)
+                    && returnaddr < (char*)f->exception_info->code_start + f->exception_info->code_size)
                 {
-                    frag->exception_start = (ExceptionTableIndex *)f->exception_info->eti_start;
-                    frag->exception_end = (ExceptionTableIndex *)f->exception_info->eti_end;
+                    frag->exception_start = (ExceptionTableIndex*)f->exception_info->eti_start;
+                    frag->exception_end = (ExceptionTableIndex*)f->exception_info->eti_end;
 #    endif
                     /* the starts and ends are only used to find the fragment  */
                     frag->code_start = 0;
@@ -375,10 +375,10 @@ ExPPC_FindExceptionFragment(char *returnaddr, FragmentInfo *frag)
     return (0);
 }
 #else
-static FragmentInfo *
-ExPPC_FindExceptionFragment(char *returnaddr)
+static FragmentInfo*
+ExPPC_FindExceptionFragment(char* returnaddr)
 {
-    FragmentInfo *f;
+    FragmentInfo* f;
     int           i;
 
     for (i = 0, f = fragmentinfo; i < MAXFRAGMENTS; ++i, ++f)
@@ -403,9 +403,9 @@ ExPPC_FindExceptionFragment(char *returnaddr)
 /* Return...: ---														*/
 /************************************************************************/
 static void
-ExPPC_FindExceptionRecord(char *returnaddr, MWExceptionInfo *info)
+ExPPC_FindExceptionRecord(char* returnaddr, MWExceptionInfo* info)
 {
-    FragmentInfo *fragment;
+    FragmentInfo* fragment;
 #if __PPC_EABI__
     FragmentInfo frag;
 #endif
@@ -459,16 +459,16 @@ ExPPC_FindExceptionRecord(char *returnaddr, MWExceptionInfo *info)
     }
     info->current_function = fragment->code_start + p->functionoffset;
     info->exception_record = ETI_GetDirectStore(p->eti_field)
-                                 ? (ExceptionTableSmall *)(&p->exceptionoffset)
-                                 : (ExceptionTableSmall *)(fragment->data_start + p->exceptionoffset);
+                                 ? (ExceptionTableSmall*)(&p->exceptionoffset)
+                                 : (ExceptionTableSmall*)(fragment->data_start + p->exceptionoffset);
 
     //	find the set of actions to perform for an exception thrown from 'returnaddr'
     returnoffset -= p->functionoffset;
 
     if (ET_IsLargeTable(info->exception_record->et_field))
     {
-        ExceptionTableLarge *etl = (ExceptionTableLarge *)info->exception_record;
-        ExceptionRangeLarge *erl;
+        ExceptionTableLarge* etl = (ExceptionTableLarge*)info->exception_record;
+        ExceptionRangeLarge* erl;
 
         for (erl = etl->ranges; erl->start != 0; erl++)
         {
@@ -476,7 +476,7 @@ ExPPC_FindExceptionRecord(char *returnaddr, MWExceptionInfo *info)
 
             if (erl->start <= returnoffset && range_end >= returnoffset)
             {
-                info->action_pointer = (char *)etl + erl->action;
+                info->action_pointer = (char*)etl + erl->action;
                 break;
             }
         }
@@ -484,9 +484,9 @@ ExPPC_FindExceptionRecord(char *returnaddr, MWExceptionInfo *info)
     else
     {
 #if __VEC__
-        ExceptionTableSmall       *ets = (ExceptionTableSmall *)info->exception_record;
-        ExceptionTableSmallVector *etsv = (ExceptionTableSmallVector *)info->exception_record;
-        ExceptionRangeSmall       *ers;
+        ExceptionTableSmall*       ets = (ExceptionTableSmall*)info->exception_record;
+        ExceptionTableSmallVector* etsv = (ExceptionTableSmallVector*)info->exception_record;
+        ExceptionRangeSmall*       ers;
 
         if (ET_HasVectorInfo(info->exception_record->et_field))
         {
@@ -494,7 +494,7 @@ ExPPC_FindExceptionRecord(char *returnaddr, MWExceptionInfo *info)
             {
                 if (ers->start <= returnoffset && ers->end >= returnoffset)
                 {
-                    info->action_pointer = (char *)etsv + ers->action;
+                    info->action_pointer = (char*)etsv + ers->action;
                     break;
                 }
             }
@@ -505,20 +505,20 @@ ExPPC_FindExceptionRecord(char *returnaddr, MWExceptionInfo *info)
             {
                 if (ers->start <= returnoffset && ers->end >= returnoffset)
                 {
-                    info->action_pointer = (char *)ets + ers->action;
+                    info->action_pointer = (char*)ets + ers->action;
                     break;
                 }
             }
         }
 #else
-        ExceptionTableSmall *ets = (ExceptionTableSmall *)info->exception_record;
-        ExceptionRangeSmall *ers;
+        ExceptionTableSmall* ets = (ExceptionTableSmall*)info->exception_record;
+        ExceptionRangeSmall* ers;
 
         for (ers = ets->ranges; ers->start != 0; ers++)
         {
             if (ers->start <= returnoffset && ers->end >= returnoffset)
             {
-                info->action_pointer = (char *)ets + ers->action;
+                info->action_pointer = (char*)ets + ers->action;
                 break;
             }
         }
@@ -533,22 +533,22 @@ ExPPC_FindExceptionRecord(char *returnaddr, MWExceptionInfo *info)
 /* Return...: pointer to return PC										*/
 /************************************************************************/
 static long
-ExPPC_PopR31(char *SP, MWExceptionInfo *info)
+ExPPC_PopR31(char* SP, MWExceptionInfo* info)
 {
 #ifndef _No_Floating_Point_Regs
-    double *FPR_save_area;
+    double* FPR_save_area;
 #endif
-    long *GPR_save_area;
+    long* GPR_save_area;
     int   saved_GPRs, saved_FPRs;
 
 #ifndef _No_Floating_Point_Regs
     //	find saved FPRs
     saved_FPRs = ET_GetSavedFPRs(info->exception_record->et_field);
-    FPR_save_area = (double *)(SP - saved_FPRs * 8);
+    FPR_save_area = (double*)(SP - saved_FPRs * 8);
 
     //  find saved GPRs
     saved_GPRs = ET_GetSavedGPRs(info->exception_record->et_field);
-    GPR_save_area = (long *)FPR_save_area;
+    GPR_save_area = (long*)FPR_save_area;
 #    if !__PPC_EABI__
     if (saved_FPRs & 1)
     {
@@ -558,7 +558,7 @@ ExPPC_PopR31(char *SP, MWExceptionInfo *info)
 #else
     //  find saved GPRs
     saved_GPRs = ET_GetSavedGPRs(info->exception_record->et_field);
-    GPR_save_area = (long *)SP;
+    GPR_save_area = (long*)SP;
 
 #endif
 
@@ -580,13 +580,13 @@ ExPPC_PopR31(char *SP, MWExceptionInfo *info)
 /* Return...: action type												*/
 /************************************************************************/
 static exaction_type
-ExPPC_CurrentAction(const ActionIterator *iter)
+ExPPC_CurrentAction(const ActionIterator* iter)
 {
     if (iter->info.action_pointer == 0)
     {
         return EXACTION_ENDOFLIST;
     }
-    return ((ex_destroylocal *)iter->info.action_pointer)->action & EXACTION_MASK;
+    return ((ex_destroylocal*)iter->info.action_pointer)->action & EXACTION_MASK;
 }
 
 /************************************************************************/
@@ -595,24 +595,24 @@ ExPPC_CurrentAction(const ActionIterator *iter)
 /* Return...: next action type											*/
 /************************************************************************/
 static exaction_type
-ExPPC_NextAction(ActionIterator *iter)
+ExPPC_NextAction(ActionIterator* iter)
 {
     exaction_type action;
 
     for (;;)
     {
         if (iter->info.action_pointer == 0
-            || ((action = ((ex_destroylocal *)iter->info.action_pointer)->action) & EXACTION_ENDBIT) != 0)
+            || ((action = ((ex_destroylocal*)iter->info.action_pointer)->action) & EXACTION_ENDBIT) != 0)
         { //	end of action list: find next exception record
             char *return_addr, *callers_SP;
 
             //	get LR saved in linkage area of caller
-            callers_SP = *(char **)iter->current_SP;
+            callers_SP = *(char**)iter->current_SP;
             if (ET_GetSavedGPRs(iter->info.exception_record->et_field))
             {
                 iter->current_R31 = ExPPC_PopR31(callers_SP, &iter->info);
             }
-            return_addr = *(char **)(callers_SP + RETURN_ADDRESS);
+            return_addr = *(char**)(callers_SP + RETURN_ADDRESS);
             ExPPC_FindExceptionRecord(return_addr, &iter->info);
             if (iter->info.exception_record == 0)
             {
@@ -620,69 +620,44 @@ ExPPC_NextAction(ActionIterator *iter)
             }
             //	pop down to caller's stack frame
             iter->current_SP = callers_SP;
-            iter->current_FP = (ET_GetHasFramePtr(iter->info.exception_record->et_field)) ? (char *)iter->current_R31
+            iter->current_FP = (ET_GetHasFramePtr(iter->info.exception_record->et_field)) ? (char*)iter->current_R31
                                                                                           : iter->current_SP;
             if (iter->info.action_pointer == 0)
             {
-                continue;        //	no actions
+                continue;              //	no actions
             }
         }
         else
         {
             switch (action)
             {
-                case EXACTION_DESTROYLOCAL :
-                    iter->info.action_pointer += sizeof(ex_destroylocal);
-                    break;
-                case EXACTION_DESTROYLOCALCOND :
-                    iter->info.action_pointer += sizeof(ex_destroylocalcond);
-                    break;
-                case EXACTION_DESTROYLOCALPOINTER :
-                    iter->info.action_pointer += sizeof(ex_destroylocalpointer);
-                    break;
-                case EXACTION_DESTROYLOCALARRAY :
-                    iter->info.action_pointer += sizeof(ex_destroylocalarray);
-                    break;
-                case EXACTION_DESTROYBASE :
-                case EXACTION_DESTROYMEMBER :
-                    iter->info.action_pointer += sizeof(ex_destroymember);
-                    break;
-                case EXACTION_DESTROYMEMBERCOND :
-                    iter->info.action_pointer += sizeof(ex_destroymembercond);
-                    break;
-                case EXACTION_DESTROYMEMBERARRAY :
-                    iter->info.action_pointer += sizeof(ex_destroymemberarray);
-                    break;
-                case EXACTION_DELETEPOINTER :
-                    iter->info.action_pointer += sizeof(ex_deletepointer);
-                    break;
-                case EXACTION_DELETEPOINTERCOND :
-                    iter->info.action_pointer += sizeof(ex_deletepointercond);
-                    break;
-                case EXACTION_CATCHBLOCK :
-                    iter->info.action_pointer += sizeof(ex_catchblock);
-                    break;
-                case EXACTION_CATCHBLOCK_32 :
-                    iter->info.action_pointer += sizeof(ex_catchblock_32);
-                    break;
-                case EXACTION_ACTIVECATCHBLOCK :
-                    iter->info.action_pointer += sizeof(ex_activecatchblock);
-                    break;
+                case EXACTION_DESTROYLOCAL        : iter->info.action_pointer += sizeof(ex_destroylocal); break;
+                case EXACTION_DESTROYLOCALCOND    : iter->info.action_pointer += sizeof(ex_destroylocalcond); break;
+                case EXACTION_DESTROYLOCALPOINTER : iter->info.action_pointer += sizeof(ex_destroylocalpointer); break;
+                case EXACTION_DESTROYLOCALARRAY   : iter->info.action_pointer += sizeof(ex_destroylocalarray); break;
+                case EXACTION_DESTROYBASE         :
+                case EXACTION_DESTROYMEMBER       : iter->info.action_pointer += sizeof(ex_destroymember); break;
+                case EXACTION_DESTROYMEMBERCOND   : iter->info.action_pointer += sizeof(ex_destroymembercond); break;
+                case EXACTION_DESTROYMEMBERARRAY  : iter->info.action_pointer += sizeof(ex_destroymemberarray); break;
+                case EXACTION_DELETEPOINTER       : iter->info.action_pointer += sizeof(ex_deletepointer); break;
+                case EXACTION_DELETEPOINTERCOND   : iter->info.action_pointer += sizeof(ex_deletepointercond); break;
+                case EXACTION_CATCHBLOCK          : iter->info.action_pointer += sizeof(ex_catchblock); break;
+                case EXACTION_CATCHBLOCK_32       : iter->info.action_pointer += sizeof(ex_catchblock_32); break;
+                case EXACTION_ACTIVECATCHBLOCK    : iter->info.action_pointer += sizeof(ex_activecatchblock); break;
                 case EXACTION_SPECIFICATION :
                     iter->info.action_pointer
                         += sizeof(ex_specification)
-                           + ((ex_specification *)iter->info.action_pointer)->specs * sizeof(void *);
+                           + ((ex_specification*)iter->info.action_pointer)->specs * sizeof(void*);
                     break;
-                default :
-                    terminate(); //	error
+                default : terminate(); //	error
             }
         }
-        action = ((ex_destroylocal *)iter->info.action_pointer)->action & EXACTION_MASK;
+        action = ((ex_destroylocal*)iter->info.action_pointer)->action & EXACTION_MASK;
         if (action == EXACTION_BRANCH)
-        {                        //	skip to target action--we never return EXACTION_BRANCH to caller!
+        {                              //	skip to target action--we never return EXACTION_BRANCH to caller!
             iter->info.action_pointer
-                = ((char *)iter->info.exception_record) + ((ex_branch *)iter->info.action_pointer)->target;
-            action = ((ex_destroylocal *)iter->info.action_pointer)->action & EXACTION_MASK;
+                = ((char*)iter->info.exception_record) + ((ex_branch*)iter->info.action_pointer)->target;
+            action = ((ex_destroylocal*)iter->info.action_pointer)->action & EXACTION_MASK;
         }
         return action;
     }
@@ -694,32 +669,32 @@ ExPPC_NextAction(ActionIterator *iter)
 /* Input....: pointer to topmost exception record						*/
 /* Return...: pointer to return PC										*/
 /************************************************************************/
-static char *
-ExPPC_PopStackFrame(ThrowContext *context, MWExceptionInfo *info)
+static char*
+ExPPC_PopStackFrame(ThrowContext* context, MWExceptionInfo* info)
 {
     char *SP, *callers_SP;
 #ifndef _No_Floating_Point_Regs
-    double *FPR_save_area;
+    double* FPR_save_area;
 #endif
-    long *GPR_save_area;
+    long* GPR_save_area;
     int   saved_GPRs, saved_FPRs;
 #if __VEC__
-    MWEVector128 *VR_save_area;
+    MWEVector128* VR_save_area;
     int           saved_VRs;
 #endif
 #if ELF_PROCESSOR
-    MWE_ElfVector64 *Vector_save_area;
+    MWE_ElfVector64* Vector_save_area;
 #endif
     int i, j;
 
     //	obtain current and callers frame pointers
     SP = context->SP;
-    callers_SP = *(char **)SP;
+    callers_SP = *(char**)SP;
 
     //	restore saved FPRs
 #ifndef _No_Floating_Point_Regs
     saved_FPRs = ET_GetSavedFPRs(info->exception_record->et_field);
-    FPR_save_area = (double *)(callers_SP - saved_FPRs * 8);
+    FPR_save_area = (double*)(callers_SP - saved_FPRs * 8);
     for (i = 32 - saved_FPRs, j = 0; i < 32; ++i, ++j)
     {
         context->FPR[i] = FPR_save_area[j];
@@ -731,7 +706,7 @@ ExPPC_PopStackFrame(ThrowContext *context, MWExceptionInfo *info)
 //	GPR_save_area=(long *)(((long)FPR_save_area&0xFFFFFFF0)-saved_GPRs*4);
 //	for(i=32-saved_GPRs, j=0;i<32;++i,++j) context->GPR[i]=GPR_save_area[j];
 #ifndef _No_Floating_Point_Regs
-    GPR_save_area = (long *)FPR_save_area;
+    GPR_save_area = (long*)FPR_save_area;
 #    if !__PPC_EABI__
     if (saved_FPRs & 1)
     {
@@ -743,11 +718,11 @@ ExPPC_PopStackFrame(ThrowContext *context, MWExceptionInfo *info)
 #    if ELF_PROCESSOR
     if (ET_HasElfVector(info->exception_record->et_field))
     {
-        Vector_save_area = (MWE_ElfVector64 *)(callers_SP - saved_GPRs * 8);
+        Vector_save_area = (MWE_ElfVector64*)(callers_SP - saved_GPRs * 8);
     }
     else
 #    endif
-        GPR_save_area = (long *)(callers_SP - saved_GPRs * 4);
+        GPR_save_area = (long*)(callers_SP - saved_GPRs * 4);
 
 #endif
 
@@ -786,15 +761,15 @@ ExPPC_PopStackFrame(ThrowContext *context, MWExceptionInfo *info)
     //	restore saved VRs
     if (ET_HasVectorInfo(info->exception_record->et_field))
     {
-        ExceptionTableSmallVector *etsv = (ExceptionTableSmallVector *)info->exception_record;
+        ExceptionTableSmallVector* etsv = (ExceptionTableSmallVector*)info->exception_record;
         int                        vrsavesize = ET_GetSavedVRSAVE(etsv->et_field) ? sizeof(long) : 0;
         saved_VRs = ET_GetSavedVRs(etsv->et_field);
 
-        VR_save_area = (MWEVector128 *)GPR_save_area;
+        VR_save_area = (MWEVector128*)GPR_save_area;
         VR_save_area -= vrsavesize;
         VR_save_area -= saved_VRs;
 
-        VR_save_area = (MWEVector128 *)((unsigned int)VR_save_area & 0xFFFFFFF0); // align to 16-byte boundary
+        VR_save_area = (MWEVector128*)((unsigned int)VR_save_area & 0xFFFFFFF0); // align to 16-byte boundary
 
         for (i = 32 - saved_VRs, j = 0; i < 32; ++i, ++j)
         {
@@ -803,11 +778,11 @@ ExPPC_PopStackFrame(ThrowContext *context, MWExceptionInfo *info)
     }
 #endif
 
-                                                                                  //	restore saved CR
+                                                                                 //	restore saved CR
 #if !__PPC_EABI__ // ignore for now (never saved)
     if (ET_GetSavedCR(info->exception_record->et_field))
     {
-        context->CR = *(long *)(callers_SP + 4);
+        context->CR = *(long*)(callers_SP + 4);
     }
 #endif
 
@@ -815,7 +790,7 @@ ExPPC_PopStackFrame(ThrowContext *context, MWExceptionInfo *info)
     context->SP = callers_SP;
 
     //	return new return_addr
-    return (*(char **)(callers_SP + RETURN_ADDRESS));
+    return (*(char**)(callers_SP + RETURN_ADDRESS));
 }
 
 /************************************************************************/
@@ -826,7 +801,7 @@ ExPPC_PopStackFrame(ThrowContext *context, MWExceptionInfo *info)
 /* Return...: ---														*/
 /************************************************************************/
 INLINE void
-ExPPC_DestroyLocal(ThrowContext *context, const ex_destroylocal *ex)
+ExPPC_DestroyLocal(ThrowContext* context, const ex_destroylocal* ex)
 {
     DTORCALL_COMPLETE(ex->dtor, context->FP + ex->local);
 }
@@ -839,20 +814,20 @@ ExPPC_DestroyLocal(ThrowContext *context, const ex_destroylocal *ex)
 /* Return...: ---														*/
 /************************************************************************/
 INLINE void
-ExPPC_DestroyLocalCond(ThrowContext *context, const ex_destroylocalcond *ex)
+ExPPC_DestroyLocalCond(ThrowContext* context, const ex_destroylocalcond* ex)
 {
 #if ELF_PROCESSOR
     // #warning elf destroys not correct for little endian
 #    if (__option(little_endian))
     int cond = ex_destroylocalcond_GetRegCond(ex->dlc_field) ? (local_cond_type)context->GPR[ex->cond].c[0]
-                                                             : *(local_cond_type *)(context->FP + ex->cond);
+                                                             : *(local_cond_type*)(context->FP + ex->cond);
 #    else
     int cond = ex_destroylocalcond_GetRegCond(ex->dlc_field) ? (local_cond_type)context->GPR[ex->cond].c[7]
-                                                             : *(local_cond_type *)(context->FP + ex->cond);
+                                                             : *(local_cond_type*)(context->FP + ex->cond);
 #    endif
 #else
     int cond = ex_destroylocalcond_GetRegCond(ex->dlc_field) ? (local_cond_type)context->GPR[ex->cond]
-                                                             : *(local_cond_type *)(context->FP + ex->cond);
+                                                             : *(local_cond_type*)(context->FP + ex->cond);
 #endif
 
     if (cond)
@@ -869,19 +844,19 @@ ExPPC_DestroyLocalCond(ThrowContext *context, const ex_destroylocalcond *ex)
 /* Return...: ---														*/
 /************************************************************************/
 INLINE void
-ExPPC_DestroyLocalPointer(ThrowContext *context, const ex_destroylocalpointer *ex)
+ExPPC_DestroyLocalPointer(ThrowContext* context, const ex_destroylocalpointer* ex)
 {
 #if ELF_PROCESSOR
 #    if (__option(little_endian))
-    void *pointer = ex_destroylocalpointer_GetRegPointer(ex->dlp_field) ? (void *)context->GPR[ex->pointer].l[0]
-                                                                        : *(void **)(context->FP + ex->pointer);
+    void* pointer = ex_destroylocalpointer_GetRegPointer(ex->dlp_field) ? (void*)context->GPR[ex->pointer].l[0]
+                                                                        : *(void**)(context->FP + ex->pointer);
 #    else
-    void *pointer = ex_destroylocalpointer_GetRegPointer(ex->dlp_field) ? (void *)context->GPR[ex->pointer].l[1]
-                                                                        : *(void **)(context->FP + ex->pointer);
+    void* pointer = ex_destroylocalpointer_GetRegPointer(ex->dlp_field) ? (void*)context->GPR[ex->pointer].l[1]
+                                                                        : *(void**)(context->FP + ex->pointer);
 #    endif
 #else
-    void *pointer = ex_destroylocalpointer_GetRegPointer(ex->dlp_field) ? (void *)context->GPR[ex->pointer]
-                                                                        : *(void **)(context->FP + ex->pointer);
+    void* pointer = ex_destroylocalpointer_GetRegPointer(ex->dlp_field) ? (void*)context->GPR[ex->pointer]
+                                                                        : *(void**)(context->FP + ex->pointer);
 #endif
 
     DTORCALL_COMPLETE(ex->dtor, pointer);
@@ -895,9 +870,9 @@ ExPPC_DestroyLocalPointer(ThrowContext *context, const ex_destroylocalpointer *e
 /* Return...: ---														*/
 /************************************************************************/
 INLINE void
-ExPPC_DestroyLocalArray(ThrowContext *context, const ex_destroylocalarray *ex)
+ExPPC_DestroyLocalArray(ThrowContext* context, const ex_destroylocalarray* ex)
 {
-    char *ptr = context->FP + ex->localarray;
+    char* ptr = context->FP + ex->localarray;
     long  n = ex->elements;
     long  size = ex->element_size;
 
@@ -916,19 +891,19 @@ ExPPC_DestroyLocalArray(ThrowContext *context, const ex_destroylocalarray *ex)
 /* Return...: ---														*/
 /************************************************************************/
 INLINE void
-ExPPC_DestroyMember(ThrowContext *context, const ex_destroymember *ex)
+ExPPC_DestroyMember(ThrowContext* context, const ex_destroymember* ex)
 {
 #if ELF_PROCESSOR
 #    if (__option(little_endian))
-    char *objectptr = ex_destroymember_GetRegPointer(ex->dm_field) ? (char *)context->GPR[ex->objectptr].l[0]
-                                                                   : *(char **)(context->FP + ex->objectptr);
+    char* objectptr = ex_destroymember_GetRegPointer(ex->dm_field) ? (char*)context->GPR[ex->objectptr].l[0]
+                                                                   : *(char**)(context->FP + ex->objectptr);
 #    else
-    char *objectptr = ex_destroymember_GetRegPointer(ex->dm_field) ? (char *)context->GPR[ex->objectptr].l[1]
-                                                                   : *(char **)(context->FP + ex->objectptr);
+    char* objectptr = ex_destroymember_GetRegPointer(ex->dm_field) ? (char*)context->GPR[ex->objectptr].l[1]
+                                                                   : *(char**)(context->FP + ex->objectptr);
 #    endif
 #else
-    char *objectptr = ex_destroymember_GetRegPointer(ex->dm_field) ? (char *)context->GPR[ex->objectptr]
-                                                                   : *(char **)(context->FP + ex->objectptr);
+    char* objectptr = ex_destroymember_GetRegPointer(ex->dm_field) ? (char*)context->GPR[ex->objectptr]
+                                                                   : *(char**)(context->FP + ex->objectptr);
 #endif
 
     DTORCALL_COMPLETE(ex->dtor, objectptr + ex->offset);
@@ -942,19 +917,19 @@ ExPPC_DestroyMember(ThrowContext *context, const ex_destroymember *ex)
 /* Return...: ---														*/
 /************************************************************************/
 INLINE void
-ExPPC_DestroyBase(ThrowContext *context, const ex_destroymember *ex)
+ExPPC_DestroyBase(ThrowContext* context, const ex_destroymember* ex)
 {
 #if ELF_PROCESSOR
 #    if (__option(little_endian))
-    char *objectptr = ex_destroymember_GetRegPointer(ex->dm_field) ? (char *)context->GPR[ex->objectptr].l[0]
-                                                                   : *(char **)(context->FP + ex->objectptr);
+    char* objectptr = ex_destroymember_GetRegPointer(ex->dm_field) ? (char*)context->GPR[ex->objectptr].l[0]
+                                                                   : *(char**)(context->FP + ex->objectptr);
 #    else
-    char *objectptr = ex_destroymember_GetRegPointer(ex->dm_field) ? (char *)context->GPR[ex->objectptr].l[1]
-                                                                   : *(char **)(context->FP + ex->objectptr);
+    char* objectptr = ex_destroymember_GetRegPointer(ex->dm_field) ? (char*)context->GPR[ex->objectptr].l[1]
+                                                                   : *(char**)(context->FP + ex->objectptr);
 #    endif
 #else
-    char *objectptr = ex_destroymember_GetRegPointer(ex->dm_field) ? (char *)context->GPR[ex->objectptr]
-                                                                   : *(char **)(context->FP + ex->objectptr);
+    char* objectptr = ex_destroymember_GetRegPointer(ex->dm_field) ? (char*)context->GPR[ex->objectptr]
+                                                                   : *(char**)(context->FP + ex->objectptr);
 #endif
 
     DTORCALL_PARTIAL(ex->dtor, objectptr + ex->offset);
@@ -968,25 +943,25 @@ ExPPC_DestroyBase(ThrowContext *context, const ex_destroymember *ex)
 /* Return...: ---														*/
 /************************************************************************/
 INLINE void
-ExPPC_DestroyMemberCond(ThrowContext *context, const ex_destroymembercond *ex)
+ExPPC_DestroyMemberCond(ThrowContext* context, const ex_destroymembercond* ex)
 {
 #if ELF_PROCESSOR
 #    if (__option(little_endian))
-    char *objectptr = ex_destroymembercond_GetRegPointer(ex->dmc_field) ? (char *)context->GPR[ex->objectptr].l[0]
-                                                                        : *(char **)(context->FP + ex->objectptr);
+    char* objectptr = ex_destroymembercond_GetRegPointer(ex->dmc_field) ? (char*)context->GPR[ex->objectptr].l[0]
+                                                                        : *(char**)(context->FP + ex->objectptr);
     int   cond = ex_destroymembercond_GetRegCond(ex->dmc_field) ? (vbase_ctor_arg_type)context->GPR[ex->cond].l[0]
-                                                                : *(vbase_ctor_arg_type *)(context->FP + ex->cond);
+                                                                : *(vbase_ctor_arg_type*)(context->FP + ex->cond);
 #    else
-    char *objectptr = ex_destroymembercond_GetRegPointer(ex->dmc_field) ? (char *)context->GPR[ex->objectptr].l[1]
-                                                                        : *(char **)(context->FP + ex->objectptr);
+    char* objectptr = ex_destroymembercond_GetRegPointer(ex->dmc_field) ? (char*)context->GPR[ex->objectptr].l[1]
+                                                                        : *(char**)(context->FP + ex->objectptr);
     int   cond = ex_destroymembercond_GetRegCond(ex->dmc_field) ? (vbase_ctor_arg_type)context->GPR[ex->cond].l[1]
-                                                                : *(vbase_ctor_arg_type *)(context->FP + ex->cond);
+                                                                : *(vbase_ctor_arg_type*)(context->FP + ex->cond);
 #    endif
 #else
-    char *objectptr = ex_destroymembercond_GetRegPointer(ex->dmc_field) ? (char *)context->GPR[ex->objectptr]
-                                                                        : *(char **)(context->FP + ex->objectptr);
+    char* objectptr = ex_destroymembercond_GetRegPointer(ex->dmc_field) ? (char*)context->GPR[ex->objectptr]
+                                                                        : *(char**)(context->FP + ex->objectptr);
     int   cond = ex_destroymembercond_GetRegCond(ex->dmc_field) ? (vbase_ctor_arg_type)context->GPR[ex->cond]
-                                                                : *(vbase_ctor_arg_type *)(context->FP + ex->cond);
+                                                                : *(vbase_ctor_arg_type*)(context->FP + ex->cond);
 #endif
 
     if (cond)
@@ -1003,19 +978,19 @@ ExPPC_DestroyMemberCond(ThrowContext *context, const ex_destroymembercond *ex)
 /* Return...: ---														*/
 /************************************************************************/
 INLINE void
-ExPPC_DestroyMemberArray(ThrowContext *context, const ex_destroymemberarray *ex)
+ExPPC_DestroyMemberArray(ThrowContext* context, const ex_destroymemberarray* ex)
 {
 #if ELF_PROCESSOR
 #    if (__option(little_endian))
-    char *ptr = ex_destroymemberarray_GetRegPointer(ex->dma_field) ? (char *)context->GPR[ex->objectptr].l[0]
-                                                                   : *(char **)(context->FP + ex->objectptr);
+    char* ptr = ex_destroymemberarray_GetRegPointer(ex->dma_field) ? (char*)context->GPR[ex->objectptr].l[0]
+                                                                   : *(char**)(context->FP + ex->objectptr);
 #    else
-    char *ptr = ex_destroymemberarray_GetRegPointer(ex->dma_field) ? (char *)context->GPR[ex->objectptr].l[1]
-                                                                   : *(char **)(context->FP + ex->objectptr);
+    char* ptr = ex_destroymemberarray_GetRegPointer(ex->dma_field) ? (char*)context->GPR[ex->objectptr].l[1]
+                                                                   : *(char**)(context->FP + ex->objectptr);
 #    endif
 #else
-    char *ptr = ex_destroymemberarray_GetRegPointer(ex->dma_field) ? (char *)context->GPR[ex->objectptr]
-                                                                   : *(char **)(context->FP + ex->objectptr);
+    char* ptr = ex_destroymemberarray_GetRegPointer(ex->dma_field) ? (char*)context->GPR[ex->objectptr]
+                                                                   : *(char**)(context->FP + ex->objectptr);
 #endif
 
     long n = ex->elements;
@@ -1039,19 +1014,19 @@ ExPPC_DestroyMemberArray(ThrowContext *context, const ex_destroymemberarray *ex)
 /* Return...: ---														*/
 /************************************************************************/
 INLINE void
-ExPPC_DeletePointer(ThrowContext *context, const ex_deletepointer *ex)
+ExPPC_DeletePointer(ThrowContext* context, const ex_deletepointer* ex)
 {
 #if ELF_PROCESSOR
 #    if (__option(little_endian))
-    char *objectptr = ex_deletepointer_GetRegPointer(ex->dp_field) ? (char *)context->GPR[ex->objectptr].l[0]
-                                                                   : *(char **)(context->FP + ex->objectptr);
+    char* objectptr = ex_deletepointer_GetRegPointer(ex->dp_field) ? (char*)context->GPR[ex->objectptr].l[0]
+                                                                   : *(char**)(context->FP + ex->objectptr);
 #    else
-    char *objectptr = ex_deletepointer_GetRegPointer(ex->dp_field) ? (char *)context->GPR[ex->objectptr].l[1]
-                                                                   : *(char **)(context->FP + ex->objectptr);
+    char* objectptr = ex_deletepointer_GetRegPointer(ex->dp_field) ? (char*)context->GPR[ex->objectptr].l[1]
+                                                                   : *(char**)(context->FP + ex->objectptr);
 #    endif
 #else
-    char *objectptr = ex_deletepointer_GetRegPointer(ex->dp_field) ? (char *)context->GPR[ex->objectptr]
-                                                                   : *(char **)(context->FP + ex->objectptr);
+    char* objectptr = ex_deletepointer_GetRegPointer(ex->dp_field) ? (char*)context->GPR[ex->objectptr]
+                                                                   : *(char**)(context->FP + ex->objectptr);
 #endif
 
     ((DeleteFunc)ex->deletefunc)(objectptr);
@@ -1065,25 +1040,25 @@ ExPPC_DeletePointer(ThrowContext *context, const ex_deletepointer *ex)
 /* Return...: ---														*/
 /************************************************************************/
 INLINE void
-ExPPC_DeletePointerCond(ThrowContext *context, const ex_deletepointercond *ex)
+ExPPC_DeletePointerCond(ThrowContext* context, const ex_deletepointercond* ex)
 {
 #if ELF_PROCESSOR
 #    if (__option(little_endian))
-    char *objectptr = ex_deletepointercond_GetRegPointer(ex->dpc_field) ? (char *)context->GPR[ex->objectptr].l[0]
-                                                                        : *(char **)(context->FP + ex->objectptr);
+    char* objectptr = ex_deletepointercond_GetRegPointer(ex->dpc_field) ? (char*)context->GPR[ex->objectptr].l[0]
+                                                                        : *(char**)(context->FP + ex->objectptr);
     int   cond = ex_deletepointercond_GetRegCond(ex->dpc_field) ? (local_cond_type)context->GPR[ex->cond].c[0]
-                                                                : *(local_cond_type *)(context->FP + ex->cond);
+                                                                : *(local_cond_type*)(context->FP + ex->cond);
 #    else
-    char *objectptr = ex_deletepointercond_GetRegPointer(ex->dpc_field) ? (char *)context->GPR[ex->objectptr].l[1]
-                                                                        : *(char **)(context->FP + ex->objectptr);
+    char* objectptr = ex_deletepointercond_GetRegPointer(ex->dpc_field) ? (char*)context->GPR[ex->objectptr].l[1]
+                                                                        : *(char**)(context->FP + ex->objectptr);
     int   cond = ex_deletepointercond_GetRegCond(ex->dpc_field) ? (local_cond_type)context->GPR[ex->cond].c[7]
-                                                                : *(local_cond_type *)(context->FP + ex->cond);
+                                                                : *(local_cond_type*)(context->FP + ex->cond);
 #    endif
 #else
-    char *objectptr = ex_deletepointercond_GetRegPointer(ex->dpc_field) ? (char *)context->GPR[ex->objectptr]
-                                                                        : *(char **)(context->FP + ex->objectptr);
+    char* objectptr = ex_deletepointercond_GetRegPointer(ex->dpc_field) ? (char*)context->GPR[ex->objectptr]
+                                                                        : *(char**)(context->FP + ex->objectptr);
     int   cond = ex_deletepointercond_GetRegCond(ex->dpc_field) ? (local_cond_type)context->GPR[ex->cond]
-                                                                : *(local_cond_type *)(context->FP + ex->cond);
+                                                                : *(local_cond_type*)(context->FP + ex->cond);
 #endif
 
     if (cond)
@@ -1101,7 +1076,7 @@ ExPPC_DeletePointerCond(ThrowContext *context, const ex_deletepointercond *ex)
 /* Return...: ---														*/
 /************************************************************************/
 static void
-ExPPC_UnwindStack(ThrowContext *context, MWExceptionInfo *info, void *catcher)
+ExPPC_UnwindStack(ThrowContext* context, MWExceptionInfo* info, void* catcher)
 {
     exaction_type action;
 
@@ -1111,7 +1086,7 @@ ExPPC_UnwindStack(ThrowContext *context, MWExceptionInfo *info, void *catcher)
     {
         if (info->action_pointer == 0)
         {
-            char *return_addr;
+            char* return_addr;
 
             return_addr = ExPPC_PopStackFrame(context, info);
             ExPPC_FindExceptionRecord(return_addr, info);
@@ -1123,77 +1098,76 @@ ExPPC_UnwindStack(ThrowContext *context, MWExceptionInfo *info, void *catcher)
             // #warning unwind not correct for little endian
 #    if (__option(little_endian))
             context->FP
-                = (ET_GetHasFramePtr(info->exception_record->et_field)) ? (char *)context->GPR[31].c[0] : context->SP;
+                = (ET_GetHasFramePtr(info->exception_record->et_field)) ? (char*)context->GPR[31].c[0] : context->SP;
 #    else
             context->FP
-                = (ET_GetHasFramePtr(info->exception_record->et_field)) ? (char *)context->GPR[31].c[7] : context->SP;
+                = (ET_GetHasFramePtr(info->exception_record->et_field)) ? (char*)context->GPR[31].c[7] : context->SP;
 #    endif
 #else
-            context->FP
-                = (ET_GetHasFramePtr(info->exception_record->et_field)) ? (char *)context->GPR[31] : context->SP;
+            context->FP = (ET_GetHasFramePtr(info->exception_record->et_field)) ? (char*)context->GPR[31] : context->SP;
 #endif
             continue;
         }
 
-        action = ((ex_destroylocal *)info->action_pointer)->action;
+        action = ((ex_destroylocal*)info->action_pointer)->action;
         switch (action & EXACTION_MASK)
         {
             case EXACTION_BRANCH :
-                info->action_pointer = ((char *)info->exception_record) + ((ex_branch *)info->action_pointer)->target;
+                info->action_pointer = ((char*)info->exception_record) + ((ex_branch*)info->action_pointer)->target;
                 break;
 
             case EXACTION_DESTROYLOCAL :
-                ExPPC_DestroyLocal(context, (ex_destroylocal *)info->action_pointer);
+                ExPPC_DestroyLocal(context, (ex_destroylocal*)info->action_pointer);
                 info->action_pointer += sizeof(ex_destroylocal);
                 break;
 
             case EXACTION_DESTROYLOCALCOND :
-                ExPPC_DestroyLocalCond(context, (ex_destroylocalcond *)info->action_pointer);
+                ExPPC_DestroyLocalCond(context, (ex_destroylocalcond*)info->action_pointer);
                 info->action_pointer += sizeof(ex_destroylocalcond);
                 break;
 
             case EXACTION_DESTROYLOCALPOINTER :
-                ExPPC_DestroyLocalPointer(context, (ex_destroylocalpointer *)info->action_pointer);
+                ExPPC_DestroyLocalPointer(context, (ex_destroylocalpointer*)info->action_pointer);
                 info->action_pointer += sizeof(ex_destroylocalpointer);
                 break;
 
             case EXACTION_DESTROYLOCALARRAY :
-                ExPPC_DestroyLocalArray(context, (ex_destroylocalarray *)info->action_pointer);
+                ExPPC_DestroyLocalArray(context, (ex_destroylocalarray*)info->action_pointer);
                 info->action_pointer += sizeof(ex_destroylocalarray);
                 break;
 
             case EXACTION_DESTROYBASE :
-                ExPPC_DestroyBase(context, (ex_destroymember *)info->action_pointer);
+                ExPPC_DestroyBase(context, (ex_destroymember*)info->action_pointer);
                 info->action_pointer += sizeof(ex_destroymember);
                 break;
 
             case EXACTION_DESTROYMEMBER :
-                ExPPC_DestroyMember(context, (ex_destroymember *)info->action_pointer);
+                ExPPC_DestroyMember(context, (ex_destroymember*)info->action_pointer);
                 info->action_pointer += sizeof(ex_destroymember);
                 break;
 
             case EXACTION_DESTROYMEMBERCOND :
-                ExPPC_DestroyMemberCond(context, (ex_destroymembercond *)info->action_pointer);
+                ExPPC_DestroyMemberCond(context, (ex_destroymembercond*)info->action_pointer);
                 info->action_pointer += sizeof(ex_destroymembercond);
                 break;
 
             case EXACTION_DESTROYMEMBERARRAY :
-                ExPPC_DestroyMemberArray(context, (ex_destroymemberarray *)info->action_pointer);
+                ExPPC_DestroyMemberArray(context, (ex_destroymemberarray*)info->action_pointer);
                 info->action_pointer += sizeof(ex_destroymemberarray);
                 break;
 
             case EXACTION_DELETEPOINTER :
-                ExPPC_DeletePointer(context, (ex_deletepointer *)info->action_pointer);
+                ExPPC_DeletePointer(context, (ex_deletepointer*)info->action_pointer);
                 info->action_pointer += sizeof(ex_deletepointer);
                 break;
 
             case EXACTION_DELETEPOINTERCOND :
-                ExPPC_DeletePointerCond(context, (ex_deletepointercond *)info->action_pointer);
+                ExPPC_DeletePointerCond(context, (ex_deletepointercond*)info->action_pointer);
                 info->action_pointer += sizeof(ex_deletepointercond);
                 break;
 
             case EXACTION_CATCHBLOCK :
-                if (catcher == (void *)info->action_pointer)
+                if (catcher == (void*)info->action_pointer)
                 {
                     return; //	finished unwinding
                 }
@@ -1201,7 +1175,7 @@ ExPPC_UnwindStack(ThrowContext *context, MWExceptionInfo *info, void *catcher)
                 break;
 
             case EXACTION_CATCHBLOCK_32 :
-                if (catcher == (void *)info->action_pointer)
+                if (catcher == (void*)info->action_pointer)
                 {
                     return; //	finished unwinding
                 }
@@ -1210,9 +1184,9 @@ ExPPC_UnwindStack(ThrowContext *context, MWExceptionInfo *info, void *catcher)
 
             case EXACTION_ACTIVECATCHBLOCK :
                 {
-                    CatchInfo *catchinfo;
+                    CatchInfo* catchinfo;
 
-                    catchinfo = (CatchInfo *)(context->FP + ((ex_activecatchblock *)info->action_pointer)->cinfo_ref);
+                    catchinfo = (CatchInfo*)(context->FP + ((ex_activecatchblock*)info->action_pointer)->cinfo_ref);
                     if (catchinfo->dtor)
                     {
                         // re-throwing exception from this block
@@ -1231,16 +1205,15 @@ ExPPC_UnwindStack(ThrowContext *context, MWExceptionInfo *info, void *catcher)
                 break;
 
             case EXACTION_SPECIFICATION :
-                if (catcher == (void *)info->action_pointer)
+                if (catcher == (void*)info->action_pointer)
                 {
-                    return;  //	finished unwinding
+                    return;        //	finished unwinding
                 }
                 info->action_pointer
-                    += sizeof(ex_specification) + ((ex_specification *)info->action_pointer)->specs * sizeof(void *);
+                    += sizeof(ex_specification) + ((ex_specification*)info->action_pointer)->specs * sizeof(void*);
                 break;
 
-            default :
-                terminate(); //	error
+            default : terminate(); //	error
         }
         if (action & EXACTION_ENDBIT)
         {
@@ -1256,7 +1229,7 @@ ExPPC_UnwindStack(ThrowContext *context, MWExceptionInfo *info, void *catcher)
 /* Return...: ---														*/
 /************************************************************************/
 static int
-ExPPC_IsInSpecification(char *extype, ex_specification *spec)
+ExPPC_IsInSpecification(char* extype, ex_specification* spec)
 {
     long i, offset;
 
@@ -1276,9 +1249,9 @@ ExPPC_IsInSpecification(char *extype, ex_specification *spec)
 /* Return...: --- (this function will never return)						*/
 /************************************************************************/
 extern void
-__unexpected(CatchInfo *catchinfo)
+__unexpected(CatchInfo* catchinfo)
 {
-    ex_specification *unexp = (ex_specification *)catchinfo->stacktop;
+    ex_specification* unexp = (ex_specification*)catchinfo->stacktop;
 
 #pragma exception_magic
 
@@ -1288,7 +1261,7 @@ __unexpected(CatchInfo *catchinfo)
     }
     catch (...)
     {     //	unexpected throws an exception => check if the exception matches the specification
-        if (ExPPC_IsInSpecification((char *)((CatchInfo *)&__exception_magic)->typeinfo, unexp))
+        if (ExPPC_IsInSpecification((char*)((CatchInfo*)&__exception_magic)->typeinfo, unexp))
         { //	new exception is in specification list => rethrow
             throw;
         }
@@ -1313,7 +1286,7 @@ __unexpected(CatchInfo *catchinfo)
 /* Return...: ---														*/
 /************************************************************************/
 static asm void
-ExPPC_LongJump(register ThrowContext *context, register void *newRTOC, register void *newPC)
+ExPPC_LongJump(register ThrowContext* context, register void* newRTOC, register void* newPC)
 {
 #if __ALTIVEC__ || __PPC_EABI__
     nofralloc
@@ -1538,16 +1511,16 @@ ExPPC_LongJump(register ThrowContext *context, register void *newRTOC, register 
 /* Return...: ---														*/
 /************************************************************************/
 static void
-ExPPC_HandleUnexpected(ThrowContext *context, MWExceptionInfo *info, ex_specification *unexp)
+ExPPC_HandleUnexpected(ThrowContext* context, MWExceptionInfo* info, ex_specification* unexp)
 {
-    CatchInfo *catchinfo;
+    CatchInfo* catchinfo;
 
 #pragma exception_terminate                  //	this will prevent exception exits during unwinding
 
     ExPPC_UnwindStack(context, info, unexp); //	unwind stack to failing specification
 
     //	initialize catch info struct
-    catchinfo = (CatchInfo *)(context->FP + unexp->cinfo_ref);
+    catchinfo = (CatchInfo*)(context->FP + unexp->cinfo_ref);
     catchinfo->location = context->location;
     catchinfo->typeinfo = context->throwtype;
     catchinfo->dtor = context->dtor;
@@ -1563,12 +1536,12 @@ ExPPC_HandleUnexpected(ThrowContext *context, MWExceptionInfo *info, ex_specific
 /* Return...: ---														*/
 /************************************************************************/
 static void
-ExPPC_ThrowHandler(ThrowContext *context)
+ExPPC_ThrowHandler(ThrowContext* context)
 {
     ActionIterator  iter;
     MWExceptionInfo info;
     exaction_type   action;
-    CatchInfo      *catchinfo;
+    CatchInfo*      catchinfo;
     long            offset;
 
     //	find first ExceptionRecord
@@ -1576,21 +1549,21 @@ ExPPC_ThrowHandler(ThrowContext *context)
     ExPPC_FindExceptionRecord(context->returnaddr, &info);
     if (info.exception_record == 0)
     {
-        terminate();             //	cannot find matching exception record
+        terminate();                   //	cannot find matching exception record
     }
 
 #if ELF_PROCESSOR
 #    if (__option(little_endian))
-    context->FP = (ET_GetHasFramePtr(info.exception_record->et_field)) ? (char *)context->GPR[31].c[0] : context->SP;
+    context->FP = (ET_GetHasFramePtr(info.exception_record->et_field)) ? (char*)context->GPR[31].c[0] : context->SP;
 #    else
-    context->FP = (ET_GetHasFramePtr(info.exception_record->et_field)) ? (char *)context->GPR[31].c[7] : context->SP;
+    context->FP = (ET_GetHasFramePtr(info.exception_record->et_field)) ? (char*)context->GPR[31].c[7] : context->SP;
 #    endif
 #else
-    context->FP = (ET_GetHasFramePtr(info.exception_record->et_field)) ? (char *)context->GPR[31] : context->SP;
+    context->FP = (ET_GetHasFramePtr(info.exception_record->et_field)) ? (char*)context->GPR[31] : context->SP;
 #endif
 
     if (context->throwtype == 0)
-    {                            //	rethrow, find most recent exception
+    {                                  //	rethrow, find most recent exception
         iter.info = info;
         iter.current_SP = context->SP;
         iter.current_FP = context->FP;
@@ -1607,33 +1580,30 @@ ExPPC_ThrowHandler(ThrowContext *context)
         {
             switch (action)
             {
-                case EXACTION_ACTIVECATCHBLOCK :
-                    break;
+                case EXACTION_ACTIVECATCHBLOCK    : break;
 
-                case EXACTION_ENDOFLIST :
-                case EXACTION_DESTROYLOCAL :
-                case EXACTION_DESTROYLOCALCOND :
+                case EXACTION_ENDOFLIST           :
+                case EXACTION_DESTROYLOCAL        :
+                case EXACTION_DESTROYLOCALCOND    :
                 case EXACTION_DESTROYLOCALPOINTER :
-                case EXACTION_DESTROYLOCALARRAY :
-                case EXACTION_DESTROYBASE :
-                case EXACTION_DESTROYMEMBER :
-                case EXACTION_DESTROYMEMBERCOND :
-                case EXACTION_DESTROYMEMBERARRAY :
-                case EXACTION_DELETEPOINTER :
-                case EXACTION_DELETEPOINTERCOND :
-                case EXACTION_CATCHBLOCK :
-                case EXACTION_CATCHBLOCK_32 :
-                case EXACTION_SPECIFICATION :
-                    continue;
+                case EXACTION_DESTROYLOCALARRAY   :
+                case EXACTION_DESTROYBASE         :
+                case EXACTION_DESTROYMEMBER       :
+                case EXACTION_DESTROYMEMBERCOND   :
+                case EXACTION_DESTROYMEMBERARRAY  :
+                case EXACTION_DELETEPOINTER       :
+                case EXACTION_DELETEPOINTERCOND   :
+                case EXACTION_CATCHBLOCK          :
+                case EXACTION_CATCHBLOCK_32       :
+                case EXACTION_SPECIFICATION       : continue;
 
-                case EXACTION_TERMINATE :
-                default :
-                    terminate(); //	cannot find find most recent exception
+                case EXACTION_TERMINATE           :
+                default                           : terminate(); //	cannot find find most recent exception
             }
             break;
         }
-        catchinfo = (CatchInfo *)(iter.current_FP + ((ex_activecatchblock *)iter.info.action_pointer)->cinfo_ref);
-        context->throwtype = (char *)catchinfo->typeinfo;
+        catchinfo = (CatchInfo*)(iter.current_FP + ((ex_activecatchblock*)iter.info.action_pointer)->cinfo_ref);
+        context->throwtype = (char*)catchinfo->typeinfo;
         context->location = catchinfo->location;
         context->dtor = 0;
         // original active catch block is still responsible for destruction
@@ -1663,14 +1633,14 @@ ExPPC_ThrowHandler(ThrowContext *context)
         switch (action)
         {
             case EXACTION_CATCHBLOCK_32 :
-                if (__throw_catch_compare(context->throwtype,
-                                          ((ex_catchblock_32 *)iter.info.action_pointer)->catch_type, &offset))
+                if (__throw_catch_compare(context->throwtype, ((ex_catchblock_32*)iter.info.action_pointer)->catch_type,
+                                          &offset))
                 {
                     break;
                 }
                 continue;
             case EXACTION_CATCHBLOCK :
-                if (__throw_catch_compare(context->throwtype, ((ex_catchblock *)iter.info.action_pointer)->catch_type,
+                if (__throw_catch_compare(context->throwtype, ((ex_catchblock*)iter.info.action_pointer)->catch_type,
                                           &offset))
                 {
                     break;
@@ -1678,9 +1648,9 @@ ExPPC_ThrowHandler(ThrowContext *context)
                 continue;
 
             case EXACTION_SPECIFICATION :
-                if (!ExPPC_IsInSpecification(context->throwtype, (ex_specification *)iter.info.action_pointer))
+                if (!ExPPC_IsInSpecification(context->throwtype, (ex_specification*)iter.info.action_pointer))
                 { //	unexpected specification
-                    ExPPC_HandleUnexpected(context, &info, (ex_specification *)iter.info.action_pointer);
+                    ExPPC_HandleUnexpected(context, &info, (ex_specification*)iter.info.action_pointer);
                     //	we will never return from this function call
                 }
                 continue;
@@ -1696,12 +1666,10 @@ ExPPC_ThrowHandler(ThrowContext *context)
             case EXACTION_DESTROYMEMBERARRAY :
             case EXACTION_DELETEPOINTER :
             case EXACTION_DELETEPOINTERCOND :
-            case EXACTION_ACTIVECATCHBLOCK :
-                continue;
+            case EXACTION_ACTIVECATCHBLOCK    : continue;
 
-            case EXACTION_TERMINATE :
-            default :
-                terminate(); //	cannot find matching catch block
+            case EXACTION_TERMINATE           :
+            default                           : terminate(); //	cannot find matching catch block
         }
         break;
     }
@@ -1709,13 +1677,13 @@ ExPPC_ThrowHandler(ThrowContext *context)
     //	we have found a matching catch block
     if (action == EXACTION_CATCHBLOCK_32)
     {
-        ex_catchblock_32 *catchblock_32;
-        catchblock_32 = (ex_catchblock_32 *)iter.info.action_pointer;
+        ex_catchblock_32* catchblock_32;
+        catchblock_32 = (ex_catchblock_32*)iter.info.action_pointer;
 
         ExPPC_UnwindStack(context, &info, catchblock_32);
 
         //	initialize catch info struct
-        catchinfo = (CatchInfo *)(context->FP + catchblock_32->cinfo_ref);
+        catchinfo = (CatchInfo*)(context->FP + catchblock_32->cinfo_ref);
         catchinfo->location = context->location;
         catchinfo->typeinfo = context->throwtype;
         catchinfo->dtor = context->dtor;
@@ -1724,11 +1692,11 @@ ExPPC_ThrowHandler(ThrowContext *context)
         {
             //	pointer match (create a pointer copy with adjusted offset)
             catchinfo->sublocation = &catchinfo->pointercopy;
-            catchinfo->pointercopy = *(long *)context->location + offset;
+            catchinfo->pointercopy = *(long*)context->location + offset;
         }
         else
         { //	traditional or class match (directly adjust offset)
-            catchinfo->sublocation = (char *)context->location + offset;
+            catchinfo->sublocation = (char*)context->location + offset;
         }
 
         //	remember eventual stacktop (restored from catchinfo at end of catch block)
@@ -1739,24 +1707,24 @@ ExPPC_ThrowHandler(ThrowContext *context)
     }
     else
     {
-        ex_catchblock *catchblock;
+        ex_catchblock* catchblock;
 
-        catchblock = (ex_catchblock *)iter.info.action_pointer;
+        catchblock = (ex_catchblock*)iter.info.action_pointer;
         ExPPC_UnwindStack(context, &info, catchblock);
 
         //	initialize catch info struct
-        catchinfo = (CatchInfo *)(context->FP + catchblock->cinfo_ref);
+        catchinfo = (CatchInfo*)(context->FP + catchblock->cinfo_ref);
         catchinfo->location = context->location;
         catchinfo->typeinfo = context->throwtype;
         catchinfo->dtor = context->dtor;
         if (*context->throwtype == '*')
         { //	pointer match (create a pointer copy with adjusted offset)
             catchinfo->sublocation = &catchinfo->pointercopy;
-            catchinfo->pointercopy = *(long *)context->location + offset;
+            catchinfo->pointercopy = *(long*)context->location + offset;
         }
         else
         { //	traditional or class match (directly adjust offset)
-            catchinfo->sublocation = (char *)context->location + offset;
+            catchinfo->sublocation = (char*)context->location + offset;
         }
 
         //	remember eventual stacktop (restored from catchinfo at end of catch block)
@@ -1778,7 +1746,7 @@ ExPPC_ThrowHandler(ThrowContext *context)
 /* Return...: ---														*/
 /************************************************************************/
 asm void
-__throw(char *throwtype, void *location, void *dtor)
+__throw(char* throwtype, void* location, void* dtor)
 {
     ThrowContext throwcontext;
 
@@ -1932,7 +1900,7 @@ __throw(char *throwtype, void *location, void *dtor)
 /* Return...: ---														*/
 /************************************************************************/
 asm void
-__throw(char *throwtype, void *location, void *dtor)
+__throw(char* throwtype, void* location, void* dtor)
 {
     ThrowContext throwcontext;
 
@@ -2024,7 +1992,7 @@ __throw(char *throwtype, void *location, void *dtor)
 /* Return...: ---														*/
 /************************************************************************/
 void
-__end__catch(CatchInfo *catchinfo)
+__end__catch(CatchInfo* catchinfo)
 {
     if (catchinfo->location && catchinfo->dtor)
     {

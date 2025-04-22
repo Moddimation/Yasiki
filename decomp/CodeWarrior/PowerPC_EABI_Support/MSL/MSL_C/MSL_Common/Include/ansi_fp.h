@@ -68,8 +68,8 @@ typedef struct decform
 } decform;
 
 #    ifndef _No_Floating_Point
-void     __num2dec(const decform *f, double_t x, decimal *d);
-double_t __dec2num(const decimal *d);
+void     __num2dec(const decform* f, double_t x, decimal* d);
+double_t __dec2num(const decimal* d);
 #    endif                                 /* ndef _No_Floating_Point */
 
 _MSL_END_EXTERN_C                          /*- cc 010409 -*/

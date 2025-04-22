@@ -43,7 +43,7 @@
 
 #if !defined(_Old_DSP_IO_Interface)
 int
-__get_char(FILE *file)
+__get_char(FILE* file)
 {
     int state, ioresult;
 
@@ -101,7 +101,7 @@ __get_char(FILE *file)
 #endif                                                   /* __get_char conditionals */
 
 int
-fgetc(FILE *file)
+fgetc(FILE* file)
 {
     int retval;                                          /*- mm 001013 -*/
     __begin_critical_region(files_access);               /*- mm 001013 -*/
@@ -110,7 +110,7 @@ fgetc(FILE *file)
     return (retval);                                     /*- mm 001013 -*/
 }
 
-int(getc)(FILE *file)
+int(getc)(FILE* file)
 {
     int retval;                                          /*- mm 001013 -*/
     __begin_critical_region(files_access);               /*- mm 001013 -*/
@@ -130,10 +130,10 @@ int(getchar)(void)
 }
 #endif                                                   /* getchar conditionals */
 
-char *
-fgets(char *s, int n, FILE *file)
+char*
+fgets(char* s, int n, FILE* file)
 {
-    char *p = s;
+    char* p = s;
     int   c;
 
     if (--n < 0)
@@ -144,8 +144,7 @@ fgets(char *s, int n, FILE *file)
 
     if (n)
     {
-        do
-        {
+        do {
             c = getc(file);
 
             if (c == EOF)
@@ -162,7 +161,8 @@ fgets(char *s, int n, FILE *file)
             }
 
             *p++ = c;
-        } while (c != '\n' && --n);
+        }
+        while (c != '\n' && --n);
     }
     __end_critical_region(files_access);                 /*- mm 001013 -*/
 
@@ -171,12 +171,12 @@ fgets(char *s, int n, FILE *file)
     return (s);
 }
 
-char *
-gets(char *s)
+char*
+gets(char* s)
 {
-    char *p = s;
+    char* p = s;
     int   c;
-    FILE *file = stdin;
+    FILE* file = stdin;
     __begin_critical_region(files_access);               /*- mm 001013 -*/
 
     for (;;)
@@ -212,7 +212,7 @@ gets(char *s)
 
 #if !defined(_Old_DSP_IO_Interface)
 int
-ungetc(int c, FILE *file)
+ungetc(int c, FILE* file)
 {
     int state = file->state.io_state;
 
@@ -251,7 +251,7 @@ ungetc(int c, FILE *file)
 #endif                                                   /* ungetc conditionals */
 
 int
-__ungotten(FILE *file)
+__ungotten(FILE* file)
 {
     if (file->state.io_state < __rereading)
     {
@@ -264,7 +264,7 @@ __ungotten(FILE *file)
 #if !defined(_Old_DSP_IO_Interface)
 
 int
-__put_char(int c, FILE *file)
+__put_char(int c, FILE* file)
 {
     int kind = file->mode.file_kind;
 
@@ -338,7 +338,7 @@ __put_char(int c, FILE *file)
 #endif                                                   /* __put_char conditionals */
 
 int
-fputc(int c, FILE *file)
+fputc(int c, FILE* file)
 {
     int retval;                                          /*- mm 001013 -*/
     __begin_critical_region(files_access);               /*- mm 001013 -*/
@@ -347,7 +347,7 @@ fputc(int c, FILE *file)
     return (retval);                                     /*- mm 001013 -*/
 }
 
-int(putc)(int c, FILE *file)
+int(putc)(int c, FILE* file)
 {
     int retval;                                          /*- mm 001013 -*/
     __begin_critical_region(files_access);               /*- mm 001013 -*/
@@ -368,7 +368,7 @@ int(putchar)(int c)
 #endif                                                   /* putchar conditionals */
 
 int
-fputs(const char *s, FILE *file)
+fputs(const char* s, FILE* file)
 {
     int c;
     int retval = 0;                                      /*- mm 001013 -*/
@@ -386,11 +386,11 @@ fputs(const char *s, FILE *file)
 }
 
 int
-puts(const char *s)
+puts(const char* s)
 {
     int   c;
     int   retval = 0;                                    /*- mm 001013 -*/
-    FILE *file = stdout;
+    FILE* file = stdout;
 
     __begin_critical_region(files_access);               /*- mm 001013 -*/
     while ((c = *s++) != 0)

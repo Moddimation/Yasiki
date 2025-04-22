@@ -62,11 +62,11 @@ extern "C"
 
 #pragma tvectors off
 #pragma internal on
-int __setjmp(__jmp_buf *env);
+int __setjmp(__jmp_buf* env);
 
 #pragma internal off
 
-void longjmp(__jmp_buf *env, int val);
+void longjmp(__jmp_buf* env, int val);
 
 #ifdef __cplusplus
 }
@@ -77,7 +77,7 @@ void longjmp(__jmp_buf *env, int val);
 //	On entry R3 points to a jmp_buf struct. On exit, R3 is 0.
 //
 asm int
-__setjmp(register __jmp_buf *env)
+__setjmp(register __jmp_buf* env)
 {
 #if __PPC_EABI__
     nofralloc
@@ -253,7 +253,7 @@ __setjmp(register __jmp_buf *env)
 //
 //
 asm void
-longjmp(register __jmp_buf *env, register int val)
+longjmp(register __jmp_buf* env, register int val)
 {
 #if __PPC_EABI__
     nofralloc

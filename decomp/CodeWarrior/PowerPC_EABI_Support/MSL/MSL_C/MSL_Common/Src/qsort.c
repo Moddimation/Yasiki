@@ -58,15 +58,14 @@
 
 #include <stdlib.h>
 
-#define table_ptr(i) (((char *)table_base) + (member_size * ((i) - 1)))
+#define table_ptr(i) (((char*)table_base) + (member_size * ((i) - 1)))
 
 #if !__POWERPC__
 
 #    define swap(dst, src, cnt)                                                                                        \
-        do                                                                                                             \
-        {                                                                                                              \
-            char  *p;                                                                                                  \
-            char  *q;                                                                                                  \
+        do {                                                                                                           \
+            char*  p;                                                                                                  \
+            char*  q;                                                                                                  \
             size_t n = cnt;                                                                                            \
                                                                                                                        \
             unsigned char tmp;                                                                                         \
@@ -77,38 +76,39 @@
                 *q++ = *p;                                                                                             \
                 *p++ = tmp;                                                                                            \
             }                                                                                                          \
-        } while (0)
+        }                                                                                                              \
+        while (0)
 
 #else
 
 #    define swap(dst, src, cnt)                                                                                        \
-        do                                                                                                             \
-        {                                                                                                              \
-            char  *p;                                                                                                  \
-            char  *q;                                                                                                  \
+        do {                                                                                                           \
+            char*  p;                                                                                                  \
+            char*  q;                                                                                                  \
             size_t n = cnt;                                                                                            \
                                                                                                                        \
             unsigned long tmp;                                                                                         \
                                                                                                                        \
-            for (p = (char *)src - 1, q = (char *)dst - 1, n++; --n;)                                                  \
+            for (p = (char*)src - 1, q = (char*)dst - 1, n++; --n;)                                                    \
             {                                                                                                          \
                 tmp = *++q;                                                                                            \
                 *q = *++p;                                                                                             \
                 *p = tmp;                                                                                              \
             }                                                                                                          \
-        } while (0)
+        }                                                                                                              \
+        while (0)
 
 #endif
 
 void
-qsort(void *table_base, size_t num_members, size_t member_size, _compare_function compare_members) /*- mm 961031 -*/
+qsort(void* table_base, size_t num_members, size_t member_size, _compare_function compare_members) /*- mm 961031 -*/
 {
     size_t l, r, /*i,*/ j;
-    char  *lp;
-    char  *rp;
-    char  *ip;
-    char  *jp;
-    char  *kp;
+    char*  lp;
+    char*  rp;
+    char*  ip;
+    char*  jp;
+    char*  kp;
 
     if (num_members < 2)
     {

@@ -16,8 +16,8 @@ _MSL_BEGIN_EXTERN_C      /*- cc 010409 -*/
 
     _MSL_IMP_EXP_C
     __std(size_t)
-        wcsftime(wchar_t *str, __std(size_t) max_size, const wchar_t *format_str, const struct __std(tm) * timeptr);
-static int wemit(wchar_t *str, __std(size_t), __std(size_t) * max_size, const wchar_t *format_str,
+        wcsftime(wchar_t* str, __std(size_t) max_size, const wchar_t* format_str, const struct __std(tm) * timeptr);
+static int wemit(wchar_t* str, __std(size_t), __std(size_t) * max_size, const wchar_t* format_str,
                  ...);   /*- mf 990715 -*/
 
 _MSL_END_EXTERN_C        /*- cc 010409 -*/

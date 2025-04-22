@@ -14,8 +14,8 @@ extern "C"
 
 typedef struct DolImage
 {
-    u8 *textData[DOL_MAX_TEXT];
-    u8 *dataData[DOL_MAX_DATA];
+    u8* textData[DOL_MAX_TEXT];
+    u8* dataData[DOL_MAX_DATA];
     u32 text[DOL_MAX_TEXT];
     u32 data[DOL_MAX_DATA];
     u32 textLen[DOL_MAX_TEXT];
@@ -26,8 +26,8 @@ typedef struct DolImage
     u8  padding[28];
 } DolImage;
 
-void *DOLLoadImage(u8 *buffer, BOOL verbose);
-void  DOLRunApp(void *entryPoint);
+void* DOLLoadImage(u8* buffer, BOOL verbose);
+void  DOLRunApp(void* entryPoint);
 
 #ifdef __cplusplus
 }

@@ -319,9 +319,7 @@ basic_stringbuf<charT, traits, Allocator>::seekoff(off_type off, ios_base::seekd
     off_type newoff;
     switch (way)
     {
-        case ios_base::beg :
-            newoff = 0;
-            break;
+        case ios_base::beg : newoff = 0; break;
         case ios_base::cur :
             if (which & ios_base::out)
             {
@@ -342,8 +340,7 @@ basic_stringbuf<charT, traits, Allocator>::seekoff(off_type off, ios_base::seekd
                 newoff = base::egptr() - base::eback();
             }
             break;
-        default :
-            return pos_type(-1);
+        default : return pos_type(-1);
     }
     newoff += off;
     if (newoff < 0 || newoff > str_.size())

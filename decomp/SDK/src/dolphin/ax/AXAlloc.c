@@ -4,12 +4,12 @@
 
 #include "AXPrivate.h"
 
-static AXVPB *__AXStackHead[AX_PRIORITY_STACKS];
-static AXVPB *__AXStackTail[AX_PRIORITY_STACKS];
+static AXVPB* __AXStackHead[AX_PRIORITY_STACKS];
+static AXVPB* __AXStackTail[AX_PRIORITY_STACKS];
 
-static AXVPB *__AXCallbackStack;
+static AXVPB* __AXCallbackStack;
 
-AXVPB *
+AXVPB*
 __AXGetStackHead(u32 priority)
 {
     ASSERTLINE(0x3D, priority < AX_PRIORITY_STACKS);
@@ -19,7 +19,7 @@ __AXGetStackHead(u32 priority)
 void
 __AXServiceCallbackStack(void)
 {
-    AXVPB *p;
+    AXVPB* p;
     int    old;
 
     for (p = __AXPopCallbackStack(); p; p = __AXPopCallbackStack())
@@ -66,18 +66,18 @@ __AXAllocQuit(void)
 }
 
 void
-__AXPushFreeStack(AXVPB *p)
+__AXPushFreeStack(AXVPB* p)
 {
     p->next = __AXStackHead[0];
     __AXStackHead[0] = p;
 }
 
-AXVPB *
+AXVPB*
 __AXPopFreeStack(void)
 {
-    AXVPB *p;
+    AXVPB* p;
 
-    p = (void *)(u32)&__AXStackHead[0]->next;
+    p = (void*)(u32)&__AXStackHead[0]->next;
     if (p)
     {
         __AXStackHead[0] = p->next;
@@ -86,18 +86,18 @@ __AXPopFreeStack(void)
 }
 
 void
-__AXPushCallbackStack(AXVPB *p)
+__AXPushCallbackStack(AXVPB* p)
 {
     p->next1 = __AXCallbackStack;
     __AXCallbackStack = p;
 }
 
-AXVPB *
+AXVPB*
 __AXPopCallbackStack(void)
 {
-    AXVPB *p;
+    AXVPB* p;
 
-    p = (void *)(u32)&__AXCallbackStack[0];
+    p = (void*)(u32)&__AXCallbackStack[0];
     if (p)
     {
         __AXCallbackStack = p->next1;
@@ -106,11 +106,11 @@ __AXPopCallbackStack(void)
 }
 
 void
-__AXRemoveFromStack(AXVPB *p)
+__AXRemoveFromStack(AXVPB* p)
 {
     u32    i;
-    AXVPB *head;
-    AXVPB *tail;
+    AXVPB* head;
+    AXVPB* tail;
 
     ASSERTLINE(0xB5, p->priority);
     i = p->priority;
@@ -140,7 +140,7 @@ __AXRemoveFromStack(AXVPB *p)
 }
 
 void
-__AXPushStackHead(AXVPB *p, u32 priority)
+__AXPushStackHead(AXVPB* p, u32 priority)
 {
     ASSERTLINE(0xDF, priority);
     ASSERTLINE(0xE0, priority < AX_PRIORITY_STACKS);
@@ -159,10 +159,10 @@ __AXPushStackHead(AXVPB *p, u32 priority)
     p->priority = priority;
 }
 
-AXVPB *
+AXVPB*
 __AXPopStackFromBottom(u32 priority)
 {
-    AXVPB *p;
+    AXVPB* p;
 
     ASSERTLINE(0xF9, priority);
     ASSERTLINE(0xFA, priority < AX_PRIORITY_STACKS);
@@ -185,7 +185,7 @@ __AXPopStackFromBottom(u32 priority)
 }
 
 void
-AXFreeVoice(AXVPB *p)
+AXFreeVoice(AXVPB* p)
 {
     int old;
 
@@ -201,11 +201,11 @@ AXFreeVoice(AXVPB *p)
     OSRestoreInterrupts(old);
 }
 
-AXVPB *
-AXAcquireVoice(u32 priority, void (*callback)(void *), u32 userContext)
+AXVPB*
+AXAcquireVoice(u32 priority, void (*callback)(void*), u32 userContext)
 {
     int    old;
-    AXVPB *p;
+    AXVPB* p;
     u32    i;
 
     ASSERTLINE(0x13D, priority);
@@ -244,7 +244,7 @@ AXAcquireVoice(u32 priority, void (*callback)(void *), u32 userContext)
 }
 
 void
-AXSetVoicePriority(AXVPB *p, u32 priority)
+AXSetVoicePriority(AXVPB* p, u32 priority)
 {
     int old;
 

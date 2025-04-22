@@ -11,7 +11,7 @@ static void BlockWriteCallback(long chan, long result);
 static void
 BlockReadCallback(long chan, long result)
 {
-    struct CARDControl *card;
+    struct CARDControl* card;
     void                (*callback)(long, long);
 
     card = &__CARDBlock[chan];
@@ -20,7 +20,7 @@ BlockReadCallback(long chan, long result)
     {
         card->xferred += 0x200;
         card->addr += 0x200;
-        ((u8 *)card->buffer) += 0x200;
+        ((u8*)card->buffer) += 0x200;
 
         if (--card->repeat > 0)
         {
@@ -44,9 +44,9 @@ BlockReadCallback(long chan, long result)
 }
 
 long
-__CARDRead(long chan, unsigned long addr, long length, void *dst, void (*callback)(long, long))
+__CARDRead(long chan, unsigned long addr, long length, void* dst, void (*callback)(long, long))
 {
-    struct CARDControl *card;
+    struct CARDControl* card;
 
     ASSERTLINE(0x58, 0 < length && length % CARD_SEG_SIZE == 0);
     ASSERTLINE(0x59, 0 <= chan && chan < 2);
@@ -65,7 +65,7 @@ __CARDRead(long chan, unsigned long addr, long length, void *dst, void (*callbac
 static void
 BlockWriteCallback(long chan, long result)
 {
-    struct CARDControl *card;
+    struct CARDControl* card;
     void                (*callback)(long, long);
 
     card = &__CARDBlock[chan];
@@ -73,7 +73,7 @@ BlockWriteCallback(long chan, long result)
     {
         card->xferred += 0x80;
         card->addr += 0x80;
-        ((u8 *)card->buffer) += 0x80;
+        ((u8*)card->buffer) += 0x80;
 
         if (--card->repeat > 0)
         {
@@ -97,9 +97,9 @@ BlockWriteCallback(long chan, long result)
 }
 
 long
-__CARDWrite(long chan, unsigned long addr, long length, void *dst, void (*callback)(long, long))
+__CARDWrite(long chan, unsigned long addr, long length, void* dst, void (*callback)(long, long))
 {
-    struct CARDControl *card;
+    struct CARDControl* card;
 
     ASSERTLINE(0x95, 0 < length && length % CARD_PAGE_SIZE == 0);
     ASSERTLINE(0x96, 0 <= chan && chan < 2);

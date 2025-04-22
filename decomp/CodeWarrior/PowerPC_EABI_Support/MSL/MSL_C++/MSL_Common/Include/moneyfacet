@@ -730,9 +730,7 @@ money_put<charT, OutputIterator>::do_put(iter_type out, bool intl, ios_base& str
             case money_base::space :
                 result += fill;
                 // drop through
-            case money_base::none :
-                pend = result.size();
-                break;
+            case money_base::none : pend = result.size(); break;
             case money_base::symbol :
                 if (str.flags() & ios_base::showbase)
                 {

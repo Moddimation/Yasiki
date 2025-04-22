@@ -2,7 +2,6 @@
 #define _DOLPHIN_AMC_AMCEXI2COMM_H_
 
 #include <dolphin/amc/AmcTypes.h>
-
 #include <dolphin/os.h>
 
 typedef enum
@@ -23,7 +22,7 @@ typedef enum
 //              the EXI2 ISR.
 //
 // ---------------------------------------------------------------------------
-void EXI2_Init(volatile unsigned char **inputPendingPtrRef, EXICallback monitorCallback);
+void EXI2_Init(volatile unsigned char** inputPendingPtrRef, EXICallback monitorCallback);
 
 // ---------------------------------------------------------------------------
 //
@@ -55,7 +54,7 @@ int EXI2_Poll(void);
 //     Returns: One of AMC_EXI_*.
 //
 // ---------------------------------------------------------------------------
-AmcExiError EXI2_ReadN(void *bytes, unsigned long length);
+AmcExiError EXI2_ReadN(void* bytes, unsigned long length);
 
 // ---------------------------------------------------------------------------
 //
@@ -66,7 +65,7 @@ AmcExiError EXI2_ReadN(void *bytes, unsigned long length);
 //     Returns: One of AMC_EXI_*.
 //
 // ---------------------------------------------------------------------------
-AmcExiError EXI2_WriteN(const void *bytes, unsigned long length);
+AmcExiError EXI2_WriteN(const void* bytes, unsigned long length);
 
 // ---------------------------------------------------------------------------
 //
@@ -99,6 +98,6 @@ void EXI2_Unreserve(void);
 //
 //     Returns: One of AMC_EXI_*.
 // ---------------------------------------------------------------------------
-AmcExiError EXI2_GetStatusReg(u16 *pu16StatusReg);
+AmcExiError EXI2_GetStatusReg(u16* pu16StatusReg);
 
 #endif

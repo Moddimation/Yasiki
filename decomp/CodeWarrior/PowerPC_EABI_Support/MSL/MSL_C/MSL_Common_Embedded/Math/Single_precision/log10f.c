@@ -11,7 +11,7 @@ static const float _log10_poly[] = { 0.868588961f, 0.289530878375f, 0.173569242f
 float
 log10f(float x)
 {
-    switch ((*(_INT32 *)&x) & 0xff800000)
+    switch ((*(_INT32*)&x) & 0xff800000)
     {
         default :
             {
@@ -19,21 +19,21 @@ log10f(float x)
                 // poly 2302--misses double result by > 1 ulp but < 2 ulp .0034%
                 float  y, zsq;
                 _INT32 exp, tmp;
-                if ((*(_INT32 *)&x) & 0x80000000)
+                if ((*(_INT32*)&x) & 0x80000000)
                 {
                     return NAN;
                 }
-                exp = ((*(_UINT32 *)&x) >> 23) - 126;
-                if ((*(_INT32 *)&x) &= 0x007fffff)
+                exp = ((*(_UINT32*)&x) >> 23) - 126;
+                if ((*(_INT32*)&x) &= 0x007fffff)
                 {
-                    (*(_INT32 *)&x) |= 0x3f000000;
+                    (*(_INT32*)&x) |= 0x3f000000;
                 }
                 else
                 {
                     return --exp * __log10_2;
                 }
 
-                if ((*(_INT32 *)&x) < 0x3F3504F3)
+                if ((*(_INT32*)&x) < 0x3F3504F3)
                 {
                     x += __sqrt2_m1 * x;
                 }
@@ -52,13 +52,13 @@ log10f(float x)
             }
         case 0x7f800000 :
         case 0xff800000 :
-            if ((*(_INT32 *)&x) & 0x007fffff)
+            if ((*(_INT32*)&x) & 0x007fffff)
             {
                 return x;
             }
             else
             {
-                if ((*(_INT32 *)&x) & 0x80000000)
+                if ((*(_INT32*)&x) & 0x80000000)
                 {
                     return NAN;
                 }
@@ -69,8 +69,7 @@ log10f(float x)
             }
 
         case 0 :         // will fix for denormals later
-        case 0x80000000 :
-            return -INFINITY;
+        case 0x80000000 : return -INFINITY;
 
     } // end of switch
 }

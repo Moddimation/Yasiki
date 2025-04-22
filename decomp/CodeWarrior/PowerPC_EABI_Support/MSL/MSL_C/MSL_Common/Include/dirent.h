@@ -25,10 +25,10 @@ struct dirent
 
 typedef struct
 {
-    struct dirent *_d__dirent;
-    char          *_d__wildcard; /* "directory\\*" */
-    unsigned long *_d__handle;   /* for FindNextFile() */
-    void          *_d__ffd;      /* really WIN32_FIND_DATA */
+    struct dirent* _d__dirent;
+    char*          _d__wildcard; /* "directory\\*" */
+    unsigned long* _d__handle;   /* for FindNextFile() */
+    void*          _d__ffd;      /* really WIN32_FIND_DATA */
 } DIR;
 
 #    elif (__dest_os == __mac_os)
@@ -43,17 +43,17 @@ typedef struct
     short _d__index;    /* index in the directory */
 #        endif                   /* _MSL_USE_OLD_FILE_APIS */
 #        if _MSL_USE_NEW_FILE_APIS
-    void *_d__ref;      /* new style FSRef of directory to iterate */
-    void *_d__iterator; /* new style directory iterator reference */
+    void* _d__ref;      /* new style FSRef of directory to iterate */
+    void* _d__iterator; /* new style directory iterator reference */
 #        endif                   /* _MSL_USE_NEW_FILE_APIS */
 } DIR;
 
 #    endif                       /* __dest_os == __win32_os */
 
-DIR           *opendir(const char *);
-struct dirent *readdir(DIR *);
-void           rewinddir(DIR *);
-int            closedir(DIR *);
+DIR*           opendir(const char*);
+struct dirent* readdir(DIR*);
+void           rewinddir(DIR*);
+int            closedir(DIR*);
 
 _MSL_END_EXTERN_C
 

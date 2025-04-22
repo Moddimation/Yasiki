@@ -101,8 +101,8 @@ enum __io_results
 };
 
 typedef void (*__idle_proc)(void);
-typedef int  (*__pos_proc)(__file_handle file, fpos_t *position, int mode, __idle_proc idle_proc); /*- mm 970708 -*/
-typedef int  (*__io_proc)(__file_handle file, unsigned char *buff, size_t *count, __idle_proc idle_proc);
+typedef int  (*__pos_proc)(__file_handle file, fpos_t* position, int mode, __idle_proc idle_proc); /*- mm 970708 -*/
+typedef int  (*__io_proc)(__file_handle file, unsigned char* buff, size_t* count, __idle_proc idle_proc);
 typedef int  (*__close_proc)(__file_handle file);
 
 #        define __ungetc_buffer_size 2
@@ -126,9 +126,9 @@ struct _FILE
 #        endif /* not __NO_WIDE_CHAR */                                                            /*- mm 980204 -*/
 
     unsigned long  position;
-    unsigned char *buffer;
+    unsigned char* buffer;
     unsigned long  buffer_size;
-    unsigned char *buffer_ptr;
+    unsigned char* buffer_ptr;
     unsigned long  buffer_len;
     unsigned long  buffer_alignment;
     unsigned long  saved_buffer_len;
@@ -140,7 +140,7 @@ struct _FILE
     __idle_proc    idle_proc;
 
 #        ifndef _No_Disk_File_OS_Support                                                           /*- mm 981007 -*/
-    struct _FILE *next_file_struct;                                                                /*- mm 981007 -*/
+    struct _FILE* next_file_struct;                                                                /*- mm 981007 -*/
 #        endif /* not _No_Disk_File_OS_Support */                                                  /*- mm 981007 -*/
 };
 

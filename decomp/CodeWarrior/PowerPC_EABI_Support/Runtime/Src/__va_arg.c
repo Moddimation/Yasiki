@@ -12,8 +12,8 @@ typedef struct
     char  gpr;
     char  fpr;
     char  reserved[2];
-    char *input_arg_area;
-    char *reg_save_area;
+    char* input_arg_area;
+    char* reg_save_area;
 } va_list[1];
 
 typedef enum
@@ -36,13 +36,13 @@ typedef enum
 #define SIZEOF_VECTOR       16
 #define ALIGN(addr, amount) (((unsigned int)(addr) + ((amount) - 1)) & ~((amount) - 1))
 
-void *__va_arg(va_list ap, _va_arg_type type);
+void* __va_arg(va_list ap, _va_arg_type type);
 
-void *
+void*
 __va_arg(va_list ap, _va_arg_type type)
 {
-    char *addr;                  /* return value - the address of the next 'parameter'	*/
-    char *r = &(ap->gpr);        /* address of current register number					*/
+    char* addr;                  /* return value - the address of the next 'parameter'	*/
+    char* r = &(ap->gpr);        /* address of current register number					*/
     int   rr = ap->gpr;          /* current register										*/
     int   max = MAX_SAVED_REGS;  /* maximum number of registers saved					*/
     int   size = SIZEOF_GPR;     /* size of 'type'									 	*/
@@ -56,7 +56,7 @@ __va_arg(va_list ap, _va_arg_type type)
     {
         size = SIZEOF_VECTOR;
         addr = ap->input_arg_area;
-        addr = (char *)ALIGN(addr, size);
+        addr = (char*)ALIGN(addr, size);
         ap->input_arg_area = addr + size;
         return addr;
     }
@@ -97,12 +97,12 @@ __va_arg(va_list ap, _va_arg_type type)
     {
         *r = MAX_SAVED_REGS;     /* if arg_DOUBLEWORD, make sure that gprs won't be used again */
         addr = ap->input_arg_area;
-        addr = (char *)ALIGN(addr, size);
+        addr = (char*)ALIGN(addr, size);
         ap->input_arg_area = addr + size;
     }
     if (type == arg_ARGPOINTER)
     {
-        addr = *((char **)addr);
+        addr = *((char**)addr);
     }
 
     return addr;

@@ -34,13 +34,13 @@ _MSL_BEGIN_EXTERN_C               /*- cc 010409 -*/
 
 #    if (__dest_os == __win32_os) /*- cc 000209 -*/
     _MSL_IMP_EXP_C int
-    utime(const char *, struct utimbuf *);
+    utime(const char*, struct utimbuf*);
 #    else
     _MSL_IMP_EXP_C int
-    utime(const char *, const struct utimbuf *); /*- cc 000210 -*/
+    utime(const char*, const struct utimbuf*); /*- cc 000210 -*/
 #    endif
 
-_MSL_IMP_EXP_C int utimes(const char *path, struct timeval buf[2]);
+_MSL_IMP_EXP_C int utimes(const char* path, struct timeval buf[2]);
 
 _MSL_END_EXTERN_C                 /*- cc 010409 -*/
 

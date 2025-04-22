@@ -9,26 +9,26 @@
 #    define _MSL_WCSTOLD_H
 
 #    include <ansi_parms.h>
-#    include <cstdio> /*- mm 970905 -*/                                                               /*- hh 971206 -*/
+#    include <cstdio> /*- mm 970905 -*/                                                              /*- hh 971206 -*/
 
-_MSL_BEGIN_EXTERN_C                                                                                   /*- cc 010409 -*/
+_MSL_BEGIN_EXTERN_C                                                                                  /*- cc 010409 -*/
 
     extern long double
-    __wcstold(int max_width, __std(wint_t) (*ReadProc)(void *, __std(wint_t), int), /*- mm 990326 -*/ /*- hh 990507 -*/
-              void *ReadProcArg,                                                                      /*- mm 990326 -*/
-              int *chars_scanned, int *overflow);
+    __wcstold(int max_width, __std(wint_t) (*ReadProc)(void*, __std(wint_t), int), /*- mm 990326 -*/ /*- hh 990507 -*/
+              void* ReadProcArg,                                                                     /*- mm 990326 -*/
+              int* chars_scanned, int* overflow);
 
-_MSL_END_EXTERN_C                                                                                     /*- cc 010409 -*/
+_MSL_END_EXTERN_C                                                                                    /*- cc 010409 -*/
 
-    _MSL_BEGIN_NAMESPACE_STD                                                                          /*- cc 010409 -*/
-        _MSL_BEGIN_EXTERN_C                                                                           /*- cc 010409 -*/
+    _MSL_BEGIN_NAMESPACE_STD                                                                         /*- cc 010409 -*/
+        _MSL_BEGIN_EXTERN_C                                                                          /*- cc 010409 -*/
 
             _MSL_IMP_EXP_C double
-                      wcstod(const wchar_t *, wchar_t **);
-_MSL_IMP_EXP_C double watof(const wchar_t *);
+                      wcstod(const wchar_t*, wchar_t**);
+_MSL_IMP_EXP_C double watof(const wchar_t*);
 
-_MSL_END_EXTERN_C                                                                                     /*- cc 010409 -*/
-    _MSL_END_NAMESPACE_STD                                                                            /*- cc 010409 -*/
+_MSL_END_EXTERN_C                                                                                    /*- cc 010409 -*/
+    _MSL_END_NAMESPACE_STD                                                                           /*- cc 010409 -*/
 
 #endif /* #ifndef _MSL_WCSTOLD_H */
 

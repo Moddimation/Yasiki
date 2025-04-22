@@ -192,7 +192,7 @@ exit(int status)         /*- cc 010326 -*/
         {
             typedef void           (*voidfunctionptr)(void); /* ptr to function returning void */
             extern voidfunctionptr _dtors[];
-            voidfunctionptr       *destructor;
+            voidfunctionptr*       destructor;
             /*
              *	call other destructors
              */

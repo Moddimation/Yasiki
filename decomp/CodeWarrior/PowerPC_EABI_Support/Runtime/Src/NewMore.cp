@@ -77,10 +77,10 @@ set_new_handler(new_handler new_new_handler) _MSL_THROW
 /*	Input....:	size of memory to allocate								*/
 /*	Return...:	handle to memory or 0L									*/
 /************************************************************************/
-void *
+void*
 __new_hdl(size_t size)
 {
-    void *ptr;
+    void* ptr;
 
     for (;;)
     {
@@ -104,7 +104,7 @@ __new_hdl(size_t size)
 /*	Return...:	---														*/
 /************************************************************************/
 void
-__del_hdl(void *hdl)
+__del_hdl(void* hdl)
 {
     if (hdl)
     {

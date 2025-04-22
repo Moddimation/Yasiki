@@ -9,11 +9,11 @@ static void (*__AR_Callback)();
 static u32  __AR_Size;
 static u32  __AR_StackPointer;
 static u32  __AR_FreeBlocks;
-static u32 *__AR_BlockLength;
+static u32* __AR_BlockLength;
 static int  __AR_init_flag;
 
 // functions
-static void __ARHandler(short exception, struct OSContext *context);
+static void __ARHandler(short exception, struct OSContext* context);
 static void __ARWaitForDMA(void);
 static void __ARWriteDMA(u32 mmem_addr, u32 aram_addr, u32 length);
 static void __ARReadDMA(u32 mmem_addr, u32 aram_addr, u32 length);
@@ -83,7 +83,7 @@ ARAlloc(u32 length)
 }
 
 u32
-ARFree(u32 *length)
+ARFree(u32* length)
 {
     int old;
 
@@ -106,7 +106,7 @@ ARCheckInit(void)
 }
 
 u32
-ARInit(u32 *stack_index_addr, u32 num_entries)
+ARInit(u32* stack_index_addr, u32 num_entries)
 {
     int old;
     u16 refresh;
@@ -163,7 +163,7 @@ ARGetSize(void)
 }
 
 static void
-__ARHandler(short exception, struct OSContext *context)
+__ARHandler(short exception, struct OSContext* context)
 {
     struct OSContext exceptionContext;
     u16              tmp;
@@ -184,8 +184,7 @@ __ARHandler(short exception, struct OSContext *context)
 static void
 __ARWaitForDMA(void)
 {
-    while (__DSPRegs[5] & 0x200)
-        ;
+    while (__DSPRegs[5] & 0x200);
 }
 
 static void
@@ -234,9 +233,9 @@ __ARChecksize(void)
     u8   test_data_pad[63];
     u8   dummy_data_pad[63];
     u8   buffer_pad[63];
-    u32 *test_data;
-    u32 *dummy_data;
-    u32 *buffer;
+    u32* test_data;
+    u32* dummy_data;
+    u32* buffer;
     u16  ARAM_mode;
     u32  ARAM_size;
     u32  i;
@@ -246,9 +245,9 @@ __ARChecksize(void)
 #ifdef DEBUG
     OSReport("__ARChecksize(): Initializing for RevB+ SDRAM controller...¥n");
 #endif
-    test_data = (void *)(((u32)&test_data_pad + 0x1F) & 0xFFFFFFE0);
-    dummy_data = (void *)(((u32)&dummy_data_pad + 0x1F) & 0xFFFFFFE0);
-    buffer = (void *)(((u32)&buffer_pad + 0x1F) & 0xFFFFFFE0);
+    test_data = (void*)(((u32)&test_data_pad + 0x1F) & 0xFFFFFFE0);
+    dummy_data = (void*)(((u32)&dummy_data_pad + 0x1F) & 0xFFFFFFE0);
+    buffer = (void*)(((u32)&buffer_pad + 0x1F) & 0xFFFFFFE0);
     for (i = 0; i < 8; i++)
     {
         test_data[i] = 0xDEADBEEF;
@@ -256,9 +255,9 @@ __ARChecksize(void)
     }
     DCFlushRange(test_data, 0x20);
     DCFlushRange(dummy_data, 0x20);
-    do
-    {
-    } while (!(__DSPRegs[11] & 1));
+    do {
+    }
+    while (!(__DSPRegs[11] & 1));
     __DSPRegs[9] = ((__DSPRegs[9] & 0xFFFFFFC0) | 4) | 0x20;
     __ARWriteDMA((u32)dummy_data, 0U, 0x20U);
     __ARWriteDMA((u32)dummy_data, 0x200000U, 0x20U);
@@ -394,6 +393,6 @@ __ARChecksize(void)
 #endif
         __DSPRegs[9] = ((u16)(__DSPRegs[9] & 0xFFFFFFC0) | ARAM_mode);
     }
-    *(u32 *)OSPhysicalToUncached(0xD0) = ARAM_size;
+    *(u32*)OSPhysicalToUncached(0xD0) = ARAM_size;
     __AR_Size = ARAM_size;
 }

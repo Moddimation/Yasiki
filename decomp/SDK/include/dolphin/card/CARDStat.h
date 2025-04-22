@@ -20,8 +20,8 @@ typedef struct CARDStat
     /*0x68*/ u32  offsetData;
 } CARDStat;
 
-s32  CARDGetStatus(s32 chan, s32 fileNo, CARDStat *stat);
-s32  CARDSetStatusAsync(s32 chan, s32 fileNo, CARDStat *stat, CARDCallback callback);
-long CARDSetStatus(long chan, long fileNo, struct CARDStat *stat);
+s32  CARDGetStatus(s32 chan, s32 fileNo, CARDStat* stat);
+s32  CARDSetStatusAsync(s32 chan, s32 fileNo, CARDStat* stat, CARDCallback callback);
+long CARDSetStatus(long chan, long fileNo, struct CARDStat* stat);
 
 #endif // _DOLPHIN_CARDSTAT_H_

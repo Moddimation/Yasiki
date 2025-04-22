@@ -101,21 +101,21 @@ _inv_sqrtf(float x)
 
     const _UINT32 bit_shift = 23 - numbits;
     const _UINT32 bit_mask = 0x007fffff & (~(sizeof(inv_sqrt_guess) >> 2) << bit_shift);
-    const _UINT32 first_several_sig_bits_of_x = (*(_UINT32 *)&x) & bit_mask;
-    const _INT32  biased_exp = (*(_UINT32 *)&x) & 0x7f800000;
+    const _UINT32 first_several_sig_bits_of_x = (*(_UINT32*)&x) & bit_mask;
+    const _INT32  biased_exp = (*(_UINT32*)&x) & 0x7f800000;
     float         guess;
     float         scaled_x;
 
     if (biased_exp & 0x00800000) // if biased_exp is odd then the sqrt of the
                                  // exponent is 2^^intsqrt(2)
     {
-        (*(_UINT32 *)&scaled_x) = 0x3E800000 + ((*(_UINT32 *)&x) & 0x007fffff); // scaled_x in [.25,.5)
-        (*(_UINT32 *)&guess) = inv_sqrt_guess[(first_several_sig_bits_of_x >> bit_shift)];
+        (*(_UINT32*)&scaled_x) = 0x3E800000 + ((*(_UINT32*)&x) & 0x007fffff); // scaled_x in [.25,.5)
+        (*(_UINT32*)&guess) = inv_sqrt_guess[(first_several_sig_bits_of_x >> bit_shift)];
     }
     else
     {
-        (*(_UINT32 *)&scaled_x) = 0x3f000000 + ((*(_INT32 *)&x) & 0x007fffff);  // scaled_x in [. 5,1.0)
-        (*(_UINT32 *)&guess) = inv_sqrt_guess2[(first_several_sig_bits_of_x >> bit_shift)];
+        (*(_UINT32*)&scaled_x) = 0x3f000000 + ((*(_INT32*)&x) & 0x007fffff);  // scaled_x in [. 5,1.0)
+        (*(_UINT32*)&guess) = inv_sqrt_guess2[(first_several_sig_bits_of_x >> bit_shift)];
     }
 
     /*   guess = .5f*guess*(3.0f - guess*guess*scaled_x);  // now have 12 sig
@@ -133,13 +133,13 @@ _inv_sqrtf(float x)
 
     if (biased_exp > 0x3f000000)
     {
-        (*(_INT32 *)&guess)
+        (*(_INT32*)&guess)
             -= (((biased_exp - 0x3e800000) >> 1) & 0xffbfffff); // this subtracts off bias(127=0x3f80...) // from
                                                                 // biased_exp and one more which divides by two
     }
     else
     {
-        (*(_INT32 *)&guess) += ((0x3f000000 - biased_exp) >> 1) & 0xffbfffff;
+        (*(_INT32*)&guess) += ((0x3f000000 - biased_exp) >> 1) & 0xffbfffff;
     }
 
     // __HI(guess)-=0x01000000;  /* eliminates two multiplies */
@@ -152,7 +152,7 @@ sqrtf(float x)
 {
     if (x <= 0.0f)    /* either < 0 or -0 */
 {
-    if ((*(_UINT32 *)&x) & 0x7fffffff)
+    if ((*(_UINT32*)&x) & 0x7fffffff)
     {
         return NAN;
     }
@@ -225,7 +225,7 @@ fabs(float x)
 #if __MIPS__
     return fabsf(x);
 #else
-    (*(int *)&x) &= 0x7fffffff;
+    (*(int*)&x) &= 0x7fffffff;
     return x;
 #endif
 }

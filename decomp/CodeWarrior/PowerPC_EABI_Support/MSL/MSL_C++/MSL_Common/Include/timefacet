@@ -379,8 +379,7 @@ time_get<charT, InputIterator>::__do_parse(iter_type in, iter_type end, ios_base
         if (format == '%')
         {
             int m = 0;
-            do
-            {
+            do {
                 if (++i == e)
 #                ifndef _MSL_NO_EXCEPTIONS
                     throw runtime_error("Bad format in time_get");
@@ -388,7 +387,8 @@ time_get<charT, InputIterator>::__do_parse(iter_type in, iter_type end, ios_base
                     __msl_error("Bad format in time_get");
 #                endif
                 ++m;
-            } while (*i == charT('E') || *i == charT('O'));
+            }
+            while (*i == charT('E') || *i == charT('O'));
             formatw = *i;
             format = ct.narrow(formatw, char());
             switch (format)
@@ -954,9 +954,7 @@ time_put<charT, OutputIterator>::__put_lower(iter_type out, ios_base& str, charT
                 out = put(out, str, fill, tmb, s.begin(), s.end());
             }
             break;
-        case 'd' :
-            out = __put_2digits<charT>(out, tmb->tm_mday, modifier);
-            break;
+        case 'd' : out = __put_2digits<charT>(out, tmb->tm_mday, modifier); break;
         case 'e' :
             if (tmb->tm_mday < 10)
             {
@@ -986,12 +984,8 @@ time_put<charT, OutputIterator>::__put_lower(iter_type out, ios_base& str, charT
                 out = __put_2digits<charT>(out, d, modifier);
             }
             break;
-        case 'm' :
-            out = __put_2digits<charT>(out, tmb->tm_mon + 1, modifier);
-            break;
-        case 'n' :
-            *out++ = charT('\n');
-            break;
+        case 'm' : out = __put_2digits<charT>(out, tmb->tm_mon + 1, modifier); break;
+        case 'n' : *out++ = charT('\n'); break;
         case 'p' :
             {
                 const string_type& s = tp.am_pm(tmb->tm_hour);
@@ -1004,9 +998,7 @@ time_put<charT, OutputIterator>::__put_lower(iter_type out, ios_base& str, charT
                 out = put(out, str, fill, tmb, s.begin(), s.end());
             }
             break;
-        case 't' :
-            *out++ = charT('\t');
-            break;
+        case 't' : *out++ = charT('\t'); break;
         case 'u' :
             {
                 int wd = tmb->tm_wday;
@@ -1017,18 +1009,14 @@ time_put<charT, OutputIterator>::__put_lower(iter_type out, ios_base& str, charT
                 *out++ = charT(wd + '0');
             }
             break;
-        case 'w' :
-            *out++ = charT(tmb->tm_wday + '0');
-            break;
+        case 'w' : *out++ = charT(tmb->tm_wday + '0'); break;
         case 'x' :
             {
                 const string_type& s = tp.date();
                 out = put(out, str, fill, tmb, s.begin(), s.end());
             }
             break;
-        case 'y' :
-            out = __put_2digits<charT>(out, (tmb->tm_year + 1900) % 100, modifier);
-            break;
+        case 'y' : out = __put_2digits<charT>(out, (tmb->tm_year + 1900) % 100, modifier); break;
         case 'z' :
             if (tmb->tm_isdst >= 0)
             {
@@ -1060,9 +1048,7 @@ time_put<charT, OutputIterator>::__put_upper(iter_type out, ios_base& str, charT
                 out = _STD::copy(s.begin(), s.end(), out);
             }
             break;
-        case 'C' :
-            out = __put_2digits<charT>(out, (tmb->tm_year + 1900) / 100, modifier);
-            break;
+        case 'C' : out = __put_2digits<charT>(out, (tmb->tm_year + 1900) / 100, modifier); break;
         case 'D' :
             {
                 const string_type s = modifier == 'O' ? ct.widen("%Om/%Od/%y") : ct.widen("%m/%d/%y");
@@ -1082,9 +1068,7 @@ time_put<charT, OutputIterator>::__put_upper(iter_type out, ios_base& str, charT
                 out = __putdec(out, str, fill, long(y), true);
             }
             break;
-        case 'H' :
-            out = __put_2digits<charT>(out, tmb->tm_hour, modifier);
-            break;
+        case 'H' : out = __put_2digits<charT>(out, tmb->tm_hour, modifier); break;
         case 'I' :
             {
                 int h = tmb->tm_hour % 12;
@@ -1095,18 +1079,14 @@ time_put<charT, OutputIterator>::__put_upper(iter_type out, ios_base& str, charT
                 out = __put_2digits<charT>(out, h, modifier);
             }
             break;
-        case 'M' :
-            out = __put_2digits<charT>(out, tmb->tm_min, modifier);
-            break;
+        case 'M' : out = __put_2digits<charT>(out, tmb->tm_min, modifier); break;
         case 'R' :
             {
                 const string_type s = modifier == 'O' ? ct.widen("%OH:%M") : ct.widen("%H:%M");
                 out = put(out, str, fill, tmb, s.begin(), s.end());
             }
             break;
-        case 'S' :
-            out = __put_2digits<charT>(out, tmb->tm_sec, modifier);
-            break;
+        case 'S' : out = __put_2digits<charT>(out, tmb->tm_sec, modifier); break;
         case 'T' :
             {
                 const string_type s = modifier == 'O' ? ct.widen("%OH:%M:%S") : ct.widen("%H:%M:%S");
@@ -1159,9 +1139,7 @@ time_put<charT, OutputIterator>::__put_upper(iter_type out, ios_base& str, charT
                 out = __put_2digits<charT>(out, w, modifier);
             }
             break;
-        case 'Y' :
-            out = __putdec(out, str, fill, long(tmb->tm_year + 1900), true);
-            break;
+        case 'Y' : out = __putdec(out, str, fill, long(tmb->tm_year + 1900), true); break;
         case 'Z' :
             if (tmb->tm_isdst >= 0)
             {
@@ -1169,12 +1147,8 @@ time_put<charT, OutputIterator>::__put_upper(iter_type out, ios_base& str, charT
                 out = _STD::copy(s.begin(), s.end(), out);
             }
             break;
-        case '%' :
-            *out++ = charT('%');
-            break;
-        case ' ' :
-            *out++ = charT(' ');
-            break;
+        case '%' : *out++ = charT('%'); break;
+        case ' ' : *out++ = charT(' '); break;
     }
     return out;
 }
