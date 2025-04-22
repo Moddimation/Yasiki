@@ -30,18 +30,18 @@ struct SIControl
     long          chan;
     unsigned long poll;
     unsigned long inputBytes;
-    void         *input;
-    void          (*callback)(long, unsigned long, struct OSContext *);
+    void*         input;
+    void          (*callback)(long, unsigned long, struct OSContext*);
 };
 
 struct SIPacket
 {
     long          chan;
-    void         *output;
+    void*         output;
     unsigned long outputBytes;
-    void         *input;
+    void*         input;
     unsigned long inputBytes;
-    void          (*callback)(long, unsigned long, struct OSContext *);
+    void          (*callback)(long, unsigned long, struct OSContext*);
     long long     time;
 };
 
@@ -55,8 +55,8 @@ void          SITransferCommands();
 unsigned long SISetXY(unsigned long x, unsigned long y);
 unsigned long SIEnablePolling(unsigned long poll);
 unsigned long SIDisablePolling(unsigned long poll);
-void          SIGetResponse(long chan, void *data);
-int           SITransfer(long chan, void *output, unsigned long outputBytes, void *input, unsigned long inputBytes,
-                         void (*callback)(long, unsigned long, struct OSContext *), long long time);
+void          SIGetResponse(long chan, void* data);
+int           SITransfer(long chan, void* output, unsigned long outputBytes, void* input, unsigned long inputBytes,
+                         void (*callback)(long, unsigned long, struct OSContext*), long long time);
 
 #endif // _DOLPHIN_OSSERIAL_H

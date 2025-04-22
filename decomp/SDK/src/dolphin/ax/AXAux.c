@@ -7,14 +7,14 @@
 static long __AXBufferAuxA[3][480] ATTRIBUTE_ALIGN(32);
 static long __AXBufferAuxB[3][480] ATTRIBUTE_ALIGN(32);
 
-static void          (*__AXCallbackAuxA)(void *, void *);
-static void          (*__AXCallbackAuxB)(void *, void *);
-static void         *__AXContextAuxA;
-static void         *__AXContextAuxB;
-static long         *__AXAuxADspWrite;
-static long         *__AXAuxADspRead;
-static long         *__AXAuxBDspWrite;
-static long         *__AXAuxBDspRead;
+static void          (*__AXCallbackAuxA)(void*, void*);
+static void          (*__AXCallbackAuxB)(void*, void*);
+static void*         __AXContextAuxA;
+static void*         __AXContextAuxB;
+static long*         __AXAuxADspWrite;
+static long*         __AXAuxADspRead;
+static long*         __AXAuxBDspWrite;
+static long*         __AXAuxBDspRead;
 static unsigned long __AXAuxDspWritePosition;
 static unsigned long __AXAuxDspReadPosition;
 static unsigned long __AXAuxCpuReadWritePosition;
@@ -23,8 +23,8 @@ void
 __AXAuxInit(void)
 {
     int   i;
-    long *pA;
-    long *pB;
+    long* pA;
+    long* pB;
 
 #ifdef DEBUG
     OSReport("Initializing AXAux code module¥n");
@@ -36,8 +36,8 @@ __AXAuxInit(void)
     __AXAuxDspWritePosition = 0;
     __AXAuxDspReadPosition = 1;
     __AXAuxCpuReadWritePosition = 2;
-    pA = (long *)&__AXBufferAuxA;
-    pB = (long *)&__AXBufferAuxB;
+    pA = (long*)&__AXBufferAuxA;
+    pB = (long*)&__AXBufferAuxB;
     for (i = 0; i < 0x1E0; i++)
     {
         *(pA) = 0;
@@ -58,25 +58,25 @@ __AXAuxQuit(void)
 }
 
 void
-__AXGetAuxAInput(u32 *p)
+__AXGetAuxAInput(u32* p)
 {
     *p = (u32)&__AXBufferAuxA[__AXAuxDspWritePosition][0];
 }
 
 void
-__AXGetAuxAOutput(u32 *p)
+__AXGetAuxAOutput(u32* p)
 {
     *p = (u32)&__AXBufferAuxA[__AXAuxDspReadPosition][0];
 }
 
 void
-__AXGetAuxBInput(u32 *p)
+__AXGetAuxBInput(u32* p)
 {
     *p = (u32)&__AXBufferAuxB[__AXAuxDspWritePosition][0];
 }
 
 void
-__AXGetAuxBOutput(u32 *p)
+__AXGetAuxBOutput(u32* p)
 {
     *p = (u32)&__AXBufferAuxB[__AXAuxDspReadPosition][0];
 }
@@ -117,14 +117,14 @@ __AXProcessAux(void)
 }
 
 void
-AXRegisterAuxACallback(void (*callback)(void *, void *), void *context)
+AXRegisterAuxACallback(void (*callback)(void*, void*), void* context)
 {
     __AXCallbackAuxA = callback;
     __AXContextAuxA = context;
 }
 
 void
-AXRegisterAuxBCallback(void (*callback)(void *, void *), void *context)
+AXRegisterAuxBCallback(void (*callback)(void*, void*), void* context)
 {
     __AXCallbackAuxB = callback;
     __AXContextAuxB = context;

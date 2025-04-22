@@ -5,9 +5,9 @@
 #    include "GXPrivate.h"
 
 static struct __GXVerifyData __gxVerifData;
-struct __GXVerifyData       *__gxVerif = &__gxVerifData;
+struct __GXVerifyData*       __gxVerif = &__gxVerifData;
 
-char *__gxvWarnings[113] = {
+char* __gxvWarnings[113] = {
     "Invalid Vertex Format. Normal count must be set to GX_NRM_NBT",
     "Texture size %ld not initialized.",
     "Left edge of scissor rectangle is less than %d.",

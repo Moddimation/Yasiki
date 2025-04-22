@@ -3,15 +3,15 @@
 #include <dolphin/os.h>
 
 u8                  DBStack[4096];
-u8                 *DBStackEnd = DBStack + 4088;
+u8*                 DBStackEnd = DBStack + 4088;
 BOOL                DBVerbose;
-struct DBInterface *__DBInterface;
+struct DBInterface* __DBInterface;
 
 void
 DBInit(void)
 {
     __DBInterface = OSPhysicalToCached(0x40);
-    __DBInterface->ExceptionDestination = (void *)OSCachedToPhysical(__DBExceptionDestination);
+    __DBInterface->ExceptionDestination = (void*)OSCachedToPhysical(__DBExceptionDestination);
     DBVerbose = TRUE;
 }
 
@@ -28,10 +28,10 @@ DBIsDebuggerPresent(void)
 void
 __DBExceptionDestinationAux(void)
 {
-    u32       *contextAddr;
-    OSContext *context;
+    u32*       contextAddr;
+    OSContext* context;
 
-    contextAddr = (void *)0xC0;
+    contextAddr = (void*)0xC0;
     context = OSPhysicalToCached(*contextAddr);
     OSReport("DBExceptionDestination¥n");
     OSDumpContext(context);
@@ -69,6 +69,6 @@ __DBSetPresent(u32 value)
 }
 
 void
-DBPrintf(char *str, ...)
+DBPrintf(char* str, ...)
 {
 }

@@ -22,7 +22,7 @@ __SYNGetEnvelopeTime(s32 scale, s32 mod, u8 key)
 }
 
 void
-__SYNSetupVolumeEnvelope(struct SYNVOICE *voice)
+__SYNSetupVolumeEnvelope(struct SYNVOICE* voice)
 {
     ASSERTLINE(0x2B, voice);
 
@@ -71,7 +71,7 @@ __SYNSetupVolumeEnvelope(struct SYNVOICE *voice)
 }
 
 void
-__SYNSetupPitchEnvelope(struct SYNVOICE *voice)
+__SYNSetupPitchEnvelope(struct SYNVOICE* voice)
 {
     ASSERTLINE(0x6B, voice);
 
@@ -122,7 +122,7 @@ __SYNSetupPitchEnvelope(struct SYNVOICE *voice)
 }
 
 void
-__SYNRunVolumeEnvelope(struct SYNVOICE *voice)
+__SYNRunVolumeEnvelope(struct SYNVOICE* voice)
 {
     ASSERTLINE(0xAF, voice);
 
@@ -142,8 +142,7 @@ __SYNRunVolumeEnvelope(struct SYNVOICE *voice)
             {
                 voice->veState = 1;
             }
-        case 2 :
-            return;
+        case 2 : return;
         case 1 :
             voice->veAttn = (voice->veAttn + voice->veDecay);
             if (voice->veAttn <= voice->veSustain)
@@ -168,7 +167,7 @@ __SYNRunVolumeEnvelope(struct SYNVOICE *voice)
 }
 
 void
-__SYNRunPitchEnvelope(struct SYNVOICE *voice)
+__SYNRunPitchEnvelope(struct SYNVOICE* voice)
 {
     ASSERTLINE(0xEB, voice);
 
@@ -191,8 +190,7 @@ __SYNRunPitchEnvelope(struct SYNVOICE *voice)
                     voice->pePitch = voice->peCents;
                     voice->peState = 1;
                 }
-            case 2 :
-                return;
+            case 2 : return;
             case 1 :
                 voice->peCents = (voice->peCents + voice->peDecay);
                 if (voice->pePitch > 0)

@@ -5,7 +5,7 @@ static int Initialized;
 
 int AD16Init(void);
 int AD16WriteReg(unsigned long word);
-int AD16ReadReg(unsigned long *word);
+int AD16ReadReg(unsigned long* word);
 
 int
 AD16Init(void)
@@ -74,7 +74,7 @@ AD16WriteReg(unsigned long word)
 }
 
 int
-AD16ReadReg(unsigned long *word)
+AD16ReadReg(unsigned long* word)
 {
     int           err;
     unsigned long cmd;

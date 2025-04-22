@@ -5,11 +5,11 @@
 DSCache DODisplayCache;
 u8      DOCacheInitialized;
 
-static u8   AllocCacheNode(DSCacheNodePtr *cacheNode, char *name);
-static void FreeCacheNode(DSCacheNodePtr *cacheNode);
+static u8   AllocCacheNode(DSCacheNodePtr* cacheNode, char* name);
+static void FreeCacheNode(DSCacheNodePtr* cacheNode);
 
 DSCacheNodePtr
-DSAddCacheNode(DSCachePtr cache, char *name, Ptr data, Ptr OSFreeFunc)
+DSAddCacheNode(DSCachePtr cache, char* name, Ptr data, Ptr OSFreeFunc)
 {
     DSCacheNodePtr cacheNode;
 
@@ -20,14 +20,14 @@ DSAddCacheNode(DSCachePtr cache, char *name, Ptr data, Ptr OSFreeFunc)
     }
     Strcpy(cacheNode->Name, name);
     cacheNode->Data = data;
-    cacheNode->Free = (void (*)(Ptr *))OSFreeFunc;
+    cacheNode->Free = (void (*)(Ptr*))OSFreeFunc;
     cacheNode->ReferenceCount = 0;
     DSInsertListObject(&cache->CacheNodeList, NULL, (Ptr)cacheNode);
     return cacheNode;
 }
 
 static u8
-AllocCacheNode(DSCacheNodePtr *cacheNode, char *name)
+AllocCacheNode(DSCacheNodePtr* cacheNode, char* name)
 {
     if (*cacheNode)
     {
@@ -63,7 +63,7 @@ DSEmptyCache(DSCachePtr cache)
 }
 
 static DSCacheNodePtr
-FindCacheNode(DSCachePtr cache, char *name, Ptr data)
+FindCacheNode(DSCachePtr cache, char* name, Ptr data)
 {
     DSCacheNodePtr cacheNode;
 
@@ -94,7 +94,7 @@ FindCacheNode(DSCachePtr cache, char *name, Ptr data)
 }
 
 Ptr
-DSGetCacheObj(DSCachePtr cache, char *name)
+DSGetCacheObj(DSCachePtr cache, char* name)
 {
     DSCacheNodePtr cacheNode;
 
@@ -108,7 +108,7 @@ DSGetCacheObj(DSCachePtr cache, char *name)
 }
 
 static void
-FreeCacheNode(DSCacheNodePtr *cacheNode)
+FreeCacheNode(DSCacheNodePtr* cacheNode)
 {
     if (*cacheNode)
     {

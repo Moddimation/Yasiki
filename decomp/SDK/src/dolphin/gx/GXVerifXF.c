@@ -36,13 +36,13 @@ static u8 lightRegisterNames[13][256] = {
     "Z Light Direction / Half Angle Z Component",
 };
 
-#    define LOWORD(var) (((u16 *)&(var))[0])
-#    define HIWORD(var) (((u16 *)&(var))[1])
+#    define LOWORD(var) (((u16*)&(var))[0])
+#    define HIWORD(var) (((u16*)&(var))[1])
 
-#    define BYTE0(var)  (((u8 *)&(var))[0])
-#    define BYTE1(var)  (((u8 *)&(var))[1])
-#    define BYTE2(var)  (((u8 *)&(var))[2])
-#    define BYTE3(var)  (((u8 *)&(var))[3])
+#    define BYTE0(var)  (((u8*)&(var))[0])
+#    define BYTE1(var)  (((u8*)&(var))[1])
+#    define BYTE2(var)  (((u8*)&(var))[2])
+#    define BYTE3(var)  (((u8*)&(var))[3])
 
 static void
 CountTextureTypes(void)
@@ -92,7 +92,7 @@ InitializeXFVerifyData(void)
 }
 
 static void
-CheckDirty(u32 index, const char *name)
+CheckDirty(u32 index, const char* name)
 {
     if (__gxVerif->verifyLevel >= 1 && !__gxVerif->xfRegsDirty[index - 0x1000])
     {
@@ -101,7 +101,7 @@ CheckDirty(u32 index, const char *name)
 }
 
 static void
-CheckClean(u32 index, const char *name)
+CheckClean(u32 index, const char* name)
 {
     if (__gxVerif->verifyLevel >= 1 && __gxVerif->xfRegsDirty[index - 0x1000])
     {
@@ -140,52 +140,29 @@ __GXVertexPacketHas(GXAttr attr)
 {
     switch (attr)
     {
-        case GX_VA_POS :
-            return GET_REG_FIELD(__GXData->vcdLo, 2, 9) != 0;
-        case GX_VA_NRM :
-            return __GXData->hasNrms ? GET_REG_FIELD(__GXData->vcdLo, 2, 11) != 0 : GX_FALSE;
-        case GX_VA_NBT :
-            return __GXData->hasBiNrms ? GET_REG_FIELD(__GXData->vcdLo, 2, 11) != 0 : GX_FALSE;
-        case GX_VA_CLR0 :
-            return GET_REG_FIELD(__GXData->vcdLo, 2, 13) != 0;
-        case GX_VA_CLR1 :
-            return GET_REG_FIELD(__GXData->vcdLo, 2, 15) != 0;
-        case GX_VA_TEX0 :
-            return GET_REG_FIELD(__GXData->vcdHi, 2, 0) != 0;
-        case GX_VA_TEX1 :
-            return GET_REG_FIELD(__GXData->vcdHi, 2, 2) != 0;
-        case GX_VA_TEX2 :
-            return GET_REG_FIELD(__GXData->vcdHi, 2, 4) != 0;
-        case GX_VA_TEX3 :
-            return GET_REG_FIELD(__GXData->vcdHi, 2, 6) != 0;
-        case GX_VA_TEX4 :
-            return GET_REG_FIELD(__GXData->vcdHi, 2, 8) != 0;
-        case GX_VA_TEX5 :
-            return GET_REG_FIELD(__GXData->vcdHi, 2, 10) != 0;
-        case GX_VA_TEX6 :
-            return GET_REG_FIELD(__GXData->vcdHi, 2, 12) != 0;
-        case GX_VA_TEX7 :
-            return GET_REG_FIELD(__GXData->vcdHi, 2, 14) != 0;
-        case GX_VA_PNMTXIDX :
-            return GET_REG_FIELD(__GXData->vcdLo, 1, 0) != 0;
-        case GX_VA_TEX0MTXIDX :
-            return GET_REG_FIELD(__GXData->vcdLo, 1, 1) != 0;
-        case GX_VA_TEX1MTXIDX :
-            return GET_REG_FIELD(__GXData->vcdLo, 1, 2) != 0;
-        case GX_VA_TEX2MTXIDX :
-            return GET_REG_FIELD(__GXData->vcdLo, 1, 3) != 0;
-        case GX_VA_TEX3MTXIDX :
-            return GET_REG_FIELD(__GXData->vcdLo, 1, 4) != 0;
-        case GX_VA_TEX4MTXIDX :
-            return GET_REG_FIELD(__GXData->vcdLo, 1, 5) != 0;
-        case GX_VA_TEX5MTXIDX :
-            return GET_REG_FIELD(__GXData->vcdLo, 1, 6) != 0;
-        case GX_VA_TEX6MTXIDX :
-            return GET_REG_FIELD(__GXData->vcdLo, 1, 7) != 0;
-        case GX_VA_TEX7MTXIDX :
-            return GET_REG_FIELD(__GXData->vcdLo, 1, 8) != 0;
-        default :
-            return GX_FALSE;
+        case GX_VA_POS        : return GET_REG_FIELD(__GXData->vcdLo, 2, 9) != 0;
+        case GX_VA_NRM        : return __GXData->hasNrms ? GET_REG_FIELD(__GXData->vcdLo, 2, 11) != 0 : GX_FALSE;
+        case GX_VA_NBT        : return __GXData->hasBiNrms ? GET_REG_FIELD(__GXData->vcdLo, 2, 11) != 0 : GX_FALSE;
+        case GX_VA_CLR0       : return GET_REG_FIELD(__GXData->vcdLo, 2, 13) != 0;
+        case GX_VA_CLR1       : return GET_REG_FIELD(__GXData->vcdLo, 2, 15) != 0;
+        case GX_VA_TEX0       : return GET_REG_FIELD(__GXData->vcdHi, 2, 0) != 0;
+        case GX_VA_TEX1       : return GET_REG_FIELD(__GXData->vcdHi, 2, 2) != 0;
+        case GX_VA_TEX2       : return GET_REG_FIELD(__GXData->vcdHi, 2, 4) != 0;
+        case GX_VA_TEX3       : return GET_REG_FIELD(__GXData->vcdHi, 2, 6) != 0;
+        case GX_VA_TEX4       : return GET_REG_FIELD(__GXData->vcdHi, 2, 8) != 0;
+        case GX_VA_TEX5       : return GET_REG_FIELD(__GXData->vcdHi, 2, 10) != 0;
+        case GX_VA_TEX6       : return GET_REG_FIELD(__GXData->vcdHi, 2, 12) != 0;
+        case GX_VA_TEX7       : return GET_REG_FIELD(__GXData->vcdHi, 2, 14) != 0;
+        case GX_VA_PNMTXIDX   : return GET_REG_FIELD(__GXData->vcdLo, 1, 0) != 0;
+        case GX_VA_TEX0MTXIDX : return GET_REG_FIELD(__GXData->vcdLo, 1, 1) != 0;
+        case GX_VA_TEX1MTXIDX : return GET_REG_FIELD(__GXData->vcdLo, 1, 2) != 0;
+        case GX_VA_TEX2MTXIDX : return GET_REG_FIELD(__GXData->vcdLo, 1, 3) != 0;
+        case GX_VA_TEX3MTXIDX : return GET_REG_FIELD(__GXData->vcdLo, 1, 4) != 0;
+        case GX_VA_TEX4MTXIDX : return GET_REG_FIELD(__GXData->vcdLo, 1, 5) != 0;
+        case GX_VA_TEX5MTXIDX : return GET_REG_FIELD(__GXData->vcdLo, 1, 6) != 0;
+        case GX_VA_TEX6MTXIDX : return GET_REG_FIELD(__GXData->vcdLo, 1, 7) != 0;
+        case GX_VA_TEX7MTXIDX : return GET_REG_FIELD(__GXData->vcdLo, 1, 8) != 0;
+        default               : return GX_FALSE;
     }
 }
 
@@ -334,9 +311,7 @@ CheckSourceRows(void)
                     __GX_WARNF(GXWARN_TEX_SRC_NTEX, i, ((HIWORD(__gxVerif->xfRegs[i + 64]) >> 7) & 0x1F) - 5);
                 }
                 break;
-            default :
-                __GX_WARNF(GXWARN_INV_TEX_SRC, i, (u8)((HIWORD(__gxVerif->xfRegs[i + 64]) >> 7) & 0x1F));
-                break;
+            default : __GX_WARNF(GXWARN_INV_TEX_SRC, i, (u8)((HIWORD(__gxVerif->xfRegs[i + 64]) >> 7) & 0x1F)); break;
         }
     }
 }
@@ -401,7 +376,7 @@ CheckTextureOrder(void)
 }
 
 static void
-CheckRAM(u8 Normal, u32 StartingAddress, u32 Count, s32 WarnID, char *Str)
+CheckRAM(u8 Normal, u32 StartingAddress, u32 Count, s32 WarnID, char* Str)
 {
     u32 i;
     u8  printedPreamble;
@@ -546,9 +521,7 @@ CheckTextureTransformMatrices(void)
                 Val = (Val >> 2) & 0x3F;
                 MtxIndexInVertexPacket = __GXVertexPacketHas(GX_VA_TEX7MTXIDX);
                 break;
-            default :
-                __GX_WARNF(0x54, i);
-                break;
+            default : __GX_WARNF(0x54, i); break;
         }
         if (MtxIndexInVertexPacket != 0)
         {
@@ -927,9 +900,9 @@ CheckColor1(void)
 }
 
 static void
-ComputeSignExponentMantissa(f32 floatVal, u32 *sign, u32 *exponent, u32 *mantissa)
+ComputeSignExponentMantissa(f32 floatVal, u32* sign, u32* exponent, u32* mantissa)
 {
-    u32 intVal = *(u32 *)&floatVal;
+    u32 intVal = *(u32*)&floatVal;
 
     *sign = (intVal >> 31) & 1;
     *exponent = (intVal >> 23) & 0xFF;
@@ -937,7 +910,7 @@ ComputeSignExponentMantissa(f32 floatVal, u32 *sign, u32 *exponent, u32 *mantiss
 }
 
 static void
-CheckFloatingPointValue(u8 dirtyBit, u32 value, char *label)
+CheckFloatingPointValue(u8 dirtyBit, u32 value, char* label)
 {
     u32 sign;
     u32 exponent;
@@ -950,7 +923,7 @@ CheckFloatingPointValue(u8 dirtyBit, u32 value, char *label)
     {
         return;
     }
-    valuef = *(f32 *)&value;
+    valuef = *(f32*)&value;
     ComputeSignExponentMantissa(valuef, &sign, &exponent, &mantissa);
 
     if (exponent == 0 && mantissa == 0)
@@ -966,16 +939,16 @@ CheckFloatingPointValue(u8 dirtyBit, u32 value, char *label)
             {
                 if (sign != 0)
                 {
-                    __GX_WARN2F(GX_WARN_MEDIUM, 0x5C, label, "-", *(u32 *)&valuef);
+                    __GX_WARN2F(GX_WARN_MEDIUM, 0x5C, label, "-", *(u32*)&valuef);
                 }
                 else
                 {
-                    __GX_WARN2F(GX_WARN_MEDIUM, 0x5C, label, "+", *(u32 *)&valuef);
+                    __GX_WARN2F(GX_WARN_MEDIUM, 0x5C, label, "+", *(u32*)&valuef);
                 }
             }
             else
             {
-                __GX_WARN2F(GX_WARN_MEDIUM, 0x5D, label, *(u32 *)&valuef);
+                __GX_WARN2F(GX_WARN_MEDIUM, 0x5D, label, *(u32*)&valuef);
             }
         }
     }
@@ -983,11 +956,11 @@ CheckFloatingPointValue(u8 dirtyBit, u32 value, char *label)
     {
         if (exponent < 0x6BU)
         {
-            __GX_WARN2F(GX_WARN_ALL, 0x5E, label, valuef, *(u32 *)&valuef);
+            __GX_WARN2F(GX_WARN_ALL, 0x5E, label, valuef, *(u32*)&valuef);
         }
         else if (exponent > 0x96U)
         {
-            __GX_WARN2F(GX_WARN_ALL, 0x5F, label, valuef, *(u32 *)&valuef);
+            __GX_WARN2F(GX_WARN_ALL, 0x5F, label, valuef, *(u32*)&valuef);
         }
     }
 }

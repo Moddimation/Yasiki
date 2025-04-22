@@ -11,13 +11,13 @@ static HIOCallback TxCallback;
 static HIOCallback RxCallback;
 
 static void
-ExtHandler(s32 chan, OSContext *context)
+ExtHandler(s32 chan, OSContext* context)
 {
     Chan = -1;
 }
 
 static void
-ExiHandler(s32 chan, OSContext *context)
+ExiHandler(s32 chan, OSContext* context)
 {
     if (ExiCallback)
     {
@@ -26,7 +26,7 @@ ExiHandler(s32 chan, OSContext *context)
 }
 
 static void
-DbgHandler(__OSInterrupt interrupt, OSContext *context)
+DbgHandler(__OSInterrupt interrupt, OSContext* context)
 {
     __PIRegs[0] = 0x1000;
     if (ExiCallback)
@@ -36,7 +36,7 @@ DbgHandler(__OSInterrupt interrupt, OSContext *context)
 }
 
 static void
-TxHandler(s32 chan, OSContext *context)
+TxHandler(s32 chan, OSContext* context)
 {
     EXIDeselect(Chan);
     EXIUnlock(Chan);
@@ -47,7 +47,7 @@ TxHandler(s32 chan, OSContext *context)
 }
 
 static void
-RxHandler(s32 chan, OSContext *context)
+RxHandler(s32 chan, OSContext* context)
 {
     EXIDeselect(Chan);
     EXIUnlock(Chan);
@@ -191,7 +191,7 @@ HIOInit(s32 chan, HIOCallback callback)
 }
 
 BOOL
-HIOReadMailbox(u32 *word)
+HIOReadMailbox(u32* word)
 {
     int err;
     u32 cmd;
@@ -249,7 +249,7 @@ HIOWriteMailbox(u32 word)
 }
 
 BOOL
-HIORead(u32 addr, void *buffer, s32 size)
+HIORead(u32 addr, void* buffer, s32 size)
 {
     int err;
     u32 cmd;
@@ -280,7 +280,7 @@ HIORead(u32 addr, void *buffer, s32 size)
 }
 
 BOOL
-HIOWrite(u32 addr, void *buffer, s32 size)
+HIOWrite(u32 addr, void* buffer, s32 size)
 {
     int err;
     u32 cmd;
@@ -311,7 +311,7 @@ HIOWrite(u32 addr, void *buffer, s32 size)
 }
 
 BOOL
-HIOReadAsync(u32 addr, void *buffer, s32 size, HIOCallback callback)
+HIOReadAsync(u32 addr, void* buffer, s32 size, HIOCallback callback)
 {
     int err;
     u32 cmd;
@@ -340,7 +340,7 @@ HIOReadAsync(u32 addr, void *buffer, s32 size, HIOCallback callback)
 }
 
 BOOL
-HIOWriteAsync(u32 addr, void *buffer, s32 size, HIOCallback callback)
+HIOWriteAsync(u32 addr, void* buffer, s32 size, HIOCallback callback)
 {
     int err;
     u32 cmd;
@@ -369,7 +369,7 @@ HIOWriteAsync(u32 addr, void *buffer, s32 size, HIOCallback callback)
 }
 
 BOOL
-HIOReadStatus(u32 *status)
+HIOReadStatus(u32* status)
 {
     int err;
     u32 cmd;

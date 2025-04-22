@@ -15,10 +15,10 @@ static struct OSAlarm  Alarm[4];
 
 static unsigned long CompleteTransfer();
 static void          SITransferNext(long chan);
-static void          SIIntrruptHandler(short unused, struct OSContext *context);
-static int  __SITransfer(long chan, void *output, unsigned long outputBytes, void *input, unsigned long inputBytes,
-                         void (*callback)(long, unsigned long, struct OSContext *));
-static void AlarmHandler(struct OSAlarm *alarm, struct OSContext *context);
+static void          SIIntrruptHandler(short unused, struct OSContext* context);
+static int  __SITransfer(long chan, void* output, unsigned long outputBytes, void* input, unsigned long inputBytes,
+                         void (*callback)(long, unsigned long, struct OSContext*));
+static void AlarmHandler(struct OSAlarm* alarm, struct OSContext* context);
 
 int
 SIBusy()
@@ -32,7 +32,7 @@ CompleteTransfer()
     unsigned long  sr;
     unsigned long  i;
     unsigned long  rLen;
-    unsigned char *input;
+    unsigned char* input;
     unsigned long  temp;
 
     sr = __SIRegs[SI_STATUS_IDX];
@@ -44,7 +44,7 @@ CompleteTransfer()
         rLen = (Si.inputBytes / 4);
         for (i = 0; i < rLen; i++)
         {
-            *((u32 *)input)++ = __SIRegs[i + 0x20];
+            *((u32*)input)++ = __SIRegs[i + 0x20];
         }
 
         rLen = Si.inputBytes & 3;
@@ -68,7 +68,7 @@ static void
 SITransferNext(long chan)
 {
     int              i;
-    struct SIPacket *packet;
+    struct SIPacket* packet;
 
     for (i = 0; i < 4; i++)
     {
@@ -94,11 +94,11 @@ SITransferNext(long chan)
 }
 
 static void
-SIIntrruptHandler(short unused, struct OSContext *context)
+SIIntrruptHandler(short unused, struct OSContext* context)
 {
     long          chan;
     unsigned long sr;
-    void          (*callback)(long, unsigned long, struct OSContext *);
+    void          (*callback)(long, unsigned long, struct OSContext*);
 
     ASSERTLINE(0xE2, Si.chan != CHAN_NONE);
 
@@ -118,17 +118,17 @@ SIInit()
 {
     Packet[0].chan = Packet[1].chan = Packet[2].chan = Packet[3].chan = -1;
     __SIRegs[0x30 / 4] = 0;
-    do
-    {
-    } while (__SIRegs[SI_COMCSR_IDX] & SI_COMCSR_TSTART_MASK);
+    do {
+    }
+    while (__SIRegs[SI_COMCSR_IDX] & SI_COMCSR_TSTART_MASK);
     __SIRegs[SI_COMCSR_IDX] = SI_COMCSR_TCINT_MASK;
     __OSSetInterruptHandler(0x14, SIIntrruptHandler);
     __OSUnmaskInterrupts(0x800);
 }
 
 static int
-__SITransfer(long chan, void *output, unsigned long outputBytes, void *input, unsigned long inputBytes,
-             void (*callback)(long, unsigned long, struct OSContext *))
+__SITransfer(long chan, void* output, unsigned long outputBytes, void* input, unsigned long inputBytes,
+             void (*callback)(long, unsigned long, struct OSContext*))
 {
     int           enabled;
     unsigned long rLen;
@@ -181,7 +181,7 @@ __SITransfer(long chan, void *output, unsigned long outputBytes, void *input, un
     rLen = ROUND(outputBytes, 4) / 4;
     for (i = 0; i < rLen; i++)
     {
-        __SIRegs[i + 0x20] = ((u32 *)output)[i];
+        __SIRegs[i + 0x20] = ((u32*)output)[i];
     }
 
     comcsr.val = 0;
@@ -203,9 +203,9 @@ SISync()
     int           enabled;                          // r31
     unsigned long sr;                               // r30
 
-    do
-    {
-    } while (__SIRegs[SI_COMCSR_IDX] & SI_COMCSR_TSTART_MASK);
+    do {
+    }
+    while (__SIRegs[SI_COMCSR_IDX] & SI_COMCSR_TSTART_MASK);
 
     enabled = OSDisableInterrupts();
     sr = CompleteTransfer();
@@ -311,18 +311,18 @@ SIDisablePolling(unsigned long poll)
 }
 
 void
-SIGetResponse(long chan, void *data)
+SIGetResponse(long chan, void* data)
 {
     ASSERTMSGLINE(0x250, ((chan >= 0) && (chan < 4)), "SIGetResponse(): invalid channel.");
-    ((u32 *)data)[0] = __SIRegs[chan * 3 + 1];
-    ((u32 *)data)[1] = __SIRegs[chan * 3 + 2];
+    ((u32*)data)[0] = __SIRegs[chan * 3 + 1];
+    ((u32*)data)[1] = __SIRegs[chan * 3 + 2];
 }
 
 static void
-AlarmHandler(struct OSAlarm *alarm, struct OSContext *context)
+AlarmHandler(struct OSAlarm* alarm, struct OSContext* context)
 {
     long             chan;
-    struct SIPacket *packet;
+    struct SIPacket* packet;
 
     chan = alarm - Alarm;
 
@@ -339,11 +339,11 @@ AlarmHandler(struct OSAlarm *alarm, struct OSContext *context)
 }
 
 int
-SITransfer(long chan, void *output, unsigned long outputBytes, void *input, unsigned long inputBytes,
-           void (*callback)(long, unsigned long, struct OSContext *), long long time)
+SITransfer(long chan, void* output, unsigned long outputBytes, void* input, unsigned long inputBytes,
+           void (*callback)(long, unsigned long, struct OSContext*), long long time)
 {
     int              enabled;
-    struct SIPacket *packet;
+    struct SIPacket* packet;
     long long        now;
 
     packet = &Packet[chan];

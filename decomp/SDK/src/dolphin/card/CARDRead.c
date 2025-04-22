@@ -11,13 +11,13 @@
 static void ReadCallback(s32 chan, s32 result);
 
 s32
-__CARDSeek(CARDFileInfo *fileInfo, s32 length, s32 offset, CARDControl **pcard)
+__CARDSeek(CARDFileInfo* fileInfo, s32 length, s32 offset, CARDControl** pcard)
 {
-    CARDControl *card;
-    CARDDir     *dir;
-    CARDDir     *ent;
+    CARDControl* card;
+    CARDDir*     dir;
+    CARDDir*     ent;
     s32          result;
-    u16         *fat;
+    u16*         fat;
 
     ASSERTLINE(0x57, 0 <= fileInfo->chan && fileInfo->chan < 2);
     ASSERTLINE(0x58, 0 <= fileInfo->fileNo && fileInfo->fileNo < CARD_MAX_FILE);
@@ -77,10 +77,10 @@ __CARDSeek(CARDFileInfo *fileInfo, s32 length, s32 offset, CARDControl **pcard)
 static void
 ReadCallback(s32 chan, s32 result)
 {
-    CARDControl  *card;
+    CARDControl*  card;
     CARDCallback  callback;
-    u16          *fat;
-    CARDFileInfo *fileInfo;
+    u16*          fat;
+    CARDFileInfo* fileInfo;
     s32           length;
 
     card = &__CARDBlock[chan];
@@ -138,12 +138,12 @@ error:
 }
 
 s32
-CARDReadAsync(CARDFileInfo *fileInfo, void *buf, s32 length, s32 offset, CARDCallback callback)
+CARDReadAsync(CARDFileInfo* fileInfo, void* buf, s32 length, s32 offset, CARDCallback callback)
 {
-    CARDControl *card;
+    CARDControl* card;
     s32          result;
-    CARDDir     *dir;
-    CARDDir     *ent;
+    CARDDir*     dir;
+    CARDDir*     ent;
 
     ASSERTLINE(0xF0, buf && OFFSET(buf, 32) == 0);
     ASSERTLINE(0xF1, OFFSET(offset, CARD_SEG_SIZE) == 0);
@@ -185,7 +185,7 @@ CARDReadAsync(CARDFileInfo *fileInfo, void *buf, s32 length, s32 offset, CARDCal
 }
 
 long
-CARDRead(struct CARDFileInfo *fileInfo, void *buf, long length, long offset)
+CARDRead(struct CARDFileInfo* fileInfo, void* buf, long length, long offset)
 {
     long result = CARDReadAsync(fileInfo, buf, length, offset, __CARDSyncCallback);
 
@@ -197,11 +197,11 @@ CARDRead(struct CARDFileInfo *fileInfo, void *buf, long length, long offset)
 }
 
 s32
-CARDCancel(CARDFileInfo *fileInfo)
+CARDCancel(CARDFileInfo* fileInfo)
 {
     BOOL         intrEnabled;
     s32          result;
-    CARDControl *card;
+    CARDControl* card;
 
     ASSERTLINE(0x14D, 0 <= fileInfo->chan && fileInfo->chan < 2);
     ASSERTLINE(0x14E, 0 <= fileInfo->fileNo && fileInfo->fileNo < CARD_MAX_FILE);

@@ -14,7 +14,7 @@ static int                    WaitingCoverClose;                    // size: 0x4
 static volatile int           Breaking;                             // size: 0x4, address: 0x18
 
 void
-__DVDInterruptHandler(short unused, struct OSContext *context)
+__DVDInterruptHandler(short unused, struct OSContext* context)
 {
     struct OSContext exceptionContext;
     unsigned long    cause;
@@ -94,7 +94,7 @@ __DVDInterruptHandler(short unused, struct OSContext *context)
 }
 
 int
-DVDLowRead(void *addr, unsigned long length, unsigned long offset, void (*callback)(unsigned long))
+DVDLowRead(void* addr, unsigned long length, unsigned long offset, void (*callback)(unsigned long))
 {
     ASSERTMSGLINE(0x143, !OFFSET(addr, 32), "DVDLowRead(): address must be aligned with 32 byte boundary.");
     ASSERTMSGLINE(0x144, !(length % 32), "DVDLowRead(): length must be a multiple of 32.");
@@ -131,7 +131,7 @@ DVDLowWaitCoverClose(void (*callback)(unsigned long))
 }
 
 int
-DVDLowReadDiskID(struct DVDDiskID *diskID, void (*callback)(unsigned long))
+DVDLowReadDiskID(struct DVDDiskID* diskID, void (*callback)(unsigned long))
 {
     ASSERTMSGLINE(0x19B, !OFFSET(diskID, 32), "DVDLowReadID(): id must be aligned with 32 byte boundary.");
     Callback = callback;
@@ -163,7 +163,7 @@ DVDLowRequestError(void (*callback)(unsigned long))
 }
 
 int
-DVDLowInquiry(struct DVDDriveInfo *info, void (*callback)(unsigned long))
+DVDLowInquiry(struct DVDDriveInfo* info, void (*callback)(unsigned long))
 {
     Callback = callback;
     __DIRegs[2] = 0x12000000;
@@ -220,8 +220,7 @@ DVDLowReset()
     reg = __PIRegs[9];
     __PIRegs[9] = (reg & 0xFFFFFFFB) | 1;
     resetStart = __OSGetSystemTime();
-    while ((__OSGetSystemTime() - resetStart) < OSMicrosecondsToTicks(12))
-        ;
+    while ((__OSGetSystemTime() - resetStart) < OSMicrosecondsToTicks(12));
     __PIRegs[9] = (reg | 4 | 1);
     ResetOccurred = 1;
     LastResetEnd = __OSGetSystemTime();

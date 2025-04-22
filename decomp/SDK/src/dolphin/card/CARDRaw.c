@@ -5,9 +5,9 @@
 #include "CARDPrivate.h"
 
 long
-__CARDRawReadAsync(long chan, void *buf, long length, long offset, void (*callback)(long, long))
+__CARDRawReadAsync(long chan, void* buf, long length, long offset, void (*callback)(long, long))
 {
-    struct CARDControl *card;
+    struct CARDControl* card;
     long                result;
 
     ASSERTLINE(0x36, buf && ((u32)buf % 32) == 0);
@@ -29,7 +29,7 @@ __CARDRawReadAsync(long chan, void *buf, long length, long offset, void (*callba
 }
 
 long
-__CARDRawRead(long chan, void *buf, long length, long offset)
+__CARDRawRead(long chan, void* buf, long length, long offset)
 {
     long result = __CARDRawReadAsync(chan, buf, length, offset, &__CARDSyncCallback);
 

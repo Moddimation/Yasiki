@@ -43,11 +43,11 @@ typedef struct OSFontHeader
 } OSFontHeader;
 
 u16   OSGetFontEncode(void);
-BOOL  OSInitFont(OSFontHeader *fontData);
-u32   OSLoadFont(OSFontHeader *fontData, void *temp);
-char *OSGetFontTexture(char *string, void **image, s32 *x, s32 *y, s32 *width);
-char *OSGetFontWidth(char *string, s32 *width);
-char *OSGetFontTexel(char *string, void *image, s32 pos, s32 stride, s32 *width);
+BOOL  OSInitFont(OSFontHeader* fontData);
+u32   OSLoadFont(OSFontHeader* fontData, void* temp);
+char* OSGetFontTexture(char* string, void** image, s32* x, s32* y, s32* width);
+char* OSGetFontWidth(char* string, s32* width);
+char* OSGetFontTexel(char* string, void* image, s32 pos, s32 stride, s32* width);
 
 #ifdef __cplusplus
 }

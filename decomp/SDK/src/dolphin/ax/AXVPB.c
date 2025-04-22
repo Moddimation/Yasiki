@@ -28,10 +28,10 @@ __AXGetNumVoices(void)
 }
 
 void
-__AXServiceVPB(AXVPB *pvpb)
+__AXServiceVPB(AXVPB* pvpb)
 {
-    AXPB *ppbDsp;
-    AXPB *ppbUser;
+    AXPB* ppbDsp;
+    AXPB* ppbUser;
     u32   sync;
 
     ASSERTLINE(0xA1, (pvpb->index >= 0) && (pvpb->index < AX_MAX_VOICES));
@@ -50,10 +50,10 @@ __AXServiceVPB(AXVPB *pvpb)
     if (sync & AX_SYNC_FLAG_COPYALL)
     {
         // copy the whole PB struct. (size: 0xC0)
-        u32 *src;
-        u32 *dst;
-        src = (void *)ppbUser;
-        dst = (void *)ppbDsp;
+        u32* src;
+        u32* dst;
+        src = (void*)ppbUser;
+        dst = (void*)ppbDsp;
         *(dst) = *(src);
         dst += 1;
         src += 1;
@@ -199,8 +199,8 @@ __AXServiceVPB(AXVPB *pvpb)
         if (pvpb->updateCounter != 0)
         {
             u32 count;
-            src = (void *)&__AXUpdates[pvpb->index];
-            dst = (void *)pvpb->updateData;
+            src = (void*)&__AXUpdates[pvpb->index];
+            dst = (void*)pvpb->updateData;
             for (count = pvpb->updateCounter; count; count--)
             {
                 *(dst) = *(src);
@@ -234,10 +234,10 @@ __AXServiceVPB(AXVPB *pvpb)
     if (sync & AX_SYNC_FLAG_COPYAXPBMIX)
     {
         // copy AXPBMIX.
-        u16 *src;
-        u16 *dst;
-        src = (void *)&ppbUser->mix;
-        dst = (void *)&ppbDsp->mix;
+        u16* src;
+        u16* dst;
+        src = (void*)&ppbUser->mix;
+        dst = (void*)&ppbDsp->mix;
         *(dst) = *(src);
         dst += 1;
         src += 1;
@@ -299,11 +299,11 @@ __AXServiceVPB(AXVPB *pvpb)
     else if (sync & AX_SYNC_FLAG_COPYITD)
     {
         // copy ITD struct.
-        u16 *src;
-        u16 *dst;
-        u32 *dst_;
-        src = (void *)&ppbUser->itd;
-        dst = (void *)&ppbDsp->itd;
+        u16* src;
+        u16* dst;
+        u32* dst_;
+        src = (void*)&ppbUser->itd;
+        dst = (void*)&ppbDsp->itd;
         *(dst) = *(src);
         dst += 1;
         src += 1;
@@ -360,10 +360,10 @@ __AXServiceVPB(AXVPB *pvpb)
     if (sync & AX_SYNC_FLAG_COPYUPDATE)
     {
         // copy UPDATE struct.
-        u16 *src;
-        u16 *dst;
-        dst = (void *)&ppbDsp->update;
-        src = (void *)&ppbUser->update;
+        u16* src;
+        u16* dst;
+        dst = (void*)&ppbDsp->update;
+        src = (void*)&ppbUser->update;
         *(dst) = *(src);
         dst += 1;
         src += 1;
@@ -379,12 +379,12 @@ __AXServiceVPB(AXVPB *pvpb)
         *(dst) = *(src);
         if (pvpb->updateCounter)
         {
-            u32 *src_;
-            u32 *dst_;
+            u32* src_;
+            u32* dst_;
             u32  count;
 
-            dst_ = (void *)&__AXUpdates[pvpb->index];
-            src_ = (void *)&pvpb->updateData;
+            dst_ = (void*)&__AXUpdates[pvpb->index];
+            src_ = (void*)&pvpb->updateData;
 
             for (count = pvpb->updateCounter; count; count--)
             {
@@ -397,10 +397,10 @@ __AXServiceVPB(AXVPB *pvpb)
     if (sync & AX_SYNC_FLAG_COPYDPOP)
     {
         // copy DPOP struct.
-        u16 *src;
-        u16 *dst;
-        dst = (u16 *)&ppbDsp->dpop;
-        src = (u16 *)&ppbUser->dpop;
+        u16* src;
+        u16* dst;
+        dst = (u16*)&ppbDsp->dpop;
+        src = (u16*)&ppbUser->dpop;
         *(dst) = *(src);
         dst += 1;
         src += 1;
@@ -440,10 +440,10 @@ __AXServiceVPB(AXVPB *pvpb)
     if (sync & AX_SYNC_FLAG_COPYFIR)
     {
         // copy FIR struct.
-        u16 *src;
-        u16 *dst;
-        dst = (void *)&ppbDsp->fir;
-        src = (void *)&ppbUser->fir;
+        u16* src;
+        u16* dst;
+        dst = (void*)&ppbDsp->fir;
+        src = (void*)&ppbUser->fir;
         *(dst) = *(src);
         dst += 1;
         src += 1;
@@ -461,24 +461,24 @@ __AXServiceVPB(AXVPB *pvpb)
         }
         if (sync & AX_SYNC_FLAG_COPYLOOPADDR)
         {
-            *(u32 *)&ppbDsp->addr.loopAddressHi = *(u32 *)&ppbUser->addr.loopAddressHi;
+            *(u32*)&ppbDsp->addr.loopAddressHi = *(u32*)&ppbUser->addr.loopAddressHi;
         }
         if (sync & AX_SYNC_FLAG_COPYENDADDR)
         {
-            *(u32 *)&ppbDsp->addr.endAddressHi = *(u32 *)&ppbUser->addr.endAddressHi;
+            *(u32*)&ppbDsp->addr.endAddressHi = *(u32*)&ppbUser->addr.endAddressHi;
         }
         if (sync & AX_SYNC_FLAG_COPYCURADDR)
         {
-            *(u32 *)&ppbDsp->addr.currentAddressHi = *(u32 *)&ppbUser->addr.currentAddressHi;
+            *(u32*)&ppbDsp->addr.currentAddressHi = *(u32*)&ppbUser->addr.currentAddressHi;
         }
     }
     else if (sync & AX_SYNC_FLAG_COPYADDR)
     {
         // copy ADDR struct.
-        u32 *src;
-        u32 *dst;
-        dst = (void *)&ppbDsp->addr;
-        src = (void *)&ppbUser->addr;
+        u32* src;
+        u32* dst;
+        dst = (void*)&ppbDsp->addr;
+        src = (void*)&ppbUser->addr;
         *(dst) = *(src);
         dst += 1;
         src += 1;
@@ -493,10 +493,10 @@ __AXServiceVPB(AXVPB *pvpb)
     if (sync & AX_SYNC_FLAG_COPYADPCM)
     {
         // copy ADPCM struct.
-        u32 *src;
-        u32 *dst;
-        dst = (void *)&ppbDsp->adpcm;
-        src = (void *)&ppbUser->adpcm;
+        u32* src;
+        u32* dst;
+        dst = (void*)&ppbDsp->adpcm;
+        src = (void*)&ppbUser->adpcm;
         *(dst) = *(src);
         dst += 1;
         src += 1;
@@ -536,10 +536,10 @@ __AXServiceVPB(AXVPB *pvpb)
     else if (sync & AX_SYNC_FLAG_COPYSRC)
     {
         // copy SRC struct.
-        u16 *src;
-        u16 *dst;
-        dst = (void *)&ppbDsp->src;
-        src = (void *)&ppbUser->src;
+        u16* src;
+        u16* dst;
+        dst = (void*)&ppbDsp->src;
+        src = (void*)&ppbUser->src;
         *(dst) = *(src);
         dst += 1;
         src += 1;
@@ -565,10 +565,10 @@ __AXServiceVPB(AXVPB *pvpb)
     if (sync & AX_SYNC_FLAG_COPYADPCMLOOP)
     {
         // copy ADPCMLOOP struct.
-        u16 *src;
-        u16 *dst;
-        dst = (void *)&ppbDsp->adpcmLoop;
-        src = (void *)&ppbUser->adpcmLoop;
+        u16* src;
+        u16* dst;
+        dst = (void*)&ppbDsp->adpcmLoop;
+        src = (void*)&ppbUser->adpcmLoop;
         *(dst) = *(src);
         dst += 1;
         src += 1;
@@ -580,9 +580,9 @@ __AXServiceVPB(AXVPB *pvpb)
 }
 
 void
-__AXDumpVPB(AXVPB *pvpb)
+__AXDumpVPB(AXVPB* pvpb)
 {
-    AXPB *ppbDsp;
+    AXPB* ppbDsp;
 
     ppbDsp = &__AXPB[pvpb->index];
     if (ppbDsp->state == 1)
@@ -599,7 +599,7 @@ __AXSyncPBs(u32 lessDspCycles)
 {
     u32    cycles;
     u32    i;
-    AXVPB *pvpb;
+    AXVPB* pvpb;
 
     __AXNumVoices = 0;
     DCInvalidateRange(__AXPB, sizeof(__AXPB));
@@ -652,14 +652,14 @@ __AXSyncPBs(u32 lessDspCycles)
     DCFlushRange(__AXUpdates, sizeof(__AXUpdates));
 }
 
-AXPB *
+AXPB*
 __AXGetPBs(void)
 {
     return __AXPB;
 }
 
 void
-__AXSetPBDefault(AXVPB *p)
+__AXSetPBDefault(AXVPB* p)
 {
     p->pb.state = 0;
     p->pb.itd.flag = 0;
@@ -674,10 +674,10 @@ void
 __AXVPBInit(void)
 {
     u32            i;
-    AXPB          *ppb;
-    AXPBITDBUFFER *ppbi;
-    AXPBU         *ppbu;
-    AXVPB         *pvpb;
+    AXPB*          ppb;
+    AXPBITDBUFFER* ppbi;
+    AXPBU*         ppbu;
+    AXVPB*         pvpb;
 
 #ifdef DEBUG
     OSReport("Initializing AXVPB code module¥n");
@@ -706,10 +706,10 @@ __AXVPBInit(void)
         }
         else
         {
-            pvpb->pb.nextHi = (u16)((u32)((char *)ppb + 0xC0) >> 16);
-            pvpb->pb.nextLo = (u16)((u32)((char *)ppb + 0xC0));
-            ppb->nextHi = (u16)((u32)((char *)ppb + 0xC0) >> 16);
-            ppb->nextLo = (u16)((u32)((char *)ppb + 0xC0));
+            pvpb->pb.nextHi = (u16)((u32)((char*)ppb + 0xC0) >> 16);
+            pvpb->pb.nextLo = (u16)((u32)((char*)ppb + 0xC0));
+            ppb->nextHi = (u16)((u32)((char*)ppb + 0xC0) >> 16);
+            ppb->nextLo = (u16)((u32)((char*)ppb + 0xC0));
         }
         pvpb->pb.currHi = (u16)(((u32)ppb) >> 16);
         pvpb->pb.currLo = (u16)((u32)ppb);
@@ -737,10 +737,10 @@ __AXVPBQuit(void)
 }
 
 void
-AXSetVoiceSrcType(AXVPB *p, u32 type)
+AXSetVoiceSrcType(AXVPB* p, u32 type)
 {
     int   old;
-    AXPB *ppb;
+    AXPB* ppb;
 
     ASSERTLINE(0x35E, p);
     ASSERTLINE(0x35F, type <= AX_SRC_TYPE_4TAP_16K);
@@ -748,12 +748,8 @@ AXSetVoiceSrcType(AXVPB *p, u32 type)
     ppb = &p->pb;
     switch (type)
     {
-        case AX_SRC_TYPE_NONE :
-            ppb->srcSelect = 2;
-            break;
-        case AX_SRC_TYPE_LINEAR :
-            ppb->srcSelect = 1;
-            break;
+        case AX_SRC_TYPE_NONE   : ppb->srcSelect = 2; break;
+        case AX_SRC_TYPE_LINEAR : ppb->srcSelect = 1; break;
         case AX_SRC_TYPE_4TAP_8K :
             ppb->srcSelect = 0;
             ppb->coefSelect = 0;
@@ -772,7 +768,7 @@ AXSetVoiceSrcType(AXVPB *p, u32 type)
 }
 
 void
-AXSetVoiceState(AXVPB *p, u16 state)
+AXSetVoiceState(AXVPB* p, u16 state)
 {
     int old;
 
@@ -787,7 +783,7 @@ AXSetVoiceState(AXVPB *p, u16 state)
 }
 
 void
-AXSetVoiceType(AXVPB *p, u16 type)
+AXSetVoiceType(AXVPB* p, u16 type)
 {
     int old;
 
@@ -798,16 +794,16 @@ AXSetVoiceType(AXVPB *p, u16 type)
 }
 
 void
-AXSetVoiceMix(AXVPB *p, AXPBMIX *mix)
+AXSetVoiceMix(AXVPB* p, AXPBMIX* mix)
 {
     int  old;
     u16  mixerCtrl;
-    u16 *dst;
-    u16 *src;
+    u16* dst;
+    u16* src;
 
-    src = (u16 *)&mix; //! @bug? This is a pointer (to) a pointer and is not what you want if you want to copy the
-                       //! information, no?
-    dst = (u16 *)&p->pb.mix;
+    src = (u16*)&mix; //! @bug? This is a pointer (to) a pointer and is not what you want if you want to copy the
+                      //! information, no?
+    dst = (u16*)&p->pb.mix;
 
     old = OSDisableInterrupts();
 
@@ -911,7 +907,7 @@ AXSetVoiceMix(AXVPB *p, AXPBMIX *mix)
 }
 
 void
-AXSetVoiceItdOn(AXVPB *p)
+AXSetVoiceItdOn(AXVPB* p)
 {
     int old;
 
@@ -924,7 +920,7 @@ AXSetVoiceItdOn(AXVPB *p)
 }
 
 void
-AXSetVoiceItdTarget(AXVPB *p, u16 lShift, u16 rShift)
+AXSetVoiceItdTarget(AXVPB* p, u16 lShift, u16 rShift)
 {
     int old;
 
@@ -936,7 +932,7 @@ AXSetVoiceItdTarget(AXVPB *p, u16 lShift, u16 rShift)
 }
 
 void
-AXSetVoiceUpdateIncrement(AXVPB *p)
+AXSetVoiceUpdateIncrement(AXVPB* p)
 {
     int old;
 
@@ -948,7 +944,7 @@ AXSetVoiceUpdateIncrement(AXVPB *p)
 }
 
 void
-AXSetVoiceUpdateWrite(AXVPB *p, u16 param, u16 data)
+AXSetVoiceUpdateWrite(AXVPB* p, u16 param, u16 data)
 {
     int old;
 
@@ -964,14 +960,14 @@ AXSetVoiceUpdateWrite(AXVPB *p, u16 param, u16 data)
 }
 
 void
-AXSetVoiceDpop(AXVPB *p, AXPBDPOP *dpop)
+AXSetVoiceDpop(AXVPB* p, AXPBDPOP* dpop)
 {
     int  old;
-    u16 *dst;
-    u16 *src;
+    u16* dst;
+    u16* src;
 
-    dst = (void *)&p->pb.dpop;
-    src = (void *)dpop;
+    dst = (void*)&p->pb.dpop;
+    src = (void*)dpop;
 
     old = OSDisableInterrupts();
     {
@@ -1008,7 +1004,7 @@ AXSetVoiceDpop(AXVPB *p, AXPBDPOP *dpop)
 }
 
 void
-AXSetVoiceVe(AXVPB *p, AXPBVE *ve)
+AXSetVoiceVe(AXVPB* p, AXPBVE* ve)
 {
     int old;
 
@@ -1020,7 +1016,7 @@ AXSetVoiceVe(AXVPB *p, AXPBVE *ve)
 }
 
 void
-AXSetVoiceVeDelta(AXVPB *p, s16 delta)
+AXSetVoiceVeDelta(AXVPB* p, s16 delta)
 {
     int old;
 
@@ -1031,7 +1027,7 @@ AXSetVoiceVeDelta(AXVPB *p, s16 delta)
 }
 
 void
-AXSetVoiceFir(AXVPB *p, AXPBFIR *fir)
+AXSetVoiceFir(AXVPB* p, AXPBFIR* fir)
 {
     int old;
 
@@ -1044,14 +1040,14 @@ AXSetVoiceFir(AXVPB *p, AXPBFIR *fir)
 }
 
 void
-AXSetVoiceAddr(AXVPB *p, AXPBADDR *addr)
+AXSetVoiceAddr(AXVPB* p, AXPBADDR* addr)
 {
     int  old;
-    u32 *dst;
-    u32 *src;
+    u32* dst;
+    u32* src;
 
-    dst = (void *)&p->pb.addr;
-    src = (void *)addr;
+    dst = (void*)&p->pb.addr;
+    src = (void*)addr;
 
     old = OSDisableInterrupts();
     {
@@ -1120,9 +1116,7 @@ AXSetVoiceAddr(AXVPB *p, AXPBADDR *addr)
             *(dst) = 0;
             dst += 1;
             break;
-        default :
-            ASSERTMSGLINE(0x4F0, 0, "unknown addr->formaqt in PB¥n");
-            break;
+        default : ASSERTMSGLINE(0x4F0, 0, "unknown addr->formaqt in PB¥n"); break;
     }
     p->sync
         &= ~(AX_SYNC_FLAG_COPYLOOP | AX_SYNC_FLAG_COPYLOOPADDR | AX_SYNC_FLAG_COPYENDADDR | AX_SYNC_FLAG_COPYCURADDR);
@@ -1131,7 +1125,7 @@ AXSetVoiceAddr(AXVPB *p, AXPBADDR *addr)
 }
 
 void
-AXSetVoiceLoop(AXVPB *p, u16 loop)
+AXSetVoiceLoop(AXVPB* p, u16 loop)
 {
     int old;
 
@@ -1142,7 +1136,7 @@ AXSetVoiceLoop(AXVPB *p, u16 loop)
 }
 
 void
-AXSetVoiceLoopAddr(AXVPB *p, u32 addr)
+AXSetVoiceLoopAddr(AXVPB* p, u32 addr)
 {
     int old;
 
@@ -1154,7 +1148,7 @@ AXSetVoiceLoopAddr(AXVPB *p, u32 addr)
 }
 
 void
-AXSetVoiceEndAddr(AXVPB *p, u32 addr)
+AXSetVoiceEndAddr(AXVPB* p, u32 addr)
 {
     int old;
 
@@ -1166,7 +1160,7 @@ AXSetVoiceEndAddr(AXVPB *p, u32 addr)
 }
 
 void
-AXSetVoiceCurrentAddr(AXVPB *p, u32 addr)
+AXSetVoiceCurrentAddr(AXVPB* p, u32 addr)
 {
     int old;
 
@@ -1178,14 +1172,14 @@ AXSetVoiceCurrentAddr(AXVPB *p, u32 addr)
 }
 
 void
-AXSetVoiceAdpcm(AXVPB *p, AXPBADPCM *adpcm)
+AXSetVoiceAdpcm(AXVPB* p, AXPBADPCM* adpcm)
 {
     int  old;
-    u32 *dst;
-    u32 *src;
+    u32* dst;
+    u32* src;
 
-    dst = (void *)&p->pb.adpcm;
-    src = (void *)adpcm;
+    dst = (void*)&p->pb.adpcm;
+    src = (void*)adpcm;
 
     old = OSDisableInterrupts();
 
@@ -1226,14 +1220,14 @@ AXSetVoiceAdpcm(AXVPB *p, AXPBADPCM *adpcm)
 }
 
 void
-AXSetVoiceSrc(AXVPB *p, AXPBSRC *src_)
+AXSetVoiceSrc(AXVPB* p, AXPBSRC* src_)
 {
     int  old;
-    u16 *dst;
-    u16 *src;
+    u16* dst;
+    u16* src;
 
-    dst = (void *)&p->pb.src;
-    src = (void *)src_;
+    dst = (void*)&p->pb.src;
+    src = (void*)src_;
 
     old = OSDisableInterrupts();
     {
@@ -1265,7 +1259,7 @@ AXSetVoiceSrc(AXVPB *p, AXPBSRC *src_)
 }
 
 void
-AXSetVoiceSrcRatio(AXVPB *p, float ratio)
+AXSetVoiceSrcRatio(AXVPB* p, float ratio)
 {
     u32 r;
     int old;
@@ -1283,14 +1277,14 @@ AXSetVoiceSrcRatio(AXVPB *p, float ratio)
 }
 
 void
-AXSetVoiceAdpcmLoop(AXVPB *p, AXPBADPCMLOOP *adpcmloop)
+AXSetVoiceAdpcmLoop(AXVPB* p, AXPBADPCMLOOP* adpcmloop)
 {
     int  old;
-    u16 *dst;
-    u16 *src;
+    u16* dst;
+    u16* src;
 
-    dst = (void *)&p->pb.adpcmLoop;
-    src = (void *)adpcmloop;
+    dst = (void*)&p->pb.adpcmLoop;
+    src = (void*)adpcmloop;
     old = OSDisableInterrupts();
     {
         *(dst) = *(src);

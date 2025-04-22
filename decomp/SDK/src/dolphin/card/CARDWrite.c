@@ -12,12 +12,12 @@ static void EraseCallback(long chan, long result);
 static void
 WriteCallback(long chan, long result)
 {
-    struct CARDControl  *card;
+    struct CARDControl*  card;
     void                 (*callback)(long, long);
-    unsigned short      *fat;
-    struct CARDDir      *dir;
-    struct CARDDir      *ent;
-    struct CARDFileInfo *fileInfo;
+    unsigned short*      fat;
+    struct CARDDir*      dir;
+    struct CARDDir*      ent;
+    struct CARDFileInfo* fileInfo;
 
     card = &__CARDBlock[chan];
     if (result >= 0)
@@ -71,9 +71,9 @@ WriteCallback(long chan, long result)
 static void
 EraseCallback(long chan, long result)
 {
-    struct CARDControl  *card;
+    struct CARDControl*  card;
     void                 (*callback)(long, long);
-    struct CARDFileInfo *fileInfo;
+    struct CARDFileInfo* fileInfo;
 
     card = &__CARDBlock[chan];
     if (result >= 0)
@@ -98,12 +98,12 @@ EraseCallback(long chan, long result)
 }
 
 long
-CARDWriteAsync(struct CARDFileInfo *fileInfo, void *buf, long length, long offset, void (*callback)(long, long))
+CARDWriteAsync(struct CARDFileInfo* fileInfo, void* buf, long length, long offset, void (*callback)(long, long))
 {
-    struct CARDControl *card;
+    struct CARDControl* card;
     long                result;
-    struct CARDDir     *dir;
-    struct CARDDir     *ent;
+    struct CARDDir*     dir;
+    struct CARDDir*     ent;
 
     ASSERTLINE(0xC9, buf && ((u32)buf % 32) == 0);
     ASSERTLINE(0xCA, 0 < length);
@@ -128,9 +128,9 @@ CARDWriteAsync(struct CARDFileInfo *fileInfo, void *buf, long length, long offse
         return __CARDPutControlBlock(card, result);
     }
 
-    DCStoreRange((void *)buf, (u32)length);
+    DCStoreRange((void*)buf, (u32)length);
     card->apiCallback = callback ? callback : __CARDDefaultApiCallback;
-    card->buffer = (void *)buf;
+    card->buffer = (void*)buf;
     result = __CARDEraseSector(fileInfo->chan, card->sectorSize * (u32)fileInfo->iBlock, EraseCallback);
     if (result < 0)
     {
@@ -140,7 +140,7 @@ CARDWriteAsync(struct CARDFileInfo *fileInfo, void *buf, long length, long offse
 }
 
 long
-CARDWrite(struct CARDFileInfo *fileInfo, void *buf, long length, long offset)
+CARDWrite(struct CARDFileInfo* fileInfo, void* buf, long length, long offset)
 {
     long result = CARDWriteAsync(fileInfo, buf, length, offset, __CARDSyncCallback);
 

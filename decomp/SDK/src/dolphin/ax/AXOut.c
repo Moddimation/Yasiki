@@ -19,29 +19,29 @@ volatile static int           __AXDSPInitFlag;
 static int                    __AXDSPDoneFlag;
 
 // functions
-static void __AXDSPInitCallback(void *task);
-static void __AXDSPResumeCallback(void *task);
-static void __AXDSPDoneCallback(void *task);
+static void __AXDSPInitCallback(void* task);
+static void __AXDSPResumeCallback(void* task);
+static void __AXDSPDoneCallback(void* task);
 
 void
 __AXOutNewFrame(u32 lessDspCycles)
 {
     u32        cl;
     int        old;
-    AXPROFILE *profile;
+    AXPROFILE* profile;
 
     __AXLocalProfile.axFrameStart = OSGetTime();
     __AXSyncPBs(lessDspCycles);
     __AXPrintStudio();
     cl = __AXGetCommandListAddress();
     DSPSendMailToDSP(0xBABE0180);
-    do
-    {
-    } while (DSPCheckMailToDSP() != 0U);
+    do {
+    }
+    while (DSPCheckMailToDSP() != 0U);
     DSPSendMailToDSP(cl);
-    do
-    {
-    } while (DSPCheckMailToDSP() != 0U);
+    do {
+    }
+    while (DSPCheckMailToDSP() != 0U);
     old = OSEnableInterrupts();
     __AXServiceCallbackStack();
     __AXLocalProfile.auxProcessingStart = OSGetTime();
@@ -59,7 +59,7 @@ __AXOutNewFrame(u32 lessDspCycles)
     AIInitDMA((u32)&__AXOutBuffer[__AXOutFrame][0], 0x280);
     __AXLocalProfile.axFrameEnd = OSGetTime();
     __AXLocalProfile.axNumVoices = __AXGetNumVoices();
-    profile = (void *)__AXGetCurrentProfile();
+    profile = (void*)__AXGetCurrentProfile();
     if (profile)
     {
         memcpy(profile, &__AXLocalProfile, sizeof(AXPROFILE));
@@ -85,13 +85,13 @@ __AXOutAiCallback(void)
 }
 
 static void
-__AXDSPInitCallback(void *task)
+__AXDSPInitCallback(void* task)
 {
     __AXDSPInitFlag = 1;
 }
 
 static void
-__AXDSPResumeCallback(void *task)
+__AXDSPResumeCallback(void* task)
 {
     if (__AXOutDspReady == 2)
     {
@@ -103,7 +103,7 @@ __AXDSPResumeCallback(void *task)
 }
 
 static void
-__AXDSPDoneCallback(void *task)
+__AXDSPDoneCallback(void* task)
 {
     __AXDSPDoneFlag = 1;
 }
@@ -131,9 +131,9 @@ __AXOutInitDSP(void)
         DSPInit();
     }
     DSPAddTask(&task);
-    do
-    {
-    } while (__AXDSPInitFlag == 0);
+    do {
+    }
+    while (__AXDSPInitFlag == 0);
 }
 
 void
@@ -171,9 +171,9 @@ __AXOutQuit(void)
     __AXUserFrameCallback = NULL;
     AIStopDMA();
     DSPHalt();
-    do
-    {
-    } while (DSPGetDMAStatus() != 0U);
+    do {
+    }
+    while (DSPGetDMAStatus() != 0U);
     DSPReset();
     OSRestoreInterrupts(old);
 }

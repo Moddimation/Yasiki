@@ -594,14 +594,12 @@ MTXRotTrig(Mtx m, char axis, f32 sinA, f32 cosA)
             m[2][2] = 1;
             m[2][3] = 0;
             break;
-        default :
-            ASSERTMSGLINE(0x4CB, FALSE, "MTXRotTrig():  invalid 'axis' value ");
-            break;
+        default : ASSERTMSGLINE(0x4CB, FALSE, "MTXRotTrig():  invalid 'axis' value "); break;
     }
 }
 
 void
-MTXRotAxisRad(Mtx m, Vec *axis, f32 rad)
+MTXRotAxisRad(Mtx m, Vec* axis, f32 rad)
 {
     Vec vN;
     f32 s;
@@ -767,7 +765,7 @@ MTXQuat(Mtx m, QuaternionPtr q)
 }
 
 void
-MTXReflect(Mtx m, Vec *p, Vec *n)
+MTXReflect(Mtx m, Vec* p, Vec* n)
 {
     f32 vxy;
     f32 vxz;
@@ -793,7 +791,7 @@ MTXReflect(Mtx m, Vec *p, Vec *n)
 }
 
 void
-MTXLookAt(Mtx m, Vec *camPos, Vec *camUp, Vec *target)
+MTXLookAt(Mtx m, Vec* camPos, Vec* camUp, Vec* target)
 {
     Vec vLook;
     Vec vRight;

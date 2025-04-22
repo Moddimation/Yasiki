@@ -7,8 +7,8 @@
 static void WriteCallback(s32 chan, s32 result);
 static void EraseCallback(s32 chan, s32 result);
 
-CARDDir *
-__CARDGetDirBlock(CARDControl *card)
+CARDDir*
+__CARDGetDirBlock(CARDControl* card)
 {
     ASSERTLINE(0x36, card->currentDir);
     return card->currentDir;
@@ -17,13 +17,13 @@ __CARDGetDirBlock(CARDControl *card)
 static void
 WriteCallback(s32 chan, s32 result)
 {
-    CARDControl *card = &__CARDBlock[chan];
+    CARDControl* card = &__CARDBlock[chan];
     CARDCallback callback;
 
     if (result >= 0)
     {
-        CARDDir *dir0 = (CARDDir *)((u8 *)card->workArea + 0x2000);
-        CARDDir *dir1 = (CARDDir *)((u8 *)card->workArea + 0x4000);
+        CARDDir* dir0 = (CARDDir*)((u8*)card->workArea + 0x2000);
+        CARDDir* dir1 = (CARDDir*)((u8*)card->workArea + 0x4000);
 
         ASSERTLINE(0x4F, card->currentDir);
 
@@ -55,9 +55,9 @@ WriteCallback(s32 chan, s32 result)
 static void
 EraseCallback(s32 chan, s32 result)
 {
-    CARDControl *card = &__CARDBlock[chan];
+    CARDControl* card = &__CARDBlock[chan];
     CARDCallback callback;
-    CARDDir     *dir;
+    CARDDir*     dir;
     u32          addr;
 
     if (result >= 0)
@@ -86,10 +86,10 @@ EraseCallback(s32 chan, s32 result)
 s32
 __CARDUpdateDir(s32 chan, CARDCallback callback)
 {
-    CARDControl  *card;
-    CARDDirCheck *check;
+    CARDControl*  card;
+    CARDDirCheck* check;
     u32           addr;
-    CARDDir      *dir;
+    CARDDir*      dir;
 
     ASSERTLINE(0xAD, 0 <= chan && chan < 2);
 

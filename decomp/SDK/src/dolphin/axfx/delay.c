@@ -4,18 +4,18 @@
 #include <dolphin.h>
 
 void
-AXFXDelayCallback(struct AXFX_BUFFERUPDATE *bufferUpdate, struct AXFX_DELAY *delay)
+AXFXDelayCallback(struct AXFX_BUFFERUPDATE* bufferUpdate, struct AXFX_DELAY* delay)
 {
     long  l;
     long  r;
     long  s;
-    long *lBuf;
-    long *rBuf;
-    long *sBuf;
+    long* lBuf;
+    long* rBuf;
+    long* sBuf;
     u32   i;
-    long *left;
-    long *right;
-    long *sur;
+    long* left;
+    long* right;
+    long* sur;
 
     left = bufferUpdate->left;
     right = bufferUpdate->right;
@@ -42,12 +42,12 @@ AXFXDelayCallback(struct AXFX_BUFFERUPDATE *bufferUpdate, struct AXFX_DELAY *del
 }
 
 int
-AXFXDelaySettings(struct AXFX_DELAY *delay)
+AXFXDelaySettings(struct AXFX_DELAY* delay)
 {
     unsigned long i;
-    long         *l;
-    long         *r;
-    long         *s;
+    long*         l;
+    long*         r;
+    long*         s;
     int           old;
 
     AXFXDelayShutdown(delay);
@@ -86,7 +86,7 @@ AXFXDelaySettings(struct AXFX_DELAY *delay)
 }
 
 int
-AXFXDelayInit(struct AXFX_DELAY *delay)
+AXFXDelayInit(struct AXFX_DELAY* delay)
 {
     int old;
 
@@ -99,7 +99,7 @@ AXFXDelayInit(struct AXFX_DELAY *delay)
 }
 
 int
-AXFXDelayShutdown(struct AXFX_DELAY *delay)
+AXFXDelayShutdown(struct AXFX_DELAY* delay)
 {
     int old;
 

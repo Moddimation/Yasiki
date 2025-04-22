@@ -9,7 +9,7 @@ static int             Down;
 static long long       Hold;
 
 void
-__OSResetSWInterruptHandler(short exception, struct OSContext *context)
+__OSResetSWInterruptHandler(short exception, struct OSContext* context)
 {
     OSResetCallback callback;
 

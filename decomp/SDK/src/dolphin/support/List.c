@@ -106,7 +106,7 @@ DSAttachList(DSListPtr baseList, DSListPtr attachList)
     }
 }
 
-void *
+void*
 DSNextListObj(DSListPtr list, Ptr obj)
 {
     if (!list)

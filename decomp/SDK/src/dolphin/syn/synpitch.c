@@ -45,7 +45,7 @@ static float __SYNSemitonesTableDown[128] = {
 };
 
 float
-__SYNGetRelativePitch(struct SYNVOICE *voice)
+__SYNGetRelativePitch(struct SYNVOICE* voice)
 {
     long cents;
 
@@ -74,7 +74,7 @@ __SYNGetRelativePitch(struct SYNVOICE *voice)
 }
 
 void
-__SYNSetupPitch(struct SYNVOICE *voice)
+__SYNSetupPitch(struct SYNVOICE* voice)
 {
     voice->srcRatio = (voice->sample->sampleRate / 32000.0f);
     voice->cents = (voice->keyNum - voice->region->unityNote) * 100;
@@ -83,11 +83,11 @@ __SYNSetupPitch(struct SYNVOICE *voice)
 }
 
 void
-__SYNSetupSrc(struct SYNVOICE *voice)
+__SYNSetupSrc(struct SYNVOICE* voice)
 {
     float srcRatio;
     u32   value;
-    u16  *p;
+    u16*  p;
 
     srcRatio = voice->srcRatio * __SYNGetRelativePitch(voice);
     if (srcRatio > 4.0f)
@@ -99,7 +99,7 @@ __SYNSetupSrc(struct SYNVOICE *voice)
         value = (65536.0f * srcRatio);
     }
     voice->axvpb->pb.srcSelect = 1;
-    p = (void *)&voice->axvpb->pb.src;
+    p = (void*)&voice->axvpb->pb.src;
     *(p) = (value >> 0x10);
     p += 1;
     *(p) = (value);
@@ -119,7 +119,7 @@ __SYNSetupSrc(struct SYNVOICE *voice)
 }
 
 void
-__SYNUpdateSrc(struct SYNVOICE *voice)
+__SYNUpdateSrc(struct SYNVOICE* voice)
 {
     u32 ratio = (65536.0f * (voice->srcRatio * __SYNGetRelativePitch(voice)));
 
@@ -127,6 +127,6 @@ __SYNUpdateSrc(struct SYNVOICE *voice)
     {
         ratio = 0x40000;
     }
-    *(u32 *)&voice->axvpb->pb.src.ratioHi = ratio;
+    *(u32*)&voice->axvpb->pb.src.ratioHi = ratio;
     voice->axvpb->sync |= 0x80000;
 }

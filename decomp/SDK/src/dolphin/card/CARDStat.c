@@ -6,10 +6,10 @@
 #include "CARDPrivate.h"
 
 // functions
-static void UpdateIconOffsets(CARDDir *ent, CARDStat *stat);
+static void UpdateIconOffsets(CARDDir* ent, CARDStat* stat);
 
 static void
-UpdateIconOffsets(CARDDir *ent, CARDStat *stat)
+UpdateIconOffsets(CARDDir* ent, CARDStat* stat)
 {
     u32  offset;
     BOOL iconTlut;
@@ -55,9 +55,7 @@ UpdateIconOffsets(CARDDir *ent, CARDStat *stat)
                 stat->offsetIcon[i] = offset;
                 offset += 2 * CARD_ICON_WIDTH * CARD_ICON_HEIGHT;
                 break;
-            default :
-                stat->offsetIcon[i] = 0xffffffff;
-                break;
+            default : stat->offsetIcon[i] = 0xffffffff; break;
         }
     }
     if (iconTlut)
@@ -73,11 +71,11 @@ UpdateIconOffsets(CARDDir *ent, CARDStat *stat)
 }
 
 s32
-CARDGetStatus(s32 chan, s32 fileNo, CARDStat *stat)
+CARDGetStatus(s32 chan, s32 fileNo, CARDStat* stat)
 {
-    CARDControl *card;
-    CARDDir     *dir;
-    CARDDir     *ent;
+    CARDControl* card;
+    CARDDir*     dir;
+    CARDDir*     ent;
     s32          result;
 
     ASSERTLINE(0x97, 0 <= chan && chan < 2);
@@ -122,11 +120,11 @@ CARDGetStatus(s32 chan, s32 fileNo, CARDStat *stat)
 }
 
 s32
-CARDSetStatusAsync(s32 chan, s32 fileNo, CARDStat *stat, CARDCallback callback)
+CARDSetStatusAsync(s32 chan, s32 fileNo, CARDStat* stat, CARDCallback callback)
 {
-    CARDControl *card;
-    CARDDir     *dir;
-    CARDDir     *ent;
+    CARDControl* card;
+    CARDDir*     dir;
+    CARDDir*     ent;
     s32          result;
 
     ASSERTLINE(0xD5, 0 <= fileNo && fileNo < CARD_MAX_FILE);
@@ -168,7 +166,7 @@ CARDSetStatusAsync(s32 chan, s32 fileNo, CARDStat *stat, CARDCallback callback)
 }
 
 long
-CARDSetStatus(long chan, long fileNo, struct CARDStat *stat)
+CARDSetStatus(long chan, long fileNo, struct CARDStat* stat)
 {
     long result = CARDSetStatusAsync(chan, fileNo, stat, __CARDSyncCallback);
 

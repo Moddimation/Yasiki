@@ -8,9 +8,9 @@ typedef void (*DTKFlushCallback)(void);
 
 typedef struct DTKTrack
 {
-    /*0x00*/ struct DTKTrack *prev;
-    /*0x04*/ struct DTKTrack *next;
-    /*0x08*/ char            *fileName;
+    /*0x00*/ struct DTKTrack* prev;
+    /*0x04*/ struct DTKTrack* next;
+    /*0x08*/ char*            fileName;
     /*0x0C*/ u32              eventMask;
     /*0x10*/ DTKCallback      callback;
     /*0x14*/ DVDFileInfo      dvdFileInfo;
@@ -28,8 +28,8 @@ typedef struct DTKTrack
 
 void      DTKInit(void);
 void      DTKShutdown(void);
-u32       DTKQueueTrack(char *fileName, DTKTrack *track, u32 eventMask, DTKCallback callback);
-u32       DTKRemoveTrack(struct DTKTrack *track);
+u32       DTKQueueTrack(char* fileName, DTKTrack* track, u32 eventMask, DTKCallback callback);
+u32       DTKRemoveTrack(struct DTKTrack* track);
 void      DTKFlushTracks(DTKFlushCallback callback);
 void      DTKSetSampleRate(u32 samplerate);
 void      DTKSetInterruptFrequency(u32 samples);
@@ -42,7 +42,7 @@ u32       DTKGetRepeatMode(void);
 u32       DTKGetState(void);
 u32       DTKGetPosition(void);
 u32       DTKGetInterruptFrequency(void);
-DTKTrack *DTKGetCurrentTrack(void);
+DTKTrack* DTKGetCurrentTrack(void);
 void      DTKSetVolume(u8 left, u8 right);
 u16       DTKGetVolume(void);
 

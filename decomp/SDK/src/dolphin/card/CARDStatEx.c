@@ -5,7 +5,7 @@
 #include "CARDPrivate.h"
 
 long
-__CARDGetStatusEx(long chan, long fileNo, struct CARDDir *dirent)
+__CARDGetStatusEx(long chan, long fileNo, struct CARDDir* dirent)
 {
     ASSERTLINE(0x45, 0 <= chan && chan < 2);
     ASSERTLINE(0x46, 0 <= fileNo && fileNo < CARD_MAX_FILE);
@@ -16,9 +16,9 @@ __CARDGetStatusEx(long chan, long fileNo, struct CARDDir *dirent)
     }
 
     {
-        struct CARDControl *card;
-        struct CARDDir     *dir;
-        struct CARDDir     *ent;
+        struct CARDControl* card;
+        struct CARDDir*     dir;
+        struct CARDDir*     ent;
         long                result = __CARDGetControlBlock(chan, &card);
 
         if (result < 0)
@@ -42,13 +42,13 @@ __CARDGetStatusEx(long chan, long fileNo, struct CARDDir *dirent)
 }
 
 long
-__CARDSetStatusExAsync(long chan, long fileNo, struct CARDDir *dirent, void (*callback)(long, long))
+__CARDSetStatusExAsync(long chan, long fileNo, struct CARDDir* dirent, void (*callback)(long, long))
 {
-    struct CARDControl *card;
-    struct CARDDir     *dir;
-    struct CARDDir     *ent;
+    struct CARDControl* card;
+    struct CARDDir*     dir;
+    struct CARDDir*     ent;
     long                result;
-    unsigned char      *p;
+    unsigned char*      p;
     long                i;
 
     ASSERTLINE(0x81, 0 <= fileNo && fileNo < CARD_MAX_FILE);
@@ -73,13 +73,13 @@ __CARDSetStatusExAsync(long chan, long fileNo, struct CARDDir *dirent, void (*ca
     {
         return __CARDPutControlBlock(card, result);
     }
-    for (p = dirent->fileName; p < (u8 *)&dirent->time; p++)
+    for (p = dirent->fileName; p < (u8*)&dirent->time; p++)
     {
         if (*p != 0)
         {
             continue;
         }
-        while ((++p) < (u8 *)&dirent->time)
+        while ((++p) < (u8*)&dirent->time)
         {
             *p = 0;
         }
@@ -92,7 +92,7 @@ __CARDSetStatusExAsync(long chan, long fileNo, struct CARDDir *dirent, void (*ca
         {
             if (i != fileNo)
             {
-                struct CARDDir *ent = &dir[i]; // sure, just redeclare ent again...
+                struct CARDDir* ent = &dir[i]; // sure, just redeclare ent again...
                 if (((u8)ent->gameName[0] != 0xFF) && (memcmp(&ent->gameName, &dirent->gameName, 4) == 0)
                     && (memcmp(&ent->company, &dirent->company, 2) == 0)
                     && (memcmp(&ent->fileName, &dirent->fileName, 0x20) == 0))
@@ -122,7 +122,7 @@ __CARDSetStatusExAsync(long chan, long fileNo, struct CARDDir *dirent, void (*ca
 }
 
 long
-__CARDSetStatusEx(long chan, long fileNo, struct CARDDir *dirent)
+__CARDSetStatusEx(long chan, long fileNo, struct CARDDir* dirent)
 {
     long result = __CARDSetStatusExAsync(chan, fileNo, dirent, &__CARDSyncCallback);
 

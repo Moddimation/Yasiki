@@ -34,34 +34,34 @@ static void   SetWirelessID(long chan, u16 id);
 static int    DoReset();
 static void   PADEnable(long chan);
 static void   ProbeWireless(long chan);
-static void   PADProbeCallback(s32 chan, u32 error, OSContext *context);
+static void   PADProbeCallback(s32 chan, u32 error, OSContext* context);
 static void   PADDisable(long chan);
 static void   UpdateOrigin(s32 chan);
-static void   PADOriginCallback(s32 chan, u32 error, OSContext *context);
-static void   PADFixCallback(long unused, unsigned long error, struct OSContext *context);
-static void   PADResetCallback(long unused, unsigned long error, struct OSContext *context);
+static void   PADOriginCallback(s32 chan, u32 error, OSContext* context);
+static void   PADFixCallback(long unused, unsigned long error, struct OSContext* context);
+static void   PADResetCallback(long unused, unsigned long error, struct OSContext* context);
 int           PADReset(unsigned long mask);
 BOOL          PADRecalibrate(u32 mask);
 BOOL          PADInit();
-static void   PADReceiveCheckCallback(s32 chan, unsigned long error, OSContext *arg2);
-void          PADRead(struct PADStatus *status);
+static void   PADReceiveCheckCallback(s32 chan, unsigned long error, OSContext* arg2);
+void          PADRead(struct PADStatus* status);
 void          PADSetSamplingRate(unsigned long msec);
 void          __PADTestSamplingRate(unsigned long tvmode);
-void          PADControlAllMotors(const u32 *commandArray);
+void          PADControlAllMotors(const u32* commandArray);
 void          PADControlMotor(s32 chan, u32 command);
 void          PADSetSpec(u32 spec);
 unsigned long PADGetSpec();
-static void   SPEC0_MakeStatus(s32 chan, PADStatus *status, u32 data[2]);
-static void   SPEC1_MakeStatus(s32 chan, PADStatus *status, u32 data[2]);
+static void   SPEC0_MakeStatus(s32 chan, PADStatus* status, u32 data[2]);
+static void   SPEC1_MakeStatus(s32 chan, PADStatus* status, u32 data[2]);
 static s8     ClampS8(s8 var, s8 org);
 static u8     ClampU8(u8 var, u8 org);
-static void   SPEC2_MakeStatus(s32 chan, PADStatus *status, u32 data[2]);
-int           PADGetType(long chan, unsigned long *type);
+static void   SPEC2_MakeStatus(s32 chan, PADStatus* status, u32 data[2]);
+int           PADGetType(long chan, unsigned long* type);
 BOOL          PADSync(void);
 void          PADSetAnalogMode(u32 mode);
 static BOOL   OnReset(BOOL f);
 
-static void (*MakeStatus)(long, struct PADStatus *, unsigned long *) = SPEC2_MakeStatus; // size: 0x4, address: 0xC
+static void (*MakeStatus)(long, struct PADStatus*, unsigned long*) = SPEC2_MakeStatus; // size: 0x4, address: 0xC
 
 static OSResetFunctionInfo ResetFunctionInfo = {
     OnReset,
@@ -73,7 +73,7 @@ static OSResetFunctionInfo ResetFunctionInfo = {
 static u16
 GetWirelessID(long chan)
 {
-    struct OSSramEx *sram;
+    struct OSSramEx* sram;
     u16              id;
 
     sram = __OSLockSramEx();
@@ -85,7 +85,7 @@ GetWirelessID(long chan)
 static void
 SetWirelessID(long chan, u16 id)
 {
-    struct OSSramEx *sram = __OSLockSramEx();
+    struct OSSramEx* sram = __OSLockSramEx();
 
     if (sram->wirelessPadID[chan] != id)
     {
@@ -168,7 +168,7 @@ ProbeWireless(long chan)
 }
 
 static void
-PADProbeCallback(s32 chan, u32 error, OSContext *context)
+PADProbeCallback(s32 chan, u32 error, OSContext* context)
 {
     unsigned long type;
     ASSERTLINE(0x1F5, 0 <= ResettingChan && ResettingChan < SI_MAX_CHAN);
@@ -209,7 +209,7 @@ PADDisable(long chan)
 static void
 UpdateOrigin(s32 chan)
 {
-    PADStatus *origin;
+    PADStatus* origin;
 
     origin = &Origin[chan];
     switch (AnalogMode & 0x00000700u)
@@ -235,10 +235,8 @@ UpdateOrigin(s32 chan)
             origin->triggerLeft &= ~15;
             origin->triggerRight &= ~15;
             break;
-        case 0x00000300u :
-            break;
-        case 0x00000400u :
-            break;
+        case 0x00000300u : break;
+        case 0x00000400u : break;
     }
 
     origin->stickX -= 128;
@@ -248,7 +246,7 @@ UpdateOrigin(s32 chan)
 }
 
 static void
-PADOriginCallback(s32 chan, u32 error, OSContext *context)
+PADOriginCallback(s32 chan, u32 error, OSContext* context)
 {
     ASSERTLINE(0x267, 0 <= ResettingChan && ResettingChan < SI_MAX_CHAN);
     ASSERTLINE(0x268, chan == ResettingChan);
@@ -261,7 +259,7 @@ PADOriginCallback(s32 chan, u32 error, OSContext *context)
 }
 
 static void
-PADOriginUpdateCallback(s32 chan, u32 error, OSContext *context)
+PADOriginUpdateCallback(s32 chan, u32 error, OSContext* context)
 {
     ASSERTLINE(0x285, 0 <= chan && chan < SI_MAX_CHAN);
     if (!(EnabledBits & (PAD_CHAN0_BIT >> chan)))
@@ -275,7 +273,7 @@ PADOriginUpdateCallback(s32 chan, u32 error, OSContext *context)
 }
 
 static void
-PADFixCallback(long unused, unsigned long error, struct OSContext *context)
+PADFixCallback(long unused, unsigned long error, struct OSContext* context)
 {
     unsigned long type;
     unsigned long id;
@@ -305,10 +303,10 @@ PADFixCallback(long unused, unsigned long error, struct OSContext *context)
     DoReset();
 }
 
-unsigned long __PADFixBits;                                                              // size: 0x4, address: 0x24
+unsigned long __PADFixBits;                                                            // size: 0x4, address: 0x24
 
 static void
-PADResetCallback(long unused, unsigned long error, struct OSContext *context)
+PADResetCallback(long unused, unsigned long error, struct OSContext* context)
 {
     unsigned long type;
     unsigned long id;
@@ -448,7 +446,7 @@ PADRecalibrate(u32 mask)
     return ret;
 }
 
-unsigned long __PADSpec;                                                                 // size: 0x4, address: 0x20
+unsigned long __PADSpec;                                                               // size: 0x4, address: 0x20
 
 BOOL
 PADInit()
@@ -477,7 +475,7 @@ PADInit()
 }
 
 static void
-PADReceiveCheckCallback(s32 chan, unsigned long error, OSContext *arg2)
+PADReceiveCheckCallback(s32 chan, unsigned long error, OSContext* arg2)
 {
     unsigned long type;
     unsigned long chanBit;
@@ -500,7 +498,7 @@ PADReceiveCheckCallback(s32 chan, unsigned long error, OSContext *arg2)
 }
 
 void
-PADRead(struct PADStatus *status)
+PADRead(struct PADStatus* status)
 {
     long          chan;
     unsigned long data[2];
@@ -627,7 +625,7 @@ void
 PADSetSamplingRate(unsigned long msec)
 {
     unsigned long tv;
-    XY           *xy;
+    XY*           xy;
 
     ASSERTMSGLINE(0x4CE, (msec <= 0xB), "PADSetSamplingRate(): out of rage (0 <= msec <= 11)");
     if (msec > 0xB)
@@ -638,14 +636,9 @@ PADSetSamplingRate(unsigned long msec)
     switch (tv)
     {
         case VI_NTSC :
-        case VI_MPAL :
-            xy = XYNTSC;
-            break;
-        case VI_PAL :
-            xy = XYPAL;
-            break;
-        default :
-            OSPanic("Pad.c", 0x4DF, "PADSetSamplingRate: unknown TV format");
+        case VI_MPAL : xy = XYNTSC; break;
+        case VI_PAL  : xy = XYPAL; break;
+        default      : OSPanic("Pad.c", 0x4DF, "PADSetSamplingRate: unknown TV format");
     }
     SISetXY(xy[msec].line, xy[msec].count);
     SIEnablePolling(EnabledBits);
@@ -658,7 +651,7 @@ __PADTestSamplingRate(unsigned long tvmode)
     unsigned long msec;
     unsigned long line;
     unsigned long count;
-    struct XY    *xy;
+    struct XY*    xy;
 
     switch (tvmode)
     {
@@ -702,7 +695,7 @@ __PADTestSamplingRate(unsigned long tvmode)
 #endif
 
 void
-PADControlAllMotors(const u32 *commandArray)
+PADControlAllMotors(const u32* commandArray)
 {
     BOOL enabled;
     int  chan;
@@ -764,18 +757,12 @@ PADSetSpec(u32 spec)
     __PADSpec = 0;
     switch (spec)
     {
-        case PAD_SPEC_0 :
-            MakeStatus = SPEC0_MakeStatus;
-            break;
-        case PAD_SPEC_1 :
-            MakeStatus = SPEC1_MakeStatus;
-            break;
+        case PAD_SPEC_0 : MakeStatus = SPEC0_MakeStatus; break;
+        case PAD_SPEC_1 : MakeStatus = SPEC1_MakeStatus; break;
         case PAD_SPEC_2 :
         case PAD_SPEC_3 :
         case PAD_SPEC_4 :
-        case PAD_SPEC_5 :
-            MakeStatus = SPEC2_MakeStatus;
-            break;
+        case PAD_SPEC_5 : MakeStatus = SPEC2_MakeStatus; break;
     }
     Spec = spec;
 }
@@ -787,7 +774,7 @@ PADGetSpec(void)
 }
 
 static void
-SPEC0_MakeStatus(s32 chan, PADStatus *status, u32 data[2])
+SPEC0_MakeStatus(s32 chan, PADStatus* status, u32 data[2])
 {
     status->button = 0;
     status->button |= ((data[0] >> 16) & 0x0008) ? PAD_BUTTON_A : 0;
@@ -818,7 +805,7 @@ SPEC0_MakeStatus(s32 chan, PADStatus *status, u32 data[2])
 }
 
 static void
-SPEC1_MakeStatus(s32 chan, PADStatus *status, u32 data[2])
+SPEC1_MakeStatus(s32 chan, PADStatus* status, u32 data[2])
 {
     status->button = 0;
     status->button |= ((data[0] >> 16) & 0x0080) ? PAD_BUTTON_A : 0;
@@ -886,9 +873,9 @@ ClampU8(u8 var, u8 org)
 }
 
 static void
-SPEC2_MakeStatus(s32 chan, PADStatus *status, u32 data[2])
+SPEC2_MakeStatus(s32 chan, PADStatus* status, u32 data[2])
 {
-    PADStatus *origin;
+    PADStatus* origin;
 
     status->button = (u16)((data[0] >> 16) & PAD_ALL);
     status->stickX = (s8)(data[0] >> 8);
@@ -956,7 +943,7 @@ SPEC2_MakeStatus(s32 chan, PADStatus *status, u32 data[2])
 }
 
 int
-PADGetType(long chan, unsigned long *type)
+PADGetType(long chan, unsigned long* type)
 {
     unsigned long chanBit;
 

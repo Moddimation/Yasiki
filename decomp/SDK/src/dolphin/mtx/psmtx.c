@@ -19,7 +19,7 @@ PSMTXReorder(register Mtx src, register ROMtx dest)
 }
 
 asm void
-PSMTXROMultVecArray(register ROMtx *m, register Vec *srcBase, register Vec *dstBase, register u32 count)
+PSMTXROMultVecArray(register ROMtx* m, register Vec* srcBase, register Vec* dstBase, register u32 count)
 {
     nofralloc stwu r1, -64(r1)stfd f14, 8(r1)subi r7, count, 1 stfd f15, 16(r1)srwi r7, r7, 1 stfd f16, 24(r1)stfd f17,
         32(r1)stfd f18, 40(r1)mtctr r7 psq_l f0, 0(m), 0, qr0 subi srcBase, srcBase, 8 psq_l f1, 8(m), 1,
@@ -111,8 +111,8 @@ PSMTXROMultVecArray(register ROMtx *m, register Vec *srcBase, register Vec *dstB
 }
 
 asm void
-PSMTXROSkin2VecArray(register ROMtx *m0, register ROMtx *m1, register f32 *wtBase, register Vec *srcBase,
-                     register Vec *dstBase, register u32 count)
+PSMTXROSkin2VecArray(register ROMtx* m0, register ROMtx* m1, register f32* wtBase, register Vec* srcBase,
+                     register Vec* dstBase, register u32 count)
 {
     nofralloc stwu r1, -160(r1)stfd f14, 8(r1)stfd f15, 16(r1)stfd f16, 24(r1)stfd f17, 32(r1)stfd f18, 40(r1)stfd f19,
         48(r1)stfd f20, 56(r1)stfd f21, 64(r1)stfd f22, 72(r1)stfd f23, 80(r1)stfd f24, 88(r1)stfd f25, 96(r1)stfd f26,
@@ -224,7 +224,7 @@ PSMTXROSkin2VecArray(register ROMtx *m0, register ROMtx *m1, register f32 *wtBas
 }
 
 asm void
-PSMTXROMultS16VecArray(register ROMtx *m, register S16Vec *srcBase, register Vec *dstBase, register u32 count)
+PSMTXROMultS16VecArray(register ROMtx* m, register S16Vec* srcBase, register Vec* dstBase, register u32 count)
 {
     nofralloc stwu r1, -64(r1)stfd f14, 8(r1)subi r7, count, 1 stfd f15, 16(r1)srwi r7, r7, 1 stfd f16, 24(r1)lis r8,
         7 stfd f17, 32(r1)mtspr GQR6, r8 stfd f18, 40(r1)mtctr r7 psq_l f0, 0(m), 0, qr0 subi srcBase, srcBase,
@@ -316,7 +316,7 @@ PSMTXROMultS16VecArray(register ROMtx *m, register S16Vec *srcBase, register Vec
 }
 
 asm void
-PSMTXMultS16VecArray(register Mtx44 *m, register S16Vec *srcBase, register Vec *dstBase, register u32 count)
+PSMTXMultS16VecArray(register Mtx44* m, register S16Vec* srcBase, register Vec* dstBase, register u32 count)
 {
     psq_l f0, 0(m), 0, qr0 lis r7, 7 mtspr GQR6, r7 psq_l f6, 0(srcBase), 0, qr6 subi count, count, 1 psq_l f7,
         4(srcBase), 1, qr6 mtctr count psq_l f1, 8(m), 0, qr0 addi srcBase, srcBase, 4 psq_l f2, 16(m), 0,

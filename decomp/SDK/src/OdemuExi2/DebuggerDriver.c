@@ -76,9 +76,9 @@ ONLY_GLMJ01
 BOOL
 DBGEXISync(void)
 {
-    do
-    {
-    } while ((__EXIRegs[EXI_C2_CR] & 1) != 0);
+    do {
+    }
+    while ((__EXIRegs[EXI_C2_CR] & 1) != 0);
     return ODEMU_NO_ERROR;
 }
 
@@ -360,31 +360,28 @@ DBWrite(const s32* data, u32 size)
 
     irq = OSDisableInterrupts();
 
-    do
-    {
+    do {
         DBGReadStatus(&busyFlag);
-    } while (busyFlag & DB_STAT_RECIEVE);
+    }
+    while (busyFlag & DB_STAT_RECIEVE);
 
     ++SendCount;
 
     value = ((SendCount & 1) ? 0x1000 : 0);
-    while (!DBGWrite(value | 0x1c000, data, ALIGN_NEXT(size, 4)))
-        ;
+    while (!DBGWrite(value | 0x1c000, data, ALIGN_NEXT(size, 4)));
 
-    do
-    {
+    do {
         DBGReadStatus(&busyFlag);
-    } while (busyFlag & DB_STAT_RECIEVE);
+    }
+    while (busyFlag & DB_STAT_RECIEVE);
 
     value = ODEMU_MAIL_MAGIC | SendCount << 0x10 | size;
-    while (!DBGWriteMailbox(value))
-        ;
+    while (!DBGWriteMailbox(value));
 
-    do
-    {
-        while (!DBGReadStatus(&busyFlag))
-            ;
-    } while (busyFlag & DB_STAT_RECIEVE);
+    do {
+        while (!DBGReadStatus(&busyFlag));
+    }
+    while (busyFlag & DB_STAT_RECIEVE);
 
     OSRestoreInterrupts(irq);
 

@@ -9,7 +9,7 @@ extern "C"
 #endif
 
 typedef u16  OSError;
-typedef void (*OSErrorHandler)(OSError error, OSContext *context, ...);
+typedef void (*OSErrorHandler)(OSError error, OSContext* context, ...);
 
 #define OS_ERROR_SYSTEM_RESET       0
 #define OS_ERROR_MACHINE_CHECK      1

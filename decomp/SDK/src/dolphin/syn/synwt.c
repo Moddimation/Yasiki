@@ -6,10 +6,10 @@
 #include "SYNPrivate.h"
 
 int
-__SYNGetWavetableData(struct SYNVOICE *voice)
+__SYNGetWavetableData(struct SYNVOICE* voice)
 {
     u32              regionIndex;
-    struct SYNSYNTH *synth;
+    struct SYNSYNTH* synth;
 
     synth = voice->synth;
     regionIndex = synth->inst[voice->midiChannel]->keyRegion[voice->keyNum];

@@ -61,7 +61,7 @@ sendSlaveAddr(u8 slaveAddr)
 }
 
 int
-__VISendI2CData(u8 slaveAddr, u8 *pData, int nBytes)
+__VISendI2CData(u8 slaveAddr, u8* pData, int nBytes)
 {
     s32 i;
     u8  data;

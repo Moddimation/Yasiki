@@ -95,11 +95,11 @@ static f32 rsmpTab12khz[512] = {
 const static double i2fMagic = 4503601774854144.0;
 
 // functions
-static void do_src1(struct AXFX_CHORUS_SRCINFO *src);
-static void do_src2(struct AXFX_CHORUS_SRCINFO *src);
+static void do_src1(struct AXFX_CHORUS_SRCINFO* src);
+static void do_src2(struct AXFX_CHORUS_SRCINFO* src);
 
 asm static void
-do_src1(register struct AXFX_CHORUS_SRCINFO *src)
+do_src1(register struct AXFX_CHORUS_SRCINFO* src)
 {
     nofralloc stwu r1, -64(r1)stmw r26, 40(r1)lwz r4, AXFX_CHORUS_SRCINFO.posLo(src) lwz r5,
         AXFX_CHORUS_SRCINFO.posHi(src) lwz r6, AXFX_CHORUS_SRCINFO.pitchLo(src) lwz r8,
@@ -202,7 +202,7 @@ do_src1(register struct AXFX_CHORUS_SRCINFO *src)
 }
 
 asm static void
-do_src2(register struct AXFX_CHORUS_SRCINFO *src)
+do_src2(register struct AXFX_CHORUS_SRCINFO* src)
 {
     nofralloc stwu r1, -64(r1)stmw r26, 40(r1)lwz r4, AXFX_CHORUS_SRCINFO.posLo(src) lwz r5,
         AXFX_CHORUS_SRCINFO.posHi(src) lwz r6, AXFX_CHORUS_SRCINFO.pitchLo(src) lwz r8,
@@ -333,11 +333,11 @@ do_src2(register struct AXFX_CHORUS_SRCINFO *src)
 }
 
 int
-AXFXChorusInit(struct AXFX_CHORUS *c)
+AXFXChorusInit(struct AXFX_CHORUS* c)
 {
-    long *left;
-    long *right;
-    long *sur;
+    long* left;
+    long* right;
+    long* sur;
     u32   i;
     int   old;
 
@@ -345,13 +345,13 @@ AXFXChorusInit(struct AXFX_CHORUS *c)
     c->work.lastLeft[0] = OSAllocFromHeap(__OSCurrHeap, 0x1680);
     if (c->work.lastLeft[0] != NULL)
     {
-        c->work.lastRight[0] = (void *)(c->work.lastLeft[0] + 0x1E0);
-        c->work.lastSur[0] = (void *)(c->work.lastRight[0] + 0x1E0);
+        c->work.lastRight[0] = (void*)(c->work.lastLeft[0] + 0x1E0);
+        c->work.lastSur[0] = (void*)(c->work.lastRight[0] + 0x1E0);
         for (i = 1; i < 3; i++)
         {
-            c->work.lastLeft[i] = (void *)&c->work.lastLeft[0][i * 0xA0];
-            c->work.lastRight[i] = (void *)&c->work.lastRight[0][i * 0xA0];
-            c->work.lastSur[i] = (void *)&c->work.lastSur[0][i * 0xA0];
+            c->work.lastLeft[i] = (void*)&c->work.lastLeft[0][i * 0xA0];
+            c->work.lastRight[i] = (void*)&c->work.lastRight[0][i * 0xA0];
+            c->work.lastSur[i] = (void*)&c->work.lastSur[0][i * 0xA0];
         }
         left = c->work.lastLeft[0];
         right = c->work.lastRight[0];
@@ -376,7 +376,7 @@ AXFXChorusInit(struct AXFX_CHORUS *c)
 }
 
 int
-AXFXChorusShutdown(struct AXFX_CHORUS *c)
+AXFXChorusShutdown(struct AXFX_CHORUS* c)
 {
     int old;
 
@@ -387,7 +387,7 @@ AXFXChorusShutdown(struct AXFX_CHORUS *c)
 }
 
 int
-AXFXChorusSettings(struct AXFX_CHORUS *c)
+AXFXChorusSettings(struct AXFX_CHORUS* c)
 {
     int old;
 
@@ -403,14 +403,14 @@ AXFXChorusSettings(struct AXFX_CHORUS *c)
 }
 
 void
-AXFXChorusCallback(struct AXFX_BUFFERUPDATE *bufferUpdate, struct AXFX_CHORUS *chorus)
+AXFXChorusCallback(struct AXFX_BUFFERUPDATE* bufferUpdate, struct AXFX_CHORUS* chorus)
 {
-    long *leftD;
-    long *rightD;
-    long *surD;
-    long *leftS;
-    long *rightS;
-    long *surS;
+    long* leftD;
+    long* rightD;
+    long* surD;
+    long* leftS;
+    long* rightS;
+    long* surS;
     u32   i;
     u8    nextCurrentLast;
 
@@ -458,12 +458,8 @@ AXFXChorusCallback(struct AXFX_BUFFERUPDATE *bufferUpdate, struct AXFX_CHORUS *c
         }
         switch (chorus->work.src.pitchHi)
         {
-            case 0 :
-                do_src1(&chorus->work.src);
-                break;
-            case 1 :
-                do_src2(&chorus->work.src);
-                break;
+            case 0 : do_src1(&chorus->work.src); break;
+            case 1 : do_src2(&chorus->work.src); break;
         }
     }
     chorus->work.currentPosHi = (chorus->work.src.posHi % 480);

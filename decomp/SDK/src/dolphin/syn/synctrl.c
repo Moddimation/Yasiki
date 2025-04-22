@@ -24,17 +24,17 @@ float __SYNn128[128]
         0.937500f, 0.945313f, 0.953125f, 0.960938f, 0.968750f, 0.976563f, 0.984375f, 0.992188f };
 
 // functions
-static void __SYNSetData(struct SYNSYNTH *synth, u8 midiChannel);
-static void __SYNSetSustainPedal(struct SYNSYNTH *synth, u8 midiChannel, u8 data);
-static void __SYNProgramChange(struct SYNSYNTH *synth, u8 midiChannel, u8 program);
-static void __SYNReleaseChannelNotes(struct SYNSYNTH *synth, u8 midiChannel);
-static void __SYNNoteOff(struct SYNSYNTH *synth, u8 midiChannel, u8 keyNum);
-static void __SYNNoteOn(struct SYNSYNTH *synth, u8 midiChannel, u8 keyNum, u8 keyVel);
-static void __SYNPitchWheel(struct SYNSYNTH *synth, u8 midiChannel, u8 lsb, u8 msb);
-static void __SYNMidiIn(struct SYNSYNTH *synth, u8 *input);
+static void __SYNSetData(struct SYNSYNTH* synth, u8 midiChannel);
+static void __SYNSetSustainPedal(struct SYNSYNTH* synth, u8 midiChannel, u8 data);
+static void __SYNProgramChange(struct SYNSYNTH* synth, u8 midiChannel, u8 program);
+static void __SYNReleaseChannelNotes(struct SYNSYNTH* synth, u8 midiChannel);
+static void __SYNNoteOff(struct SYNSYNTH* synth, u8 midiChannel, u8 keyNum);
+static void __SYNNoteOn(struct SYNSYNTH* synth, u8 midiChannel, u8 keyNum, u8 keyVel);
+static void __SYNPitchWheel(struct SYNSYNTH* synth, u8 midiChannel, u8 lsb, u8 msb);
+static void __SYNMidiIn(struct SYNSYNTH* synth, u8* input);
 
 static void
-__SYNSetData(struct SYNSYNTH *synth, u8 midiChannel)
+__SYNSetData(struct SYNSYNTH* synth, u8 midiChannel)
 {
     ASSERTLINE(0x3B, synth);
     ASSERTLINE(0x3C, midiChannel < 16);
@@ -47,27 +47,19 @@ __SYNSetData(struct SYNSYNTH *synth, u8 midiChannel)
                 synth->pwMaxCents[midiChannel]
                     = (synth->controller[midiChannel][0x26] + (synth->controller[midiChannel][0x6] * 100)) << 0x10;
                 break;
-            case 1 :
-                ASSERTMSGLINE(0x50, FALSE, "RPN 0001 not supported¥n");
-                break;
-            case 2 :
-                ASSERTMSGLINE(0x56, FALSE, "RPN 0002 not supported¥n");
-                break;
-            case 3 :
-                ASSERTMSGLINE(0x5C, FALSE, "RPN 0003 not supported¥n");
-                break;
-            case 4 :
-                ASSERTMSGLINE(0x62, FALSE, "RPN 0004 not supported¥n");
-                break;
+            case 1 : ASSERTMSGLINE(0x50, FALSE, "RPN 0001 not supported¥n"); break;
+            case 2 : ASSERTMSGLINE(0x56, FALSE, "RPN 0002 not supported¥n"); break;
+            case 3 : ASSERTMSGLINE(0x5C, FALSE, "RPN 0003 not supported¥n"); break;
+            case 4 : ASSERTMSGLINE(0x62, FALSE, "RPN 0004 not supported¥n"); break;
         }
     }
 }
 
 static void
-__SYNSetSustainPedal(struct SYNSYNTH *synth, u8 midiChannel, u8 data)
+__SYNSetSustainPedal(struct SYNSYNTH* synth, u8 midiChannel, u8 data)
 {
     int              i;
-    struct SYNVOICE *voice;
+    struct SYNVOICE* voice;
 
     ASSERTLINE(0x6F, synth);
     ASSERTLINE(0x70, midiChannel < 16);
@@ -88,7 +80,7 @@ __SYNSetSustainPedal(struct SYNSYNTH *synth, u8 midiChannel, u8 data)
 }
 
 static void
-__SYNProgramChange(struct SYNSYNTH *synth, u8 midiChannel, u8 program)
+__SYNProgramChange(struct SYNSYNTH* synth, u8 midiChannel, u8 program)
 {
     ASSERTLINE(0x8E, synth);
     ASSERTLINE(0x8F, midiChannel < 16);
@@ -105,10 +97,10 @@ __SYNProgramChange(struct SYNSYNTH *synth, u8 midiChannel, u8 program)
 }
 
 static void
-__SYNReleaseChannelNotes(struct SYNSYNTH *synth, u8 midiChannel)
+__SYNReleaseChannelNotes(struct SYNSYNTH* synth, u8 midiChannel)
 {
     int              i;
-    struct SYNVOICE *voice;
+    struct SYNVOICE* voice;
 
     ASSERTLINE(0xA2, synth);
     ASSERTLINE(0xA3, midiChannel < 16);
@@ -124,7 +116,7 @@ __SYNReleaseChannelNotes(struct SYNSYNTH *synth, u8 midiChannel)
 }
 
 void
-__SYNClearAllNotes(struct SYNSYNTH *synth)
+__SYNClearAllNotes(struct SYNSYNTH* synth)
 {
     u8 i;
 
@@ -136,7 +128,7 @@ __SYNClearAllNotes(struct SYNSYNTH *synth)
 }
 
 void
-__SYNSetController(struct SYNSYNTH *synth, u8 midiChannel, u8 function, u8 value)
+__SYNSetController(struct SYNSYNTH* synth, u8 midiChannel, u8 function, u8 value)
 {
     ASSERTLINE(0xC9, synth);
     ASSERTLINE(0xCA, midiChannel < 16);
@@ -146,40 +138,19 @@ __SYNSetController(struct SYNSYNTH *synth, u8 midiChannel, u8 function, u8 value
     synth->controller[midiChannel][function] = value;
     switch (function)
     {
-        case 6 :
-            __SYNSetData(synth, midiChannel);
-            break;
-        case 7 :
-            synth->volAttn[midiChannel] = __SYNVolumeAttenuation[value];
-            break;
-        case 11 :
-            synth->expAttn[midiChannel] = __SYNVolumeAttenuation[value];
-            break;
-        case 0x26 :
-            __SYNSetData(synth, midiChannel);
-            break;
-        case 0x40 :
-            __SYNSetSustainPedal(synth, midiChannel, value);
-            break;
-        case 0x5B :
-            synth->auxAAttn[midiChannel] = __SYNVolumeAttenuation[value];
-            break;
-        case 0x5C :
-            synth->auxBAttn[midiChannel] = __SYNVolumeAttenuation[value];
-            break;
-        case 0x5D :
-            break;
+        case 6    : __SYNSetData(synth, midiChannel); break;
+        case 7    : synth->volAttn[midiChannel] = __SYNVolumeAttenuation[value]; break;
+        case 11   : synth->expAttn[midiChannel] = __SYNVolumeAttenuation[value]; break;
+        case 0x26 : __SYNSetData(synth, midiChannel); break;
+        case 0x40 : __SYNSetSustainPedal(synth, midiChannel, value); break;
+        case 0x5B : synth->auxAAttn[midiChannel] = __SYNVolumeAttenuation[value]; break;
+        case 0x5C : synth->auxBAttn[midiChannel] = __SYNVolumeAttenuation[value]; break;
+        case 0x5D : break;
         case 0x62 :
-        case 0x63 :
-            synth->rpn[midiChannel] = 0;
-            break;
+        case 0x63 : synth->rpn[midiChannel] = 0; break;
         case 0x64 :
-        case 0x65 :
-            synth->rpn[midiChannel] = 1;
-            break;
-        case 0x78 :
-            __SYNReleaseChannelNotes(synth, midiChannel);
-            break;
+        case 0x65 : synth->rpn[midiChannel] = 1; break;
+        case 0x78 : __SYNReleaseChannelNotes(synth, midiChannel); break;
         case 0x79 :
             if (value == 0)
             {
@@ -194,16 +165,13 @@ __SYNSetController(struct SYNSYNTH *synth, u8 midiChannel, u8 function, u8 value
         case 0x7C :
         case 0x7D :
         case 0x7E :
-        case 0x7F :
-            __SYNReleaseChannelNotes(synth, midiChannel);
-            break;
-        default :
-            break;
+        case 0x7F : __SYNReleaseChannelNotes(synth, midiChannel); break;
+        default   : break;
     }
 }
 
 void
-__SYNResetController0(struct SYNSYNTH *synth, u8 midiChannel)
+__SYNResetController0(struct SYNSYNTH* synth, u8 midiChannel)
 {
     u8  volume;
     u8  pan;
@@ -229,7 +197,7 @@ __SYNResetController0(struct SYNSYNTH *synth, u8 midiChannel)
 }
 
 void
-__SYNResetController(struct SYNSYNTH *synth, u8 midiChannel)
+__SYNResetController(struct SYNSYNTH* synth, u8 midiChannel)
 {
     int i;
 
@@ -249,7 +217,7 @@ __SYNResetController(struct SYNSYNTH *synth, u8 midiChannel)
 }
 
 void
-__SYNResetAllControllers(struct SYNSYNTH *synth)
+__SYNResetAllControllers(struct SYNSYNTH* synth)
 {
     u8 midiChannel;
 
@@ -263,9 +231,9 @@ __SYNResetAllControllers(struct SYNSYNTH *synth)
 }
 
 static void
-__SYNNoteOff(struct SYNSYNTH *synth, u8 midiChannel, u8 keyNum)
+__SYNNoteOff(struct SYNSYNTH* synth, u8 midiChannel, u8 keyNum)
 {
-    struct SYNVOICE *voice;
+    struct SYNVOICE* voice;
 
     ASSERTLINE(0x185, synth);
     ASSERTLINE(0x186, midiChannel < 16);
@@ -284,11 +252,11 @@ __SYNNoteOff(struct SYNSYNTH *synth, u8 midiChannel, u8 keyNum)
 }
 
 static void
-__SYNNoteOn(struct SYNSYNTH *synth, u8 midiChannel, u8 keyNum, u8 keyVel)
+__SYNNoteOn(struct SYNSYNTH* synth, u8 midiChannel, u8 keyNum, u8 keyVel)
 {
-    AXVPB           *axvpb;
-    struct SYNVOICE *voice;
-    struct SYNVOICE *oldVoice;
+    AXVPB*           axvpb;
+    struct SYNVOICE* voice;
+    struct SYNVOICE* oldVoice;
 
     ASSERTLINE(0x1A4, synth);
     ASSERTLINE(0x1A5, midiChannel < 16);
@@ -366,7 +334,7 @@ __SYNNoteOn(struct SYNSYNTH *synth, u8 midiChannel, u8 keyNum, u8 keyVel)
 }
 
 static void
-__SYNPitchWheel(struct SYNSYNTH *synth, u8 midiChannel, u8 lsb, u8 msb)
+__SYNPitchWheel(struct SYNSYNTH* synth, u8 midiChannel, u8 lsb, u8 msb)
 {
     long position;
 
@@ -379,9 +347,9 @@ __SYNPitchWheel(struct SYNSYNTH *synth, u8 midiChannel, u8 lsb, u8 msb)
 }
 
 static void
-__SYNMidiIn(struct SYNSYNTH *synth, u8 *input)
+__SYNMidiIn(struct SYNSYNTH* synth, u8* input)
 {
-    u8 *ch;
+    u8* ch;
     u8  midiFunction;
     u8  midiChannel;
     u8  _2ndByte;
@@ -398,9 +366,7 @@ __SYNMidiIn(struct SYNSYNTH *synth, u8 *input)
     ch += 1;
     switch (midiFunction)
     {
-        case 8 :
-            __SYNNoteOff(synth, midiChannel, _2ndByte);
-            return;
+        case 8 : __SYNNoteOff(synth, midiChannel, _2ndByte); return;
         case 9 :
             _3rdByte = *(ch);
             ch += 1;
@@ -411,9 +377,7 @@ __SYNMidiIn(struct SYNSYNTH *synth, u8 *input)
             ch += 1;
             __SYNSetController(synth, midiChannel, _2ndByte, _3rdByte);
             return;
-        case 12 :
-            __SYNProgramChange(synth, midiChannel, _2ndByte);
-            return;
+        case 12 : __SYNProgramChange(synth, midiChannel, _2ndByte); return;
         case 14 :
             _3rdByte = *(ch);
             ch += 1;
@@ -423,9 +387,9 @@ __SYNMidiIn(struct SYNSYNTH *synth, u8 *input)
 }
 
 void
-__SYNRunInputBufferEvents(struct SYNSYNTH *synth)
+__SYNRunInputBufferEvents(struct SYNSYNTH* synth)
 {
-    u8 *input;
+    u8* input;
 
     for (input = &synth->input[0][0]; synth->inputCounter; synth->inputCounter--)
     {
@@ -436,7 +400,7 @@ __SYNRunInputBufferEvents(struct SYNSYNTH *synth)
 }
 
 u8
-SYNGetMidiController(struct SYNSYNTH *synth, u8 midiChannel, u8 function)
+SYNGetMidiController(struct SYNSYNTH* synth, u8 midiChannel, u8 function)
 {
     ASSERTLINE(0x2A6, synth);
     ASSERTLINE(0x2A7, midiChannel < 16);

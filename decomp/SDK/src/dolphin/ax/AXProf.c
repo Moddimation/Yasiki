@@ -5,15 +5,15 @@
 #include "AXPrivate.h"
 
 // .sbss
-static AXPROFILE *__AXProfile;
+static AXPROFILE* __AXProfile;
 static u32        __AXMaxProfiles;
 static u32        __AXCurrentProfile;
 static u32        __AXProfileInitialized;
 
-AXPROFILE *
+AXPROFILE*
 __AXGetCurrentProfile(void)
 {
-    AXPROFILE *profile;
+    AXPROFILE* profile;
 
     if (__AXProfileInitialized != 0U)
     {
@@ -26,7 +26,7 @@ __AXGetCurrentProfile(void)
 }
 
 void
-AXInitProfile(AXPROFILE *profile, u32 maxProfiles)
+AXInitProfile(AXPROFILE* profile, u32 maxProfiles)
 {
     ASSERTLINE(0x3A, profile);
     ASSERTLINE(0x3B, maxProfiles);

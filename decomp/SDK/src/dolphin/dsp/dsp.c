@@ -57,10 +57,10 @@ DSPAssertInt(void)
 }
 
 static int   __DSP_init_flag;
-DSPTaskInfo *__DSP_first_task;
-DSPTaskInfo *__DSP_last_task;
-DSPTaskInfo *__DSP_curr_task;
-DSPTaskInfo *__DSP_tmp_task;
+DSPTaskInfo* __DSP_first_task;
+DSPTaskInfo* __DSP_last_task;
+DSPTaskInfo* __DSP_curr_task;
+DSPTaskInfo* __DSP_tmp_task;
 
 void
 DSPInit(void)
@@ -144,8 +144,8 @@ DSPGetDMAStatus(void)
     return (__DSPRegs[5] & (1 << 9));
 }
 
-DSPTaskInfo *
-DSPAddTask(DSPTaskInfo *task)
+DSPTaskInfo*
+DSPAddTask(DSPTaskInfo* task)
 {
     BOOL old;
 
@@ -165,8 +165,8 @@ DSPAddTask(DSPTaskInfo *task)
     return task;
 }
 
-DSPTaskInfo *
-DSPCancelTask(DSPTaskInfo *task)
+DSPTaskInfo*
+DSPCancelTask(DSPTaskInfo* task)
 {
     BOOL old;
 
@@ -180,11 +180,11 @@ DSPCancelTask(DSPTaskInfo *task)
     return task;
 }
 
-extern DSPTaskInfo *__DSP_rude_task;
+extern DSPTaskInfo* __DSP_rude_task;
 extern int          __DSP_rude_task_pending;
 
-DSPTaskInfo *
-DSPAssertTask(DSPTaskInfo *task)
+DSPTaskInfo*
+DSPAssertTask(DSPTaskInfo* task)
 {
     s32 old;
 

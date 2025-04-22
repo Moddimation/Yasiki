@@ -6,7 +6,7 @@
 #include "DEMOPrivate.h"
 
 unsigned char        DemoStatEnable = 0;
-static DemoStatData *DemoStat;
+static DemoStatData* DemoStat;
 static unsigned long DemoStatIndx;
 static unsigned long DemoStatMaxIndx;
 static unsigned long DemoStatClocks;
@@ -37,7 +37,7 @@ static void DEMOWriteStats(unsigned char update);
 static void DEMOWriteStats(unsigned char update);
 
 void
-DEMOSetStats(DemoStatData *stat, unsigned long nstats, DEMO_STAT_DISP disp)
+DEMOSetStats(DemoStatData* stat, unsigned long nstats, DEMO_STAT_DISP disp)
 {
     if (!stat || nstats == 0)
     {
@@ -166,10 +166,8 @@ DEMOWriteStats(unsigned char update)
             tcReq = cnt1;
             break;
         case DEMO_STAT_MYC :
-        case DEMO_STAT_MYR :
-            break;
-        default :
-            OSPanic("DEMOStats.c", 0x119, "DEMOSetStats: Unknown demo stat type\n");
+        case DEMO_STAT_MYR : break;
+        default            : OSPanic("DEMOStats.c", 0x119, "DEMOSetStats: Unknown demo stat type\n");
     }
 }
 
@@ -190,7 +188,7 @@ DEMOUpdateStats(unsigned char inc)
 void
 DEMOPrintStats(void)
 {
-    GXRenderModeObj *rmode;
+    GXRenderModeObj* rmode;
     unsigned long    i;
     signed short     text_x;
     signed short     text_y;
@@ -208,24 +206,12 @@ DEMOPrintStats(void)
                 case DEMO_STAT_PIX :
                     switch (DemoStat[i].stat)
                     {
-                        case 0 :
-                            OSReport("%s: %8d\n", DemoStat[i].text, topPixIn);
-                            break;
-                        case 1 :
-                            OSReport("%s: %8d\n", DemoStat[i].text, topPixOut);
-                            break;
-                        case 2 :
-                            OSReport("%s: %8d\n", DemoStat[i].text, botPixIn);
-                            break;
-                        case 3 :
-                            OSReport("%s: %8d\n", DemoStat[i].text, botPixOut);
-                            break;
-                        case 4 :
-                            OSReport("%s: %8d\n", DemoStat[i].text, clrPixIn);
-                            break;
-                        case 5 :
-                            OSReport("%s: %8d\n", DemoStat[i].text, copyClks);
-                            break;
+                        case 0 : OSReport("%s: %8d\n", DemoStat[i].text, topPixIn); break;
+                        case 1 : OSReport("%s: %8d\n", DemoStat[i].text, topPixOut); break;
+                        case 2 : OSReport("%s: %8d\n", DemoStat[i].text, botPixIn); break;
+                        case 3 : OSReport("%s: %8d\n", DemoStat[i].text, botPixOut); break;
+                        case 4 : OSReport("%s: %8d\n", DemoStat[i].text, clrPixIn); break;
+                        case 5 : OSReport("%s: %8d\n", DemoStat[i].text, copyClks); break;
                     }
                     break;
                 case DEMO_STAT_FR :
@@ -243,15 +229,9 @@ DEMOPrintStats(void)
                 case DEMO_STAT_VC :
                     switch (DemoStat[i].stat)
                     {
-                        case 0 :
-                            OSReport("%s: %8d\n", DemoStat[i].text, vcCheck);
-                            break;
-                        case 1 :
-                            OSReport("%s: %8d\n", DemoStat[i].text, vcMiss);
-                            break;
-                        case 2 :
-                            OSReport("%s: %8d\n", DemoStat[i].text, vcStall);
-                            break;
+                        case 0 : OSReport("%s: %8d\n", DemoStat[i].text, vcCheck); break;
+                        case 1 : OSReport("%s: %8d\n", DemoStat[i].text, vcMiss); break;
+                        case 2 : OSReport("%s: %8d\n", DemoStat[i].text, vcStall); break;
                     }
                     break;
                 case DEMO_STAT_MYR :
@@ -261,41 +241,19 @@ DEMOPrintStats(void)
                 case DEMO_STAT_MEM :
                     switch (DemoStat[i].stat)
                     {
-                        case 0 :
-                            OSReport("%s: %8d\n", DemoStat[i].text, cpReq);
-                            break;
-                        case 1 :
-                            OSReport("%s: %8d\n", DemoStat[i].text, tcReq);
-                            break;
-                        case 2 :
-                            OSReport("%s: %8d\n", DemoStat[i].text, cpuRdReq);
-                            break;
-                        case 3 :
-                            OSReport("%s: %8d\n", DemoStat[i].text, cpuWrReq);
-                            break;
-                        case 4 :
-                            OSReport("%s: %8d\n", DemoStat[i].text, dspReq);
-                            break;
-                        case 5 :
-                            OSReport("%s: %8d\n", DemoStat[i].text, ioReq);
-                            break;
-                        case 6 :
-                            OSReport("%s: %8d\n", DemoStat[i].text, viReq);
-                            break;
-                        case 7 :
-                            OSReport("%s: %8d\n", DemoStat[i].text, peReq);
-                            break;
-                        case 8 :
-                            OSReport("%s: %8d\n", DemoStat[i].text, rfReq);
-                            break;
-                        case 9 :
-                            OSReport("%s: %8d\n", DemoStat[i].text, fiReq);
-                            break;
+                        case 0 : OSReport("%s: %8d\n", DemoStat[i].text, cpReq); break;
+                        case 1 : OSReport("%s: %8d\n", DemoStat[i].text, tcReq); break;
+                        case 2 : OSReport("%s: %8d\n", DemoStat[i].text, cpuRdReq); break;
+                        case 3 : OSReport("%s: %8d\n", DemoStat[i].text, cpuWrReq); break;
+                        case 4 : OSReport("%s: %8d\n", DemoStat[i].text, dspReq); break;
+                        case 5 : OSReport("%s: %8d\n", DemoStat[i].text, ioReq); break;
+                        case 6 : OSReport("%s: %8d\n", DemoStat[i].text, viReq); break;
+                        case 7 : OSReport("%s: %8d\n", DemoStat[i].text, peReq); break;
+                        case 8 : OSReport("%s: %8d\n", DemoStat[i].text, rfReq); break;
+                        case 9 : OSReport("%s: %8d\n", DemoStat[i].text, fiReq); break;
                     }
                     break;
-                default :
-                    OSReport("%s: %8d\n", DemoStat[i].text, DemoStat[i].count);
-                    break;
+                default : OSReport("%s: %8d\n", DemoStat[i].text, DemoStat[i].count); break;
             }
         }
     }
@@ -341,24 +299,12 @@ DEMOPrintStats(void)
                 case DEMO_STAT_PIX :
                     switch (DemoStat[i].stat)
                     {
-                        case 0 :
-                            DEMOPrintf(text_x, text_y, 0, "%s: %8d\n", DemoStat[i].text, topPixIn);
-                            break;
-                        case 1 :
-                            DEMOPrintf(text_x, text_y, 0, "%s: %8d\n", DemoStat[i].text, topPixOut);
-                            break;
-                        case 2 :
-                            DEMOPrintf(text_x, text_y, 0, "%s: %8d\n", DemoStat[i].text, botPixIn);
-                            break;
-                        case 3 :
-                            DEMOPrintf(text_x, text_y, 0, "%s: %8d\n", DemoStat[i].text, botPixOut);
-                            break;
-                        case 4 :
-                            DEMOPrintf(text_x, text_y, 0, "%s: %8d\n", DemoStat[i].text, clrPixIn);
-                            break;
-                        case 5 :
-                            DEMOPrintf(text_x, text_y, 0, "%s: %8d\n", DemoStat[i].text, copyClks);
-                            break;
+                        case 0 : DEMOPrintf(text_x, text_y, 0, "%s: %8d\n", DemoStat[i].text, topPixIn); break;
+                        case 1 : DEMOPrintf(text_x, text_y, 0, "%s: %8d\n", DemoStat[i].text, topPixOut); break;
+                        case 2 : DEMOPrintf(text_x, text_y, 0, "%s: %8d\n", DemoStat[i].text, botPixIn); break;
+                        case 3 : DEMOPrintf(text_x, text_y, 0, "%s: %8d\n", DemoStat[i].text, botPixOut); break;
+                        case 4 : DEMOPrintf(text_x, text_y, 0, "%s: %8d\n", DemoStat[i].text, clrPixIn); break;
+                        case 5 : DEMOPrintf(text_x, text_y, 0, "%s: %8d\n", DemoStat[i].text, copyClks); break;
                     }
                     break;
                 case DEMO_STAT_FR :
@@ -376,50 +322,24 @@ DEMOPrintStats(void)
                 case DEMO_STAT_VC :
                     switch (DemoStat[i].stat)
                     {
-                        case 0 :
-                            DEMOPrintf(text_x, text_y, 0, "%s: %8d\n", DemoStat[i].text, vcCheck);
-                            break;
-                        case 1 :
-                            DEMOPrintf(text_x, text_y, 0, "%s: %8d\n", DemoStat[i].text, vcMiss);
-                            break;
-                        case 2 :
-                            DEMOPrintf(text_x, text_y, 0, "%s: %8d\n", DemoStat[i].text, vcStall);
-                            break;
+                        case 0 : DEMOPrintf(text_x, text_y, 0, "%s: %8d\n", DemoStat[i].text, vcCheck); break;
+                        case 1 : DEMOPrintf(text_x, text_y, 0, "%s: %8d\n", DemoStat[i].text, vcMiss); break;
+                        case 2 : DEMOPrintf(text_x, text_y, 0, "%s: %8d\n", DemoStat[i].text, vcStall); break;
                     }
                     break;
                 case DEMO_STAT_MEM :
                     switch (DemoStat[i].stat)
                     {
-                        case 0 :
-                            DEMOPrintf(text_x, text_y, 0, "%s: %8d\n", DemoStat[i].text, cpReq);
-                            break;
-                        case 1 :
-                            DEMOPrintf(text_x, text_y, 0, "%s: %8d\n", DemoStat[i].text, tcReq);
-                            break;
-                        case 2 :
-                            DEMOPrintf(text_x, text_y, 0, "%s: %8d\n", DemoStat[i].text, cpuRdReq);
-                            break;
-                        case 3 :
-                            DEMOPrintf(text_x, text_y, 0, "%s: %8d\n", DemoStat[i].text, cpuWrReq);
-                            break;
-                        case 4 :
-                            DEMOPrintf(text_x, text_y, 0, "%s: %8d\n", DemoStat[i].text, dspReq);
-                            break;
-                        case 5 :
-                            DEMOPrintf(text_x, text_y, 0, "%s: %8d\n", DemoStat[i].text, ioReq);
-                            break;
-                        case 6 :
-                            DEMOPrintf(text_x, text_y, 0, "%s: %8d\n", DemoStat[i].text, viReq);
-                            break;
-                        case 7 :
-                            DEMOPrintf(text_x, text_y, 0, "%s: %8d\n", DemoStat[i].text, peReq);
-                            break;
-                        case 8 :
-                            DEMOPrintf(text_x, text_y, 0, "%s: %8d\n", DemoStat[i].text, rfReq);
-                            break;
-                        case 9 :
-                            DEMOPrintf(text_x, text_y, 0, "%s: %8d\n", DemoStat[i].text, fiReq);
-                            break;
+                        case 0 : DEMOPrintf(text_x, text_y, 0, "%s: %8d\n", DemoStat[i].text, cpReq); break;
+                        case 1 : DEMOPrintf(text_x, text_y, 0, "%s: %8d\n", DemoStat[i].text, tcReq); break;
+                        case 2 : DEMOPrintf(text_x, text_y, 0, "%s: %8d\n", DemoStat[i].text, cpuRdReq); break;
+                        case 3 : DEMOPrintf(text_x, text_y, 0, "%s: %8d\n", DemoStat[i].text, cpuWrReq); break;
+                        case 4 : DEMOPrintf(text_x, text_y, 0, "%s: %8d\n", DemoStat[i].text, dspReq); break;
+                        case 5 : DEMOPrintf(text_x, text_y, 0, "%s: %8d\n", DemoStat[i].text, ioReq); break;
+                        case 6 : DEMOPrintf(text_x, text_y, 0, "%s: %8d\n", DemoStat[i].text, viReq); break;
+                        case 7 : DEMOPrintf(text_x, text_y, 0, "%s: %8d\n", DemoStat[i].text, peReq); break;
+                        case 8 : DEMOPrintf(text_x, text_y, 0, "%s: %8d\n", DemoStat[i].text, rfReq); break;
+                        case 9 : DEMOPrintf(text_x, text_y, 0, "%s: %8d\n", DemoStat[i].text, fiReq); break;
                     }
                     break;
                 case DEMO_STAT_GP0 :
@@ -431,9 +351,7 @@ DEMOPrintStats(void)
                     rate = DemoStat[i].stat / (float)DemoStat[i].count;
                     DEMOPrintf(text_x, text_y, 0, "%s: %8.3f", DemoStat[i].text, rate);
                     break;
-                default :
-                    OSReport("Undefined stat type %d in DEMOPrintStats()\n", DemoStat[i].stat_type);
-                    break;
+                default : OSReport("Undefined stat type %d in DEMOPrintStats()\n", DemoStat[i].stat_type); break;
             }
             text_y += text_yinc;
         }

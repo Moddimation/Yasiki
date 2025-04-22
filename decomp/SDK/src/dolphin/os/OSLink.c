@@ -82,8 +82,7 @@ OSModuleQueue __OSModuleInfoList : (OS_BASE_CACHED | 0x30C8);
 const void*   __OSStringTable : (OS_BASE_CACHED | 0x30D0);
 
 #define ENQUEUE_INFO(queue, info, link)                                                                                \
-    do                                                                                                                 \
-    {                                                                                                                  \
+    do {                                                                                                               \
         OSModuleInfo* __prev;                                                                                          \
                                                                                                                        \
         __prev = (queue)->tail;                                                                                        \
@@ -94,11 +93,11 @@ const void*   __OSStringTable : (OS_BASE_CACHED | 0x30D0);
         (info)->link.prev = __prev;                                                                                    \
         (info)->link.next = NULL;                                                                                      \
         (queue)->tail = (info);                                                                                        \
-    } while (0)
+    }                                                                                                                  \
+    while (0)
 
 #define DEQUEUE_INFO(info, queue, link)                                                                                \
-    do                                                                                                                 \
-    {                                                                                                                  \
+    do {                                                                                                               \
         OSModuleInfo* __next;                                                                                          \
         OSModuleInfo* __prev;                                                                                          \
                                                                                                                        \
@@ -114,7 +113,8 @@ const void*   __OSStringTable : (OS_BASE_CACHED | 0x30D0);
             (queue)->head = __next;                                                                                    \
         else                                                                                                           \
             __prev->link.next = __next;                                                                                \
-    } while (0)
+    }                                                                                                                  \
+    while (0)
 
 #pragma dont_inline on
 
@@ -174,8 +174,7 @@ Found:
         }
         switch (rel->type)
         {
-            case R_PPC_NONE :
-                break;
+            case R_PPC_NONE : break;
             case R_PPC_ADDR32 :
                 x = offset + rel->addend;
                 *p = x;
@@ -204,8 +203,7 @@ Found:
                 x = offset + rel->addend - (u32)p;
                 *p = (*p & ~0x03fffffc) | (x & 0x03fffffc);
                 break;
-            case R_DOLPHIN_NOP :
-                break;
+            case R_DOLPHIN_NOP : break;
             case R_DOLPHIN_SECTION :
                 si = &OSGetSectionInfo(module)[rel->section];
                 p = (u32*)OS_SECTIONINFO_OFFSET(si->offset);
@@ -217,9 +215,7 @@ Found:
                 }
                 siFlush = (si->offset & OS_SECTIONINFO_EXEC) ? si : 0;
                 break;
-            default :
-                OSReport("OSLink: unknown relocation type %3d\n", rel->type);
-                break;
+            default : OSReport("OSLink: unknown relocation type %3d\n", rel->type); break;
         }
     }
 
@@ -340,26 +336,13 @@ Found:
         x = 0;
         switch (rel->type)
         {
-            case R_PPC_NONE :
-                break;
-            case R_PPC_ADDR32 :
-                *p = x;
-                break;
-            case R_PPC_ADDR24 :
-                *p = (*p & ~0x03fffffc) | (x & 0x03fffffc);
-                break;
-            case R_PPC_ADDR16 :
-                *(u16*)p = (u16)(x & 0xffff);
-                break;
-            case R_PPC_ADDR16_LO :
-                *(u16*)p = (u16)(x & 0xffff);
-                break;
-            case R_PPC_ADDR16_HI :
-                *(u16*)p = (u16)(((x >> 16) & 0xffff));
-                break;
-            case R_PPC_ADDR16_HA :
-                *(u16*)p = (u16)(((x >> 16) + ((x & 0x8000) ? 1 : 0)) & 0xffff);
-                break;
+            case R_PPC_NONE      : break;
+            case R_PPC_ADDR32    : *p = x; break;
+            case R_PPC_ADDR24    : *p = (*p & ~0x03fffffc) | (x & 0x03fffffc); break;
+            case R_PPC_ADDR16    : *(u16*)p = (u16)(x & 0xffff); break;
+            case R_PPC_ADDR16_LO : *(u16*)p = (u16)(x & 0xffff); break;
+            case R_PPC_ADDR16_HI : *(u16*)p = (u16)(((x >> 16) & 0xffff)); break;
+            case R_PPC_ADDR16_HA : *(u16*)p = (u16)(((x >> 16) + ((x & 0x8000) ? 1 : 0)) & 0xffff); break;
             case R_PPC_REL24 :
                 if (module->unresolvedSection != SHN_UNDEF)
                 {
@@ -367,8 +350,7 @@ Found:
                 }
                 *p = (*p & ~0x03fffffc) | (x & 0x03fffffc);
                 break;
-            case R_DOLPHIN_NOP :
-                break;
+            case R_DOLPHIN_NOP : break;
             case R_DOLPHIN_SECTION :
                 si = &OSGetSectionInfo(module)[rel->section];
                 p = (u32*)OS_SECTIONINFO_OFFSET(si->offset);
@@ -380,9 +362,7 @@ Found:
                 }
                 siFlush = (si->offset & OS_SECTIONINFO_EXEC) ? si : 0;
                 break;
-            default :
-                OSReport("OSUnlink: unknown relocation type %3d\n", rel->type);
-                break;
+            default : OSReport("OSUnlink: unknown relocation type %3d\n", rel->type); break;
         }
     }
 

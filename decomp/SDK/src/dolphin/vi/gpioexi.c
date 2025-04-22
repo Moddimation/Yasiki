@@ -13,7 +13,7 @@ static void setI2CEnable(int value);
 static int  gpioOutput(u8 value);
 static int  gpioOE(u8 value);
 static int  gpioOut(u32 addr, u8 value);
-static int  gpioInput(u8 *p);
+static int  gpioInput(u8* p);
 
 void
 __VIInitI2C(void)
@@ -163,7 +163,7 @@ gpioOut(u32 addr, u8 value)
 }
 
 static int
-gpioInput(u8 *p)
+gpioInput(u8* p)
 {
     u32 cmd;
 

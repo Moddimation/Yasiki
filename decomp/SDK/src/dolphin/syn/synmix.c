@@ -40,14 +40,14 @@ long __SYNAttackAttnTable[100]
         0x00000000 };
 
 void
-__SYNSetupVolume(struct SYNVOICE *voice)
+__SYNSetupVolume(struct SYNVOICE* voice)
 {
     ASSERTLINE(0x55, voice);
     voice->attn = (voice->region->attn + __SYNVolumeAttenuation[voice->keyVel]);
 }
 
 void
-__SYNSetupPan(struct SYNVOICE *voice)
+__SYNSetupPan(struct SYNVOICE* voice)
 {
     ASSERTLINE(0x62, voice);
     if (voice->midiChannel == 9)
@@ -61,13 +61,13 @@ __SYNSetupPan(struct SYNVOICE *voice)
 }
 
 long
-__SYNGetVoiceInput(struct SYNVOICE *voice)
+__SYNGetVoiceInput(struct SYNVOICE* voice)
 {
     return (voice->attn + voice->lfoAttn + voice->veAttn) >> 0x10;
 }
 
 long
-__SYNGetVoiceFader(struct SYNVOICE *voice)
+__SYNGetVoiceFader(struct SYNVOICE* voice)
 {
     return (voice->synth->volAttn[voice->midiChannel] + voice->synth->expAttn[voice->midiChannel]
             + voice->synth->masterVolume)
@@ -75,7 +75,7 @@ __SYNGetVoiceFader(struct SYNVOICE *voice)
 }
 
 void
-__SYNUpdateMix(struct SYNVOICE *voice)
+__SYNUpdateMix(struct SYNVOICE* voice)
 {
     MIXSetInput(voice->axvpb, __SYNGetVoiceInput(voice));
     MIXSetAuxA(voice->axvpb, voice->synth->auxAAttn[voice->midiChannel] >> 0x10);

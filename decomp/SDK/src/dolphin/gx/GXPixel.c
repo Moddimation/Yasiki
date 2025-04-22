@@ -71,8 +71,8 @@ GXSetFog(GXFogType type, f32 startz, f32 endz, f32 nearz, f32 farz, GXColor colo
     SET_REG_FIELD(0x98, fog2, 5, 0, b_s);
     SET_REG_FIELD(0x99, fog2, 8, 24, 0xF0);
 
-    a_hex = *(u32 *)&a;
-    c_hex = *(u32 *)&c;
+    a_hex = *(u32*)&a;
+    c_hex = *(u32*)&c;
 
     fog0 = 0;
     SET_REG_FIELD(0xA0, fog0, 11, 0, (a_hex >> 12) & 0x7FF);
@@ -103,7 +103,7 @@ GXSetFog(GXFogType type, f32 startz, f32 endz, f32 nearz, f32 farz, GXColor colo
 }
 
 void
-GXInitFogAdjTable(GXFogAdjTable *table, u16 width, f32 projmtx[4][4])
+GXInitFogAdjTable(GXFogAdjTable* table, u16 width, f32 projmtx[4][4])
 {
     f32 xi;
     f32 iw;
@@ -139,7 +139,7 @@ GXInitFogAdjTable(GXFogAdjTable *table, u16 width, f32 projmtx[4][4])
 }
 
 void
-GXSetFogRangeAdj(GXBool enable, u16 center, GXFogAdjTable *table)
+GXSetFogRangeAdj(GXBool enable, u16 center, GXFogAdjTable* table)
 {
     u32 i;
     u32 range_adj;

@@ -5,9 +5,8 @@
 #include "OSPrivate.h"
 
 #define ENQUEUE_THREAD(thread, queue, link)                                                                            \
-    do                                                                                                                 \
-    {                                                                                                                  \
-        struct OSThread *__prev = (queue)->tail;                                                                       \
+    do {                                                                                                               \
+        struct OSThread* __prev = (queue)->tail;                                                                       \
         if (__prev == NULL)                                                                                            \
         {                                                                                                              \
             (queue)->head = (thread);                                                                                  \
@@ -19,13 +18,13 @@
         (thread)->link.prev = __prev;                                                                                  \
         (thread)->link.next = 0;                                                                                       \
         (queue)->tail = (thread);                                                                                      \
-    } while (0);
+    }                                                                                                                  \
+    while (0);
 
 #define DEQUEUE_THREAD(thread, queue, link)                                                                            \
-    do                                                                                                                 \
-    {                                                                                                                  \
-        struct OSThread *__next = (thread)->link.next;                                                                 \
-        struct OSThread *__prev = (thread)->link.prev;                                                                 \
+    do {                                                                                                               \
+        struct OSThread* __next = (thread)->link.next;                                                                 \
+        struct OSThread* __prev = (thread)->link.prev;                                                                 \
         if (__next == NULL)                                                                                            \
         {                                                                                                              \
             (queue)->tail = __prev;                                                                                    \
@@ -42,15 +41,14 @@
         {                                                                                                              \
             __prev->link.next = __next;                                                                                \
         }                                                                                                              \
-    } while (0);
+    }                                                                                                                  \
+    while (0);
 
 #define ENQUEUE_THREAD_PRIO(thread, queue, link)                                                                       \
-    do                                                                                                                 \
-    {                                                                                                                  \
-        struct OSThread *__prev;                                                                                       \
-        struct OSThread *__next;                                                                                       \
-        for (__next = (queue)->head; __next && (__next->priority <= (thread)->priority); __next = __next->link.next)   \
-            ;                                                                                                          \
+    do {                                                                                                               \
+        struct OSThread* __prev;                                                                                       \
+        struct OSThread* __next;                                                                                       \
+        for (__next = (queue)->head; __next && (__next->priority <= (thread)->priority); __next = __next->link.next);  \
                                                                                                                        \
         if (__next == NULL)                                                                                            \
         {                                                                                                              \
@@ -71,12 +69,12 @@
                 __prev->link.next = (thread);                                                                          \
             }                                                                                                          \
         }                                                                                                              \
-    } while (0);
+    }                                                                                                                  \
+    while (0);
 
 #define DEQUEUE_HEAD(thread, queue, link)                                                                              \
-    do                                                                                                                 \
-    {                                                                                                                  \
-        struct OSThread *__next = thread->link.next;                                                                   \
+    do {                                                                                                               \
+        struct OSThread* __next = thread->link.next;                                                                   \
         if (__next == NULL)                                                                                            \
         {                                                                                                              \
             (queue)->tail = 0;                                                                                         \
@@ -86,7 +84,8 @@
             __next->link.prev = 0;                                                                                     \
         }                                                                                                              \
         (queue)->head = __next;                                                                                        \
-    } while (0);
+    }                                                                                                                  \
+    while (0);
 
 // which header should these go in?
 extern unsigned char _stack_end[];
@@ -105,50 +104,50 @@ static long                   Reschedule;
 #define ALIGN8(val) (((val) + 0x7) & ~0x7)
 
 // functions
-static void OSInitMutexQueue(struct OSMutexQueue *queue);
+static void OSInitMutexQueue(struct OSMutexQueue* queue);
 ;
-void                    OSInitThreadQueue(struct OSThreadQueue *queue);
-struct OSThread        *OSGetCurrentThread();
-static void             __OSSwitchThread(struct OSThread *nextThread);
-int                     OSIsThreadSuspended(struct OSThread *thread);
-int                     OSIsThreadTerminated(struct OSThread *thread);
-static int              __OSIsThreadActive(struct OSThread *thread);
+void                    OSInitThreadQueue(struct OSThreadQueue* queue);
+struct OSThread*        OSGetCurrentThread();
+static void             __OSSwitchThread(struct OSThread* nextThread);
+int                     OSIsThreadSuspended(struct OSThread* thread);
+int                     OSIsThreadTerminated(struct OSThread* thread);
+static int              __OSIsThreadActive(struct OSThread* thread);
 long                    OSDisableScheduler();
 long                    OSEnableScheduler();
-static void             SetRun(struct OSThread *thread);
-static void             UnsetRun(struct OSThread *thread);
-static struct OSThread *SetEffectivePriority(struct OSThread *thread, long priority);
-static void             UpdatePriority(struct OSThread *thread);
-static struct OSThread *SelectThread(int yield);
+static void             SetRun(struct OSThread* thread);
+static void             UnsetRun(struct OSThread* thread);
+static struct OSThread* SetEffectivePriority(struct OSThread* thread, long priority);
+static void             UpdatePriority(struct OSThread* thread);
+static struct OSThread* SelectThread(int yield);
 void                    OSYieldThread(void);
-int  OSCreateThread(struct OSThread *thread, void *(*func)(void *), void *param, void *stack, unsigned long stackSize,
+int  OSCreateThread(struct OSThread* thread, void* (*func)(void*), void* param, void* stack, unsigned long stackSize,
                     long priority, unsigned short attr);
-void OSExitThread(void *val);
-void OSCancelThread(struct OSThread *thread);
-int  OSJoinThread(struct OSThread *thread, void *val);
-void OSDetachThread(struct OSThread *thread);
-long OSResumeThread(struct OSThread *thread);
-void OSSleepThread(struct OSThreadQueue *queue);
-void OSWakeupThread(struct OSThreadQueue *queue);
-int  OSSetThreadPriority(struct OSThread *thread, long priority);
-long OSGetThreadPriority(struct OSThread *thread);
-struct OSThread *OSSetIdleFunction(void (*idleFunction)(void *), void *param, void *stack, unsigned long stackSize);
-struct OSThread *OSGetIdleFunction();
-static int       CheckThreadQueue(struct OSThreadQueue *queue);
-static int       IsMember(struct OSThreadQueue *queue, struct OSThread *thread);
+void OSExitThread(void* val);
+void OSCancelThread(struct OSThread* thread);
+int  OSJoinThread(struct OSThread* thread, void* val);
+void OSDetachThread(struct OSThread* thread);
+long OSResumeThread(struct OSThread* thread);
+void OSSleepThread(struct OSThreadQueue* queue);
+void OSWakeupThread(struct OSThreadQueue* queue);
+int  OSSetThreadPriority(struct OSThread* thread, long priority);
+long OSGetThreadPriority(struct OSThread* thread);
+struct OSThread* OSSetIdleFunction(void (*idleFunction)(void*), void* param, void* stack, unsigned long stackSize);
+struct OSThread* OSGetIdleFunction();
+static int       CheckThreadQueue(struct OSThreadQueue* queue);
+static int       IsMember(struct OSThreadQueue* queue, struct OSThread* thread);
 long             OSCheckActiveThreads();
 
 void
 __OSThreadInit()
 {
-    struct OSThread *thread = &DefaultThread;
+    struct OSThread* thread = &DefaultThread;
     int              prio;
 
     thread->state = 2;
     thread->attr = 1;
     thread->priority = thread->base = 0x10;
     thread->suspend = 0;
-    thread->val = (void *)-1; // wut
+    thread->val = (void*)-1; // wut
     thread->mutex = 0;
 
     OSInitThreadQueue(&thread->queueJoin);
@@ -163,9 +162,9 @@ __OSThreadInit()
     __gUnkThread1 = thread;
     OSClearContext(&thread->context);
     OSSetCurrentContext(&thread->context);
-    thread->stackBase = (unsigned char *)&_stack_addr;
-    thread->stackEnd = (unsigned long *)&_stack_end;
-    *(u32 *)thread->stackEnd = 0xDEADBABE;
+    thread->stackBase = (unsigned char*)&_stack_addr;
+    thread->stackEnd = (unsigned long*)&_stack_end;
+    *(u32*)thread->stackEnd = 0xDEADBABE;
     __gCurrentThread = thread;
     RunQueueBits = 0;
     RunQueueHint = 0;
@@ -184,26 +183,26 @@ __OSThreadInit()
 
 #if DEBUG
 static void
-OSInitMutexQueue(struct OSMutexQueue *queue)
+OSInitMutexQueue(struct OSMutexQueue* queue)
 {
     queue->head = queue->tail = 0;
 }
 #endif
 
 void
-OSInitThreadQueue(struct OSThreadQueue *queue)
+OSInitThreadQueue(struct OSThreadQueue* queue)
 {
     queue->head = queue->tail = 0;
 }
 
-struct OSThread *
+struct OSThread*
 OSGetCurrentThread()
 {
     return __gCurrentThread;
 }
 
 static void
-__OSSwitchThread(struct OSThread *nextThread)
+__OSSwitchThread(struct OSThread* nextThread)
 {
     __gCurrentThread = nextThread;
     OSSetCurrentContext(&nextThread->context);
@@ -211,7 +210,7 @@ __OSSwitchThread(struct OSThread *nextThread)
 }
 
 int
-OSIsThreadSuspended(struct OSThread *thread)
+OSIsThreadSuspended(struct OSThread* thread)
 {
     if (thread->suspend > 0)
     {
@@ -221,15 +220,15 @@ OSIsThreadSuspended(struct OSThread *thread)
 }
 
 int
-OSIsThreadTerminated(struct OSThread *thread)
+OSIsThreadTerminated(struct OSThread* thread)
 {
     return (thread->state == 8 || thread->state == 0) ? 1 : 0;
 }
 
 static int
-__OSIsThreadActive(struct OSThread *thread)
+__OSIsThreadActive(struct OSThread* thread)
 {
-    struct OSThread *active;
+    struct OSThread* active;
 
     if (thread->state == 0)
     {
@@ -273,7 +272,7 @@ OSEnableScheduler(void)
 }
 
 static void
-SetRun(struct OSThread *thread)
+SetRun(struct OSThread* thread)
 {
     ASSERTLINE(469, !IsSuspended(thread->suspend));
     ASSERTLINE(470, thread->state == OS_THREAD_STATE_READY);
@@ -289,9 +288,9 @@ SetRun(struct OSThread *thread)
 }
 
 static void
-UnsetRun(struct OSThread *thread)
+UnsetRun(struct OSThread* thread)
 {
-    struct OSThreadQueue *queue;
+    struct OSThreadQueue* queue;
 
     ASSERTLINE(0x1ED, thread->state == OS_THREAD_STATE_READY);
 
@@ -310,14 +309,14 @@ UnsetRun(struct OSThread *thread)
 }
 
 long
-__OSGetEffectivePriority(struct OSThread *thread)
+__OSGetEffectivePriority(struct OSThread* thread)
 {
     long            priority = thread->base;
-    struct OSMutex *mutex;
+    struct OSMutex* mutex;
 
     for (mutex = thread->queueMutex.head; mutex; mutex = mutex->link.next)
     {
-        struct OSThread *blocked = mutex->queue.head;
+        struct OSThread* blocked = mutex->queue.head;
         if (blocked && blocked->priority < priority)
         {
             priority = blocked->priority;
@@ -326,8 +325,8 @@ __OSGetEffectivePriority(struct OSThread *thread)
     return priority;
 }
 
-static struct OSThread *
-SetEffectivePriority(struct OSThread *thread, long priority)
+static struct OSThread*
+SetEffectivePriority(struct OSThread* thread, long priority)
 {
     ASSERTLINE(547, !IsSuspended(thread->suspend));
 
@@ -359,7 +358,7 @@ SetEffectivePriority(struct OSThread *thread, long priority)
 }
 
 static void
-UpdatePriority(struct OSThread *thread)
+UpdatePriority(struct OSThread* thread)
 {
     long priority;
 
@@ -383,7 +382,7 @@ UpdatePriority(struct OSThread *thread)
 }
 
 void
-__OSPromoteThread(struct OSThread *thread, long priority)
+__OSPromoteThread(struct OSThread* thread, long priority)
 {
     while (1)
     {
@@ -399,14 +398,14 @@ __OSPromoteThread(struct OSThread *thread, long priority)
     }
 }
 
-static struct OSThread *
+static struct OSThread*
 SelectThread(int yield)
 {
-    struct OSContext     *currentContext;
-    struct OSThread      *currentThread;
-    struct OSThread      *nextThread;
+    struct OSContext*     currentContext;
+    struct OSThread*      currentThread;
+    struct OSThread*      nextThread;
     long                  priority;
-    struct OSThreadQueue *queue;
+    struct OSThreadQueue* queue;
 
     if (Reschedule > 0)
     {
@@ -447,13 +446,12 @@ SelectThread(int yield)
     if (RunQueueBits == 0)
     {
         OSSetCurrentContext(&IdleContext);
-        do
-        {
+        do {
             OSEnableInterrupts();
-            while (RunQueueBits == 0)
-                ;
+            while (RunQueueBits == 0);
             OSDisableInterrupts();
-        } while (RunQueueBits == 0);
+        }
+        while (RunQueueBits == 0);
         OSClearContext(&IdleContext);
     }
 
@@ -498,7 +496,7 @@ OSYieldThread(void)
 }
 
 int
-OSCreateThread(struct OSThread *thread, void *(*func)(void *), void *param, void *stack, unsigned long stackSize,
+OSCreateThread(struct OSThread* thread, void* (*func)(void*), void* param, void* stack, unsigned long stackSize,
                long priority, unsigned short attr)
 {
     int           enabled;
@@ -518,24 +516,24 @@ OSCreateThread(struct OSThread *thread, void *(*func)(void *), void *param, void
     thread->base = priority;
     thread->priority = priority;
     thread->suspend = 1;
-    thread->val = (void *)-1;
+    thread->val = (void*)-1;
     thread->mutex = 0;
     OSInitThreadQueue(&thread->queueJoin);
 #ifdef DEBUG
     OSInitMutexQueue(&thread->queueMutex);
 #else
-    OSInitThreadQueue((void *)&thread->queueMutex);        // why
+    OSInitThreadQueue((void*)&thread->queueMutex);         // why
 #endif
     sp = (u32)stack;
     sp &= ~7;
     sp -= 8;
-    ((u32 *)sp)[0] = 0;
-    ((u32 *)sp)[1] = 0;
+    ((u32*)sp)[0] = 0;
+    ((u32*)sp)[1] = 0;
     OSInitContext(&thread->context, (u32)func, sp);
     thread->context.lr = (unsigned long)&OSExitThread;
     thread->context.gpr[3] = (unsigned long)param;
     thread->stackBase = stack;
-    thread->stackEnd = (void *)((unsigned int)stack - stackSize);
+    thread->stackEnd = (void*)((unsigned int)stack - stackSize);
     *thread->stackEnd = 0xDEADBABE;
     enabled = OSDisableInterrupts();
 
@@ -548,10 +546,10 @@ OSCreateThread(struct OSThread *thread, void *(*func)(void *), void *param, void
 }
 
 void
-OSExitThread(void *val)
+OSExitThread(void* val)
 {
     int              enabled = OSDisableInterrupts();
-    struct OSThread *currentThread = OSGetCurrentThread();
+    struct OSThread* currentThread = OSGetCurrentThread();
 
     ASSERTMSGLINE(0x354, currentThread, "OSExitThread(): current thread does not exist.");
     ASSERTMSGLINE(0x356, currentThread->state == 2, "OSExitThread(): current thread is not running.");
@@ -583,7 +581,7 @@ OSExitThread(void *val)
 }
 
 void
-OSCancelThread(struct OSThread *thread)
+OSCancelThread(struct OSThread* thread)
 {
     int enabled = OSDisableInterrupts();
 
@@ -597,9 +595,7 @@ OSCancelThread(struct OSThread *thread)
                 UnsetRun(thread);
             }
             break;
-        case 2 :
-            RunQueueHint = 1;
-            break;
+        case 2 : RunQueueHint = 1; break;
         case 4 :
             DEQUEUE_THREAD(thread, thread->queue, link);
             thread->queue = 0;
@@ -609,9 +605,7 @@ OSCancelThread(struct OSThread *thread)
                 UpdatePriority(thread->mutex->thread);
             }
             break;
-        default :
-            OSRestoreInterrupts(enabled);
-            return;
+        default : OSRestoreInterrupts(enabled); return;
     }
     OSClearContext(&thread->context);
     if (thread->attr & 1)
@@ -630,7 +624,7 @@ OSCancelThread(struct OSThread *thread)
 }
 
 int
-OSJoinThread(struct OSThread *thread, void *val)
+OSJoinThread(struct OSThread* thread, void* val)
 {
     int enabled = OSDisableInterrupts();
 
@@ -649,7 +643,7 @@ OSJoinThread(struct OSThread *thread, void *val)
     {
         if (val)
         {
-            *(s32 *)val = (s32)thread->val;
+            *(s32*)val = (s32)thread->val;
         }
         DEQUEUE_THREAD(thread, &__OSActiveThreadQueue, linkActive);
         thread->state = 0;
@@ -661,7 +655,7 @@ OSJoinThread(struct OSThread *thread, void *val)
 }
 
 void
-OSDetachThread(struct OSThread *thread)
+OSDetachThread(struct OSThread* thread)
 {
     int enabled = OSDisableInterrupts();
 
@@ -678,7 +672,7 @@ OSDetachThread(struct OSThread *thread)
 }
 
 long
-OSResumeThread(struct OSThread *thread)
+OSResumeThread(struct OSThread* thread)
 {
     int  enabled = OSDisableInterrupts();
     long suspendCount;
@@ -716,7 +710,7 @@ OSResumeThread(struct OSThread *thread)
 }
 
 long
-OSSuspendThread(struct OSThread *thread)
+OSSuspendThread(struct OSThread* thread)
 {
     int  enabled = OSDisableInterrupts();
     long suspendCount;
@@ -733,9 +727,7 @@ OSSuspendThread(struct OSThread *thread)
                 RunQueueHint = 1;
                 thread->state = 1;
                 break;
-            case 1 :
-                UnsetRun(thread);
-                break;
+            case 1 : UnsetRun(thread); break;
             case 4 :
                 DEQUEUE_THREAD(thread, thread->queue, link);
                 thread->priority = 0x20;
@@ -754,10 +746,10 @@ OSSuspendThread(struct OSThread *thread)
 }
 
 void
-OSSleepThread(struct OSThreadQueue *queue)
+OSSleepThread(struct OSThreadQueue* queue)
 {
     int              enabled = OSDisableInterrupts();
-    struct OSThread *currentThread = OSGetCurrentThread();
+    struct OSThread* currentThread = OSGetCurrentThread();
 
     ASSERTMSGLINE(0x484, currentThread, "OSSleepThread(): current thread does not exist.");
     ASSERTMSG1LINE(0x486, __OSIsThreadActive(currentThread) != 0, "OSSleepThread(): current thread %p is not active.",
@@ -776,13 +768,13 @@ OSSleepThread(struct OSThreadQueue *queue)
 }
 
 void
-OSWakeupThread(struct OSThreadQueue *queue)
+OSWakeupThread(struct OSThreadQueue* queue)
 {
     int enabled = OSDisableInterrupts();
 
     while (queue->head)
     {
-        struct OSThread *thread = queue->head;
+        struct OSThread* thread = queue->head;
 
         DEQUEUE_HEAD(thread, queue, link);
 
@@ -800,7 +792,7 @@ OSWakeupThread(struct OSThreadQueue *queue)
 }
 
 int
-OSSetThreadPriority(struct OSThread *thread, long priority)
+OSSetThreadPriority(struct OSThread* thread, long priority)
 {
     int enabled;
 
@@ -827,19 +819,19 @@ OSSetThreadPriority(struct OSThread *thread, long priority)
 }
 
 long
-OSGetThreadPriority(struct OSThread *thread)
+OSGetThreadPriority(struct OSThread* thread)
 {
     return thread->base;
 }
 
-struct OSThread *
-OSSetIdleFunction(void (*idleFunction)(void *), void *param, void *stack, unsigned long stackSize)
+struct OSThread*
+OSSetIdleFunction(void (*idleFunction)(void*), void* param, void* stack, unsigned long stackSize)
 {
     if (idleFunction)
     {
         if (IdleThread.state == 0)
         {
-            OSCreateThread(&IdleThread, (void *)idleFunction, param, stack, stackSize, 0x1F, 1);
+            OSCreateThread(&IdleThread, (void*)idleFunction, param, stack, stackSize, 0x1F, 1);
             OSResumeThread(&IdleThread);
             return &IdleThread;
         }
@@ -851,7 +843,7 @@ OSSetIdleFunction(void (*idleFunction)(void *), void *param, void *stack, unsign
     return NULL;
 }
 
-struct OSThread *
+struct OSThread*
 OSGetIdleFunction()
 {
     if (IdleThread.state != 0)
@@ -862,9 +854,9 @@ OSGetIdleFunction()
 }
 
 static int
-CheckThreadQueue(struct OSThreadQueue *queue)
+CheckThreadQueue(struct OSThreadQueue* queue)
 {
-    struct OSThread *thread;
+    struct OSThread* thread;
 
     if ((queue->head != NULL) && (queue->head->link.prev != NULL))
     {
@@ -891,9 +883,9 @@ CheckThreadQueue(struct OSThreadQueue *queue)
 }
 
 static int
-IsMember(struct OSThreadQueue *queue, struct OSThread *thread)
+IsMember(struct OSThreadQueue* queue, struct OSThread* thread)
 {
-    struct OSThread *member = queue->head;
+    struct OSThread* member = queue->head;
 
     while (member)
     {
@@ -917,7 +909,7 @@ IsMember(struct OSThreadQueue *queue, struct OSThread *thread)
 long
 OSCheckActiveThreads()
 {
-    struct OSThread *thread;
+    struct OSThread* thread;
     long             prio;
     long             cThread;
     int              enabled;
@@ -981,9 +973,7 @@ OSCheckActiveThreads()
                 }
                 ASSERTREPORT(0x5A2, !__OSCheckDeadLock(thread));
                 break;
-            case 8 :
-                ASSERTREPORT(0x5A6, thread->queueMutex.head == NULL && thread->queueMutex.tail == NULL);
-                break;
+            case 8 : ASSERTREPORT(0x5A6, thread->queueMutex.head == NULL && thread->queueMutex.tail == NULL); break;
             default :
                 OSReport("OSCheckActiveThreads: Failed. unkown thread state (%d) of thread %p\n", thread->state,
                          thread);

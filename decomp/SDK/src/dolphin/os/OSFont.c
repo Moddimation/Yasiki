@@ -173,8 +173,7 @@ Decode(unsigned char* s, unsigned char* d)
     flag = 0;
     p = 16;
 
-    do
-    {
+    do {
         // Get next mask
         if (flag == 0)
         {
@@ -217,7 +216,8 @@ Decode(unsigned char* s, unsigned char* d)
         // Prepare next mask bit
         code <<= 1;
         flag--;
-    } while (q < os);
+    }
+    while (q < os);
 }
 
 static u32
@@ -241,17 +241,14 @@ OSGetFontEncode(void)
     }
     switch (*(int*)OSPhysicalToCached(0xCC))
     {
-        case VI_NTSC :
-            fontEncode = (__VIRegs[VI_DTV_STAT] & 2) ? OS_FONT_ENCODE_SJIS : OS_FONT_ENCODE_ANSI;
-            break;
+        case VI_NTSC      : fontEncode = (__VIRegs[VI_DTV_STAT] & 2) ? OS_FONT_ENCODE_SJIS : OS_FONT_ENCODE_ANSI; break;
 
-        case VI_PAL :
-        case VI_MPAL :
-        case VI_DEBUG :
+        case VI_PAL       :
+        case VI_MPAL      :
+        case VI_DEBUG     :
         case VI_DEBUG_PAL :
-        case VI_EURGB60 :
-        default :
-            fontEncode = OS_FONT_ENCODE_ANSI;
+        case VI_EURGB60   :
+        default           : fontEncode = OS_FONT_ENCODE_ANSI;
     }
 
     return fontEncode;

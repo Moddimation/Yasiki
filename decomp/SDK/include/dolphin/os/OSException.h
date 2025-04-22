@@ -1,9 +1,8 @@
 #ifndef _DOLPHIN_OSEXCEPTION_H_
 #define _DOLPHIN_OSEXCEPTION_H_
 
-#include <dolphin/types.h>
-
 #include <dolphin/os/OSContext.h>
+#include <dolphin/types.h>
 
 #ifdef __cplusplus
 extern "C"

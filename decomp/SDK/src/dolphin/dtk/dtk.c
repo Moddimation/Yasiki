@@ -5,9 +5,9 @@
 #include <dolphin/dvd.h>
 #include <dolphin/os.h>
 
-static DTKTrack        *__DTKCurrentTrack;
-static DTKTrack        *__DTKPlayListHead;
-static DTKTrack        *__DTKPlayListTail;
+static DTKTrack*        __DTKCurrentTrack;
+static DTKTrack*        __DTKPlayListHead;
+static DTKTrack*        __DTKPlayListTail;
 static volatile u32     __DTKState;
 static volatile u32     __DTKTempState;
 static volatile u32     __DTKRepeatMode;
@@ -48,7 +48,7 @@ __DTKStopAi(void)
 }
 
 static void
-__DTKCheckUserCallback(struct DTKTrack *track, u32 event)
+__DTKCheckUserCallback(struct DTKTrack* track, u32 event)
 {
     ASSERTLINE(0x53, track);
     if (track && track->callback && (track->eventMask & event))
@@ -80,7 +80,7 @@ __DTKBackward(void)
 }
 
 static void
-__DTKCallbackForStreamStatus(s32 result, DVDCommandBlock *block)
+__DTKCallbackForStreamStatus(s32 result, DVDCommandBlock* block)
 {
     if ((result & 0xFF) == 0)
     {
@@ -90,7 +90,7 @@ __DTKCallbackForStreamStatus(s32 result, DVDCommandBlock *block)
 }
 
 static void
-__DTKCallbackForRun(s32 result, DVDFileInfo *fileInfo)
+__DTKCallbackForRun(s32 result, DVDFileInfo* fileInfo)
 {
     __DTKStartAi();
     DVDStopStreamAtEndAsync(&__block_for_run_callback, 0);
@@ -99,7 +99,7 @@ __DTKCallbackForRun(s32 result, DVDFileInfo *fileInfo)
 }
 
 static void
-__DTKCallbackForPreparePaused(s32 result, DVDFileInfo *fileInfo)
+__DTKCallbackForPreparePaused(s32 result, DVDFileInfo* fileInfo)
 {
     __DTKStopAi();
     DVDStopStreamAtEndAsync(&__block_for_prep_callback, 0);
@@ -120,7 +120,7 @@ __DTKPrepareCurrentTrackPaused(void)
 }
 
 static void
-__DTKCallbackForPlaylist(s32 result, DVDCommandBlock *block)
+__DTKCallbackForPlaylist(s32 result, DVDCommandBlock* block)
 {
     __DTKPosition = result;
     if (__DTKTrackEnded)
@@ -190,9 +190,9 @@ __DTKCallbackForAIInterrupt(u32 count)
 }
 
 static void
-__DTKCallbackForFlush(s32 result, DVDCommandBlock *block)
+__DTKCallbackForFlush(s32 result, DVDCommandBlock* block)
 {
-    struct DTKTrack *track;
+    struct DTKTrack* track;
 
     AISetStreamPlayState(0);
     track = __DTKPlayListHead;
@@ -215,14 +215,14 @@ __DTKCallbackForFlush(s32 result, DVDCommandBlock *block)
 }
 
 static void
-__DTKCallbackForStop(s32 result, DVDCommandBlock *block)
+__DTKCallbackForStop(s32 result, DVDCommandBlock* block)
 {
     __DTKCheckUserCallback(__DTKCurrentTrack, 2);
     __DTKState = DTK_STATE_STOP;
 }
 
 static void
-__DTKCallbackForNextTrack(s32 result, DVDCommandBlock *block)
+__DTKCallbackForNextTrack(s32 result, DVDCommandBlock* block)
 {
     AISetStreamPlayState(0);
     __DTKForward();
@@ -231,7 +231,7 @@ __DTKCallbackForNextTrack(s32 result, DVDCommandBlock *block)
 }
 
 static void
-__DTKCallbackForPrevTrack(s32 result, DVDCommandBlock *block)
+__DTKCallbackForPrevTrack(s32 result, DVDCommandBlock* block)
 {
     AISetStreamPlayState(0);
     __DTKBackward();
@@ -275,7 +275,7 @@ DTKShutdown(void)
 }
 
 u32
-DTKQueueTrack(char *fileName, DTKTrack *track, u32 eventMask, DTKCallback callback)
+DTKQueueTrack(char* fileName, DTKTrack* track, u32 eventMask, DTKCallback callback)
 {
     u32  startTrack;
     BOOL old;
@@ -322,7 +322,7 @@ DTKQueueTrack(char *fileName, DTKTrack *track, u32 eventMask, DTKCallback callba
 }
 
 u32
-DTKRemoveTrack(struct DTKTrack *track)
+DTKRemoveTrack(struct DTKTrack* track)
 {
     BOOL old;
 
@@ -542,7 +542,7 @@ DTKGetInterruptFrequency(void)
     return __DTKInterruptFrequency;
 }
 
-DTKTrack *
+DTKTrack*
 DTKGetCurrentTrack(void)
 {
     return __DTKCurrentTrack;

@@ -21,11 +21,11 @@ static void ttyMccChannelEvent(enum MCC_CHANNEL chID, u32 event, u32 value);
 int         TTYInit(enum MCC_EXI exiChannel, enum MCC_CHANNEL chID);
 void        TTYExit(void);
 int         TTYQuery(void);
-int         TTYPrintf(const char *format, ...);
+int         TTYPrintf(const char* format, ...);
 int         TTYFlush(void);
 static void ttyClearProperty(enum MCC_CHANNEL chID);
-static int  ttyWaiting(int timeout, volatile int *flag);
-static int  ttyWrite(u32 offset, void *data, long size);
+static int  ttyWaiting(int timeout, volatile int* flag);
+static int  ttyWrite(u32 offset, void* data, long size);
 static int  ttyFlush(u32 msgID, int waitResult);
 
 static int
@@ -62,12 +62,8 @@ ttyMccChannelEvent(enum MCC_CHANNEL chID, u32 event, u32 value)
 
     switch (event)
     {
-        case 1 :
-            gChID = chID;
-            return;
-        case 2 :
-            gChID = 0;
-            return;
+        case 1 : gChID = chID; return;
+        case 2 : gChID = 0; return;
         case 0x100 :
             notify = (value & (0xF00000));
             switch (notify)
@@ -146,36 +142,36 @@ TTYQuery(void)
         }
     }
     tick = OSGetTick();
-    do
-    {
-    } while (OSTicksToSeconds(OSGetTick() - tick) < 5);
+    do {
+    }
+    while (OSTicksToSeconds(OSGetTick() - tick) < 5);
     return 0;
 }
 
 int
-TTYPrintf(const char *format, ...)
+TTYPrintf(const char* format, ...)
 {
     if (ttyIsInitialized() && (format != NULL))
     {
-        MCC_Hdr *hdr;
-        u32     *id;
-        char    *str;
+        MCC_Hdr* hdr;
+        u32*     id;
+        char*    str;
         u32      maxDataSize;
         u32      formatLength;
         u32      dataSize;
         int      err;
-        char    *eof;
+        char*    eof;
         va_list  argptr;
         u32      prosecced;
 
-        hdr = (void *)&gBuf;
-        id = (u32 *)(hdr + 1);
-        str = (char *)(id + 1);
+        hdr = (void*)&gBuf;
+        id = (u32*)(hdr + 1);
+        str = (char*)(id + 1);
         maxDataSize = 8179;
         formatLength = strlen(format);
         if (formatLength > maxDataSize)
         {
-            eof = (void *)((-1 + maxDataSize + (u32)format));
+            eof = (void*)((-1 + maxDataSize + (u32)format));
             *(eof) = 0;
         }
         va_start(argptr, format);
@@ -206,12 +202,12 @@ TTYPrintf(const char *format, ...)
         if ((0x2000 - (gBufTail & 0x1FFF)) < dataSize)
         {
             prosecced = 0x2000 - (gBufTail & 0x1FFF);
-            ttyWrite(gBufTail & 0x1FFF, (char *)&gBuf, prosecced);
-            ttyWrite(0, (char *)&gBuf + prosecced, dataSize - prosecced);
+            ttyWrite(gBufTail & 0x1FFF, (char*)&gBuf, prosecced);
+            ttyWrite(0, (char*)&gBuf + prosecced, dataSize - prosecced);
         }
         else
         {
-            ttyWrite(gBufTail & 0x1FFF, (char *)&gBuf, dataSize);
+            ttyWrite(gBufTail & 0x1FFF, (char*)&gBuf, dataSize);
         }
         gBufTail += dataSize;
         if (strchr(str, '\n') != 0U)
@@ -250,7 +246,7 @@ ttyClearProperty(enum MCC_CHANNEL chID)
 }
 
 static int
-ttyWaiting(int timeout, volatile int *flag)
+ttyWaiting(int timeout, volatile int* flag)
 {
     u32 tickStart;
     u32 tickDist;
@@ -270,7 +266,7 @@ ttyWaiting(int timeout, volatile int *flag)
 }
 
 static int
-ttyWrite(u32 offset, void *data, long size)
+ttyWrite(u32 offset, void* data, long size)
 {
     if (MCCWrite(gChID, offset, data, size, 0))
     {
@@ -292,14 +288,13 @@ ttyFlush(u32 msgID, int waitResult)
     }
     if (MCCNotify(gChID, notify) == 0)
     {
-        while (1)
-            ;
+        while (1);
     }
     if (waitResult != 0)
     {
-        do
-        {
-        } while (gReadDone != msgID);
+        do {
+        }
+        while (gReadDone != msgID);
     }
     return 1;
 }

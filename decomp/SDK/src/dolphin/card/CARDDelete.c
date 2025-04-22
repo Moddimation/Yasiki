@@ -10,7 +10,7 @@ static void DeleteCallback(s32 chan, s32 result);
 static void
 DeleteCallback(s32 chan, s32 result)
 {
-    CARDControl *card;
+    CARDControl* card;
     CARDCallback callback;
 
     card = &__CARDBlock[chan];
@@ -40,9 +40,9 @@ error:
 s32
 CARDFastDeleteAsync(s32 chan, s32 fileNo, CARDCallback callback)
 {
-    CARDControl *card;
-    CARDDir     *dir;
-    CARDDir     *ent;
+    CARDControl* card;
+    CARDDir*     dir;
+    CARDDir*     ent;
     s32          result;
 
     ASSERTLINE(0x78, 0 <= fileNo && fileNo < CARD_MAX_FILE);
@@ -94,13 +94,13 @@ CARDFastDelete(long chan, long fileNo)
 }
 
 s32
-CARDDeleteAsync(s32 chan, char *fileName, CARDCallback callback)
+CARDDeleteAsync(s32 chan, char* fileName, CARDCallback callback)
 {
-    CARDControl *card;
+    CARDControl* card;
     s32          fileNo;
     s32          result;
-    CARDDir     *dir;
-    CARDDir     *ent;
+    CARDDir*     dir;
+    CARDDir*     ent;
 
     result = __CARDGetControlBlock(chan, &card);
     if (result < 0)
@@ -132,7 +132,7 @@ CARDDeleteAsync(s32 chan, char *fileName, CARDCallback callback)
 }
 
 s32
-CARDDelete(s32 chan, char *fileName)
+CARDDelete(s32 chan, char* fileName)
 {
     s32 result = CARDDeleteAsync(chan, fileName, __CARDSyncCallback);
 

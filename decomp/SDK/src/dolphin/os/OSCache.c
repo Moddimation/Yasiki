@@ -610,8 +610,7 @@ L2GlobalInvalidate(void)
 {
     L2Disable();
     PPCMtl2cr(PPCMfl2cr() | 0x00200000);
-    while (PPCMfl2cr() & 0x00000001u)
-        ;
+    while (PPCMfl2cr() & 0x00000001u);
     PPCMtl2cr(PPCMfl2cr() & ~0x00200000);
     while (PPCMfl2cr() & 0x00000001u)
     {
