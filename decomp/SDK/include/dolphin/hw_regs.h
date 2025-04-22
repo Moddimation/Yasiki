@@ -34,7 +34,7 @@ volatile u8* __GXRegs   AT_ADDRESS(0xCC008000); // Graphics FIFO Register
 #define RAM_FST_POS                 (14)   // fsr location in ram (==0x817FE8C0)
 #define RAM_FST_MAX_LENGTH          (15)   // fsr max length (==0x24)
 #define RAM_DBG_FLAG                (16)   // flag for "debugger present" (used by __OSIsDebuggerPresent)
-#define RAM_DBG_EXCEPT_MASK         (17)   // debugger exception bitmap, set to ß at sdk lib start
+#define RAM_DBG_EXCEPT_MASK         (17)   // debugger exception bitmap, set to  at sdk lib start
 #define RAM_DBG_EXCEPT_HOOK_DEST    (18)   // exception hook destination (physical address)
 #define RAM_DBG_LR_TEMP             (19)   // debug load register temp
 #define RAM_DBG_HOOK_PTR            (24)   // debug hook ptr
