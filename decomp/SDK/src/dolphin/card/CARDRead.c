@@ -99,7 +99,9 @@ ReadCallback(s32 chan, s32 result)
     length = TRUNC(fileInfo->offset + card->sectorSize, card->sectorSize) - fileInfo->offset;
     fileInfo->length -= length;
     if (fileInfo->length <= 0)
+    {
         goto error;
+    }
 
     fat = __CARDGetFatBlock(card);
     fileInfo->offset += length;
