@@ -333,6 +333,8 @@ else:
 # SDK flags
 cflags_sdk = [
     *cflags_base,
+    "-DBUILD_DATE=\"\\\"Jul 19 2001\\\"\"",
+    "-DBUILD_TIME=\"\\\"05:43:42\\\"\"",
     "-i decomp/SDK/include",
     "-O4,p",
     "-inline auto",
@@ -571,6 +573,15 @@ config.libs = [
 #    }),
 
     # SDK
+
+    DolphinLib("dsp", [
+        (Matching, "dsp.c"),
+    ]),
+
+    DolphinLib("ar", [
+        (Matching, "ar.c"),
+        (Matching, "arq.c"), 
+    ]),
 
     DolphinLib("card", [
         (Matching, "CARDBios.c"),
