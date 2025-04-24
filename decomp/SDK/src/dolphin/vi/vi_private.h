@@ -83,6 +83,7 @@ static u16                  shdwRegs[59];
 #define MARK_CHANGED(index) (changed |= 1LL << (63 - (index)))
 #define VI_BITMASK(index)   (1ull << (63 - (index)))
 
+// clang-format off
 static VITiming timing[7] = {
     {  6, 240, 24, 25, 3, 2, 12, 13, 12, 13,  520,  519,  520,  519,  525, 429, 64, 71, 105, 162, 373, 122, 412 },
     {  6, 240, 24, 24, 4, 4, 12, 12, 12, 12,  520,  520,  520,  520,  526, 429, 64, 71, 105, 162, 373, 122, 412 },
@@ -92,9 +93,12 @@ static VITiming timing[7] = {
     {  6, 240, 24, 24, 4, 4, 16, 14, 16, 14,  518,  520,  518,  520,  526, 429, 64, 78, 112, 162, 373, 122, 412 },
     { 12, 480, 48, 48, 6, 6, 24, 24, 24, 24, 1038, 1038, 1038, 1038, 1050, 429, 64, 71, 105, 162, 373, 122, 412 },
 };
-static u16 taps[25] = { 0x01F0, 0x01DC, 0x01AE, 0x0174, 0x0129, 0x00DB, 0x008E, 0x0046, 0x000C,
-                        0x00E2, 0x00CB, 0x00C0, 0x00C4, 0x00CF, 0x00DE, 0x00EC, 0x00FC, 0x0008,
-                        0x000F, 0x0013, 0x0013, 0x000F, 0x000C, 0x0008, 0x0001 };
+// clang-format on
+static u16 taps[25] = { 0x01F0, 0x01DC, 0x01AE, 0x0174, 0x0129,
+                        0x00DB, 0x008E, 0x0046, 0x000C, 0x00E2,
+                        0x00CB, 0x00C0, 0x00C4, 0x00CF, 0x00DE,
+                        0x00EC, 0x00FC, 0x0008, 0x000F, 0x0013,
+                        0x0013, 0x000F, 0x000C, 0x0008, 0x0001 };
 
 static SomeVIStruct HorVer;
 static u32          FBSet;

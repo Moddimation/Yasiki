@@ -10,7 +10,7 @@ static int YearDays[MONTH_MAX] = { 0, 31, 59, 90, 120, 151, 181, 212, 243, 273, 
 // End of each month in leap year
 static int LeapYearDays[MONTH_MAX] = { 0, 31, 60, 91, 121, 152, 182, 213, 244, 274, 305, 335 };
 
-asm long long
+asm s64
 OSGetTime(void)
 {
     // clang-format off
@@ -29,7 +29,7 @@ jump:
     // clang-format on
 }
 
-asm unsigned long
+asm u32
 OSGetTick(void)
 {
     // clang-format off
@@ -41,7 +41,7 @@ OSGetTick(void)
 }
 
 asm static void
-__SetTime(long long time)
+__SetTime(s64 time)
 {
     // clang-format off
     nofralloc
@@ -54,12 +54,12 @@ __SetTime(long long time)
 }
 
 void
-__OSSetTime(long long time)
+__OSSetTime(s64 time)
 {
     int        enabled;
-    long long* timeAdjustAddr;
+    s64* timeAdjustAddr;
 
-    timeAdjustAddr = (long long*)0x800030D8;
+    timeAdjustAddr = (s64*)0x800030D8;
     enabled = OSDisableInterrupts();
 
     *timeAdjustAddr += OSGetTime() - time;
@@ -68,14 +68,14 @@ __OSSetTime(long long time)
     OSRestoreInterrupts(enabled);
 }
 
-long long
+s64
 __OSGetSystemTime()
 {
     int        enabled;
-    long long* timeAdjustAddr;
-    long long  result;
+    s64* timeAdjustAddr;
+    s64  result;
 
-    timeAdjustAddr = (long long*)0x800030D8;
+    timeAdjustAddr = (s64*)0x800030D8;
     enabled = OSDisableInterrupts();
 
     result = OSGetTime() + *timeAdjustAddr;
@@ -84,7 +84,7 @@ __OSGetSystemTime()
 }
 
 asm void
-__OSSetTick(register unsigned long newTicks)
+__OSSetTick(register u32 newTicks)
 {
     // clang-format off
     nofralloc
@@ -150,11 +150,11 @@ GetDates(int days, OSCalendarTime* td)
 }
 
 void
-OSTicksToCalendarTime(long long ticks, OSCalendarTime* td)
+OSTicksToCalendarTime(s64 ticks, OSCalendarTime* td)
 {
     int       days;
     int       secs;
-    long long d;
+    s64 d;
 
     d = ticks % OS_SEC_TO_TICKS(1);
     if (d < 0)
@@ -192,7 +192,7 @@ OSTicksToCalendarTime(long long ticks, OSCalendarTime* td)
 OSTime
 OSCalendarTimeToTicks(OSCalendarTime* td)
 {
-    long long secs;
+    s64 secs;
     int       ov_mon;
     int       mon;
     int       year;

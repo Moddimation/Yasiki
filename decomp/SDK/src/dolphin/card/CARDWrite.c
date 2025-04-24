@@ -6,15 +6,15 @@
 #include "CARDPrivate.h"
 
 // functions
-static void WriteCallback(long chan, long result);
-static void EraseCallback(long chan, long result);
+static void WriteCallback(s32 chan, long result);
+static void EraseCallback(s32 chan, long result);
 
 static void
-WriteCallback(long chan, long result)
+WriteCallback(s32 chan, long result)
 {
     struct CARDControl*  card;
-    void                 (*callback)(long, long);
-    unsigned short*      fat;
+    void                 (*callback)(s32, long);
+    u16*      fat;
     struct CARDDir*      dir;
     struct CARDDir*      ent;
     struct CARDFileInfo* fileInfo;
@@ -69,10 +69,10 @@ WriteCallback(long chan, long result)
 }
 
 static void
-EraseCallback(long chan, long result)
+EraseCallback(s32 chan, long result)
 {
     struct CARDControl*  card;
-    void                 (*callback)(long, long);
+    void                 (*callback)(s32, long);
     struct CARDFileInfo* fileInfo;
 
     card = &__CARDBlock[chan];
@@ -97,11 +97,11 @@ EraseCallback(long chan, long result)
     }
 }
 
-long
-CARDWriteAsync(struct CARDFileInfo* fileInfo, void* buf, long length, long offset, void (*callback)(long, long))
+s32
+CARDWriteAsync(struct CARDFileInfo* fileInfo, void* buf, s32 length, long offset, void (*callback)(long, long))
 {
     struct CARDControl* card;
-    long                result;
+    s32                result;
     struct CARDDir*     dir;
     struct CARDDir*     ent;
 
@@ -139,10 +139,10 @@ CARDWriteAsync(struct CARDFileInfo* fileInfo, void* buf, long length, long offse
     return result;
 }
 
-long
-CARDWrite(struct CARDFileInfo* fileInfo, void* buf, long length, long offset)
+s32
+CARDWrite(struct CARDFileInfo* fileInfo, void* buf, s32 length, long offset)
 {
-    long result = CARDWriteAsync(fileInfo, buf, length, offset, __CARDSyncCallback);
+    s32 result = CARDWriteAsync(fileInfo, buf, length, offset, __CARDSyncCallback);
 
     if (result < 0)
     {

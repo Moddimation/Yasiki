@@ -158,7 +158,7 @@ OSSetAlarm(OSAlarm* alarm, OSTime tick, OSAlarmHandler handler)
 }
 
 void
-OSSetAbsAlarm(struct OSAlarm* alarm, long long time, void (*handler)(struct OSAlarm*, struct OSContext*))
+OSSetAbsAlarm(struct OSAlarm* alarm, s64 time, void (*handler)(struct OSAlarm*, struct OSContext*))
 {
     int enabled;
 

@@ -6,7 +6,7 @@
 #include "DEMOPrivate.h"
 
 // .data
-static unsigned long PadChanMask[4] = {
+static u32 PadChanMask[4] = {
     0x80000000,
     0x40000000,
     0x20000000,
@@ -28,7 +28,7 @@ void        DEMOPadInit();
 static void
 DEMOPadCopy(struct PADStatus* pad, DEMODMPad* dmpad)
 {
-    unsigned short dirs;
+    u16 dirs;
 
     dirs = 0;
     if (pad->stickX < -0x30)
@@ -78,8 +78,8 @@ DEMOPadCopy(struct PADStatus* pad, DEMODMPad* dmpad)
 void
 DEMOPadRead()
 {
-    long          i;
-    unsigned long ResetReq;
+    s32          i;
+    u32 ResetReq;
 
     ResetReq = 0;
     PADRead(&Pad[0]);
@@ -109,7 +109,7 @@ DEMOPadRead()
 void
 DEMOPadInit()
 {
-    long i;
+    s32 i;
 
     PADInit();
     for (i = 0; i < 4; i++)

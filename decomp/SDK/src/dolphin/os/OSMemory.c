@@ -19,7 +19,7 @@ u32
 OSGetConsoleSimulatedMemSize(void)
 {
 #if DEBUG
-    unsigned long* memSize = (unsigned long*)OSPhysicalToCached(0xF0);
+    u32* memSize = (u32*)OSPhysicalToCached(0xF0);
 
     return *memSize;
 #else

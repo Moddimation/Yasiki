@@ -13,8 +13,8 @@
 #define SHN_HIRESERVE         0xffff
 
 #define ELF32_R_SYM(i)        ((i) >> 8)
-#define ELF32_R_TYPE(i)       ((unsigned char)(i))
-#define ELF32_R_INFO(s, t)    (((s) << 8) + (unsigned char)(t))
+#define ELF32_R_TYPE(i)       ((u16)(i))
+#define ELF32_R_INFO(s, t)    (((s) << 8) + (u16)(t))
 
 //      Name                    Value       Field   Calculation
 #define R_PPC_NONE            0   //  none    none

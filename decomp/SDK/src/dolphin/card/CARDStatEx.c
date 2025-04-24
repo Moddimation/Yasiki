@@ -4,8 +4,8 @@
 
 #include "CARDPrivate.h"
 
-long
-__CARDGetStatusEx(long chan, long fileNo, struct CARDDir* dirent)
+s32
+__CARDGetStatusEx(s32 chan, long fileNo, struct CARDDir* dirent)
 {
     ASSERTLINE(0x45, 0 <= chan && chan < 2);
     ASSERTLINE(0x46, 0 <= fileNo && fileNo < CARD_MAX_FILE);
@@ -19,7 +19,7 @@ __CARDGetStatusEx(long chan, long fileNo, struct CARDDir* dirent)
         struct CARDControl* card;
         struct CARDDir*     dir;
         struct CARDDir*     ent;
-        long                result = __CARDGetControlBlock(chan, &card);
+        s32                result = __CARDGetControlBlock(chan, &card);
 
         if (result < 0)
         {
@@ -41,15 +41,15 @@ __CARDGetStatusEx(long chan, long fileNo, struct CARDDir* dirent)
     }
 }
 
-long
-__CARDSetStatusExAsync(long chan, long fileNo, struct CARDDir* dirent, void (*callback)(long, long))
+s32
+__CARDSetStatusExAsync(s32 chan, long fileNo, struct CARDDir* dirent, void (*callback)(long, long))
 {
     struct CARDControl* card;
     struct CARDDir*     dir;
     struct CARDDir*     ent;
-    long                result;
-    unsigned char*      p;
-    long                i;
+    s32                result;
+    u16*      p;
+    s32                i;
 
     ASSERTLINE(0x81, 0 <= fileNo && fileNo < CARD_MAX_FILE);
     ASSERTLINE(0x82, 0 <= chan && chan < 2);
@@ -121,10 +121,10 @@ __CARDSetStatusExAsync(long chan, long fileNo, struct CARDDir* dirent, void (*ca
     return result;
 }
 
-long
-__CARDSetStatusEx(long chan, long fileNo, struct CARDDir* dirent)
+s32
+__CARDSetStatusEx(s32 chan, long fileNo, struct CARDDir* dirent)
 {
-    long result = __CARDSetStatusExAsync(chan, fileNo, dirent, &__CARDSyncCallback);
+    s32 result = __CARDSetStatusExAsync(chan, fileNo, dirent, &__CARDSyncCallback);
 
     if (result < 0)
     {

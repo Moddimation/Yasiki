@@ -20,7 +20,7 @@ static s32  DoMount(s32 chan);
 static void DoUnmount(s32 chan, s32 v);
 
 int
-CARDProbe(long chan)
+CARDProbe(s32 chan)
 {
     EXIProbe(chan);
 }

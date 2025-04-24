@@ -35,7 +35,7 @@ AlignConsecutiveShortCaseStatements:
   Enabled: true
   AcrossEmptyLines: true
   AcrossComments: true
-  AlignCaseColons: true
+  AlignCaseColons: false
 AlignEscapedNewlines: Right
 AlignOperands: Align
 AlignTrailingComments:
@@ -45,7 +45,7 @@ AllowAllArgumentsOnNextLine: true
 AllowAllParametersOfDeclarationOnNextLine: true
 AllowBreakBeforeNoexceptSpecifier: Always
 AllowShortBlocksOnASingleLine: Empty
-AllowShortCaseLabelsOnASingleLine: true
+AllowShortCaseLabelsOnASingleLine: false
 AllowShortCompoundRequirementOnASingleLine: false
 AllowShortEnumsOnASingleLine: false
 AllowShortFunctionsOnASingleLine: InlineOnly
@@ -54,10 +54,6 @@ AllowShortLoopsOnASingleLine: true
 AlwaysBreakAfterDefinitionReturnType: true
 AlwaysBreakBeforeMultilineStrings: true
 AlwaysBreakTemplateDeclarations: MultiLine
-AttributeMacros:
-  - __declspec
-  - __option
-  - __inline
 BinPackArguments: true
 BinPackParameters: true
 BitFieldColonSpacing: Both
@@ -92,7 +88,6 @@ BreakBeforeTernaryOperators: true
 BreakConstructorInitializers: BeforeColon
 BreakInheritanceList: BeforeColon
 BreakStringLiterals: true
-ColumnLimit: 123
 CommentPragmas: "^ IWYU pragma:"
 CompactNamespaces: false
 ConstructorInitializerIndentWidth: 2
@@ -152,6 +147,7 @@ ObjCSpaceAfterProperty: false
 ObjCSpaceBeforeProtocolList: true
 PPIndentWidth: -1
 PackConstructorInitializers: BinPack
+ColumnLimit: 77
 PenaltyBreakAssignment: 2
 PenaltyBreakBeforeFirstCallParameter: 19
 PenaltyBreakComment: 300
@@ -183,7 +179,7 @@ SpaceAfterLogicalNot: false
 SpaceAfterTemplateKeyword: true
 SpaceAroundPointerQualifiers: Both
 SpaceBeforeAssignmentOperators: true
-SpaceBeforeCaseColon: true
+SpaceBeforeCaseColon: false
 SpaceBeforeCpp11BracedList: true
 SpaceBeforeCtorInitializerColon: true
 SpaceBeforeInheritanceColon: true
@@ -216,20 +212,8 @@ SpacesInParensOptions:
   InEmptyParentheses: true
   Other: true
 SpacesInSquareBrackets: false
-StatementAttributeLikeMacros:
-  - Q_EMIT
-StatementMacros:
-  - Q_UNUSED
-  - QT_REQUIRE_VERSION
 TabWidth: 4
 UseTab: Never
-VerilogBreakBetweenInstancePorts: true
-WhitespaceSensitiveMacros:
-  - BOOST_PP_STRINGIZE
-  - CF_SWIFT_NAME
-  - NS_SWIFT_NAME
-  - PP_STRINGIZE
-  - STRINGIZE
 BracedInitializerIndentWidth: 2
 Language: Cpp
 Standard: Cpp03

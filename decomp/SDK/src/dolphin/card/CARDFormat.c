@@ -142,10 +142,10 @@ CARDFormatAsync(s32 chan, CARDCallback callback)
     return result;
 }
 
-long
-CARDFormat(long chan)
+s32
+CARDFormat(s32 chan)
 {
-    long result = CARDFormatAsync(chan, &__CARDSyncCallback);
+    s32 result = CARDFormatAsync(chan, &__CARDSyncCallback);
 
     if (result < 0)
     {

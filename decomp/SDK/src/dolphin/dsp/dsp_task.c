@@ -20,8 +20,8 @@ __DSPHandler(__OSInterrupt intr, OSContext* context)
 {
     u8             unused[4];
     OSContext      exceptionContext;
-    unsigned short tmp;
-    unsigned long  mail;
+    u16 tmp;
+    u32  mail;
 
     tmp = __DSPRegs[5];
     tmp = (tmp & ~0x28) | 0x80;

@@ -6,21 +6,31 @@
 // internal include
 #include "OSPrivate.h"
 
+struct SramControl
+{
+    u16  sram[64];
+    u32  offset;
+    int  enabled;
+    int  locked;
+    int  sync;
+    void (*callback)();
+};
+
 static struct SramControl Scb ATTRIBUTE_ALIGN(32);
 
-static int   GetRTC(unsigned long* rtc);
+static int   GetRTC(u32* rtc);
 static int   ReadSram(void* buffer);
 static void  WriteSramCallback();
-static int   WriteSram(void* buffer, unsigned long offset, unsigned long size);
-static void* LockSram(unsigned long offset);
-static int   UnlockSram(int commit, unsigned long offset);
-static void  __OSReadROMCallback(long chan);
+static int   WriteSram(void* buffer, u32 offset, u32 size);
+static void* LockSram(u32 offset);
+static int   UnlockSram(int commit, u32 offset);
+static void  __OSReadROMCallback(s32 chan);
 
 static int
-GetRTC(unsigned long* rtc)
+GetRTC(u32* rtc)
 {
-    int           err;
-    unsigned long cmd;
+    int err;
+    u32 cmd;
 
     if (EXILock(0, 1, NULL) == 0)
     {
@@ -44,12 +54,12 @@ GetRTC(unsigned long* rtc)
 }
 
 int
-__OSGetRTC(unsigned long* rtc)
+__OSGetRTC(u32* rtc)
 {
-    int           err;
-    unsigned long t0;
-    unsigned long t1;
-    int           i;
+    int err;
+    u32 t0;
+    u32 t1;
+    int i;
 
     for (i = 0; i < 16; i++)
     {
@@ -70,10 +80,10 @@ __OSGetRTC(unsigned long* rtc)
 }
 
 int
-__OSSetRTC(unsigned long rtc)
+__OSSetRTC(u32 rtc)
 {
-    int           err;
-    unsigned long cmd;
+    int err;
+    u32 cmd;
 
     if (EXILock(0, 1, NULL) == 0)
     {
@@ -98,8 +108,8 @@ __OSSetRTC(unsigned long rtc)
 static int
 ReadSram(void* buffer)
 {
-    int           err;
-    unsigned long cmd;
+    int err;
+    u32 cmd;
 
     DCInvalidateRange(buffer, 0x40);
     if (!EXILock(0, 1, NULL))
@@ -127,7 +137,8 @@ WriteSramCallback()
 {
     int unused;
     ASSERTLINE(0xF0, !Scb.locked);
-    Scb.sync = WriteSram(&Scb.sram[Scb.offset], Scb.offset, 0x40 - Scb.offset);
+    Scb.sync =
+        WriteSram(&Scb.sram[Scb.offset], Scb.offset, 0x40 - Scb.offset);
     if (Scb.sync != 0)
     {
         Scb.offset = 0x40;
@@ -136,10 +147,10 @@ WriteSramCallback()
 }
 
 static int
-WriteSram(void* buffer, unsigned long offset, unsigned long size)
+WriteSram(void* buffer, u32 offset, u32 size)
 {
-    int           err;
-    unsigned long cmd;
+    int err;
+    u32 cmd;
 
     if (!EXILock(0, 1, WriteSramCallback))
     {
@@ -171,7 +182,7 @@ __OSInitSram()
 }
 
 static void*
-LockSram(unsigned long offset)
+LockSram(u32 offset)
 {
     int enabled;
 
@@ -200,9 +211,9 @@ __OSLockSramEx(void)
 }
 
 static int
-UnlockSram(int commit, unsigned long offset)
+UnlockSram(int commit, u32 offset)
 {
-    unsigned short* p;
+    u16* p;
 
     ASSERTLINE(0x162, Scb.locked);
     if (commit != 0)
@@ -211,7 +222,8 @@ UnlockSram(int commit, unsigned long offset)
         {
             struct OSSram* sram = (struct OSSram*)&Scb.sram[0];
             sram->checkSum = sram->checkSumInv = 0;
-            for (p = (unsigned short*)&sram->counterBias; p < ((u16*)&Scb.sram[sizeof(struct OSSram)]); p++)
+            for (p = (u16*)&sram->counterBias;
+                 p < ((u16*)&Scb.sram[sizeof(struct OSSram)]); p++)
             {
                 sram->checkSum += *p;
                 sram->checkSumInv += ~(*p);
@@ -221,7 +233,8 @@ UnlockSram(int commit, unsigned long offset)
         {
             Scb.offset = offset;
         }
-        Scb.sync = WriteSram(&Scb.sram[Scb.offset], Scb.offset, 0x40 - Scb.offset);
+        Scb.sync =
+            WriteSram(&Scb.sram[Scb.offset], Scb.offset, 0x40 - Scb.offset);
         if (Scb.sync != 0)
         {
             Scb.offset = 0x40;
@@ -253,11 +266,11 @@ __OSSyncSram()
 int
 __OSCheckSram()
 {
-    unsigned short* p;
-    unsigned short  checkSum;
-    unsigned short  checkSumInv;
-    struct OSSram*  sram;
-    int             unused;
+    u16*           p;
+    u16            checkSum;
+    u16            checkSumInv;
+    struct OSSram* sram;
+    int            unused;
 
     ASSERTLINE(0x1A9, Scb.locked);
 
@@ -275,10 +288,10 @@ __OSCheckSram()
 }
 
 int
-__OSReadROM(void* buffer, long length, long offset)
+__OSReadROM(void* buffer, s32 length, long offset)
 {
-    int           err;
-    unsigned long cmd;
+    int err;
+    u32 cmd;
 
     ASSERTLINE(0x1C8, length <= 1024);
     DCInvalidateRange(buffer, length);
@@ -303,7 +316,7 @@ __OSReadROM(void* buffer, long length, long offset)
 }
 
 static void
-__OSReadROMCallback(long chan)
+__OSReadROMCallback(s32 chan)
 {
     void (*callback)();
 
@@ -318,10 +331,10 @@ __OSReadROMCallback(long chan)
 }
 
 int
-__OSReadROMAsync(void* buffer, long length, long offset, void (*callback)())
+__OSReadROMAsync(void* buffer, s32 length, long offset, void (*callback)())
 {
-    int           err;
-    unsigned long cmd;
+    int err;
+    u32 cmd;
 
     ASSERTLINE(0x203, length <= 1024);
     ASSERTLINE(0x204, callback);
@@ -344,23 +357,24 @@ __OSReadROMAsync(void* buffer, long length, long offset, void (*callback)())
     return !err;
 }
 
-unsigned long
+u32
 OSGetSoundMode()
 {
     struct OSSram* sram = __OSLockSram();
-    unsigned long  mode = (sram->flags & 4) ? 1 : 0;
+    u32            mode = (sram->flags & 4) ? 1 : 0;
 
     __OSUnlockSram(0);
     return mode;
 }
 
 void
-OSSetSoundMode(unsigned long mode)
+OSSetSoundMode(u32 mode)
 {
     struct OSSram* sram;
     int            unused;
 
-    ASSERTLINE(0x22A, mode == OS_SOUND_MODE_MONO || mode == OS_SOUND_MODE_STEREO);
+    ASSERTLINE(0x22A,
+               mode == OS_SOUND_MODE_MONO || mode == OS_SOUND_MODE_STEREO);
     mode *= 4;
     mode &= 4;
     sram = __OSLockSram();
@@ -374,23 +388,24 @@ OSSetSoundMode(unsigned long mode)
     __OSUnlockSram(1);
 }
 
-unsigned long
+u32
 OSGetVideoMode()
 {
     struct OSSram* sram = __OSLockSram();
-    unsigned long  mode = sram->flags & 3;
+    u32            mode = sram->flags & 3;
 
     __OSUnlockSram(0);
     return mode;
 }
 
 void
-OSSetVideoMode(unsigned long mode)
+OSSetVideoMode(u32 mode)
 {
     struct OSSram* sram;
     int            unused;
 
-    ASSERTLINE(0x249, OS_VIDEO_MODE_NTSC <= mode && mode <= OS_VIDEO_MODE_MPAL);
+    ASSERTLINE(0x249,
+               OS_VIDEO_MODE_NTSC <= mode && mode <= OS_VIDEO_MODE_MPAL);
 
     mode &= 3;
     sram = __OSLockSram();
@@ -404,18 +419,18 @@ OSSetVideoMode(unsigned long mode)
     __OSUnlockSram(1);
 }
 
-unsigned char
+u16
 OSGetLanguage()
 {
     struct OSSram* sram = __OSLockSram();
-    unsigned char  language = sram->language;
+    u16            language = sram->language;
 
     __OSUnlockSram(0);
     return language;
 }
 
 void
-OSSetLanguage(unsigned char language)
+OSSetLanguage(u16 language)
 {
     struct OSSram* sram = __OSLockSram();
     int            unused;
@@ -429,17 +444,17 @@ OSSetLanguage(unsigned char language)
     __OSUnlockSram(1);
 }
 
-unsigned char
+u16
 __OSGetBootMode()
 {
     struct OSSram* sram = __OSLockSram();
-    unsigned char  ntd = sram->ntd;
+    u16            ntd = sram->ntd;
     __OSUnlockSram(0);
     return ntd & 0x80;
 }
 
 void
-__OSSetBootMode(unsigned char ntd)
+__OSSetBootMode(u16 ntd)
 {
     struct OSSram* sram;
     int            unused;

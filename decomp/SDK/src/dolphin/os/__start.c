@@ -14,9 +14,9 @@
 
 extern void InitMetroTRK();
 
-__declspec(section ".init") extern char _stack_addr[];
-__declspec(section ".init") extern char _SDA_BASE_[];
-__declspec(section ".init") extern char _SDA2_BASE_[];
+__declspec(section ".init") extern s8 _stack_addr[];
+__declspec(section ".init") extern s8 _SDA_BASE_[];
+__declspec(section ".init") extern s8 _SDA2_BASE_[];
 
 typedef struct __rom_copy_info
 {
@@ -128,7 +128,7 @@ _goto_skip_init_bba:
 }
 
 static void
-__copy_rom_section(void* dst, const void* src, unsigned long size)
+__copy_rom_section(void* dst, const void* src, u32 size)
 {
     if (size && (dst != src))
     {
@@ -138,7 +138,7 @@ __copy_rom_section(void* dst, const void* src, unsigned long size)
 }
 
 static void
-__init_bss_section(void* dst, unsigned long size)
+__init_bss_section(void* dst, u32 size)
 {
     if (size)
     {

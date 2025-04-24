@@ -8,8 +8,8 @@ BOOL
 __CARDCompareFileName(CARDDir* ent, const char* fileName)
 {
     char* entName = (char*)ent->fileName;
-    char  c1;
-    char  c2;
+    s8  c1;
+    s8  c2;
     int   n = CARD_FILENAME_MAX;
 
     while (--n >= 0)

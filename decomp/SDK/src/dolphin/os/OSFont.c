@@ -104,7 +104,7 @@ static u16 Zenkaku2Code[]
         0x318, 0x319, 0x31A, 0x31B, 0x000 };
 
 static int
-GetFontCode(unsigned short code)
+GetFontCode(u16 code)
 {
     if (OSGetFontEncode() == OS_FONT_ENCODE_SJIS)
     {
@@ -151,7 +151,7 @@ GetFontCode(unsigned short code)
 }
 
 static void
-Decode(unsigned char* s, unsigned char* d)
+Decode(u16* s, u16* d)
 {
     int          i;
     int          j;
@@ -231,7 +231,7 @@ GetFontSize(u8* buf)
     return 0;
 }
 
-unsigned short
+u16
 OSGetFontEncode(void)
 {
     static u16 fontEncode = 0xFFFF;
@@ -307,11 +307,11 @@ OSLoadFont(OSFontHeader* fontData, void* temp)
 }
 
 char*
-OSGetFontTexel(char* string, void* image, long pos, long stride, long* width)
+OSGetFontTexel(char* string, void* image, s32 pos, long stride, long* width)
 {
-    unsigned short code;
-    unsigned char* src;
-    unsigned char* dst;
+    u16 code;
+    u16* src;
+    u16* dst;
     int            fontCode;
     int            sheet;
     int            numChars;
@@ -321,8 +321,8 @@ OSGetFontTexel(char* string, void* image, long pos, long stride, long* width)
     int            y;
     int            offsetSrc;
     int            offsetDst;
-    unsigned char* colorIndex;
-    unsigned char* imageSrc;
+    u16* colorIndex;
+    u16* imageSrc;
 
     ASSERTLINE(0x1F6, FontData && !SheetImage);
 
@@ -412,7 +412,7 @@ ExpandFontSheet(u8* src, u8* dst)
 int
 OSInitFont(OSFontHeader* fontData)
 {
-    unsigned long size;
+    u32 size;
     void*         temp;
 
     if (OSGetFontEncode() == OS_FONT_ENCODE_SJIS)
@@ -436,9 +436,9 @@ OSInitFont(OSFontHeader* fontData)
 }
 
 char*
-OSGetFontTexture(char* string, void** image, long* x, long* y, long* width)
+OSGetFontTexture(char* string, void** image, s32* x, long* y, long* width)
 {
-    unsigned short code;
+    u16 code;
     int            fontCode;
     int            sheet;
     int            numChars;
@@ -482,9 +482,9 @@ OSGetFontTexture(char* string, void** image, long* x, long* y, long* width)
 }
 
 char*
-OSGetFontWidth(char* string, long* width)
+OSGetFontWidth(char* string, s32* width)
 {
-    unsigned short code;
+    u16 code;
 
     ASSERTLINE(0x2C2, WidthTable);
 

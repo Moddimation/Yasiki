@@ -22,7 +22,7 @@ OSStartStopwatch(struct OSStopwatch* sw)
 void
 OSStopStopwatch(struct OSStopwatch* sw)
 {
-    long long interval;
+    s64 interval;
 
     if (sw->running != 0)
     {
@@ -41,10 +41,10 @@ OSStopStopwatch(struct OSStopwatch* sw)
     }
 }
 
-long long
+s64
 OSCheckStopwatch(struct OSStopwatch* sw)
 {
-    long long currTotal;
+    s64 currTotal;
 
     currTotal = sw->total;
     if (sw->running != 0)

@@ -77,7 +77,7 @@
 static struct OSResetFunctionQueue ResetFunctionQueue;
 
 static int      CallResetFunctions(int final);
-static asm void Reset(unsigned long resetCode);
+static asm void Reset(u32 resetCode);
 
 void
 OSRegisterResetFunction(struct OSResetFunctionInfo* info)
@@ -112,7 +112,7 @@ CallResetFunctions(int final)
 }
 
 static asm void
-Reset(unsigned long resetCode)
+Reset(u32 resetCode)
 {
     nofralloc b L_000001BC L_000001A0 : mfspr    r8,
                                         HID0 ori r8,
@@ -135,7 +135,7 @@ Reset(unsigned long resetCode)
 }
 
 void
-OSResetSystem(int reset, unsigned long resetCode, int forceMenu)
+OSResetSystem(int reset, u32 resetCode, int forceMenu)
 {
     int            rc;
     int            enabled;
@@ -168,7 +168,7 @@ OSResetSystem(int reset, unsigned long resetCode, int forceMenu)
     OSEnableScheduler();
 }
 
-unsigned long
+u32
 OSGetResetCode()
 {
     return (__PIRegs[9] & 0xFFFFFFF8) / 8;

@@ -349,8 +349,8 @@ GXGetLightColor(GXLightObj* lt_obj, GXColor* color)
 void
 GXLoadLightObjImm(GXLightObj* lt_obj, GXLightID light)
 {
-    unsigned long                  addr;
-    unsigned long                  idx;
+    u32                  addr;
+    u32                  idx;
     struct __GXLightObjInt_struct* obj;
 
     ASSERTMSGLINE(0x1C9, lt_obj != NULL, "Light Object Pointer is null");
@@ -400,9 +400,9 @@ GXLoadLightObjImm(GXLightObj* lt_obj, GXLightID light)
 void
 GXLoadLightObjIndx(u32 lt_obj_indx, GXLightID light)
 {
-    unsigned long reg;
-    unsigned long addr;
-    unsigned long idx;
+    u32 reg;
+    u32 addr;
+    u32 idx;
 
     CHECK_GXBEGIN(0x209, "GXLoadLightObjIndx");
 

@@ -6,8 +6,8 @@
 #include "fake_tgmath.h"
 #include "PERFPrivate.h"
 
-__declspec(weak) float HEIGHT(unsigned long a, float f);
-__declspec(weak) float COORD(unsigned long a /* r3 */);
+__declspec(weak) float HEIGHT(u32 a, float f);
+__declspec(weak) float COORD(u32 a /* r3 */);
 
 extern Mtx mID;
 
@@ -24,12 +24,12 @@ extern Mtx mID;
     }                                                                                                                  \
     while (0)
 
-static unsigned long DrawFrameMax;       // size: 0x4, address: 0x0
+static u32 DrawFrameMax;       // size: 0x4, address: 0x0
 static float         DrawFrameH;         // size: 0x4, address: 0x4
-static unsigned long MaxBusTransactions; // size: 0x4, address: 0x8
+static u32 MaxBusTransactions; // size: 0x4, address: 0x8
 
 // .sdata
-static unsigned long DrawNumFrames = 3;                               // size: 0x4, address: 0x0
+static u32 DrawNumFrames = 3;                               // size: 0x4, address: 0x0
 static float         DrawFrameW = 205.33333f;                         // size: 0x4, address: 0x4
 static GXColor       DrawFrameBGColor = { 0xC8, 0xC8, 0xC8, 0xC8 };   // size: 0x4, address: 0x8
 static GXColor       DrawFrameColor = { 0x19, 0x19, 0x19, 0xC8 };     // size: 0x4, address: 0xC
@@ -88,19 +88,19 @@ static float GPPts[4] = {
 void (*GameDrawInit)(); // size: 0x4, address: 0x14
 
 // externs
-extern unsigned long PERFNumEvents; // size: 0x4, address: 0x0;
+extern u32 PERFNumEvents; // size: 0x4, address: 0x0;
 
 Mtx mID;                            // size: 0x30, address: 0x0
 
 #ifndef DEBUG
 inline float
-HEIGHT(unsigned long a, float f)
+HEIGHT(u32 a, float f)
 {
     return 140.0f * ((f32)a / ((f32)MaxBusTransactions * f));
 }
 
 inline float
-COORD(unsigned long a)
+COORD(u32 a)
 {
     return 616.0f * ((f32)a / (f32)DrawFrameMax);
 }
@@ -130,8 +130,8 @@ float        pSave[7];              // size: 0x1C, address: 0x70
 void
 PERFPreDraw()
 {
-    unsigned long i;
-    unsigned long j;
+    u32 i;
+    u32 j;
 
     GXGetProjectionv(pSave);
     for (i = 0; i < 4; i++)
@@ -166,21 +166,21 @@ PERFPreDraw()
 static void
 DrawBWBar(struct PerfSample* s)
 {
-    unsigned long delta;
-    unsigned long interval;
+    u32 delta;
+    u32 interval;
     float         bwscale;
     float         lastY;
     float         x1;
     float         x2;
     float         height;
-    unsigned long rasclocks;
-    unsigned long rasBusy;
-    unsigned long xfI;
-    unsigned long xfO;
-    unsigned long instructions;
+    u32 rasclocks;
+    u32 rasBusy;
+    u32 xfI;
+    u32 xfO;
+    u32 instructions;
     float         ipc;
     float         ipcscale;
-    unsigned long misses;
+    u32 misses;
 
     interval = s->gpTimeStampEnd - s->gpTimeStampStart;
     bwscale = (f32)interval / (OS_CORE_CLOCK / 60);
@@ -313,13 +313,13 @@ DrawBWBar(struct PerfSample* s)
 
 #if DEBUG
 __declspec(weak) float
-HEIGHT(unsigned long a, float f)
+HEIGHT(u32 a, float f)
 {
     return 140.0f * ((f32)a / ((f32)MaxBusTransactions * f));
 }
 
 __declspec(weak) float
-COORD(unsigned long a)
+COORD(u32 a)
 {
     return 616.0f * ((f32)a / (f32)DrawFrameMax);
 }
@@ -328,8 +328,8 @@ COORD(unsigned long a)
 static void
 DrawKey()
 {
-    unsigned long delta;
-    unsigned long foo[2];
+    u32 delta;
+    u32 foo[2];
     float         bwscale;
     float         lastY;
     float         x1;
@@ -428,11 +428,11 @@ void
 PERFDumpScreen()
 {
     struct PerfSample* samples; // r30
-    unsigned long      s;       // r31
-    unsigned long      id;      // r28
-    unsigned long      i;       // r26
-    unsigned long      delta;   // r27
-    unsigned long      e;       // r25
+    u32      s;       // r31
+    u32      id;      // r28
+    u32      i;       // r26
+    u32      delta;   // r27
+    u32      e;       // r25
     float              c;       // f29
     float              lastY;   // f31
     float              allX;    // f30
@@ -662,8 +662,8 @@ PERFDumpScreen()
 void
 PERFPostDraw()
 {
-    unsigned long i;
-    unsigned long j;
+    u32 i;
+    u32 j;
 
     for (i = 0; i < 4; i++)
     {

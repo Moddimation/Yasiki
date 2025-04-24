@@ -413,7 +413,7 @@ CheckBumpmapTextures(void)
     u32  BumpMapSource;
     u32  BumpMapLight;
     u32  lightRAMOffset;
-    char Preamble[256];
+    s8 Preamble[256];
 
     if (!__GXVertexPacketHas(GX_VA_PNMTXIDX))
     {
@@ -465,7 +465,7 @@ CheckTextureTransformMatrices(void)
     u32  StartingAddress;
     u32  Size;
     u8   MtxIndexInVertexPacket;
-    char Preamble[256];
+    s8 Preamble[256];
     u32  Val;
 
     for (i = 0; i < numRegularTextures; i++)
@@ -625,7 +625,7 @@ CheckLight(u32 lightSource)
 static void
 CheckColor0(void)
 {
-    char Preamble[256];
+    s8 Preamble[256];
     u8   haveLight;
     u32  i;
     u8   lightUsed;
@@ -759,7 +759,7 @@ static void
 CheckColor1(void)
 {
     u8   usingColor1;
-    char Preamble[256];
+    s8 Preamble[256];
     u8   haveLight;
     u32  i;
     u8   lightUsed;
@@ -969,7 +969,7 @@ static void
 CheckMatrixRAMRanges(void)
 {
     u32  i;
-    char label[256];
+    s8 label[256];
 
     for (i = 0; i <= 255; i++)
     {
@@ -982,7 +982,7 @@ static void
 CheckNormalRAMRanges(void)
 {
     u32  i;
-    char label[256];
+    s8 label[256];
 
     for (i = 1024; i <= 1119; i++)
     {
@@ -995,7 +995,7 @@ static void
 CheckDMatrixRAMRanges(void)
 {
     u32  i;
-    char label[256];
+    s8 label[256];
 
     for (i = 1280; i <= 1535; i++)
     {
@@ -1009,7 +1009,7 @@ CheckLightRAMRanges(void)
 {
     u32  lightSource;
     u32  lightRAMOffset;
-    char label[256];
+    s8 label[256];
     u32  i;
 
     for (lightSource = 0; lightSource < 8; lightSource++)
@@ -1080,7 +1080,7 @@ static void
 CheckErrors(void)
 {
     u32  i;
-    char registerName[80];
+    s8 registerName[80];
 
     CheckDirty(0x103FU, "Number of XF output textures");
     CheckDirty(0x1009U, "Number of XF output colors");

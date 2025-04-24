@@ -28,7 +28,7 @@ static void __GXWriteFifoIntEnable(u8 arg0, u8 arg1);
 static void __GXWriteFifoIntReset(u8 arg0, u8 arg1);
 
 #if DEBUG
-static char __data_0[] = "[GXOverflowHandler]";
+static s8 __data_0[] = "[GXOverflowHandler]";
 #endif
 
 static void
@@ -171,7 +171,7 @@ GXInitFifoLimits(GXFifoObj* fifo, u32 hiWatermark, u32 loWatermark)
 
 #if DEBUG // currently doesn't match
 // HACK: Please match this function, so I can get rid of this mess!
-static char str_reg_field_out_of_range[] = "GX Internal: Register field out of range";
+static s8 str_reg_field_out_of_range[] = "GX Internal: Register field out of range";
 #    undef SET_REG_FIELD
 #    define SET_REG_FIELD(line, reg, size, shift, val)                                                                 \
         do {                                                                                                           \
@@ -331,9 +331,9 @@ void
 GXSaveGPFifo(GXFifoObj* fifo)
 {
     __GXFifoObj*  realFifo = (struct __GXFifoObj*)fifo;
-    unsigned long cpStatus;
-    unsigned char readIdle;
-    unsigned long temp;
+    u32 cpStatus;
+    u16 readIdle;
+    u32 temp;
 
     ASSERTMSGLINE(0x36A, realFifo == GPFifo, "GXSaveGPFifo: fifo is not attached to GP");
     cpStatus = GX_GET_CP_REG(0);
@@ -613,11 +613,11 @@ GXResetOverflowCount(void)
     while (0)
 
 #if DEBUG // currently doesn't match
-static char str_GXRedirectWriteGatherPipe_gxbegin[]
+static s8 str_GXRedirectWriteGatherPipe_gxbegin[]
     = "'GXRedirectWriteGatherPipe' is not allowed between GXBegin/GXEnd";
-static char str_failed_assertion_offset[] = "Failed assertion OFFSET(ptr, 32) == 0";
-static char str_failed_assertion_pipenotredirected[] = "Failed assertion !IsWGPipeRedirected";
-static char str_failed_assertion_piperedirected[] = "Failed assertion IsWGPipeRedirected";
+static s8 str_failed_assertion_offset[] = "Failed assertion OFFSET(ptr, 32) == 0";
+static s8 str_failed_assertion_pipenotredirected[] = "Failed assertion !IsWGPipeRedirected";
+static s8 str_failed_assertion_piperedirected[] = "Failed assertion IsWGPipeRedirected";
 
 asm volatile void*
 GXRedirectWriteGatherPipe(void* ptr)

@@ -1,7 +1,7 @@
 #include <dolphin/exi.h>
 #include <dolphin/os.h>
 
-static unsigned long serEnabled;
+static u32 serEnabled;
 
 // None of the functions in this file were ever used or made public
 int InitializeUART();
@@ -29,7 +29,7 @@ ReadUARTN()
 static int
 QueueLength(void)
 {
-    unsigned long cmd;
+    u32 cmd;
 
     if (EXISelect(0, 1, 3) == 0)
     {
@@ -47,8 +47,8 @@ QueueLength(void)
 int
 WriteUARTN(void* buf, u32 len)
 {
-    unsigned long cmd;
-    long          xLen;
+    u32 cmd;
+    s32          xLen;
     int           qLen;
     char*         ptr;
     int           locked;
@@ -107,7 +107,7 @@ WriteUARTN(void* buf, u32 len)
                     break;
                 }
 
-                xLen = len < 4 ? (long)len : 4;
+                xLen = len < 4 ? (s32)len : 4;
 
                 EXIImm(0, buf, xLen, 1, 0);
                 (char*)buf += xLen;

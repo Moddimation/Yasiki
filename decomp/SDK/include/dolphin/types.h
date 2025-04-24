@@ -3,8 +3,8 @@
 
 typedef signed char            s8;
 typedef unsigned char          u8;
-typedef signed short int       s16;
-typedef unsigned short int     u16;
+typedef signed short           s16;
+typedef unsigned short         u16;
 typedef signed long            s32;
 typedef unsigned long          u32;
 typedef signed long long int   s64;
@@ -50,7 +50,8 @@ typedef u16 wchar_t;
 #    define AT_ADDRESS(addr) : (addr)
 #elif defined(__GNUC__)
 // #define AT_ADDRESS(addr) __attribute__((address((addr))))
-#    define AT_ADDRESS(addr) // was removed in GCC. define in linker script instead.
+#    define AT_ADDRESS(                                                     \
+        addr) // was removed in GCC. define in linker script instead.
 #else
 #    error unknown compiler
 #endif

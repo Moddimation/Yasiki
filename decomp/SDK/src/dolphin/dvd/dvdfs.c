@@ -15,10 +15,10 @@ struct FSTEntry
 static struct OSBootInfo_s* BootInfo;              // size: 0x4, address: 0x0
 static struct FSTEntry*     FstStart;              // size: 0x4, address: 0x4
 static char*                FstStringStart;        // size: 0x4, address: 0x8
-static unsigned long        MaxEntryNum;           // size: 0x4, address: 0xC
-static unsigned long        currentDirectory;      // size: 0x4, address: 0x10
+static u32        MaxEntryNum;           // size: 0x4, address: 0xC
+static u32        currentDirectory;      // size: 0x4, address: 0x10
 struct OSThreadQueue        __DVDThreadQueue;      // size: 0x8, address: 0x18
-unsigned long               __DVDLongFileNameFlag; // size: 0x4, address: 0x14
+u32               __DVDLongFileNameFlag; // size: 0x4, address: 0x14
 
 // functions
 static BOOL isSame(const char* path, const char* string);
@@ -27,7 +27,7 @@ static u32  entryToPath(u32 entry, char* path, u32 maxlen);
 static BOOL DVDConvertEntrynumToPath(s32 entrynum, char* path, u32 maxlen);
 static void cbForReadAsync(s32 result, DVDCommandBlock* block);
 static void cbForReadSync();
-static void cbForSeekAsync(long result, struct DVDCommandBlock* block);
+static void cbForSeekAsync(s32 result, struct DVDCommandBlock* block);
 static void cbForSeekSync();
 static void cbForPrepareStreamAsync(s32 result, DVDCommandBlock* block);
 static void cbForPrepareStreamSync();
@@ -228,7 +228,7 @@ BOOL
 DVDOpen(char* fileName, DVDFileInfo* fileInfo)
 {
     s32  entry;
-    char currentDir[128];
+    s8 currentDir[128];
 
     ASSERTMSGLINE(0x1D3, fileName, "DVDOpen(): null pointer is specified to file name  ");
     ASSERTMSGLINE(0x1D4, fileInfo, "DVDOpen(): null pointer is specified to file info address  ");
@@ -351,7 +351,7 @@ BOOL
 DVDChangeDir(char* dirName)
 {
     s32  entry;
-    char currentDir[128];
+    s8 currentDir[128];
 
     ASSERTMSGLINE(0x29C, dirName, "DVDChangeDir(): null pointer is specified to directory name  ");
     entry = DVDConvertPathToEntrynum(dirName);
@@ -410,14 +410,14 @@ cbForReadAsync(s32 result, DVDCommandBlock* block)
     }
 }
 
-long
-DVDReadPrio(struct DVDFileInfo* fileInfo, void* addr, long length, long offset, long prio)
+s32
+DVDReadPrio(struct DVDFileInfo* fileInfo, void* addr, s32 length, long offset, long prio)
 {
     int                     result;
     struct DVDCommandBlock* block;
-    long                    state;
+    s32                    state;
     int                     enabled;
-    long                    retVal;
+    s32                    retVal;
 
     ASSERTMSGLINE(0x30D, fileInfo, "DVDRead(): null pointer is specified to file info address  ");
     ASSERTMSGLINE(0x30E, addr, "DVDRead(): null pointer is specified to addr  ");
@@ -474,7 +474,7 @@ cbForReadSync()
 }
 
 int
-DVDSeekAsyncPrio(struct DVDFileInfo* fileInfo, long offset, void (*callback)(long, struct DVDFileInfo*), long prio)
+DVDSeekAsyncPrio(struct DVDFileInfo* fileInfo, s32 offset, void (*callback)(long, struct DVDFileInfo*), long prio)
 {
     ASSERTMSGLINE(0x368, fileInfo, "DVDSeek(): null pointer is specified to file info address  ");
     ASSERTMSGLINE(0x36C, !(offset & 3), "DVDSeek(): offset must be multiple of 4 byte  ");
@@ -490,7 +490,7 @@ DVDSeekAsyncPrio(struct DVDFileInfo* fileInfo, long offset, void (*callback)(lon
 }
 
 static void
-cbForSeekAsync(long result, struct DVDCommandBlock* block)
+cbForSeekAsync(s32 result, struct DVDCommandBlock* block)
 {
     struct DVDFileInfo* fileInfo;
 
@@ -502,14 +502,14 @@ cbForSeekAsync(long result, struct DVDCommandBlock* block)
     }
 }
 
-long
-DVDSeekPrio(struct DVDFileInfo* fileInfo, long offset, long prio)
+s32
+DVDSeekPrio(struct DVDFileInfo* fileInfo, s32 offset, long prio)
 {
     int                     result;
     struct DVDCommandBlock* block;
-    long                    state;
+    s32                    state;
     int                     enabled;
-    long                    retVal;
+    s32                    retVal;
 
     ASSERTMSGLINE(0x3A1, fileInfo, "DVDSeek(): null pointer is specified to file info address  ");
     ASSERTMSGLINE(0x3A5, !(offset & 3), "DVDSeek(): offset must be multiple of 4 byte  ");
@@ -554,7 +554,7 @@ cbForSeekSync()
     OSWakeupThread(&__DVDThreadQueue);
 }
 
-long
+s32
 DVDGetFileInfoStatus(struct DVDFileInfo* fileInfo)
 {
     return fileInfo->cb.state;
@@ -563,9 +563,9 @@ DVDGetFileInfoStatus(struct DVDFileInfo* fileInfo)
 int
 DVDOpenDir(char* dirName, DVDDir* dir)
 {
-    long entry;
+    s32 entry;
 #if DEBUG
-    char currentDir[128];
+    s8 currentDir[128];
 #endif
 
     ASSERTMSGLINE(0x401, dirName, "DVDOpendir(): null pointer is specified to directory name  ");
@@ -586,7 +586,7 @@ DVDOpenDir(char* dirName, DVDDir* dir)
 int
 DVDReadDir(DVDDir* dir, DVDDirEntry* dirent)
 {
-    unsigned long loc;
+    u32 loc;
 
     loc = dir->location;
     if ((loc <= (u32)dir->entryNum) || ((u32)dir->next <= loc))

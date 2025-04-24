@@ -38,7 +38,7 @@ __SYNSetupVolumeEnvelope(struct SYNVOICE* voice)
     }
     else
     {
-        long frames = __SYNGetEnvelopeTime(voice->art->eg1Attack, voice->art->eg1Vel2Attack, voice->keyVel) / 5;
+        s32 frames = __SYNGetEnvelopeTime(voice->art->eg1Attack, voice->art->eg1Vel2Attack, voice->keyVel) / 5;
         if (frames)
         {
             voice->veAttack = 0;
@@ -56,7 +56,7 @@ __SYNSetupVolumeEnvelope(struct SYNVOICE* voice)
     }
     if (voice->veState < 2)
     {
-        long frames = __SYNGetEnvelopeTime(voice->art->eg1Decay, voice->art->eg1Key2Decay, voice->keyNum) / 5;
+        s32 frames = __SYNGetEnvelopeTime(voice->art->eg1Decay, voice->art->eg1Key2Decay, voice->keyNum) / 5;
         if (frames != 0)
         {
             voice->veDecay = -0x03C00000 / frames;
@@ -91,7 +91,7 @@ __SYNSetupPitchEnvelope(struct SYNVOICE* voice)
         }
         else
         {
-            long frames = __SYNGetEnvelopeTime(voice->art->eg2Attack, voice->art->eg2Vel2Attack, voice->keyVel) / 5;
+            s32 frames = __SYNGetEnvelopeTime(voice->art->eg2Attack, voice->art->eg2Vel2Attack, voice->keyVel) / 5;
             if (frames)
             {
                 voice->peAttack = voice->pePitch / frames;
@@ -105,7 +105,7 @@ __SYNSetupPitchEnvelope(struct SYNVOICE* voice)
         }
         if (voice->peState < 2)
         {
-            long frames = __SYNGetEnvelopeTime(voice->art->eg2Decay, voice->art->eg2Key2Decay, voice->keyNum) / 5;
+            s32 frames = __SYNGetEnvelopeTime(voice->art->eg2Decay, voice->art->eg2Key2Decay, voice->keyNum) / 5;
             if (frames != 0)
             {
                 voice->peDecay = voice->pePitch / frames;

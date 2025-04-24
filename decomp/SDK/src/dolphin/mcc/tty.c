@@ -25,7 +25,7 @@ int         TTYPrintf(const char* format, ...);
 int         TTYFlush(void);
 static void ttyClearProperty(enum MCC_CHANNEL chID);
 static int  ttyWaiting(int timeout, volatile int* flag);
-static int  ttyWrite(u32 offset, void* data, long size);
+static int  ttyWrite(u32 offset, void* data, s32 size);
 static int  ttyFlush(u32 msgID, int waitResult);
 
 static int
@@ -266,7 +266,7 @@ ttyWaiting(int timeout, volatile int* flag)
 }
 
 static int
-ttyWrite(u32 offset, void* data, long size)
+ttyWrite(u32 offset, void* data, s32 size)
 {
     if (MCCWrite(gChID, offset, data, size, 0))
     {

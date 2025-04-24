@@ -6,14 +6,14 @@
 #include "AXPrivate.h"
 
 static s16  __AXOutBuffer[2][320];
-static long __AXOutSBuffer[160];
+static s32 __AXOutSBuffer[160];
 AXPROFILE   __AXLocalProfile;
 DSPTaskInfo task;
 u16         ax_dram_image[8192];
 
-volatile static unsigned long __AXOutFrame;
-volatile static unsigned long __AXOutDspReady;
-volatile static long long     __AXOsTime;
+volatile static u32 __AXOutFrame;
+volatile static u32 __AXOutDspReady;
+volatile static s64     __AXOsTime;
 static void                   (*__AXUserFrameCallback)();
 volatile static int           __AXDSPInitFlag;
 static int                    __AXDSPDoneFlag;

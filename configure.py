@@ -34,9 +34,9 @@ VERSIONS = [
     "GLMJ01",   # Japan
     "GLME01",   # US
     "GLME01_1", # US Demo
-    "GLMP01",   # EU Rev 0
-    "GLMP01_1", # EU Rev 1
-    "GLMP01_2", # EU Demo
+    "GLMP01",   # EU Demo
+    "GLMP01_1", # EU Rev 0
+    "GLMP01_2", # EU Rev 1
 ]
 
 parser = argparse.ArgumentParser()
@@ -351,7 +351,7 @@ cflags_paths_expand(cflags_game)
 cflags_paths_expand(cflags_sdk)
 
 config.linker_version = "GC/1.3.2"
-linker_version_default = "GC/1.1"
+linker_version_default = "GC/1.2.5"
 
 # Helper function for SDK libraries
 def SDKLib(lib_name: str, files: List[Tuple[bool, str]], conf: Dict[str,str]={"":""}) -> Dict[str, Any]:
@@ -573,6 +573,10 @@ config.libs = [
 #    }),
 
     # SDK
+
+    DolphinLib("dvd", [
+        (NonMatching, "fstload.c"),
+    ]),
 
     DolphinLib("vi", [
         (Matching, "vi.c"),

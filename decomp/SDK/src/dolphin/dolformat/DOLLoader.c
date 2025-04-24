@@ -4,13 +4,13 @@
 #include <stddef.h>
 #include <string.h>
 
-void bzero(void* start, unsigned long len);
+void bzero(void* start, u32 len);
 
 void
-bzero(void* start, unsigned long len)
+bzero(void* start, u32 len)
 {
-    unsigned long  i;
-    unsigned char* a = start;
+    u32  i;
+    u16* a = start;
 
     for (i = 0; i < len; i++)
     {

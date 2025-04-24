@@ -6,7 +6,7 @@
 #include "DVDPrivate.h"
 #include "os/__os.h"
 
-static unsigned char*         tmpBuffer[32] ATTRIBUTE_ALIGN(32);
+static u16*         tmpBuffer[32] ATTRIBUTE_ALIGN(32);
 static struct DVDCommandBlock DummyCommandBlock;
 
 static int autoInvalidation = 1;
@@ -18,54 +18,54 @@ static struct OSBootInfo_s*    bootInfo;
 static volatile int            PauseFlag;
 static volatile int            PausingFlag;
 static int                     AutoFinishing;
-static volatile unsigned long  CurrCommand;
-static volatile unsigned long  Canceling;
+static volatile u32  CurrCommand;
+static volatile u32  Canceling;
 static struct DVDCommandBlock* CancelingCommandBlock;
-static void                    (*CancelCallback)(long, struct DVDCommandBlock*);
-static volatile unsigned long  ResumeFromHere;
-static volatile unsigned long  CancelLastError;
-static unsigned long           LastError;
-static volatile long           NumInternalRetry;
+static void                    (*CancelCallback)(s32, struct DVDCommandBlock*);
+static volatile u32  ResumeFromHere;
+static volatile u32  CancelLastError;
+static u32           LastError;
+static volatile s32           NumInternalRetry;
 static int                     ResetRequired;
 static int                     CancelAllSyncComplete;
-static volatile unsigned long  ResetCount;
+static volatile u32  ResetCount;
 static int                     FirstTimeInBootrom;
-static long                    ResultForSyncCommand;
+static s32                    ResultForSyncCommand;
 static int                     DVDInitialized;
 void                           (*LastState)(struct DVDCommandBlock*);
 
 static void          stateReadingFST();
-static void          cbForStateReadingFST(unsigned long intType);
+static void          cbForStateReadingFST(u32 intType);
 static void          stateError();
 static void          stateGettingError();
-static unsigned long CategorizeError(unsigned long error);
-static int           ResetWorkAround(unsigned long error);
-static void          cbForStateGettingError(unsigned long intType);
+static u32 CategorizeError(u32 error);
+static int           ResetWorkAround(u32 error);
+static void          cbForStateGettingError(u32 intType);
 static void          stateGoToRetry();
-static void          cbForStateGoToRetry(unsigned long intType);
+static void          cbForStateGoToRetry(u32 intType);
 static void          stateCheckID();
 static void          stateCheckID3();
 static void          stateCheckID2();
-static void          cbForStateCheckID1(unsigned long intType);
-static void          cbForStateCheckID2(unsigned long intType);
-static void          cbForStateCheckID3(unsigned long intType);
+static void          cbForStateCheckID1(u32 intType);
+static void          cbForStateCheckID2(u32 intType);
+static void          cbForStateCheckID3(u32 intType);
 static void          stateCoverClosed();
 static void          stateCoverClosed_CMD();
-static void          cbForStateCoverClosed(unsigned long intType);
+static void          cbForStateCoverClosed(u32 intType);
 static void          stateMotorStopped();
-static void          cbForStateMotorStopped(unsigned long intType);
+static void          cbForStateMotorStopped(u32 intType);
 static void          stateReady();
 static void          stateBusy(struct DVDCommandBlock* block);
-static void          cbForStateBusy(unsigned long intType);
-static int           issueCommand(long prio, struct DVDCommandBlock* block);
-static void          cbForCancelStreamSync(long result, struct DVDCommandBlock* block);
-static void          cbForStopStreamAtEndSync(long result, struct DVDCommandBlock* block);
-static void          cbForGetStreamErrorStatusSync(long result, struct DVDCommandBlock* block);
-static void          cbForGetStreamPlayAddrSync(long result, struct DVDCommandBlock* block);
-static void          cbForGetStreamStartAddrSync(long result, struct DVDCommandBlock* block);
-static void          cbForGetStreamLengthSync(long result, struct DVDCommandBlock* block);
+static void          cbForStateBusy(u32 intType);
+static int           issueCommand(s32 prio, struct DVDCommandBlock* block);
+static void          cbForCancelStreamSync(s32 result, struct DVDCommandBlock* block);
+static void          cbForStopStreamAtEndSync(s32 result, struct DVDCommandBlock* block);
+static void          cbForGetStreamErrorStatusSync(s32 result, struct DVDCommandBlock* block);
+static void          cbForGetStreamPlayAddrSync(s32 result, struct DVDCommandBlock* block);
+static void          cbForGetStreamStartAddrSync(s32 result, struct DVDCommandBlock* block);
+static void          cbForGetStreamLengthSync(s32 result, struct DVDCommandBlock* block);
 static void          cbForChangeDiskSync();
-static void          cbForInquirySync(long result, struct DVDCommandBlock* block);
+static void          cbForInquirySync(s32 result, struct DVDCommandBlock* block);
 static void          cbForCancelSync();
 static void          cbForCancelAllSync();
 
@@ -110,7 +110,7 @@ stateReadingFST()
 }
 
 static void
-cbForStateReadingFST(unsigned long intType)
+cbForStateReadingFST(u32 intType)
 {
     struct DVDCommandBlock* finished;
 
@@ -153,8 +153,8 @@ stateGettingError()
     DVDLowRequestError(cbForStateGettingError);
 }
 
-static unsigned long
-CategorizeError(unsigned long error)
+static u32
+CategorizeError(u32 error)
 {
     if (error == 1)
     {
@@ -183,7 +183,7 @@ CategorizeError(unsigned long error)
 }
 
 static int
-ResetWorkAround(unsigned long error)
+ResetWorkAround(u32 error)
 {
     if ((LastState == stateCoverClosed_CMD || (CurrCommand == DVD_COMMAND_READID)))
     {
@@ -203,12 +203,12 @@ ResetWorkAround(unsigned long error)
 }
 
 static void
-cbForStateGettingError(unsigned long intType)
+cbForStateGettingError(u32 intType)
 {
-    unsigned long           error;
-    unsigned long           status;
-    long                    result;
-    unsigned long           errorCategory;
+    u32           error;
+    u32           status;
+    s32                    result;
+    u32           errorCategory;
     struct DVDCommandBlock* finished;
 
     if (intType & DVD_INTTYPE_DE)
@@ -383,7 +383,7 @@ stateGoToRetry()
 }
 
 static void
-cbForStateGoToRetry(unsigned long intType)
+cbForStateGoToRetry(u32 intType)
 {
     struct DVDCommandBlock* finished;
 
@@ -469,7 +469,7 @@ stateCheckID2()
 }
 
 static void
-cbForStateCheckID1(unsigned long intType)
+cbForStateCheckID1(u32 intType)
 {
     if (intType & DVD_INTTYPE_DE)
     {
@@ -491,7 +491,7 @@ cbForStateCheckID1(unsigned long intType)
 }
 
 static void
-cbForStateCheckID2(unsigned long intType)
+cbForStateCheckID2(u32 intType)
 {
     ASSERTLINE(0x494, (intType & DVD_INTTYPE_CVR) == 0);
     if (intType & DVD_INTTYPE_TC)
@@ -506,7 +506,7 @@ cbForStateCheckID2(unsigned long intType)
 }
 
 static void
-cbForStateCheckID3(unsigned long intType)
+cbForStateCheckID3(u32 intType)
 {
     ASSERTLINE(0x4B4, (intType & DVD_INTTYPE_CVR) == 0);
     if (intType & DVD_INTTYPE_TC)
@@ -563,7 +563,7 @@ stateCoverClosed_CMD()
 }
 
 static void
-cbForStateCoverClosed(unsigned long intType)
+cbForStateCoverClosed(u32 intType)
 {
     ASSERTLINE(0x510, (intType & DVD_INTTYPE_CVR) == 0);
     if (intType & DVD_INTTYPE_TC)
@@ -586,7 +586,7 @@ stateMotorStopped()
 }
 
 static void
-cbForStateMotorStopped(unsigned long intType)
+cbForStateMotorStopped(u32 intType)
 {
     ASSERTLINE(0x540, intType == DVD_INTTYPE_CVR);
     __DIRegs[1] = 0;
@@ -725,10 +725,10 @@ stateBusy(struct DVDCommandBlock* block)
 }
 
 static void
-cbForStateBusy(unsigned long intType)
+cbForStateBusy(u32 intType)
 {
     struct DVDCommandBlock* finished;
-    long                    result;
+    s32                    result;
 
     if ((CurrCommand == DVD_COMMAND_CHANGE_DISK) || (CurrCommand == DVD_COMMAND_BS_CHANGE_DISK))
     {
@@ -902,7 +902,7 @@ cbForStateBusy(unsigned long intType)
 }
 
 static int
-issueCommand(long prio, struct DVDCommandBlock* block)
+issueCommand(s32 prio, struct DVDCommandBlock* block)
 {
     int level;
     int result;
@@ -931,8 +931,8 @@ issueCommand(long prio, struct DVDCommandBlock* block)
 }
 
 int
-DVDReadAbsAsyncPrio(struct DVDCommandBlock* block, void* addr, long length, long offset,
-                    void (*callback)(long, struct DVDCommandBlock*), long prio)
+DVDReadAbsAsyncPrio(struct DVDCommandBlock* block, void* addr, s32 length, long offset,
+                    void (*callback)(s32, struct DVDCommandBlock*), long prio)
 {
     int idle;
 
@@ -954,8 +954,8 @@ DVDReadAbsAsyncPrio(struct DVDCommandBlock* block, void* addr, long length, long
 }
 
 int
-DVDSeekAbsAsyncPrio(struct DVDCommandBlock* block, long offset, void (*callback)(long, struct DVDCommandBlock*),
-                    long prio)
+DVDSeekAbsAsyncPrio(struct DVDCommandBlock* block, s32 offset, void (*callback)(long, struct DVDCommandBlock*),
+                    s32 prio)
 {
     int idle;
 
@@ -970,8 +970,8 @@ DVDSeekAbsAsyncPrio(struct DVDCommandBlock* block, long offset, void (*callback)
 }
 
 int
-DVDReadAbsAsyncForBS(struct DVDCommandBlock* block, void* addr, long length, long offset,
-                     void (*callback)(long, struct DVDCommandBlock*))
+DVDReadAbsAsyncForBS(struct DVDCommandBlock* block, void* addr, s32 length, long offset,
+                     void (*callback)(s32, struct DVDCommandBlock*))
 {
     int idle;
 
@@ -992,7 +992,7 @@ DVDReadAbsAsyncForBS(struct DVDCommandBlock* block, void* addr, long length, lon
 }
 
 int
-DVDReadDiskID(struct DVDCommandBlock* block, struct DVDDiskID* diskID, void (*callback)(long, struct DVDCommandBlock*))
+DVDReadDiskID(struct DVDCommandBlock* block, struct DVDDiskID* diskID, void (*callback)(s32, struct DVDCommandBlock*))
 {
     int idle;
 
@@ -1012,8 +1012,8 @@ DVDReadDiskID(struct DVDCommandBlock* block, struct DVDDiskID* diskID, void (*ca
 }
 
 int
-DVDPrepareStreamAbsAsync(struct DVDCommandBlock* block, unsigned long length, unsigned long offset,
-                         void (*callback)(long, struct DVDCommandBlock*))
+DVDPrepareStreamAbsAsync(struct DVDCommandBlock* block, u32 length, u32 offset,
+                         void (*callback)(s32, struct DVDCommandBlock*))
 {
     int idle;
 
@@ -1026,7 +1026,7 @@ DVDPrepareStreamAbsAsync(struct DVDCommandBlock* block, unsigned long length, un
 }
 
 int
-DVDCancelStreamAsync(struct DVDCommandBlock* block, void (*callback)(long, struct DVDCommandBlock*))
+DVDCancelStreamAsync(struct DVDCommandBlock* block, void (*callback)(s32, struct DVDCommandBlock*))
 {
     int idle;
 
@@ -1036,13 +1036,13 @@ DVDCancelStreamAsync(struct DVDCommandBlock* block, void (*callback)(long, struc
     return idle;
 }
 
-long
+s32
 DVDCancelStream(struct DVDCommandBlock* block)
 {
     int  result;
-    long state;
+    s32 state;
     int  enabled;
-    long retVal;
+    s32 retVal;
 
     result = DVDCancelStreamAsync(block, cbForCancelStreamSync);
     if (result == 0)
@@ -1066,14 +1066,14 @@ DVDCancelStream(struct DVDCommandBlock* block)
 }
 
 static void
-cbForCancelStreamSync(long result, struct DVDCommandBlock* block)
+cbForCancelStreamSync(s32 result, struct DVDCommandBlock* block)
 {
     ResultForSyncCommand = result;
     OSWakeupThread(&__DVDThreadQueue);
 }
 
 int
-DVDStopStreamAtEndAsync(struct DVDCommandBlock* block, void (*callback)(long, struct DVDCommandBlock*))
+DVDStopStreamAtEndAsync(struct DVDCommandBlock* block, void (*callback)(s32, struct DVDCommandBlock*))
 {
     int idle;
 
@@ -1083,13 +1083,13 @@ DVDStopStreamAtEndAsync(struct DVDCommandBlock* block, void (*callback)(long, st
     return idle;
 }
 
-long
+s32
 DVDStopStreamAtEnd(struct DVDCommandBlock* block)
 {
     int  result;
-    long state;
+    s32 state;
     int  enabled;
-    long retVal;
+    s32 retVal;
 
     result = DVDStopStreamAtEndAsync(block, cbForStopStreamAtEndSync);
     if (result == 0)
@@ -1113,14 +1113,14 @@ DVDStopStreamAtEnd(struct DVDCommandBlock* block)
 }
 
 static void
-cbForStopStreamAtEndSync(long result, struct DVDCommandBlock* block)
+cbForStopStreamAtEndSync(s32 result, struct DVDCommandBlock* block)
 {
     ResultForSyncCommand = result;
     OSWakeupThread(&__DVDThreadQueue);
 }
 
 int
-DVDGetStreamErrorStatusAsync(struct DVDCommandBlock* block, void (*callback)(long, struct DVDCommandBlock*))
+DVDGetStreamErrorStatusAsync(struct DVDCommandBlock* block, void (*callback)(s32, struct DVDCommandBlock*))
 {
     int idle;
 
@@ -1130,13 +1130,13 @@ DVDGetStreamErrorStatusAsync(struct DVDCommandBlock* block, void (*callback)(lon
     return idle;
 }
 
-long
+s32
 DVDGetStreamErrorStatus(struct DVDCommandBlock* block)
 {
     int  result;
-    long state;
+    s32 state;
     int  enabled;
-    long retVal;
+    s32 retVal;
 
     result = DVDGetStreamErrorStatusAsync(block, cbForGetStreamErrorStatusSync);
     if (result == 0)
@@ -1160,14 +1160,14 @@ DVDGetStreamErrorStatus(struct DVDCommandBlock* block)
 }
 
 static void
-cbForGetStreamErrorStatusSync(long result, struct DVDCommandBlock* block)
+cbForGetStreamErrorStatusSync(s32 result, struct DVDCommandBlock* block)
 {
     ResultForSyncCommand = result;
     OSWakeupThread(&__DVDThreadQueue);
 }
 
 int
-DVDGetStreamPlayAddrAsync(struct DVDCommandBlock* block, void (*callback)(long, struct DVDCommandBlock*))
+DVDGetStreamPlayAddrAsync(struct DVDCommandBlock* block, void (*callback)(s32, struct DVDCommandBlock*))
 {
     int idle;
 
@@ -1177,13 +1177,13 @@ DVDGetStreamPlayAddrAsync(struct DVDCommandBlock* block, void (*callback)(long, 
     return idle;
 }
 
-long
+s32
 DVDGetStreamPlayAddr(struct DVDCommandBlock* block)
 {
     int  result;
-    long state;
+    s32 state;
     int  enabled;
-    long retVal;
+    s32 retVal;
 
     result = DVDGetStreamPlayAddrAsync(block, cbForGetStreamPlayAddrSync);
     if (result == 0)
@@ -1207,14 +1207,14 @@ DVDGetStreamPlayAddr(struct DVDCommandBlock* block)
 }
 
 static void
-cbForGetStreamPlayAddrSync(long result, struct DVDCommandBlock* block)
+cbForGetStreamPlayAddrSync(s32 result, struct DVDCommandBlock* block)
 {
     ResultForSyncCommand = result;
     OSWakeupThread(&__DVDThreadQueue);
 }
 
 int
-DVDGetStreamStartAddrAsync(struct DVDCommandBlock* block, void (*callback)(long, struct DVDCommandBlock*))
+DVDGetStreamStartAddrAsync(struct DVDCommandBlock* block, void (*callback)(s32, struct DVDCommandBlock*))
 {
     int idle;
 
@@ -1224,13 +1224,13 @@ DVDGetStreamStartAddrAsync(struct DVDCommandBlock* block, void (*callback)(long,
     return idle;
 }
 
-long
+s32
 DVDGetStreamStartAddr(struct DVDCommandBlock* block)
 {
     int  result;
-    long state;
+    s32 state;
     int  enabled;
-    long retVal;
+    s32 retVal;
 
     result = DVDGetStreamStartAddrAsync(block, cbForGetStreamStartAddrSync);
     if (result == 0)
@@ -1254,14 +1254,14 @@ DVDGetStreamStartAddr(struct DVDCommandBlock* block)
 }
 
 static void
-cbForGetStreamStartAddrSync(long result, struct DVDCommandBlock* block)
+cbForGetStreamStartAddrSync(s32 result, struct DVDCommandBlock* block)
 {
     ResultForSyncCommand = result;
     OSWakeupThread(&__DVDThreadQueue);
 }
 
 int
-DVDGetStreamLengthAsync(struct DVDCommandBlock* block, void (*callback)(long, struct DVDCommandBlock*))
+DVDGetStreamLengthAsync(struct DVDCommandBlock* block, void (*callback)(s32, struct DVDCommandBlock*))
 {
     int idle;
 
@@ -1271,13 +1271,13 @@ DVDGetStreamLengthAsync(struct DVDCommandBlock* block, void (*callback)(long, st
     return idle;
 }
 
-long
+s32
 DVDGetStreamLength(struct DVDCommandBlock* block)
 {
     int  result;
-    long state;
+    s32 state;
     int  enabled;
-    long retVal;
+    s32 retVal;
 
     result = DVDGetStreamLengthAsync(block, cbForGetStreamLengthSync);
     if (result == 0)
@@ -1301,15 +1301,15 @@ DVDGetStreamLength(struct DVDCommandBlock* block)
 }
 
 static void
-cbForGetStreamLengthSync(long result, struct DVDCommandBlock* block)
+cbForGetStreamLengthSync(s32 result, struct DVDCommandBlock* block)
 {
     ResultForSyncCommand = result;
     OSWakeupThread(&__DVDThreadQueue);
 }
 
 void
-__DVDAudioBufferConfig(struct DVDCommandBlock* block, unsigned long enable, unsigned long size,
-                       void (*callback)(long, struct DVDCommandBlock*))
+__DVDAudioBufferConfig(struct DVDCommandBlock* block, u32 enable, u32 size,
+                       void (*callback)(s32, struct DVDCommandBlock*))
 {
     int idle;
 
@@ -1321,7 +1321,7 @@ __DVDAudioBufferConfig(struct DVDCommandBlock* block, unsigned long enable, unsi
 }
 
 int
-DVDChangeDiskAsyncForBS(struct DVDCommandBlock* block, void (*callback)(long, struct DVDCommandBlock*))
+DVDChangeDiskAsyncForBS(struct DVDCommandBlock* block, void (*callback)(s32, struct DVDCommandBlock*))
 {
     int idle;
 
@@ -1334,7 +1334,7 @@ DVDChangeDiskAsyncForBS(struct DVDCommandBlock* block, void (*callback)(long, st
 }
 
 int
-DVDChangeDiskAsync(struct DVDCommandBlock* block, struct DVDDiskID* id, void (*callback)(long, struct DVDCommandBlock*))
+DVDChangeDiskAsync(struct DVDCommandBlock* block, struct DVDDiskID* id, void (*callback)(s32, struct DVDCommandBlock*))
 {
     int idle;
 
@@ -1349,13 +1349,13 @@ DVDChangeDiskAsync(struct DVDCommandBlock* block, struct DVDDiskID* id, void (*c
     return idle;
 }
 
-long
+s32
 DVDChangeDisk(struct DVDCommandBlock* block, struct DVDDiskID* id)
 {
     int  result;
-    long state;
+    s32 state;
     int  enabled;
-    long retVal;
+    s32 retVal;
 
     result = DVDChangeDiskAsync(block, id, cbForChangeDiskSync);
     if (result == 0)
@@ -1390,7 +1390,7 @@ cbForChangeDiskSync()
 
 int
 DVDInquiryAsync(struct DVDCommandBlock* block, struct DVDDriveInfo* info,
-                void (*callback)(long, struct DVDCommandBlock*))
+                void (*callback)(s32, struct DVDCommandBlock*))
 {
     int idle;
 
@@ -1407,13 +1407,13 @@ DVDInquiryAsync(struct DVDCommandBlock* block, struct DVDDriveInfo* info,
     return idle;
 }
 
-long
+s32
 DVDInquiry(struct DVDCommandBlock* block, struct DVDDriveInfo* info)
 {
     int  result;
-    long state;
+    s32 state;
     int  enabled;
-    long retVal;
+    s32 retVal;
 
     result = DVDInquiryAsync(block, info, cbForInquirySync);
     if (result == 0)
@@ -1436,7 +1436,7 @@ DVDInquiry(struct DVDCommandBlock* block, struct DVDDriveInfo* info)
 }
 
 static void
-cbForInquirySync(long result, struct DVDCommandBlock* block)
+cbForInquirySync(s32 result, struct DVDCommandBlock* block)
 {
     ResultForSyncCommand = result;
     OSWakeupThread(&__DVDThreadQueue);
@@ -1458,7 +1458,7 @@ DVDResetRequired()
     return ResetRequired;
 }
 
-long
+s32
 DVDGetCommandBlockStatus(struct DVDCommandBlock* block)
 {
     ASSERTMSGLINE(0xAF9, block, "DVDGetCommandBlockStatus(): null pointer is specified to command block address.");
@@ -1469,7 +1469,7 @@ DVDGetCommandBlockStatus(struct DVDCommandBlock* block)
     return block->state;
 }
 
-long
+s32
 DVDGetDriveStatus()
 {
     struct DVDCommandBlock* block;
@@ -1530,10 +1530,10 @@ DVDResume()
 }
 
 int
-DVDCancelAsync(struct DVDCommandBlock* block, void (*callback)(long, struct DVDCommandBlock*))
+DVDCancelAsync(struct DVDCommandBlock* block, void (*callback)(s32, struct DVDCommandBlock*))
 {
     int  enabled;
-    void (*old)(unsigned long);
+    void (*old)(u32);
 
     enabled = OSDisableInterrupts();
     Canceling = 0;
@@ -1654,12 +1654,12 @@ DVDCancelAsync(struct DVDCommandBlock* block, void (*callback)(long, struct DVDC
     return 1;
 }
 
-long
+s32
 DVDCancel(volatile struct DVDCommandBlock* block)
 {
     int           result;
-    long          state;
-    unsigned long command;
+    s32          state;
+    u32 command;
     int           enabled;
 
     result = DVDCancelAsync((void*)block, cbForCancelSync);
@@ -1697,7 +1697,7 @@ cbForCancelSync()
 }
 
 int
-DVDCancelAllAsync(void (*callback)(long, struct DVDCommandBlock*))
+DVDCancelAllAsync(void (*callback)(s32, struct DVDCommandBlock*))
 {
     int                     enabled;
     struct DVDCommandBlock* p;
@@ -1726,7 +1726,7 @@ DVDCancelAllAsync(void (*callback)(long, struct DVDCommandBlock*))
     return retVal;
 }
 
-long
+s32
 DVDCancelAll()
 {
     int result;

@@ -26,7 +26,7 @@ extern "C"
 #define CARD_ENCODE_ANSI    OS_FONT_ENCODE_ANSI
 #define CARD_ENCODE_SJIS    OS_FONT_ENCODE_SJIS
 
-// longest file name string excluding terminating zero
+// s32est file name string excluding terminating zero
 #define CARD_FILENAME_MAX   32
 
 #define CARD_ICON_MAX       8
@@ -49,7 +49,7 @@ typedef struct CARDFileInfo
 typedef struct CARDStat
 {
     // read-only (Set by CARDGetStatus)
-    /*0x00*/ char fileName[CARD_FILENAME_MAX];
+    /*0x00*/ s8 fileName[CARD_FILENAME_MAX];
     /*0x20*/ u32  length;
     /*0x24*/ u32  time; // (seconds since 01/01/2000 midnight)
     /*0x28*/ u8   gameName[4];

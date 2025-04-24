@@ -95,12 +95,12 @@ static inline void
 FillSection(G2DLayer* layer, s8* aSortBuffer, s32* nScanLine, s32 nEvent, s16* nIdx, s32* nL, s32* nR, f32* rLeft,
             f32* rRight, f32 rStep0, f32 rStep1, s32 nMapX, s32 nMapY)
 {
-    long nHMask;
-    long nVMask;
-    long nI;
-    long nJ;
-    long nK;
-    long nM;
+    s32 nHMask;
+    s32 nVMask;
+    s32 nI;
+    s32 nJ;
+    s32 nK;
+    s32 nM;
     s16  nMaterial;
     s16* pAddr;
 

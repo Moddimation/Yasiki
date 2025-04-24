@@ -28,13 +28,13 @@ void __SYNSetupLfo(struct SYNVOICE* voice);
 void __SYNRunLfo(struct SYNVOICE* voice);
 
 // synmix.c
-extern long __SYNVolumeAttenuation[128];
-extern long __SYNAttackAttnTable[100];
+extern s32 __SYNVolumeAttenuation[128];
+extern s32 __SYNAttackAttnTable[100];
 
 void __SYNSetupVolume(struct SYNVOICE* voice);
 void __SYNSetupPan(struct SYNVOICE* voice);
-long __SYNGetVoiceInput(struct SYNVOICE* voice);
-long __SYNGetVoiceFader(struct SYNVOICE* voice);
+s32 __SYNGetVoiceInput(struct SYNVOICE* voice);
+s32 __SYNGetVoiceFader(struct SYNVOICE* voice);
 void __SYNUpdateMix(struct SYNVOICE* voice);
 
 // synpitch.c
@@ -50,7 +50,7 @@ void __SYNSetupSample(struct SYNVOICE* voice);
 extern struct SYNVOICE __SYNVoice[64];
 
 void __SYNClearVoiceReferences(void* p);
-void __SYNSetVoiceToRelease(struct SYNVOICE* voice, unsigned long priority);
+void __SYNSetVoiceToRelease(struct SYNVOICE* voice, u32 priority);
 void __SYNServiceVoice(int i);
 
 // synwt.c

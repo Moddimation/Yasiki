@@ -13,7 +13,7 @@ static u32* __AR_BlockLength;
 static int  __AR_init_flag;
 
 // functions
-static void __ARHandler(short exception, struct OSContext* context);
+static void __ARHandler(s16 exception, struct OSContext* context);
 static void __ARWaitForDMA(void);
 static void __ARWriteDMA(u32 mmem_addr, u32 aram_addr, u32 length);
 static void __ARReadDMA(u32 mmem_addr, u32 aram_addr, u32 length);
@@ -163,7 +163,7 @@ ARGetSize(void)
 }
 
 static void
-__ARHandler(short exception, struct OSContext* context)
+__ARHandler(s16 exception, struct OSContext* context)
 {
     struct OSContext exceptionContext;
     u16              tmp;

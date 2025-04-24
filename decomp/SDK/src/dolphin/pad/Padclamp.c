@@ -97,7 +97,7 @@ ClampStick(s8* px, s8* py, s8 max, s8 xy, s8 min)
 }
 
 inline static void
-ClampTrigger(unsigned char* trigger)
+ClampTrigger(u8* trigger)
 {
     if (*trigger <= ClampRegion.minTrigger)
     {
@@ -120,8 +120,11 @@ PADClamp(PADStatus* status)
     {
         if (status->err == PAD_ERR_NONE)
         {
-            ClampStick(&status->stickX, &status->stickY, ClampRegion.maxStick, ClampRegion.xyStick, ClampRegion.minStick);
-            ClampStick(&status->substickX, &status->substickY, ClampRegion.maxSubstick, ClampRegion.xySubstick,
+            ClampStick(&status->stickX, &status->stickY,
+                       ClampRegion.maxStick, ClampRegion.xyStick,
+                       ClampRegion.minStick);
+            ClampStick(&status->substickX, &status->substickY,
+                       ClampRegion.maxSubstick, ClampRegion.xySubstick,
                        ClampRegion.minSubstick);
             ClampTrigger(&status->triggerLeft);
             ClampTrigger(&status->triggerRight);

@@ -136,7 +136,7 @@ extern "C"
 
 #define GX_WRITE_SOME_REG2(a, b, c, addr)                                                                              \
     do {                                                                                                               \
-        long regAddr;                                                                                                  \
+        s32 regAddr;                                                                                                  \
         GX_WRITE_U8(a);                                                                                                \
         GX_WRITE_U8(b);                                                                                                \
         GX_WRITE_U32(c);                                                                                               \
@@ -149,7 +149,7 @@ extern "C"
     while (0)
 #define GX_WRITE_SOME_REG3(a, b, c, addr)                                                                              \
     do {                                                                                                               \
-        long regAddr;                                                                                                  \
+        s32 regAddr;                                                                                                  \
         GX_WRITE_U8(a);                                                                                                \
         GX_WRITE_U8(b);                                                                                                \
         GX_WRITE_U32(c);                                                                                               \
@@ -162,7 +162,7 @@ extern "C"
     while (0)
 #define GX_WRITE_SOME_REG4(a, b, c, addr)                                                                              \
     do {                                                                                                               \
-        long regAddr;                                                                                                  \
+        s32 regAddr;                                                                                                  \
         GX_WRITE_U8(a);                                                                                                \
         GX_WRITE_U8(b);                                                                                                \
         GX_WRITE_U32(c);                                                                                               \
@@ -562,7 +562,7 @@ typedef struct __GXVerifyData
 
 extern __GXVerifyData* __gxVerif;
 extern char*           __gxvWarnings[125];
-extern char            __gxvDummyStr[256];
+extern s8            __gxvDummyStr[256];
 extern GXWarningLevel  __gxvWarnLev[];
 
 void __GXVerifyGlobal(void);

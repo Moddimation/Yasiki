@@ -8,15 +8,15 @@
 static struct _AXSPB __AXStudio ATTRIBUTE_ALIGN(32);
 
 // .sbss
-static long __AXSpbAL;
-static long __AXSpbAR;
-static long __AXSpbAS;
-static long __AXSpbAAL;
-static long __AXSpbAAR;
-static long __AXSpbAAS;
-static long __AXSpbABL;
-static long __AXSpbABR;
-static long __AXSpbABS;
+static s32 __AXSpbAL;
+static s32 __AXSpbAR;
+static s32 __AXSpbAS;
+static s32 __AXSpbAAL;
+static s32 __AXSpbAAR;
+static s32 __AXSpbAAS;
+static s32 __AXSpbABL;
+static s32 __AXSpbABR;
+static s32 __AXSpbABS;
 
 u32
 __AXGetStudio(void)
@@ -25,10 +25,10 @@ __AXGetStudio(void)
 }
 
 void
-__AXDepopFade(long* hostSum, long* dspVolume, s16* dspDelta)
+__AXDepopFade(s32* hostSum, long* dspVolume, s16* dspDelta)
 {
     int  frames;
-    long delta;
+    s32 delta;
 
     frames = *hostSum / 160;
 

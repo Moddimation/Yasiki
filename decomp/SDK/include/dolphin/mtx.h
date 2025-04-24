@@ -78,8 +78,8 @@ void C_MTXLookAt(Mtx m, Point3dPtr camPos, VecPtr camUp, Point3dPtr target);
 
 // mtx.c
 // functions
-void MTXRotRad(Mtx m, char axis, f32 rad);
-void MTXRotTrig(Mtx m, char axis, f32 sinA, f32 cosA);
+void MTXRotRad(Mtx m, s8 axis, f32 rad);
+void MTXRotTrig(Mtx m, s8 axis, f32 sinA, f32 cosA);
 void MTXRotAxisRad(Mtx m, Vec* axis, f32 rad);
 void MTXTrans(Mtx m, f32 xT, f32 yT, f32 zT);
 void MTXTransApply(Mtx src, Mtx dst, f32 xT, f32 yT, f32 zT);

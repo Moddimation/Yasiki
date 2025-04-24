@@ -13,36 +13,36 @@
 static struct OSAlarm PERFAlarm; // size: 0x28, address: 0x0
 
 // .sdata
-static volatile long          CurrAutoSample = 0xFFFFFFFF; // size: 0x4, address: 0x0
-static volatile unsigned long CurrToken = 0x0000FFFF;      // size: 0x4, address: 0x4
+static volatile s32          CurrAutoSample = 0xFFFFFFFF; // size: 0x4, address: 0x0
+static volatile u32 CurrToken = 0x0000FFFF;      // size: 0x4, address: 0x4
 
 // .sbss
-static volatile unsigned char magic;                       // size: 0x1, address: 0x0
-static void*                  (*PerfAlloc)(unsigned long); // size: 0x4, address: 0x4
+static volatile u16 magic;                       // size: 0x1, address: 0x0
+static void*                  (*PerfAlloc)(u32); // size: 0x4, address: 0x4
 static void                   (*PerfFree)(void*);          // size: 0x4, address: 0x8
-static void                   (*DSCB)(unsigned short);     // size: 0x4, address: 0xC
-unsigned long                 PERFNumFrames;               // size: 0x4, address: 0x28
-unsigned long                 PERFNumEvents;               // size: 0x4, address: 0x24
-unsigned long                 PERFNumSamples;              // size: 0x4, address: 0x20
+static void                   (*DSCB)(u16);     // size: 0x4, address: 0xC
+u32                 PERFNumFrames;               // size: 0x4, address: 0x28
+u32                 PERFNumEvents;               // size: 0x4, address: 0x24
+u32                 PERFNumSamples;              // size: 0x4, address: 0x20
 struct Frame*                 PERFFrames;                  // size: 0x4, address: 0x1C
 struct PerfEvent*             PERFEvents;                  // size: 0x4, address: 0x18
-unsigned long                 PERFCurrFrame;               // size: 0x4, address: 0x14
-volatile long                 PERFCurrSample;              // size: 0x4, address: 0x10
+u32                 PERFCurrFrame;               // size: 0x4, address: 0x14
+volatile s32                 PERFCurrSample;              // size: 0x4, address: 0x10
 
 // functions
 static void           PERFResetAllMemMetrics();
-static void           PERFGetAllMemMetrics(struct PerfSample* s, unsigned long i);
-void                  PERFSetDrawSyncCallback(void (*cb)(unsigned short));
-static void           PERFTokenCallback(unsigned short token);
-unsigned long         PERFInit(unsigned long numSamples, unsigned long numFramesHistory, unsigned long numTypes,
-                               void* (*allocator)(unsigned long), void (*deallocator)(void*), void (*initDraw)());
-void                  PERFSetEvent(unsigned char id, char* name, PerfType type);
-void                  PERFSetEventColor(unsigned char id, GXColor color);
+static void           PERFGetAllMemMetrics(struct PerfSample* s, u32 i);
+void                  PERFSetDrawSyncCallback(void (*cb)(u16));
+static void           PERFTokenCallback(u16 token);
+u32         PERFInit(u32 numSamples, u32 numFramesHistory, unsigned long numTypes,
+                               void* (*allocator)(u32), void (*deallocator)(void*), void (*initDraw)());
+void                  PERFSetEvent(u16 id, char* name, PerfType type);
+void                  PERFSetEventColor(u16 id, GXColor color);
 void                  PERFStartFrame();
 void                  PERFEndFrame();
-void                  PERFEventStart(unsigned char id);
-__declspec(weak) long PERFGetNewSample();
-void                  PERFEventEnd(unsigned char id);
+void                  PERFEventStart(u16 id);
+__declspec(weak) s32 PERFGetNewSample();
+void                  PERFEventEnd(u16 id);
 static void           PERFStartAutoSample();
 static void           PERFEndAutoSample();
 static void           PERFTimerCallback(OSAlarm* alarm, OSContext* context);
@@ -50,7 +50,7 @@ void                  PERFStartAutoSampling(float msInterval);
 void                  PERFStopAutoSampling();
 
 #ifndef DEBUG
-inline long
+inline s32
 PERFGetNewSample()
 {
     if (PERFCurrSample >= (PERFNumSamples - 1))
@@ -88,10 +88,10 @@ PERFResetAllMemMetrics()
 }
 
 static void
-PERFGetAllMemMetrics(struct PerfSample* s, unsigned long i)
+PERFGetAllMemMetrics(struct PerfSample* s, u32 i)
 {
-    unsigned long ctrl;
-    unsigned long ctrh;
+    u32 ctrl;
+    u32 ctrh;
 
     GXReadXfRasMetric(&s->xfWaitIn[i], &s->xfWaitOut[i], &s->rasBusy[i], &s->rasClocks[i]);
 
@@ -137,15 +137,15 @@ PERFGetAllMemMetrics(struct PerfSample* s, unsigned long i)
 }
 
 void
-PERFSetDrawSyncCallback(void (*cb)(unsigned short))
+PERFSetDrawSyncCallback(void (*cb)(u16))
 {
     DSCB = cb;
 }
 
 static void
-PERFTokenCallback(unsigned short token)
+PERFTokenCallback(u16 token)
 {
-    long sample;
+    s32 sample;
 
     if ((token < 0xE000) || (((int)((u32)token >> 8) & 0xF) != magic) || (PERFCurrSample == 0))
     {
@@ -208,12 +208,12 @@ PERFTokenCallback(unsigned short token)
     }
 }
 
-unsigned long
-PERFInit(unsigned long numSamples, unsigned long numFramesHistory, unsigned long numTypes,
-         void* (*allocator)(unsigned long), void (*deallocator)(void*), void (*initDraw)())
+u32
+PERFInit(u32 numSamples, u32 numFramesHistory, u32 numTypes,
+         void* (*allocator)(u32), void (*deallocator)(void*), void (*initDraw)())
 {
-    unsigned long i;
-    unsigned long size;
+    u32 i;
+    u32 size;
 
     PerfAlloc = allocator;
     PerfFree = deallocator;
@@ -246,7 +246,7 @@ PERFInit(unsigned long numSamples, unsigned long numFramesHistory, unsigned long
 }
 
 void
-PERFSetEvent(unsigned char id, char* name, PerfType type)
+PERFSetEvent(u16 id, char* name, PerfType type)
 {
     GXColor def = { 0xFF, 0x19, 0x00, 0xC8 };
 
@@ -257,7 +257,7 @@ PERFSetEvent(unsigned char id, char* name, PerfType type)
 }
 
 void
-PERFSetEventColor(unsigned char id, GXColor color)
+PERFSetEventColor(u16 id, GXColor color)
 {
     PERFEvents[id].color = color;
 }
@@ -286,7 +286,7 @@ PERFStartFrame()
 void
 PERFEndFrame()
 {
-    unsigned long i;
+    u32 i;
     int           enabled;
 
     enabled = OSDisableInterrupts();
@@ -311,10 +311,10 @@ PERFEndFrame()
 }
 
 void
-PERFEventStart(unsigned char id)
+PERFEventStart(u16 id)
 {
     int  enabled;
-    long sample;
+    s32 sample;
 
     enabled = OSDisableInterrupts();
 
@@ -360,7 +360,7 @@ PERFEventStart(unsigned char id)
 }
 
 #if DEBUG
-__declspec(weak) long
+__declspec(weak) s32
 PERFGetNewSample()
 {
     if (PERFCurrSample >= (PERFNumSamples - 1))
@@ -373,10 +373,10 @@ PERFGetNewSample()
 #endif
 
 void
-PERFEventEnd(unsigned char id)
+PERFEventEnd(u16 id)
 {
     int  enabled;
-    long sample;
+    s32 sample;
 
     enabled = OSDisableInterrupts();
     sample = PERFEvents[id].currSample;
@@ -429,8 +429,8 @@ PERFEndAutoSample()
 static void
 PERFTimerCallback(OSAlarm* alarm, OSContext* context)
 {
-    long sample;
-    long newsample;
+    s32 sample;
+    s32 newsample;
 
     if (PERFCurrSample != 0)
     {

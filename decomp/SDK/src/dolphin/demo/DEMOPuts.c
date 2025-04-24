@@ -6,13 +6,13 @@
 
 #include "DEMOPrivate.h"
 
-extern unsigned long DEMOFontBitmap[]; // size: 0x0, address: 0x0
+extern u32 DEMOFontBitmap[]; // size: 0x0, address: 0x0
 
 // .bss
 static struct _GXTexObj fontTexObj; // size: 0x20, address: 0x0
 
 // .sbss
-static long                 fontShift; // size: 0x4, address: 0x0
+static s32                 fontShift; // size: 0x4, address: 0x0
 static struct OSFontHeader* FontData;  // size: 0x4, address: 0x4
 static void*                LastSheet; // size: 0x4, address: 0x8
 static s16                  FontSize;  // size: 0x2, address: 0xC
@@ -38,8 +38,8 @@ void
 DEMOLoadFont(enum _GXTexMapID texMap, enum _GXTexMtx texMtx, DMTexFlt texFlt)
 {
     float          fontTMtx[3][4];
-    unsigned short width;
-    unsigned short height;
+    u16 width;
+    u16 height;
 
     width = 64;
     height = 0x1800 / width;
@@ -58,7 +58,7 @@ DEMOLoadFont(enum _GXTexMapID texMap, enum _GXTexMtx texMtx, DMTexFlt texFlt)
 }
 
 void
-DEMOSetupScrnSpc(long width, long height, float depth)
+DEMOSetupScrnSpc(s32 width, long height, float depth)
 {
     float pMtx[4][4];
     float mMtx[3][4];
@@ -71,7 +71,7 @@ DEMOSetupScrnSpc(long width, long height, float depth)
 }
 
 void
-DEMOInitCaption(long font_type, long width, long height)
+DEMOInitCaption(s32 font_type, long width, long height)
 {
     DEMOSetupScrnSpc(width, height, 100.0f);
     GXSetZMode(1, 7, 1);
@@ -87,12 +87,12 @@ void
 DEMOPuts(s16 x, s16 y, s16 z, char* string)
 {
     char* str;
-    long  s;
-    long  t;
-    long  c;
-    long  w;
-    long  len;
-    long  i;
+    s32  s;
+    s32  t;
+    s32  c;
+    s32  w;
+    s32  len;
+    s32  i;
 
     str = string;
     GXClearVtxDesc();
@@ -149,7 +149,7 @@ void
 DEMOPrintf(s16 x, s16 y, s16 z, char* fmt, ...)
 {
     va_list vlist;
-    char    buf[256];
+    s8    buf[256];
 
     va_start(vlist, fmt);
     vsprintf(buf, fmt, vlist);
@@ -236,11 +236,11 @@ LoadSheet(void* image, enum _GXTexMapID texMapID)
 int
 DEMORFPuts(s16 x, s16 y, s16 z, char* string)
 {
-    long  cx;
+    s32  cx;
     void* image;
-    long  xChar;
-    long  yChar;
-    long  width;
+    s32  xChar;
+    s32  yChar;
+    s32  width;
 
     ASSERTLINE(0x210, FontData);
     LastSheet = NULL;
@@ -277,11 +277,11 @@ DEMORFPuts(s16 x, s16 y, s16 z, char* string)
 int
 DEMORFPutsEx(s16 x, s16 y, s16 z, char* string, s16 maxWidth, int length)
 {
-    long  cx;
+    s32  cx;
     void* image;
-    long  xChar;
-    long  yChar;
-    long  width;
+    s32  xChar;
+    s32  yChar;
+    s32  width;
     char* end;
 
     ASSERTLINE(0x23D, FontData);
@@ -327,7 +327,7 @@ int
 DEMORFPrintf(s16 x, s16 y, s16 z, char* fmt, ...)
 {
     va_list vlist;
-    char    buf[256];
+    s8    buf[256];
 
     va_start(vlist, fmt);
     vsprintf(buf, fmt, vlist);
@@ -337,11 +337,11 @@ DEMORFPrintf(s16 x, s16 y, s16 z, char* fmt, ...)
 char*
 DEMODumpROMFont(char* string)
 {
-    unsigned long image[288];
+    u32 image[288];
     void*         temp;
     int           i;
     int           j;
-    long          width;
+    s32          width;
 
     ASSERTLINE(0x295, FontData);
 
@@ -370,8 +370,8 @@ DEMODumpROMFont(char* string)
 int
 DEMOGetRFTextWidth(char* string)
 {
-    long cx;
-    long width;
+    s32 cx;
+    s32 width;
 
     ASSERTLINE(0x2C3, FontData);
     width = 0;
