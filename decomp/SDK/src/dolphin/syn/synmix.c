@@ -8,7 +8,7 @@
 #include "SYNPrivate.h"
 
 // .data
-long __SYNVolumeAttenuation[128]
+s32 __SYNVolumeAttenuation[128]
     = { 0xFC400000, 0xFCB67A80, 0xFD2EE3F9, 0xFD7553B8, 0xFDA74D72, 0xFDCE1108, 0xFDEDBD30, 0xFE08848A, 0xFE1FB6EA,
         0xFE342CEF, 0xFE467A80, 0xFE57091D, 0xFE6626A9, 0xFE740E4D, 0xFE80EE03, 0xFE8CEA3F, 0xFE982063, 0xFEA2A878,
         0xFEAC9668, 0xFEB5FADF, 0xFEBEE3F9, 0xFEC75DC2, 0xFECF7295, 0xFED72B6E, 0xFEDE9022, 0xFEE5A78F, 0xFEEC77C6,
@@ -25,7 +25,7 @@ long __SYNVolumeAttenuation[128]
         0xFFF1C0BC, 0xFFF33B38, 0xFFF4B283, 0xFFF626A9, 0xFFF797B9, 0xFFF905BF, 0xFFFA70C9, 0xFFFBD8E2, 0xFFFD3E16,
         0xFFFEA072, 0x00000000 };
 
-long __SYNAttackAttnTable[100]
+s32 __SYNAttackAttnTable[100]
     = { 0xFC400000, 0xFE70DF7B, 0xFEAD1437, 0xFED04C17, 0xFEE948F4, 0xFEFCAABF, 0xFF0C80D3, 0xFF19E480, 0xFF257DB0,
         0xFF2FB8B2, 0xFF38DF7B, 0xFF4126C9, 0xFF48B58F, 0xFF4FA961, 0xFF56193C, 0xFF5C175A, 0xFF61B26C, 0xFF66F677,
         0xFF6BED6F, 0xFF709FAA, 0xFF751437, 0xFF79511C, 0xFF7D5B85, 0xFF8137F2, 0xFF84EA4C, 0xFF887602, 0xFF8BDE1E,
@@ -60,13 +60,13 @@ __SYNSetupPan(struct SYNVOICE* voice)
     }
 }
 
-long
+s32
 __SYNGetVoiceInput(struct SYNVOICE* voice)
 {
     return (voice->attn + voice->lfoAttn + voice->veAttn) >> 0x10;
 }
 
-long
+s32
 __SYNGetVoiceFader(struct SYNVOICE* voice)
 {
     return (voice->synth->volAttn[voice->midiChannel] + voice->synth->expAttn[voice->midiChannel]

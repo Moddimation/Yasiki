@@ -4,13 +4,13 @@
 
 #include "OSPrivate.h"
 
-long long
+s64
 __get_clock(void)
 {
     return -1;
 }
 
-unsigned long
+u32
 __get_time(void)
 {
     return (u32)OSTicksToSeconds(OSGetTime()) - 0x43E83E00;

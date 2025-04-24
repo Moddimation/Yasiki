@@ -51,7 +51,7 @@ OSSetErrorHandler(OSError error, OSErrorHandler handler)
 }
 
 void
-__OSUnhandledException(unsigned char exception, struct OSContext* context, unsigned long dsisr, unsigned long dar)
+__OSUnhandledException(u16 exception, struct OSContext* context, u32 dsisr, u32 dar)
 {
     if (!(context->srr1 & MSR_RI))
     {

@@ -4,11 +4,11 @@
 
 #include "CARDPrivate.h"
 
-long
-__CARDRawReadAsync(long chan, void* buf, long length, long offset, void (*callback)(long, long))
+s32
+__CARDRawReadAsync(s32 chan, void* buf, long length, long offset, void (*callback)(long, long))
 {
     struct CARDControl* card;
-    long                result;
+    s32                result;
 
     ASSERTLINE(0x36, buf && ((u32)buf % 32) == 0);
 
@@ -28,10 +28,10 @@ __CARDRawReadAsync(long chan, void* buf, long length, long offset, void (*callba
     return result;
 }
 
-long
-__CARDRawRead(long chan, void* buf, long length, long offset)
+s32
+__CARDRawRead(s32 chan, void* buf, long length, long offset)
 {
-    long result = __CARDRawReadAsync(chan, buf, length, offset, &__CARDSyncCallback);
+    s32 result = __CARDRawReadAsync(chan, buf, length, offset, &__CARDSyncCallback);
 
     if (result < 0)
     {

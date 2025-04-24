@@ -82,10 +82,10 @@ PADEnable(s32 chan)
 static inline void
 ProbeWireless(s32 chan)
 {
-    unsigned long cmd;
-    unsigned long chanBit;
-    unsigned long data[2];
-    unsigned long type;
+    u32 cmd;
+    u32 chanBit;
+    u32 data[2];
+    u32 type;
     u8            unused[4];
 
     chanBit = 0x80000000 >> chan;

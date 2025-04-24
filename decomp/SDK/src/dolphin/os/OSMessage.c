@@ -3,7 +3,7 @@
 #include <dolphin.h>
 
 void
-OSInitMessageQueue(struct OSMessageQueue* mq, void* msgArray, long msgCount)
+OSInitMessageQueue(struct OSMessageQueue* mq, void* msgArray, s32 msgCount)
 {
     OSInitThreadQueue(&mq->queueSend);
     OSInitThreadQueue(&mq->queueReceive);
@@ -14,10 +14,10 @@ OSInitMessageQueue(struct OSMessageQueue* mq, void* msgArray, long msgCount)
 }
 
 int
-OSSendMessage(struct OSMessageQueue* mq, void* msg, long flags)
+OSSendMessage(struct OSMessageQueue* mq, void* msg, s32 flags)
 {
     int  enabled;
-    long lastIndex;
+    s32 lastIndex;
 
     enabled = OSDisableInterrupts();
     while (mq->msgCount <= mq->usedCount)
@@ -38,7 +38,7 @@ OSSendMessage(struct OSMessageQueue* mq, void* msg, long flags)
 }
 
 int
-OSReceiveMessage(struct OSMessageQueue* mq, void* msg, long flags)
+OSReceiveMessage(struct OSMessageQueue* mq, void* msg, s32 flags)
 {
     int enabled = OSDisableInterrupts();
 
@@ -64,7 +64,7 @@ OSReceiveMessage(struct OSMessageQueue* mq, void* msg, long flags)
 }
 
 int
-OSJamMessage(struct OSMessageQueue* mq, void* msg, long flags)
+OSJamMessage(struct OSMessageQueue* mq, void* msg, s32 flags)
 {
     int enabled = OSDisableInterrupts();
 

@@ -457,8 +457,8 @@ asm void LCStoreBlocks(register void* destAddr, register void* srcTag, register 
 void
 LCAlloc(void* addr, u32 nBytes)
 {
-    unsigned long numBlocks = nBytes >> 5;
-    unsigned long hid2 = PPCMfhid2();
+    u32 numBlocks = nBytes >> 5;
+    u32 hid2 = PPCMfhid2();
 
     ASSERTMSGLINE(0x530, !((u32)addr & 31), "LCAlloc(): addr must be 32 byte aligned");
     ASSERTMSGLINE(0x532, !((u32)nBytes & 31), "LCAlloc(): nBytes must be 32 byte aligned");
@@ -473,8 +473,8 @@ LCAlloc(void* addr, u32 nBytes)
 void
 LCAllocNoInvalidate(void* addr, u32 nBytes)
 {
-    unsigned long numBlocks = nBytes >> 5;
-    unsigned long hid2 = PPCMfhid2();
+    u32 numBlocks = nBytes >> 5;
+    u32 hid2 = PPCMfhid2();
 
     ASSERTMSGLINE(0x55F, !((u32)addr & 31), "LCAllocNoFlush(): addr must be 32 byte aligned");
     ASSERTMSGLINE(0x561, !((u32)nBytes & 31), "LCAllocNoFlush(): nBytes must be 32 byte aligned");
@@ -563,14 +563,14 @@ asm void LCQueueWait(register u32 len) {
 
 void LCFlushQueue() {
     union {
-        unsigned long val; // offset 0x0, size 0x4
+        u32 val; // offset 0x0, size 0x4
         struct {
             // total size: 0x4
-            unsigned long lcAddr : 27; // offset 0x0, size 0x4
-            unsigned long dmaLd : 1; // offset 0x0, size 0x4
-            unsigned long dmaLenL : 2; // offset 0x0, size 0x4
-            unsigned long dmaTrigger : 1; // offset 0x0, size 0x4
-            unsigned long dmaFlush : 1; // offset 0x0, size 0x4
+            u32 lcAddr : 27; // offset 0x0, size 0x4
+            u32 dmaLd : 1; // offset 0x0, size 0x4
+            u32 dmaLenL : 2; // offset 0x0, size 0x4
+            u32 dmaTrigger : 1; // offset 0x0, size 0x4
+            u32 dmaFlush : 1; // offset 0x0, size 0x4
         } f; // offset 0x0, size 0x4
     } dmaL; // r1+0x8
     dmaL.val = 0;

@@ -4,27 +4,27 @@
 
 #include "AXPrivate.h"
 
-static long __AXBufferAuxA[3][480] ATTRIBUTE_ALIGN(32);
-static long __AXBufferAuxB[3][480] ATTRIBUTE_ALIGN(32);
+static s32 __AXBufferAuxA[3][480] ATTRIBUTE_ALIGN(32);
+static s32 __AXBufferAuxB[3][480] ATTRIBUTE_ALIGN(32);
 
 static void          (*__AXCallbackAuxA)(void*, void*);
 static void          (*__AXCallbackAuxB)(void*, void*);
 static void*         __AXContextAuxA;
 static void*         __AXContextAuxB;
-static long*         __AXAuxADspWrite;
-static long*         __AXAuxADspRead;
-static long*         __AXAuxBDspWrite;
-static long*         __AXAuxBDspRead;
-static unsigned long __AXAuxDspWritePosition;
-static unsigned long __AXAuxDspReadPosition;
-static unsigned long __AXAuxCpuReadWritePosition;
+static s32*         __AXAuxADspWrite;
+static s32*         __AXAuxADspRead;
+static s32*         __AXAuxBDspWrite;
+static s32*         __AXAuxBDspRead;
+static u32 __AXAuxDspWritePosition;
+static u32 __AXAuxDspReadPosition;
+static u32 __AXAuxCpuReadWritePosition;
 
 void
 __AXAuxInit(void)
 {
     int   i;
-    long* pA;
-    long* pB;
+    s32* pA;
+    s32* pB;
 
 #ifdef DEBUG
     OSReport("Initializing AXAux code module¥n");
@@ -36,8 +36,8 @@ __AXAuxInit(void)
     __AXAuxDspWritePosition = 0;
     __AXAuxDspReadPosition = 1;
     __AXAuxCpuReadWritePosition = 2;
-    pA = (long*)&__AXBufferAuxA;
-    pB = (long*)&__AXBufferAuxB;
+    pA = (s32*)&__AXBufferAuxA;
+    pB = (s32*)&__AXBufferAuxB;
     for (i = 0; i < 0x1E0; i++)
     {
         *(pA) = 0;

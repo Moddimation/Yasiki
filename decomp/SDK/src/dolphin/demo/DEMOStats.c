@@ -5,39 +5,39 @@
 
 #include "DEMOPrivate.h"
 
-unsigned char        DemoStatEnable = 0;
+u16        DemoStatEnable = 0;
 static DemoStatData* DemoStat;
-static unsigned long DemoStatIndx;
-static unsigned long DemoStatMaxIndx;
-static unsigned long DemoStatClocks;
-static unsigned long DemoStatDisp;
-static unsigned long DemoStatStrLen;
-static unsigned long topPixIn;
-static unsigned long topPixOut;
-static unsigned long botPixIn;
-static unsigned long botPixOut;
-static unsigned long clrPixIn;
-static unsigned long copyClks;
-static unsigned long vcCheck;
-static unsigned long vcMiss;
-static unsigned long vcStall;
-static unsigned long cpReq;
-static unsigned long tcReq;
-static unsigned long cpuRdReq;
-static unsigned long cpuWrReq;
-static unsigned long dspReq;
-static unsigned long ioReq;
-static unsigned long viReq;
-static unsigned long peReq;
-static unsigned long rfReq;
-static unsigned long fiReq;
+static u32 DemoStatIndx;
+static u32 DemoStatMaxIndx;
+static u32 DemoStatClocks;
+static u32 DemoStatDisp;
+static u32 DemoStatStrLen;
+static u32 topPixIn;
+static u32 topPixOut;
+static u32 botPixIn;
+static u32 botPixOut;
+static u32 clrPixIn;
+static u32 copyClks;
+static u32 vcCheck;
+static u32 vcMiss;
+static u32 vcStall;
+static u32 cpReq;
+static u32 tcReq;
+static u32 cpuRdReq;
+static u32 cpuWrReq;
+static u32 dspReq;
+static u32 ioReq;
+static u32 viReq;
+static u32 peReq;
+static u32 rfReq;
+static u32 fiReq;
 
 // functions
-static void DEMOWriteStats(unsigned char update);
-static void DEMOWriteStats(unsigned char update);
+static void DEMOWriteStats(u16 update);
+static void DEMOWriteStats(u16 update);
 
 void
-DEMOSetStats(DemoStatData* stat, unsigned long nstats, DEMO_STAT_DISP disp)
+DEMOSetStats(DemoStatData* stat, u32 nstats, DEMO_STAT_DISP disp)
 {
     if (!stat || nstats == 0)
     {
@@ -55,18 +55,18 @@ DEMOSetStats(DemoStatData* stat, unsigned long nstats, DEMO_STAT_DISP disp)
 }
 
 static void
-DEMOWriteStats(unsigned char update)
+DEMOWriteStats(u16 update)
 {
-    unsigned long cnt0;
-    unsigned long cnt1;
-    unsigned long cnt2;
-    unsigned long cnt3;
-    unsigned long cnt4;
-    unsigned long cnt5;
-    unsigned long cnt6;
-    unsigned long cnt7;
-    unsigned long cnt8;
-    unsigned long cnt9;
+    u32 cnt0;
+    u32 cnt1;
+    u32 cnt2;
+    u32 cnt3;
+    u32 cnt4;
+    u32 cnt5;
+    u32 cnt6;
+    u32 cnt7;
+    u32 cnt8;
+    u32 cnt9;
 
     switch (DemoStat[DemoStatIndx].stat_type)
     {
@@ -172,7 +172,7 @@ DEMOWriteStats(unsigned char update)
 }
 
 void
-DEMOUpdateStats(unsigned char inc)
+DEMOUpdateStats(u16 inc)
 {
     DEMOWriteStats(inc);
     if (inc)
@@ -189,12 +189,12 @@ void
 DEMOPrintStats(void)
 {
     GXRenderModeObj* rmode;
-    unsigned long    i;
-    signed short     text_x;
-    signed short     text_y;
-    signed short     text_yinc;
-    unsigned short   wd;
-    unsigned short   ht;
+    u32    i;
+    s16     text_x;
+    s16     text_y;
+    s16     text_yinc;
+    u16   wd;
+    u16   ht;
     float            rate;
 
     if (DemoStatDisp == DEMO_STAT_IO)

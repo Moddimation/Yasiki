@@ -48,7 +48,7 @@ AXPROFILE* __AXGetCurrentProfile(void);
 
 // AXSPB.c
 u32  __AXGetStudio(void);
-void __AXDepopFade(long* hostSum, long* dspVolume, s16* dspDelta);
+void __AXDepopFade(s32* hostSum, long* dspVolume, s16* dspDelta);
 void __AXPrintStudio(void);
 void __AXSPBInit(void);
 void __AXSPBQuit(void);

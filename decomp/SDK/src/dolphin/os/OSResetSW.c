@@ -6,10 +6,10 @@
 
 static OSResetCallback ResetCallback;
 static int             Down;
-static long long       Hold;
+static s64       Hold;
 
 void
-__OSResetSWInterruptHandler(short exception, struct OSContext* context)
+__OSResetSWInterruptHandler(s16 exception, struct OSContext* context)
 {
     OSResetCallback callback;
 
@@ -53,7 +53,7 @@ OSGetResetSwitchState()
 {
     int           enabled;
     int           state;
-    unsigned long reg;
+    u32 reg;
 
     enabled = OSDisableInterrupts();
     reg = __PIRegs[0];

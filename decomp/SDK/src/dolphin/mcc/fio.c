@@ -407,7 +407,7 @@ exit:;
 }
 
 u32
-FIOFseek(int handle, long offset, u32 mode)
+FIOFseek(int handle, s32 offset, u32 mode)
 {
     struct FIO_Code
     {
@@ -1083,7 +1083,7 @@ fioPacketResultRead(void* buffer, u32 dataSize)
     int              bNeedWaitDisconnect;
     u32              oldMaskWrite;
     u8               err;
-    char             msg[256];
+    s8             msg[256];
 
     bResult = 1;
     nChID = gmChID;
@@ -1172,7 +1172,7 @@ fioPacketResultRead(void* buffer, u32 dataSize)
         {
             /* 0x00 */ u32  result;
             /* 0x04 */ u32  nbytes;
-            /* 0x08 */ char data;
+            /* 0x08 */ s8 data;
         }* coder;
 
         coder = fioPacketReceiveResult(5U, 0);

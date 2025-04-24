@@ -172,10 +172,10 @@ CARDSetStatusAsync(s32 chan, s32 fileNo, CARDStat* stat, CARDCallback callback)
     return result;
 }
 
-long
-CARDSetStatus(long chan, long fileNo, struct CARDStat* stat)
+s32
+CARDSetStatus(s32 chan, long fileNo, struct CARDStat* stat)
 {
-    long result = CARDSetStatusAsync(chan, fileNo, stat, __CARDSyncCallback);
+    s32 result = CARDSetStatusAsync(chan, fileNo, stat, __CARDSyncCallback);
 
     if (result < 0)
     {

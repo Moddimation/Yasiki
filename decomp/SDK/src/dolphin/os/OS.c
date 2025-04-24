@@ -29,11 +29,11 @@ void EnableMetroTRKInterrupts(void);
 #define DB_EXCEPTIONRET_OFFSET  0xC
 #define DB_EXCEPTIONDEST_OFFSET 0x8
 
-extern unsigned long __DVDLongFileNameFlag;
-extern unsigned long __PADSpec;
-extern unsigned char __ArenaLo[];
-extern char          _stack_addr[];
-extern unsigned char __ArenaHi[];
+extern u32 __DVDLongFileNameFlag;
+extern u32 __PADSpec;
+extern u16 __ArenaLo[];
+extern s8          _stack_addr[];
+extern u16 __ArenaHi[];
 
 // dummy entry points to the OS Exception vector
 void __OSEVStart(void);
@@ -50,17 +50,17 @@ void __OSDBJUMPEND(void);
 #define NOP 0x60000000
 
 static struct OSBootInfo_s* BootInfo;
-static unsigned long*       BI2DebugFlag;
+static u32*       BI2DebugFlag;
 static double               ZeroF;
 static int                  AreWeInitialized;
-static void                 (**OSExceptionTable)(unsigned char, struct OSContext*);
+static void                 (**OSExceptionTable)(u16, struct OSContext*);
 
 // functions
 static asm void __OSInitFPRs(void);
 static void     OSExceptionInit(void);
-static void     OSDefaultExceptionHandler(unsigned char exception /* r3 */, struct OSContext* context /* r4 */);
+static void     OSDefaultExceptionHandler(u16 exception /* r3 */, struct OSContext* context /* r4 */);
 
-unsigned long
+u32
 __OSIsDebuggerPresent()
 {
     return *(u32*)OSPhysicalToCached(0x40);
@@ -105,7 +105,7 @@ static asm void __OSInitFPRs(void)
     blr
 }
 
-unsigned long OSGetConsoleType() {
+u32 OSGetConsoleType() {
     if ((!BootInfo) || (BootInfo->consoleType == 0)) {
         return OS_CONSOLE_ARTHUR;
     }
@@ -113,7 +113,7 @@ unsigned long OSGetConsoleType() {
 }
 
 void OSInit() {
-    unsigned long consoleType;
+    u32 consoleType;
     void * bi2StartAddr;
 
     if (AreWeInitialized == 0) {

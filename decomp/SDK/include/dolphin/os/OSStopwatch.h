@@ -4,18 +4,18 @@
 struct OSStopwatch
 {
     char*         name;
-    long long     total;
-    unsigned long hits;
-    long long     min;
-    long long     max;
-    long long     last;
+    s64     total;
+    u32 hits;
+    s64     min;
+    s64     max;
+    s64     last;
     int           running;
 };
 
 void      OSInitStopwatch(struct OSStopwatch* sw, char* name);
 void      OSStartStopwatch(struct OSStopwatch* sw);
 void      OSStopStopwatch(struct OSStopwatch* sw);
-long long OSCheckStopwatch(struct OSStopwatch* sw);
+s64 OSCheckStopwatch(struct OSStopwatch* sw);
 void      OSResetStopwatch(struct OSStopwatch* sw);
 void      OSDumpStopwatch(struct OSStopwatch* sw);
 

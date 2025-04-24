@@ -7,9 +7,9 @@
 struct Timer
 {
     void           (*callback)();
-    unsigned long  currval;
-    unsigned long  startval;
-    unsigned short mode;
+    u32  currval;
+    u32  startval;
+    u16 mode;
     int            stopped;
     int            initialized;
 };
@@ -17,10 +17,10 @@ struct Timer
 static struct Timer Timer; // .bss
 
 void        (*OSSetTimerCallback(void (*callback)()))();
-void        OSInitTimer(unsigned long time, unsigned short mode);
+void        OSInitTimer(u32 time, u16 mode);
 void        OSStartTimer(void);
 void        OSStopTimer(void);
-static void DecrementerExceptionHandler(unsigned char exception, struct OSContext* context);
+static void DecrementerExceptionHandler(u16 exception, struct OSContext* context);
 
 void (*OSSetTimerCallback(void (*callback)()))()
 {
@@ -40,7 +40,7 @@ void (*OSSetTimerCallback(void (*callback)()))()
 }
 
 void
-OSInitTimer(unsigned long time, unsigned short mode)
+OSInitTimer(u32 time, u16 mode)
 {
 #if DEBUG
     if (time >= 0x80000000)
@@ -107,7 +107,7 @@ OSStopTimer(void)
 }
 
 static void
-DecrementerExceptionCallback(unsigned char exception, struct OSContext* context)
+DecrementerExceptionCallback(u16 exception, struct OSContext* context)
 {
     struct OSContext exceptionContext;
 
@@ -134,7 +134,7 @@ DecrementerExceptionCallback(unsigned char exception, struct OSContext* context)
 }
 
 static asm void
-DecrementerExceptionHandler(unsigned char exception, register struct OSContext* context)
+DecrementerExceptionHandler(u16 exception, register struct OSContext* context)
 {
     // clang-format off
     nofralloc

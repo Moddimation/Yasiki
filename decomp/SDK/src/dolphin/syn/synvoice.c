@@ -38,7 +38,7 @@ __SYNClearVoiceReferences(void* p)
 }
 
 void
-__SYNSetVoiceToRelease(struct SYNVOICE* voice, unsigned long priority)
+__SYNSetVoiceToRelease(struct SYNVOICE* voice, u32 priority)
 {
     ASSERTLINE(0x3F, voice);
     voice->veState = 3;

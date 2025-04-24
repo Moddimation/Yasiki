@@ -4,9 +4,9 @@
 
 // .bss
 static MCC_ChannelInfo gChannelInfo[16] ATTRIBUTE_ALIGN(32);
-static char            gStreamWork[32] ATTRIBUTE_ALIGN(32);
-static char            m_szAdapterMode[32] ATTRIBUTE_ALIGN(32);
-static char            m_szInitCode[32] ATTRIBUTE_ALIGN(32);
+static s8            gStreamWork[32] ATTRIBUTE_ALIGN(32);
+static s8            m_szAdapterMode[32] ATTRIBUTE_ALIGN(32);
+static s8            m_szInitCode[32] ATTRIBUTE_ALIGN(32);
 static MCC_Info        channelInfo[16] ATTRIBUTE_ALIGN(32);
 
 // .sdata
@@ -15,11 +15,11 @@ volatile static int gIsChannelinfoDirty = 1;
 // .sbss
 static void                    (* volatile gCallbackSysEvent)(enum MCC_SYSEVENT);
 static int                     gOtherSideInitDone;
-volatile static unsigned char  gLastError;
+volatile static u16  gLastError;
 static int                     gMccInitialized;
 static int                     gMccSession;
 volatile static int            gPingFlag;
-volatile static unsigned short gAsyncResourceStatus;
+volatile static u16 gAsyncResourceStatus;
 
 // functions
 static void mccDebugPrint(char* str);
@@ -1464,7 +1464,7 @@ exit:
 }
 
 int
-MCCRead(enum MCC_CHANNEL chID, u32 offset, void* data, long size, enum MCC_SYNC_STATE async)
+MCCRead(enum MCC_CHANNEL chID, u32 offset, void* data, s32 size, enum MCC_SYNC_STATE async)
 {
 #ifndef DEBUG
     int unused[11];                      // fake but blah
@@ -1561,7 +1561,7 @@ exit:;
 }
 
 int
-MCCWrite(enum MCC_CHANNEL chID, u32 offset, void* data, long size, enum MCC_SYNC_STATE async)
+MCCWrite(enum MCC_CHANNEL chID, u32 offset, void* data, s32 size, enum MCC_SYNC_STATE async)
 {
 #ifndef DEBUG
     int unused[11];                      // fake but blah

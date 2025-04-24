@@ -395,7 +395,7 @@ SEQRemoveSequence(SEQSEQUENCE* sequence)
 }
 
 void
-SEQRegisterControllerCallback(SEQSEQUENCE* sequence, u8 controller, void (*callback)(void*, unsigned char))
+SEQRegisterControllerCallback(SEQSEQUENCE* sequence, u8 controller, void (*callback)(void*, u16))
 {
     ASSERTLINE(0x25E, sequence);
     ASSERTLINE(0x25F, controller < 128);
@@ -487,13 +487,13 @@ SEQGetTempo(SEQSEQUENCE* sequence, u32 trackIndex)
 }
 
 void
-SEQSetVolume(SEQSEQUENCE* sequence, long dB)
+SEQSetVolume(SEQSEQUENCE* sequence, s32 dB)
 {
     ASSERTLINE(0x2DE, sequence);
     SYNSetMasterVolume(&sequence->synth, dB);
 }
 
-long
+s32
 SEQGetVolume(SEQSEQUENCE* sequence)
 {
     ASSERTLINE(0x2E9, sequence);

@@ -532,7 +532,7 @@ PSMTXInvXpose(register Mtx src, register Mtx invX)
 }
 
 void
-MTXRotRad(Mtx m, char axis, f32 rad)
+MTXRotRad(Mtx m, s8 axis, f32 rad)
 {
     f32 sinA;
     f32 cosA;
@@ -544,7 +544,7 @@ MTXRotRad(Mtx m, char axis, f32 rad)
 }
 
 void
-MTXRotTrig(Mtx m, char axis, f32 sinA, f32 cosA)
+MTXRotTrig(Mtx m, s8 axis, f32 sinA, f32 cosA)
 {
     ASSERTMSGLINE(0x4AF, m, "MTXRotTrig():  NULL MtxPtr 'm' ");
     switch (axis)

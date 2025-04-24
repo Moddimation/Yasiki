@@ -7,21 +7,21 @@
 
 #include "DEMOPrivate.h"
 
-extern unsigned char DemoStatEnable; // size: 0x1, address: 0x0
+extern u16 DemoStatEnable; // size: 0x1, address: 0x0
 
 // .bss
 static struct _GXRenderModeObj rmodeobj; // size: 0x3C, address: 0x0
 
 // .sdata
-static unsigned char DemoFirstFrame = 1; // size: 0x1, address: 0x0
+static u16 DemoFirstFrame = 1; // size: 0x1, address: 0x0
 
 // .sbss
 static void*                    DefaultFifo = NULL;    // size: 0x4, address: 0x0
 static GXFifoObj*               DefaultFifoObj = NULL; // size: 0x4, address: 0x4
 static struct _GXRenderModeObj* rmode;                 // size: 0x4, address: 0x8
 static int                      BypassWorkaround;      // size: 0x4, address: 0xC
-static unsigned long            FrameCount;            // size: 0x4, address: 0x10
-static unsigned long            FrameMissThreshold;    // size: 0x4, address: 0x14
+static u32            FrameCount;            // size: 0x4, address: 0x10
+static u32            FrameMissThreshold;    // size: 0x4, address: 0x14
 void*                           DemoFrameBuffer1;      // size: 0x4, address: 0x20
 void*                           DemoFrameBuffer2;      // size: 0x4, address: 0x1C
 void*                           DemoCurrentBuffer;     // size: 0x4, address: 0x18
@@ -76,7 +76,7 @@ __DEMOInitMem()
 {
     void*         arenaLo = OSGetArenaLo();
     void*         arenaHi = OSGetArenaHi();
-    unsigned long fbSize = ((u16)(rmode->fbWidth + 15) & 0xFFF0) * rmode->xfbHeight * 2;
+    u32 fbSize = ((u16)(rmode->fbWidth + 15) & 0xFFF0) * rmode->xfbHeight * 2;
 
     DemoFrameBuffer1 = (void*)(((u32)arenaLo + 0x1F) & 0xFFFFFFE0);
     DemoFrameBuffer2 = (void*)(((u32)DemoFrameBuffer1 + fbSize + 0x1F) & 0xFFFFFFE0);
@@ -126,7 +126,7 @@ __DEMOInitGX()
 static void
 __DEMOInitVI()
 {
-    unsigned long nin;
+    u32 nin;
 
     VISetNextFrameBuffer(DemoFrameBuffer1);
     DemoCurrentBuffer = DemoFrameBuffer2;
@@ -209,7 +209,7 @@ void
 DEMOSetTevColorIn(enum _GXTevStageID stage, enum _GXTevColorArg a, enum _GXTevColorArg b, enum _GXTevColorArg c,
                   enum _GXTevColorArg d)
 {
-    unsigned long swap;
+    u32 swap;
 
     swap = 0;
     if (a == GX_CC_TEXC)
@@ -309,7 +309,7 @@ DEMOGetCurrentBuffer(void)
 }
 
 void
-DEMOEnableBypassWorkaround(unsigned long timeoutFrames)
+DEMOEnableBypassWorkaround(u32 timeoutFrames)
 {
     BypassWorkaround = 1;
     FrameMissThreshold = timeoutFrames;
@@ -350,7 +350,7 @@ DEMOReInit(struct _GXRenderModeObj* mode)
     void*         tmpFifo;
     GXFifoObj*    realFifoObj;
     void*         realFifoBase;
-    unsigned long realFifoSize;
+    u32 realFifoSize;
 
     tmpFifo = OSAllocFromHeap(__OSCurrHeap, 0x10000);
     realFifoObj = GXGetCPUFifo();
@@ -376,11 +376,11 @@ LoadMemInfo()
     void*              arenaHi;
     void*              simMemEnd;
     struct DVDFileInfo fileInfo;
-    unsigned long      length;
-    unsigned long      transferLength;
-    long               offset;
-    unsigned long      i;
-    unsigned long      indexMax;
+    u32      length;
+    u32      transferLength;
+    s32               offset;
+    u32      i;
+    u32      indexMax;
     char*              buf[63];
 
     struct

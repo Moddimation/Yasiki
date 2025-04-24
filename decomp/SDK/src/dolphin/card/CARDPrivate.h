@@ -153,9 +153,9 @@ typedef struct CARDDirCheck
 #define CARDGetDirCheck(dir)             ((CARDDirCheck*)&(dir)[CARD_MAX_FILE])
 
 // CARDStatEx.c
-long __CARDGetStatusEx(long chan, long fileNo, struct CARDDir* dirent);
-long __CARDSetStatusExAsync(long chan, long fileNo, struct CARDDir* dirent, void (*callback)(long, long));
-long __CARDSetStatusEx(long chan, long fileNo, struct CARDDir* dirent);
+s32 __CARDGetStatusEx(long chan, long fileNo, struct CARDDir* dirent);
+s32 __CARDSetStatusExAsync(long chan, long fileNo, struct CARDDir* dirent, void (*callback)(long, long));
+s32 __CARDSetStatusEx(long chan, long fileNo, struct CARDDir* dirent);
 
 // CARDUnlock.c
 s32 __CARDUnlock(s32 chan, u8 flashID[12]);
@@ -164,12 +164,12 @@ s32 __CARDUnlock(s32 chan, u8 flashID[12]);
 s32 __CARDSeek(CARDFileInfo* fileInfo, s32 length, s32 offset, CARDControl** pcard);
 
 // CARDRdwr.c
-long __CARDRead(long chan, unsigned long addr, long length, void* dst, void (*callback)(long, long));
-long __CARDWrite(long chan, unsigned long addr, long length, void* dst, void (*callback)(long, long));
+s32 __CARDRead(long chan, u32 addr, long length, void* dst, void (*callback)(long, long));
+s32 __CARDWrite(long chan, u32 addr, long length, void* dst, void (*callback)(long, long));
 
 // CARDRaw.c
-long __CARDRawReadAsync(long chan, void* buf, long length, long offset, void (*callback)(long, long));
-long __CARDRawRead(long chan, void* buf, long length, long offset);
+s32 __CARDRawReadAsync(long chan, void* buf, long length, long offset, void (*callback)(long, long));
+s32 __CARDRawRead(long chan, void* buf, long length, long offset);
 
 // CARDOpen.c
 BOOL __CARDCompareFileName(CARDDir* ent, const char* fileName);
@@ -214,11 +214,11 @@ int  __CARDReadNintendoID(s32 chan, u32* id);
 s32  __CARDEnableInterrupt(s32 chan, BOOL enable);
 s32  __CARDReadStatus(s32 chan, u8* status);
 s32  __CARDClearStatus(s32 chan);
-long __CARDSleep(long chan);
-long __CARDWakeup(long chan);
+s32 __CARDSleep(long chan);
+s32 __CARDWakeup(long chan);
 s32  __CARDReadSegment(s32 chan, CARDCallback callback);
 s32  __CARDWritePage(s32 chan, CARDCallback callback);
-long __CARDErase(long chan, void (*callback)(long, long));
+s32 __CARDErase(long chan, void (*callback)(long, long));
 s32  __CARDEraseSector(s32 chan, u32 addr, CARDCallback callback);
 void __CARDSetDiskID(DVDDiskID* id);
 s32  __CARDGetControlBlock(s32 chan, CARDControl** pcard);

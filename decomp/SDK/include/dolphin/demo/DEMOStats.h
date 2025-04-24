@@ -17,10 +17,10 @@ typedef enum DEMO_STAT_TYPE
 
 typedef struct DemoStatData
 {
-    char           text[50];
+    s8           text[50];
     DEMO_STAT_TYPE stat_type;
-    unsigned long  stat;
-    unsigned long  count;
+    u32  stat;
+    u32  count;
 } DemoStatData;
 
 typedef enum
@@ -32,10 +32,10 @@ typedef enum
     DEMO_STAT_IO = 4,
 } DEMO_STAT_DISP;
 
-extern unsigned char DemoStatEnable;
+extern u16 DemoStatEnable;
 
-void DEMOSetStats(DemoStatData* stat, unsigned long nstats, DEMO_STAT_DISP disp);
-void DEMOUpdateStats(unsigned char inc);
+void DEMOSetStats(DemoStatData* stat, u32 nstats, DEMO_STAT_DISP disp);
+void DEMOUpdateStats(u16 inc);
 void DEMOPrintStats(void);
 
 #endif // _DOLPHIN_DEMOSTATS_H_

@@ -198,13 +198,13 @@ SYNMidiInput(struct SYNSYNTH* synth, u8* input)
 }
 
 void
-SYNSetMasterVolume(struct SYNSYNTH* synth, long dB)
+SYNSetMasterVolume(struct SYNSYNTH* synth, s32 dB)
 {
     ASSERTLINE(0xEE, synth);
     synth->masterVolume = (dB << 0x10);
 }
 
-long
+s32
 SYNGetMasterVolume(struct SYNSYNTH* synth)
 {
     ASSERTLINE(0xF9, synth);

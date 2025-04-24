@@ -17,22 +17,22 @@ struct Cell
 {
     struct Cell* prev;
     struct Cell* next;
-    long         size;
+    s32         size;
 #ifdef ENABLE_HEAPDESC
     struct HeapDesc* hd;
-    long             requested;
+    s32             requested;
 #endif
 };
 
 struct HeapDesc
 {
-    long         size;
+    s32         size;
     struct Cell* free;
     struct Cell* allocated;
 #ifdef ENABLE_HEAPDESC
-    unsigned long paddingBytes;
-    unsigned long headerBytes;
-    unsigned long payloadBytes;
+    u32 paddingBytes;
+    u32 headerBytes;
+    u32 payloadBytes;
 #endif
 };
 
@@ -49,7 +49,7 @@ static struct Cell* DLLookup(struct Cell* list, struct Cell* cell);
 static struct Cell* DLExtract(struct Cell* list, struct Cell* cell);
 static struct Cell* DLInsert(struct Cell* list, struct Cell* cell);
 static int          DLOverlap(struct Cell* list, void* start, void* end);
-static long         DLSize(struct Cell* list);
+static s32         DLSize(struct Cell* list);
 
 static struct Cell*
 DLAddFront(struct Cell* list, struct Cell* cell)
@@ -155,11 +155,11 @@ DLOverlap(struct Cell* list, void* start, void* end)
     return 0;
 }
 
-static long
+static s32
 DLSize(struct Cell* list)
 {
     struct Cell* cell;
-    long         size;
+    s32         size;
 
     size = 0;
     cell = list;
@@ -174,17 +174,17 @@ DLSize(struct Cell* list)
 }
 
 void*
-OSAllocFromHeap(int heap, unsigned long size)
+OSAllocFromHeap(int heap, u32 size)
 {
     struct HeapDesc* hd;
     struct Cell*     cell;
     struct Cell*     newCell;
-    long             leftoverSize;
-    long             requested;
+    s32             leftoverSize;
+    s32             requested;
 
     requested = size;
     ASSERTMSGLINE(0x14D, HeapArray, "OSAllocFromHeap(): heap is not initialized.");
-    ASSERTMSGLINE(0x14E, (signed long)size > 0, "OSAllocFromHeap(): invalid size.");
+    ASSERTMSGLINE(0x14E, (s32)size > 0, "OSAllocFromHeap(): invalid size.");
     ASSERTMSGLINE(0x14F, heap >= 0 && heap < NumHeaps, "OSAllocFromHeap(): invalid heap handle.");
     ASSERTMSGLINE(0x150, HeapArray[heap].size >= 0, "OSAllocFromHeap(): invalid heap handle.");
 
@@ -429,7 +429,7 @@ OSSetCurrentHeap(int heap)
 void*
 OSInitAlloc(void* arenaStart, void* arenaEnd, int maxHeaps)
 {
-    unsigned long    arraySize;
+    u32    arraySize;
     int              i;
     struct HeapDesc* hd;
 
@@ -517,7 +517,7 @@ void
 OSDestroyHeap(int heap)
 {
     struct HeapDesc* hd;
-    long             size;
+    s32             size;
 
     ASSERTMSGLINE(0x30A, HeapArray, "OSDestroyHeap(): heap is not initialized.");
     ASSERTMSGLINE(0x30B, (heap >= 0) && (heap < NumHeaps), "OSDestroyHeap(): invalid heap handle.");
@@ -591,13 +591,13 @@ OSAddToHeap(int heap, void* start, void* end)
         return -1;                                                                                                     \
     }
 
-long
+s32
 OSCheckHeap(int heap)
 {
     struct HeapDesc* hd;
     struct Cell*     cell;
-    long             total = 0;
-    long             free = 0;
+    s32             total = 0;
+    s32             free = 0;
 
     ASSERTREPORT(0x37D, HeapArray);
     ASSERTREPORT(0x37E, 0 <= heap && heap < NumHeaps);
@@ -643,7 +643,7 @@ OSCheckHeap(int heap)
     return free;
 }
 
-unsigned long
+u32
 OSReferentSize(void* ptr)
 {
     struct Cell* cell;
@@ -659,7 +659,7 @@ OSReferentSize(void* ptr)
                   "OSReferentSize(): invalid pointer.");
     ASSERTMSGLINE(0x3C7, cell->hd->size >= 0, "OSReferentSize(): invalid pointer.");
     ASSERTMSGLINE(0x3C9, DLLookup(cell->hd->allocated, cell), "OSReferentSize(): invalid pointer.");
-    return (long)((u32)cell->size - HEADERSIZE);
+    return (s32)((u32)cell->size - HEADERSIZE);
 }
 
 void
@@ -700,9 +700,9 @@ OSDumpHeap(int heap)
 }
 
 void
-OSVisitAllocated(void (*visitor)(void*, unsigned long))
+OSVisitAllocated(void (*visitor)(void*, u32))
 {
-    unsigned long heap;
+    u32 heap;
     struct Cell*  cell;
 
     for (heap = 0; heap < NumHeaps; heap++)

@@ -12,7 +12,7 @@ typedef enum
 
 // ---------------------------------------------------------------------------
 //
-// void EXI2_Init( volatile unsigned char **inputPendingPtrRef,
+// void EXI2_Init( volatile u16 **inputPendingPtrRef,
 //                 EXICallback monitorCallback );
 //
 // Description: Initialize the EXI2 driver (without interrupts).  The
@@ -22,7 +22,7 @@ typedef enum
 //              the EXI2 ISR.
 //
 // ---------------------------------------------------------------------------
-void EXI2_Init(volatile unsigned char** inputPendingPtrRef, EXICallback monitorCallback);
+void EXI2_Init(volatile u16** inputPendingPtrRef, EXICallback monitorCallback);
 
 // ---------------------------------------------------------------------------
 //
@@ -47,25 +47,25 @@ int EXI2_Poll(void);
 
 // ---------------------------------------------------------------------------
 //
-// AmcExiError EXI2_ReadN( void *bytes, unsigned long length );
+// AmcExiError EXI2_ReadN( void *bytes, u32 length );
 //
 // Description: Read length bytes and return in bytes[] array.
 //
 //     Returns: One of AMC_EXI_*.
 //
 // ---------------------------------------------------------------------------
-AmcExiError EXI2_ReadN(void* bytes, unsigned long length);
+AmcExiError EXI2_ReadN(void* bytes, u32 length);
 
 // ---------------------------------------------------------------------------
 //
-// AmcExiError EXI2_WriteN( const void *bytes, unsigned long length );
+// AmcExiError EXI2_WriteN( const void *bytes, u32 length );
 //
 // Description: Write length bytes stored in bytes[] array.
 //
 //     Returns: One of AMC_EXI_*.
 //
 // ---------------------------------------------------------------------------
-AmcExiError EXI2_WriteN(const void* bytes, unsigned long length);
+AmcExiError EXI2_WriteN(const void* bytes, u32 length);
 
 // ---------------------------------------------------------------------------
 //

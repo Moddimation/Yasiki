@@ -15,26 +15,26 @@ enum DEMOWinItem
 
 struct STRUCT_DEMOWIN
 {
-    /* 0x00 */ long                   x1;
-    /* 0x04 */ long                   y1;
-    /* 0x08 */ long                   x2;
-    /* 0x0C */ long                   y2;
-    /* 0x10 */ unsigned long          priority;
-    /* 0x14 */ unsigned long          flags;
-    /* 0x18 */ unsigned short         x_cal;
-    /* 0x1A */ unsigned short         y_cal;
-    /* 0x1C */ unsigned short         pixel_width;
-    /* 0x1E */ unsigned short         pixel_height;
-    /* 0x20 */ unsigned short         char_width;
-    /* 0x22 */ unsigned short         char_height;
-    /* 0x24 */ unsigned short         num_scroll_lines;
-    /* 0x26 */ unsigned short         total_lines;
-    /* 0x28 */ unsigned short         curr_output_line;
-    /* 0x2A */ unsigned short         curr_output_col;
-    /* 0x2C */ unsigned short         curr_view_line;
-    /* 0x2E */ signed short           cursor_line;
+    /* 0x00 */ s32                   x1;
+    /* 0x04 */ s32                   y1;
+    /* 0x08 */ s32                   x2;
+    /* 0x0C */ s32                   y2;
+    /* 0x10 */ u32          priority;
+    /* 0x14 */ u32          flags;
+    /* 0x18 */ u16         x_cal;
+    /* 0x1A */ u16         y_cal;
+    /* 0x1C */ u16         pixel_width;
+    /* 0x1E */ u16         pixel_height;
+    /* 0x20 */ u16         char_width;
+    /* 0x22 */ u16         char_height;
+    /* 0x24 */ u16         num_scroll_lines;
+    /* 0x26 */ u16         total_lines;
+    /* 0x28 */ u16         curr_output_line;
+    /* 0x2A */ u16         curr_output_col;
+    /* 0x2C */ u16         curr_view_line;
+    /* 0x2E */ s16           cursor_line;
     /* 0x30 */ char*                  caption;
-    /* 0x34 */ unsigned char*         buffer;
+    /* 0x34 */ u16*         buffer;
     /* 0x38 */ GXColor                bkgnd;
     /* 0x3C */ GXColor                cap;
     /* 0x40 */ GXColor                border;
@@ -65,12 +65,12 @@ void                DEMOWinDestroyMenuWindow(struct STRUCT_MENU* menu);
 u32                 DEMOWinMenuChild(struct STRUCT_MENU* menu, int child_flag);
 void                DEMOWinPadInit(DEMOWinPadInfo* p);
 void                DEMOWinPadRead(DEMOWinPadInfo* p);
-void                DEMOWinSetRepeat(unsigned long threshold, unsigned long rate);
+void                DEMOWinSetRepeat(u32 threshold, u32 rate);
 void                DEMOWinResetRepeat();
-struct STRUCT_LISTBOX* DEMOWinCreateListWindow(struct STRUCT_LISTBOX* list, unsigned short x, unsigned short y);
+struct STRUCT_LISTBOX* DEMOWinCreateListWindow(struct STRUCT_LISTBOX* list, u16 x, u16 y);
 void                   DEMOWinDestroyListWindow(struct STRUCT_LISTBOX* list);
 void                   DEMOWinListSetCursor(struct STRUCT_LISTBOX* list, int x);
-long                   DEMOWinListScrollList(struct STRUCT_LISTBOX* list, unsigned long dir);
-long                   DEMOWinListMoveCursor(struct STRUCT_LISTBOX* list, unsigned long dir);
+s32                   DEMOWinListScrollList(struct STRUCT_LISTBOX* list, u32 dir);
+s32                   DEMOWinListMoveCursor(struct STRUCT_LISTBOX* list, u32 dir);
 
 #endif // _DOLPHIN_DEMOWIN_H_

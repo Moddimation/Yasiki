@@ -4,15 +4,15 @@
 #include <dolphin.h>
 
 // .sdata
-static unsigned long __DEMOWIN_PAD_repeat_threshold = 0x0000000F;
-static unsigned long __DEMOWIN_PAD_repeat_rate = 0x00000002;
+static u32 __DEMOWIN_PAD_repeat_threshold = 0x0000000F;
+static u32 __DEMOWIN_PAD_repeat_rate = 0x00000002;
 
 struct STRUCT_DEMOWIN*   __first_node;
 struct STRUCT_DEMOWIN*   __last_node;
 struct STRUCT_DEMOWIN*   __curr_node;
 struct _GXRenderModeObj* __rmp;
 
-long fontShift = 0;
+s32 fontShift = 0;
 
 // functions
 static void __DEMOWin_add_node(struct STRUCT_DEMOWIN* handle);
@@ -146,7 +146,7 @@ void
 DEMOWinLogPrintf(struct STRUCT_DEMOWIN* handle, char* fmt, ...)
 {
     va_list vlist;
-    char    buffer[128];
+    s8    buffer[128];
     u16     len;
     u16     i;
     int     old;
@@ -191,7 +191,7 @@ DEMOWinPrintfXY(struct STRUCT_DEMOWIN* handle, u16 col, u16 row, char* fmt, ...)
 {
     int     old;
     va_list vlist;
-    char    string[128];
+    s8    string[128];
     u16     buffer_row;
     u16     i;
     u16     index;
@@ -337,10 +337,10 @@ void
 DEMOWinRefresh()
 {
     struct STRUCT_DEMOWIN* ptr;
-    unsigned short         i;
-    unsigned short         index;
-    unsigned short         n;
-    unsigned short         y;
+    u16         i;
+    u16         index;
+    u16         n;
+    u16         y;
     int                    old;
 
     ASSERTMSGLINE(0x30D, __first_node, "DEMOWinRefresh(): Windowlist is empty!\n");
@@ -388,13 +388,13 @@ DEMOWinRefresh()
             // macro?
             do {
                 // would initialize on init, but DWARF order for 2nd macro suggests they didnt init on same declare.
-                unsigned char r1;
-                unsigned char g1;
-                unsigned char b1;
-                unsigned char r2;
-                unsigned char g2;
-                unsigned char b2;
-                unsigned char a;
+                u16 r1;
+                u16 g1;
+                u16 b1;
+                u16 r2;
+                u16 g2;
+                u16 b2;
+                u16 a;
 
                 r1 = 1.3 * (f32)ptr->border.r;
                 g1 = 1.3 * (f32)ptr->border.g;
@@ -462,11 +462,11 @@ DEMOWinRefresh()
 
                 // macro?
                 do {
-                    unsigned char r;
-                    unsigned char g;
-                    unsigned char b;
-                    unsigned char a;
-                    long          curr_y;
+                    u16 r;
+                    u16 g;
+                    u16 b;
+                    u16 a;
+                    s32          curr_y;
 
                     curr_y = (ptr->y2 - 8) - ptr->y_cal;
                     curr_y -= ((ptr->char_height - 1) * 8) - ptr->cursor_line * 8;
@@ -521,7 +521,7 @@ __DEMOWin_add_node(struct STRUCT_DEMOWIN* handle)
 static void
 __DEMOWin_delete_node(struct STRUCT_DEMOWIN* handle)
 {
-    static unsigned short old;
+    static u16 old;
     ASSERTMSGLINE(0x424, handle, "__delete_node(): you're deleting a NULL node!\n");
 
     if (__first_node == handle)
@@ -557,13 +557,13 @@ __DEMOWin_delete_node(struct STRUCT_DEMOWIN* handle)
 }
 
 static void
-__DEMOWin_puts_n(signed short x, signed short y, signed short z, unsigned short n, char* string)
+__DEMOWin_puts_n(s16 x, signed s16 y, signed short z, u16 n, char* string)
 {
-    long s;
-    long t;
-    long w;
-    long len;
-    long i;
+    s32 s;
+    s32 t;
+    s32 w;
+    s32 len;
+    s32 i;
 
     GXClearVtxDesc();
     GXSetVtxDesc(9, 1);
@@ -593,7 +593,7 @@ __DEMOWin_puts_n(signed short x, signed short y, signed short z, unsigned short 
 }
 
 struct STRUCT_MENU*
-DEMOWinCreateMenuWindow(struct STRUCT_MENU* menu, unsigned short x, unsigned short y)
+DEMOWinCreateMenuWindow(struct STRUCT_MENU* menu, u16 x, u16 y)
 {
     struct STRUCT_MENU_ITEM* ptr;
 
@@ -816,12 +816,12 @@ static void
 __DEMOWinMenu_refesh_menu(struct STRUCT_DEMOWIN* w)
 {
     struct STRUCT_MENU* m;
-    long                i;
-    long                j;
-    char                check;
-    char                para_start;
-    char                para_end;
-    char                link;
+    s32                i;
+    s32                j;
+    s8                check;
+    s8                para_start;
+    s8                para_end;
+    s8                link;
 
     DEMOWinClearWindow(w);
     m = w->parent;
@@ -864,10 +864,10 @@ void
 DEMOWinPadRead(DEMOWinPadInfo* p)
 {
     struct PADStatus* pad;
-    unsigned short    index;
-    unsigned long     curr;
-    unsigned long     old;
-    unsigned long     repeat;
+    u16    index;
+    u32     curr;
+    u32     old;
+    u32     repeat;
 
     PADRead(p->pads);
 
@@ -923,10 +923,10 @@ DEMOWinPadRead(DEMOWinPadInfo* p)
     }
 }
 
-static unsigned short
+static u16
 __DEMOWinMenu_get_user_input(DEMOWinPadInfo* p)
 {
-    unsigned short user_input;
+    u16 user_input;
 
     DEMOWinPadRead(p);
     if (p->repeat_button[0] & 0x00010008)
@@ -961,7 +961,7 @@ __DEMOWinMenu_get_user_input(DEMOWinPadInfo* p)
 }
 
 void
-DEMOWinSetRepeat(unsigned long threshold, unsigned long rate)
+DEMOWinSetRepeat(u32 threshold, u32 rate)
 {
     __DEMOWIN_PAD_repeat_rate = rate;
     __DEMOWIN_PAD_repeat_threshold = threshold;
@@ -975,7 +975,7 @@ DEMOWinResetRepeat()
 }
 
 struct STRUCT_LISTBOX*
-DEMOWinCreateListWindow(struct STRUCT_LISTBOX* list, unsigned short x, unsigned short y)
+DEMOWinCreateListWindow(struct STRUCT_LISTBOX* list, u16 x, u16 y)
 {
     struct STRUCT_LISTBOX_ITEM* ptr;
 
@@ -1025,8 +1025,8 @@ static void
 __DEMOWinList_refresh_list(struct STRUCT_DEMOWIN* w)
 {
     struct STRUCT_LISTBOX* l;
-    long                   i;
-    long                   j;
+    s32                   i;
+    s32                   j;
 
     l = w->parent;
     l->curr_pos = (l->curr_pos % l->num_items);
@@ -1071,8 +1071,8 @@ DEMOWinListSetCursor(struct STRUCT_LISTBOX* list, int x)
     list->cursor_state = x;
 }
 
-long
-DEMOWinListScrollList(struct STRUCT_LISTBOX* list, unsigned long dir)
+s32
+DEMOWinListScrollList(struct STRUCT_LISTBOX* list, u32 dir)
 {
     ASSERTMSGLINE(0x7E2, list, "DEMOWinListScrollList(): NULL handle!\n");
     switch (dir)
@@ -1103,8 +1103,8 @@ DEMOWinListScrollList(struct STRUCT_LISTBOX* list, unsigned long dir)
     return list->display_pos;
 }
 
-long
-DEMOWinListMoveCursor(struct STRUCT_LISTBOX* list, unsigned long dir)
+s32
+DEMOWinListMoveCursor(struct STRUCT_LISTBOX* list, u32 dir)
 {
     ASSERTMSGLINE(0x81E, list, "DEMOWinListScrollList(): NULL handle!\n");
     switch (dir)

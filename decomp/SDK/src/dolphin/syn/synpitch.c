@@ -47,20 +47,20 @@ static float __SYNSemitonesTableDown[128] = {
 float
 __SYNGetRelativePitch(struct SYNVOICE* voice)
 {
-    long cents;
+    s32 cents;
 
     cents = voice->cents + voice->lfoCents + voice->peCents + voice->synth->pwCents[voice->midiChannel];
     cents = cents / 65536;
     if (cents > 0)
     {
-        long octaves = (cents / 1200);
-        long semitones = (cents % 1200) / 100;
+        s32 octaves = (cents / 1200);
+        s32 semitones = (cents % 1200) / 100;
         cents = (cents % 100);
         return __SYNOctavesTableUp[octaves] * __SYNSemitonesTableUp[semitones] * __SYNCentsTable[cents];
     }
     if (cents < 0)
     {
-        long semitones = cents / 100;
+        s32 semitones = cents / 100;
         cents = (cents % 100);
         if (cents != 0)
         {

@@ -44,7 +44,7 @@ void SEQSetState(SEQSEQUENCE* sequence, u32 state);
 u32  SEQGetState(SEQSEQUENCE* sequence);
 void SEQSetTempo(SEQSEQUENCE* sequence, u32 trackIndex, float bpm);
 f32  SEQGetTempo(SEQSEQUENCE* sequence, u32 trackIndex);
-void SEQSetVolume(SEQSEQUENCE* sequence, long dB);
-long SEQGetVolume(SEQSEQUENCE* sequence);
+void SEQSetVolume(SEQSEQUENCE* sequence, s32 dB);
+s32 SEQGetVolume(SEQSEQUENCE* sequence);
 
 #endif // _DOLPHIN_SEQ_H_

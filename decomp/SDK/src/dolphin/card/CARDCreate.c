@@ -4,15 +4,15 @@
 
 #include "CARDPrivate.h"
 
-static void CreateCallbackFat(long chan, long result);
+static void CreateCallbackFat(s32 chan, long result);
 
 static void
-CreateCallbackFat(long chan, long result)
+CreateCallbackFat(s32 chan, long result)
 {
     struct CARDControl* card;
     struct CARDDir*     dir;
     struct CARDDir*     ent;
-    void                (*callback)(long, long);
+    void                (*callback)(s32, long);
 
     card = &__CARDBlock[chan];
     callback = card->apiCallback;
@@ -134,10 +134,10 @@ CARDCreateAsync(s32 chan, char* fileName, u32 size, CARDFileInfo* fileInfo, CARD
     return result;
 }
 
-long
-CARDCreate(long chan, char* fileName, unsigned long size, struct CARDFileInfo* fileInfo)
+s32
+CARDCreate(s32 chan, char* fileName, u32 size, struct CARDFileInfo* fileInfo)
 {
-    long result = CARDCreateAsync(chan, fileName, size, fileInfo, __CARDSyncCallback);
+    s32 result = CARDCreateAsync(chan, fileName, size, fileInfo, __CARDSyncCallback);
 
     if (result < 0)
     {

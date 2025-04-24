@@ -10,7 +10,7 @@ extern void __RAS_OSDisableInterrupts_begin(void);
 extern void __RAS_OSDisableInterrupts_end(void);
 
 #if DEBUG
-unsigned long long __OSSpuriousInterrupts = 0;
+u64 __OSSpuriousInterrupts = 0;
 #endif
 static __OSInterruptHandler* InterruptHandlerTable;
 

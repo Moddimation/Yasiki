@@ -336,7 +336,7 @@ __SYNNoteOn(struct SYNSYNTH* synth, u8 midiChannel, u8 keyNum, u8 keyVel)
 static void
 __SYNPitchWheel(struct SYNSYNTH* synth, u8 midiChannel, u8 lsb, u8 msb)
 {
-    long position;
+    s32 position;
 
     ASSERTLINE(0x235, synth);
     ASSERTLINE(0x236, midiChannel < 16);

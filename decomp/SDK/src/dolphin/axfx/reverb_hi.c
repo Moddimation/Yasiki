@@ -6,19 +6,19 @@
 #include "fake_tgmath.h"
 
 // functions
-static void DLsetdelay(struct AXFX_REVHI_DELAYLINE* dl, long lag);
-static void DLcreate(struct AXFX_REVHI_DELAYLINE* dl, long max_length);
+static void DLsetdelay(struct AXFX_REVHI_DELAYLINE* dl, s32 lag);
+static void DLcreate(struct AXFX_REVHI_DELAYLINE* dl, s32 max_length);
 static void DLdelete(struct AXFX_REVHI_DELAYLINE* dl);
 static int  ReverbHICreate(struct AXFX_REVHI_WORK* rv, float coloration, float time, float mix, float damping,
                            float preDelay, float crosstalk);
 static int  ReverbHIModify(struct AXFX_REVHI_WORK* rv, float coloration, float time, float mix, float damping,
                            float preDelay, float crosstalk);
-static void HandleReverb(long* sptr, struct AXFX_REVHI_WORK* rv, long k);
-static void ReverbHICallback(long* left, long* right, long* surround, struct AXFX_REVHI_WORK* rv);
+static void HandleReverb(s32* sptr, struct AXFX_REVHI_WORK* rv, long k);
+static void ReverbHICallback(s32* left, long* right, long* surround, struct AXFX_REVHI_WORK* rv);
 static void ReverbHIFree(struct AXFX_REVHI_WORK* rv);
 
 static void
-DLsetdelay(struct AXFX_REVHI_DELAYLINE* dl, long lag)
+DLsetdelay(struct AXFX_REVHI_DELAYLINE* dl, s32 lag)
 {
     dl->outPoint = dl->inPoint - (lag * 4);
     while (dl->outPoint < 0)
@@ -28,7 +28,7 @@ DLsetdelay(struct AXFX_REVHI_DELAYLINE* dl, long lag)
 }
 
 static void
-DLcreate(struct AXFX_REVHI_DELAYLINE* dl, long max_length)
+DLcreate(struct AXFX_REVHI_DELAYLINE* dl, s32 max_length)
 {
     dl->length = (max_length * 4);
     dl->inputs = OSAllocFromHeap(__OSCurrHeap, max_length << 2);
@@ -51,7 +51,7 @@ ReverbHICreate(struct AXFX_REVHI_WORK* rv, float coloration, float time, float m
 {
     u8          i;
     u8          k;
-    static long lens[8]
+    static s32 lens[8]
         = { 0x000006FD, 0x000007CF, 0x0000091D, 0x000001B1, 0x00000095, 0x0000002F, 0x00000049, 0x00000043 };
 
     if ((coloration < 0.0f) || (coloration > 1.0f) || (time < 0.01f) || (time > 10.0f) || (mix < 0.0f) || (mix > 1.0f)
@@ -153,7 +153,7 @@ const static double i2fMagic = 4503601774854144.0;
 const static float  value0_6 = 0.6f;
 
 asm static void
-DoCrossTalk(register long* l, register long* r, register float cross, register float invcross)
+DoCrossTalk(register s32* l, register long* r, register float cross, register float invcross)
 {
     nofralloc stwu r1, -48(r1)stfd f14, 40(r1)lis r5, i2fMagic @ha lfd f0, i2fMagic @l(r5) lis r5,
         0x4330                         // 176.0f (0x43300000)
@@ -276,7 +276,7 @@ DoCrossTalk(register long* l, register long* r, register float cross, register f
 const static float value0_3 = 0.3f;
 
 asm static void
-HandleReverb(register long* sptr, register struct AXFX_REVHI_WORK* rv, register long k)
+HandleReverb(register s32* sptr, register struct AXFX_REVHI_WORK* rv, register long k)
 {
     nofralloc stwu r1, -0xc0(r1)stmw r14, 0x8(r1)stfd f14, 0x60(r1)stfd f15, 0x68(r1)stfd f16, 0x70(r1)stfd f17,
         0x78(r1)stfd f18, 0x80(r1)stfd f19, 0x88(r1)stfd f20, 0x90(r1)stfd f21, 0x98(r1)stfd f22, 0xa0(r1)stfd f23,
@@ -778,7 +778,7 @@ HandleReverb(register long* sptr, register struct AXFX_REVHI_WORK* rv, register 
 }
 
 static void
-ReverbHICallback(long* left, long* right, long* surround, struct AXFX_REVHI_WORK* rv)
+ReverbHICallback(s32* left, long* right, long* surround, struct AXFX_REVHI_WORK* rv)
 {
     u8 k;
 
