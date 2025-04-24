@@ -2,6 +2,7 @@
 #define _DOLPHIN_OSSERIAL_H
 
 #include <dolphin/hw_regs.h>
+#include <dolphin/os/OSContext.h>
 
 #define CHAN_NONE                 -1
 
@@ -56,7 +57,7 @@ unsigned long SISetXY(unsigned long x, unsigned long y);
 unsigned long SIEnablePolling(unsigned long poll);
 unsigned long SIDisablePolling(unsigned long poll);
 void          SIGetResponse(long chan, void* data);
-int           SITransfer(long chan, void* output, unsigned long outputBytes, void* input, unsigned long inputBytes,
-                         void (*callback)(long, unsigned long, struct OSContext*), long long time);
+int           SITransfer(s32 chan, void* output, u32 outputBytes, void* input, u32 inputBytes,
+                         void (*callback)(long, u32, struct OSContext*), s64 time);
 
 #endif // _DOLPHIN_OSSERIAL_H

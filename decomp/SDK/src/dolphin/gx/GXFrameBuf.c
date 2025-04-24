@@ -390,7 +390,7 @@ GXAdjustForOverscan(GXRenderModeObj* rmin, GXRenderModeObj* rmout, u16 hor, u16 
     rmout->fbWidth = rmin->fbWidth - hor2;
     verf = (ver2 * rmin->efbHeight) / (u32)rmin->xfbHeight;
     rmout->efbHeight = rmin->efbHeight - verf;
-    if (rmin->xFBmode == VI_XFBMODE_SF && (rmin->viTVmode & 2) != 2)
+    if (rmin->xFBmode == VI_XFB_MODE_SF && (rmin->viTVmode & 2) != 2)
     {
         rmout->xfbHeight = rmin->xfbHeight - ver;
     }

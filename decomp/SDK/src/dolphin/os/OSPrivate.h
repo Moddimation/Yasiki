@@ -82,21 +82,34 @@ long long __OSGetSystemTime();
 void      __OSSetTick(register unsigned long newTicks);
 
 // ppc_eabi_init.c
+#ifdef __MWERKS__
 __declspec(section ".init") asm void __init_hardware(void);
 __declspec(section ".init") asm void __flush_cache(void* address, unsigned int size);
-void                                 __init_user(void);
-void                                 __init_cpp(void);
-void                                 __fini_cpp(void);
-void                                 _ExitProcess(void);
+#else
+asm void __init_hardware(void);
+asm void __flush_cache(void* address, unsigned int size);
+#endif
+void __init_user(void);
+void __init_cpp(void);
+void __fini_cpp(void);
+void _ExitProcess(void);
 
 // start.c
 void __start(void);
 
+#ifdef __MWERKS__
 __declspec(section ".init") extern void __start(void);
 __declspec(section ".init") void        __copy_rom_section(void* dst, const void* src, unsigned long size);
 __declspec(section ".init") void        __init_bss_section(void* dst, unsigned long size);
 __declspec(section ".init") extern void __init_registers(void);
 __declspec(section ".init") extern void __init_data(void);
+#else
+extern void __start(void);
+void        __copy_rom_section(void* dst, const void* src, unsigned long size);
+void        __init_bss_section(void* dst, unsigned long size);
+extern void __init_registers(void);
+extern void __init_data(void);
+#endif
 
 // time.dolphin.c
 long long     __get_clock(void);

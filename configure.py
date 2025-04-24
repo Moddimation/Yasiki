@@ -574,6 +574,15 @@ config.libs = [
 
     # SDK
 
+    DolphinLib("vi", [
+        (Matching, "vi.c"),
+    ]),
+
+    DolphinLib("pad", [
+        (Matching, "Padclamp.c"),
+        (Matching, "Pad.c"),
+    ]),
+
     DolphinLib("ai", [
         (Matching, "ai.c"),
     ]),
