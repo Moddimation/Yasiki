@@ -57,7 +57,7 @@ typedef struct PADStatus
 int           PADReset(unsigned long mask);
 BOOL          PADRecalibrate(u32 mask);
 BOOL          PADInit();
-void          PADRead(struct PADStatus* status);
+u32           PADRead(struct PADStatus* status);
 void          PADSetSamplingRate(unsigned long msec);
 void          __PADTestSamplingRate(unsigned long tvmode);
 void          PADControlAllMotors(const u32* commandArray);

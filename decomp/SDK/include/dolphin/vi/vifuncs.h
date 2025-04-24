@@ -25,6 +25,7 @@ u32               VIGetRetraceCount(void);
 u32               VIGetNextField(void);
 u32               VIGetCurrentLine(void);
 u32               VIGetTvFormat(void);
+u16               VIGetDTVStatus(void);
 
 #ifdef __cplusplus
 }
