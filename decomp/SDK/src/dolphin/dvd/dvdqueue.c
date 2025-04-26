@@ -1,3 +1,4 @@
+#include "dolphin/os.h"
 #include <dolphin/dvd.h>
 
 #include <dolphin.h>
@@ -15,7 +16,7 @@ static struct DVDCommandBlock* PopWaitingQueuePrio(s32 prio);
 void
 __DVDClearWaitingQueue(void)
 {
-    u32           i;
+    u32                     i;
     struct DVDCommandBlock* q;
 
     for (i = 0; i < 4; i++)
@@ -62,7 +63,7 @@ PopWaitingQueuePrio(s32 prio)
 struct DVDCommandBlock*
 __DVDPopWaitingQueue(void)
 {
-    u32           i;
+    u32                     i;
     int                     enabled;
     struct DVDCommandBlock* q;
 
@@ -72,6 +73,7 @@ __DVDPopWaitingQueue(void)
         q = (struct DVDCommandBlock*)&WaitingQueue[i];
         if (q->next != q)
         {
+            OSRestoreInterrupts(enabled);
             return PopWaitingQueuePrio(i);
         }
     }
@@ -82,7 +84,7 @@ __DVDPopWaitingQueue(void)
 int
 __DVDCheckWaitingQueue(void)
 {
-    u32           i;
+    u32                     i;
     int                     enabled;
     struct DVDCommandBlock* q;
 
@@ -92,6 +94,7 @@ __DVDCheckWaitingQueue(void)
         q = (struct DVDCommandBlock*)&WaitingQueue[i];
         if (q->next != q)
         {
+            OSRestoreInterrupts(enabled);
             return 1;
         }
     }
@@ -123,7 +126,7 @@ __DVDDequeueWaitingQueue(struct DVDCommandBlock* block)
 int
 __DVDIsBlockInWaitingQueue(struct DVDCommandBlock* block)
 {
-    u32           i;
+    u32                     i;
     struct DVDCommandBlock* start;
     struct DVDCommandBlock* q;
 
@@ -167,7 +170,7 @@ static char* CommandNames[16] = {
 void
 DVDDumpWaitingQueue(void)
 {
-    u32           i;
+    u32                     i;
     struct DVDCommandBlock* start;
     struct DVDCommandBlock* q;
 
@@ -185,10 +188,12 @@ DVDDumpWaitingQueue(void)
             OSReport("\n");
             for (q = start->next; q != start; q = q->next)
             {
-                OSReport("0x%08x: Command: %s ", q, CommandNames[q->command]);
+                OSReport("0x%08x: Command: %s ", q,
+                         CommandNames[q->command]);
                 if (q->command == 1)
                 {
-                    OSReport("Disk offset: %d, Length: %d, Addr: 0x%08x\n", q->offset, q->length, q->addr);
+                    OSReport("Disk offset: %d, Length: %d, Addr: 0x%08x\n",
+                             q->offset, q->length, q->addr);
                 }
                 else
                 {

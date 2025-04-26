@@ -14,16 +14,19 @@ struct OSAlarm
     OSTime         fire;
     OSAlarm*       prev;
     OSAlarm*       next;
-    OSTime         period;
-    OSTime         start;
+
+    OSTime period;
+    OSTime start;
 };
 
-BOOL OSCheckAlarmQueue(void);
 void OSInitAlarm(void);
-void OSCreateAlarm(OSAlarm* alarm);
 void OSSetAlarm(OSAlarm* alarm, OSTime tick, OSAlarmHandler handler);
-void OSSetAbsAlarm(struct OSAlarm* alarm, s64 time, void (*handler)(struct OSAlarm*, struct OSContext*));
-void OSSetPeriodicAlarm(OSAlarm* alarm, OSTime start, OSTime period, OSAlarmHandler handler);
+void OSSetAbsAlarm(OSAlarm* alarm, OSTime time, OSAlarmHandler handler);
+void OSSetPeriodicAlarm(OSAlarm* alarm, OSTime start, OSTime period,
+                        OSAlarmHandler handler);
+void OSCreateAlarm(OSAlarm* alarm);
 void OSCancelAlarm(OSAlarm* alarm);
+
+BOOL OSCheckAlarmQueue(void);
 
 #endif // _DOLPHIN_OSALARM_H_
