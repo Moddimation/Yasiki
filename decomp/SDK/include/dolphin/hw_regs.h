@@ -11,7 +11,8 @@ volatile u16 __PERegs[] AT_ADDRESS(0xCC001000);  // Pixel Engine Register
 volatile u16 __VIRegs[] AT_ADDRESS(0xCC002000);  // Video Interface Register
 volatile u32 __PIRegs[] AT_ADDRESS(0xCC003000);  // Process Interrupt Register
 volatile u16 __MIRegs[] AT_ADDRESS(0xCC004000);  // Memory Interrupt Register
-volatile u16 __DSPReg[] AT_ADDRESS(0xCC005000);  // Digital Signal Processor Register
+volatile u16 __DSPReg[] AT_ADDRESS(
+    0xCC005000); // Digital Signal Processor Register
 volatile u32 __DIRegs[] AT_ADDRESS(0xCC006000);  // DVD Interface Register
 volatile u32 __SIRegs[] AT_ADDRESS(0xCC006400);  // Serial Interface Register
 volatile u32 __EXIRegs[] AT_ADDRESS(0xCC006800); // External Interface Register
@@ -23,34 +24,40 @@ volatile u8  __GXRegs[] AT_ADDRESS(0xCC008000);  // Graphics FIFO Register
 //
 // offsets for RAM Regs
 //
-#define RAM_DVD_INFO                (0)    // dvd information
-#define RAM_DVD_MAGIC_WORD          (7)    // dvd magic word
-#define RAM_MAGIC_WORD              (8)    // magic word (how did the console boot?)
-#define RAM_VERSION                 (9)    // version
-#define RAM_PHYS_MEM_SIZE           (10)   // physical memory size
-#define RAM_CONSOLE_TYPE            (11)   // console type
-#define RAM_ARENA                   (12)   // arealo (==0x00000000)
-#define RAM_ARENA_U                 (13)   // areahi (==0x817FE8C0)
-#define RAM_FST_POS                 (14)   // fsr location in ram (==0x817FE8C0)
-#define RAM_FST_MAX_LENGTH          (15)   // fsr max length (==0x24)
-#define RAM_DBG_FLAG                (16)   // flag for "debugger present" (used by __OSIsDebuggerPresent)
-#define RAM_DBG_EXCEPT_MASK         (17)   // debugger exception bitmap, set to  at sdk lib start
-#define RAM_DBG_EXCEPT_HOOK_DEST    (18)   // exception hook destination (physical address)
-#define RAM_DBG_LR_TEMP             (19)   // debug load register temp
-#define RAM_DBG_HOOK_PTR            (24)   // debug hook ptr
-#define RAM_OS_CONTX_PHYS_CURR      (48)   // current os context (physical address)
-#define RAM_OS_INT_MASK_PREV        (49)   // previous os interrupt mask
-#define RAM_OS_INT_MASK_CURR        (50)   // current os interrupt mask
-#define RAM_TV_MODE                 (51)   // tv mode
-#define RAM_ARAM_SIZE               (52)   // aram size (intenal+expansion) in bytes
-#define RAM_OS_CONTEXT_LOGICAL_CURR (53)   // current os context (logical address)
-#define RAM_OS_THREAD_LOGICAL_DEF   (54)   // default os thread (logical address)
-#define RAM_OS_THREAD_ACTIVE_HEAD   (55)   // active thread queue, head thread (logical address)
-#define RAM_OS_THREAD_ACTIVE_TAIL   (56)   // active thread queue, tail thread (logical address)
-#define RAM_OS_THREAD_CURRENT       (56)   // current os thread
-#define RAM_DBG_MONITOR_SIZE        (57)   // debug monitor size (in bytes)
-#define RAM_DBG_MONITOR_PTR         (58)   // debug monitor location (usually at the top of main)
-#define RAM_VIRT_MEM_SIZE           (60)   // console simulated memory size, 0x018000000
+#define RAM_DVD_INFO       (0)  // dvd information
+#define RAM_DVD_MAGIC_WORD (7)  // dvd magic word
+#define RAM_MAGIC_WORD     (8)  // magic word (how did the console boot?)
+#define RAM_VERSION        (9)  // version
+#define RAM_PHYS_MEM_SIZE  (10) // physical memory size
+#define RAM_CONSOLE_TYPE   (11) // console type
+#define RAM_ARENA          (12) // arealo (==0x00000000)
+#define RAM_ARENA_U        (13) // areahi (==0x817FE8C0)
+#define RAM_FST_POS        (14) // fsr location in ram (==0x817FE8C0)
+#define RAM_FST_MAX_LENGTH (15) // fsr max length (==0x24)
+#define RAM_DBG_FLAG                                                           \
+    (16) // flag for "debugger present" (used by __OSIsDebuggerPresent)
+#define RAM_DBG_EXCEPT_MASK                                                    \
+    (17) // debugger exception bitmap, set to  at sdk lib start
+#define RAM_DBG_EXCEPT_HOOK_DEST                                               \
+    (18) // exception hook destination (physical address)
+#define RAM_DBG_LR_TEMP             (19) // debug load register temp
+#define RAM_DBG_HOOK_PTR            (24) // debug hook ptr
+#define RAM_OS_CONTX_PHYS_CURR      (48) // current os context (physical address)
+#define RAM_OS_INT_MASK_PREV        (49) // previous os interrupt mask
+#define RAM_OS_INT_MASK_CURR        (50) // current os interrupt mask
+#define RAM_TV_MODE                 (51) // tv mode
+#define RAM_ARAM_SIZE               (52) // aram size (intenal+expansion) in bytes
+#define RAM_OS_CONTEXT_LOGICAL_CURR (53) // current os context (logical address)
+#define RAM_OS_THREAD_LOGICAL_DEF   (54) // default os thread (logical address)
+#define RAM_OS_THREAD_ACTIVE_HEAD                                              \
+    (55) // active thread queue, head thread (logical address)
+#define RAM_OS_THREAD_ACTIVE_TAIL                                              \
+    (56) // active thread queue, tail thread (logical address)
+#define RAM_OS_THREAD_CURRENT (56) // current os thread
+#define RAM_DBG_MONITOR_SIZE  (57) // debug monitor size (in bytes)
+#define RAM_DBG_MONITOR_PTR                                                    \
+    (58) // debug monitor location (usually at the top of main)
+#define RAM_VIRT_MEM_SIZE           (60) // console simulated memory size, 0x018000000
 #define RAM_DVD_BI2_POS             (61)   // DVD BI2 location in main memory
 #define RAM_BUS_CLOCK_SPEED         (62)   // bus clock speed, 162 MHz
 #define RAM_CPU_CLOCK_SPEED         (63)   // cpu clock speed, 486 MHz
@@ -218,19 +225,19 @@ volatile u8  __GXRegs[] AT_ADDRESS(0xCC008000);  // Graphics FIFO Register
 //
 // offsets for MI Regs
 //
-#define MI_PROT_1                   (0)  // protected region 1
-#define MI_PROT_2                   (1)  // protected region 2
-#define MI_PROT_3                   (2)  // protected region 3
-#define MI_PROT_4                   (3)  // protected region 4
-#define MI_PROT_TYPE                (4)  // type of protection
+#define MI_PROT_1                   (0) // protected region 1
+#define MI_PROT_2                   (1) // protected region 2
+#define MI_PROT_3                   (2) // protected region 3
+#define MI_PROT_4                   (3) // protected region 4
+#define MI_PROT_TYPE                (4) // type of protection
 
-#define MI_INT_MASK                 (6)  // mi interrupt mask
-#define MI_INT_CAUSE                (7)  // mi interrupt cause
+#define MI_INT_MASK                 (6) // mi interrupt mask
+#define MI_INT_CAUSE                (7) // mi interrupt cause
 
-#define MI_ACK                      (8)  // aaackK!!!
+#define MI_ACK                      (8) // aaackK!!!
 
 #define MI_REG_U                    (10) // address, which failed protection rules L
-#define MI_REG                      (9)  // address, which failed protection rules U
+#define MI_REG                      (9) // address, which failed protection rules U
 
 //
 // offsets for DSP Regs
@@ -276,19 +283,19 @@ volatile u8  __GXRegs[] AT_ADDRESS(0xCC008000);  // Graphics FIFO Register
 //
 // offsets for SI Regs
 //
-#define SI_C0_OUTBUF                (0)  // si channel 0 output buffer (joy-channel 1 command)
-#define SI_C0_INBUF                 (1)  // joy-channel 1 buttons L
-#define SI_C0_INBUF_U               (2)  // joy-channel 1 buttons U
+#define SI_C0_OUTBUF                (0) // si channel 0 output buffer (joy-channel 1 command)
+#define SI_C0_INBUF                 (1) // joy-channel 1 buttons L
+#define SI_C0_INBUF_U               (2) // joy-channel 1 buttons U
 
-#define SI_C1_OUTBUF                (3)  // si channel 1 output buffer (joy-channel 2 command)
-#define SI_C1_INBUF                 (4)  // joy-channel 1 buttons L
-#define SI_C1_INBUF_U               (5)  // joy-channel 1 buttons U
+#define SI_C1_OUTBUF                (3) // si channel 1 output buffer (joy-channel 2 command)
+#define SI_C1_INBUF                 (4) // joy-channel 1 buttons L
+#define SI_C1_INBUF_U               (5) // joy-channel 1 buttons U
 
-#define SI_C2_OUTBUF                (6)  // si channel 2 output buffer (joy-channel 3 command)
-#define SI_C2_INBUF                 (7)  // joy-channel 1 buttons L
-#define SI_C2_INBUF_U               (8)  // joy-channel 1 buttons U
+#define SI_C2_OUTBUF                (6) // si channel 2 output buffer (joy-channel 3 command)
+#define SI_C2_INBUF                 (7) // joy-channel 1 buttons L
+#define SI_C2_INBUF_U               (8) // joy-channel 1 buttons U
 
-#define SI_C3_OUTBUF                (9)  // si channel 3 output buffer (joy-channel 4 command)
+#define SI_C3_OUTBUF                (9) // si channel 3 output buffer (joy-channel 4 command)
 #define SI_C3_INBUF                 (10) // joy-channel 1 buttons L
 #define SI_C3_INBUF_U               (11) // joy-channel 1 buttons U
 

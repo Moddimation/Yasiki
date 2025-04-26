@@ -575,7 +575,11 @@ config.libs = [
     # SDK
 
     DolphinLib("dvd", [
-        (NonMatching, "fstload.c"),
+        (NonMatching, "dvdfs.c"),
+        (Matching, "dvd.c"),
+        (Matching, "dvdqueue.c"),
+        (Matching, "dvderror.c"),
+        (Matching, "fstload.c"),
     ]),
 
     DolphinLib("vi", [
