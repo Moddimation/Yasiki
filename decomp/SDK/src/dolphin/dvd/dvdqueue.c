@@ -3,7 +3,7 @@
 
 #include <dolphin.h>
 
-#include "DVDPrivate.h"
+#include "dvd_private.h"
 static struct
 {
     /* 0x00 */ struct DVDCommandBlock* next;

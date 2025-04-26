@@ -1,6 +1,6 @@
 #include <dolphin.h>
 
-#include "DVDPrivate.h"
+#include "../dvd_private.h"
 
 static u32 status;         // size: 0x4, address: 0x0
 enum

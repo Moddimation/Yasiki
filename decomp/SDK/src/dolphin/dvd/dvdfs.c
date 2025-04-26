@@ -2,22 +2,21 @@
 
 #include <dolphin.h>
 
-#include "DVDPrivate.h"
-struct FSTEntry
+#include "dvd_private.h"
+typedef struct FSTEntry
 {
     /* 0x00 */ u32 isDirAndStringOff;
     /* 0x04 */ u32 parentOrPosition;
     /* 0x08 */ u32 nextEntryOrLength;
-};
-
+} FSTEntry;
 // .sbss
-static struct OSBootInfo_s* BootInfo;              // size: 0x4, address: 0x0
-static struct FSTEntry*     FstStart;              // size: 0x4, address: 0x4
-static char*                FstStringStart;        // size: 0x4, address: 0x8
-static u32                  MaxEntryNum;           // size: 0x4, address: 0xC
-static u32                  currentDirectory;      // size: 0x4, address: 0x10
-struct OSThreadQueue        __DVDThreadQueue;      // size: 0x8, address: 0x18
-u32                         __DVDLongFileNameFlag; // size: 0x4, address: 0x14
+static OSBootInfo*   BootInfo;              // size: 0x4, address: 0x0
+static FSTEntry*     FstStart;              // size: 0x4, address: 0x4
+static char*         FstStringStart;        // size: 0x4, address: 0x8
+static u32           MaxEntryNum;           // size: 0x4, address: 0xC
+static u32           currentDirectory;      // size: 0x4, address: 0x10
+struct OSThreadQueue __DVDThreadQueue;      // size: 0x8, address: 0x18
+u32                  __DVDLongFileNameFlag; // size: 0x4, address: 0x14
 
 // functions
 static BOOL isSame(const char* path, const char* string);
