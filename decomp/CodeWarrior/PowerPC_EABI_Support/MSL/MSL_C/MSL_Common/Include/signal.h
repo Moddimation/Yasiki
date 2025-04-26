@@ -6,26 +6,26 @@
  */
 
 #ifndef _MSL_SIGNAL_H
-#    define _MSL_SIGNAL_H
+#define _MSL_SIGNAL_H
 
-#    if __MACH__
-#        error You must have the /usr/include access path before the MSL access path
-#    else
+#if __MACH__
+#error You must have the /usr/include access path before the MSL access path
+#else
 
-#        include <csignal>
+#include <csignal>
 
-#        if defined(__cplusplus) && defined(_MSL_USING_NAMESPACE)
+#if defined(__cplusplus) && defined(_MSL_USING_NAMESPACE)
 using std::raise;
 using std::sig_atomic_t;
 using std::signal;
-#        endif
+#endif
 
-#    endif /* __MACH__ */
+#endif /* __MACH__ */
 
-#endif     /* _MSL_SIGNAL_H */
+#endif /* _MSL_SIGNAL_H */
 
-           /* Change record:
-            * hh  971206 Created.
-            * hh  991112 Fixed using bug.
-            * JWW 001208 Added case for targeting Mach-O
-            */
+       /* Change record:
+        * hh  971206 Created.
+        * hh  991112 Fixed using bug.
+        * JWW 001208 Added case for targeting Mach-O
+        */

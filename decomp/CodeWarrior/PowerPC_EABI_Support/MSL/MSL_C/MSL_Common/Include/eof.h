@@ -6,17 +6,17 @@
  */
 
 #ifndef _MSL_EOF_H
-#    define _MSL_EOF_H
+#define _MSL_EOF_H
 
-#    ifndef EOF
+#ifndef EOF
 
-#        include <ansi_parms.h> /*- vss 980817 -*/
+#include <ansi_parms.h> /*- vss 980817 -*/
 
-#        define EOF -1L
+#define EOF -1L
 
-#    endif                      /* ndef EOF */
+#endif                  /* ndef EOF */
 
-#endif                          /*  _MSL_EOF_H */
+#endif                  /*  _MSL_EOF_H */
 
 /* Change record:
  * vss 980817 new - several standard headers now need EOF, this file

@@ -2,7 +2,6 @@
 #include <dolphin/axfx.h>
 
 #include <dolphin.h>
-
 void
 AXFXDelayCallback(struct AXFX_BUFFERUPDATE* bufferUpdate, struct AXFX_DELAY* delay)
 {
@@ -12,7 +11,7 @@ AXFXDelayCallback(struct AXFX_BUFFERUPDATE* bufferUpdate, struct AXFX_DELAY* del
     s32* lBuf;
     s32* rBuf;
     s32* sBuf;
-    u32   i;
+    u32  i;
     s32* left;
     s32* right;
     s32* sur;
@@ -40,15 +39,14 @@ AXFXDelayCallback(struct AXFX_BUFFERUPDATE* bufferUpdate, struct AXFX_DELAY* del
     delay->currentPos[1] = (s32)((delay->currentPos[1] + 1) % delay->currentSize[1]);
     delay->currentPos[2] = (s32)((delay->currentPos[2] + 1) % delay->currentSize[2]);
 }
-
 int
 AXFXDelaySettings(struct AXFX_DELAY* delay)
 {
-    u32 i;
-    s32*         l;
-    s32*         r;
-    s32*         s;
-    int           old;
+    u32  i;
+    s32* l;
+    s32* r;
+    s32* s;
+    int  old;
 
     AXFXDelayShutdown(delay);
     old = OSDisableInterrupts();
@@ -84,7 +82,6 @@ AXFXDelaySettings(struct AXFX_DELAY* delay)
     OSRestoreInterrupts(old);
     return 1;
 }
-
 int
 AXFXDelayInit(struct AXFX_DELAY* delay)
 {
@@ -97,7 +94,6 @@ AXFXDelayInit(struct AXFX_DELAY* delay)
     OSRestoreInterrupts(old);
     AXFXDelaySettings(delay);
 }
-
 int
 AXFXDelayShutdown(struct AXFX_DELAY* delay)
 {

@@ -6,15 +6,15 @@
  */
 
 #ifndef _MSL_STRING_H
-#    define _MSL_STRING_H
+#define _MSL_STRING_H
 
-#    if __MACH__
-#        error You must have the /usr/include access path before the MSL access path
-#    else
+#if __MACH__
+#error You must have the /usr/include access path before the MSL access path
+#else
 
-#        include <cstring>
+#include <cstring>
 
-#        if defined(__cplusplus) && defined(_MSL_USING_NAMESPACE)
+#if defined(__cplusplus) && defined(_MSL_USING_NAMESPACE)
 using std::memchr;
 using std::memcmp;
 using std::memcpy;
@@ -38,14 +38,14 @@ using std::strspn;
 using std::strstr;
 using std::strtok;
 using std::strxfrm;
-#        endif
+#endif
 
-#    endif /* __MACH__ */
+#endif /* __MACH__ */
 
-#endif     /* _MSL_STRING_H */
+#endif /* _MSL_STRING_H */
 
-           /* Change record:
-            * hh  971206 Created.
-            * hh  991112 Fixed using bug.
-            * JWW 001208 Added case for targeting Mach-O
-            */
+       /* Change record:
+        * hh  971206 Created.
+        * hh  991112 Fixed using bug.
+        * JWW 001208 Added case for targeting Mach-O
+        */

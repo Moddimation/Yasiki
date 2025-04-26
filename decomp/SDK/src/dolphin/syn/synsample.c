@@ -11,7 +11,6 @@ static u32  __SYNGetNibbleAddress(u32 count);
 static void __SYNSetupAdpcm(struct SYNVOICE* voice);
 static void __SYNSetupPcm16(struct SYNVOICE* voice);
 static void __SYNSetupPcm8(struct SYNVOICE* voice);
-
 static u32
 __SYNGetNibbleAddress(u32 count)
 {
@@ -21,7 +20,6 @@ __SYNGetNibbleAddress(u32 count)
 
     return (frames * 0x10) + 2 + samplesLeft;
 }
-
 static void
 __SYNSetupAdpcm(struct SYNVOICE* voice)
 {
@@ -39,8 +37,11 @@ __SYNSetupAdpcm(struct SYNVOICE* voice)
         adpcm = (void*)&voice->adpcm->a;
         voice->type = 1;
         sampleStart = voice->synth->aramBaseNibble + voice->sample->offset;
-        sampleLoop = sampleStart + __SYNGetNibbleAddress(voice->region->loopStart - 1);
-        sampleEnd = sampleStart + __SYNGetNibbleAddress(voice->region->loopStart + voice->region->loopLength - 2);
+        sampleLoop =
+            sampleStart + __SYNGetNibbleAddress(voice->region->loopStart - 1);
+        sampleEnd =
+            sampleStart + __SYNGetNibbleAddress(voice->region->loopStart +
+                                                voice->region->loopLength - 2);
         ASSERTLINE(0x48, (sampleStart & 0x000f) == 0);
         ASSERTLINE(0x49, (sampleLoop & 0x000f) > 1);
         ASSERTLINE(0x4A, (sampleEnd & 0x000f) > 1);
@@ -137,7 +138,6 @@ __SYNSetupAdpcm(struct SYNVOICE* voice)
         axvpb->sync |= 0x21000;
     }
 }
-
 static void
 __SYNSetupPcm16(struct SYNVOICE* voice)
 {
@@ -228,7 +228,6 @@ __SYNSetupPcm16(struct SYNVOICE* voice)
     axvpb->sync &= 0xFFFE1FFF;
     axvpb->sync |= 0x21000;
 }
-
 static void
 __SYNSetupPcm8(struct SYNVOICE* voice)
 {
@@ -317,16 +316,23 @@ __SYNSetupPcm8(struct SYNVOICE* voice)
     axvpb->sync &= 0xFFFE1FFF;
     axvpb->sync |= 0x21000;
 }
-
 void
 __SYNSetupSample(struct SYNVOICE* voice)
 {
     ASSERTLINE(0x15C, voice);
     switch (voice->sample->format)
     {
-        case SYN_SAMPLE_FORMAT_ADPCM : __SYNSetupAdpcm(voice); return;
-        case SYN_SAMPLE_FORMAT_PCM16 : __SYNSetupPcm16(voice); return;
-        case SYN_SAMPLE_FORMAT_PCM8  : __SYNSetupPcm8(voice); return;
-        default                      : ASSERTMSGLINE(0x174, FALSE, "unknown sample format¥n"); return;
+        case SYN_SAMPLE_FORMAT_ADPCM:
+            __SYNSetupAdpcm(voice);
+            return;
+        case SYN_SAMPLE_FORMAT_PCM16:
+            __SYNSetupPcm16(voice);
+            return;
+        case SYN_SAMPLE_FORMAT_PCM8:
+            __SYNSetupPcm8(voice);
+            return;
+        default:
+            ASSERTMSGLINE(0x174, FALSE, "unknown sample format¥n");
+            return;
     }
 }

@@ -6,7 +6,6 @@
 
 typedef struct OSAlarm OSAlarm;
 typedef void           (*OSAlarmHandler)(OSAlarm* alarm, OSContext* context);
-
 struct OSAlarm
 {
     OSAlarmHandler handler;
@@ -18,7 +17,6 @@ struct OSAlarm
     OSTime period;
     OSTime start;
 };
-
 void OSInitAlarm(void);
 void OSSetAlarm(OSAlarm* alarm, OSTime tick, OSAlarmHandler handler);
 void OSSetAbsAlarm(OSAlarm* alarm, OSTime time, OSAlarmHandler handler);

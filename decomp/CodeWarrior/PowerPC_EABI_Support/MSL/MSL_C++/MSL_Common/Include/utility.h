@@ -1,5 +1,6 @@
 /* Metrowerks Standard Library
- * Copyright ÃÂ¯ÃÂ½C 1995-2001 Metrowerks Corporation.  All rights reserved.
+ * Copyright ÃÂ¯ÃÂ½C 1995-2001 Metrowerks Corporation.  All rights
+ * reserved.
  *
  * $Date: 2001/03/08 21:13:08 $
  * $Revision: 1.13 $
@@ -7,23 +8,22 @@
 
 // utility.h       // hh 971207 Changed filename from utility to utility.h
 
-#ifndef _UTILITY_H                // hh 971207 added standard include guards
-#    define _UTILITY_H
+#ifndef _UTILITY_H            // hh 971207 added standard include guards
+#define _UTILITY_H
 
-#    include <utility>
+#include <utility>
 
-#    ifndef _MSL_NO_CPP_NAMESPACE // hh 971207 Added backward compatibility
+#ifndef _MSL_NO_CPP_NAMESPACE // hh 971207 Added backward compatibility
 using std::make_pair;
 using std::pair;
 using namespace std::rel_ops;
-
 namespace std
 {
 using namespace rel_ops;
 }
-#    endif
+#endif
 
-#endif                            // _UTILITY_H
+#endif                        // _UTILITY_H
 
 // hh 971207 Changed filename from utility to utility.h
 // hh 971207 added standard include guards

@@ -3,12 +3,12 @@
 #include <dolphin.h>
 
 #include "CARDPrivate.h"
-
 s32
-__CARDRawReadAsync(s32 chan, void* buf, long length, long offset, void (*callback)(long, long))
+__CARDRawReadAsync(s32 chan, void* buf, long length, long offset,
+                   void (*callback)(long, long))
 {
     struct CARDControl* card;
-    s32                result;
+    s32                 result;
 
     ASSERTLINE(0x36, buf && ((u32)buf % 32) == 0);
 
@@ -17,7 +17,8 @@ __CARDRawReadAsync(s32 chan, void* buf, long length, long offset, void (*callbac
     {
         return __CARDPutControlBlock(card, result);
     }
-    ASSERTLINE(0x3E, 0 < length && (length % CARD_SEG_SIZE) == 0 && length < CARD_MAX_SIZE);
+    ASSERTLINE(0x3E, 0 < length && (length % CARD_SEG_SIZE) == 0 &&
+                         length < CARD_MAX_SIZE);
     ASSERTLINE(0x3F, (offset % card->sectorSize) == 0);
     DCInvalidateRange(buf, length);
     result = __CARDRead(chan, offset, length, buf, callback);
@@ -27,7 +28,6 @@ __CARDRawReadAsync(s32 chan, void* buf, long length, long offset, void (*callbac
     }
     return result;
 }
-
 s32
 __CARDRawRead(s32 chan, void* buf, long length, long offset)
 {

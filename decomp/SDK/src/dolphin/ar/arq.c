@@ -16,7 +16,6 @@ static ARQCallback        __ARQCallbackHi;
 static ARQCallback        __ARQCallbackLo;
 static u32                __ARQChunkSize;
 static int                __ARQ_init_flag;
-
 void
 __ARQPopTaskQueueHi(void)
 {
@@ -24,20 +23,19 @@ __ARQPopTaskQueueHi(void)
     {
         if (__ARQRequestQueueHi->type == 0)
         {
-            ARStartDMA(__ARQRequestQueueHi->type, __ARQRequestQueueHi->source, __ARQRequestQueueHi->dest,
-                       __ARQRequestQueueHi->length);
+            ARStartDMA(__ARQRequestQueueHi->type, __ARQRequestQueueHi->source,
+                       __ARQRequestQueueHi->dest, __ARQRequestQueueHi->length);
         }
         else
         {
-            ARStartDMA(__ARQRequestQueueHi->type, __ARQRequestQueueHi->dest, __ARQRequestQueueHi->source,
-                       __ARQRequestQueueHi->length);
+            ARStartDMA(__ARQRequestQueueHi->type, __ARQRequestQueueHi->dest,
+                       __ARQRequestQueueHi->source, __ARQRequestQueueHi->length);
         }
         __ARQCallbackHi = __ARQRequestQueueHi->callback;
         __ARQRequestPendingHi = __ARQRequestQueueHi;
         __ARQRequestQueueHi = __ARQRequestQueueHi->next;
     }
 }
-
 void
 __ARQServiceQueueLo(void)
 {
@@ -52,37 +50,37 @@ __ARQServiceQueueLo(void)
         {
             if (__ARQRequestPendingLo->type == 0)
             {
-                ARStartDMA(__ARQRequestPendingLo->type, __ARQRequestPendingLo->source, __ARQRequestPendingLo->dest,
-                           __ARQRequestPendingLo->length);
+                ARStartDMA(
+                    __ARQRequestPendingLo->type, __ARQRequestPendingLo->source,
+                    __ARQRequestPendingLo->dest, __ARQRequestPendingLo->length);
             }
             else
             {
-                ARStartDMA(__ARQRequestPendingLo->type, __ARQRequestPendingLo->dest, __ARQRequestPendingLo->source,
+                ARStartDMA(__ARQRequestPendingLo->type, __ARQRequestPendingLo->dest,
+                           __ARQRequestPendingLo->source,
                            __ARQRequestPendingLo->length);
             }
             __ARQCallbackLo = __ARQRequestPendingLo->callback;
         }
         else if (__ARQRequestPendingLo->type == 0)
         {
-            ARStartDMA(__ARQRequestPendingLo->type, __ARQRequestPendingLo->source, __ARQRequestPendingLo->dest,
-                       __ARQChunkSize);
+            ARStartDMA(__ARQRequestPendingLo->type, __ARQRequestPendingLo->source,
+                       __ARQRequestPendingLo->dest, __ARQChunkSize);
         }
         else
         {
-            ARStartDMA(__ARQRequestPendingLo->type, __ARQRequestPendingLo->dest, __ARQRequestPendingLo->source,
-                       __ARQChunkSize);
+            ARStartDMA(__ARQRequestPendingLo->type, __ARQRequestPendingLo->dest,
+                       __ARQRequestPendingLo->source, __ARQChunkSize);
         }
         __ARQRequestPendingLo->length -= __ARQChunkSize;
         __ARQRequestPendingLo->source += __ARQChunkSize;
         __ARQRequestPendingLo->dest += __ARQChunkSize;
     }
 }
-
 void
 __ARQCallbackHack(u32 unused)
 {
 }
-
 void
 __ARQInterruptServiceRoutine()
 {
@@ -104,14 +102,12 @@ __ARQInterruptServiceRoutine()
         __ARQServiceQueueLo();
     }
 }
-
 void
 __ARQInitTempQueue(void)
 {
     __ARQRequestQueueTemp = NULL;
     __ARQRequestTailTemp = NULL;
 }
-
 void
 __ARQPushTempQueue(struct ARQRequest* task)
 {
@@ -124,7 +120,6 @@ __ARQPushTempQueue(struct ARQRequest* task)
     __ARQRequestTailTemp->next = task;
     __ARQRequestTailTemp = task;
 }
-
 void
 ARQInit(void)
 {
@@ -140,22 +135,22 @@ ARQInit(void)
         __ARQ_init_flag = 1;
     }
 }
-
 void
 ARQReset(void)
 {
     __ARQ_init_flag = 0;
 }
-
 void
-ARQPostRequest(struct ARQRequest* request, u32 owner, u32 type, u32 priority, u32 source, u32 dest, u32 length,
-               ARQCallback callback)
+ARQPostRequest(struct ARQRequest* request, u32 owner, u32 type, u32 priority,
+               u32 source, u32 dest, u32 length, ARQCallback callback)
 {
     int level;
 
     ASSERTLINE(0x1A9, request);
-    ASSERTLINE(0x1AA, (type == ARQ_TYPE_MRAM_TO_ARAM) || (type == ARQ_TYPE_ARAM_TO_MRAM));
-    ASSERTLINE(0x1AB, (priority == ARQ_PRIORITY_LOW) || (priority == ARQ_PRIORITY_HIGH));
+    ASSERTLINE(0x1AA,
+               (type == ARQ_TYPE_MRAM_TO_ARAM) || (type == ARQ_TYPE_ARAM_TO_MRAM));
+    ASSERTLINE(0x1AB,
+               (priority == ARQ_PRIORITY_LOW) || (priority == ARQ_PRIORITY_HIGH));
     ASSERTLINE(0x1AE, (length % ARQ_DMA_ALIGNMENT) == 0);
     request->next = NULL;
     request->owner = owner;
@@ -174,7 +169,7 @@ ARQPostRequest(struct ARQRequest* request, u32 owner, u32 type, u32 priority, u3
     level = OSDisableInterrupts();
     switch (priority)
     {
-        case ARQ_PRIORITY_LOW :
+        case ARQ_PRIORITY_LOW:
             if (__ARQRequestQueueLo)
             {
                 __ARQRequestTailLo->next = request;
@@ -185,7 +180,7 @@ ARQPostRequest(struct ARQRequest* request, u32 owner, u32 type, u32 priority, u3
             }
             __ARQRequestTailLo = request;
             break;
-        case ARQ_PRIORITY_HIGH :
+        case ARQ_PRIORITY_HIGH:
             if (__ARQRequestQueueHi)
             {
                 __ARQRequestTailHi->next = request;
@@ -207,7 +202,6 @@ ARQPostRequest(struct ARQRequest* request, u32 owner, u32 type, u32 priority, u3
     }
     OSRestoreInterrupts(level);
 }
-
 void
 ARQRemoveRequest(struct ARQRequest* request)
 {
@@ -216,7 +210,8 @@ ARQRemoveRequest(struct ARQRequest* request)
 
     level = OSDisableInterrupts();
     __ARQInitTempQueue();
-    for (thisRequest = __ARQRequestQueueHi; thisRequest; thisRequest = thisRequest->next)
+    for (thisRequest = __ARQRequestQueueHi; thisRequest;
+         thisRequest = thisRequest->next)
     {
         if (thisRequest != request)
         {
@@ -226,7 +221,8 @@ ARQRemoveRequest(struct ARQRequest* request)
     __ARQRequestQueueHi = __ARQRequestQueueTemp;
     __ARQRequestTailHi = __ARQRequestTailTemp;
     __ARQInitTempQueue();
-    for (thisRequest = __ARQRequestQueueLo; thisRequest; thisRequest = thisRequest->next)
+    for (thisRequest = __ARQRequestQueueLo; thisRequest;
+         thisRequest = thisRequest->next)
     {
         if (thisRequest != request)
         {
@@ -235,13 +231,13 @@ ARQRemoveRequest(struct ARQRequest* request)
     }
     __ARQRequestQueueLo = __ARQRequestQueueTemp;
     __ARQRequestTailLo = __ARQRequestTailTemp;
-    if ((__ARQRequestPendingLo) && (__ARQRequestPendingLo == request) && (__ARQCallbackLo == 0))
+    if ((__ARQRequestPendingLo) && (__ARQRequestPendingLo == request) &&
+        (__ARQCallbackLo == 0))
     {
         __ARQRequestPendingLo = NULL;
     }
     OSRestoreInterrupts(level);
 }
-
 void
 ARQRemoveOwnerRequest(u32 owner)
 {
@@ -250,7 +246,8 @@ ARQRemoveOwnerRequest(u32 owner)
 
     level = OSDisableInterrupts();
     __ARQInitTempQueue();
-    for (thisRequest = __ARQRequestQueueHi; thisRequest; thisRequest = thisRequest->next)
+    for (thisRequest = __ARQRequestQueueHi; thisRequest;
+         thisRequest = thisRequest->next)
     {
         if (thisRequest->owner != owner)
         {
@@ -260,7 +257,8 @@ ARQRemoveOwnerRequest(u32 owner)
     __ARQRequestQueueHi = __ARQRequestQueueTemp;
     __ARQRequestTailHi = __ARQRequestTailTemp;
     __ARQInitTempQueue();
-    for (thisRequest = __ARQRequestQueueLo; thisRequest; thisRequest = thisRequest->next)
+    for (thisRequest = __ARQRequestQueueLo; thisRequest;
+         thisRequest = thisRequest->next)
     {
         if (thisRequest->owner != owner)
         {
@@ -269,13 +267,13 @@ ARQRemoveOwnerRequest(u32 owner)
     }
     __ARQRequestQueueLo = __ARQRequestQueueTemp;
     __ARQRequestTailLo = __ARQRequestTailTemp;
-    if ((__ARQRequestPendingLo) && (__ARQRequestPendingLo->owner == owner) && (__ARQCallbackLo == 0))
+    if ((__ARQRequestPendingLo) && (__ARQRequestPendingLo->owner == owner) &&
+        (__ARQCallbackLo == 0))
     {
         __ARQRequestPendingLo = NULL;
     }
     OSRestoreInterrupts(level);
 }
-
 void
 ARQFlushQueue(void)
 {
@@ -292,7 +290,6 @@ ARQFlushQueue(void)
     }
     OSRestoreInterrupts(level);
 }
-
 void
 ARQSetChunkSize(u32 size)
 {
@@ -306,7 +303,6 @@ ARQSetChunkSize(u32 size)
     }
     __ARQChunkSize = size;
 }
-
 u32
 ARQGetChunkSize(void)
 {

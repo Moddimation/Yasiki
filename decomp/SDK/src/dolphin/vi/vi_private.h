@@ -1,7 +1,6 @@
 #include <dolphin/os.h>
 #include <dolphin/types.h>
 #include <dolphin/vi.h>
-
 typedef struct
 {
     /*0x00*/ u8  equ;
@@ -29,7 +28,6 @@ typedef struct
     /*0x22*/ u16 hbsCCIR656;
     /*0x24*/ // total size = 0x24
 } VITiming;
-
 typedef struct
 {
     /*0x00*/ u16       DispPosX;
@@ -65,7 +63,6 @@ typedef struct
     /*0x4C*/ VITiming* timing;
     /*0x50*/ // total size = 0x50
 } SomeVIStruct;
-
 static volatile u32         retraceCount;
 static u32                  changeMode;
 static volatile u32         flushFlag;
@@ -94,11 +91,10 @@ static VITiming timing[7] = {
     { 12, 480, 48, 48, 6, 6, 24, 24, 24, 24, 1038, 1038, 1038, 1038, 1050, 429, 64, 71, 105, 162, 373, 122, 412 },
 };
 // clang-format on
-static u16 taps[25] = { 0x01F0, 0x01DC, 0x01AE, 0x0174, 0x0129,
-                        0x00DB, 0x008E, 0x0046, 0x000C, 0x00E2,
-                        0x00CB, 0x00C0, 0x00C4, 0x00CF, 0x00DE,
-                        0x00EC, 0x00FC, 0x0008, 0x000F, 0x0013,
-                        0x0013, 0x000F, 0x000C, 0x0008, 0x0001 };
+static u16 taps[25] = { 0x01F0, 0x01DC, 0x01AE, 0x0174, 0x0129, 0x00DB, 0x008E,
+                        0x0046, 0x000C, 0x00E2, 0x00CB, 0x00C0, 0x00C4, 0x00CF,
+                        0x00DE, 0x00EC, 0x00FC, 0x0008, 0x000F, 0x0013, 0x0013,
+                        0x000F, 0x000C, 0x0008, 0x0001 };
 
 static SomeVIStruct HorVer;
 static u32          FBSet;

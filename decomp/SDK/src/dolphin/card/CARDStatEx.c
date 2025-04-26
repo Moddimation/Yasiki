@@ -3,7 +3,6 @@
 #include <dolphin.h>
 
 #include "CARDPrivate.h"
-
 s32
 __CARDGetStatusEx(s32 chan, long fileNo, struct CARDDir* dirent)
 {
@@ -19,7 +18,7 @@ __CARDGetStatusEx(s32 chan, long fileNo, struct CARDDir* dirent)
         struct CARDControl* card;
         struct CARDDir*     dir;
         struct CARDDir*     ent;
-        s32                result = __CARDGetControlBlock(chan, &card);
+        s32                 result = __CARDGetControlBlock(chan, &card);
 
         if (result < 0)
         {
@@ -40,23 +39,23 @@ __CARDGetStatusEx(s32 chan, long fileNo, struct CARDDir* dirent)
         return __CARDPutControlBlock(card, result);
     }
 }
-
 s32
-__CARDSetStatusExAsync(s32 chan, long fileNo, struct CARDDir* dirent, void (*callback)(long, long))
+__CARDSetStatusExAsync(s32 chan, long fileNo, struct CARDDir* dirent,
+                       void (*callback)(long, long))
 {
     struct CARDControl* card;
     struct CARDDir*     dir;
     struct CARDDir*     ent;
-    s32                result;
-    u16*      p;
-    s32                i;
+    s32                 result;
+    u16*                p;
+    s32                 i;
 
     ASSERTLINE(0x81, 0 <= fileNo && fileNo < CARD_MAX_FILE);
     ASSERTLINE(0x82, 0 <= chan && chan < 2);
     ASSERTLINE(0x83, *dirent->fileName != 0xff && *dirent->fileName != 0x00);
 
-    if ((fileNo < 0) || (fileNo >= CARD_MAX_FILE) || ((u8)dirent->fileName[0] == 0xFF)
-        || ((u8)dirent->fileName[0] == 0))
+    if ((fileNo < 0) || (fileNo >= CARD_MAX_FILE) ||
+        ((u8)dirent->fileName[0] == 0xFF) || ((u8)dirent->fileName[0] == 0))
     {
         return CARD_RESULT_FATAL_ERROR;
     }
@@ -85,17 +84,19 @@ __CARDSetStatusExAsync(s32 chan, long fileNo, struct CARDDir* dirent, void (*cal
         }
         break;
     }
-    if ((memcmp(&ent->fileName, &dirent->fileName, 32) != 0) || (memcmp(ent->gameName, dirent->gameName, 4) != 0)
-        || (memcmp(ent->company, dirent->company, 2) != 0))
+    if ((memcmp(&ent->fileName, &dirent->fileName, 32) != 0) ||
+        (memcmp(ent->gameName, dirent->gameName, 4) != 0) ||
+        (memcmp(ent->company, dirent->company, 2) != 0))
     {
         for (i = 0; i < CARD_MAX_FILE; i++)
         {
             if (i != fileNo)
             {
                 struct CARDDir* ent = &dir[i]; // sure, just redeclare ent again...
-                if (((u8)ent->gameName[0] != 0xFF) && (memcmp(&ent->gameName, &dirent->gameName, 4) == 0)
-                    && (memcmp(&ent->company, &dirent->company, 2) == 0)
-                    && (memcmp(&ent->fileName, &dirent->fileName, 0x20) == 0))
+                if (((u8)ent->gameName[0] != 0xFF) &&
+                    (memcmp(&ent->gameName, &dirent->gameName, 4) == 0) &&
+                    (memcmp(&ent->company, &dirent->company, 2) == 0) &&
+                    (memcmp(&ent->fileName, &dirent->fileName, 0x20) == 0))
                 {
                     return __CARDPutControlBlock(card, -7);
                 }
@@ -120,7 +121,6 @@ __CARDSetStatusExAsync(s32 chan, long fileNo, struct CARDDir* dirent, void (*cal
     }
     return result;
 }
-
 s32
 __CARDSetStatusEx(s32 chan, long fileNo, struct CARDDir* dirent)
 {

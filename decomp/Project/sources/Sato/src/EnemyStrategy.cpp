@@ -4,13 +4,11 @@
 static float dummy[] = { 1.0f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f };
 
 extern enemyStrategyInitFunc gEnemyStrategyInitFuncs[187];
-
 enemyStrategyInitFunc*
 getEnemyStrategyInitFunc(int i_entityIdx)
 {
     return &gEnemyStrategyInitFuncs[i_entityIdx];
 }
-
 /* EnemyStrategy */
 
 EnemyStrategy::EnemyStrategy()
@@ -22,16 +20,13 @@ EnemyStrategy::EnemyStrategy()
     mCurState = 0;
     mTimer = 0;
 }
-
 EnemyStrategy::~EnemyStrategy()
 {
 }
-
 void
 EnemyStrategy::init()
 {
 }
-
 void
 EnemyStrategy::update()
 {
@@ -43,34 +38,28 @@ EnemyStrategy::update()
     doBehavior();
     mTimer++;
 }
-
 void
 EnemyStrategy::doBehavior()
 {
 }
-
 void
 EnemyStrategy::doBehaviorInit()
 {
 }
-
 s32
 EnemyStrategy::unkEnemyStrategyFunc01()
 {
     return FALSE;
 }
-
 void
 EnemyStrategy::unkEnemyStrategyFunc02()
 {
 }
-
 void
 EnemyStrategy::setNextState(s16 i_nextState)
 {
     mNextState = i_nextState;
 }
-
 void
 EnemyStrategy::changeState()
 {
@@ -80,18 +69,15 @@ EnemyStrategy::changeState()
 
     doBehaviorInit();
 }
-
 void*
 EnemyStrategy::operator new(size_t size, void* mem)
 {
     return mem;
 }
-
 void
 EnemyStrategy::operator delete(void* mem)
 {
 }
-
 /* EnemyStrategyDecorator */
 
 EnemyStrategyDecorator::EnemyStrategyDecorator()
@@ -99,7 +85,6 @@ EnemyStrategyDecorator::EnemyStrategyDecorator()
     mpTsuriStrategy = NULL;
     mTsuriState = 0x100;
 }
-
 s32
 EnemyStrategyDecorator::setTsuriStrategy(EnemyStrategy* i_tsuri)
 {
@@ -111,7 +96,6 @@ EnemyStrategyDecorator::setTsuriStrategy(EnemyStrategy* i_tsuri)
     mpTsuriStrategy = i_tsuri;
     return TRUE;
 }
-
 void
 EnemyStrategyDecorator::update()
 {
@@ -127,9 +111,9 @@ EnemyStrategyDecorator::update()
 
         switch (mpTsuriStrategy->mCurState)
         {
-            case 0x100 :
-            case 0x101 :
-            case 0x102 :
+            case 0x100:
+            case 0x101:
+            case 0x102:
                 {
                     mTsuriState = mpTsuriStrategy->mCurState;
                     mpTsuriStrategy = NULL;

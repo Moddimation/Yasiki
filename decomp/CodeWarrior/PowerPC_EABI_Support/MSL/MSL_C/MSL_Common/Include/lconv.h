@@ -6,23 +6,23 @@
  */
 
 #ifndef _MSL_LCONV_H
-#    define _MSL_LCONV_H
+#define _MSL_LCONV_H
 
-#    include <ansi_parms.h> /*- mm 970905 -*/
+#include <ansi_parms.h>    /*- mm 970905 -*/
 
-#    pragma options align = native
+#pragma options align = native
 
-_MSL_BEGIN_NAMESPACE_STD    /*- cc 010409 -*/
-    _MSL_BEGIN_EXTERN_C     /*- cc 010409 -*/
+_MSL_BEGIN_NAMESPACE_STD   /*- cc 010409 -*/
+    _MSL_BEGIN_EXTERN_C    /*- cc 010409 -*/
 
     extern struct lconv __lconv;
 
-_MSL_END_EXTERN_C           /*- cc 010409 -*/
-    _MSL_END_NAMESPACE_STD  /*- cc 010409 -*/
+_MSL_END_EXTERN_C          /*- cc 010409 -*/
+    _MSL_END_NAMESPACE_STD /*- cc 010409 -*/
 
-#    pragma options align = reset
+#pragma options align = reset
 
-#endif                      /* _MSL_LCONV_H */
+#endif                     /* _MSL_LCONV_H */
 
     /* Change record:
      * mm  970905 added include of ansi_parms.h to avoid need for prefix file

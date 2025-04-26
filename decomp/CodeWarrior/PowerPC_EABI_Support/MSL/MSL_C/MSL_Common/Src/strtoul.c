@@ -80,7 +80,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-
 enum scan_states
 {
     start = 0x01,
@@ -91,22 +90,23 @@ enum scan_states
     finished = 0x20,
     failure = 0x40
 };
-
 #define final_state(scan_state) (scan_state & (finished | failure))
 
 #define success(scan_state)     (scan_state & (leading_zero | digit_loop | finished))
 
-#define fetch()                 (count++, (*ReadProc)(ReadProcArg, 0, __GetAChar)) /*- mm 990325 -*/
-#define unfetch(c)              (*ReadProc)(ReadProcArg, c, __UngetAChar)          /*- mm 990325 -*/
-
+#define fetch()                                                                     \
+    (count++, (*ReadProc)(ReadProcArg, 0, __GetAChar))       /*- mm 990325          \
+                                                                -*/
+#define unfetch(c) (*ReadProc)(ReadProcArg, c, __UngetAChar) /*- mm 990325 -*/
 unsigned long
-__strtoul(int base, int max_width, int (*ReadProc)(void*, int, int),               /*- mm 990325 -*/
-          void* ReadProcArg,                                                       /*- mm 990325 -*/
+__strtoul(int base, int max_width,
+          int   (*ReadProc)(void*, int, int),                /*- mm 990325 -*/
+          void* ReadProcArg,                                 /*- mm 990325 -*/
           int* chars_scanned, int* negative, int* overflow)
 {
     int           scan_state = start;
     int           count = 0;
-    int           spaces = 0;                                                      /*- mm 010423 -*/
+    int           spaces = 0;                                /*- mm 010423 -*/
     unsigned long value = 0;
     unsigned long value_max = 0;
     int           c;
@@ -131,13 +131,13 @@ __strtoul(int base, int max_width, int (*ReadProc)(void*, int, int),            
     {
         switch (scan_state)
         {
-            case start :
+            case start:
 
                 if (isspace(c))
                 {
                     c = fetch();
-                    count--;                                                       /*- mm 010423 -*/
-                    spaces++;                                                      /*- mm 010423 -*/
+                    count--;                                 /*- mm 010423 -*/
+                    spaces++;                                /*- mm 010423 -*/
                     break;
                 }
 
@@ -155,7 +155,7 @@ __strtoul(int base, int max_width, int (*ReadProc)(void*, int, int),            
 
                 break;
 
-            case check_for_zero :
+            case check_for_zero:
 
                 if (base == 0 || base == 16)
                 {
@@ -173,7 +173,7 @@ __strtoul(int base, int max_width, int (*ReadProc)(void*, int, int),            
 
                 break;
 
-            case leading_zero :
+            case leading_zero:
 
                 if (c == 'X' || c == 'x')
                 {
@@ -195,8 +195,8 @@ __strtoul(int base, int max_width, int (*ReadProc)(void*, int, int),            
 
                 break;
 
-            case need_digit :
-            case digit_loop :
+            case need_digit:
+            case digit_loop:
 
                 if (base == 0)
                 {
@@ -258,7 +258,7 @@ __strtoul(int base, int max_width, int (*ReadProc)(void*, int, int),            
 
                 value += c;
 
-                scan_state = digit_loop;    /* In case we entered in state need_digit */
+                scan_state = digit_loop; /* In case we entered in state need_digit */
 
                 c = fetch();
 
@@ -280,19 +280,19 @@ __strtoul(int base, int max_width, int (*ReadProc)(void*, int, int),            
 
     return (value);
 }
-
-#ifdef __MSL_LONGLONG_SUPPORT__                                       /*- mm 970110 -*/
+#ifdef __MSL_LONGLONG_SUPPORT__                               /*- mm 970110 -*/
 unsigned long long
-__strtoull(int base, int max_width, int (*ReadProc)(void*, int, int), /*- mm 990325 -*/
-           void* ReadProcArg,                                         /*- mm 990325 -*/
+__strtoull(int base, int max_width,
+           int   (*ReadProc)(void*, int, int),                /*- mm 990325 -*/
+           void* ReadProcArg,                                 /*- mm 990325 -*/
            int* chars_scanned, int* negative, int* overflow)
 {
     int                scan_state = start;
     int                count = 0;
-    int                spaces = 0;                                    /*- mm 010423 -*/
+    int                spaces = 0;                            /*- mm 010423 -*/
     unsigned long long value = 0;
     unsigned long long value_max = 0;
-    unsigned long long ullmax = ULLONG_MAX; /*- mm 970102 -*/         /*- hh 980108 -*/
+    unsigned long long ullmax = ULLONG_MAX; /*- mm 970102 -*/ /*- hh 980108 -*/
     int                c;
 
     *negative = *overflow = 0;
@@ -308,20 +308,20 @@ __strtoull(int base, int max_width, int (*ReadProc)(void*, int, int), /*- mm 990
 
     if (base)
     {
-        value_max = ullmax / base;                                    /*- mm 970102 -*/
+        value_max = ullmax / base;                            /*- mm 970102 -*/
     }
 
     while (count <= max_width && c != EOF && !final_state(scan_state))
     {
         switch (scan_state)
         {
-            case start :
+            case start:
 
                 if (isspace(c))
                 {
                     c = fetch();
-                    count--;                                          /*- mm 010423 -*/
-                    spaces++;                                         /*- mm 010423 -*/
+                    count--;                                  /*- mm 010423 -*/
+                    spaces++;                                 /*- mm 010423 -*/
                     break;
                 }
 
@@ -340,7 +340,7 @@ __strtoull(int base, int max_width, int (*ReadProc)(void*, int, int), /*- mm 990
 
                 break;
 
-            case check_for_zero :
+            case check_for_zero:
 
                 if (base == 0 || base == 16)
                 {
@@ -358,7 +358,7 @@ __strtoull(int base, int max_width, int (*ReadProc)(void*, int, int), /*- mm 990
 
                 break;
 
-            case leading_zero :
+            case leading_zero:
 
                 if (c == 'X' || c == 'x')
                 {
@@ -380,8 +380,8 @@ __strtoull(int base, int max_width, int (*ReadProc)(void*, int, int), /*- mm 990
 
                 break;
 
-            case need_digit :
-            case digit_loop :
+            case need_digit:
+            case digit_loop:
 
                 if (base == 0)
                 {
@@ -390,7 +390,7 @@ __strtoull(int base, int max_width, int (*ReadProc)(void*, int, int), /*- mm 990
 
                 if (!value_max)
                 {
-                    value_max = ullmax / base;                        /*- mm 970102 -*/
+                    value_max = ullmax / base;                /*- mm 970102 -*/
                 }
 
                 if (isdigit(c))
@@ -436,14 +436,14 @@ __strtoull(int base, int max_width, int (*ReadProc)(void*, int, int), /*- mm 990
 
                 value *= base;
 
-                if (c > (ullmax - value))                             /*- mm 970102 -*/
+                if (c > (ullmax - value))                     /*- mm 970102 -*/
                 {
                     *overflow = 1;
                 }
 
                 value += c;
 
-                scan_state = digit_loop;                              /* In case we entered in state need_digit */
+                scan_state = digit_loop; /* In case we entered in state need_digit */
 
                 c = fetch();
 
@@ -453,20 +453,19 @@ __strtoull(int base, int max_width, int (*ReadProc)(void*, int, int), /*- mm 990
 
     if (!success(scan_state))
     {
-        count = value = *chars_scanned = 0;                           /*- mm 010504 -*/
+        count = value = *chars_scanned = 0; /*- mm 010504 -*/
     }
     else
-    {                                                                 /*- mm 010504 -*/
+    {                                       /*- mm 010504 -*/
         count--;
-        *chars_scanned = count + spaces;                              /*- mm 010423 -*/
+        *chars_scanned = count + spaces;    /*- mm 010423 -*/
     } /*- mm 010504 -*/
 
     unfetch(c);
 
     return (value);
 }
-#endif /* __MSL_LONGLONG_SUPPORT__    */                                                  /*- mm 970110 -*/
-
+#endif /* __MSL_LONGLONG_SUPPORT__    */                     /*- mm 970110 -*/
 unsigned long
 strtoul(const char* str, char** end, int base)
 {
@@ -477,7 +476,8 @@ strtoul(const char* str, char** end, int base)
     isc.NextChar = (char*)str;
     isc.NullCharDetected = 0;
 
-    value = __strtoul(base, INT_MAX, &__StringRead, (void*)&isc, &count, &negative, &overflow);
+    value = __strtoul(base, INT_MAX, &__StringRead, (void*)&isc, &count, &negative,
+                      &overflow);
 
     if (end)
     {
@@ -496,8 +496,7 @@ strtoul(const char* str, char** end, int base)
 
     return (value);
 }
-
-#ifdef __MSL_LONGLONG_SUPPORT__                                                           /*- mm 970110 -*/
+#ifdef __MSL_LONGLONG_SUPPORT__                              /*- mm 970110 -*/
 unsigned long long
 strtoull(const char* str, char** end, int base)
 {
@@ -508,7 +507,8 @@ strtoull(const char* str, char** end, int base)
     isc.NextChar = (char*)str;
     isc.NullCharDetected = 0;
 
-    value = __strtoull(base, INT_MAX, &__StringRead, (void*)&isc, &count, &negative, &overflow);
+    value = __strtoull(base, INT_MAX, &__StringRead, (void*)&isc, &count, &negative,
+                       &overflow);
 
     if (end)
     {
@@ -517,7 +517,7 @@ strtoull(const char* str, char** end, int base)
 
     if (overflow)
     {
-        value = ULLONG_MAX; /*- mm 970102 -*/                                             /*- hh 980108 -*/
+        value = ULLONG_MAX; /*- mm 970102 -*/                /*- hh 980108 -*/
         errno = ERANGE;
     }
     else if (negative)
@@ -527,8 +527,7 @@ strtoull(const char* str, char** end, int base)
 
     return (value);
 }
-#endif /*__MSL_LONGLONG_SUPPORT__*/                                                       /*- mm 970110 -*/
-
+#endif /*__MSL_LONGLONG_SUPPORT__*/                          /*- mm 970110 -*/
 long
 strtol(const char* str, char** end, int base)
 {
@@ -540,14 +539,16 @@ strtol(const char* str, char** end, int base)
     isc.NextChar = (char*)str;
     isc.NullCharDetected = 0;
 
-    uvalue = __strtoul(base, INT_MAX, &__StringRead, (void*)&isc, &count, &negative, &overflow);
+    uvalue = __strtoul(base, INT_MAX, &__StringRead, (void*)&isc, &count, &negative,
+                       &overflow);
 
     if (end)
     {
         *end = (char*)str + count;
     }
 
-    if (overflow || (!negative && uvalue > LONG_MAX) || (negative && uvalue > -LONG_MIN))
+    if (overflow || (!negative && uvalue > LONG_MAX) ||
+        (negative && uvalue > -LONG_MIN))
     {
         svalue = (negative ? -LONG_MIN : LONG_MAX);
         errno = ERANGE;
@@ -559,8 +560,7 @@ strtol(const char* str, char** end, int base)
 
     return (svalue);
 }
-
-#ifdef __MSL_LONGLONG_SUPPORT__                                                           /*- mm 970110 -*/
+#ifdef __MSL_LONGLONG_SUPPORT__                              /*- mm 970110 -*/
 long long
 strtoll(const char* str, char** end, int base)
 {
@@ -572,17 +572,20 @@ strtoll(const char* str, char** end, int base)
     isc.NextChar = (char*)str;
     isc.NullCharDetected = 0;
 
-    uvalue = __strtoull(base, INT_MAX, &__StringRead, (void*)&isc, &count, &negative, &overflow);
+    uvalue = __strtoull(base, INT_MAX, &__StringRead, (void*)&isc, &count, &negative,
+                        &overflow);
 
     if (end)
     {
         *end = (char*)str + count;
     }
 
-    if (overflow || (!negative && uvalue > LLONG_MAX) || /*- mm 970102 -*/                /*- hh 980108 -*/
-        (negative && uvalue > -LLONG_MIN)) /*- mm 970102 -*/                              /*- hh 980108 -*/
+    if (overflow || (!negative && uvalue > LLONG_MAX) ||
+        /*- mm 970102 -*/                                    /*- hh 980108 -*/
+        (negative && uvalue > -LLONG_MIN)) /*- mm 970102 -*/ /*- hh 980108 -*/
     {
-        svalue = (negative ? -LLONG_MIN : LLONG_MAX); /*- mm 970102 -*/ /*- hh 980108 -*/ /*- hh 980108 -*/
+        svalue = (negative ? -LLONG_MIN : LLONG_MAX);
+        /*- mm 970102 -*/ /*- hh 980108 -*/                  /*- hh 980108 -*/
         errno = ERANGE;
     }
     else
@@ -592,36 +595,31 @@ strtoll(const char* str, char** end, int base)
 
     return (svalue);
 }
-#endif /*__MSL_LONGLONG_SUPPORT__*/                                                       /*- mm 970110 -*/
-
+#endif /*__MSL_LONGLONG_SUPPORT__*/                          /*- mm 970110 -*/
 int
 atoi(const char* str)
 {
     return (strtol(str, NULL, 10));
 }
-
 long
 atol(const char* str)
 {
     return (strtol(str, NULL, 10));
 }
-
 /* Change record:
  * JFH 950616 First code release.
- * JFH 950727 Added code to ensure that *digits* as well as letters are within the acceptable
- *								 range for the numeric base.
- * JFH 951127 Merged relevant portions of strconv.c into this file.
- * JFH 960425 Fixed a bug where a char was pushed back into input stream at the end of
- *								 '__strtoul' after it was already converted to a binary digit.
- * mm  961220 Added code to support long long
- * mm  970102 Repaired strtoll and strtoull
- * mm  970110 Changed wrappers for msl long long support
- * mm  980720 Added support for inttypes.h
- * mm  981023 added wrappers round long long support
- * mm  981029 provided non long long support for strtoimax and strtoumax
- * mm  990325 Changes to allow use of input functions passed by pointer
- * mm  990817 Deleted include of <string_io.h
- * mm  000515 Removed definitions of strtoimax and strtoumax, now covered in cinttypes
- * mm  010423  Correction to prevent leading white space counting in field width in strtoul and strtoull
- * mm  010506 Correction to mm 010423 to make sure that in the event of failure, chars_scanned is set to zero.
+ * JFH 950727 Added code to ensure that *digits* as well as letters are within the
+ *acceptable range for the numeric base. JFH 951127 Merged relevant portions of
+ *strconv.c into this file. JFH 960425 Fixed a bug where a char was pushed back into
+ *input stream at the end of
+ *								 '__strtoul' after it was already converted to a
+ *binary digit. mm  961220 Added code to support long long mm  970102 Repaired
+ *strtoll and strtoull mm  970110 Changed wrappers for msl long long support mm
+ *980720 Added support for inttypes.h mm  981023 added wrappers round long long
+ *support mm  981029 provided non long long support for strtoimax and strtoumax mm
+ *990325 Changes to allow use of input functions passed by pointer mm  990817 Deleted
+ *include of <string_io.h mm  000515 Removed definitions of strtoimax and strtoumax,
+ *now covered in cinttypes mm  010423  Correction to prevent leading white space
+ *counting in field width in strtoul and strtoull mm  010506 Correction to mm 010423
+ *to make sure that in the event of failure, chars_scanned is set to zero.
  */

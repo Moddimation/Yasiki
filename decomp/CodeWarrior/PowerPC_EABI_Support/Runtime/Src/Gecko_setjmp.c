@@ -1,5 +1,5 @@
 #if __MWERKS__
-#    pragma ANSI_strict off
+#pragma ANSI_strict off
 #endif
 
 //	setjmp.c	-	setjmp() and longjmp() routines for Metrowerks C++ for PowerPC
@@ -71,7 +71,6 @@ void longjmp(__jmp_buf* env, int val);
 #ifdef __cplusplus
 }
 #endif
-
 //	__setjmp	-	C setjmp() routine
 //
 //	On entry R3 points to a jmp_buf struct. On exit, R3 is 0.
@@ -91,19 +90,22 @@ __setjmp(register __jmp_buf* env)
             stw RTOC,
         env->rtoc      //	save #RTOC
 #if __PPC_EABI__
-#    if __PPCe500__
+#if __PPCe500__
             la               r4,
-        env->gprs[0] evstddx r13, 0, r4 la r4, env->gprs[1] evstddx r14, 0, r4 la r4, env->gprs[2] evstddx r15, 0,
-        r4 la r4, env->gprs[3] evstddx r16, 0, r4 la r4, env->gprs[4] evstddx r17, 0, r4 la r4,
-        env->gprs[5] evstddx r18, 0, r4 la r4, env->gprs[6] evstddx r19, 0, r4 la r4, env->gprs[7] evstddx r20, 0,
-        r4 la r4, env->gprs[8] evstddx r21, 0, r4 la r4, env->gprs[9] evstddx r22, 0, r4 la r4,
-        env->gprs[10] evstddx r23, 0, r4 la r4, env->gprs[11] evstddx r24, 0, r4 la r4, env->gprs[12] evstddx r25, 0,
-        r4 la r4, env->gprs[13] evstddx r26, 0, r4 la r4, env->gprs[14] evstddx r27, 0, r4 la r4,
-        env->gprs[15] evstddx r28, 0, r4 la r4, env->gprs[16] evstddx r29, 0, r4 la r4, env->gprs[17] evstddx r30, 0,
-        r4 la r4, env->gprs[18] evstddx r31, 0,
+        env->gprs[0] evstddx r13, 0, r4 la r4, env->gprs[1] evstddx r14, 0, r4 la r4,
+        env->gprs[2] evstddx r15, 0, r4 la r4, env->gprs[3] evstddx r16, 0, r4 la r4,
+        env->gprs[4] evstddx r17, 0, r4 la r4, env->gprs[5] evstddx r18, 0, r4 la r4,
+        env->gprs[6] evstddx r19, 0, r4 la r4, env->gprs[7] evstddx r20, 0, r4 la r4,
+        env->gprs[8] evstddx r21, 0, r4 la r4, env->gprs[9] evstddx r22, 0, r4 la r4,
+        env->gprs[10] evstddx r23, 0, r4 la r4, env->gprs[11] evstddx r24, 0,
+        r4 la r4, env->gprs[12] evstddx r25, 0, r4 la r4, env->gprs[13] evstddx r26,
+        0, r4 la r4, env->gprs[14] evstddx r27, 0, r4 la r4,
+        env->gprs[15] evstddx r28, 0, r4 la r4, env->gprs[16] evstddx r29, 0,
+        r4 la r4, env->gprs[17] evstddx r30, 0, r4 la r4, env->gprs[18] evstddx r31,
+        0,
         r4
-#    else              /* __PPCe500__ */
-#        if !__option(use_lmw_stmw) || __option(little_endian)
+#else                  /* __PPCe500__ */
+#if !__option(use_lmw_stmw) || __option(little_endian)
             stw r13,
         env->gprs[0]  //	save R13
         stw r14,
@@ -142,11 +144,11 @@ __setjmp(register __jmp_buf* env)
         env->gprs[17] //	save R30
         stw r31,
         env->gprs[18] //	save R31
-#        else          /* use_lmw_stmw */
+#else                  /* use_lmw_stmw */
             stmw r13,
         env->gprs //	save R13-R31
-#        endif         /* use_lmw_stmw */
-#    endif             /* __PPCe500__ */
+#endif                 /* use_lmw_stmw */
+#endif                 /* __PPCe500__ */
 
 #else                  /* EPPC EABI */
             stmw r13,
@@ -155,7 +157,7 @@ __setjmp(register __jmp_buf* env)
 
 #ifndef _No_Floating_Point_Regs
             mffs fp0
-#    if __PPCGEKKO__
+#if __PPCGEKKO__
                 .machine gecko stfd fp14,
         env->fprs[0].d //	save FP14-FP31
             la                 r4,
@@ -229,23 +231,24 @@ __setjmp(register __jmp_buf* env)
         stfd               fp31,
         env->fprs[17].d la r4, env->fprs[17].v psq_stx fp31, 0, r4, 0,
         0
-#    else
+#else
             stfd fp14,
         env->fp14     //	save FP14-FP31
             stfd       fp15,
-        env->fp15 stfd fp16, env->fp16 stfd fp17, env->fp17 stfd fp18, env->fp18 stfd fp19, env->fp19 stfd fp20,
-        env->fp20 stfd fp21, env->fp21 stfd fp22, env->fp22 stfd fp23, env->fp23 stfd fp24, env->fp24 stfd fp25,
-        env->fp25 stfd fp26, env->fp26 stfd fp27, env->fp27 stfd fp28, env->fp28 stfd fp29, env->fp29 stfd fp30,
+        env->fp15 stfd fp16, env->fp16 stfd fp17, env->fp17 stfd fp18,
+        env->fp18 stfd fp19, env->fp19 stfd fp20, env->fp20 stfd fp21,
+        env->fp21 stfd fp22, env->fp22 stfd fp23, env->fp23 stfd fp24,
+        env->fp24 stfd fp25, env->fp25 stfd fp26, env->fp26 stfd fp27,
+        env->fp27 stfd fp28, env->fp28 stfd fp29, env->fp29 stfd fp30,
         env->fp30 stfd fp31,
         env->fp31
-#    endif             /* __PPCGEKKO__ */
+#endif                 /* __PPCGEKKO__ */
         stfd fp0,
         env->fpscr     //	save FPSCR
 #endif                 /* ndef _No_Floating_Point_Regs */
             li r3,
         0 blr
 }
-
 //	longjmp		-	C longjmp() routine
 //
 //	On entry R3 points to a jmp_buf struct and R4 contains the return value.
@@ -268,19 +271,21 @@ longjmp(register __jmp_buf* env, register int val)
             lwz RTOC,
         env->rtoc       //	restore RTOC
 #if __PPC_EABI__
-#    if __PPCe500__
+#if __PPCe500__
             la              r7,
-        env->gprs[0] evlddx r13, 0, r7 la r7, env->gprs[1] evlddx r14, 0, r7 la r7, env->gprs[2] evlddx r15, 0,
-        r7 la r7, env->gprs[3] evlddx r16, 0, r7 la r7, env->gprs[4] evlddx r17, 0, r7 la r7, env->gprs[5] evlddx r18,
-        0, r7 la r7, env->gprs[6] evlddx r19, 0, r7 la r7, env->gprs[7] evlddx r20, 0, r7 la r7,
-        env->gprs[8] evlddx r21, 0, r7 la r7, env->gprs[9] evlddx r22, 0, r7 la r7, env->gprs[10] evlddx r23, 0,
-        r7 la r7, env->gprs[11] evlddx r24, 0, r7 la r7, env->gprs[12] evlddx r25, 0, r7 la r7,
-        env->gprs[13] evlddx r26, 0, r7 la r7, env->gprs[14] evlddx r27, 0, r7 la r7, env->gprs[15] evlddx r28, 0,
-        r7 la r7, env->gprs[16] evlddx r29, 0, r7 la r7, env->gprs[17] evlddx r30, 0, r7 la r7,
+        env->gprs[0] evlddx r13, 0, r7 la r7, env->gprs[1] evlddx r14, 0, r7 la r7,
+        env->gprs[2] evlddx r15, 0, r7 la r7, env->gprs[3] evlddx r16, 0, r7 la r7,
+        env->gprs[4] evlddx r17, 0, r7 la r7, env->gprs[5] evlddx r18, 0, r7 la r7,
+        env->gprs[6] evlddx r19, 0, r7 la r7, env->gprs[7] evlddx r20, 0, r7 la r7,
+        env->gprs[8] evlddx r21, 0, r7 la r7, env->gprs[9] evlddx r22, 0, r7 la r7,
+        env->gprs[10] evlddx r23, 0, r7 la r7, env->gprs[11] evlddx r24, 0, r7 la r7,
+        env->gprs[12] evlddx r25, 0, r7 la r7, env->gprs[13] evlddx r26, 0, r7 la r7,
+        env->gprs[14] evlddx r27, 0, r7 la r7, env->gprs[15] evlddx r28, 0, r7 la r7,
+        env->gprs[16] evlddx r29, 0, r7 la r7, env->gprs[17] evlddx r30, 0, r7 la r7,
         env->gprs[18] evlddx r31, 0,
         r7
-#    else               /* __PPCe500__ */
-#        if !__option(use_lmw_stmw) || __option(little_endian)
+#else                   /* __PPCe500__ */
+#if !__option(use_lmw_stmw) || __option(little_endian)
             lwz r13,
         env->gprs[0]  //	restore R13
         lwz r14,
@@ -319,11 +324,11 @@ longjmp(register __jmp_buf* env, register int val)
         env->gprs[17] //	restore R30
         lwz r31,
         env->gprs[18] //	restore R31
-#        else           /* use_lmw_stmw */
+#else                   /* use_lmw_stmw */
             lmw r13,
         env->gprs //	restore R13-R31
-#        endif          /* use_lmw_stmw */
-#    endif              /* __PPCe500__ */
+#endif                  /* use_lmw_stmw */
+#endif                  /* __PPCe500__ */
 
 #else                   /* EPPC EABI */
             lmw r13,
@@ -331,7 +336,7 @@ longjmp(register __jmp_buf* env, register int val)
 #endif                  /* EPPC EABI */
 
 #ifndef _No_Floating_Point_Regs
-#    if __PPCGEKKO__
+#if __PPCGEKKO__
             .machine gecko lfd fp14,
         env->fprs[0].d  //	save FP14-FP31
             la                r7,
@@ -405,16 +410,18 @@ longjmp(register __jmp_buf* env, register int val)
         lfd                fp31,
         env->fprs[17].d la r7, env->fprs[17].v psq_lx fp31, 0, r7, 0,
         0
-#    else
+#else
         lfd fp14,
         env->fp14     //	restore FP14-FP31
             lfd       fp15,
-        env->fp15 lfd fp16, env->fp16 lfd fp17, env->fp17 lfd fp18, env->fp18 lfd fp19, env->fp19 lfd fp20,
-        env->fp20 lfd fp21, env->fp21 lfd fp22, env->fp22 lfd fp23, env->fp23 lfd fp24, env->fp24 lfd fp25,
-        env->fp25 lfd fp26, env->fp26 lfd fp27, env->fp27 lfd fp28, env->fp28 lfd fp29, env->fp29 lfd fp30,
+        env->fp15 lfd fp16, env->fp16 lfd fp17, env->fp17 lfd fp18,
+        env->fp18 lfd fp19, env->fp19 lfd fp20, env->fp20 lfd fp21,
+        env->fp21 lfd fp22, env->fp22 lfd fp23, env->fp23 lfd fp24,
+        env->fp24 lfd fp25, env->fp25 lfd fp26, env->fp26 lfd fp27,
+        env->fp27 lfd fp28, env->fp28 lfd fp29, env->fp29 lfd fp30,
         env->fp30 lfd fp31,
         env->fp31
-#    endif              /* __PPCGEKKO__ */
+#endif                  /* __PPCGEKKO__ */
         lfd fp0,
         env->fpscr
 #endif                  /* ndef _No_Floating_Point_Regs */
@@ -430,8 +437,7 @@ longjmp(register __jmp_buf* env, register int val)
         1               //	return 1
         blr
 }
-
-                        /*
-                            Change Record
-                         * hh  971207 Added <ansi_parms.h> header
-                        */
+/*
+    Change Record
+ * hh  971207 Added <ansi_parms.h> header
+*/

@@ -1,5 +1,6 @@
 /* Metrowerks Standard Library
- * Copyright ÃÂ¯ÃÂ½C 1995-2001 Metrowerks Corporation.  All rights reserved.
+ * Copyright ÃÂ¯ÃÂ½C 1995-2001 Metrowerks Corporation.  All rights
+ * reserved.
  *
  * $Date: 2001/03/08 20:53:33 $
  * $Revision: 1.13 $
@@ -7,16 +8,16 @@
 
 // deque.h             // hh 971206 Changed filename from deque to deque.h
 
-#ifndef _DEQUE_H                  // hh 971206 Made include guards standard
-#    define _DEQUE_H
+#ifndef _DEQUE_H              // hh 971206 Made include guards standard
+#define _DEQUE_H
 
-#    include <deque>
+#include <deque>
 
-#    ifndef _MSL_NO_CPP_NAMESPACE // hh 971206 Backward compatibility added with "using"
+#ifndef _MSL_NO_CPP_NAMESPACE // hh 971206 Backward compatibility added with "using"
 using std::deque;
-#    endif
+#endif
 
-#endif                            // _DEQUE_H
+#endif                        // _DEQUE_H
 
 // hh 971206 Changed filename from deque to deque.h
 // hh 971206 Made include guards standard

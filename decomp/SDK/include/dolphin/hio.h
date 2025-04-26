@@ -1,6 +1,6 @@
 #ifndef _DOLPHIN_HIO_H_
 
-#    include <dolphin/types.h>
+#include <dolphin/types.h>
 
 typedef void (*HIOCallback)(void);
 typedef BOOL (*HIOEnumCallback)(s32 chan);

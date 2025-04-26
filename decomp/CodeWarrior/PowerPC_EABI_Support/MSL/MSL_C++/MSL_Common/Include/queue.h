@@ -1,5 +1,6 @@
 /* Metrowerks Standard Library
- * Copyright ÃÂ¯ÃÂ½C 1995-2001 Metrowerks Corporation.  All rights reserved.
+ * Copyright ÃÂ¯ÃÂ½C 1995-2001 Metrowerks Corporation.  All rights
+ * reserved.
  *
  * $Date: 2001/03/08 20:57:03 $
  * $Revision: 1.13 $
@@ -7,17 +8,17 @@
 
 // queue.h             // hh 971207 Changed filename from queue to queue.h
 
-#ifndef _QUEUE_H                  // hh 971207 added standard include guards
-#    define _QUEUE_H
+#ifndef _QUEUE_H              // hh 971207 added standard include guards
+#define _QUEUE_H
 
-#    include <queue>
+#include <queue>
 
-#    ifndef _MSL_NO_CPP_NAMESPACE // hh 971207 Added backward compatibility
+#ifndef _MSL_NO_CPP_NAMESPACE // hh 971207 Added backward compatibility
 using std::priority_queue;
 using std::queue;
-#    endif
+#endif
 
-#endif                            // _QUEUE_H
+#endif                        // _QUEUE_H
 
 // hh 971207 Changed filename from queue to queue.h
 // hh 971207 added standard include guards

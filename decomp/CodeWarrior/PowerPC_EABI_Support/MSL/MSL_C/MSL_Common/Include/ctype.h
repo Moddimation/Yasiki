@@ -6,15 +6,15 @@
  */
 
 #ifndef _MSL_CTYPE_H
-#    define _MSL_CTYPE_H
+#define _MSL_CTYPE_H
 
-#    if __MACH__
-#        error You must have the /usr/include access path before the MSL access path
-#    else
+#if __MACH__
+#error You must have the /usr/include access path before the MSL access path
+#else
 
-#        include <cctype>
+#include <cctype>
 
-#        if defined(__cplusplus) && defined(_MSL_USING_NAMESPACE)
+#if defined(__cplusplus) && defined(_MSL_USING_NAMESPACE)
 using std::isalnum;
 using std::isalpha;
 using std::iscntrl;
@@ -29,14 +29,14 @@ using std::iswblank;
 using std::isxdigit;
 using std::tolower;
 using std::toupper;
-#        endif
+#endif
 
-#    endif /* __MACH__ */
+#endif /* __MACH__ */
 
-#endif     /* _MSL_CTYPE_H */
+#endif /* _MSL_CTYPE_H */
 
-           /* Change record:
-            * hh  971206 Created.
-            * hh  991112 Fixed using bug.
-            * JWW 001208 Added case for targeting Mach-O
-            */
+       /* Change record:
+        * hh  971206 Created.
+        * hh  991112 Fixed using bug.
+        * JWW 001208 Added case for targeting Mach-O
+        */

@@ -81,61 +81,56 @@
 OSModuleQueue __OSModuleInfoList : (OS_BASE_CACHED | 0x30C8);
 const void*   __OSStringTable : (OS_BASE_CACHED | 0x30D0);
 
-#define ENQUEUE_INFO(queue, info, link)                                                                                \
-    do {                                                                                                               \
-        OSModuleInfo* __prev;                                                                                          \
-                                                                                                                       \
-        __prev = (queue)->tail;                                                                                        \
-        if (__prev == NULL)                                                                                            \
-            (queue)->head = (info);                                                                                    \
-        else                                                                                                           \
-            __prev->link.next = (info);                                                                                \
-        (info)->link.prev = __prev;                                                                                    \
-        (info)->link.next = NULL;                                                                                      \
-        (queue)->tail = (info);                                                                                        \
-    }                                                                                                                  \
+#define ENQUEUE_INFO(queue, info, link)                                             \
+    do {                                                                            \
+        OSModuleInfo* __prev;                                                       \
+                                                                                    \
+        __prev = (queue)->tail;                                                     \
+        if (__prev == NULL)                                                         \
+            (queue)->head = (info);                                                 \
+        else                                                                        \
+            __prev->link.next = (info);                                             \
+        (info)->link.prev = __prev;                                                 \
+        (info)->link.next = NULL;                                                   \
+        (queue)->tail = (info);                                                     \
+    }                                                                               \
     while (0)
 
-#define DEQUEUE_INFO(info, queue, link)                                                                                \
-    do {                                                                                                               \
-        OSModuleInfo* __next;                                                                                          \
-        OSModuleInfo* __prev;                                                                                          \
-                                                                                                                       \
-        __next = (info)->link.next;                                                                                    \
-        __prev = (info)->link.prev;                                                                                    \
-                                                                                                                       \
-        if (__next == NULL)                                                                                            \
-            (queue)->tail = __prev;                                                                                    \
-        else                                                                                                           \
-            __next->link.prev = __prev;                                                                                \
-                                                                                                                       \
-        if (__prev == NULL)                                                                                            \
-            (queue)->head = __next;                                                                                    \
-        else                                                                                                           \
-            __prev->link.next = __next;                                                                                \
-    }                                                                                                                  \
+#define DEQUEUE_INFO(info, queue, link)                                             \
+    do {                                                                            \
+        OSModuleInfo* __next;                                                       \
+        OSModuleInfo* __prev;                                                       \
+                                                                                    \
+        __next = (info)->link.next;                                                 \
+        __prev = (info)->link.prev;                                                 \
+                                                                                    \
+        if (__next == NULL)                                                         \
+            (queue)->tail = __prev;                                                 \
+        else                                                                        \
+            __next->link.prev = __prev;                                             \
+                                                                                    \
+        if (__prev == NULL)                                                         \
+            (queue)->head = __next;                                                 \
+        else                                                                        \
+            __prev->link.next = __next;                                             \
+    }                                                                               \
     while (0)
 
 #pragma dont_inline on
-
 void
 OSNotifyLink()
 {
 }
-
 void
 OSNotifyUnlink()
 {
 }
-
 #pragma dont_inline reset
-
 void
 OSSetStringTable(const void* stringTable)
 {
     __OSStringTable = stringTable;
 }
-
 static BOOL
 Relocate(OSModuleHeader* newModule, OSModuleHeader* module)
 {
@@ -149,7 +144,8 @@ Relocate(OSModuleHeader* newModule, OSModuleHeader* module)
     u32            x;
 
     idNew = newModule ? newModule->info.id : 0;
-    for (imp = (OSImportInfo*)module->impOffset; imp < (OSImportInfo*)(module->impOffset + module->impSize); imp++)
+    for (imp = (OSImportInfo*)module->impOffset;
+         imp < (OSImportInfo*)(module->impOffset + module->impSize); imp++)
     {
         if (imp->id == idNew)
         {
@@ -174,37 +170,39 @@ Found:
         }
         switch (rel->type)
         {
-            case R_PPC_NONE : break;
-            case R_PPC_ADDR32 :
+            case R_PPC_NONE:
+                break;
+            case R_PPC_ADDR32:
                 x = offset + rel->addend;
                 *p = x;
                 break;
-            case R_PPC_ADDR24 :
+            case R_PPC_ADDR24:
                 x = offset + rel->addend;
                 *p = (*p & ~0x03fffffc) | (x & 0x03fffffc);
                 break;
-            case R_PPC_ADDR16 :
+            case R_PPC_ADDR16:
                 x = offset + rel->addend;
                 *(u16*)p = (u16)(x & 0xffff);
                 break;
-            case R_PPC_ADDR16_LO :
+            case R_PPC_ADDR16_LO:
                 x = offset + rel->addend;
                 *(u16*)p = (u16)(x & 0xffff);
                 break;
-            case R_PPC_ADDR16_HI :
+            case R_PPC_ADDR16_HI:
                 x = offset + rel->addend;
                 *(u16*)p = (u16)(((x >> 16) & 0xffff));
                 break;
-            case R_PPC_ADDR16_HA :
+            case R_PPC_ADDR16_HA:
                 x = offset + rel->addend;
                 *(u16*)p = (u16)(((x >> 16) + ((x & 0x8000) ? 1 : 0)) & 0xffff);
                 break;
-            case R_PPC_REL24 :
+            case R_PPC_REL24:
                 x = offset + rel->addend - (u32)p;
                 *p = (*p & ~0x03fffffc) | (x & 0x03fffffc);
                 break;
-            case R_DOLPHIN_NOP : break;
-            case R_DOLPHIN_SECTION :
+            case R_DOLPHIN_NOP:
+                break;
+            case R_DOLPHIN_SECTION:
                 si = &OSGetSectionInfo(module)[rel->section];
                 p = (u32*)OS_SECTIONINFO_OFFSET(si->offset);
                 if (siFlush)
@@ -215,7 +213,9 @@ Found:
                 }
                 siFlush = (si->offset & OS_SECTIONINFO_EXEC) ? si : 0;
                 break;
-            default : OSReport("OSLink: unknown relocation type %3d\n", rel->type); break;
+            default:
+                OSReport("OSLink: unknown relocation type %3d\n", rel->type);
+                break;
         }
     }
 
@@ -228,7 +228,6 @@ Found:
 
     return TRUE;
 }
-
 BOOL
 OSLink(OSModuleInfo* newModule, void* bss)
 {
@@ -263,22 +262,25 @@ OSLink(OSModuleInfo* newModule, void* bss)
         }
     }
     for (imp = (OSImportInfo*)moduleHeader->impOffset;
-         imp < (OSImportInfo*)(moduleHeader->impOffset + moduleHeader->impSize); imp++)
+         imp < (OSImportInfo*)(moduleHeader->impOffset + moduleHeader->impSize);
+         imp++)
     {
         imp->offset += (u32)moduleHeader;
     }
     if (moduleHeader->prologSection != SHN_UNDEF)
     {
-        moduleHeader->prolog += OS_SECTIONINFO_OFFSET(OSGetSectionInfo(newModule)[moduleHeader->prologSection].offset);
+        moduleHeader->prolog += OS_SECTIONINFO_OFFSET(
+            OSGetSectionInfo(newModule)[moduleHeader->prologSection].offset);
     }
     if (moduleHeader->epilogSection != SHN_UNDEF)
     {
-        moduleHeader->epilog += OS_SECTIONINFO_OFFSET(OSGetSectionInfo(newModule)[moduleHeader->epilogSection].offset);
+        moduleHeader->epilog += OS_SECTIONINFO_OFFSET(
+            OSGetSectionInfo(newModule)[moduleHeader->epilogSection].offset);
     }
     if (moduleHeader->unresolvedSection != SHN_UNDEF)
     {
-        moduleHeader->unresolved
-            += OS_SECTIONINFO_OFFSET(OSGetSectionInfo(newModule)[moduleHeader->unresolvedSection].offset);
+        moduleHeader->unresolved += OS_SECTIONINFO_OFFSET(
+            OSGetSectionInfo(newModule)[moduleHeader->unresolvedSection].offset);
     }
     if (__OSStringTable)
     {
@@ -287,7 +289,8 @@ OSLink(OSModuleInfo* newModule, void* bss)
 
     Relocate(0, moduleHeader);
 
-    for (moduleInfo = __OSModuleInfoList.head; moduleInfo; moduleInfo = moduleInfo->link.next)
+    for (moduleInfo = __OSModuleInfoList.head; moduleInfo;
+         moduleInfo = moduleInfo->link.next)
     {
         Relocate(moduleHeader, (OSModuleHeader*)moduleInfo);
         if (moduleInfo != newModule)
@@ -300,7 +303,6 @@ OSLink(OSModuleInfo* newModule, void* bss)
 
     return TRUE;
 }
-
 static BOOL
 Undo(OSModuleHeader* newModule, OSModuleHeader* module)
 {
@@ -317,7 +319,8 @@ Undo(OSModuleHeader* newModule, OSModuleHeader* module)
     idNew = newModule->info.id;
     ASSERTLINE(0x149, idNew);
 
-    for (imp = (OSImportInfo*)module->impOffset; imp < (OSImportInfo*)(module->impOffset + module->impSize); imp++)
+    for (imp = (OSImportInfo*)module->impOffset;
+         imp < (OSImportInfo*)(module->impOffset + module->impSize); imp++)
     {
         if (imp->id == idNew)
         {
@@ -336,22 +339,36 @@ Found:
         x = 0;
         switch (rel->type)
         {
-            case R_PPC_NONE      : break;
-            case R_PPC_ADDR32    : *p = x; break;
-            case R_PPC_ADDR24    : *p = (*p & ~0x03fffffc) | (x & 0x03fffffc); break;
-            case R_PPC_ADDR16    : *(u16*)p = (u16)(x & 0xffff); break;
-            case R_PPC_ADDR16_LO : *(u16*)p = (u16)(x & 0xffff); break;
-            case R_PPC_ADDR16_HI : *(u16*)p = (u16)(((x >> 16) & 0xffff)); break;
-            case R_PPC_ADDR16_HA : *(u16*)p = (u16)(((x >> 16) + ((x & 0x8000) ? 1 : 0)) & 0xffff); break;
-            case R_PPC_REL24 :
+            case R_PPC_NONE:
+                break;
+            case R_PPC_ADDR32:
+                *p = x;
+                break;
+            case R_PPC_ADDR24:
+                *p = (*p & ~0x03fffffc) | (x & 0x03fffffc);
+                break;
+            case R_PPC_ADDR16:
+                *(u16*)p = (u16)(x & 0xffff);
+                break;
+            case R_PPC_ADDR16_LO:
+                *(u16*)p = (u16)(x & 0xffff);
+                break;
+            case R_PPC_ADDR16_HI:
+                *(u16*)p = (u16)(((x >> 16) & 0xffff));
+                break;
+            case R_PPC_ADDR16_HA:
+                *(u16*)p = (u16)(((x >> 16) + ((x & 0x8000) ? 1 : 0)) & 0xffff);
+                break;
+            case R_PPC_REL24:
                 if (module->unresolvedSection != SHN_UNDEF)
                 {
                     x = (u32)module->unresolved - (u32)p;
                 }
                 *p = (*p & ~0x03fffffc) | (x & 0x03fffffc);
                 break;
-            case R_DOLPHIN_NOP : break;
-            case R_DOLPHIN_SECTION :
+            case R_DOLPHIN_NOP:
+                break;
+            case R_DOLPHIN_SECTION:
                 si = &OSGetSectionInfo(module)[rel->section];
                 p = (u32*)OS_SECTIONINFO_OFFSET(si->offset);
                 if (siFlush)
@@ -362,7 +379,9 @@ Found:
                 }
                 siFlush = (si->offset & OS_SECTIONINFO_EXEC) ? si : 0;
                 break;
-            default : OSReport("OSUnlink: unknown relocation type %3d\n", rel->type); break;
+            default:
+                OSReport("OSUnlink: unknown relocation type %3d\n", rel->type);
+                break;
         }
     }
 
@@ -375,7 +394,6 @@ Found:
 
     return TRUE;
 }
-
 BOOL
 OSUnlink(OSModuleInfo* oldModule)
 {
@@ -387,7 +405,8 @@ OSUnlink(OSModuleInfo* oldModule)
 
     DEQUEUE_INFO(oldModule, &__OSModuleInfoList, link);
 
-    for (moduleInfo = __OSModuleInfoList.head; moduleInfo; moduleInfo = moduleInfo->link.next)
+    for (moduleInfo = __OSModuleInfoList.head; moduleInfo;
+         moduleInfo = moduleInfo->link.next)
     {
         Undo(moduleHeader, (OSModuleHeader*)moduleInfo);
     }
@@ -396,7 +415,6 @@ OSUnlink(OSModuleInfo* oldModule)
 
     return TRUE;
 }
-
 void
 __OSModuleInit(void)
 {

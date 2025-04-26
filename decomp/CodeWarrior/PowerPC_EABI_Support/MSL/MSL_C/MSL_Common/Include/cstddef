@@ -6,15 +6,15 @@
  */
 
 #ifndef _MSL_CSTDDEF
-#    define _MSL_CSTDDEF
+#define _MSL_CSTDDEF
 
-#    include <ansi_parms.h>
+#include <ansi_parms.h>
 
-#    if __MACH__
-#        include <stddef.h>
-#    else
+#if __MACH__
+#include <stddef.h>
+#else
 
-#        ifndef RC_INVOKED   /*- hh 971230 -*/
+#ifndef RC_INVOKED   /*- hh 971230 -*/
 
 _MSL_BEGIN_NAMESPACE_STD     /*- cc 010409 -*/
     _MSL_BEGIN_EXTERN_C      /*- cc 010409 -*/
@@ -24,17 +24,17 @@ _MSL_BEGIN_NAMESPACE_STD     /*- cc 010409 -*/
 _MSL_END_EXTERN_C            /*- cc 010409 -*/
     _MSL_END_NAMESPACE_STD   /*- cc 010409 -*/
 
-#        endif               /* RC_INVOKED */
+#endif               /* RC_INVOKED */
 
-#        include <null.h>
-#        include <size_t.h>
-#        include <wchar_t.h> /*- vss 9903090 -*/
+#include <null.h>
+#include <size_t.h>
+#include <wchar_t.h> /*- vss 9903090 -*/
 
-#        define offsetof(type, member) ((__std(size_t)) & (((type*)0)->member))
+#define offsetof(type, member) ((__std(size_t)) & (((type*)0)->member))
 
-#    endif                   /* __MACH__ */
+#endif               /* __MACH__ */
 
-#endif                       /* _MSL_CSTDDEF */
+#endif               /* _MSL_CSTDDEF */
 
 /* Change record:
  * hh  971206 Changed filename from stddef.h to cstddef and added namespace support.

@@ -1,5 +1,6 @@
 /* Metrowerks Standard Library
- * Copyright ÃÂ¯ÃÂ½C 1995-2001 Metrowerks Corporation.  All rights reserved.
+ * Copyright ÃÂ¯ÃÂ½C 1995-2001 Metrowerks Corporation.  All rights
+ * reserved.
  *
  * $Date: 2001/07/27 20:52:05 $
  * $Revision: 1.34.4.2 $
@@ -8,61 +9,60 @@
 // string
 
 #ifndef _STRING
-#    define _STRING
+#define _STRING
 
-#    include <mslconfig>
-#    ifndef _MSL_NO_WCHART_C_SUPPORT
-#        include <cwchar>
-#    else
-#        include <cstdio>
-#    endif
-#    include <algorithm>
-#    include <cstring>
-#    include <iosfwd>
-#    include <iterator>
-#    include <limits>
-#    include <memory>
-#    include <stdexcept>
-#    ifndef _MSL_NO_REFCOUNT_STRING
-#        include <msl_mutex>
-#    endif
+#include <mslconfig>
+#ifndef _MSL_NO_WCHART_C_SUPPORT
+#include <cwchar>
+#else
+#include <cstdio>
+#endif
+#include <algorithm>
+#include <cstring>
+#include <iosfwd>
+#include <iterator>
+#include <limits>
+#include <memory>
+#include <stdexcept>
+#ifndef _MSL_NO_REFCOUNT_STRING
+#include <msl_mutex>
+#endif
 
-#    ifndef RC_INVOKED
+#ifndef RC_INVOKED
 
-#        pragma options align = native
+#pragma options align = native
 
-#        ifdef _MSL_FORCE_ENUMS_ALWAYS_INT
-#            if _MSL_FORCE_ENUMS_ALWAYS_INT
-#                pragma enumsalwaysint on
-#            else
-#                pragma enumsalwaysint off
-#            endif
-#        endif
+#ifdef _MSL_FORCE_ENUMS_ALWAYS_INT
+#if _MSL_FORCE_ENUMS_ALWAYS_INT
+#pragma enumsalwaysint on
+#else
+#pragma enumsalwaysint off
+#endif
+#endif
 
-#        ifdef _MSL_FORCE_ENABLE_BOOL_SUPPORT
-#            if _MSL_FORCE_ENABLE_BOOL_SUPPORT
-#                pragma bool on
-#            else
-#                pragma bool off
-#            endif
-#        endif
+#ifdef _MSL_FORCE_ENABLE_BOOL_SUPPORT
+#if _MSL_FORCE_ENABLE_BOOL_SUPPORT
+#pragma bool on
+#else
+#pragma bool off
+#endif
+#endif
 
-#        ifdef min
-#            undef min
-#        endif
+#ifdef min
+#undef min
+#endif
 
-#        ifdef max
-#            undef max
-#        endif
+#ifdef max
+#undef max
+#endif
 
-#        ifndef _MSL_NO_CPP_NAMESPACE
+#ifndef _MSL_NO_CPP_NAMESPACE
 namespace std
 {
-#        endif
+#endif
 
 class ios_base;
 template <class charT> class ctype;
-
 // _lib.char.traits_, character traits:
 
 template <class charT> struct char_traits
@@ -77,8 +77,8 @@ template <class charT> struct char_traits
     static bool eq(const char_type& c1, const char_type& c2);
     static bool lt(const char_type& c1, const char_type& c2);
 
-    static int              compare(const char_type* s1, const char_type* s2, size_t n);
-    static size_t           length(const char_type* s);
+    static int    compare(const char_type* s1, const char_type* s2, size_t n);
+    static size_t length(const char_type* s);
     static const char_type* find(const char_type* s, size_t n, const char_type& a);
     static char_type*       move(char_type* s1, const char_type* s2, size_t n);
     static char_type*       copy(char_type* s1, const char_type* s2, size_t n);
@@ -90,7 +90,6 @@ template <class charT> struct char_traits
     static bool      eq_int_type(const int_type& c1, const int_type& c2);
     static int_type  eof();
 };
-
 // Implementation: char_traits<charT>
 
 template <class charT>
@@ -99,21 +98,18 @@ char_traits<charT>::assign(char_type& c1, const char_type& c2)
 {
     c1 = c2;
 }
-
 template <class charT>
 inline bool
 char_traits<charT>::eq(const char_type& c1, const char_type& c2)
 {
     return c1 == c2;
 }
-
 template <class charT>
 inline bool
 char_traits<charT>::lt(const char_type& c1, const char_type& c2)
 {
     return c1 < c2;
 }
-
 template <class charT>
 int
 char_traits<charT>::compare(const char_type* s1, const char_type* s2, size_t n)
@@ -131,7 +127,6 @@ char_traits<charT>::compare(const char_type* s1, const char_type* s2, size_t n)
     }
     return 0;
 }
-
 template <class charT>
 size_t
 char_traits<charT>::length(const char_type* s)
@@ -144,7 +139,6 @@ char_traits<charT>::length(const char_type* s)
     }
     return len;
 }
-
 template <class charT>
 const typename char_traits<charT>::char_type*
 char_traits<charT>::find(const char_type* s, size_t n, const char_type& a)
@@ -166,7 +160,6 @@ char_traits<charT>::find(const char_type* s, size_t n, const char_type& a)
     }
     return p;
 }
-
 template <class charT>
 typename char_traits<charT>::char_type*
 char_traits<charT>::move(char_type* s1, const char_type* s2, size_t n)
@@ -190,7 +183,6 @@ char_traits<charT>::move(char_type* s1, const char_type* s2, size_t n)
     }
     return r;
 }
-
 template <class charT>
 inline typename char_traits<charT>::char_type*
 char_traits<charT>::copy(char_type* s1, const char_type* s2, size_t n)
@@ -202,7 +194,6 @@ char_traits<charT>::copy(char_type* s1, const char_type* s2, size_t n)
     }
     return r;
 }
-
 template <class charT>
 inline typename char_traits<charT>::char_type*
 char_traits<charT>::assign(char_type* s, size_t n, char_type a)
@@ -214,42 +205,36 @@ char_traits<charT>::assign(char_type* s, size_t n, char_type a)
     }
     return r;
 }
-
 template <class charT>
 inline typename char_traits<charT>::int_type
 char_traits<charT>::not_eof(const int_type& c)
 {
     return eq_int_type(c, eof()) ? ÃÂ¢ÃÂÃÂ¾eof() : c;
 }
-
 template <class charT>
 inline typename char_traits<charT>::char_type
 char_traits<charT>::to_char_type(const int_type& c)
 {
     return charT(c);
 }
-
 template <class charT>
 inline typename char_traits<charT>::int_type
 char_traits<charT>::to_int_type(const char_type& c)
 {
     return int_type(c);
 }
-
 template <class charT>
 inline bool
 char_traits<charT>::eq_int_type(const int_type& c1, const int_type& c2)
 {
     return c1 == c2;
 }
-
 template <class charT>
 inline typename char_traits<charT>::int_type
 char_traits<charT>::eof()
 {
     return EOF;
 }
-
 // char_traits<char>
 
 template <> struct char_traits<char>
@@ -259,94 +244,78 @@ template <> struct char_traits<char>
     typedef streamoff off_type;
     typedef streampos pos_type;
     typedef mbstate_t state_type;
-
     static void
     assign(char_type& c1, const char_type& c2)
     {
         c1 = c2;
     }
-
     static bool
     eq(const char_type& c1, const char_type& c2)
     {
         return static_cast<bool>(c1 == c2);
     }
-
     static bool
     lt(const char_type& c1, const char_type& c2)
     {
         return static_cast<bool>(c1 < c2);
     }
-
     static int
     compare(const char_type* s1, const char_type* s2, size_t n)
     {
         return memcmp(s1, s2, n);
     }
-
     static size_t
     length(const char_type* s)
     {
         return strlen(s);
     }
-
     static const char_type*
     find(const char_type* s, size_t n, const char_type& a)
     {
         return (const char*)memchr(s, to_int_type(a), n);
     }
-
     static char_type*
     move(char_type* s1, const char_type* s2, size_t n)
     {
         return (char*)memmove(s1, s2, n);
     }
-
     static char_type*
     copy(char_type* s1, const char_type* s2, size_t n)
     {
         return (char*)memcpy(s1, s2, n);
     }
-
     static char_type*
     assign(char_type* s, size_t n, char_type a)
     {
         return (char*)memset(s, to_int_type(a), n);
     }
-
     static int_type
     not_eof(const int_type& c)
     {
         return c == eof() ? ÃÂ¢ÃÂÃÂ¾eof() : c;
     }
-
     static char_type
     to_char_type(const int_type& c)
     {
         return (char)c;
     }
-
     static int_type
     to_int_type(const char_type& c)
     {
         return int_type((unsigned char)c);
     }
-
     static bool
     eq_int_type(const int_type& c1, const int_type& c2)
     {
         return static_cast<bool>(c1 == c2);
     }
-
     static int_type
     eof()
     {
         return EOF;
     }
 };
-
-#        if !defined(_MSL_NO_WCHART_CPP_SUPPORT) && !defined(_MSL_NO_WCHART_C_SUPPORT)
-
+#if !defined(_MSL_NO_WCHART_CPP_SUPPORT) && !defined(_MSL_NO_WCHART_C_SUPPORT)
 // char_traits<wchar_t>
 
 template <> struct char_traits<wchar_t>
@@ -356,109 +325,95 @@ template <> struct char_traits<wchar_t>
     typedef streamoff  off_type;
     typedef wstreampos pos_type;
     typedef mbstate_t  state_type;
-
     static void
     assign(char_type& c1, const char_type& c2)
     {
         c1 = c2;
     }
-
     static bool
     eq(const char_type& c1, const char_type& c2)
     {
         return c1 == c2;
     }
-
     static bool
     lt(const char_type& c1, const char_type& c2)
     {
         return c1 < c2;
     }
-
     static int
     compare(const char_type* s1, const char_type* s2, size_t n)
     {
         return wmemcmp(s1, s2, n);
     }
-
     static size_t
     length(const char_type* s)
     {
         return wcslen(s);
     }
-
     static const char_type*
     find(const char_type* s, size_t n, const char_type& a)
     {
         return (const wchar_t*)wmemchr(s, a, n);
     }
-
     static char_type*
     move(char_type* s1, const char_type* s2, size_t n)
     {
         return (wchar_t*)wmemmove(s1, s2, n);
     }
-
     static char_type*
     copy(char_type* s1, const char_type* s2, size_t n)
     {
         return (wchar_t*)wmemcpy(s1, s2, n);
     }
-
     static char_type*
     assign(char_type* s, size_t n, char_type a)
     {
         return (wchar_t*)wmemset(s, a, n);
     }
-
     static int_type
     not_eof(const int_type& c)
     {
         return int_type(c == eof() ? ÃÂ¢ÃÂÃÂ¾eof() : c);
     }
-
     static char_type
     to_char_type(const int_type& c)
     {
         return (wchar_t)c;
     }
-
     static int_type
     to_int_type(const char_type& c)
     {
         return c;
     }
-
     static bool
     eq_int_type(const int_type& c1, const int_type& c2)
     {
         return c1 == c2;
     }
-
     static int_type
     eof()
     {
         return WEOF;
     }
 };
-
-#        endif // !defined(_MSL_NO_WCHART_CPP_SUPPORT) && !defined(_MSL_NO_WCHART_C_SUPPORT)
-
+#endif // !defined(_MSL_NO_WCHART_CPP_SUPPORT) && !defined(_MSL_NO_WCHART_C_SUPPORT)
 // _lib.basic.string_, basic_string:
 
-template <class charT, class traits = char_traits<charT>, class Allocator = allocator<charT> > class basic_string
+template <class charT, class traits = char_traits<charT>,
+          class Allocator = allocator<charT> >
+class basic_string
 {
-#        ifndef _MSL_NO_REFCOUNT_STRING
+#ifndef _MSL_NO_REFCOUNT_STRING
     class CharArray;
-#        endif
-#        ifndef _MSL_NO_MEMBER_TEMPLATE
+#endif
+#ifndef _MSL_NO_MEMBER_TEMPLATE
     template <bool b> struct chooser
     {
     };
-#        endif
-#        ifndef _MSL_NO_REFCOUNT_STRING
+#endif
+#ifndef _MSL_NO_REFCOUNT_STRING
     typedef _MSL_REBIND(CharArray) CharArray_allocator;
-#        endif
+#endif
 
 public:
     // types:
@@ -480,27 +435,31 @@ public:
     // _lib.string.cons_ construct/copy/destroy:
     explicit basic_string(const Allocator& a = Allocator());
     basic_string(const basic_string& str);
-    basic_string(const basic_string& str, size_type pos, size_type n = npos, const Allocator& a = allocator_type());
+    basic_string(const basic_string& str, size_type pos, size_type n = npos,
+                 const Allocator& a = allocator_type());
     basic_string(const charT* s, size_type n, const Allocator& a = Allocator());
     basic_string(const charT* s, const Allocator& a = Allocator());
     basic_string(size_type n, charT c, const Allocator& a = Allocator());
-#        ifndef _MSL_NO_MEMBER_TEMPLATE
+#ifndef _MSL_NO_MEMBER_TEMPLATE
     template <class InputIterator>
-    inline basic_string(InputIterator begin, InputIterator end, const Allocator& a = Allocator())
-#            ifndef _MSL_NO_REFCOUNT_STRING
+    inline basic_string(InputIterator begin, InputIterator end,
+                        const Allocator& a = Allocator())
+#ifndef _MSL_NO_REFCOUNT_STRING
       : alloc_(CharArray_allocator(a))
-#            else
+#else
       : alloc_(a)
-#            endif
+#endif
     {
-        choose_init(begin, end, a, chooser<numeric_limits<InputIterator>::is_integer>());
+        choose_init(begin, end, a,
+                    chooser<numeric_limits<InputIterator>::is_integer>());
     }
-#        else
-    basic_string(const_iterator begin, const_iterator end, const Allocator& a = Allocator())
+#else
+    basic_string(const_iterator begin, const_iterator end,
+                 const Allocator& a = Allocator())
     {
         init(begin, end, a, random_access_iterator_tag());
     }
-#        endif
+#endif
     ÃÂ¢ÃÂÃÂ¾basic_string();
     basic_string&  operator=(const basic_string& str);
     basic_string&  operator=(const charT* s);
@@ -535,24 +494,25 @@ public:
     basic_string&          operator+=(const charT* s);
     basic_string&          operator+=(charT c);
     basic_string&          append(const basic_string& str);
-    basic_string&          append(const basic_string& str, size_type pos, size_type n);
-    basic_string&          append(const charT* s, size_type n);
-    basic_string&          append(const charT* s);
-    basic_string&          append(size_type n, charT c);
-#        ifndef _MSL_NO_MEMBER_TEMPLATE
+    basic_string& append(const basic_string& str, size_type pos, size_type n);
+    basic_string& append(const charT* s, size_type n);
+    basic_string& append(const charT* s);
+    basic_string& append(size_type n, charT c);
+#ifndef _MSL_NO_MEMBER_TEMPLATE
     template <class InputIterator>
     inline basic_string&
     append(InputIterator first, InputIterator last)
     {
-        return choose_append(first, last, chooser<numeric_limits<InputIterator>::is_integer>());
+        return choose_append(first, last,
+                             chooser<numeric_limits<InputIterator>::is_integer>());
     }
-#        else
+#else
     inline basic_string&
     append(const_iterator first, const_iterator last)
     {
         return do_append(first, last, random_access_iterator_tag());
     }
-#        endif
+#endif
     void push_back(charT c);
     void pop_back();
 
@@ -561,46 +521,49 @@ public:
     basic_string& assign(const charT* s, size_type n);
     basic_string& assign(const charT* s);
     basic_string& assign(size_type n, charT c);
-#        ifndef _MSL_NO_MEMBER_TEMPLATE
+#ifndef _MSL_NO_MEMBER_TEMPLATE
     template <class InputIterator>
     inline basic_string&
     assign(InputIterator first, InputIterator last)
     {
-        return choose_assign(first, last, chooser<numeric_limits<InputIterator>::is_integer>());
+        return choose_assign(first, last,
+                             chooser<numeric_limits<InputIterator>::is_integer>());
     }
-#        else
+#else
     inline basic_string&
     assign(const_iterator first, const_iterator last)
     {
         return do_assign(first, last, random_access_iterator_tag());
     }
-#        endif
+#endif
     basic_string& insert(size_type pos1, const basic_string& str);
-    basic_string& insert(size_type pos1, const basic_string& str, size_type pos2, size_type n);
+    basic_string& insert(size_type pos1, const basic_string& str, size_type pos2,
+                         size_type n);
     basic_string& insert(size_type pos, const charT* s, size_type n);
     basic_string& insert(size_type pos, const charT* s);
     basic_string& insert(size_type pos, size_type n, charT c);
     iterator      insert(iterator p, charT c);
     void          insert(iterator p, size_type n, charT c);
-#        ifndef _MSL_NO_MEMBER_TEMPLATE
+#ifndef _MSL_NO_MEMBER_TEMPLATE
     template <class InputIterator>
     inline void
     insert(iterator p, InputIterator first, InputIterator last)
     {
         replace(p, p, first, last);
     }
-#        else
+#else
     void
     insert(iterator p, const_iterator first, const_iterator last)
     {
         replace(p, p, first, last);
     }
-#        endif
+#endif
     basic_string& erase(size_type pos = 0, size_type n = npos);
     iterator      erase(iterator position);
     iterator      erase(iterator first, iterator last);
     basic_string& replace(size_type pos1, size_type n1, const basic_string& str);
-    basic_string& replace(size_type pos1, size_type n1, const basic_string& str, size_type pos2, size_type n2);
+    basic_string& replace(size_type pos1, size_type n1, const basic_string& str,
+                          size_type pos2, size_type n2);
     basic_string& replace(size_type pos, size_type n1, const charT* s, size_type n2);
     basic_string& replace(size_type pos, size_type n1, const charT* s);
     basic_string& replace(size_type pos, size_type n1, size_type n2, charT c);
@@ -608,7 +571,7 @@ public:
     basic_string& replace(iterator i1, iterator i2, const charT* s, size_type n);
     basic_string& replace(iterator i1, iterator i2, const charT* s);
     basic_string& replace(iterator i1, iterator i2, size_type n, charT c);
-#        ifndef _MSL_NO_MEMBER_TEMPLATE
+#ifndef _MSL_NO_MEMBER_TEMPLATE
     template <class InputIterator>
     inline basic_string&
     replace(iterator i1, iterator i2, InputIterator j1, InputIterator j2)
@@ -616,17 +579,18 @@ public:
         return choose_replace(size_type(i1 - begin()), size_type(i2 - i1), j1, j2,
                               chooser<numeric_limits<InputIterator>::is_integer>());
     }
-#        else
+#else
     basic_string&
     replace(iterator i1, iterator i2, const_iterator j1, const_iterator j2)
     {
-        return do_replace(size_type(i1 - begin()), size_type(i2 - i1), j1, j2, random_access_iterator_tag());
+        return do_replace(size_type(i1 - begin()), size_type(i2 - i1), j1, j2,
+                          random_access_iterator_tag());
     }
-#        endif
+#endif
     size_type      copy(charT* s, size_type n, size_type pos = 0) const;
     void           swap(basic_string<charT, traits, Allocator>& str);
     // _lib.string.ops_ string operations:
-    const charT*   c_str() const;                                             // explicit
+    const charT*   c_str() const;                                    // explicit
     const charT*   data() const;
     allocator_type get_allocator() const;
     size_type      find(const basic_string& str, size_type pos = 0) const;
@@ -638,60 +602,61 @@ public:
     size_type      rfind(const charT* s, size_type pos = npos) const;
     size_type      rfind(charT c, size_type pos = npos) const;
 
-    size_type    find_first_of(const basic_string& str, size_type pos = 0) const;
-    size_type    find_first_of(const charT* s, size_type pos, size_type n) const;
-    size_type    find_first_of(const charT* s, size_type pos = 0) const;
-    size_type    find_first_of(charT c, size_type pos = 0) const;
-    size_type    find_last_of(const basic_string& str, size_type pos = npos) const;
-    size_type    find_last_of(const charT* s, size_type pos, size_type n) const;
-    size_type    find_last_of(const charT* s, size_type pos = npos) const;
-    size_type    find_last_of(charT c, size_type pos = npos) const;
-    size_type    find_first_not_of(const basic_string& str, size_type pos = 0) const;
-    size_type    find_first_not_of(const charT* s, size_type pos, size_type n) const;
-    size_type    find_first_not_of(const charT* s, size_type pos = 0) const;
-    size_type    find_first_not_of(charT c, size_type pos = 0) const;
-    size_type    find_last_not_of(const basic_string& str, size_type pos = npos) const;
-    size_type    find_last_not_of(const charT* s, size_type pos, size_type n) const;
-    size_type    find_last_not_of(const charT* s, size_type pos = npos) const;
-    size_type    find_last_not_of(charT c, size_type pos = npos) const;
+    size_type find_first_of(const basic_string& str, size_type pos = 0) const;
+    size_type find_first_of(const charT* s, size_type pos, size_type n) const;
+    size_type find_first_of(const charT* s, size_type pos = 0) const;
+    size_type find_first_of(charT c, size_type pos = 0) const;
+    size_type find_last_of(const basic_string& str, size_type pos = npos) const;
+    size_type find_last_of(const charT* s, size_type pos, size_type n) const;
+    size_type find_last_of(const charT* s, size_type pos = npos) const;
+    size_type find_last_of(charT c, size_type pos = npos) const;
+    size_type find_first_not_of(const basic_string& str, size_type pos = 0) const;
+    size_type find_first_not_of(const charT* s, size_type pos, size_type n) const;
+    size_type find_first_not_of(const charT* s, size_type pos = 0) const;
+    size_type find_first_not_of(charT c, size_type pos = 0) const;
+    size_type find_last_not_of(const basic_string& str, size_type pos = npos) const;
+    size_type find_last_not_of(const charT* s, size_type pos, size_type n) const;
+    size_type find_last_not_of(const charT* s, size_type pos = npos) const;
+    size_type find_last_not_of(charT c, size_type pos = npos) const;
     basic_string substr(size_type pos = 0, size_type n = npos) const;
     int          compare(const basic_string& str) const;
-    int          compare(size_type pos1, size_type n1, const basic_string& str) const;
-    int          compare(size_type pos1, size_type n1, const basic_string& str, size_type pos2, size_type n2) const;
-    int          compare(const charT* s) const;
-    int          compare(size_type pos1, size_type n1, const charT* s) const; // hh 990126
-    int          compare(size_type pos1, size_type n1, const charT* s, size_type n2) const;
+    int compare(size_type pos1, size_type n1, const basic_string& str) const;
+    int compare(size_type pos1, size_type n1, const basic_string& str,
+                size_type pos2, size_type n2) const;
+    int compare(const charT* s) const;
+    int compare(size_type pos1, size_type n1, const charT* s) const; // hh 990126
+    int compare(size_type pos1, size_type n1, const charT* s, size_type n2) const;
 
 private:
-#        ifndef _MSL_NO_REFCOUNT_STRING
-
+#ifndef _MSL_NO_REFCOUNT_STRING
     class CharArray
     {
     public:
         typedef typename Allocator::pointer   pointer;
         typedef typename Allocator::size_type size_type;
-
-                                                                              // construct/copy/destroy:
-        CharArray() : alloc_(Allocator(), recommend(0)), refcount_(1), data_(alloc_.allocate(alloc_.m_ + 1))
+        // construct/copy/destroy:
+        CharArray()
+          : alloc_(Allocator(), recommend(0)), refcount_(1),
+            data_(alloc_.allocate(alloc_.m_ + 1))
         {
             traits::assign(*data_, charT());
             size_ = 0;
         }
-
         CharArray(const Allocator& alloc, size_type capacity = 0)
-          : alloc_(alloc, recommend(capacity)), refcount_(1), data_(alloc_.allocate(alloc_.m_ + 1))
+          : alloc_(alloc, recommend(capacity)), refcount_(1),
+            data_(alloc_.allocate(alloc_.m_ + 1))
         {
         }
-
         CharArray(const CharArray& rhs)
           : alloc_(rhs.alloc_, recommend(rhs.size_)), size_(rhs.size_), refcount_(1),
             data_(alloc_.allocate(alloc_.m_ + 1))
         {
             traits::copy(data_, rhs.data_, size_ + 1);
         }
-
-        ÃÂ¢ÃÂÃÂ¾CharArray() { alloc_.deallocate(data_, alloc_.m_ + 1); }
-
+        ÃÂ¢ÃÂÃÂ¾CharArray()
+        {
+            alloc_.deallocate(data_, alloc_.m_ + 1);
+        }
         CharArray&
         operator=(const CharArray& rhs)
         {
@@ -711,7 +676,6 @@ private:
             traits::copy(data_, rhs.data_, size_ + 1);
             return *this;
         }
-
         // capacity
         void
         reserve(size_type res_arg)
@@ -723,21 +687,21 @@ private:
             res_arg = recommend(res_arg);
             if (res_arg < alloc_.m_)
             {
-#            ifndef _MSL_NO_EXCEPTIONS
+#ifndef _MSL_NO_EXCEPTIONS
                 try
                 {
-#            endif
+#endif
                     pointer olddata = data_;
                     data_ = alloc_.allocate(res_arg + 1);
                     traits::copy(data_, olddata, size_ + 1);
                     alloc_.deallocate(olddata, alloc_.m_ + 1);
                     alloc_.m_ = res_arg;
-#            ifndef _MSL_NO_EXCEPTIONS
+#ifndef _MSL_NO_EXCEPTIONS
                 }
                 catch (...)
                 {
                 }
-#            endif
+#endif
             }
             else if (res_arg > alloc_.m_)
             {
@@ -748,26 +712,22 @@ private:
                 alloc_.m_ = res_arg;
             }
         }
-
         size_type
         capacity() const
         {
             return alloc_.m_;
         }
-
         // refcounting
         bool
         sharable() const
         {
             return static_cast<bool>(refcount_ != 0);
         }
-
         bool
         is_unique() const
         {
             return static_cast<bool>(refcount_ <= 1);
         }
-
         CharArray*
         addRef(CharArray_allocator& alloc)
         {
@@ -778,22 +738,21 @@ private:
                 return this;
             }
             CharArray* result = alloc.allocate(1);
-#            ifndef _MSL_NO_EXCEPTIONS
+#ifndef _MSL_NO_EXCEPTIONS
             try
             {
-#            endif
+#endif
                 alloc.construct(result, *this);
-#            ifndef _MSL_NO_EXCEPTIONS
+#ifndef _MSL_NO_EXCEPTIONS
             }
             catch (...)
             {
                 alloc.deallocate(result, 1);
                 throw;
             }
-#            endif
+#endif
             return result;
         }
-
         CharArray*
         removeRef()
         {
@@ -804,7 +763,6 @@ private:
             }
             return --refcount_ == 0 ? this : 0;
         }
-
         CharArray*
         makeUnique(size_type n, CharArray_allocator& alloc, bool copy = true)
         {
@@ -814,10 +772,10 @@ private:
                 return this;
             }
             CharArray* result = alloc.allocate(1);
-#            ifndef _MSL_NO_EXCEPTIONS
+#ifndef _MSL_NO_EXCEPTIONS
             try
             {
-#            endif
+#endif
                 new (result) CharArray(alloc_, n);
                 --refcount_;
                 if (copy)
@@ -825,48 +783,42 @@ private:
                     traits::copy(result->data_, data_, min(n, size_) + 1);
                     result->size_ = size_;
                 }
-#            ifndef _MSL_NO_EXCEPTIONS
+#ifndef _MSL_NO_EXCEPTIONS
             }
             catch (...)
             {
                 alloc.deallocate(result, 1);
                 throw;
             }
-#            endif
+#endif
             return result;
         }
-
         void
         markUnsharable()
         {
             refcount_ = 0;
         }
-
         void
         invalidateReferences()
         {
             refcount_ = refcount_ > 0 ? refcount_ : 1;
         }
-
         // access
         const pointer
         data() const
         {
             return data_;
         }
-
         pointer
         data()
         {
             return data_;
         }
-
         const allocator_type&
         get_allocator() const
         {
             return alloc_;
         }
-
         size_type size_;
 
     private:
@@ -874,127 +826,138 @@ private:
         size_type                             refcount_;
         pointer                               data_;
         _MSL_DECLARE_MUTEX(mutex_)
-
         static size_type
         recommend(size_type capacity)
         {
             return capacity + 3 - capacity % 4;
         }
     };
-
     _EmptyMemberOpt<CharArray_allocator, CharArray*> alloc_;
-
     pointer
     __data()
     {
         return alloc_.m_->data();
     }
-
     const_pointer
     __data() const
     {
         return alloc_.m_->data();
     }
-
-#        else                                         // _MSL_NO_REFCOUNT_STRING
+#else                                                 // _MSL_NO_REFCOUNT_STRING
 
     size_type                             size_;
     _EmptyMemberOpt<Allocator, size_type> alloc_; // m_ is capacity
     pointer                               data_;
-
     pointer
     __data()
     {
         return data_;
     }
-
     const_pointer
     __data() const
     {
         return data_;
     }
-
     static size_type
     recommend(size_type capacity)
     {
         return capacity + 3 - capacity % 4;
     }
+#endif                                                // _MSL_NO_REFCOUNT_STRING
 
-#        endif                                        // _MSL_NO_REFCOUNT_STRING
-
-#        ifndef _MSL_NO_MEMBER_TEMPLATE
-#            ifndef _MSL_MUST_INLINE_MEMBER_TEMPLATE
-
-    template <class InputIterator>
-    void choose_init(InputIterator begin, InputIterator end, const Allocator& a, chooser<true>);
+#ifndef _MSL_NO_MEMBER_TEMPLATE
+#ifndef _MSL_MUST_INLINE_MEMBER_TEMPLATE
 
     template <class InputIterator>
-    void choose_init(InputIterator begin, InputIterator end, const Allocator& a, chooser<false>);
+    void choose_init(InputIterator begin, InputIterator end, const Allocator& a,
+                     chooser<true>);
 
     template <class InputIterator>
-    void init(InputIterator begin, InputIterator end, const Allocator& a, input_iterator_tag);
+    void choose_init(InputIterator begin, InputIterator end, const Allocator& a,
+                     chooser<false>);
+
+    template <class InputIterator>
+    void init(InputIterator begin, InputIterator end, const Allocator& a,
+              input_iterator_tag);
 
     template <class ForwardIterator>
-    void init(ForwardIterator begin, ForwardIterator end, const Allocator& a, forward_iterator_tag);
-
-    template <class InputIterator> basic_string& choose_append(InputIterator first, InputIterator last, chooser<true>);
-
-    template <class InputIterator> basic_string& choose_append(InputIterator first, InputIterator last, chooser<false>);
-
-    template <class InputIterator> basic_string& do_append(InputIterator first, InputIterator last, input_iterator_tag);
-
-    template <class ForwardIterator>
-    basic_string& do_append(ForwardIterator first, ForwardIterator last, forward_iterator_tag);
-
-    template <class InputIterator> basic_string& choose_assign(InputIterator first, InputIterator last, chooser<true>);
-
-    template <class InputIterator> basic_string& choose_assign(InputIterator first, InputIterator last, chooser<false>);
-
-    template <class InputIterator> basic_string& do_assign(InputIterator first, InputIterator last, input_iterator_tag);
-
-    template <class ForwardIterator>
-    basic_string& do_assign(ForwardIterator first, ForwardIterator last, forward_iterator_tag);
+    void init(ForwardIterator begin, ForwardIterator end, const Allocator& a,
+              forward_iterator_tag);
 
     template <class InputIterator>
-    basic_string& choose_replace(size_type pos, size_type len, InputIterator first, InputIterator last, chooser<true>);
+    basic_string& choose_append(InputIterator first, InputIterator last,
+                                chooser<true>);
 
     template <class InputIterator>
-    basic_string& choose_replace(size_type pos, size_type len, InputIterator first, InputIterator last, chooser<false>);
+    basic_string& choose_append(InputIterator first, InputIterator last,
+                                chooser<false>);
 
     template <class InputIterator>
-    basic_string& do_replace(size_type pos, size_type len, InputIterator first, InputIterator last, input_iterator_tag);
+    basic_string& do_append(InputIterator first, InputIterator last,
+                            input_iterator_tag);
 
     template <class ForwardIterator>
-    basic_string& do_replace(size_type pos, size_type len, ForwardIterator first, ForwardIterator last,
-                             forward_iterator_tag);
+    basic_string& do_append(ForwardIterator first, ForwardIterator last,
+                            forward_iterator_tag);
 
-#            else                                     // _MSL_MUST_INLINE_MEMBER_TEMPLATE
+    template <class InputIterator>
+    basic_string& choose_assign(InputIterator first, InputIterator last,
+                                chooser<true>);
 
+    template <class InputIterator>
+    basic_string& choose_assign(InputIterator first, InputIterator last,
+                                chooser<false>);
+
+    template <class InputIterator>
+    basic_string& do_assign(InputIterator first, InputIterator last,
+                            input_iterator_tag);
+
+    template <class ForwardIterator>
+    basic_string& do_assign(ForwardIterator first, ForwardIterator last,
+                            forward_iterator_tag);
+
+    template <class InputIterator>
+    basic_string& choose_replace(size_type pos, size_type len, InputIterator first,
+                                 InputIterator last, chooser<true>);
+
+    template <class InputIterator>
+    basic_string& choose_replace(size_type pos, size_type len, InputIterator first,
+                                 InputIterator last, chooser<false>);
+
+    template <class InputIterator>
+    basic_string& do_replace(size_type pos, size_type len, InputIterator first,
+                             InputIterator last, input_iterator_tag);
+
+    template <class ForwardIterator>
+    basic_string& do_replace(size_type pos, size_type len, ForwardIterator first,
+                             ForwardIterator last, forward_iterator_tag);
+
+#else  // _MSL_MUST_INLINE_MEMBER_TEMPLATE
     template <class InputIterator>
     inline void
-    choose_init(InputIterator begin, InputIterator end, const Allocator& a, chooser<true>)
+    choose_init(InputIterator begin, InputIterator end, const Allocator& a,
+                chooser<true>)
     {
         init(static_cast<size_type>(begin), static_cast<charT>(end), a);
     }
-
     template <class InputIterator>
     inline void
-    choose_init(InputIterator begin, InputIterator end, const Allocator& a, chooser<false>)
+    choose_init(InputIterator begin, InputIterator end, const Allocator& a,
+                chooser<false>)
     {
         init(begin, end, a, iterator_traits<InputIterator>::iterator_category());
     }
-
-#                ifndef _MSL_NO_REFCOUNT_STRING
-
+#ifndef _MSL_NO_REFCOUNT_STRING
     template <class InputIterator>
     void
-    init(InputIterator begin, InputIterator end, const Allocator& a, input_iterator_tag)
+    init(InputIterator begin, InputIterator end, const Allocator& a,
+         input_iterator_tag)
     {
         alloc_.m_ = alloc_.allocate(1);
-#                    ifndef _MSL_NO_EXCEPTIONS
+#ifndef _MSL_NO_EXCEPTIONS
         try
         {
-#                    endif
+#endif
             new (alloc_.m_) CharArray(a);
             alloc_.m_->size_ = 0;
             traits::assign(*alloc_.m_->data(), charT());
@@ -1002,60 +965,59 @@ private:
             {
                 *this += *begin;
             }
-#                    ifndef _MSL_NO_EXCEPTIONS
+#ifndef _MSL_NO_EXCEPTIONS
         }
         catch (...)
         {
             alloc_.deallocate(alloc_.m_, 1);
             throw;
         }
-#                    endif
+#endif
     }
-
     template <class ForwardIterator>
     void
-    init(ForwardIterator begin, ForwardIterator end, const Allocator& a, forward_iterator_tag)
+    init(ForwardIterator begin, ForwardIterator end, const Allocator& a,
+         forward_iterator_tag)
     {
         size_type n = (size_type)_STD::distance(begin, end);
         alloc_.m_ = alloc_.allocate(1);
-#                    ifndef _MSL_NO_EXCEPTIONS
+#ifndef _MSL_NO_EXCEPTIONS
         try
         {
-#                    endif
+#endif
             new (alloc_.m_) CharArray(a, n);
             alloc_.m_->size_ = n;
             _STD::copy(begin, end, alloc_.m_->data());
             traits::assign(*(alloc_.m_->data() + n), charT());
-#                    ifndef _MSL_NO_EXCEPTIONS
+#ifndef _MSL_NO_EXCEPTIONS
         }
         catch (...)
         {
             alloc_.deallocate(alloc_.m_, 1);
             throw;
         }
-#                    endif
+#endif
     }
-
-#                else                                 // _MSL_NO_REFCOUNT_STRING
-
+#else  // _MSL_NO_REFCOUNT_STRING
     template <class InputIterator>
     void
-    init(InputIterator begin, InputIterator end, const Allocator&, input_iterator_tag)
+    init(InputIterator begin, InputIterator end, const Allocator&,
+         input_iterator_tag)
     {
         size_ = 0;
         alloc_.m_ = 0;
         data_ = 0;
         if (begin != end)
         {
-#                    ifndef _MSL_NO_EXCEPTIONS
+#ifndef _MSL_NO_EXCEPTIONS
             try
             {
-#                    endif
+#endif
                 for (; begin != end; ++begin)
                 {
                     *this += *begin;
                 }
-#                    ifndef _MSL_NO_EXCEPTIONS
+#ifndef _MSL_NO_EXCEPTIONS
             }
             catch (...)
             {
@@ -1065,13 +1027,13 @@ private:
                 }
                 throw;
             }
-#                    endif
+#endif
         }
     }
-
     template <class ForwardIterator>
     void
-    init(ForwardIterator begin, ForwardIterator end, const Allocator&, forward_iterator_tag)
+    init(ForwardIterator begin, ForwardIterator end, const Allocator&,
+         forward_iterator_tag)
     {
         size_ = 0;
         alloc_.m_ = 0;
@@ -1087,23 +1049,20 @@ private:
             alloc_.m_ = n;
         }
     }
-
-#                endif                                // _MSL_NO_REFCOUNT_STRING
-
+#endif // _MSL_NO_REFCOUNT_STRING
     template <class InputIterator>
     inline basic_string&
     choose_append(InputIterator first, InputIterator last, chooser<true>)
     {
         return append(static_cast<size_type>(first), static_cast<charT>(last));
     }
-
     template <class InputIterator>
     inline basic_string&
     choose_append(InputIterator first, InputIterator last, chooser<false>)
     {
-        return do_append(first, last, iterator_traits<InputIterator>::iterator_category());
+        return do_append(first, last,
+                         iterator_traits<InputIterator>::iterator_category());
     }
-
     template <class InputIterator>
     basic_string&
     do_append(InputIterator first, InputIterator last, input_iterator_tag)
@@ -1112,7 +1071,6 @@ private:
         const basic_string& tempr = temp;
         return do_append(tempr.begin(), tempr.end(), random_access_iterator_tag());
     }
-
     template <class ForwardIterator>
     basic_string&
     do_append(ForwardIterator first, ForwardIterator last, forward_iterator_tag)
@@ -1123,21 +1081,19 @@ private:
         _STD::copy(first, last, __data() + curlen);
         return *this;
     }
-
     template <class InputIterator>
     inline basic_string&
     choose_assign(InputIterator first, InputIterator last, chooser<true>)
     {
         return assign(static_cast<size_type>(first), static_cast<charT>(last));
     }
-
     template <class InputIterator>
     inline basic_string&
     choose_assign(InputIterator first, InputIterator last, chooser<false>)
     {
-        return do_assign(first, last, iterator_traits<InputIterator>::iterator_category());
+        return do_assign(first, last,
+                         iterator_traits<InputIterator>::iterator_category());
     }
-
     template <class InputIterator>
     basic_string&
     do_assign(InputIterator first, InputIterator last, input_iterator_tag)
@@ -1146,7 +1102,6 @@ private:
         const basic_string& tempr = temp;
         return do_assign(tempr.begin(), tempr.end(), random_access_iterator_tag());
     }
-
     template <class ForwardIterator>
     basic_string&
     do_assign(ForwardIterator first, ForwardIterator last, forward_iterator_tag)
@@ -1156,65 +1111,69 @@ private:
         _STD::copy(first, last, __data());
         return *this;
     }
-
     template <class InputIterator>
     inline basic_string&
-    choose_replace(size_type pos, size_type len, InputIterator first, InputIterator last, chooser<true>)
+    choose_replace(size_type pos, size_type len, InputIterator first,
+                   InputIterator last, chooser<true>)
     {
-        return replace(pos, len, static_cast<size_type>(first), static_cast<charT>(last));
+        return replace(pos, len, static_cast<size_type>(first),
+                       static_cast<charT>(last));
     }
-
     template <class InputIterator>
     inline basic_string&
-    choose_replace(size_type pos, size_type len, InputIterator first, InputIterator last, chooser<false>)
+    choose_replace(size_type pos, size_type len, InputIterator first,
+                   InputIterator last, chooser<false>)
     {
-        return do_replace(pos, len, first, last, iterator_traits<InputIterator>::iterator_category());
+        return do_replace(pos, len, first, last,
+                          iterator_traits<InputIterator>::iterator_category());
     }
-
     template <class InputIterator>
     basic_string&
-    do_replace(size_type pos, size_type len, InputIterator first, InputIterator last, input_iterator_tag)
+    do_replace(size_type pos, size_type len, InputIterator first, InputIterator last,
+               input_iterator_tag)
     {
         basic_string        temp(first, last, get_allocator());
         const basic_string& tempr = temp;
-        return do_replace(pos, len, tempr.begin(), tempr.end(), random_access_iterator_tag());
+        return do_replace(pos, len, tempr.begin(), tempr.end(),
+                          random_access_iterator_tag());
     }
-
     template <class ForwardIterator>
     basic_string&
-    do_replace(size_type pos, size_type len, ForwardIterator first, ForwardIterator last, forward_iterator_tag)
+    do_replace(size_type pos, size_type len, ForwardIterator first,
+               ForwardIterator last, forward_iterator_tag)
     {
         if (pos > size())
-#                ifndef _MSL_NO_EXCEPTIONS
+#ifndef _MSL_NO_EXCEPTIONS
             throw out_of_range("basic_string::replace pos out of range");
-#                else
+#else
             __msl_error("basic_string::replace pos out of range\n");
-#                endif
+#endif
         size_type xlen = min(len, size() - pos);
         size_type rlen = (size_type)_STD::distance(first, last);
         if (rlen > max_size() || size() - xlen > max_size() - rlen)
-#                ifndef _MSL_NO_EXCEPTIONS
+#ifndef _MSL_NO_EXCEPTIONS
             throw length_error("basic_string::replace length error");
-#                else
+#else
             __msl_error("basic_string::replace length error\n");
-#                endif
+#endif
         size_type nlen = size() - xlen + rlen;
-#                ifndef _MSL_NO_REFCOUNT_STRING
+#ifndef _MSL_NO_REFCOUNT_STRING
         if (!alloc_.m_->is_unique() || nlen > capacity())
-#                else
+#else
         if (nlen > capacity())
-#                endif
+#endif
         { // must do with copy
-#                ifndef _MSL_NO_REFCOUNT_STRING
+#ifndef _MSL_NO_REFCOUNT_STRING
             CharArray* temp = alloc_.allocate(1);
-#                    ifndef _MSL_NO_EXCEPTIONS
+#ifndef _MSL_NO_EXCEPTIONS
             try
             {
-#                    endif
+#endif
                 new (temp) CharArray(alloc_.m_->get_allocator(), nlen);
                 traits::copy(temp->data(), alloc_.m_->data(), pos);
                 _STD::copy(first, last, temp->data() + pos);
-                traits::copy(temp->data() + pos + rlen, alloc_.m_->data() + pos + xlen, size() - (pos + xlen));
+                traits::copy(temp->data() + pos + rlen,
+                             alloc_.m_->data() + pos + xlen, size() - (pos + xlen));
                 traits::assign(*(temp->data() + nlen), charT());
                 temp->size_ = nlen;
                 alloc_.m_ = alloc_.m_->removeRef();
@@ -1224,15 +1183,15 @@ private:
                     alloc_.deallocate(alloc_.m_, 1);
                 }
                 alloc_.m_ = temp;
-#                    ifndef _MSL_NO_EXCEPTIONS
+#ifndef _MSL_NO_EXCEPTIONS
             }
             catch (...)
             {
                 alloc_.deallocate(temp, 1);
                 throw;
             }
-#                    endif
-#                else                                 // _MSL_NO_REFCOUNT_STRING
+#endif
+#else  // _MSL_NO_REFCOUNT_STRING
             pointer temp = alloc_.allocate(recommend(nlen) + 1);
             if (data_ != 0)
             {
@@ -1241,7 +1200,8 @@ private:
             _STD::copy(first, last, temp + pos);
             if (data_ != 0)
             {
-                traits::copy(temp + pos + rlen, data_ + pos + xlen, size() - (pos + xlen));
+                traits::copy(temp + pos + rlen, data_ + pos + xlen,
+                             size() - (pos + xlen));
             }
             traits::assign(*(temp + nlen), charT());
             if (data_ != 0)
@@ -1251,63 +1211,77 @@ private:
             data_ = temp;
             alloc_.m_ = recommend(nlen);
             size_ = nlen;
-#                endif                                // _MSL_NO_REFCOUNT_STRING
+#endif // _MSL_NO_REFCOUNT_STRING
         }
         else
         { // must do inplace
-#                ifndef _MSL_NO_REFCOUNT_STRING
-            traits::move(alloc_.m_->data() + pos + rlen, alloc_.m_->data() + pos + xlen, size() - (pos + xlen));
+#ifndef _MSL_NO_REFCOUNT_STRING
+            traits::move(alloc_.m_->data() + pos + rlen,
+                         alloc_.m_->data() + pos + xlen, size() - (pos + xlen));
             _STD::copy(first, last, alloc_.m_->data() + pos);
             traits::assign(*(alloc_.m_->data() + nlen), charT());
             alloc_.m_->size_ = nlen;
-#                else                                 // _MSL_NO_REFCOUNT_STRING
+#else  // _MSL_NO_REFCOUNT_STRING
             if (data_ != 0)
             {
-                traits::move(data_ + pos + rlen, data_ + pos + xlen, size() - (pos + xlen));
+                traits::move(data_ + pos + rlen, data_ + pos + xlen,
+                             size() - (pos + xlen));
                 _STD::copy(first, last, data_ + pos);
                 traits::assign(*(data_ + nlen), charT());
                 size_ = nlen;
             }
-#                endif                                // _MSL_NO_REFCOUNT_STRING
+#endif // _MSL_NO_REFCOUNT_STRING
         }
         return *this;
     }
+#endif // _MSL_MUST_INLINE_MEMBER_TEMPLATE
+#endif // _MSL_NO_MEMBER_TEMPLATE
 
-#            endif                                    // _MSL_MUST_INLINE_MEMBER_TEMPLATE
-#        endif                                        // _MSL_NO_MEMBER_TEMPLATE
-
-    void          init(pointer begin, pointer end, const Allocator& a, random_access_iterator_tag); // hh 990826
-    void          init(const_pointer begin, const_pointer end, const Allocator& a, random_access_iterator_tag);
+    void          init(pointer begin, pointer end, const Allocator& a,
+                       random_access_iterator_tag);       // hh 990826
+    void          init(const_pointer begin, const_pointer end, const Allocator& a,
+                       random_access_iterator_tag);
     void          init(size_type n, charT c, const Allocator& a);
-    basic_string& do_append(const_pointer first, const_pointer last, random_access_iterator_tag);
-    basic_string& do_append(pointer first, pointer last, random_access_iterator_tag);               // hh 991102
-    basic_string& do_assign(const_pointer first, const_pointer last, random_access_iterator_tag);
-    basic_string& do_assign(pointer first, pointer last, random_access_iterator_tag);               // hh 991102
-    basic_string& do_replace(size_type pos, size_type len, const_pointer first, const_pointer last,
-                             random_access_iterator_tag);
-    basic_string& do_replace(size_type pos, size_type len, pointer first, pointer last,
-                             random_access_iterator_tag);                                           // hh 991102
+    basic_string& do_append(const_pointer first, const_pointer last,
+                            random_access_iterator_tag);
+    basic_string& do_append(pointer first, pointer last,
+                            random_access_iterator_tag);  // hh 991102
+    basic_string& do_assign(const_pointer first, const_pointer last,
+                            random_access_iterator_tag);
+    basic_string& do_assign(pointer first, pointer last,
+                            random_access_iterator_tag);  // hh 991102
+    basic_string& do_replace(size_type pos, size_type len, const_pointer first,
+                             const_pointer last, random_access_iterator_tag);
+    basic_string& do_replace(size_type pos, size_type len, pointer first,
+                             pointer last,
+                             random_access_iterator_tag); // hh 991102
     void          change_size(size_type n, bool copy = true);
 };
 
 template <class charT, class traits, class Allocator>
-basic_string<charT, traits, Allocator> operator+(const basic_string<charT, traits, Allocator>& lhs,
-                                                 const basic_string<charT, traits, Allocator>& rhs);
+basic_string<charT, traits, Allocator> operator+(
+    const basic_string<charT, traits, Allocator>& lhs,
+    const basic_string<charT, traits, Allocator>& rhs);
 
 template <class charT, class traits, class Allocator>
-basic_string<charT, traits, Allocator> operator+(const charT* lhs, const basic_string<charT, traits, Allocator>& rhs);
+basic_string<charT, traits, Allocator> operator+(
+    const charT* lhs, const basic_string<charT, traits, Allocator>& rhs);
 
 template <class charT, class traits, class Allocator>
-basic_string<charT, traits, Allocator> operator+(charT lhs, const basic_string<charT, traits, Allocator>& rhs);
+basic_string<charT, traits, Allocator> operator+(
+    charT lhs, const basic_string<charT, traits, Allocator>& rhs);
 
 template <class charT, class traits, class Allocator>
-basic_string<charT, traits, Allocator> operator+(const basic_string<charT, traits, Allocator>& lhs, const charT* rhs);
+basic_string<charT, traits, Allocator> operator+(
+    const basic_string<charT, traits, Allocator>& lhs, const charT* rhs);
 
 template <class charT, class traits, class Allocator>
-basic_string<charT, traits, Allocator> operator+(const basic_string<charT, traits, Allocator>& lhs, charT rhs);
+basic_string<charT, traits, Allocator> operator+(
+    const basic_string<charT, traits, Allocator>& lhs, charT rhs);
 
 template <class charT, class traits, class Allocator>
-bool operator==(const basic_string<charT, traits, Allocator>& lhs, const basic_string<charT, traits, Allocator>& rhs);
+bool operator==(const basic_string<charT, traits, Allocator>& lhs,
+                const basic_string<charT, traits, Allocator>& rhs);
 
 template <class charT, class traits, class Allocator>
 bool operator==(const charT* lhs, const basic_string<charT, traits, Allocator>& rhs);
@@ -1316,7 +1290,8 @@ template <class charT, class traits, class Allocator>
 bool operator==(const basic_string<charT, traits, Allocator>& lhs, const charT* rhs);
 
 template <class charT, class traits, class Allocator>
-bool operator!=(const basic_string<charT, traits, Allocator>& lhs, const basic_string<charT, traits, Allocator>& rhs);
+bool operator!=(const basic_string<charT, traits, Allocator>& lhs,
+                const basic_string<charT, traits, Allocator>& rhs);
 
 template <class charT, class traits, class Allocator>
 bool operator!=(const charT* lhs, const basic_string<charT, traits, Allocator>& rhs);
@@ -1325,7 +1300,8 @@ template <class charT, class traits, class Allocator>
 bool operator!=(const basic_string<charT, traits, Allocator>& lhs, const charT* rhs);
 
 template <class charT, class traits, class Allocator>
-bool operator<(const basic_string<charT, traits, Allocator>& lhs, const basic_string<charT, traits, Allocator>& rhs);
+bool operator<(const basic_string<charT, traits, Allocator>& lhs,
+               const basic_string<charT, traits, Allocator>& rhs);
 
 template <class charT, class traits, class Allocator>
 bool operator<(const basic_string<charT, traits, Allocator>& lhs, const charT* rhs);
@@ -1334,7 +1310,8 @@ template <class charT, class traits, class Allocator>
 bool operator<(const charT* lhs, const basic_string<charT, traits, Allocator>& rhs);
 
 template <class charT, class traits, class Allocator>
-bool operator>(const basic_string<charT, traits, Allocator>& lhs, const basic_string<charT, traits, Allocator>& rhs);
+bool operator>(const basic_string<charT, traits, Allocator>& lhs,
+               const basic_string<charT, traits, Allocator>& rhs);
 
 template <class charT, class traits, class Allocator>
 bool operator>(const basic_string<charT, traits, Allocator>& lhs, const charT* rhs);
@@ -1343,7 +1320,8 @@ template <class charT, class traits, class Allocator>
 bool operator>(const charT* lhs, const basic_string<charT, traits, Allocator>& rhs);
 
 template <class charT, class traits, class Allocator>
-bool operator<=(const basic_string<charT, traits, Allocator>& lhs, const basic_string<charT, traits, Allocator>& rhs);
+bool operator<=(const basic_string<charT, traits, Allocator>& lhs,
+                const basic_string<charT, traits, Allocator>& rhs);
 
 template <class charT, class traits, class Allocator>
 bool operator<=(const basic_string<charT, traits, Allocator>& lhs, const charT* rhs);
@@ -1352,7 +1330,8 @@ template <class charT, class traits, class Allocator>
 bool operator<=(const charT* lhs, const basic_string<charT, traits, Allocator>& rhs);
 
 template <class charT, class traits, class Allocator>
-bool operator>=(const basic_string<charT, traits, Allocator>& lhs, const basic_string<charT, traits, Allocator>& rhs);
+bool operator>=(const basic_string<charT, traits, Allocator>& lhs,
+                const basic_string<charT, traits, Allocator>& rhs);
 
 template <class charT, class traits, class Allocator>
 bool operator>=(const basic_string<charT, traits, Allocator>& lhs, const charT* rhs);
@@ -1362,55 +1341,59 @@ bool operator>=(const charT* lhs, const basic_string<charT, traits, Allocator>& 
 
 // _lib.string.special_:
 template <class charT, class traits, class Allocator>
-void swap(basic_string<charT, traits, Allocator>& lhs, basic_string<charT, traits, Allocator>& rhs);
+void swap(basic_string<charT, traits, Allocator>& lhs,
+          basic_string<charT, traits, Allocator>& rhs);
 
-#        ifndef _MSL_NO_IO
-
-template <class charT, class traits, class Allocator>
-basic_istream<charT, traits>& operator>>(basic_istream<charT, traits>& is, basic_string<charT, traits, Allocator>& str);
+#ifndef _MSL_NO_IO
 
 template <class charT, class traits, class Allocator>
-basic_ostream<charT, traits>& operator<<(basic_ostream<charT, traits>&                 os,
-                                         const basic_string<charT, traits, Allocator>& str);
+basic_istream<charT, traits>& operator>>(
+    basic_istream<charT, traits>& is, basic_string<charT, traits, Allocator>& str);
 
-#        endif // _MSL_NO_IO
+template <class charT, class traits, class Allocator>
+basic_ostream<charT, traits>& operator<<(
+    basic_ostream<charT, traits>&                 os,
+    const basic_string<charT, traits, Allocator>& str);
+
+#endif // _MSL_NO_IO
 
 // Implementation
 
-#        ifndef _MSL_NO_MEMBER_TEMPLATE
-#            ifndef _MSL_MUST_INLINE_MEMBER_TEMPLATE
-
+#ifndef _MSL_NO_MEMBER_TEMPLATE
+#ifndef _MSL_MUST_INLINE_MEMBER_TEMPLATE
 template <class charT, class traits, class Allocator>
 template <class InputIterator>
 inline void
-basic_string<charT, traits, Allocator>::choose_init(InputIterator begin, InputIterator end, const Allocator& a,
+basic_string<charT, traits, Allocator>::choose_init(InputIterator    begin,
+                                                    InputIterator    end,
+                                                    const Allocator& a,
                                                     chooser<true>)
 {
     init(static_cast<size_type>(begin), static_cast<charT>(end), a);
 }
-
 template <class charT, class traits, class Allocator>
 template <class InputIterator>
 inline void
-basic_string<charT, traits, Allocator>::choose_init(InputIterator begin, InputIterator end, const Allocator& a,
+basic_string<charT, traits, Allocator>::choose_init(InputIterator    begin,
+                                                    InputIterator    end,
+                                                    const Allocator& a,
                                                     chooser<false>)
 {
-    init(begin, end, a, typename iterator_traits<InputIterator>::iterator_category());
+    init(begin, end, a,
+         typename iterator_traits<InputIterator>::iterator_category());
 }
-
-#                ifndef _MSL_NO_REFCOUNT_STRING
-
+#ifndef _MSL_NO_REFCOUNT_STRING
 template <class charT, class traits, class Allocator>
 template <class InputIterator>
 void
-basic_string<charT, traits, Allocator>::init(InputIterator begin, InputIterator end, const Allocator& a,
-                                             input_iterator_tag)
+basic_string<charT, traits, Allocator>::init(InputIterator begin, InputIterator end,
+                                             const Allocator& a, input_iterator_tag)
 {
     alloc_.m_ = alloc_.allocate(1);
-#                    ifndef _MSL_NO_EXCEPTIONS
+#ifndef _MSL_NO_EXCEPTIONS
     try
     {
-#                    endif
+#endif
         new (alloc_.m_) CharArray(a);
         alloc_.m_->size_ = 0;
         traits::assign(*alloc_.m_->data(), charT());
@@ -1418,64 +1401,62 @@ basic_string<charT, traits, Allocator>::init(InputIterator begin, InputIterator 
         {
             *this += *begin;
         }
-#                    ifndef _MSL_NO_EXCEPTIONS
+#ifndef _MSL_NO_EXCEPTIONS
     }
     catch (...)
     {
         alloc_.deallocate(alloc_.m_, 1);
         throw;
     }
-#                    endif
+#endif
 }
-
 template <class charT, class traits, class Allocator>
 template <class ForwardIterator>
 void
-basic_string<charT, traits, Allocator>::init(ForwardIterator begin, ForwardIterator end, const Allocator& a,
+basic_string<charT, traits, Allocator>::init(ForwardIterator begin,
+                                             ForwardIterator end, const Allocator& a,
                                              forward_iterator_tag)
 {
     size_type n = (size_type)_STD::distance(begin, end);
     alloc_.m_ = alloc_.allocate(1);
-#                    ifndef _MSL_NO_EXCEPTIONS
+#ifndef _MSL_NO_EXCEPTIONS
     try
     {
-#                    endif
+#endif
         new (alloc_.m_) CharArray(a, n);
         alloc_.m_->size_ = n;
         _STD::copy(begin, end, alloc_.m_->data());
         traits::assign(*(alloc_.m_->data() + n), charT());
-#                    ifndef _MSL_NO_EXCEPTIONS
+#ifndef _MSL_NO_EXCEPTIONS
     }
     catch (...)
     {
         alloc_.deallocate(alloc_.m_, 1);
         throw;
     }
-#                    endif
+#endif
 }
-
-#                else  // _MSL_NO_REFCOUNT_STRING
-
+#else  // _MSL_NO_REFCOUNT_STRING
 template <class charT, class traits, class Allocator>
 template <class InputIterator>
 void
-basic_string<charT, traits, Allocator>::init(InputIterator begin, InputIterator end, const Allocator&,
-                                             input_iterator_tag)
+basic_string<charT, traits, Allocator>::init(InputIterator begin, InputIterator end,
+                                             const Allocator&, input_iterator_tag)
 {
     size_ = 0;
     alloc_.m_ = 0;
     data_ = 0;
     if (begin != end)
     {
-#                    ifndef _MSL_NO_EXCEPTIONS
+#ifndef _MSL_NO_EXCEPTIONS
         try
         {
-#                    endif
+#endif
             for (; begin != end; ++begin)
             {
                 *this += *begin;
             }
-#                    ifndef _MSL_NO_EXCEPTIONS
+#ifndef _MSL_NO_EXCEPTIONS
         }
         catch (...)
         {
@@ -1485,14 +1466,14 @@ basic_string<charT, traits, Allocator>::init(InputIterator begin, InputIterator 
             }
             throw;
         }
-#                    endif
+#endif
     }
 }
-
 template <class charT, class traits, class Allocator>
 template <class ForwardIterator>
 void
-basic_string<charT, traits, Allocator>::init(ForwardIterator begin, ForwardIterator end, const Allocator&,
+basic_string<charT, traits, Allocator>::init(ForwardIterator begin,
+                                             ForwardIterator end, const Allocator&,
                                              forward_iterator_tag)
 {
     size_ = 0;
@@ -1509,39 +1490,43 @@ basic_string<charT, traits, Allocator>::init(ForwardIterator begin, ForwardItera
         alloc_.m_ = n;
     }
 }
-
-#                endif // _MSL_NO_REFCOUNT_STRING
-
+#endif // _MSL_NO_REFCOUNT_STRING
 template <class charT, class traits, class Allocator>
 template <class InputIterator>
 inline basic_string<charT, traits, Allocator>&
-basic_string<charT, traits, Allocator>::choose_append(InputIterator first, InputIterator last, chooser<true>)
+basic_string<charT, traits, Allocator>::choose_append(InputIterator first,
+                                                      InputIterator last,
+                                                      chooser<true>)
 {
     return append(static_cast<size_type>(first), static_cast<charT>(last));
 }
-
 template <class charT, class traits, class Allocator>
 template <class InputIterator>
 inline basic_string<charT, traits, Allocator>&
-basic_string<charT, traits, Allocator>::choose_append(InputIterator first, InputIterator last, chooser<false>)
+basic_string<charT, traits, Allocator>::choose_append(InputIterator first,
+                                                      InputIterator last,
+                                                      chooser<false>)
 {
-    return do_append(first, last, iterator_traits<InputIterator>::iterator_category());
+    return do_append(first, last,
+                     iterator_traits<InputIterator>::iterator_category());
 }
-
 template <class charT, class traits, class Allocator>
 template <class InputIterator>
 basic_string<charT, traits, Allocator>&
-basic_string<charT, traits, Allocator>::do_append(InputIterator first, InputIterator last, input_iterator_tag)
+basic_string<charT, traits, Allocator>::do_append(InputIterator first,
+                                                  InputIterator last,
+                                                  input_iterator_tag)
 {
     basic_string        temp(first, last, get_allocator());
     const basic_string& tempr = temp;
     return do_append(tempr.begin(), tempr.end(), random_access_iterator_tag());
 }
-
 template <class charT, class traits, class Allocator>
 template <class ForwardIterator>
 basic_string<charT, traits, Allocator>&
-basic_string<charT, traits, Allocator>::do_append(ForwardIterator first, ForwardIterator last, forward_iterator_tag)
+basic_string<charT, traits, Allocator>::do_append(ForwardIterator first,
+                                                  ForwardIterator last,
+                                                  forward_iterator_tag)
 {
     size_type rlen = (size_type)_STD::distance(first, last);
     size_type curlen = size();
@@ -1549,110 +1534,123 @@ basic_string<charT, traits, Allocator>::do_append(ForwardIterator first, Forward
     _STD::copy(first, last, __data() + curlen);
     return *this;
 }
-
 template <class charT, class traits, class Allocator>
 template <class InputIterator>
 inline basic_string<charT, traits, Allocator>&
-basic_string<charT, traits, Allocator>::choose_assign(InputIterator first, InputIterator last, chooser<true>)
+basic_string<charT, traits, Allocator>::choose_assign(InputIterator first,
+                                                      InputIterator last,
+                                                      chooser<true>)
 {
     return assign(static_cast<size_type>(first), static_cast<charT>(last));
 }
-
 template <class charT, class traits, class Allocator>
 template <class InputIterator>
 inline basic_string<charT, traits, Allocator>&
-basic_string<charT, traits, Allocator>::choose_assign(InputIterator first, InputIterator last, chooser<false>)
+basic_string<charT, traits, Allocator>::choose_assign(InputIterator first,
+                                                      InputIterator last,
+                                                      chooser<false>)
 {
-    return do_assign(first, last, iterator_traits<InputIterator>::iterator_category());
+    return do_assign(first, last,
+                     iterator_traits<InputIterator>::iterator_category());
 }
-
 template <class charT, class traits, class Allocator>
 template <class InputIterator>
 basic_string<charT, traits, Allocator>&
-basic_string<charT, traits, Allocator>::do_assign(InputIterator first, InputIterator last, input_iterator_tag)
+basic_string<charT, traits, Allocator>::do_assign(InputIterator first,
+                                                  InputIterator last,
+                                                  input_iterator_tag)
 {
     basic_string        temp(first, last, get_allocator());
     const basic_string& tempr = temp;
     return do_assign(tempr.begin(), tempr.end(), random_access_iterator_tag());
 }
-
 template <class charT, class traits, class Allocator>
 template <class ForwardIterator>
 basic_string<charT, traits, Allocator>&
-basic_string<charT, traits, Allocator>::do_assign(ForwardIterator first, ForwardIterator last, forward_iterator_tag)
+basic_string<charT, traits, Allocator>::do_assign(ForwardIterator first,
+                                                  ForwardIterator last,
+                                                  forward_iterator_tag)
 {
     size_type rlen = (size_type)_STD::distance(first, last);
     change_size(rlen, false);
     _STD::copy(first, last, __data());
     return *this;
 }
-
 template <class charT, class traits, class Allocator>
 template <class InputIterator>
 inline basic_string<charT, traits, Allocator>&
-basic_string<charT, traits, Allocator>::choose_replace(size_type pos, size_type len, InputIterator first,
-                                                       InputIterator last, chooser<true>)
+basic_string<charT, traits, Allocator>::choose_replace(size_type pos, size_type len,
+                                                       InputIterator first,
+                                                       InputIterator last,
+                                                       chooser<true>)
 {
-    return replace(pos, len, static_cast<size_type>(first), static_cast<charT>(last));
+    return replace(pos, len, static_cast<size_type>(first),
+                   static_cast<charT>(last));
 }
-
 template <class charT, class traits, class Allocator>
 template <class InputIterator>
 inline basic_string<charT, traits, Allocator>&
-basic_string<charT, traits, Allocator>::choose_replace(size_type pos, size_type len, InputIterator first,
-                                                       InputIterator last, chooser<false>)
+basic_string<charT, traits, Allocator>::choose_replace(size_type pos, size_type len,
+                                                       InputIterator first,
+                                                       InputIterator last,
+                                                       chooser<false>)
 {
-    return do_replace(pos, len, first, last, iterator_traits<InputIterator>::iterator_category());
+    return do_replace(pos, len, first, last,
+                      iterator_traits<InputIterator>::iterator_category());
 }
-
 template <class charT, class traits, class Allocator>
 template <class InputIterator>
 basic_string<charT, traits, Allocator>&
-basic_string<charT, traits, Allocator>::do_replace(size_type pos, size_type len, InputIterator first,
-                                                   InputIterator last, input_iterator_tag)
+basic_string<charT, traits, Allocator>::do_replace(size_type pos, size_type len,
+                                                   InputIterator first,
+                                                   InputIterator last,
+                                                   input_iterator_tag)
 {
     basic_string        temp(first, last, get_allocator());
     const basic_string& tempr = temp;
-    return do_replace(pos, len, tempr.begin(), tempr.end(), random_access_iterator_tag());
+    return do_replace(pos, len, tempr.begin(), tempr.end(),
+                      random_access_iterator_tag());
 }
-
 template <class charT, class traits, class Allocator>
 template <class ForwardIterator>
 basic_string<charT, traits, Allocator>&
-basic_string<charT, traits, Allocator>::do_replace(size_type pos, size_type len, ForwardIterator first,
-                                                   ForwardIterator last, forward_iterator_tag)
+basic_string<charT, traits, Allocator>::do_replace(size_type pos, size_type len,
+                                                   ForwardIterator first,
+                                                   ForwardIterator last,
+                                                   forward_iterator_tag)
 {
     if (pos > size())
-#                ifndef _MSL_NO_EXCEPTIONS
+#ifndef _MSL_NO_EXCEPTIONS
         throw out_of_range("basic_string::replace pos out of range");
-#                else
+#else
         __msl_error("basic_string::replace pos out of range\n");
-#                endif
+#endif
     size_type xlen = min(len, size() - pos);
     size_type rlen = (size_type)_STD::distance(first, last);
     if (rlen > max_size() || size() - xlen > max_size() - rlen)
-#                ifndef _MSL_NO_EXCEPTIONS
+#ifndef _MSL_NO_EXCEPTIONS
         throw length_error("basic_string::replace length error");
-#                else
+#else
         __msl_error("basic_string::replace length error\n");
-#                endif
+#endif
     size_type nlen = size() - xlen + rlen;
-#                ifndef _MSL_NO_REFCOUNT_STRING
+#ifndef _MSL_NO_REFCOUNT_STRING
     if (!alloc_.m_->is_unique() || nlen > capacity())
-#                else
+#else
     if (nlen > capacity())
-#                endif
-    {                  // must do with copy
-#                ifndef _MSL_NO_REFCOUNT_STRING
+#endif
+    {  // must do with copy
+#ifndef _MSL_NO_REFCOUNT_STRING
         CharArray* temp = alloc_.allocate(1);
-#                    ifndef _MSL_NO_EXCEPTIONS
+#ifndef _MSL_NO_EXCEPTIONS
         try
         {
-#                    endif
+#endif
             new (temp) CharArray(alloc_.m_->get_allocator(), nlen);
             traits::copy(temp->data(), alloc_.m_->data(), pos);
             _STD::copy(first, last, temp->data() + pos);
-            traits::copy(temp->data() + pos + rlen, alloc_.m_->data() + pos + xlen, size() - (pos + xlen));
+            traits::copy(temp->data() + pos + rlen, alloc_.m_->data() + pos + xlen,
+                         size() - (pos + xlen));
             traits::assign(*(temp->data() + nlen), charT());
             temp->size_ = nlen;
             alloc_.m_ = alloc_.m_->removeRef();
@@ -1662,15 +1660,15 @@ basic_string<charT, traits, Allocator>::do_replace(size_type pos, size_type len,
                 alloc_.deallocate(alloc_.m_, 1);
             }
             alloc_.m_ = temp;
-#                    ifndef _MSL_NO_EXCEPTIONS
+#ifndef _MSL_NO_EXCEPTIONS
         }
         catch (...)
         {
             alloc_.deallocate(temp, 1);
             throw;
         }
-#                    endif
-#                else  // _MSL_NO_REFCOUNT_STRING
+#endif
+#else  // _MSL_NO_REFCOUNT_STRING
         pointer temp = alloc_.allocate(recommend(nlen) + 1);
         if (data_ != 0)
         {
@@ -1679,7 +1677,8 @@ basic_string<charT, traits, Allocator>::do_replace(size_type pos, size_type len,
         _STD::copy(first, last, temp + pos);
         if (data_ != 0)
         {
-            traits::copy(temp + pos + rlen, data_ + pos + xlen, size() - (pos + xlen));
+            traits::copy(temp + pos + rlen, data_ + pos + xlen,
+                         size() - (pos + xlen));
         }
         traits::assign(*(temp + nlen), charT());
         if (data_ != 0)
@@ -1689,238 +1688,245 @@ basic_string<charT, traits, Allocator>::do_replace(size_type pos, size_type len,
         data_ = temp;
         alloc_.m_ = recommend(nlen);
         size_ = nlen;
-#                endif // _MSL_NO_REFCOUNT_STRING
+#endif // _MSL_NO_REFCOUNT_STRING
     }
     else
-    {                  // must do inplace
-#                ifndef _MSL_NO_REFCOUNT_STRING
-        traits::move(alloc_.m_->data() + pos + rlen, alloc_.m_->data() + pos + xlen, size() - (pos + xlen));
+    {  // must do inplace
+#ifndef _MSL_NO_REFCOUNT_STRING
+        traits::move(alloc_.m_->data() + pos + rlen, alloc_.m_->data() + pos + xlen,
+                     size() - (pos + xlen));
         _STD::copy(first, last, alloc_.m_->data() + pos);
         traits::assign(*(alloc_.m_->data() + nlen), charT());
         alloc_.m_->size_ = nlen;
-#                else  // _MSL_NO_REFCOUNT_STRING
+#else  // _MSL_NO_REFCOUNT_STRING
         if (data_ != 0)
         {
-            traits::move(data_ + pos + rlen, data_ + pos + xlen, size() - (pos + xlen));
+            traits::move(data_ + pos + rlen, data_ + pos + xlen,
+                         size() - (pos + xlen));
             _STD::copy(first, last, data_ + pos);
             traits::assign(*(data_ + nlen), charT());
             size_ = nlen;
         }
-#                endif // _MSL_NO_REFCOUNT_STRING
+#endif // _MSL_NO_REFCOUNT_STRING
     }
     return *this;
 }
+#endif // _MSL_MUST_INLINE_MEMBER_TEMPLATE
+#endif // _MSL_NO_MEMBER_TEMPLATE
 
-#            endif     // _MSL_MUST_INLINE_MEMBER_TEMPLATE
-#        endif         // _MSL_NO_MEMBER_TEMPLATE
-
-#        ifndef _MSL_NO_REFCOUNT_STRING
+#ifndef _MSL_NO_REFCOUNT_STRING
 
 template <class charT, class traits, class Allocator>
 basic_string<charT, traits, Allocator>::basic_string(const Allocator& a)
-#            ifndef _MSL_NO_MEMBER_TEMPLATE
+#ifndef _MSL_NO_MEMBER_TEMPLATE
   : alloc_(CharArray_allocator(a))
-#            endif
+#endif
 {
     alloc_.m_ = alloc_.allocate(1);
-#            ifndef _MSL_NO_EXCEPTIONS
+#ifndef _MSL_NO_EXCEPTIONS
     try
     {
-#            endif
+#endif
         new (alloc_.m_) CharArray(a);
         traits::assign(*alloc_.m_->data(), charT());
         alloc_.m_->size_ = 0;
-#            ifndef _MSL_NO_EXCEPTIONS
+#ifndef _MSL_NO_EXCEPTIONS
     }
     catch (...)
     {
         alloc_.deallocate(alloc_.m_, 1);
         throw;
     }
-#            endif
+#endif
 }
 
-#        else          // _MSL_NO_REFCOUNT_STRING
+#else  // _MSL_NO_REFCOUNT_STRING
 
 template <class charT, class traits, class Allocator>
 inline basic_string<charT, traits, Allocator>::basic_string(const Allocator& a)
   : size_(0),
-#            ifndef _MSL_NO_MEMBER_TEMPLATE
+#ifndef _MSL_NO_MEMBER_TEMPLATE
     alloc_(a),
-#            endif
+#endif
     data_(0)
 {
     alloc_.m_ = 0;
 }
 
-#        endif         // _MSL_NO_REFCOUNT_STRING
+#endif // _MSL_NO_REFCOUNT_STRING
 
 template <class charT, class traits, class Allocator>
 basic_string<charT, traits, Allocator>::basic_string(const basic_string& str)
-#        ifndef _MSL_NO_MEMBER_TEMPLATE
+#ifndef _MSL_NO_MEMBER_TEMPLATE
   : alloc_(str.alloc_)
-#        endif
+#endif
 {
-#        ifndef _MSL_NO_REFCOUNT_STRING
+#ifndef _MSL_NO_REFCOUNT_STRING
     alloc_.m_ = str.alloc_.m_->addRef(alloc_);
-#        else
-    init(str.data_, str.data_ + str.size(), get_allocator(), random_access_iterator_tag());
-#        endif
+#else
+    init(str.data_, str.data_ + str.size(), get_allocator(),
+         random_access_iterator_tag());
+#endif
 }
 
 template <class charT, class traits, class Allocator>
-basic_string<charT, traits, Allocator>::basic_string(const basic_string& str, size_type pos, size_type n,
+basic_string<charT, traits, Allocator>::basic_string(const basic_string& str,
+                                                     size_type pos, size_type n,
                                                      const Allocator& a)
-#        ifndef _MSL_NO_MEMBER_TEMPLATE
-#            ifndef _MSL_NO_REFCOUNT_STRING
+#ifndef _MSL_NO_MEMBER_TEMPLATE
+#ifndef _MSL_NO_REFCOUNT_STRING
   : alloc_(CharArray_allocator(a))
-#            else
+#else
   : alloc_(a)
-#            endif
-#        endif
+#endif
+#endif
 {
     size_type strLen = str.size();
     if (pos > strLen)
-#        ifndef _MSL_NO_EXCEPTIONS
+#ifndef _MSL_NO_EXCEPTIONS
         throw out_of_range("string copy constructor: pos > str len");
-#        else
+#else
         __msl_error("string copy constructor: pos > str len\n");
-#        endif
+#endif
     size_type rlen = strLen - pos;
     if (rlen > n)
     {
         rlen = n;
     }
-#        ifndef _MSL_NO_REFCOUNT_STRING
+#ifndef _MSL_NO_REFCOUNT_STRING
     if (rlen == strLen && alloc_ == str.alloc_)
     {
         alloc_.m_ = str.alloc_.m_->addRef(alloc_);
     }
     else
     {
-        init(str.alloc_.m_->data() + pos, str.alloc_.m_->data() + pos + rlen, a, random_access_iterator_tag());
+        init(str.alloc_.m_->data() + pos, str.alloc_.m_->data() + pos + rlen, a,
+             random_access_iterator_tag());
     }
-#        else
+#else
     init(str.data_ + pos, str.data_ + pos + rlen, a, random_access_iterator_tag());
-#        endif
+#endif
 }
 
 template <class charT, class traits, class Allocator>
-basic_string<charT, traits, Allocator>::basic_string(const charT* s, size_type n, const Allocator& a)
-#        ifndef _MSL_NO_MEMBER_TEMPLATE
-#            ifndef _MSL_NO_REFCOUNT_STRING
+basic_string<charT, traits, Allocator>::basic_string(const charT* s, size_type n,
+                                                     const Allocator& a)
+#ifndef _MSL_NO_MEMBER_TEMPLATE
+#ifndef _MSL_NO_REFCOUNT_STRING
   : alloc_(CharArray_allocator(a))
-#            else
+#else
   : alloc_(a)
-#            endif
-#        endif
+#endif
+#endif
 {
     if (n > a.max_size() - 1)
-#        ifndef _MSL_NO_EXCEPTIONS
+#ifndef _MSL_NO_EXCEPTIONS
         throw length_error("string constructor: n > max_size");
-#        else
+#else
         __msl_error("string constructor: n > max_size\n");
-#        endif
+#endif
     init(s, s + n, a, random_access_iterator_tag());
 }
 
 template <class charT, class traits, class Allocator>
-basic_string<charT, traits, Allocator>::basic_string(const charT* s, const Allocator& a)
-#        ifndef _MSL_NO_MEMBER_TEMPLATE
-#            ifndef _MSL_NO_REFCOUNT_STRING
+basic_string<charT, traits, Allocator>::basic_string(const charT*     s,
+                                                     const Allocator& a)
+#ifndef _MSL_NO_MEMBER_TEMPLATE
+#ifndef _MSL_NO_REFCOUNT_STRING
   : alloc_(CharArray_allocator(a))
-#            else
+#else
   : alloc_(a)
-#            endif
-#        endif
+#endif
+#endif
 {
     size_type n = traits::length(s);
     if (n > a.max_size() - 1)
-#        ifndef _MSL_NO_EXCEPTIONS
+#ifndef _MSL_NO_EXCEPTIONS
         throw length_error("string constructor: n > max_size");
-#        else
+#else
         __msl_error("string constructor: n > max_size\n");
-#        endif
+#endif
     init(s, s + n, a, random_access_iterator_tag());
 }
 
 template <class charT, class traits, class Allocator>
-inline basic_string<charT, traits, Allocator>::basic_string(size_type n, charT c, const Allocator& a)
-#        ifndef _MSL_NO_MEMBER_TEMPLATE
-#            ifndef _MSL_NO_REFCOUNT_STRING
+inline basic_string<charT, traits, Allocator>::basic_string(size_type n, charT c,
+                                                            const Allocator& a)
+#ifndef _MSL_NO_MEMBER_TEMPLATE
+#ifndef _MSL_NO_REFCOUNT_STRING
   : alloc_(CharArray_allocator(a))
-#            else
+#else
   : alloc_(a)
-#            endif
-#        endif
+#endif
+#endif
 {
     init(n, c, a);
 }
-
 // hh 990826
 template <class charT, class traits, class Allocator>
 inline void
-basic_string<charT, traits, Allocator>::init(pointer begin, pointer end, const Allocator& a, random_access_iterator_tag)
+basic_string<charT, traits, Allocator>::init(pointer begin, pointer end,
+                                             const Allocator& a,
+                                             random_access_iterator_tag)
 {
-    init(static_cast<const_pointer>(begin), static_cast<const_pointer>(end), a, random_access_iterator_tag());
+    init(static_cast<const_pointer>(begin), static_cast<const_pointer>(end), a,
+         random_access_iterator_tag());
 }
-
-#        ifndef _MSL_NO_REFCOUNT_STRING
-
+#ifndef _MSL_NO_REFCOUNT_STRING
 template <class charT, class traits, class Allocator>
 void
-basic_string<charT, traits, Allocator>::init(const_pointer begin, const_pointer end, const Allocator& a,
+basic_string<charT, traits, Allocator>::init(const_pointer begin, const_pointer end,
+                                             const Allocator& a,
                                              random_access_iterator_tag)
 {
     alloc_.m_ = alloc_.allocate(1);
     size_type len = size_type(end - begin);
-#            ifndef _MSL_NO_EXCEPTIONS
+#ifndef _MSL_NO_EXCEPTIONS
     try
     {
-#            endif
+#endif
         new (alloc_.m_) CharArray(a, len);
         traits::copy(alloc_.m_->data(), begin, len);
         alloc_.m_->size_ = len;
         traits::assign(*(alloc_.m_->data() + len), charT());
-#            ifndef _MSL_NO_EXCEPTIONS
+#ifndef _MSL_NO_EXCEPTIONS
     }
     catch (...)
     {
         alloc_.deallocate(alloc_.m_, 1);
         throw;
     }
-#            endif
+#endif
 }
-
 template <class charT, class traits, class Allocator>
 void
-basic_string<charT, traits, Allocator>::init(size_type n, charT c, const Allocator& a)
+basic_string<charT, traits, Allocator>::init(size_type n, charT c,
+                                             const Allocator& a)
 {
     if (n > a.max_size() - 1)
-#            ifndef _MSL_NO_EXCEPTIONS
+#ifndef _MSL_NO_EXCEPTIONS
         throw length_error("string constructor: n > max_size");
-#            else
+#else
         __msl_error("string constructor: n > max_size\n");
-#            endif
+#endif
     alloc_.m_ = alloc_.allocate(1);
-#            ifndef _MSL_NO_EXCEPTIONS
+#ifndef _MSL_NO_EXCEPTIONS
     try
     {
-#            endif
+#endif
         new (alloc_.m_) CharArray(a, n);
         traits::assign(alloc_.m_->data(), n, c);
         alloc_.m_->size_ = n;
         traits::assign(*(alloc_.m_->data() + n), charT());
-#            ifndef _MSL_NO_EXCEPTIONS
+#ifndef _MSL_NO_EXCEPTIONS
     }
     catch (...)
     {
         alloc_.deallocate(alloc_.m_, 1);
         throw;
     }
-#            endif
+#endif
 }
-
 template <class charT, class traits, class Allocator>
 basic_string<charT, traits, Allocator>::ÃÂ¢ÃÂÃÂ¾basic_string()
 {
@@ -1931,12 +1937,11 @@ basic_string<charT, traits, Allocator>::ÃÂ¢ÃÂÃÂ¾basic_string()
         alloc_.deallocate(alloc_.m_, 1);
     }
 }
-
-#        else  // _MSL_NO_REFCOUNT_STRING
-
+#else  // _MSL_NO_REFCOUNT_STRING
 template <class charT, class traits, class Allocator>
 void
-basic_string<charT, traits, Allocator>::init(const_pointer begin, const_pointer end, const Allocator&,
+basic_string<charT, traits, Allocator>::init(const_pointer begin, const_pointer end,
+                                             const Allocator&,
                                              random_access_iterator_tag)
 {
     data_ = 0;
@@ -1952,7 +1957,6 @@ basic_string<charT, traits, Allocator>::init(const_pointer begin, const_pointer 
         traits::assign(*(data_ + len), charT());
     }
 }
-
 template <class charT, class traits, class Allocator>
 void
 basic_string<charT, traits, Allocator>::init(size_type n, charT c, const Allocator&)
@@ -1963,11 +1967,11 @@ basic_string<charT, traits, Allocator>::init(size_type n, charT c, const Allocat
     if (n > 0)
     {
         if (n > max_size())
-#            ifndef _MSL_NO_EXCEPTIONS
+#ifndef _MSL_NO_EXCEPTIONS
             throw length_error("string constructor: n > max_size");
-#            else
+#else
             __msl_error("string constructor: n > max_size\n");
-#            endif
+#endif
         alloc_.m_ = recommend(n);
         data_ = alloc_.allocate(alloc_.m_ + 1);
         traits::assign(data_, n, c);
@@ -1975,7 +1979,6 @@ basic_string<charT, traits, Allocator>::init(size_type n, charT c, const Allocat
         traits::assign(*(data_ + n), charT());
     }
 }
-
 template <class charT, class traits, class Allocator>
 basic_string<charT, traits, Allocator>::ÃÂ¢ÃÂÃÂ¾basic_string()
 {
@@ -1984,23 +1987,19 @@ basic_string<charT, traits, Allocator>::ÃÂ¢ÃÂÃÂ¾basic_string()
         alloc_.deallocate(data_, alloc_.m_ + 1);
     }
 }
-
-#        endif // _MSL_NO_REFCOUNT_STRING
-
+#endif // _MSL_NO_REFCOUNT_STRING
 template <class charT, class traits, class Allocator>
 inline basic_string<charT, traits, Allocator>&
 basic_string<charT, traits, Allocator>::operator=(const basic_string& str)
 {
     return assign(str);
 }
-
 template <class charT, class traits, class Allocator>
 inline basic_string<charT, traits, Allocator>&
 basic_string<charT, traits, Allocator>::operator=(const charT* s)
 {
     return assign(s);
 }
-
 template <class charT, class traits, class Allocator>
 inline basic_string<charT, traits, Allocator>&
 basic_string<charT, traits, Allocator>::operator=(charT c)
@@ -2009,22 +2008,21 @@ basic_string<charT, traits, Allocator>::operator=(charT c)
 }
 
 template <class charT, class traits, class Allocator>
-#        ifdef _MSL_NO_REFCOUNT_STRING
+#ifdef _MSL_NO_REFCOUNT_STRING
 inline
-#        endif
+#endif
     typename basic_string<charT, traits, Allocator>::iterator
     basic_string<charT, traits, Allocator>::begin()
 {
-#        ifndef _MSL_NO_REFCOUNT_STRING
+#ifndef _MSL_NO_REFCOUNT_STRING
     if (!alloc_.m_->is_unique())
     {
         alloc_.m_ = alloc_.m_->makeUnique(alloc_.m_->size_, alloc_);
     }
     alloc_.m_->markUnsharable();
-#        endif
+#endif
     return __data();
 }
-
 template <class charT, class traits, class Allocator>
 inline typename basic_string<charT, traits, Allocator>::const_iterator
 basic_string<charT, traits, Allocator>::begin() const
@@ -2033,90 +2031,81 @@ basic_string<charT, traits, Allocator>::begin() const
 }
 
 template <class charT, class traits, class Allocator>
-#        ifdef _MSL_NO_REFCOUNT_STRING
+#ifdef _MSL_NO_REFCOUNT_STRING
 inline
-#        endif
+#endif
     typename basic_string<charT, traits, Allocator>::iterator
     basic_string<charT, traits, Allocator>::end()
 {
-#        ifndef _MSL_NO_REFCOUNT_STRING
+#ifndef _MSL_NO_REFCOUNT_STRING
     if (!alloc_.m_->is_unique())
     {
         alloc_.m_ = alloc_.m_->makeUnique(alloc_.m_->size_, alloc_);
     }
     alloc_.m_->markUnsharable();
-#        endif
+#endif
     return __data() + size();
 }
-
 template <class charT, class traits, class Allocator>
 inline typename basic_string<charT, traits, Allocator>::const_iterator
 basic_string<charT, traits, Allocator>::end() const
 {
     return __data() + size();
 }
-
 template <class charT, class traits, class Allocator>
 inline typename basic_string<charT, traits, Allocator>::reverse_iterator
 basic_string<charT, traits, Allocator>::rbegin()
 {
     return reverse_iterator(end());
 }
-
 template <class charT, class traits, class Allocator>
 inline typename basic_string<charT, traits, Allocator>::const_reverse_iterator
 basic_string<charT, traits, Allocator>::rbegin() const
 {
     return const_reverse_iterator(end());
 }
-
 template <class charT, class traits, class Allocator>
 inline typename basic_string<charT, traits, Allocator>::reverse_iterator
 basic_string<charT, traits, Allocator>::rend()
 {
     return reverse_iterator(begin());
 }
-
 template <class charT, class traits, class Allocator>
 inline typename basic_string<charT, traits, Allocator>::const_reverse_iterator
 basic_string<charT, traits, Allocator>::rend() const
 {
     return const_reverse_iterator(begin());
 }
-
 template <class charT, class traits, class Allocator>
 inline typename basic_string<charT, traits, Allocator>::size_type
 basic_string<charT, traits, Allocator>::size() const
 {
-#        ifndef _MSL_NO_REFCOUNT_STRING
+#ifndef _MSL_NO_REFCOUNT_STRING
     return alloc_.m_->size_;
-#        else
+#else
     return size_;
-#        endif
+#endif
 }
-
 template <class charT, class traits, class Allocator>
 inline typename basic_string<charT, traits, Allocator>::size_type
 basic_string<charT, traits, Allocator>::length() const
 {
-#        ifndef _MSL_NO_REFCOUNT_STRING
+#ifndef _MSL_NO_REFCOUNT_STRING
     return alloc_.m_->size_;
-#        else
+#else
     return size_;
-#        endif
+#endif
 }
-
 template <class charT, class traits, class Allocator>
 inline typename basic_string<charT, traits, Allocator>::size_type
 basic_string<charT, traits, Allocator>::max_size() const
 {
-#        ifndef _MSL_NO_REFCOUNT_STRING
+#ifndef _MSL_NO_REFCOUNT_STRING
     return alloc_.m_->get_allocator().max_size() - 1;
-#        else
+#else
     return get_allocator().max_size() - 1;
-#        endif
+#endif
 }
-
 template <class charT, class traits, class Allocator>
 void
 basic_string<charT, traits, Allocator>::resize(size_type n, charT c)
@@ -2128,26 +2117,23 @@ basic_string<charT, traits, Allocator>::resize(size_type n, charT c)
         traits::assign(__data() + oldsize, n - oldsize, c);
     }
 }
-
 template <class charT, class traits, class Allocator>
 inline void
 basic_string<charT, traits, Allocator>::resize(size_type n)
 {
     resize(n, charT());
 }
-
-#        ifndef _MSL_NO_REFCOUNT_STRING
-
+#ifndef _MSL_NO_REFCOUNT_STRING
 template <class charT, class traits, class Allocator>
 void
 basic_string<charT, traits, Allocator>::change_size(size_type n, bool copy)
 {
     if (n > max_size())
-#            ifndef _MSL_NO_EXCEPTIONS
+#ifndef _MSL_NO_EXCEPTIONS
         throw length_error("basic_string::length error.  Resizing out of range");
-#            else
+#else
         __msl_error("basic_string::length error.  Resizing out of range\n");
-#            endif
+#endif
     if (!alloc_.m_->is_unique())
     {
         alloc_.m_ = alloc_.m_->makeUnique(n, alloc_, copy);
@@ -2165,19 +2151,17 @@ basic_string<charT, traits, Allocator>::change_size(size_type n, bool copy)
     alloc_.m_->size_ = n;
     alloc_.m_->invalidateReferences();
 }
-
-#        else  // _MSL_NO_REFCOUNT_STRING
-
+#else  // _MSL_NO_REFCOUNT_STRING
 template <class charT, class traits, class Allocator>
 void
 basic_string<charT, traits, Allocator>::change_size(size_type n, bool copy)
 {
     if (n > max_size())
-#            ifndef _MSL_NO_EXCEPTIONS
+#ifndef _MSL_NO_EXCEPTIONS
         throw length_error("basic_string::length error.  Resizing out of range");
-#            else
+#else
         __msl_error("basic_string::length error.  Resizing out of range\n");
-#            endif
+#endif
     if (n > alloc_.m_)
     {
         size_type newsize = max(alloc_.m_, recommend(1));
@@ -2203,32 +2187,28 @@ basic_string<charT, traits, Allocator>::change_size(size_type n, bool copy)
     }
     size_ = n;
 }
-
-#        endif // _MSL_NO_REFCOUNT_STRING
-
+#endif // _MSL_NO_REFCOUNT_STRING
 template <class charT, class traits, class Allocator>
 inline typename basic_string<charT, traits, Allocator>::size_type
 basic_string<charT, traits, Allocator>::capacity() const
 {
-#        ifndef _MSL_NO_REFCOUNT_STRING
+#ifndef _MSL_NO_REFCOUNT_STRING
     return alloc_.m_->capacity();
-#        else
+#else
     return alloc_.m_;
-#        endif
+#endif
 }
-
-#        ifndef _MSL_NO_REFCOUNT_STRING
-
+#ifndef _MSL_NO_REFCOUNT_STRING
 template <class charT, class traits, class Allocator>
 void
 basic_string<charT, traits, Allocator>::reserve(size_type res_arg)
 {
     if (res_arg > max_size())
-#            ifndef _MSL_NO_EXCEPTIONS
+#ifndef _MSL_NO_EXCEPTIONS
         throw length_error("basic_string::reserve argument out of range");
-#            else
+#else
         __msl_error("basic_string::reserve argument out of range\n");
-#            endif
+#endif
     if (res_arg < alloc_.m_->size_)
     {
         res_arg = alloc_.m_->size_;
@@ -2240,19 +2220,17 @@ basic_string<charT, traits, Allocator>::reserve(size_type res_arg)
     alloc_.m_->reserve(res_arg);
     alloc_.m_->invalidateReferences();
 }
-
-#        else  // _MSL_NO_REFCOUNT_STRING
-
+#else  // _MSL_NO_REFCOUNT_STRING
 template <class charT, class traits, class Allocator>
 void
 basic_string<charT, traits, Allocator>::reserve(size_type res_arg)
 {
     if (res_arg > max_size())
-#            ifndef _MSL_NO_EXCEPTIONS
+#ifndef _MSL_NO_EXCEPTIONS
         throw length_error("basic_string::reserve argument out of range");
-#            else
+#else
         __msl_error("basic_string::reserve argument out of range\n");
-#            endif
+#endif
     if (res_arg < size_)
     {
         res_arg = size_;
@@ -2270,125 +2248,113 @@ basic_string<charT, traits, Allocator>::reserve(size_type res_arg)
         alloc_.m_ = res_arg;
     }
 }
-
-#        endif // _MSL_NO_REFCOUNT_STRING
-
+#endif // _MSL_NO_REFCOUNT_STRING
 template <class charT, class traits, class Allocator>
 inline void
 basic_string<charT, traits, Allocator>::clear()
 {
     change_size(0, false);
 }
-
 template <class charT, class traits, class Allocator>
 inline bool
 basic_string<charT, traits, Allocator>::empty() const
 {
     return size() == 0;
 }
-
 template <class charT, class traits, class Allocator>
 inline typename basic_string<charT, traits, Allocator>::const_reference
 basic_string<charT, traits, Allocator>::operator[](size_type pos) const
 {
     return *(__data() + pos);
 }
-
 template <class charT, class traits, class Allocator>
 typename basic_string<charT, traits, Allocator>::reference
 basic_string<charT, traits, Allocator>::operator[](size_type pos)
 {
-#        ifndef _MSL_NO_REFCOUNT_STRING
+#ifndef _MSL_NO_REFCOUNT_STRING
     if (!alloc_.m_->is_unique())
     {
         alloc_.m_ = alloc_.m_->makeUnique(alloc_.m_->size_, alloc_);
     }
     alloc_.m_->markUnsharable();
-#        endif
+#endif
     return *(__data() + pos);
 }
-
 template <class charT, class traits, class Allocator>
 typename basic_string<charT, traits, Allocator>::const_reference
 basic_string<charT, traits, Allocator>::at(size_type pos) const
 {
     if (pos >= size())
-#        ifndef _MSL_NO_EXCEPTIONS
+#ifndef _MSL_NO_EXCEPTIONS
         throw out_of_range("basic_string::at index out of range");
-#        else
+#else
         __msl_error("basic_string::at index out of range");
-#        endif
+#endif
     return *(__data() + pos);
 }
-
 template <class charT, class traits, class Allocator>
 typename basic_string<charT, traits, Allocator>::reference
 basic_string<charT, traits, Allocator>::at(size_type pos)
 {
     if (pos >= size())
-#        ifndef _MSL_NO_EXCEPTIONS
+#ifndef _MSL_NO_EXCEPTIONS
         throw out_of_range("basic_string::at index out of range");
-#        else
+#else
         __msl_error("basic_string::at index out of range");
-#        endif
-#        ifndef _MSL_NO_REFCOUNT_STRING
+#endif
+#ifndef _MSL_NO_REFCOUNT_STRING
     if (!alloc_.m_->is_unique())
     {
         alloc_.m_ = alloc_.m_->makeUnique(alloc_.m_->size_, alloc_);
     }
     alloc_.m_->markUnsharable();
-#        endif
+#endif
     return *(__data() + pos);
 }
-
 template <class charT, class traits, class Allocator>
 inline basic_string<charT, traits, Allocator>&
 basic_string<charT, traits, Allocator>::operator+=(const basic_string& str)
 {
     return append(str);
 }
-
 template <class charT, class traits, class Allocator>
 inline basic_string<charT, traits, Allocator>&
 basic_string<charT, traits, Allocator>::operator+=(const charT* s)
 {
     return append(s);
 }
-
 template <class charT, class traits, class Allocator>
 inline basic_string<charT, traits, Allocator>&
 basic_string<charT, traits, Allocator>::operator+=(charT c)
 {
     return append(1, c);
 }
-
 template <class charT, class traits, class Allocator>
 inline basic_string<charT, traits, Allocator>&
 basic_string<charT, traits, Allocator>::append(const basic_string& str)
 {
     return append(str, 0, npos);
 }
-
 template <class charT, class traits, class Allocator>
 basic_string<charT, traits, Allocator>&
-basic_string<charT, traits, Allocator>::append(const basic_string& str, size_type pos, size_type n)
+basic_string<charT, traits, Allocator>::append(const basic_string& str,
+                                               size_type pos, size_type n)
 {
     if (pos > str.size())
-#        ifndef _MSL_NO_EXCEPTIONS
+#ifndef _MSL_NO_EXCEPTIONS
         throw out_of_range("basic_string::append pos out of range");
-#        else
+#else
         __msl_error("basic_string::append pos out of range");
-#        endif
+#endif
     size_type rlen = min(n, str.size() - pos);
     if (rlen > 0)
-    {          // ok if this == &str
+    {  // ok if this == &str
         size_type curlen = size();
         change_size(curlen + rlen);
         traits::copy(__data() + curlen, str.__data() + pos, rlen);
     }
     return *this;
 }
-
 template <class charT, class traits, class Allocator>
 basic_string<charT, traits, Allocator>&
 basic_string<charT, traits, Allocator>::append(const charT* s, size_type n)
@@ -2401,14 +2367,12 @@ basic_string<charT, traits, Allocator>::append(const charT* s, size_type n)
     }
     return *this;
 }
-
 template <class charT, class traits, class Allocator>
 inline basic_string<charT, traits, Allocator>&
 basic_string<charT, traits, Allocator>::append(const charT* s)
 {
     return append(s, traits::length(s));
 }
-
 template <class charT, class traits, class Allocator>
 basic_string<charT, traits, Allocator>&
 basic_string<charT, traits, Allocator>::append(size_type n, charT c)
@@ -2416,21 +2380,22 @@ basic_string<charT, traits, Allocator>::append(size_type n, charT c)
     if (n > 0)
     {
         if (n > max_size() || size() > max_size() - n)
-#        ifndef _MSL_NO_EXCEPTIONS
+#ifndef _MSL_NO_EXCEPTIONS
             throw length_error("basic_string::append results in string > max_size");
-#        else
+#else
             __msl_error("basic_string::append results in string > max_size");
-#        endif
+#endif
         size_type curlen = size();
         change_size(curlen + n);
         traits::assign(__data() + curlen, n, c);
     }
     return *this;
 }
-
 template <class charT, class traits, class Allocator>
 basic_string<charT, traits, Allocator>&
-basic_string<charT, traits, Allocator>::do_append(const_pointer first, const_pointer last, random_access_iterator_tag)
+basic_string<charT, traits, Allocator>::do_append(const_pointer first,
+                                                  const_pointer last,
+                                                  random_access_iterator_tag)
 {
     size_type rlen = (size_type)(last - first);
     size_type curlen = size();
@@ -2438,40 +2403,39 @@ basic_string<charT, traits, Allocator>::do_append(const_pointer first, const_poi
     traits::copy(__data() + curlen, first, rlen);
     return *this;
 }
-
 template <class charT, class traits, class Allocator>
 inline basic_string<charT, traits, Allocator>&
-basic_string<charT, traits, Allocator>::do_append(pointer first, pointer last, random_access_iterator_tag)
+basic_string<charT, traits, Allocator>::do_append(pointer first, pointer last,
+                                                  random_access_iterator_tag)
 {
-    return do_append(static_cast<const_pointer>(first), static_cast<const_pointer>(last), random_access_iterator_tag());
+    return do_append(static_cast<const_pointer>(first),
+                     static_cast<const_pointer>(last), random_access_iterator_tag());
 }
-
 template <class charT, class traits, class Allocator>
 inline void
 basic_string<charT, traits, Allocator>::push_back(charT c)
 {
     append(1, c);
 }
-
 template <class charT, class traits, class Allocator>
 inline basic_string<charT, traits, Allocator>&
 basic_string<charT, traits, Allocator>::assign(const basic_string& str)
 {
     return assign(str, 0, npos);
 }
-
 template <class charT, class traits, class Allocator>
 basic_string<charT, traits, Allocator>&
-basic_string<charT, traits, Allocator>::assign(const basic_string& str, size_type pos, size_type n)
+basic_string<charT, traits, Allocator>::assign(const basic_string& str,
+                                               size_type pos, size_type n)
 {
     if (pos > str.size())
-#        ifndef _MSL_NO_EXCEPTIONS
+#ifndef _MSL_NO_EXCEPTIONS
         throw out_of_range("basic_string::assign pos out of range");
-#        else
+#else
         __msl_error("basic_string::assign pos out of range");
-#        endif
+#endif
     size_type rlen = min(n, str.size() - pos);
-#        ifndef _MSL_NO_REFCOUNT_STRING
+#ifndef _MSL_NO_REFCOUNT_STRING
     if (rlen == str.size() && alloc_ == str.alloc_ && str.alloc_.m_->sharable())
     {
         if (alloc_.m_ == str.alloc_.m_)
@@ -2488,7 +2452,7 @@ basic_string<charT, traits, Allocator>::assign(const basic_string& str, size_typ
     }
     else
     {
-#        endif
+#endif
         if (this == &str)
         {
             erase(0, pos);
@@ -2499,12 +2463,11 @@ basic_string<charT, traits, Allocator>::assign(const basic_string& str, size_typ
             change_size(rlen, false);
             traits::copy(__data(), str.__data() + pos, rlen);
         }
-#        ifndef _MSL_NO_REFCOUNT_STRING
+#ifndef _MSL_NO_REFCOUNT_STRING
     }
-#        endif
+#endif
     return *this;
 }
-
 template <class charT, class traits, class Allocator>
 basic_string<charT, traits, Allocator>&
 basic_string<charT, traits, Allocator>::assign(const charT* s, size_type n)
@@ -2513,14 +2476,12 @@ basic_string<charT, traits, Allocator>::assign(const charT* s, size_type n)
     traits::copy(__data(), s, n);
     return *this;
 }
-
 template <class charT, class traits, class Allocator>
 inline basic_string<charT, traits, Allocator>&
 basic_string<charT, traits, Allocator>::assign(const charT* s)
 {
     return assign(s, traits::length(s));
 }
-
 template <class charT, class traits, class Allocator>
 basic_string<charT, traits, Allocator>&
 basic_string<charT, traits, Allocator>::assign(size_type n, charT c)
@@ -2529,20 +2490,21 @@ basic_string<charT, traits, Allocator>::assign(size_type n, charT c)
     traits::assign(__data(), n, c);
     return *this;
 }
-
 template <class charT, class traits, class Allocator>
 basic_string<charT, traits, Allocator>&
-basic_string<charT, traits, Allocator>::do_assign(const_pointer first, const_pointer last, random_access_iterator_tag)
+basic_string<charT, traits, Allocator>::do_assign(const_pointer first,
+                                                  const_pointer last,
+                                                  random_access_iterator_tag)
 {
     size_type rlen = (size_type)(last - first);
     if (__data() <= first && first < __data() + size())
     {
-#        ifndef _MSL_NO_REFCOUNT_STRING
+#ifndef _MSL_NO_REFCOUNT_STRING
         if (!alloc_.m_->is_unique())
         {
             alloc_.m_ = alloc_.m_->makeUnique(size(), alloc_, true);
         }
-#        endif
+#endif
         traits::move(__data(), first, rlen);
         change_size(rlen, true);
     }
@@ -2553,49 +2515,48 @@ basic_string<charT, traits, Allocator>::do_assign(const_pointer first, const_poi
     }
     return *this;
 }
-
 template <class charT, class traits, class Allocator>
 inline basic_string<charT, traits, Allocator>&
-basic_string<charT, traits, Allocator>::do_assign(pointer first, pointer last, random_access_iterator_tag)
+basic_string<charT, traits, Allocator>::do_assign(pointer first, pointer last,
+                                                  random_access_iterator_tag)
 {
-    return do_assign(static_cast<const_pointer>(first), static_cast<const_pointer>(last), random_access_iterator_tag());
+    return do_assign(static_cast<const_pointer>(first),
+                     static_cast<const_pointer>(last), random_access_iterator_tag());
 }
-
 template <class charT, class traits, class Allocator>
 inline basic_string<charT, traits, Allocator>&
-basic_string<charT, traits, Allocator>::insert(size_type pos1, const basic_string& str)
+basic_string<charT, traits, Allocator>::insert(size_type           pos1,
+                                               const basic_string& str)
 {
     return insert(pos1, str, 0, npos);
 }
-
 template <class charT, class traits, class Allocator>
 inline basic_string<charT, traits, Allocator>&
-basic_string<charT, traits, Allocator>::insert(size_type pos1, const basic_string& str, size_type pos2, size_type n)
+basic_string<charT, traits, Allocator>::insert(size_type           pos1,
+                                               const basic_string& str,
+                                               size_type pos2, size_type n)
 {
     return replace(pos1, 0, str, pos2, n);
 }
-
 template <class charT, class traits, class Allocator>
 inline basic_string<charT, traits, Allocator>&
-basic_string<charT, traits, Allocator>::insert(size_type pos, const charT* s, size_type n)
+basic_string<charT, traits, Allocator>::insert(size_type pos, const charT* s,
+                                               size_type n)
 {
     return replace(pos, 0, s, n);
 }
-
 template <class charT, class traits, class Allocator>
 inline basic_string<charT, traits, Allocator>&
 basic_string<charT, traits, Allocator>::insert(size_type pos, const charT* s)
 {
     return insert(pos, s, traits::length(s));
 }
-
 template <class charT, class traits, class Allocator>
 inline basic_string<charT, traits, Allocator>&
 basic_string<charT, traits, Allocator>::insert(size_type pos, size_type n, charT c)
 {
     return replace(pos, 0, n, c);
 }
-
 template <class charT, class traits, class Allocator>
 inline typename basic_string<charT, traits, Allocator>::iterator
 basic_string<charT, traits, Allocator>::insert(iterator p, charT c)
@@ -2604,21 +2565,18 @@ basic_string<charT, traits, Allocator>::insert(iterator p, charT c)
     replace(pos, 0, 1, c);
     return begin() + pos;
 }
-
 template <class charT, class traits, class Allocator>
 inline void
 basic_string<charT, traits, Allocator>::insert(iterator p, size_type n, charT c)
 {
     replace(p, p, n, c);
 }
-
 template <class charT, class traits, class Allocator>
 inline basic_string<charT, traits, Allocator>&
 basic_string<charT, traits, Allocator>::erase(size_type pos, size_type n)
 {
     return replace(pos, n, 0, charT());
 }
-
 template <class charT, class traits, class Allocator>
 inline typename basic_string<charT, traits, Allocator>::iterator
 basic_string<charT, traits, Allocator>::erase(iterator position)
@@ -2627,14 +2585,12 @@ basic_string<charT, traits, Allocator>::erase(iterator position)
     replace(pos, 1, 0, charT());
     return begin() + pos;
 }
-
 template <class charT, class traits, class Allocator>
 inline void
 basic_string<charT, traits, Allocator>::pop_back()
 {
     replace(size() - 1, 1, 0, charT());
 }
-
 template <class charT, class traits, class Allocator>
 inline typename basic_string<charT, traits, Allocator>::iterator
 basic_string<charT, traits, Allocator>::erase(iterator first, iterator last)
@@ -2643,85 +2599,88 @@ basic_string<charT, traits, Allocator>::erase(iterator first, iterator last)
     replace(pos, size_type(last - first), 0, charT());
     return begin() + pos;
 }
-
 template <class charT, class traits, class Allocator>
 inline basic_string<charT, traits, Allocator>&
-basic_string<charT, traits, Allocator>::replace(size_type pos1, size_type n1, const basic_string& str)
+basic_string<charT, traits, Allocator>::replace(size_type pos1, size_type n1,
+                                                const basic_string& str)
 {
     return replace(pos1, n1, str, 0, npos);
 }
-
 template <class charT, class traits, class Allocator>
 basic_string<charT, traits, Allocator>&
-basic_string<charT, traits, Allocator>::replace(size_type pos1, size_type n1, const basic_string& str, size_type pos2,
-                                                size_type n2)
+basic_string<charT, traits, Allocator>::replace(size_type pos1, size_type n1,
+                                                const basic_string& str,
+                                                size_type pos2, size_type n2)
 {
     if (pos2 > str.size())
-#        ifndef _MSL_NO_EXCEPTIONS
+#ifndef _MSL_NO_EXCEPTIONS
         throw out_of_range("basic_string::replace pos out of range");
-#        else
+#else
         __msl_error("basic_string::replace pos out of range\n");
-#        endif
+#endif
     size_type rlen = min(n2, str.size() - pos2);
     if (this == &str)
     {
         const basic_string temp(str, 0, npos, str.get_allocator());
-        return do_replace(pos1, n1, temp.begin() + pos2, temp.begin() + pos2 + rlen, random_access_iterator_tag());
+        return do_replace(pos1, n1, temp.begin() + pos2, temp.begin() + pos2 + rlen,
+                          random_access_iterator_tag());
     }
-    return do_replace(pos1, n1, str.begin() + pos2, str.begin() + pos2 + rlen, random_access_iterator_tag());
+    return do_replace(pos1, n1, str.begin() + pos2, str.begin() + pos2 + rlen,
+                      random_access_iterator_tag());
 }
-
 template <class charT, class traits, class Allocator>
 inline basic_string<charT, traits, Allocator>&
-basic_string<charT, traits, Allocator>::replace(size_type pos, size_type n1, const charT* s, size_type n2)
+basic_string<charT, traits, Allocator>::replace(size_type pos, size_type n1,
+                                                const charT* s, size_type n2)
 {
     return do_replace(pos, n1, s, s + n2, random_access_iterator_tag());
 }
-
 template <class charT, class traits, class Allocator>
 inline basic_string<charT, traits, Allocator>&
-basic_string<charT, traits, Allocator>::replace(size_type pos, size_type n1, const charT* s)
+basic_string<charT, traits, Allocator>::replace(size_type pos, size_type n1,
+                                                const charT* s)
 {
     return replace(pos, n1, s, traits::length(s));
 }
-
 template <class charT, class traits, class Allocator>
 basic_string<charT, traits, Allocator>&
-basic_string<charT, traits, Allocator>::replace(size_type pos, size_type n1, size_type n2, charT c)
+basic_string<charT, traits, Allocator>::replace(size_type pos, size_type n1,
+                                                size_type n2, charT c)
 {
     if (pos > size())
-#        ifndef _MSL_NO_EXCEPTIONS
+#ifndef _MSL_NO_EXCEPTIONS
         throw out_of_range("basic_string::replace pos out of range");
-#        else
+#else
         __msl_error("basic_string::replace pos out of range\n");
-#        endif
+#endif
     size_type xlen = min(n1, size() - pos);
     if (n2 > max_size() || size() - xlen > max_size() - n2)
-#        ifndef _MSL_NO_EXCEPTIONS
+#ifndef _MSL_NO_EXCEPTIONS
         throw length_error("basic_string::replace length error");
-#        else
+#else
         __msl_error("basic_string::length error\n");
-#        endif
+#endif
     size_type nlen = size() - xlen + n2;
-#        ifndef _MSL_NO_REFCOUNT_STRING
+#ifndef _MSL_NO_REFCOUNT_STRING
     if (!alloc_.m_->is_unique() || nlen > capacity())
-#        else
+#else
     if (nlen > capacity())
-#        endif
-    {          // must do with copy
-#        ifndef _MSL_NO_REFCOUNT_STRING
+#endif
+    {  // must do with copy
+#ifndef _MSL_NO_REFCOUNT_STRING
         CharArray* temp = alloc_.allocate(1);
-#            ifndef _MSL_NO_EXCEPTIONS
+#ifndef _MSL_NO_EXCEPTIONS
         try
         {
-#            endif
+#endif
             new (temp) CharArray(alloc_.m_->get_allocator(), nlen);
             traits::copy(temp->data(), alloc_.m_->data(), pos);
             if (n2 > 0)
             {
                 traits::assign(temp->data() + pos, n2, c);
             }
-            traits::copy(temp->data() + pos + n2, alloc_.m_->data() + pos + xlen, size() - (pos + xlen));
+            traits::copy(temp->data() + pos + n2, alloc_.m_->data() + pos + xlen,
+                         size() - (pos + xlen));
             traits::assign(*(temp->data() + nlen), charT());
             temp->size_ = nlen;
             alloc_.m_ = alloc_.m_->removeRef();
@@ -2731,15 +2690,15 @@ basic_string<charT, traits, Allocator>::replace(size_type pos, size_type n1, siz
                 alloc_.deallocate(alloc_.m_, 1);
             }
             alloc_.m_ = temp;
-#            ifndef _MSL_NO_EXCEPTIONS
+#ifndef _MSL_NO_EXCEPTIONS
         }
         catch (...)
         {
             alloc_.deallocate(temp, 1);
             throw;
         }
-#            endif
-#        else  // _MSL_NO_REFCOUNT_STRING
+#endif
+#else  // _MSL_NO_REFCOUNT_STRING
         pointer temp = alloc_.allocate(recommend(nlen) + 1);
         if (data_ != 0)
         {
@@ -2761,22 +2720,24 @@ basic_string<charT, traits, Allocator>::replace(size_type pos, size_type n1, siz
         data_ = temp;
         alloc_.m_ = recommend(nlen);
         size_ = nlen;
-#        endif // _MSL_NO_REFCOUNT_STRING
+#endif // _MSL_NO_REFCOUNT_STRING
     }
     else
-    {          // must do inplace
-#        ifndef _MSL_NO_REFCOUNT_STRING
-        traits::move(alloc_.m_->data() + pos + n2, alloc_.m_->data() + pos + xlen, size() - (pos + xlen));
+    {  // must do inplace
+#ifndef _MSL_NO_REFCOUNT_STRING
+        traits::move(alloc_.m_->data() + pos + n2, alloc_.m_->data() + pos + xlen,
+                     size() - (pos + xlen));
         if (n2 > 0)
         {
             traits::assign(alloc_.m_->data() + pos, n2, c);
         }
         traits::assign(*(alloc_.m_->data() + nlen), charT());
         alloc_.m_->size_ = nlen;
-#        else
+#else
         if (data_ != 0)
         {
-            traits::move(data_ + pos + n2, data_ + pos + xlen, size() - (pos + xlen));
+            traits::move(data_ + pos + n2, data_ + pos + xlen,
+                         size() - (pos + xlen));
             if (n2 > 0)
             {
                 traits::assign(data_ + pos, n2, c);
@@ -2784,78 +2745,81 @@ basic_string<charT, traits, Allocator>::replace(size_type pos, size_type n1, siz
             traits::assign(*(data_ + nlen), charT());
             size_ = nlen;
         }
-#        endif
+#endif
     }
     return *this;
 }
-
 template <class charT, class traits, class Allocator>
 inline basic_string<charT, traits, Allocator>&
-basic_string<charT, traits, Allocator>::replace(iterator i1, iterator i2, const basic_string& str)
+basic_string<charT, traits, Allocator>::replace(iterator i1, iterator i2,
+                                                const basic_string& str)
 {
     return replace(size_type(i1 - begin()), size_type(i2 - i1), str);
 }
-
 template <class charT, class traits, class Allocator>
 inline basic_string<charT, traits, Allocator>&
-basic_string<charT, traits, Allocator>::replace(iterator i1, iterator i2, const charT* s, size_type n)
+basic_string<charT, traits, Allocator>::replace(iterator i1, iterator i2,
+                                                const charT* s, size_type n)
 {
     return replace(size_type(i1 - begin()), size_type(i2 - i1), s, n);
 }
-
 template <class charT, class traits, class Allocator>
 inline basic_string<charT, traits, Allocator>&
-basic_string<charT, traits, Allocator>::replace(iterator i1, iterator i2, const charT* s)
+basic_string<charT, traits, Allocator>::replace(iterator i1, iterator i2,
+                                                const charT* s)
 {
     return replace(size_type(i1 - begin()), size_type(i2 - i1), s);
 }
-
 template <class charT, class traits, class Allocator>
 inline basic_string<charT, traits, Allocator>&
-basic_string<charT, traits, Allocator>::replace(iterator i1, iterator i2, size_type n, charT c)
+basic_string<charT, traits, Allocator>::replace(iterator i1, iterator i2,
+                                                size_type n, charT c)
 {
     return replace(size_type(i1 - begin()), size_type(i2 - i1), n, c);
 }
-
 template <class charT, class traits, class Allocator>
 basic_string<charT, traits, Allocator>&
-basic_string<charT, traits, Allocator>::do_replace(size_type pos, size_type len, const_pointer first,
-                                                   const_pointer last, random_access_iterator_tag)
+basic_string<charT, traits, Allocator>::do_replace(size_type pos, size_type len,
+                                                   const_pointer first,
+                                                   const_pointer last,
+                                                   random_access_iterator_tag)
 {
     if (pos > size())
-#        ifndef _MSL_NO_EXCEPTIONS
+#ifndef _MSL_NO_EXCEPTIONS
         throw out_of_range("basic_string::replace pos out of range");
-#        else
+#else
         __msl_error("basic_string::replace pos out of range\n");
-#        endif
+#endif
     size_type xlen = min(len, size() - pos);
     size_type rlen = size_type(last - first);
     if (rlen > max_size() || size() - xlen > max_size() - rlen)
-#        ifndef _MSL_NO_EXCEPTIONS
+#ifndef _MSL_NO_EXCEPTIONS
         throw length_error("basic_string::replace length error");
-#        else
+#else
         __msl_error("basic_string::replace length error\n");
-#        endif
+#endif
     size_type nlen = size() - xlen + rlen;
-#        ifndef _MSL_NO_REFCOUNT_STRING
-    if (!alloc_.m_->is_unique() || nlen > capacity() || first >= __data() && first < __data() + size())
-#        else
+#ifndef _MSL_NO_REFCOUNT_STRING
+    if (!alloc_.m_->is_unique() || nlen > capacity() ||
+        first >= __data() && first < __data() + size())
+#else
     if (nlen > capacity() || first >= __data() && first < __data() + size())
-#        endif
-    {          // must do with copy
-#        ifndef _MSL_NO_REFCOUNT_STRING
+#endif
+    {  // must do with copy
+#ifndef _MSL_NO_REFCOUNT_STRING
         CharArray* temp = alloc_.allocate(1);
-#            ifndef _MSL_NO_EXCEPTIONS
+#ifndef _MSL_NO_EXCEPTIONS
         try
         {
-#            endif
+#endif
             new (temp) CharArray(alloc_.m_->get_allocator(), nlen);
             traits::copy(temp->data(), alloc_.m_->data(), pos);
             if (rlen > 0)
             {
                 traits::copy(temp->data() + pos, first, rlen);
             }
-            traits::copy(temp->data() + pos + rlen, alloc_.m_->data() + pos + xlen, size() - (pos + xlen));
+            traits::copy(temp->data() + pos + rlen, alloc_.m_->data() + pos + xlen,
+                         size() - (pos + xlen));
             traits::assign(*(temp->data() + nlen), charT());
             temp->size_ = nlen;
             alloc_.m_ = alloc_.m_->removeRef();
@@ -2865,15 +2829,15 @@ basic_string<charT, traits, Allocator>::do_replace(size_type pos, size_type len,
                 alloc_.deallocate(alloc_.m_, 1);
             }
             alloc_.m_ = temp;
-#            ifndef _MSL_NO_EXCEPTIONS
+#ifndef _MSL_NO_EXCEPTIONS
         }
         catch (...)
         {
             alloc_.deallocate(temp, 1);
             throw;
         }
-#            endif
-#        else  // _MSL_NO_REFCOUNT_STRING
+#endif
+#else  // _MSL_NO_REFCOUNT_STRING
         pointer temp = alloc_.allocate(recommend(nlen) + 1);
         if (data_ != 0)
         {
@@ -2885,7 +2849,8 @@ basic_string<charT, traits, Allocator>::do_replace(size_type pos, size_type len,
         }
         if (data_ != 0)
         {
-            traits::copy(temp + pos + rlen, data_ + pos + xlen, size() - (pos + xlen));
+            traits::copy(temp + pos + rlen, data_ + pos + xlen,
+                         size() - (pos + xlen));
         }
         traits::assign(*(temp + nlen), charT());
         if (data_ != 0)
@@ -2895,22 +2860,24 @@ basic_string<charT, traits, Allocator>::do_replace(size_type pos, size_type len,
         data_ = temp;
         alloc_.m_ = recommend(nlen);
         size_ = nlen;
-#        endif // _MSL_NO_REFCOUNT_STRING
+#endif // _MSL_NO_REFCOUNT_STRING
     }
     else
-    {          // must do inplace
-#        ifndef _MSL_NO_REFCOUNT_STRING
-        traits::move(alloc_.m_->data() + pos + rlen, alloc_.m_->data() + pos + xlen, size() - (pos + xlen));
+    {  // must do inplace
+#ifndef _MSL_NO_REFCOUNT_STRING
+        traits::move(alloc_.m_->data() + pos + rlen, alloc_.m_->data() + pos + xlen,
+                     size() - (pos + xlen));
         if (rlen > 0)
         {
             traits::copy(alloc_.m_->data() + pos, first, rlen);
         }
         traits::assign(*(alloc_.m_->data() + nlen), charT());
         alloc_.m_->size_ = nlen;
-#        else  // _MSL_NO_REFCOUNT_STRING
+#else  // _MSL_NO_REFCOUNT_STRING
         if (data_ != 0)
         {
-            traits::move(data_ + pos + rlen, data_ + pos + xlen, size() - (pos + xlen));
+            traits::move(data_ + pos + rlen, data_ + pos + xlen,
+                         size() - (pos + xlen));
             if (rlen > 0)
             {
                 traits::copy(data_ + pos, first, rlen);
@@ -2918,51 +2885,51 @@ basic_string<charT, traits, Allocator>::do_replace(size_type pos, size_type len,
             traits::assign(*(data_ + nlen), charT());
             size_ = nlen;
         }
-#        endif // _MSL_NO_REFCOUNT_STRING
+#endif // _MSL_NO_REFCOUNT_STRING
     }
     return *this;
 }
-
 template <class charT, class traits, class Allocator>
 inline basic_string<charT, traits, Allocator>&
-basic_string<charT, traits, Allocator>::do_replace(size_type pos, size_type len, pointer first, pointer last,
+basic_string<charT, traits, Allocator>::do_replace(size_type pos, size_type len,
+                                                   pointer first, pointer last,
                                                    random_access_iterator_tag)
 {
-    return do_replace(pos, len, static_cast<const_pointer>(first), static_cast<const_pointer>(last),
+    return do_replace(pos, len, static_cast<const_pointer>(first),
+                      static_cast<const_pointer>(last),
                       random_access_iterator_tag());
 }
-
 template <class charT, class traits, class Allocator>
 typename basic_string<charT, traits, Allocator>::size_type
-basic_string<charT, traits, Allocator>::copy(charT* s, size_type n, size_type pos) const
+basic_string<charT, traits, Allocator>::copy(charT* s, size_type n,
+                                             size_type pos) const
 {
     if (pos > size())
-#        ifndef _MSL_NO_EXCEPTIONS
+#ifndef _MSL_NO_EXCEPTIONS
         throw out_of_range("basic_string::copy pos out of range");
-#        else
+#else
         __msl_error("basic_string::copy pos out of range\n");
-#        endif
+#endif
     size_type rlen = min(n, size() - pos);
     traits::copy(s, __data() + pos, rlen);
     return rlen;
 }
-
 template <class charT, class traits, class Allocator>
 void
-basic_string<charT, traits, Allocator>::swap(basic_string<charT, traits, Allocator>& str)
+basic_string<charT, traits, Allocator>::swap(
+    basic_string<charT, traits, Allocator>& str)
 {
     if (this != &str)
-#        ifndef _MSL_NO_REFCOUNT_STRING
+#ifndef _MSL_NO_REFCOUNT_STRING
         _STD::swap(alloc_, str.alloc_);
-#        else
+#else
     {
         _STD::swap(size_, str.size_);
         _STD::swap(alloc_, str.alloc_);
         _STD::swap(data_, str.data_);
     }
-#        endif
+#endif
 }
-
 template <class charT, class traits, class Allocator>
 inline const charT*
 basic_string<charT, traits, Allocator>::c_str() const
@@ -2971,45 +2938,44 @@ basic_string<charT, traits, Allocator>::c_str() const
 }
 
 template <class charT, class traits, class Allocator>
-#        ifndef _MSL_NO_REFCOUNT_STRING
+#ifndef _MSL_NO_REFCOUNT_STRING
 inline
-#        endif
+#endif
     const charT*
     basic_string<charT, traits, Allocator>::data() const
 {
-#        ifndef _MSL_NO_REFCOUNT_STRING
+#ifndef _MSL_NO_REFCOUNT_STRING
     return alloc_.m_->data();
-#        else
+#else
     if (data_ == 0)
     {
         static const charT __nullstring = charT();
         return &__nullstring;
     }
     return data_;
-#        endif
+#endif
 }
-
 template <class charT, class traits, class Allocator>
 inline typename basic_string<charT, traits, Allocator>::allocator_type
 basic_string<charT, traits, Allocator>::get_allocator() const
 {
-#        ifndef _MSL_NO_REFCOUNT_STRING
+#ifndef _MSL_NO_REFCOUNT_STRING
     return alloc_.m_->get_allocator();
-#        else
+#else
     return alloc_;
-#        endif
+#endif
 }
-
 template <class charT, class traits, class Allocator>
 inline typename basic_string<charT, traits, Allocator>::size_type
-basic_string<charT, traits, Allocator>::find(const basic_string& str, size_type pos) const
+basic_string<charT, traits, Allocator>::find(const basic_string& str,
+                                             size_type           pos) const
 {
     return find(str.begin(), pos, str.size());
 }
-
 template <class charT, class traits, class Allocator>
 typename basic_string<charT, traits, Allocator>::size_type
-basic_string<charT, traits, Allocator>::find(const charT* s, size_type pos, size_type n) const
+basic_string<charT, traits, Allocator>::find(const charT* s, size_type pos,
+                                             size_type n) const
 {
     if (pos > size())
     {
@@ -3032,14 +2998,12 @@ basic_string<charT, traits, Allocator>::find(const charT* s, size_type pos, size
     }
     return npos;
 }
-
 template <class charT, class traits, class Allocator>
 inline typename basic_string<charT, traits, Allocator>::size_type
 basic_string<charT, traits, Allocator>::find(const charT* s, size_type pos) const
 {
     return find(s, pos, traits::length(s));
 }
-
 template <class charT, class traits, class Allocator>
 typename basic_string<charT, traits, Allocator>::size_type
 basic_string<charT, traits, Allocator>::find(charT c, size_type pos) const
@@ -3057,17 +3021,17 @@ basic_string<charT, traits, Allocator>::find(charT c, size_type pos) const
     }
     return npos;
 }
-
 template <class charT, class traits, class Allocator>
 inline typename basic_string<charT, traits, Allocator>::size_type
-basic_string<charT, traits, Allocator>::rfind(const basic_string& str, size_type pos) const
+basic_string<charT, traits, Allocator>::rfind(const basic_string& str,
+                                              size_type           pos) const
 {
     return rfind(str.begin(), pos, str.size());
 }
-
 template <class charT, class traits, class Allocator>
 typename basic_string<charT, traits, Allocator>::size_type
-basic_string<charT, traits, Allocator>::rfind(const charT* s, size_type pos, size_type n) const
+basic_string<charT, traits, Allocator>::rfind(const charT* s, size_type pos,
+                                              size_type n) const
 {
     if (size() < n)
     {
@@ -3094,14 +3058,12 @@ basic_string<charT, traits, Allocator>::rfind(const charT* s, size_type pos, siz
     while (p > begin() && (--p, true));
     return npos;
 }
-
 template <class charT, class traits, class Allocator>
 inline typename basic_string<charT, traits, Allocator>::size_type
 basic_string<charT, traits, Allocator>::rfind(const charT* s, size_type pos) const
 {
     return rfind(s, pos, traits::length(s));
 }
-
 template <class charT, class traits, class Allocator>
 typename basic_string<charT, traits, Allocator>::size_type
 basic_string<charT, traits, Allocator>::rfind(charT c, size_type pos) const
@@ -3124,17 +3086,17 @@ basic_string<charT, traits, Allocator>::rfind(charT c, size_type pos) const
     while (p > begin() && (--p, true));
     return npos;
 }
-
 template <class charT, class traits, class Allocator>
 inline typename basic_string<charT, traits, Allocator>::size_type
-basic_string<charT, traits, Allocator>::find_first_of(const basic_string& str, size_type pos) const
+basic_string<charT, traits, Allocator>::find_first_of(const basic_string& str,
+                                                      size_type           pos) const
 {
     return find_first_of(str.begin(), pos, str.size());
 }
-
 template <class charT, class traits, class Allocator>
 typename basic_string<charT, traits, Allocator>::size_type
-basic_string<charT, traits, Allocator>::find_first_of(const charT* s, size_type pos, size_type n) const
+basic_string<charT, traits, Allocator>::find_first_of(const charT* s, size_type pos,
+                                                      size_type n) const
 {
     if (pos >= size() || n == 0)
     {
@@ -3153,14 +3115,13 @@ basic_string<charT, traits, Allocator>::find_first_of(const charT* s, size_type 
     }
     return npos;
 }
-
 template <class charT, class traits, class Allocator>
 inline typename basic_string<charT, traits, Allocator>::size_type
-basic_string<charT, traits, Allocator>::find_first_of(const charT* s, size_type pos) const
+basic_string<charT, traits, Allocator>::find_first_of(const charT* s,
+                                                      size_type    pos) const
 {
     return find_first_of(s, pos, traits::length(s));
 }
-
 template <class charT, class traits, class Allocator>
 typename basic_string<charT, traits, Allocator>::size_type
 basic_string<charT, traits, Allocator>::find_first_of(charT c, size_type pos) const
@@ -3178,17 +3139,17 @@ basic_string<charT, traits, Allocator>::find_first_of(charT c, size_type pos) co
     }
     return npos;
 }
-
 template <class charT, class traits, class Allocator>
 inline typename basic_string<charT, traits, Allocator>::size_type
-basic_string<charT, traits, Allocator>::find_last_of(const basic_string& str, size_type pos) const
+basic_string<charT, traits, Allocator>::find_last_of(const basic_string& str,
+                                                     size_type           pos) const
 {
     return find_last_of(str.begin(), pos, str.size());
 }
-
 template <class charT, class traits, class Allocator>
 typename basic_string<charT, traits, Allocator>::size_type
-basic_string<charT, traits, Allocator>::find_last_of(const charT* s, size_type pos, size_type n) const
+basic_string<charT, traits, Allocator>::find_last_of(const charT* s, size_type pos,
+                                                     size_type n) const
 {
     if (size() == 0 || n == 0)
     {
@@ -3198,7 +3159,8 @@ basic_string<charT, traits, Allocator>::find_last_of(const charT* s, size_type p
     {
         pos = size() - 1;
     }
-    for (const_reverse_iterator i = rend() - difference_type(pos + 1); i != rend(); ++i)
+    for (const_reverse_iterator i = rend() - difference_type(pos + 1); i != rend();
+         ++i)
     {
         const charT* j = s;
         for (size_type n1 = 0; n1 < n; ++n1, ++j)
@@ -3211,14 +3173,13 @@ basic_string<charT, traits, Allocator>::find_last_of(const charT* s, size_type p
     }
     return npos;
 }
-
 template <class charT, class traits, class Allocator>
 inline typename basic_string<charT, traits, Allocator>::size_type
-basic_string<charT, traits, Allocator>::find_last_of(const charT* s, size_type pos) const
+basic_string<charT, traits, Allocator>::find_last_of(const charT* s,
+                                                     size_type    pos) const
 {
     return find_last_of(s, pos, traits::length(s));
 }
-
 template <class charT, class traits, class Allocator>
 typename basic_string<charT, traits, Allocator>::size_type
 basic_string<charT, traits, Allocator>::find_last_of(charT c, size_type pos) const
@@ -3231,7 +3192,8 @@ basic_string<charT, traits, Allocator>::find_last_of(charT c, size_type pos) con
     {
         pos = size() - 1;
     }
-    for (const_reverse_iterator i = rend() - difference_type(pos + 1); i != rend(); ++i)
+    for (const_reverse_iterator i = rend() - difference_type(pos + 1); i != rend();
+         ++i)
     {
         if (traits::eq(*i, c))
         {
@@ -3240,17 +3202,18 @@ basic_string<charT, traits, Allocator>::find_last_of(charT c, size_type pos) con
     }
     return npos;
 }
-
 template <class charT, class traits, class Allocator>
 inline typename basic_string<charT, traits, Allocator>::size_type
-basic_string<charT, traits, Allocator>::find_first_not_of(const basic_string& str, size_type pos) const
+basic_string<charT, traits, Allocator>::find_first_not_of(const basic_string& str,
+                                                          size_type pos) const
 {
     return find_first_not_of(str.begin(), pos, str.size());
 }
-
 template <class charT, class traits, class Allocator>
 typename basic_string<charT, traits, Allocator>::size_type
-basic_string<charT, traits, Allocator>::find_first_not_of(const charT* s, size_type pos, size_type n) const
+basic_string<charT, traits, Allocator>::find_first_not_of(const charT* s,
+                                                          size_type    pos,
+                                                          size_type    n) const
 {
     if (pos >= size() || n == 0)
     {
@@ -3271,17 +3234,17 @@ basic_string<charT, traits, Allocator>::find_first_not_of(const charT* s, size_t
     }
     return npos;
 }
-
 template <class charT, class traits, class Allocator>
 inline typename basic_string<charT, traits, Allocator>::size_type
-basic_string<charT, traits, Allocator>::find_first_not_of(const charT* s, size_type pos) const
+basic_string<charT, traits, Allocator>::find_first_not_of(const charT* s,
+                                                          size_type    pos) const
 {
     return find_first_not_of(s, pos, traits::length(s));
 }
-
 template <class charT, class traits, class Allocator>
 typename basic_string<charT, traits, Allocator>::size_type
-basic_string<charT, traits, Allocator>::find_first_not_of(charT c, size_type pos) const
+basic_string<charT, traits, Allocator>::find_first_not_of(charT     c,
+                                                          size_type pos) const
 {
     if (pos >= size())
     {
@@ -3296,17 +3259,18 @@ basic_string<charT, traits, Allocator>::find_first_not_of(charT c, size_type pos
     }
     return npos;
 }
-
 template <class charT, class traits, class Allocator>
 inline typename basic_string<charT, traits, Allocator>::size_type
-basic_string<charT, traits, Allocator>::find_last_not_of(const basic_string& str, size_type pos) const
+basic_string<charT, traits, Allocator>::find_last_not_of(const basic_string& str,
+                                                         size_type pos) const
 {
     return find_last_not_of(str.begin(), pos, str.size());
 }
-
 template <class charT, class traits, class Allocator>
 typename basic_string<charT, traits, Allocator>::size_type
-basic_string<charT, traits, Allocator>::find_last_not_of(const charT* s, size_type pos, size_type n) const
+basic_string<charT, traits, Allocator>::find_last_not_of(const charT* s,
+                                                         size_type    pos,
+                                                         size_type    n) const
 {
     if (size() == 0)
     {
@@ -3316,7 +3280,8 @@ basic_string<charT, traits, Allocator>::find_last_not_of(const charT* s, size_ty
     {
         pos = size() - 1;
     }
-    for (const_reverse_iterator i = rend() - difference_type(pos + 1); i != rend(); ++i)
+    for (const_reverse_iterator i = rend() - difference_type(pos + 1); i != rend();
+         ++i)
     {
         const charT* j = s;
         for (size_type n1 = 0; n1 < n; ++n1, ++j)
@@ -3331,17 +3296,17 @@ basic_string<charT, traits, Allocator>::find_last_not_of(const charT* s, size_ty
     }
     return npos;
 }
-
 template <class charT, class traits, class Allocator>
 inline typename basic_string<charT, traits, Allocator>::size_type
-basic_string<charT, traits, Allocator>::find_last_not_of(const charT* s, size_type pos) const
+basic_string<charT, traits, Allocator>::find_last_not_of(const charT* s,
+                                                         size_type    pos) const
 {
     return find_last_not_of(s, pos, traits::length(s));
 }
-
 template <class charT, class traits, class Allocator>
 typename basic_string<charT, traits, Allocator>::size_type
-basic_string<charT, traits, Allocator>::find_last_not_of(charT c, size_type pos) const
+basic_string<charT, traits, Allocator>::find_last_not_of(charT     c,
+                                                         size_type pos) const
 {
     if (size() == 0)
     {
@@ -3351,7 +3316,8 @@ basic_string<charT, traits, Allocator>::find_last_not_of(charT c, size_type pos)
     {
         pos = size() - 1;
     }
-    for (const_reverse_iterator i = rend() - difference_type(pos + 1); i != rend(); ++i)
+    for (const_reverse_iterator i = rend() - difference_type(pos + 1); i != rend();
+         ++i)
     {
         if (!traits::eq(*i, c))
         {
@@ -3360,74 +3326,71 @@ basic_string<charT, traits, Allocator>::find_last_not_of(charT c, size_type pos)
     }
     return npos;
 }
-
 template <class charT, class traits, class Allocator>
 basic_string<charT, traits, Allocator>
 basic_string<charT, traits, Allocator>::substr(size_type pos, size_type n) const
 {
     if (pos > size())
-#        ifndef _MSL_NO_EXCEPTIONS
+#ifndef _MSL_NO_EXCEPTIONS
         throw out_of_range("basic_string::substr pos out of range");
-#        else
+#else
         __msl_error("basic_string::substr pos out of range\n");
-#        endif
+#endif
     size_type rlen = min(n, size() - pos);
     return basic_string(*this, pos, rlen);
 }
-
 template <class charT, class traits, class Allocator>
 inline int
 basic_string<charT, traits, Allocator>::compare(const basic_string& str) const
 {
     return compare(0, size(), str.begin(), str.size());
 }
-
 template <class charT, class traits, class Allocator>
 inline int
-basic_string<charT, traits, Allocator>::compare(size_type pos1, size_type n1, const basic_string& str) const
+basic_string<charT, traits, Allocator>::compare(size_type pos1, size_type n1,
+                                                const basic_string& str) const
 {
     return compare(pos1, n1, str.begin(), str.size());
 }
-
 template <class charT, class traits, class Allocator>
 int
-basic_string<charT, traits, Allocator>::compare(size_type pos1, size_type n1, const basic_string& str, size_type pos2,
-                                                size_type n2) const
+basic_string<charT, traits, Allocator>::compare(size_type pos1, size_type n1,
+                                                const basic_string& str,
+                                                size_type pos2, size_type n2) const
 {
     if (pos2 > str.size())
-#        ifndef _MSL_NO_EXCEPTIONS
+#ifndef _MSL_NO_EXCEPTIONS
         throw out_of_range("string compare: pos > len");
-#        else
+#else
         __msl_error("string compare: pos > len\n");
-#        endif
+#endif
     return compare(pos1, n1, str.begin() + pos2, min(str.size() - pos2, n2));
 }
-
 template <class charT, class traits, class Allocator>
 inline int
 basic_string<charT, traits, Allocator>::compare(const charT* s) const
 {
     return compare(0, size(), s, traits::length(s));
 }
-
 // hh 990126
 template <class charT, class traits, class Allocator>
 inline int
-basic_string<charT, traits, Allocator>::compare(size_type pos1, size_type n1, const charT* s) const
+basic_string<charT, traits, Allocator>::compare(size_type pos1, size_type n1,
+                                                const charT* s) const
 {
     return compare(pos1, n1, s, traits::length(s));
 }
-
 template <class charT, class traits, class Allocator>
 int
-basic_string<charT, traits, Allocator>::compare(size_type pos1, size_type n1, const charT* s, size_type n2) const
+basic_string<charT, traits, Allocator>::compare(size_type pos1, size_type n1,
+                                                const charT* s, size_type n2) const
 {
     if (pos1 > size())
-#        ifndef _MSL_NO_EXCEPTIONS
+#ifndef _MSL_NO_EXCEPTIONS
         throw out_of_range("string compare: pos > len");
-#        else
+#else
         __msl_error("string compare: pos > len\n");
-#        endif
+#endif
     size_type len = min(size() - pos1, n1);
     size_type rlen = min(len, n2);
     int       result = traits::compare(begin() + pos1, s, rlen);
@@ -3445,200 +3408,186 @@ basic_string<charT, traits, Allocator>::compare(size_type pos1, size_type n1, co
     }
     return result;
 }
-
 template <class charT, class traits, class Allocator>
 inline basic_string<charT, traits, Allocator>
-operator+(const basic_string<charT, traits, Allocator>& lhs, const basic_string<charT, traits, Allocator>& rhs)
+operator+(const basic_string<charT, traits, Allocator>& lhs,
+          const basic_string<charT, traits, Allocator>& rhs)
 {
     return basic_string<charT, traits, Allocator>(lhs).append(rhs);
 }
-
 template <class charT, class traits, class Allocator>
 inline basic_string<charT, traits, Allocator>
 operator+(const charT* lhs, const basic_string<charT, traits, Allocator>& rhs)
 {
     return basic_string<charT, traits, Allocator>(lhs).append(rhs);
 }
-
 template <class charT, class traits, class Allocator>
 inline basic_string<charT, traits, Allocator>
 operator+(charT lhs, const basic_string<charT, traits, Allocator>& rhs)
 {
     return basic_string<charT, traits, Allocator>(1, lhs).append(rhs);
 }
-
 template <class charT, class traits, class Allocator>
 inline basic_string<charT, traits, Allocator>
 operator+(const basic_string<charT, traits, Allocator>& lhs, const charT* rhs)
 {
     return basic_string<charT, traits, Allocator>(lhs).append(rhs);
 }
-
 template <class charT, class traits, class Allocator>
 inline basic_string<charT, traits, Allocator>
 operator+(const basic_string<charT, traits, Allocator>& lhs, charT rhs)
 {
     return basic_string<charT, traits, Allocator>(lhs).append(1, rhs);
 }
-
 template <class charT, class traits, class Allocator>
 inline bool
-operator==(const basic_string<charT, traits, Allocator>& lhs, const basic_string<charT, traits, Allocator>& rhs)
+operator==(const basic_string<charT, traits, Allocator>& lhs,
+           const basic_string<charT, traits, Allocator>& rhs)
 {
     return lhs.size() == rhs.size() && lhs.compare(rhs) == 0;
 }
-
 template <class charT, class traits, class Allocator>
 inline bool
 operator==(const charT* lhs, const basic_string<charT, traits, Allocator>& rhs)
 {
     return rhs.compare(lhs) == 0;
 }
-
 template <class charT, class traits, class Allocator>
 inline bool
 operator==(const basic_string<charT, traits, Allocator>& lhs, const charT* rhs)
 {
     return lhs.compare(rhs) == 0;
 }
-
 template <class charT, class traits, class Allocator>
 inline bool
-operator!=(const basic_string<charT, traits, Allocator>& lhs, const basic_string<charT, traits, Allocator>& rhs)
+operator!=(const basic_string<charT, traits, Allocator>& lhs,
+           const basic_string<charT, traits, Allocator>& rhs)
 {
     return lhs.size() != rhs.size() || lhs.compare(rhs) != 0;
 }
-
 template <class charT, class traits, class Allocator>
 inline bool
 operator!=(const charT* lhs, const basic_string<charT, traits, Allocator>& rhs)
 {
     return rhs.compare(lhs) != 0;
 }
-
 template <class charT, class traits, class Allocator>
 inline bool
 operator!=(const basic_string<charT, traits, Allocator>& lhs, const charT* rhs)
 {
     return lhs.compare(rhs) != 0;
 }
-
 template <class charT, class traits, class Allocator>
 inline bool
-operator<(const basic_string<charT, traits, Allocator>& lhs, const basic_string<charT, traits, Allocator>& rhs)
+operator<(const basic_string<charT, traits, Allocator>& lhs,
+          const basic_string<charT, traits, Allocator>& rhs)
 {
     return lhs.compare(rhs) < 0;
 }
-
 template <class charT, class traits, class Allocator>
 inline bool
 operator<(const basic_string<charT, traits, Allocator>& lhs, const charT* rhs)
 {
     return lhs.compare(rhs) < 0;
 }
-
 template <class charT, class traits, class Allocator>
 inline bool
 operator<(const charT* lhs, const basic_string<charT, traits, Allocator>& rhs)
 {
     return rhs.compare(lhs) > 0;
 }
-
 template <class charT, class traits, class Allocator>
 inline bool
-operator>(const basic_string<charT, traits, Allocator>& lhs, const basic_string<charT, traits, Allocator>& rhs)
+operator>(const basic_string<charT, traits, Allocator>& lhs,
+          const basic_string<charT, traits, Allocator>& rhs)
 {
     return lhs.compare(rhs) > 0;
 }
-
 template <class charT, class traits, class Allocator>
 inline bool
 operator>(const basic_string<charT, traits, Allocator>& lhs, const charT* rhs)
 {
     return lhs.compare(rhs) > 0;
 }
-
 template <class charT, class traits, class Allocator>
 inline bool
 operator>(const charT* lhs, const basic_string<charT, traits, Allocator>& rhs)
 {
     return rhs.compare(lhs) < 0;
 }
-
 template <class charT, class traits, class Allocator>
 inline bool
-operator<=(const basic_string<charT, traits, Allocator>& lhs, const basic_string<charT, traits, Allocator>& rhs)
+operator<=(const basic_string<charT, traits, Allocator>& lhs,
+           const basic_string<charT, traits, Allocator>& rhs)
 {
     return lhs.compare(rhs) <= 0;
 }
-
 template <class charT, class traits, class Allocator>
 inline bool
 operator<=(const basic_string<charT, traits, Allocator>& lhs, const charT* rhs)
 {
     return lhs.compare(rhs) <= 0;
 }
-
 template <class charT, class traits, class Allocator>
 inline bool
 operator<=(const charT* lhs, const basic_string<charT, traits, Allocator>& rhs)
 {
     return rhs.compare(lhs) >= 0;
 }
-
 template <class charT, class traits, class Allocator>
 inline bool
-operator>=(const basic_string<charT, traits, Allocator>& lhs, const basic_string<charT, traits, Allocator>& rhs)
+operator>=(const basic_string<charT, traits, Allocator>& lhs,
+           const basic_string<charT, traits, Allocator>& rhs)
 {
     return lhs.compare(rhs) >= 0;
 }
-
 template <class charT, class traits, class Allocator>
 inline bool
 operator>=(const basic_string<charT, traits, Allocator>& lhs, const charT* rhs)
 {
     return lhs.compare(rhs) >= 0;
 }
-
 template <class charT, class traits, class Allocator>
 inline bool
 operator>=(const charT* lhs, const basic_string<charT, traits, Allocator>& rhs)
 {
     return rhs.compare(lhs) <= 0;
 }
-
 // _lib.string.special_:
 template <class charT, class traits, class Allocator>
 inline void
-swap(basic_string<charT, traits, Allocator>& lhs, basic_string<charT, traits, Allocator>& rhs)
+swap(basic_string<charT, traits, Allocator>& lhs,
+     basic_string<charT, traits, Allocator>& rhs)
 {
     lhs.swap(rhs);
 }
-
-#        ifndef _MSL_NO_IO
-
-template <class charT, class traits, class Allocator>
-basic_istream<charT, traits>& operator>>(basic_istream<charT, traits>& is, basic_string<charT, traits, Allocator>& str);
+#ifndef _MSL_NO_IO
 
 template <class charT, class traits, class Allocator>
-basic_ostream<charT, traits>& operator<<(basic_ostream<charT, traits>&                 os,
-                                         const basic_string<charT, traits, Allocator>& str);
+basic_istream<charT, traits>& operator>>(
+    basic_istream<charT, traits>& is, basic_string<charT, traits, Allocator>& str);
 
 template <class charT, class traits, class Allocator>
-basic_istream<charT, traits>& getline(basic_istream<charT, traits>& is, basic_string<charT, traits, Allocator>& str,
-                                      charT delim);
+basic_ostream<charT, traits>& operator<<(
+    basic_ostream<charT, traits>&                 os,
+    const basic_string<charT, traits, Allocator>& str);
 
 template <class charT, class traits, class Allocator>
-basic_istream<charT, traits>& getline(basic_istream<charT, traits>& is, basic_string<charT, traits, Allocator>& str);
+basic_istream<charT, traits>& getline(basic_istream<charT, traits>&           is,
+                                      basic_string<charT, traits, Allocator>& str,
+                                      charT                                   delim);
 
-#        endif // _MSL_NO_IO
+template <class charT, class traits, class Allocator>
+basic_istream<charT, traits>& getline(basic_istream<charT, traits>&           is,
+                                      basic_string<charT, traits, Allocator>& str);
+
+#endif // _MSL_NO_IO
 
 typedef basic_string<char, char_traits<char>, allocator<char> > string;
 
-#        ifndef _MSL_NO_WCHART_CPP_SUPPORT
+#ifndef _MSL_NO_WCHART_CPP_SUPPORT
 typedef basic_string<wchar_t, char_traits<wchar_t>, allocator<wchar_t> > wstring;
-#        endif
-
+#endif
 template <class charT>
 basic_string<charT>
 __literal(const char* s, charT)
@@ -3650,64 +3599,57 @@ __literal(const char* s, charT)
     }
     return str;
 }
-
 inline string
 __literal(const char* s, char)
 {
     return string(s);
 }
-
-#        ifndef _MSL_NO_CPP_NAMESPACE
+#ifndef _MSL_NO_CPP_NAMESPACE
 } // namespace std
-#        endif
+#endif
 
-#        ifdef _MSL_FORCE_ENUMS_ALWAYS_INT
-#            pragma enumsalwaysint reset
-#        endif
+#ifdef _MSL_FORCE_ENUMS_ALWAYS_INT
+#pragma enumsalwaysint reset
+#endif
 
-#        ifdef _MSL_FORCE_ENABLE_BOOL_SUPPORT
-#            pragma bool reset
-#        endif
+#ifdef _MSL_FORCE_ENABLE_BOOL_SUPPORT
+#pragma bool reset
+#endif
 
-#        pragma options align = reset
+#pragma options align = reset
 
-#    endif // RC_INVOKED
+#endif // RC_INVOKED
 
-#endif     // _STRING
+#endif // _STRING
 
 // hh 980908 rewrote
 // hh 981220 Added typename to appropriate return types
 // hh 990126 Converted from MSIPL flags to _MSL flags
-// hh 990126 Corrected standards bug:  compare(pos1, n1, s) was malfunctioning because the
-//           default argument for n2 was npos.  It should be traits::length(s).  This requires
-//           splitting compare into two signitures.
+// hh 990126 Corrected standards bug:  compare(pos1, n1, s) was malfunctioning
+// because the
+//           default argument for n2 was npos.  It should be traits::length(s).  This
+//           requires splitting compare into two signitures.
 // hh 990201 Several changes in getline:  erase string as soon as sentry is passed.
 //           Removed temp string as it no longer makes sense.
-//           Changed to work with sbumpc instead of istreambuf_iterator.  This reduces the
-//           look ahead by 1 char which makes getline behave better when the stream is cin.
+//           Changed to work with sbumpc instead of istreambuf_iterator.  This
+//           reduces the look ahead by 1 char which makes getline behave better when
+//           the stream is cin.
 // hh 990630 Added null_ object to avoid allocations for constructing null strings.
 // hh 990727 Added non-refcounted version
 // hh 990728 Uninlined member template methods where feasible.
 // hh 990826 Added init method that takes pointer.
-// hh 991003 Put null_ object in a static class to better synchronize its construction.
-// hh 991102 Added pointer versions of do_append, do_assign and do_replace.
-// hh 991114 Minor optimization on operator == and !=.
-// hh 000127 Added a mutex lock to addRef.
-// hh 000127 Modified copy constructor to bring in line with "ready" DR #42.
-// hh 000130 Installed _MSL_NO_LOCALE
-// hh 000606 Rewrote find and rfind.  Corrected border cases.
-// hh 001011 Moved implementation of char_traits to inside of class declaration
-// hh 001011 Fixed typename bug in getline
-// hh 001107 Fixed bug in char_traits<charT>::move
-// hh 001127 Fixed bug where allocator was used by max_size() from constructors before being created
-// hh 001207 Added pop_back
-// hh 010125 Changed mutex.h to msl_mutex
-// hh 010301 Protected min and max from macro abuse.
-// hh 010308 Changed catch (bad_alloc) to catch (...) in several places
-// hh 010314 Qualified internal calls with std::
-// hh 010402 Removed 68K CMF support
-// hh 010425 Moved extractor definitions to istream
-// hh 010425 Moved inserter definitions to ostream
-// hh 010721 Modified do_assign to check for self assignment
-// hh 010727 Fixed typename bug
-// hh 010727 Protected dependence on <msl_mutex>
+// hh 991003 Put null_ object in a static class to better synchronize its
+// construction. hh 991102 Added pointer versions of do_append, do_assign and
+// do_replace. hh 991114 Minor optimization on operator == and !=. hh 000127 Added a
+// mutex lock to addRef. hh 000127 Modified copy constructor to bring in line with
+// "ready" DR #42. hh 000130 Installed _MSL_NO_LOCALE hh 000606 Rewrote find and
+// rfind.  Corrected border cases. hh 001011 Moved implementation of char_traits to
+// inside of class declaration hh 001011 Fixed typename bug in getline hh 001107
+// Fixed bug in char_traits<charT>::move hh 001127 Fixed bug where allocator was used
+// by max_size() from constructors before being created hh 001207 Added pop_back hh
+// 010125 Changed mutex.h to msl_mutex hh 010301 Protected min and max from macro
+// abuse. hh 010308 Changed catch (bad_alloc) to catch (...) in several places hh
+// 010314 Qualified internal calls with std:: hh 010402 Removed 68K CMF support hh
+// 010425 Moved extractor definitions to istream hh 010425 Moved inserter definitions
+// to ostream hh 010721 Modified do_assign to check for self assignment hh 010727
+// Fixed typename bug hh 010727 Protected dependence on <msl_mutex>

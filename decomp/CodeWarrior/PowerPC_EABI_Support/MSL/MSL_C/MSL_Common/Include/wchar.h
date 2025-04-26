@@ -6,16 +6,16 @@
  */
 
 #ifndef _MSL_WCHAR_H
-#    define _MSL_WCHAR_H
+#define _MSL_WCHAR_H
 
-#    if __MACH__
-#        warning The standard BSD headers do not have an equivalent wchar.h header to #include
-#    else
+#if __MACH__
+#warning The standard BSD headers do not have an equivalent wchar.h header to #include
+#else
 
-#        include <cwchar>
+#include <cwchar>
 
-#        if defined(__cplusplus) && defined(_MSL_USING_NAMESPACE)
-#            ifndef __NO_WIDE_CHAR
+#if defined(__cplusplus) && defined(_MSL_USING_NAMESPACE)
+#ifndef __NO_WIDE_CHAR
 using std::btowc;   /*- mm 010528 -*/
 using std::fgetwc;
 using std::fgetws;
@@ -71,15 +71,15 @@ using std::wmemmove;
 using std::wmemset;
 using std::wprintf;
 using std::wscanf;
-#            endif
-#        endif
+#endif
+#endif
 
-#    endif /* __MACH__ */
+#endif /* __MACH__ */
 
-#endif     /* _MSL_WCHAR_H */
+#endif /* _MSL_WCHAR_H */
 
-           /* Change record:
-            * 980121 JCM First code release.
-            * 991112 hh  Fixed using bug.
-            * 001208 JWW Added case for targeting Mach-O
-            */
+       /* Change record:
+        * 980121 JCM First code release.
+        * 991112 hh  Fixed using bug.
+        * 001208 JWW Added case for targeting Mach-O
+        */

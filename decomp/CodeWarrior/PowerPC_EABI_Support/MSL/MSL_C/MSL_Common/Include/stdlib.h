@@ -6,15 +6,15 @@
  */
 
 #ifndef _MSL_STDLIB_H
-#    define _MSL_STDLIB_H
+#define _MSL_STDLIB_H
 
-#    if __MACH__
-#        error You must have the /usr/include access path before the MSL access path
-#    else
+#if __MACH__
+#error You must have the /usr/include access path before the MSL access path
+#else
 
-#        include <cstdlib>
+#include <cstdlib>
 
-#        if defined(__cplusplus) && defined(_MSL_USING_NAMESPACE)
+#if defined(__cplusplus) && defined(_MSL_USING_NAMESPACE)
 using std::abort;
 using std::atexit;
 using std::atol;
@@ -26,24 +26,24 @@ using std::malloc;
 using std::realloc;
 using std::size_t;
 using std::system;
-#            ifndef _No_Floating_Point
+#ifndef _No_Floating_Point
 using std::atof;
 using std::strtod;
-#            endif
+#endif
 using std::atoi;
 using std::mblen;
 using std::strtol;
 using std::strtoul;
-#            ifdef __MSL_LONGLONG_SUPPORT__
+#ifdef __MSL_LONGLONG_SUPPORT__
 using std::strtoll;
 using std::strtoull;
-#            endif
-#            ifndef __NO_WIDE_CHAR
+#endif
+#ifndef __NO_WIDE_CHAR
 using std::mbstowcs;
 using std::mbtowc;
 using std::wcstombs;
 using std::wctomb;
-#            endif
+#endif
 using std::abs;
 using std::bsearch;
 using std::div;
@@ -51,28 +51,28 @@ using std::div_t;
 using std::labs;
 using std::ldiv_t;
 using std::qsort;
-#            ifdef __MSL_LONGLONG_SUPPORT__
+#ifdef __MSL_LONGLONG_SUPPORT__
 using std::llabs;
 using std::lldiv;
 using std::lldiv_t;
-#            endif
+#endif
 using std::ldiv;
 using std::rand;
 using std::srand;
-#            if __VEC__
+#if __VEC__
 using std::vec_calloc;
 using std::vec_free;
 using std::vec_malloc;
 using std::vec_realloc;
-#            endif
-#        endif
+#endif
+#endif
 
-#    endif /* __MACH__ */
+#endif /* __MACH__ */
 
-#endif     /* _MSL_STDLIB_H */
+#endif /* _MSL_STDLIB_H */
 
-           /* Change record:
-            * hh  971206 Created.
-            * hh  991112 Fixed using bug
-            * JWW 001208 Added case for targeting Mach-O
-            */
+       /* Change record:
+        * hh  971206 Created.
+        * hh  991112 Fixed using bug
+        * JWW 001208 Added case for targeting Mach-O
+        */

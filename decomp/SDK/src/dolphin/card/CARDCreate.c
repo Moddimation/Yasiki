@@ -5,7 +5,6 @@
 #include "CARDPrivate.h"
 
 static void CreateCallbackFat(s32 chan, long result);
-
 static void
 CreateCallbackFat(s32 chan, long result)
 {
@@ -53,9 +52,9 @@ CreateCallbackFat(s32 chan, long result)
         }
     }
 }
-
 s32
-CARDCreateAsync(s32 chan, char* fileName, u32 size, CARDFileInfo* fileInfo, CARDCallback callback)
+CARDCreateAsync(s32 chan, char* fileName, u32 size, CARDFileInfo* fileInfo,
+                CARDCallback callback)
 {
     CARDControl* card;
     CARDDir*     dir;
@@ -98,9 +97,11 @@ CARDCreateAsync(s32 chan, char* fileName, u32 size, CARDFileInfo* fileInfo, CARD
                 freeNo = fileNo;
             }
         }
-        else if (memcmp(ent->gameName, __CARDDiskID->gameName, sizeof(ent->gameName)) == 0
-                 && memcmp(ent->company, __CARDDiskID->company, sizeof(ent->company)) == 0
-                 && __CARDCompareFileName(ent, fileName))
+        else if (memcmp(ent->gameName, __CARDDiskID->gameName,
+                        sizeof(ent->gameName)) == 0 &&
+                 memcmp(ent->company, __CARDDiskID->company, sizeof(ent->company)) ==
+                     0 &&
+                 __CARDCompareFileName(ent, fileName))
         {
             return __CARDPutControlBlock(card, CARD_RESULT_EXIST);
         }
@@ -133,7 +134,6 @@ CARDCreateAsync(s32 chan, char* fileName, u32 size, CARDFileInfo* fileInfo, CARD
     }
     return result;
 }
-
 s32
 CARDCreate(s32 chan, char* fileName, u32 size, struct CARDFileInfo* fileInfo)
 {

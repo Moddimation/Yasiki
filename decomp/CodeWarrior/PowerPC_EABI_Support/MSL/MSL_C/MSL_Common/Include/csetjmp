@@ -6,65 +6,65 @@
  */
 
 #ifndef _MSL_CSETJMP
-#    define _MSL_CSETJMP
+#define _MSL_CSETJMP
 
-#    include <ansi_parms.h>
+#include <ansi_parms.h>
 
-#    if __MACH__
-#        include <setjmp.h>
-#    else
+#if __MACH__
+#include <setjmp.h>
+#else
 
-#        ifndef RC_INVOKED                                               /*- hh 971230 -*/
+#ifndef RC_INVOKED                                   /*- hh 971230 -*/
 
-#            pragma options align = native
+#pragma options align = native
 
 _MSL_BEGIN_NAMESPACE_STD   /*- cc  010410 -*/
     _MSL_BEGIN_EXTERN_C    /*- cc  010410 -*/
 
-#            if __POWERPC__
+#if __POWERPC__
 
-#                if __VEC__
+#if __VEC__
     typedef __vector unsigned long jmp_buf[29];
-#                    define setjmp(jmp_buf) __std(__vec_setjmp(jmp_buf)) /*- hh 990521 -*/
-#                elif __PPCGEKKO__
+#define setjmp(jmp_buf) __std(__vec_setjmp(jmp_buf)) /*- hh 990521 -*/
+#elif __PPCGEKKO__
     typedef long* jmp_buf[100];
-#                    define setjmp(jmp_buf) __std(__setjmp(jmp_buf))     /*- hh 990521 -*/
-#                else
+#define setjmp(jmp_buf) __std(__setjmp(jmp_buf))     /*- hh 990521 -*/
+#else
     typedef long* jmp_buf[70];
-#                    define setjmp(jmp_buf) __std(__setjmp(jmp_buf))     /*- hh 990521 -*/
-#                endif
+#define setjmp(jmp_buf) __std(__setjmp(jmp_buf))     /*- hh 990521 -*/
+#endif
 
-#            elif __MIPS__
+#elif __MIPS__
 
-#                include <__config.h>
+#include <__config.h>
     typedef struct __jmp_buf
 {
     _REG_TYPE GPR[11];
-#                if __fpu__
+#if __fpu__
     _FREG_TYPE FPR[12];
-#                endif
+#endif
 } __jmp_buf;
 typedef struct __jmp_buf jmp_buf;
 _MSL_IMP_EXP_C void      __longjmp(register __jmp_buf*, int);
 _MSL_IMP_EXP_C int       __setjmp(register __jmp_buf*);
-#                define setjmp(jmp_buf) __std(__setjmp(&jmp_buf))        /*- hh 990521 -*/
-#                ifdef __cplusplus
+#define setjmp(jmp_buf) __std(__setjmp(&jmp_buf))    /*- hh 990521 -*/
+#ifdef __cplusplus
 inline void
 longjmp(jmp_buf env, int val)
 {
     __longjmp(&env, val);
 }
-#                else
-#                    define longjmp(env, val) __longjmp(&env, val)
-#                endif
+#else
+#define longjmp(env, val) __longjmp(&env, val)
+#endif
 
-#            elif __INTEL__
+#elif __INTEL__
 
     typedef int    jmp_buf[10];
-#                define setjmp(jmp_buf) __std(_Setjmp(jmp_buf))          /*- hh 990521 -*/
+#define setjmp(jmp_buf) __std(_Setjmp(jmp_buf))      /*- hh 990521 -*/
 _MSL_IMP_EXP_C int _Setjmp(jmp_buf);
 
-#            elif __SH__
+#elif __SH__
 
     typedef struct __jmp_buf
 {
@@ -77,64 +77,64 @@ _MSL_IMP_EXP_C int _Setjmp(jmp_buf);
     unsigned long r13;
     unsigned long r14;
     unsigned long r15;
-#                if __SH2E__ || __SH4__
+#if __SH2E__ || __SH4__
     unsigned long fr12;
     unsigned long fr13;
     unsigned long fr14;
     unsigned long fr15;
-#                endif
+#endif
 } __jmp_buf;
 
 typedef struct __jmp_buf jmp_buf;
 _MSL_IMP_EXP_C int       __setjmp(__jmp_buf*);
 _MSL_IMP_EXP_C void      __longjmp(__jmp_buf*, int);
-#                define setjmp(jmp_buf)   __setjmp(&jmp_buf)
-#                define longjmp(env, val) __longjmp(&env, val)
+#define setjmp(jmp_buf)   __setjmp(&jmp_buf)
+#define longjmp(env, val) __longjmp(&env, val)
 
-#            elif __m56800E__                                            /*- US 010225 -*/
+#elif __m56800E__                                    /*- US 010225 -*/
 
     typedef unsigned int jmp_buf[36];
 
-#            else
+#else
 
     typedef long* jmp_buf[13]; /*	D3-D7,PC,A2-A6,SP,__local_destructor_chain */
 
-#            endif
+#endif
 
-#            if __POWERPC__
+#if __POWERPC__
 
-#                ifndef __SETJMP_NOT_INTERNAL__
-#                    pragma internal on
-#                endif
+#ifndef __SETJMP_NOT_INTERNAL__
+#pragma internal on
+#endif
 
-#                if __VEC__
+#if __VEC__
 _MSL_IMP_EXP_C int __vec_setjmp(jmp_buf);
-#                else
+#else
 _MSL_IMP_EXP_C int __setjmp(jmp_buf);
-#                endif
+#endif
 
-#                ifndef __SETJMP_NOT_INTERNAL__
-#                    pragma internal reset
-#                endif
+#ifndef __SETJMP_NOT_INTERNAL__
+#pragma internal reset
+#endif
 
-#                if __VEC__
+#if __VEC__
 int __vec_longjmp(jmp_buf, int);
-#                    ifdef __cplusplus
+#ifdef __cplusplus
 inline void
 longjmp(jmp_buf j, int val)
 {
     __vec_longjmp(j, val);
 }
-#                    else
-#                        define longjmp(jmp_buf, val) __vec_longjmp(jmp_buf, val)
-#                    endif
-#                else
+#else
+#define longjmp(jmp_buf, val) __vec_longjmp(jmp_buf, val)
+#endif
+#else
 void longjmp(jmp_buf, int);
-#                endif
+#endif
 
-#            else                                                        /* !__POWERPC__ */
+#else                                                /* !__POWERPC__ */
 
-#                if !defined(__MIPS__) && !defined(__SH__)
+#if !defined(__MIPS__) && !defined(__SH__)
 
 _MSL_END_EXTERN_C            /*- cc  010410 -*/
     _MSL_END_NAMESPACE_STD   /*- cc  010410 -*/
@@ -148,39 +148,38 @@ _MSL_END_EXTERN_C            /*- cc  010410 -*/
 
             _MSL_IMP_EXP_C void
             longjmp(jmp_buf, int);
-#                endif                                                   /* !defined(__MIPS__) && !defined(__SH__) */
+#endif /* !defined(__MIPS__) && !defined(__SH__) */
 
-#            endif
+#endif
 
 _MSL_IMP_EXP_C void __longjmp_ldestr(jmp_buf, int);
 
 _MSL_END_EXTERN_C          /*- cc  010410 -*/
     _MSL_END_NAMESPACE_STD /*- cc  010410 -*/
 
-#            pragma options align = reset
+#pragma options align = reset
 
-#        endif                                                           /* RC_INVOKED */
+#endif /* RC_INVOKED */
 
-#    endif                                                               /* __MACH__ */
+#endif /* __MACH__ */
 
-#endif                                                                   /* _MSL_CSETJMP */
+#endif /* _MSL_CSETJMP */
 
-                                                                         /* Change record:
-                                                                          * bkos960829 added l.you's changes for powerTV
-                                                                          * KO  960917 Moved the __extern_c block up here so it now encloses
-                                                                          *             the Intel function declaration.
-                                                                          * mm  970708 Inserted Be changes
-                                                                          * hh  971206 Changed filename from setjmp.h to csetjmp and added namespace support.
-                                                                          * hh  971230 added RC_INVOKED wrapper
-                                                                          * vss 980807 remove pragma  - no longer supported by compiler
-                                                                          * vss 990115 removed powerTV wrappers
-                                                                          * bdd 000203 Add AltiVec changes (contributed)
-                                                                          * hh  990521 added __std() qualifier to setjmp macro, 4 places
-                                                                          * as  990824 added SH specific sections
-                                                                          * hh  006012 Removed setjmp from namespace std where it is a function.
-                                                                          * hh  000712 Wrapped jmp_buf in __std() in the two places where setjmp was moved to global namespace
-                                                                          * as  001030 *happy halloween* added MCORE specific sections
-                                                                          * JWW 001208 Added case for targeting Mach-O
-                                                                          * cc  000326 removed dest_os to be_os
-                                                                          * cc  010410 updated to new namespace macros
-                                                                          */
+       /* Change record:
+        * bkos960829 added l.you's changes for powerTV
+        * KO  960917 Moved the __extern_c block up here so it now encloses
+        *             the Intel function declaration.
+        * mm  970708 Inserted Be changes
+        * hh  971206 Changed filename from setjmp.h to csetjmp and added namespace support.
+        * hh  971230 added RC_INVOKED wrapper
+        * vss 980807 remove pragma  - no longer supported by compiler
+        * vss 990115 removed powerTV wrappers
+        * bdd 000203 Add AltiVec changes (contributed)
+        * hh  990521 added __std() qualifier to setjmp macro, 4 places
+        * as  990824 added SH specific sections
+        * hh  006012 Removed setjmp from namespace std where it is a function.
+        * hh  000712 Wrapped jmp_buf in __std() in the two places where setjmp was moved to
+        * global namespace        as  001030 *happy halloween* added MCORE specific sections
+        * JWW        001208 Added case for targeting Mach-O        cc  000326 removed
+        * dest_os to        be_os        cc        010410 updated to new namespace macros
+        */

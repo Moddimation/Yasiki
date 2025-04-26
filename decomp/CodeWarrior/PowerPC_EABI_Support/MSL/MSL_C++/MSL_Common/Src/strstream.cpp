@@ -11,28 +11,27 @@
 #include <strstream>
 
 #ifdef _MSL_FORCE_ENUMS_ALWAYS_INT
-#    if _MSL_FORCE_ENUMS_ALWAYS_INT
-#        pragma enumsalwaysint on
-#    else
-#        pragma enumsalwaysint off
-#    endif
+#if _MSL_FORCE_ENUMS_ALWAYS_INT
+#pragma enumsalwaysint on
+#else
+#pragma enumsalwaysint off
+#endif
 #endif
 
 #ifdef _MSL_FORCE_ENABLE_BOOL_SUPPORT
-#    if _MSL_FORCE_ENABLE_BOOL_SUPPORT
-#        pragma bool on
-#    else
-#        pragma bool off
-#    endif
+#if _MSL_FORCE_ENABLE_BOOL_SUPPORT
+#pragma bool on
+#else
+#pragma bool off
+#endif
 #endif
 
 #ifndef _MSL_NO_IO
 
-#    ifndef _MSL_NO_CPP_NAMESPACE
+#ifndef _MSL_NO_CPP_NAMESPACE
 namespace std
 {
-#    endif
-
+#endif
 // strstreambuf
 
 strstreambuf::~strstreambuf()
@@ -49,7 +48,6 @@ strstreambuf::~strstreambuf()
         }
     }
 }
-
 void
 strstreambuf::freeze(bool freezefl)
 {
@@ -65,7 +63,6 @@ strstreambuf::freeze(bool freezefl)
         }
     }
 }
-
 strstreambuf::int_type
 strstreambuf::overflow(int_type c)
 {
@@ -135,7 +132,6 @@ strstreambuf::overflow(int_type c)
     pbump(1);
     return c;
 }
-
 strstreambuf::int_type
 strstreambuf::pbackfail(int_type c)
 {
@@ -160,7 +156,6 @@ strstreambuf::pbackfail(int_type c)
     gbump(1);
     return EOF;
 }
-
 strstreambuf::int_type
 strstreambuf::underflow()
 {
@@ -175,7 +170,6 @@ strstreambuf::underflow()
     }
     return EOF;
 }
-
 strstreambuf::pos_type
 strstreambuf::seekoff(off_type off, ios_base::seekdir way, ios_base::openmode which)
 {
@@ -189,10 +183,17 @@ strstreambuf::seekoff(off_type off, ios_base::seekdir way, ios_base::openmode wh
     {
         switch (way)
         {
-            case ios_base::beg : newoff = 0; break;
-            case ios_base::cur : newoff = gptr() - eback(); break;
-            case ios_base::end : newoff = egptr() - eback(); break;
-            default            : return pos_type(-1);
+            case ios_base::beg:
+                newoff = 0;
+                break;
+            case ios_base::cur:
+                newoff = gptr() - eback();
+                break;
+            case ios_base::end:
+                newoff = egptr() - eback();
+                break;
+            default:
+                return pos_type(-1);
         }
         newoff += off;
         if (newoff < 0 || newoff > egptr() - eback())
@@ -205,10 +206,17 @@ strstreambuf::seekoff(off_type off, ios_base::seekdir way, ios_base::openmode wh
     {
         switch (way)
         {
-            case ios_base::beg : newoff = 0; break;
-            case ios_base::cur : newoff = pptr() - pbase(); break;
-            case ios_base::end : newoff = epptr() - pbase(); break;
-            default            : return pos_type(-1);
+            case ios_base::beg:
+                newoff = 0;
+                break;
+            case ios_base::cur:
+                newoff = pptr() - pbase();
+                break;
+            case ios_base::end:
+                newoff = epptr() - pbase();
+                break;
+            default:
+                return pos_type(-1);
         }
         newoff += off;
         if (newoff < 0 || newoff > epptr() - pbase())
@@ -220,7 +228,6 @@ strstreambuf::seekoff(off_type off, ios_base::seekdir way, ios_base::openmode wh
     }
     return pos_type(newoff);
 }
-
 strstreambuf::pos_type
 strstreambuf::seekpos(pos_type sp, ios_base::openmode which)
 {
@@ -246,7 +253,6 @@ strstreambuf::seekpos(pos_type sp, ios_base::openmode which)
     }
     return pos_type(newoff);
 }
-
 streambuf*
 strstreambuf::setbuf(char* s, streamsize n)
 {                                                                // hh 990423
@@ -269,7 +275,6 @@ strstreambuf::setbuf(char* s, streamsize n)
     init(s, n, s);
     return this;
 }
-
 void
 strstreambuf::init(char* gnext_arg, streamsize n, char* pbeg_arg)
 {
@@ -292,14 +297,13 @@ strstreambuf::init(char* gnext_arg, streamsize n, char* pbeg_arg)
         setp(pbeg_arg, pbeg_arg + N);
     }
 }
-
 // istrstream
 
 // ostrstream
 
-#    ifndef _MSL_NO_CPP_NAMESPACE
+#ifndef _MSL_NO_CPP_NAMESPACE
 }
-#    endif
+#endif
 
 #endif // _MSL_NO_IO
 

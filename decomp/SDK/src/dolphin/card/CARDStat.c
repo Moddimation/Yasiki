@@ -7,7 +7,6 @@
 
 // functions
 static void UpdateIconOffsets(CARDDir* ent, CARDStat* stat);
-
 static void
 UpdateIconOffsets(CARDDir* ent, CARDStat* stat)
 {
@@ -27,18 +26,18 @@ UpdateIconOffsets(CARDDir* ent, CARDStat* stat)
     iconTlut = FALSE;
     switch (CARDGetBannerFormat(ent))
     {
-        case CARD_STAT_BANNER_C8 :
+        case CARD_STAT_BANNER_C8:
             stat->offsetBanner = offset;
             offset += CARD_BANNER_WIDTH * CARD_BANNER_HEIGHT;
             stat->offsetBannerTlut = offset;
             offset += 2 * 256;
             break;
-        case CARD_STAT_BANNER_RGB5A3 :
+        case CARD_STAT_BANNER_RGB5A3:
             stat->offsetBanner = offset;
             offset += 2 * CARD_BANNER_WIDTH * CARD_BANNER_HEIGHT;
             stat->offsetBannerTlut = 0xffffffff;
             break;
-        default :
+        default:
             stat->offsetBanner = 0xffffffff;
             stat->offsetBannerTlut = 0xffffffff;
             break;
@@ -47,16 +46,18 @@ UpdateIconOffsets(CARDDir* ent, CARDStat* stat)
     {
         switch (CARDGetIconFormat(ent, i))
         {
-            case CARD_STAT_ICON_C8 :
+            case CARD_STAT_ICON_C8:
                 stat->offsetIcon[i] = offset;
                 offset += CARD_ICON_WIDTH * CARD_ICON_HEIGHT;
                 iconTlut = TRUE;
                 break;
-            case CARD_STAT_ICON_RGB5A3 :
+            case CARD_STAT_ICON_RGB5A3:
                 stat->offsetIcon[i] = offset;
                 offset += 2 * CARD_ICON_WIDTH * CARD_ICON_HEIGHT;
                 break;
-            default : stat->offsetIcon[i] = 0xffffffff; break;
+            default:
+                stat->offsetIcon[i] = 0xffffffff;
+                break;
         }
     }
     if (iconTlut)
@@ -70,7 +71,6 @@ UpdateIconOffsets(CARDDir* ent, CARDStat* stat)
     }
     stat->offsetData = offset;
 }
-
 s32
 CARDGetStatus(s32 chan, s32 fileNo, CARDStat* stat)
 {
@@ -119,7 +119,6 @@ CARDGetStatus(s32 chan, s32 fileNo, CARDStat* stat)
     }
     return __CARDPutControlBlock(card, result);
 }
-
 s32
 CARDSetStatusAsync(s32 chan, s32 fileNo, CARDStat* stat, CARDCallback callback)
 {
@@ -131,8 +130,9 @@ CARDSetStatusAsync(s32 chan, s32 fileNo, CARDStat* stat, CARDCallback callback)
     ASSERTLINE(0xD5, 0 <= fileNo && fileNo < CARD_MAX_FILE);
     ASSERTLINE(0xD6, 0 <= chan && chan < 2);
 
-    if (fileNo < 0 || CARD_MAX_FILE <= fileNo || (stat->iconAddr != 0xffffffff && stat->iconAddr >= 0x200)
-        || (stat->commentAddr != 0xffffffff && (stat->commentAddr & 0x1fff) > 0x1fc0))
+    if (fileNo < 0 || CARD_MAX_FILE <= fileNo ||
+        (stat->iconAddr != 0xffffffff && stat->iconAddr >= 0x200) ||
+        (stat->commentAddr != 0xffffffff && (stat->commentAddr & 0x1fff) > 0x1fc0))
     {
         return CARD_RESULT_FATAL_ERROR;
     }
@@ -171,7 +171,6 @@ CARDSetStatusAsync(s32 chan, s32 fileNo, CARDStat* stat, CARDCallback callback)
     }
     return result;
 }
-
 s32
 CARDSetStatus(s32 chan, long fileNo, struct CARDStat* stat)
 {

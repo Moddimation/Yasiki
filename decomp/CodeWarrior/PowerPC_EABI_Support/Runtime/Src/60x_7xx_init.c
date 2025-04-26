@@ -18,10 +18,9 @@ extern void init_board(void);
 
 #define _7XX_VERSION 0x0008 // bits 0..15 of PVR on 7xx
 
-#pragma section all_types                                                                                              \
-    ".init"                                                                                                            \
+#pragma section all_types                                                           \
+    ".init"                                                                         \
     ".init"
-
 //////////////////////////////////////////////////////////////////////
 //
 //	usr_init
@@ -89,8 +88,8 @@ usr_init()
             //	DCFI[21]		= 1 (data cache flush invalidate)
             //	SPD[22]			= 0 (enable speculative cache access (7xx))
             //	IFEM[23]		= 1 (enable M bit for instruction fetches (7xx))
-            //	SGE[24]			= 1 (enable store gathering (7xx - on 603e bit 24 is IFEM))
-            //	DCFA[25]		= 0 (disable data cache flush assist (7xx))
+            //	SGE[24]			= 1 (enable store gathering (7xx - on 603e bit 24 is
+            // IFEM)) 	DCFA[25]		= 0 (disable data cache flush assist (7xx))
             //	BTIC[26]		= 0 (enable branch instruction cache (7xx))
             //	FBIOB[27]		= 0 (don't force branch indirect on bus (603e))
             //	ABE[28]			= 0 (don't broadcase address-only operations)
@@ -209,7 +208,7 @@ usr_init()
                       // Call any board-specific initialization required.
                       //
 
-                      mflr r30                   // save link register in a NV register //
+                      mflr r30 // save link register in a NV register //
                           bl init_board mtlr r30 // restore saved link register //
 
               blr

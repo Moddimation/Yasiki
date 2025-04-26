@@ -1,5 +1,6 @@
 /* Metrowerks Standard Library
- * Copyright ÃÂ¯ÃÂ½C 1995-2001 Metrowerks Corporation.  All rights reserved.
+ * Copyright ÃÂ¯ÃÂ½C 1995-2001 Metrowerks Corporation.  All rights
+ * reserved.
  *
  * $Date: 2001/07/27 20:51:48 $
  * $Revision: 1.46.2.2 $
@@ -8,87 +9,87 @@
 // mslconfig
 
 #ifndef _MSLCONFIG
-#    define _MSLCONFIG
+#define _MSLCONFIG
 
 // define _MSL_USING_MSL_C if using MSL for the C lib
-#    if !defined(__GNUC__) && (!__MACH__)
-#        define _MSL_USING_MSL_C
-#    endif
+#if !defined(__GNUC__) && (!__MACH__)
+#define _MSL_USING_MSL_C
+#endif
 
-#    if defined(__GNUC__) || __MACH__
-#        define _MSL_USING_GCC_C
-#    endif
+#if defined(__GNUC__) || __MACH__
+#define _MSL_USING_GCC_C
+#endif
 
-#    if defined(_MSL_USING_MSL_C) || __MACH__
-#        include <mslGlobals.h>
-#    endif
+#if defined(_MSL_USING_MSL_C) || __MACH__
+#include <mslGlobals.h>
+#endif
 
-#    define __MSL_CPP__ 0x7005 //  MSL C++ version identifier
+#define __MSL_CPP__ 0x7005 //  MSL C++ version identifier
 
-#    ifdef _MSL_USING_GCC_C
-#        define _MSL_NO_WCHART_C_SUPPORT
-#    endif
+#ifdef _MSL_USING_GCC_C
+#define _MSL_NO_WCHART_C_SUPPORT
+#endif
 
-#    ifdef __MWERKS__
+#ifdef __MWERKS__
 
-                               //	#define _MSL_USING_NAMESPACE  // uncomment if C in std (defined in C lib for Pro)
+//	#define _MSL_USING_NAMESPACE  // uncomment if C in std (defined in C lib for Pro)
 //	#define _MSL_NO_CPP_NAMESPACE // uncomment if C++ in global namespace
 
-#        define _MSL_FORCE_ENUMS_ALWAYS_INT    0
-#        define _MSL_FORCE_ENABLE_BOOL_SUPPORT 1
+#define _MSL_FORCE_ENUMS_ALWAYS_INT    0
+#define _MSL_FORCE_ENABLE_BOOL_SUPPORT 1
 
-#        ifdef _MSL_FORCE_ENUMS_ALWAYS_INT
-#            if _MSL_FORCE_ENUMS_ALWAYS_INT
-#                pragma enumsalwaysint on
-#            else
-#                pragma enumsalwaysint off
-#            endif
-#        endif
+#ifdef _MSL_FORCE_ENUMS_ALWAYS_INT
+#if _MSL_FORCE_ENUMS_ALWAYS_INT
+#pragma enumsalwaysint on
+#else
+#pragma enumsalwaysint off
+#endif
+#endif
 
-#        ifdef _MSL_FORCE_ENABLE_BOOL_SUPPORT
-#            if _MSL_FORCE_ENABLE_BOOL_SUPPORT
-#                pragma bool on
-#            else
-#                pragma bool off
-#            endif
-#        endif
+#ifdef _MSL_FORCE_ENABLE_BOOL_SUPPORT
+#if _MSL_FORCE_ENABLE_BOOL_SUPPORT
+#pragma bool on
+#else
+#pragma bool off
+#endif
+#endif
 
-#        if !__option(exceptions)
+#if !__option(exceptions)
 // Recompile the C++ lib when flipping this switch
-#            define _MSL_NO_EXCEPTIONS
-#        endif
-#        if !__option(bool)
+#define _MSL_NO_EXCEPTIONS
+#endif
+#if !__option(bool)
 // Recompile the C++ lib when flipping this switch
-#            define _MSL_NO_BOOL
-#        endif
-#        if !__option(wchar_type)
+#define _MSL_NO_BOOL
+#endif
+#if !__option(wchar_type)
 // Recompile the C++ lib when flipping this switch
-#            define _MSL_NO_WCHART_LANG_SUPPORT
-#        endif
+#define _MSL_NO_WCHART_LANG_SUPPORT
+#endif
 
 //	#define _MSL_NO_WCHART_C_SUPPORT
 //	#define _MSL_NO_WCHART_CPP_SUPPORT
 
-#        ifndef _MSL_USING_MSL_C
+#ifndef _MSL_USING_MSL_C
 // Recompile the C++ lib when flipping this switch
-#            define __MSL_LONGLONG_SUPPORT__
+#define __MSL_LONGLONG_SUPPORT__
 // Recompile the C++ lib when flipping this switch
 //		#define _MSL_CX_LIMITED_RANGE
-#        endif
+#endif
 
-#        if __option(ARM_conform) && __dest_os == __win32_os
+#if __option(ARM_conform) && __dest_os == __win32_os
 // Recompile the C++ lib when flipping this switch
-#            define _MSL_NO_EXPLICIT_FUNC_TEMPLATE_ARG
-#        endif
-#        if __dest_os == __win32_os
-#            ifndef NOMINMAX
-#                define NOMINMAX
-#            endif
-#        endif
-#        if _MWMT
+#define _MSL_NO_EXPLICIT_FUNC_TEMPLATE_ARG
+#endif
+#if __dest_os == __win32_os
+#ifndef NOMINMAX
+#define NOMINMAX
+#endif
+#endif
+#if _MWMT
 // Recompile the C++ lib when flipping this switch
-#            define _MSL_MULTITHREAD
-#        endif
+#define _MSL_MULTITHREAD
+#endif
 
 // _MSL_MINIMUM_NAMED_LOCALE when defined, turns off all of the named locale
 // stuff except for "C" and "" (which will be the same as "C")
@@ -114,11 +115,11 @@
 // Benefits of this switch are highly application dependent.
 // Recompile the C++ lib when flipping this switch
 //	#define _MSL_NO_REFCOUNT_STRING
-#        ifdef _MSL_MULTITHREAD
-#            ifndef _MSL_NO_REFCOUNT_STRING
-#                define _MSL_NO_REFCOUNT_STRING
-#            endif
-#        endif
+#ifdef _MSL_MULTITHREAD
+#ifndef _MSL_NO_REFCOUNT_STRING
+#define _MSL_NO_REFCOUNT_STRING
+#endif
+#endif
 
 // _Inhibit_Container_Optimization, if uncommented will disable pointer
 // specializations in the containers.  This may make debugging easier.
@@ -150,9 +151,9 @@
 // store the value by const reference instead of by value to save on an
 // expensive copy construction.  This also allows for the use of polymorphic
 // operators by specifying reference types for the operator.
-#        define _MSL_EXTENDED_BINDERS
+#define _MSL_EXTENDED_BINDERS
 
-#        define _MSL_NO_TEMPLATE_FRIENDS
+#define _MSL_NO_TEMPLATE_FRIENDS
 //	#define _MSL_NO_THROW_SPECS
 //	#define _MSL_NO_EXPLICIT_FUNC_TEMPLATE_ARG
 //	#define _MSL_NO_PARTIAL_SPECIALIZATION
@@ -162,112 +163,110 @@
 //	#define _MSL_NO_CONSOLE_IO
 //	#define _No_Floating_Point
 
-#        ifdef _MSL_FORCE_ENUMS_ALWAYS_INT
-#            pragma enumsalwaysint reset
-#        endif
+#ifdef _MSL_FORCE_ENUMS_ALWAYS_INT
+#pragma enumsalwaysint reset
+#endif
 
-#        ifdef _MSL_FORCE_ENABLE_BOOL_SUPPORT
-#            pragma bool reset
-#        endif
+#ifdef _MSL_FORCE_ENABLE_BOOL_SUPPORT
+#pragma bool reset
+#endif
 
-#    endif
+#endif
 
-#    ifdef __GNUC__
+#ifdef __GNUC__
 
-#        define _MSL_NO_CPP_NAMESPACE
-#        define _Inhibit_Container_Optimization
-#        define _MSL_NO_LOCALE
-#        define __MSL_LONGLONG_SUPPORT__
-#        define _MSL_NO_WCHART_C_SUPPORT
-#        define _MSL_CANT_DO_LIMITS
-#        define _MSL_CX_LIMITED_RANGE
-#        define _MSL_NO_EXPLICIT_FUNC_TEMPLATE_ARG
-#        define _MSL_NO_MESSAGE_FACET
-#        define _MSL_MULTITHREAD
-#        define _USE_PTHREADS
+#define _MSL_NO_CPP_NAMESPACE
+#define _Inhibit_Container_Optimization
+#define _MSL_NO_LOCALE
+#define __MSL_LONGLONG_SUPPORT__
+#define _MSL_NO_WCHART_C_SUPPORT
+#define _MSL_CANT_DO_LIMITS
+#define _MSL_CX_LIMITED_RANGE
+#define _MSL_NO_EXPLICIT_FUNC_TEMPLATE_ARG
+#define _MSL_NO_MESSAGE_FACET
+#define _MSL_MULTITHREAD
+#define _USE_PTHREADS
 //	#define _MSL_NO_REFCOUNT_STRING
 
-#    endif
+#endif
 
 //-----------------------------------------------------------------
 
-#    ifndef _MSL_USING_NAMESPACE
-#        define _CSTD
-#    else
-#        define _CSTD ::std
-#    endif
+#ifndef _MSL_USING_NAMESPACE
+#define _CSTD
+#else
+#define _CSTD ::std
+#endif
 
-#    ifdef _MSL_NO_CPP_NAMESPACE
-#        define _STD
-#    else
-#        define _STD ::std
-#    endif
+#ifdef _MSL_NO_CPP_NAMESPACE
+#define _STD
+#else
+#define _STD ::std
+#endif
 
-#    ifdef _MSL_NO_BOOL
-#        ifndef bool
+#ifdef _MSL_NO_BOOL
+#ifndef bool
 typedef unsigned char bool;
-#        endif
-#        ifndef true
-#            define false static_cast<unsigned char>(0)
-#            define true  static_cast<unsigned char>(1)
-#        endif
-#    endif
+#endif
+#ifndef true
+#define false static_cast<unsigned char>(0)
+#define true  static_cast<unsigned char>(1)
+#endif
+#endif
 
-#    if defined(_MSL_NO_WCHART_LANG_SUPPORT) && !defined(_MSL_NO_WCHART_CPP_SUPPORT)
+#if defined(_MSL_NO_WCHART_LANG_SUPPORT) && !defined(_MSL_NO_WCHART_CPP_SUPPORT)
 
-#        ifdef _MSL_USING_MSL_C
-#            include <wchar_t.h>
-#        elif defined(_MSL_USING_GCC_C)
-#            include <stddef.h>
-#        else
+#ifdef _MSL_USING_MSL_C
+#include <wchar_t.h>
+#elif defined(_MSL_USING_GCC_C)
+#include <stddef.h>
+#else
 extern "C"
 {
 typedef unsigned short wchar_t;
 }
-#        endif
+#endif
 
-#    endif
+#endif
 
-#    ifdef _MSL_NO_THROW_SPECS
-#        define _MSL_THROW
-#    else
-#        define _MSL_THROW throw()
-#    endif
+#ifdef _MSL_NO_THROW_SPECS
+#define _MSL_THROW
+#else
+#define _MSL_THROW throw()
+#endif
 
-#    ifndef _MSL_NO_MEMBER_TEMPLATE
-#        define _MSL_REBIND(type) typename Allocator::rebind<type>::other
-#    else
-#        define _MSL_REBIND(type) allocator<type>
-#    endif
+#ifndef _MSL_NO_MEMBER_TEMPLATE
+#define _MSL_REBIND(type) typename Allocator::rebind<type>::other
+#else
+#define _MSL_REBIND(type) allocator<type>
+#endif
 
-#    ifdef _MSL_NO_EXCEPTIONS
+#ifdef _MSL_NO_EXCEPTIONS
 
-#        ifndef _MSL_NO_CPP_NAMESPACE
+#ifndef _MSL_NO_CPP_NAMESPACE
 namespace std
 {
-#        endif
+#endif
 
 void __msl_error(const char*);
 
-#        ifndef _MSL_NO_CPP_NAMESPACE
+#ifndef _MSL_NO_CPP_NAMESPACE
 } // namespace std
-#        endif
+#endif
 
 // If you don't want MSL C++ to throw an exception, code your
 // error handling code here as an inline method named _STD::__msl_error
 // Two examples are below:
 
 // Example 1 - bail
-#        include <cstdio>
-#        include <cstdlib>
-
+#include <cstdio>
+#include <cstdlib>
 inline void
 _STD::__msl_error(const char* str)
 {
     fprintf(stderr, str);
     abort();
 }
-
 /*
     // Example 2 - ignore
     inline
@@ -276,19 +275,19 @@ _STD::__msl_error(const char* str)
     {
     }
 */
-#    endif
+#endif
 
-#    ifndef _MSL_IMP_EXP
-#        define _MSL_IMP_EXP
-#    endif
+#ifndef _MSL_IMP_EXP
+#define _MSL_IMP_EXP
+#endif
 
-#    ifndef _MSL_IMP_EXP_CPP
-#        define _MSL_IMP_EXP_CPP _MSL_IMP_EXP
-#    endif
+#ifndef _MSL_IMP_EXP_CPP
+#define _MSL_IMP_EXP_CPP _MSL_IMP_EXP
+#endif
 
-#    ifndef _MSL_IMP_EXP_RUNTIME
-#        define _MSL_IMP_EXP_RUNTIME _MSL_IMP_EXP
-#    endif
+#ifndef _MSL_IMP_EXP_RUNTIME
+#define _MSL_IMP_EXP_RUNTIME _MSL_IMP_EXP
+#endif
 
 #endif // _MSLCONFIG
 

@@ -1,5 +1,6 @@
 /* Metrowerks Standard Library
- * Copyright ÃÂ¯ÃÂ½C 1995-2001 Metrowerks Corporation.  All rights reserved.
+ * Copyright ÃÂ¯ÃÂ½C 1995-2001 Metrowerks Corporation.  All rights
+ * reserved.
  *
  * $Date: 2001/03/08 20:53:46 $
  * $Revision: 1.14 $
@@ -7,13 +8,13 @@
 
 // fstream.h           // hh 971207 Changed filename from fstream to fstream.h
 
-#ifndef _FSTREAM_H                // hh 971207 added standard include guards
-#    define _FSTREAM_H
+#ifndef _FSTREAM_H            // hh 971207 added standard include guards
+#define _FSTREAM_H
 
-#    include <fstream>
+#include <fstream>
 
-#    ifndef _MSL_NO_CPP_NAMESPACE // hh 971207 Added backward compatibility
-#        ifndef _MSL_NO_IO
+#ifndef _MSL_NO_CPP_NAMESPACE // hh 971207 Added backward compatibility
+#ifndef _MSL_NO_IO
 using std::basic_filebuf;
 using std::basic_fstream;
 using std::basic_ifstream;
@@ -22,16 +23,16 @@ using std::filebuf;
 using std::fstream;
 using std::ifstream;
 using std::ofstream;
-#            ifndef _MSL_NO_WCHART_CPP_SUPPORT
+#ifndef _MSL_NO_WCHART_CPP_SUPPORT
 using std::wfilebuf;
 using std::wfstream;
 using std::wifstream;
 using std::wofstream;
-#            endif
-#        endif
-#    endif
+#endif
+#endif
+#endif
 
-#endif                            // _FSTREAM_H
+#endif                        // _FSTREAM_H
 
 // hh 971207 Changed filename from fstream to fstream.h
 // hh 971207 added standard include guards

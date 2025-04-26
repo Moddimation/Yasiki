@@ -9,7 +9,6 @@ typedef unsigned long size_t;
 
 typedef void*          (*enemyStrategyInitFunc)(void* buf, int bufSize);
 enemyStrategyInitFunc* getEnemyStrategyInitFunc(int i_entityIdx);
-
 class EnemyStrategy : public JORReflexible
 {
 public:
@@ -35,7 +34,6 @@ public:
     /* 0x0E */ u16   mCurState;
     /* 0x10 */ s32   mTimer;
 };
-
 class EnemyStrategyDecorator : public EnemyStrategy
 {
 public:
@@ -47,5 +45,4 @@ public:
     /* 0x14 */ EnemyStrategy* mpTsuriStrategy;
     /* 0x18 */ s16            mTsuriState;
 };
-
 #endif

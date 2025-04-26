@@ -25,30 +25,30 @@
  *
  */
 
-#pragma ANSI_strict off      /*- vss 990729 -*/
+#pragma ANSI_strict off  /*- vss 990729 -*/
 
 #include <ansi_parms.h>
 
-#ifndef __NO_WIDE_CHAR       /*- mm 980204 -*/
+#ifndef __NO_WIDE_CHAR   /*- mm 980204 -*/
 
-#    pragma ANSI_strict reset
+#pragma ANSI_strict reset
 
-#    include <stdio.h>
-#    include <string.h>      /*- mm 980629 -*/
-#    include <wchar.h>       /*- mm 000201 -*/
-#    include <wctype.h>
+#include <stdio.h>
+#include <string.h>      /*- mm 980629 -*/
+#include <wchar.h>       /*- mm 000201 -*/
+#include <wctype.h>
 
-#    define wctrl __wcontrol_char
-#    define wmotn __wmotion_char
-#    define wspac __wspace_char
-#    define wpunc __wpunctuation
-#    define wdigi __wdigit
-#    define whexd __whex_digit
-#    define wlowc __wlower_case
-#    define wuppc __wupper_case
-#    define wdhex (whexd | wdigi)
-#    define wuhex (whexd | wuppc)
-#    define wlhex (whexd | wlowc)
+#define wctrl __wcontrol_char
+#define wmotn __wmotion_char
+#define wspac __wspace_char
+#define wpunc __wpunctuation
+#define wdigi __wdigit
+#define whexd __whex_digit
+#define wlowc __wlower_case
+#define wuppc __wupper_case
+#define wdhex (whexd | wdigi)
+#define wuhex (whexd | wuppc)
+#define wlhex (whexd | wlowc)
 
 wchar_t __wctype_map[__WCMAP_SIZE] = { wctrl,
                                        wctrl,
@@ -178,7 +178,7 @@ wchar_t __wctype_map[__WCMAP_SIZE] = { wctrl,
                                        wpunc,
                                        wpunc,
                                        wctrl
-#    if __dest_os == __mac_os
+#if __dest_os == __mac_os
                                        ,
                                        wuppc,
                                        wuppc,
@@ -309,10 +309,10 @@ wchar_t __wctype_map[__WCMAP_SIZE] = { wctrl,
                                        wpunc,
                                        000
 
-#    endif /*- mm 970708 -*/ /*- cc 010326 -*/
+#endif /*- mm 970708 -*/ /*- cc 010326 -*/
 };
 
-                             // clang-format off
+                         // clang-format off
 
 wchar_t __wlower_map[__WCMAP_SIZE] = {
     0x0000,  0x0001,  0x0002,

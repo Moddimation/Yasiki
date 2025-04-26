@@ -6,18 +6,17 @@
  */
 
 #ifndef _MSL_CLOCALE
-#    define _MSL_CLOCALE
+#define _MSL_CLOCALE
 
-#    include <ansi_parms.h>
+#include <ansi_parms.h>
 
-#    if __MACH__
-#        include <locale.h>
-#    else
+#if __MACH__
+#include <locale.h>
+#else
 
-#        ifndef RC_INVOKED           /*- hh 971230 -*/
+#ifndef RC_INVOKED       /*- hh 971230 -*/
 
-#            pragma options align = native
-
+#pragma options align = native
 _MSL_BEGIN_NAMESPACE_STD                   /*- cc 010409 -*/
     _MSL_BEGIN_EXTERN_C                    /*- cc 010409 -*/
 
@@ -49,18 +48,17 @@ _MSL_BEGIN_NAMESPACE_STD                   /*- cc 010409 -*/
     char  int_p_sign_posn;
     char  int_n_sign_posn;
 };
-
 /* end revision to match with C99 */       /*- mm 010507 -*/
 
-#            define LC_FIRST    0
-#            define LC_COLLATE  0x01 /*- hh 980415 -*/
-#            define LC_CTYPE    0x02
-#            define LC_MONETARY 0x04
-#            define LC_NUMERIC  0x08
-#            define LC_TIME     0x10
-#            define LC_MESSAGES 0x20 /*- hh 980415 -*/
-#            define LC_ALL      0x3F
-#            define LC_LAST     LC_ALL
+#define LC_FIRST    0
+#define LC_COLLATE  0x01 /*- hh 980415 -*/
+#define LC_CTYPE    0x02
+#define LC_MONETARY 0x04
+#define LC_NUMERIC  0x08
+#define LC_TIME     0x10
+#define LC_MESSAGES 0x20 /*- hh 980415 -*/
+#define LC_ALL      0x3F
+#define LC_LAST     LC_ALL
 
 _MSL_IMP_EXP_C char*         setlocale(int, const char*);
 _MSL_IMP_EXP_C struct lconv* localeconv(void);
@@ -68,18 +66,18 @@ _MSL_IMP_EXP_C struct lconv* localeconv(void);
 _MSL_END_EXTERN_C                          /*- cc 010409 -*/
     _MSL_END_NAMESPACE_STD                 /*- cc 010409 -*/
 
-#            pragma options align = reset
+#pragma options align = reset
 
-#        endif                       /* RC_INVOKED */
+#endif                   /* RC_INVOKED */
 
-#    endif                           /* __MACH__ */
+#endif                   /* __MACH__ */
 
-#endif                               /* _MSL_CLOCALE */
+#endif                   /* _MSL_CLOCALE */
 
-                                     /* Change record:
-                                      * hh  971206 Changed filename from locale.h to clocale and added namespace support.
-                                      * hh  971230 added RC_INVOKED wrapper
-                                      * JWW 001208 Added case for targeting Mach-O
-                                      * cc  010409 updated defines to JWW new namespace macros
-                                      * mm  010507 Reorganized the structure lconv to match C99
-                                      */
+                         /* Change record:
+                          * hh  971206 Changed filename from locale.h to clocale and added namespace support.
+                          * hh  971230 added RC_INVOKED wrapper
+                          * JWW 001208 Added case for targeting Mach-O
+                          * cc  010409 updated defines to JWW new namespace macros
+                          * mm  010507 Reorganized the structure lconv to match C99
+                          */

@@ -7,7 +7,6 @@ static u32 serEnabled;
 int InitializeUART();
 int ReadUARTN();
 int WriteUARTN(void* buf, u32 len);
-
 int
 InitializeUART()
 {
@@ -19,13 +18,11 @@ InitializeUART()
     serEnabled = 0xA5FF005A;
     return 0;
 }
-
 int
 ReadUARTN()
 {
     return 4;
 }
-
 static int
 QueueLength(void)
 {
@@ -43,16 +40,15 @@ QueueLength(void)
     EXIDeselect(0);
     return 0x10 - (cmd >> 0x18);
 }
-
 int
 WriteUARTN(void* buf, u32 len)
 {
-    u32 cmd;
-    s32          xLen;
-    int           qLen;
-    char*         ptr;
-    int           locked;
-    int           error;
+    u32   cmd;
+    s32   xLen;
+    int   qLen;
+    char* ptr;
+    int   locked;
+    int   error;
 
     if ((serEnabled + 0x5A010000) != 0x5A)
     {

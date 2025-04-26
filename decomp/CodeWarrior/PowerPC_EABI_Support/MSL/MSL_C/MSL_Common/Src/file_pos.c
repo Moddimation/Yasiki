@@ -28,11 +28,11 @@
 #include "critical_regions.h" /*- mm 001013 -*/
 
 /*#ifdef _dsp_hostio */
-#if (__dest_os == __m56800_os || __dest_os == __m56800E_os) && !defined(_Old_DSP_IO_Interface)
+#if (__dest_os == __m56800_os || __dest_os == __m56800E_os) &&                      \
+    !defined(_Old_DSP_IO_Interface)
 
 extern int txtbinFlag;
 #endif
-
 /*- mm 970708 -*/
 /*
      XXXdbg - declare _ftell() and _fseek() the way they should have been
@@ -49,7 +49,8 @@ _ftell(FILE* file)
 
     /*- bkoz 970324 -*/
     unsigned char tmp_kind = file->mode.file_kind;
-    if (!(tmp_kind == __disk_file || tmp_kind == __console_file) || file->state.error)
+    if (!(tmp_kind == __disk_file || tmp_kind == __console_file) ||
+        file->state.error)
     {
         errno = EFPOS;
         return (-1L);
@@ -64,8 +65,9 @@ _ftell(FILE* file)
 
     if (file->state.io_state >= __rereading)
     {
-        charsInUndoBuffer = file->state.io_state - __rereading + 1; /*- jz/ma 971105 -*/
-        position -= charsInUndoBuffer;                              /*- jz/ma 971105 -*/
+        charsInUndoBuffer =
+            file->state.io_state - __rereading + 1; /*- jz/ma 971105 -*/
+        position -= charsInUndoBuffer;              /*- jz/ma 971105 -*/
     }
 
 #if (__dest_os == __win32_os || __dest_os == __wince_os)
@@ -94,7 +96,6 @@ _ftell(FILE* file)
 
     return (position);
 }
-
 long
 ftell(FILE* file)
 {
@@ -108,7 +109,6 @@ ftell(FILE* file)
 
     return (retval);                       /*- mm 001013 -*/
 }
-
 int
 fgetpos(FILE* file, fpos_t* pos)
 {
@@ -120,7 +120,6 @@ fgetpos(FILE* file, fpos_t* pos)
 
     return (*pos == -1);
 }
-
 int
 _fseek(FILE* file, fpos_t offset, int mode)
 {
@@ -160,12 +159,17 @@ _fseek(FILE* file, fpos_t offset, int mode)
     /* this block commented back in by BK 970530 after adding the line changing
        state to __reading.  this fixes the problems seen with ifstream */
 
-#if !(__dest_os == __win32_os || __dest_os == __wince_os) /* this optimization breaks C++ ifstream */ /*- bk 970527    \
-                                                                                                         -*/
+#if !(__dest_os == __win32_os ||                                                    \
+      __dest_os ==                                                                  \
+          __wince_os) /* this optimization breaks C++ ifstream */ /*- bk 970527     \
+                                                                     -*/
     /* 970507  mm begin */
-    if ((mode != SEEK_END) && (file->mode.io_mode != __read_write) && /*- mm 970623 -*/
-        ((file->state.io_state == __reading) || (file->state.io_state == __rereading)))
-    {     /* When in read mode, check for a position that is within the bounds of the current buffer */
+    if ((mode != SEEK_END) &&
+        (file->mode.io_mode != __read_write) && /*- mm 970623 -*/
+        ((file->state.io_state == __reading) ||
+         (file->state.io_state == __rereading)))
+    {     /* When in read mode, check for a position that is within the bounds of the
+             current buffer */
         if ((offset >= file->position) || offset < file->buffer_pos)
         { /* not within buffer */
             file->state.io_state = __neutral;
@@ -183,13 +187,15 @@ _fseek(FILE* file, fpos_t offset, int mode)
     }
 
 /*#ifdef _dsp_hostio  */
-#    if (__dest_os == __m56800_os || __dest_os == __m56800E_os) && !defined(_Old_DSP_IO_Interface)
+#if (__dest_os == __m56800_os || __dest_os == __m56800E_os) &&                      \
+    !defined(_Old_DSP_IO_Interface)
     txtbinFlag = file->mode.binary_io;
-#    endif
+#endif
 
     if (file->state.io_state == __neutral)
     {
-        if ((pos_proc = file->position_proc) != 0 && (*pos_proc)(file->handle, &offset, mode, file->idle_proc))
+        if ((pos_proc = file->position_proc) != 0 &&
+            (*pos_proc)(file->handle, &offset, mode, file->idle_proc))
         {
             set_error(file);
             errno = EFPOS;
@@ -202,7 +208,8 @@ _fseek(FILE* file, fpos_t offset, int mode)
     }
     /*- mm 970507 -*/
 #else
-    if ((pos_proc = file->position_proc) != 0 && (*pos_proc)(file->handle, &offset, mode, file->idle_proc))
+    if ((pos_proc = file->position_proc) != 0 &&
+        (*pos_proc)(file->handle, &offset, mode, file->idle_proc))
     {
         set_error(file);
         errno = EFPOS;
@@ -217,7 +224,6 @@ _fseek(FILE* file, fpos_t offset, int mode)
 
     return (0);
 }
-
 int
 fseek(FILE* file, long offset, int mode)
 {
@@ -232,7 +238,6 @@ fseek(FILE* file, long offset, int mode)
 
     return (retval);                          /*- mm 001013 -*/
 }
-
 int
 fsetpos(FILE* file, const fpos_t* pos)
 {
@@ -246,8 +251,7 @@ fsetpos(FILE* file, const fpos_t* pos)
 
     return (retval);                          /*- mm 001013 -*/
 }
-
-                                              /*- mm 970708 -*/
+/*- mm 970708 -*/
 
 void
 rewind(FILE* file)
@@ -261,7 +265,6 @@ rewind(FILE* file)
                             * admittedly not likely to
                             */
 }
-
 /* Change record:
  * JFH 950828 First code release.
  * JFH 960425 Modified ftell to account for multi-level 'ungetc'.
@@ -270,13 +273,14 @@ rewind(FILE* file)
  * bkoz970324 line 78 changed so that console files don't bail out of fseek
  * mm  970507 Change so that a seek that stays within the buffer doesn't
  *			  require the buffer to be reloaded. (change put on hold)
- * mm  970623 Change to prevent in buffer seeking with update files since these files can change from reading
+ * mm  970623 Change to prevent in buffer seeking with update files since these files
+ can change from reading
  *            to writing and vice-versa through use of seek---see ANSI C 7.9.5.3
  * mm  970708 Inserted Be changes
  * mm  971103 Change to Windows code to do nothing if fseek stays where it is.  i.e.
               it is certain that the target of the seek is in the buffer.
- * jz  971105 ( &ma ) Changes to calculate the number of new lines in buffer correctly.  Changes from Mitch Adler and
- Jay Zipnick
+ * jz  971105 ( &ma ) Changes to calculate the number of new lines in buffer
+ correctly.  Changes from Mitch Adler and Jay Zipnick
  * mf  980227 undid change mm 971103
  * mm  001013 Threadsafety changes for fgetpos, fseek, fsetpos, ftell
  */

@@ -6,39 +6,39 @@
  */
 
 #ifndef _MSL_WCHAR_T_H
-#    define _MSL_WCHAR_T_H
+#define _MSL_WCHAR_T_H
 
-#    include <ansi_parms.h>
+#include <ansi_parms.h>
 
-#    if (!__cplusplus || !__option(wchar_type))
+#if (!__cplusplus || !__option(wchar_type))
 typedef unsigned short wchar_t;
-#    endif
+#endif
 
-#    ifdef __cplusplus
-#        ifdef _MSL_USING_NAMESPACE
+#ifdef __cplusplus
+#ifdef _MSL_USING_NAMESPACE
 namespace std
 {
-#        endif
+#endif
 extern "C"
 {
-#    endif
+#endif
 
-#    define WCHAR_MIN 0
-#    define WCHAR_MAX 0xffffU /*- mm 010607 -*/
+#define WCHAR_MIN 0
+#define WCHAR_MAX 0xffffU  /*- mm 010607 -*/
 
-typedef wchar_t wint_t;       /*- mm 990809 -*/
-typedef wchar_t wctype_t;     /*- mm 990809 -*/
-typedef int     mbstate_t;    /*- mm 990809 -*/
-typedef wchar_t Wint_t;       /*- mm 990809 -*/
+typedef wchar_t wint_t;    /*- mm 990809 -*/
+typedef wchar_t wctype_t;  /*- mm 990809 -*/
+typedef int     mbstate_t; /*- mm 990809 -*/
+typedef wchar_t Wint_t;    /*- mm 990809 -*/
 
-#    ifdef __cplusplus
+#ifdef __cplusplus
 }
-#        ifdef _MSL_USING_NAMESPACE
+#ifdef _MSL_USING_NAMESPACE
 }
-#        endif
-#    endif
+#endif
+#endif
 
-#endif                        /* _MSL_WCHAR_T_H */
+#endif                     /* _MSL_WCHAR_T_H */
 
 /* Change record:
  * mm  990217 Recreated to avoid standard headers having to include cstddef

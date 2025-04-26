@@ -9,10 +9,10 @@
 
 #if !(_MWMT && (__dest_os == __win32_os || __dest_os == __wince_os))
 __tls int errno;
-#    if ((__dest_os == __mac_os) || (__dest_os == __mac_os_x)) /*- mm 010412 -*/
-#        include <MacTypes.h>                                  /*- mm 010412 -*/
-__tls OSErr __MacOSErrNo;                                      /*- mm 010412 -*/
-#    endif                                                     /*- mm 010412 -*/
+#if ((__dest_os == __mac_os) || (__dest_os == __mac_os_x)) /*- mm 010412 -*/
+#include <MacTypes.h>                                      /*- mm 010412 -*/
+__tls OSErr __MacOSErrNo;                                  /*- mm 010412 -*/
+#endif                                                     /*- mm 010412 -*/
 #endif
 
 /* Change record:

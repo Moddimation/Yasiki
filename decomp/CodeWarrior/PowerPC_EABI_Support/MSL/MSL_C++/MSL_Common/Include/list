@@ -1,5 +1,6 @@
 /* Metrowerks Standard Library
- * Copyright ÃÂ¯ÃÂ½C 1995-2001 Metrowerks Corporation.  All rights reserved.
+ * Copyright ÃÂ¯ÃÂ½C 1995-2001 Metrowerks Corporation.  All rights
+ * reserved.
  *
  * $Date: 2001/06/10 22:10:01 $
  * $Revision: 1.25 $
@@ -8,50 +9,49 @@
 // list
 
 #ifndef _LIST
-#    define _LIST
+#define _LIST
 
-#    include <algorithm>
-#    include <functional>
-#    include <iterator>
-#    include <limits>
-#    include <memory>
-#    include <msl_utility>
-#    include <mslconfig>
-#    include <stdexcept>
+#include <algorithm>
+#include <functional>
+#include <iterator>
+#include <limits>
+#include <memory>
+#include <msl_utility>
+#include <mslconfig>
+#include <stdexcept>
 
-#    ifndef RC_INVOKED
+#ifndef RC_INVOKED
 
-#        pragma options align = native
+#pragma options align = native
 
-#        ifdef _MSL_FORCE_ENUMS_ALWAYS_INT
-#            if _MSL_FORCE_ENUMS_ALWAYS_INT
-#                pragma enumsalwaysint on
-#            else
-#                pragma enumsalwaysint off
-#            endif
-#        endif
+#ifdef _MSL_FORCE_ENUMS_ALWAYS_INT
+#if _MSL_FORCE_ENUMS_ALWAYS_INT
+#pragma enumsalwaysint on
+#else
+#pragma enumsalwaysint off
+#endif
+#endif
 
-#        ifdef _MSL_FORCE_ENABLE_BOOL_SUPPORT
-#            if _MSL_FORCE_ENABLE_BOOL_SUPPORT
-#                pragma bool on
-#            else
-#                pragma bool off
-#            endif
-#        endif
+#ifdef _MSL_FORCE_ENABLE_BOOL_SUPPORT
+#if _MSL_FORCE_ENABLE_BOOL_SUPPORT
+#pragma bool on
+#else
+#pragma bool off
+#endif
+#endif
 
-#        ifdef min
-#            undef min
-#        endif
+#ifdef min
+#undef min
+#endif
 
-#        ifdef max
-#            undef max
-#        endif
+#ifdef max
+#undef max
+#endif
 
-#        ifndef _MSL_NO_CPP_NAMESPACE
+#ifndef _MSL_NO_CPP_NAMESPACE
 namespace std
 {
-#        endif
-
+#endif
 template <class T, class Allocator> class __list_deleter
 {
 public:
@@ -68,54 +68,47 @@ public:
 
     typedef typename allocator_type::rebind<node>::other node_allocator_type;
     typedef typename node_allocator_type::pointer        node_pointer;
-
     struct node_base
     {
         node_pointer prev_;
         node_pointer next_;
     };
-
     struct node : public node_base
     {
         value_type data_;
     };
-
-    typedef typename allocator_type::rebind<node_base>::other::pointer node_base_pointer;
-
+    typedef
+        typename allocator_type::rebind<node_base>::other::pointer node_base_pointer;
     template <bool is_const> class generic_iterator
     {
     public:
-        typedef T                                                                     value_type;
-        typedef typename __list_deleter::difference_type                              difference_type;
-        typedef typename Metrowerks::select<is_const, typename __list_deleter::const_pointer,
-                                            typename __list_deleter::pointer>::type   pointer;
-        typedef typename Metrowerks::select<is_const, typename __list_deleter::const_reference,
-                                            typename __list_deleter::reference>::type reference;
-        typedef bidirectional_iterator_tag                                            iterator_category;
-
+        typedef T                                        value_type;
+        typedef typename __list_deleter::difference_type difference_type;
+        typedef typename Metrowerks::select<
+            is_const, typename __list_deleter::const_pointer,
+            typename __list_deleter::pointer>::type pointer;
+        typedef typename Metrowerks::select<
+            is_const, typename __list_deleter::const_reference,
+            typename __list_deleter::reference>::type reference;
+        typedef bidirectional_iterator_tag            iterator_category;
         generic_iterator() {}
-
         generic_iterator(const generic_iterator<false>& i) : node_(i.node_) {}
-
         reference
         operator*() const
         {
             return node_->data_;
         }
-
         pointer
         operator->() const
         {
             return &node_->data_;
         }
-
         generic_iterator&
         operator++()
         {
             node_ = node_->next_;
             return *this;
         }
-
         generic_iterator
         operator++(int)
         {
@@ -123,14 +116,12 @@ public:
             node_ = node_->next_;
             return tmp;
         }
-
         generic_iterator&
         operator--()
         {
             node_ = node_->prev_;
             return *this;
         }
-
         generic_iterator
         operator--(int)
         {
@@ -138,13 +129,11 @@ public:
             node_ = node_->prev_;
             return tmp;
         }
-
         friend bool
         operator==(const generic_iterator& x, const generic_iterator& y)
         {
             return x.node_ == y.node_;
         }
-
         friend bool
         operator!=(const generic_iterator& x, const generic_iterator& y)
         {
@@ -152,102 +141,88 @@ public:
         }
 
     private:
-        typedef typename Metrowerks::select<is_const, typename node_allocator_type::const_pointer,
-                                            typename node_allocator_type::pointer>::type node_pointer;
-        typedef typename node_allocator_type::rebind<node_base>::other                   node_base_allocator;
-        typedef typename Metrowerks::select<is_const, typename node_base_allocator::const_pointer,
-                                            typename node_base_allocator::pointer>::type node_base_pointer;
+        typedef typename Metrowerks::select<
+            is_const, typename node_allocator_type::const_pointer,
+            typename node_allocator_type::pointer>::type node_pointer;
+        typedef typename node_allocator_type::rebind<node_base>::other
+            node_base_allocator;
+        typedef typename Metrowerks::select<
+            is_const, typename node_base_allocator::const_pointer,
+            typename node_base_allocator::pointer>::type node_base_pointer;
 
         friend class generic_iterator<true>;
         friend class __list_deleter;
 
         node_pointer node_;
-
         explicit generic_iterator(node_pointer n) : node_(n) {}
-
         explicit generic_iterator(node_base_pointer n) : node_((node_pointer)n) {}
     };
-
     typedef generic_iterator<false> iterator;
     typedef generic_iterator<true>  const_iterator;
 
     __list_deleter();
     explicit __list_deleter(const allocator_type& a);
-
     ÃÂ¢ÃÂÃÂ¾__list_deleter() { erase(begin(), end()); }
-
     iterator
     begin()
     {
         return iterator(tail().next_);
     }
-
     const_iterator
     begin() const
     {
         return const_iterator(tail().next_);
     }
-
     iterator
     end()
     {
         return iterator(&tail());
     }
-
     const_iterator
     end() const
     {
         return const_iterator(&tail());
     }
-
     //  element access:
     reference
     front()
     {
         return tail().next_->data_;
     }
-
     const_reference
     front() const
     {
         return tail().next_->data_;
     }
-
     reference
     back()
     {
         return tail().prev_->data_;
     }
-
     const_reference
     back() const
     {
         return tail().prev_->data_;
     }
-
     iterator insert(iterator position, const value_type& x);
 
     iterator erase(iterator position);
     iterator erase(iterator first, iterator last);
-
     void
     clear()
     {
         erase(begin(), end());
     }
-
     void
     pop_front()
     {
         erase(iterator(tail().next_));
     }
-
     void
     pop_back()
     {
         erase(iterator(tail().prev_));
     }
-
     void splice(iterator position, __list_deleter& x);
     void splice(iterator position, __list_deleter& x, iterator i);
     void splice(iterator position, __list_deleter& x, iterator first, iterator last);
@@ -255,7 +230,6 @@ public:
     void swap(__list_deleter& x);
 
     template <class Compare> void merge(__list_deleter& x, Compare comp);
-
     void
     sort()
     {
@@ -264,49 +238,41 @@ public:
     template <class Compare> void sort(Compare comp);
 
     void reverse();
-
     allocator_type&
     alloc()
     {
         return size_.first();
     }
-
     const allocator_type&
     alloc() const
     {
         return size_.first();
     }
-
     size_type&
     sz()
     {
         return size_.second();
     }
-
     const size_type&
     sz() const
     {
         return size_.second();
     }
-
     node_allocator_type&
     node_alloc()
     {
         return end_.first();
     }
-
     const node_allocator_type&
     node_alloc() const
     {
         return end_.first();
     }
-
     node_base&
     tail()
     {
         return end_.second();
     }
-
     const node_base&
     tail() const
     {
@@ -321,54 +287,55 @@ private:
     __list_deleter& operator=(const __list_deleter&); // not defined
 
     static void remove_nodes(node_base_pointer first, node_base_pointer last);
-    static void insert_nodes(node_base_pointer here, node_base_pointer first, node_base_pointer last);
+    static void insert_nodes(node_base_pointer here, node_base_pointer first,
+                             node_base_pointer last);
 };
-
 // range is [first, last] NOT [first, last)
 template <class T, class Allocator>
 inline void
-__list_deleter<T, Allocator>::remove_nodes(node_base_pointer first, node_base_pointer last)
+__list_deleter<T, Allocator>::remove_nodes(node_base_pointer first,
+                                           node_base_pointer last)
 {
     first->prev_->next_ = last->next_;
     last->next_->prev_ = first->prev_;
 }
-
 // range is [first, last] NOT [first, last)
 template <class T, class Allocator>
 inline void
-__list_deleter<T, Allocator>::insert_nodes(node_base_pointer here, node_base_pointer first, node_base_pointer last)
+__list_deleter<T, Allocator>::insert_nodes(node_base_pointer here,
+                                           node_base_pointer first,
+                                           node_base_pointer last)
 {
     here->prev_->next_ = (node_pointer)first;
     first->prev_ = here->prev_;
     here->prev_ = (node_pointer)last;
     last->next_ = (node_pointer)here;
 }
-
-template <class T, class Allocator> __list_deleter<T, Allocator>::__list_deleter() : size_(size_type(0)), end_(alloc())
-{
-    node_base& t = tail();
-    t.prev_ = t.next_ = (node_pointer)&t;
-}
-
 template <class T, class Allocator>
-__list_deleter<T, Allocator>::__list_deleter(const allocator_type& a) : size_(a, 0), end_(alloc())
+__list_deleter<T, Allocator>::__list_deleter() : size_(size_type(0)), end_(alloc())
 {
     node_base& t = tail();
     t.prev_ = t.next_ = (node_pointer)&t;
 }
-
+template <class T, class Allocator>
+__list_deleter<T, Allocator>::__list_deleter(const allocator_type& a)
+  : size_(a, 0), end_(alloc())
+{
+    node_base& t = tail();
+    t.prev_ = t.next_ = (node_pointer)&t;
+}
 template <class T, class Allocator>
 typename __list_deleter<T, Allocator>::iterator
 __list_deleter<T, Allocator>::insert(iterator position, const value_type& x)
 {
-    Metrowerks::alloc_ptr<node, node_allocator_type&> ap(node_alloc().allocate(1), node_alloc());
+    Metrowerks::alloc_ptr<node, node_allocator_type&> ap(node_alloc().allocate(1),
+                                                         node_alloc());
     alloc().construct(&ap->data_, x);
     node_pointer newnode = ap.release();
     insert_nodes(position.node_, newnode, newnode);
     ++sz();
     return iterator(newnode);
 }
-
 template <class T, class Allocator>
 typename __list_deleter<T, Allocator>::iterator
 __list_deleter<T, Allocator>::erase(iterator position)
@@ -381,7 +348,6 @@ __list_deleter<T, Allocator>::erase(iterator position)
     --sz();
     return position;
 }
-
 template <class T, class Allocator>
 typename __list_deleter<T, Allocator>::iterator
 __list_deleter<T, Allocator>::erase(iterator first, iterator last)
@@ -401,7 +367,6 @@ __list_deleter<T, Allocator>::erase(iterator first, iterator last)
     }
     return last;
 }
-
 template <class T, class Allocator>
 void
 __list_deleter<T, Allocator>::splice(iterator position, __list_deleter& x)
@@ -409,11 +374,11 @@ __list_deleter<T, Allocator>::splice(iterator position, __list_deleter& x)
     if (x.sz() > 0)
     {
         if (alloc() != x.alloc())
-#        ifndef _MSL_NO_EXCEPTIONS
+#ifndef _MSL_NO_EXCEPTIONS
             throw runtime_error("list::splice called with unequal allocators");
-#        else
+#else
             __msl_error("list::splice called with unequal allocators\n");
-#        endif
+#endif
         node_base&        x_tail = x.tail();
         node_base_pointer s1 = x_tail.next_;
         node_base_pointer s2 = x_tail.prev_;
@@ -423,19 +388,19 @@ __list_deleter<T, Allocator>::splice(iterator position, __list_deleter& x)
         x.sz() = 0;
     }
 }
-
 template <class T, class Allocator>
 void
-__list_deleter<T, Allocator>::splice(iterator position, __list_deleter& x, iterator i)
+__list_deleter<T, Allocator>::splice(iterator position, __list_deleter& x,
+                                     iterator i)
 {
     if (this != &x)
     {
         if (alloc() != x.alloc())
-#        ifndef _MSL_NO_EXCEPTIONS
+#ifndef _MSL_NO_EXCEPTIONS
             throw runtime_error("list::splice called with unequal allocators");
-#        else
+#else
             __msl_error("list::splice called with unequal allocators\n");
-#        endif
+#endif
         --x.sz();
         ++sz();
     }
@@ -448,10 +413,10 @@ __list_deleter<T, Allocator>::splice(iterator position, __list_deleter& x, itera
     remove_nodes(s1, s1);
     insert_nodes(p, s1, s1);
 }
-
 template <class T, class Allocator>
 void
-__list_deleter<T, Allocator>::splice(iterator position, __list_deleter& x, iterator first, iterator last)
+__list_deleter<T, Allocator>::splice(iterator position, __list_deleter& x,
+                                     iterator first, iterator last)
 {
     if (first == last)
     {
@@ -460,11 +425,11 @@ __list_deleter<T, Allocator>::splice(iterator position, __list_deleter& x, itera
     if (this != &x)
     {
         if (alloc() != x.alloc())
-#        ifndef _MSL_NO_EXCEPTIONS
+#ifndef _MSL_NO_EXCEPTIONS
             throw runtime_error("list::splice called with unequal allocators");
-#        else
+#else
             __msl_error("list::splice called with unequal allocators\n");
-#        endif
+#endif
         size_type delta = (size_type)_STD::distance(first, last);
         x.sz() -= delta;
         sz() += delta;
@@ -474,7 +439,6 @@ __list_deleter<T, Allocator>::splice(iterator position, __list_deleter& x, itera
     remove_nodes(s1, s2);
     insert_nodes(position.node_, s1, s2);
 }
-
 template <class T, class Allocator>
 void
 __list_deleter<T, Allocator>::swap(__list_deleter& x)
@@ -503,7 +467,6 @@ __list_deleter<T, Allocator>::swap(__list_deleter& x)
         }
     }
 }
-
 template <class T, class Allocator>
 template <class Compare>
 void
@@ -514,11 +477,11 @@ __list_deleter<T, Allocator>::merge(__list_deleter& x, Compare comp)
         return;
     }
     if (alloc() != x.alloc())
-#        ifndef _MSL_NO_EXCEPTIONS
+#ifndef _MSL_NO_EXCEPTIONS
         throw runtime_error("list::merge called with unequal allocators");
-#        else
+#else
         __msl_error("list::merge called with unequal allocators\n");
-#        endif
+#endif
     iterator first1 = begin();
     iterator last1 = end();
     iterator first2 = x.begin();
@@ -549,7 +512,6 @@ __list_deleter<T, Allocator>::merge(__list_deleter& x, Compare comp)
         splice(first1, x);
     }
 }
-
 template <class T, class Allocator>
 template <class Compare>
 void
@@ -557,9 +519,10 @@ __list_deleter<T, Allocator>::sort(Compare comp)
 {
     switch (sz())
     {
-        case 0 :
-        case 1 : break;
-        case 2 :
+        case 0:
+        case 1:
+            break;
+        case 2:
             {
                 iterator i = begin();
                 iterator j = i;
@@ -572,7 +535,7 @@ __list_deleter<T, Allocator>::sort(Compare comp)
                 }
             }
             break;
-        default :
+        default:
             {
                 iterator  i = begin();
                 size_type lower_size = sz() / 2;
@@ -592,7 +555,6 @@ __list_deleter<T, Allocator>::sort(Compare comp)
             }
     }
 }
-
 template <class T, class Allocator>
 void
 __list_deleter<T, Allocator>::reverse()
@@ -608,16 +570,14 @@ __list_deleter<T, Allocator>::reverse()
     }
     _STD::swap(tail().prev_, tail().next_);
 }
-
-template <class T, class Allocator> class __list_imp : private __list_deleter<T, Allocator>
+template <class T, class Allocator>
+class __list_imp : private __list_deleter<T, Allocator>
 {
 protected:
     typedef __list_deleter<T, Allocator> base;
-
     template <bool b> struct chooser
     {
     };
-
     // types:
     typedef typename Allocator::reference       reference;
     typedef typename Allocator::const_reference const_reference;
@@ -629,39 +589,36 @@ protected:
     typedef Allocator                           allocator_type;
     typedef typename Allocator::pointer         pointer;
     typedef typename Allocator::const_pointer   const_pointer;
-
     __list_imp() {}
-
     explicit __list_imp(const allocator_type& a) : base(a) {}
-
     explicit __list_imp(size_type n) { init(n, value_type()); }
-
     __list_imp(size_type n, const value_type& value) { init(n, value); }
-
-    __list_imp(size_type n, const value_type& value, const allocator_type& a) : base(a) { init(n, value); }
-
-    template <class InputIterator>
-    __list_imp(InputIterator first, InputIterator last, const allocator_type& a) : base(a)
+    __list_imp(size_type n, const value_type& value, const allocator_type& a)
+      : base(a)
     {
-        choose_init(first, last, typename chooser<Metrowerks::is_integral<InputIterator>::value>());
+        init(n, value);
     }
-
+    template <class InputIterator>
+    __list_imp(InputIterator first, InputIterator last, const allocator_type& a)
+      : base(a)
+    {
+        choose_init(
+            first, last,
+            typename chooser<Metrowerks::is_integral<InputIterator>::value>());
+    }
     template <class InputIterator>
     void
     choose_init(InputIterator first, InputIterator last, chooser<true>)
     {
         init(static_cast<size_type>(first), static_cast<value_type>(last));
     }
-
     template <class InputIterator>
     void
     choose_init(InputIterator first, InputIterator last, chooser<false>)
     {
         init(first, last);
     }
-
     __list_imp(const __list_imp& x) : base(x.alloc()) { init(x.begin(), x.end()); }
-
     __list_imp&
     operator=(const __list_imp& x)
     {
@@ -671,31 +628,33 @@ protected:
         }
         return *this;
     }
-
     template <class InputIterator>
     void
     choose_assign(InputIterator first, InputIterator last, chooser<true>)
     {
         assign(static_cast<size_type>(first), static_cast<value_type>(last));
     }
-
     template <class InputIterator>
     void
     choose_assign(InputIterator first, InputIterator last, chooser<false>)
     {
         do_assign(first, last, iterator_traits<InputIterator>::iterator_category());
     }
-
     void assign(size_type n, const value_type& t);
 
-    template <class InputIterator> void do_assign(InputIterator first, InputIterator last, input_iterator_tag);
+    template <class InputIterator>
+    void do_assign(InputIterator first, InputIterator last, input_iterator_tag);
 
-    template <class ForwardIterator> void do_assign(ForwardIterator first, ForwardIterator last, forward_iterator_tag);
+    template <class ForwardIterator>
+    void do_assign(ForwardIterator first, ForwardIterator last,
+                   forward_iterator_tag);
 
     template <class RandomAccessIterator>
-    void do_assign(RandomAccessIterator first, RandomAccessIterator last, random_access_iterator_tag);
+    void do_assign(RandomAccessIterator first, RandomAccessIterator last,
+                   random_access_iterator_tag);
 
-    template <class ForwardIterator> void do_assign(ForwardIterator first, ForwardIterator f, ForwardIterator last);
+    template <class ForwardIterator>
+    void do_assign(ForwardIterator first, ForwardIterator f, ForwardIterator last);
 
     using base::alloc;
     //	allocator_type&       alloc();
@@ -706,7 +665,6 @@ protected:
     //	const_iterator begin() const;
 
     using base::end;
-
     //	iterator       end();
     //	const_iterator end() const;
 
@@ -715,19 +673,16 @@ protected:
     {
         return base::sz() == 0;
     }
-
     size_type
     size() const
     {
         return base::sz();
     }
-
     size_type
     max_size() const
     {
         return (size_type)numeric_limits<difference_type>::max();
     }
-
     void resize(size_type sz);
     void resize(size_type sz, const value_type& value);
 
@@ -736,7 +691,6 @@ protected:
     //	const_reference front() const;
 
     using base::back;
-
     //	reference       back();
     //	const_reference back() const;
 
@@ -745,9 +699,7 @@ protected:
     {
         base::insert(base::begin(), x);
     }
-
     using base::pop_front;
-
     //	void pop_front();
 
     void
@@ -755,30 +707,30 @@ protected:
     {
         base::insert(base::end(), x);
     }
-
     using base::pop_back;
     //	void pop_back();
 
     using base::insert;
     //	iterator insert(iterator position, const value_type& x);
     void insert(iterator position, size_type n, const value_type& x);
-
     template <class InputIterator>
     void
-    choose_insert(iterator position, InputIterator first, InputIterator last, chooser<true>)
+    choose_insert(iterator position, InputIterator first, InputIterator last,
+                  chooser<true>)
     {
-        insert(position, static_cast<size_type>(first), static_cast<value_type>(last));
+        insert(position, static_cast<size_type>(first),
+               static_cast<value_type>(last));
     }
 
     template <class InputIterator>
-    void choose_insert(iterator position, InputIterator first, InputIterator last, chooser<false>);
+    void choose_insert(iterator position, InputIterator first, InputIterator last,
+                       chooser<false>);
 
     using base::erase;
     //	iterator erase(iterator position);
     //	iterator erase(iterator first, iterator last);
 
     using base::clear;
-
     //	void clear();
 
     void
@@ -786,46 +738,39 @@ protected:
     {
         base::swap(x);
     }
-
     void
     splice(iterator position, __list_imp& x)
     {
         base::splice(position, x);
     }
-
     void
     splice(iterator position, __list_imp& x, iterator i)
     {
         base::splice(position, x, i);
     }
-
     void
     splice(iterator position, __list_imp& x, iterator first, iterator last)
     {
         base::splice(position, x, first, last);
     }
-
     void
     remove(const value_type& value)
     {
         remove_if(bind2nd(equal_to<value_type>(), value));
     }
     template <class Predicate> void remove_if(Predicate pred);
-
     void
     unique()
     {
         unique(equal_to<value_type>());
     }
     template <class BinaryPredicate> void unique(BinaryPredicate binary_pred);
-
     template <class Compare>
     void
     merge(__list_imp& x, Compare comp)
     {
         base::template merge<Compare>(x, comp);
     }
-
     using base::sort;
     //	void sort();
     //	template <class Compare> void sort(Compare comp);
@@ -833,19 +778,18 @@ protected:
     using base::reverse;
     //	void reverse();
 
-    void                                init(size_type n, const value_type& value);
-    template <class InputIterator> void init(InputIterator first, InputIterator last);
+    void init(size_type n, const value_type& value);
+    template <class InputIterator>
+    void init(InputIterator first, InputIterator last);
 
 private:
     iterator advance_to(size_type p);
-
     const_iterator
     advance_to(size_type p) const
     {
         return const_cast<__list_imp&>(*this).advance_to(p);
     }
 };
-
 template <class T, class Allocator>
 void
 __list_imp<T, Allocator>::init(size_type n, const value_type& value)
@@ -855,7 +799,6 @@ __list_imp<T, Allocator>::init(size_type n, const value_type& value)
         push_back(value);
     }
 }
-
 template <class T, class Allocator>
 template <class InputIterator>
 void
@@ -866,7 +809,6 @@ __list_imp<T, Allocator>::init(InputIterator first, InputIterator last)
         push_back(*first);
     }
 }
-
 template <class T, class Allocator>
 typename __list_imp<T, Allocator>::iterator
 __list_imp<T, Allocator>::advance_to(size_type p)
@@ -885,7 +827,6 @@ __list_imp<T, Allocator>::advance_to(size_type p)
     }
     return i;
 }
-
 template <class T, class Allocator>
 void
 __list_imp<T, Allocator>::assign(size_type n, const value_type& t)
@@ -911,11 +852,11 @@ __list_imp<T, Allocator>::assign(size_type n, const value_type& t)
         base::erase(i, e);
     }
 }
-
 template <class T, class Allocator>
 template <class InputIterator>
 void
-__list_imp<T, Allocator>::do_assign(InputIterator first, InputIterator last, input_iterator_tag)
+__list_imp<T, Allocator>::do_assign(InputIterator first, InputIterator last,
+                                    input_iterator_tag)
 {
     iterator i = base::begin();
     iterator e = base::end();
@@ -932,11 +873,11 @@ __list_imp<T, Allocator>::do_assign(InputIterator first, InputIterator last, inp
         base::erase(i, e);
     }
 }
-
 template <class T, class Allocator>
 template <class ForwardIterator>
 void
-__list_imp<T, Allocator>::do_assign(ForwardIterator first, ForwardIterator f, ForwardIterator last)
+__list_imp<T, Allocator>::do_assign(ForwardIterator first, ForwardIterator f,
+                                    ForwardIterator last)
 {
     if (f != last)
     {
@@ -948,11 +889,11 @@ __list_imp<T, Allocator>::do_assign(ForwardIterator first, ForwardIterator f, Fo
         base::erase(_STD::copy(first, f, base::begin()), base::end());
     }
 }
-
 template <class T, class Allocator>
 template <class ForwardIterator>
 void
-__list_imp<T, Allocator>::do_assign(ForwardIterator first, ForwardIterator last, forward_iterator_tag)
+__list_imp<T, Allocator>::do_assign(ForwardIterator first, ForwardIterator last,
+                                    forward_iterator_tag)
 {
     ForwardIterator f = first;
     for (size_type c = size(); c != 0 && f != last; --c)
@@ -961,16 +902,17 @@ __list_imp<T, Allocator>::do_assign(ForwardIterator first, ForwardIterator last,
     }
     do_assign(first, f, last);
 }
-
 template <class T, class Allocator>
 template <class RandomAccessIterator>
 inline void
-__list_imp<T, Allocator>::do_assign(RandomAccessIterator first, RandomAccessIterator last, random_access_iterator_tag)
+__list_imp<T, Allocator>::do_assign(RandomAccessIterator first,
+                                    RandomAccessIterator last,
+                                    random_access_iterator_tag)
 {
-    typedef typename iterator_traits<RandomAccessIterator>::difference_type difference_type;
+    typedef typename iterator_traits<RandomAccessIterator>::difference_type
+        difference_type;
     do_assign(first, first + _STD::min(difference_type(size()), last - first), last);
 }
-
 template <class T, class Allocator>
 void
 __list_imp<T, Allocator>::insert(iterator position, size_type n, const value_type& x)
@@ -978,16 +920,15 @@ __list_imp<T, Allocator>::insert(iterator position, size_type n, const value_typ
     __list_imp temp(n, x, base::alloc());
     splice(position, temp);
 }
-
 template <class T, class Allocator>
 template <class InputIterator>
 void
-__list_imp<T, Allocator>::choose_insert(iterator position, InputIterator first, InputIterator last, chooser<false>)
+__list_imp<T, Allocator>::choose_insert(iterator position, InputIterator first,
+                                        InputIterator last, chooser<false>)
 {
     __list_imp temp(first, last, base::alloc());
     splice(position, temp);
 }
-
 template <class T, class Allocator>
 void
 __list_imp<T, Allocator>::resize(size_type sz)
@@ -1002,7 +943,6 @@ __list_imp<T, Allocator>::resize(size_type sz)
         base::erase(advance_to(sz), base::end());
     }
 }
-
 template <class T, class Allocator>
 void
 __list_imp<T, Allocator>::resize(size_type sz, const value_type& value)
@@ -1017,7 +957,6 @@ __list_imp<T, Allocator>::resize(size_type sz, const value_type& value)
         base::erase(advance_to(sz), base::end());
     }
 }
-
 template <class T, class Allocator>
 template <class Predicate>
 void
@@ -1044,7 +983,6 @@ __list_imp<T, Allocator>::remove_if(Predicate pred)
         }
     }
 }
-
 template <class T, class Allocator>
 template <class BinaryPredicate>
 void
@@ -1068,8 +1006,8 @@ __list_imp<T, Allocator>::unique(BinaryPredicate binary_pred)
         }
     }
 }
-
-template <class T, class Allocator = allocator<T> > class list : private __list_imp<T, Allocator>
+template <class T, class Allocator = allocator<T> >
+class list : private __list_imp<T, Allocator>
 {
     typedef __list_imp<T, Allocator> base;
 
@@ -1087,49 +1025,47 @@ public:
     typedef typename Allocator::const_pointer      const_pointer;
     typedef _STD::reverse_iterator<iterator>       reverse_iterator;
     typedef _STD::reverse_iterator<const_iterator> const_reverse_iterator;
-
     //  lib.list.cons construct/copy/destroy:
     list() {}
-
     explicit list(const allocator_type& a) : base(a) {}
-
     explicit list(size_type n) : base(n) {}
-
     list(size_type n, const value_type& value) : base(n, value) {}
-
-    list(size_type n, const value_type& value, const allocator_type& a) : base(n, value, a) {}
-
+    list(size_type n, const value_type& value, const allocator_type& a)
+      : base(n, value, a)
+    {
+    }
     template <class InputIterator> list(InputIterator first, InputIterator last)
     {
-        base::choose_init(first, last, typename base::chooser<Metrowerks::is_integral<InputIterator>::value>());
+        base::choose_init(
+            first, last,
+            typename base::chooser<Metrowerks::is_integral<InputIterator>::value>());
     }
-
-    template <class InputIterator> list(InputIterator first, InputIterator last, const allocator_type& a) : base(a)
+    template <class InputIterator>
+    list(InputIterator first, InputIterator last, const allocator_type& a) : base(a)
     {
-        base::choose_init(first, last, typename base::chooser<Metrowerks::is_integral<InputIterator>::value>());
+        base::choose_init(
+            first, last,
+            typename base::chooser<Metrowerks::is_integral<InputIterator>::value>());
     }
-
     using base::assign;
-
     //	void assign(size_type n, const value_type& t);
     template <class InputIterator>
     void
     assign(InputIterator first, InputIterator last)
     {
-        base::choose_assign(first, last, typename base::chooser<Metrowerks::is_integral<InputIterator>::value>());
+        base::choose_assign(
+            first, last,
+            typename base::chooser<Metrowerks::is_integral<InputIterator>::value>());
     }
-
     allocator_type
     get_allocator() const
     {
         return base::alloc();
     }
-
     using base::begin;
     //	iterator       begin();
     //	const_iterator begin() const;
     using base::end;
-
     //	iterator       end();
     //	const_iterator end() const;
 
@@ -1138,25 +1074,21 @@ public:
     {
         return reverse_iterator(base::end());
     }
-
     const_reverse_iterator
     rbegin() const
     {
         return const_reverse_iterator(base::end());
     }
-
     reverse_iterator
     rend()
     {
         return reverse_iterator(base::begin());
     }
-
     const_reverse_iterator
     rend() const
     {
         return const_reverse_iterator(base::begin());
     }
-
     using base::empty;
     //	bool      empty()    const;
     using base::size;
@@ -1175,17 +1107,16 @@ public:
     //	const_reference back() const;
 
     using base::insert;
-
     //	iterator insert(iterator position, const value_type& x);
     //	void insert(iterator position, size_type n, const value_type& x);
     template <class InputIterator>
     void
     insert(iterator position, InputIterator first, InputIterator last)
     {
-        base::choose_insert(position, first, last,
-                            typename base::chooser<Metrowerks::is_integral<InputIterator>::value>());
+        base::choose_insert(
+            position, first, last,
+            typename base::chooser<Metrowerks::is_integral<InputIterator>::value>());
     }
-
     using base::push_front;
     //	void push_front(const value_type& x);
     using base::push_back;
@@ -1200,7 +1131,6 @@ public:
     //	iterator erase(iterator first, iterator last);
 
     using base::clear;
-
     //	void clear();
 
     void
@@ -1208,32 +1138,27 @@ public:
     {
         base::swap(x);
     }
-
     void
     splice(iterator position, list& x)
     {
         base::splice(position, x);
     }
-
     void
     splice(iterator position, list& x, iterator i)
     {
         base::splice(position, x, i);
     }
-
     void
     splice(iterator position, list& x, iterator first, iterator last)
     {
         base::splice(position, x, first, last);
     }
-
     using base::remove;
     //	void remove(const value_type& value);
     using base::remove_if;
     //	template <class Predicate> void remove_if(Predicate pred);
 
     using base::unique;
-
     //	void unique();
     //	template <class BinaryPredicate> void unique(BinaryPredicate binary_pred);
 
@@ -1242,14 +1167,12 @@ public:
     {
         base::merge(x, less<value_type>());
     }
-
     template <class Compare>
     void
     merge(list& x, Compare comp)
     {
         base::template merge<Compare>(x, comp);
     }
-
     using base::sort;
     //	void sort();
     //	template <class Compare> void sort(Compare comp);
@@ -1257,13 +1180,13 @@ public:
     using base::reverse;
     //	void reverse();
 };
-
-#        ifndef _Inhibit_Container_Optimization
-
+#ifndef _Inhibit_Container_Optimization
 template <class T, class Allocator>
-class list<T*, Allocator> : private __list_imp<const void*, typename Allocator::rebind<const void*>::other>
+class list<T*, Allocator>
+  : private __list_imp<const void*, typename Allocator::rebind<const void*>::other>
 {
-    typedef __list_imp<const void*, typename Allocator::rebind<const void*>::other> base;
+    typedef __list_imp<const void*, typename Allocator::rebind<const void*>::other>
+        base;
 
 public:
     //  types:
@@ -1275,41 +1198,35 @@ public:
     typedef T*                                  value_type;
     typedef typename Allocator::pointer         pointer;
     typedef typename Allocator::const_pointer   const_pointer;
-
     template <bool is_const> class generic_iterator
     {
     public:
         typedef typename list::value_type      value_type;
         typedef typename list::difference_type difference_type;
+        typedef typename Metrowerks::select<is_const, typename list::const_pointer,
+                                            typename list::pointer>::type pointer;
         typedef
-            typename Metrowerks::select<is_const, typename list::const_pointer, typename list::pointer>::type pointer;
-        typedef typename Metrowerks::select<is_const, typename list::const_reference, typename list::reference>::type
-                                           reference;
+            typename Metrowerks::select<is_const, typename list::const_reference,
+                                        typename list::reference>::type reference;
         typedef bidirectional_iterator_tag iterator_category;
-
         generic_iterator() {}
-
         generic_iterator(const generic_iterator<false>& i) : i_(i.i_) {}
-
         reference
         operator*() const
         {
             return reference(*i_);
         }
-
         pointer
         operator->() const
         {
             return pointer(i_.operator->());
         }
-
         generic_iterator&
         operator++()
         {
             ++i_;
             return *this;
         }
-
         generic_iterator
         operator++(int)
         {
@@ -1317,14 +1234,12 @@ public:
             ++i_;
             return tmp;
         }
-
         generic_iterator&
         operator--()
         {
             --i_;
             return *this;
         }
-
         generic_iterator
         operator--(int)
         {
@@ -1332,13 +1247,11 @@ public:
             --i_;
             return tmp;
         }
-
         friend bool
         operator==(const generic_iterator& x, const generic_iterator& y)
         {
             return x.i_ == y.i_;
         }
-
         friend bool
         operator!=(const generic_iterator& x, const generic_iterator& y)
         {
@@ -1346,189 +1259,167 @@ public:
         }
 
     private:
-        typedef typename Metrowerks::select<is_const, typename base::const_iterator, typename base::iterator>::type
-            base_iterator;
+        typedef
+            typename Metrowerks::select<is_const, typename base::const_iterator,
+                                        typename base::iterator>::type base_iterator;
 
         friend class generic_iterator<true>;
         friend class list;
 
         base_iterator i_;
-
         generic_iterator(base_iterator i) : i_(i) {}
-
         operator base_iterator() const { return i_; }
     };
-
     typedef generic_iterator<false>                iterator;
     typedef generic_iterator<true>                 const_iterator;
     typedef _STD::reverse_iterator<iterator>       reverse_iterator;
     typedef _STD::reverse_iterator<const_iterator> const_reverse_iterator;
-
     list() {}
-
     explicit list(const allocator_type& a) : base(a) {}
-
     explicit list(size_type n) : base(n) {}
-
     list(size_type n, const value_type& value) : base(n, value) {}
-
-    list(size_type n, const value_type& value, const allocator_type& a) : base(n, value, a) {}
-
+    list(size_type n, const value_type& value, const allocator_type& a)
+      : base(n, value, a)
+    {
+    }
     template <class InputIterator> list(InputIterator first, InputIterator last)
     {
-        choose_init(first, last, typename base::chooser<Metrowerks::is_integral<InputIterator>::value>());
+        choose_init(
+            first, last,
+            typename base::chooser<Metrowerks::is_integral<InputIterator>::value>());
     }
-
-    template <class InputIterator> list(InputIterator first, InputIterator last, const allocator_type& a) : base(a)
+    template <class InputIterator>
+    list(InputIterator first, InputIterator last, const allocator_type& a) : base(a)
     {
-        choose_init(first, last, typename base::chooser<Metrowerks::is_integral<InputIterator>::value>());
+        choose_init(
+            first, last,
+            typename base::chooser<Metrowerks::is_integral<InputIterator>::value>());
     }
-
     void
     assign(size_type n, const value_type& t)
     {
         base::assign(n, t);
     }
-
     template <class InputIterator>
     void
     assign(InputIterator first, InputIterator last)
     {
-        choose_assign(first, last, typename base::chooser<Metrowerks::is_integral<InputIterator>::value>());
+        choose_assign(
+            first, last,
+            typename base::chooser<Metrowerks::is_integral<InputIterator>::value>());
     }
-
     allocator_type
     get_allocator() const
     {
         return base::alloc();
     }
-
     iterator
     begin()
     {
         return base::begin();
     }
-
     const_iterator
     begin() const
     {
         return base::begin();
     }
-
     iterator
     end()
     {
         return base::end();
     }
-
     const_iterator
     end() const
     {
         return base::end();
     }
-
     reverse_iterator
     rbegin()
     {
         return reverse_iterator(base::end());
     }
-
     const_reverse_iterator
     rbegin() const
     {
         return const_reverse_iterator(base::end());
     }
-
     reverse_iterator
     rend()
     {
         return reverse_iterator(base::begin());
     }
-
     const_reverse_iterator
     rend() const
     {
         return const_reverse_iterator(base::begin());
     }
-
     using base::empty;
     //	bool      empty()    const;
     using base::size;
     //	size_type size() const;
     using base::max_size;
-
     //	size_type max_size() const;
     void
     resize(size_type sz)
     {
         base::resize(sz);
     }
-
     void
     resize(size_type sz, const value_type& value)
     {
         base::resize(sz, value);
     }
-
     reference
     front()
     {
         return reference(base::front());
     }
-
     const_reference
     front() const
     {
         return const_reference(base::front());
     }
-
     reference
     back()
     {
         return reference(base::back());
     }
-
     const_reference
     back() const
     {
         return const_reference(base::back());
     }
-
     iterator
     insert(iterator position, const value_type& x)
     {
         return base::insert(position, x);
     }
-
     void
     insert(iterator position, size_type n, const value_type& x)
     {
         base::insert(position, n, x);
     }
-
     template <class InputIterator>
     void
     insert(iterator position, InputIterator first, InputIterator last)
     {
-        choose_insert(position, first, last, typename base::chooser<Metrowerks::is_integral<InputIterator>::value>());
+        choose_insert(
+            position, first, last,
+            typename base::chooser<Metrowerks::is_integral<InputIterator>::value>());
     }
-
     void
     push_front(const value_type& x)
     {
         base::push_front(x);
     }
-
     void
     push_back(const value_type& x)
     {
         base::push_back(x);
     }
-
     using base::pop_front;
     //	void pop_front();
     using base::pop_back;
-
     //	void pop_back();
 
     iterator
@@ -1536,15 +1427,12 @@ public:
     {
         return base::erase(position);
     }
-
     iterator
     erase(iterator first, iterator last)
     {
         return base::erase(first, last);
     }
-
     using base::clear;
-
     //	void clear();
 
     void
@@ -1552,25 +1440,21 @@ public:
     {
         base::swap(x);
     }
-
     void
     splice(iterator position, list& x)
     {
         base::splice(position, x);
     }
-
     void
     splice(iterator position, list& x, iterator i)
     {
         base::splice(position, x, i);
     }
-
     void
     splice(iterator position, list& x, iterator first, iterator last)
     {
         base::splice(position, x, first, last);
     }
-
     using base::reverse;
     //	void reverse();
 
@@ -1579,7 +1463,6 @@ private:
     {
     public:
         unary_convert(Compare comp) : comp_(comp) {}
-
         bool
         operator()(const void* x)
         {
@@ -1589,12 +1472,10 @@ private:
     private:
         Compare comp_;
     };
-
     template <class Compare> class binary_convert
     {
     public:
         binary_convert(Compare comp) : comp_(comp) {}
-
         bool
         operator()(const void* x, const void* y)
         {
@@ -1611,16 +1492,13 @@ public:
     {
         base::remove(value);
     }
-
     template <class Predicate>
     void
     remove_if(Predicate pred)
     {
         base::remove_if(unary_convert<Predicate>(pred));
     }
-
     using base::unique;
-
     //	void unique();
     template <class BinaryPredicate>
     void
@@ -1628,22 +1506,18 @@ public:
     {
         base::unique(binary_convert<BinaryPredicate>(binary_pred));
     }
-
     void
     merge(list& x)
     {
         merge(x, less<value_type>());
     }
-
     template <class Compare>
     void
     merge(list& x, Compare comp)
     {
         base::merge(x, binary_convert<Compare>(comp));
     }
-
     using base::sort;
-
     //	void sort();
     template <class Compare>
     void
@@ -1659,90 +1533,85 @@ private:
     {
         base::init(static_cast<size_type>(first), (value_type)last);
     }
-
     template <class InputIterator>
     void
     choose_init(InputIterator first, InputIterator last, base::chooser<false>)
     {
-        base::init(__convert_iterator<__implicit_convert<pointer, InputIterator> >(first),
-                   __convert_iterator<__implicit_convert<pointer, InputIterator> >(last));
+        base::init(
+            __convert_iterator<__implicit_convert<pointer, InputIterator> >(first),
+            __convert_iterator<__implicit_convert<pointer, InputIterator> >(last));
     }
-
     template <class InputIterator>
     void
     choose_assign(InputIterator first, InputIterator last, base::chooser<true>)
     {
         base::assign(static_cast<size_type>(first), (value_type)last);
     }
-
     template <class InputIterator>
     void
     choose_assign(InputIterator first, InputIterator last, base::chooser<false> c)
     {
-        base::choose_assign(__convert_iterator<__implicit_convert<pointer, InputIterator> >(first),
-                            __convert_iterator<__implicit_convert<pointer, InputIterator> >(last), c);
+        base::choose_assign(
+            __convert_iterator<__implicit_convert<pointer, InputIterator> >(first),
+            __convert_iterator<__implicit_convert<pointer, InputIterator> >(last),
+            c);
     }
-
     template <class InputIterator>
     void
-    choose_insert(iterator position, InputIterator first, InputIterator last, base::chooser<true>)
+    choose_insert(iterator position, InputIterator first, InputIterator last,
+                  base::chooser<true>)
     {
         base::insert(position, static_cast<size_type>(first), (value_type)last);
     }
-
     template <class InputIterator>
     void
-    choose_insert(iterator position, InputIterator first, InputIterator last, base::chooser<false> c)
+    choose_insert(iterator position, InputIterator first, InputIterator last,
+                  base::chooser<false> c)
     {
-        base::choose_insert(position, __convert_iterator<__implicit_convert<pointer, InputIterator> >(first),
-                            __convert_iterator<__implicit_convert<pointer, InputIterator> >(last), c);
+        base::choose_insert(
+            position,
+            __convert_iterator<__implicit_convert<pointer, InputIterator> >(first),
+            __convert_iterator<__implicit_convert<pointer, InputIterator> >(last),
+            c);
     }
 };
-
-#        endif // _Inhibit_Container_Optimization
-
+#endif // _Inhibit_Container_Optimization
 template <class T, class Allocator>
 inline bool
 operator==(const list<T, Allocator>& x, const list<T, Allocator>& y)
 {
     return x.size() == y.size() && _STD::equal(x.begin(), x.end(), y.begin());
 }
-
 template <class T, class Allocator>
 inline bool
 operator!=(const list<T, Allocator>& x, const list<T, Allocator>& y)
 {
     return !(x == y);
 }
-
 template <class T, class Allocator>
 inline bool
 operator<(const list<T, Allocator>& x, const list<T, Allocator>& y)
 {
     return _STD::lexicographical_compare(x.begin(), x.end(), y.begin(), y.end());
 }
-
 template <class T, class Allocator>
 inline bool
 operator>(const list<T, Allocator>& x, const list<T, Allocator>& y)
 {
     return y < x;
 }
-
 template <class T, class Allocator>
 inline bool
 operator>=(const list<T, Allocator>& x, const list<T, Allocator>& y)
 {
     return !(x < y);
 }
-
 template <class T, class Allocator>
 inline bool
 operator<=(const list<T, Allocator>& x, const list<T, Allocator>& y)
 {
     return !(y < x);
 }
-
 // specialized algorithms:
 
 template <class T, class Allocator>
@@ -1751,24 +1620,23 @@ swap(list<T, Allocator>& x, list<T, Allocator>& y)
 {
     x.swap(y);
 }
-
-#        ifndef _MSL_NO_CPP_NAMESPACE
+#ifndef _MSL_NO_CPP_NAMESPACE
 } // namespace std
-#        endif
+#endif
 
-#        ifdef _MSL_FORCE_ENUMS_ALWAYS_INT
-#            pragma enumsalwaysint reset
-#        endif
+#ifdef _MSL_FORCE_ENUMS_ALWAYS_INT
+#pragma enumsalwaysint reset
+#endif
 
-#        ifdef _MSL_FORCE_ENABLE_BOOL_SUPPORT
-#            pragma bool reset
-#        endif
+#ifdef _MSL_FORCE_ENABLE_BOOL_SUPPORT
+#pragma bool reset
+#endif
 
-#        pragma options align = reset
+#pragma options align = reset
 
-#    endif // RC_INVOKED
+#endif // RC_INVOKED
 
-#endif     // _LIST
+#endif // _LIST
 
 // hh 971220 fixed MOD_INCLUDE
 // hh 971222 added alignment wrapper
@@ -1776,29 +1644,23 @@ swap(list<T, Allocator>& x, list<T, Allocator>& y)
 // hh 971222 Made include guards standard
 // hh 971222 Added qualified name to const_iterator and iterator in several places
 // hh 971230 added RC_INVOKED wrapper
-// hh 980105 changed pointer & reference to const versions in const_iterator base class
-// hh 980106 rewrote iterator and const_iterator constructors to silence unused arg warning
-// hh 980111 <stdexcept> commented out.  Not needed.
-// hh 980713 Temporarily moved member templates into class definition to support compiler
-// hh 980902 #ifdef'd out exception code when ndef MSIPL_EXCEPT
-// hh 981120 Rewrote
-// hh 981208 Protected swap with if (this == &x)
-// hh 981208 changed static_cast to reinterpret_cast on the value_type (pointer specialization only)
-// hh 981220 Added typename to appropriate return types
-// hh 981220 Modifed some method signitures to simplified syntax
-// hh 981220 Added typename to appropriate return types
-// hh 981221 changed static_cast to reinterpret_cast on the value_type (pointer specialization only)
-// hh 990120 changed name of MSIPL flags
-// hh 990218 Fixed bug in swap when one of the lists is empty
-// hh 990521 Rewrote do_assign for input iterators to be more conservative with memory
-// hh 990720 Made iterator comparison functions global friends
-// hh 990825 changed void* to const void*
-// hh 990826 Seperated out calls involving T()
-// hh 991116 Fixed pointer conversion bug in T* specialization by introducing __convert_iterator
-// hh 001011 Fixed several typename bugs
-// hh 001011 Disabled friends of iterators for gcc
-// hh 010125 Changed function prototype to variable initialization in constructor
-// hh 010301 Protected min and max from macro abuse.
-// hh 010314 Qualified internal calls with std::
-// hh 010402 Removed 68K CMF support
-// hh 010525 Rewrote (again)
+// hh 980105 changed pointer & reference to const versions in const_iterator base
+// class hh 980106 rewrote iterator and const_iterator constructors to silence unused
+// arg warning hh 980111 <stdexcept> commented out.  Not needed. hh 980713
+// Temporarily moved member templates into class definition to support compiler hh
+// 980902 #ifdef'd out exception code when ndef MSIPL_EXCEPT hh 981120 Rewrote hh
+// 981208 Protected swap with if (this == &x) hh 981208 changed static_cast to
+// reinterpret_cast on the value_type (pointer specialization only) hh 981220 Added
+// typename to appropriate return types hh 981220 Modifed some method signitures to
+// simplified syntax hh 981220 Added typename to appropriate return types hh 981221
+// changed static_cast to reinterpret_cast on the value_type (pointer specialization
+// only) hh 990120 changed name of MSIPL flags hh 990218 Fixed bug in swap when one
+// of the lists is empty hh 990521 Rewrote do_assign for input iterators to be more
+// conservative with memory hh 990720 Made iterator comparison functions global
+// friends hh 990825 changed void* to const void* hh 990826 Seperated out calls
+// involving T() hh 991116 Fixed pointer conversion bug in T* specialization by
+// introducing __convert_iterator hh 001011 Fixed several typename bugs hh 001011
+// Disabled friends of iterators for gcc hh 010125 Changed function prototype to
+// variable initialization in constructor hh 010301 Protected min and max from macro
+// abuse. hh 010314 Qualified internal calls with std:: hh 010402 Removed 68K CMF
+// support hh 010525 Rewrote (again)

@@ -6,9 +6,9 @@
  */
 
 #if __MACH__
-#    error You must have the /usr/include access path before the MSL access path
+#error You must have the /usr/include access path before the MSL access path
 #else
-#    include <cassert>
+#include <cassert>
 #endif /* __MACH__ */
 
        /*

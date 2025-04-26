@@ -1,5 +1,6 @@
 /* Metrowerks Standard Library
- * Copyright ÃÂ¯ÃÂ½C 1995-2001 Metrowerks Corporation.  All rights reserved.
+ * Copyright ÃÂ¯ÃÂ½C 1995-2001 Metrowerks Corporation.  All rights
+ * reserved.
  *
  * $Date: 2001/05/24 14:34:15 $
  * $Revision: 1.18 $
@@ -8,46 +9,46 @@
 // fstream
 
 #ifndef _FSTREAM
-#    define _FSTREAM
+#define _FSTREAM
 
-#    include <mslconfig>
+#include <mslconfig>
 
-#    ifndef _MSL_NO_IO
+#ifndef _MSL_NO_IO
 
-#        include <codecvt>
-#        include <cstdio>
-#        include <cstring>
-#        include <iosfwd>
-#        include <istream>
-#        include <ostream>
-#        include <streambuf>
+#include <codecvt>
+#include <cstdio>
+#include <cstring>
+#include <iosfwd>
+#include <istream>
+#include <ostream>
+#include <streambuf>
 
-#        ifndef RC_INVOKED
+#ifndef RC_INVOKED
 
-#            pragma options align = native
+#pragma options align = native
 
-#            ifdef _MSL_FORCE_ENUMS_ALWAYS_INT
-#                if _MSL_FORCE_ENUMS_ALWAYS_INT
-#                    pragma enumsalwaysint on
-#                else
-#                    pragma enumsalwaysint off
-#                endif
-#            endif
+#ifdef _MSL_FORCE_ENUMS_ALWAYS_INT
+#if _MSL_FORCE_ENUMS_ALWAYS_INT
+#pragma enumsalwaysint on
+#else
+#pragma enumsalwaysint off
+#endif
+#endif
 
-#            ifdef _MSL_FORCE_ENABLE_BOOL_SUPPORT
-#                if _MSL_FORCE_ENABLE_BOOL_SUPPORT
-#                    pragma bool on
-#                else
-#                    pragma bool off
-#                endif
-#            endif
+#ifdef _MSL_FORCE_ENABLE_BOOL_SUPPORT
+#if _MSL_FORCE_ENABLE_BOOL_SUPPORT
+#pragma bool on
+#else
+#pragma bool off
+#endif
+#endif
 
-#            ifndef _MSL_NO_CPP_NAMESPACE
+#ifndef _MSL_NO_CPP_NAMESPACE
 namespace std
 {
-#            endif
-
-template <class charT, class traits> class basic_filebuf : public basic_streambuf<charT, traits>
+#endif
+template <class charT, class traits>
+class basic_filebuf : public basic_streambuf<charT, traits>
 {
     typedef basic_streambuf<charT, traits> base;
 
@@ -62,12 +63,12 @@ public:
     // Nonstandard, but serves as standard default constructor
     basic_filebuf(FILE* file = 0);
     virtual ÃÂ¢ÃÂÃÂ¾basic_filebuf();
-#            ifndef _MSL_NO_FILE_IO
+#ifndef _MSL_NO_FILE_IO
     //  lib.filebuf.members Members:
     bool           is_open() const;
     basic_filebuf* open(const char* s, ios_base::openmode mode);
     basic_filebuf* close();
-#            endif // _MSL_NO_FILE_IO
+#endif // _MSL_NO_FILE_IO
 
 protected:
     //  lib.filebuf.virtuals Overridden virtual functions:
@@ -78,26 +79,29 @@ protected:
     virtual int_type   overflow(int_type c = traits::eof());
 
     virtual basic_streambuf<charT, traits>* setbuf(char_type* s, streamsize n);
-    virtual pos_type                        seekoff(off_type off, ios_base::seekdir way,
-                                                    ios_base::openmode which = ios_base::in | ios_base::out);
-    virtual pos_type                        seekpos(pos_type           sp,
-                                                    ios_base::openmode which = ios_base::in | ios_base::out); // set overflow_called_last_
-    virtual int                             sync();
-#            ifndef _MSL_NO_LOCALE
+    virtual pos_type seekoff(off_type off, ios_base::seekdir way,
+                             ios_base::openmode which = ios_base::in |
+                                                        ios_base::out);
+    virtual pos_type seekpos(
+        pos_type           sp,
+        ios_base::openmode which = ios_base::in |
+                                   ios_base::out); // set overflow_called_last_
+    virtual int sync();
+#ifndef _MSL_NO_LOCALE
     virtual void imbue(const locale& loc);
-#            endif
+#endif
 
 private:
     typedef typename traits_type::state_type state_type;
-#            ifndef _MSL_NO_LOCALE
+#ifndef _MSL_NO_LOCALE
     typedef codecvt<charT, char, typename traits::state_type> Converter;
-#            endif
+#endif
 
     FILE*      file_;
     state_type state_;
-#            ifndef _MSL_NO_LOCALE
+#ifndef _MSL_NO_LOCALE
     const Converter* a_codecvt_;
-#            endif
+#endif
     static const size_t input_buffer_size_s = 4 * sizeof(size_t);
     char_type           input_buffer_[input_buffer_size_s];
     bool                overflow_called_last_;
@@ -115,10 +119,9 @@ private:
     int_type write2(int n, char_type intern_buf);
     int_type write3(char_type intern_buf);
 };
-
-#            ifndef _MSL_NO_FILE_IO
-
-template <class charT, class traits> class basic_ifstream : public basic_istream<charT, traits>
+#ifndef _MSL_NO_FILE_IO
+template <class charT, class traits>
+class basic_ifstream : public basic_istream<charT, traits>
 {
     typedef basic_istream<charT, traits> base;
 
@@ -143,8 +146,8 @@ public:
 private:
     basic_filebuf<charT, traits> sb_;
 };
-
-template <class charT, class traits> class basic_ofstream : public basic_ostream<charT, traits>
+template <class charT, class traits>
+class basic_ofstream : public basic_ostream<charT, traits>
 {
     typedef basic_ostream<charT, traits> base;
 
@@ -169,8 +172,8 @@ public:
 private:
     basic_filebuf<charT, traits> sb_;
 };
-
-template <class charT, class traits> class basic_fstream : public basic_iostream<charT, traits>
+template <class charT, class traits>
+class basic_fstream : public basic_iostream<charT, traits>
 {
     typedef basic_iostream<charT, traits> base;
 
@@ -183,20 +186,19 @@ public:
 
     //  constructors/destructor
     basic_fstream();
-    explicit basic_fstream(const char* s, ios_base::openmode mode = ios_base::in | ios_base::out);
+    explicit basic_fstream(const char*        s,
+                           ios_base::openmode mode = ios_base::in | ios_base::out);
 
     //  Members:
     basic_filebuf<charT, traits>* rdbuf() const;
     bool                          is_open();
-    void                          open(const char* s, ios_base::openmode mode = ios_base::in | ios_base::out);
-    void                          close();
+    void open(const char* s, ios_base::openmode mode = ios_base::in | ios_base::out);
+    void close();
 
 private:
     basic_filebuf<charT, traits> sb_;
 };
-
-#            endif // _MSL_NO_FILE_IO
-
+#endif // _MSL_NO_FILE_IO
 // basic_filebuf Implementation
 
 // Nonstandard, but serves as standard default constructor
@@ -205,33 +207,30 @@ template <class charT, class traits>
 basic_filebuf<charT, traits>::basic_filebuf(FILE* file)
   : file_(file), state_(state_type()), overflow_called_last_(false), buffered_(true)
 {
-#            ifndef _MSL_NO_LOCALE
+#ifndef _MSL_NO_LOCALE
     a_codecvt_ = &_USE_FACET(Converter, base::getloc());
     always_noconv_ = a_codecvt_->always_noconv();
-#            else
+#else
     always_noconv_ = sizeof(charT) == 1;
-#            endif
+#endif
 }
-
-template <class charT, class traits> inline basic_filebuf<charT, traits>::ÃÂ¢ÃÂÃÂ¾basic_filebuf()
+template <class charT, class traits>
+inline basic_filebuf<charT, traits>::ÃÂ¢ÃÂÃÂ¾basic_filebuf()
 {
-#            ifndef _MSL_NO_FILE_IO
+#ifndef _MSL_NO_FILE_IO
     if (file_ != stdin && file_ != stdout && file_ != stderr)
     {
         close();
     }
-#            endif // _MSL_NO_FILE_IO
+#endif // _MSL_NO_FILE_IO
 }
-
-#            ifndef _MSL_NO_FILE_IO
-
+#ifndef _MSL_NO_FILE_IO
 template <class charT, class traits>
 inline bool
 basic_filebuf<charT, traits>::is_open() const
 {
     return file_ != 0;
 }
-
 template <class charT, class traits>
 basic_filebuf<charT, traits>*
 basic_filebuf<charT, traits>::open(const char* s, ios_base::openmode mode)
@@ -243,21 +242,41 @@ basic_filebuf<charT, traits>::open(const char* s, ios_base::openmode mode)
     const char* modstr;
     switch (mode & ÃÂ¢ÃÂÃÂ¾ios_base::ate)
     {
-        case ios_base::out :
-        case (int)ios_base::out | (int)ios_base::trunc                         : modstr = "w"; break;
-        case (int)ios_base::out | (int)ios_base::app                           : modstr = "a"; break;
-        case ios_base::in                                                      : modstr = "r"; break;
-        case (int)ios_base::in | (int)ios_base::out                            : modstr = "r+"; break;
-        case (int)ios_base::in | (int)ios_base::out | (int)ios_base::trunc     : modstr = "w+"; break;
-        case (int)ios_base::binary | (int)ios_base::out                        :
-        case (int)ios_base::binary | (int)ios_base::out | (int)ios_base::trunc : modstr = "wb"; break;
-        case (int)ios_base::binary | (int)ios_base::out | (int)ios_base::app   : modstr = "ab"; break;
-        case (int)ios_base::binary | (int)ios_base::in                         : modstr = "rb"; break;
-        case (int)ios_base::binary | (int)ios_base::in | (int)ios_base::out    : modstr = "r+b"; break;
-        case (int)ios_base::binary | (int)ios_base::in | (int)ios_base::out | (int)ios_base::trunc :
+        case ios_base::out:
+        case (int)ios_base::out | (int)ios_base::trunc:
+            modstr = "w";
+            break;
+        case (int)ios_base::out | (int)ios_base::app:
+            modstr = "a";
+            break;
+        case ios_base::in:
+            modstr = "r";
+            break;
+        case (int)ios_base::in | (int)ios_base::out:
+            modstr = "r+";
+            break;
+        case (int)ios_base::in | (int)ios_base::out | (int)ios_base::trunc:
+            modstr = "w+";
+            break;
+        case (int)ios_base::binary | (int)ios_base::out:
+        case (int)ios_base::binary | (int)ios_base::out | (int)ios_base::trunc:
+            modstr = "wb";
+            break;
+        case (int)ios_base::binary | (int)ios_base::out | (int)ios_base::app:
+            modstr = "ab";
+            break;
+        case (int)ios_base::binary | (int)ios_base::in:
+            modstr = "rb";
+            break;
+        case (int)ios_base::binary | (int)ios_base::in | (int)ios_base::out:
+            modstr = "r+b";
+            break;
+        case (int)ios_base::binary | (int)ios_base::in | (int)ios_base::out |
+            (int)ios_base::trunc:
             modstr = "w+b";
             break;
-        default : return 0;
+        default:
+            return 0;
     }
     file_ = fopen(s, modstr);
     if (file_ == 0)
@@ -271,7 +290,6 @@ basic_filebuf<charT, traits>::open(const char* s, ios_base::openmode mode)
     }
     return this;
 }
-
 template <class charT, class traits>
 basic_filebuf<charT, traits>*
 basic_filebuf<charT, traits>::close()
@@ -280,7 +298,8 @@ basic_filebuf<charT, traits>::close()
     {
         return 0;
     }
-    if (base::pptr() > base::pbase() && traits::eq_int_type(overflow(), traits::eof()))
+    if (base::pptr() > base::pbase() &&
+        traits::eq_int_type(overflow(), traits::eof()))
     {
         return 0;
     }
@@ -302,25 +321,23 @@ basic_filebuf<charT, traits>::close()
     base::setp(0, 0);
     return result;
 }
-
-#            endif // _MSL_NO_FILE_IO
-
+#endif // _MSL_NO_FILE_IO
 template <class charT, class traits>
 inline streamsize
 basic_filebuf<charT, traits>::showmanyc()
 {
     return static_cast<streamsize>(base::egptr() - base::gptr());
 }
-
 template <class charT, class traits>
 inline size_t
 basic_filebuf<charT, traits>::shift_buffer()
 {
-    const size_t n = 1 > sizeof(size_t) / sizeof(char_type) ? 1 : sizeof(size_t) / sizeof(char_type);
+    const size_t n = 1 > sizeof(size_t) / sizeof(char_type)
+                         ? 1
+                         : sizeof(size_t) / sizeof(char_type);
     *(size_t*)input_buffer_ = *(size_t*)(input_buffer_ + input_buffer_size_s - n);
     return n;
 }
-
 template <class charT, class traits>
 typename basic_filebuf<charT, traits>::int_type
 basic_filebuf<charT, traits>::read1(bool peek)
@@ -339,7 +356,6 @@ basic_filebuf<charT, traits>::read1(bool peek)
     }
     return static_cast<int_type>(result);
 }
-
 template <class charT, class traits>
 typename basic_filebuf<charT, traits>::int_type
 basic_filebuf<charT, traits>::read2(int n, bool peek)
@@ -359,21 +375,26 @@ basic_filebuf<charT, traits>::read2(int n, bool peek)
         extern_buf[i] = static_cast<char>(ci);
     }
     char_type intern_buf;
-#            ifndef _MSL_NO_LOCALE
+#ifndef _MSL_NO_LOCALE
     const char*          extern_end;
     char_type*           intern_end;
-    codecvt_base::result r
-        = a_codecvt_->in(state_, extern_buf, extern_buf + n, extern_end, &intern_buf, &intern_buf + 1, intern_end);
+    codecvt_base::result r =
+        a_codecvt_->in(state_, extern_buf, extern_buf + n, extern_end, &intern_buf,
+                       &intern_buf + 1, intern_end);
     switch (r)
     {
-        case codecvt_base::error :
-        case codecvt_base::partial : return traits::eof();
-        case codecvt_base::noconv  : intern_buf = *(char_type*)extern_buf; break;
-        case codecvt_base::ok      : break;
+        case codecvt_base::error:
+        case codecvt_base::partial:
+            return traits::eof();
+        case codecvt_base::noconv:
+            intern_buf = *(char_type*)extern_buf;
+            break;
+        case codecvt_base::ok:
+            break;
     }
-#            else
+#else
     memcpy(&intern_buf, extern_buf, static_cast<size_t>(n));
-#            endif
+#endif
     if (peek)
     {
         for (int i = n; i > 0;)
@@ -386,12 +407,11 @@ basic_filebuf<charT, traits>::read2(int n, bool peek)
     }
     return traits::to_int_type(intern_buf);
 }
-
 template <class charT, class traits>
 typename basic_filebuf<charT, traits>::int_type
 basic_filebuf<charT, traits>::read3(bool peek)
 {
-#            ifndef _MSL_NO_LOCALE
+#ifndef _MSL_NO_LOCALE
     char                 extern_buf[char_limit];
     const char*          extern_end;
     char_type            intern_buf;
@@ -411,14 +431,17 @@ basic_filebuf<charT, traits>::read3(bool peek)
             return traits::eof();
         }
         extern_buf[n++] = static_cast<char>(ci);
-        r = a_codecvt_->in(state_, extern_buf + offset, extern_buf + n, extern_end, &intern_buf, &intern_buf + 1,
-                           intern_end);
+        r = a_codecvt_->in(state_, extern_buf + offset, extern_buf + n, extern_end,
+                           &intern_buf, &intern_buf + 1, intern_end);
         switch (r)
         {
-            case codecvt_base::error   : return traits::eof();
-            case codecvt_base::ok      :
-            case codecvt_base::partial : offset = static_cast<size_t>(extern_end - extern_buf); break;
-            case codecvt_base::noconv :
+            case codecvt_base::error:
+                return traits::eof();
+            case codecvt_base::ok:
+            case codecvt_base::partial:
+                offset = static_cast<size_t>(extern_end - extern_buf);
+                break;
+            case codecvt_base::noconv:
                 intern_buf = *(char_type*)extern_buf;
                 intern_end = &intern_buf + 1;
                 break;
@@ -435,12 +458,11 @@ basic_filebuf<charT, traits>::read3(bool peek)
         }
     }
     return traits::to_int_type(intern_buf);
-#            else
+#else
     peek;
     return traits::eof();
-#            endif
+#endif
 }
-
 template <class charT, class traits>
 typename basic_filebuf<charT, traits>::int_type
 basic_filebuf<charT, traits>::underflow()
@@ -451,7 +473,8 @@ basic_filebuf<charT, traits>::underflow()
     }
     if (buffered_ && base::gptr() == 0)
     {
-        if (base::pptr() > base::pbase() && traits::eq_int_type(overflow(), traits::eof()))
+        if (base::pptr() > base::pbase() &&
+            traits::eq_int_type(overflow(), traits::eof()))
         {
             return traits::eof();
         }
@@ -471,11 +494,11 @@ basic_filebuf<charT, traits>::underflow()
     }
     else
     {
-#            ifndef _MSL_NO_LOCALE
+#ifndef _MSL_NO_LOCALE
         n = a_codecvt_->encoding();
-#            else
+#else
         n = sizeof(char_type);
-#            endif
+#endif
         if (n > 0)
         {
             ci = read2(n, base::gptr() == 0);
@@ -500,7 +523,7 @@ basic_filebuf<charT, traits>::underflow()
         ++es;
         base::setg(input_buffer_, input_buffer_ + es - 1, input_buffer_ + es);
         *base::gptr() = intern_buf;
-#            ifdef _MSL_USING_MSL_C
+#ifdef _MSL_USING_MSL_C
         if (always_noconv_)
         {
             while (file_->buffer_len > 0 && es < input_buffer_size_s)
@@ -522,18 +545,18 @@ basic_filebuf<charT, traits>::underflow()
                 base::setg(base::eback(), base::gptr(), base::eback() + ++es);
             }
         }
-#            endif
+#endif
     }
     return ci;
 }
-
 template <class charT, class traits>
 typename basic_filebuf<charT, traits>::int_type
 basic_filebuf<charT, traits>::uflow()
 {
     if (buffered_ && base::gptr() == 0)
     {
-        if (base::pptr() > base::pbase() && traits::eq_int_type(overflow(), traits::eof()))
+        if (base::pptr() > base::pbase() &&
+            traits::eq_int_type(overflow(), traits::eof()))
         {
             return traits::eof();
         }
@@ -562,11 +585,11 @@ basic_filebuf<charT, traits>::uflow()
     }
     else
     {
-#            ifndef _MSL_NO_LOCALE
+#ifndef _MSL_NO_LOCALE
         int n = a_codecvt_->encoding();
-#            else
+#else
         int n = sizeof(char_type);
-#            endif
+#endif
         if (n > 0)
         {
             ci = read2(n, false);
@@ -582,7 +605,6 @@ basic_filebuf<charT, traits>::uflow()
     }
     return ci;
 }
-
 template <class charT, class traits>
 typename basic_filebuf<charT, traits>::int_type
 basic_filebuf<charT, traits>::pbackfail(int_type c)
@@ -617,7 +639,6 @@ basic_filebuf<charT, traits>::pbackfail(int_type c)
     }
     return traits::not_eof(c);
 }
-
 template <class charT, class traits>
 inline typename basic_filebuf<charT, traits>::int_type
 basic_filebuf<charT, traits>::write1(char_type intern_buf)
@@ -628,30 +649,33 @@ basic_filebuf<charT, traits>::write1(char_type intern_buf)
     }
     return traits::to_int_type(intern_buf);
 }
-
 template <class charT, class traits>
 typename basic_filebuf<charT, traits>::int_type
 basic_filebuf<charT, traits>::write2(int n, char_type intern_buf)
 {
     char extern_buf[char_limit];
-#            ifndef _MSL_NO_LOCALE
+#ifndef _MSL_NO_LOCALE
     char*                extern_end;
     const char_type*     intern_end;
-    codecvt_base::result r = a_codecvt_->out(state_, &intern_buf, &intern_buf + 1, intern_end, extern_buf,
-                                             extern_buf + char_limit, extern_end);
+    codecvt_base::result r =
+        a_codecvt_->out(state_, &intern_buf, &intern_buf + 1, intern_end, extern_buf,
+                        extern_buf + char_limit, extern_end);
     switch (r)
     {
-        case codecvt_base::error :
-        case codecvt_base::partial : return traits::eof();
-        case codecvt_base::noconv :
+        case codecvt_base::error:
+        case codecvt_base::partial:
+            return traits::eof();
+        case codecvt_base::noconv:
             n = sizeof(char_type);
             memcpy(extern_buf, &intern_buf, static_cast<size_t>(n));
             break;
-        case codecvt_base::ok : n = static_cast<int>(extern_end - extern_buf); break;
+        case codecvt_base::ok:
+            n = static_cast<int>(extern_end - extern_buf);
+            break;
     }
-#            else
+#else
     memcpy(extern_buf, &intern_buf, static_cast<size_t>(n));
-#            endif
+#endif
     for (int i = 0; i < n; ++i)
     {
         if (putc(extern_buf[i], file_) == EOF)
@@ -661,7 +685,6 @@ basic_filebuf<charT, traits>::write2(int n, char_type intern_buf)
     }
     return traits::to_int_type(intern_buf);
 }
-
 template <class charT, class traits>
 typename basic_filebuf<charT, traits>::int_type
 basic_filebuf<charT, traits>::overflow(int_type c)
@@ -672,7 +695,8 @@ basic_filebuf<charT, traits>::overflow(int_type c)
     }
     if (buffered_ && base::pptr() == 0)
     {
-        if (base::gptr() < base::egptr() && seekoff(0, ios_base::cur, ios_base::in) == pos_type(-1))
+        if (base::gptr() < base::egptr() &&
+            seekoff(0, ios_base::cur, ios_base::in) == pos_type(-1))
         {
             return traits::eof();
         }
@@ -694,19 +718,19 @@ basic_filebuf<charT, traits>::overflow(int_type c)
             }
         }
         base::pbump(base::pbase() - base::pptr());
-        if (!traits::eq_int_type(c, traits::eof())
-            && traits::eq_int_type(write1(traits::to_char_type(c)), traits::eof()))
+        if (!traits::eq_int_type(c, traits::eof()) &&
+            traits::eq_int_type(write1(traits::to_char_type(c)), traits::eof()))
         {
             return traits::eof();
         }
     }
     else
     {
-#            ifndef _MSL_NO_LOCALE
+#ifndef _MSL_NO_LOCALE
         int n = a_codecvt_->encoding();
-#            else
+#else
         int n = sizeof(char_type);
-#            endif
+#endif
         for (char_type* p = base::pbase(); p < base::pptr(); ++p)
         {
             if (traits::eq_int_type(write2(n, *p), traits::eof()))
@@ -720,15 +744,14 @@ basic_filebuf<charT, traits>::overflow(int_type c)
             }
         }
         base::pbump(base::pbase() - base::pptr());
-        if (!traits::eq_int_type(c, traits::eof())
-            && traits::eq_int_type(write2(n, traits::to_char_type(c)), traits::eof()))
+        if (!traits::eq_int_type(c, traits::eof()) &&
+            traits::eq_int_type(write2(n, traits::to_char_type(c)), traits::eof()))
         {
             return traits::eof();
         }
     }
     return traits::not_eof(c);
 }
-
 template <class charT, class traits>
 basic_streambuf<charT, traits>*
 basic_filebuf<charT, traits>::setbuf(char_type*, streamsize n)
@@ -736,21 +759,22 @@ basic_filebuf<charT, traits>::setbuf(char_type*, streamsize n)
     buffered_ = static_cast<bool>(n);
     return this;
 }
-
 template <class charT, class traits>
 typename basic_filebuf<charT, traits>::pos_type
-basic_filebuf<charT, traits>::seekoff(off_type off, ios_base::seekdir way, ios_base::openmode which)
+basic_filebuf<charT, traits>::seekoff(off_type off, ios_base::seekdir way,
+                                      ios_base::openmode which)
 {
-#            ifndef _MSL_NO_LOCALE
+#ifndef _MSL_NO_LOCALE
     int width = a_codecvt_->encoding();
-#            else
+#else
     int width = sizeof(charT);
-#            endif
+#endif
     if (file_ == 0 || off != 0 && width <= 0)
     {
         return pos_type(-1);
     }
-    if (base::pptr() > base::pbase() && traits::eq_int_type(overflow(), traits::eof()))
+    if (base::pptr() > base::pbase() &&
+        traits::eq_int_type(overflow(), traits::eof()))
     {
         return pos_type(-1);
     }
@@ -764,16 +788,21 @@ basic_filebuf<charT, traits>::seekoff(off_type off, ios_base::seekdir way, ios_b
     int whence;
     switch (way)
     {
-        case ios_base::beg : whence = SEEK_SET; break;
-        case ios_base::cur :
+        case ios_base::beg:
+            whence = SEEK_SET;
+            break;
+        case ios_base::cur:
             whence = SEEK_CUR;
             if ((which & ios_base::in) != 0)
             {
                 off -= base::egptr() - base::gptr();
             }
             break;
-        case ios_base::end : whence = SEEK_END; break;
-        default            : return pos_type(-1);
+        case ios_base::end:
+            whence = SEEK_END;
+            break;
+        default:
+            return pos_type(-1);
     }
     if (width < 0)
     {
@@ -788,7 +817,6 @@ basic_filebuf<charT, traits>::seekoff(off_type off, ios_base::seekdir way, ios_b
     overflow_called_last_ = false;
     return ftell(file_);
 }
-
 template <class charT, class traits>
 typename basic_filebuf<charT, traits>::pos_type
 basic_filebuf<charT, traits>::seekpos(pos_type sp, ios_base::openmode which)
@@ -797,12 +825,13 @@ basic_filebuf<charT, traits>::seekpos(pos_type sp, ios_base::openmode which)
     {
         return pos_type(-1);
     }
-#            ifndef _MSL_NO_LOCALE
+#ifndef _MSL_NO_LOCALE
     int width = a_codecvt_->encoding();
-#            else
+#else
     int width = sizeof(charT);
-#            endif
-    if (base::pptr() > base::pbase() && traits::eq_int_type(overflow(), traits::eof()))
+#endif
+    if (base::pptr() > base::pbase() &&
+        traits::eq_int_type(overflow(), traits::eof()))
     {
         return pos_type(-1);
     }
@@ -822,20 +851,20 @@ basic_filebuf<charT, traits>::seekpos(pos_type sp, ios_base::openmode which)
     overflow_called_last_ = false;
     return sp;
 }
-
 template <class charT, class traits>
 inline int
 basic_filebuf<charT, traits>::sync()
 {
-    if (file_ == 0 || (base::pptr() > base::pbase() && traits::eq_int_type(overflow(), traits::eof())) || fflush(file_))
+    if (file_ == 0 ||
+        (base::pptr() > base::pbase() &&
+         traits::eq_int_type(overflow(), traits::eof())) ||
+        fflush(file_))
     {
         return -1;
     }
     return 0;
 }
-
-#            ifndef _MSL_NO_LOCALE
-
+#ifndef _MSL_NO_LOCALE
 template <class charT, class traits>
 void
 basic_filebuf<charT, traits>::imbue(const locale& loc)
@@ -844,18 +873,17 @@ basic_filebuf<charT, traits>::imbue(const locale& loc)
     a_codecvt_ = &_USE_FACET(Converter, base::getloc());
     always_noconv_ = a_codecvt_->always_noconv();
 }
-
-#            endif
+#endif
 
 // returns true if successful
 template <class charT, class traits>
-#            ifdef _MSL_NO_LOCALE
+#ifdef _MSL_NO_LOCALE
 inline
-#            endif
+#endif
     bool
     basic_filebuf<charT, traits>::unshift()
 {
-#            ifndef _MSL_NO_LOCALE
+#ifndef _MSL_NO_LOCALE
     codecvt_base::result r = codecvt_base::partial;
     while (r == codecvt_base::partial)
     {
@@ -864,10 +892,12 @@ inline
         r = a_codecvt_->unshift(state_, to, to + 4, to_next);
         switch (r)
         {
-            case codecvt_base::error  : return 0;
-            case codecvt_base::noconv : break;
-            case codecvt_base::ok :
-            case codecvt_base::partial :
+            case codecvt_base::error:
+                return 0;
+            case codecvt_base::noconv:
+                break;
+            case codecvt_base::ok:
+            case codecvt_base::partial:
                 {
                     char* t = to;
                     while (t < to_next)
@@ -881,19 +911,17 @@ inline
                 break;
         }
     }
-#            endif
+#endif
     return true;
 }
 
-#            ifndef _MSL_NO_FILE_IO
-
+#ifndef _MSL_NO_FILE_IO
 // basic_ifstream Implementation
 
 template <class charT, class traits>
 basic_ifstream<charT, traits>::basic_ifstream() : basic_istream<charT, traits>(&sb_)
 {
 }
-
 template <class charT, class traits>
 basic_ifstream<charT, traits>::basic_ifstream(const char* s, ios_base::openmode mode)
   : basic_istream<charT, traits>(&sb_)
@@ -903,21 +931,18 @@ basic_ifstream<charT, traits>::basic_ifstream(const char* s, ios_base::openmode 
         base::setstate(ios_base::failbit);
     }
 }
-
 template <class charT, class traits>
 inline basic_filebuf<charT, traits>*
 basic_ifstream<charT, traits>::rdbuf() const
 {
     return const_cast<basic_filebuf<charT, traits>*>(&sb_);
 }
-
 template <class charT, class traits>
 inline bool
 basic_ifstream<charT, traits>::is_open()
 {
     return rdbuf()->is_open();
 }
-
 template <class charT, class traits>
 inline void
 basic_ifstream<charT, traits>::open(const char* s, ios_base::openmode mode)
@@ -927,7 +952,6 @@ basic_ifstream<charT, traits>::open(const char* s, ios_base::openmode mode)
         base::setstate(ios_base::failbit);
     }
 }
-
 template <class charT, class traits>
 inline void
 basic_ifstream<charT, traits>::close()
@@ -937,14 +961,12 @@ basic_ifstream<charT, traits>::close()
         base::setstate(ios_base::failbit);
     }
 }
-
 // basic_ofstream Implementation
 
 template <class charT, class traits>
 basic_ofstream<charT, traits>::basic_ofstream() : basic_ostream<charT, traits>(&sb_)
 {
 }
-
 template <class charT, class traits>
 basic_ofstream<charT, traits>::basic_ofstream(const char* s, ios_base::openmode mode)
   : basic_ostream<charT, traits>(&sb_)
@@ -954,21 +976,18 @@ basic_ofstream<charT, traits>::basic_ofstream(const char* s, ios_base::openmode 
         base::setstate(ios_base::failbit);
     }
 }
-
 template <class charT, class traits>
 inline basic_filebuf<charT, traits>*
 basic_ofstream<charT, traits>::rdbuf() const
 {
     return const_cast<basic_filebuf<charT, traits>*>(&sb_);
 }
-
 template <class charT, class traits>
 inline bool
 basic_ofstream<charT, traits>::is_open()
 {
     return rdbuf()->is_open();
 }
-
 template <class charT, class traits>
 inline void
 basic_ofstream<charT, traits>::open(const char* s, ios_base::openmode mode)
@@ -978,7 +997,6 @@ basic_ofstream<charT, traits>::open(const char* s, ios_base::openmode mode)
         base::setstate(ios_base::failbit);
     }
 }
-
 template <class charT, class traits>
 inline void
 basic_ofstream<charT, traits>::close()
@@ -988,13 +1006,12 @@ basic_ofstream<charT, traits>::close()
         base::setstate(ios_base::failbit);
     }
 }
-
 // basic_fstream Implementation
 
-template <class charT, class traits> basic_fstream<charT, traits>::basic_fstream() : basic_iostream<charT, traits>(&sb_)
+template <class charT, class traits>
+basic_fstream<charT, traits>::basic_fstream() : basic_iostream<charT, traits>(&sb_)
 {
 }
-
 template <class charT, class traits>
 basic_fstream<charT, traits>::basic_fstream(const char* s, ios_base::openmode mode)
   : basic_iostream<charT, traits>(&sb_)
@@ -1004,21 +1021,18 @@ basic_fstream<charT, traits>::basic_fstream(const char* s, ios_base::openmode mo
         base::setstate(ios_base::failbit);
     }
 }
-
 template <class charT, class traits>
 inline basic_filebuf<charT, traits>*
 basic_fstream<charT, traits>::rdbuf() const
 {
     return const_cast<basic_filebuf<charT, traits>*>(&sb_);
 }
-
 template <class charT, class traits>
 inline bool
 basic_fstream<charT, traits>::is_open()
 {
     return rdbuf()->is_open();
 }
-
 template <class charT, class traits>
 inline void
 basic_fstream<charT, traits>::open(const char* s, ios_base::openmode mode)
@@ -1028,7 +1042,6 @@ basic_fstream<charT, traits>::open(const char* s, ios_base::openmode mode)
         base::setstate(ios_base::failbit);
     }
 }
-
 template <class charT, class traits>
 inline void
 basic_fstream<charT, traits>::close()
@@ -1038,28 +1051,27 @@ basic_fstream<charT, traits>::close()
         base::setstate(ios_base::failbit);
     }
 }
+#endif // _MSL_NO_FILE_IO
 
-#            endif // _MSL_NO_FILE_IO
-
-#            ifndef _MSL_NO_CPP_NAMESPACE
+#ifndef _MSL_NO_CPP_NAMESPACE
 } // namespace std
-#            endif
+#endif
 
-#            ifdef _MSL_FORCE_ENUMS_ALWAYS_INT
-#                pragma enumsalwaysint reset
-#            endif
+#ifdef _MSL_FORCE_ENUMS_ALWAYS_INT
+#pragma enumsalwaysint reset
+#endif
 
-#            ifdef _MSL_FORCE_ENABLE_BOOL_SUPPORT
-#                pragma bool reset
-#            endif
+#ifdef _MSL_FORCE_ENABLE_BOOL_SUPPORT
+#pragma bool reset
+#endif
 
-#            pragma options align = reset
+#pragma options align = reset
 
-#        endif // RC_INVOKED
+#endif // RC_INVOKED
 
-#    endif     // _MSL_NO_IO
+#endif // _MSL_NO_IO
 
-#endif         // _FSTREAM
+#endif // _FSTREAM
 
 // hh 971220 fixed MOD_INCLUDE
 // hh 971221 Changed filename from fstream.h to fstream
@@ -1073,10 +1085,8 @@ basic_fstream<charT, traits>::close()
 // hh 990929 Reset input buffer in basic_filebuf::close.
 // hh 991213 Fixed duplicated declaration of codecvt_base::result r in two places.
 // hh 000130 Installed _MSL_NO_LOCALE
-// hh 000604 Added buffering cabability to basic_filebuf.  Can be turned on/off with setbuf.
-// hh 000824 Added to_int_type() cast in uflow()
-// hh 001011 Fixed several typename bugs
-// hh 001011 Fixed bug several places:  base class missing template arguments
-// hh 010125 Fixed bug in processing state dependent codecvt
-// hh 010212 Installed _MSL_NO_FILE_IO
-// hh 010402 Removed 68K CMF support
+// hh 000604 Added buffering cabability to basic_filebuf.  Can be turned on/off with
+// setbuf. hh 000824 Added to_int_type() cast in uflow() hh 001011 Fixed several
+// typename bugs hh 001011 Fixed bug several places:  base class missing template
+// arguments hh 010125 Fixed bug in processing state dependent codecvt hh 010212
+// Installed _MSL_NO_FILE_IO hh 010402 Removed 68K CMF support

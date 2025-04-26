@@ -8,13 +8,12 @@ static const _INT32 _nan = 0x7fffffff;
 const extern float __one_over_F[];
 extern const float __ln_F[];
 #define __ln2 .6931471806f
-
 float
 logf(float x)
 {
     switch ((*(_INT32*)&x) & 0x7f800000)
     {
-        default :
+        default:
             {
                 _UINT32      e;
                 const float  z;
@@ -23,7 +22,7 @@ logf(float x)
                 float        q, u;
                 _UINT32      index = ((*(_UINT32*)&x) & 0x007fffff) >> 16;
 
-#if __INTEL__&& __option(k63d)
+#if __INTEL__ && __option(k63d)
                 const _INT32 table_address = 4 * index;
                 asm
                 {   
@@ -36,11 +35,12 @@ logf(float x)
 
                 if ((*(_UINT32*)&x) & 0x0000ffff)
                 {
-                    e = ((*(_UINT32*)&x) & 0x007f0000) | 0x3f800000; // trailing bits are truncated
+                    e = ((*(_UINT32*)&x) & 0x007f0000) |
+                        0x3f800000; // trailing bits are truncated
                     *(_UINT32*)&z = ((*(_UINT32*)&x) & 0x007fffff) | 0x3f800000;
                     if ((*(_UINT32*)&x) & 0x00008000)
                     {
-                        index++;                                     // scaled x is in right half of interval
+                        index++;    // scaled x is in right half of interval
                         *(_UINT32*)&e += 0x00010000;
                     }
                     u = z - *(float*)&e;
@@ -50,7 +50,7 @@ logf(float x)
                 }
                 else return (exp * __ln2) + __ln_F[index];
             }
-        case 0x7f800000 :
+        case 0x7f800000:
             {
                 if ((*(_INT32*)&x) & 0x007fffff)
                 {
@@ -68,7 +68,7 @@ logf(float x)
                     }
                 }
             }
-        case 0 :                                                     // will fix for denormals later
+        case 0:                     // will fix for denormals later
             return -__INFINITY;
 
     } // end of switch

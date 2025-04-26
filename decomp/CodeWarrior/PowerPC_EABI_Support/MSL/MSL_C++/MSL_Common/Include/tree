@@ -1,5 +1,6 @@
 /* Metrowerks Standard Library
- * Copyright ÃÂ¯ÃÂ½C 1995-2001 Metrowerks Corporation.  All rights reserved.
+ * Copyright ÃÂ¯ÃÂ½C 1995-2001 Metrowerks Corporation.  All rights
+ * reserved.
  *
  * $Date: 2001/05/10 14:39:44 $
  * $Revision: 1.13 $
@@ -8,7 +9,7 @@
 // tree
 
 #ifndef _TREE
-#    define _TREE
+#define _TREE
 
 // WARNING
 //
@@ -38,48 +39,47 @@
 //	4.	The "RB-Delete" and "RB-Delete-Fixup" routines are implemented as one
 //		routine here:  "balance_erase".
 
-#    include <algorithm>
-#    include <iterator>
-#    include <memory>
-#    include <msl_utility>
-#    include <mslconfig>
-#    include <stdexcept>
+#include <algorithm>
+#include <iterator>
+#include <memory>
+#include <msl_utility>
+#include <mslconfig>
+#include <stdexcept>
 
-#    ifdef _TREE_DEBUG
-#        include <cassert>
-#    endif
+#ifdef _TREE_DEBUG
+#include <cassert>
+#endif
 
-#    pragma options align = native
+#pragma options align = native
 
-#    ifdef _MSL_FORCE_ENUMS_ALWAYS_INT
-#        if _MSL_FORCE_ENUMS_ALWAYS_INT
-#            pragma enumsalwaysint on
-#        else
-#            pragma enumsalwaysint off
-#        endif
-#    endif
+#ifdef _MSL_FORCE_ENUMS_ALWAYS_INT
+#if _MSL_FORCE_ENUMS_ALWAYS_INT
+#pragma enumsalwaysint on
+#else
+#pragma enumsalwaysint off
+#endif
+#endif
 
-#    ifdef _MSL_FORCE_ENABLE_BOOL_SUPPORT
-#        if _MSL_FORCE_ENABLE_BOOL_SUPPORT
-#            pragma bool on
-#        else
-#            pragma bool off
-#        endif
-#    endif
+#ifdef _MSL_FORCE_ENABLE_BOOL_SUPPORT
+#if _MSL_FORCE_ENABLE_BOOL_SUPPORT
+#pragma bool on
+#else
+#pragma bool off
+#endif
+#endif
 
-#    ifdef min
-#        undef min
-#    endif
+#ifdef min
+#undef min
+#endif
 
-#    ifdef max
-#        undef max
-#    endif
+#ifdef max
+#undef max
+#endif
 
-#    ifndef _MSL_NO_CPP_NAMESPACE
+#ifndef _MSL_NO_CPP_NAMESPACE
 namespace std
 {
-#    endif
-
+#endif
 // hh 981203 **** WARNING ****  __pointer_plus_bit is not standard.
 // It is used in the implementation of __tree.  It compacts a bool
 // and a pointer into the space of a pointer.  The pointer must refer
@@ -103,11 +103,10 @@ private:
 
     __pointer_plus_bit(const __pointer_plus_bit&); // not defined
 };
-
-template <class T> inline __pointer_plus_bit<T>::__pointer_plus_bit(T* ptr) : ptr_(ptr)
+template <class T>
+inline __pointer_plus_bit<T>::__pointer_plus_bit(T* ptr) : ptr_(ptr)
 {
 }
-
 template <class T>
 inline __pointer_plus_bit<T>&
 __pointer_plus_bit<T>::operator=(const __pointer_plus_bit& x)
@@ -115,7 +114,6 @@ __pointer_plus_bit<T>::operator=(const __pointer_plus_bit& x)
     ptr_ = (T*)(((size_t)x.ptr_ & ÃÂ¢ÃÂÃÂ¾1) | ((size_t)ptr_ & 1));
     return *this;
 }
-
 template <class T>
 inline __pointer_plus_bit<T>&
 __pointer_plus_bit<T>::operator=(T* x)
@@ -123,19 +121,16 @@ __pointer_plus_bit<T>::operator=(T* x)
     ptr_ = (T*)((size_t)x | ((size_t)ptr_ & 1));
     return *this;
 }
-
 template <class T> inline __pointer_plus_bit<T>::operator T*() const
 {
     return (T*)((size_t)ptr_ & ÃÂ¢ÃÂÃÂ¾1);
 }
-
 template <class T>
 inline bool
 __pointer_plus_bit<T>::bit() const
 {
     return bool((size_t)ptr_ & 1);
 }
-
 template <class T>
 inline void
 __pointer_plus_bit<T>::bit(bool b)
@@ -149,14 +144,12 @@ __pointer_plus_bit<T>::bit(bool b)
         ptr_ = (T*)((size_t)ptr_ & ÃÂ¢ÃÂÃÂ¾1);
     }
 }
-
 template <class T>
 inline T*
 __pointer_plus_bit<T>::operator->() const
 {
     return (T*)((size_t)ptr_ & ÃÂ¢ÃÂÃÂ¾1);
 }
-
 template <bool b> class __red_black_tree
 {
 protected:
@@ -167,66 +160,53 @@ protected:
     };
 
     struct node_base;
-
     struct anchor
     {
         node_base* left_;
-
         anchor(node_base* left = 0) : left_(left) {}
     };
-
-#    ifndef _Inhibit_Optimize_RB_bit
-
+#ifndef _Inhibit_Optimize_RB_bit
     struct node_base : public anchor
     {
         node_base*                    right_;
         __pointer_plus_bit<node_base> parent_;
-
         node_base(node_base* left = 0, node_base* right = 0, node_base* parent = 0)
           : anchor(left), right_(right), parent_(parent)
         {
         }
-
         Color
         color() const
         {
             return Color(parent_.bit());
         }
-
         void
         set_color(Color c)
         {
             parent_.bit(bool(c));
         }
     };
-
-#    else
-
+#else
     struct node_base : public anchor
     {
         node_base* right_;
         node_base* parent_;
         Color      color_;
-
         node_base(node_base* left = 0, node_base* right = 0, node_base* parent = 0)
           : anchor(left), right_(right), parent_(parent)
         {
         }
-
         Color
         color() const
         {
             return color_;
         }
-
         void
         set_color(Color c)
         {
             color_ = c;
         }
     };
-
-#    endif
+#endif
 
     static node_base* leftmost(node_base* x);
     static node_base* rightmost(node_base* x);
@@ -239,7 +219,6 @@ private:
     static void rotate_left(node_base* x, node_base*& root);
     static void rotate_right(node_base* x, node_base*& root);
 };
-
 template <bool b>
 inline typename __red_black_tree<b>::node_base*
 __red_black_tree<b>::leftmost(node_base* x)
@@ -250,7 +229,6 @@ __red_black_tree<b>::leftmost(node_base* x)
     }
     return x;
 }
-
 template <bool b>
 inline typename __red_black_tree<b>::node_base*
 __red_black_tree<b>::rightmost(node_base* x)
@@ -261,7 +239,6 @@ __red_black_tree<b>::rightmost(node_base* x)
     }
     return x;
 }
-
 template <bool b>
 void
 __red_black_tree<b>::increment(const node_base*& x)
@@ -279,7 +256,6 @@ __red_black_tree<b>::increment(const node_base*& x)
         x = x->parent_;
     }
 }
-
 template <bool b>
 void
 __red_black_tree<b>::decrement(const node_base*& x)
@@ -297,7 +273,6 @@ __red_black_tree<b>::decrement(const node_base*& x)
         x = x->parent_;
     }
 }
-
 template <bool b>
 void
 __red_black_tree<b>::balance_insert(node_base* x, node_base* root)
@@ -352,7 +327,6 @@ __red_black_tree<b>::balance_insert(node_base* x, node_base* root)
     }
     root->set_color(black);
 }
-
 template <bool b>
 void
 __red_black_tree<b>::balance_erase(node_base* z, node_base* root)
@@ -434,7 +408,8 @@ __red_black_tree<b>::balance_erase(node_base* z, node_base* root)
                     rotate_left(x_parent, root);
                     w = x_parent->right_;
                 }
-                if ((w->left_ == 0 || w->left_->color() == black) && (w->right_ == 0 || w->right_->color() == black))
+                if ((w->left_ == 0 || w->left_->color() == black) &&
+                    (w->right_ == 0 || w->right_->color() == black))
                 {
                     w->set_color(red);
                     x = x_parent;
@@ -467,7 +442,8 @@ __red_black_tree<b>::balance_erase(node_base* z, node_base* root)
                     rotate_right(x_parent, root);
                     w = x_parent->left_;
                 }
-                if ((w->left_ == 0 || w->left_->color() == black) && (w->right_ == 0 || w->right_->color() == black))
+                if ((w->left_ == 0 || w->left_->color() == black) &&
+                    (w->right_ == 0 || w->right_->color() == black))
                 {
                     w->set_color(red);
                     x = x_parent;
@@ -497,7 +473,6 @@ __red_black_tree<b>::balance_erase(node_base* z, node_base* root)
         }
     }
 }
-
 template <bool b>
 void
 __red_black_tree<b>::rotate_left(node_base* x, node_base*& root)
@@ -524,7 +499,6 @@ __red_black_tree<b>::rotate_left(node_base* x, node_base*& root)
     y->left_ = x;
     x->parent_ = y;
 }
-
 template <bool b>
 void
 __red_black_tree<b>::rotate_right(node_base* x, node_base*& root)
@@ -551,8 +525,8 @@ __red_black_tree<b>::rotate_right(node_base* x, node_base*& root)
     y->right_ = x;
     x->parent_ = y;
 }
-
-template <class T, class Compare, class Allocator> class __tree : private __red_black_tree<true>
+template <class T, class Compare, class Allocator>
+class __tree : private __red_black_tree<true>
 {
 public:
     //  types:
@@ -578,12 +552,10 @@ private:
     private:
         node(); // hh 990826
     };
-
     typedef _MSL_REBIND(node) node_allocator_type;
 
 public:
-#    ifdef _Inhibit_Optimize_RB_bit
-
+#ifdef _Inhibit_Optimize_RB_bit
     struct debug_view
     {
         debug_view* left_;
@@ -592,9 +564,7 @@ public:
         Color       color_;
         value_type  data_;
     };
-
-#    else
-
+#else
     struct debug_view
     {
         debug_view*                    left_;
@@ -602,35 +572,30 @@ public:
         __pointer_plus_bit<debug_view> parent_;
         value_type                     data_;
     };
-
-#    endif
+#endif
 
     friend class iterator;
-
-    class iterator : public _STD::iterator<bidirectional_iterator_tag, value_type, difference_type, pointer, reference>
+    class iterator : public _STD::iterator<bidirectional_iterator_tag, value_type,
+                                           difference_type, pointer, reference>
     {
     public:
         iterator() {}
-
         reference
         operator*() const
         {
             return ptr_->data_;
         }
-
         pointer
         operator->() const
         {
             return &ptr_->data_;
         }
-
         iterator&
         operator++()
         {
             increment((const node_base*&)ptr_);
             return *this;
         }
-
         iterator
         operator++(int)
         {
@@ -638,14 +603,12 @@ public:
             ++(*this);
             return temp;
         }
-
         iterator&
         operator--()
         {
             decrement((const node_base*&)ptr_);
             return *this;
         }
-
         iterator
         operator--(int)
         {
@@ -653,13 +616,11 @@ public:
             --(*this);
             return temp;
         }
-
         friend bool
         operator==(const iterator& x, const iterator& y)
         {
             return x.ptr_ == y.ptr_;
         } // hh 990720
-
         friend bool
         operator!=(const iterator& x, const iterator& y)
         {
@@ -668,7 +629,6 @@ public:
 
     private:
         node* ptr_;
-
         iterator(node* ptr) : ptr_(ptr) {}
 
         friend class __tree;
@@ -676,34 +636,29 @@ public:
     };
 
     friend class const_iterator;
-
     class const_iterator
-      : public _STD::iterator<bidirectional_iterator_tag, value_type, difference_type, const_pointer, const_reference>
+      : public _STD::iterator<bidirectional_iterator_tag, value_type,
+                              difference_type, const_pointer, const_reference>
     {
     public:
         const_iterator() {}
-
         const_iterator(const __tree::iterator& i) : ptr_(i.ptr_) {}
-
         const_reference
         operator*() const
         {
             return ptr_->data_;
         }
-
         const_pointer
         operator->() const
         {
             return &ptr_->data_;
         }
-
         const_iterator&
         operator++()
         {
             increment((const node_base*&)ptr_);
             return *this;
         }
-
         const_iterator
         operator++(int)
         {
@@ -711,14 +666,12 @@ public:
             ++(*this);
             return temp;
         }
-
         const_iterator&
         operator--()
         {
             decrement((const node_base*&)ptr_);
             return *this;
         }
-
         const_iterator
         operator--(int)
         {
@@ -726,13 +679,11 @@ public:
             --(*this);
             return temp;
         }
-
         friend bool
         operator==(const const_iterator& x, const const_iterator& y)
         {
             return x.ptr_ == y.ptr_;
         } // hh 990720
-
         friend bool
         operator!=(const const_iterator& x, const const_iterator& y)
         {
@@ -741,37 +692,41 @@ public:
 
     private:
         const node* ptr_;
-
         const_iterator(const node* ptr) : ptr_(ptr) {}
 
         friend class __tree;
     };
-
     //  lib.set.cons construct/copy/destroy:
     __tree();
     __tree(const Compare& comp, const Allocator& a);
-#    ifndef _MSL_NO_MEMBER_TEMPLATE
-#        ifndef _MSL_MUST_INLINE_MEMBER_TEMPLATE
+#ifndef _MSL_NO_MEMBER_TEMPLATE
+#ifndef _MSL_MUST_INLINE_MEMBER_TEMPLATE
     template <class InputIterator>
-    __tree(InputIterator first, InputIterator last, bool multi, const Compare& comp, const Allocator& a);
-#        else
+    __tree(InputIterator first, InputIterator last, bool multi, const Compare& comp,
+           const Allocator& a);
+#else
     template <class InputIterator>
-    __tree(InputIterator first, InputIterator last, bool multi, const Compare& comp, const Allocator& a)
+    __tree(InputIterator first, InputIterator last, bool multi, const Compare& comp,
+           const Allocator& a)
       : alloc_(a, 0), node_alloc_(a), comp_(comp)
     {
-#            if defined(_TREE_DEBUG) && !defined(_Inhibit_Optimize_RB_bit)
+#if defined(_TREE_DEBUG) && !defined(_Inhibit_Optimize_RB_bit)
         if ((size_t)&tail() & 1)
-#                ifndef _MSL_NO_EXCEPTIONS
-            throw invalid_argument("__pointer_plus_bit optimization failed in tree. Pointer has odd byte alignment");
-#                else
-            __msl_error("__pointer_plus_bit optimization failed in tree. Pointer has odd byte alignment\n");
-#                endif
-#            endif
+#ifndef _MSL_NO_EXCEPTIONS
+            throw invalid_argument(
+                "__pointer_plus_bit optimization failed in tree. Pointer has odd "
+                "byte alignment");
+#else
+            __msl_error(
+                "__pointer_plus_bit optimization failed in tree. Pointer has odd "
+                "byte alignment\n");
+#endif
+#endif
         front() = (node*)&tail();
-#            ifndef _MSL_NO_EXCEPTIONS
+#ifndef _MSL_NO_EXCEPTIONS
         try
         {
-#            endif
+#endif
             if (multi)
             {
                 insert_multi(first, last);
@@ -780,7 +735,7 @@ public:
             {
                 insert_one(first, last);
             }
-#            ifndef _MSL_NO_EXCEPTIONS
+#ifndef _MSL_NO_EXCEPTIONS
         }
         catch (...)
         {
@@ -790,13 +745,15 @@ public:
             }
             throw;
         }
-#            endif
+#endif
     }
-#        endif
-#    else
-    __tree(const_iterator first, const_iterator last, bool multi, const Compare& comp, const Allocator& a);
-    __tree(const value_type* first, const value_type* last, bool multi, const Compare& comp, const Allocator& a);
-#    endif
+#endif
+#else
+    __tree(const_iterator first, const_iterator last, bool multi,
+           const Compare& comp, const Allocator& a);
+    __tree(const value_type* first, const value_type* last, bool multi,
+           const Compare& comp, const Allocator& a);
+#endif
     __tree(const __tree& x);
     ÃÂ¢ÃÂÃÂ¾__tree();
     __tree&        operator=(const __tree& x);
@@ -818,19 +775,20 @@ public:
     size_type max_size() const;
 
     //  modifiers:
-#    if !defined(_MSL_NO_MEMBER_TEMPLATE) && !defined(_MSL_MUST_INLINE_MEMBER_TEMPLATE)
+#if !defined(_MSL_NO_MEMBER_TEMPLATE) && !defined(_MSL_MUST_INLINE_MEMBER_TEMPLATE)
     template <class Key, class V> T& find_or_insert(const Key& key);
-#    endif
+#endif
     pair<iterator, bool> insert_one(const value_type& x);
     iterator             insert_multi(const value_type& x);
     iterator             insert_one(iterator position, const value_type& x);
     iterator             insert_multi(iterator position, const value_type& x);
-#    ifndef _MSL_NO_MEMBER_TEMPLATE
-#        ifndef _MSL_MUST_INLINE_MEMBER_TEMPLATE
-    template <class InputIterator> void insert_one(InputIterator first, InputIterator last);
-    template <class InputIterator> void insert_multi(InputIterator first, InputIterator last);
-#        else
-
+#ifndef _MSL_NO_MEMBER_TEMPLATE
+#ifndef _MSL_MUST_INLINE_MEMBER_TEMPLATE
+    template <class InputIterator>
+    void insert_one(InputIterator first, InputIterator last);
+    template <class InputIterator>
+    void insert_multi(InputIterator first, InputIterator last);
+#else
     template <class InputIterator>
     inline void
     insert_one(InputIterator first, InputIterator last)
@@ -840,7 +798,6 @@ public:
             insert_one(end(), *first);
         }
     }
-
     template <class InputIterator>
     inline void
     insert_multi(InputIterator first, InputIterator last)
@@ -850,23 +807,22 @@ public:
             insert_multi(end(), *first);
         }
     }
-
-#        endif
-#    else
+#endif
+#else
     void insert_one(const_iterator first, const_iterator last);
     void insert_one(const value_type* first, const value_type* last);
     void insert_multi(const_iterator first, const_iterator last);
     void insert_multi(const value_type* first, const value_type* last);
-#    endif
+#endif
 
     void erase(iterator position);
-#    if !defined(_MSL_NO_MEMBER_TEMPLATE) && !defined(_MSL_MUST_INLINE_MEMBER_TEMPLATE)
+#if !defined(_MSL_NO_MEMBER_TEMPLATE) && !defined(_MSL_MUST_INLINE_MEMBER_TEMPLATE)
     template <class Key> size_type erase_one(const Key& x);
     template <class Key> size_type erase_multi(const Key& x);
-#    else
+#else
     size_type erase_one(const value_type& x);
     size_type erase_multi(const value_type& x);
-#    endif
+#endif
     void erase(iterator first, iterator last);
     void swap(__tree& x);
     void clear();
@@ -874,20 +830,21 @@ public:
     //  observers:
     value_compare value_comp() const;
 
-#    if !defined(_MSL_NO_MEMBER_TEMPLATE) && !defined(_MSL_MUST_INLINE_MEMBER_TEMPLATE)
+#if !defined(_MSL_NO_MEMBER_TEMPLATE) && !defined(_MSL_MUST_INLINE_MEMBER_TEMPLATE)
     //  set operations:
     template <class Key> iterator       find(const Key& x);
     template <class Key> const_iterator find(const Key& x) const;
     template <class Key> size_type      count_one(const Key& x) const;
     template <class Key> size_type      count_multi(const Key& x) const;
 
-    template <class Key> iterator                             lower_bound(const Key& x);
-    template <class Key> const_iterator                       lower_bound(const Key& x) const;
-    template <class Key> iterator                             upper_bound(const Key& x);
-    template <class Key> const_iterator                       upper_bound(const Key& x) const;
-    template <class Key> pair<iterator, iterator>             equal_range(const Key& x);
-    template <class Key> pair<const_iterator, const_iterator> equal_range(const Key& x) const;
-#    else
+    template <class Key> iterator                 lower_bound(const Key& x);
+    template <class Key> const_iterator           lower_bound(const Key& x) const;
+    template <class Key> iterator                 upper_bound(const Key& x);
+    template <class Key> const_iterator           upper_bound(const Key& x) const;
+    template <class Key> pair<iterator, iterator> equal_range(const Key& x);
+    template <class Key>
+    pair<const_iterator, const_iterator> equal_range(const Key& x) const;
+#else
     //  set operations:
     iterator       find(const value_type& x);
     const_iterator find(const value_type& x) const;
@@ -900,152 +857,152 @@ public:
     const_iterator                       upper_bound(const value_type& x) const;
     pair<iterator, iterator>             equal_range(const value_type& x);
     pair<const_iterator, const_iterator> equal_range(const value_type& x) const;
-#    endif
+#endif
 
 private:
     Metrowerks::compressed_pair<allocator_type, size_type>   alloc_;
     Metrowerks::compressed_pair<node_allocator_type, anchor> node_alloc_;
     Metrowerks::compressed_pair<value_compare, node*>        comp_;
-
     allocator_type&
     alloc()
     {
         return alloc_.first();
     }
-
     const allocator_type&
     alloc() const
     {
         return alloc_.first();
     }
-
     size_type&
     sz()
     {
         return alloc_.second();
     }
-
     const size_type&
     sz() const
     {
         return alloc_.second();
     }
-
     node_allocator_type&
     node_alloc()
     {
         return node_alloc_.first();
     }
-
     const node_allocator_type&
     node_alloc() const
     {
         return node_alloc_.first();
     }
-
     anchor&
     tail()
     {
         return node_alloc_.second();
     }
-
     const anchor&
     tail() const
     {
         return node_alloc_.second();
     }
-
     value_compare&
     comp()
     {
         return comp_.first();
     }
-
     const value_compare&
     comp() const
     {
         return comp_.first();
     }
-
     node*&
     front()
     {
         return comp_.second();
     }
-
     node*
     front() const
     {
         return comp_.second();
     }
-
     node*  root() const;
     node*& root();
     void   destroy(node* p);
     node*  copy(const node* x);
-    node*  insert_node_at(node* p, bool leftchild, bool is_leftmost, const value_type& x);
-#    ifdef _TREE_DEBUG
+    node*  insert_node_at(node* p, bool leftchild, bool is_leftmost,
+                          const value_type& x);
+#ifdef _TREE_DEBUG
     bool ok() const;
     int  count_black(node_base* x) const;
-#    endif
+#endif
 };
-
 // Implementation
 
-template <class T, class Compare, class Allocator> __tree<T, Compare, Allocator>::__tree() : alloc_(0)
+template <class T, class Compare, class Allocator>
+__tree<T, Compare, Allocator>::__tree() : alloc_(0)
 {
-#    if defined(_TREE_DEBUG) && !defined(_Inhibit_Optimize_RB_bit)
+#if defined(_TREE_DEBUG) && !defined(_Inhibit_Optimize_RB_bit)
     if ((size_t)&tail() & 1)
-#        ifndef _MSL_NO_EXCEPTIONS
-        throw invalid_argument("__pointer_plus_bit optimization failed in tree. Pointer has odd byte alignment");
-#        else
-        __msl_error("__pointer_plus_bit optimization failed in tree. Pointer has odd byte alignment\n");
-#        endif
-#    endif
+#ifndef _MSL_NO_EXCEPTIONS
+        throw invalid_argument(
+            "__pointer_plus_bit optimization failed in tree. Pointer has odd byte "
+            "alignment");
+#else
+        __msl_error(
+            "__pointer_plus_bit optimization failed in tree. Pointer has odd byte "
+            "alignment\n");
+#endif
+#endif
     front() = (node*)&tail();
 }
 
 template <class T, class Compare, class Allocator>
 __tree<T, Compare, Allocator>::__tree(const Compare& comp, const Allocator& a)
   : alloc_(a, 0),
-#    ifndef _MSL_NO_MEMBER_TEMPLATE
+#ifndef _MSL_NO_MEMBER_TEMPLATE
     node_alloc_(a),
-#    endif
+#endif
     comp_(comp)
 {
-#    if defined(_TREE_DEBUG) && !defined(_Inhibit_Optimize_RB_bit)
+#if defined(_TREE_DEBUG) && !defined(_Inhibit_Optimize_RB_bit)
     if ((size_t)&tail() & 1)
-#        ifndef _MSL_NO_EXCEPTIONS
-        throw invalid_argument("__pointer_plus_bit optimization failed in tree. Pointer has odd byte alignment");
-#        else
-        __msl_error("__pointer_plus_bit optimization failed in tree. Pointer has odd byte alignment\n");
-#        endif
-#    endif
+#ifndef _MSL_NO_EXCEPTIONS
+        throw invalid_argument(
+            "__pointer_plus_bit optimization failed in tree. Pointer has odd byte "
+            "alignment");
+#else
+        __msl_error(
+            "__pointer_plus_bit optimization failed in tree. Pointer has odd byte "
+            "alignment\n");
+#endif
+#endif
     front() = (node*)&tail();
 }
 
-#    ifndef _MSL_NO_MEMBER_TEMPLATE
-#        ifndef _MSL_MUST_INLINE_MEMBER_TEMPLATE
-
+#ifndef _MSL_NO_MEMBER_TEMPLATE
+#ifndef _MSL_MUST_INLINE_MEMBER_TEMPLATE
 template <class T, class Compare, class Allocator>
 template <class InputIterator>
-__tree<T, Compare, Allocator>::__tree(InputIterator first, InputIterator last, bool multi, const Compare& comp,
+__tree<T, Compare, Allocator>::__tree(InputIterator first, InputIterator last,
+                                      bool multi, const Compare& comp,
                                       const Allocator& a)
   : alloc_(a, 0), node_alloc_(a), comp_(comp)
 {
-#            if defined(_TREE_DEBUG) && !defined(_Inhibit_Optimize_RB_bit)
+#if defined(_TREE_DEBUG) && !defined(_Inhibit_Optimize_RB_bit)
     if ((size_t)&tail() & 1)
-#                ifndef _MSL_NO_EXCEPTIONS
-        throw invalid_argument("__pointer_plus_bit optimization failed in tree. Pointer has odd byte alignment");
-#                else
-        __msl_error("__pointer_plus_bit optimization failed in tree. Pointer has odd byte alignment\n");
-#                endif
-#            endif
+#ifndef _MSL_NO_EXCEPTIONS
+        throw invalid_argument(
+            "__pointer_plus_bit optimization failed in tree. Pointer has odd byte "
+            "alignment");
+#else
+        __msl_error(
+            "__pointer_plus_bit optimization failed in tree. Pointer has odd byte "
+            "alignment\n");
+#endif
+#endif
     front() = (node*)&tail();
-#            ifndef _MSL_NO_EXCEPTIONS
+#ifndef _MSL_NO_EXCEPTIONS
     try
     {
-#            endif
+#endif
         if (multi)
         {
             insert_multi(first, last);
@@ -1054,7 +1011,7 @@ __tree<T, Compare, Allocator>::__tree(InputIterator first, InputIterator last, b
         {
             insert_one(first, last);
         }
-#            ifndef _MSL_NO_EXCEPTIONS
+#ifndef _MSL_NO_EXCEPTIONS
     }
     catch (...)
     {
@@ -1064,30 +1021,33 @@ __tree<T, Compare, Allocator>::__tree(InputIterator first, InputIterator last, b
         }
         throw;
     }
-#            endif
+#endif
 }
-
-#        endif
-#    else
-
+#endif
+#else
 template <class T, class Compare, class Allocator>
-__tree<T, Compare, Allocator>::__tree(const_iterator first, const_iterator last, bool multi, const Compare& comp,
+__tree<T, Compare, Allocator>::__tree(const_iterator first, const_iterator last,
+                                      bool multi, const Compare& comp,
                                       const Allocator& a)
   : alloc_(a, 0), comp_(comp)
 {
-#        if defined(_TREE_DEBUG) && !defined(_Inhibit_Optimize_RB_bit)
+#if defined(_TREE_DEBUG) && !defined(_Inhibit_Optimize_RB_bit)
     if ((size_t)&tail() & 1)
-#            ifndef _MSL_NO_EXCEPTIONS
-        throw invalid_argument("__pointer_plus_bit optimization failed in tree. Pointer has odd byte alignment");
-#            else
-        __msl_error("__pointer_plus_bit optimization failed in tree. Pointer has odd byte alignment\n");
-#            endif
-#        endif
+#ifndef _MSL_NO_EXCEPTIONS
+        throw invalid_argument(
+            "__pointer_plus_bit optimization failed in tree. Pointer has odd byte "
+            "alignment");
+#else
+        __msl_error(
+            "__pointer_plus_bit optimization failed in tree. Pointer has odd byte "
+            "alignment\n");
+#endif
+#endif
     front() = (node*)&tail();
-#        ifndef _MSL_NO_EXCEPTIONS
+#ifndef _MSL_NO_EXCEPTIONS
     try
     {
-#        endif
+#endif
         if (multi)
         {
             insert_multi(first, last);
@@ -1096,7 +1056,7 @@ __tree<T, Compare, Allocator>::__tree(const_iterator first, const_iterator last,
         {
             insert_one(first, last);
         }
-#        ifndef _MSL_NO_EXCEPTIONS
+#ifndef _MSL_NO_EXCEPTIONS
     }
     catch (...)
     {
@@ -1106,27 +1066,31 @@ __tree<T, Compare, Allocator>::__tree(const_iterator first, const_iterator last,
         }
         throw;
     }
-#        endif
+#endif
 }
-
 template <class T, class Compare, class Allocator>
-__tree<T, Compare, Allocator>::__tree(const value_type* first, const value_type* last, bool multi, const Compare& comp,
-                                      const Allocator& a)
+__tree<T, Compare, Allocator>::__tree(const value_type* first,
+                                      const value_type* last, bool multi,
+                                      const Compare& comp, const Allocator& a)
   : alloc_(a, 0), comp_(comp)
 {
-#        if defined(_TREE_DEBUG) && !defined(_Inhibit_Optimize_RB_bit)
+#if defined(_TREE_DEBUG) && !defined(_Inhibit_Optimize_RB_bit)
     if ((size_t)&tail() & 1)
-#            ifndef _MSL_NO_EXCEPTIONS
-        throw invalid_argument("__pointer_plus_bit optimization failed in tree. Pointer has odd byte alignment");
-#            else
-        __msl_error("__pointer_plus_bit optimization failed in tree. Pointer has odd byte alignment\n");
-#            endif
-#        endif
+#ifndef _MSL_NO_EXCEPTIONS
+        throw invalid_argument(
+            "__pointer_plus_bit optimization failed in tree. Pointer has odd byte "
+            "alignment");
+#else
+        __msl_error(
+            "__pointer_plus_bit optimization failed in tree. Pointer has odd byte "
+            "alignment\n");
+#endif
+#endif
     front() = (node*)&tail();
-#        ifndef _MSL_NO_EXCEPTIONS
+#ifndef _MSL_NO_EXCEPTIONS
     try
     {
-#        endif
+#endif
         if (multi)
         {
             insert_multi(first, last);
@@ -1135,7 +1099,7 @@ __tree<T, Compare, Allocator>::__tree(const value_type* first, const value_type*
         {
             insert_one(first, last);
         }
-#        ifndef _MSL_NO_EXCEPTIONS
+#ifndef _MSL_NO_EXCEPTIONS
     }
     catch (...)
     {
@@ -1145,22 +1109,25 @@ __tree<T, Compare, Allocator>::__tree(const value_type* first, const value_type*
         }
         throw;
     }
-#        endif
+#endif
 }
-
-#    endif
-
+#endif
 template <class T, class Compare, class Allocator>
-__tree<T, Compare, Allocator>::__tree(const __tree& x) : alloc_(x.alloc_), node_alloc_(x.node_alloc_), comp_(x.comp_)
+__tree<T, Compare, Allocator>::__tree(const __tree& x)
+  : alloc_(x.alloc_), node_alloc_(x.node_alloc_), comp_(x.comp_)
 {
-#    if defined(_TREE_DEBUG) && !defined(_Inhibit_Optimize_RB_bit)
+#if defined(_TREE_DEBUG) && !defined(_Inhibit_Optimize_RB_bit)
     if ((size_t)&tail() & 1)
-#        ifndef _MSL_NO_EXCEPTIONS
-        throw invalid_argument("__pointer_plus_bit optimization failed in tree. Pointer has odd byte alignment");
-#        else
-        __msl_error("__pointer_plus_bit optimization failed in tree. Pointer has odd byte alignment\n");
-#        endif
-#    endif
+#ifndef _MSL_NO_EXCEPTIONS
+        throw invalid_argument(
+            "__pointer_plus_bit optimization failed in tree. Pointer has odd byte "
+            "alignment");
+#else
+        __msl_error(
+            "__pointer_plus_bit optimization failed in tree. Pointer has odd byte "
+            "alignment\n");
+#endif
+#endif
     if (x.root() != 0)
     {
         root() = copy(x.root());
@@ -1172,7 +1139,6 @@ __tree<T, Compare, Allocator>::__tree(const __tree& x) : alloc_(x.alloc_), node_
         front() = (node*)&tail();
     }
 }
-
 template <class T, class Compare, class Allocator>
 inline __tree<T, Compare, Allocator>::ÃÂ¢ÃÂÃÂ¾__tree()
 {
@@ -1181,7 +1147,6 @@ inline __tree<T, Compare, Allocator>::ÃÂ¢ÃÂÃÂ¾__tree()
         destroy(root());
     }
 }
-
 template <class T, class Compare, class Allocator>
 __tree<T, Compare, Allocator>&
 __tree<T, Compare, Allocator>::operator=(const __tree& x)
@@ -1208,93 +1173,79 @@ __tree<T, Compare, Allocator>::operator=(const __tree& x)
     }
     return *this;
 }
-
 template <class T, class Compare, class Allocator>
 inline typename __tree<T, Compare, Allocator>::allocator_type
 __tree<T, Compare, Allocator>::get_allocator() const
 {
     return alloc();
 }
-
 template <class T, class Compare, class Allocator>
 inline typename __tree<T, Compare, Allocator>::iterator
 __tree<T, Compare, Allocator>::begin()
 {
     return front();
 }
-
 template <class T, class Compare, class Allocator>
 inline typename __tree<T, Compare, Allocator>::const_iterator
 __tree<T, Compare, Allocator>::begin() const
 {
     return front();
 }
-
 template <class T, class Compare, class Allocator>
 inline typename __tree<T, Compare, Allocator>::iterator
 __tree<T, Compare, Allocator>::end()
 {
     return (node*)&tail();
 }
-
 template <class T, class Compare, class Allocator>
 inline typename __tree<T, Compare, Allocator>::const_iterator
 __tree<T, Compare, Allocator>::end() const
 {
     return (const node*)&tail();
 }
-
 template <class T, class Compare, class Allocator>
 inline typename __tree<T, Compare, Allocator>::reverse_iterator
 __tree<T, Compare, Allocator>::rbegin()
 {
     return reverse_iterator(end());
 }
-
 template <class T, class Compare, class Allocator>
 inline typename __tree<T, Compare, Allocator>::const_reverse_iterator
 __tree<T, Compare, Allocator>::rbegin() const
 {
     return const_reverse_iterator(end());
 }
-
 template <class T, class Compare, class Allocator>
 inline typename __tree<T, Compare, Allocator>::reverse_iterator
 __tree<T, Compare, Allocator>::rend()
 {
     return reverse_iterator(begin());
 }
-
 template <class T, class Compare, class Allocator>
 inline typename __tree<T, Compare, Allocator>::const_reverse_iterator
 __tree<T, Compare, Allocator>::rend() const
 {
     return const_reverse_iterator(begin());
 }
-
 template <class T, class Compare, class Allocator>
 inline bool
 __tree<T, Compare, Allocator>::empty() const
 {
     return sz() == 0;
 }
-
 template <class T, class Compare, class Allocator>
 inline typename __tree<T, Compare, Allocator>::size_type
 __tree<T, Compare, Allocator>::size() const
 {
     return sz();
 }
-
 template <class T, class Compare, class Allocator>
 inline typename __tree<T, Compare, Allocator>::size_type
 __tree<T, Compare, Allocator>::max_size() const
 {
     return numeric_limits<size_type>::max();
 }
-
-#    if !defined(_MSL_NO_MEMBER_TEMPLATE) && !defined(_MSL_MUST_INLINE_MEMBER_TEMPLATE)
-
+#if !defined(_MSL_NO_MEMBER_TEMPLATE) && !defined(_MSL_MUST_INLINE_MEMBER_TEMPLATE)
 // hh 990820
 template <class T, class Compare, class Allocator>
 template <class Key, class V>
@@ -1324,13 +1275,12 @@ __tree<T, Compare, Allocator>::find_or_insert(const Key& key)
     }
     if (prev == 0 || comp()(prev->data_, key))
     {
-        return insert_node_at(p, leftchild, is_leftmost, value_type(key, V()))->data_;
+        return insert_node_at(p, leftchild, is_leftmost, value_type(key, V()))
+            ->data_;
     }
     return prev->data_;
 }
-
-#    endif
-
+#endif
 template <class T, class Compare, class Allocator>
 pair<typename __tree<T, Compare, Allocator>::iterator, bool>
 __tree<T, Compare, Allocator>::insert_one(const value_type& x)
@@ -1363,7 +1313,6 @@ __tree<T, Compare, Allocator>::insert_one(const value_type& x)
     }
     return pair<iterator, bool>(prev, false);
 }
-
 template <class T, class Compare, class Allocator>
 typename __tree<T, Compare, Allocator>::iterator
 __tree<T, Compare, Allocator>::insert_multi(const value_type& x)
@@ -1389,7 +1338,6 @@ __tree<T, Compare, Allocator>::insert_multi(const value_type& x)
     }
     return insert_node_at(p, leftchild, is_leftmost, x);
 }
-
 template <class T, class Compare, class Allocator>
 typename __tree<T, Compare, Allocator>::iterator
 __tree<T, Compare, Allocator>::insert_one(iterator position, const value_type& x)
@@ -1429,7 +1377,6 @@ __tree<T, Compare, Allocator>::insert_one(iterator position, const value_type& x
     }
     return insert_one(x).first;
 }
-
 template <class T, class Compare, class Allocator>
 typename __tree<T, Compare, Allocator>::iterator
 __tree<T, Compare, Allocator>::insert_multi(iterator position, const value_type& x)
@@ -1452,7 +1399,7 @@ __tree<T, Compare, Allocator>::insert_multi(iterator position, const value_type&
         p2 = position.ptr_;
         first_node = position == begin();
     }
-    else                                           // position != end && x > *position && !empty()
+    else                              // position != end && x > *position && !empty()
     {
         iterator after = position;
         ++after;
@@ -1470,10 +1417,8 @@ __tree<T, Compare, Allocator>::insert_multi(iterator position, const value_type&
     }
     return insert_node_at(p1, false, false, x);
 }
-
-#    ifndef _MSL_NO_MEMBER_TEMPLATE
-#        ifndef _MSL_MUST_INLINE_MEMBER_TEMPLATE
-
+#ifndef _MSL_NO_MEMBER_TEMPLATE
+#ifndef _MSL_MUST_INLINE_MEMBER_TEMPLATE
 template <class T, class Compare, class Allocator>
 template <class InputIterator>
 inline void
@@ -1484,7 +1429,6 @@ __tree<T, Compare, Allocator>::insert_one(InputIterator first, InputIterator las
         insert_one(end(), *first);
     }
 }
-
 template <class T, class Compare, class Allocator>
 template <class InputIterator>
 inline void
@@ -1495,10 +1439,8 @@ __tree<T, Compare, Allocator>::insert_multi(InputIterator first, InputIterator l
         insert_multi(end(), *first);
     }
 }
-
-#        endif
-#    else
-
+#endif
+#else
 template <class T, class Compare, class Allocator>
 inline void
 __tree<T, Compare, Allocator>::insert_one(const_iterator first, const_iterator last)
@@ -1508,74 +1450,77 @@ __tree<T, Compare, Allocator>::insert_one(const_iterator first, const_iterator l
         insert_one(end(), *first);
     }
 }
-
 template <class T, class Compare, class Allocator>
 inline void
-__tree<T, Compare, Allocator>::insert_one(const value_type* first, const value_type* last)
+__tree<T, Compare, Allocator>::insert_one(const value_type* first,
+                                          const value_type* last)
 {
     for (; first != last; ++first)
     {
         insert_one(end(), *first);
     }
 }
-
 template <class T, class Compare, class Allocator>
 inline void
-__tree<T, Compare, Allocator>::insert_multi(const_iterator first, const_iterator last)
+__tree<T, Compare, Allocator>::insert_multi(const_iterator first,
+                                            const_iterator last)
 {
     for (; first != last; ++first)
     {
         insert_multi(end(), *first);
     }
 }
-
 template <class T, class Compare, class Allocator>
 inline void
-__tree<T, Compare, Allocator>::insert_multi(const value_type* first, const value_type* last)
+__tree<T, Compare, Allocator>::insert_multi(const value_type* first,
+                                            const value_type* last)
 {
     for (; first != last; ++first)
     {
         insert_multi(end(), *first);
     }
 }
-
-#    endif
-
+#endif
 template <class T, class Compare, class Allocator>
 typename __tree<T, Compare, Allocator>::node*
-__tree<T, Compare, Allocator>::insert_node_at(node* p, bool leftchild, bool is_leftmost, const value_type& x)
+__tree<T, Compare, Allocator>::insert_node_at(node* p, bool leftchild,
+                                              bool is_leftmost, const value_type& x)
 {
     if (size() > max_size() - 1)
-#    ifndef _MSL_NO_EXCEPTIONS
+#ifndef _MSL_NO_EXCEPTIONS
         throw length_error("tree::insert length error");
-#    else
+#else
         __msl_error("tree::insert length error\n");
-#    endif
+#endif
     node* n = node_alloc().allocate(1);
-#    if defined(_TREE_DEBUG) && !defined(_Inhibit_Optimize_RB_bit)
+#if defined(_TREE_DEBUG) && !defined(_Inhibit_Optimize_RB_bit)
     if ((size_t)n & 1)
     {
         node_alloc().deallocate(n, 1);
-#        ifndef _MSL_NO_EXCEPTIONS
-        throw invalid_argument("__pointer_plus_bit optimization failed in tree. Pointer has odd byte alignment");
-#        else
-        __msl_error("__pointer_plus_bit optimization failed in tree. Pointer has odd byte alignment\n");
-#        endif
+#ifndef _MSL_NO_EXCEPTIONS
+        throw invalid_argument(
+            "__pointer_plus_bit optimization failed in tree. Pointer has odd byte "
+            "alignment");
+#else
+        __msl_error(
+            "__pointer_plus_bit optimization failed in tree. Pointer has odd byte "
+            "alignment\n");
+#endif
     }
-#    endif
-#    ifndef _MSL_NO_EXCEPTIONS
+#endif
+#ifndef _MSL_NO_EXCEPTIONS
     try
     {
-#    endif
+#endif
         alloc().construct(&n->data_, x);
-#    ifndef _MSL_NO_EXCEPTIONS
+#ifndef _MSL_NO_EXCEPTIONS
     }
     catch (...)
     {
         node_alloc().deallocate(n, 1);
         throw;
     }
-#    endif
+#endif
     n->left_ = n->right_ = 0;
     n->parent_ = p;
     if (leftchild)
@@ -1594,7 +1539,6 @@ __tree<T, Compare, Allocator>::insert_node_at(node* p, bool leftchild, bool is_l
     }
     return n;
 }
-
 template <class T, class Compare, class Allocator>
 void
 __tree<T, Compare, Allocator>::erase(iterator position)
@@ -1609,9 +1553,7 @@ __tree<T, Compare, Allocator>::erase(iterator position)
     node_alloc().deallocate(z, 1);
     --sz();
 }
-
-#    if !defined(_MSL_NO_MEMBER_TEMPLATE) && !defined(_MSL_MUST_INLINE_MEMBER_TEMPLATE)
-
+#if !defined(_MSL_NO_MEMBER_TEMPLATE) && !defined(_MSL_MUST_INLINE_MEMBER_TEMPLATE)
 template <class T, class Compare, class Allocator>
 template <class Key>
 typename __tree<T, Compare, Allocator>::size_type
@@ -1625,7 +1567,6 @@ __tree<T, Compare, Allocator>::erase_one(const Key& x)
     erase(i);
     return 1;
 }
-
 template <class T, class Compare, class Allocator>
 template <class Key>
 typename __tree<T, Compare, Allocator>::size_type
@@ -1636,9 +1577,7 @@ __tree<T, Compare, Allocator>::erase_multi(const Key& x)
     erase(i.first, i.second);
     return result;
 }
-
-#    else
-
+#else
 template <class T, class Compare, class Allocator>
 typename __tree<T, Compare, Allocator>::size_type
 __tree<T, Compare, Allocator>::erase_one(const value_type& x)
@@ -1651,7 +1590,6 @@ __tree<T, Compare, Allocator>::erase_one(const value_type& x)
     erase(i);
     return 1;
 }
-
 template <class T, class Compare, class Allocator>
 typename __tree<T, Compare, Allocator>::size_type
 __tree<T, Compare, Allocator>::erase_multi(const value_type& x)
@@ -1661,9 +1599,7 @@ __tree<T, Compare, Allocator>::erase_multi(const value_type& x)
     erase(i.first, i.second);
     return result;
 }
-
-#    endif
-
+#endif
 template <class T, class Compare, class Allocator>
 inline void
 __tree<T, Compare, Allocator>::erase(iterator first, iterator last)
@@ -1673,7 +1609,6 @@ __tree<T, Compare, Allocator>::erase(iterator first, iterator last)
         erase(first++);
     }
 }
-
 template <class T, class Compare, class Allocator>
 void
 __tree<T, Compare, Allocator>::swap(__tree& x)
@@ -1689,7 +1624,7 @@ __tree<T, Compare, Allocator>::swap(__tree& x)
         }
         else
         {
-            front() = (node*)&tail();              // hh 990720
+            front() = (node*)&tail(); // hh 990720
         }
         if (x.root() != 0)
         {
@@ -1701,7 +1636,6 @@ __tree<T, Compare, Allocator>::swap(__tree& x)
         }
     }
 }
-
 template <class T, class Compare, class Allocator>
 void
 __tree<T, Compare, Allocator>::clear()
@@ -1714,16 +1648,13 @@ __tree<T, Compare, Allocator>::clear()
         front() = (node*)&tail();
     }
 }
-
 template <class T, class Compare, class Allocator>
 inline typename __tree<T, Compare, Allocator>::value_compare
 __tree<T, Compare, Allocator>::value_comp() const
 {
     return comp();
 }
-
-#    if !defined(_MSL_NO_MEMBER_TEMPLATE) && !defined(_MSL_MUST_INLINE_MEMBER_TEMPLATE)
-
+#if !defined(_MSL_NO_MEMBER_TEMPLATE) && !defined(_MSL_MUST_INLINE_MEMBER_TEMPLATE)
 template <class T, class Compare, class Allocator>
 template <class Key>
 typename __tree<T, Compare, Allocator>::iterator
@@ -1749,7 +1680,6 @@ __tree<T, Compare, Allocator>::find(const Key& x)
     }
     return j;
 }
-
 template <class T, class Compare, class Allocator>
 template <class Key>
 inline typename __tree<T, Compare, Allocator>::const_iterator
@@ -1757,7 +1687,6 @@ __tree<T, Compare, Allocator>::find(const Key& x) const
 {
     return const_cast<__tree&>(*this).find(x);
 }
-
 template <class T, class Compare, class Allocator>
 template <class Key>
 inline typename __tree<T, Compare, Allocator>::size_type
@@ -1765,7 +1694,6 @@ __tree<T, Compare, Allocator>::count_one(const Key& x) const
 {
     return size_type(!(find(x) == end()));
 }
-
 template <class T, class Compare, class Allocator>
 template <class Key>
 inline typename __tree<T, Compare, Allocator>::size_type
@@ -1774,7 +1702,6 @@ __tree<T, Compare, Allocator>::count_multi(const Key& x) const
     pair<const_iterator, const_iterator> i = equal_range(x);
     return (size_type)_STD::distance(i.first, i.second);
 }
-
 template <class T, class Compare, class Allocator>
 template <class Key>
 typename __tree<T, Compare, Allocator>::iterator
@@ -1796,7 +1723,6 @@ __tree<T, Compare, Allocator>::lower_bound(const Key& x)
     }
     return j;
 }
-
 template <class T, class Compare, class Allocator>
 template <class Key>
 inline typename __tree<T, Compare, Allocator>::const_iterator
@@ -1804,7 +1730,6 @@ __tree<T, Compare, Allocator>::lower_bound(const Key& x) const
 {
     return const_cast<__tree&>(*this).lower_bound(x);
 }
-
 template <class T, class Compare, class Allocator>
 template <class Key>
 typename __tree<T, Compare, Allocator>::iterator
@@ -1826,7 +1751,6 @@ __tree<T, Compare, Allocator>::upper_bound(const Key& x)
     }
     return j;
 }
-
 template <class T, class Compare, class Allocator>
 template <class Key>
 inline typename __tree<T, Compare, Allocator>::const_iterator
@@ -1834,7 +1758,6 @@ __tree<T, Compare, Allocator>::upper_bound(const Key& x) const
 {
     return const_cast<__tree&>(*this).upper_bound(x);
 }
-
 template <class T, class Compare, class Allocator>
 template <class Key>
 inline pair<typename __tree<T, Compare, Allocator>::const_iterator,
@@ -1843,17 +1766,15 @@ __tree<T, Compare, Allocator>::equal_range(const Key& x) const
 {
     return make_pair(lower_bound(x), upper_bound(x));
 }
-
 template <class T, class Compare, class Allocator>
 template <class Key>
-inline pair<typename __tree<T, Compare, Allocator>::iterator, typename __tree<T, Compare, Allocator>::iterator>
+inline pair<typename __tree<T, Compare, Allocator>::iterator,
+            typename __tree<T, Compare, Allocator>::iterator>
 __tree<T, Compare, Allocator>::equal_range(const Key& x)
 {
     return make_pair(lower_bound(x), upper_bound(x));
 }
-
-#    else
-
+#else
 template <class T, class Compare, class Allocator>
 typename __tree<T, Compare, Allocator>::iterator
 __tree<T, Compare, Allocator>::find(const value_type& x)
@@ -1878,21 +1799,18 @@ __tree<T, Compare, Allocator>::find(const value_type& x)
     }
     return j;
 }
-
 template <class T, class Compare, class Allocator>
 inline typename __tree<T, Compare, Allocator>::const_iterator
 __tree<T, Compare, Allocator>::find(const value_type& x) const
 {
     return const_cast<__tree&>(*this).find(x);
 }
-
 template <class T, class Compare, class Allocator>
 inline typename __tree<T, Compare, Allocator>::size_type
 __tree<T, Compare, Allocator>::count_one(const value_type& x) const
 {
     return size_type(!(find(x) == end()));
 }
-
 template <class T, class Compare, class Allocator>
 inline typename __tree<T, Compare, Allocator>::size_type
 __tree<T, Compare, Allocator>::count_multi(const value_type& x) const
@@ -1900,7 +1818,6 @@ __tree<T, Compare, Allocator>::count_multi(const value_type& x) const
     pair<const_iterator, const_iterator> i = equal_range(x);
     return (size_type)_STD::distance(i.first, i.second);
 }
-
 template <class T, class Compare, class Allocator>
 typename __tree<T, Compare, Allocator>::iterator
 __tree<T, Compare, Allocator>::lower_bound(const value_type& x)
@@ -1921,14 +1838,12 @@ __tree<T, Compare, Allocator>::lower_bound(const value_type& x)
     }
     return j;
 }
-
 template <class T, class Compare, class Allocator>
 inline typename __tree<T, Compare, Allocator>::const_iterator
 __tree<T, Compare, Allocator>::lower_bound(const value_type& x) const
 {
     return const_cast<__tree&>(*this).lower_bound(x);
 }
-
 template <class T, class Compare, class Allocator>
 typename __tree<T, Compare, Allocator>::iterator
 __tree<T, Compare, Allocator>::upper_bound(const value_type& x)
@@ -1949,30 +1864,27 @@ __tree<T, Compare, Allocator>::upper_bound(const value_type& x)
     }
     return j;
 }
-
 template <class T, class Compare, class Allocator>
 inline typename __tree<T, Compare, Allocator>::const_iterator
 __tree<T, Compare, Allocator>::upper_bound(const value_type& x) const
 {
     return const_cast<__tree&>(*this).upper_bound(x);
 }
-
 template <class T, class Compare, class Allocator>
-inline pair<__tree<T, Compare, Allocator>::const_iterator, __tree<T, Compare, Allocator>::const_iterator>
+inline pair<__tree<T, Compare, Allocator>::const_iterator,
+            __tree<T, Compare, Allocator>::const_iterator>
 __tree<T, Compare, Allocator>::equal_range(const value_type& x) const
 {
     return make_pair(lower_bound(x), upper_bound(x));
 }
-
 template <class T, class Compare, class Allocator>
-inline pair<__tree<T, Compare, Allocator>::iterator, __tree<T, Compare, Allocator>::iterator>
+inline pair<__tree<T, Compare, Allocator>::iterator,
+            __tree<T, Compare, Allocator>::iterator>
 __tree<T, Compare, Allocator>::equal_range(const value_type& x)
 {
     return make_pair(lower_bound(x), upper_bound(x));
 }
-
-#    endif
-
+#endif
 template <class T, class Compare, class Allocator>
 void
 __tree<T, Compare, Allocator>::destroy(node* p)
@@ -1988,28 +1900,31 @@ __tree<T, Compare, Allocator>::destroy(node* p)
     alloc().destroy(&p->data_);
     node_alloc().deallocate(p, 1);
 }
-
 template <class T, class Compare, class Allocator>
 typename __tree<T, Compare, Allocator>::node*
 __tree<T, Compare, Allocator>::copy(const node* x)
 {
     node* result = node_alloc().allocate(1);
-#    if defined(_TREE_DEBUG) && !defined(_Inhibit_Optimize_RB_bit)
+#if defined(_TREE_DEBUG) && !defined(_Inhibit_Optimize_RB_bit)
     if ((size_t)result & 1)
     {
         node_alloc().deallocate(result, 1);
-#        ifndef _MSL_NO_EXCEPTIONS
-        throw invalid_argument("__pointer_plus_bit optimization failed in tree. Pointer has odd byte alignment");
-#        else
-        __msl_error("__pointer_plus_bit optimization failed in tree. Pointer has odd byte alignment\n");
-#        endif
+#ifndef _MSL_NO_EXCEPTIONS
+        throw invalid_argument(
+            "__pointer_plus_bit optimization failed in tree. Pointer has odd byte "
+            "alignment");
+#else
+        __msl_error(
+            "__pointer_plus_bit optimization failed in tree. Pointer has odd byte "
+            "alignment\n");
+#endif
     }
-#    endif
+#endif
     result->left_ = result->right_ = 0;
-#    ifndef _MSL_NO_EXCEPTIONS
+#ifndef _MSL_NO_EXCEPTIONS
     try
     {
-#    endif
+#endif
         if (x->left_ != 0)
         {
             result->left_ = copy((node*)(x->left_));
@@ -2022,7 +1937,7 @@ __tree<T, Compare, Allocator>::copy(const node* x)
         }
         alloc().construct(&result->data_, x->data_);
         result->set_color(x->color());
-#    ifndef _MSL_NO_EXCEPTIONS
+#ifndef _MSL_NO_EXCEPTIONS
     }
     catch (...)
     {
@@ -2037,26 +1952,22 @@ __tree<T, Compare, Allocator>::copy(const node* x)
         node_alloc().deallocate(result, 1);
         throw;
     }
-#    endif
+#endif
     return result;
 }
-
 template <class T, class Compare, class Allocator>
 inline typename __tree<T, Compare, Allocator>::node*&
 __tree<T, Compare, Allocator>::root()
 {
     return (node*&)tail().left_;
 }
-
 template <class T, class Compare, class Allocator>
 inline typename __tree<T, Compare, Allocator>::node*
 __tree<T, Compare, Allocator>::root() const
 {
     return (node*)tail().left_;
 }
-
-#    ifdef _TREE_DEBUG
-
+#ifdef _TREE_DEBUG
 template <class T, class Compare, class Allocator>
 bool
 __tree<T, Compare, Allocator>::ok() const
@@ -2072,7 +1983,6 @@ __tree<T, Compare, Allocator>::ok() const
     assert(_STD::distance(begin(), end()) == size());
     return true;
 }
-
 template <class T, class Compare, class Allocator>
 int
 __tree<T, Compare, Allocator>::count_black(node_base* x) const
@@ -2102,49 +2012,47 @@ __tree<T, Compare, Allocator>::count_black(node_base* x) const
     }
     return cleft;
 }
+#endif
 
-#    endif
-
-#    ifndef _MSL_NO_CPP_NAMESPACE
+#ifndef _MSL_NO_CPP_NAMESPACE
 } // namespace std
-#    endif
+#endif
 
-#    ifdef _MSL_FORCE_ENUMS_ALWAYS_INT
-#        pragma enumsalwaysint reset
-#    endif
+#ifdef _MSL_FORCE_ENUMS_ALWAYS_INT
+#pragma enumsalwaysint reset
+#endif
 
-#    ifdef _MSL_FORCE_ENABLE_BOOL_SUPPORT
-#        pragma bool reset
-#    endif
+#ifdef _MSL_FORCE_ENABLE_BOOL_SUPPORT
+#pragma bool reset
+#endif
 
-#    pragma options align = reset
+#pragma options align = reset
 
 #endif // _TREE
 
 // hh 971220 fixed MOD_INCLUDE
 // hh 971226 added alignment wrapper
-// hh 980105 changed pointer & reference to const versions in const_iterator base class
-// hh 980105 Added qualified name to iterator
-// hh 980111 <stdexcept> commented out.  Not needed
-// hh 980902 #ifdef'd out exception code when ndef MSIPL_EXCEPT
-// hh 981130 Rewrote.
-// hh 990720 Put debugging code under #ifdef _TREE_DEBUG
-// hh 990720 Fixed bug in swap when trees are empty
-// hh 990720 Made iterator comparison functions global friends
-// hh 990820 Modified insert_one(i, x) and insert_multi(i, x) so that you would get
-//           constant time performance if the correct insertion spot is before or after i.
+// hh 980105 changed pointer & reference to const versions in const_iterator base
+// class hh 980105 Added qualified name to iterator hh 980111 <stdexcept> commented
+// out.  Not needed hh 980902 #ifdef'd out exception code when ndef MSIPL_EXCEPT hh
+// 981130 Rewrote. hh 990720 Put debugging code under #ifdef _TREE_DEBUG hh 990720
+// Fixed bug in swap when trees are empty hh 990720 Made iterator comparison
+// functions global friends hh 990820 Modified insert_one(i, x) and insert_multi(i,
+// x) so that you would get
+//           constant time performance if the correct insertion spot is before or
+//           after i.
 // hh 990820 Optimized methods operating with keys only.
 // hh 990820 Optimized operator []
 // hh 990826 To reduce dependence on T()
-// hh 990924 Added casts in const/iterator increment/decrement operators to comply with
+// hh 990924 Added casts in const/iterator increment/decrement operators to comply
+// with
 //           stricter compiler.
 // hh 991003 Changed find to find the first element in the tree.
-// hh 991003 Changed the const versions of find, lower_bound and upper_bound to be implemented
+// hh 991003 Changed the const versions of find, lower_bound and upper_bound to be
+// implemented
 //           in terms of the non-const versions.
-// hh 000129 Changed file name from tree.h to tree to avoid conflict with Java file name.
-// hh 000506 Eliminated compare from insert_multi and insert_one
-// hh 010125 Removed dependence on string
-// hh 010301 Protected min and max from macro abuse.
-// hh 010402 Removed 68K CMF support
-// hh 010404 Substituted compressed_pair for _EmptyMemberOpt
-// hh 010507 Implemented "insert closest" in insert_multi
+// hh 000129 Changed file name from tree.h to tree to avoid conflict with Java file
+// name. hh 000506 Eliminated compare from insert_multi and insert_one hh 010125
+// Removed dependence on string hh 010301 Protected min and max from macro abuse. hh
+// 010402 Removed 68K CMF support hh 010404 Substituted compressed_pair for
+// _EmptyMemberOpt hh 010507 Implemented "insert closest" in insert_multi

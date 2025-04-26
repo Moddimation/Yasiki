@@ -10,43 +10,40 @@
 #include <mslconfig>
 
 #ifdef _MSL_FORCE_ENUMS_ALWAYS_INT
-#    if _MSL_FORCE_ENUMS_ALWAYS_INT
-#        pragma enumsalwaysint on
-#    else
-#        pragma enumsalwaysint off
-#    endif
+#if _MSL_FORCE_ENUMS_ALWAYS_INT
+#pragma enumsalwaysint on
+#else
+#pragma enumsalwaysint off
+#endif
 #endif
 
 #ifdef _MSL_FORCE_ENABLE_BOOL_SUPPORT
-#    if _MSL_FORCE_ENABLE_BOOL_SUPPORT
-#        pragma bool on
-#    else
-#        pragma bool off
-#    endif
+#if _MSL_FORCE_ENABLE_BOOL_SUPPORT
+#pragma bool on
+#else
+#pragma bool off
+#endif
 #endif
 
 #ifdef _MSL_MULTITHREAD
 
-#    if defined(__dest_os) && __dest_os == __win32_os
+#if defined(__dest_os) && __dest_os == __win32_os
 
-#        pragma ANSI_strict off
+#pragma ANSI_strict off
 
-#        include <cstring> // include before Win SDK gets a chance to goof it up
-#        include <stdarg.h>
-#        include <WINBASE.H>
-#        include <WINDEF.H>
+#include <cstring> // include before Win SDK gets a chance to goof it up
+#include <stdarg.h>
+#include <WINBASE.H>
+#include <WINDEF.H>
 
-#        pragma ANSI_strict reset
-
+#pragma ANSI_strict reset
 namespace
 {
 
 template <bool b> class __compile_assert;
-
 template <> class __compile_assert<true>
 {
 };
-
 __compile_assert<sizeof(CRITICAL_SECTION) == 24> check_CRITICAL_SECTION;
 
 // If you get an error with this object, that means that
@@ -64,7 +61,6 @@ __compile_assert<sizeof(CRITICAL_SECTION) == 24> check_CRITICAL_SECTION;
 // hh 990520
 
 } // namespace
-
-#    endif
+#endif
 
 #endif

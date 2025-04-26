@@ -1,5 +1,6 @@
 /* Metrowerks Standard Library
- * Copyright ÃÂ¯ÃÂ½C 1995-2001 Metrowerks Corporation.  All rights reserved.
+ * Copyright ÃÂ¯ÃÂ½C 1995-2001 Metrowerks Corporation.  All rights
+ * reserved.
  *
  * $Date: 2001/03/08 20:57:00 $
  * $Revision: 1.14 $
@@ -7,25 +8,25 @@
 
 // ostream.h          // hh 971207 Changed filename from ostream to ostream.h
 
-#ifndef _OSTREAM_H                // hh 971207 added standard include guards
-#    define _OSTREAM_H
+#ifndef _OSTREAM_H            // hh 971207 added standard include guards
+#define _OSTREAM_H
 
-#    include <ostream>
+#include <ostream>
 
-#    ifndef _MSL_NO_CPP_NAMESPACE // hh 971207 Added backward compatibility
-#        ifndef _MSL_NO_IO
+#ifndef _MSL_NO_CPP_NAMESPACE // hh 971207 Added backward compatibility
+#ifndef _MSL_NO_IO
 using std::basic_ostream;
 using std::ostream;
-#            ifndef _MSL_NO_WCHART_CPP_SUPPORT
+#ifndef _MSL_NO_WCHART_CPP_SUPPORT
 using std::wostream;
-#            endif
+#endif
 using std::endl;
 using std::ends;
 using std::flush;
-#        endif
-#    endif
+#endif
+#endif
 
-#endif                            // _OSTREAM_H
+#endif                        // _OSTREAM_H
 
 // hh 971207 Changed filename from ostream to ostream.h
 // hh 971207 added standard include guards

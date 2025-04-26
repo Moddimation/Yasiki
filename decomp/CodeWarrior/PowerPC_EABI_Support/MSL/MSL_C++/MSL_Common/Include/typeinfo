@@ -1,5 +1,6 @@
 /* Metrowerks Standard Library
- * Copyright ÃÂ¯ÃÂ½C 1995-2001 Metrowerks Corporation.  All rights reserved.
+ * Copyright ÃÂ¯ÃÂ½C 1995-2001 Metrowerks Corporation.  All rights
+ * reserved.
  *
  * $Date: 2001/04/02 18:29:30 $
  * $Revision: 1.15 $
@@ -8,43 +9,42 @@
 // typeinfo
 
 #ifndef _TYPEINFO
-#    define _TYPEINFO
+#define _TYPEINFO
 
-#    include <cstring>                // hh 980124 added
-#    include <exception>              //960828 bkoz so that __priv_throwbadcast defined in runtime
-#    include <mslconfig>
+#include <cstring>   // hh 980124 added
+#include <exception> //960828 bkoz so that __priv_throwbadcast defined in runtime
+#include <mslconfig>
 
-#    ifndef RC_INVOKED                // hh 971230
+#ifndef RC_INVOKED   // hh 971230
 
-#        pragma options align = native
+#pragma options align = native
 
-#        ifdef _MSL_FORCE_ENUMS_ALWAYS_INT
-#            if _MSL_FORCE_ENUMS_ALWAYS_INT
-#                pragma enumsalwaysint on
-#            else
-#                pragma enumsalwaysint off
-#            endif
-#        endif
+#ifdef _MSL_FORCE_ENUMS_ALWAYS_INT
+#if _MSL_FORCE_ENUMS_ALWAYS_INT
+#pragma enumsalwaysint on
+#else
+#pragma enumsalwaysint off
+#endif
+#endif
 
-#        ifdef _MSL_FORCE_ENABLE_BOOL_SUPPORT
-#            if _MSL_FORCE_ENABLE_BOOL_SUPPORT
-#                pragma bool on
-#            else
-#                pragma bool off
-#            endif
-#        endif
+#ifdef _MSL_FORCE_ENABLE_BOOL_SUPPORT
+#if _MSL_FORCE_ENABLE_BOOL_SUPPORT
+#pragma bool on
+#else
+#pragma bool off
+#endif
+#endif
 
-#        ifndef _MSL_NO_CPP_NAMESPACE // hh 971206
+#ifndef _MSL_NO_CPP_NAMESPACE // hh 971206
 namespace std
 {
-#        endif
+#endif
 
-#        if __MOTO__
-#            pragma define_type_info
-#        endif
+#if __MOTO__
+#pragma define_type_info
+#endif
 
-#        ifndef __GNUC__
-
+#ifndef __GNUC__
 class type_info
 {
     const char* tname;
@@ -57,19 +57,16 @@ public:
     {
         return static_cast<bool>(strcmp(tname, rhs.tname) == 0);
     }
-
     bool
     operator!=(const type_info& rhs) const
     {
         return static_cast<bool>(strcmp(tname, rhs.tname) != 0);
     }
-
     bool
     before(const type_info& rhs) const
     {
         return static_cast<bool>(strcmp(tname, rhs.tname) < 0);
     }
-
     const char*
     name() const
     {
@@ -80,70 +77,58 @@ private:
     type_info(const type_info&);
     type_info& operator=(const type_info&);
 };
-
-#        endif
-
+#endif
 class bad_cast : public exception
 {
 public:
     bad_cast() _MSL_THROW {}
-
     bad_cast(const bad_cast&) _MSL_THROW {}
-
     bad_cast&
     operator=(const bad_cast&) _MSL_THROW
     {
         return *this;
     }
-
     virtual ÃÂ¢ÃÂÃÂ¾bad_cast() _MSL_THROW {}
-
     virtual const char*
     what() const _MSL_THROW
     {
         return "bad_cast";
     }
 };
-
 class bad_typeid : public exception
 {
 public:
     bad_typeid() _MSL_THROW {}
-
     bad_typeid(const bad_typeid&) _MSL_THROW {}
-
     bad_typeid&
     operator=(const bad_typeid&) _MSL_THROW
     {
         return *this;
     }
-
     virtual ÃÂ¢ÃÂÃÂ¾bad_typeid() _MSL_THROW {}
-
     virtual const char*
     what() const _MSL_THROW
     {
         return "bad_typeid";
     }
 };
-
-#        ifndef _MSL_NO_CPP_NAMESPACE // hh 971206
+#ifndef _MSL_NO_CPP_NAMESPACE // hh 971206
 }
-#        endif
+#endif
 
-#        ifdef _MSL_FORCE_ENUMS_ALWAYS_INT
-#            pragma enumsalwaysint reset
-#        endif
+#ifdef _MSL_FORCE_ENUMS_ALWAYS_INT
+#pragma enumsalwaysint reset
+#endif
 
-#        ifdef _MSL_FORCE_ENABLE_BOOL_SUPPORT
-#            pragma bool reset
-#        endif
+#ifdef _MSL_FORCE_ENABLE_BOOL_SUPPORT
+#pragma bool reset
+#endif
 
-#        pragma options align = reset
+#pragma options align = reset
 
-#    endif                            // RC_INVOKED
+#endif                        // RC_INVOKED
 
-#endif                                // _TYPEINFO
+#endif                        // _TYPEINFO
 
 // mm 960609a          Commented out to avoid duplicate declaration
 // mm 960509b          Moved from mexcept.h

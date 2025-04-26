@@ -9,32 +9,28 @@ extern "C"
 #endif
 
 typedef u8 PERFId;
-
 typedef enum
 {
     PERF_CPU_EVENT,
     PERF_CPU_GP_EVENT,
     PERF_GP_EVENT,
 } PerfType;
-
 struct Frame
 {
     // total size: 0x10
     struct PerfSample* samples;         // offset 0x0, size 0x4
-    s32               lastSample;      // offset 0x4, size 0x4
-    u32      end;             // offset 0x8, size 0x4
-    u32      cachemisscycles; // offset 0xC, size 0x4
+    s32                lastSample;      // offset 0x4, size 0x4
+    u32                end;             // offset 0x8, size 0x4
+    u32                cachemisscycles; // offset 0xC, size 0x4
 };
-
 struct PerfEvent
 {
     // total size: 0x10
     char*           name;               // offset 0x0, size 0x4
     PerfType        type;               // offset 0x4, size 0x4
-    s32            currSample;         // offset 0x8, size 0x4
+    s32             currSample;         // offset 0x8, size 0x4
     struct _GXColor color;              // offset 0xC, size 0x4
 };
-
 typedef struct PerfSample
 {
     /* 0x00 */ u8  id;
@@ -62,14 +58,14 @@ typedef struct PerfSample
     /* 0xA0 */ u32 rasBusy[2];
     /* 0xA8 */ u32 rasClocks[2];
 } PerfSample;
-
 typedef void* (*PERFAllocator)(u32 size);
 typedef void  (*PERFDeallocator)(void* block);
 typedef void  (*PERFDrawCallback)(void);
 
 extern void (*GameDrawInit)();          // size: 0x4, address: 0x14
 
-u32  PERFInit(u32 numSamples, u32 numFramesHistory, u32 numTypes, PERFAllocator allocator, PERFDeallocator deallocator,
+u32  PERFInit(u32 numSamples, u32 numFramesHistory, u32 numTypes,
+              PERFAllocator allocator, PERFDeallocator deallocator,
               PERFDrawCallback initDraw);
 void PERFEventStart(PERFId id);
 void PERFEventEnd(PERFId id);
@@ -94,7 +90,7 @@ void PERFToggleDrawXFBars();
 void PERFToggleDrawRASBar();
 
 extern struct Frame*     PERFFrames;    // size: 0x4, address: 0x0
-extern u32     PERFCurrFrame; // size: 0x4, address: 0x0
+extern u32               PERFCurrFrame; // size: 0x4, address: 0x0
 extern struct PerfEvent* PERFEvents;    // size: 0x4, address: 0x0
 
 #ifdef __cplusplus

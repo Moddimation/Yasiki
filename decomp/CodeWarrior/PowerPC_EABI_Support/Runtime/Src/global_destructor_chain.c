@@ -1,6 +1,7 @@
 
 /*
- *	global_destructor_chain.c	-	global destruction support for CodeWarriorÂª C/C++ (PowerPC)
+ *	global_destructor_chain.c	-	global destruction support for CodeWarriorÂª
+ *C/C++ (PowerPC)
  *
  *	CopyrighC 1995-1997 Metrowerks, Inc. All Rights Reserved.
  *
@@ -15,8 +16,8 @@
  *	for the registered objects, in the reverse order of their construction.
  *
  *	For most applications, there is a single global destructor chain for the
- *	entire program, even if the program is composed of multiple fragments (shared libs)
- *	This is necessary to support the proper program termination sequence, wherein
+ *	entire program, even if the program is composed of multiple fragments (shared
+ *libs) This is necessary to support the proper program termination sequence, wherein
  *	all destructors must be called before e.g. closing open files and cleaning up
  *	the console window.
  *
@@ -32,7 +33,6 @@
 /*	public data		*/
 
 DestructorChain* __global_destructor_chain;
-
 /************************************************************************/
 /*	Purpose..: 	Register a global object for later destruction			*/
 /*	Input....:	pointer to global object								*/
@@ -50,7 +50,6 @@ __register_global_object(void* object, void* destructor, void* regmem)
 
     return object;
 }
-
 /************************************************************************/
 /* Purpose..: Destroy all constructed global objects					*/
 /* Input....: ---														*/
@@ -67,7 +66,7 @@ __destroy_global_chain(void)
         DTORCALL_COMPLETE(gdc->destructor, gdc->object);
     }
 }
-
 #if __MWERKS__ && __PPC_EABI__ && __dest_os != __eppc_vxworks
-__declspec(section ".dtors") static void* const __destroy_global_chain_reference = __destroy_global_chain;
+__declspec(section ".dtors") static void* const __destroy_global_chain_reference =
+    __destroy_global_chain;
 #endif

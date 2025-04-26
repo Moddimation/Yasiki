@@ -3,8 +3,7 @@
 // #undef _INLINE
 // #define _INLINE __declspec(weak)
 
-#    include <math.h>
-
+#include <math.h>
 /*
  Author:  Matthew D. Fassiotto
  Date:    first written 4/15/99
@@ -35,7 +34,6 @@ ceilf(float x)
     }
     return (float)++i;
 }
-
 extern float
 floorf(float x)
 {
@@ -55,5 +53,4 @@ floorf(float x)
     // x < 0 -> int conversion of x above rounded toward zero(so decrement)
     return (float)i;
 }
-
 #endif /* !( __MIPS__ && __MIPS_ISA3__  && __MIPS_single_fpu__) */

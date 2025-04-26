@@ -10,22 +10,22 @@
  */
 
 #ifndef __ansi_prefix__
-#    define __ansi_prefix__
+#define __ansi_prefix__
 
-#    include <os_enum.h>
-#    define __dest_os __ppc_eabi
-#    define _Generic_PPC_EABI_OS
+#include <os_enum.h>
+#define __dest_os __ppc_eabi
+#define _Generic_PPC_EABI_OS
 
 /* Turn on and off namespace std here */
-#    if defined(__cplusplus) && __embedded_cplusplus == 0
-#        define _MSL_USING_NAMESPACE
+#if defined(__cplusplus) && __embedded_cplusplus == 0
+#define _MSL_USING_NAMESPACE
 /* Turn on support for wchar_t as a built in type */
 /* #pragma wchar_type on */ /*  vss  not implemented yet  */
-#    endif
+#endif
 
-#    include <ansi_parms.h>
+#include <ansi_parms.h>
 
-                            /* Two macros determine what the floating support will be 	*/
+/* Two macros determine what the floating support will be 	*/
 /* in the MSL and runtime support.							*/
 /*															*/
 /*	_No_Floating_Point 	is defined if we don't want	any		*/
@@ -53,37 +53,37 @@
 /*		0 - no floating point or hardware floating point	*/
 /*		1 - software floating point							*/
 
-#    if __option(floatingpoint) == 0
+#if __option(floatingpoint) == 0
 
 /* No floating point support 		*/
-#        define _No_Floating_Point
-#        define _No_Floating_Point_Regs
+#define _No_Floating_Point
+#define _No_Floating_Point_Regs
 
-#    elif __option(floatingpoint) == 1
+#elif __option(floatingpoint) == 1
 
 /* Comment out if faster, non-IEEE 	*/
 /* routines are desired 			*/
-#        define __USING_IEEE_MATH__ 1
+#define __USING_IEEE_MATH__ 1
 
-#        if __option(sfp_emulation) == 1
+#if __option(sfp_emulation) == 1
 
 /* Software floating point support 	*/
-#            define _No_Floating_Point_Regs
+#define _No_Floating_Point_Regs
 
-#        else
+#else
 
-#            ifndef __USING_IEEE_MATH__
+#ifndef __USING_IEEE_MATH__
 /* This intrinsic is fast but not	*/
 /* IEEE accurate					*/
-#                define __USING_INTRINSIC_SQRT__ 1
-#            endif
+#define __USING_INTRINSIC_SQRT__ 1
+#endif
 /* This intrinsic is fast and 	 	*/
 /* accurate							*/
-#            define __USING_INTRINSIC_FABS__ 1
+#define __USING_INTRINSIC_FABS__ 1
 
-#        endif
+#endif
 
-#    endif
+#endif
 
 /* comment out macro if service is supplied by your OS 		*/
 /*#define _No_Time_OS_Support	*/
@@ -94,13 +94,13 @@
 /* write and read to a console window.  		*/
 /*#define _No_Console*/
 
-#    ifndef _No_Console
+#ifndef _No_Console
 /* the serial 1 and 2 UARTlibs have unbuffered	*/
 /* IO; comment out the following line if  		*/
 /* you are either not using either the serial 1 */
 /* or 2 UARTlibs or if your OS has buffered IO.	*/
-#        define _Unbuffered_Console
-#    endif
+#define _Unbuffered_Console
+#endif
 
 /* Release 4.x of CW EPPC used a different version of allocation */
 /* Define _MSL_PRO4_MALLOC if you wish to use that previous method. */
@@ -111,25 +111,25 @@
 /* see alloc.c for more details.  By default, the fastest allocation */
 /* method has been chosen.  In particular, you may want to define */
 /* _MSL_NO_FIX_MALLOC_POOLS if your heap is smaller than 64k. */
-#    ifndef _MSL_PRO4_MALLOC
+#ifndef _MSL_PRO4_MALLOC
 /* define _MSL_NO_MALLOC_DESIGN_2 if you want lower overhead but */
 /* somewhat slower allocation. */
 /* #define _MSL_NO_MALLOC_DESIGN_2 */
 /* define _MSL_NO_FIX_MALLOC_POOLS if your heap will be less than 64k */
 /* #define _MSL_NO_FIX_MALLOC_POOLS */
-#    endif
+#endif
 
-#    define NEWMODE              NEWMODE_MALLOC /* always use malloc for new */
+#define NEWMODE              NEWMODE_MALLOC /* always use malloc for new */
 
-                                                /* see ExceptionPPC.cp */
-#    define __CW_MAX_PROCESSES__ 1
+                                            /* see ExceptionPPC.cp */
+#define __CW_MAX_PROCESSES__ 1
 
 /* __VEC__ is defined to 1 if altivec_model is on */
-#    if !__VEC__
-#        define _No_Altivec
-#    endif
+#if !__VEC__
+#define _No_Altivec
+#endif
 
-#    define ROM_VERSION
+#define ROM_VERSION
 
 #endif
 

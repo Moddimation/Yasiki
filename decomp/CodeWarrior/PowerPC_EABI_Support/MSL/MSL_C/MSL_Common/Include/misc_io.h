@@ -6,9 +6,9 @@
  */
 
 #ifndef _MSL_MISC_IO_H
-#    define _MSL_MISC_IO_H
+#define _MSL_MISC_IO_H
 
-#    include <ansi_parms.h>
+#include <ansi_parms.h>
 
 _MSL_BEGIN_EXTERN_C /*- cc 010409 -*/
 

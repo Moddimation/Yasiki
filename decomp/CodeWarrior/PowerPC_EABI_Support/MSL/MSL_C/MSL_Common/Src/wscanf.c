@@ -16,44 +16,41 @@
  *		vswscanf
  *		vfwscanf
  */
-#pragma ANSI_strict off                                                               /*- vss 990729 -*/
+#pragma ANSI_strict off       /*- vss 990729 -*/
 
 #include <ansi_parms.h>
 
-#ifndef __NO_WIDE_CHAR                                                                /*- mm 980204 -*/
+#ifndef __NO_WIDE_CHAR        /*- mm 980204 -*/
 
-#    pragma ANSI_strict reset
+#pragma ANSI_strict reset
 
-#    include <errno.h>
-#    include <limits.h>
-#    include <stdarg.h>
-#    include <stddef.h>
-#    include <stdio.h>
-#    include <stdlib.h>
-#    include <string.h>
-#    include <wchar.h>
-#    include <wctype.h>
+#include <errno.h>
+#include <limits.h>
+#include <stdarg.h>
+#include <stddef.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <wchar.h>
+#include <wctype.h>
 
-#    include "critical_regions.h"                                                     /*- mm 001018 -*/
+#include "critical_regions.h" /*- mm 001018 -*/
 
-#    define conversion_buff_size 512
-#    define conversion_max       509
-#    define bad_conversion       0xFFFF
-
+#define conversion_buff_size 512
+#define conversion_max       509
+#define bad_conversion       0xFFFF
 enum argument_options
 {
     normal_argument,
     char_argument,
     short_argument,
     long_argument,
-    long_long_argument,                                                               /*- mm 961219 -*/
+    long_long_argument,       /*- mm 961219 -*/
     double_argument,
     long_double_argument,
-    wchar_argument                                                                    /*- mm 990407 -*/
+    wchar_argument            /*- mm 990407 -*/
 };
-
-typedef char char_map[8192];                                                          /*- mm 990914 -*/
-
+typedef char char_map[8192];  /*- mm 990914 -*/
 typedef struct
 {
     unsigned char suppress_assignment;
@@ -63,25 +60,24 @@ typedef struct
     int           field_width;
     char_map      char_set;
 } scan_format;
-
-#    define set_char_map(map, ch) map[ch >> 3] |= (1 << (ch & 7))
-#    define tst_char_map(map, ch) (map[ch >> 3] & (1 << (ch & 7)))
-
+#define set_char_map(map, ch) map[ch >> 3] |= (1 << (ch & 7))
+#define tst_char_map(map, ch) (map[ch >> 3] & (1 << (ch & 7)))
 static const wchar_t*
 parse_format(const wchar_t* format_string, scan_format* format)
 {
     const wchar_t* s = format_string;
     wchar_t        c;
     int            flag_found, invert;
-    /*scan_format		f = {0, 0, normal_argument, 0, INT_MAX, {0}};*/               /*- mm 000419 -*/
+    /*scan_format		f = {0, 0, normal_argument, 0, INT_MAX, {0}};*/ /*- mm 000419
+                                                                           -*/
     /* The following performs the above initialization without a large static area */ /*- mm 000419 -*/
-    scan_format    f;                                                                 /*- mm 000419 -*/
-    f.suppress_assignment = 0;                                                        /*- mm 000419 -*/
-    f.field_width_specified = 0;                                                      /*- mm 000419 -*/
-    f.argument_options = normal_argument;                                             /*- mm 000419 -*/
-    f.conversion_char = 0;                                                            /*- mm 000419 -*/
-    f.field_width = INT_MAX;                                                          /*- mm 000419 -*/
-    memset(&f.char_set, 0, sizeof(char_map));                                         /*- mm 000419 -*/
+    scan_format    f;                               /*- mm 000419 -*/
+    f.suppress_assignment = 0;                      /*- mm 000419 -*/
+    f.field_width_specified = 0;                    /*- mm 000419 -*/
+    f.argument_options = normal_argument;           /*- mm 000419 -*/
+    f.conversion_char = 0;                          /*- mm 000419 -*/
+    f.field_width = INT_MAX;                        /*- mm 000419 -*/
+    memset(&f.char_set, 0, sizeof(char_map));       /*- mm 000419 -*/
 
     if ((c = *++s) == L'%')
     {
@@ -120,18 +116,18 @@ parse_format(const wchar_t* format_string, scan_format* format)
 
     switch (c)
     {
-        case L'h' :
+        case L'h':
 
             f.argument_options = short_argument;
-            if (s[1] == L'h')                                                         /*- mm 990616 -*/
-            {                                                                         /*- mm 990616 -*/
-                f.argument_options = char_argument;                                   /*- mm 990616 -*/
-                c = *++s; /* move past second h */                                    /*- mm 990616 -*/
+            if (s[1] == L'h')                       /*- mm 990616 -*/
+            {                                       /*- mm 990616 -*/
+                f.argument_options = char_argument; /*- mm 990616 -*/
+                c = *++s; /* move past second h */  /*- mm 990616 -*/
             } /*- mm 990616 -*/
 
             break;
 
-        case L'l' :
+        case L'l':
 
             f.argument_options = long_argument;
             if (s[1] == L'l')                            /*- mm 990616 -*/
@@ -142,13 +138,15 @@ parse_format(const wchar_t* format_string, scan_format* format)
 
             break;
 
-        case L'L' :
+        case L'L':
 
-            f.argument_options = long_double_argument; /*-mm 961219 -*/ /*- mm 990616 -*/
+            f.argument_options = long_double_argument;
+            /*-mm 961219 -*/                               /*- mm 990616 -*/
 
             break;
 
-        default : flag_found = 0;
+        default:
+            flag_found = 0;
     }
 
     if (flag_found)
@@ -160,12 +158,12 @@ parse_format(const wchar_t* format_string, scan_format* format)
 
     switch (c)
     {
-        case L'd' :
-        case L'i' :
-        case L'u' :
-        case L'o' :
-        case L'x' :
-        case L'X' :
+        case L'd':
+        case L'i':
+        case L'u':
+        case L'o':
+        case L'x':
+        case L'X':
 
             if (f.argument_options == long_double_argument)
             {
@@ -174,12 +172,12 @@ parse_format(const wchar_t* format_string, scan_format* format)
             }
             break;
 
-        case L'a' :                                                     /*- mm 990616 -*/
-        case L'f' :
-        case L'e' :
-        case L'E' :
-        case L'g' :
-        case L'G' :
+        case L'a':                                         /*- mm 990616 -*/
+        case L'f':
+        case L'e':
+        case L'E':
+        case L'g':
+        case L'G':
 
             if (f.argument_options == short_argument)
             {
@@ -192,27 +190,27 @@ parse_format(const wchar_t* format_string, scan_format* format)
                 f.argument_options = double_argument;
             }
 
-            if (f.argument_options == long_long_argument)               /*- mm 961219 -*/
+            if (f.argument_options == long_long_argument)  /*- mm 961219 -*/
             {
-                f.argument_options = long_double_argument;              /*- mm 961219 -*/
+                f.argument_options = long_double_argument; /*- mm 961219 -*/
             }
 
             break;
 
-        case L'p' :
+        case L'p':
 
             f.argument_options = long_argument;
             f.conversion_char = 'x';
 
             break;
 
-        case L'c' :
+        case L'c':
 
-            if (f.argument_options == long_argument)                    /*- mm 990407 -*/
+            if (f.argument_options == long_argument)       /*- mm 990407 -*/
             {
-                f.argument_options = wchar_argument;                    /*- mm 990407 -*/
+                f.argument_options = wchar_argument;       /*- mm 990407 -*/
             }
-            else                                                        /*- mm 990407 -*/
+            else                                           /*- mm 990407 -*/
                 if (f.argument_options != normal_argument)
                 {
                     f.conversion_char = bad_conversion;
@@ -220,13 +218,13 @@ parse_format(const wchar_t* format_string, scan_format* format)
 
             break;
 
-        case L's' :
+        case L's':
 
-            if (f.argument_options == long_argument)                    /*- mm 990407 -*/
+            if (f.argument_options == long_argument)       /*- mm 990407 -*/
             {
-                f.argument_options = wchar_argument;                    /*- mm 990407 -*/
+                f.argument_options = wchar_argument;       /*- mm 990407 -*/
             }
-            else                                                        /*- mm 990407 -*/
+            else                                           /*- mm 990407 -*/
                 if (f.argument_options != normal_argument)
                 {
                     f.conversion_char = bad_conversion;
@@ -241,20 +239,22 @@ parse_format(const wchar_t* format_string, scan_format* format)
                     *p++ = 0xFF;
                 }
 
-                f.char_set[1] = 0xC1;                /* sets bits for HT, LF, VT, FF, and CR chars to zero */
-                f.char_set[4] = 0xFE;                /* set bit for Sp char to zero */
+                f.char_set[1] =
+                    0xC1; /* sets bits for HT, LF, VT, FF, and CR chars to zero */
+                f.char_set[4] = 0xFE; /* set bit for Sp char to zero */
             }
 
             break;
 
-        case L'n' : break;
+        case L'n':
+            break;
 
-        case L'[' :
-            if (f.argument_options == long_argument) /*- mm 990624 -*/
+        case L'[':
+            if (f.argument_options == long_argument)               /*- mm 990624 -*/
             {
-                f.argument_options = wchar_argument; /*- mm 990624 -*/
+                f.argument_options = wchar_argument;               /*- mm 990624 -*/
             }
-            else                                     /*- mm 990624 -*/
+            else                                                   /*- mm 990624 -*/
                 if (f.argument_options != normal_argument)
                 {
                     f.conversion_char = bad_conversion;
@@ -306,9 +306,10 @@ parse_format(const wchar_t* format_string, scan_format* format)
             if (invert)
             {
                 int   i;
-                char* p;                             /*- mm 990408 -*/
+                char* p;                                           /*- mm 990408 -*/
 
-                for (i = sizeof(f.char_set), p = (char*)f.char_set; i; --i, ++p)                  /*- mm 990408 -*/
+                for (i = sizeof(f.char_set), p = (char*)f.char_set; i;
+                     --i, ++p)                                     /*- mm 990408 -*/
                 {
                     *p = ~*p;
                 }
@@ -316,42 +317,44 @@ parse_format(const wchar_t* format_string, scan_format* format)
 
             break;
 
-        default : f.conversion_char = bad_conversion; break;
+        default:
+            f.conversion_char = bad_conversion;
+            break;
     }
 
     *format = f;
 
     return ((const wchar_t*)s + 1);
 }
-
 static int
-__wsformatter(wint_t (*wReadProc)(void*, wint_t, int), void* wReadProcArg, const wchar_t* format_str,
-              va_list arg)                                                                        /*- mm 990325 -*/
+__wsformatter(wint_t (*wReadProc)(void*, wint_t, int), void* wReadProcArg,
+              const wchar_t* format_str, va_list arg)              /*- mm 990325 -*/
 {
     int            num_chars, chars_read, items_assigned, conversions, i;
     int            base, negative, overflow;
     const wchar_t* format_ptr;
-    wchar_t        format_char;                                                                   /*- mm 961002 -*/
-    wchar_t        c;                                                                             /*- mm 961002 -*/
+    wchar_t        format_char;                                    /*- mm 961002 -*/
+    wchar_t        c;                                              /*- mm 961002 -*/
     scan_format    format;
     long           long_num;
     unsigned long  u_long_num;
-#    ifdef __MSL_LONGLONG_SUPPORT__                                                               /*- mm 961219 -*/
-    long long          long_long_num;                                                             /*- mm 961219 -*/
-    unsigned long long u_long_long_num;                                                           /*- mm 961219 -*/
-#    endif                                                                                        /*- mm 961219 -*/
-#    ifndef _No_Floating_Point
+#ifdef __MSL_LONGLONG_SUPPORT__                                    /*- mm 961219 -*/
+    long long          long_long_num;                              /*- mm 961219 -*/
+    unsigned long long u_long_long_num;                            /*- mm 961219 -*/
+#endif                                                             /*- mm 961219 -*/
+#ifndef _No_Floating_Point
     long double long_double_num;
-#    endif
+#endif
     wchar_t* arg_ptr;
-    int      terminate = 0;                                                                       /*- mm 990608 -*/
+    int      terminate = 0;                                        /*- mm 990608 -*/
 
     format_ptr = format_str;
     chars_read = 0;
     items_assigned = 0;
     conversions = 0;
 
-    while (!terminate && (format_char = *format_ptr) != 0) /*- mm 990311 -*/                      /*- mm 990608 -*/
+    while (!terminate &&
+           (format_char = *format_ptr) != 0) /*- mm 990311 -*/     /*- mm 990608 -*/
     {
         if (iswspace(format_char))
         {
@@ -360,21 +363,24 @@ __wsformatter(wint_t (*wReadProc)(void*, wint_t, int), void* wReadProcArg, const
             }
             while (iswspace(format_char));
 
-            while ((iswspace)(c = (*wReadProc)(wReadProcArg, 0, __GetAwChar))) /*- mm 990325 -*/  /*- mm 990409 -*/
+            while ((iswspace)(c = (*wReadProc)(
+                                  wReadProcArg, 0,
+                                  __GetAwChar))) /*- mm 990325 -*/ /*- mm 990409 -*/
             {
                 ++chars_read;
             }
 
-            (*wReadProc)(wReadProcArg, c, __UngetAwChar);                                         /*- mm 990325 -*/
+            (*wReadProc)(wReadProcArg, c, __UngetAwChar);          /*- mm 990325 -*/
 
             continue;
         }
 
         if (format_char != L'%')
         {
-            if ((c = (*wReadProc)(wReadProcArg, 0, __GetAwChar)) != format_char)                  /*- mm 990325 -*/
+            if ((c = (*wReadProc)(wReadProcArg, 0, __GetAwChar)) !=
+                format_char)                                       /*- mm 990325 -*/
             {
-                (*wReadProc)(wReadProcArg, c, __UngetAwChar);                                     /*- mm 990325 -*/
+                (*wReadProc)(wReadProcArg, c, __UngetAwChar);      /*- mm 990325 -*/
                 goto exit;
             }
 
@@ -385,10 +391,11 @@ __wsformatter(wint_t (*wReadProc)(void*, wint_t, int), void* wReadProcArg, const
         }
 
         format_ptr = parse_format(format_ptr, &format);
-        if ((format.conversion_char != L'n') && (*wReadProc)(wReadProcArg, 0, __TestForwcsError)) /*- mm 990608 -*/
-        {                                                                                         /*- mm 990608 -*/
-            terminate = 1;                                                                        /*- mm 990608 -*/
-            goto exit;                                                                            /*- mm 990608 -*/
+        if ((format.conversion_char != L'n') &&
+            (*wReadProc)(wReadProcArg, 0, __TestForwcsError))      /*- mm 990608 -*/
+        {                                                          /*- mm 990608 -*/
+            terminate = 1;                                         /*- mm 990608 -*/
+            goto exit;                                             /*- mm 990608 -*/
         } /*- mm 990608 -*/
 
         if (!format.suppress_assignment && format.conversion_char != L'%')
@@ -402,23 +409,28 @@ __wsformatter(wint_t (*wReadProc)(void*, wint_t, int), void* wReadProcArg, const
 
         switch (format.conversion_char)
         {
-            case L'd' : base = 10; goto signed_int;
+            case L'd':
+                base = 10;
+                goto signed_int;
 
-            case L'i' : base = 0;
+            case L'i':
+                base = 0;
 
-                signed_int:
+            signed_int:
 
-#    ifdef __MSL_LONGLONG_SUPPORT__                                                                  /*- mm 961219 -*/
-                if (format.argument_options == long_long_argument)                                   /*- mm 961219 -*/
+#ifdef __MSL_LONGLONG_SUPPORT__                                    /*- mm 961219 -*/
+                if (format.argument_options == long_long_argument) /*- mm 961219 -*/
                 {
-                    u_long_long_num =                                                                /*- mm 961219 -*/
-                        __wcstoull(base, format.field_width, wReadProc, wReadProcArg, &num_chars, &negative,
-                                   &overflow);                                                       /*- mm 990325 -*/
+                    u_long_long_num =                              /*- mm 961219 -*/
+                        __wcstoull(base, format.field_width, wReadProc, wReadProcArg,
+                                   &num_chars, &negative,
+                                   &overflow);                     /*- mm 990325 -*/
                 }
-                else                                                                                 /*- mm 961219 -*/
-#    endif                                                                                           /*- mm 961219 -*/
-                    u_long_num = __wcstoul(base, format.field_width, wReadProc, wReadProcArg, &num_chars, &negative,
-                                           &overflow);                                               /*- mm 990325 -*/
+                else                                               /*- mm 961219 -*/
+#endif                                                             /*- mm 961219 -*/
+                    u_long_num = __wcstoul(base, format.field_width, wReadProc,
+                                           wReadProcArg, &num_chars, &negative,
+                                           &overflow);             /*- mm 990325 -*/
 
                 if (!num_chars)
                 {
@@ -427,26 +439,37 @@ __wsformatter(wint_t (*wReadProc)(void*, wint_t, int), void* wReadProcArg, const
 
                 chars_read += num_chars;
 
-#    ifdef __MSL_LONGLONG_SUPPORT__                                                                  /*- mm 961219 -*/
-                if (format.argument_options == long_long_argument)                                   /*- mm 961219 -*/
+#ifdef __MSL_LONGLONG_SUPPORT__                                    /*- mm 961219 -*/
+                if (format.argument_options == long_long_argument) /*- mm 961219 -*/
                 {
-                    long_long_num = (negative ? -u_long_long_num : u_long_long_num);                 /*- mm 961219 -*/
+                    long_long_num = (negative ? -u_long_long_num
+                                              : u_long_long_num);  /*- mm 961219 -*/
                 }
-                else                                                                                 /*- mm 961219 -*/
-#    endif                                                                                           /*- mm 961219 -*/
+                else                                               /*- mm 961219 -*/
+#endif                                                             /*- mm 961219 -*/
                     long_num = (negative ? -u_long_num : u_long_num);
 
                 if (arg_ptr)
                 {
                     switch (format.argument_options)
                     {
-                        case normal_argument : *(int*)arg_ptr = long_num; break;
-                        case char_argument   : *(signed char*)arg_ptr = long_num; break;             /*- mm 990616 -*/
-                        case short_argument  : *(short*)arg_ptr = long_num; break;
-                        case long_argument   : *(long*)arg_ptr = long_num; break;
-#    ifdef __MSL_LONGLONG_SUPPORT__                                                                  /*- mm 961219 -*/
-                        case long_long_argument : *(long long*)arg_ptr = long_long_num; break;
-#    endif                                                                                           /*- mm 961219 -*/
+                        case normal_argument:
+                            *(int*)arg_ptr = long_num;
+                            break;
+                        case char_argument:
+                            *(signed char*)arg_ptr = long_num;
+                            break;                                 /*- mm 990616 -*/
+                        case short_argument:
+                            *(short*)arg_ptr = long_num;
+                            break;
+                        case long_argument:
+                            *(long*)arg_ptr = long_num;
+                            break;
+#ifdef __MSL_LONGLONG_SUPPORT__                                    /*- mm 961219 -*/
+                        case long_long_argument:
+                            *(long long*)arg_ptr = long_long_num;
+                            break;
+#endif                                                             /*- mm 961219 -*/
                     }
 
                     ++items_assigned;
@@ -456,26 +479,33 @@ __wsformatter(wint_t (*wReadProc)(void*, wint_t, int), void* wReadProcArg, const
 
                 break;
 
-            case L'o' : base = 8; goto unsigned_int;
+            case L'o':
+                base = 8;
+                goto unsigned_int;
 
-            case L'u' : base = 10; goto unsigned_int;
+            case L'u':
+                base = 10;
+                goto unsigned_int;
 
-            case L'x' :
-            case L'X' : base = 16;
+            case L'x':
+            case L'X':
+                base = 16;
 
-                unsigned_int:
+            unsigned_int:
 
-#    ifdef __MSL_LONGLONG_SUPPORT__                                                                  /*- mm 961219 -*/
-                if (format.argument_options == long_long_argument)                                   /*- mm 961219 -*/
+#ifdef __MSL_LONGLONG_SUPPORT__                                    /*- mm 961219 -*/
+                if (format.argument_options == long_long_argument) /*- mm 961219 -*/
                 {
-                    u_long_long_num =                                                                /*- mm 961219 -*/
-                        __wcstoull(base, format.field_width, wReadProc, wReadProcArg, &num_chars, &negative,
-                                   &overflow);                                                       /*- mm 990325 -*/
+                    u_long_long_num =                              /*- mm 961219 -*/
+                        __wcstoull(base, format.field_width, wReadProc, wReadProcArg,
+                                   &num_chars, &negative,
+                                   &overflow);                     /*- mm 990325 -*/
                 }
-                else                                                                                 /*- mm 961219 -*/
-#    endif                                                                                           /*- mm 961219 -*/
-                    u_long_num = __wcstoul(base, format.field_width, wReadProc, wReadProcArg, &num_chars, &negative,
-                                           &overflow);                                               /*- mm 990325 -*/
+                else                                               /*- mm 961219 -*/
+#endif                                                             /*- mm 961219 -*/
+                    u_long_num = __wcstoul(base, format.field_width, wReadProc,
+                                           wReadProcArg, &num_chars, &negative,
+                                           &overflow);             /*- mm 990325 -*/
 
                 if (!num_chars)
                 {
@@ -485,26 +515,37 @@ __wsformatter(wint_t (*wReadProc)(void*, wint_t, int), void* wReadProcArg, const
                 chars_read += num_chars;
 
                 if (negative)
-#    ifdef __MSL_LONGLONG_SUPPORT__                                                                  /*- mm 961219 -*/
-                    if (format.argument_options == long_long_argument)                               /*- mm 961219 -*/
+#ifdef __MSL_LONGLONG_SUPPORT__                                    /*- mm 961219 -*/
+                    if (format.argument_options ==
+                        long_long_argument)                        /*- mm 961219 -*/
                     {
-                        u_long_long_num = -u_long_long_num;                                          /*- mm 961219 -*/
+                        u_long_long_num = -u_long_long_num;        /*- mm 961219 -*/
                     }
-                    else                                                                             /*- mm 961219 -*/
-#    endif                                                                                           /*- mm 961219 -*/
+                    else                                           /*- mm 961219 -*/
+#endif                                                             /*- mm 961219 -*/
                         u_long_num = -u_long_num;
 
                 if (arg_ptr)
                 {
                     switch (format.argument_options)
                     {
-                        case normal_argument : *(unsigned int*)arg_ptr = u_long_num; break;
-                        case char_argument   : *(unsigned char*)arg_ptr = u_long_num; break;         /*- mm 990616 -*/
-                        case short_argument  : *(unsigned short*)arg_ptr = u_long_num; break;
-                        case long_argument   : *(unsigned long*)arg_ptr = u_long_num; break;
-#    ifdef __MSL_LONGLONG_SUPPORT__                                                                  /*- mm 961219 -*/
-                        case long_long_argument : *(unsigned long long*)arg_ptr = u_long_long_num; break;
-#    endif                                                                                           /*- mm 961219 -*/
+                        case normal_argument:
+                            *(unsigned int*)arg_ptr = u_long_num;
+                            break;
+                        case char_argument:
+                            *(unsigned char*)arg_ptr = u_long_num;
+                            break;                                 /*- mm 990616 -*/
+                        case short_argument:
+                            *(unsigned short*)arg_ptr = u_long_num;
+                            break;
+                        case long_argument:
+                            *(unsigned long*)arg_ptr = u_long_num;
+                            break;
+#ifdef __MSL_LONGLONG_SUPPORT__                                    /*- mm 961219 -*/
+                        case long_long_argument:
+                            *(unsigned long long*)arg_ptr = u_long_long_num;
+                            break;
+#endif                                                             /*- mm 961219 -*/
                     }
 
                     ++items_assigned;
@@ -514,17 +555,18 @@ __wsformatter(wint_t (*wReadProc)(void*, wint_t, int), void* wReadProcArg, const
 
                 break;
 
-#    ifndef _No_Floating_Point
+#ifndef _No_Floating_Point
 
-            case L'a' :                                                                              /*- mm 990616 -*/
-            case L'f' :
-            case L'e' :
-            case L'E' :
-            case L'g' :
-            case L'G' :
+            case L'a':                                             /*- mm 990616 -*/
+            case L'f':
+            case L'e':
+            case L'E':
+            case L'g':
+            case L'G':
 
-                long_double_num
-                    = __wcstold(format.field_width, wReadProc, wReadProcArg, &num_chars, &overflow); /*- mm 990325 -*/
+                long_double_num =
+                    __wcstold(format.field_width, wReadProc, wReadProcArg,
+                              &num_chars, &overflow);              /*- mm 990325 -*/
 
                 if (!num_chars)
                 {
@@ -537,9 +579,15 @@ __wsformatter(wint_t (*wReadProc)(void*, wint_t, int), void* wReadProcArg, const
                 {
                     switch (format.argument_options)
                     {
-                        case normal_argument      : *(float*)arg_ptr = long_double_num; break;
-                        case double_argument      : *(double*)arg_ptr = long_double_num; break;
-                        case long_double_argument : *(long double*)arg_ptr = long_double_num; break;
+                        case normal_argument:
+                            *(float*)arg_ptr = long_double_num;
+                            break;
+                        case double_argument:
+                            *(double*)arg_ptr = long_double_num;
+                            break;
+                        case long_double_argument:
+                            *(long double*)arg_ptr = long_double_num;
+                            break;
                     }
 
                     ++items_assigned;
@@ -549,9 +597,9 @@ __wsformatter(wint_t (*wReadProc)(void*, wint_t, int), void* wReadProcArg, const
 
                 break;
 
-#    endif
+#endif
 
-            case L'c' :
+            case L'c':
 
                 if (!format.field_width_specified)
                 {
@@ -562,22 +610,26 @@ __wsformatter(wint_t (*wReadProc)(void*, wint_t, int), void* wReadProcArg, const
                 {
                     num_chars = 0;
 
-                    while (format.field_width--
-                           && (c = (*wReadProc)(wReadProcArg, 0, __GetAwChar))
-                                  != WEOF) /*- mm 980202 -*/ /*- mm 990325 -*/                       /*- mm 990624 -*/
+                    while (
+                        format.field_width-- &&
+                        (c = (*wReadProc)(wReadProcArg, 0, __GetAwChar)) !=
+                            WEOF) /*- mm 980202 -*/ /*- mm 990325 -*/ /*- mm 990624
+                                                                         -*/
                     {
-                        if (format.argument_options == wchar_argument)                               /*- mm 990407 -*/
+                        if (format.argument_options ==
+                            wchar_argument)                     /*- mm 990407 -*/
                         {
-                            *arg_ptr++ = c;                                                          /*- mm 990407 -*/
+                            *arg_ptr++ = c;                     /*- mm 990407 -*/
                         }
-                        else                                                                         /*- mm 990407 -*/
+                        else                                    /*- mm 990407 -*/
                         {
-                            i = wctomb((char*)arg_ptr, c);                                           /*- mm 990407 -*/
-                            if (i < 0)                                                               /*- mm 990407 -*/
+                            i = wctomb((char*)arg_ptr, c);      /*- mm 990407 -*/
+                            if (i < 0)                          /*- mm 990407 -*/
                             {
-                                goto exit;                                                           /*- mm 990407 -*/
+                                goto exit;                      /*- mm 990407 -*/
                             }
-                            arg_ptr = (wchar_t*)((char*)arg_ptr + i);                                /*- mm 990407 -*/
+                            arg_ptr =
+                                (wchar_t*)((char*)arg_ptr + i); /*- mm 990407 -*/
                         }
                         ++num_chars;
                     }
@@ -595,9 +647,11 @@ __wsformatter(wint_t (*wReadProc)(void*, wint_t, int), void* wReadProcArg, const
                 {
                     num_chars = 0;
 
-                    while (format.field_width--
-                           && (c = (*wReadProc)(wReadProcArg, 0, __GetAwChar))
-                                  != WEOF) /*- mm 980202 -*/ /*- mm 990325 -*/                       /*- mm 990624 -*/
+                    while (
+                        format.field_width-- &&
+                        (c = (*wReadProc)(wReadProcArg, 0, __GetAwChar)) !=
+                            WEOF) /*- mm 980202 -*/ /*- mm 990325 -*/ /*- mm 990624
+                                                                         -*/
                     {
                         ++num_chars;
                     }
@@ -612,9 +666,10 @@ __wsformatter(wint_t (*wReadProc)(void*, wint_t, int), void* wReadProcArg, const
 
                 break;
 
-            case L'%' :
+            case L'%':
 
-                while ((iswspace)(c = (*wReadProc)(wReadProcArg, 0, __GetAwChar)))                   /*- mm 990409 -*/
+                while ((iswspace)(c = (*wReadProc)(wReadProcArg, 0,
+                                                   __GetAwChar))) /*- mm 990409 -*/
                 {
                     ++chars_read;
                 }
@@ -629,40 +684,48 @@ __wsformatter(wint_t (*wReadProc)(void*, wint_t, int), void* wReadProcArg, const
 
                 break;
 
-            case L's' :
+            case L's':
 
-                c = (*wReadProc)(wReadProcArg, 0, __GetAwChar); /*- mm 970218 -*/ /*- mm 990325 -*/  /*- mm 990413 -*/
-                while (iswspace(c))                                                                  /*- mm 970218 -*/
-                {                                                                                    /*- mm 970218 -*/
-                    ++chars_read;                                                                    /*- mm 970218 -*/
+                c = (*wReadProc)(wReadProcArg, 0, __GetAwChar);
+                /*- mm 970218 -*/ /*- mm 990325 -*/               /*- mm 990413 -*/
+                while (iswspace(c))                               /*- mm 970218 -*/
+                {                                                 /*- mm 970218 -*/
+                    ++chars_read;                                 /*- mm 970218 -*/
                     c = (*wReadProc)(wReadProcArg, 0, __GetAwChar);
-                    /*- mm 970218 -*/ /*- mm 980130 -*/                                              /*- mm 990325 -*/
+                    /*- mm 970218 -*/ /*- mm 980130 -*/           /*- mm 990325 -*/
                 } /*- mm 970218 -*/
 
-                (*wReadProc)(wReadProcArg, c, __UngetAwChar);                                       /*- mm 990325 -*/
+                (*wReadProc)(wReadProcArg, c, __UngetAwChar);       /*- mm 990325 -*/
 
-            case L'[' :
+            case L'[':
 
                 if (arg_ptr)
                 {
                     num_chars = 0;
-                    while (format.field_width-- && (c = (*wReadProc)(wReadProcArg, 0, __GetAwChar)) != WEOF
-                           && tst_char_map(format.char_set, c)) /*- mm 980202 -*/ /*- mm 990325 -*/ /*- mm 990624 -*/
+                    while (
+                        format.field_width-- &&
+                        (c = (*wReadProc)(wReadProcArg, 0, __GetAwChar)) != WEOF &&
+                        tst_char_map(
+                            format.char_set,
+                            c)) /*- mm 980202 -*/ /*- mm 990325 -*/ /*- mm 990624 -*/
                     {
-                        if (format.argument_options == wchar_argument)                              /*- mm 990407 -*/
+                        if (format.argument_options ==
+                            wchar_argument)                         /*- mm 990407 -*/
                         {
-                            *(wchar_t*)arg_ptr = c; /*- mm 990407 -*/                               /*- mm 990616 -*/
+                            *(wchar_t*)arg_ptr = c;
+                            /*- mm 990407 -*/                       /*- mm 990616 -*/
                             arg_ptr = (wchar_t*)((char*)arg_ptr + sizeof(wchar_t));
-                            /*- mm 990407 -*/                                                       /*- mm 990624 -*/
+                            /*- mm 990407 -*/                       /*- mm 990624 -*/
                         } /*- mm 990420 -*/
                         else
                         {
-                            i = wctomb((char*)arg_ptr, c);                                          /*- mm 990407 -*/
-                            if (i < 0)                                                              /*- mm 990407 -*/
+                            i = wctomb((char*)arg_ptr, c);          /*- mm 990407 -*/
+                            if (i < 0)                              /*- mm 990407 -*/
                             {
-                                goto exit;                                                          /*- mm 990407 -*/
+                                goto exit;                          /*- mm 990407 -*/
                             }
-                            arg_ptr = (wchar_t*)((char*)arg_ptr + i);                               /*- mm 990407 -*/
+                            arg_ptr =
+                                (wchar_t*)((char*)arg_ptr + i);     /*- mm 990407 -*/
                         }
 
                         ++num_chars;
@@ -670,7 +733,8 @@ __wsformatter(wint_t (*wReadProc)(void*, wint_t, int), void* wReadProcArg, const
 
                     if (!num_chars)
                     {
-                        (*wReadProc)(wReadProcArg, c, __UngetAwChar); /*- mm 961114 -*/             /*- mm 990325 -*/
+                        (*wReadProc)(wReadProcArg, c, __UngetAwChar);
+                        /*- mm 961114 -*/                           /*- mm 990325 -*/
                         goto exit;
                     }
 
@@ -684,75 +748,93 @@ __wsformatter(wint_t (*wReadProc)(void*, wint_t, int), void* wReadProcArg, const
                 {
                     num_chars = 0;
 
-                    while (format.field_width-- && (c = (*wReadProc)(wReadProcArg, 0, __GetAwChar)) != WEOF
-                           && tst_char_map(format.char_set, c)) /*- mm 980202 -*/ /*- mm 990325 -*/ /*- mm 990624 -*/
+                    while (
+                        format.field_width-- &&
+                        (c = (*wReadProc)(wReadProcArg, 0, __GetAwChar)) != WEOF &&
+                        tst_char_map(
+                            format.char_set,
+                            c)) /*- mm 980202 -*/ /*- mm 990325 -*/ /*- mm 990624 -*/
                     {
                         ++num_chars;
                     }
 
                     if (!num_chars)
                     {
-                        (*wReadProc)(wReadProcArg, c, __UngetAwChar); /*- mm 970513 -*/             /*- mm 990325 -*/
+                        (*wReadProc)(wReadProcArg, c, __UngetAwChar);
+                        /*- mm 970513 -*/                           /*- mm 990325 -*/
                         goto exit;
                     }
-                    chars_read += num_chars;                                                        /*- mm 970501 -*/
+                    chars_read += num_chars;                        /*- mm 970501 -*/
                 }
 
                 if (format.field_width >= 0)
                 {
-                    (*wReadProc)(wReadProcArg, c, __UngetAwChar);                                   /*- mm 990325 -*/
+                    (*wReadProc)(wReadProcArg, c, __UngetAwChar);   /*- mm 990325 -*/
                 }
 
                 ++conversions;
 
                 break;
 
-            case L'n' :
+            case L'n':
 
                 if (arg_ptr)
                 {
                     switch (format.argument_options)
                     {
-                        case normal_argument : *(int*)arg_ptr = chars_read; break;
-                        case short_argument  : *(short*)arg_ptr = chars_read; break;
-                        case long_argument   : *(long*)arg_ptr = chars_read; break;
-                        case char_argument   : *(char*)arg_ptr = chars_read; break;                   /*- mm 990616 -*/
-#    ifdef __MSL_LONGLONG_SUPPORT__                                                                 /*- mm 961219 -*/
-                        case long_long_argument : *(long long*)arg_ptr = chars_read; break;
-#    endif                                                                                          /*- mm 961219 -*/
+                        case normal_argument:
+                            *(int*)arg_ptr = chars_read;
+                            break;
+                        case short_argument:
+                            *(short*)arg_ptr = chars_read;
+                            break;
+                        case long_argument:
+                            *(long*)arg_ptr = chars_read;
+                            break;
+                        case char_argument:
+                            *(char*)arg_ptr = chars_read;
+                            break;                                  /*- mm 990616 -*/
+#ifdef __MSL_LONGLONG_SUPPORT__                                     /*- mm 961219 -*/
+                        case long_long_argument:
+                            *(long long*)arg_ptr = chars_read;
+                            break;
+#endif                                                              /*- mm 961219 -*/
                     }
                 }
 
                 continue;
 
-            case bad_conversion :
-            default             : goto exit;
+            case bad_conversion:
+            default:
+                goto exit;
         }
     }
 
 exit:
 
-    if ((*wReadProc)(wReadProcArg, 0, __TestForwcsError) && conversions == 0)                       /*- mm 990325 -*/
+    if ((*wReadProc)(wReadProcArg, 0, __TestForwcsError) &&
+        conversions == 0)                                           /*- mm 990325 -*/
     {
-        return (EOF);                                                                               /*- mm 980202 -*/
+        return (EOF);                                               /*- mm 980202 -*/
     }
 
     return (items_assigned);
 }
-
 /*- mm 990325 -*/
 wint_t
 __wFileRead(void* File, wint_t ch, int Action)
 {
     switch (Action)
     {
-        case __GetAwChar       : return (fgetwc((FILE*)File));
-        case __UngetAwChar     : return (ungetwc(ch, (FILE*)File));
-        case __TestForwcsError : return (ferror((FILE*)File) || feof((FILE*)File));
+        case __GetAwChar:
+            return (fgetwc((FILE*)File));
+        case __UngetAwChar:
+            return (ungetwc(ch, (FILE*)File));
+        case __TestForwcsError:
+            return (ferror((FILE*)File) || feof((FILE*)File));
     }
     return 0;                                /* to satisfy compiler */
 }
-
 wint_t
 __wStringRead(void* isc, wint_t ch, int Action)
 {
@@ -760,7 +842,7 @@ __wStringRead(void* isc, wint_t ch, int Action)
     __wInStrCtrl* Iscp = (__wInStrCtrl*)isc;
     switch (Action)
     {
-        case __GetAwChar :
+        case __GetAwChar:
             RetVal = *(Iscp->wNextChar);
             if (RetVal == L'\0')
             {
@@ -772,7 +854,7 @@ __wStringRead(void* isc, wint_t ch, int Action)
                 Iscp->wNextChar++;
                 return (RetVal);
             }
-        case __UngetAwChar :
+        case __UngetAwChar:
             if (!Iscp->wNullCharDetected)    /*- mm 990413 -*/
             {
                 Iscp->wNextChar--;           /*- mm 990413 -*/
@@ -782,11 +864,11 @@ __wStringRead(void* isc, wint_t ch, int Action)
                 Iscp->wNullCharDetected = 0; /*- mm 990413 -*/
             }
             return (ch);
-        case __TestForwcsError : return (Iscp->wNullCharDetected);
+        case __TestForwcsError:
+            return (Iscp->wNullCharDetected);
     }
     return 0;                                /* to satisfy compiler */
 }
-
 /*
     fwscanf
 
@@ -815,28 +897,29 @@ __wStringRead(void* isc, wint_t ch, int Action)
 int
 fwscanf(FILE* file, const wchar_t* format, ...)
 {
-    int retval;                                                                        /*- mm 001018 -*/
-#    if __PPC_EABI__ || __MIPS__                                                       /*__dest_os == __mips_bare  */
+    int retval;                                  /*- mm 001018 -*/
+#if __PPC_EABI__ || __MIPS__                     /*__dest_os == __mips_bare  */
     va_list args;
-    if ((file == NULL) || (fwide(file, 1) <= 0))                                       /*- mm 000404 -*/
+    if ((file == NULL) || (fwide(file, 1) <= 0)) /*- mm 000404 -*/
     {
         return (EOF);
     }
     va_start(args, format);
-    __begin_critical_region(files_access);                                             /*- mm 001018 -*/
-    retval = __wsformatter(&__wFileRead, (void*)file, format, args); /*- mm 990804 -*/ /*- mm 001018 -*/
-#    else
-    if ((file == NULL) || (fwide(file, 1) <= 0))                                    /*- mm 000404 -*/
+    __begin_critical_region(files_access);       /*- mm 001018 -*/
+    retval = __wsformatter(&__wFileRead, (void*)file, format, args);
+    /*- mm 990804 -*/                            /*- mm 001018 -*/
+#else
+    if ((file == NULL) || (fwide(file, 1) <= 0))      /*- mm 000404 -*/
     {
         return (EOF);
     }
-    __begin_critical_region(files_access);                                          /*- mm 001018 -*/
-    retval = __wsformatter(&__wFileRead, (void*)file, format, __va_start(format));  /*- mm 001018 -*/
-#    endif
-    __end_critical_region(files_access);                                               /*- mm 001018 -*/
-    return (retval);                                                                   /*- mm 001018 -*/
+    __begin_critical_region(files_access);            /*- mm 001018 -*/
+    retval = __wsformatter(&__wFileRead, (void*)file, format,
+                           __va_start(format));       /*- mm 001018 -*/
+#endif
+    __end_critical_region(files_access);         /*- mm 001018 -*/
+    return (retval);                             /*- mm 001018 -*/
 }
-
 /*
     wscanf
 
@@ -857,28 +940,29 @@ fwscanf(FILE* file, const wchar_t* format, ...)
 int
 wscanf(const wchar_t* format, ...)
 {
-    int retval;                                                                         /*- mm 001018 -*/
-#    if __PPC_EABI__ || __MIPS__                                                        /*__dest_os == __mips_bare  */
+    int retval;                            /*- mm 001018 -*/
+#if __PPC_EABI__ || __MIPS__               /*__dest_os == __mips_bare  */
     va_list args;
     if (fwide(stdin, 1) <= 0)
     {
         return (EOF);
     }
     va_start(args, format);
-    __begin_critical_region(files_access);                                              /*- mm 001018 -*/
-    retval = __wsformatter(&__wFileRead, (void*)stdin, format, args); /*- mm 990804 -*/ /*- mm 001018 -*/
-#    else
+    __begin_critical_region(files_access); /*- mm 001018 -*/
+    retval = __wsformatter(&__wFileRead, (void*)stdin, format, args);
+    /*- mm 990804 -*/                      /*- mm 001018 -*/
+#else
     if (fwide(stdin, 1) <= 0)
     {
         return (EOF);
     }
-    __begin_critical_region(files_access);                                          /*- mm 001018 -*/
-    retval = __wsformatter(&__wFileRead, (void*)stdin, format, __va_start(format)); /*- mm 001018 -*/
-#    endif
-    __end_critical_region(files_access);                                                /*- mm 001018 -*/
-    return (retval);                                                                    /*- mm 001018 -*/
+    __begin_critical_region(files_access);            /*- mm 001018 -*/
+    retval = __wsformatter(&__wFileRead, (void*)stdin, format,
+                           __va_start(format));       /*- mm 001018 -*/
+#endif
+    __end_critical_region(files_access);   /*- mm 001018 -*/
+    return (retval);                       /*- mm 001018 -*/
 }
-
 /*
     vwscanf
 
@@ -902,17 +986,17 @@ wscanf(const wchar_t* format, ...)
 int
 vwscanf(const wchar_t* format, va_list arg)
 {
-    int retval;                                                      /*- mm 001018 -*/
+    int retval;                                                 /*- mm 001018 -*/
     if (fwide(stdin, 1) <= 0)
     {
         return (EOF);
     }
-    __begin_critical_region(files_access);                           /*- mm 001018 -*/
-    retval = __wsformatter(&__wFileRead, (void*)stdin, format, arg); /*- mm 001018 -*/
-    __end_critical_region(files_access);                             /*- mm 001018 -*/
-    return (retval);                                                 /*- mm 001018 -*/
+    __begin_critical_region(files_access);                      /*- mm 001018 -*/
+    retval =
+        __wsformatter(&__wFileRead, (void*)stdin, format, arg); /*- mm 001018 -*/
+    __end_critical_region(files_access);                        /*- mm 001018 -*/
+    return (retval);                                            /*- mm 001018 -*/
 }
-
 /*  vfwscanf
 
        Description
@@ -932,19 +1016,19 @@ vwscanf(const wchar_t* format, va_list arg)
        even zero, in the event of an early matching failure.
 */
 int
-vfwscanf(FILE* stream, const wchar_t* format, va_list arg)            /*- mm 990829 -*/
+vfwscanf(FILE* stream, const wchar_t* format, va_list arg)       /*- mm 990829 -*/
 {
-    int retval;                                                       /*- mm 001018 -*/
-    if ((stream == NULL) || (fwide(stream, 1) <= 0))                  /*- mm 000404 -*/
+    int retval;                                                  /*- mm 001018 -*/
+    if ((stream == NULL) || (fwide(stream, 1) <= 0))             /*- mm 000404 -*/
     {
         return (EOF);
     }
-    __begin_critical_region(files_access);                            /*- mm 001018 -*/
-    retval = __wsformatter(&__wFileRead, (void*)stream, format, arg); /*- mm 001018 -*/
-    __end_critical_region(files_access);                              /*- mm 001018 -*/
-    return (retval);                                                  /*- mm 001018 -*/
+    __begin_critical_region(files_access);                       /*- mm 001018 -*/
+    retval =
+        __wsformatter(&__wFileRead, (void*)stream, format, arg); /*- mm 001018 -*/
+    __end_critical_region(files_access);                         /*- mm 001018 -*/
+    return (retval);                                             /*- mm 001018 -*/
 }
-
 /*
     vswscanf
 
@@ -978,7 +1062,6 @@ vswscanf(const wchar_t* s, const wchar_t* format, va_list arg) /*- mm 990828 -*/
 
     return (__wsformatter(&__wStringRead, (void*)&wisc, format, arg));
 }
-
 /*
     swscanf
 
@@ -1003,15 +1086,14 @@ vswscanf(const wchar_t* s, const wchar_t* format, va_list arg) /*- mm 990828 -*/
 int
 swscanf(const wchar_t* s, const wchar_t* format, ...)
 {
-#    if __PPC_EABI__ || __MIPS__        /*   __dest_os == __mips_bare  */
+#if __PPC_EABI__ || __MIPS__            /*   __dest_os == __mips_bare  */
     va_list args;
     va_start(args, format);
     return (vswscanf(s, format, args)); /*- mm 990828 -*/
-#    else
-    return (vswscanf(s, format, __va_start(format)));                               /*- mm 990828 -*/
-#    endif
+#else
+    return (vswscanf(s, format, __va_start(format))); /*- mm 990828 -*/
+#endif
 }
-
 #endif /* #ifndef __NO_WIDE_CHAR*/      /*- mm 981020 -*/
 
                                         /* Change record:
@@ -1021,16 +1103,17 @@ swscanf(const wchar_t* s, const wchar_t* format, ...)
                                          * mm  990325 Changes to split string scan functions from file i/o
                                          * mm  990407 Changes to handle %ls and %lc
                                          * mm  990408 Correction to invert char set map code.
-                                         * mm  990409 Correction to avoid using macro for iswspace() where there are side-effects.
-                                         * mm  990409 Change to handle NULL source string.
-                                         * mm  990413 Corrected handling of case where source text quits early IL9904-0736
-                                         * mm  990624 Corrected assignment to wide-char target
-                                         * mm  990624 Implemented the %l[ specification
-                                         * mm  990804 Corrected 	calls under __PPC_EABI__ || __MIPS__
-                                         * mm  990805 Changed vfwscanf to wsformatter in embedded targets
-                                         * mm  990817 Deleted include of <string_io.h>
-                                         * mm  990914 Corrected size of char_map to allow for full wchar character set IR9909-0523
-                                         * mm  000404 Inserted code to detect null input fle  WB1-12370
-                                         * mm  000419 Initialized char_map without large static area, thanks to Andreas
-                                         * mm  001018 Added threadsafety to vwscanf, fwscanf, wscanf, and vfwscanf
+                                         * mm  990409 Correction to avoid using macro for iswspace() where there are
+                                         * side-effects.                                         mm  990409 Change to handle
+                                         * NULL source string.                                         mm  990413 Corrected
+                                         * handling of case where source text quits early IL9904-0736                                         mm  990624 Corrected
+                                         * assignment to wide-char target                                         mm  990624
+                                         * Implemented the %l[ specification                                         mm
+                                         * 990804 Corrected 	calls under __PPC_EABI__ || __MIPS__                                         mm  990805 Changed
+                                         * vfwscanf to wsformatter in embedded targets                                         mm  990817 Deleted include of
+                                         * <string_io.h>                                         mm  990914 Corrected size of
+                                         * char_map to allow for full wchar                                         character set IR9909-0523                                         mm  000404 Inserted
+                                         * code to detect null input fle                                         WB1-12370                                         mm
+                                         * 000419 Initialized char_map without large static area, thanks to                                         Andreas                                         mm                                         001018
+                                         * Added threadsafety to vwscanf, fwscanf, wscanf, and vfwscanf
                                          */

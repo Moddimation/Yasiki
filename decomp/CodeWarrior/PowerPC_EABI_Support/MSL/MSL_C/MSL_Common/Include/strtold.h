@@ -6,10 +6,10 @@
  */
 
 #ifndef _MSL_STRTOLD_H
-#    define _MSL_STRTOLD_H
+#define _MSL_STRTOLD_H
 
-#    include <ansi_parms.h>
-#    include <cstdio> /*- mm 970905 -*/                        /*- hh 971206 -*/
+#include <ansi_parms.h>
+#include <cstdio> /*- mm 970905 -*/                            /*- hh 971206 -*/
 
 _MSL_BEGIN_EXTERN_C                                            /*- cc 010409 -*/
 

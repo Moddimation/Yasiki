@@ -6,25 +6,25 @@
  */
 
 #ifndef _MSL_T_H
-#    define _MSL_T_H
+#define _MSL_T_H
 
-#    include <ansi_parms.h>
+#include <ansi_parms.h>
 
-#    ifdef _INT32
-#        undef _INT32
-#    endif
+#ifdef _INT32
+#undef _INT32
+#endif
 
-#    ifdef _UINT32
-#        undef _UINT32
-#    endif
+#ifdef _UINT32
+#undef _UINT32
+#endif
 
-#    if __MC68K__ || defined(__m56800__) || defined(__m56800E__)
+#if __MC68K__ || defined(__m56800__) || defined(__m56800E__)
 typedef long          _INT32;
 typedef unsigned long _UINT32;
-#    else
+#else
 typedef int          _INT32;
 typedef unsigned int _UINT32;
-#    endif
+#endif
 
 #endif /* _MSL_T_H */
 

@@ -4,7 +4,6 @@
 #include "dolphin/types.h"
 
 #include "Sato/EnemyTypicalStrategy.h"
-
 class AITurara : public EnemyTypicalStrategy
 {
 public:
@@ -36,5 +35,4 @@ public:
 
     /* 0x01F0 */ float mScale;
 };
-
 #endif

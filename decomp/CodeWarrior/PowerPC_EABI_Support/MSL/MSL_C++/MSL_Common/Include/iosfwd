@@ -1,5 +1,6 @@
 /* Metrowerks Standard Library
- * Copyright ÃÂ¯ÃÂ½C 1995-2001 Metrowerks Corporation.  All rights reserved.
+ * Copyright ÃÂ¯ÃÂ½C 1995-2001 Metrowerks Corporation.  All rights
+ * reserved.
  *
  * $Date: 2001/04/02 18:27:20 $
  * $Revision: 1.14 $
@@ -7,47 +8,47 @@
 
 // iosfwd
 
-#ifndef _IOSFWD           // hh 971222 Made include guards standard
-#    define _IOSFWD
+#ifndef _IOSFWD    // hh 971222 Made include guards standard
+#define _IOSFWD
 
-#    include <mslconfig>
+#include <mslconfig>
 
-#    ifndef _MSL_NO_WCHART_C_SUPPORT
-#        include <cwchar> // hh 980908 for mbstate_t
-#    else
+#ifndef _MSL_NO_WCHART_C_SUPPORT
+#include <cwchar>  // hh 980908 for mbstate_t
+#else
 typedef int mbstate_t;
-#    endif
+#endif
 
-#    ifndef RC_INVOKED    // hh 971230
+#ifndef RC_INVOKED // hh 971230
 
-#        pragma options align = native
+#pragma options align = native
 
-#        ifdef _MSL_FORCE_ENUMS_ALWAYS_INT
-#            if _MSL_FORCE_ENUMS_ALWAYS_INT
-#                pragma enumsalwaysint on
-#            else
-#                pragma enumsalwaysint off
-#            endif
-#        endif
+#ifdef _MSL_FORCE_ENUMS_ALWAYS_INT
+#if _MSL_FORCE_ENUMS_ALWAYS_INT
+#pragma enumsalwaysint on
+#else
+#pragma enumsalwaysint off
+#endif
+#endif
 
-#        ifdef _MSL_FORCE_ENABLE_BOOL_SUPPORT
-#            if _MSL_FORCE_ENABLE_BOOL_SUPPORT
-#                pragma bool on
-#            else
-#                pragma bool off
-#            endif
-#        endif
+#ifdef _MSL_FORCE_ENABLE_BOOL_SUPPORT
+#if _MSL_FORCE_ENABLE_BOOL_SUPPORT
+#pragma bool on
+#else
+#pragma bool off
+#endif
+#endif
 
-#        ifndef _MSL_NO_CPP_NAMESPACE
+#ifndef _MSL_NO_CPP_NAMESPACE
 namespace std
 {
-#        endif
+#endif
 
 template <class charT> struct char_traits;
 
 template <class T> class allocator;
 
-#        ifndef _MSL_NO_IO
+#ifndef _MSL_NO_IO
 
 template <class charT, class traits = char_traits<charT> > class basic_ios;
 
@@ -59,15 +60,21 @@ template <class charT, class traits = char_traits<charT> > class basic_ostream;
 
 template <class charT, class traits = char_traits<charT> > class basic_iostream;
 
-template <class charT, class traits = char_traits<charT>, class Allocator = allocator<charT> > class basic_stringbuf;
+template <class charT, class traits = char_traits<charT>,
+          class Allocator = allocator<charT> >
+class basic_stringbuf;
 
-template <class charT, class traits = char_traits<charT>, class Allocator = allocator<charT> >
+template <class charT, class traits = char_traits<charT>,
+          class Allocator = allocator<charT> >
 class basic_istringstream;
 
-template <class charT, class traits = char_traits<charT>, class Allocator = allocator<charT> >
+template <class charT, class traits = char_traits<charT>,
+          class Allocator = allocator<charT> >
 class basic_ostringstream;
 
-template <class charT, class traits = char_traits<charT>, class Allocator = allocator<charT> > class basic_stringstream;
+template <class charT, class traits = char_traits<charT>,
+          class Allocator = allocator<charT> >
+class basic_stringstream;
 
 template <class charT, class traits = char_traits<charT> > class basic_filebuf;
 
@@ -100,7 +107,7 @@ typedef basic_ifstream<char, char_traits<char> > ifstream;
 typedef basic_ofstream<char, char_traits<char> > ofstream;
 typedef basic_fstream<char, char_traits<char> >  fstream;
 
-#            ifndef _MSL_NO_WCHART_CPP_SUPPORT
+#ifndef _MSL_NO_WCHART_CPP_SUPPORT
 
 //	template <> struct char_traits<wchar_t>;
 
@@ -111,19 +118,23 @@ typedef basic_istream<wchar_t, char_traits<wchar_t> >   wistream;
 typedef basic_ostream<wchar_t, char_traits<wchar_t> >   wostream;
 typedef basic_iostream<wchar_t, char_traits<wchar_t> >  wiostream;
 
-typedef basic_stringbuf<wchar_t, char_traits<wchar_t>, allocator<wchar_t> >     wstringbuf;
-typedef basic_istringstream<wchar_t, char_traits<wchar_t>, allocator<wchar_t> > wistringstream;
-typedef basic_ostringstream<wchar_t, char_traits<wchar_t>, allocator<wchar_t> > wostringstream;
-typedef basic_stringstream<wchar_t, char_traits<wchar_t>, allocator<wchar_t> >  wstringstream;
+typedef basic_stringbuf<wchar_t, char_traits<wchar_t>, allocator<wchar_t> >
+    wstringbuf;
+typedef basic_istringstream<wchar_t, char_traits<wchar_t>, allocator<wchar_t> >
+    wistringstream;
+typedef basic_ostringstream<wchar_t, char_traits<wchar_t>, allocator<wchar_t> >
+    wostringstream;
+typedef basic_stringstream<wchar_t, char_traits<wchar_t>, allocator<wchar_t> >
+    wstringstream;
 
 typedef basic_filebuf<wchar_t, char_traits<wchar_t> >  wfilebuf;
 typedef basic_ifstream<wchar_t, char_traits<wchar_t> > wifstream;
 typedef basic_ofstream<wchar_t, char_traits<wchar_t> > wofstream;
 typedef basic_fstream<wchar_t, char_traits<wchar_t> >  wfstream;
 
-#            endif // _MSL_NO_WCHART_CPP_SUPPORT
+#endif // _MSL_NO_WCHART_CPP_SUPPORT
 
-#        endif     // _MSL_NO_IO
+#endif // _MSL_NO_IO
 
 template <class state> class fpos;
 // hh 980908 added
@@ -132,23 +143,23 @@ typedef fpos<mbstate_t> wstreampos;
 
 typedef long streamoff;
 
-#        ifndef _MSL_NO_CPP_NAMESPACE
+#ifndef _MSL_NO_CPP_NAMESPACE
 } // namespace std
-#        endif
+#endif
 
-#        ifdef _MSL_FORCE_ENUMS_ALWAYS_INT
-#            pragma enumsalwaysint reset
-#        endif
+#ifdef _MSL_FORCE_ENUMS_ALWAYS_INT
+#pragma enumsalwaysint reset
+#endif
 
-#        ifdef _MSL_FORCE_ENABLE_BOOL_SUPPORT
-#            pragma bool reset
-#        endif
+#ifdef _MSL_FORCE_ENABLE_BOOL_SUPPORT
+#pragma bool reset
+#endif
 
-#        pragma options align = reset
+#pragma options align = reset
 
-#    endif // RC_INVOKED
+#endif // RC_INVOKED
 
-#endif     // _IOSFWD
+#endif // _IOSFWD
 
 // hh  971222 added alignment wrapper
 // hh  971222 Changed filename from iosfwd.h to iosfwd

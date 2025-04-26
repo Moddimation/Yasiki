@@ -6,11 +6,11 @@
  */
 
 #ifndef _MSL_WSTDIO_H
-#    define _MSL_WSTDIO_H
+#define _MSL_WSTDIO_H
 
-#    include <ansi_parms.h>
-#    include <file_struc.h>
-#    include <va_list.h>
+#include <ansi_parms.h>
+#include <file_struc.h>
+#include <va_list.h>
 
 _MSL_BEGIN_NAMESPACE_STD                               /*- cc 010409 -*/
     _MSL_BEGIN_EXTERN_C                                /*- cc 010409 -*/

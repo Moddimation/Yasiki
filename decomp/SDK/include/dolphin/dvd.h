@@ -2,7 +2,6 @@
 #define _DOLPHIN_DVD_H_
 
 #include <dolphin/types.h>
-
 typedef struct DVDDiskID
 {
     u8 gameName[4];
@@ -16,7 +15,6 @@ typedef struct DVDDiskID
 
 typedef struct DVDCommandBlock DVDCommandBlock;
 typedef void                   (*DVDCBCallback)(s32 result, DVDCommandBlock* block);
-
 struct DVDCommandBlock
 {
     /*0x00*/ DVDCommandBlock* next;
@@ -35,7 +33,6 @@ struct DVDCommandBlock
 
 typedef struct DVDFileInfo DVDFileInfo;
 typedef void               (*DVDCallback)(s32 result, DVDFileInfo* fileInfo);
-
 struct DVDFileInfo
 {
     /*0x00*/ DVDCommandBlock cb;
@@ -43,21 +40,18 @@ struct DVDFileInfo
     /*0x34*/ u32             length;
     /*0x38*/ DVDCallback     callback;
 };
-
 typedef struct
 {
     u32 entryNum;
     u32 location;
     u32 next;
 } DVDDir;
-
 typedef struct
 {
     u32   entryNum;
     BOOL  isDir;
     char* name;
 } DVDDirEntry;
-
 typedef struct DVDBB2
 {
     /* 0x00 */ u32   bootFilePosition;
@@ -69,7 +63,6 @@ typedef struct DVDBB2
     /* 0x18 */ u32   userLength;
     /* 0x1C */ u32   padding0;
 } DVDBB2;
-
 typedef struct DVDDriveInfo
 {
     /* 0x00 */ u16 revisionLevel;
@@ -77,7 +70,6 @@ typedef struct DVDDriveInfo
     /* 0x04 */ u32 releaseDate;
     /* 0x08 */ u8  padding[24];
 } DVDDriveInfo;
-
 void DVDDumpWaitingQueue(void);
 int  DVDLowRead(void* addr, u32 length, u32 offset, void (*callback)(u32));
 int  DVDLowSeek(u32 offset, void (*callback)(u32));
@@ -195,9 +187,6 @@ s32   DVDGetTransferredSize(DVDFileInfo* fileinfo);
 #define DVD_STATE_CANCELED              10
 #define DVD_STATE_RETRY                 11
 
-#define DVD_FILEINFO_READY              0
-#define DVD_FILEINFO_BUSY               1
-
 #define DVD_RESULT_FATAL_ERROR          -1
 #define DVD_RESULT_COVER_CLOSED         -2
 #define DVD_RESULT_COVER_OPEN           -3
@@ -205,13 +194,12 @@ s32   DVDGetTransferredSize(DVDFileInfo* fileinfo);
 #define DVD_RESULT_IGNORED              -5
 #define DVD_RESULT_CANCELED             -6
 
-#define DVD_MIN_TRANSFER_SIZE           32
-
-// could be bitfields
-#define DVD_INTTYPE_TC                  1
-#define DVD_INTTYPE_DE                  2
-// unk type 3
-#define DVD_INTTYPE_CVR                 4
+#define DVD_INTTYPE_TC                  0x00000001
+#define DVD_INTTYPE_DE                  0x00000002
+#define DVD_INTTYPE_CVR                 0x00000004
+#define DVD_INTTYPE_BRK                 0x00000008
+#define DVD_INTTYPE_TIMEOUT             0x00000010
+#define DVD_INTTYPE_SECURITY_ERROR      0x00000020
 
 // DVD Commands
 

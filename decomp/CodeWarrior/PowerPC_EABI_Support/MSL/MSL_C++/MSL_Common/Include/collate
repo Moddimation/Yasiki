@@ -1,5 +1,6 @@
 /* Metrowerks Standard Library
- * Copyright ÃÂ¯ÃÂ½C 1995-2001 Metrowerks Corporation.  All rights reserved.
+ * Copyright ÃÂ¯ÃÂ½C 1995-2001 Metrowerks Corporation.  All rights
+ * reserved.
  *
  * $Date: 2001/07/27 20:50:50 $
  * $Revision: 1.8.2.1 $
@@ -8,104 +9,98 @@
 // collate
 
 #ifndef _COLLATE
-#    define _COLLATE
+#define _COLLATE
 
-#    include <mslconfig>
+#include <mslconfig>
 
-#    ifndef _MSL_NO_IO
+#ifndef _MSL_NO_IO
 
-#        ifndef _MSL_NO_LOCALE
+#ifndef _MSL_NO_LOCALE
 
-#            include <cstdlib>
-#            include <cstring>
-#            include <fstream>
-#            include <hash_map>
-#            include <limits>
-#            include <localeimp>
-#            include <sstream>
-#            include <string>
+#include <cstdlib>
+#include <cstring>
+#include <fstream>
+#include <hash_map>
+#include <limits>
+#include <localeimp>
+#include <sstream>
+#include <string>
 
-#            ifndef RC_INVOKED
+#ifndef RC_INVOKED
 
-#                pragma options align = native
+#pragma options align = native
 
-#                ifdef _MSL_FORCE_ENUMS_ALWAYS_INT
-#                    if _MSL_FORCE_ENUMS_ALWAYS_INT
-#                        pragma enumsalwaysint on
-#                    else
-#                        pragma enumsalwaysint off
-#                    endif
-#                endif
+#ifdef _MSL_FORCE_ENUMS_ALWAYS_INT
+#if _MSL_FORCE_ENUMS_ALWAYS_INT
+#pragma enumsalwaysint on
+#else
+#pragma enumsalwaysint off
+#endif
+#endif
 
-#                ifdef _MSL_FORCE_ENABLE_BOOL_SUPPORT
-#                    if _MSL_FORCE_ENABLE_BOOL_SUPPORT
-#                        pragma bool on
-#                    else
-#                        pragma bool off
-#                    endif
-#                endif
+#ifdef _MSL_FORCE_ENABLE_BOOL_SUPPORT
+#if _MSL_FORCE_ENABLE_BOOL_SUPPORT
+#pragma bool on
+#else
+#pragma bool off
+#endif
+#endif
 
-#                ifdef min
-#                    undef min
-#                endif
+#ifdef min
+#undef min
+#endif
 
-#                ifdef max
-#                    undef max
-#                endif
+#ifdef max
+#undef max
+#endif
 
-#                ifndef _MSL_NO_CPP_NAMESPACE
+#ifndef _MSL_NO_CPP_NAMESPACE
 namespace std
 {
-#                endif
+#endif
 
-#                ifndef _MSL_NO_LOCALE
-
+#ifndef _MSL_NO_LOCALE
 template <class charT> class collate : public locale::facet
 {
 public:
     typedef charT               char_type;
     typedef basic_string<charT> string_type;
-
     explicit collate(size_t refs = 0) : locale::facet(refs) {}
-
     int
-    compare(const charT* low1, const charT* high1, const charT* low2, const charT* high2) const
+    compare(const charT* low1, const charT* high1, const charT* low2,
+            const charT* high2) const
     {
         return do_compare(low1, high1, low2, high2);
     }
-
     string_type
     transform(const charT* low, const charT* high) const
     {
         return do_transform(low, high);
     }
-
     long
     hash(const charT* low, const charT* high) const
     {
         return do_hash(low, high);
     }
-
     static locale::id id;
 
 protected:
     virtual ÃÂ¢ÃÂÃÂ¾collate() {}
-
-    virtual int         do_compare(const charT* low1, const charT* high1, const charT* low2, const charT* high2) const;
+    virtual int do_compare(const charT* low1, const charT* high1, const charT* low2,
+                           const charT* high2) const;
     virtual string_type do_transform(const charT* low, const charT* high) const;
     virtual long        do_hash(const charT* low, const charT* high) const;
 };
-
 template <class charT> struct __facet_traits<collate<charT> >
 {
     static const bool is_standard = true;
 };
 
 template <class charT> locale::id collate<charT>::id;
-
 template <class charT>
 int
-collate<charT>::do_compare(const charT* low1, const charT* high1, const charT* low2, const charT* high2) const
+collate<charT>::do_compare(const charT* low1, const charT* high1, const charT* low2,
+                           const charT* high2) const
 {
     for (; low1 != high1 && low2 != high2; ++low1, ++low2)
     {
@@ -128,14 +123,12 @@ collate<charT>::do_compare(const charT* low1, const charT* high1, const charT* l
     }
     return 1;
 }
-
 template <class charT>
 inline typename collate<charT>::string_type
 collate<charT>::do_transform(const charT* low, const charT* high) const
 {
     return string_type(low, high);
 }
-
 template <class charT>
 long
 collate<charT>::do_hash(const charT* low, const charT* high) const
@@ -148,7 +141,6 @@ collate<charT>::do_hash(const charT* low, const charT* high) const
     }
     return long(result);
 }
-
 template <class charT> class __collation_rule
 {
     struct value
@@ -163,20 +155,18 @@ public:
     {
         unsigned char length;
     };
-
     __collation_rule() : is_french_(false) {}
-
-    explicit __collation_rule(const basic_string<charT>& rule) : is_french_(false) { set_rule(rule); }
-
+    explicit __collation_rule(const basic_string<charT>& rule) : is_french_(false)
+    {
+        set_rule(rule);
+    }
     void  set_rule(const basic_string<charT>& rule);
     entry operator()(const charT* low, const charT* high, int& state) const;
-
     bool
     is_french() const
     {
         return is_french_;
     }
-
     bool
     empty() const
     {
@@ -191,7 +181,6 @@ private:
 
     void do_command(charT c, value& v, int& state);
 };
-
 template <class charT>
 void
 __collation_rule<charT>::do_command(charT c, value& v, int& state)
@@ -205,21 +194,29 @@ __collation_rule<charT>::do_command(charT c, value& v, int& state)
     {
         switch (c)
         {
-            case charT('<') : v.primary++; v.secondary = numeric_limits<charT>::min();
-            case charT(';') : v.secondary++; v.tertiary = numeric_limits<charT>::min();
-            case charT(',') : v.tertiary++;
-            case charT('=') : state = 1; break;
-            case charT('&') : state = 1; break;
-            default :
-#                    ifndef _MSL_NO_EXCEPTIONS
+            case charT('<'):
+                v.primary++;
+                v.secondary = numeric_limits<charT>::min();
+            case charT(';'):
+                v.secondary++;
+                v.tertiary = numeric_limits<charT>::min();
+            case charT(','):
+                v.tertiary++;
+            case charT('='):
+                state = 1;
+                break;
+            case charT('&'):
+                state = 1;
+                break;
+            default:
+#ifndef _MSL_NO_EXCEPTIONS
                 throw runtime_error("invalid collation rule");
-#                    else
+#else
                 __msl_error("invalid collation rule");
-#                    endif
+#endif
         }
     }
 }
-
 template <class charT>
 void
 __collation_rule<charT>::set_rule(const basic_string<charT>& rule)
@@ -240,21 +237,21 @@ __collation_rule<charT>::set_rule(const basic_string<charT>& rule)
         {
             switch (state)
             {
-                case 0 :   // must be command
+                case 0: // must be command
                     if (was_quoted)
-#                    ifndef _MSL_NO_EXCEPTIONS
+#ifndef _MSL_NO_EXCEPTIONS
                         throw runtime_error("invalid collation rule");
-#                    else
+#else
                         __msl_error("invalid collation rule");
-#                    endif
+#endif
                     last_command = c;
                     do_command(c, v, state);
                     break;
-                case 1 :   // must be text after relation
+                case 1: // must be text after relation
                     word += c;
                     state = 2;
                     break;
-                case 2 :   // might be command or text
+                case 2: // might be command or text
                     if (was_quoted)
                     {
                         word += c;
@@ -263,30 +260,34 @@ __collation_rule<charT>::set_rule(const basic_string<charT>& rule)
                     {
                         switch (c)
                         {
-                            case charT('@') :
-                            case charT('<') :
-                            case charT(';') :
-                            case charT(',') :
-                            case charT('=') :
-                            case charT('&') :
+                            case charT('@'):
+                            case charT('<'):
+                            case charT(';'):
+                            case charT(','):
+                            case charT('='):
+                            case charT('&'):
                                 switch (last_command)
                                 {
-                                    case charT('<') :
-                                    case charT(';') :
-                                    case charT(',') :
-                                    case charT('=') :
-                                        table_.insert(typename _Map::value_type(word, v));
+                                    case charT('<'):
+                                    case charT(';'):
+                                    case charT(','):
+                                    case charT('='):
+                                        table_.insert(
+                                            typename _Map::value_type(word, v));
                                         word.clear();
                                         break;
-                                    case charT('&') :
+                                    case charT('&'):
                                         {
-                                            typename _Map::iterator i = table_.find(word);
+                                            typename _Map::iterator i =
+                                                table_.find(word);
                                             if (i == table_.end())
-#                    ifndef _MSL_NO_EXCEPTIONS
-                                                throw runtime_error("invalid collation rule");
-#                    else
-                                                __msl_error("invalid collation rule");
-#                    endif
+#ifndef _MSL_NO_EXCEPTIONS
+                                                throw runtime_error(
+                                                    "invalid collation rule");
+#else
+                                                __msl_error(
+                                                    "invalid collation rule");
+#endif
                                             v = i->second;
                                             word.clear();
                                         }
@@ -295,17 +296,19 @@ __collation_rule<charT>::set_rule(const basic_string<charT>& rule)
                                 last_command = c;
                                 do_command(c, v, state);
                                 break;
-                            default : word += c; break;
+                            default:
+                                word += c;
+                                break;
                         }
                     }
             }
         }
     }
 }
-
 template <class charT>
 typename __collation_rule<charT>::entry
-__collation_rule<charT>::operator()(const charT* low, const charT* high, int& state) const
+__collation_rule<charT>::operator()(const charT* low, const charT* high,
+                                    int& state) const
 {
     entry                                 result;
     basic_string<charT>                   word(1, *low);
@@ -335,7 +338,8 @@ __collation_rule<charT>::operator()(const charT* low, const charT* high, int& st
     }
     else
     {
-        typename iterator_traits<ci>::difference_type n = _STD::distance(i.first, i.second);
+        typename iterator_traits<ci>::difference_type n =
+            _STD::distance(i.first, i.second);
         if (n == 1)
         {
             state = 0;
@@ -363,7 +367,6 @@ __collation_rule<charT>::operator()(const charT* low, const charT* high, int& st
     }
     return result;
 }
-
 template <class charT> class collate_byname : public collate<charT>
 {
     typedef collate<charT> base;
@@ -374,53 +377,52 @@ public:
 
 protected:
     virtual ÃÂ¢ÃÂÃÂ¾collate_byname() {}
-
-    virtual int         do_compare(const charT* low1, const charT* high1, const charT* low2, const charT* high2) const;
+    virtual int do_compare(const charT* low1, const charT* high1, const charT* low2,
+                           const charT* high2) const;
     virtual string_type do_transform(const charT* low, const charT* high) const;
 
     __collation_rule<charT> rule_;
 };
-
 inline const string&
 __collate_marker(char)
 {
     static string collate_marker("collate_narrow");
     return collate_marker;
 }
-
-#                    ifndef _MSL_NO_WCHART_CPP_SUPPORT
-
+#ifndef _MSL_NO_WCHART_CPP_SUPPORT
 inline const string&
 __collate_marker(wchar_t)
 {
     static string collate_marker("collate_wide");
     return collate_marker;
 }
-
-#                    endif // _MSL_NO_WCHART_CPP_SUPPORT
-
-template <class charT> collate_byname<charT>::collate_byname(const char* std_name, size_t refs) : collate<charT>(refs)
+#endif                  // _MSL_NO_WCHART_CPP_SUPPORT
+template <class charT>
+collate_byname<charT>::collate_byname(const char* std_name, size_t refs)
+  : collate<charT>(refs)
 {
     if (std_name == 0)
-#                    ifndef _MSL_NO_EXCEPTIONS
+#ifndef _MSL_NO_EXCEPTIONS
         throw runtime_error("collate_byname constructed with null name");
-#                    else
+#else
         __msl_error("collate_byname constructed with null name");
-#                    endif
+#endif
     if (strlen(std_name) == 0)
     {
         std_name = getenv("LANG");
     }
     if (std_name != 0 && strcmp(std_name, "C") != 0)
     {
-#                    ifndef _MSL_NO_FILE_IO
+#ifndef _MSL_NO_FILE_IO
         ifstream infile(std_name);
         if (!infile.is_open())
-#                        ifndef _MSL_NO_EXCEPTIONS
-            throw runtime_error(string("collate_byname constructed with unsupported name: ") + std_name);
-#                        else
+#ifndef _MSL_NO_EXCEPTIONS
+            throw runtime_error(
+                string("collate_byname constructed with unsupported name: ") +
+                std_name);
+#else
             __msl_error("collate_byname constructed with unsupported name");
-#                        endif
+#endif
         string word;
         bool   success = true;
         while (infile.good())
@@ -437,35 +439,38 @@ template <class charT> collate_byname<charT>::collate_byname(const char* std_nam
                 basic_string<charT> rule;
                 __read_formatted_string(infile, rule);
                 if (infile.fail())
-#                        ifndef _MSL_NO_EXCEPTIONS
-                    throw runtime_error(string("collate_byname file input error: ") + std_name);
-#                        else
+#ifndef _MSL_NO_EXCEPTIONS
+                    throw runtime_error(string("collate_byname file input error: ") +
+                                        std_name);
+#else
                     __msl_error("collate_byname file input error");
-#                        endif
+#endif
                 rule_.set_rule(rule);
                 success = true;
                 break;
             }
         }
         if (!success)
-#                        ifndef _MSL_NO_EXCEPTIONS
-            throw runtime_error(string("collate_byname file input error: ") + std_name);
-#                        else
+#ifndef _MSL_NO_EXCEPTIONS
+            throw runtime_error(string("collate_byname file input error: ") +
+                                std_name);
+#else
             __msl_error("collate_byname file input error");
-#                        endif
-#                    else  // _MSL_NO_FILE_IO
-#                        ifndef _MSL_NO_EXCEPTIONS
-        throw runtime_error(string("collate_byname constructed with unsupported name: ") + std_name);
-#                        else
+#endif
+#else                   // _MSL_NO_FILE_IO
+#ifndef _MSL_NO_EXCEPTIONS
+        throw runtime_error(
+            string("collate_byname constructed with unsupported name: ") + std_name);
+#else
         __msl_error("collate_byname constructed with unsupported name");
-#                        endif
-#                    endif // _MSL_NO_FILE_IO
+#endif
+#endif                  // _MSL_NO_FILE_IO
     }
 }
-
 template <class charT>
 int
-collate_byname<charT>::do_compare(const charT* low1, const charT* high1, const charT* low2, const charT* high2) const
+collate_byname<charT>::do_compare(const charT* low1, const charT* high1,
+                                  const charT* low2, const charT* high2) const
 {
     if (rule_.empty())
     {
@@ -475,7 +480,6 @@ collate_byname<charT>::do_compare(const charT* low1, const charT* high1, const c
     const string_type s2(base::transform(low2, high2));
     return collate<charT>::do_compare(s1.begin(), s1.end(), s2.begin(), s2.end());
 }
-
 template <class charT>
 typename collate_byname<charT>::string_type
 collate_byname<charT>::do_transform(const charT* low, const charT* high) const
@@ -507,7 +511,8 @@ collate_byname<charT>::do_transform(const charT* low, const charT* high) const
         }
         low += w.length;
     }
-    const typename string_type::size_type n = primary.size() + secondary.size() + tertiary.size() + 2;
+    const typename string_type::size_type n =
+        primary.size() + secondary.size() + tertiary.size() + 2;
     if (n > primary.capacity())
     {
         primary.reserve(n);
@@ -522,30 +527,29 @@ collate_byname<charT>::do_transform(const charT* low, const charT* high) const
     primary += tertiary;
     return primary;
 }
+#endif                  // _MSL_NO_LOCALE
 
-#                endif     // _MSL_NO_LOCALE
-
-#                ifndef _MSL_NO_CPP_NAMESPACE
+#ifndef _MSL_NO_CPP_NAMESPACE
 } // namespace std
-#                endif
+#endif
 
-#                ifdef _MSL_FORCE_ENUMS_ALWAYS_INT
-#                    pragma enumsalwaysint reset
-#                endif
+#ifdef _MSL_FORCE_ENUMS_ALWAYS_INT
+#pragma enumsalwaysint reset
+#endif
 
-#                ifdef _MSL_FORCE_ENABLE_BOOL_SUPPORT
-#                    pragma bool reset
-#                endif
+#ifdef _MSL_FORCE_ENABLE_BOOL_SUPPORT
+#pragma bool reset
+#endif
 
-#                pragma options align = reset
+#pragma options align = reset
 
-#            endif // RC_INVOKED
+#endif // RC_INVOKED
 
-#        endif     // _MSL_NO_LOCALE
+#endif // _MSL_NO_LOCALE
 
-#    endif         // _MSL_NO_IO
+#endif // _MSL_NO_IO
 
-#endif             // _COLLATE
+#endif // _COLLATE
 
 // hh 010228 Created
 // hh 010402 Removed 68K CMF support

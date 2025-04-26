@@ -2,7 +2,6 @@
 #define _DOLPHIN_SEQ_H_
 
 #include <dolphin/syn.h>
-
 typedef struct _SEQTRACK
 {
     /* 0x00 */ void* sequence;
@@ -16,7 +15,6 @@ typedef struct _SEQTRACK
     /* 0x20 */ u32   delay;
     /* 0x24 */ u32   state;
 } SEQTRACK;
-
 typedef struct _SEQSEQUENCE
 {
     /* 0x0000 */ void*           next;
@@ -29,22 +27,23 @@ typedef struct _SEQSEQUENCE
     /* 0x3148 */ void            (*callback[128])(void*, u8);
     /* 0x3348 */ SEQTRACK        track[64];
 } SEQSEQUENCE;
-
 #define SEQ_ALL_TRACKS -1
 
 // seq.c
 void SEQInit(void);
 void SEQQuit(void);
 void SEQRunAudioFrame(void);
-void SEQAddSequence(SEQSEQUENCE* sequence, u32* midiStream, void* wt, u32 aramBase, u32 priorityVoiceAlloc,
-                    u32 priorityNoteOn, u32 priorityNoteRelease);
+void SEQAddSequence(SEQSEQUENCE* sequence, u32* midiStream, void* wt, u32 aramBase,
+                    u32 priorityVoiceAlloc, u32 priorityNoteOn,
+                    u32 priorityNoteRelease);
 void SEQRemoveSequence(SEQSEQUENCE* sequence);
-void SEQRegisterControllerCallback(SEQSEQUENCE* sequence, u8 controller, void (*callback)(void*, u8));
+void SEQRegisterControllerCallback(SEQSEQUENCE* sequence, u8 controller,
+                                   void (*callback)(void*, u8));
 void SEQSetState(SEQSEQUENCE* sequence, u32 state);
 u32  SEQGetState(SEQSEQUENCE* sequence);
 void SEQSetTempo(SEQSEQUENCE* sequence, u32 trackIndex, float bpm);
 f32  SEQGetTempo(SEQSEQUENCE* sequence, u32 trackIndex);
 void SEQSetVolume(SEQSEQUENCE* sequence, s32 dB);
-s32 SEQGetVolume(SEQSEQUENCE* sequence);
+s32  SEQGetVolume(SEQSEQUENCE* sequence);
 
 #endif // _DOLPHIN_SEQ_H_

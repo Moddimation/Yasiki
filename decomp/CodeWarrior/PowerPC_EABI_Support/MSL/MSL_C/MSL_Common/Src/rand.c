@@ -23,25 +23,24 @@
 #include <stdlib.h>
 
 #if _MWMT && (__dest_os == __win32_os || __dest_os == __wince_os)
-#    include <ThreadLocalData.h>
+#include <ThreadLocalData.h>
 #else
 
 __tls static unsigned long int next = 1;
 
 #endif
-
 int
 rand(void)
 {
 #if _MWMT && (__dest_os == __win32_os || __dest_os == __wince_os)
-    _GetThreadLocalData(_MSL_TRUE)->random_next = _GetThreadLocalData(_MSL_TRUE)->random_next * 1103515245 + 12345;
+    _GetThreadLocalData(_MSL_TRUE)->random_next =
+        _GetThreadLocalData(_MSL_TRUE)->random_next * 1103515245 + 12345;
     return ((_GetThreadLocalData(_MSL_TRUE)->random_next >> 16) & 0x7FFF);
 #else
     next = next * 1103515245 + 12345;
     return ((next >> 16) & 0x7FFF);
 #endif
 }
-
 void
 srand(unsigned int seed)
 {
@@ -51,7 +50,6 @@ srand(unsigned int seed)
     next = seed;
 #endif
 }
-
 /* Change record:
  * JFH 950607 First code release.
  * JFH 960429 Merged Win32 changes in.

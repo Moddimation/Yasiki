@@ -6,18 +6,17 @@
 /************************************************************************/
 
 #if __MWERKS__
-#    pragma exceptions on
+#pragma exceptions on
 #endif
 
 #if __PPC_EABI__
-#    include <MWCPlusLib.h>
+#include <MWCPlusLib.h>
 #elif __dest_os == __mac_os
-#    include <CPlusLib.h>
+#include <CPlusLib.h>
 #endif
 #define __NOSTRING__ //	do not include <string>
 #include <string.h>
 #include <typeinfo>
-
 /************************************************************************/
 /*	Purpose..: 	Compare two strings										*/
 /*	Input....:	pointer to first string									*/
@@ -36,7 +35,6 @@ strequal(register const char* s1, register const char* s2)
     }
     return (*(unsigned char*)s1 - *(unsigned char*)s2);
 }
-
 #ifndef _MSL_NO_CPP_NAMESPACE // hh 980106
 namespace std
 {
@@ -129,40 +127,37 @@ type_info& type_info::operator=(const type_info& ti)
 /************************************************************************/
 
 typedef struct type_info_struct type_info_struct; //	forward
-
 typedef struct type_info_base_list
 {                                                 //	type info base list
-    type_info_struct* baseti;                     //	pointer to bases type_info struct (0: end of list)
-    long              offset;          //	offset of base in main class (0x80000000 : ambiguous/no access list follows
+    type_info_struct*
+         baseti;  //	pointer to bases type_info struct (0: end of list)
+    long offset;  //	offset of base in main class (0x80000000 : ambiguous/no access
+                  // list follows
 } type_info_base_list;
-
 typedef struct type_info_ambighead
-{                                      //	type ambiguous/no access base list header
-    void* baseti;                      //	pointer to bases type_info struct (0: end of list)
-    long  offset;                      //	offset of base in main class (|=0x80000000)
-    long  bases;                       //	number of type_info_base_list elements (public bases)
+{                 //	type ambiguous/no access base list header
+    void* baseti; //	pointer to bases type_info struct (0: end of list)
+    long  offset; //	offset of base in main class (|=0x80000000)
+    long  bases;  //	number of type_info_base_list elements (public bases)
 } type_info_ambighead;
-
 struct type_info_struct
-{                                      //	type info data structure
+{                 //	type info data structure
     char*                tname;        //	pointer to type name
     type_info_base_list* baselist;     //	pointer to base list
 };
-
 typedef struct RTTIVTableHeader
 {                                      //	RTTI header in a vtable
     type_info_struct* type_info_ptr;   //	pointer to complete class type_info struct
     long              complete_offset; //	offset of complete class
 } RTTIVTableHeader;
-
 extern "C"
 {
 _MSL_IMP_EXP_RUNTIME void* __get_typeid(void*, long);
-_MSL_IMP_EXP_RUNTIME void* __dynamic_cast(void*, long, type_info_struct*, type_info_struct*, short);
+_MSL_IMP_EXP_RUNTIME void* __dynamic_cast(void*, long, type_info_struct*,
+                                          type_info_struct*, short);
 }
 
 static type_info_struct unknown_type = { "???" };
-
 /************************************************************************/
 /* Purpose..: Get polymorphic typeid									*/
 /* Input....: pointer to object (or 0)									*/
@@ -173,7 +168,8 @@ void*
 __get_typeid(void* obj, long offset)
 {
     //
-    //	Note:	the first entry of an object's vtable is a pointer to the typeid object
+    //	Note:	the first entry of an object's vtable is a pointer to the typeid
+    // object
     //
     if (obj == 0)
     {
@@ -181,7 +177,8 @@ __get_typeid(void* obj, long offset)
     }
 #if CABI_ZEROOFFSETVTABLE
 
-    if ((obj = *(void**)(*(char**)((char*)obj + offset) - sizeof(RTTIVTableHeader))) == 0)
+    if ((obj = *(void**)(*(char**)((char*)obj + offset) -
+                         sizeof(RTTIVTableHeader))) == 0)
     { //	class was compiled withou the RTTI option
         return &unknown_type;
     }
@@ -196,7 +193,6 @@ __get_typeid(void* obj, long offset)
 #endif
     return obj;
 }
-
 /************************************************************************/
 /* Purpose..: dynamnic_cast runtime function							*/
 /* Input....: pointer to object (or 0)									*/
@@ -207,9 +203,9 @@ __get_typeid(void* obj, long offset)
 /* Return...: pointer to casted expression								*/
 /************************************************************************/
 extern void __priv_throwbadcast(void); // hh 980205 prototype for runtime use
-
 void*
-__dynamic_cast(void* obj, long offset, type_info_struct* typeinfo, type_info_struct* subtypeinfo, short isref)
+__dynamic_cast(void* obj, long offset, type_info_struct* typeinfo,
+               type_info_struct* subtypeinfo, short isref)
 {
     RTTIVTableHeader*    vthead;
     type_info_base_list* list;
@@ -231,7 +227,8 @@ __dynamic_cast(void* obj, long offset, type_info_struct* typeinfo, type_info_str
     if (vthead->type_info_ptr)
     {                                  //	class was compiled with the RTTI option
         completeclass = (char*)obj + vthead->complete_offset;
-        if (typeinfo == 0 || (strequal(vthead->type_info_ptr->tname, typeinfo->tname) == 0))
+        if (typeinfo == 0 ||
+            (strequal(vthead->type_info_ptr->tname, typeinfo->tname) == 0))
         {                              //	success: cast to void* or to complete class
             return completeclass;
         }
@@ -244,13 +241,16 @@ __dynamic_cast(void* obj, long offset, type_info_struct* typeinfo, type_info_str
                 {                      //	ambiguous/access match
                     loffset = (list->offset & 0x7fffffff);
                     n = ((type_info_ambighead*)list)->bases;
-                    if (vthead->complete_offset + loffset == 0 && (strequal(list->baseti->tname, typeinfo->tname) == 0))
+                    if (vthead->complete_offset + loffset == 0 &&
+                        (strequal(list->baseti->tname, typeinfo->tname) == 0))
                     {                  //	check bases
-                        list = (type_info_base_list*)((type_info_ambighead*)list + 1);
+                        list =
+                            (type_info_base_list*)((type_info_ambighead*)list + 1);
                         for (i = 0; i < n; i++, list++)
                         {
-                            if (vthead->complete_offset + list->offset == 0
-                                && (strequal(list->baseti->tname, subtypeinfo->tname) == 0))
+                            if (vthead->complete_offset + list->offset == 0 &&
+                                (strequal(list->baseti->tname, subtypeinfo->tname) ==
+                                 0))
                             {
                                 return (char*)completeclass + list->offset;
                             }
@@ -259,14 +259,15 @@ __dynamic_cast(void* obj, long offset, type_info_struct* typeinfo, type_info_str
                     }
                     else
                     {                  //	skip ambiguous/no access class
-                        list = (type_info_base_list*)((type_info_ambighead*)list + 1);
+                        list =
+                            (type_info_base_list*)((type_info_ambighead*)list + 1);
                         list += (n - 1);
                     }
                 }
                 else
                 {
                     if (strequal(list->baseti->tname, typeinfo->tname) == 0)
-                    {                  //	success: cast to public unambiguous base class
+                    { //	success: cast to public unambiguous base class
                         return (char*)completeclass + list->offset;
                     }
                 }
@@ -280,6 +281,6 @@ __dynamic_cast(void* obj, long offset, type_info_struct* typeinfo, type_info_str
     //	if(isref) __priv_throwbadcast();
     return 0;
 }
-
 //  hh 980124 type_info implementation moved to <typeinfo>
-// JWW 000418 export __get_typeid and __dynamic_cast data items to remove dependency on the .exp file
+// JWW 000418 export __get_typeid and __dynamic_cast data items to remove dependency
+// on the .exp file

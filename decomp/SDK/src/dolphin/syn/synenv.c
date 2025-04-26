@@ -6,7 +6,6 @@
 #include "cmath.h"
 #include "fake_tgmath.h"
 #include "SYNPrivate.h"
-
 s32
 __SYNGetEnvelopeTime(s32 scale, s32 mod, u8 key)
 {
@@ -18,9 +17,9 @@ __SYNGetEnvelopeTime(s32 scale, s32 mod, u8 key)
     {
         return (1000.0f * powf(2.0f, (f32)scale / (65536 * 1200)));
     }
-    return (1000.0f * powf(2.0f, ((f32)scale + (mod * __SYNn128[key])) / (65535 * 1200)));
+    return (1000.0f *
+            powf(2.0f, ((f32)scale + (mod * __SYNn128[key])) / (65535 * 1200)));
 }
-
 void
 __SYNSetupVolumeEnvelope(struct SYNVOICE* voice)
 {
@@ -38,7 +37,9 @@ __SYNSetupVolumeEnvelope(struct SYNVOICE* voice)
     }
     else
     {
-        s32 frames = __SYNGetEnvelopeTime(voice->art->eg1Attack, voice->art->eg1Vel2Attack, voice->keyVel) / 5;
+        s32 frames = __SYNGetEnvelopeTime(voice->art->eg1Attack,
+                                          voice->art->eg1Vel2Attack, voice->keyVel) /
+                     5;
         if (frames)
         {
             voice->veAttack = 0;
@@ -56,7 +57,9 @@ __SYNSetupVolumeEnvelope(struct SYNVOICE* voice)
     }
     if (voice->veState < 2)
     {
-        s32 frames = __SYNGetEnvelopeTime(voice->art->eg1Decay, voice->art->eg1Key2Decay, voice->keyNum) / 5;
+        s32 frames = __SYNGetEnvelopeTime(voice->art->eg1Decay,
+                                          voice->art->eg1Key2Decay, voice->keyNum) /
+                     5;
         if (frames != 0)
         {
             voice->veDecay = -0x03C00000 / frames;
@@ -69,7 +72,6 @@ __SYNSetupVolumeEnvelope(struct SYNVOICE* voice)
     voice->veSustain = voice->art->eg1Sustain;
     voice->veRelease = voice->art->eg1Release;
 }
-
 void
 __SYNSetupPitchEnvelope(struct SYNVOICE* voice)
 {
@@ -91,7 +93,10 @@ __SYNSetupPitchEnvelope(struct SYNVOICE* voice)
         }
         else
         {
-            s32 frames = __SYNGetEnvelopeTime(voice->art->eg2Attack, voice->art->eg2Vel2Attack, voice->keyVel) / 5;
+            s32 frames =
+                __SYNGetEnvelopeTime(voice->art->eg2Attack,
+                                     voice->art->eg2Vel2Attack, voice->keyVel) /
+                5;
             if (frames)
             {
                 voice->peAttack = voice->pePitch / frames;
@@ -105,7 +110,10 @@ __SYNSetupPitchEnvelope(struct SYNVOICE* voice)
         }
         if (voice->peState < 2)
         {
-            s32 frames = __SYNGetEnvelopeTime(voice->art->eg2Decay, voice->art->eg2Key2Decay, voice->keyNum) / 5;
+            s32 frames =
+                __SYNGetEnvelopeTime(voice->art->eg2Decay, voice->art->eg2Key2Decay,
+                                     voice->keyNum) /
+                5;
             if (frames != 0)
             {
                 voice->peDecay = voice->pePitch / frames;
@@ -120,7 +128,6 @@ __SYNSetupPitchEnvelope(struct SYNVOICE* voice)
         voice->peRelease = voice->art->eg2Release;
     }
 }
-
 void
 __SYNRunVolumeEnvelope(struct SYNVOICE* voice)
 {
@@ -128,7 +135,7 @@ __SYNRunVolumeEnvelope(struct SYNVOICE* voice)
 
     switch (voice->veState)
     {
-        case 0 :
+        case 0:
             voice->veAttack = (voice->veAttack + voice->veAttackDelta);
             if (voice->veAttack >= 0x630000)
             {
@@ -142,8 +149,9 @@ __SYNRunVolumeEnvelope(struct SYNVOICE* voice)
             {
                 voice->veState = 1;
             }
-        case 2 : return;
-        case 1 :
+        case 2:
+            return;
+        case 1:
             voice->veAttn = (voice->veAttn + voice->veDecay);
             if (voice->veAttn <= voice->veSustain)
             {
@@ -156,7 +164,7 @@ __SYNRunVolumeEnvelope(struct SYNVOICE* voice)
                 voice->synth->voice[voice->midiChannel][voice->keyNum] = 0;
             }
             return;
-        case 3 :
+        case 3:
             voice->veAttn = (voice->veAttn + voice->veRelease);
             if (voice->veAttn <= -0x02D00000)
             {
@@ -165,7 +173,6 @@ __SYNRunVolumeEnvelope(struct SYNVOICE* voice)
             return;
     }
 }
-
 void
 __SYNRunPitchEnvelope(struct SYNVOICE* voice)
 {
@@ -175,7 +182,7 @@ __SYNRunPitchEnvelope(struct SYNVOICE* voice)
     {
         switch (voice->peState)
         {
-            case 0 :
+            case 0:
                 voice->peCents = (voice->peCents + voice->peAttack);
                 if (voice->pePitch > 0)
                 {
@@ -190,8 +197,9 @@ __SYNRunPitchEnvelope(struct SYNVOICE* voice)
                     voice->pePitch = voice->peCents;
                     voice->peState = 1;
                 }
-            case 2 : return;
-            case 1 :
+            case 2:
+                return;
+            case 1:
                 voice->peCents = (voice->peCents + voice->peDecay);
                 if (voice->pePitch > 0)
                 {
@@ -220,7 +228,7 @@ __SYNRunPitchEnvelope(struct SYNVOICE* voice)
                     }
                 }
                 break;
-            case 3 :
+            case 3:
                 voice->peCents = (voice->peCents + voice->peRelease);
                 if (voice->pePitch > 0)
                 {

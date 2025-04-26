@@ -51,18 +51,17 @@
 #pragma ANSI_strict off
 
 #if !defined(__MOTO__) && !defined(__MIPS__)
-#    define cps ((unsigned char*)src)
-#    define cpd ((unsigned char*)dst)
-#    define lps ((unsigned long*)src)
-#    define lpd ((unsigned long*)dst)
+#define cps ((unsigned char*)src)
+#define cpd ((unsigned char*)dst)
+#define lps ((unsigned long*)src)
+#define lpd ((unsigned long*)dst)
 #endif
 
 #if !__POWERPC__
-#    define deref_auto_inc(p) *(p)++
+#define deref_auto_inc(p) *(p)++
 #else
-#    define deref_auto_inc(p) *++(p)
+#define deref_auto_inc(p) *++(p)
 #endif
-
 void
 __copy_mem(void* dst, const void* src, unsigned long n)
 {
@@ -97,7 +96,6 @@ __copy_mem(void* dst, const void* src, unsigned long n)
     }
 #endif
 }
-
 void
 __move_mem(void* dst, const void* src, unsigned long n)
 {
@@ -156,7 +154,6 @@ __move_mem(void* dst, const void* src, unsigned long n)
         }
     }
 }
-
 void
 __copy_longs_aligned(void* dst, const void* src, unsigned long n)
 {
@@ -235,7 +232,6 @@ __copy_longs_aligned(void* dst, const void* src, unsigned long n)
 
     return;
 }
-
 void
 __copy_longs_rev_aligned(void* dst, const void* src, unsigned long n)
 {
@@ -301,7 +297,6 @@ __copy_longs_rev_aligned(void* dst, const void* src, unsigned long n)
 
     return;
 }
-
 void
 __copy_longs_unaligned(void* dst, const void* src, unsigned long n)
 {
@@ -384,7 +379,6 @@ __copy_longs_unaligned(void* dst, const void* src, unsigned long n)
 
     return;
 }
-
 void
 __copy_longs_rev_unaligned(void* dst, const void* src, unsigned long n)
 {
@@ -451,32 +445,31 @@ __copy_longs_rev_unaligned(void* dst, const void* src, unsigned long n)
 
     return;
 }
-
 #if ((!__PPC_EABI__) && !defined(__m56800__) && !defined(__m56800E__))
 void
 __fill_mem(void* dst, int val, unsigned long n)
 {
-#    if (__MOTO__ || __MIPS__)
+#if (__MOTO__ || __MIPS__)
     /*	unsigned char *	cps	= ((unsigned char *) src);	*/
     unsigned char* cpd = ((unsigned char*)dst);
     /*	unsigned long *	lps	= ((unsigned long *) src);	*/
     unsigned long* lpd = ((unsigned long*)dst);
-#    endif
+#endif
 
     unsigned long v = (unsigned char)val;
     unsigned long i;
 
-#    if __POWERPC__
+#if __POWERPC__
     cpd = ((unsigned char*)dst) - 1;
-#    endif
+#endif
 
     if (n >= 32)
     {
-#    if __POWERPC__
+#if __POWERPC__
         i = (~(unsigned long)dst) & 3;
-#    else
+#else
         i = (-(unsigned long)dst) & 3;
-#    endif
+#endif
         if (i)
         {
             n -= i;
@@ -492,9 +485,9 @@ __fill_mem(void* dst, int val, unsigned long n)
             v |= v << 24 | v << 16 | v << 8;
         }
 
-#    if __POWERPC__
+#if __POWERPC__
         lpd = ((unsigned long*)(cpd + 1)) - 1;
-#    endif
+#endif
 
         i = n >> 5;
 
@@ -523,9 +516,9 @@ __fill_mem(void* dst, int val, unsigned long n)
             while (--i);
         }
 
-#    if __POWERPC__
+#if __POWERPC__
         cpd = ((unsigned char*)(lpd + 1)) - 1;
-#    endif
+#endif
 
         n &= 3;
     }
@@ -540,7 +533,6 @@ __fill_mem(void* dst, int val, unsigned long n)
 
     return;
 }
-
 #endif /* !__PPC_EABI__ */
 
 #if defined(__m56800__) || defined(__m56800E__)
@@ -596,7 +588,6 @@ __fill_mem(void* dst, int val, unsigned long n)
 
     return;
 }
-
 #endif /* defined(__m56800__) */
 
        /* Change record:
@@ -611,6 +602,8 @@ __fill_mem(void* dst, int val, unsigned long n)
         * MEA 980308 In __fill_mem, changed i = (- (unsigned long) dst) & 3; to
         *									to i = (~ (unsigned long) dst) & 3;
         * mf  012699 undid change above outside of ppc.  It breaks other platforms badly.
-        * US  991223 Changed #if (!__PPC_EABI__) to #if ((!__PPC_EABI__) && !defined(__m56800__)) in
-        * 			  __fill_mem(). The __m56800__ version of __fill_mem() can be found below.
+        * US  991223 Changed #if (!__PPC_EABI__) to #if ((!__PPC_EABI__) &&
+        *!defined(__m56800__)) in
+        * 			  __fill_mem(). The __m56800__ version of __fill_mem() can be found
+        *below.
         */

@@ -1,5 +1,3 @@
-
-
 /*
  * --INFO--
  * Address:	8001EC3C
@@ -272,7 +270,6 @@ init_global_constants(void)
       blr
     */
 }
-
 /*
  * --INFO--
  * Address:	........
@@ -283,7 +280,6 @@ set_border(void)
 {
     // UNUSED FUNCTION
 }
-
 /*
  * --INFO--
  * Address:	8001EF9C
@@ -375,7 +371,6 @@ setHVQPlaneDesc(void)
       blr
     */
 }
-
 /*
  * --INFO--
  * Address:	........
@@ -386,7 +381,6 @@ setCode(void)
 {
     // UNUSED FUNCTION
 }
-
 /*
  * --INFO--
  * Address:	8001F0B8
@@ -614,7 +608,6 @@ _readTree(void)
     .loc_0x2CC:
     */
 }
-
 /*
  * --INFO--
  * Address:	8001F384
@@ -656,7 +649,6 @@ getByte(void)
       blr
     */
 }
-
 /*
  * --INFO--
  * Address:	........
@@ -667,7 +659,6 @@ readTree(void)
 {
     // UNUSED FUNCTION
 }
-
 /*
  * --INFO--
  * Address:	........
@@ -678,7 +669,6 @@ decodeUOvfSym(void)
 {
     // UNUSED FUNCTION
 }
-
 /*
  * --INFO--
  * Address:	8001F3E8
@@ -928,7 +918,6 @@ Ipic_BasisNumDec(void)
       blr
     */
 }
-
 /*
  * --INFO--
  * Address:	8001F6AC
@@ -1042,7 +1031,6 @@ IpicDcvDec(void)
     .loc_0x13C:
     */
 }
-
 /*
  * --INFO--
  * Address:	8001F7E8
@@ -1075,7 +1063,6 @@ getBit(void)
       blr
     */
 }
-
 /*
  * --INFO--
  * Address:	8001F828
@@ -1124,7 +1111,6 @@ decodeHuff(void)
       blr
     */
 }
-
 /*
  * --INFO--
  * Address:	8001F898
@@ -1434,7 +1420,6 @@ MakeNest(void)
       blr
     */
 }
-
 /*
  * --INFO--
  * Address:	8001FC3C
@@ -1549,7 +1534,6 @@ WeightImBlock(void)
       blr
     */
 }
-
 /*
  * --INFO--
  * Address:	8001FDD4
@@ -1580,7 +1564,6 @@ OrgBlock(void)
       blr
     */
 }
-
 /*
  * --INFO--
  * Address:	8001FE1C
@@ -1847,7 +1830,6 @@ IntraAotBlock(void)
     .loc_0x3D0:
     */
 }
-
 /*
  * --INFO--
  * Address:	800201EC
@@ -2223,7 +2205,6 @@ GetAotBasis(void)
       blr
     */
 }
-
 /*
  * --INFO--
  * Address:	80020668
@@ -2335,7 +2316,6 @@ IpicBlockDec(void)
       blr
     */
 }
-
 /*
  * --INFO--
  * Address:	800207AC
@@ -2405,7 +2385,6 @@ IpicLineDec(void)
       blr
     */
 }
-
 /*
  * --INFO--
  * Address:	80020880
@@ -2477,7 +2456,6 @@ IpicPlaneDec(void)
       blr
     */
 }
-
 /*
  * --INFO--
  * Address:	8002095C
@@ -2527,7 +2505,6 @@ initMCHandler(void)
       blr
     */
 }
-
 /*
  * --INFO--
  * Address:	........
@@ -2538,7 +2515,6 @@ resetMCHandler(void)
 {
     // UNUSED FUNCTION
 }
-
 /*
  * --INFO--
  * Address:	800209E8
@@ -2590,7 +2566,6 @@ _MotionComp_00(void)
       blr
     */
 }
-
 /*
  * --INFO--
  * Address:	80020A84
@@ -2710,7 +2685,6 @@ _MotionComp_01(void)
       blr
     */
 }
-
 /*
  * --INFO--
  * Address:	80020C30
@@ -2826,7 +2800,6 @@ _MotionComp_10(void)
       blr
     */
 }
-
 /*
  * --INFO--
  * Address:	80020DCC
@@ -3010,7 +2983,6 @@ _MotionComp_11(void)
       blr
     */
 }
-
 /*
  * --INFO--
  * Address:	80021078
@@ -3699,7 +3671,6 @@ MotionComp(void)
       blr
     */
 }
-
 /*
  * --INFO--
  * Address:	80021A78
@@ -4039,7 +4010,6 @@ decode_PB_cc(void)
       blr
     */
 }
-
 /*
  * --INFO--
  * Address:	80021E94
@@ -4673,7 +4643,6 @@ PrediAotBlock(void)
     .loc_0x86C:
     */
 }
-
 /*
  * --INFO--
  * Address:	80022700
@@ -5067,7 +5036,6 @@ GetMCAotBasis(void)
       blr
     */
 }
-
 /*
  * --INFO--
  * Address:	80022BC4
@@ -5181,7 +5149,6 @@ MCBlockDecMCNest(void)
       blr
     */
 }
-
 /*
  * --INFO--
  * Address:	80022D28
@@ -5306,7 +5273,6 @@ MCBlockDecDCNest(void)
       blr
     */
 }
-
 /*
  * --INFO--
  * Address:	........
@@ -5317,7 +5283,6 @@ initMCBproc(void)
 {
     // UNUSED FUNCTION
 }
-
 /*
  * --INFO--
  * Address:	........
@@ -5328,7 +5293,6 @@ getMCBproc(void)
 {
     // UNUSED FUNCTION
 }
-
 /*
  * --INFO--
  * Address:	........
@@ -5339,7 +5303,6 @@ initMCBtype(void)
 {
     // UNUSED FUNCTION
 }
-
 /*
  * --INFO--
  * Address:	........
@@ -5350,7 +5313,6 @@ getMCBtype(void)
 {
     // UNUSED FUNCTION
 }
-
 /*
  * --INFO--
  * Address:	80022E80
@@ -5683,7 +5645,6 @@ spread_PB_descMap(void)
       blr
     */
 }
-
 /*
  * --INFO--
  * Address:	800232B0
@@ -6019,7 +5980,6 @@ BpicPlaneDec(void)
       blr
     */
 }
-
 /*
  * --INFO--
  * Address:	800236EC
@@ -6040,7 +6000,6 @@ HVQM4InitDecoder(void)
       blr
     */
 }
-
 /*
  * --INFO--
  * Address:	8002370C
@@ -6062,7 +6021,6 @@ HVQM4InitSeqObj(void)
       blr
     */
 }
-
 /*
  * --INFO--
  * Address:	80023730
@@ -6112,7 +6070,6 @@ HVQM4BuffSize(void)
       blr
     */
 }
-
 /*
  * --INFO--
  * Address:	800237A4
@@ -6444,7 +6401,6 @@ HVQM4SetBuffer(void)
       blr
     */
 }
-
 /*
  * --INFO--
  * Address:	80023C08
@@ -6863,7 +6819,6 @@ HVQM4DecodeIpic(void)
       blr
     */
 }
-
 /*
  * --INFO--
  * Address:	80024118
@@ -6887,7 +6842,6 @@ HVQM4DecodePpic(void)
     .loc_0x24:
     */
 }
-
 /*
  * --INFO--
  * Address:	8002413C

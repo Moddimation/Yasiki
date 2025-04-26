@@ -6,41 +6,38 @@
  */
 
 #ifndef _MSL_DIV_T_H
-#    define _MSL_DIV_T_H
+#define _MSL_DIV_T_H
 
-#    include <ansi_parms.h>                        /*- mm 970905 -*/
+#include <ansi_parms.h>                        /*- mm 970905 -*/
 
-#    pragma options align = native
-
-_MSL_BEGIN_NAMESPACE_STD                           /*- cc 010409 -*/
-    _MSL_BEGIN_EXTERN_C                            /*- cc 010409 -*/
+#pragma options align = native
+_MSL_BEGIN_NAMESPACE_STD                       /*- cc 010409 -*/
+    _MSL_BEGIN_EXTERN_C                        /*- cc 010409 -*/
 
     typedef struct
 {
     int quot;
     int rem;
 } div_t;
-
 typedef struct
 {
     long quot;
     long rem;
 } ldiv_t;
-
-#    ifdef __MSL_LONGLONG_SUPPORT__                /*- mm 981023 -*/
+#ifdef __MSL_LONGLONG_SUPPORT__                /*- mm 981023 -*/
 typedef struct
 {
     long long quot;
     long long rem;
 } lldiv_t;
-#    endif /* #ifdef __MSL_LONGLONG_SUPPORT__	*/ /*- mm 981023 -*/
+#endif /* #ifdef __MSL_LONGLONG_SUPPORT__	*/ /*- mm 981023 -*/
 
-_MSL_END_EXTERN_C                                  /*- cc 010409 -*/
-    _MSL_END_NAMESPACE_STD                         /*- cc 010409 -*/
+_MSL_END_EXTERN_C                              /*- cc 010409 -*/
+    _MSL_END_NAMESPACE_STD                     /*- cc 010409 -*/
 
-#    pragma options align = reset
+#pragma options align = reset
 
-#endif                                             /* _MSL_DIV_T_H */
+#endif                                         /* _MSL_DIV_T_H */
 
     /* Change record:
      * mm  970905 added include of ansi_parms.h to avoid need for prefix file

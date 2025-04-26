@@ -74,7 +74,6 @@ asm void error_dram_init(void);
 //;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 asm void init_board();
-
 asm void
 init_board()
 {
@@ -655,16 +654,18 @@ init_board()
                 // Some things are set up on reset.  I'll set up the rest.
                 // in duart.c with a call to duart_initialize which is in yk.c
 
-                // now lets turn on data translation so our MMU setup will be functional.
+                // now lets turn on data translation so our MMU setup will be
+                // functional.
 
                 mfmsr r3 ori r3,
         r3,
         0x0030 mtmsr r3 isync sync //  the MMU should be set up now...
 
-            // this helps us to copy dink to
+                                   // this helps us to copy dink to
             // low memory....
             //	addis	r3,0,0			// load dram address (0) into r3.
-            //	addis	r4,0,(RESET_BASE >> 16)		// load r4 with base eprom address
+            //	addis	r4,0,(RESET_BASE >> 16)		// load r4 with base eprom
+            // address
             // of 0xFFF00000.
             //	addis	r6,0,0x6		// load r6 with upper half of 384K.
             //	ori	r6,r6,0x0000		// load r6 with lower half of 384K.
@@ -700,42 +701,50 @@ init_board()
             //	addis	r4,0,0			// load r4 with 0
             //	stwx	r4,0,r3			// and save into variable.
 
-            //        lis     r3,config_addr@h        // load address of config_addr
+            //        lis     r3,config_addr@h        // load address of
+            //        config_addr
             //       ori     r3,r3,config_addr@l
-            //        mfspr   r5, sprg2               // retrieve value saved to sprg2
-            //        stwx    r5,0,r3                 // save value to config_addr
+            //        mfspr   r5, sprg2               // retrieve value saved to
+            //        sprg2 stwx    r5,0,r3                 // save value to
+            //        config_addr
 
-            //        lis     r3,config_data@h        // load address of config_data
-            //        ori     r3,r3,config_data@l
-            //        mfspr   r5, sprg3               // retrieve value saved to sprg3
-            //        stwx    r5,0,r3                 // save value to config_data
+            //        lis     r3,config_data@h        // load address of
+            //        config_data ori     r3,r3,config_data@l mfspr   r5,
+            //        sprg3               // retrieve value saved to sprg3
+            //        stwx    r5,0,r3                 // save value to
+            //        config_data
 
-            //        lis     r3,yk_version@h         // load address of yk_version
-            //        ori     r3,r3,yk_version@l
-            //        stwx    r10,0,r3                // save value to yk_version
+            //        lis     r3,yk_version@h         // load address of
+            //        yk_version ori     r3,r3,yk_version@l stwx r10,0,r3
+            //        // save value to yk_version
 
-            //	addis	r1,0,0x6		// load stack pointer (gpr1) with
-            //	ori	r1,r1,0x0000		// address of 384k = 0x00060000.
+            //	addis	r1,0,0x6		// load stack pointer (gpr1)
+            // with 	ori	r1,r1,0x0000		// address of 384k =
+            // 0x00060000.
             // Increase to allow for -g compilation
 
             //	lis	r3,main@h		// get start address of dink
             //	ori	r3,r3,main@l
 
-            //	mtspr	srr0,r3			// load address into srr0.
+            //	mtspr	srr0,r3			// load address into
+            // srr0.
 
             //	addis	r4,0,0x0000
-            //	ori	r4,r4,dink_msr		// load r4 with 0x00003930.
-            //	mtspr	srr1,r4			// move address into srr1.
+            //	ori	r4,r4,dink_msr		// load r4 with
+            // 0x00003930. 	mtspr	srr1,r4			// move
+            // address into srr1.
             // this will set MSR with supervisor
             // mode and exceptions disabled.
 
-            // let's wipe the i and dcaches in case user code wants to use them properly.
-            bl invalidate_and_enable_L1_dcache bl disable_L1_dcache bl invalidate_and_enable_L1_icache bl
-                disable_L1_icache
+            // let's wipe the i and dcaches in case user
+            // code wants to use them properly.
+            bl invalidate_and_enable_L1_dcache bl disable_L1_dcache bl
+                invalidate_and_enable_L1_icache bl disable_L1_icache
 
 #ifdef DCACHEON
 
-                    // Now turn on and invalidate the internal data cache
+                    // Now turn on and invalidate
+                    // the internal data cache
                     // Added 7/3/97 MM
 
                     bl invalidate_and_enable_L1_dcache
@@ -744,14 +753,22 @@ init_board()
 
 #ifdef ICACHEON
 
-                        // Now turn on and invalidate the internal instruction cache
+                        // Now turn on and
+                        // invalidate the
+                        // internal
+                        // instruction cache
                         // Added 6/27/97 MM
 
                         bl invalidate_and_enable_L1_icache
 
 #endif
 
-                            //	rfi				// branch to dink start address in dram.
+                            //	rfi
+                            //// branch
+                            // to dink
+                            // start
+                            // address in
+                            // dram.
 
                             mtlr r12 blr
 
@@ -760,7 +777,6 @@ init_board()
                                                   0 // do one no-op.
                                                   b error_dram_init
 }
-
 // Processor specific mmu setups are in this section.
 
 asm void
@@ -775,7 +791,8 @@ mmu_setup(void)
         r0, 0xfff0 ori r4, r4,
         0x0022 // we will make the ROM writeable so that we can test errors
         addis r3,
-        r0, 0xfff0 ori r3, r3, 0x01ff isync mtspr SPR_IBAT0L, r4 isync mtspr SPR_IBAT0U, r3 isync mtspr SPR_DBAT0L,
+        r0, 0xfff0 ori r3, r3, 0x01ff isync mtspr SPR_IBAT0L,
+        r4 isync mtspr SPR_IBAT0U, r3 isync mtspr SPR_DBAT0L,
         r4 isync mtspr SPR_DBAT0U,
         r3 isync sync
 
@@ -796,7 +813,8 @@ mmu_setup(void)
         0x0fff // later, in reg_spr.c(well, for the
         isync  // 603 at least)
             mtspr      SPR_IBAT1L,
-        r4 isync mtspr SPR_IBAT1U, r3 isync mtspr SPR_DBAT1L, r5 isync mtspr SPR_DBAT1U,
+        r4 isync mtspr SPR_IBAT1U, r3 isync mtspr SPR_DBAT1L,
+        r5 isync mtspr SPR_DBAT1U,
         r3 isync sync
 
                // this is the 105/106, UMC/Winbond, and SIO mapping
@@ -812,13 +830,15 @@ mmu_setup(void)
         0x01ff isync
 
             mtspr      SPR_IBAT2L,
-        r4 isync mtspr SPR_IBAT2U, r3 isync mtspr SPR_DBAT2L, r4 isync mtspr SPR_DBAT2U,
+        r4 isync mtspr SPR_IBAT2U, r3 isync mtspr SPR_DBAT2L,
+        r4 isync mtspr SPR_DBAT2U,
         r3 isync sync
 
             // bat3 is our Floating BAT
 
             isync mtspr SPR_IBAT3L,
-        r0 isync mtspr SPR_IBAT3U, r0 isync mtspr SPR_DBAT3L, r0 isync mtspr SPR_DBAT3U,
+        r0 isync mtspr SPR_IBAT3U, r0 isync mtspr SPR_DBAT3L,
+        r0 isync mtspr SPR_DBAT3U,
         r0 isync
 
             addis r3,
@@ -862,18 +882,17 @@ mmu_setup(void)
 
                                      blr
 }
-
 asm void
 cache_inhibit(void)
 {
     nofralloc
 
-                                        // to cache inhibit we are just going to turn off the caches.
+        // to cache inhibit we are just going to turn off the caches.
 
         mfspr    r3,
-        SPR_HID0 andi.r0, r0, 0 addis r4, r0, 0xffff addi r4, r4, 0x3fff and r3, r3, r4 mtspr SPR_HID0, r3 isync blr
+        SPR_HID0 andi.r0, r0, 0 addis r4, r0, 0xffff addi r4, r4, 0x3fff and r3, r3,
+        r4 mtspr SPR_HID0, r3 isync blr
 }
-
 asm void
 invalidate_and_enable_L1_dcache(void)
 {
@@ -890,7 +909,6 @@ invalidate_and_enable_L1_dcache(void)
         mtspr               SPR_HID0,
         r5 isync sync mtspr SPR_HID0, r6 isync sync blr
 }
-
 asm void
 disable_L1_dcache(void)
 {
@@ -899,7 +917,6 @@ disable_L1_dcache(void)
         mfspr    r5,
         SPR_HID0 andi.r5, r5, 0xBFFF mtspr SPR_HID0, r5 isync sync blr
 }
-
 asm void
 invalidate_and_enable_L1_icache(void)
 {
@@ -916,7 +933,6 @@ invalidate_and_enable_L1_icache(void)
         mtspr               SPR_HID0,
         r5 isync sync mtspr SPR_HID0, r6 isync sync blr
 }
-
 asm void
 disable_L1_icache(void)
 {

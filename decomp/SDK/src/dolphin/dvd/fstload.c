@@ -3,14 +3,12 @@
 #include "DVDPrivate.h"
 
 static u32 status;         // size: 0x4, address: 0x0
-
 enum
 {
     STATUS_READING_ID,
     STATUS_READING_BB2,
     STATUS_READING_FST
 };
-
 static u8      bb2Buf[63]; // size: 0x3F, address: 0x0
 static DVDBB2* bb2;        // size: 0x4, address: 0x4
 
@@ -19,7 +17,6 @@ static DVDDiskID* idTmp;   // size: 0x4, address: 0x8
 // functions
 static void cb(s32 result, DVDCommandBlock* block);
 void        __fstLoad();
-
 static void
 cb(s32 result, DVDCommandBlock* block)
 {
@@ -29,8 +26,8 @@ cb(s32 result, DVDCommandBlock* block)
         {
             case 0:                        // read id done
                 status = 1;                // next read bb2
-                DVDReadAbsAsyncForBS(
-                    block, bb2, OSRoundUp32B(sizeof(DVDBB2)), 0x420, cb);
+                DVDReadAbsAsyncForBS(block, bb2, OSRoundUp32B(sizeof(DVDBB2)), 0x420,
+                                     cb);
                 return;
             case 1:                        // read bb2 done
                 status = 2;                // next read fst
@@ -52,7 +49,6 @@ cb(s32 result, DVDCommandBlock* block)
         DVDReadDiskID(block, idTmp, cb);
     }
 }
-
 void
 __fstLoad()
 {

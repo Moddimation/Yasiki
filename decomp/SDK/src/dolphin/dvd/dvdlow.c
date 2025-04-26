@@ -6,21 +6,20 @@
 #include "DVDPrivate.h"
 
 // .sbss
-static void                   (*Callback)(u32);           // size: 0x4, address: 0x0
-static void                   (*ResetCoverCallback)(u32); // size: 0x4, address: 0x4
-static volatile s64     LastResetEnd;                         // size: 0x8, address: 0x8
-static volatile u32 ResetOccurred;                        // size: 0x4, address: 0x10
-static int                    WaitingCoverClose;                    // size: 0x4, address: 0x14
-static volatile int           Breaking;                             // size: 0x4, address: 0x18
-
+static void         (*Callback)(u32);           // size: 0x4, address: 0x0
+static void         (*ResetCoverCallback)(u32); // size: 0x4, address: 0x4
+static volatile s64 LastResetEnd;               // size: 0x8, address: 0x8
+static volatile u32 ResetOccurred;              // size: 0x4, address: 0x10
+static int          WaitingCoverClose;          // size: 0x4, address: 0x14
+static volatile int Breaking;                   // size: 0x4, address: 0x18
 void
 __DVDInterruptHandler(s16 unused, struct OSContext* context)
 {
     struct OSContext exceptionContext;
-    u32    cause;
-    u32    reg;
-    u32    intr;
-    u32    mask;
+    u32              cause;
+    u32              reg;
+    u32              intr;
+    u32              mask;
 
     cause = 0;
     reg = __DIRegs[0];
@@ -44,7 +43,8 @@ __DVDInterruptHandler(s16 unused, struct OSContext* context)
     }
     __DIRegs[0] = (intr | mask);
 
-    if ((ResetOccurred != 0) && ((__OSGetSystemTime() - LastResetEnd)) < OSMillisecondsToTicks(200))
+    if ((ResetOccurred != 0) &&
+        ((__OSGetSystemTime() - LastResetEnd)) < OSMillisecondsToTicks(200))
     {
         reg = __DIRegs[1];
         mask = (reg & 2);
@@ -92,14 +92,17 @@ __DVDInterruptHandler(s16 unused, struct OSContext* context)
     OSClearContext(&exceptionContext);
     OSSetCurrentContext(context);
 }
-
 int
 DVDLowRead(void* addr, u32 length, u32 offset, void (*callback)(u32))
 {
-    ASSERTMSGLINE(0x143, !OFFSET(addr, 32), "DVDLowRead(): address must be aligned with 32 byte boundary.");
-    ASSERTMSGLINE(0x144, !(length % 32), "DVDLowRead(): length must be a multiple of 32.");
-    ASSERTMSGLINE(0x145, !(offset % 4), "DVDLowRead(): offset must be a multiple of 4.");
-    ASSERTMSGLINE(0x147, (length != 0), "DVD read: 0 was specified to length of the read\n");
+    ASSERTMSGLINE(0x143, !OFFSET(addr, 32),
+                  "DVDLowRead(): address must be aligned with 32 byte boundary.");
+    ASSERTMSGLINE(0x144, !(length % 32),
+                  "DVDLowRead(): length must be a multiple of 32.");
+    ASSERTMSGLINE(0x145, !(offset % 4),
+                  "DVDLowRead(): offset must be a multiple of 4.");
+    ASSERTMSGLINE(0x147, (length != 0),
+                  "DVD read: 0 was specified to length of the read\n");
     Callback = callback;
     __DIRegs[2] = 0xA8000000;
     __DIRegs[3] = (offset >> 2);
@@ -109,18 +112,17 @@ DVDLowRead(void* addr, u32 length, u32 offset, void (*callback)(u32))
     __DIRegs[7] = 3;
     return 1;
 }
-
 int
 DVDLowSeek(u32 offset, void (*callback)(u32))
 {
-    ASSERTMSGLINE(0x166, !(offset % 4), "DVDLowSeek(): offset must be a multiple of 4.");
+    ASSERTMSGLINE(0x166, !(offset % 4),
+                  "DVDLowSeek(): offset must be a multiple of 4.");
     Callback = callback;
     __DIRegs[2] = 0xAB000000;
     __DIRegs[3] = (offset >> 2);
     __DIRegs[7] = 1;
     return 1;
 }
-
 int
 DVDLowWaitCoverClose(void (*callback)(u32))
 {
@@ -129,11 +131,11 @@ DVDLowWaitCoverClose(void (*callback)(u32))
     __DIRegs[1] = 2;
     return 1;
 }
-
 int
 DVDLowReadDiskID(struct DVDDiskID* diskID, void (*callback)(u32))
 {
-    ASSERTMSGLINE(0x19B, !OFFSET(diskID, 32), "DVDLowReadID(): id must be aligned with 32 byte boundary.");
+    ASSERTMSGLINE(0x19B, !OFFSET(diskID, 32),
+                  "DVDLowReadID(): id must be aligned with 32 byte boundary.");
     Callback = callback;
     __DIRegs[2] = 0xA8000040;
     __DIRegs[3] = 0;
@@ -143,7 +145,6 @@ DVDLowReadDiskID(struct DVDDiskID* diskID, void (*callback)(u32))
     __DIRegs[7] = 3;
     return 1;
 }
-
 int
 DVDLowStopMotor(void (*callback)(u32))
 {
@@ -152,7 +153,6 @@ DVDLowStopMotor(void (*callback)(u32))
     __DIRegs[7] = 1;
     return 1;
 }
-
 int
 DVDLowRequestError(void (*callback)(u32))
 {
@@ -161,7 +161,6 @@ DVDLowRequestError(void (*callback)(u32))
     __DIRegs[7] = 1;
     return 1;
 }
-
 int
 DVDLowInquiry(struct DVDDriveInfo* info, void (*callback)(u32))
 {
@@ -173,9 +172,9 @@ DVDLowInquiry(struct DVDDriveInfo* info, void (*callback)(u32))
     __DIRegs[7] = 3;
     return 1;
 }
-
 int
-DVDLowAudioStream(u32 subcmd, u32 length, u32 offset, void (*callback)(unsigned long))
+DVDLowAudioStream(u32 subcmd, u32 length, u32 offset,
+                  void (*callback)(unsigned long))
 {
     Callback = callback;
     __DIRegs[2] = (subcmd | 0xE1000000);
@@ -184,7 +183,6 @@ DVDLowAudioStream(u32 subcmd, u32 length, u32 offset, void (*callback)(unsigned 
     __DIRegs[7] = 1;
     return 1;
 }
-
 int
 DVDLowRequestAudioStatus(u32 subcmd, void (*callback)(u32))
 {
@@ -193,7 +191,6 @@ DVDLowRequestAudioStatus(u32 subcmd, void (*callback)(u32))
     __DIRegs[7] = 1;
     return 1;
 }
-
 int
 DVDLowAudioBufferConfig(int enable, u32 size, void (*callback)(u32))
 {
@@ -209,12 +206,11 @@ DVDLowAudioBufferConfig(int enable, u32 size, void (*callback)(u32))
     __DIRegs[7] = 1;
     return 1;
 }
-
 void
 DVDLowReset()
 {
     u32 reg;
-    s64     resetStart;
+    s64 resetStart;
 
     __DIRegs[1] = 2;
     reg = __PIRegs[9];
@@ -225,7 +221,6 @@ DVDLowReset()
     ResetOccurred = 1;
     LastResetEnd = __OSGetSystemTime();
 }
-
 void (*DVDLowSetResetCoverCallback(void (*callback)(u32)))(u32)
 {
     void (*old)(u32);
@@ -237,7 +232,6 @@ void (*DVDLowSetResetCoverCallback(void (*callback)(u32)))(u32)
     OSRestoreInterrupts(enabled);
     return old;
 }
-
 int
 DVDLowBreak()
 {
@@ -250,7 +244,6 @@ DVDLowBreak()
     Breaking = 1;
     return 1;
 }
-
 void (*DVDLowClearCallback())(u32)
 {
     void (*old)(u32);
@@ -260,7 +253,6 @@ void (*DVDLowClearCallback())(u32)
     Callback = NULL;
     return old;
 }
-
 u32
 DVDLowGetCoverStatus()
 {

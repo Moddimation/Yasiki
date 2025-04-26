@@ -2,7 +2,6 @@
 #define _DOLPHIN_G2D_H_
 
 #include <dolphin/gx.h>
-
 typedef enum G2DMatCtg
 {
     G2D_CTG_TEXTURE,
@@ -10,7 +9,6 @@ typedef enum G2DMatCtg
     G2D_CTG_RGBA_INDEX8,
     G2D_CTG_EMPTY,
 } G2DMatCtg;
-
 typedef struct G2DSprite
 {
     u16       nTlcS; // "Top Left Corner"
@@ -23,7 +21,6 @@ typedef struct G2DSprite
     f32       rS1;
     f32       rT1;
 } G2DSprite;
-
 typedef struct G2DPosOri
 {
     f32 rPosX;
@@ -31,7 +28,6 @@ typedef struct G2DPosOri
     f32 rOriX;
     f32 rOriY;
 } G2DPosOri;
-
 typedef struct G2DGlob
 {
     u16       nViewportTlcX;
@@ -44,7 +40,6 @@ typedef struct G2DGlob
     f32       rHalfX;
     f32       rHalfY;
 } G2DGlob;
-
 typedef struct G2DMatDesc
 {
     s32       nReserved;
@@ -53,7 +48,6 @@ typedef struct G2DMatDesc
     GXTexObj* to;
     u8*       clut;  // Color Look-Up Table
 } G2DMatDesc;
-
 typedef struct G2DTileDesc
 {
     u8 nMaterial;
@@ -62,7 +56,6 @@ typedef struct G2DTileDesc
     u8 nCI;          // Color Index
     u8 aUser[4];
 } G2DTileDesc;
-
 typedef struct G2DLayer
 {
     void*        map;
@@ -76,7 +69,6 @@ typedef struct G2DLayer
     G2DTileDesc* tileDesc;
     G2DMatDesc*  matDesc;
 } G2DLayer;
-
 void G2DInitSprite(G2DSprite* sprite);
 void G2DDrawSprite(G2DSprite* sprite, G2DPosOri* po);
 void G2DDrawLayer(G2DLayer* layer, s8* aSortBuffer);

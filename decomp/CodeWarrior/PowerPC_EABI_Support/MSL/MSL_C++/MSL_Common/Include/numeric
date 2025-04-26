@@ -1,5 +1,6 @@
 /* Metrowerks Standard Library
- * Copyright ÃÂ¯ÃÂ½C 1995-2001 Metrowerks Corporation.  All rights reserved.
+ * Copyright ÃÂ¯ÃÂ½C 1995-2001 Metrowerks Corporation.  All rights
+ * reserved.
  *
  * $Date: 2001/04/02 18:28:23 $
  * $Revision: 1.13 $
@@ -8,36 +9,35 @@
 // numeric
 
 #ifndef _NUMERIC
-#    define _NUMERIC
+#define _NUMERIC
 
-#    include <iterator>
-#    include <mslconfig>
+#include <iterator>
+#include <mslconfig>
 
-#    ifndef RC_INVOKED
+#ifndef RC_INVOKED
 
-#        pragma options align = native
+#pragma options align = native
 
-#        ifdef _MSL_FORCE_ENUMS_ALWAYS_INT
-#            if _MSL_FORCE_ENUMS_ALWAYS_INT
-#                pragma enumsalwaysint on
-#            else
-#                pragma enumsalwaysint off
-#            endif
-#        endif
+#ifdef _MSL_FORCE_ENUMS_ALWAYS_INT
+#if _MSL_FORCE_ENUMS_ALWAYS_INT
+#pragma enumsalwaysint on
+#else
+#pragma enumsalwaysint off
+#endif
+#endif
 
-#        ifdef _MSL_FORCE_ENABLE_BOOL_SUPPORT
-#            if _MSL_FORCE_ENABLE_BOOL_SUPPORT
-#                pragma bool on
-#            else
-#                pragma bool off
-#            endif
-#        endif
+#ifdef _MSL_FORCE_ENABLE_BOOL_SUPPORT
+#if _MSL_FORCE_ENABLE_BOOL_SUPPORT
+#pragma bool on
+#else
+#pragma bool off
+#endif
+#endif
 
-#        ifndef _MSL_NO_CPP_NAMESPACE
+#ifndef _MSL_NO_CPP_NAMESPACE
 namespace std
 {
-#        endif
-
+#endif
 template <class InputIterator, class T>
 inline T
 accumulate(InputIterator first, InputIterator last, T init)
@@ -48,10 +48,10 @@ accumulate(InputIterator first, InputIterator last, T init)
     }
     return init;
 }
-
 template <class InputIterator, class T, class BinaryOperation>
 inline T
-accumulate(InputIterator first, InputIterator last, T init, BinaryOperation binary_op)
+accumulate(InputIterator first, InputIterator last, T init,
+           BinaryOperation binary_op)
 {
     for (; first != last; ++first)
     {
@@ -59,10 +59,10 @@ accumulate(InputIterator first, InputIterator last, T init, BinaryOperation bina
     }
     return init;
 }
-
 template <class InputIterator1, class InputIterator2, class T>
 inline T
-inner_product(InputIterator1 first1, InputIterator1 last1, InputIterator2 first2, T init)
+inner_product(InputIterator1 first1, InputIterator1 last1, InputIterator2 first2,
+              T init)
 {
     for (; first1 != last1; ++first1, ++first2)
     {
@@ -70,11 +70,11 @@ inner_product(InputIterator1 first1, InputIterator1 last1, InputIterator2 first2
     }
     return init;
 }
-
-template <class InputIterator1, class InputIterator2, class T, class BinaryOperation1, class BinaryOperation2>
+template <class InputIterator1, class InputIterator2, class T,
+          class BinaryOperation1, class BinaryOperation2>
 inline T
-inner_product(InputIterator1 first1, InputIterator1 last1, InputIterator2 first2, T init, BinaryOperation1 binary_op1,
-              BinaryOperation2 binary_op2)
+inner_product(InputIterator1 first1, InputIterator1 last1, InputIterator2 first2,
+              T init, BinaryOperation1 binary_op1, BinaryOperation2 binary_op2)
 {
     for (; first1 != last1; ++first1, ++first2)
     {
@@ -82,7 +82,6 @@ inner_product(InputIterator1 first1, InputIterator1 last1, InputIterator2 first2
     }
     return init;
 }
-
 template <class InputIterator, class OutputIterator>
 inline OutputIterator
 partial_sum(InputIterator first, InputIterator last, OutputIterator result)
@@ -99,10 +98,10 @@ partial_sum(InputIterator first, InputIterator last, OutputIterator result)
     }
     return result;
 }
-
 template <class InputIterator, class OutputIterator, class BinaryOperation>
 inline OutputIterator
-partial_sum(InputIterator first, InputIterator last, OutputIterator result, BinaryOperation binary_op)
+partial_sum(InputIterator first, InputIterator last, OutputIterator result,
+            BinaryOperation binary_op)
 {
     if (first == last)
     {
@@ -116,7 +115,6 @@ partial_sum(InputIterator first, InputIterator last, OutputIterator result, Bina
     }
     return result;
 }
-
 template <class InputIterator, class OutputIterator>
 inline OutputIterator
 adjacent_difference(InputIterator first, InputIterator last, OutputIterator result)
@@ -136,10 +134,10 @@ adjacent_difference(InputIterator first, InputIterator last, OutputIterator resu
     }
     return result;
 }
-
 template <class InputIterator, class OutputIterator, class BinaryOperation>
 OutputIterator
-adjacent_difference(InputIterator first, InputIterator last, OutputIterator result, BinaryOperation binary_op)
+adjacent_difference(InputIterator first, InputIterator last, OutputIterator result,
+                    BinaryOperation binary_op)
 {
     typedef typename iterator_traits<InputIterator>::value_type T;
     if (first == last)
@@ -156,24 +154,23 @@ adjacent_difference(InputIterator first, InputIterator last, OutputIterator resu
     }
     return result;
 }
-
-#        ifndef _MSL_NO_CPP_NAMESPACE
+#ifndef _MSL_NO_CPP_NAMESPACE
 } // namespace std
-#        endif
+#endif
 
-#        ifdef _MSL_FORCE_ENUMS_ALWAYS_INT
-#            pragma enumsalwaysint reset
-#        endif
+#ifdef _MSL_FORCE_ENUMS_ALWAYS_INT
+#pragma enumsalwaysint reset
+#endif
 
-#        ifdef _MSL_FORCE_ENABLE_BOOL_SUPPORT
-#            pragma bool reset
-#        endif
+#ifdef _MSL_FORCE_ENABLE_BOOL_SUPPORT
+#pragma bool reset
+#endif
 
-#        pragma options align = reset
+#pragma options align = reset
 
-#    endif // RC_INVOKED
+#endif // RC_INVOKED
 
-#endif     // _NUMERIC
+#endif // _NUMERIC
 
 // hh 971223 Made include guards standard
 // hh 971223 added alignment wrapper

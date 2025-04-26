@@ -7,7 +7,6 @@
 #include "OSPrivate.h"
 
 static OSErrorHandler OSErrorTable[15];
-
 void
 OSReport(char* msg, ...)
 {
@@ -16,7 +15,6 @@ OSReport(char* msg, ...)
     vprintf(msg, marker);
     va_end(marker);
 }
-
 void
 OSPanic(char* file, int line, char* msg, ...)
 {
@@ -31,25 +29,25 @@ OSPanic(char* file, int line, char* msg, ...)
     OSReport(" in \"%s\" on line %d.\n", file, line);
 
     OSReport("\nAddress:      Back Chain    LR Save\n");
-    for (i = 0, p = (u32*)OSGetStackPointer(); p && (u32)p != 0xffffffff && i++ < 16; p = (u32*)*p)
+    for (i = 0, p = (u32*)OSGetStackPointer(); p && (u32)p != 0xffffffff && i++ < 16;
+         p = (u32*)*p)
     {
         OSReport("0x%08x:   0x%08x    0x%08x\n", p, p[0], p[1]);
     }
 
     PPCHalt();
 }
-
 OSErrorHandler
 OSSetErrorHandler(OSError error, OSErrorHandler handler)
 {
     OSErrorHandler oldHandler;
 
-    ASSERTMSGLINE(0x8F, error < __OS_EXCEPTION_MAX, "OSSetErrorHandler(): unknown error.");
+    ASSERTMSGLINE(0x8F, error < __OS_EXCEPTION_MAX,
+                  "OSSetErrorHandler(): unknown error.");
     oldHandler = OSErrorTable[error];
     OSErrorTable[error] = handler;
     return oldHandler;
 }
-
 void
 __OSUnhandledException(u16 exception, struct OSContext* context, u32 dsisr, u32 dar)
 {
@@ -79,25 +77,25 @@ __OSUnhandledException(u16 exception, struct OSContext* context, u32 dsisr, u32 
 
     switch (exception)
     {
-        case __OS_EXCEPTION_DSI :
+        case __OS_EXCEPTION_DSI:
             OSReport(
                 "\nInstruction at 0x%x (read from SRR0) attempted to access "
                 "invalid address 0x%x (read from DAR)\n",
                 context->srr0, dar);
             break;
-        case __OS_EXCEPTION_ISI :
+        case __OS_EXCEPTION_ISI:
             OSReport(
                 "\nAttempted to fetch instruction from invalid address 0x%x "
                 "(read from SRR0)\n",
                 context->srr0);
             break;
-        case __OS_EXCEPTION_ALIGNMENT :
+        case __OS_EXCEPTION_ALIGNMENT:
             OSReport(
                 "\nInstruction at 0x%x (read from SRR0) attempted to access "
                 "unaligned address 0x%x (read from DAR)\n",
                 context->srr0, dar);
             break;
-        case __OS_EXCEPTION_PROGRAM :
+        case __OS_EXCEPTION_PROGRAM:
             OSReport(
                 "\nProgram exception : Possible illegal instruction/operation "
                 "at or around 0x%x (read from SRR0)\n",

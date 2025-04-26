@@ -6,18 +6,18 @@
  */
 
 #ifndef _MSL_NULL_H
-#    define _MSL_NULL_H
+#define _MSL_NULL_H
 
-#    ifndef NULL
+#ifndef NULL
 
-#        include <ansi_parms.h> /*- mm 970905 -*/
+#include <ansi_parms.h> /*- mm 970905 -*/
 
-#        define NULL 0L
+#define NULL 0L
 
-#    endif                      /* ndef NULL */
+#endif                  /* ndef NULL */
 
-#endif                          /* _MSL_NULL_H */
+#endif                  /* _MSL_NULL_H */
 
-                                /* Change record:
-                                 * mm  970905 added include of ansi_parms.h to avoid need for prefix file
-                                 */
+                        /* Change record:
+                         * mm  970905 added include of ansi_parms.h to avoid need for prefix file
+                         */

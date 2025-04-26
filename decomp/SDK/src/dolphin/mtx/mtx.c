@@ -12,7 +12,6 @@ extern f32 cosf(f32);
 
 // .sbss
 static float Unit01[2] = { 0.0f, 1.0f };
-
 void
 C_MTXIdentity(Mtx m)
 {
@@ -30,7 +29,6 @@ C_MTXIdentity(Mtx m)
     m[2][2] = 1;
     m[2][3] = 0;
 }
-
 void
 PSMTXIdentity(register Mtx m)
 {
@@ -50,7 +48,6 @@ PSMTXIdentity(register Mtx m)
         psq_st c_10, 40(m), 0, qr0
     }
 }
-
 void
 C_MTXCopy(Mtx src, Mtx dst)
 {
@@ -72,15 +69,15 @@ C_MTXCopy(Mtx src, Mtx dst)
         dst[2][3] = src[2][3];
     }
 }
-
 asm void
 PSMTXCopy(register Mtx src, register Mtx dst)
 {
-    psq_l f0, 0(src), 0, qr0 psq_st f0, 0(dst), 0, qr0 psq_l f1, 8(src), 0, qr0 psq_st f1, 8(dst), 0, qr0 psq_l f2,
-        16(src), 0, qr0 psq_st f2, 16(dst), 0, qr0 psq_l f3, 24(src), 0, qr0 psq_st f3, 24(dst), 0, qr0 psq_l f4,
-        32(src), 0, qr0 psq_st f4, 32(dst), 0, qr0 psq_l f5, 40(src), 0, qr0 psq_st f5, 40(dst), 0, qr0
+    psq_l f0, 0(src), 0, qr0 psq_st f0, 0(dst), 0, qr0 psq_l f1, 8(src), 0,
+        qr0 psq_st f1, 8(dst), 0, qr0 psq_l f2, 16(src), 0, qr0 psq_st f2, 16(dst),
+        0, qr0 psq_l f3, 24(src), 0, qr0 psq_st f3, 24(dst), 0, qr0 psq_l f4,
+        32(src), 0, qr0 psq_st f4, 32(dst), 0, qr0 psq_l f5, 40(src), 0,
+        qr0 psq_st f5, 40(dst), 0, qr0
 }
-
 void
 C_MTXConcat(Mtx a, Mtx b, Mtx ab)
 {
@@ -103,41 +100,47 @@ C_MTXConcat(Mtx a, Mtx b, Mtx ab)
     m[0][0] = 0 + a[0][2] * b[2][0] + ((a[0][0] * b[0][0]) + (a[0][1] * b[1][0]));
     m[0][1] = 0 + a[0][2] * b[2][1] + ((a[0][0] * b[0][1]) + (a[0][1] * b[1][1]));
     m[0][2] = 0 + a[0][2] * b[2][2] + ((a[0][0] * b[0][2]) + (a[0][1] * b[1][2]));
-    m[0][3] = a[0][3] + (a[0][2] * b[2][3] + (a[0][0] * b[0][3] + (a[0][1] * b[1][3])));
+    m[0][3] =
+        a[0][3] + (a[0][2] * b[2][3] + (a[0][0] * b[0][3] + (a[0][1] * b[1][3])));
 
     m[1][0] = 0 + a[1][2] * b[2][0] + ((a[1][0] * b[0][0]) + (a[1][1] * b[1][0]));
     m[1][1] = 0 + a[1][2] * b[2][1] + ((a[1][0] * b[0][1]) + (a[1][1] * b[1][1]));
     m[1][2] = 0 + a[1][2] * b[2][2] + ((a[1][0] * b[0][2]) + (a[1][1] * b[1][2]));
-    m[1][3] = a[1][3] + (a[1][2] * b[2][3] + (a[1][0] * b[0][3] + (a[1][1] * b[1][3])));
+    m[1][3] =
+        a[1][3] + (a[1][2] * b[2][3] + (a[1][0] * b[0][3] + (a[1][1] * b[1][3])));
 
     m[2][0] = 0 + a[2][2] * b[2][0] + ((a[2][0] * b[0][0]) + (a[2][1] * b[1][0]));
     m[2][1] = 0 + a[2][2] * b[2][1] + ((a[2][0] * b[0][1]) + (a[2][1] * b[1][1]));
     m[2][2] = 0 + a[2][2] * b[2][2] + ((a[2][0] * b[0][2]) + (a[2][1] * b[1][2]));
-    m[2][3] = a[2][3] + (a[2][2] * b[2][3] + (a[2][0] * b[0][3] + (a[2][1] * b[1][3])));
+    m[2][3] =
+        a[2][3] + (a[2][2] * b[2][3] + (a[2][0] * b[0][3] + (a[2][1] * b[1][3])));
 
     if (m == mTmp)
     {
         C_MTXCopy(mTmp, ab);
     }
 }
-
 asm void
 PSMTXConcat(register Mtx mA, register Mtx mB, register Mtx mAB)
 {
-    nofralloc stwu r1, -64(r1)psq_l f0, 0(mA), 0, qr0 stfd f14, 8(r1)psq_l f6, 0(mB), 0, qr0 lis r6,
-        Unit01 @ha psq_l f7, 8(mB), 0, qr0 stfd f15, 16(r1)addi r6, r6, Unit01 @l stfd f31, 40(r1)psq_l f8, 16(mB), 0,
-        qr0 ps_muls0 f12, f6, f0 psq_l f2, 16(mA), 0, qr0 ps_muls0 f13, f7, f0 psq_l f31, 0(r6), 0, qr0 ps_muls0 f14,
-        f6, f2 psq_l f9, 24(mB), 0, qr0 ps_muls0 f15, f7, f2 psq_l f1, 8(mA), 0, qr0 ps_madds1 f12, f8, f0,
-        f12 psq_l f3, 24(mA), 0, qr0 ps_madds1 f14, f8, f2, f14 psq_l f10, 32(mB), 0, qr0 ps_madds1 f13, f9, f0,
-        f13 psq_l f11, 40(mB), 0, qr0 ps_madds1 f15, f9, f2, f15 psq_l f4, 32(mA), 0, qr0 psq_l f5, 40(mA), 0,
-        qr0 ps_madds0 f12, f10, f1, f12 ps_madds0 f13, f11, f1, f13 ps_madds0 f14, f10, f3, f14 ps_madds0 f15, f11, f3,
-        f15 psq_st f12, 0(mAB), 0, qr0 ps_muls0 f2, f6, f4 ps_madds1 f13, f31, f1, f13 ps_muls0 f0, f7, f4 psq_st f14,
-        16(mAB), 0, qr0 ps_madds1 f15, f31, f3, f15 psq_st f13, 8(mAB), 0, qr0 ps_madds1 f2, f8, f4, f2 ps_madds1 f0,
-        f9, f4, f0 ps_madds0 f2, f10, f5, f2 lfd f14, 8(r1)psq_st f15, 24(mAB), 0, qr0 ps_madds0 f0, f11, f5,
-        f0 psq_st f2, 32(mAB), 0, qr0 ps_madds1 f0, f31, f5, f0 lfd f15, 16(r1)psq_st f0, 40(mAB), 0, qr0 lfd f31,
-        40(r1)addi r1, r1, 64 blr
+    nofralloc stwu r1, -64(r1)psq_l f0, 0(mA), 0, qr0 stfd f14, 8(r1)psq_l f6, 0(mB),
+        0, qr0 lis r6, Unit01 @ha psq_l f7, 8(mB), 0, qr0 stfd f15, 16(r1)addi r6,
+        r6, Unit01 @l stfd f31, 40(r1)psq_l f8, 16(mB), 0, qr0 ps_muls0 f12, f6,
+        f0 psq_l f2, 16(mA), 0, qr0 ps_muls0 f13, f7, f0 psq_l f31, 0(r6), 0,
+        qr0 ps_muls0 f14, f6, f2 psq_l f9, 24(mB), 0, qr0 ps_muls0 f15, f7,
+        f2 psq_l f1, 8(mA), 0, qr0 ps_madds1 f12, f8, f0, f12 psq_l f3, 24(mA), 0,
+        qr0 ps_madds1 f14, f8, f2, f14 psq_l f10, 32(mB), 0, qr0 ps_madds1 f13, f9,
+        f0, f13 psq_l f11, 40(mB), 0, qr0 ps_madds1 f15, f9, f2, f15 psq_l f4,
+        32(mA), 0, qr0 psq_l f5, 40(mA), 0, qr0 ps_madds0 f12, f10, f1,
+        f12 ps_madds0 f13, f11, f1, f13 ps_madds0 f14, f10, f3, f14 ps_madds0 f15,
+        f11, f3, f15 psq_st f12, 0(mAB), 0, qr0 ps_muls0 f2, f6, f4 ps_madds1 f13,
+        f31, f1, f13 ps_muls0 f0, f7, f4 psq_st f14, 16(mAB), 0, qr0 ps_madds1 f15,
+        f31, f3, f15 psq_st f13, 8(mAB), 0, qr0 ps_madds1 f2, f8, f4,
+        f2 ps_madds1 f0, f9, f4, f0 ps_madds0 f2, f10, f5, f2 lfd f14,
+        8(r1)psq_st f15, 24(mAB), 0, qr0 ps_madds0 f0, f11, f5, f0 psq_st f2,
+        32(mAB), 0, qr0 ps_madds1 f0, f31, f5, f0 lfd f15, 16(r1)psq_st f0, 40(mAB),
+        0, qr0 lfd f31, 40(r1)addi r1, r1, 64 blr
 }
-
 void
 C_MTXTranspose(Mtx src, Mtx xPose)
 {
@@ -173,7 +176,6 @@ C_MTXTranspose(Mtx src, Mtx xPose)
         C_MTXCopy(mTmp, xPose);
     }
 }
-
 void
 PSMTXTranspose(register Mtx src, register Mtx xPose)
 {
@@ -211,7 +213,6 @@ PSMTXTranspose(register Mtx src, register Mtx xPose)
     }
     xPose[2][2] = row0b;
 }
-
 u32
 C_MTXInverse(Mtx src, Mtx inv)
 {
@@ -230,11 +231,12 @@ C_MTXInverse(Mtx src, Mtx inv)
     {
         m = inv;
     }
-    det = ((((src[2][1] * (src[0][2] * src[1][0]))
-             + ((src[2][2] * (src[0][0] * src[1][1])) + (src[2][0] * (src[0][1] * src[1][2]))))
-            - (src[0][2] * (src[2][0] * src[1][1])))
-           - (src[2][2] * (src[1][0] * src[0][1])))
-          - (src[1][2] * (src[0][0] * src[2][1]));
+    det = ((((src[2][1] * (src[0][2] * src[1][0])) +
+             ((src[2][2] * (src[0][0] * src[1][1])) +
+              (src[2][0] * (src[0][1] * src[1][2])))) -
+            (src[0][2] * (src[2][0] * src[1][1]))) -
+           (src[2][2] * (src[1][0] * src[0][1]))) -
+          (src[1][2] * (src[0][0] * src[2][1]));
     if (0 == det)
     {
         return 0;
@@ -252,9 +254,12 @@ C_MTXInverse(Mtx src, Mtx inv)
     m[2][1] = (det * -((src[0][0] * src[2][1]) - (src[2][0] * src[0][1])));
     m[2][2] = (det * +((src[0][0] * src[1][1]) - (src[1][0] * src[0][1])));
 
-    m[0][3] = ((-m[0][0] * src[0][3]) - (m[0][1] * src[1][3])) - (m[0][2] * src[2][3]);
-    m[1][3] = ((-m[1][0] * src[0][3]) - (m[1][1] * src[1][3])) - (m[1][2] * src[2][3]);
-    m[2][3] = ((-m[2][0] * src[0][3]) - (m[2][1] * src[1][3])) - (m[2][2] * src[2][3]);
+    m[0][3] =
+        ((-m[0][0] * src[0][3]) - (m[0][1] * src[1][3])) - (m[0][2] * src[2][3]);
+    m[1][3] =
+        ((-m[1][0] * src[0][3]) - (m[1][1] * src[1][3])) - (m[1][2] * src[2][3]);
+    m[2][3] =
+        ((-m[2][0] * src[0][3]) - (m[2][1] * src[1][3])) - (m[2][2] * src[2][3]);
 
     if (m == mTmp)
     {
@@ -262,7 +267,6 @@ C_MTXInverse(Mtx src, Mtx inv)
     }
     return 1;
 }
-
 asm u32
 PSMTXInverse(register Mtx src, register Mtx inv) {
     psq_l f0,
@@ -432,11 +436,12 @@ u32 C_MTXInvXpose(Mtx src, Mtx invX)
     {
         m = invX;
     }
-    det = ((((src[2][1] * (src[0][2] * src[1][0]))
-             + ((src[2][2] * (src[0][0] * src[1][1])) + (src[2][0] * (src[0][1] * src[1][2]))))
-            - (src[0][2] * (src[2][0] * src[1][1])))
-           - (src[2][2] * (src[1][0] * src[0][1])))
-          - (src[1][2] * (src[0][0] * src[2][1]));
+    det = ((((src[2][1] * (src[0][2] * src[1][0])) +
+             ((src[2][2] * (src[0][0] * src[1][1])) +
+              (src[2][0] * (src[0][1] * src[1][2])))) -
+            (src[0][2] * (src[2][0] * src[1][1]))) -
+           (src[2][2] * (src[1][0] * src[0][1]))) -
+          (src[1][2] * (src[0][0] * src[2][1]));
     if (0 == det)
     {
         return 0;
@@ -464,73 +469,75 @@ u32 C_MTXInvXpose(Mtx src, Mtx invX)
     }
     return 1;
 }
-
 asm u32
 PSMTXInvXpose(register Mtx src, register Mtx invX)
 {
-    psq_l f0, 0(src), 1, qr0 psq_l f1, 4(src), 0, qr0 psq_l f2, 16(src), 1, qr0 ps_merge10 f6, f1, f0 psq_l f3, 20(src),
-        0, qr0 psq_l f4, 32(src), 1, qr0 ps_merge10 f7, f3, f2 psq_l f5, 36(src), 0, qr0 ps_mul f11, f3,
-        f6 ps_merge10 f8, f5, f4 ps_mul f13, f5, f7 ps_msub f11, f1, f7, f11 ps_mul f12, f1, f8 ps_msub f13, f3, f8,
-        f13 ps_msub f12, f5, f6, f12 ps_mul f10, f3, f4 ps_mul f9, f0, f5 ps_mul f8, f1, f2 ps_msub f10, f2, f5,
-        f10 ps_msub f9, f1, f4, f9 ps_msub f8, f0, f3, f8 ps_mul f7, f0, f13 ps_sub f1, f1, f1 ps_madd f7, f2, f12,
-        f7 ps_madd f7, f4, f11, f7 ps_cmpo0 cr0, f7, f1 bne skip_return li r3, 0 blr skip_return : ps_res f0,
-                                                                                                   f7 psq_st f1,
-                                                                                                   12(invX),
-                                                                                                   1,
-                                                                                                   qr0 ps_add f6,
-                                                                                                   f0,
-                                                                                                   f0 ps_mul f5,
-                                                                                                   f0,
-                                                                                                   f0 ps_nmsub f0,
-                                                                                                   f7,
-                                                                                                   f5,
-                                                                                                   f6 psq_st f1,
-                                                                                                   28(invX),
-                                                                                                   1,
-                                                                                                   qr0 ps_add f6,
-                                                                                                   f0,
-                                                                                                   f0 ps_mul f5,
-                                                                                                   f0,
-                                                                                                   f0 ps_nmsub f0,
-                                                                                                   f7,
-                                                                                                   f5,
-                                                                                                   f6 psq_st f1,
-                                                                                                   44(invX),
-                                                                                                   1,
-                                                                                                   qr0 ps_muls0 f13,
-                                                                                                   f13,
-                                                                                                   f0 ps_muls0 f12,
-                                                                                                   f12,
-                                                                                                   f0 psq_st f13,
-                                                                                                   0(invX),
-                                                                                                   0,
-                                                                                                   qr0 ps_muls0 f11,
-                                                                                                   f11,
-                                                                                                   f0 psq_st f12,
-                                                                                                   16(invX),
-                                                                                                   0,
-                                                                                                   qr0 ps_muls0 f10,
-                                                                                                   f10,
-                                                                                                   f0 psq_st f11,
-                                                                                                   32(invX),
-                                                                                                   0,
-                                                                                                   qr0 ps_muls0 f9,
-                                                                                                   f9,
-                                                                                                   f0 psq_st f10,
-                                                                                                   8(invX),
-                                                                                                   1,
-                                                                                                   qr0 ps_muls0 f8,
-                                                                                                   f8,
-                                                                                                   f0 psq_st f9,
-                                                                                                   24(invX),
-                                                                                                   1,
-                                                                                                   qr0 li   r3,
-                                                                                                   1 psq_st f8,
-                                                                                                   40(invX),
-                                                                                                   1,
-                                                                                                   qr0
+    psq_l f0, 0(src), 1, qr0 psq_l f1, 4(src), 0, qr0 psq_l f2, 16(src), 1,
+        qr0 ps_merge10 f6, f1, f0 psq_l f3, 20(src), 0, qr0 psq_l f4, 32(src), 1,
+        qr0 ps_merge10 f7, f3, f2 psq_l f5, 36(src), 0, qr0 ps_mul f11, f3,
+        f6 ps_merge10 f8, f5, f4 ps_mul f13, f5, f7 ps_msub f11, f1, f7,
+        f11 ps_mul f12, f1, f8 ps_msub f13, f3, f8, f13 ps_msub f12, f5, f6,
+        f12 ps_mul f10, f3, f4 ps_mul f9, f0, f5 ps_mul f8, f1, f2 ps_msub f10, f2,
+        f5, f10 ps_msub f9, f1, f4, f9 ps_msub f8, f0, f3, f8 ps_mul f7, f0,
+        f13 ps_sub f1, f1, f1 ps_madd f7, f2, f12, f7 ps_madd f7, f4, f11,
+        f7 ps_cmpo0 cr0, f7, f1 bne skip_return li r3,
+        0 blr skip_return : ps_res    f0,
+                            f7 psq_st f1,
+                            12(invX),
+                            1,
+                            qr0 ps_add f6,
+                            f0,
+                            f0 ps_mul f5,
+                            f0,
+                            f0 ps_nmsub f0,
+                            f7,
+                            f5,
+                            f6 psq_st f1,
+                            28(invX),
+                            1,
+                            qr0 ps_add f6,
+                            f0,
+                            f0 ps_mul f5,
+                            f0,
+                            f0 ps_nmsub f0,
+                            f7,
+                            f5,
+                            f6 psq_st f1,
+                            44(invX),
+                            1,
+                            qr0 ps_muls0 f13,
+                            f13,
+                            f0 ps_muls0 f12,
+                            f12,
+                            f0 psq_st f13,
+                            0(invX),
+                            0,
+                            qr0 ps_muls0 f11,
+                            f11,
+                            f0 psq_st f12,
+                            16(invX),
+                            0,
+                            qr0 ps_muls0 f10,
+                            f10,
+                            f0 psq_st f11,
+                            32(invX),
+                            0,
+                            qr0 ps_muls0 f9,
+                            f9,
+                            f0 psq_st f10,
+                            8(invX),
+                            1,
+                            qr0 ps_muls0 f8,
+                            f8,
+                            f0 psq_st f9,
+                            24(invX),
+                            1,
+                            qr0 li   r3,
+                            1 psq_st f8,
+                            40(invX),
+                            1,
+                            qr0
 }
-
 void
 MTXRotRad(Mtx m, s8 axis, f32 rad)
 {
@@ -542,15 +549,14 @@ MTXRotRad(Mtx m, s8 axis, f32 rad)
     cosA = cosf(rad);
     MTXRotTrig(m, axis, sinA, cosA);
 }
-
 void
 MTXRotTrig(Mtx m, s8 axis, f32 sinA, f32 cosA)
 {
     ASSERTMSGLINE(0x4AF, m, "MTXRotTrig():  NULL MtxPtr 'm' ");
     switch (axis)
     {
-        case 120 :
-        case 88 :
+        case 120:
+        case 88:
             m[0][0] = 1;
             m[0][1] = 0;
             m[0][2] = 0;
@@ -564,8 +570,8 @@ MTXRotTrig(Mtx m, s8 axis, f32 sinA, f32 cosA)
             m[2][2] = cosA;
             m[2][3] = 0;
             break;
-        case 121 :
-        case 89 :
+        case 121:
+        case 89:
             m[0][0] = cosA;
             m[0][1] = 0;
             m[0][2] = sinA;
@@ -579,8 +585,8 @@ MTXRotTrig(Mtx m, s8 axis, f32 sinA, f32 cosA)
             m[2][2] = cosA;
             m[2][3] = 0;
             break;
-        case 122 :
-        case 90 :
+        case 122:
+        case 90:
             m[0][0] = cosA;
             m[0][1] = -sinA;
             m[0][2] = 0;
@@ -594,10 +600,11 @@ MTXRotTrig(Mtx m, s8 axis, f32 sinA, f32 cosA)
             m[2][2] = 1;
             m[2][3] = 0;
             break;
-        default : ASSERTMSGLINE(0x4CB, FALSE, "MTXRotTrig():  invalid 'axis' value "); break;
+        default:
+            ASSERTMSGLINE(0x4CB, FALSE, "MTXRotTrig():  invalid 'axis' value ");
+            break;
     }
 }
-
 void
 MTXRotAxisRad(Mtx m, Vec* axis, f32 rad)
 {
@@ -638,7 +645,6 @@ MTXRotAxisRad(Mtx m, Vec* axis, f32 rad)
     m[2][2] = (c + (t * zSq));
     m[2][3] = 0;
 }
-
 void
 MTXTrans(Mtx m, f32 xT, f32 yT, f32 zT)
 {
@@ -656,12 +662,12 @@ MTXTrans(Mtx m, f32 xT, f32 yT, f32 zT)
     m[2][2] = 1;
     m[2][3] = zT;
 }
-
 void
 MTXTransApply(Mtx src, Mtx dst, f32 xT, f32 yT, f32 zT)
 {
     ASSERTMSGLINE(0x567, src, "MTXTransApply(): NULL MtxPtr 'src' ");
-    ASSERTMSGLINE(0x568, dst, "MTXTransApply(): NULL MtxPtr 'src' "); //! wrong assert string
+    ASSERTMSGLINE(0x568, dst,
+                  "MTXTransApply(): NULL MtxPtr 'src' "); //! wrong assert string
 
     if (src != dst)
     {
@@ -679,7 +685,6 @@ MTXTransApply(Mtx src, Mtx dst, f32 xT, f32 yT, f32 zT)
     dst[1][3] = (src[1][3] + yT);
     dst[2][3] = (src[2][3] + zT);
 }
-
 void
 MTXScale(Mtx m, f32 xS, f32 yS, f32 zS)
 {
@@ -697,7 +702,6 @@ MTXScale(Mtx m, f32 xS, f32 yS, f32 zS)
     m[2][2] = zS;
     m[2][3] = 0;
 }
-
 void
 MTXScaleApply(Mtx src, Mtx dst, f32 xS, f32 yS, f32 zS)
 {
@@ -716,7 +720,6 @@ MTXScaleApply(Mtx src, Mtx dst, f32 xS, f32 yS, f32 zS)
     dst[2][2] = (src[2][2] * zS);
     dst[2][3] = (src[2][3] * zS);
 }
-
 void
 MTXQuat(Mtx m, QuaternionPtr q)
 {
@@ -736,7 +739,8 @@ MTXQuat(Mtx m, QuaternionPtr q)
 
     ASSERTMSGLINE(0x5C9, m, "MTXQuat():  NULL MtxPtr 'm' ");
     ASSERTMSGLINE(0x5CA, q, "MTXQuat():  NULL QuaternionPtr 'q' ");
-    ASSERTMSGLINE(0x5CB, q->x || q->y || q->z || q->w, "MTXQuat():  zero-value quaternion ");
+    ASSERTMSGLINE(0x5CB, q->x || q->y || q->z || q->w,
+                  "MTXQuat():  zero-value quaternion ");
     s = 2 / ((q->w * q->w) + ((q->z * q->z) + ((q->x * q->x) + (q->y * q->y))));
     xs = q->x * s;
     ys = q->y * s;
@@ -763,7 +767,6 @@ MTXQuat(Mtx m, QuaternionPtr q)
     m[2][2] = (1 - (xx + yy));
     m[2][3] = 0;
 }
-
 void
 MTXReflect(Mtx m, Vec* p, Vec* n)
 {
@@ -789,7 +792,6 @@ MTXReflect(Mtx m, Vec* p, Vec* n)
     m[2][2] = (1 - (2 * n->z * n->z));
     m[2][3] = (pdotn * n->z);
 }
-
 void
 MTXLookAt(Mtx m, Vec* camPos, Vec* camUp, Vec* target)
 {
@@ -812,7 +814,8 @@ MTXLookAt(Mtx m, Vec* camPos, Vec* camUp, Vec* target)
     m[0][0] = vRight.x;
     m[0][1] = vRight.y;
     m[0][2] = vRight.z;
-    m[0][3] = -((camPos->z * vRight.z) + ((camPos->x * vRight.x) + (camPos->y * vRight.y)));
+    m[0][3] = -((camPos->z * vRight.z) +
+                ((camPos->x * vRight.x) + (camPos->y * vRight.y)));
     m[1][0] = vUp.x;
     m[1][1] = vUp.y;
     m[1][2] = vUp.z;
@@ -820,17 +823,20 @@ MTXLookAt(Mtx m, Vec* camPos, Vec* camUp, Vec* target)
     m[2][0] = vLook.x;
     m[2][1] = vLook.y;
     m[2][2] = vLook.z;
-    m[2][3] = -((camPos->z * vLook.z) + ((camPos->x * vLook.x) + (camPos->y * vLook.y)));
+    m[2][3] =
+        -((camPos->z * vLook.z) + ((camPos->x * vLook.x) + (camPos->y * vLook.y)));
 }
-
 void
-MTXLightFrustum(Mtx m, f32 t, f32 b, f32 l, f32 r, f32 n, f32 scaleS, f32 scaleT, f32 transS, f32 transT)
+MTXLightFrustum(Mtx m, f32 t, f32 b, f32 l, f32 r, f32 n, f32 scaleS, f32 scaleT,
+                f32 transS, f32 transT)
 {
     f32 tmp;
 
     ASSERTMSGLINE(0x6A2, m, "MTXLightFrustum():  NULL MtxPtr 'm' ");
-    ASSERTMSGLINE(0x6A3, (t != b), "MTXLightFrustum():  't' and 'b' clipping planes are equal ");
-    ASSERTMSGLINE(0x6A4, (l != r), "MTXLightFrustum():  'l' and 'r' clipping planes are equal ");
+    ASSERTMSGLINE(0x6A3, (t != b),
+                  "MTXLightFrustum():  't' and 'b' clipping planes are equal ");
+    ASSERTMSGLINE(0x6A4, (l != r),
+                  "MTXLightFrustum():  'l' and 'r' clipping planes are equal ");
 
     tmp = 1 / (r - l);
     m[0][0] = (scaleS * (2 * n * tmp));
@@ -847,15 +853,16 @@ MTXLightFrustum(Mtx m, f32 t, f32 b, f32 l, f32 r, f32 n, f32 scaleS, f32 scaleT
     m[2][2] = -1;
     m[2][3] = 0;
 }
-
 void
-MTXLightPerspective(Mtx m, f32 fovY, f32 aspect, f32 scaleS, f32 scaleT, f32 transS, f32 transT)
+MTXLightPerspective(Mtx m, f32 fovY, f32 aspect, f32 scaleS, f32 scaleT, f32 transS,
+                    f32 transT)
 {
     f32 angle;
     f32 cot;
 
     ASSERTMSGLINE(0x6DF, m, "MTXLightPerspective():  NULL MtxPtr 'm' ");
-    ASSERTMSGLINE(0x6E0, (fovY > 0.0) && (fovY < 180.0), "MTXLightPerspective():  'fovY' out of range ");
+    ASSERTMSGLINE(0x6E0, (fovY > 0.0) && (fovY < 180.0),
+                  "MTXLightPerspective():  'fovY' out of range ");
     ASSERTMSGLINE(0x6E1, 0 != aspect, "MTXLightPerspective():  'aspect' is 0 ");
 
     angle = (0.5f * fovY);
@@ -874,15 +881,17 @@ MTXLightPerspective(Mtx m, f32 fovY, f32 aspect, f32 scaleS, f32 scaleT, f32 tra
     m[2][2] = -1;
     m[2][3] = 0;
 }
-
 void
-MTXLightOrtho(Mtx m, f32 t, f32 b, f32 l, f32 r, f32 scaleS, f32 scaleT, f32 transS, f32 transT)
+MTXLightOrtho(Mtx m, f32 t, f32 b, f32 l, f32 r, f32 scaleS, f32 scaleT, f32 transS,
+              f32 transT)
 {
     f32 tmp;
 
     ASSERTMSGLINE(0x720, m, "MTXLightOrtho():  NULL MtxPtr 'm' ");
-    ASSERTMSGLINE(0x721, (t != b), "MTXLightOrtho():  't' and 'b' clipping planes are equal ");
-    ASSERTMSGLINE(0x722, (l != r), "MTXLightOrtho():  'l' and 'r' clipping planes are equal ");
+    ASSERTMSGLINE(0x721, (t != b),
+                  "MTXLightOrtho():  't' and 'b' clipping planes are equal ");
+    ASSERTMSGLINE(0x722, (l != r),
+                  "MTXLightOrtho():  'l' and 'r' clipping planes are equal ");
     tmp = 1 / (r - l);
     m[0][0] = (2 * tmp * scaleS);
     m[0][1] = 0;

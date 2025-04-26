@@ -21,7 +21,6 @@
 #pragma tvectors off
 #pragma internal on
 #pragma options align = power
-
 //
 //	Private Types
 //
@@ -30,14 +29,12 @@ typedef struct PTMF
 {
     long this_delta;         //	delta to this pointer
     long vtbl_offset;        //	offset in vtable (-1: not a virtual function)
-
     union
     {
         void* func_addr;     //	nonvirtual function address
         long  ventry_offset; //	offset of virtual function entry in vtable
     } func_data;
 } PTMF;
-
 //
 //	Public Data
 //
@@ -64,7 +61,6 @@ PTMF* __ptmf_cast(long offset, const PTMF* ptmfrom, PTMF* ptmto);
 #ifdef __cplusplus
 }
 #endif
-
 //	__ptmf_test	-	test pointer-to-member-function for null
 //
 //	R3 contains the PTMF. If it is null, we return 0; else we return 1.
@@ -79,10 +75,10 @@ __ptmf_test(register PTMF* ptmf)
     smclass GL
 #endif
         lwz                     r5,
-        PTMF.this_delta(r3) lwz r6, PTMF.vtbl_offset(r3) lwz r7, PTMF.func_data(r3) li r3, 1 cmpwi cr0, r5, 0 cmpwi cr6,
-        r6, 0 cmpwi cr7, r7, 0 bnelr cr0 bnelr cr6 bnelr cr7 li r3, 0 blr
+        PTMF.this_delta(r3) lwz r6, PTMF.vtbl_offset(r3) lwz r7,
+        PTMF.func_data(r3) li r3, 1 cmpwi cr0, r5, 0 cmpwi cr6, r6, 0 cmpwi cr7, r7,
+        0 bnelr cr0 bnelr cr6 bnelr cr7 li r3, 0 blr
 }
-
 //	__ptmf_cmpr	-	compare two pointer-to-member-functions
 //
 //	R3 and R4 contain the PTMFs. If equal, we return 0; else we return 1.
@@ -97,11 +93,12 @@ __ptmf_cmpr(register PTMF* ptmf1, register PTMF* ptmf2)
     smclass GL
 #endif
         lwz                     r5,
-        PTMF.this_delta(r3) lwz r6, PTMF.this_delta(r4) lwz r7, PTMF.vtbl_offset(r3) lwz r8,
-        PTMF.vtbl_offset(r4) lwz r9, PTMF.func_data(r3) lwz r10, PTMF.func_data(r4) li r3, 1 cmpw cr0, r5, r6 cmpw cr6,
-        r7, r8 cmpw cr7, r9, r10 bnelr cr0 bnelr cr6 bnelr cr7 li r3, 0 blr
+        PTMF.this_delta(r3) lwz r6, PTMF.this_delta(r4) lwz r7,
+        PTMF.vtbl_offset(r3) lwz r8, PTMF.vtbl_offset(r4) lwz r9,
+        PTMF.func_data(r3) lwz r10, PTMF.func_data(r4) li r3, 1 cmpw cr0, r5,
+        r6 cmpw cr6, r7, r8 cmpw cr7, r9, r10 bnelr cr0 bnelr cr6 bnelr cr7 li r3,
+        0 blr
 }
-
 //	__ptmf_call		-	call pointer-to-member-function
 //
 //	R12 contains the PTMF. R3 contains 'this'.
@@ -143,7 +140,6 @@ __ptmf_call(...)
 #endif
         bctr
 }
-
 //	__ptmf_call4	-	call pointer-to-member-function, 'this' in R4
 //
 //	R12 contains the PTMF. R4 contains 'this'.
@@ -185,7 +181,6 @@ __ptmf_call4(...)
 #endif
         bctr
 }
-
 //	__ptmf_scall	-	call pointer-to-member-function
 //
 //	This is used when we know the class tree uses single inheritance only.
@@ -224,7 +219,6 @@ __ptmf_scall(...)
 #endif
         bctr
 }
-
 //	__ptmf_scall4	-	call pointer-to-member-function
 //
 //	This is used when we know the class tree uses single inheritance only.
@@ -263,7 +257,6 @@ __ptmf_scall4(...)
 #endif
         bctr
 }
-
 /************************************************************************/
 /* Purpose..: This function will copy/cast a pointer to func member		*/
 /* Input....: offset delta to apply	to pointer to function member		*/

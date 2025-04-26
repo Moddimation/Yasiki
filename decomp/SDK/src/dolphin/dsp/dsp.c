@@ -4,38 +4,32 @@
 #include <stddef.h>
 
 #include "dsp_private.h"
-
 u32
 DSPCheckMailToDSP(void)
 {
     return (__DSPReg[0] & (1 << 15)) >> 15;
 }
-
 u32
 DSPCheckMailFromDSP(void)
 {
     return (__DSPReg[2] & (1 << 15)) >> 15;
 }
-
 u32
 DSPReadCPUToDSPMbox(void)
 {
     return (__DSPReg[0] << 16) | __DSPReg[1];
 }
-
 u32
 DSPReadMailFromDSP(void)
 {
     return (__DSPReg[2] << 16) | __DSPReg[3];
 }
-
 void
 DSPSendMailToDSP(u32 mail)
 {
     __DSPReg[0] = mail >> 16;
     __DSPReg[1] = mail & 0xFFFF;
 }
-
 /*
 void
 DSPAssertInt(void)
@@ -143,7 +137,8 @@ DSPAddTask(DSPTaskInfo* task)
 {
     BOOL old;
 
-    ASSERTMSGLINE(0x21E, __DSP_init_flag == 1, "DSPAddTask(): DSP driver not initialized!\n");
+    ASSERTMSGLINE(0x21E, __DSP_init_flag == 1, "DSPAddTask(): DSP driver not
+initialized!\n");
 
     old = OSDisableInterrupts();
 
@@ -164,7 +159,8 @@ DSPCancelTask(DSPTaskInfo* task)
 {
     BOOL old;
 
-    ASSERTMSGLINE(0x242, __DSP_init_flag == 1, "DSPCancelTask(): DSP driver not initialized!\n");
+    ASSERTMSGLINE(0x242, __DSP_init_flag == 1, "DSPCancelTask(): DSP driver not
+initialized!\n");
 
     old = OSDisableInterrupts();
 
@@ -182,8 +178,9 @@ DSPAssertTask(DSPTaskInfo* task)
 {
     s32 old;
 
-    ASSERTMSGLINE(0x261, __DSP_init_flag == 1, "DSPAssertTask(): DSP driver not initialized!\n");
-    ASSERTMSGLINE(0x262, task->flags & 1, "DSPAssertTask(): Specified task not in active task list!\n");
+    ASSERTMSGLINE(0x261, __DSP_init_flag == 1, "DSPAssertTask(): DSP driver not
+initialized!\n"); ASSERTMSGLINE(0x262, task->flags & 1, "DSPAssertTask(): Specified
+task not in active task list!\n");
 
     old = OSDisableInterrupts();
 

@@ -24,7 +24,7 @@ _INT32 __float_nan[] = { 0x7FFFFFFF };
 _INT32 __float_huge[] = { 0x7f800000 };
 
 #if (__MC68K__ && __dest_os == __mac_os)
-#    if !__option(IEEEdoubles)
+#if !__option(IEEEdoubles)
 
 _INT32 __double_min[] = { 0x00018000, 0, 0 };
 _INT32 __double_max[] = { 0x7FFEFFFF, 0xFFFFFFFF, 0xFFFF0000 };
@@ -33,7 +33,7 @@ _INT32 __double_tiny[] = { 0, 0, 0x00010000 };
 _INT32 __double_huge[] = { 0x7FFF0000, 0, 0 };
 _INT32 __double_nan[] = { 0x7FFFFFFF, 0xFFFFFFFF, 0xFFFF0000 };
 
-#    else
+#else
 _INT32 __double_min[] = { 0x00100000, 0 };
 _INT32 __double_max[] = { 0x7fefffff, 0xffffffff };
 _INT32 __double_epsilon[] = { 0x3cb00000, 0 };
@@ -41,10 +41,10 @@ _INT32 __double_tiny[] = { 0, 1 };
 _INT32 __double_huge[] = { 0x7FF00000, 0 };
 _INT32 __double_nan[] = { 0x7FFFFFFF, 0xFFFFFFFF };
 
-#    endif                       /* IEEEDoubles */
+#endif                           /* IEEEDoubles */
 #else                            /* MC68K */
 
-#    if __option(little_endian)
+#if __option(little_endian)
 /* as of now all our little_endian architectures
    do not support IEEE extended precision, therefore
    long doubles are 64 bits instead of 80.
@@ -58,7 +58,7 @@ _INT32 __double_tiny[] = { 1, 0 };
 _INT32 __double_huge[] = { 0, 0x7FF00000 };
 _INT32 __double_nan[] = { 0xFFFFFFFF, 0x7FFFFFFF };
 
-#    else
+#else
 
 _INT32 __double_min[] = { 0x00100000, 0 };
 _INT32 __double_max[] = { 0x7fefffff, 0xffffffff };
@@ -67,11 +67,11 @@ _INT32 __double_tiny[] = { 0, 1 };
 _INT32 __double_huge[] = { 0x7FF00000, 0 };
 _INT32 __double_nan[] = { 0x7FFFFFFF, 0xFFFFFFFF };
 
-#    endif                       /* little_endian */
+#endif                           /* little_endian */
 #endif                           /* __MC68k__*/
 
 #ifdef __MC68K__
-#    if __MC68881__
+#if __MC68881__
 
 _INT32 __extended_min[] = { 0x00010000, 0x80000000, 0 };
 _INT32 __extended_max[] = { 0x7FFE0000, 0xFFFFFFFF, 0xFFFFFFFF };
@@ -79,40 +79,40 @@ _INT32 __extended_epsilon[] = { 0x3FC00000, 0x80000000, 0x00000000 };
 _INT32 __extended_tiny[] = { 0, 0, 1 };
 _INT32 __extended_huge[] = { 0x7FFF0000, 0, 0 };
 _INT32 __extended_nan[] = { 0x7FFF0000, 0xFFFFFFFF, 0xFFFFFFFF };
-#    else
-#        if __dest_os == __mac_os
+#else
+#if __dest_os == __mac_os
 _INT32 __extended_min[] = { 0x00018000, 0, 0 };
 _INT32 __extended_max[] = { 0x7FFEFFFF, 0xFFFFFFFF, 0xFFFF0000 };
 _INT32 __extended_epsilon[] = { 0x3FC08000, 0, 0 };
 _INT32 __extended_tiny[] = { 0, 0, 0x00010000 };
 _INT32 __extended_huge[] = { 0x7FFF0000, 0, 0 };
 _INT32 __extended_nan[] = { 0x7FFFFFFF, 0xFFFFFFFF, 0xFFFF0000 };
-#        else
+#else
 _INT32 __extended_min[] = { 0x00100000, 0 };
 _INT32 __extended_max[] = { 0x7fefffff, 0xffffffff };
 _INT32 __extended_epsilon[] = { 0x3cb00000, 0 };
 _INT32 __extended_tiny[] = { 0, 1 };
 _INT32 __extended_huge[] = { 0x7FF00000, 0 };
 _INT32 __extended_nan[] = { 0x7FFFFFFF, 0xFFFFFFFF };
-#        endif
-#    endif                       /* __MC68881__ */
+#endif
+#endif                           /* __MC68881__ */
 #else
 /* our compilers support long double on 68k only */
-#    if __option(little_endian)
+#if __option(little_endian)
 _INT32 __extended_min[] = { 0, 0x00100000 };
 _INT32 __extended_max[] = { 0xffffffff, 0x7fefffff };
 _INT32 __extended_epsilon[] = { 0, 0x3cb00000 };
 _INT32 __extended_tiny[] = { 1, 0 };
 _INT32 __extended_huge[] = { 0, 0x7FF00000 };
 _INT32 __extended_nan[] = { 0xFFFFFFFF, 0x7FFFFFFF };
-#    else
+#else
 _INT32 __extended_min[] = { 0x00100000, 0 };
 _INT32 __extended_max[] = { 0x7fefffff, 0xffffffff };
 _INT32 __extended_epsilon[] = { 0x3cb00000, 0 };
 _INT32 __extended_tiny[] = { 0, 1 };
 _INT32 __extended_huge[] = { 0x7FF00000, 0 };
 _INT32 __extended_nan[] = { 0x7FFFFFFF, 0xFFFFFFFF };
-#    endif                       /* __option(little_endian) */
+#endif                           /* __option(little_endian) */
 
 #endif                           /* __M68K__ */
 

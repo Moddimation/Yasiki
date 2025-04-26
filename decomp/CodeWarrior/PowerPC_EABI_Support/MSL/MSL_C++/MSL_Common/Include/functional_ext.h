@@ -1,5 +1,6 @@
 /* Metrowerks Standard Library
- * Copyright ÃÂ¯ÃÂ½C 1995-2001 Metrowerks Corporation.  All rights reserved.
+ * Copyright ÃÂ¯ÃÂ½C 1995-2001 Metrowerks Corporation.  All rights
+ * reserved.
  *
  * $Date: 2001/03/08 20:53:58 $
  * $Revision: 1.5 $
@@ -34,18 +35,18 @@
  */
 
 #ifndef _FUNCTIONAL_EXT_H
-#    define _FUNCTIONAL_EXT_H
+#define _FUNCTIONAL_EXT_H
 
-#    include <functional_ext>
+#include <functional_ext>
 
-#    ifndef _MSL_NO_CPP_NAMESPACE
+#ifndef _MSL_NO_CPP_NAMESPACE
 using std::binary_compose;
 using std::compose1;
 using std::compose2;
 using std::select1st;
 using std::select2nd;
 using std::unary_compose;
-#    endif
+#endif
 
 #endif // _FUNCTIONAL_EXT_H
 

@@ -6,14 +6,12 @@
 
 static void WriteCallback(s32 chan, s32 result);
 static void EraseCallback(s32 chan, s32 result);
-
 CARDDir*
 __CARDGetDirBlock(CARDControl* card)
 {
     ASSERTLINE(0x36, card->currentDir);
     return card->currentDir;
 }
-
 static void
 WriteCallback(s32 chan, s32 result)
 {
@@ -51,7 +49,6 @@ WriteCallback(s32 chan, s32 result)
         callback(chan, result);
     }
 }
-
 static void
 EraseCallback(s32 chan, s32 result)
 {
@@ -82,7 +79,6 @@ EraseCallback(s32 chan, s32 result)
         callback(chan, result);
     }
 }
-
 s32
 __CARDUpdateDir(s32 chan, CARDCallback callback)
 {

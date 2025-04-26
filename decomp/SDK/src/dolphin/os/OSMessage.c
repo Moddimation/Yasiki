@@ -1,7 +1,6 @@
 #include <dolphin/os.h>
 
 #include <dolphin.h>
-
 void
 OSInitMessageQueue(struct OSMessageQueue* mq, void* msgArray, s32 msgCount)
 {
@@ -12,11 +11,10 @@ OSInitMessageQueue(struct OSMessageQueue* mq, void* msgArray, s32 msgCount)
     mq->firstIndex = 0;
     mq->usedCount = 0;
 }
-
 int
 OSSendMessage(struct OSMessageQueue* mq, void* msg, s32 flags)
 {
-    int  enabled;
+    int enabled;
     s32 lastIndex;
 
     enabled = OSDisableInterrupts();
@@ -36,7 +34,6 @@ OSSendMessage(struct OSMessageQueue* mq, void* msg, s32 flags)
     OSRestoreInterrupts(enabled);
     return 1;
 }
-
 int
 OSReceiveMessage(struct OSMessageQueue* mq, void* msg, s32 flags)
 {
@@ -62,7 +59,6 @@ OSReceiveMessage(struct OSMessageQueue* mq, void* msg, s32 flags)
     OSRestoreInterrupts(enabled);
     return 1;
 }
-
 int
 OSJamMessage(struct OSMessageQueue* mq, void* msg, s32 flags)
 {

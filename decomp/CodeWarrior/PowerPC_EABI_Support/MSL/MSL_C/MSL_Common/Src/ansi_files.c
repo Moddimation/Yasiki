@@ -282,7 +282,6 @@ FILE * __find_unopened_file(void)
 	return(NULL);
 }
 #endif /* ndef _No_Disk_File_OS_Support */
-
 void __init_file(FILE * file, __file_modes mode, char * buff, size_t size)
 {
 	file->handle            = 0;
@@ -316,7 +315,6 @@ void __init_file(FILE * file, __file_modes mode, char * buff, size_t size)
 	
 	file->idle_proc = 0;
 }
-
 void __close_all(void)
 {
 	FILE *	p = &__files[0];									/*- mm 981007 -*/
@@ -363,7 +361,6 @@ void __close_all(void)
 	
 	__end_critical_region(files_access);
 }
-
 int __flush_all(void)
 {
 	int		result = 0;
@@ -394,7 +391,6 @@ int __flush_all(void)
 	
 	return(result);
 }
-
           /*- mm 970708 -*/
 int __flush_line_buffered_output_files(void)
 {
@@ -431,7 +427,6 @@ int __flush_line_buffered_output_files(void)
 	
 	return(result);
 }
-
                                                                 /*- mm 970708 -*/
 
 

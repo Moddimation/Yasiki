@@ -6,20 +6,20 @@
  */
 
 #ifndef _MSL_MATH_H
-#    define _MSL_MATH_H
+#define _MSL_MATH_H
 
-#    if __MACH__
-#        error You must have the /usr/include access path before the MSL access path
-#    else
+#if __MACH__
+#error You must have the /usr/include access path before the MSL access path
+#else
 
-#        include <cmath>
+#include <cmath>
 
-#        if defined(__cplusplus) && defined(_MSL_USING_NAMESPACE)
-#            ifndef _No_Floating_Point
+#if defined(__cplusplus) && defined(_MSL_USING_NAMESPACE)
+#ifndef _No_Floating_Point
 
 /* Original 22 */
 
-#                if !(__dest_os == __mac_os && defined(__FP__))
+#if !(__dest_os == __mac_os && defined(__FP__))
 using std::acos;
 using std::asin;
 using std::atan;
@@ -41,14 +41,14 @@ using std::sinh;
 using std::sqrt;
 using std::tan;
 using std::tanh;
-#                endif /* !(__dest_os==__mac_os  && defined(__FP__)) */
-#                if !(__dest_os == __mac_os && defined(__FP__) && defined(__MC68K__))
+#endif /* !(__dest_os==__mac_os  && defined(__FP__)) */
+#if !(__dest_os == __mac_os && defined(__FP__) && defined(__MC68K__))
 using std::fabs;
-#                endif
+#endif
 
 /* C 99 */
 
-#                if !(__dest_os == __mac_os && defined(__FP__))
+#if !(__dest_os == __mac_os && defined(__FP__))
 using std::acosh;
 using std::asinh;
 using std::atanh;
@@ -58,11 +58,11 @@ using std::hypot;
 using std::log1p;
 using std::log2;
 using std::logb;
-#                    ifndef __INTEL__
+#ifndef __INTEL__
 using std::erf;
 using std::erfc;
 using std::lgamma;
-#                    endif
+#endif
 using std::copysign;
 using std::fdim;
 using std::fmax;
@@ -74,31 +74,31 @@ using std::remquo;
 using std::rint;
 using std::round;
 using std::trunc;
-#                endif /* !(__dest_os==__mac_os  && defined(__FP__)) */
-#                if !(__dest_os == __mac_os && defined(__FP__) && defined(__MC68K__))
+#endif /* !(__dest_os==__mac_os  && defined(__FP__)) */
+#if !(__dest_os == __mac_os && defined(__FP__) && defined(__MC68K__))
 using std::scalbln;
 using std::scalbn;
-#                endif
+#endif
 using std::lrint;
-#                ifdef __MSL_LONGLONG_SUPPORT__
+#ifdef __MSL_LONGLONG_SUPPORT__
 using std::llrint;
-#                endif
+#endif
 using std::lround;
-#                ifdef __MSL_LONGLONG_SUPPORT__
+#ifdef __MSL_LONGLONG_SUPPORT__
 using std::llround;
-#                endif
-#                if !(__dest_os == __mac_os && defined(__FP__) && defined(__MC68K__))
-#                    ifndef __INTEL__
+#endif
+#if !(__dest_os == __mac_os && defined(__FP__) && defined(__MC68K__))
+#ifndef __INTEL__
 using std::nextafter;
-#                    endif
-#                endif
-#                if 0
+#endif
+#endif
+#if 0
 		using std::ilogb;
 		using std::cbrt;
 		using std::tgamma;
 		using std::nexttoward;
 		using std::fma;
-#                endif
+#endif
 
 /* foof Original 22 */
 
@@ -117,9 +117,9 @@ using std::sinf;
 using std::sinhf;
 using std::tanf;
 using std::tanhf;
-#                if !(__dest_os == __mac_os && defined(__FP__))
+#if !(__dest_os == __mac_os && defined(__FP__))
 using std::modff;
-#                endif
+#endif
 using std::ceilf;
 using std::fabsf;
 using std::floorf;
@@ -134,56 +134,56 @@ using std::asinhf;
 using std::atanhf;
 using std::exp2f;
 using std::expm1f;
-#                if 0
+#if 0
 		using std::ilogbf;
-#                endif
+#endif
 using std::log1pf;
 using std::log2f;
 using std::logbf;
 using std::scalblnf;
 using std::scalbnf;
-#                if 0
+#if 0
 		using std::cbrtf;
-#                endif
+#endif
 using std::hypotf;
-#                ifndef __INTEL__
+#ifndef __INTEL__
 using std::erfcf;
 using std::erff;
 using std::lgammaf;
-#                endif
-#                if 0
+#endif
+#if 0
 		using std::tgammaf;
-#                endif
+#endif
 using std::lrintf;
 using std::nearbyintf;
 using std::rintf;
-#                ifdef __MSL_LONGLONG_SUPPORT__
+#ifdef __MSL_LONGLONG_SUPPORT__
 using std::llrintf;
-#                endif
+#endif
 using std::lroundf;
 using std::roundf;
-#                ifdef __MSL_LONGLONG_SUPPORT__
+#ifdef __MSL_LONGLONG_SUPPORT__
 using std::llroundf;
-#                endif
+#endif
 using std::copysignf;
 using std::remainderf;
 using std::remquof;
 using std::truncf;
-#                if 0
+#if 0
 		using std::nanf;
-#                endif
-#                ifndef __INTEL__
+#endif
+#ifndef __INTEL__
 using std::nextafterf;
-#                endif
-#                if 0
+#endif
+#if 0
 		using std::nexttowardf;
-#                endif
+#endif
 using std::fdimf;
 using std::fmaxf;
 using std::fminf;
-#                if 0
+#if 0
 		using std::fmaf;
-#                endif
+#endif
 
 /* fool Original 22 */
 
@@ -217,69 +217,69 @@ using std::asinhl;
 using std::atanhl;
 using std::exp2l;
 using std::expm1l;
-#                if 0
+#if 0
 		using std::ilogbl;
-#                endif
+#endif
 using std::log1pl;
 using std::log2l;
 using std::logbl;
 using std::scalblnl;
 using std::scalbnl;
-#                if 0
+#if 0
 		using std::cbrtl;
-#                endif
+#endif
 using std::hypotl;
-#                ifndef __INTEL__
+#ifndef __INTEL__
 using std::erfcl;
 using std::erfl;
 using std::lgammal;
-#                endif
-#                if 0
+#endif
+#if 0
 		using std::tgammal;
-#                endif
+#endif
 using std::lrintl;
 using std::nearbyintl;
 using std::rintl;
-#                ifdef __MSL_LONGLONG_SUPPORT__
+#ifdef __MSL_LONGLONG_SUPPORT__
 using std::llrintl;
-#                endif
+#endif
 using std::lroundl;
 using std::roundl;
-#                ifdef __MSL_LONGLONG_SUPPORT__
+#ifdef __MSL_LONGLONG_SUPPORT__
 using std::llroundl;
-#                endif
+#endif
 using std::copysignl;
 using std::remainderl;
 using std::remquol;
 using std::truncl;
-#                if 0
+#if 0
 		using std::nanl;
-#                endif
-#                if !(__dest_os == __mac_os && defined(__FP__) && defined(__MC68K__))
-#                    ifndef __INTEL__
+#endif
+#if !(__dest_os == __mac_os && defined(__FP__) && defined(__MC68K__))
+#ifndef __INTEL__
 using std::nextafterl;
-#                    endif
-#                endif
-#                if 0
+#endif
+#endif
+#if 0
 		using std::nexttowardl;
-#                endif
+#endif
 using std::fdiml;
 using std::fmaxl;
 using std::fminl;
-#                if 0
+#if 0
 		using std::fmal;
-#                endif
-#            endif
-#        endif
+#endif
+#endif
+#endif
 
-#    endif             /* __MACH__ */
+#endif /* __MACH__ */
 
-#endif                 /* _MSL_MATH_H */
+#endif /* _MSL_MATH_H */
 
-                       /* Change record:
-                        * hh  971206 Created.
-                        * hh  991112 Fixed using bug.
-                        * hh  000804 Protected againt <fp.h> being included first (on Mac)
-                        * hh  000925 Fixed up <fp.h> protection on 68K
-                        * JWW 001208 Added case for targeting Mach-O
-                        */
+       /* Change record:
+        * hh  971206 Created.
+        * hh  991112 Fixed using bug.
+        * hh  000804 Protected againt <fp.h> being included first (on Mac)
+        * hh  000925 Fixed up <fp.h> protection on 68K
+        * JWW 001208 Added case for targeting Mach-O
+        */

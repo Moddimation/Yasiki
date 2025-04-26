@@ -1,29 +1,29 @@
 #if 0
 
-#    ifndef __log2f__
-#        define __log2f__
-#        include <cmath>
-#        ifndef __INFINITY
+#ifndef __log2f__
+#define __log2f__
+#include <cmath>
+#ifndef __INFINITY
 static const _INT32 _inf=0x7f800000;
-#            define __INFINITY (*(float*)&_inf)
+#define __INFINITY (*(float*)&_inf)
 
 static const _INT32 _nan=0x7fffffff;
-#            define __NAN      (*(float*)&_nan)
-#        endif
-#        pragma cplusplus on
-#        if 0
-#            if __cplusplus
+#define __NAN      (*(float*)&_nan)
+#endif
+#pragma cplusplus on
+#if 0
+#if __cplusplus
 namespace std
 {
-#            endif
+#endif
 extern inline float log2f(float x)
 		{return (float)log2((double)x);}
-#            if __cplusplus
+#if __cplusplus
 }
-#            endif
-#            define __log2f log2f
+#endif
+#define __log2f log2f
 
-#        else		
+#else		
 
 static const float __log2_F[]={
 -3.75000000e-01, -3.63772745e-01, -3.52632187e-01, -3.41576998e-01, -3.30605881e-01, -3.19717564e-01,
@@ -56,12 +56,12 @@ extern "C" const float  __one_over_F[];
 
 inline float __log2f(float x) 
 {
-#            if !__LOG2_FOR_POWONLY
+#if !__LOG2_FOR_POWONLY
 switch( (*(_INT32*)&x)&0x7f800000 )
   {
   default:
    {
-#            endif   
+#endif   
    //#define __log2e_m1 .44269504888963f
     static const float __log2e_m1[2]={.41015625f,0.03253879088896f}; 
     _UINT32 e;
@@ -71,7 +71,7 @@ switch( (*(_INT32*)&x)&0x7f800000 )
     float z;
     _UINT32 index=((*(_UINT32*)&x)&0x007fffff)>>16;
 
-#            if __INTEL__&& __option(k63d)
+#if __INTEL__ && __option(k63d)
    const _INT32 table_address=4*index;
    asm
     {   
@@ -80,7 +80,7 @@ switch( (*(_INT32*)&x)&0x7f800000 )
      prefetch __one_over_F[eax]
     }
 
-#            endif
+#endif
    
     if((*(_UINT32*)&x)&0x0000ffff)                                //numbers w/no low order bits are 
      {                                                           // already precalculated in __log2_F[]  
@@ -101,7 +101,7 @@ switch( (*(_INT32*)&x)&0x7f800000 )
 	 return ((float)exp + 1.375f) + __log2_F[index];
 	}
    }  // either the end of the function or the default case depending on whether the macro below is defined
-#            if !__LOG2_FOR_POWONLY   
+#if !__LOG2_FOR_POWONLY   
 case 0x7f800000:
    {
     if((*(_INT32*)&x)&0x007fffff) 
@@ -119,19 +119,19 @@ case 0x7f800000:
    
   }//end of switch
  }  //end log2f
-#            endif // __LOG2_FOR_POWONLY
+#endif // __LOG2_FOR_POWONLY
 
-#            if !__LOG2_FOR_POWONLY
-#                pragma cplusplus off
+#if !__LOG2_FOR_POWONLY
+#pragma cplusplus off
 extern  float log2f(float x)
 { 
  return __log2f(x); 
 }
-#                pragma cplusplus reset
-#            endif
-#            pragma cplusplus reset
+#pragma cplusplus reset
+#endif
+#pragma cplusplus reset
 
-#        endif     // #ifdef for inline implementation(for comparing double log2)
-#    endif         // prevents header from including > 1 time
+#endif // #ifdef for inline implementation(for comparing double log2)
+#endif // prevents header from including > 1 time
 
 #endif

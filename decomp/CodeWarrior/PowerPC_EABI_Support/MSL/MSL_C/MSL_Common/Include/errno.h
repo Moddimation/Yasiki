@@ -6,20 +6,20 @@
  */
 
 #ifndef _MSL_ERRNO_H
-#    define _MSL_ERRNO_H
+#define _MSL_ERRNO_H
 
-#    if __MACH__
-#        error You must have the /usr/include access path before the MSL access path
-#    else
+#if __MACH__
+#error You must have the /usr/include access path before the MSL access path
+#else
 
-#        include <cerrno>
+#include <cerrno>
 
-#    endif /* __MACH__ */
+#endif /* __MACH__ */
 
-#endif     /* _MSL_ERRNO_H */
+#endif /* _MSL_ERRNO_H */
 
-           /* Change record:
-            * hh  971206 Created.
-            * mf  990301 errno is a utility and is no longer in std.
-            * JWW 001208 Added case for targeting Mach-O
-            */
+       /* Change record:
+        * hh  971206 Created.
+        * mf  990301 errno is a utility and is no longer in std.
+        * JWW 001208 Added case for targeting Mach-O
+        */

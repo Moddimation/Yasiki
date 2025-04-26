@@ -13,15 +13,15 @@
  */
 
 #ifndef _MSL_UTSNAME_H
-#    define _MSL_UTSNAME_H
+#define _MSL_UTSNAME_H
 
-#    include <ansi_parms.h>
+#include <ansi_parms.h>
 
-#    pragma options align = native
+#pragma options align = native
 
-_MSL_BEGIN_EXTERN_C                  /*- cc 010409 -*/
+_MSL_BEGIN_EXTERN_C              /*- cc 010409 -*/
 
-#    define _UTSNAME_FIELD_LENGTH 32 /*- mm 990104 -*/
+#define _UTSNAME_FIELD_LENGTH 32 /*- mm 990104 -*/
     /* struct for uname */
     struct utsname
 {
@@ -34,13 +34,13 @@ _MSL_BEGIN_EXTERN_C                  /*- cc 010409 -*/
 
 _MSL_IMP_EXP_C int uname(struct utsname*);
 
-#    if (__dest_os == __win32_os)
-#        include <utsname.win32.h>
-#    endif
+#if (__dest_os == __win32_os)
+#include <utsname.win32.h>
+#endif
 
 _MSL_END_EXTERN_C                         /*- cc 010409 -*/
 
-#    pragma options align = reset
+#pragma options align = reset
 
 #endif                                    /*_MSL_UTSNAME_H */
 

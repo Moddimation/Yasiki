@@ -1,5 +1,6 @@
 /* Metrowerks Standard Library
- * Copyright ÃÂ¯ÃÂ½C 1995-2001 Metrowerks Corporation.  All rights reserved.
+ * Copyright ÃÂ¯ÃÂ½C 1995-2001 Metrowerks Corporation.  All rights
+ * reserved.
  *
  * $Date: 2001/04/02 18:26:59 $
  * $Revision: 1.6 $
@@ -17,42 +18,42 @@
 */
 
 #ifndef _HASH_MAP
-#    define _HASH_MAP
+#define _HASH_MAP
 
-#    include <algorithm>
-#    include <hash_table>
-#    include <mslconfig>
+#include <algorithm>
+#include <hash_table>
+#include <mslconfig>
 
-#    ifndef RC_INVOKED
+#ifndef RC_INVOKED
 
-#        pragma options align = native
+#pragma options align = native
 
-#        ifdef _MSL_FORCE_ENUMS_ALWAYS_INT
-#            if _MSL_FORCE_ENUMS_ALWAYS_INT
-#                pragma enumsalwaysint on
-#            else
-#                pragma enumsalwaysint off
-#            endif
-#        endif
+#ifdef _MSL_FORCE_ENUMS_ALWAYS_INT
+#if _MSL_FORCE_ENUMS_ALWAYS_INT
+#pragma enumsalwaysint on
+#else
+#pragma enumsalwaysint off
+#endif
+#endif
 
-#        ifdef _MSL_FORCE_ENABLE_BOOL_SUPPORT
-#            if _MSL_FORCE_ENABLE_BOOL_SUPPORT
-#                pragma bool on
-#            else
-#                pragma bool off
-#            endif
-#        endif
+#ifdef _MSL_FORCE_ENABLE_BOOL_SUPPORT
+#if _MSL_FORCE_ENABLE_BOOL_SUPPORT
+#pragma bool on
+#else
+#pragma bool off
+#endif
+#endif
 
-#        ifndef _MSL_NO_CPP_NAMESPACE
+#ifndef _MSL_NO_CPP_NAMESPACE
 namespace Metrowerks
 {
-#        else
-#            ifndef Metrowerks
-#                define Metrowerks
-#            endif
-#        endif
-
-template <class Key, class T, class Hash = hash<Key>, class Compare = _STD::equal_to<Key>,
+#else
+#ifndef Metrowerks
+#define Metrowerks
+#endif
+#endif
+template <class Key, class T, class Hash = hash<Key>,
+          class Compare = _STD::equal_to<Key>,
           class Allocator = _STD::allocator<_STD::pair<const Key, T> > >
 class hash_map
 {
@@ -77,13 +78,11 @@ private:
     public:
         typedef value_type argument_type;
         typedef size_type  result_type;
-
         size_type
         operator()(const value_type& x) const
         {
             return key_hash()(x.first);
         }
-
         size_type
         operator()(const key_type& x) const
         {
@@ -92,9 +91,7 @@ private:
 
     private:
         value_hash_imp() {}
-
         value_hash_imp(key_hasher h) : key_hasher(h) {}
-
         const key_hasher&
         key_hash() const
         {
@@ -103,19 +100,16 @@ private:
 
         friend class hash_map;
     };
-
     template <bool b> class value_hash_imp<false, b>
     {
     public:
         typedef value_type argument_type;
         typedef size_type  result_type;
-
         size_type
         operator()(const value_type& x) const
         {
             return hash_(x.first);
         }
-
         size_type
         operator()(const key_type& x) const
         {
@@ -124,11 +118,8 @@ private:
 
     private:
         key_hasher hash_;
-
         value_hash_imp() {}
-
         value_hash_imp(key_hasher h) : hash_(h) {}
-
         const key_hasher&
         key_hash() const
         {
@@ -137,26 +128,22 @@ private:
 
         friend class hash_map;
     };
-
     template <bool, bool = true> class value_compare_imp : key_compare
     {
     public:
         typedef value_type first_argument_type;
         typedef value_type second_argument_type;
         typedef bool       result_type;
-
         bool
         operator()(const value_type& x, const value_type& y) const
         {
             return comp()(x.first, y.first);
         }
-
         bool
         operator()(const key_type& x, const value_type& y) const
         {
             return comp()(x, y.first);
         }
-
         bool
         operator()(const value_type& x, const key_type& y) const
         {
@@ -165,9 +152,7 @@ private:
 
     private:
         value_compare_imp() {}
-
         value_compare_imp(key_compare c) : key_compare(c) {}
-
         const key_compare&
         comp() const
         {
@@ -176,26 +161,22 @@ private:
 
         friend class hash_map;
     };
-
     template <bool b> class value_compare_imp<false, b>
     {
     public:
         typedef value_type first_argument_type;
         typedef value_type second_argument_type;
         typedef bool       result_type;
-
         bool
         operator()(const value_type& x, const value_type& y) const
         {
             return comp_(x.first, y.first);
         }
-
         bool
         operator()(const key_type& x, const value_type& y) const
         {
             return comp_(x, y.first);
         }
-
         bool
         operator()(const value_type& x, const key_type& y) const
         {
@@ -204,11 +185,8 @@ private:
 
     private:
         key_compare comp_;
-
         value_compare_imp() {}
-
         value_compare_imp(key_compare c) : comp_(c) {}
-
         const key_compare&
         comp() const
         {
@@ -228,269 +206,235 @@ private:
 public:
     typedef typename hash_type::iterator       iterator;
     typedef typename hash_type::const_iterator const_iterator;
-
     //  construct/copy/destroy:
     explicit hash_map(size_type num_buckets = 0)
       : table_(num_buckets, value_hasher(), value_compare(), 2, 4, allocator_type())
     {
     }
-
     hash_map(size_type num_buckets, const key_hasher& hash)
-      : table_(num_buckets, value_hasher(hash), value_compare(), 2, 4, allocator_type())
+      : table_(num_buckets, value_hasher(hash), value_compare(), 2, 4,
+               allocator_type())
     {
     }
-
-    hash_map(size_type num_buckets, const key_hasher& hash, const key_compare& comp, float load_factor_limit = 2,
-             float growth_factor = 4)
-      : table_(num_buckets, value_hasher(hash), value_compare(comp), load_factor_limit, growth_factor, allocator_type())
+    hash_map(size_type num_buckets, const key_hasher& hash, const key_compare& comp,
+             float load_factor_limit = 2, float growth_factor = 4)
+      : table_(num_buckets, value_hasher(hash), value_compare(comp),
+               load_factor_limit, growth_factor, allocator_type())
     {
     }
-
-    hash_map(size_type num_buckets, const key_hasher& hash, const key_compare& comp, float load_factor_limit,
-             float growth_factor, const allocator_type& a)
-      : table_(num_buckets, value_hasher(hash), value_compare(comp), load_factor_limit, growth_factor, a)
+    hash_map(size_type num_buckets, const key_hasher& hash, const key_compare& comp,
+             float load_factor_limit, float growth_factor, const allocator_type& a)
+      : table_(num_buckets, value_hasher(hash), value_compare(comp),
+               load_factor_limit, growth_factor, a)
     {
     }
-
     template <class InputIterator>
     hash_map(InputIterator first, InputIterator last, size_type num_buckets = 0)
-      : table_(first, last, false, num_buckets, value_hasher(), value_compare(), 2, 4, allocator_type())
+      : table_(first, last, false, num_buckets, value_hasher(), value_compare(), 2,
+               4, allocator_type())
     {
     }
-
     template <class InputIterator>
-    hash_map(InputIterator first, InputIterator last, size_type num_buckets, const key_hasher& hash)
-      : table_(first, last, false, num_buckets, value_hasher(hash), value_compare(), 2, 4, allocator_type())
+    hash_map(InputIterator first, InputIterator last, size_type num_buckets,
+             const key_hasher& hash)
+      : table_(first, last, false, num_buckets, value_hasher(hash), value_compare(),
+               2, 4, allocator_type())
     {
     }
-
     template <class InputIterator>
-    hash_map(InputIterator first, InputIterator last, size_type num_buckets, const key_hasher& hash,
-             const key_compare& comp, float load_factor_limit = 2, float growth_factor = 4)
-      : table_(first, last, false, num_buckets, value_hasher(hash), value_compare(comp), load_factor_limit,
-               growth_factor, allocator_type())
+    hash_map(InputIterator first, InputIterator last, size_type num_buckets,
+             const key_hasher& hash, const key_compare& comp,
+             float load_factor_limit = 2, float growth_factor = 4)
+      : table_(first, last, false, num_buckets, value_hasher(hash),
+               value_compare(comp), load_factor_limit, growth_factor,
+               allocator_type())
     {
     }
-
     template <class InputIterator>
-    hash_map(InputIterator first, InputIterator last, size_type num_buckets, const key_hasher& hash,
-             const key_compare& comp, float load_factor_limit, float growth_factor, const allocator_type& a)
-      : table_(first, last, false, num_buckets, value_hasher(hash), value_compare(comp), load_factor_limit,
-               growth_factor, a)
+    hash_map(InputIterator first, InputIterator last, size_type num_buckets,
+             const key_hasher& hash, const key_compare& comp,
+             float load_factor_limit, float growth_factor, const allocator_type& a)
+      : table_(first, last, false, num_buckets, value_hasher(hash),
+               value_compare(comp), load_factor_limit, growth_factor, a)
     {
     }
-
     allocator_type
     get_allocator() const
     {
         return table_.get_allocator();
     }
-
     //  iterators:
     iterator
     begin()
     {
         return table_.begin();
     }
-
     const_iterator
     begin() const
     {
         return table_.begin();
     }
-
     iterator
     end()
     {
         return table_.end();
     }
-
     const_iterator
     end() const
     {
         return table_.end();
     }
-
     //  capacity:
     bool
     empty() const
     {
         return table_.empty();
     }
-
     size_type
     size() const
     {
         return table_.size();
     }
-
     size_type
     max_size() const
     {
         return table_.max_size();
     }
-
     size_type
     bucket_count() const
     {
         return table_.bucket_count();
     }
-
     size_type
     bucket_count(size_type num_buckets)
     {
         return table_.bucket_count(num_buckets);
     }
-
     float
     load_factor() const
     {
         return table_.load_factor();
     }
-
     void
     load_factor_limit(float lf)
     {
         table_.load_factor_limit(lf);
     }
-
     float
     load_factor_limit() const
     {
         return table_.load_factor_limit();
     }
-
     void
     growth_factor(float gf)
     {
         table_.growth_factor(gf);
     }
-
     float
     growth_factor() const
     {
         return table_.growth_factor();
     }
-
     size_type
     collision(const_iterator i) const
     {
         return table_.collision(i);
     }
-
     //  element access:
     mapped_type&
     operator[](const key_type& x)
     {
         return table_.template find_or_insert<key_type, mapped_type>(x).second;
     }
-
     //  modifiers:
     _STD::pair<iterator, bool>
     insert(const value_type& x)
     {
         return table_.insert_one(x);
     }
-
     iterator
     insert(iterator, const value_type& x)
     {
         return table_.insert_one(x).first;
     }
-
     template <class InputIterator>
     void
     insert(InputIterator first, InputIterator last)
     {
         table_.insert_one(first, last);
     }
-
     void
     erase(iterator position)
     {
         table_.erase(position);
     }
-
     size_type
     erase(const key_type& x)
     {
         return table_.erase_one(x);
     }
-
     void
     erase(iterator first, iterator last)
     {
         table_.erase(first, last);
     }
-
     void
     swap(hash_map& y)
     {
         Metrowerks::swap(table_, y.table_);
     }
-
     friend void
     swap(hash_map& x, hash_map& y)
     {
         Metrowerks::swap(x.table_, y.table_);
     }
-
     void
     clear()
     {
         table_.clear();
     }
-
     //  observers:
     key_compare
     key_comp() const
     {
         return table_.value_comp().comp();
     }
-
     value_compare
     value_comp() const
     {
         return table_.value_comp();
     }
-
     key_hasher
     key_hash() const
     {
         return table_.value_hash().key_hash();
     }
-
     value_hasher
     value_hash() const
     {
         return table_.value_hash();
     }
-
     //  set operations:
     iterator
     find(const key_type& x)
     {
         return table_.find(x);
     }
-
     const_iterator
     find(const key_type& x) const
     {
         return table_.find(x);
     }
-
     size_type
     count(const key_type& x) const
     {
         return table_.count_one(x);
     }
-
     _STD::pair<iterator, iterator>
     equal_range(const key_type& x)
     {
         return table_.equal_range(x);
     }
-
     _STD::pair<const_iterator, const_iterator>
     equal_range(const key_type& x) const
     {
@@ -500,22 +444,22 @@ public:
 private:
     hash_type table_;
 };
-
 template <class Key, class T, class Hash, class Compare, class Allocator>
 inline bool
-operator==(const hash_map<Key, T, Hash, Compare, Allocator>& x, const hash_map<Key, T, Hash, Compare, Allocator>& y)
+operator==(const hash_map<Key, T, Hash, Compare, Allocator>& x,
+           const hash_map<Key, T, Hash, Compare, Allocator>& y)
 {
     return x.size() == y.size() && _STD::equal(x.begin(), x.end(), y.begin());
 }
-
 template <class Key, class T, class Hash, class Compare, class Allocator>
 inline bool
-operator!=(const hash_map<Key, T, Hash, Compare, Allocator>& x, const hash_map<Key, T, Hash, Compare, Allocator>& y)
+operator!=(const hash_map<Key, T, Hash, Compare, Allocator>& x,
+           const hash_map<Key, T, Hash, Compare, Allocator>& y)
 {
     return !(x == y);
 }
-
-template <class Key, class T, class Hash = hash<Key>, class Compare = _STD::equal_to<Key>,
+template <class Key, class T, class Hash = hash<Key>,
+          class Compare = _STD::equal_to<Key>,
           class Allocator = _STD::allocator<_STD::pair<const Key, T> > >
 class hash_multimap
 {
@@ -540,13 +484,11 @@ private:
     public:
         typedef value_type argument_type;
         typedef size_type  result_type;
-
         size_type
         operator()(const value_type& x) const
         {
             return key_hash()(x.first);
         }
-
         size_type
         operator()(const key_type& x) const
         {
@@ -555,9 +497,7 @@ private:
 
     private:
         value_hash_imp() {}
-
         value_hash_imp(key_hasher h) : key_hasher(h) {}
-
         const key_hasher&
         key_hash() const
         {
@@ -566,19 +506,16 @@ private:
 
         friend class hash_multimap;
     };
-
     template <bool b> class value_hash_imp<false, b>
     {
     public:
         typedef value_type argument_type;
         typedef size_type  result_type;
-
         size_type
         operator()(const value_type& x) const
         {
             return hash_(x.first);
         }
-
         size_type
         operator()(const key_type& x) const
         {
@@ -587,11 +524,8 @@ private:
 
     private:
         key_hasher hash_;
-
         value_hash_imp() {}
-
         value_hash_imp(key_hasher h) : hash_(h) {}
-
         const key_hasher&
         key_hash() const
         {
@@ -600,26 +534,22 @@ private:
 
         friend class hash_multimap;
     };
-
     template <bool, bool = true> class value_compare_imp : key_compare
     {
     public:
         typedef value_type first_argument_type;
         typedef value_type second_argument_type;
         typedef bool       result_type;
-
         bool
         operator()(const value_type& x, const value_type& y) const
         {
             return comp()(x.first, y.first);
         }
-
         bool
         operator()(const key_type& x, const value_type& y) const
         {
             return comp()(x, y.first);
         }
-
         bool
         operator()(const value_type& x, const key_type& y) const
         {
@@ -628,9 +558,7 @@ private:
 
     private:
         value_compare_imp() {}
-
         value_compare_imp(key_compare c) : key_compare(c) {}
-
         const key_compare&
         comp() const
         {
@@ -639,26 +567,22 @@ private:
 
         friend class hash_multimap;
     };
-
     template <bool b> class value_compare_imp<false, b>
     {
     public:
         typedef value_type first_argument_type;
         typedef value_type second_argument_type;
         typedef bool       result_type;
-
         bool
         operator()(const value_type& x, const value_type& y) const
         {
             return comp_(x.first, y.first);
         }
-
         bool
         operator()(const key_type& x, const value_type& y) const
         {
             return comp_(x, y.first);
         }
-
         bool
         operator()(const value_type& x, const key_type& y) const
         {
@@ -667,11 +591,8 @@ private:
 
     private:
         key_compare comp_;
-
         value_compare_imp() {}
-
         value_compare_imp(key_compare c) : comp_(c) {}
-
         const key_compare&
         comp() const
         {
@@ -691,262 +612,232 @@ private:
 public:
     typedef typename hash_type::iterator       iterator;
     typedef typename hash_type::const_iterator const_iterator;
-
     //  construct/copy/destroy:
     explicit hash_multimap(size_type num_buckets = 0)
       : table_(num_buckets, value_hasher(), value_compare(), 2, 4, allocator_type())
     {
     }
-
     hash_multimap(size_type num_buckets, const key_hasher& hash)
-      : table_(num_buckets, value_hasher(hash), value_compare(), 2, 4, allocator_type())
+      : table_(num_buckets, value_hasher(hash), value_compare(), 2, 4,
+               allocator_type())
     {
     }
-
-    hash_multimap(size_type num_buckets, const key_hasher& hash, const key_compare& comp, float load_factor_limit = 2,
+    hash_multimap(size_type num_buckets, const key_hasher& hash,
+                  const key_compare& comp, float load_factor_limit = 2,
                   float growth_factor = 4)
-      : table_(num_buckets, value_hasher(hash), value_compare(comp), load_factor_limit, growth_factor, allocator_type())
+      : table_(num_buckets, value_hasher(hash), value_compare(comp),
+               load_factor_limit, growth_factor, allocator_type())
     {
     }
-
-    hash_multimap(size_type num_buckets, const key_hasher& hash, const key_compare& comp, float load_factor_limit,
+    hash_multimap(size_type num_buckets, const key_hasher& hash,
+                  const key_compare& comp, float load_factor_limit,
                   float growth_factor, const allocator_type& a)
-      : table_(num_buckets, value_hasher(hash), value_compare(comp), load_factor_limit, growth_factor, a)
+      : table_(num_buckets, value_hasher(hash), value_compare(comp),
+               load_factor_limit, growth_factor, a)
     {
     }
-
     template <class InputIterator>
     hash_multimap(InputIterator first, InputIterator last, size_type num_buckets = 0)
-      : table_(first, last, true, num_buckets, value_hasher(), value_compare(), 2, 4, allocator_type())
+      : table_(first, last, true, num_buckets, value_hasher(), value_compare(), 2, 4,
+               allocator_type())
     {
     }
-
     template <class InputIterator>
-    hash_multimap(InputIterator first, InputIterator last, size_type num_buckets, const key_hasher& hash)
-      : table_(first, last, true, num_buckets, value_hasher(hash), value_compare(), 2, 4, allocator_type())
+    hash_multimap(InputIterator first, InputIterator last, size_type num_buckets,
+                  const key_hasher& hash)
+      : table_(first, last, true, num_buckets, value_hasher(hash), value_compare(),
+               2, 4, allocator_type())
     {
     }
-
     template <class InputIterator>
-    hash_multimap(InputIterator first, InputIterator last, size_type num_buckets, const key_hasher& hash,
-                  const key_compare& comp, float load_factor_limit = 2, float growth_factor = 4)
-      : table_(first, last, true, num_buckets, value_hasher(hash), value_compare(comp), load_factor_limit,
-               growth_factor, allocator_type())
+    hash_multimap(InputIterator first, InputIterator last, size_type num_buckets,
+                  const key_hasher& hash, const key_compare& comp,
+                  float load_factor_limit = 2, float growth_factor = 4)
+      : table_(first, last, true, num_buckets, value_hasher(hash),
+               value_compare(comp), load_factor_limit, growth_factor,
+               allocator_type())
     {
     }
-
     template <class InputIterator>
-    hash_multimap(InputIterator first, InputIterator last, size_type num_buckets, const key_hasher& hash,
-                  const key_compare& comp, float load_factor_limit, float growth_factor, const allocator_type& a)
-      : table_(first, last, true, num_buckets, value_hasher(hash), value_compare(comp), load_factor_limit,
-               growth_factor, a)
+    hash_multimap(InputIterator first, InputIterator last, size_type num_buckets,
+                  const key_hasher& hash, const key_compare& comp,
+                  float load_factor_limit, float growth_factor,
+                  const allocator_type& a)
+      : table_(first, last, true, num_buckets, value_hasher(hash),
+               value_compare(comp), load_factor_limit, growth_factor, a)
     {
     }
-
     allocator_type
     get_allocator() const
     {
         return table_.get_allocator();
     }
-
     //  iterators:
     iterator
     begin()
     {
         return table_.begin();
     }
-
     const_iterator
     begin() const
     {
         return table_.begin();
     }
-
     iterator
     end()
     {
         return table_.end();
     }
-
     const_iterator
     end() const
     {
         return table_.end();
     }
-
     //  capacity:
     bool
     empty() const
     {
         return table_.empty();
     }
-
     size_type
     size() const
     {
         return table_.size();
     }
-
     size_type
     max_size() const
     {
         return table_.max_size();
     }
-
     size_type
     bucket_count() const
     {
         return table_.bucket_count();
     }
-
     size_type
     bucket_count(size_type num_buckets)
     {
         return table_.bucket_count(num_buckets);
     }
-
     float
     load_factor() const
     {
         return table_.load_factor();
     }
-
     void
     load_factor_limit(float lf)
     {
         table_.load_factor_limit(lf);
     }
-
     float
     load_factor_limit() const
     {
         return table_.load_factor_limit();
     }
-
     void
     growth_factor(float gf)
     {
         table_.growth_factor(gf);
     }
-
     float
     growth_factor() const
     {
         return table_.growth_factor();
     }
-
     size_type
     collision(const_iterator i) const
     {
         return table_.collision(i);
     }
-
     //  modifiers:
     iterator
     insert(const value_type& x)
     {
         return table_.insert_multi(x);
     }
-
     iterator
     insert(iterator p, const value_type& x)
     {
         return table_.insert_multi(p, x);
     }
-
     template <class InputIterator>
     void
     insert(InputIterator first, InputIterator last)
     {
         table_.insert_multi(first, last);
     }
-
     void
     erase(iterator position)
     {
         table_.erase(position);
     }
-
     size_type
     erase(const key_type& x)
     {
         return table_.erase_multi(x);
     }
-
     void
     erase(iterator first, iterator last)
     {
         table_.erase(first, last);
     }
-
     void
     swap(hash_multimap& y)
     {
         Metrowerks::swap(table_, y.table_);
     }
-
     friend void
     swap(hash_multimap& x, hash_multimap& y)
     {
         Metrowerks::swap(x.table_, y.table_);
     }
-
     void
     clear()
     {
         table_.clear();
     }
-
     //  observers:
     key_compare
     key_comp() const
     {
         return table_.value_comp().comp();
     }
-
     value_compare
     value_comp() const
     {
         return table_.value_comp();
     }
-
     key_hasher
     key_hash() const
     {
         return table_.value_hash().key_hash();
     }
-
     value_hasher
     value_hash() const
     {
         return table_.value_hash();
     }
-
     //  set operations:
     iterator
     find(const key_type& x)
     {
         return table_.find(x);
     }
-
     const_iterator
     find(const key_type& x) const
     {
         return table_.find(x);
     }
-
     size_type
     count(const key_type& x) const
     {
         return table_.count_multi(x);
     }
-
     _STD::pair<iterator, iterator>
     equal_range(const key_type& x)
     {
         return table_.equal_range(x);
     }
-
     _STD::pair<const_iterator, const_iterator>
     equal_range(const key_type& x) const
     {
@@ -956,7 +847,6 @@ public:
 private:
     hash_type table_;
 };
-
 template <class Key, class T, class Hash, class Compare, class Allocator>
 inline bool
 operator==(const hash_multimap<Key, T, Hash, Compare, Allocator>& x,
@@ -964,7 +854,6 @@ operator==(const hash_multimap<Key, T, Hash, Compare, Allocator>& x,
 {
     return x.size() == y.size() && _STD::equal(x.begin(), x.end(), y.begin());
 }
-
 template <class Key, class T, class Hash, class Compare, class Allocator>
 inline bool
 operator!=(const hash_multimap<Key, T, Hash, Compare, Allocator>& x,
@@ -972,24 +861,23 @@ operator!=(const hash_multimap<Key, T, Hash, Compare, Allocator>& x,
 {
     return !(x == y);
 }
-
-#        ifndef _MSL_NO_CPP_NAMESPACE
+#ifndef _MSL_NO_CPP_NAMESPACE
 } // namespace Metrowerks
-#        endif
+#endif
 
-#        ifdef _MSL_FORCE_ENUMS_ALWAYS_INT
-#            pragma enumsalwaysint reset
-#        endif
+#ifdef _MSL_FORCE_ENUMS_ALWAYS_INT
+#pragma enumsalwaysint reset
+#endif
 
-#        ifdef _MSL_FORCE_ENABLE_BOOL_SUPPORT
-#            pragma bool reset
-#        endif
+#ifdef _MSL_FORCE_ENABLE_BOOL_SUPPORT
+#pragma bool reset
+#endif
 
-#        pragma options align = reset
+#pragma options align = reset
 
-#    endif // RC_INVOKED
+#endif // RC_INVOKED
 
-#endif     // _HASH_MAP
+#endif // _HASH_MAP
 
 // hh 991217 Created
 // hh 010402 Removed 68K CMF support

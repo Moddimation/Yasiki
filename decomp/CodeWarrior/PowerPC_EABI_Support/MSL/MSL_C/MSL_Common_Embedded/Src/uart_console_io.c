@@ -25,13 +25,13 @@
  */
 
 #ifndef _No_Console
-#    include <console_io.h>
-#    include <file_io.h>
+#include <console_io.h>
+#include <file_io.h>
 
-#    include "console_io.h"
-#    include "stdio.h"
-#    include "UART.h"
-#    include "uart_console_config.h"
+#include "console_io.h"
+#include "stdio.h"
+#include "UART.h"
+#include "uart_console_config.h"
 
 /*
  * This is defined in the TRK library for GAMECUBE
@@ -40,17 +40,18 @@
  * not be handled, and hence a exception would occur
  */
 
-int __TRK_write_console(__file_handle handle, unsigned char* buffer, size_t* count, __idle_proc idle_proc);
+int __TRK_write_console(__file_handle handle, unsigned char* buffer, size_t* count,
+                        __idle_proc idle_proc);
 
 static UARTError __init_uart_console(void);
 
 /************************************************************************/
 
-#    if 0
+#if 0
 int		__read_console	  (__file_handle handle, unsigned char * buffer, 
 							size_t * count, __idle_proc idle_proc)
 {
-#        pragma unused(handle, idle_proc)
+#pragma unused(handle, idle_proc)
 
 	size_t limit;
 	UARTError err;
@@ -83,16 +84,16 @@ int		__read_console	  (__file_handle handle, unsigned char * buffer,
 	return( (err == kUARTNoError) ? __no_io_error : __io_error );
 }
 
-#    endif
+#endif
 
 /************************************************************************/
-#    pragma overload int __write_console(__file_handle handle, unsigned char* buffer, size_t* count,                   \
-                                         __idle_proc idle_proc);
-
+#pragma overload int __write_console(__file_handle handle, unsigned char* buffer,   \
+                                     size_t* count, __idle_proc idle_proc);
 int
-__write_console(__file_handle handle, unsigned char* buffer, size_t* count, __idle_proc idle_proc)
+__write_console(__file_handle handle, unsigned char* buffer, size_t* count,
+                __idle_proc idle_proc)
 {
-#    pragma unused(handle, idle_proc)
+#pragma unused(handle, idle_proc)
 
     if (__init_uart_console() != kUARTNoError)
     {
@@ -122,16 +123,14 @@ __write_console(__file_handle handle, unsigned char* buffer, size_t* count, __id
 
     return (__no_io_error);
 }
-
 /************************************************************************/
 int
 __close_console(__file_handle handle)
 {
-#    pragma unused(handle)
+#pragma unused(handle)
 
     return (__no_io_error);
 }
-
 /************************************************************************/
 // #pragma overload UARTError __init_uart_console(void);
 
@@ -153,9 +152,7 @@ __init_uart_console(void)
 
     return (err);
 }
-
 #endif /* _No_Console */
-
 /*
  * Unimplemented for GCN  - Host IO does not support this
  */
@@ -165,7 +162,6 @@ __delete_file(const char* name)
 {
     return kUARTNoError;
 }
-
 /*
  * Unimplemented for GCN  - Host IO does not support this
  */
@@ -175,7 +171,6 @@ __rename_file(const char* old_name, const char* new_name)
 {
     return kUARTNoError;
 }
-
 /*
  * Unimplemented for GCN  - Host IO does not support this
  */
@@ -187,7 +182,6 @@ __temp_file_name(char* name_str, void* ptr)
         name_str[0] = 0;
     }
 }
-
 /*	Change Record
  *	09-Jul-97 SCM	Created
  *	20-Aug-99 SCM	Enhanced __read_console() to return when it receives an EOL.

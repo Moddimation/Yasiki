@@ -1,5 +1,6 @@
 /* Metrowerks Standard Library
- * Copyright ÃÂ¯ÃÂ½C 1995-2001 Metrowerks Corporation.  All rights reserved.
+ * Copyright ÃÂ¯ÃÂ½C 1995-2001 Metrowerks Corporation.  All rights
+ * reserved.
  *
  * $Date: 2001/03/08 20:55:22 $
  * $Revision: 1.14 $
@@ -7,12 +8,12 @@
 
 // iterator.h               // hh 971207 Changed filename from iterator to iterator.h
 
-#ifndef _ITERATOR_H               // hh 971207 added standard include guards
-#    define _ITERATOR_H
+#ifndef _ITERATOR_H           // hh 971207 added standard include guards
+#define _ITERATOR_H
 
-#    include <iterator>
+#include <iterator>
 
-#    ifndef _MSL_NO_CPP_NAMESPACE // hh 971207 Added backward compatibility
+#ifndef _MSL_NO_CPP_NAMESPACE // hh 971207 Added backward compatibility
 using std::advance;
 using std::back_insert_iterator;
 using std::back_inserter;
@@ -29,15 +30,15 @@ using std::iterator_traits;
 using std::output_iterator_tag;
 using std::random_access_iterator_tag;
 using std::reverse_iterator;
-#        ifndef _MSL_NO_IO
+#ifndef _MSL_NO_IO
 using std::istream_iterator;
 using std::istreambuf_iterator;
 using std::ostream_iterator;
 using std::ostreambuf_iterator;
-#        endif
-#    endif
+#endif
+#endif
 
-#endif                            // _ITERATOR_H
+#endif                        // _ITERATOR_H
 
 // hh 971207 Changed filename from iterator to iterator.h
 // hh 971207 added standard include guards

@@ -1,5 +1,6 @@
 /* Metrowerks Standard Library
- * Copyright ÃÂ¯ÃÂ½C 1995-2001 Metrowerks Corporation.  All rights reserved.
+ * Copyright ÃÂ¯ÃÂ½C 1995-2001 Metrowerks Corporation.  All rights
+ * reserved.
  *
  * $Date: 2001/04/27 16:42:34 $
  * $Revision: 1.12 $
@@ -30,59 +31,58 @@
  */
 
 #ifndef _SLIST
-#    define _SLIST
+#define _SLIST
 
-#    include <algorithm>
-#    include <iterator>
-#    include <limits>
-#    include <memory>
-#    include <mslconfig>
-#    include <stdexcept>
+#include <algorithm>
+#include <iterator>
+#include <limits>
+#include <memory>
+#include <mslconfig>
+#include <stdexcept>
 
-#    ifndef RC_INVOKED
+#ifndef RC_INVOKED
 
-#        pragma options align = native
+#pragma options align = native
 
-#        ifdef _MSL_FORCE_ENUMS_ALWAYS_INT
-#            if _MSL_FORCE_ENUMS_ALWAYS_INT
-#                pragma enumsalwaysint on
-#            else
-#                pragma enumsalwaysint off
-#            endif
-#        endif
+#ifdef _MSL_FORCE_ENUMS_ALWAYS_INT
+#if _MSL_FORCE_ENUMS_ALWAYS_INT
+#pragma enumsalwaysint on
+#else
+#pragma enumsalwaysint off
+#endif
+#endif
 
-#        ifdef _MSL_FORCE_ENABLE_BOOL_SUPPORT
-#            if _MSL_FORCE_ENABLE_BOOL_SUPPORT
-#                pragma bool on
-#            else
-#                pragma bool off
-#            endif
-#        endif
+#ifdef _MSL_FORCE_ENABLE_BOOL_SUPPORT
+#if _MSL_FORCE_ENABLE_BOOL_SUPPORT
+#pragma bool on
+#else
+#pragma bool off
+#endif
+#endif
 
-#        ifdef min
-#            undef min
-#        endif
+#ifdef min
+#undef min
+#endif
 
-#        ifdef max
-#            undef max
-#        endif
+#ifdef max
+#undef max
+#endif
 
-#        ifndef _MSL_NO_CPP_NAMESPACE
+#ifndef _MSL_NO_CPP_NAMESPACE
 namespace Metrowerks
 {
-#        else
-#            ifndef Metrowerks
-#                define Metrowerks
-#            endif
-#        endif
-
+#else
+#ifndef Metrowerks
+#define Metrowerks
+#endif
+#endif
 template <class T, class Allocator = _STD::allocator<T> > class slist
 {
-#        ifndef _MSL_NO_MEMBER_TEMPLATE
+#ifndef _MSL_NO_MEMBER_TEMPLATE
     template <bool b> struct chooser
     {
     };
-#        endif
+#endif
 
 public:
     //  types:
@@ -99,12 +99,10 @@ public:
 
 private:
     struct node;
-
     struct node_base
     {
         node* next_;
     };
-
     struct node : public node_base
     {
         value_type data_;
@@ -112,34 +110,30 @@ private:
     private:
         node();
     };
-
     typedef _MSL_REBIND(node) node_allocator_type;
 
 public:
-    class iterator : public _STD::iterator<_STD::forward_iterator_tag, T, difference_type, pointer, reference>
+    class iterator : public _STD::iterator<_STD::forward_iterator_tag, T,
+                                           difference_type, pointer, reference>
     {
     public:
         iterator() {}
-
         reference
         operator*() const
         {
             return node_->data_;
         }
-
         pointer
         operator->() const
         {
             return &node_->data_;
         }
-
         iterator&
         operator++()
         {
             node_ = node_->next_;
             return *this;
         }
-
         iterator
         operator++(int)
         {
@@ -147,13 +141,11 @@ public:
             node_ = node_->next_;
             return tmp;
         }
-
         friend bool
         operator==(iterator x, iterator y)
         {
             return static_cast<bool>(x.node_ == y.node_);
         }
-
         friend bool
         operator!=(iterator x, iterator y)
         {
@@ -162,40 +154,34 @@ public:
 
     private:
         node* node_;
-
         iterator(node* node) : node_(node) {}
 
         friend class slist;
         friend class slist::const_iterator;
     };
-
     class const_iterator
-      : public _STD::iterator<_STD::forward_iterator_tag, T, difference_type, const_pointer, const_reference>
+      : public _STD::iterator<_STD::forward_iterator_tag, T, difference_type,
+                              const_pointer, const_reference>
     {
     public:
         const_iterator() {}
-
         const_iterator(slist::iterator x) : node_(x.node_) {}
-
         const_reference
         operator*() const
         {
             return node_->data_;
         }
-
         const_pointer
         operator->() const
         {
             return &node_->data_;
         }
-
         const_iterator&
         operator++()
         {
             node_ = node_->next_;
             return *this;
         }
-
         const_iterator
         operator++(int)
         {
@@ -203,13 +189,11 @@ public:
             node_ = node_->next_;
             return tmp;
         }
-
         friend bool
         operator==(const_iterator x, const_iterator y)
         {
             return static_cast<bool>(x.node_ == y.node_);
         }
-
         friend bool
         operator!=(const_iterator x, const_iterator y)
         {
@@ -218,51 +202,55 @@ public:
 
     private:
         const node* node_;
-
         const_iterator(const node* node) : node_(node) {}
 
         friend class slist;
     };
-
     //  lib.slist.cons construct/copy/destroy:
     explicit slist(const Allocator& = Allocator());
     explicit slist(size_type n);
     slist(size_type n, const T& value, const Allocator& = Allocator());
-#        ifndef _MSL_NO_MEMBER_TEMPLATE
-#            ifndef _MSL_MUST_INLINE_MEMBER_TEMPLATE
-    template <class InputIterator> slist(InputIterator first, InputIterator last, const Allocator& a = Allocator());
-#            else
+#ifndef _MSL_NO_MEMBER_TEMPLATE
+#ifndef _MSL_MUST_INLINE_MEMBER_TEMPLATE
+    template <class InputIterator>
+    slist(InputIterator first, InputIterator last, const Allocator& a = Allocator());
+#else
     template <class InputIterator>
     slist(InputIterator first, InputIterator last, const Allocator& a = Allocator())
       : alloc_(a, 0), node_alloc_(node_allocator_type(a))
     {
         node_base& tail = node_alloc_.m_;
         tail.prev_ = tail.next_ = (node*)&tail;
-        choose_init(first, last, chooser<_STD::numeric_limits<InputIterator>::is_integer>());
+        choose_init(first, last,
+                    chooser<_STD::numeric_limits<InputIterator>::is_integer>());
     }
-#            endif
-#        else
-    slist(const_iterator first, const_iterator last, const Allocator& a = Allocator());
-    slist(const value_type* first, const value_type* last, const Allocator& a = Allocator());
-#        endif
+#endif
+#else
+    slist(const_iterator first, const_iterator last,
+          const Allocator& a = Allocator());
+    slist(const value_type* first, const value_type* last,
+          const Allocator& a = Allocator());
+#endif
     slist(const slist& x);
     ÃÂ¢ÃÂÃÂ¾slist();
     slist& operator=(const slist& x);
-#        ifndef _MSL_NO_MEMBER_TEMPLATE
-#            ifndef _MSL_MUST_INLINE_MEMBER_TEMPLATE
-    template <class InputIterator> void assign(InputIterator first, InputIterator last);
-#            else
+#ifndef _MSL_NO_MEMBER_TEMPLATE
+#ifndef _MSL_MUST_INLINE_MEMBER_TEMPLATE
+    template <class InputIterator>
+    void assign(InputIterator first, InputIterator last);
+#else
     template <class InputIterator>
     inline void
     assign(InputIterator first, InputIterator last)
     {
-        choose_assign(first, last, chooser<_STD::numeric_limits<InputIterator>::is_integer>());
+        choose_assign(first, last,
+                      chooser<_STD::numeric_limits<InputIterator>::is_integer>());
     }
-#            endif
-#        else
+#endif
+#else
     void assign(const_iterator first, const_iterator last);
     void assign(const value_type* first, const value_type* last);
-#        endif
+#endif
     void           assign(size_type n, const T& t);
     allocator_type get_allocator() const;
 
@@ -296,70 +284,77 @@ public:
 
     iterator insert(iterator position, const T& x);              // linear time!
     void     insert(iterator position, size_type n, const T& x); // linear time!
-#        ifndef _MSL_NO_MEMBER_TEMPLATE
-#            ifndef _MSL_MUST_INLINE_MEMBER_TEMPLATE
+#ifndef _MSL_NO_MEMBER_TEMPLATE
+#ifndef _MSL_MUST_INLINE_MEMBER_TEMPLATE
     template <class InputIterator>                               // linear time!
     void insert(iterator position, InputIterator first, InputIterator last);
-#            else
+#else
     template <class InputIterator>
     inline void
     insert(iterator position, InputIterator first, InputIterator last)
     {
         insert_after(previous(position), first, last);
     }
-#            endif
-#        else
+#endif
+#else
     void insert(iterator position, const_iterator first, const_iterator last);
     void insert(iterator position, const value_type* first, const value_type* last);
-#        endif
+#endif
 
     // constant time versions of insert, inserts stuff after position
     // end() can be used as the node before begin()
     iterator insert_after(iterator position, const T& x);
     void     insert_after(iterator position, size_type n, const T& x);
-#        ifndef _MSL_NO_MEMBER_TEMPLATE
-#            ifndef _MSL_MUST_INLINE_MEMBER_TEMPLATE
-    template <class InputIterator> void insert_after(iterator position, InputIterator first, InputIterator last);
-#            else
+#ifndef _MSL_NO_MEMBER_TEMPLATE
+#ifndef _MSL_MUST_INLINE_MEMBER_TEMPLATE
+    template <class InputIterator>
+    void insert_after(iterator position, InputIterator first, InputIterator last);
+#else
     template <class InputIterator>
     inline void
     insert_after(iterator position, InputIterator first, InputIterator last)
     {
-        do_insert_after(position, first, last, chooser<_STD::numeric_limits<InputIterator>::is_integer>());
+        do_insert_after(position, first, last,
+                        chooser<_STD::numeric_limits<InputIterator>::is_integer>());
     }
-#            endif
-#        else
+#endif
+#else
     void insert_after(iterator position, const_iterator first, const_iterator last);
-    void insert_after(iterator position, const value_type* first, const value_type* last);
-#        endif
+    void insert_after(iterator position, const value_type* first,
+                      const value_type* last);
+#endif
 
     iterator erase(iterator position);                // linear time!
     iterator erase(iterator position, iterator last); // linear time!
 
     // constant time versions of erase
     // end() can be used as the node before begin()
-    iterator erase_after(iterator position);                // erase (position, position+1], return position
-    iterator erase_after(iterator position, iterator last); // erase (position, last], return position
+    iterator erase_after(
+        iterator position); // erase (position, position+1], return position
+    iterator erase_after(iterator position,
+                         iterator last); // erase (position, last], return position
 
     void swap(slist& x);
     void clear();
 
     //  lib.slist.ops slist operations:
-    void splice(iterator position, slist& x);                                // linear time!
-    void splice(iterator position, slist& x, iterator i);                    // linear time!
-    void splice(iterator position, slist& x, iterator first, iterator last); // linear time!
+    void splice(iterator position, slist& x);             // linear time!
+    void splice(iterator position, slist& x, iterator i); // linear time!
+    void splice(iterator position, slist& x, iterator first,
+                iterator last);                           // linear time!
 
     // constant time versions of splice, splices stuff after position
     // end() can be used as the node before begin()
     void splice_after(iterator position, slist& x);
-    void splice_after(iterator position, slist& x, iterator i);                    // splices (i, i+1]
-    void splice_after(iterator position, slist& x, iterator first, iterator last); // splices (first, last]
+    void splice_after(iterator position, slist& x, iterator i); // splices (i, i+1]
+    void splice_after(iterator position, slist& x, iterator first,
+                      iterator last);                   // splices (first, last]
 
     void remove(const T& value);
-#        ifndef _MSL_NO_MEMBER_TEMPLATE
-#            ifndef _MSL_MUST_INLINE_MEMBER_TEMPLATE
+#ifndef _MSL_NO_MEMBER_TEMPLATE
+#ifndef _MSL_MUST_INLINE_MEMBER_TEMPLATE
     template <class Predicate> void remove_if(Predicate pred);
-#            else
+#else
     template <class Predicate>
     void
     remove_if(Predicate pred)
@@ -390,14 +385,14 @@ public:
             p1 = i;
         }
     }
-#            endif
-#        endif
+#endif
+#endif
 
     void unique();
-#        ifndef _MSL_NO_MEMBER_TEMPLATE
-#            ifndef _MSL_MUST_INLINE_MEMBER_TEMPLATE
+#ifndef _MSL_NO_MEMBER_TEMPLATE
+#ifndef _MSL_MUST_INLINE_MEMBER_TEMPLATE
     template <class BinaryPredicate> void unique(BinaryPredicate binary_pred);
-#            else
+#else
     template <class BinaryPredicate>
     void
     unique(BinaryPredicate binary_pred)
@@ -422,14 +417,14 @@ public:
             ++i;
         }
     }
-#            endif
-#        endif
+#endif
+#endif
 
     void merge(slist& x);
-#        ifndef _MSL_NO_MEMBER_TEMPLATE
-#            ifndef _MSL_MUST_INLINE_MEMBER_TEMPLATE
+#ifndef _MSL_NO_MEMBER_TEMPLATE
+#ifndef _MSL_MUST_INLINE_MEMBER_TEMPLATE
     template <class Compare> void merge(slist& x, Compare comp);
-#            else
+#else
     template <class Compare>
     void
     merge(slist& x, Compare comp)
@@ -439,11 +434,11 @@ public:
             return;
         }
         if (size() > max_size() - x.size())
-#                ifndef _MSL_NO_EXCEPTIONS
+#ifndef _MSL_NO_EXCEPTIONS
             throw _STD::length_error("slist::merge length error");
-#                else
+#else
             _STD::__msl_error("slist::merge length error\n");
-#                endif
+#endif
         iterator first1 = begin();
         iterator last1 = end();
         iterator first2 = x.begin();
@@ -465,7 +460,8 @@ public:
                     }
                     pj = j.node_;
                 }
-                // splice_after(pfirst1, x, pfirst2, pj) but with pj-pfirst2 stored in count
+                // splice_after(pfirst1, x, pfirst2, pj) but with pj-pfirst2 stored
+                // in count
                 if (x.back_ == pj)
                 {
                     x.back_ = pfirst2;
@@ -487,23 +483,24 @@ public:
             splice_after(last_node(), x);
         }
     }
-#            endif
-#        endif
+#endif
+#endif
 
     void sort();
-#        ifndef _MSL_NO_MEMBER_TEMPLATE
-#            ifndef _MSL_MUST_INLINE_MEMBER_TEMPLATE
+#ifndef _MSL_NO_MEMBER_TEMPLATE
+#ifndef _MSL_MUST_INLINE_MEMBER_TEMPLATE
     template <class Compare> void sort(Compare comp);
-#            else
+#else
     template <class Compare>
     void
     sort(Compare comp)
     {
         switch (size())
         {
-            case 0 :
-            case 1 : break;
-            case 2 :
+            case 0:
+            case 1:
+                break;
+            case 2:
                 {
                     iterator i = begin();
                     iterator j = i;
@@ -517,13 +514,14 @@ public:
                     }
                 }
                 break;
-            default :
+            default:
                 {
                     iterator  i = begin();
                     size_type lower_size = size() / 2;
                     _STD::advance(i, lower_size - 1);
                     slist upper_half;
-                    // upper_half.splice_after(upper_half.last_node(), *this, i, last_node());
+                    // upper_half.splice_after(upper_half.last_node(), *this, i,
+                    // last_node());
                     node* s1 = i.node_;
                     node* s2 = s1->next_;
                     node* s3 = back_;
@@ -540,98 +538,106 @@ public:
                 }
         }
     }
-#            endif
-#        endif
+#endif
+#endif
 
     void reverse();
 
 private:
-    _STD::_EmptyMemberOpt<Allocator, size_type>           alloc_;                  // alloc_.m_ is size_
-    _STD::_EmptyMemberOpt<node_allocator_type, node_base> node_alloc_;             // node_alloc_.m_ is tail pseudo node
-                                                                                   // node_alloc_.m_.next_ is first node
-    node*                                                 back_;
+    _STD::_EmptyMemberOpt<Allocator, size_type> alloc_; // alloc_.m_ is size_
+    _STD::_EmptyMemberOpt<node_allocator_type, node_base>
+          node_alloc_; // node_alloc_.m_ is tail pseudo node
+                       // node_alloc_.m_.next_ is first node
+    node* back_;
 
-#        ifndef _MSL_NO_MEMBER_TEMPLATE
-#            ifndef _MSL_MUST_INLINE_MEMBER_TEMPLATE
-    template <class InputIterator> void choose_init(InputIterator first, InputIterator last, chooser<true>);
-    template <class InputIterator> void choose_init(InputIterator first, InputIterator last, chooser<false>);
-    template <class InputIterator> void choose_assign(InputIterator first, InputIterator last, chooser<true>);
-    template <class InputIterator> void choose_assign(InputIterator first, InputIterator last, chooser<false>);
-    template <class InputIterator> void do_assign(InputIterator first, InputIterator last, _STD::input_iterator_tag);
+#ifndef _MSL_NO_MEMBER_TEMPLATE
+#ifndef _MSL_MUST_INLINE_MEMBER_TEMPLATE
+    template <class InputIterator>
+    void choose_init(InputIterator first, InputIterator last, chooser<true>);
+    template <class InputIterator>
+    void choose_init(InputIterator first, InputIterator last, chooser<false>);
+    template <class InputIterator>
+    void choose_assign(InputIterator first, InputIterator last, chooser<true>);
+    template <class InputIterator>
+    void choose_assign(InputIterator first, InputIterator last, chooser<false>);
+    template <class InputIterator>
+    void do_assign(InputIterator first, InputIterator last,
+                   _STD::input_iterator_tag);
     template <class ForwardIterator>
-    void do_assign(ForwardIterator first, ForwardIterator last, _STD::forward_iterator_tag);
+    void do_assign(ForwardIterator first, ForwardIterator last,
+                   _STD::forward_iterator_tag);
     template <class RandomAccessIterator>
-    void do_assign(RandomAccessIterator first, RandomAccessIterator last, _STD::random_access_iterator_tag);
+    void do_assign(RandomAccessIterator first, RandomAccessIterator last,
+                   _STD::random_access_iterator_tag);
     template <class InputIterator>
-    void do_insert_after(iterator position, InputIterator first, InputIterator last, chooser<true>);
+    void do_insert_after(iterator position, InputIterator first, InputIterator last,
+                         chooser<true>);
     template <class InputIterator>
-    void do_insert_after(iterator position, InputIterator first, InputIterator last, chooser<false>);
-#            else
+    void do_insert_after(iterator position, InputIterator first, InputIterator last,
+                         chooser<false>);
+#else
     template <class InputIterator>
     void
     choose_init(InputIterator first, InputIterator last, chooser<true>)
     {
         size_type n = static_cast<size_type>(first);
         if (n > max_size())
-#                ifndef _MSL_NO_EXCEPTIONS
+#ifndef _MSL_NO_EXCEPTIONS
             throw _STD::length_error("slist::construction length error");
-#                else
+#else
             _STD::__msl_error("slist::construction length error\n");
-#                endif
-#                ifndef _MSL_NO_EXCEPTIONS
+#endif
+#ifndef _MSL_NO_EXCEPTIONS
         try
         {
-#                endif
+#endif
             for (; n > 0; --n)
             {
                 push_front(static_cast<value_type>(last));
             }
-#                ifndef _MSL_NO_EXCEPTIONS
+#ifndef _MSL_NO_EXCEPTIONS
         }
         catch (...)
         {
             clear();
             throw;
         }
-#                endif
+#endif
     }
-
     template <class InputIterator>
     void
     choose_init(InputIterator first, InputIterator last, chooser<false>)
     {
-#                ifndef _MSL_NO_EXCEPTIONS
+#ifndef _MSL_NO_EXCEPTIONS
         try
         {
-#                endif
+#endif
             for (; first != last; ++first)
             {
                 push_back(*first);
             }
-#                ifndef _MSL_NO_EXCEPTIONS
+#ifndef _MSL_NO_EXCEPTIONS
         }
         catch (...)
         {
             clear();
             throw;
         }
-#                endif
+#endif
     }
-
     template <class InputIterator>
     inline void
     choose_assign(InputIterator first, InputIterator last, chooser<true>)
     {
         assign(static_cast<size_type>(first), static_cast<value_type>(last));
     }
-
     template <class InputIterator>
     inline void
     choose_assign(InputIterator first, InputIterator last, chooser<false>)
     {
-        do_assign(first, last, _STD::iterator_traits<InputIterator>::iterator_category());
+        do_assign(first, last,
+                  _STD::iterator_traits<InputIterator>::iterator_category());
     }
-
     template <class InputIterator>
     void
     do_assign(InputIterator first, InputIterator last, _STD::input_iterator_tag)
@@ -652,10 +658,10 @@ private:
             erase_after(p, last_node());
         }
     }
-
     template <class ForwardIterator>
     void
-    do_assign(ForwardIterator first, ForwardIterator last, _STD::forward_iterator_tag)
+    do_assign(ForwardIterator first, ForwardIterator last,
+              _STD::forward_iterator_tag)
     {
         ForwardIterator f = first;
         for (size_type c = size(); c != 0 && f != last; --c)
@@ -664,11 +670,11 @@ private:
         }
         slist temp(f, last, alloc_);
         if (size() > max_size() - temp.size())
-#                ifndef _MSL_NO_EXCEPTIONS
+#ifndef _MSL_NO_EXCEPTIONS
             throw _STD::length_error("slist::assign length error");
-#                else
+#else
             _STD::__msl_error("slist::assign length error\n");
-#                endif
+#endif
         iterator p = end();
         for (iterator i = begin(); first != f; ++i, ++first)
         {
@@ -684,18 +690,18 @@ private:
             erase_after(p, last_node());
         }
     }
-
     template <class RandomAccessIterator>
     void
-    do_assign(RandomAccessIterator first, RandomAccessIterator last, _STD::random_access_iterator_tag)
+    do_assign(RandomAccessIterator first, RandomAccessIterator last,
+              _STD::random_access_iterator_tag)
     {
         RandomAccessIterator f = first + _STD::min(size(), size_type(last - first));
         if (last - first > max_size())
-#                ifndef _MSL_NO_EXCEPTIONS
+#ifndef _MSL_NO_EXCEPTIONS
             throw _STD::length_error("slist::assign length error");
-#                else
+#else
             _STD::__msl_error("slist::assign length error\n");
-#                endif
+#endif
         slist    temp(f, last, alloc_);
         iterator p = end();
         for (iterator i = begin(); first != f; ++i, ++first)
@@ -712,53 +718,60 @@ private:
             erase_after(p, last_node());
         }
     }
-
     template <class InputIterator>
     inline void
-    do_insert_after(iterator position, InputIterator first, InputIterator last, chooser<true>)
+    do_insert_after(iterator position, InputIterator first, InputIterator last,
+                    chooser<true>)
     {
-        insert_after(position, static_cast<size_type>(first), static_cast<value_type>(last));
+        insert_after(position, static_cast<size_type>(first),
+                     static_cast<value_type>(last));
     }
-
     template <class InputIterator>
     void
-    do_insert_after(iterator position, InputIterator first, InputIterator last, chooser<false>)
+    do_insert_after(iterator position, InputIterator first, InputIterator last,
+                    chooser<false>)
     {
         slist temp(first, last, alloc_);
         splice_after(position, temp);
     }
-
-#            endif
-#        endif
+#endif
+#endif
     static void remove_nodes(node_base* first, node_base* last);
     static void insert_nodes(node_base* here, node_base* first, node_base* last);
 };
 
-template <class T, class Allocator> bool operator==(const slist<T, Allocator>& x, const slist<T, Allocator>& y);
+template <class T, class Allocator>
+bool operator==(const slist<T, Allocator>& x, const slist<T, Allocator>& y);
 
-template <class T, class Allocator> bool operator<(const slist<T, Allocator>& x, const slist<T, Allocator>& y);
+template <class T, class Allocator>
+bool operator<(const slist<T, Allocator>& x, const slist<T, Allocator>& y);
 
-template <class T, class Allocator> bool operator!=(const slist<T, Allocator>& x, const slist<T, Allocator>& y);
+template <class T, class Allocator>
+bool operator!=(const slist<T, Allocator>& x, const slist<T, Allocator>& y);
 
-template <class T, class Allocator> bool operator>(const slist<T, Allocator>& x, const slist<T, Allocator>& y);
+template <class T, class Allocator>
+bool operator>(const slist<T, Allocator>& x, const slist<T, Allocator>& y);
 
-template <class T, class Allocator> bool operator>=(const slist<T, Allocator>& x, const slist<T, Allocator>& y);
+template <class T, class Allocator>
+bool operator>=(const slist<T, Allocator>& x, const slist<T, Allocator>& y);
 
-template <class T, class Allocator> bool operator<=(const slist<T, Allocator>& x, const slist<T, Allocator>& y);
+template <class T, class Allocator>
+bool operator<=(const slist<T, Allocator>& x, const slist<T, Allocator>& y);
 
 // specialized algorithms:
 
-template <class T, class Allocator> void swap(slist<T, Allocator>& x, slist<T, Allocator>& y);
+template <class T, class Allocator>
+void swap(slist<T, Allocator>& x, slist<T, Allocator>& y);
 
 // Implementation slist
 
 template <class T, class Allocator>
 slist<T, Allocator>::slist(const Allocator& a)
   : alloc_(a, 0)
-#        ifndef _MSL_NO_MEMBER_TEMPLATE
+#ifndef _MSL_NO_MEMBER_TEMPLATE
     ,
     node_alloc_(node_allocator_type(a))
-#        endif
+#endif
 {
     node_base& tail = node_alloc_.m_;
     tail.next_ = back_ = (node*)&tail;
@@ -767,97 +780,98 @@ slist<T, Allocator>::slist(const Allocator& a)
 template <class T, class Allocator>
 slist<T, Allocator>::slist(size_type n)
   : alloc_(Allocator(), 0)
-#        ifndef _MSL_NO_MEMBER_TEMPLATE
+#ifndef _MSL_NO_MEMBER_TEMPLATE
     ,
     node_alloc_(node_allocator_type(alloc_))
-#        endif
+#endif
 {
     if (n > max_size())
-#        ifndef _MSL_NO_EXCEPTIONS
+#ifndef _MSL_NO_EXCEPTIONS
         throw _STD::length_error("slist::construction length error");
-#        else
+#else
         _STD::__msl_error("slist::construction length error\n");
-#        endif
+#endif
     node_base& tail = node_alloc_.m_;
     tail.next_ = back_ = (node*)&tail;
-#        ifndef _MSL_NO_EXCEPTIONS
+#ifndef _MSL_NO_EXCEPTIONS
     try
     {
-#        endif
+#endif
         T value = T();
         for (; n > 0; --n)
         {
             push_front(value);
         }
-#        ifndef _MSL_NO_EXCEPTIONS
+#ifndef _MSL_NO_EXCEPTIONS
     }
     catch (...)
     {
         clear();
         throw;
     }
-#        endif
+#endif
 }
 
 template <class T, class Allocator>
 slist<T, Allocator>::slist(size_type n, const value_type& value, const Allocator& a)
   : alloc_(a, 0)
-#        ifndef _MSL_NO_MEMBER_TEMPLATE
+#ifndef _MSL_NO_MEMBER_TEMPLATE
     ,
     node_alloc_(node_allocator_type(a))
-#        endif
+#endif
 {
     if (n > max_size())
-#        ifndef _MSL_NO_EXCEPTIONS
+#ifndef _MSL_NO_EXCEPTIONS
         throw _STD::length_error("slist::construction length error");
-#        else
+#else
         _STD::__msl_error("slist::construction length error\n");
-#        endif
+#endif
     node_base& tail = node_alloc_.m_;
     tail.next_ = back_ = (node*)&tail;
-#        ifndef _MSL_NO_EXCEPTIONS
+#ifndef _MSL_NO_EXCEPTIONS
     try
     {
-#        endif
+#endif
         for (; n > 0; --n)
         {
             push_front(value);
         }
-#        ifndef _MSL_NO_EXCEPTIONS
+#ifndef _MSL_NO_EXCEPTIONS
     }
     catch (...)
     {
         clear();
         throw;
     }
-#        endif
+#endif
 }
 
-#        ifndef _MSL_NO_MEMBER_TEMPLATE
-#            ifndef _MSL_MUST_INLINE_MEMBER_TEMPLATE
-
+#ifndef _MSL_NO_MEMBER_TEMPLATE
+#ifndef _MSL_MUST_INLINE_MEMBER_TEMPLATE
 template <class T, class Allocator>
 template <class InputIterator>
-slist<T, Allocator>::slist(InputIterator first, InputIterator last, const Allocator& a)
+slist<T, Allocator>::slist(InputIterator first, InputIterator last,
+                           const Allocator& a)
   : alloc_(a, 0), node_alloc_(node_allocator_type(a))
 {
     node_base& tail = node_alloc_.m_;
     tail.next_ = back_ = (node*)&tail;
-    choose_init(first, last, chooser<_STD::numeric_limits<InputIterator>::is_integer>());
+    choose_init(first, last,
+                chooser<_STD::numeric_limits<InputIterator>::is_integer>());
 }
-
-#            endif
-#        else
-
+#endif
+#else
 template <class T, class Allocator>
-slist<T, Allocator>::slist(const_iterator first, const_iterator last, const Allocator& a) : alloc_(a, 0)
+slist<T, Allocator>::slist(const_iterator first, const_iterator last,
+                           const Allocator& a)
+  : alloc_(a, 0)
 {
     node_base& tail = node_alloc_.m_;
     tail.next_ = back_ = (node*)&tail;
-#            ifndef _MSL_NO_EXCEPTIONS
+#ifndef _MSL_NO_EXCEPTIONS
     try
     {
-#            endif
+#endif
         if (first != last)
         {
             push_front(*first);
@@ -867,25 +881,26 @@ slist<T, Allocator>::slist(const_iterator first, const_iterator last, const Allo
         {
             i = insert_after(i, *first);
         }
-#            ifndef _MSL_NO_EXCEPTIONS
+#ifndef _MSL_NO_EXCEPTIONS
     }
     catch (...)
     {
         clear();
         throw;
     }
-#            endif
+#endif
 }
-
 template <class T, class Allocator>
-slist<T, Allocator>::slist(const value_type* first, const value_type* last, const Allocator& a) : alloc_(a, 0)
+slist<T, Allocator>::slist(const value_type* first, const value_type* last,
+                           const Allocator& a)
+  : alloc_(a, 0)
 {
     node_base& tail = node_alloc_.m_;
     tail.next_ = back_ = (node*)&tail;
-#            ifndef _MSL_NO_EXCEPTIONS
+#ifndef _MSL_NO_EXCEPTIONS
     try
     {
-#            endif
+#endif
         if (first != last)
         {
             push_front(*first);
@@ -895,47 +910,45 @@ slist<T, Allocator>::slist(const value_type* first, const value_type* last, cons
         {
             i = insert_after(i, *first);
         }
-#            ifndef _MSL_NO_EXCEPTIONS
+#ifndef _MSL_NO_EXCEPTIONS
     }
     catch (...)
     {
         clear();
         throw;
     }
-#            endif
+#endif
 }
-
-#        endif
-
+#endif
 template <class T, class Allocator>
-slist<T, Allocator>::slist(const slist& x) : alloc_(x.alloc_, 0), node_alloc_(x.node_alloc_)
+slist<T, Allocator>::slist(const slist& x)
+  : alloc_(x.alloc_, 0), node_alloc_(x.node_alloc_)
 {
     node_base& tail = node_alloc_.m_;
     tail.next_ = back_ = (node*)&tail;
     const_iterator e = x.end();
-#        ifndef _MSL_NO_EXCEPTIONS
+#ifndef _MSL_NO_EXCEPTIONS
     try
     {
-#        endif
+#endif
         for (const_iterator i = x.begin(); i != e; ++i)
         {
             push_back(*i);
         }
-#        ifndef _MSL_NO_EXCEPTIONS
+#ifndef _MSL_NO_EXCEPTIONS
     }
     catch (...)
     {
         clear();
         throw;
     }
-#        endif
+#endif
 }
-
-template <class T, class Allocator> inline slist<T, Allocator>::ÃÂ¢ÃÂÃÂ¾slist()
+template <class T, class Allocator>
+inline slist<T, Allocator>::ÃÂ¢ÃÂÃÂ¾slist()
 {
     clear();
 }
-
 template <class T, class Allocator>
 inline slist<T, Allocator>&
 slist<T, Allocator>::operator=(const slist& x)
@@ -946,21 +959,18 @@ slist<T, Allocator>::operator=(const slist& x)
     }
     return *this;
 }
-
-#        ifndef _MSL_NO_MEMBER_TEMPLATE
-#            ifndef _MSL_MUST_INLINE_MEMBER_TEMPLATE
-
+#ifndef _MSL_NO_MEMBER_TEMPLATE
+#ifndef _MSL_MUST_INLINE_MEMBER_TEMPLATE
 template <class T, class Allocator>
 template <class InputIterator>
 inline void
 slist<T, Allocator>::assign(InputIterator first, InputIterator last)
 {
-    choose_assign(first, last, chooser<_STD::numeric_limits<InputIterator>::is_integer>());
+    choose_assign(first, last,
+                  chooser<_STD::numeric_limits<InputIterator>::is_integer>());
 }
-
-#            endif
-#        else
-
+#endif
+#else
 template <class T, class Allocator>
 void
 slist<T, Allocator>::assign(const_iterator first, const_iterator last)
@@ -972,11 +982,11 @@ slist<T, Allocator>::assign(const_iterator first, const_iterator last)
     }
     slist temp(f, last, alloc_);
     if (size() > max_size() - temp.size())
-#            ifndef _MSL_NO_EXCEPTIONS
+#ifndef _MSL_NO_EXCEPTIONS
         throw _STD::length_error("slist::assign length error");
-#            else
+#else
         _STD::__msl_error("slist::assign length error\n");
-#            endif
+#endif
     iterator i = begin();
     iterator p = i;
     for (; first != f; ++first, ++i)
@@ -993,7 +1003,6 @@ slist<T, Allocator>::assign(const_iterator first, const_iterator last)
         erase_after(p, end());
     }
 }
-
 template <class T, class Allocator>
 void
 slist<T, Allocator>::assign(const value_type* first, const value_type* last)
@@ -1005,11 +1014,11 @@ slist<T, Allocator>::assign(const value_type* first, const value_type* last)
     }
     slist temp(f, last, alloc_);
     if (size() > max_size() - temp.size())
-#            ifndef _MSL_NO_EXCEPTIONS
+#ifndef _MSL_NO_EXCEPTIONS
         throw _STD::length_error("slist::assign length error");
-#            else
+#else
         _STD::__msl_error("slist::assign length error\n");
-#            endif
+#endif
     iterator i = begin();
     iterator p = i;
     for (; first != f; ++first, ++i)
@@ -1026,19 +1035,17 @@ slist<T, Allocator>::assign(const value_type* first, const value_type* last)
         erase_after(p, end());
     }
 }
-
-#        endif
-
+#endif
 template <class T, class Allocator>
 void
 slist<T, Allocator>::assign(size_type n, const T& t)
 {
     if (n > max_size())
-#        ifndef _MSL_NO_EXCEPTIONS
+#ifndef _MSL_NO_EXCEPTIONS
         throw _STD::length_error("slist::assign length error");
-#        else
+#else
         _STD::__msl_error("slist::assign length error\n");
-#        endif
+#endif
     if (n > size())
     {
         slist    temp(n - size(), t, alloc_);
@@ -1060,56 +1067,48 @@ slist<T, Allocator>::assign(size_type n, const T& t)
         erase_after(p, last_node());
     }
 }
-
 template <class T, class Allocator>
 inline typename slist<T, Allocator>::allocator_type
 slist<T, Allocator>::get_allocator() const
 {
     return alloc_;
 }
-
 template <class T, class Allocator>
 inline typename slist<T, Allocator>::iterator
 slist<T, Allocator>::begin()
 {
     return iterator(node_alloc_.m_.next_);
 }
-
 template <class T, class Allocator>
 inline typename slist<T, Allocator>::const_iterator
 slist<T, Allocator>::begin() const
 {
     return const_iterator(node_alloc_.m_.next_);
 }
-
 template <class T, class Allocator>
 inline typename slist<T, Allocator>::iterator
 slist<T, Allocator>::end()
 {
     return iterator((node*)&node_alloc_.m_);
 }
-
 template <class T, class Allocator>
 inline typename slist<T, Allocator>::const_iterator
 slist<T, Allocator>::end() const
 {
     return const_iterator((node*)&node_alloc_.m_);
 }
-
 template <class T, class Allocator>
 inline typename slist<T, Allocator>::iterator
 slist<T, Allocator>::last_node()
 {
     return back_;
 }
-
 template <class T, class Allocator>
 inline typename slist<T, Allocator>::const_iterator
 slist<T, Allocator>::last_node() const
 {
     return back_;
 }
-
 template <class T, class Allocator>
 inline typename slist<T, Allocator>::iterator
 slist<T, Allocator>::previous(iterator x)
@@ -1121,7 +1120,6 @@ slist<T, Allocator>::previous(iterator x)
     }
     return p;
 }
-
 template <class T, class Allocator>
 inline typename slist<T, Allocator>::const_iterator
 slist<T, Allocator>::previous(const_iterator x)
@@ -1133,28 +1131,24 @@ slist<T, Allocator>::previous(const_iterator x)
     }
     return p;
 }
-
 template <class T, class Allocator>
 inline bool
 slist<T, Allocator>::empty() const
 {
     return alloc_.m_ == 0;
 }
-
 template <class T, class Allocator>
 inline typename slist<T, Allocator>::size_type
 slist<T, Allocator>::size() const
 {
     return alloc_.m_;
 }
-
 template <class T, class Allocator>
 inline typename slist<T, Allocator>::size_type
 slist<T, Allocator>::max_size() const
 {
     return (size_type)_STD::numeric_limits<difference_type>::max();
 }
-
 template <class T, class Allocator>
 void
 slist<T, Allocator>::resize(size_type sz)
@@ -1174,7 +1168,6 @@ slist<T, Allocator>::resize(size_type sz)
         erase_after(i, last_node());
     }
 }
-
 template <class T, class Allocator>
 void
 slist<T, Allocator>::resize(size_type sz, const value_type& value)
@@ -1194,110 +1187,99 @@ slist<T, Allocator>::resize(size_type sz, const value_type& value)
         erase_after(i, last_node());
     }
 }
-
 template <class T, class Allocator>
 inline typename slist<T, Allocator>::reference
 slist<T, Allocator>::front()
 {
     return node_alloc_.m_.next_->data_;
 }
-
 template <class T, class Allocator>
 inline typename slist<T, Allocator>::const_reference
 slist<T, Allocator>::front() const
 {
     return node_alloc_.m_.next_->data_;
 }
-
 template <class T, class Allocator>
 inline void
 slist<T, Allocator>::push_front(const T& x)
 {
     insert_after(end(), x);
 }
-
 template <class T, class Allocator>
 inline void
 slist<T, Allocator>::pop_front()
 {
     erase_after(end());
 }
-
 template <class T, class Allocator>
 inline void
 slist<T, Allocator>::push_back(const T& x)
 {
     insert_after(last_node(), x);
 }
-
 template <class T, class Allocator>
 inline typename slist<T, Allocator>::iterator
 slist<T, Allocator>::insert(iterator position, const T& x)
 {
     return insert_after(previous(position), x);
 }
-
 template <class T, class Allocator>
 inline void
 slist<T, Allocator>::insert(iterator position, size_type n, const T& x)
 {
     insert_after(previous(position), n, x);
 }
-
-#        ifndef _MSL_NO_MEMBER_TEMPLATE
-#            ifndef _MSL_MUST_INLINE_MEMBER_TEMPLATE
-
+#ifndef _MSL_NO_MEMBER_TEMPLATE
+#ifndef _MSL_MUST_INLINE_MEMBER_TEMPLATE
 template <class T, class Allocator>
 template <class InputIterator>
 inline void
-slist<T, Allocator>::insert(iterator position, InputIterator first, InputIterator last)
+slist<T, Allocator>::insert(iterator position, InputIterator first,
+                            InputIterator last)
 {
     insert_after(previous(position), first, last);
 }
-
-#            endif
-#        else
-
+#endif
+#else
 template <class T, class Allocator>
 inline void
-slist<T, Allocator>::insert(iterator position, const_iterator first, const_iterator last)
+slist<T, Allocator>::insert(iterator position, const_iterator first,
+                            const_iterator last)
 {
     insert_after(previous(position), first, last);
 }
-
 template <class T, class Allocator>
 inline void
-slist<T, Allocator>::insert(iterator position, const value_type* first, const value_type* last)
+slist<T, Allocator>::insert(iterator position, const value_type* first,
+                            const value_type* last)
 {
     insert_after(previous(position), first, last);
 }
-
-#        endif
-
+#endif
 template <class T, class Allocator>
 typename slist<T, Allocator>::iterator
 slist<T, Allocator>::insert_after(iterator position, const T& x)
 {
     if (size() > max_size() - 1)
-#        ifndef _MSL_NO_EXCEPTIONS
+#ifndef _MSL_NO_EXCEPTIONS
         throw _STD::length_error("slist::insert_after length error");
-#        else
+#else
         _STD::__msl_error("slist::insert_after length error\n");
-#        endif
+#endif
     node* newnode = node_alloc_.allocate(1);
-#        ifndef _MSL_NO_EXCEPTIONS
+#ifndef _MSL_NO_EXCEPTIONS
     try
     {
-#        endif
+#endif
         alloc_.construct(&newnode->data_, x);
-#        ifndef _MSL_NO_EXCEPTIONS
+#ifndef _MSL_NO_EXCEPTIONS
     }
     catch (...)
     {
         node_alloc_.deallocate(newnode, 1);
         throw;
     }
-#        endif
+#endif
     insert_nodes(position.node_, newnode, newnode);
     if (back_ == position.node_)
     {
@@ -1306,7 +1288,6 @@ slist<T, Allocator>::insert_after(iterator position, const T& x)
     ++alloc_.m_;
     return newnode;
 }
-
 template <class T, class Allocator>
 void
 slist<T, Allocator>::insert_after(iterator position, size_type n, const T& x)
@@ -1314,46 +1295,42 @@ slist<T, Allocator>::insert_after(iterator position, size_type n, const T& x)
     slist temp(n, x, alloc_);
     splice_after(position, temp);
 }
-
-#        ifndef _MSL_NO_MEMBER_TEMPLATE
-#            ifndef _MSL_MUST_INLINE_MEMBER_TEMPLATE
-
+#ifndef _MSL_NO_MEMBER_TEMPLATE
+#ifndef _MSL_MUST_INLINE_MEMBER_TEMPLATE
 template <class T, class Allocator>
 template <class InputIterator>
 inline void
-slist<T, Allocator>::insert_after(iterator position, InputIterator first, InputIterator last)
+slist<T, Allocator>::insert_after(iterator position, InputIterator first,
+                                  InputIterator last)
 {
-    do_insert_after(position, first, last, chooser<_STD::numeric_limits<InputIterator>::is_integer>());
+    do_insert_after(position, first, last,
+                    chooser<_STD::numeric_limits<InputIterator>::is_integer>());
 }
-
-#            endif
-#        else
-
+#endif
+#else
 template <class T, class Allocator>
 void
-slist<T, Allocator>::insert_after(iterator position, const_iterator first, const_iterator last)
+slist<T, Allocator>::insert_after(iterator position, const_iterator first,
+                                  const_iterator last)
 {
     slist temp(first, last, alloc_);
     splice_after(position, temp);
 }
-
 template <class T, class Allocator>
 void
-slist<T, Allocator>::insert_after(iterator position, const value_type* first, const value_type* last)
+slist<T, Allocator>::insert_after(iterator position, const value_type* first,
+                                  const value_type* last)
 {
     slist temp(first, last, alloc_);
     splice_after(position, temp);
 }
-
-#        endif
-
+#endif
 template <class T, class Allocator>
 inline typename slist<T, Allocator>::iterator
 slist<T, Allocator>::erase(iterator position)
 {
     return ++erase_after(previous(position));
 }
-
 template <class T, class Allocator>
 typename slist<T, Allocator>::iterator
 slist<T, Allocator>::erase(iterator position, iterator last)
@@ -1368,7 +1345,6 @@ slist<T, Allocator>::erase(iterator position, iterator last)
     erase_after(i, j);
     return last;
 }
-
 // erase (position, position+1]
 // return position
 template <class T, class Allocator>
@@ -1386,7 +1362,6 @@ slist<T, Allocator>::erase_after(iterator position)
     --alloc_.m_;
     return position;
 }
-
 // erase (position, last]
 // return position
 template <class T, class Allocator>
@@ -1415,7 +1390,6 @@ slist<T, Allocator>::erase_after(iterator position, iterator last)
     }
     return position;
 }
-
 template <class T, class Allocator>
 void
 slist<T, Allocator>::swap(slist& x)
@@ -1445,7 +1419,6 @@ slist<T, Allocator>::swap(slist& x)
         }
     }
 }
-
 template <class T, class Allocator>
 void
 slist<T, Allocator>::clear()
@@ -1466,28 +1439,25 @@ slist<T, Allocator>::clear()
     node_base& tail = node_alloc_.m_;
     back_ = tail.next_ = (node*)&tail;
 }
-
 template <class T, class Allocator>
 inline void
 slist<T, Allocator>::splice(iterator position, slist& x)
 {
     splice_after(previous(position), x);
 }
-
 template <class T, class Allocator>
 inline void
 slist<T, Allocator>::splice(iterator position, slist& x, iterator i)
 {
     splice_after(previous(position), x, x.previous(i));
 }
-
 template <class T, class Allocator>
 inline void
-slist<T, Allocator>::splice(iterator position, slist& x, iterator first, iterator last)
+slist<T, Allocator>::splice(iterator position, slist& x, iterator first,
+                            iterator last)
 {
     splice_after(previous(position), x, x.previous(first), x.previous(last));
 }
-
 template <class T, class Allocator>
 void
 slist<T, Allocator>::splice_after(iterator position, slist& x)
@@ -1495,11 +1465,11 @@ slist<T, Allocator>::splice_after(iterator position, slist& x)
     if (x.size() > 0)
     {
         if (size() > max_size() - x.size())
-#        ifndef _MSL_NO_EXCEPTIONS
+#ifndef _MSL_NO_EXCEPTIONS
             throw _STD::length_error("slist::splice_after length error");
-#        else
+#else
             _STD::__msl_error("slist::splice_after length error\n");
-#        endif
+#endif
         node_base& x_tail = x.node_alloc_.m_;
         node_base* s1 = x_tail.next_;
         node_base* s2 = x.back_;
@@ -1513,17 +1483,16 @@ slist<T, Allocator>::splice_after(iterator position, slist& x)
         }
     }
 }
-
 template <class T, class Allocator>
 void
 slist<T, Allocator>::splice_after(iterator position, slist& x, iterator i)
 {
     if (size() > max_size() - 1)
-#        ifndef _MSL_NO_EXCEPTIONS
+#ifndef _MSL_NO_EXCEPTIONS
         throw _STD::length_error("slist::splice length error");
-#        else
+#else
         _STD::__msl_error("slist::splice length error\n");
-#        endif
+#endif
     node* p = position.node_;
     node* s1 = i.node_;
     node* s2 = s1->next_;
@@ -1544,10 +1513,10 @@ slist<T, Allocator>::splice_after(iterator position, slist& x, iterator i)
     }
     ++alloc_.m_;
 }
-
 template <class T, class Allocator>
 void
-slist<T, Allocator>::splice_after(iterator position, slist& x, iterator first, iterator last)
+slist<T, Allocator>::splice_after(iterator position, slist& x, iterator first,
+                                  iterator last)
 {
     if (first == last)
     {
@@ -1557,11 +1526,11 @@ slist<T, Allocator>::splice_after(iterator position, slist& x, iterator first, i
     {
         size_type delta = (size_type)_STD::distance(first, last);
         if (size() > max_size() - delta)
-#        ifndef _MSL_NO_EXCEPTIONS
+#ifndef _MSL_NO_EXCEPTIONS
             throw _STD::length_error("slist::splice length error");
-#        else
+#else
             _STD::__msl_error("slist::splice length error\n");
-#        endif
+#endif
         x.alloc_.m_ -= delta;
         alloc_.m_ += delta;
     }
@@ -1579,7 +1548,6 @@ slist<T, Allocator>::splice_after(iterator position, slist& x, iterator first, i
         back_ = s3;
     }
 }
-
 template <class T, class Allocator>
 void
 slist<T, Allocator>::remove(const T& value)
@@ -1610,10 +1578,8 @@ slist<T, Allocator>::remove(const T& value)
         p1 = i;
     }
 }
-
-#        ifndef _MSL_NO_MEMBER_TEMPLATE
-#            ifndef _MSL_MUST_INLINE_MEMBER_TEMPLATE
-
+#ifndef _MSL_NO_MEMBER_TEMPLATE
+#ifndef _MSL_MUST_INLINE_MEMBER_TEMPLATE
 template <class T, class Allocator>
 template <class Predicate>
 void
@@ -1645,10 +1611,8 @@ slist<T, Allocator>::remove_if(Predicate pred)
         p1 = i;
     }
 }
-
-#            endif
-#        endif
-
+#endif
+#endif
 template <class T, class Allocator>
 void
 slist<T, Allocator>::unique()
@@ -1673,10 +1637,8 @@ slist<T, Allocator>::unique()
         ++i;
     }
 }
-
-#        ifndef _MSL_NO_MEMBER_TEMPLATE
-#            ifndef _MSL_MUST_INLINE_MEMBER_TEMPLATE
-
+#ifndef _MSL_NO_MEMBER_TEMPLATE
+#ifndef _MSL_MUST_INLINE_MEMBER_TEMPLATE
 template <class T, class Allocator>
 template <class BinaryPredicate>
 void
@@ -1702,10 +1664,8 @@ slist<T, Allocator>::unique(BinaryPredicate binary_pred)
         ++i;
     }
 }
-
-#            endif
-#        endif
-
+#endif
+#endif
 template <class T, class Allocator>
 void
 slist<T, Allocator>::merge(slist& x)
@@ -1715,11 +1675,11 @@ slist<T, Allocator>::merge(slist& x)
         return;
     }
     if (size() > max_size() - x.size())
-#        ifndef _MSL_NO_EXCEPTIONS
+#ifndef _MSL_NO_EXCEPTIONS
         throw _STD::length_error("slist::merge length error");
-#        else
+#else
         _STD::__msl_error("slist::merge length error\n");
-#        endif
+#endif
     iterator first1 = begin();
     iterator last1 = end();
     iterator first2 = x.begin();
@@ -1741,7 +1701,8 @@ slist<T, Allocator>::merge(slist& x)
                 }
                 pj = j.node_;
             }
-            // splice_after(pfirst1, x, pfirst2, pj) but with pj-pfirst2 stored in count
+            // splice_after(pfirst1, x, pfirst2, pj) but with pj-pfirst2 stored in
+            // count
             if (x.back_ == pj)
             {
                 x.back_ = pfirst2;
@@ -1763,10 +1724,8 @@ slist<T, Allocator>::merge(slist& x)
         splice_after(last_node(), x);
     }
 }
-
-#        ifndef _MSL_NO_MEMBER_TEMPLATE
-#            ifndef _MSL_MUST_INLINE_MEMBER_TEMPLATE
-
+#ifndef _MSL_NO_MEMBER_TEMPLATE
+#ifndef _MSL_MUST_INLINE_MEMBER_TEMPLATE
 template <class T, class Allocator>
 template <class Compare>
 void
@@ -1777,11 +1736,11 @@ slist<T, Allocator>::merge(slist& x, Compare comp)
         return;
     }
     if (size() > max_size() - x.size())
-#                ifndef _MSL_NO_EXCEPTIONS
+#ifndef _MSL_NO_EXCEPTIONS
         throw _STD::length_error("slist::merge length error");
-#                else
+#else
         _STD::__msl_error("slist::merge length error\n");
-#                endif
+#endif
     iterator first1 = begin();
     iterator last1 = end();
     iterator first2 = x.begin();
@@ -1803,7 +1762,8 @@ slist<T, Allocator>::merge(slist& x, Compare comp)
                 }
                 pj = j.node_;
             }
-            // splice_after(pfirst1, x, pfirst2, pj) but with pj-pfirst2 stored in count
+            // splice_after(pfirst1, x, pfirst2, pj) but with pj-pfirst2 stored in
+            // count
             if (x.back_ == pj)
             {
                 x.back_ = pfirst2;
@@ -1825,19 +1785,18 @@ slist<T, Allocator>::merge(slist& x, Compare comp)
         splice_after(last_node(), x);
     }
 }
-
-#            endif
-#        endif
-
+#endif
+#endif
 template <class T, class Allocator>
 void
 slist<T, Allocator>::sort()
 {
     switch (size())
     {
-        case 0 :
-        case 1 : break;
-        case 2 :
+        case 0:
+        case 1:
+            break;
+        case 2:
             {
                 iterator i = begin();
                 iterator j = i;
@@ -1851,13 +1810,14 @@ slist<T, Allocator>::sort()
                 }
             }
             break;
-        default :
+        default:
             {
                 iterator  i = begin();
                 size_type lower_size = size() / 2;
                 _STD::advance(i, lower_size - 1);
                 slist upper_half;
-                // upper_half.splice_after(upper_half.last_node(), *this, i, last_node());
+                // upper_half.splice_after(upper_half.last_node(), *this, i,
+                // last_node());
                 node* s1 = i.node_;
                 node* s2 = s1->next_;
                 node* s3 = back_;
@@ -1874,10 +1834,8 @@ slist<T, Allocator>::sort()
             }
     }
 }
-
-#        ifndef _MSL_NO_MEMBER_TEMPLATE
-#            ifndef _MSL_MUST_INLINE_MEMBER_TEMPLATE
-
+#ifndef _MSL_NO_MEMBER_TEMPLATE
+#ifndef _MSL_MUST_INLINE_MEMBER_TEMPLATE
 template <class T, class Allocator>
 template <class Compare>
 void
@@ -1885,9 +1843,10 @@ slist<T, Allocator>::sort(Compare comp)
 {
     switch (size())
     {
-        case 0 :
-        case 1 : break;
-        case 2 :
+        case 0:
+        case 1:
+            break;
+        case 2:
             {
                 iterator i = begin();
                 iterator j = i;
@@ -1901,13 +1860,14 @@ slist<T, Allocator>::sort(Compare comp)
                 }
             }
             break;
-        default :
+        default:
             {
                 iterator  i = begin();
                 size_type lower_size = size() / 2;
                 _STD::advance(i, lower_size - 1);
                 slist upper_half;
-                // upper_half.splice_after(upper_half.last_node(), *this, i, last_node());
+                // upper_half.splice_after(upper_half.last_node(), *this, i,
+                // last_node());
                 node* s1 = i.node_;
                 node* s2 = s1->next_;
                 node* s3 = back_;
@@ -1924,10 +1884,8 @@ slist<T, Allocator>::sort(Compare comp)
             }
     }
 }
-
-#            endif
-#        endif
-
+#endif
+#endif
 template <class T, class Allocator>
 void
 slist<T, Allocator>::reverse()
@@ -1951,83 +1909,83 @@ slist<T, Allocator>::reverse()
         n = nn;
     }
 }
-
-#        ifndef _MSL_NO_MEMBER_TEMPLATE
-#            ifndef _MSL_MUST_INLINE_MEMBER_TEMPLATE
-
+#ifndef _MSL_NO_MEMBER_TEMPLATE
+#ifndef _MSL_MUST_INLINE_MEMBER_TEMPLATE
 template <class T, class Allocator>
 template <class InputIterator>
 void
-slist<T, Allocator>::choose_init(InputIterator first, InputIterator last, chooser<true>)
+slist<T, Allocator>::choose_init(InputIterator first, InputIterator last,
+                                 chooser<true>)
 {
     size_type n = static_cast<size_type>(first);
     if (n > max_size())
-#                ifndef _MSL_NO_EXCEPTIONS
+#ifndef _MSL_NO_EXCEPTIONS
         throw _STD::length_error("slist::construction length error");
-#                else
+#else
         _STD::__msl_error("slist::construction length error\n");
-#                endif
-#                ifndef _MSL_NO_EXCEPTIONS
+#endif
+#ifndef _MSL_NO_EXCEPTIONS
     try
     {
-#                endif
+#endif
         for (; n > 0; --n)
         {
             push_front(static_cast<value_type>(last));
         }
-#                ifndef _MSL_NO_EXCEPTIONS
+#ifndef _MSL_NO_EXCEPTIONS
     }
     catch (...)
     {
         clear();
         throw;
     }
-#                endif
+#endif
 }
-
 template <class T, class Allocator>
 template <class InputIterator>
 void
-slist<T, Allocator>::choose_init(InputIterator first, InputIterator last, chooser<false>)
+slist<T, Allocator>::choose_init(InputIterator first, InputIterator last,
+                                 chooser<false>)
 {
-#                ifndef _MSL_NO_EXCEPTIONS
+#ifndef _MSL_NO_EXCEPTIONS
     try
     {
-#                endif
+#endif
         for (; first != last; ++first)
         {
             push_back(*first);
         }
-#                ifndef _MSL_NO_EXCEPTIONS
+#ifndef _MSL_NO_EXCEPTIONS
     }
     catch (...)
     {
         clear();
         throw;
     }
-#                endif
+#endif
 }
-
 template <class T, class Allocator>
 template <class InputIterator>
 inline void
-slist<T, Allocator>::choose_assign(InputIterator first, InputIterator last, chooser<true>)
+slist<T, Allocator>::choose_assign(InputIterator first, InputIterator last,
+                                   chooser<true>)
 {
     assign(static_cast<size_type>(first), static_cast<value_type>(last));
 }
-
 template <class T, class Allocator>
 template <class InputIterator>
 inline void
-slist<T, Allocator>::choose_assign(InputIterator first, InputIterator last, chooser<false>)
+slist<T, Allocator>::choose_assign(InputIterator first, InputIterator last,
+                                   chooser<false>)
 {
-    do_assign(first, last, _STD::iterator_traits<InputIterator>::iterator_category());
+    do_assign(first, last,
+              _STD::iterator_traits<InputIterator>::iterator_category());
 }
-
 template <class T, class Allocator>
 template <class InputIterator>
 void
-slist<T, Allocator>::do_assign(InputIterator first, InputIterator last, _STD::input_iterator_tag)
+slist<T, Allocator>::do_assign(InputIterator first, InputIterator last,
+                               _STD::input_iterator_tag)
 {
     iterator i = begin();
     iterator p;
@@ -2045,11 +2003,11 @@ slist<T, Allocator>::do_assign(InputIterator first, InputIterator last, _STD::in
         erase_after(p, last_node());
     }
 }
-
 template <class T, class Allocator>
 template <class ForwardIterator>
 void
-slist<T, Allocator>::do_assign(ForwardIterator first, ForwardIterator last, _STD::forward_iterator_tag)
+slist<T, Allocator>::do_assign(ForwardIterator first, ForwardIterator last,
+                               _STD::forward_iterator_tag)
 {
     ForwardIterator f = first;
     for (size_type c = size(); c != 0 && f != last; --c)
@@ -2058,11 +2016,11 @@ slist<T, Allocator>::do_assign(ForwardIterator first, ForwardIterator last, _STD
     }
     slist temp(f, last, alloc_);
     if (size() > max_size() - temp.size())
-#                ifndef _MSL_NO_EXCEPTIONS
+#ifndef _MSL_NO_EXCEPTIONS
         throw _STD::length_error("slist::assign length error");
-#                else
+#else
         _STD::__msl_error("slist::assign length error\n");
-#                endif
+#endif
     iterator p = end();
     for (iterator i = begin(); first != f; ++i, ++first)
     {
@@ -2078,19 +2036,19 @@ slist<T, Allocator>::do_assign(ForwardIterator first, ForwardIterator last, _STD
         erase_after(p, last_node());
     }
 }
-
 template <class T, class Allocator>
 template <class RandomAccessIterator>
 void
-slist<T, Allocator>::do_assign(RandomAccessIterator first, RandomAccessIterator last, _STD::random_access_iterator_tag)
+slist<T, Allocator>::do_assign(RandomAccessIterator first, RandomAccessIterator last,
+                               _STD::random_access_iterator_tag)
 {
     RandomAccessIterator f = first + _STD::min(size(), size_type(last - first));
     if (last - first > max_size())
-#                ifndef _MSL_NO_EXCEPTIONS
+#ifndef _MSL_NO_EXCEPTIONS
         throw _STD::length_error("slist::assign length error");
-#                else
+#else
         _STD::__msl_error("slist::assign length error\n");
-#                endif
+#endif
     slist    temp(f, last, alloc_);
     iterator p = end();
     for (iterator i = begin(); first != f; ++i, ++first)
@@ -2107,27 +2065,26 @@ slist<T, Allocator>::do_assign(RandomAccessIterator first, RandomAccessIterator 
         erase_after(p, last_node());
     }
 }
-
 template <class T, class Allocator>
 template <class InputIterator>
 inline void
-slist<T, Allocator>::do_insert_after(iterator position, InputIterator first, InputIterator last, chooser<true>)
+slist<T, Allocator>::do_insert_after(iterator position, InputIterator first,
+                                     InputIterator last, chooser<true>)
 {
-    insert_after(position, static_cast<size_type>(first), static_cast<value_type>(last));
+    insert_after(position, static_cast<size_type>(first),
+                 static_cast<value_type>(last));
 }
-
 template <class T, class Allocator>
 template <class InputIterator>
 void
-slist<T, Allocator>::do_insert_after(iterator position, InputIterator first, InputIterator last, chooser<false>)
+slist<T, Allocator>::do_insert_after(iterator position, InputIterator first,
+                                     InputIterator last, chooser<false>)
 {
     slist temp(first, last, alloc_);
     splice_after(position, temp);
 }
-
-#            endif
-#        endif
-
+#endif
+#endif
 // range is (first, last] NOT [first, last), first == end() ok to remove begin()
 template <class T, class Allocator>
 inline void
@@ -2135,7 +2092,6 @@ slist<T, Allocator>::remove_nodes(node_base* first, node_base* last)
 {
     first->next_ = last->next_;
 }
-
 // range is [first, last] NOT [first, last), nodes inserted AFTER here, here != end()
 template <class T, class Allocator>
 inline void
@@ -2144,49 +2100,43 @@ slist<T, Allocator>::insert_nodes(node_base* here, node_base* first, node_base* 
     last->next_ = here->next_;
     here->next_ = (node*)first;
 }
-
 template <class T, class Allocator>
 inline bool
 operator==(const slist<T, Allocator>& x, const slist<T, Allocator>& y)
 {
-    return static_cast<bool>(x.size() == y.size() && _STD::equal(x.begin(), x.end(), y.begin()));
+    return static_cast<bool>(x.size() == y.size() &&
+                             _STD::equal(x.begin(), x.end(), y.begin()));
 }
-
 template <class T, class Allocator>
 inline bool
 operator!=(const slist<T, Allocator>& x, const slist<T, Allocator>& y)
 {
     return static_cast<bool>(!(x == y));
 }
-
 template <class T, class Allocator>
 inline bool
 operator<(const slist<T, Allocator>& x, const slist<T, Allocator>& y)
 {
     return _STD::lexicographical_compare(x.begin(), x.end(), y.begin(), y.end());
 }
-
 template <class T, class Allocator>
 inline bool
 operator>(const slist<T, Allocator>& x, const slist<T, Allocator>& y)
 {
     return y < x;
 }
-
 template <class T, class Allocator>
 inline bool
 operator>=(const slist<T, Allocator>& x, const slist<T, Allocator>& y)
 {
     return static_cast<bool>(!(x < y));
 }
-
 template <class T, class Allocator>
 inline bool
 operator<=(const slist<T, Allocator>& x, const slist<T, Allocator>& y)
 {
     return static_cast<bool>(!(y < x));
 }
-
 // specialized algorithms:
 
 template <class T, class Allocator>
@@ -2195,10 +2145,8 @@ swap(slist<T, Allocator>& x, slist<T, Allocator>& y)
 {
     x.swap(y);
 }
-
-#        if !defined(_MSL_NO_PARTIAL_SPECIALIZATION) && !defined(_MSL_NO_MEMBER_TEMPLATE)                              \
-            && !defined(_Inhibit_Container_Optimization)
-
+#if !defined(_MSL_NO_PARTIAL_SPECIALIZATION) &&                                     \
+    !defined(_MSL_NO_MEMBER_TEMPLATE) && !defined(_Inhibit_Container_Optimization)
 // Specialize for T* to save on code bloat
 
 // hh 990825 changed void* to const void*
@@ -2225,44 +2173,38 @@ public:
 
 private:
     struct node;
-
     struct node_base
     {
         node* next_;
     };
-
     struct node : public node_base
     {
         value_type data_;
     };
-
     typedef typename Allocator::rebind<node>::other node_allocator_type;
 
 public:
-    class iterator : public _STD::iterator<_STD::forward_iterator_tag, value_type, difference_type, pointer, reference>
+    class iterator : public _STD::iterator<_STD::forward_iterator_tag, value_type,
+                                           difference_type, pointer, reference>
     {
     public:
         iterator() {}
-
         reference
         operator*() const
         {
             return node_->data_;
         }
-
         pointer
         operator->() const
         {
             return &node_->data_;
         }
-
         iterator&
         operator++()
         {
             node_ = node_->next_;
             return *this;
         }
-
         iterator
         operator++(int)
         {
@@ -2270,59 +2212,50 @@ public:
             node_ = node_->next_;
             return tmp;
         }
-
         friend bool
         operator==(iterator x, iterator y)
         {
             return static_cast<bool>(x.node_ == y.node_);
         }
-
         friend bool
         operator!=(iterator x, iterator y)
         {
             return static_cast<bool>(x.node_ != y.node_);
         }
-#            ifndef __GNUC__
+#ifndef __GNUC__
 
     private:
-#            endif
+#endif
         node* node_;
-
         iterator(node* node) : node_(node) {}
-
-#            ifndef __GNUC__
+#ifndef __GNUC__
         friend class slist;
         friend class slist::const_iterator;
-#            endif
+#endif
     };
-
     class const_iterator
-      : public _STD::iterator<_STD::forward_iterator_tag, value_type, difference_type, const_pointer, const_reference>
+      : public _STD::iterator<_STD::forward_iterator_tag, value_type,
+                              difference_type, const_pointer, const_reference>
     {
     public:
         const_iterator() {}
-
         const_iterator(slist::iterator x) : node_(x.node_) {}
-
         const_reference
         operator*() const
         {
             return node_->data_;
         }
-
         const_pointer
         operator->() const
         {
             return &node_->data_;
         }
-
         const_iterator&
         operator++()
         {
             node_ = node_->next_;
             return *this;
         }
-
         const_iterator
         operator++(int)
         {
@@ -2330,60 +2263,59 @@ public:
             node_ = node_->next_;
             return tmp;
         }
-
         friend bool
         operator==(const_iterator x, const_iterator y)
         {
             return static_cast<bool>(x.node_ == y.node_);
         }
-
         friend bool
         operator!=(const_iterator x, const_iterator y)
         {
             return static_cast<bool>(x.node_ != y.node_);
         }
-#            ifndef __GNUC__
+#ifndef __GNUC__
 
     private:
-#            endif
+#endif
         const node* node_;
-
         const_iterator(const node* node) : node_(node) {}
-
-#            ifndef __GNUC__
+#ifndef __GNUC__
         friend class slist;
-#            endif
+#endif
     };
-
     //  lib.slist.cons construct/copy/destroy:
     explicit slist(const Allocator& = Allocator());
     explicit slist(size_type n);
     slist(size_type n, const value_type& value, const Allocator& = Allocator());
-#            ifndef _MSL_MUST_INLINE_MEMBER_TEMPLATE
-    template <class InputIterator> slist(InputIterator first, InputIterator last, const Allocator& a = Allocator());
-#            else
+#ifndef _MSL_MUST_INLINE_MEMBER_TEMPLATE
+    template <class InputIterator>
+    slist(InputIterator first, InputIterator last, const Allocator& a = Allocator());
+#else
     template <class InputIterator>
     slist(InputIterator first, InputIterator last, const Allocator& a = Allocator())
       : alloc_(a, 0), node_alloc_(node_allocator_type(a))
     {
         node_base& tail = node_alloc_.m_;
         tail.prev_ = tail.next_ = (node*)&tail;
-        choose_init(first, last, chooser<_STD::numeric_limits<InputIterator>::is_integer>());
+        choose_init(first, last,
+                    chooser<_STD::numeric_limits<InputIterator>::is_integer>());
     }
-#            endif
+#endif
     slist(const slist& x);
     ÃÂ¢ÃÂÃÂ¾slist();
     slist& operator=(const slist& x);
-#            ifndef _MSL_MUST_INLINE_MEMBER_TEMPLATE
-    template <class InputIterator> void assign(InputIterator first, InputIterator last);
-#            else
+#ifndef _MSL_MUST_INLINE_MEMBER_TEMPLATE
+    template <class InputIterator>
+    void assign(InputIterator first, InputIterator last);
+#else
     template <class InputIterator>
     inline void
     assign(InputIterator first, InputIterator last)
     {
-        choose_assign(first, last, chooser<_STD::numeric_limits<InputIterator>::is_integer>());
+        choose_assign(first, last,
+                      chooser<_STD::numeric_limits<InputIterator>::is_integer>());
     }
-#            endif
+#endif
     void           assign(size_type n, const value_type& t);
     allocator_type get_allocator() const;
 
@@ -2415,61 +2347,67 @@ public:
     void push_back(const value_type& x);
     // there is no pop_back
 
-    iterator insert(iterator position, const value_type& x);              // linear time!
-    void     insert(iterator position, size_type n, const value_type& x); // linear time!
-#            ifndef _MSL_MUST_INLINE_MEMBER_TEMPLATE
-    template <class InputIterator>                                        // linear time!
+    iterator insert(iterator position, const value_type& x);          // linear time!
+    void insert(iterator position, size_type n, const value_type& x); // linear time!
+#ifndef _MSL_MUST_INLINE_MEMBER_TEMPLATE
+    template <class InputIterator>                                    // linear time!
     void insert(iterator position, InputIterator first, InputIterator last);
-#            else
+#else
     template <class InputIterator>
     inline void
     insert(iterator position, InputIterator first, InputIterator last)
     {
         insert_after(previous(position), first, last);
     }
-#            endif
+#endif
 
     // constant time versions of insert, inserts stuff after position
     // end() can be used as the node before begin()
     iterator insert_after(iterator position, const value_type& x);
     void     insert_after(iterator position, size_type n, const value_type& x);
-#            ifndef _MSL_MUST_INLINE_MEMBER_TEMPLATE
-    template <class InputIterator> void insert_after(iterator position, InputIterator first, InputIterator last);
-#            else
+#ifndef _MSL_MUST_INLINE_MEMBER_TEMPLATE
+    template <class InputIterator>
+    void insert_after(iterator position, InputIterator first, InputIterator last);
+#else
     template <class InputIterator>
     inline void
     insert_after(iterator position, InputIterator first, InputIterator last)
     {
-        do_insert_after(position, first, last, chooser<_STD::numeric_limits<InputIterator>::is_integer>());
+        do_insert_after(position, first, last,
+                        chooser<_STD::numeric_limits<InputIterator>::is_integer>());
     }
-#            endif
+#endif
 
     iterator erase(iterator position);                // linear time!
     iterator erase(iterator position, iterator last); // linear time!
 
     // constant time versions of erase
     // end() can be used as the node before begin()
-    iterator erase_after(iterator position);                // erase (position, position+1], return position
-    iterator erase_after(iterator position, iterator last); // erase (position, last], return position
+    iterator erase_after(
+        iterator position); // erase (position, position+1], return position
+    iterator erase_after(iterator position,
+                         iterator last); // erase (position, last], return position
 
     void swap(slist& x);
     void clear();
 
     //  lib.slist.ops slist operations:
-    void splice(iterator position, slist& x);                                // linear time!
-    void splice(iterator position, slist& x, iterator i);                    // linear time!
-    void splice(iterator position, slist& x, iterator first, iterator last); // linear time!
+    void splice(iterator position, slist& x);             // linear time!
+    void splice(iterator position, slist& x, iterator i); // linear time!
+    void splice(iterator position, slist& x, iterator first,
+                iterator last);                           // linear time!
 
     // constant time versions of splice, splices stuff after position
     // end() can be used as the node before begin()
     void splice_after(iterator position, slist& x);
-    void splice_after(iterator position, slist& x, iterator i);                    // splices (i, i+1]
-    void splice_after(iterator position, slist& x, iterator first, iterator last); // splices (first, last]
+    void splice_after(iterator position, slist& x, iterator i); // splices (i, i+1]
+    void splice_after(iterator position, slist& x, iterator first,
+                      iterator last);                   // splices (first, last]
 
     void remove(const value_type& value);
-#            ifndef _MSL_MUST_INLINE_MEMBER_TEMPLATE
+#ifndef _MSL_MUST_INLINE_MEMBER_TEMPLATE
     template <class Predicate> void remove_if(Predicate pred);
-#            else
+#else
     template <class Predicate>
     void
     remove_if(Predicate pred)
@@ -2500,12 +2438,12 @@ public:
             p1 = i;
         }
     }
-#            endif
+#endif
 
     void unique();
-#            ifndef _MSL_MUST_INLINE_MEMBER_TEMPLATE
+#ifndef _MSL_MUST_INLINE_MEMBER_TEMPLATE
     template <class BinaryPredicate> void unique(BinaryPredicate binary_pred);
-#            else
+#else
     template <class BinaryPredicate>
     void
     unique(BinaryPredicate binary_pred)
@@ -2530,12 +2468,12 @@ public:
             ++i;
         }
     }
-#            endif
+#endif
 
     void merge(slist& x);
-#            ifndef _MSL_MUST_INLINE_MEMBER_TEMPLATE
+#ifndef _MSL_MUST_INLINE_MEMBER_TEMPLATE
     template <class Compare> void merge(slist& x, Compare comp);
-#            else
+#else
     template <class Compare>
     void
     merge(slist& x, Compare comp)
@@ -2545,11 +2483,11 @@ public:
             return;
         }
         if (size() > max_size() - x.size())
-#                ifndef _MSL_NO_EXCEPTIONS
+#ifndef _MSL_NO_EXCEPTIONS
             throw _STD::length_error("slist::merge length error");
-#                else
+#else
             _STD::__msl_error("slist::merge length error\n");
-#                endif
+#endif
         iterator first1 = begin();
         iterator last1 = end();
         iterator first2 = x.begin();
@@ -2571,7 +2509,8 @@ public:
                     }
                     pj = j.node_;
                 }
-                // splice_after(pfirst1, x, pfirst2, pj) but with pj-pfirst2 stored in count
+                // splice_after(pfirst1, x, pfirst2, pj) but with pj-pfirst2 stored
+                // in count
                 if (x.back_ == pj)
                 {
                     x.back_ = pfirst2;
@@ -2593,21 +2532,22 @@ public:
             splice_after(last_node(), x);
         }
     }
-#            endif
+#endif
 
     void sort();
-#            ifndef _MSL_MUST_INLINE_MEMBER_TEMPLATE
+#ifndef _MSL_MUST_INLINE_MEMBER_TEMPLATE
     template <class Compare> void sort(Compare comp);
-#            else
+#else
     template <class Compare>
     void
     sort(Compare comp)
     {
         switch (size())
         {
-            case 0 :
-            case 1 : break;
-            case 2 :
+            case 0:
+            case 1:
+                break;
+            case 2:
                 {
                     iterator i = begin();
                     iterator j = i;
@@ -2621,13 +2561,14 @@ public:
                     }
                 }
                 break;
-            default :
+            default:
                 {
                     iterator  i = begin();
                     size_type lower_size = size() / 2;
                     _STD::advance(i, lower_size - 1);
                     slist upper_half;
-                    // upper_half.splice_after(upper_half.last_node(), *this, i, last_node());
+                    // upper_half.splice_after(upper_half.last_node(), *this, i,
+                    // last_node());
                     node* s1 = i.node_;
                     node* s2 = s1->next_;
                     node* s3 = back_;
@@ -2644,96 +2585,104 @@ public:
                 }
         }
     }
-#            endif
+#endif
 
     void reverse();
 
 private:
-    _STD::_EmptyMemberOpt<Allocator, size_type>           alloc_;                  // alloc_.m_ is size_
-    _STD::_EmptyMemberOpt<node_allocator_type, node_base> node_alloc_;             // node_alloc_.m_ is tail pseudo node
-                                                                                   // node_alloc_.m_.next_ is first node
-    node*                                                 back_;
+    _STD::_EmptyMemberOpt<Allocator, size_type> alloc_; // alloc_.m_ is size_
+    _STD::_EmptyMemberOpt<node_allocator_type, node_base>
+          node_alloc_; // node_alloc_.m_ is tail pseudo node
+                       // node_alloc_.m_.next_ is first node
+    node* back_;
 
-#            ifndef _MSL_MUST_INLINE_MEMBER_TEMPLATE
-    template <class InputIterator> void choose_init(InputIterator first, InputIterator last, chooser<true>);
-    template <class InputIterator> void choose_init(InputIterator first, InputIterator last, chooser<false>);
-    template <class InputIterator> void choose_assign(InputIterator first, InputIterator last, chooser<true>);
-    template <class InputIterator> void choose_assign(InputIterator first, InputIterator last, chooser<false>);
-    template <class InputIterator> void do_assign(InputIterator first, InputIterator last, _STD::input_iterator_tag);
+#ifndef _MSL_MUST_INLINE_MEMBER_TEMPLATE
+    template <class InputIterator>
+    void choose_init(InputIterator first, InputIterator last, chooser<true>);
+    template <class InputIterator>
+    void choose_init(InputIterator first, InputIterator last, chooser<false>);
+    template <class InputIterator>
+    void choose_assign(InputIterator first, InputIterator last, chooser<true>);
+    template <class InputIterator>
+    void choose_assign(InputIterator first, InputIterator last, chooser<false>);
+    template <class InputIterator>
+    void do_assign(InputIterator first, InputIterator last,
+                   _STD::input_iterator_tag);
     template <class ForwardIterator>
-    void do_assign(ForwardIterator first, ForwardIterator last, _STD::forward_iterator_tag);
+    void do_assign(ForwardIterator first, ForwardIterator last,
+                   _STD::forward_iterator_tag);
     template <class RandomAccessIterator>
-    void do_assign(RandomAccessIterator first, RandomAccessIterator last, _STD::random_access_iterator_tag);
+    void do_assign(RandomAccessIterator first, RandomAccessIterator last,
+                   _STD::random_access_iterator_tag);
     template <class InputIterator>
-    void do_insert_after(iterator position, InputIterator first, InputIterator last, chooser<true>);
+    void do_insert_after(iterator position, InputIterator first, InputIterator last,
+                         chooser<true>);
     template <class InputIterator>
-    void do_insert_after(iterator position, InputIterator first, InputIterator last, chooser<false>);
-#            else
+    void do_insert_after(iterator position, InputIterator first, InputIterator last,
+                         chooser<false>);
+#else
     template <class InputIterator>
     void
     choose_init(InputIterator first, InputIterator last, chooser<true>)
     {
         size_type n = static_cast<size_type>(first);
         if (n > max_size())
-#                ifndef _MSL_NO_EXCEPTIONS
+#ifndef _MSL_NO_EXCEPTIONS
             throw _STD::length_error("slist::construction length error");
-#                else
+#else
             _STD::__msl_error("slist::construction length error\n");
-#                endif
-#                ifndef _MSL_NO_EXCEPTIONS
+#endif
+#ifndef _MSL_NO_EXCEPTIONS
         try
         {
-#                endif
+#endif
             for (; n > 0; --n)
             {
                 push_front(static_cast<value_type>(last));
             }
-#                ifndef _MSL_NO_EXCEPTIONS
+#ifndef _MSL_NO_EXCEPTIONS
         }
         catch (...)
         {
             clear();
             throw;
         }
-#                endif
+#endif
     }
-
     template <class InputIterator>
     void
     choose_init(InputIterator first, InputIterator last, chooser<false>)
     {
-#                ifndef _MSL_NO_EXCEPTIONS
+#ifndef _MSL_NO_EXCEPTIONS
         try
         {
-#                endif
+#endif
             for (; first != last; ++first)
             {
                 push_back(*first);
             }
-#                ifndef _MSL_NO_EXCEPTIONS
+#ifndef _MSL_NO_EXCEPTIONS
         }
         catch (...)
         {
             clear();
             throw;
         }
-#                endif
+#endif
     }
-
     template <class InputIterator>
     inline void
     choose_assign(InputIterator first, InputIterator last, chooser<true>)
     {
         assign(static_cast<size_type>(first), reinterpret_cast<value_type>(last));
     }
-
     template <class InputIterator>
     inline void
     choose_assign(InputIterator first, InputIterator last, chooser<false>)
     {
-        do_assign(first, last, _STD::iterator_traits<InputIterator>::iterator_category());
+        do_assign(first, last,
+                  _STD::iterator_traits<InputIterator>::iterator_category());
     }
-
     template <class InputIterator>
     void
     do_assign(InputIterator first, InputIterator last, _STD::input_iterator_tag)
@@ -2754,10 +2703,10 @@ private:
             erase_after(p, last_node());
         }
     }
-
     template <class ForwardIterator>
     void
-    do_assign(ForwardIterator first, ForwardIterator last, _STD::forward_iterator_tag)
+    do_assign(ForwardIterator first, ForwardIterator last,
+              _STD::forward_iterator_tag)
     {
         ForwardIterator f = first;
         for (size_type c = size(); c != 0 && f != last; --c)
@@ -2766,11 +2715,11 @@ private:
         }
         slist temp(f, last, alloc_);
         if (size() > max_size() - temp.size())
-#                ifndef _MSL_NO_EXCEPTIONS
+#ifndef _MSL_NO_EXCEPTIONS
             throw _STD::length_error("slist::assign length error");
-#                else
+#else
             _STD::__msl_error("slist::assign length error\n");
-#                endif
+#endif
         iterator p = end();
         for (iterator i = begin(); first != f; ++i, ++first)
         {
@@ -2786,18 +2735,18 @@ private:
             erase_after(p, last_node());
         }
     }
-
     template <class RandomAccessIterator>
     void
-    do_assign(RandomAccessIterator first, RandomAccessIterator last, _STD::random_access_iterator_tag)
+    do_assign(RandomAccessIterator first, RandomAccessIterator last,
+              _STD::random_access_iterator_tag)
     {
         RandomAccessIterator f = first + _STD::min(size(), size_type(last - first));
         if (last - first > max_size())
-#                ifndef _MSL_NO_EXCEPTIONS
+#ifndef _MSL_NO_EXCEPTIONS
             throw _STD::length_error("slist::assign length error");
-#                else
+#else
             _STD::__msl_error("slist::assign length error\n");
-#                endif
+#endif
         slist    temp(f, last, alloc_);
         iterator p = end();
         for (iterator i = begin(); first != f; ++i, ++first)
@@ -2814,23 +2763,23 @@ private:
             erase_after(p, last_node());
         }
     }
-
     template <class InputIterator>
     inline void
-    do_insert_after(iterator position, InputIterator first, InputIterator last, chooser<true>)
+    do_insert_after(iterator position, InputIterator first, InputIterator last,
+                    chooser<true>)
     {
-        insert_after(position, static_cast<size_type>(first), reinterpret_cast<value_type>(last));
+        insert_after(position, static_cast<size_type>(first),
+                     reinterpret_cast<value_type>(last));
     }
-
     template <class InputIterator>
     void
-    do_insert_after(iterator position, InputIterator first, InputIterator last, chooser<false>)
+    do_insert_after(iterator position, InputIterator first, InputIterator last,
+                    chooser<false>)
     {
         slist temp(first, last, alloc_);
         splice_after(position, temp);
     }
-
-#            endif
+#endif
     static void remove_nodes(node_base* first, node_base* last);
     static void insert_nodes(node_base* here, node_base* first, node_base* last);
 };
@@ -2840,10 +2789,10 @@ private:
 template <class Allocator>
 slist<const void*, Allocator>::slist(const Allocator& a)
   : alloc_(a, 0)
-#            ifndef _MSL_NO_MEMBER_TEMPLATE
+#ifndef _MSL_NO_MEMBER_TEMPLATE
     ,
     node_alloc_(node_allocator_type(a))
-#            endif
+#endif
 {
     node_base& tail = node_alloc_.m_;
     tail.next_ = back_ = (node*)&tail;
@@ -2852,115 +2801,115 @@ slist<const void*, Allocator>::slist(const Allocator& a)
 template <class Allocator>
 slist<const void*, Allocator>::slist(size_type n)
   : alloc_(Allocator(), 0)
-#            ifndef _MSL_NO_MEMBER_TEMPLATE
+#ifndef _MSL_NO_MEMBER_TEMPLATE
     ,
     node_alloc_(node_allocator_type(alloc_))
-#            endif
+#endif
 {
     if (n > max_size())
-#            ifndef _MSL_NO_EXCEPTIONS
+#ifndef _MSL_NO_EXCEPTIONS
         throw _STD::length_error("slist::construction length error");
-#            else
+#else
         _STD::__msl_error("slist::construction length error\n");
-#            endif
+#endif
     node_base& tail = node_alloc_.m_;
     tail.next_ = back_ = (node*)&tail;
-#            ifndef _MSL_NO_EXCEPTIONS
+#ifndef _MSL_NO_EXCEPTIONS
     try
     {
-#            endif
+#endif
         value_type value(value_type());
         for (; n > 0; --n)
         {
             push_front(value);
         }
-#            ifndef _MSL_NO_EXCEPTIONS
+#ifndef _MSL_NO_EXCEPTIONS
     }
     catch (...)
     {
         clear();
         throw;
     }
-#            endif
+#endif
 }
 
 template <class Allocator>
-slist<const void*, Allocator>::slist(size_type n, const value_type& value, const Allocator& a)
+slist<const void*, Allocator>::slist(size_type n, const value_type& value,
+                                     const Allocator& a)
   : alloc_(a, 0)
-#            ifndef _MSL_NO_MEMBER_TEMPLATE
+#ifndef _MSL_NO_MEMBER_TEMPLATE
     ,
     node_alloc_(node_allocator_type(a))
-#            endif
+#endif
 {
     if (n > max_size())
-#            ifndef _MSL_NO_EXCEPTIONS
+#ifndef _MSL_NO_EXCEPTIONS
         throw _STD::length_error("slist::construction length error");
-#            else
+#else
         _STD::__msl_error("slist::construction length error\n");
-#            endif
+#endif
     node_base& tail = node_alloc_.m_;
     tail.next_ = back_ = (node*)&tail;
-#            ifndef _MSL_NO_EXCEPTIONS
+#ifndef _MSL_NO_EXCEPTIONS
     try
     {
-#            endif
+#endif
         for (; n > 0; --n)
         {
             push_front(value);
         }
-#            ifndef _MSL_NO_EXCEPTIONS
+#ifndef _MSL_NO_EXCEPTIONS
     }
     catch (...)
     {
         clear();
         throw;
     }
-#            endif
+#endif
 }
 
-#            ifndef _MSL_MUST_INLINE_MEMBER_TEMPLATE
-
+#ifndef _MSL_MUST_INLINE_MEMBER_TEMPLATE
 template <class Allocator>
 template <class InputIterator>
-slist<const void*, Allocator>::slist(InputIterator first, InputIterator last, const Allocator& a)
+slist<const void*, Allocator>::slist(InputIterator first, InputIterator last,
+                                     const Allocator& a)
   : alloc_(a, 0), node_alloc_(node_allocator_type(a))
 {
     node_base& tail = node_alloc_.m_;
     tail.next_ = back_ = (node*)&tail;
-    choose_init(first, last, chooser<_STD::numeric_limits<InputIterator>::is_integer>());
+    choose_init(first, last,
+                chooser<_STD::numeric_limits<InputIterator>::is_integer>());
 }
-
-#            endif
-
+#endif
 template <class Allocator>
-slist<const void*, Allocator>::slist(const slist& x) : alloc_(x.alloc_, 0), node_alloc_(x.node_alloc_)
+slist<const void*, Allocator>::slist(const slist& x)
+  : alloc_(x.alloc_, 0), node_alloc_(x.node_alloc_)
 {
     node_base& tail = node_alloc_.m_;
     tail.next_ = back_ = (node*)&tail;
     const_iterator e = x.end();
-#            ifndef _MSL_NO_EXCEPTIONS
+#ifndef _MSL_NO_EXCEPTIONS
     try
     {
-#            endif
+#endif
         for (const_iterator i = x.begin(); i != e; ++i)
         {
             push_back(*i);
         }
-#            ifndef _MSL_NO_EXCEPTIONS
+#ifndef _MSL_NO_EXCEPTIONS
     }
     catch (...)
     {
         clear();
         throw;
     }
-#            endif
+#endif
 }
-
-template <class Allocator> inline slist<const void*, Allocator>::ÃÂ¢ÃÂÃÂ¾slist()
+template <class Allocator>
+inline slist<const void*, Allocator>::ÃÂ¢ÃÂÃÂ¾slist()
 {
     clear();
 }
-
 template <class Allocator>
 inline slist<const void*, Allocator>&
 slist<const void*, Allocator>::operator=(const slist& x)
@@ -2971,29 +2920,26 @@ slist<const void*, Allocator>::operator=(const slist& x)
     }
     return *this;
 }
-
-#            ifndef _MSL_MUST_INLINE_MEMBER_TEMPLATE
-
+#ifndef _MSL_MUST_INLINE_MEMBER_TEMPLATE
 template <class Allocator>
 template <class InputIterator>
 inline void
 slist<const void*, Allocator>::assign(InputIterator first, InputIterator last)
 {
-    choose_assign(first, last, chooser<_STD::numeric_limits<InputIterator>::is_integer>());
+    choose_assign(first, last,
+                  chooser<_STD::numeric_limits<InputIterator>::is_integer>());
 }
-
-#            endif
-
+#endif
 template <class Allocator>
 void
 slist<const void*, Allocator>::assign(size_type n, const value_type& t)
 {
     if (n > max_size())
-#            ifndef _MSL_NO_EXCEPTIONS
+#ifndef _MSL_NO_EXCEPTIONS
         throw _STD::length_error("slist::assign length error");
-#            else
+#else
         _STD::__msl_error("slist::assign length error\n");
-#            endif
+#endif
     if (n > size())
     {
         slist    temp(n - size(), t, alloc_);
@@ -3015,56 +2961,48 @@ slist<const void*, Allocator>::assign(size_type n, const value_type& t)
         erase_after(p, last_node());
     }
 }
-
 template <class Allocator>
 inline typename slist<const void*, Allocator>::allocator_type
 slist<const void*, Allocator>::get_allocator() const
 {
     return alloc_;
 }
-
 template <class Allocator>
 inline typename slist<const void*, Allocator>::iterator
 slist<const void*, Allocator>::begin()
 {
     return iterator(node_alloc_.m_.next_);
 }
-
 template <class Allocator>
 inline typename slist<const void*, Allocator>::const_iterator
 slist<const void*, Allocator>::begin() const
 {
     return const_iterator(node_alloc_.m_.next_);
 }
-
 template <class Allocator>
 inline typename slist<const void*, Allocator>::iterator
 slist<const void*, Allocator>::end()
 {
     return iterator((node*)&node_alloc_.m_);
 }
-
 template <class Allocator>
 inline typename slist<const void*, Allocator>::const_iterator
 slist<const void*, Allocator>::end() const
 {
     return const_iterator((node*)&node_alloc_.m_);
 }
-
 template <class Allocator>
 inline typename slist<const void*, Allocator>::iterator
 slist<const void*, Allocator>::last_node()
 {
     return back_;
 }
-
 template <class Allocator>
 inline typename slist<const void*, Allocator>::const_iterator
 slist<const void*, Allocator>::last_node() const
 {
     return back_;
 }
-
 template <class Allocator>
 inline typename slist<const void*, Allocator>::iterator
 slist<const void*, Allocator>::previous(iterator x)
@@ -3076,7 +3014,6 @@ slist<const void*, Allocator>::previous(iterator x)
     }
     return p;
 }
-
 template <class Allocator>
 inline typename slist<const void*, Allocator>::const_iterator
 slist<const void*, Allocator>::previous(const_iterator x)
@@ -3088,35 +3025,30 @@ slist<const void*, Allocator>::previous(const_iterator x)
     }
     return p;
 }
-
 template <class Allocator>
 inline bool
 slist<const void*, Allocator>::empty() const
 {
     return alloc_.m_ == 0;
 }
-
 template <class Allocator>
 inline typename slist<const void*, Allocator>::size_type
 slist<const void*, Allocator>::size() const
 {
     return alloc_.m_;
 }
-
 template <class Allocator>
 inline typename slist<const void*, Allocator>::size_type
 slist<const void*, Allocator>::max_size() const
 {
     return (size_type)_STD::numeric_limits<difference_type>::max();
 }
-
 template <class Allocator>
 inline void
 slist<const void*, Allocator>::resize(size_type sz)
 {
     resize(sz, value_type());
 }
-
 template <class Allocator>
 void
 slist<const void*, Allocator>::resize(size_type sz, const value_type& value)
@@ -3136,92 +3068,83 @@ slist<const void*, Allocator>::resize(size_type sz, const value_type& value)
         erase_after(i, last_node());
     }
 }
-
 template <class Allocator>
 inline typename slist<const void*, Allocator>::reference
 slist<const void*, Allocator>::front()
 {
     return node_alloc_.m_.next_->data_;
 }
-
 template <class Allocator>
 inline typename slist<const void*, Allocator>::const_reference
 slist<const void*, Allocator>::front() const
 {
     return node_alloc_.m_.next_->data_;
 }
-
 template <class Allocator>
 inline void
 slist<const void*, Allocator>::push_front(const value_type& x)
 {
     insert_after(end(), x);
 }
-
 template <class Allocator>
 inline void
 slist<const void*, Allocator>::pop_front()
 {
     erase_after(end());
 }
-
 template <class Allocator>
 inline void
 slist<const void*, Allocator>::push_back(const value_type& x)
 {
     insert_after(last_node(), x);
 }
-
 template <class Allocator>
 inline typename slist<const void*, Allocator>::iterator
 slist<const void*, Allocator>::insert(iterator position, const value_type& x)
 {
     return insert_after(previous(position), x);
 }
-
 template <class Allocator>
 inline void
-slist<const void*, Allocator>::insert(iterator position, size_type n, const value_type& x)
+slist<const void*, Allocator>::insert(iterator position, size_type n,
+                                      const value_type& x)
 {
     insert_after(previous(position), n, x);
 }
-
-#            ifndef _MSL_MUST_INLINE_MEMBER_TEMPLATE
-
+#ifndef _MSL_MUST_INLINE_MEMBER_TEMPLATE
 template <class Allocator>
 template <class InputIterator>
 inline void
-slist<const void*, Allocator>::insert(iterator position, InputIterator first, InputIterator last)
+slist<const void*, Allocator>::insert(iterator position, InputIterator first,
+                                      InputIterator last)
 {
     insert_after(previous(position), first, last);
 }
-
-#            endif
-
+#endif
 template <class Allocator>
 typename slist<const void*, Allocator>::iterator
 slist<const void*, Allocator>::insert_after(iterator position, const value_type& x)
 {
     if (size() > max_size() - 1)
-#            ifndef _MSL_NO_EXCEPTIONS
+#ifndef _MSL_NO_EXCEPTIONS
         throw _STD::length_error("slist::insert_after length error");
-#            else
+#else
         _STD::__msl_error("slist::insert_after length error\n");
-#            endif
+#endif
     node* newnode = node_alloc_.allocate(1);
-#            ifndef _MSL_NO_EXCEPTIONS
+#ifndef _MSL_NO_EXCEPTIONS
     try
     {
-#            endif
+#endif
         alloc_.construct(&newnode->data_, x);
-#            ifndef _MSL_NO_EXCEPTIONS
+#ifndef _MSL_NO_EXCEPTIONS
     }
     catch (...)
     {
         node_alloc_.deallocate(newnode, 1);
         throw;
     }
-#            endif
+#endif
     insert_nodes(position.node_, newnode, newnode);
     if (back_ == position.node_)
     {
@@ -3230,34 +3153,31 @@ slist<const void*, Allocator>::insert_after(iterator position, const value_type&
     ++alloc_.m_;
     return newnode;
 }
-
 template <class Allocator>
 void
-slist<const void*, Allocator>::insert_after(iterator position, size_type n, const value_type& x)
+slist<const void*, Allocator>::insert_after(iterator position, size_type n,
+                                            const value_type& x)
 {
     slist temp(n, x, alloc_);
     splice_after(position, temp);
 }
-
-#            ifndef _MSL_MUST_INLINE_MEMBER_TEMPLATE
-
+#ifndef _MSL_MUST_INLINE_MEMBER_TEMPLATE
 template <class Allocator>
 template <class InputIterator>
 inline void
-slist<const void*, Allocator>::insert_after(iterator position, InputIterator first, InputIterator last)
+slist<const void*, Allocator>::insert_after(iterator position, InputIterator first,
+                                            InputIterator last)
 {
-    do_insert_after(position, first, last, chooser<_STD::numeric_limits<InputIterator>::is_integer>());
+    do_insert_after(position, first, last,
+                    chooser<_STD::numeric_limits<InputIterator>::is_integer>());
 }
-
-#            endif
-
+#endif
 template <class Allocator>
 inline typename slist<const void*, Allocator>::iterator
 slist<const void*, Allocator>::erase(iterator position)
 {
     return ++erase_after(previous(position));
 }
-
 template <class Allocator>
 typename slist<const void*, Allocator>::iterator
 slist<const void*, Allocator>::erase(iterator position, iterator last)
@@ -3272,7 +3192,6 @@ slist<const void*, Allocator>::erase(iterator position, iterator last)
     erase_after(i, j);
     return last;
 }
-
 // erase (position, position+1]
 // return position
 template <class Allocator>
@@ -3290,7 +3209,6 @@ slist<const void*, Allocator>::erase_after(iterator position)
     --alloc_.m_;
     return position;
 }
-
 // erase (position, last]
 // return position
 template <class Allocator>
@@ -3319,7 +3237,6 @@ slist<const void*, Allocator>::erase_after(iterator position, iterator last)
     }
     return position;
 }
-
 template <class Allocator>
 void
 slist<const void*, Allocator>::swap(slist& x)
@@ -3349,7 +3266,6 @@ slist<const void*, Allocator>::swap(slist& x)
         }
     }
 }
-
 template <class Allocator>
 void
 slist<const void*, Allocator>::clear()
@@ -3370,28 +3286,25 @@ slist<const void*, Allocator>::clear()
     node_base& tail = node_alloc_.m_;
     back_ = tail.next_ = (node*)&tail;
 }
-
 template <class Allocator>
 inline void
 slist<const void*, Allocator>::splice(iterator position, slist& x)
 {
     splice_after(previous(position), x);
 }
-
 template <class Allocator>
 inline void
 slist<const void*, Allocator>::splice(iterator position, slist& x, iterator i)
 {
     splice_after(previous(position), x, x.previous(i));
 }
-
 template <class Allocator>
 inline void
-slist<const void*, Allocator>::splice(iterator position, slist& x, iterator first, iterator last)
+slist<const void*, Allocator>::splice(iterator position, slist& x, iterator first,
+                                      iterator last)
 {
     splice_after(previous(position), x, x.previous(first), x.previous(last));
 }
-
 template <class Allocator>
 void
 slist<const void*, Allocator>::splice_after(iterator position, slist& x)
@@ -3399,11 +3312,11 @@ slist<const void*, Allocator>::splice_after(iterator position, slist& x)
     if (x.size() > 0)
     {
         if (size() > max_size() - x.size())
-#            ifndef _MSL_NO_EXCEPTIONS
+#ifndef _MSL_NO_EXCEPTIONS
             throw _STD::length_error("slist::splice_after length error");
-#            else
+#else
             _STD::__msl_error("slist::splice_after length error\n");
-#            endif
+#endif
         node_base& x_tail = x.node_alloc_.m_;
         node_base* s1 = x_tail.next_;
         node_base* s2 = x.back_;
@@ -3417,17 +3330,16 @@ slist<const void*, Allocator>::splice_after(iterator position, slist& x)
         }
     }
 }
-
 template <class Allocator>
 void
 slist<const void*, Allocator>::splice_after(iterator position, slist& x, iterator i)
 {
     if (size() > max_size() - 1)
-#            ifndef _MSL_NO_EXCEPTIONS
+#ifndef _MSL_NO_EXCEPTIONS
         throw _STD::length_error("slist::splice length error");
-#            else
+#else
         _STD::__msl_error("slist::splice length error\n");
-#            endif
+#endif
     node* p = position.node_;
     node* s1 = i.node_;
     node* s2 = s1->next_;
@@ -3448,10 +3360,10 @@ slist<const void*, Allocator>::splice_after(iterator position, slist& x, iterato
     }
     ++alloc_.m_;
 }
-
 template <class Allocator>
 void
-slist<const void*, Allocator>::splice_after(iterator position, slist& x, iterator first, iterator last)
+slist<const void*, Allocator>::splice_after(iterator position, slist& x,
+                                            iterator first, iterator last)
 {
     if (first == last)
     {
@@ -3461,11 +3373,11 @@ slist<const void*, Allocator>::splice_after(iterator position, slist& x, iterato
     {
         size_type delta = (size_type)_STD::distance(first, last);
         if (size() > max_size() - delta)
-#            ifndef _MSL_NO_EXCEPTIONS
+#ifndef _MSL_NO_EXCEPTIONS
             throw _STD::length_error("slist::splice length error");
-#            else
+#else
             _STD::__msl_error("slist::splice length error\n");
-#            endif
+#endif
         x.alloc_.m_ -= delta;
         alloc_.m_ += delta;
     }
@@ -3483,7 +3395,6 @@ slist<const void*, Allocator>::splice_after(iterator position, slist& x, iterato
         back_ = s3;
     }
 }
-
 template <class Allocator>
 void
 slist<const void*, Allocator>::remove(const value_type& value)
@@ -3514,9 +3425,7 @@ slist<const void*, Allocator>::remove(const value_type& value)
         p1 = i;
     }
 }
-
-#            ifndef _MSL_MUST_INLINE_MEMBER_TEMPLATE
-
+#ifndef _MSL_MUST_INLINE_MEMBER_TEMPLATE
 template <class Allocator>
 template <class Predicate>
 void
@@ -3548,9 +3457,7 @@ slist<const void*, Allocator>::remove_if(Predicate pred)
         p1 = i;
     }
 }
-
-#            endif
-
+#endif
 template <class Allocator>
 void
 slist<const void*, Allocator>::unique()
@@ -3575,9 +3482,7 @@ slist<const void*, Allocator>::unique()
         ++i;
     }
 }
-
-#            ifndef _MSL_MUST_INLINE_MEMBER_TEMPLATE
-
+#ifndef _MSL_MUST_INLINE_MEMBER_TEMPLATE
 template <class Allocator>
 template <class BinaryPredicate>
 void
@@ -3603,9 +3508,7 @@ slist<const void*, Allocator>::unique(BinaryPredicate binary_pred)
         ++i;
     }
 }
-
-#            endif
-
+#endif
 template <class Allocator>
 void
 slist<const void*, Allocator>::merge(slist& x)
@@ -3615,11 +3518,11 @@ slist<const void*, Allocator>::merge(slist& x)
         return;
     }
     if (size() > max_size() - x.size())
-#            ifndef _MSL_NO_EXCEPTIONS
+#ifndef _MSL_NO_EXCEPTIONS
         throw _STD::length_error("slist::merge length error");
-#            else
+#else
         _STD::__msl_error("slist::merge length error\n");
-#            endif
+#endif
     iterator first1 = begin();
     iterator last1 = end();
     iterator first2 = x.begin();
@@ -3641,7 +3544,8 @@ slist<const void*, Allocator>::merge(slist& x)
                 }
                 pj = j.node_;
             }
-            // splice_after(pfirst1, x, pfirst2, pj) but with pj-pfirst2 stored in count
+            // splice_after(pfirst1, x, pfirst2, pj) but with pj-pfirst2 stored in
+            // count
             if (x.back_ == pj)
             {
                 x.back_ = pfirst2;
@@ -3663,9 +3567,7 @@ slist<const void*, Allocator>::merge(slist& x)
         splice_after(last_node(), x);
     }
 }
-
-#            ifndef _MSL_MUST_INLINE_MEMBER_TEMPLATE
-
+#ifndef _MSL_MUST_INLINE_MEMBER_TEMPLATE
 template <class Allocator>
 template <class Compare>
 void
@@ -3676,11 +3578,11 @@ slist<const void*, Allocator>::merge(slist& x, Compare comp)
         return;
     }
     if (size() > max_size() - x.size())
-#                ifndef _MSL_NO_EXCEPTIONS
+#ifndef _MSL_NO_EXCEPTIONS
         throw _STD::length_error("slist::merge length error");
-#                else
+#else
         _STD::__msl_error("slist::merge length error\n");
-#                endif
+#endif
     iterator first1 = begin();
     iterator last1 = end();
     iterator first2 = x.begin();
@@ -3702,7 +3604,8 @@ slist<const void*, Allocator>::merge(slist& x, Compare comp)
                 }
                 pj = j.node_;
             }
-            // splice_after(pfirst1, x, pfirst2, pj) but with pj-pfirst2 stored in count
+            // splice_after(pfirst1, x, pfirst2, pj) but with pj-pfirst2 stored in
+            // count
             if (x.back_ == pj)
             {
                 x.back_ = pfirst2;
@@ -3724,18 +3627,17 @@ slist<const void*, Allocator>::merge(slist& x, Compare comp)
         splice_after(last_node(), x);
     }
 }
-
-#            endif
-
+#endif
 template <class Allocator>
 void
 slist<const void*, Allocator>::sort()
 {
     switch (size())
     {
-        case 0 :
-        case 1 : break;
-        case 2 :
+        case 0:
+        case 1:
+            break;
+        case 2:
             {
                 iterator i = begin();
                 iterator j = i;
@@ -3749,13 +3651,14 @@ slist<const void*, Allocator>::sort()
                 }
             }
             break;
-        default :
+        default:
             {
                 iterator  i = begin();
                 size_type lower_size = size() / 2;
                 _STD::advance(i, lower_size - 1);
                 slist upper_half;
-                // upper_half.splice_after(upper_half.last_node(), *this, i, last_node());
+                // upper_half.splice_after(upper_half.last_node(), *this, i,
+                // last_node());
                 node* s1 = i.node_;
                 node* s2 = s1->next_;
                 node* s3 = back_;
@@ -3772,9 +3675,7 @@ slist<const void*, Allocator>::sort()
             }
     }
 }
-
-#            ifndef _MSL_MUST_INLINE_MEMBER_TEMPLATE
-
+#ifndef _MSL_MUST_INLINE_MEMBER_TEMPLATE
 template <class Allocator>
 template <class Compare>
 void
@@ -3782,9 +3683,10 @@ slist<const void*, Allocator>::sort(Compare comp)
 {
     switch (size())
     {
-        case 0 :
-        case 1 : break;
-        case 2 :
+        case 0:
+        case 1:
+            break;
+        case 2:
             {
                 iterator i = begin();
                 iterator j = i;
@@ -3798,13 +3700,14 @@ slist<const void*, Allocator>::sort(Compare comp)
                 }
             }
             break;
-        default :
+        default:
             {
                 iterator  i = begin();
                 size_type lower_size = size() / 2;
                 _STD::advance(i, lower_size - 1);
                 slist upper_half;
-                // upper_half.splice_after(upper_half.last_node(), *this, i, last_node());
+                // upper_half.splice_after(upper_half.last_node(), *this, i,
+                // last_node());
                 node* s1 = i.node_;
                 node* s2 = s1->next_;
                 node* s3 = back_;
@@ -3821,9 +3724,7 @@ slist<const void*, Allocator>::sort(Compare comp)
             }
     }
 }
-
-#            endif
-
+#endif
 template <class Allocator>
 void
 slist<const void*, Allocator>::reverse()
@@ -3847,82 +3748,82 @@ slist<const void*, Allocator>::reverse()
         n = nn;
     }
 }
-
-#            ifndef _MSL_MUST_INLINE_MEMBER_TEMPLATE
-
+#ifndef _MSL_MUST_INLINE_MEMBER_TEMPLATE
 template <class Allocator>
 template <class InputIterator>
 void
-slist<const void*, Allocator>::choose_init(InputIterator first, InputIterator last, chooser<true>)
+slist<const void*, Allocator>::choose_init(InputIterator first, InputIterator last,
+                                           chooser<true>)
 {
     size_type n = static_cast<size_type>(first);
     if (n > max_size())
-#                ifndef _MSL_NO_EXCEPTIONS
+#ifndef _MSL_NO_EXCEPTIONS
         throw _STD::length_error("slist::construction length error");
-#                else
+#else
         _STD::__msl_error("slist::construction length error\n");
-#                endif
-#                ifndef _MSL_NO_EXCEPTIONS
+#endif
+#ifndef _MSL_NO_EXCEPTIONS
     try
     {
-#                endif
+#endif
         for (; n > 0; --n)
         {
             push_front(reinterpret_cast<value_type>(last));
         }
-#                ifndef _MSL_NO_EXCEPTIONS
+#ifndef _MSL_NO_EXCEPTIONS
     }
     catch (...)
     {
         clear();
         throw;
     }
-#                endif
+#endif
 }
-
 template <class Allocator>
 template <class InputIterator>
 void
-slist<const void*, Allocator>::choose_init(InputIterator first, InputIterator last, chooser<false>)
+slist<const void*, Allocator>::choose_init(InputIterator first, InputIterator last,
+                                           chooser<false>)
 {
-#                ifndef _MSL_NO_EXCEPTIONS
+#ifndef _MSL_NO_EXCEPTIONS
     try
     {
-#                endif
+#endif
         for (; first != last; ++first)
         {
             push_back(*first);
         }
-#                ifndef _MSL_NO_EXCEPTIONS
+#ifndef _MSL_NO_EXCEPTIONS
     }
     catch (...)
     {
         clear();
         throw;
     }
-#                endif
+#endif
 }
-
 template <class Allocator>
 template <class InputIterator>
 inline void
-slist<const void*, Allocator>::choose_assign(InputIterator first, InputIterator last, chooser<true>)
+slist<const void*, Allocator>::choose_assign(InputIterator first, InputIterator last,
+                                             chooser<true>)
 {
     assign(static_cast<size_type>(first), reinterpret_cast<value_type>(last));
 }
-
 template <class Allocator>
 template <class InputIterator>
 inline void
-slist<const void*, Allocator>::choose_assign(InputIterator first, InputIterator last, chooser<false>)
+slist<const void*, Allocator>::choose_assign(InputIterator first, InputIterator last,
+                                             chooser<false>)
 {
-    do_assign(first, last, _STD::iterator_traits<InputIterator>::iterator_category());
+    do_assign(first, last,
+              _STD::iterator_traits<InputIterator>::iterator_category());
 }
-
 template <class Allocator>
 template <class InputIterator>
 void
-slist<const void*, Allocator>::do_assign(InputIterator first, InputIterator last, _STD::input_iterator_tag)
+slist<const void*, Allocator>::do_assign(InputIterator first, InputIterator last,
+                                         _STD::input_iterator_tag)
 {
     iterator i = begin();
     iterator p;
@@ -3940,11 +3841,11 @@ slist<const void*, Allocator>::do_assign(InputIterator first, InputIterator last
         erase_after(p, last_node());
     }
 }
-
 template <class Allocator>
 template <class ForwardIterator>
 void
-slist<const void*, Allocator>::do_assign(ForwardIterator first, ForwardIterator last, _STD::forward_iterator_tag)
+slist<const void*, Allocator>::do_assign(ForwardIterator first, ForwardIterator last,
+                                         _STD::forward_iterator_tag)
 {
     ForwardIterator f = first;
     for (size_type c = size(); c != 0 && f != last; --c)
@@ -3953,11 +3854,11 @@ slist<const void*, Allocator>::do_assign(ForwardIterator first, ForwardIterator 
     }
     slist temp(f, last, alloc_);
     if (size() > max_size() - temp.size())
-#                ifndef _MSL_NO_EXCEPTIONS
+#ifndef _MSL_NO_EXCEPTIONS
         throw _STD::length_error("slist::assign length error");
-#                else
+#else
         _STD::__msl_error("slist::assign length error\n");
-#                endif
+#endif
     iterator p = end();
     for (iterator i = begin(); first != f; ++i, ++first)
     {
@@ -3973,20 +3874,20 @@ slist<const void*, Allocator>::do_assign(ForwardIterator first, ForwardIterator 
         erase_after(p, last_node());
     }
 }
-
 template <class Allocator>
 template <class RandomAccessIterator>
 void
-slist<const void*, Allocator>::do_assign(RandomAccessIterator first, RandomAccessIterator last,
+slist<const void*, Allocator>::do_assign(RandomAccessIterator first,
+                                         RandomAccessIterator last,
                                          _STD::random_access_iterator_tag)
 {
     RandomAccessIterator f = first + _STD::min(size(), size_type(last - first));
     if (last - first > max_size())
-#                ifndef _MSL_NO_EXCEPTIONS
+#ifndef _MSL_NO_EXCEPTIONS
         throw _STD::length_error("slist::assign length error");
-#                else
+#else
         _STD::__msl_error("slist::assign length error\n");
-#                endif
+#endif
     slist    temp(f, last, alloc_);
     iterator p = end();
     for (iterator i = begin(); first != f; ++i, ++first)
@@ -4003,28 +3904,27 @@ slist<const void*, Allocator>::do_assign(RandomAccessIterator first, RandomAcces
         erase_after(p, last_node());
     }
 }
-
 template <class Allocator>
 template <class InputIterator>
 inline void
-slist<const void*, Allocator>::do_insert_after(iterator position, InputIterator first, InputIterator last,
-                                               chooser<true>)
+slist<const void*, Allocator>::do_insert_after(iterator      position,
+                                               InputIterator first,
+                                               InputIterator last, chooser<true>)
 {
-    insert_after(position, static_cast<size_type>(first), reinterpret_cast<value_type>(last));
+    insert_after(position, static_cast<size_type>(first),
+                 reinterpret_cast<value_type>(last));
 }
-
 template <class Allocator>
 template <class InputIterator>
 void
-slist<const void*, Allocator>::do_insert_after(iterator position, InputIterator first, InputIterator last,
-                                               chooser<false>)
+slist<const void*, Allocator>::do_insert_after(iterator      position,
+                                               InputIterator first,
+                                               InputIterator last, chooser<false>)
 {
     slist temp(first, last, alloc_);
     splice_after(position, temp);
 }
-
-#            endif
-
+#endif
 // range is (first, last] NOT [first, last), first == end() ok to remove begin()
 template <class Allocator>
 inline void
@@ -4032,58 +3932,58 @@ slist<const void*, Allocator>::remove_nodes(node_base* first, node_base* last)
 {
     first->next_ = last->next_;
 }
-
 // range is [first, last] NOT [first, last), nodes inserted AFTER here, here != end()
 template <class Allocator>
 inline void
-slist<const void*, Allocator>::insert_nodes(node_base* here, node_base* first, node_base* last)
+slist<const void*, Allocator>::insert_nodes(node_base* here, node_base* first,
+                                            node_base* last)
 {
     last->next_ = here->next_;
     here->next_ = (node*)first;
 }
-
 template <class Allocator>
 inline bool
-operator==(const slist<const void*, Allocator>& x, const slist<const void*, Allocator>& y)
+operator==(const slist<const void*, Allocator>& x,
+           const slist<const void*, Allocator>& y)
 {
-    return static_cast<bool>(x.size() == y.size() && _STD::equal(x.begin(), x.end(), y.begin()));
+    return static_cast<bool>(x.size() == y.size() &&
+                             _STD::equal(x.begin(), x.end(), y.begin()));
 }
-
 template <class Allocator>
 inline bool
-operator!=(const slist<const void*, Allocator>& x, const slist<const void*, Allocator>& y)
+operator!=(const slist<const void*, Allocator>& x,
+           const slist<const void*, Allocator>& y)
 {
     return static_cast<bool>(!(x == y));
 }
-
 template <class Allocator>
 inline bool
-operator<(const slist<const void*, Allocator>& x, const slist<const void*, Allocator>& y)
+operator<(const slist<const void*, Allocator>& x,
+          const slist<const void*, Allocator>& y)
 {
     return _STD::lexicographical_compare(x.begin(), x.end(), y.begin(), y.end());
 }
-
 template <class Allocator>
 inline bool
-operator>(const slist<const void*, Allocator>& x, const slist<const void*, Allocator>& y)
+operator>(const slist<const void*, Allocator>& x,
+          const slist<const void*, Allocator>& y)
 {
     return y < x;
 }
-
 template <class Allocator>
 inline bool
-operator>=(const slist<const void*, Allocator>& x, const slist<const void*, Allocator>& y)
+operator>=(const slist<const void*, Allocator>& x,
+           const slist<const void*, Allocator>& y)
 {
     return static_cast<bool>(!(x < y));
 }
-
 template <class Allocator>
 inline bool
-operator<=(const slist<const void*, Allocator>& x, const slist<const void*, Allocator>& y)
+operator<=(const slist<const void*, Allocator>& x,
+           const slist<const void*, Allocator>& y)
 {
     return static_cast<bool>(!(y < x));
 }
-
 // specialized algorithms:
 
 template <class Allocator>
@@ -4092,14 +3992,14 @@ swap(slist<const void*, Allocator>& x, slist<const void*, Allocator>& y)
 {
     x.swap(y);
 }
-
 // T*
 
 template <class T, class Allocator>
-class slist<T*, Allocator> : private slist<const void*, typename Allocator::rebind<const void*>::other>
+class slist<T*, Allocator>
+  : private slist<const void*, typename Allocator::rebind<const void*>::other>
 {
     typedef slist<const void*, typename Allocator::rebind<const void*>::other> base;
-    typedef typename base::allocator_type                                      base_allocator;
+    typedef typename base::allocator_type base_allocator;
 
 public:
     //  types:
@@ -4116,34 +4016,29 @@ public:
 
 public:
     class iterator
-      : public _STD::iterator<_STD::bidirectional_iterator_tag, value_type, difference_type, pointer, reference>
+      : public _STD::iterator<_STD::bidirectional_iterator_tag, value_type,
+                              difference_type, pointer, reference>
     {
     public:
         iterator() {}
-
         explicit iterator(const typename base::iterator& i) : i_(i) {}
-
         operator typename base::iterator() const { return i_; }
-
         reference
         operator*() const
         {
             return reference(*i_);
         }
-
         pointer
         operator->() const
         {
             return pointer(i_.operator->());
         }
-
         iterator&
         operator++()
         {
             ++i_;
             return *this;
         }
-
         iterator
         operator++(int)
         {
@@ -4151,14 +4046,12 @@ public:
             ++i_;
             return tmp;
         }
-
         iterator&
         operator--()
         {
             --i_;
             return *this;
         }
-
         iterator
         operator--(int)
         {
@@ -4166,13 +4059,11 @@ public:
             --i_;
             return tmp;
         }
-
         friend bool
         operator==(const iterator& x, const iterator& y)
         {
             return x.i_ == y.i_;
         }
-
         friend bool
         operator!=(const iterator& x, const iterator& y)
         {
@@ -4184,38 +4075,31 @@ public:
 
         friend class slist::const_iterator;
     };
-
-    class const_iterator : public _STD::iterator<_STD::bidirectional_iterator_tag, value_type, difference_type,
-                                                 const_pointer, const_reference>
+    class const_iterator
+      : public _STD::iterator<_STD::bidirectional_iterator_tag, value_type,
+                              difference_type, const_pointer, const_reference>
     {
     public:
         const_iterator() {}
-
         const_iterator(const slist::iterator& x) : i_(x.i_) {}
-
         explicit const_iterator(const typename base::const_iterator& i) : i_(i) {}
-
         operator typename base::const_iterator() const { return i_; }
-
         const_reference
         operator*() const
         {
             return const_reference(*i_);
         }
-
         const_pointer
         operator->() const
         {
             return const_pointer(i_.operator->());
         }
-
         const_iterator&
         operator++()
         {
             ++i_;
             return *this;
         }
-
         const_iterator
         operator++(int)
         {
@@ -4223,14 +4107,12 @@ public:
             ++i_;
             return tmp;
         }
-
         const_iterator&
         operator--()
         {
             --i_;
             return *this;
         }
-
         const_iterator
         operator--(int)
         {
@@ -4238,13 +4120,11 @@ public:
             --i_;
             return tmp;
         }
-
         friend bool
         operator==(const const_iterator& x, const const_iterator& y)
         {
             return x.i_ == y.i_;
         }
-
         friend bool
         operator!=(const const_iterator& x, const const_iterator& y)
         {
@@ -4254,30 +4134,36 @@ public:
     private:
         typename base::const_iterator i_;
     };
-
     //  lib.slist.cons construct/copy/destroy:
     explicit slist(const Allocator& = Allocator());
     explicit slist(size_type n);
     slist(size_type n, const value_type& value, const Allocator& = Allocator());
-#            ifndef _MSL_MUST_INLINE_MEMBER_TEMPLATE
-    template <class InputIterator> slist(InputIterator first, InputIterator last, const Allocator& a = Allocator());
-    template <class InputIterator> void assign(InputIterator first, InputIterator last);
-#            else
+#ifndef _MSL_MUST_INLINE_MEMBER_TEMPLATE
     template <class InputIterator>
-    inline slist(InputIterator first, InputIterator last, const Allocator& a = Allocator())
-      : base(_STD::__convert_iterator<_STD::__implicit_convert<pointer, InputIterator> >(first),
-             _STD::__convert_iterator<_STD::__implicit_convert<pointer, InputIterator> >(last), base_allocator(a))
+    slist(InputIterator first, InputIterator last, const Allocator& a = Allocator());
+    template <class InputIterator>
+    void assign(InputIterator first, InputIterator last);
+#else
+    template <class InputIterator>
+    inline slist(InputIterator first, InputIterator last,
+                 const Allocator& a = Allocator())
+      : base(_STD::__convert_iterator<
+                 _STD::__implicit_convert<pointer, InputIterator> >(first),
+             _STD::__convert_iterator<
+                 _STD::__implicit_convert<pointer, InputIterator> >(last),
+             base_allocator(a))
     {
     }
-
     template <class InputIterator>
     inline void
     assign(InputIterator first, InputIterator last)
     {
-        base::assign(_STD::__convert_iterator<_STD::__implicit_convert<pointer, InputIterator> >(first),
-                     _STD::__convert_iterator<_STD::__implicit_convert<pointer, InputIterator> >(last));
+        base::assign(_STD::__convert_iterator<
+                         _STD::__implicit_convert<pointer, InputIterator> >(first),
+                     _STD::__convert_iterator<
+                         _STD::__implicit_convert<pointer, InputIterator> >(last));
     }
-#            endif
+#endif
     void           assign(size_type n, const value_type& t);
     allocator_type get_allocator() const;
 
@@ -4309,106 +4195,118 @@ public:
     void push_back(const value_type& x);
     // there is no pop_back
 
-    iterator insert(iterator position, const value_type& x);              // linear time!
-    void     insert(iterator position, size_type n, const value_type& x); // linear time!
-#            ifndef _MSL_MUST_INLINE_MEMBER_TEMPLATE
-    template <class InputIterator>                                        // linear time!
+    iterator insert(iterator position, const value_type& x);          // linear time!
+    void insert(iterator position, size_type n, const value_type& x); // linear time!
+#ifndef _MSL_MUST_INLINE_MEMBER_TEMPLATE
+    template <class InputIterator>                                    // linear time!
     void insert(iterator position, InputIterator first, InputIterator last);
-#            else
+#else
     template <class InputIterator>
     inline void
     insert(iterator position, InputIterator first, InputIterator last)
     {
-        base::insert(position, _STD::__convert_iterator<_STD::__implicit_convert<pointer, InputIterator> >(first),
-                     _STD::__convert_iterator<_STD::__implicit_convert<pointer, InputIterator> >(last));
+        base::insert(position,
+                     _STD::__convert_iterator<
+                         _STD::__implicit_convert<pointer, InputIterator> >(first),
+                     _STD::__convert_iterator<
+                         _STD::__implicit_convert<pointer, InputIterator> >(last));
     }
-#            endif
+#endif
 
     // constant time versions of insert, inserts stuff after position
     // end() can be used as the node before begin()
     iterator insert_after(iterator position, const value_type& x);
     void     insert_after(iterator position, size_type n, const value_type& x);
-#            ifndef _MSL_MUST_INLINE_MEMBER_TEMPLATE
-    template <class InputIterator> void insert_after(iterator position, InputIterator first, InputIterator last);
-#            else
+#ifndef _MSL_MUST_INLINE_MEMBER_TEMPLATE
+    template <class InputIterator>
+    void insert_after(iterator position, InputIterator first, InputIterator last);
+#else
     template <class InputIterator>
     inline void
     insert_after(iterator position, InputIterator first, InputIterator last)
     {
-        base::insert_after(position, _STD::__convert_iterator<_STD::__implicit_convert<pointer, InputIterator> >(first),
-                           _STD::__convert_iterator<_STD::__implicit_convert<pointer, InputIterator> >(last));
+        base::insert_after(
+            position,
+            _STD::__convert_iterator<
+                _STD::__implicit_convert<pointer, InputIterator> >(first),
+            _STD::__convert_iterator<
+                _STD::__implicit_convert<pointer, InputIterator> >(last));
     }
-#            endif
+#endif
 
     iterator erase(iterator position);                // linear time!
     iterator erase(iterator position, iterator last); // linear time!
 
     // constant time versions of erase
     // end() can be used as the node before begin()
-    iterator erase_after(iterator position);                // erase (position, position+1], return position
-    iterator erase_after(iterator position, iterator last); // erase (position, last], return position
+    iterator erase_after(
+        iterator position); // erase (position, position+1], return position
+    iterator erase_after(iterator position,
+                         iterator last); // erase (position, last], return position
 
     void swap(slist& x);
     void clear();
 
     //  lib.slist.ops slist operations:
-    void splice(iterator position, slist& x);                                // linear time!
-    void splice(iterator position, slist& x, iterator i);                    // linear time!
-    void splice(iterator position, slist& x, iterator first, iterator last); // linear time!
+    void splice(iterator position, slist& x);             // linear time!
+    void splice(iterator position, slist& x, iterator i); // linear time!
+    void splice(iterator position, slist& x, iterator first,
+                iterator last);                           // linear time!
 
     // constant time versions of splice, splices stuff after position
     // end() can be used as the node before begin()
     void splice_after(iterator position, slist& x);
-    void splice_after(iterator position, slist& x, iterator i);                    // splices (i, i+1]
-    void splice_after(iterator position, slist& x, iterator first, iterator last); // splices (first, last]
+    void splice_after(iterator position, slist& x, iterator i); // splices (i, i+1]
+    void splice_after(iterator position, slist& x, iterator first,
+                      iterator last); // splices (first, last]
 
     void remove(const value_type& value);
-#            ifndef _MSL_MUST_INLINE_MEMBER_TEMPLATE
+#ifndef _MSL_MUST_INLINE_MEMBER_TEMPLATE
     template <class Predicate> void remove_if(Predicate pred);
-#            else
+#else
     template <class Predicate>
     inline void
     remove_if(Predicate pred)
     {
         base::remove_if(unary_convert<Predicate>(pred));
     }
-#            endif
+#endif
 
     void unique();
-#            ifndef _MSL_MUST_INLINE_MEMBER_TEMPLATE
+#ifndef _MSL_MUST_INLINE_MEMBER_TEMPLATE
     template <class BinaryPredicate> void unique(BinaryPredicate binary_pred);
-#            else
+#else
     template <class BinaryPredicate>
     inline void
     unique(BinaryPredicate binary_pred)
     {
         base::unique(binary_convert<BinaryPredicate>(binary_pred));
     }
-#            endif
+#endif
 
     void merge(slist& x);
-#            ifndef _MSL_MUST_INLINE_MEMBER_TEMPLATE
+#ifndef _MSL_MUST_INLINE_MEMBER_TEMPLATE
     template <class Compare> void merge(slist& x, Compare comp);
-#            else
+#else
     template <class Compare>
     inline void
     merge(slist& x, Compare comp)
     {
         base::merge((base&)x, binary_convert<Compare>(comp));
     }
-#            endif
+#endif
 
     void sort();
-#            ifndef _MSL_MUST_INLINE_MEMBER_TEMPLATE
+#ifndef _MSL_MUST_INLINE_MEMBER_TEMPLATE
     template <class Compare> void sort(Compare comp);
-#            else
+#else
     template <class Compare>
     inline void
     sort(Compare comp)
     {
         base::sort(binary_convert<Compare>(comp));
     }
-#            endif
+#endif
 
     void reverse();
 
@@ -4417,7 +4315,6 @@ private:
     {
     public:
         unary_convert(Compare comp) : comp_(comp) {}
-
         bool
         operator()(const void* x)
         {
@@ -4427,12 +4324,10 @@ private:
     private:
         Compare comp_;
     };
-
     template <class Compare> class binary_convert
     {
     public:
         binary_convert(Compare comp) : comp_(comp) {}
-
         bool
         operator()(const void* x, const void* y)
         {
@@ -4443,252 +4338,233 @@ private:
         Compare comp_;
     };
 };
-
-                                                                                   // Implementation slist<T*>
-
-template <class T, class Allocator> inline slist<T*, Allocator>::slist(const Allocator& a) : base(base_allocator(a))
-{
-}
-
-template <class T, class Allocator> inline slist<T*, Allocator>::slist(size_type n) : base(n)
-{
-}
+// Implementation slist<T*>
 
 template <class T, class Allocator>
-inline slist<T*, Allocator>::slist(size_type n, const value_type& value, const Allocator& a)
+inline slist<T*, Allocator>::slist(const Allocator& a) : base(base_allocator(a))
+{
+}
+template <class T, class Allocator>
+inline slist<T*, Allocator>::slist(size_type n) : base(n)
+{
+}
+template <class T, class Allocator>
+inline slist<T*, Allocator>::slist(size_type n, const value_type& value,
+                                   const Allocator& a)
   : base(n, value, base_allocator(a))
 {
 }
-
-#            ifndef _MSL_MUST_INLINE_MEMBER_TEMPLATE
-
+#ifndef _MSL_MUST_INLINE_MEMBER_TEMPLATE
 template <class T, class Allocator>
 template <class InputIterator>
-inline slist<T*, Allocator>::slist(InputIterator first, InputIterator last, const Allocator& a)
-  : base(_STD::__convert_iterator<_STD::__implicit_convert<pointer, InputIterator> >(first),
-         _STD::__convert_iterator<_STD::__implicit_convert<pointer, InputIterator> >(last), base_allocator(a))
+inline slist<T*, Allocator>::slist(InputIterator first, InputIterator last,
+                                   const Allocator& a)
+  : base(_STD::__convert_iterator<_STD::__implicit_convert<pointer, InputIterator> >(
+             first),
+         _STD::__convert_iterator<_STD::__implicit_convert<pointer, InputIterator> >(
+             last),
+         base_allocator(a))
 {
 }
-
 template <class T, class Allocator>
 template <class InputIterator>
 inline void
 slist<T*, Allocator>::assign(InputIterator first, InputIterator last)
 {
-    base::assign(_STD::__convert_iterator<_STD::__implicit_convert<pointer, InputIterator> >(first),
-                 _STD::__convert_iterator<_STD::__implicit_convert<pointer, InputIterator> >(last));
+    base::assign(
+        _STD::__convert_iterator<_STD::__implicit_convert<pointer, InputIterator> >(
+            first),
+        _STD::__convert_iterator<_STD::__implicit_convert<pointer, InputIterator> >(
+            last));
 }
-
-#            endif
-
+#endif
 template <class T, class Allocator>
 inline void
 slist<T*, Allocator>::assign(size_type n, const value_type& t)
 {
     base::assign(n, t);
 }
-
 template <class T, class Allocator>
 inline typename slist<T*, Allocator>::allocator_type
 slist<T*, Allocator>::get_allocator() const
 {
     return base::get_allocator();
 }
-
 template <class T, class Allocator>
 inline typename slist<T*, Allocator>::iterator
 slist<T*, Allocator>::begin()
 {
     return iterator(base::begin());
 }
-
 template <class T, class Allocator>
 inline typename slist<T*, Allocator>::const_iterator
 slist<T*, Allocator>::begin() const
 {
     return const_iterator(base::begin());
 }
-
 template <class T, class Allocator>
 inline typename slist<T*, Allocator>::iterator
 slist<T*, Allocator>::end()
 {
     return iterator(base::end());
 }
-
 template <class T, class Allocator>
 inline typename slist<T*, Allocator>::const_iterator
 slist<T*, Allocator>::end() const
 {
     return const_iterator(base::end());
 }
-
 template <class T, class Allocator>
 inline typename slist<T*, Allocator>::iterator
 slist<T*, Allocator>::last_node()
 {
     return iterator(base::last_node());
 }
-
 template <class T, class Allocator>
 inline typename slist<T*, Allocator>::const_iterator
 slist<T*, Allocator>::last_node() const
 {
     return const_iterator(base::last_node());
 }
-
 template <class T, class Allocator>
 inline typename slist<T*, Allocator>::iterator
 slist<T*, Allocator>::previous(iterator x)
 {
     return iterator(base::previous(x));
 }
-
 template <class T, class Allocator>
 inline typename slist<T*, Allocator>::const_iterator
 slist<T*, Allocator>::previous(const_iterator x)
 {
     return const_iterator(base::previous(x));
 }
-
 template <class T, class Allocator>
 inline bool
 slist<T*, Allocator>::empty() const
 {
     return base::empty();
 }
-
 template <class T, class Allocator>
 inline typename slist<T*, Allocator>::size_type
 slist<T*, Allocator>::size() const
 {
     return base::size();
 }
-
 template <class T, class Allocator>
 inline typename slist<T*, Allocator>::size_type
 slist<T*, Allocator>::max_size() const
 {
     return base::max_size();
 }
-
 template <class T, class Allocator>
 inline void
 slist<T*, Allocator>::resize(size_type sz)
 {
     base::resize(sz);
 }
-
 template <class T, class Allocator>
 inline void
 slist<T*, Allocator>::resize(size_type sz, const value_type& value)
 {
     base::resize(sz, value);
 }
-
 template <class T, class Allocator>
 inline typename slist<T*, Allocator>::reference
 slist<T*, Allocator>::front()
 {
     return reference(base::front());
 }
-
 template <class T, class Allocator>
 inline typename slist<T*, Allocator>::const_reference
 slist<T*, Allocator>::front() const
 {
     return const_reference(base::front());
 }
-
 template <class T, class Allocator>
 inline void
 slist<T*, Allocator>::push_front(const value_type& x)
 {
     base::push_front(x);
 }
-
 template <class T, class Allocator>
 inline void
 slist<T*, Allocator>::pop_front()
 {
     base::pop_front();
 }
-
 template <class T, class Allocator>
 inline void
 slist<T*, Allocator>::push_back(const value_type& x)
 {
     base::push_back(x);
 }
-
 template <class T, class Allocator>
 inline typename slist<T*, Allocator>::iterator
 slist<T*, Allocator>::insert(iterator position, const value_type& x)
 {
     return iterator(base::insert(position, x));
 }
-
 template <class T, class Allocator>
 inline void
 slist<T*, Allocator>::insert(iterator position, size_type n, const value_type& x)
 {
     base::insert(position, n, x);
 }
-
-#            ifndef _MSL_MUST_INLINE_MEMBER_TEMPLATE
-
+#ifndef _MSL_MUST_INLINE_MEMBER_TEMPLATE
 template <class T, class Allocator>
 template <class InputIterator>
 inline void
-slist<T*, Allocator>::insert(iterator position, InputIterator first, InputIterator last)
+slist<T*, Allocator>::insert(iterator position, InputIterator first,
+                             InputIterator last)
 {
-    base::insert(position, _STD::__convert_iterator<_STD::__implicit_convert<pointer, InputIterator> >(first),
-                 _STD::__convert_iterator<_STD::__implicit_convert<pointer, InputIterator> >(last));
+    base::insert(
+        position,
+        _STD::__convert_iterator<_STD::__implicit_convert<pointer, InputIterator> >(
+            first),
+        _STD::__convert_iterator<_STD::__implicit_convert<pointer, InputIterator> >(
+            last));
 }
-
-#            endif
-
+#endif
 template <class T, class Allocator>
 inline typename slist<T*, Allocator>::iterator
 slist<T*, Allocator>::insert_after(iterator position, const value_type& x)
 {
     return iterator(base::insert_after(position, x));
 }
-
 template <class T, class Allocator>
 inline void
-slist<T*, Allocator>::insert_after(iterator position, size_type n, const value_type& x)
+slist<T*, Allocator>::insert_after(iterator position, size_type n,
+                                   const value_type& x)
 {
     base::insert_after(position, n, x);
 }
-
-#            ifndef _MSL_MUST_INLINE_MEMBER_TEMPLATE
-
+#ifndef _MSL_MUST_INLINE_MEMBER_TEMPLATE
 template <class T, class Allocator>
 template <class InputIterator>
 inline void
-slist<T*, Allocator>::insert_after(iterator position, InputIterator first, InputIterator last)
+slist<T*, Allocator>::insert_after(iterator position, InputIterator first,
+                                   InputIterator last)
 {
-    base::insert_after(position, _STD::__convert_iterator<_STD::__implicit_convert<pointer, InputIterator> >(first),
-                       _STD::__convert_iterator<_STD::__implicit_convert<pointer, InputIterator> >(last));
+    base::insert_after(
+        position,
+        _STD::__convert_iterator<_STD::__implicit_convert<pointer, InputIterator> >(
+            first),
+        _STD::__convert_iterator<_STD::__implicit_convert<pointer, InputIterator> >(
+            last));
 }
-
-#            endif
-
+#endif
 template <class T, class Allocator>
 inline typename slist<T*, Allocator>::iterator
 slist<T*, Allocator>::erase(iterator position)
 {
     return iterator(base::erase(position));
 }
-
 template <class T, class Allocator>
 inline typename slist<T*, Allocator>::iterator
 slist<T*, Allocator>::erase(iterator position, iterator last)
 {
     return iterator(base::erase(position, last));
 }
-
 // erase (position, position+1]
 // return position
 template <class T, class Allocator>
@@ -4697,7 +4573,6 @@ slist<T*, Allocator>::erase_after(iterator position)
 {
     return iterator(base::erase_after(position));
 }
-
 // erase (position, last]
 // return position
 template <class T, class Allocator>
@@ -4706,72 +4581,63 @@ slist<T*, Allocator>::erase_after(iterator position, iterator last)
 {
     return iterator(base::erase_after(position, last));
 }
-
 template <class T, class Allocator>
 inline void
 slist<T*, Allocator>::swap(slist& x)
 {
     base::swap((base&)x);
 }
-
 template <class T, class Allocator>
 inline void
 slist<T*, Allocator>::clear()
 {
     base::clear();
 }
-
 template <class T, class Allocator>
 inline void
 slist<T*, Allocator>::splice(iterator position, slist& x)
 {
     base::splice(position, (base&)x);
 }
-
 template <class T, class Allocator>
 inline void
 slist<T*, Allocator>::splice(iterator position, slist& x, iterator i)
 {
     base::splice(position, (base&)x, i);
 }
-
 template <class T, class Allocator>
 inline void
-slist<T*, Allocator>::splice(iterator position, slist& x, iterator first, iterator last)
+slist<T*, Allocator>::splice(iterator position, slist& x, iterator first,
+                             iterator last)
 {
     base::splice(position, (base&)x, first, last);
 }
-
 template <class T, class Allocator>
 inline void
 slist<T*, Allocator>::splice_after(iterator position, slist& x)
 {
     base::splice_after(position, (base&)x);
 }
-
 template <class T, class Allocator>
 inline void
 slist<T*, Allocator>::splice_after(iterator position, slist& x, iterator i)
 {
     base::splice_after(position, (base&)x, i);
 }
-
 template <class T, class Allocator>
 inline void
-slist<T*, Allocator>::splice_after(iterator position, slist& x, iterator first, iterator last)
+slist<T*, Allocator>::splice_after(iterator position, slist& x, iterator first,
+                                   iterator last)
 {
     base::splice_after(position, (base&)x, first, last);
 }
-
 template <class T, class Allocator>
 inline void
 slist<T*, Allocator>::remove(const value_type& value)
 {
     base::remove(value);
 }
-
-#            ifndef _MSL_MUST_INLINE_MEMBER_TEMPLATE
-
+#ifndef _MSL_MUST_INLINE_MEMBER_TEMPLATE
 template <class T, class Allocator>
 template <class Predicate>
 inline void
@@ -4779,18 +4645,14 @@ slist<T*, Allocator>::remove_if(Predicate pred)
 {
     base::remove_if(unary_convert<Predicate>(pred));
 }
-
-#            endif
-
+#endif
 template <class T, class Allocator>
 inline void
 slist<T*, Allocator>::unique()
 {
     base::unique();
 }
-
-#            ifndef _MSL_MUST_INLINE_MEMBER_TEMPLATE
-
+#ifndef _MSL_MUST_INLINE_MEMBER_TEMPLATE
 template <class T, class Allocator>
 template <class BinaryPredicate>
 inline void
@@ -4798,18 +4660,14 @@ slist<T*, Allocator>::unique(BinaryPredicate binary_pred)
 {
     base::unique(binary_convert<BinaryPredicate>(binary_pred));
 }
-
-#            endif
-
+#endif
 template <class T, class Allocator>
 inline void
 slist<T*, Allocator>::merge(slist& x)
 {
     base::merge((base&)x);
 }
-
-#            ifndef _MSL_MUST_INLINE_MEMBER_TEMPLATE
-
+#ifndef _MSL_MUST_INLINE_MEMBER_TEMPLATE
 template <class T, class Allocator>
 template <class Compare>
 inline void
@@ -4817,18 +4675,14 @@ slist<T*, Allocator>::merge(slist& x, Compare comp)
 {
     base::merge((base&)x, binary_convert<Compare>(comp));
 }
-
-#            endif
-
+#endif
 template <class T, class Allocator>
 inline void
 slist<T*, Allocator>::sort()
 {
     base::sort();
 }
-
-#            ifndef _MSL_MUST_INLINE_MEMBER_TEMPLATE
-
+#ifndef _MSL_MUST_INLINE_MEMBER_TEMPLATE
 template <class T, class Allocator>
 template <class Compare>
 inline void
@@ -4836,58 +4690,50 @@ slist<T*, Allocator>::sort(Compare comp)
 {
     base::sort(binary_convert<Compare>(comp));
 }
-
-#            endif
-
+#endif
 template <class T, class Allocator>
 inline void
 slist<T*, Allocator>::reverse()
 {
     base::reverse();
 }
-
 template <class T, class Allocator>
 inline bool
 operator==(const slist<T*, Allocator>& x, const slist<T*, Allocator>& y)
 {
-    return static_cast<bool>(x.size() == y.size() && _STD::equal(x.begin(), x.end(), y.begin()));
+    return static_cast<bool>(x.size() == y.size() &&
+                             _STD::equal(x.begin(), x.end(), y.begin()));
 }
-
 template <class T, class Allocator>
 inline bool
 operator!=(const slist<T*, Allocator>& x, const slist<T*, Allocator>& y)
 {
     return static_cast<bool>(!(x == y));
 }
-
 template <class T, class Allocator>
 inline bool
 operator<(const slist<T*, Allocator>& x, const slist<T*, Allocator>& y)
 {
     return _STD::lexicographical_compare(x.begin(), x.end(), y.begin(), y.end());
 }
-
 template <class T, class Allocator>
 inline bool
 operator>(const slist<T*, Allocator>& x, const slist<T*, Allocator>& y)
 {
     return y < x;
 }
-
 template <class T, class Allocator>
 inline bool
 operator>=(const slist<T*, Allocator>& x, const slist<T*, Allocator>& y)
 {
     return static_cast<bool>(!(x < y));
 }
-
 template <class T, class Allocator>
 inline bool
 operator<=(const slist<T*, Allocator>& x, const slist<T*, Allocator>& y)
 {
     return static_cast<bool>(!(y < x));
 }
-
 // specialized algorithms:
 
 template <class T, class Allocator>
@@ -4896,35 +4742,33 @@ swap(slist<T*, Allocator>& x, slist<T*, Allocator>& y)
 {
     x.swap(y);
 }
+#endif // !defined(_MSL_NO_PARTIAL_SPECIALIZATION) &&
+       // !defined(_MSL_NO_MEMBER_TEMPLATE) &&
+       // !defined(_Inhibit_Container_Optimization)
 
-#        endif // !defined(_MSL_NO_PARTIAL_SPECIALIZATION) && !defined(_MSL_NO_MEMBER_TEMPLATE) &&
-               // !defined(_Inhibit_Container_Optimization)
-
-#        ifndef _MSL_NO_CPP_NAMESPACE
+#ifndef _MSL_NO_CPP_NAMESPACE
 } // namespace Metrowerks
-#        endif
+#endif
 
-#        ifdef _MSL_FORCE_ENUMS_ALWAYS_INT
-#            pragma enumsalwaysint reset
-#        endif
+#ifdef _MSL_FORCE_ENUMS_ALWAYS_INT
+#pragma enumsalwaysint reset
+#endif
 
-#        ifdef _MSL_FORCE_ENABLE_BOOL_SUPPORT
-#            pragma bool reset
-#        endif
+#ifdef _MSL_FORCE_ENABLE_BOOL_SUPPORT
+#pragma bool reset
+#endif
 
-#        pragma options align = reset
+#pragma options align = reset
 
-#    endif // RC_INVOKED
+#endif // RC_INVOKED
 
-#endif     // _SLIST
+#endif // _SLIST
 
 // hh 990629 Rewrote
 // hh 990825 changed void* to const void*
-// hh 991116 Fixed pointer conversion bug in T* specialization by introducing __convert_iterator
-// hh 000129 Moved into namespace Metrowerks
-// hh 001011 Fixed scoping error in remove_if
-// hh 001011 Fixed several typename bugs
-// hh 001011 Disabled friends of iterators for gcc
-// hh 010125 Changed function prototype to variable initialization in constructor
-// hh 010301 Protected min and max from macro abuse.
-// hh 010402 Removed 68K CMF support
+// hh 991116 Fixed pointer conversion bug in T* specialization by introducing
+// __convert_iterator hh 000129 Moved into namespace Metrowerks hh 001011 Fixed
+// scoping error in remove_if hh 001011 Fixed several typename bugs hh 001011
+// Disabled friends of iterators for gcc hh 010125 Changed function prototype to
+// variable initialization in constructor hh 010301 Protected min and max from macro
+// abuse. hh 010402 Removed 68K CMF support

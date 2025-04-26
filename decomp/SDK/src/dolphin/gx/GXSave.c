@@ -1,16 +1,15 @@
 #if DEBUG
 
-#    include <dolphin/gx.h>
-#    include <dolphin/os.h>
+#include <dolphin/gx.h>
+#include <dolphin/os.h>
 
-#    include "GXPrivate.h"
+#include "GXPrivate.h"
 
 static u8* dlist;
 static u32 dlistSize;
 static u32 bytesRead;
 
 void __GXShadowIndexState(u32 idx_reg, u32 reg_data);
-
 static u8
 __ReadMem(void* ptr, u32 sz)
 {
@@ -33,13 +32,11 @@ __ReadMem(void* ptr, u32 sz)
     dlist += sz;
     return TRUE;
 }
-
 inline void
 DPF(...)
 {
     u8 unused[4];
 }
-
 static void
 __SaveCPRegs(u8 reg, u8 vatIdx, u32 data)
 {
@@ -48,37 +45,49 @@ __SaveCPRegs(u8 reg, u8 vatIdx, u32 data)
     DPF("\tCP Stream Regs[0x%x] = 0x%x\n", reg, data);
     switch (reg)
     {
-        case 0 :
-        case 1 :
-        case 2 :
-        case 3 :
-        case 4 : break;
-        case 5 : __GXData->vcdLo = data; break;
-        case 6 : __GXData->vcdHi = data; break;
-        case 7 : __GXData->vatA[vatIdx & 0xFF] = data; break;
-        case 8 : __GXData->vatB[vatIdx & 0xFF] = data; break;
-        case 9 : __GXData->vatC[vatIdx & 0xFF] = data; break;
-        case 10 :
+        case 0:
+        case 1:
+        case 2:
+        case 3:
+        case 4:
+            break;
+        case 5:
+            __GXData->vcdLo = data;
+            break;
+        case 6:
+            __GXData->vcdHi = data;
+            break;
+        case 7:
+            __GXData->vatA[vatIdx & 0xFF] = data;
+            break;
+        case 8:
+            __GXData->vatB[vatIdx & 0xFF] = data;
+            break;
+        case 9:
+            __GXData->vatC[vatIdx & 0xFF] = data;
+            break;
+        case 10:
             idx = vatIdx - 0x15;
             if ((idx >= 0) && (idx < 4))
             {
                 __GXData->indexBase[idx] = data;
             }
             break;
-        case 11 :
+        case 11:
             idx = vatIdx - 0x15;
             if ((idx >= 0) && (idx < 4))
             {
                 __GXData->indexStride[idx] = data;
             }
             break;
-        default : OSReport("GX DisplayList: Invalid CP Stream Register Address 0x%x\n", reg); break;
+        default:
+            OSReport("GX DisplayList: Invalid CP Stream Register Address 0x%x\n",
+                     reg);
+            break;
     }
 }
-
 static u32 vtxCompSize[5] = { 1, 1, 2, 2, 4 };
 static int clrCompSize[6] = { 2, 3, 4, 2, 3, 4 };
-
 static u32
 GetAttrSize(u8 vatIdx, u32 attrIdx)
 {
@@ -88,27 +97,40 @@ GetAttrSize(u8 vatIdx, u32 attrIdx)
 
     switch (attrIdx)
     {
-        case 0 : return GET_REG_FIELD(__GXData->vcdLo, 1, 0) ? 1 : 0;
-        case 1 : return GET_REG_FIELD(__GXData->vcdLo, 1, 1) ? 1 : 0;
-        case 2 : return GET_REG_FIELD(__GXData->vcdLo, 1, 2) ? 1 : 0;
-        case 3 : return GET_REG_FIELD(__GXData->vcdLo, 1, 3) ? 1 : 0;
-        case 4 : return GET_REG_FIELD(__GXData->vcdLo, 1, 4) ? 1 : 0;
-        case 5 : return GET_REG_FIELD(__GXData->vcdLo, 1, 5) ? 1 : 0;
-        case 6 : return GET_REG_FIELD(__GXData->vcdLo, 1, 6) ? 1 : 0;
-        case 7 : return GET_REG_FIELD(__GXData->vcdLo, 1, 7) ? 1 : 0;
-        case 8 : return GET_REG_FIELD(__GXData->vcdLo, 1, 8) ? 1 : 0;
-        case 9 :
+        case 0:
+            return GET_REG_FIELD(__GXData->vcdLo, 1, 0) ? 1 : 0;
+        case 1:
+            return GET_REG_FIELD(__GXData->vcdLo, 1, 1) ? 1 : 0;
+        case 2:
+            return GET_REG_FIELD(__GXData->vcdLo, 1, 2) ? 1 : 0;
+        case 3:
+            return GET_REG_FIELD(__GXData->vcdLo, 1, 3) ? 1 : 0;
+        case 4:
+            return GET_REG_FIELD(__GXData->vcdLo, 1, 4) ? 1 : 0;
+        case 5:
+            return GET_REG_FIELD(__GXData->vcdLo, 1, 5) ? 1 : 0;
+        case 6:
+            return GET_REG_FIELD(__GXData->vcdLo, 1, 6) ? 1 : 0;
+        case 7:
+            return GET_REG_FIELD(__GXData->vcdLo, 1, 7) ? 1 : 0;
+        case 8:
+            return GET_REG_FIELD(__GXData->vcdLo, 1, 8) ? 1 : 0;
+        case 9:
             vcd = __GXData->vcdLo;
             vat = __GXData->vatA[vatIdx & 0xFF];
             switch (GET_REG_FIELD(vcd, 2, 9))
             {
-                case 0 : return 0;
-                case 2 : return 1;
-                case 3 : return 2;
-                case 1 : return ((vat & 1) + 2) * vtxCompSize[(vat >> 1) & 7];
+                case 0:
+                    return 0;
+                case 2:
+                    return 1;
+                case 3:
+                    return 2;
+                case 1:
+                    return ((vat & 1) + 2) * vtxCompSize[(vat >> 1) & 7];
             }
             break;
-        case 10 :
+        case 10:
             vcd = __GXData->vcdLo;
             vat = __GXData->vatA[vatIdx & 0xFF];
             if ((vat >> 9) & 1)
@@ -121,122 +143,167 @@ GetAttrSize(u8 vatIdx, u32 attrIdx)
             }
             switch (GET_REG_FIELD(vcd, 2, 11))
             {
-                case 0 : return 0;
-                case 2 : return 1;
-                case 3 : return 2;
-                case 1 : return (((vat >> 9) & 1) + nc) * vtxCompSize[(vat >> 10) & 7];
+                case 0:
+                    return 0;
+                case 2:
+                    return 1;
+                case 3:
+                    return 2;
+                case 1:
+                    return (((vat >> 9) & 1) + nc) * vtxCompSize[(vat >> 10) & 7];
             }
             break;
-        case 11 :
+        case 11:
             switch (GET_REG_FIELD(__GXData->vcdLo, 2, 13))
             {
-                case 0 : return 0;
-                case 2 : return 1;
-                case 3 : return 2;
-                case 1 : vat = __GXData->vatA[vatIdx]; return clrCompSize[(vat >> 14) & 7];
+                case 0:
+                    return 0;
+                case 2:
+                    return 1;
+                case 3:
+                    return 2;
+                case 1:
+                    vat = __GXData->vatA[vatIdx];
+                    return clrCompSize[(vat >> 14) & 7];
             }
             break;
-        case 12 :
+        case 12:
             switch (GET_REG_FIELD(__GXData->vcdLo, 2, 15))
             {
-                case 0 : return 0;
-                case 2 : return 1;
-                case 3 : return 2;
-                case 1 : vat = __GXData->vatA[vatIdx]; return clrCompSize[(vat >> 18) & 7];
+                case 0:
+                    return 0;
+                case 2:
+                    return 1;
+                case 3:
+                    return 2;
+                case 1:
+                    vat = __GXData->vatA[vatIdx];
+                    return clrCompSize[(vat >> 18) & 7];
             }
             break;
-        case 13 :
+        case 13:
             vcd = __GXData->vcdHi;
             vat = __GXData->vatA[vatIdx & 0xFF];
             switch (GET_REG_FIELD(vcd, 2, 0))
             {
-                case 0 : return 0;
-                case 2 : return 1;
-                case 3 : return 2;
-                case 1 : return (((vat >> 21) & 1) + 1) * vtxCompSize[(vat >> 22) & 7];
+                case 0:
+                    return 0;
+                case 2:
+                    return 1;
+                case 3:
+                    return 2;
+                case 1:
+                    return (((vat >> 21) & 1) + 1) * vtxCompSize[(vat >> 22) & 7];
             }
             break;
-        case 14 :
+        case 14:
             vcd = __GXData->vcdHi;
             vat = __GXData->vatA[vatIdx & 0xFF];
             switch (GET_REG_FIELD(vcd, 2, 2))
             {
-                case 0 : return 0;
-                case 2 : return 1;
-                case 3 : return 2;
-                case 1 : return (((vat >> 0) & 1) + 1) * vtxCompSize[(vat >> 1) & 7];
+                case 0:
+                    return 0;
+                case 2:
+                    return 1;
+                case 3:
+                    return 2;
+                case 1:
+                    return (((vat >> 0) & 1) + 1) * vtxCompSize[(vat >> 1) & 7];
             }
             break;
-        case 15 :
+        case 15:
             vcd = __GXData->vcdHi;
             vat = __GXData->vatA[vatIdx & 0xFF];
             switch (GET_REG_FIELD(vcd, 2, 4))
             {
-                case 0 : return 0;
-                case 2 : return 1;
-                case 3 : return 2;
-                case 1 : return (((vat >> 9) & 1) + 1) * vtxCompSize[(vat >> 10) & 7];
+                case 0:
+                    return 0;
+                case 2:
+                    return 1;
+                case 3:
+                    return 2;
+                case 1:
+                    return (((vat >> 9) & 1) + 1) * vtxCompSize[(vat >> 10) & 7];
             }
             break;
-        case 16 :
+        case 16:
             vcd = __GXData->vcdHi;
             vat = __GXData->vatA[vatIdx & 0xFF];
             switch (GET_REG_FIELD(vcd, 2, 6))
             {
-                case 0 : return 0;
-                case 2 : return 1;
-                case 3 : return 2;
-                case 1 : return (((vat >> 18) & 1) + 1) * vtxCompSize[(vat >> 19) & 7];
+                case 0:
+                    return 0;
+                case 2:
+                    return 1;
+                case 3:
+                    return 2;
+                case 1:
+                    return (((vat >> 18) & 1) + 1) * vtxCompSize[(vat >> 19) & 7];
             }
             break;
-        case 17 :
+        case 17:
             vcd = __GXData->vcdHi;
             vat = __GXData->vatA[vatIdx & 0xFF];
             switch (GET_REG_FIELD(vcd, 2, 8))
             {
-                case 0 : return 0;
-                case 2 : return 1;
-                case 3 : return 2;
-                case 1 : return (((vat >> 27) & 1) + 1) * vtxCompSize[(vat >> 28) & 7];
+                case 0:
+                    return 0;
+                case 2:
+                    return 1;
+                case 3:
+                    return 2;
+                case 1:
+                    return (((vat >> 27) & 1) + 1) * vtxCompSize[(vat >> 28) & 7];
             }
             break;
-        case 18 :
+        case 18:
             vcd = __GXData->vcdHi;
             vat = __GXData->vatA[vatIdx & 0xFF];
             switch (GET_REG_FIELD(vcd, 2, 10))
             {
-                case 0 : return 0;
-                case 2 : return 1;
-                case 3 : return 2;
-                case 1 : return (((vat >> 5) & 1) + 1) * vtxCompSize[(vat >> 6) & 7];
+                case 0:
+                    return 0;
+                case 2:
+                    return 1;
+                case 3:
+                    return 2;
+                case 1:
+                    return (((vat >> 5) & 1) + 1) * vtxCompSize[(vat >> 6) & 7];
             }
             break;
-        case 19 :
+        case 19:
             vcd = __GXData->vcdHi;
             vat = __GXData->vatA[vatIdx & 0xFF];
             switch (GET_REG_FIELD(vcd, 2, 12))
             {
-                case 0 : return 0;
-                case 2 : return 1;
-                case 3 : return 2;
-                case 1 : return (((vat >> 14) & 1) + 1) * vtxCompSize[(vat >> 15) & 7];
+                case 0:
+                    return 0;
+                case 2:
+                    return 1;
+                case 3:
+                    return 2;
+                case 1:
+                    return (((vat >> 14) & 1) + 1) * vtxCompSize[(vat >> 15) & 7];
             }
             break;
-        case 20 :
+        case 20:
             vcd = __GXData->vcdHi;
             vat = __GXData->vatA[vatIdx & 0xFF];
             switch (GET_REG_FIELD(vcd, 2, 14))
             {
-                case 0 : return 0;
-                case 2 : return 1;
-                case 3 : return 2;
-                case 1 : return (((vat >> 23) & 1) + 1) * vtxCompSize[(vat >> 24) & 7];
+                case 0:
+                    return 0;
+                case 2:
+                    return 1;
+                case 3:
+                    return 2;
+                case 1:
+                    return (((vat >> 23) & 1) + 1) * vtxCompSize[(vat >> 24) & 7];
             }
             break;
     }
     return 0;
 }
-
 static void
 __ParseVertexData(u8 vatIdx)
 {
@@ -259,7 +326,6 @@ __ParseVertexData(u8 vatIdx)
         bytesRead += vsize;
     }
 }
-
 void
 __GXShadowDispList(void* list, u32 nbytes)
 {
@@ -291,25 +357,26 @@ __GXShadowDispList(void* list, u32 nbytes)
         vatIdx = cmd & 7;
         switch (cmdOp)
         {
-            case 0 :
-            case 9 : break;
-            case 16 :
-            case 18 :
-            case 19 :
-            case 20 :
-            case 21 :
-            case 22 :
-            case 23 :
+            case 0:
+            case 9:
+                break;
+            case 16:
+            case 18:
+            case 19:
+            case 20:
+            case 21:
+            case 22:
+            case 23:
                 __GXVerifyState(vatIdx);
                 __ParseVertexData(vatIdx);
                 break;
-            case 1 :
+            case 1:
                 if (__ReadMem(&reg8, 1) && __ReadMem(&d32, 4))
                 {
                     __SaveCPRegs(reg8, vatIdx, d32);
                 }
                 break;
-            case 2 :
+            case 2:
                 if (__ReadMem(&reg32, 4))
                 {
                     cnt = GET_REG_FIELD(reg32, 4, 16) + 1;
@@ -326,30 +393,33 @@ __GXShadowDispList(void* list, u32 nbytes)
                     }
                 }
                 break;
-            case 4 :
-            case 5 :
-            case 6 :
-            case 7 :
+            case 4:
+            case 5:
+            case 6:
+            case 7:
                 if (__ReadMem(&reg32, 4))
                 {
                     DPF("\tXF_INDEX_LOAD: = 0x%x\n", reg32);
                     __GXShadowIndexState(cmdOp, reg32);
                 }
                 break;
-            case 8 : OSReport("GX DisplayList: Nested Display Lists\n"); return;
-            case 12 :
-            case 13 :
+            case 8:
+                OSReport("GX DisplayList: Nested Display Lists\n");
+                return;
+            case 12:
+            case 13:
                 if (__ReadMem(&reg32, 4))
                 {
                     DPF("\tSU Bypass = 0x%x\n", reg32);
                     __gxVerif->rasRegs[(reg32 >> 24) & 0xFF] = reg32;
                 }
                 break;
-            default : OSReport("GX DisplayList: Bad Display List Command: %d\n", cmdOp); break;
+            default:
+                OSReport("GX DisplayList: Bad Display List Command: %d\n", cmdOp);
+                break;
         }
     }
 }
-
 void
 __GXShadowIndexState(u32 idx_reg, u32 reg_data)
 {
@@ -380,7 +450,6 @@ __GXShadowIndexState(u32 idx_reg, u32 reg_data)
 
     &data; // needed to match
 }
-
 void
 __GXPrintShadowState(void)
 {
@@ -405,8 +474,10 @@ __GXPrintShadowState(void)
         if (__gxVerif->xfMtxDirty[i])
         {
             OSReport("\tXF_MATRIX[%d] = ", i);
-            OSReport("%f, %f, %f, %f\n", *(f32*)&__gxVerif->xfMtx[i], *(f32*)&__gxVerif->xfMtx[i + 1],
-                     *(f32*)&__gxVerif->xfMtx[i + 2], *(f32*)&__gxVerif->xfMtx[i + 3]);
+            OSReport("%f, %f, %f, %f\n", *(f32*)&__gxVerif->xfMtx[i],
+                     *(f32*)&__gxVerif->xfMtx[i + 1],
+                     *(f32*)&__gxVerif->xfMtx[i + 2],
+                     *(f32*)&__gxVerif->xfMtx[i + 3]);
         }
     }
     OSReport("\n-------------------------------------\n");
@@ -416,7 +487,8 @@ __GXPrintShadowState(void)
         if (__gxVerif->xfNrmDirty[i])
         {
             OSReport("\tXF_NRM_MTX[%d] = ", i);
-            OSReport("%f, %f, %f\n", *(f32*)&__gxVerif->xfMtx[i], *(f32*)&__gxVerif->xfMtx[i + 1],
+            OSReport("%f, %f, %f\n", *(f32*)&__gxVerif->xfMtx[i],
+                     *(f32*)&__gxVerif->xfMtx[i + 1],
                      *(f32*)&__gxVerif->xfMtx[i + 2]);
         }
     }
@@ -433,7 +505,8 @@ __GXPrintShadowState(void)
             }
             for (j = 4; j < 16; j++)
             {
-                OSReport("\t\tparam[%d] = %Lg\n", j, *(f32*)&__gxVerif->xfLight[i + j]);
+                OSReport("\t\tparam[%d] = %Lg\n", j,
+                         *(f32*)&__gxVerif->xfLight[i + j]);
             }
         }
     }
@@ -443,7 +516,8 @@ __GXPrintShadowState(void)
     {
         if (__gxVerif->xfRegsDirty[i])
         {
-            OSReport("\tXF_REG[0x%x] = 0x%x (%f)\n", i, __gxVerif->xfRegs[i], *(f32*)&__gxVerif->xfRegs[i]);
+            OSReport("\tXF_REG[0x%x] = 0x%x (%f)\n", i, __gxVerif->xfRegs[i],
+                     *(f32*)&__gxVerif->xfRegs[i]);
         }
     }
     OSReport("\n-------------------------------------\n");
@@ -454,5 +528,4 @@ __GXPrintShadowState(void)
     }
     OSReport("\n-------------------------------------\n");
 }
-
 #endif

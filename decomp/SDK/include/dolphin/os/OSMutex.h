@@ -7,7 +7,6 @@
 extern "C"
 {
 #endif
-
 typedef struct OSMutex
 {
     /*0x00*/ OSThreadQueue queue;
@@ -15,12 +14,10 @@ typedef struct OSMutex
     /*0x0C*/ s32           count;
     /*0x10*/ OSMutexLink   link;
 } OSMutex;
-
 struct OSCond
 {
     OSThreadQueue queue;
 };
-
 void OSInitMutex(struct OSMutex* mutex);
 void OSLockMutex(struct OSMutex* mutex);
 void OSUnlockMutex(struct OSMutex* mutex);

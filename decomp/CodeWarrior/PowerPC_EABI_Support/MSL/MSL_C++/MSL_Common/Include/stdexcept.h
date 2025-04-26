@@ -1,5 +1,6 @@
 /* Metrowerks Standard Library
- * Copyright ÃÂ¯ÃÂ½C 1995-2001 Metrowerks Corporation.  All rights reserved.
+ * Copyright ÃÂ¯ÃÂ½C 1995-2001 Metrowerks Corporation.  All rights
+ * reserved.
  *
  * $Date: 2001/03/08 21:02:52 $
  * $Revision: 1.13 $
@@ -8,11 +9,11 @@
 // stdexcept.h
 
 #ifndef _STDEXCEPT_H
-#    define _STDEXCEPT_H
+#define _STDEXCEPT_H
 
-#    include <stdexcept>
+#include <stdexcept>
 
-#    ifndef _MSL_NO_CPP_NAMESPACE
+#ifndef _MSL_NO_CPP_NAMESPACE
 using std::domain_error;
 using std::invalid_argument;
 using std::length_error;
@@ -22,7 +23,7 @@ using std::overflow_error;
 using std::range_error;
 using std::runtime_error;
 using std::underflow_error;
-#    endif
+#endif
 
 #endif // _STDEXCEPT_H
 

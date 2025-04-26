@@ -6,9 +6,9 @@
  */
 
 #ifndef _MSL_SIZE_T_H
-#    define _MSL_SIZE_T_H
+#define _MSL_SIZE_T_H
 
-#    include <ansi_parms.h>       /*- mm 970905 -*/
+#include <ansi_parms.h>           /*- mm 970905 -*/
 
 _MSL_BEGIN_NAMESPACE_STD          /*- cc 010409 -*/
     _MSL_BEGIN_EXTERN_C           /*- cc 010409 -*/

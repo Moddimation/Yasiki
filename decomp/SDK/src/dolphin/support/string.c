@@ -1,5 +1,4 @@
 #include <charPipeline/structures/dolphinString.h>
-
 u8
 Strcat(char* str1, char* str2, char* dst)
 {
@@ -35,7 +34,6 @@ Strcat(char* str1, char* str2, char* dst)
     *dstCursor = 0;
     return 1;
 }
-
 void
 Strcpy(char* dst, char* src)
 {
@@ -46,7 +44,6 @@ Strcpy(char* dst, char* src)
     }
     while ((s8)*src != 0);
 }
-
 s8
 Strcmp(char* str1, char* str2)
 {
@@ -70,7 +67,6 @@ Strcmp(char* str1, char* str2)
         }
     }
 }
-
 u32
 Strlen(char* str)
 {

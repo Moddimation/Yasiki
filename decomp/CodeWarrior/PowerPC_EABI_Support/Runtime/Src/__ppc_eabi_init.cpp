@@ -95,9 +95,9 @@ HISTORY
 #define ALLOC_ADDITIONAL_HEAPS 0
 
 #include <__ppc_eabi_init.h>
-#include <__ppc_eabi_linker.h>                                               /* linker-generated symbol declarations */
+#include <__ppc_eabi_linker.h>         /* linker-generated symbol declarations */
 #if ALLOC_ADDITIONAL_HEAPS
-#    include <pool_alloc.h>
+#include <pool_alloc.h>
 #endif
 
 #ifdef __cplusplus
@@ -105,9 +105,9 @@ extern "C"
 {
 #endif
 
-static void                                        __init_cpp(void);
-static void                                        __fini_cpp(void);
-typedef void                                       (*voidfunctionptr)(void); /* ptr to function returning void */
+static void  __init_cpp(void);
+static void  __fini_cpp(void);
+typedef void (*voidfunctionptr)(void); /* ptr to function returning void */
 __declspec(section ".init") extern voidfunctionptr _ctors[];
 __declspec(section ".init") extern voidfunctionptr _dtors[];
 extern void                                        abort(void);
@@ -117,7 +117,6 @@ extern void                                        usr_init();
 #ifdef __cplusplus
 }
 #endif
-
 /***************************************************************************/
 /*
  *	__init_hardware
@@ -176,7 +175,6 @@ __init_hardware(void)
 
         blr
 }
-
 #if ALLOC_ADDITIONAL_HEAPS
 static void
 AllocMoreHeaps(void)
@@ -192,7 +190,6 @@ AllocMoreHeaps(void)
     init_alloc(some_address2, some_size2);
 }
 #endif
-
 asm void
 __init_user(void)
 {
@@ -216,7 +213,6 @@ __init_user(void)
                  */
                 frfree blr
 }
-
 #if defined(__cplusplus) || defined(__VEC__)
 static void
 __init_cpp(void)
@@ -231,7 +227,6 @@ __init_cpp(void)
         (*constructor)();
     }
 }
-
 static void
 __fini_cpp(void)
 {
@@ -248,15 +243,12 @@ __fini_cpp(void)
 #endif
 
 #pragma overload void abort(void);
-
 void
 abort(void)
 {
     _ExitProcess();
 }
-
 #pragma overload void exit(int status);
-
 void
 exit(int status)
 {
@@ -267,7 +259,6 @@ exit(int status)
 #endif
     _ExitProcess();
 }
-
 /*
  *	_ExitProcess
  *
@@ -314,20 +305,20 @@ asm void __flush_cache(register void* address, register unsigned int size)
 **
 ** The MPC 5xx processors do not have data cache.
 */
-#    if !defined(__PPC505__) && !defined(__PPC509__)
+#if !defined(__PPC505__) && !defined(__PPC509__)
 
-#        if !defined(__PPC_GENERIC__)
+#if !defined(__PPC_GENERIC__)
       dcbst 0,
       r5
-#        endif
+#endif
 
-#    endif
+#endif
           sync
 
-#    if !defined(__PPC_GENERIC__)
+#if !defined(__PPC_GENERIC__)
               icbi 0,
       r5
-#    endif
+#endif
 
           addic r5,
       r5,

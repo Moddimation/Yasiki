@@ -2,7 +2,8 @@
 
     .extern init_board
 
-        MMCR0.equ 952 MMCR1.equ 956 ICTC.equ 1019 THRM1.equ 1020 THRM2.equ 1021 THRM3.equ 1022 L2CR
+        MMCR0.equ 952 MMCR1.equ 956 ICTC.equ 1019 THRM1.equ 1020 THRM2.equ 1021 THRM3
+    .equ 1022 L2CR
     .equ 1017
 
     _7XX_VERSION.equ 0x0008;

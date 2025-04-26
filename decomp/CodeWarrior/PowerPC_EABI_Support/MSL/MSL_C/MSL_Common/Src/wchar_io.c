@@ -30,21 +30,20 @@
  *		fwide
  */
 
-#pragma ANSI_strict off           /*- vss 990729 -*/
+#pragma ANSI_strict off       /*- vss 990729 -*/
 
 #include <ansi_parms.h>
 
-#ifndef __NO_WIDE_CHAR            /*- mm 980204 -*/
+#ifndef __NO_WIDE_CHAR        /*- mm 980204 -*/
 
-#    pragma ANSI_strict reset
+#pragma ANSI_strict reset
 
-#    include <stdio.h>
+#include <stdio.h>
 
-#    include "ansi_files.h"
-#    include "critical_regions.h" /*- mm 001013 -*/
-#    include "wchar.h"
-#    include "wstdio.h"
-
+#include "ansi_files.h"
+#include "critical_regions.h" /*- mm 001013 -*/
+#include "wchar.h"
+#include "wstdio.h"
 /*
     This function writes the wide character c
     to the output stream file,
@@ -67,7 +66,6 @@ putwc(wchar_t c, FILE* file)
 
     return (c);
 }
-
 /*
     putwchar is identical to putwc with the
     second argument stdout
@@ -88,7 +86,6 @@ putwchar(wchar_t c)
 
     return (c);
 }
-
 /*
     This function is the same at putwc.
 */
@@ -98,7 +95,6 @@ fputwc(wchar_t c, FILE* file)
 {
     return (putwc(c, file));
 }
-
 /*
     This function gets the wide character c
     from the input stream file,
@@ -133,24 +129,24 @@ getwc(FILE* file)            /*- jcm 971208 -*/
     {
         return (WEOF);       /*- mm 980206 -*/
     }
-    /* threadsafety protection is in fread to add a critical region here would deadlock */
-    if (fread((char*)&c, sizeof(c), 1, file) == 0)  /*- mm 980130 -*/
+    /* threadsafety protection is in fread to add a critical region here would
+     * deadlock */
+    if (fread((char*)&c, sizeof(c), 1, file) == 0) /*- mm 980130 -*/
     {
         return WEOF;
     }
     return (c);
 }
-
 wchar_t
-getwchar(void)                                      /*- jcm 971208 -*/
+getwchar(void)                                     /*- jcm 971208 -*/
 {
-    wchar_t c;                                      /* wide char to hold the final result */
+    wchar_t c;                    /* wide char to hold the final result */
 
-    if (fwide(stdin, 1) <= 0)                       /*- mm 980206 -*/
+    if (fwide(stdin, 1) <= 0)     /*- mm 980206 -*/
     {
-        return (WEOF);                              /*- mm 980206 -*/
+        return (WEOF);            /*- mm 980206 -*/
     }
-    /* fread has threadsafety  */                   /*- mm 001018 -*/
+    /* fread has threadsafety  */ /*- mm 001018 -*/
     if (fread((char*)&c, sizeof(c), 1, stdin) == 0) /*- mm 980102 -*/
     {
         return WEOF;
@@ -158,7 +154,6 @@ getwchar(void)                                      /*- jcm 971208 -*/
 
     return (c);
 }
-
 /*
     This function is the same at getwc.
 */
@@ -168,12 +163,11 @@ fgetwc(FILE* file) /*- jcm 971208 -*/
 {
     wchar_t c;
 
-                   /* getwc calls fread, which has threadsafety, adding critical regions here would
-                      lead to deadlock 	*/				/*- mm 001013 -*/
+    /* getwc calls fread, which has threadsafety, adding critical regions here would
+       lead to deadlock 	*/				/*- mm 001013 -*/
     c = getwc(file);
     return (c);
 }
-
 wchar_t
 ungetwc(wchar_t c, FILE* file)
 {
@@ -183,7 +177,8 @@ ungetwc(wchar_t c, FILE* file)
         return (WEOF);                     /*- mm 980206 -*/
     }
 
-    if (state == __writing || state == __rereading + __ungetc_buffer_size - 1 || c == WEOF)
+    if (state == __writing || state == __rereading + __ungetc_buffer_size - 1 ||
+        c == WEOF)
     {
         return (WEOF);
     }
@@ -207,7 +202,6 @@ ungetwc(wchar_t c, FILE* file)
     __end_critical_region(files_access);   /*- mm 001013 -*/
     return ((wchar_t)c);
 }
-
 /*
     fputws
 
@@ -238,21 +232,21 @@ fputws(const wchar_t* s, FILE* file)
     }
 
     __begin_critical_region(files_access); /*- mm 001013 -*/
-    for (i = 0; s[i] != L'\0'; i++)        /* go through the string until reaching NULL */
+    for (i = 0; s[i] != L'\0'; i++) /* go through the string until reaching NULL */
     {
-        /*errno = 0; 									/* initialize errno to zero */ /*- mm 010404 -*/
-        c = s[i];                                                                      /* get the current character */
+        /*errno = 0; 									/* initialize errno to zero
+         */ /*- mm 010404 -*/
+        c = s[i]; /* get the current character */
 
-        if (__fwrite((void*)&c, sizeof(c), 1, file) == 0)                              /*- mm 001018 -*/
+        if (__fwrite((void*)&c, sizeof(c), 1, file) == 0) /*- mm 001018 -*/
         {
-            retval = WEOF;                                                             /* return wide EOF error */
+            retval = WEOF;                                /* return wide EOF error */
         }
     }
-    __end_critical_region(files_access);                                               /*- mm 001013 -*/
+    __end_critical_region(files_access);                  /*- mm 001013 -*/
 
     return (retval);
 }
-
 /*
     fgetws
 
@@ -283,9 +277,9 @@ fgetws(wchar_t* s, int n, FILE* file)
     wchar_t* retval = s;
     wchar_t  c;
 
-    if (fwide(file, 1) <= 0)                                           /*- mm 980206 -*/
+    if (fwide(file, 1) <= 0)                                 /*- mm 980206 -*/
     {
-        return (NULL);                                                 /*- mm 980206 -*/
+        return (NULL);                                       /*- mm 980206 -*/
     }
 
     if (--n < 0)
@@ -293,11 +287,11 @@ fgetws(wchar_t* s, int n, FILE* file)
         return (NULL);
     }
 
-    __begin_critical_region(files_access);                             /*-mm 001013 -*/
+    __begin_critical_region(files_access);                   /*-mm 001013 -*/
     if (n)
     {
         do {
-            if (__fread((void*)&c, sizeof(c), 1, file) == 0)           /*- mm 001018 -*/
+            if (__fread((void*)&c, sizeof(c), 1, file) == 0) /*- mm 001018 -*/
             {
                 if (file->state.eof && p == s)
                 {
@@ -314,24 +308,24 @@ fgetws(wchar_t* s, int n, FILE* file)
     {
         *p = L'\0';
     }
-    __end_critical_region(files_access);                               /*- mm 001013 -*/
-    return (retval);                                                   /*- mm 001013 -*/
+    __end_critical_region(files_access);                     /*- mm 001013 -*/
+    return (retval);                                         /*- mm 001013 -*/
 }
-
 int
 fwide(FILE* stream, int mode)
 {
     int orientation;
     int result;
 
-    if ((stream == NULL) || (stream->mode.file_kind == __closed_file)) /*- mm 990618 -*/
+    if ((stream == NULL) ||
+        (stream->mode.file_kind == __closed_file))           /*- mm 990618 -*/
     {
-        return 0;                  /* there is no associated stream therefore no orientation */
+        return 0; /* there is no associated stream therefore no orientation */
     }
     orientation = stream->mode.file_orientation;
     switch (orientation)
     {
-        case __unoriented :
+        case __unoriented:
             if (mode > 0)
             {
                 stream->mode.file_orientation = __wide_oriented;
@@ -343,20 +337,24 @@ fwide(FILE* stream, int mode)
             result = mode;
             break;
 
-        case __wide_oriented : result = 1; break;
+        case __wide_oriented:
+            result = 1;
+            break;
 
-        case __char_oriented : result = -1; break;
+        case __char_oriented:
+            result = -1;
+            break;
     }
     return result;
 }
-
 #endif /* ifndef __NO_WIDE_CHAR */ /*- mm 981020 -*/
 
                                    /* Change record:
                                     * JCM 980121 First code release.
-                                    * mm  980206 Added cide to handle wide char unget properly and implementation of fwide.
-                                    * mm  981020 Added __NO_WIDE_CHAR wrappers.
-                                    * mm  990618 Added protection to fwide against a NULL file pointer
-                                    * mm  001018 Added threadsafety protection.
-                                    * mm  010404 Delete local instance of errno that is never really used.
+                                    * mm  980206 Added cide to handle wide char unget properly and implementation of
+                                    * fwide.                                    mm  981020 Added __NO_WIDE_CHAR
+                                    * wrappers.                                    mm  990618 Added protection to                                    fwide
+                                    * against a NULL file pointer                                    mm  001018 Added
+                                    * threadsafety protection.                                    mm                                    010404 Delete local
+                                    * instance of errno that is never really used.
                                     */

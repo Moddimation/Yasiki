@@ -38,7 +38,7 @@
 
 #include "ansi_files.h"
 #include "buffer_io.h"
-#include "critical_regions.h"                            /*- mm 001013 -*/
+#include "critical_regions.h"              /*- mm 001013 -*/
 #include "misc_io.h"
 
 #if !defined(_Old_DSP_IO_Interface)
@@ -98,38 +98,34 @@ __get_char(FILE* file)
 
     return (*file->buffer_ptr++);
 }
-#endif                                                   /* __get_char conditionals */
-
+#endif                                     /* __get_char conditionals */
 int
 fgetc(FILE* file)
 {
-    int retval;                                          /*- mm 001013 -*/
-    __begin_critical_region(files_access);               /*- mm 001013 -*/
-    retval = getc(file);                                 /*- mm 001013 -*/
-    __end_critical_region(files_access);                 /*- mm 001013 -*/
-    return (retval);                                     /*- mm 001013 -*/
+    int retval;                            /*- mm 001013 -*/
+    __begin_critical_region(files_access); /*- mm 001013 -*/
+    retval = getc(file);                   /*- mm 001013 -*/
+    __end_critical_region(files_access);   /*- mm 001013 -*/
+    return (retval);                       /*- mm 001013 -*/
 }
-
 int(getc)(FILE* file)
 {
-    int retval;                                          /*- mm 001013 -*/
-    __begin_critical_region(files_access);               /*- mm 001013 -*/
-    retval = getc(file);                                 /*- mm 001013 -*/
-    __end_critical_region(files_access);                 /*- mm 001013 -*/
-    return (retval);                                     /*- mm 001013 -*/
+    int retval;                            /*- mm 001013 -*/
+    __begin_critical_region(files_access); /*- mm 001013 -*/
+    retval = getc(file);                   /*- mm 001013 -*/
+    __end_critical_region(files_access);   /*- mm 001013 -*/
+    return (retval);                       /*- mm 001013 -*/
 }
-
 #if !defined(_Old_DSP_IO_Interface)
 int(getchar)(void)
 {
-    int retval;                                          /*- mm 001013 -*/
-    __begin_critical_region(files_access);               /*- mm 001013 -*/
-    retval = getchar();                                  /*- mm 001013 -*/
-    __end_critical_region(files_access);                 /*- mm 001013 -*/
-    return (retval);                                     /*- mm 001013 -*/
+    int retval;                            /*- mm 001013 -*/
+    __begin_critical_region(files_access); /*- mm 001013 -*/
+    retval = getchar();                    /*- mm 001013 -*/
+    __end_critical_region(files_access);   /*- mm 001013 -*/
+    return (retval);                       /*- mm 001013 -*/
 }
-#endif                                                   /* getchar conditionals */
-
+#endif                                     /* getchar conditionals */
 char*
 fgets(char* s, int n, FILE* file)
 {
@@ -140,7 +136,7 @@ fgets(char* s, int n, FILE* file)
     {
         return (NULL);
     }
-    __begin_critical_region(files_access);               /*- mm 001013 -*/
+    __begin_critical_region(files_access); /*- mm 001013 -*/
 
     if (n)
     {
@@ -170,7 +166,6 @@ fgets(char* s, int n, FILE* file)
 
     return (s);
 }
-
 char*
 gets(char* s)
 {
@@ -209,21 +204,21 @@ gets(char* s)
 
     return (s);
 }
-
 #if !defined(_Old_DSP_IO_Interface)
 int
 ungetc(int c, FILE* file)
 {
     int state = file->state.io_state;
 
-#    ifndef __NO_WIDE_CHAR                               /*- mm 980205 -*/
+#ifndef __NO_WIDE_CHAR                                   /*- mm 980205 -*/
     if (fwide(file, -1) >= 0)
     {
         return (EOF);
     }
-#    endif /* __NO_WIDE_CHAR */                          /*- mm 980205 -*/
+#endif /* __NO_WIDE_CHAR */                              /*- mm 980205 -*/
 
-    if (state == __writing || state == __rereading + __ungetc_buffer_size - 1 || c == EOF)
+    if (state == __writing || state == __rereading + __ungetc_buffer_size - 1 ||
+        c == EOF)
     {
         return (EOF);
     }
@@ -249,7 +244,6 @@ ungetc(int c, FILE* file)
     return ((unsigned char)c);
 }
 #endif                                                   /* ungetc conditionals */
-
 int
 __ungotten(FILE* file)
 {
@@ -260,9 +254,7 @@ __ungotten(FILE* file)
 
     return (file->ungetc_buffer[file->state.io_state - __rereading]);
 }
-
 #if !defined(_Old_DSP_IO_Interface)
-
 int
 __put_char(int c, FILE* file)
 {
@@ -284,7 +276,7 @@ __put_char(int c, FILE* file)
     {
         if (file->mode.io_mode & __write)
         {
-#    ifndef _No_Disk_File_OS_Support
+#ifndef _No_Disk_File_OS_Support
             if (file->mode.io_mode & __append)
             {
                 if (fseek(file, 0, SEEK_END))
@@ -292,7 +284,7 @@ __put_char(int c, FILE* file)
                     return (0);
                 }
             }
-#    endif
+#endif
 
             file->state.io_state = __writing;
 
@@ -306,7 +298,8 @@ __put_char(int c, FILE* file)
         return (EOF);
     }
 
-    if (file->mode.buffer_mode == _IOFBF || file->buffer_ptr - file->buffer == file->buffer_size)
+    if (file->mode.buffer_mode == _IOFBF ||
+        file->buffer_ptr - file->buffer == file->buffer_size)
     {
         if (__flush_buffer(file, NULL))
         {
@@ -334,100 +327,90 @@ __put_char(int c, FILE* file)
 
     return ((unsigned char)c);
 }
-
-#endif                                                   /* __put_char conditionals */
-
+#endif                                     /* __put_char conditionals */
 int
 fputc(int c, FILE* file)
 {
-    int retval;                                          /*- mm 001013 -*/
-    __begin_critical_region(files_access);               /*- mm 001013 -*/
-    retval = putc(c, file);                              /*- mm 001013 -*/
-    __end_critical_region(files_access);                 /*- mm 001013 -*/
-    return (retval);                                     /*- mm 001013 -*/
+    int retval;                            /*- mm 001013 -*/
+    __begin_critical_region(files_access); /*- mm 001013 -*/
+    retval = putc(c, file);                /*- mm 001013 -*/
+    __end_critical_region(files_access);   /*- mm 001013 -*/
+    return (retval);                       /*- mm 001013 -*/
 }
-
 int(putc)(int c, FILE* file)
 {
-    int retval;                                          /*- mm 001013 -*/
-    __begin_critical_region(files_access);               /*- mm 001013 -*/
-    retval = putc(c, file);                              /*- mm 001013 -*/
-    __end_critical_region(files_access);                 /*- mm 001013 -*/
-    return (retval);                                     /*- mm 001013 -*/
+    int retval;                            /*- mm 001013 -*/
+    __begin_critical_region(files_access); /*- mm 001013 -*/
+    retval = putc(c, file);                /*- mm 001013 -*/
+    __end_critical_region(files_access);   /*- mm 001013 -*/
+    return (retval);                       /*- mm 001013 -*/
 }
-
 #if !defined(_Old_DSP_IO_Interface)
 int(putchar)(int c)
 {
-    int retval;                                          /*- mm 001013 -*/
-    __begin_critical_region(files_access);               /*- mm 001013 -*/
-    retval = putchar(c);                                 /*- mm 001013 -*/
-    __end_critical_region(files_access);                 /*- mm 001013 -*/
-    return (retval);                                     /*- mm 001013 -*/
+    int retval;                            /*- mm 001013 -*/
+    __begin_critical_region(files_access); /*- mm 001013 -*/
+    retval = putchar(c);                   /*- mm 001013 -*/
+    __end_critical_region(files_access);   /*- mm 001013 -*/
+    return (retval);                       /*- mm 001013 -*/
 }
-#endif                                                   /* putchar conditionals */
-
+#endif                                     /* putchar conditionals */
 int
 fputs(const char* s, FILE* file)
 {
     int c;
-    int retval = 0;                                      /*- mm 001013 -*/
-    __begin_critical_region(files_access);               /*- mm 001013 -*/
+    int retval = 0;                        /*- mm 001013 -*/
+    __begin_critical_region(files_access); /*- mm 001013 -*/
     while ((c = *s++) != 0)
     {
         if (putc(c, file) == EOF)
         {
-            retval = EOF;                                /*- mm 001013 -*/
-            break;                                       /*- mm 001013 -*/
+            retval = EOF;                  /*- mm 001013 -*/
+            break;                         /*- mm 001013 -*/
         }
     }
-    __end_critical_region(files_access);                 /*- mm 001013 -*/
-    return (retval);                                     /*- mm 001013 -*/
+    __end_critical_region(files_access);   /*- mm 001013 -*/
+    return (retval);                       /*- mm 001013 -*/
 }
-
 int
 puts(const char* s)
 {
     int   c;
-    int   retval = 0;                                    /*- mm 001013 -*/
+    int   retval = 0;                      /*- mm 001013 -*/
     FILE* file = stdout;
 
-    __begin_critical_region(files_access);               /*- mm 001013 -*/
+    __begin_critical_region(files_access); /*- mm 001013 -*/
     while ((c = *s++) != 0)
     {
         if (putc(c, file) == EOF)
         {
-            retval = EOF;                                /*- mm 001013 -*/
-            break;                                       /*- mm 001013 -*/
+            retval = EOF;                  /*- mm 001013 -*/
+            break;                         /*- mm 001013 -*/
         }
     }
-    if (retval != EOF)                                   /*- mm 001013 -*/
+    if (retval != EOF)                     /*- mm 001013 -*/
     {
-        retval = putc('\n', file);                       /*- mm 001013 -*/
+        retval = putc('\n', file);         /*- mm 001013 -*/
     }
 
-    __end_critical_region(files_access);                 /*- mm 001013 -*/
-    return (retval);                                     /*- mm 001013 -*/
+    __end_critical_region(files_access);   /*- mm 001013 -*/
+    return (retval);                       /*- mm 001013 -*/
 }
-
-                                                         /* Change record:
-                                                          * JFH 950908 First code release.
-                                                          * JFH 951016 Added __ungotten for SIOUX PascalHook
-                                                          * JFH 960108 At the behest of Be, I put in real output line buffering.
-                                                          * JFH 960122 Bracketed getc(), getchar(), putc(), and putchar() by #ifndef __cplusplus
-                                                          *			  (they are inlined in <stdio.h>).
-                                                          * JFH 960212 Added call to __stdio_atexit in __put_char for console files (so they will
-                                                          *			  get flushed and closed properly).
-                                                          * JFH 960219 Added check for closed files to __get_char and __put_char.
-                                                          * JFH 960304 Allowed ungetc to work when a file is in the __neutral io_state.
-                                                          * JFH 960425 Modified __get_char, ungetc, and __ungotten to account for multi-level 'ungetc'.
-                                                          * FS  970612 Added #if __dest_os == __ppc_eabi_bare for Motorola 821
-                                                          * SCM 970710 Removed __ppc_eabi_bare conditions after implementing
-                                                          *			  serial console IO for non-os systems.
-                                                          * MEA 970720 Changed __no_os to _No_Disk_File_OS_Support.
-                                                          * mm  980204 Changes to file structure to support wide characters
-                                                          * mm  981029 Excluded certain functions for __m56800__
-                                                          * US  000504 Added variation of puts() for __m56800__
-                                                          * mm  001013 Added threadsafety to fputs, puts, putc, ungetc, gets, fgets, fgetc,
-                                                          *			  getc, getchar
-                                                          */
+/* Change record:
+ * JFH 950908 First code release.
+ * JFH 951016 Added __ungotten for SIOUX PascalHook
+ * JFH 960108 At the behest of Be, I put in real output line buffering.
+ * JFH 960122 Bracketed getc(), getchar(), putc(), and putchar() by #ifndef
+ *__cplusplus (they are inlined in <stdio.h>). JFH 960212 Added call to
+ *__stdio_atexit in __put_char for console files (so they will get flushed and closed
+ *properly). JFH 960219 Added check for closed files to __get_char and __put_char.
+ * JFH 960304 Allowed ungetc to work when a file is in the __neutral io_state.
+ * JFH 960425 Modified __get_char, ungetc, and __ungotten to account for multi-level
+ *'ungetc'. FS  970612 Added #if __dest_os == __ppc_eabi_bare for Motorola 821 SCM
+ *970710 Removed __ppc_eabi_bare conditions after implementing serial console IO for
+ *non-os systems. MEA 970720 Changed __no_os to _No_Disk_File_OS_Support. mm  980204
+ *Changes to file structure to support wide characters mm  981029 Excluded certain
+ *functions for __m56800__ US  000504 Added variation of puts() for __m56800__ mm
+ *001013 Added threadsafety to fputs, puts, putc, ungetc, gets, fgets, fgetc, getc,
+ *getchar
+ */

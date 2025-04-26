@@ -4,7 +4,6 @@
 
 #include <float.h>
 #include <math.h>
-
 float
 sinhf(float arg)
 {
@@ -17,13 +16,11 @@ sinhf(float arg)
         return arg;
     }
 }
-
 float
 coshf(float arg)
 {
     return .5f * (expf(arg) + expf(-arg));
 }
-
 float
 tanhf(float arg)
 {

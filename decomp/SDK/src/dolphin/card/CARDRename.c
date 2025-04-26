@@ -4,7 +4,6 @@
 #include <dolphin.h>
 
 #include "CARDPrivate.h"
-
 s32
 CARDRenameAsync(s32 chan, const char* old, const char* new, CARDCallback callback)
 {
@@ -43,8 +42,9 @@ CARDRenameAsync(s32 chan, const char* old, const char* new, CARDCallback callbac
             continue;
         }
 
-        if (memcmp(ent->gameName, __CARDDiskID->gameName, sizeof(ent->gameName)) != 0
-            || memcmp(ent->company, __CARDDiskID->company, sizeof(ent->company)) != 0)
+        if (memcmp(ent->gameName, __CARDDiskID->gameName, sizeof(ent->gameName)) !=
+                0 ||
+            memcmp(ent->company, __CARDDiskID->company, sizeof(ent->company)) != 0)
         {
             continue;
         }
@@ -86,7 +86,6 @@ CARDRenameAsync(s32 chan, const char* old, const char* new, CARDCallback callbac
 
     return result;
 }
-
 s32
 CARDRename(s32 chan, char* oldName, char* newName)
 {

@@ -87,18 +87,19 @@
 #include "critical_regions.h" /*- mm 001013 -*/
 
 /*#if _dsp_hostio*/
-#if (__dest_os == __m56800_os || __dest_os == __m56800E_os) && !defined(_Old_DSP_IO_Interface)
+#if (__dest_os == __m56800_os || __dest_os == __m56800E_os) &&                      \
+    !defined(_Old_DSP_IO_Interface)
 
 extern int txtbinFlag;
 #endif
 
 #if __dest_os == __undef_os
-#    error __dest_os undefined
+#error __dest_os undefined
 #endif
 
-#if (__dest_os == __mac_os || __dest_os == __mips_bare || __dest_os == __emb_68k)                                      \
-    && !__option(mpwc_newline)                         /*- vss 980825 -*/
-
+#if (__dest_os == __mac_os || __dest_os == __mips_bare ||                           \
+     __dest_os == __emb_68k) &&                                                     \
+    !__option(mpwc_newline)                            /*- vss 980825 -*/
 void
 __convert_from_newlines(unsigned char* buf, size_t* n) /*- mm 970210 -*/
 {                                                      /*- mm 970210 -*/
@@ -117,7 +118,6 @@ __convert_from_newlines(unsigned char* buf, size_t* n) /*- mm 970210 -*/
         p++;                                           /*- mm 970210 -*/
     } /*- mm 970210 -*/
 }
-
 void
 __convert_to_newlines(unsigned char* buf, size_t* n) /*- mm 970210 -*/
 {                                                    /*- mm 970210 -*/
@@ -136,23 +136,18 @@ __convert_to_newlines(unsigned char* buf, size_t* n) /*- mm 970210 -*/
         p++;                                         /*- mm 970210 -*/
     } /*- mm 970210 -*/
 }
-
 #else
-
 void
 __convert_from_newlines(unsigned char* p, size_t* n)
 {
-#    pragma unused(p, n)
+#pragma unused(p, n)
 }
-
 void
 __convert_to_newlines(unsigned char* p, size_t* n)
 {
-#    pragma unused(p, n)
+#pragma unused(p, n)
 }
-
 #endif
-
 void
 __prep_buffer(FILE* file)
 {
@@ -161,7 +156,6 @@ __prep_buffer(FILE* file)
     file->buffer_len -= file->position & file->buffer_alignment;
     file->buffer_pos = file->position;
 }
-
 int
 __load_buffer(FILE* file, size_t* bytes_loaded, int alignment)
 {
@@ -175,13 +169,15 @@ __load_buffer(FILE* file, size_t* bytes_loaded, int alignment)
     }
 
     /*#if _dsp_hostio	*/
-#if (__dest_os == __m56800_os || __dest_os == __m56800E_os) && !defined(_Old_DSP_IO_Interface)
+#if (__dest_os == __m56800_os || __dest_os == __m56800E_os) &&                      \
+    !defined(_Old_DSP_IO_Interface)
 
     txtbinFlag = file->mode.binary_io;
 
 #endif
 
-    ioresult = (*file->read_proc)(file->handle, file->buffer, (size_t*)&file->buffer_len, file->idle_proc);
+    ioresult = (*file->read_proc)(file->handle, file->buffer,
+                                  (size_t*)&file->buffer_len, file->idle_proc);
 
     if (ioresult == __io_EOF) /*- mm 961031 -*/
     {
@@ -229,7 +225,6 @@ __load_buffer(FILE* file, size_t* bytes_loaded, int alignment)
 
     return (__no_io_error);
 }
-
 int
 __flush_buffer(FILE* file, size_t* bytes_flushed)
 {
@@ -248,12 +243,14 @@ __flush_buffer(FILE* file, size_t* bytes_flushed)
         }
 
                     /*#if _dsp_hostio*/
-#if (__dest_os == __m56800_os || __dest_os == __m56800E_os) && !defined(_Old_DSP_IO_Interface)
+#if (__dest_os == __m56800_os || __dest_os == __m56800E_os) &&                      \
+    !defined(_Old_DSP_IO_Interface)
 
         txtbinFlag = file->mode.binary_io;
 #endif
 
-        ioresult = (*file->write_proc)(file->handle, file->buffer, (size_t*)&file->buffer_len, file->idle_proc);
+        ioresult = (*file->write_proc)(file->handle, file->buffer,
+                                       (size_t*)&file->buffer_len, file->idle_proc);
 
         if (bytes_flushed)
         {
@@ -272,18 +269,18 @@ __flush_buffer(FILE* file, size_t* bytes_flushed)
 
     return (__no_io_error);
 }
-
 int
 setvbuf(FILE* file, char* buff, int mode, size_t size)
 {
     int kind = file->mode.file_kind;
 
-    if (mode == _IONBF) /*- mani 970101 -*/                         /*- mm 970708 -*/
+    if (mode == _IONBF) /*- mani 970101 -*/              /*- mm 970708 -*/
     {
-        fflush(file); /*- mani 970101 -*/                           /*- mm 970708 -*/
+        fflush(file); /*- mani 970101 -*/                /*- mm 970708 -*/
     }
 
-    if (file->state.io_state != __neutral || kind == __closed_file) /*- bkoz 970318 -*/
+    if (file->state.io_state != __neutral ||
+        kind == __closed_file)                           /*- bkoz 970318 -*/
     {
         return (-1);
     }
@@ -300,7 +297,7 @@ setvbuf(FILE* file, char* buff, int mode, size_t size)
         return (-1);
 #endif
 
-    __begin_critical_region(files_access);                          /*- mm 001013 -*/
+    __begin_critical_region(files_access);               /*- mm 001013 -*/
 
     file->mode.buffer_mode = mode;
     file->state.free_buffer = 0;
@@ -312,7 +309,7 @@ setvbuf(FILE* file, char* buff, int mode, size_t size)
 
     if (mode == _IONBF || size < 1)
     {
-        *(file->buffer_ptr) = '\0';                                 /*- mm 970306 -*/
+        *(file->buffer_ptr) = '\0';                      /*- mm 970306 -*/
         return (0);
     }
 
@@ -321,7 +318,7 @@ setvbuf(FILE* file, char* buff, int mode, size_t size)
 #ifndef _No_Disk_File_OS_Support
         if (!(buff = (char*)malloc(size)))
         {
-            __end_critical_region(files_access);                    /*- mm 001013 -*/
+            __end_critical_region(files_access);         /*- mm 001013 -*/
             return (-1);
         }
 
@@ -336,15 +333,16 @@ setvbuf(FILE* file, char* buff, int mode, size_t size)
     file->buffer_ptr = file->buffer;
     file->buffer_size = size;
 
-#if (__dest_os == __mac_os) /*|| __dest_os == __be_os */            /*- cc 010326 -*/
+#if (__dest_os == __mac_os) /*|| __dest_os == __be_os */ /*- cc 010326 -*/
 
-#    define alignment_mask (512L - 1L)
+#define alignment_mask (512L - 1L)
 
     file->buffer_alignment = 0;
 
     if (file->mode.file_kind == __disk_file && !(size & alignment_mask))
     {
-        file->buffer_alignment = alignment_mask;                    /* if buffer is a multiple of 512, take steps */
+        file->buffer_alignment =
+            alignment_mask; /* if buffer is a multiple of 512, take steps */
     }
     /* to align buffers on block bounderies       */
     /*		(see __prep_buffer)                     */
@@ -357,7 +355,6 @@ setvbuf(FILE* file, char* buff, int mode, size_t size)
 
     return (0);
 }
-
 void
 setbuf(FILE* file, char* buff)
 {
@@ -370,14 +367,14 @@ setbuf(FILE* file, char* buff)
         setvbuf(file, 0, _IONBF, 0);
     }
 }
-
 /* Change record:
  * JFH 950824 First code release.
  * JFH 951108 Fixed a small problem in setvbuf where passing a size of 1 always
  *			  caused _IONBF behavior, which was a problem for sscanf of a single-char
  *			  string.
  * JFH 960108 At the behest of Be, I put in real output line buffering.
- * JFH 960119 Removed paranoid (*pos_proc)() calls in __load_buffer and __flush_buffer.
+ * JFH 960119 Removed paranoid (*pos_proc)() calls in __load_buffer and
+ __flush_buffer.
  * JFH 960122 Added casts from (void *) for C++ compatibility.
  * JFH 960304 Added checking to the 'mode' parameter of setvbuf.
  * JFH 960426 Merged Win32 changes in.
@@ -385,7 +382,8 @@ setbuf(FILE* file, char* buff)
  * bkoz961223 line 89 changed from if dest os == mac os
  * mani970101 Make unbuffered output really unbuffered.
  * mm  970210 Straighten out the \n \r schism
- * mm  970306 When setting a v buffer, if size == 0, then set value of 1 char buffer to '\0'
+ * mm  970306 When setting a v buffer, if size == 0, then set value of 1 char buffer
+ to '\0'
  * bkoz970318 line 199 allow setvbuf to work on console files
  * FS  970612 Wrapped _flush_buffer() routine with #if __dest_os == __ppc_eabi_bare
               since this routine is os dependent.
@@ -394,7 +392,8 @@ setbuf(FILE* file, char* buff)
  * mm  970708 Inserted Be changes
  * mm  971031 Adjustment to preserve file->position as a disk position in Windows.
  * jz  971105 Fixes one-off bug, from Jay Zipnick
- * vss 980825 Seemed to have lost the logic when merging these sources - this caused a
+ * vss 980825 Seemed to have lost the logic when merging these sources - this caused
+ a
  *            problem with MPW's newlines
  * beb 990804 Add e68k
  * mm  001013 Threadsafety for setvbuf

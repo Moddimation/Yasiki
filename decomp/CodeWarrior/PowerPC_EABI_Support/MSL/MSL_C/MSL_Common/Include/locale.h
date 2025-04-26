@@ -6,26 +6,26 @@
  */
 
 #ifndef _MSL_LOCALE_H
-#    define _MSL_LOCALE_H
+#define _MSL_LOCALE_H
 
-#    if __MACH__
-#        error You must have the /usr/include access path before the MSL access path
-#    else
+#if __MACH__
+#error You must have the /usr/include access path before the MSL access path
+#else
 
-#        include <clocale>
+#include <clocale>
 
-#        if defined(__cplusplus) && defined(_MSL_USING_NAMESPACE)
+#if defined(__cplusplus) && defined(_MSL_USING_NAMESPACE)
 using std::lconv;
 using std::localeconv;
 using std::setlocale;
-#        endif
+#endif
 
-#    endif /* __MACH__ */
+#endif /* __MACH__ */
 
-#endif     /* _MSL_LOCALE_H */
+#endif /* _MSL_LOCALE_H */
 
-           /* Change record:
-            * hh  971206 Created.
-            * hh  991112 Fixed using bug.
-            * JWW 001208 Added case for targeting Mach-O
-            */
+       /* Change record:
+        * hh  971206 Created.
+        * hh  991112 Fixed using bug.
+        * JWW 001208 Added case for targeting Mach-O
+        */

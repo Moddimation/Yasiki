@@ -29,22 +29,22 @@
  *	Notes
  *	-----
  *
- *		__msl_add and __msl_ladd provide int and long addition with overflow checking. If
- *		overflow occurs, a zero value is returned; otherwise, the sum replaces the
- *		value pointed to by the first argument and a nonzero value is returned.
+ *		__msl_add and __msl_ladd provide int and long addition with overflow
+ *checking. If overflow occurs, a zero value is returned; otherwise, the sum replaces
+ *the value pointed to by the first argument and a nonzero value is returned.
  *
- *		__msl_mul and __msl_lmul provide int and long multiplication with overflow checking
- *		in a similar fashion. Note that a result of INT_MIN or LONG_MIN (whose
+ *		__msl_mul and __msl_lmul provide int and long multiplication with overflow
+ *checking in a similar fashion. Note that a result of INT_MIN or LONG_MIN (whose
  *		magnitudes are 1 greater than INT_MAX and LONG_MAX respectively) is
  *		considered an overflow.
  *
- *		__msl_div and __msl_ldiv provide int and long division/remainder. The definition of
- *		remainder here is different from that of div and ldiv and provides for
- *		more mmathematically consistent modular arithmetic (see Knuth Vol. 1, pp.
+ *		__msl_div and __msl_ldiv provide int and long division/remainder. The
+ *definition of remainder here is different from that of div and ldiv and provides
+ *for more mmathematically consistent modular arithmetic (see Knuth Vol. 1, pp.
  *		37-38).
  *
- *		__msl_mod and __msl_lmod return the same remainder as __msl_div and __msl_ldiv do, but
- *		without the quotient - just a single scalar return value.
+ *		__msl_mod and __msl_lmod return the same remainder as __msl_div and
+ *__msl_ldiv do, but without the quotient - just a single scalar return value.
  *
  *
  */
@@ -53,7 +53,6 @@
 
 #include <limits.h>
 #include <stdlib.h>
-
 int(abs)(int n)
 {
     if (n < 0)
@@ -65,7 +64,6 @@ int(abs)(int n)
         return (n);
     }
 }
-
 long(labs)(long n)
 {
     if (n < 0)
@@ -77,7 +75,6 @@ long(labs)(long n)
         return (n);
     }
 }
-
 /* hh 980122 added long long support */
 #ifdef __MSL_LONGLONG_SUPPORT__                /*- mm 981023 -*/
 long long(llabs)(long long n)
@@ -92,7 +89,6 @@ long long(llabs)(long long n)
     }
 }
 #endif /* #ifdef __MSL_LONGLONG_SUPPORT__	*/ /*- mm 981023 -*/
-
 div_t
 div(int numerator, int denominator)
 {
@@ -119,7 +115,6 @@ div(int numerator, int denominator)
 
     return (value);
 }
-
 ldiv_t
 ldiv(long numerator, long denominator)
 {
@@ -146,7 +141,6 @@ ldiv(long numerator, long denominator)
 
     return (value);
 }
-
 /*- hh 980122 -*/
 #ifdef __MSL_LONGLONG_SUPPORT__                /*- mm 981023 -*/
 lldiv_t
@@ -176,7 +170,6 @@ lldiv(long long numerator, long long denominator)
     return (value);
 }
 #endif /* #ifdef __MSL_LONGLONG_SUPPORT__	*/ /*- mm 981023 -*/
-
 int
 __msl_add(int* x, int y)                       /*- cc 010510 -*/
 {
@@ -198,7 +191,6 @@ __msl_add(int* x, int y)                       /*- cc 010510 -*/
 
     return (1);
 }
-
 int
 __msl_ladd(long* x, long y)                    /*- cc 010510 -*/
 {
@@ -220,7 +212,6 @@ __msl_ladd(long* x, long y)                    /*- cc 010510 -*/
 
     return (1);
 }
-
 /* hh 980122 added long long support */
 #ifdef __MSL_LONGLONG_SUPPORT__                /*- mm 981023 -*/
 int
@@ -245,7 +236,6 @@ __lladd(long long* x, long long y)
     return (1);
 }
 #endif /* #ifdef __MSL_LONGLONG_SUPPORT__	*/ /*- mm 981023 -*/
-
 int
 __msl_mul(int* x, int y)                       /*- cc 010510 -*/
 {
@@ -272,7 +262,6 @@ __msl_mul(int* x, int y)                       /*- cc 010510 -*/
 
     return (1);
 }
-
 int
 __msl_lmul(long* x, long y)                    /*- cc 010510 -*/
 {
@@ -299,7 +288,6 @@ __msl_lmul(long* x, long y)                    /*- cc 010510 -*/
 
     return (1);
 }
-
 /*- hh 980122 -*/
 #ifdef __MSL_LONGLONG_SUPPORT__                /*- mm 981023 -*/
 int
@@ -372,7 +360,6 @@ __msl_div(int x, int y) /*- cc 010510 -*/
 
     return (result);
 }
-
 ldiv_t
 __msl_ldiv(long x, long y)                     /*- cc 010510 -*/
 {
@@ -410,7 +397,6 @@ __msl_ldiv(long x, long y)                     /*- cc 010510 -*/
 
     return (result);
 }
-
 /*- hh 980122 -*/
 #ifdef __MSL_LONGLONG_SUPPORT__                /*- mm 981023 -*/
 lldiv_t
@@ -451,7 +437,6 @@ __lldiv(long long x, long long y)
     return (result);
 }
 #endif /* #ifdef __MSL_LONGLONG_SUPPORT__	*/ /*- mm 981023 -*/
-
 int
 __msl_mod(int x, int y)                        /*- cc 010510 -*/
 {
@@ -485,7 +470,6 @@ __msl_mod(int x, int y)                        /*- cc 010510 -*/
 
     return (r);
 }
-
 long
 __msl_lmod(long x, long y)                     /*- cc 010510 -*/
 {
@@ -519,7 +503,6 @@ __msl_lmod(long x, long y)                     /*- cc 010510 -*/
 
     return (r);
 }
-
 /* hh 980122 added long long support */
 #ifdef __MSL_LONGLONG_SUPPORT__                /*- mm 981023 -*/
 long long
@@ -562,16 +545,11 @@ __llmod(long long x, long long y)
  * JFH 951005 Added __msl_add, __msl_ladd, etc. - primarily for time.c
  * JFH 960214 Brackets abs() and labs() by #if !(__POWERPC__ && __cplusplus)
  *			  because they are inlined in <stdlib.h> under those conditions.
- * hh  980205 undid previous #if because this file must always be compiled C.  __cplusplus is
- *            never defined.
- * hh  980122 added long long support
- * mm  981023 added wrappers round long long support
- * cc  010510 Changed __add to __msl_add
- * cc  010510 Changed __div to __msl_div
- * cc  010510 Changed __ladd to __msl_ladd
- * cc  010510 Changed __mul to __msl_mul
- * cc  010510 Changed __lmul to __msl_lmul
- * cc  010510 Changed __ldiv to __msl_ldiv
- * cc  010510 Changed __mod to __msl_mod
- * cc  010510 Changed __lmod to __msl_lmod
+ * hh  980205 undid previous #if because this file must always be compiled C.
+ *__cplusplus is never defined. hh  980122 added long long support mm  981023 added
+ *wrappers round long long support cc  010510 Changed __add to __msl_add cc  010510
+ *Changed __div to __msl_div cc  010510 Changed __ladd to __msl_ladd cc  010510
+ *Changed __mul to __msl_mul cc  010510 Changed __lmul to __msl_lmul cc  010510
+ *Changed __ldiv to __msl_ldiv cc  010510 Changed __mod to __msl_mod cc  010510
+ *Changed __lmod to __msl_lmod
  */

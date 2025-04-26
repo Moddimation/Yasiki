@@ -1,5 +1,6 @@
 /* Metrowerks Standard Library
- * Copyright ÃÂ¯ÃÂ½C 1995-2001 Metrowerks Corporation.  All rights reserved.
+ * Copyright ÃÂ¯ÃÂ½C 1995-2001 Metrowerks Corporation.  All rights
+ * reserved.
  *
  * $Date: 2001/03/08 20:54:08 $
  * $Revision: 1.4 $
@@ -17,15 +18,15 @@
 */
 
 #ifndef _HASH_MAP_H
-#    define _HASH_MAP_H
+#define _HASH_MAP_H
 
-#    include <hash_fun.h>
-#    include <hash_map>
+#include <hash_fun.h>
+#include <hash_map>
 
-#    ifndef _MSL_NO_CPP_NAMESPACE
+#ifndef _MSL_NO_CPP_NAMESPACE
 using Metrowerks::hash_map;
 using Metrowerks::hash_multimap;
-#    endif
+#endif
 
 #endif // _HASH_MAP_H
 

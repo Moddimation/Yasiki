@@ -21,8 +21,8 @@ HISTORY
 /***************************************************************************/
 
 #if __MWERKS__
-#    pragma exceptions off
-#    pragma internal on
+#pragma exceptions off
+#pragma internal on
 #endif
 
 #include <__ppc_eabi_linker.h> /* linker-generated symbol declarations */
@@ -42,7 +42,6 @@ extern void suspend(void);
 #endif
 
 static int fragmentID = -2;    /* ID given to fragment by exception-handling		*/
-
                                /* valid numbers are 0 - MAX_INT; if -1 then		*/
 /* too many fragments were loaded					*/
 
@@ -54,7 +53,6 @@ GetR2(void)
      */
     nofralloc mr r3, r2 blr
 }
-
 extern void
 __init_cpp_exceptions(void)
 {
@@ -75,7 +73,6 @@ __init_cpp_exceptions(void)
         fragmentID = __register_fragment(_eti_init_info, R2);
     }
 }
-
 extern void
 __fini_cpp_exceptions(void)
 {
@@ -85,11 +82,13 @@ __fini_cpp_exceptions(void)
         fragmentID = -2;
     }
 }
-
 #if __MWERKS__ && __PPC_EABI__
-__declspec(section ".ctors") static void* const __init_cpp_exceptions_reference = __init_cpp_exceptions;
-#    if __dest_os != __eppc_vxworks
-__declspec(section ".dtors") static void* const __destroy_global_chain_reference = __destroy_global_chain;
-__declspec(section ".dtors") static void* const __fini_cpp_exceptions_reference = __fini_cpp_exceptions;
-#    endif
+__declspec(section ".ctors") static void* const __init_cpp_exceptions_reference =
+    __init_cpp_exceptions;
+#if __dest_os != __eppc_vxworks
+__declspec(section ".dtors") static void* const __destroy_global_chain_reference =
+    __destroy_global_chain;
+__declspec(section ".dtors") static void* const __fini_cpp_exceptions_reference =
+    __fini_cpp_exceptions;
+#endif
 #endif

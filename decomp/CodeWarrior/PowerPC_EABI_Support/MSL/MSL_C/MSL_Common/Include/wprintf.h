@@ -6,11 +6,11 @@
  */
 
 #ifndef _MSL_WPRINTF_H
-#    define _MSL_WPRINTF_H
+#define _MSL_WPRINTF_H
 
-#    include <ansi_parms.h>
-#    include <file_struc.h>
-#    include <va_list.h>
+#include <ansi_parms.h>
+#include <file_struc.h>
+#include <va_list.h>
 
 _MSL_BEGIN_NAMESPACE_STD                                      /*- cc 010409 -*/
     _MSL_BEGIN_EXTERN_C                                       /*- cc 010409 -*/
@@ -26,7 +26,7 @@ _MSL_IMP_EXP_C int vwprintf(const wchar_t*, va_list);
 _MSL_END_EXTERN_C                                             /*- cc 010409 -*/
     _MSL_END_NAMESPACE_STD                                    /*- cc 010409 -*/
 
-#endif                                                        /* ifndef _MSL_WPRINTF_H */
+#endif /* ifndef _MSL_WPRINTF_H */
 
     /* Change record:
      * mf  990715 remove arg names in prototypes

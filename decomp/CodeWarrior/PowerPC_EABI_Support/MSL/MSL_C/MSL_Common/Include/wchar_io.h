@@ -6,11 +6,11 @@
  */
 
 #ifndef _MSL_WCHAR_IO_H
-#    define _MSL_WCHAR_IO_H
+#define _MSL_WCHAR_IO_H
 
-#    include <ansi_parms.h>
-#    include <file_struc.h>                         /*- mm 990806 -*/
-#    include <wchar_t.h>                            /*- mm 990807 -*/
+#include <ansi_parms.h>
+#include <file_struc.h>                             /*- mm 990806 -*/
+#include <wchar_t.h>                                /*- mm 990807 -*/
 
 _MSL_BEGIN_NAMESPACE_STD                            /*- cc 010409 -*/
     _MSL_BEGIN_EXTERN_C                             /*- cc 010409 -*/

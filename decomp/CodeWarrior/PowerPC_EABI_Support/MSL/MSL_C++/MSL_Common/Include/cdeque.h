@@ -1,5 +1,6 @@
 /* Metrowerks Standard Library
- * Copyright ÃÂ¯ÃÂ½C 1995-2001 Metrowerks Corporation.  All rights reserved.
+ * Copyright ÃÂ¯ÃÂ½C 1995-2001 Metrowerks Corporation.  All rights
+ * reserved.
  *
  * $Date: 2001/03/08 20:52:56 $
  * $Revision: 1.4 $
@@ -31,13 +32,13 @@
 //
 
 #ifndef _CDEQUE_H
-#    define _CDEQUE_H
+#define _CDEQUE_H
 
-#    include <cdeque>
+#include <cdeque>
 
-#    ifndef _MSL_NO_CPP_NAMESPACE
+#ifndef _MSL_NO_CPP_NAMESPACE
 using Metrowerks::cdeque;
-#    endif
+#endif
 
 #endif // _CDEQUE_H
 

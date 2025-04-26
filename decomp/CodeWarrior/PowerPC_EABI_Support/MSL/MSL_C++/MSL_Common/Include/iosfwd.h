@@ -1,5 +1,6 @@
 /* Metrowerks Standard Library
- * Copyright ÃÂ¯ÃÂ½C 1995-2001 Metrowerks Corporation.  All rights reserved.
+ * Copyright ÃÂ¯ÃÂ½C 1995-2001 Metrowerks Corporation.  All rights
+ * reserved.
  *
  * $Date: 2001/03/08 20:54:57 $
  * $Revision: 1.14 $
@@ -7,15 +8,15 @@
 
 // iosfwd.h             // hh 971207 Changed filename from iosfwd to iosfwd.h
 
-#ifndef _IOSFWD_H                 // hh 971207 added standard include guards
-#    define _IOSFWD_H
+#ifndef _IOSFWD_H             // hh 971207 added standard include guards
+#define _IOSFWD_H
 
-#    include <iosfwd>
+#include <iosfwd>
 
-#    ifndef _MSL_NO_CPP_NAMESPACE // hh 971207 Added backward compatibility
+#ifndef _MSL_NO_CPP_NAMESPACE // hh 971207 Added backward compatibility
 using std::allocator;
 using std::char_traits;
-#        ifndef _MSL_NO_IO
+#ifndef _MSL_NO_IO
 using std::basic_filebuf;
 using std::basic_fstream;
 using std::basic_ifstream;
@@ -46,7 +47,7 @@ using std::streambuf;
 using std::streampos;
 using std::stringbuf;
 using std::stringstream;
-#            ifndef _MSL_NO_WCHART_CPP_SUPPORT
+#ifndef _MSL_NO_WCHART_CPP_SUPPORT
 using std::wfilebuf;
 using std::wfstream;
 using std::wifstream;
@@ -61,11 +62,11 @@ using std::wstreambuf;
 using std::wstreampos;
 using std::wstringbuf;
 using std::wstringstream;
-#            endif
-#        endif
-#    endif
+#endif
+#endif
+#endif
 
-#endif                            // _IOSFWD_H
+#endif                        // _IOSFWD_H
 
 // hh 971207 Changed filename from iosfwd to iosfwd.h
 // hh 971207 added standard include guards

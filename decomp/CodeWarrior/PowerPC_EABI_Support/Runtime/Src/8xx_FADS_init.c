@@ -116,8 +116,8 @@
 #define CacheEnableCmd          0x0200 // DCache_Enable Command
 #define CacheEnableBit          0x8000 // Cache Enable bit in I/DC_CST
 
-#pragma section all_types                                                                                              \
-    ".init"                                                                                                            \
+#pragma section all_types                                                           \
+    ".init"                                                                         \
     ".init"
 
 #ifdef __cplusplus
@@ -151,8 +151,9 @@ unsigned long UpmATable[] = {
     // /* offsets 6-7 not used */
     0xffffffff, 0xffffffff,
     // /* DRAM 70ns - burst read. (offset 8 in upm RAM) */
-    0x0fffcc24, 0x0fffcc04, 0x08ffcc04, 0x00ffcc04, 0x00ffcc08, 0x0cffcc44, 0x00ffec0c, 0x03ffec00, 0x00ffec44,
-    0x00ffcc08, 0x0cffcc44, 0x00ffec04, 0x00ffec00, 0x3fffec47,
+    0x0fffcc24, 0x0fffcc04, 0x08ffcc04, 0x00ffcc04, 0x00ffcc08, 0x0cffcc44,
+    0x00ffec0c, 0x03ffec00, 0x00ffec44, 0x00ffcc08, 0x0cffcc44, 0x00ffec04,
+    0x00ffec00, 0x3fffec47,
     // /* offsets 16-17 not used */
     0xffffffff, 0xffffffff,
     // /* DRAM 70ns - single write. (offset 18 in upm RAM) */
@@ -160,12 +161,13 @@ unsigned long UpmATable[] = {
     // /* offsets 1d-1f not used */
     0xffffffff, 0xffffffff, 0xffffffff,
     // /* DRAM 70ns - burst write. (offset 20 in upm RAM) */
-    0x0fafcc24, 0x0fafcc04, 0x08afcc00, 0x07afcc4c, 0x08afcc00, 0x07afcc4c, 0x08afcc00, 0x07afcc4c, 0x08afcc00,
-    0x37afcc47,
+    0x0fafcc24, 0x0fafcc04, 0x08afcc00, 0x07afcc4c, 0x08afcc00, 0x07afcc4c,
+    0x08afcc00, 0x07afcc4c, 0x08afcc00, 0x37afcc47,
     // /* offsets 2a-2f not used */
     0xffffffff, 0xffffffff, 0xffffffff, 0xffffffff, 0xffffffff, 0xffffffff,
     // /* refresh 70ns. (offset 30 in upm RAM) */
-    0xe0ffcc84, 0x00ffcc04, 0x00ffcc04, 0x0fffcc04, 0x7fffcc04, 0xffffcc86, 0xffffcc05,
+    0xe0ffcc84, 0x00ffcc04, 0x00ffcc04, 0x0fffcc04, 0x7fffcc04, 0xffffcc86,
+    0xffffcc05,
     // /* offsets 37-3b not used */
     0xffffffff, 0xffffffff, 0xffffffff, 0xffffffff, 0xffffffff,
     // /* exception. (offset 3c in upm RAM) */
@@ -176,12 +178,13 @@ unsigned long UpmATable[] = {
 
 unsigned long UpmBTable[] = {
     // /* SDRAM - single read. (offsets 0x00-0x07 in upm RAM (3-4 not used)) */
-    0x0126cc04, 0x0fb98c00, 0x1ff74c45, 0xffffffff, 0xffffffff, 0x1fe77c34, 0xefaabc34, 0x1fa57c35,
+    0x0126cc04, 0x0fb98c00, 0x1ff74c45, 0xffffffff, 0xffffffff, 0x1fe77c34,
+    0xefaabc34, 0x1fa57c35,
     // /* SDRAM - burst read. (offsets 0x08-0x17 in upm RAM) */
     0x0026fc04, 0x10adfc00, 0xf0affc00, 0xf1affc00, 0xefbbbc00, 0x1ff77c45,
     // /* offsets 0x0e-0x17 not used */
-    0xffffffff, 0xffffffff, 0xffffffff, 0xffffffff, 0xffffffff, 0xffffffff, 0xffffffff, 0xffffffff, 0xffffffff,
-    0xffffffff,
+    0xffffffff, 0xffffffff, 0xffffffff, 0xffffffff, 0xffffffff, 0xffffffff,
+    0xffffffff, 0xffffffff, 0xffffffff, 0xffffffff,
     // /* SDRAM - single write. (offsets 0x18-0x1f in upm RAM) */
     0x0e26bc04, 0x01b93c00, 0x1ff77c45,
     // /* offsets 0x1b-0x1f not used */
@@ -189,18 +192,18 @@ unsigned long UpmBTable[] = {
     // /* SDRAM - burst write. (offsets 0x20-0x2f in upm RAM) */
     0x0e26bc00, 0x10ad7c00, 0xf0affc00, 0xf0affc00, 0xe1bbbc04, 0x1ff77c45,
     // /* offsets 0x26-0x2f not used */
-    0xffffffff, 0xffffffff, 0xffffffff, 0xffffffff, 0xffffffff, 0xffffffff, 0xffffffff, 0xffffffff, 0xffffffff,
-    0xffffffff,
+    0xffffffff, 0xffffffff, 0xffffffff, 0xffffffff, 0xffffffff, 0xffffffff,
+    0xffffffff, 0xffffffff, 0xffffffff, 0xffffffff,
     // /* refresh (offsets 0x30-0x3b in upm RAM) */
     0x1ff5fc84, 0xfffffc04, 0xfffffc84, 0xfffffc05,
     // /* offsets 0x34-0x3b not used */
-    0xffffffff, 0xffffffff, 0xffffffff, 0xffffffff, 0xffffffff, 0xffffffff, 0xffffffff, 0xffffffff,
+    0xffffffff, 0xffffffff, 0xffffffff, 0xffffffff, 0xffffffff, 0xffffffff,
+    0xffffffff, 0xffffffff,
     // /* exception. (offsets 0x3c-0x3f in upm RAM) */
     0x7ffffc07,
     // /* offset 3d-3f not used */
     0xffffffff, 0xffffffff, 0xffffffff
 };
-
 asm void
 __reset_ROM()
 {
@@ -210,7 +213,6 @@ __reset_ROM()
             tlbsync // wait for tlbia to complete
                 b __start
 }
-
 asm void
 __reset(void)
 {
@@ -231,7 +233,6 @@ __reset(void)
             ori r3,
         r3, __reset_ROM @l mtlr r3 blr // effectively falls through...
 }
-
 asm void
 usr_init()
 {
@@ -281,59 +282,60 @@ ADSInit:
             ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
             UPMAInit : lis r5,
-                       UpmATable @h                  // point R5 to paramenter table
+                       UpmATable @h // point R5 to paramenter table
                            ori r5,
                        r5,
                        UpmATable @l li r7,
-                       0x0100                        // table size is 0x100
+                       0x0100       // table size is 0x100
                        add r7,
                        r7,
                        r5 lis r6,
-                       0x0000                        // Command: OP=Write, UPMA, MAD=0
+                       0x0000       // Command: OP=Write, UPMA, MAD=0
 
-                       UpmWriteLoop : lwz r3,
-                                      0(r5)          // get data from table
-                                      stw r3,
-                                      MDR(r4)        // store the data to MD register
-                                      stw r6,
-                                      MCR(r4)        // issue command to MCR register
-                                      addi r5,
-                                      r5,
-                                      4              // next entry in the table
-                                      addi r6,
-                                      r6,
-                                      1              // next MAD address
-                                      cmpw cr0,
-                                      r5,
-                                      r7             // done yet ?
-                                          blt UpmWriteLoop
+                       UpmWriteLoop
+      : lwz r3,
+        0(r5)                       // get data from table
+        stw r3,
+        MDR(r4)                     // store the data to MD register
+        stw r6,
+        MCR(r4)                     // issue command to MCR register
+        addi r5,
+        r5,
+        4                           // next entry in the table
+        addi r6,
+        r6,
+        1                           // next MAD address
+        cmpw cr0,
+        r5,
+        r7                          // done yet ?
+            blt UpmWriteLoop
 
-                                              UPMBInit : andis.r6,
-                                      r6,
-                                      0x0080         // have we already done UPMB?
-                                      bne UMPInitEnd // If so, UPM initializion is complete
+                UPMBInit : andis.r6,
+        r6,
+        0x0080                      // have we already done UPMB?
+        bne UMPInitEnd              // If so, UPM initializion is complete
 
-                                          lis r5,
-                                      UpmBTable @h   // point R5 to paramenter table
-                                          ori r5,
-                                      r5,
-                                      UpmBTable @l li r7,
-                                      0x0100 add      r7,
-                                      r7,
-                                      r5 lis r6,
-                                      0x0080         // Command: OP=Write, UPMB, MAD=0
-                                      b UpmWriteLoop
+            lis r5,
+        UpmBTable @h                // point R5 to paramenter table
+            ori r5,
+        r5,
+        UpmBTable @l li r7,
+        0x0100 add      r7,
+        r7,
+        r5 lis r6,
+        0x0080                      // Command: OP=Write, UPMB, MAD=0
+        b UpmWriteLoop
 
-                                          UMPInitEnd :
+            UMPInitEnd :
 
 #if TARGET_SYSTEM_FREQUENCY <= 25
       li r3,
-      0x0800                                         // MPTPR = 0x0800 (16bit register)
+      0x0800                        // MPTPR = 0x0800 (16bit register)
       sth r3,
       MPTPR(r4)
 
           lis r3,
-      0xc0a2                                         // MAMR = 0xc0a21114
+      0xc0a2                        // MAMR = 0xc0a21114
       ori r3,
       r3,
       0x1114 stw r3,
@@ -674,71 +676,69 @@ ADSInit:
 // Set the ADS board to 24MHz from 32.768 KHZ
 #if TARGET_SYSTEM_FREQUENCY == 24
       lis r3,
-      0x2dc0       // multiply factor from 32.768KHZ
-#endif             // TARGET_SYSTEM_FREQUENCY ==  24
+      0x2dc0              // multiply factor from 32.768KHZ
+#endif                    // TARGET_SYSTEM_FREQUENCY ==  24
 
-      SetPLL
-      : stw r3,
-        PLPRCR(r4) // set the PLL register
+      SetPLL : stw r3,
+               PLPRCR(r4) // set the PLL register
 
-        ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-        //
-        // System Interface Unit (SIU) Registers Programming
-        // -------------------------------------------------
-        //
-        ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+               ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+               //
+               // System Interface Unit (SIU) Registers Programming
+               // -------------------------------------------------
+               //
+               ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-        ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-        //
-        // Initialize the SIU Configuration Register (SIUMCR)
-        //
-        ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+               ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+               //
+               // Initialize the SIU Configuration Register (SIUMCR)
+               //
+               ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-        lwz r3,
-        SIUMCR(r4) //  SIUMCR = The old value bitwize
-                   //           ored with 0x00032640
-                   //  For MPC 821 ADS, 25MHz
-        addis r5,
-        r0,
-        0x0003 ori r5,
-        r5,
-        0x2640 or r3,
-        r3,
-        r5 stw r3,
-        SIUMCR(r4)
+               lwz r3,
+               SIUMCR(r4) //  SIUMCR = The old value bitwize
+                          //           ored with 0x00032640
+                          //  For MPC 821 ADS, 25MHz
+               addis r5,
+               r0,
+               0x0003 ori r5,
+               r5,
+               0x2640 or r3,
+               r3,
+               r5 stw r3,
+               SIUMCR(r4)
 
-        ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-        //
-        // Initialize the Timebase Status and Control Register (TBSCR)
-        //
-        ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+               ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+               //
+               // Initialize the Timebase Status and Control Register (TBSCR)
+               //
+               ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-        //	li         r3,0x00c2	//  TBSCR = 0x00c2 (16bit register)
-        //	sth        r3,TBSCR(r4)
+               //	li         r3,0x00c2	//  TBSCR = 0x00c2 (16bit register)
+               //	sth        r3,TBSCR(r4)
 
-        ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-        //
-        // Initialize the Real-Time Clock Status and Control Register (RTCSC)
-        //
-        ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+               ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+               //
+               // Initialize the Real-Time Clock Status and Control Register (RTCSC)
+               //
+               ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-        //	li         r3,0x01c2    //  RTCSC = 0x01c2 (16bit register)
-        //	sth        r3,RTCSC(r4)
+               //	li         r3,0x01c2    //  RTCSC = 0x01c2 (16bit register)
+               //	sth        r3,RTCSC(r4)
 
-        ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-        //
-        // Initialize the Periodic Interrupt and Control Register (PISCR)
-        //
-        ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+               ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+               //
+               // Initialize the Periodic Interrupt and Control Register (PISCR)
+               //
+               ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-        li r3,
-        0x0082 //  PISCR = 0x0082 (16bit register)
-        sth r3,
-        PISCR(r4)
+               li r3,
+               0x0082 //  PISCR = 0x0082 (16bit register)
+               sth r3,
+               PISCR(r4)
 
-            blr
+                   blr
 }
-
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Cache Initialization
 //
@@ -760,7 +760,6 @@ ADSInit:
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 #pragma section code_type ".init"
-
 asm void
 CacheInit()
 {
@@ -768,70 +767,72 @@ CacheInit()
 
         // If Instruction cache was enabled, disable and invalidate all
         ICacheInit : mfspr r3,
-                     IC_CST                                        // read I-cache CSR
+                     IC_CST                          // read I-cache CSR
                          andis.r3,
                      r3,
-                     CacheEnableBit beq ICacheUnlock               // no, Icache was disabled
+                     CacheEnableBit beq ICacheUnlock // no, Icache was disabled
 
                          lis               r3,
                      CacheDisableCmd mtspr IC_CST,
-                     r3                                            // disable Icache
+                     r3                              // disable Icache
                          isync
 
                              ICacheUnlock : lis                     r3,
                                             CacheUnlockAllCmd mtspr IC_CST,
-                                            r3                     // Unlock Icache
+                                            r3       // Unlock Icache
                                                 isync
 
-                                                    ICacheInv : lis                  r3,
-                                                                CacheInvAllCmd mtspr IC_CST,
-                                                                r3 // Invalidate Icache
-                                                                    isync
+                                                    ICacheInv
+      : lis                                         r3,
+        CacheInvAllCmd mtspr                        IC_CST,
+        r3                                           // Invalidate Icache
+            isync
 
-                                                                        // ICacheEnable:
-                                                                        //    lis     r3,CacheEnableCmd
-                                                                        //    mtspr   r3,IC_CST       // Enable Icache
-                                                                        //    isync
+                                                     // ICacheEnable:
+                //    lis     r3,CacheEnableCmd
+                //    mtspr   r3,IC_CST       // Enable Icache
+                //    isync
 
-                                                                        DCacheInit : DCacheUnlock
-      : lis                                                             r3,
-        CacheUnlockAllCmd sync mtspr                                    DC_CST,
-        r3                                                              // Unlock Dcache
+                                     DCacheInit : DCacheUnlock
+      : lis                          r3,
+        CacheUnlockAllCmd sync mtspr DC_CST,
+        r3                             // Unlock Dcache
 
             andis.r8,
         r8,
-        CacheEnableBit                                                  // Was DCache enabled ?
-            beq DCacheInv                                               // no, Dcache was disabled
+        CacheEnableBit                 // Was DCache enabled ?
+            beq DCacheInv              // no, Dcache was disabled
 
                 DCacheFlushAll : li r3,
-                                 0                                      // Read 1 word per cache line
-                                                                        // for 800 lines
+                                 0     // Read 1 word per cache line
+                                       // for 800 lines
                                  li r4,
-                                 256                                    // 2 ways, 128 sets per way
+                                 256   // 2 ways, 128 sets per way
                                  DCacheFlushLoop : addic.r4,
                                  r4,
-                                 -1                                     // decrementer, set cc bit
+                                 -1    // decrementer, set cc bit
                                  lwz r5,
-                                 0(r3)                                  // access memory
+                                 0(r3) // access memory
                                  dcbf 0,
-                                 r3                                     // flush the line
+                                 r3    // flush the line
                                      addi r3,
                                  r3,
-                                 16                                     // next line
+                                 16    // next line
                                  bgt DCacheFlushLoop
 
-                                     DCacheDisable : lis                        r3,
-                                                     CacheDisableCmd sync mtspr DC_CST,
-                                                     r3                 // disable Dcache
+                                     DCacheDisable
+      : lis                          r3,
+        CacheDisableCmd sync mtspr   DC_CST,
+        r3                             // disable Dcache
 
-                                                         DCacheInv : lis                       r3,
-                                                                     CacheInvAllCmd sync mtspr DC_CST,
-                                                                     r3 // Invalidate Dcache
+            DCacheInv : lis                       r3,
+                        CacheInvAllCmd sync mtspr DC_CST,
+                        r3             // Invalidate Dcache
 
-                                                                        // DCacheEnable:
-                                                                     //    lis     r3,CacheEnableCmd
-                                                                     //    sync
-                                                                     //    mtspr   DC_CST,r3       // Enable Icache
+                                       // DCacheEnable:
+                        //    lis     r3,CacheEnableCmd
+                        //    sync
+                        //    mtspr   DC_CST,r3       // Enable Icache
 
-                                                                     blr
+                        blr
 }

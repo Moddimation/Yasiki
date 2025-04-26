@@ -1,5 +1,6 @@
 /* Metrowerks Standard Library
- * Copyright ÃÂ¯ÃÂ½C 1995-2001 Metrowerks Corporation.  All rights reserved.
+ * Copyright ÃÂ¯ÃÂ½C 1995-2001 Metrowerks Corporation.  All rights
+ * reserved.
  *
  * $Date: 2001/04/02 18:28:40 $
  * $Revision: 1.16 $
@@ -8,7 +9,7 @@
 // RefCountedPtrArray.h
 
 #ifndef _REFCOUNTEDPTR_H
-#    define _REFCOUNTEDPTR_H
+#define _REFCOUNTEDPTR_H
 
 /*
     WARNING:  This is a non-standard header and class.
@@ -26,35 +27,35 @@
         form of delete should be used, or the array form.  The default is single.
 */
 
-#    include <mslconfig>
+#include <mslconfig>
 
-#    ifndef RC_INVOKED
+#ifndef RC_INVOKED
 
-#        pragma options align = native
+#pragma options align = native
 
-#        ifdef _MSL_FORCE_ENUMS_ALWAYS_INT
-#            if _MSL_FORCE_ENUMS_ALWAYS_INT
-#                pragma enumsalwaysint on
-#            else
-#                pragma enumsalwaysint off
-#            endif
-#        endif
+#ifdef _MSL_FORCE_ENUMS_ALWAYS_INT
+#if _MSL_FORCE_ENUMS_ALWAYS_INT
+#pragma enumsalwaysint on
+#else
+#pragma enumsalwaysint off
+#endif
+#endif
 
-#        ifdef _MSL_FORCE_ENABLE_BOOL_SUPPORT
-#            if _MSL_FORCE_ENABLE_BOOL_SUPPORT
-#                pragma bool on
-#            else
-#                pragma bool off
-#            endif
-#        endif
+#ifdef _MSL_FORCE_ENABLE_BOOL_SUPPORT
+#if _MSL_FORCE_ENABLE_BOOL_SUPPORT
+#pragma bool on
+#else
+#pragma bool off
+#endif
+#endif
 
-#        ifndef _MSL_NO_CPP_NAMESPACE
+#ifndef _MSL_NO_CPP_NAMESPACE
 namespace std
 {
-#        endif
-
+#endif
 // rebind members in _Single and _Array aid in auto_ptr conversions from auto_ptr<X>
-// to auto_ptr<Y>.  The _Array rebind member uses T on purpose to prohibit such conversions.
+// to auto_ptr<Y>.  The _Array rebind member uses T on purpose to prohibit such
+// conversions.
 
 template <class T> struct _Single
 {
@@ -63,14 +64,13 @@ template <class T> struct _Single
     {
         delete ptr;
     }
-#        ifndef _MSL_NO_MEMBER_TEMPLATE
+#ifndef _MSL_NO_MEMBER_TEMPLATE
     template <class U> struct rebind
     {
         typedef _Single<U> other;
     };
-#        endif
+#endif
 };
-
 template <class T> struct _Array
 {
     static void
@@ -78,25 +78,25 @@ template <class T> struct _Array
     {
         delete[] ptr;
     }
-#        ifndef _MSL_NO_MEMBER_TEMPLATE
+#ifndef _MSL_NO_MEMBER_TEMPLATE
     template <class U> struct rebind
     {
         typedef _Array<T> other;
     };
-#        endif
+#endif
 };
-
 template <class T, class traits = _Single<T> > class _RefCountedPtr
 {
 public:
     _RefCountedPtr(T* ptr = 0); // Accepts responsibility for ptr
     _RefCountedPtr(const _RefCountedPtr<T, traits>& other) _MSL_THROW;
     ÃÂ¢ÃÂÃÂ¾_RefCountedPtr() _MSL_THROW;
-    _RefCountedPtr<T, traits>& operator=(const _RefCountedPtr<T, traits>& rhs) _MSL_THROW;
-    T*                         operator->() _MSL_THROW;
-    const T*                   operator->() const _MSL_THROW;
-    T&                         operator*() _MSL_THROW;
-    const T&                   operator*() const _MSL_THROW;
+    _RefCountedPtr<T, traits>& operator=(const _RefCountedPtr<T, traits>& rhs)
+        _MSL_THROW;
+    T*       operator->() _MSL_THROW;
+    const T* operator->() const _MSL_THROW;
+    T&       operator*() _MSL_THROW;
+    const T& operator*() const _MSL_THROW;
     operator const T *() const _MSL_THROW;
     bool isNonUnique() const _MSL_THROW;
 
@@ -104,10 +104,10 @@ private:
     T*   ptr_;
     int* refCount_;
 };
-
-template <class T, class traits> _RefCountedPtr<T, traits>::_RefCountedPtr(T* ptr) : ptr_(ptr), refCount_(0)
+template <class T, class traits>
+_RefCountedPtr<T, traits>::_RefCountedPtr(T* ptr) : ptr_(ptr), refCount_(0)
 {
-#        ifndef _MSL_NO_EXCEPTIONS
+#ifndef _MSL_NO_EXCEPTIONS
     try
     {
         if (ptr_ != 0)
@@ -120,7 +120,7 @@ template <class T, class traits> _RefCountedPtr<T, traits>::_RefCountedPtr(T* pt
         traits::destroy(ptr_);
         throw;
     }
-#        else
+#else
     if (ptr_ != 0)
     {
         refCount_ = new int(1);
@@ -130,21 +130,20 @@ template <class T, class traits> _RefCountedPtr<T, traits>::_RefCountedPtr(T* pt
             __msl_error("_RefCountedPtr out of memory");
         }
     }
-#        endif
+#endif
 }
-
 template <class T, class traits>
-_RefCountedPtr<T, traits>::_RefCountedPtr(const _RefCountedPtr<T, traits>& other) _MSL_THROW
-  : ptr_(other.ptr_),
-    refCount_(other.refCount_)
+_RefCountedPtr<T, traits>::_RefCountedPtr(const _RefCountedPtr<T, traits>& other)
+    _MSL_THROW : ptr_(other.ptr_),
+                 refCount_(other.refCount_)
 {
     if (refCount_ != 0)
     {
         ++(*refCount_);
     }
 }
-
-template <class T, class traits> _RefCountedPtr<T, traits>::ÃÂ¢ÃÂÃÂ¾_RefCountedPtr() _MSL_THROW
+template <class T, class traits>
+_RefCountedPtr<T, traits>::ÃÂ¢ÃÂÃÂ¾_RefCountedPtr() _MSL_THROW
 {
     if (refCount_ != 0 && --(*refCount_) == 0)
     {
@@ -152,7 +151,6 @@ template <class T, class traits> _RefCountedPtr<T, traits>::ÃÂ¢ÃÂÃ
         delete refCount_;
     }
 }
-
 template <class T, class traits>
 _RefCountedPtr<T, traits>&
 _RefCountedPtr<T, traits>::operator=(const _RefCountedPtr<T, traits>& rhs) _MSL_THROW
@@ -173,40 +171,35 @@ _RefCountedPtr<T, traits>::operator=(const _RefCountedPtr<T, traits>& rhs) _MSL_
     }
     return *this;
 }
-
 template <class T, class traits>
 inline T*
 _RefCountedPtr<T, traits>::operator->() _MSL_THROW
 {
     return ptr_;
 }
-
 template <class T, class traits>
 inline const T*
 _RefCountedPtr<T, traits>::operator->() const _MSL_THROW
 {
     return ptr_;
 }
-
 template <class T, class traits>
 inline T&
 _RefCountedPtr<T, traits>::operator*() _MSL_THROW
 {
     return *ptr_;
 }
-
 template <class T, class traits>
 inline const T&
 _RefCountedPtr<T, traits>::operator*() const _MSL_THROW
 {
     return *ptr_;
 }
-
-template <class T, class traits> inline _RefCountedPtr<T, traits>::operator const T *() const _MSL_THROW
+template <class T, class traits>
+inline _RefCountedPtr<T, traits>::operator const T *() const _MSL_THROW
 {
     return ptr_;
 }
-
 template <class T, class traits>
 inline bool
 _RefCountedPtr<T, traits>::isNonUnique() const _MSL_THROW
@@ -217,24 +210,23 @@ _RefCountedPtr<T, traits>::isNonUnique() const _MSL_THROW
     }
     return *refCount_ != 1;
 }
-
-#        ifndef _MSL_NO_CPP_NAMESPACE
+#ifndef _MSL_NO_CPP_NAMESPACE
 } // namespace std
-#        endif
+#endif
 
-#        ifdef _MSL_FORCE_ENUMS_ALWAYS_INT
-#            pragma enumsalwaysint reset
-#        endif
+#ifdef _MSL_FORCE_ENUMS_ALWAYS_INT
+#pragma enumsalwaysint reset
+#endif
 
-#        ifdef _MSL_FORCE_ENABLE_BOOL_SUPPORT
-#            pragma bool reset
-#        endif
+#ifdef _MSL_FORCE_ENABLE_BOOL_SUPPORT
+#pragma bool reset
+#endif
 
-#        pragma options align = reset
+#pragma options align = reset
 
-#    endif // RC_INVOKED
+#endif // RC_INVOKED
 
-#endif     // _REFCOUNTEDPTR_H
+#endif // _REFCOUNTEDPTR_H
 
 // hh 980804 changed __std() to _STD::
 // hh 990120 changed name of MSIPL flags

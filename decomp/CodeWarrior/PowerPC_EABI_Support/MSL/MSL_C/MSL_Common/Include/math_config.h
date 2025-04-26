@@ -6,7 +6,7 @@
  */
 
 #ifndef _MSL_MATH_CONFIG_H
-#    define _MSL_MATH_CONFIG_H
+#define _MSL_MATH_CONFIG_H
 
 /********************************************************************************
  *	Project...:	Standard C99 math library/ ANSI/ISO C Standard Lib
@@ -23,24 +23,24 @@
  *         you are guaranteed this will NOT compile when included directly.
  *
  ********************************************************************************/
-#    include <msl_t.h>
+#include <msl_t.h>
 
 extern float _inv_sqrtf(float x); /* implementation in sqrtf.c */
 
-#    if __MIPS__
-#        include <math_mips.h>
-#    elif __m56800__
-#        include <m56800_math.h>
-#    elif __m56800E__
-#        include <m56700_math.h>
-#    elif __POWERPC__
-#        include <math_ppc.h>
-#    elif __INTEL__
-#        include <math_x87.h>
-#        if __option(k63d)
-#            include <AMD_K63DNow_math.h>
-#        endif
-#    endif
+#if __MIPS__
+#include <math_mips.h>
+#elif __m56800__
+#include <m56800_math.h>
+#elif __m56800E__
+#include <m56700_math.h>
+#elif __POWERPC__
+#include <math_ppc.h>
+#elif __INTEL__
+#include <math_x87.h>
+#if __option(k63d)
+#include <AMD_K63DNow_math.h>
+#endif
+#endif
 
 #endif                            /* _MSL_MATH_CONFIG_H */
 

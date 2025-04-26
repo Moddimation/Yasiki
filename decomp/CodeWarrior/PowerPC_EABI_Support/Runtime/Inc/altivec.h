@@ -7,9 +7,9 @@
  */
 
 #if __MWERKS__
-#    if __VEC__
-#        ifndef vector
-#            define vector __vector
-#        endif
-#    endif
+#if __VEC__
+#ifndef vector
+#define vector __vector
+#endif
+#endif
 #endif

@@ -7,7 +7,6 @@
  */
 
 #include <MWCPlusLib.h>
-
 /*
  *	__copy		-	copy 'size' bytes data from 'from' to 'to'
  *
@@ -34,18 +33,18 @@ __copy(char* to, char* from, size_t size)
 
     return (to);
 }
-
 /*
  *	__init_arr	-	initialize an array of objects
  *
- *	Given a pointer to space for an array of 'nobjects' elements of size 'objectsize',
- *	and space to store 'nobjects' and 'objectsize' (for later deletion), we call
- *	the given constructor for each object in the array.
+ *	Given a pointer to space for an array of 'nobjects' elements of size
+ *'objectsize', and space to store 'nobjects' and 'objectsize' (for later deletion),
+ *we call the given constructor for each object in the array.
  *
  */
 
 void*
-__init_arr(void* memptr, ConstructorDestructor constructor, size_t objectsize, size_t nobjects)
+__init_arr(void* memptr, ConstructorDestructor constructor, size_t objectsize,
+           size_t nobjects)
 {
     char* p;
 
@@ -65,7 +64,6 @@ __init_arr(void* memptr, ConstructorDestructor constructor, size_t objectsize, s
 
     return (memptr);
 }
-
 /*
  *	__new_arr	-	allocate and construct an array of objects
  *
@@ -80,7 +78,8 @@ __new_arr(ConstructorDestructor constructor, size_t objectsize, size_t nobjects)
 {
     char *memptr, *p;
 
-    if ((memptr = (char*)::operator new(2 * sizeof(size_t) + nobjects * objectsize)) != 0)
+    if ((memptr =
+             (char*)::operator new(2 * sizeof(size_t) + nobjects * objectsize)) != 0)
     {
         memptr += 2 * sizeof(size_t);
         ((size_t*)memptr)[-2] = objectsize;
@@ -96,7 +95,6 @@ __new_arr(ConstructorDestructor constructor, size_t objectsize, size_t nobjects)
 
     return (memptr);
 }
-
 /*
  *	__del_arr	-	destroy and deallocate an array of objects
  *
@@ -127,17 +125,17 @@ __del_arr(void* memptr, ConstructorDestructor destructor)
         ::delete (&((size_t*)memptr)[-2]);
     }
 }
-
 /*
  *	__dc_arr	-	construct or destroy a statically allocated array of objects
  *
- *	We call the given constructor or destructor for each of 'nobjects' elements of size
- *	'objectsize' in a statically allocated array.
+ *	We call the given constructor or destructor for each of 'nobjects' elements of
+ *size 'objectsize' in a statically allocated array.
  *
  */
 
 void
-__dc_arr(void* memptr, ConstructorDestructor constructordestructor, short objectsize, short nobjects)
+__dc_arr(void* memptr, ConstructorDestructor constructordestructor, short objectsize,
+         short nobjects)
 {
     char* p;
 

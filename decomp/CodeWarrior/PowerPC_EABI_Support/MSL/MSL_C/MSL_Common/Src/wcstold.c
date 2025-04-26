@@ -100,33 +100,33 @@
  *
  */
 
-#pragma ANSI_strict off                                                          /*- vss 990729 -*/
+#pragma ANSI_strict off /*- vss 990729 -*/
 
 #include <ansi_parms.h>
 
 #ifndef _No_Floating_Point
 
-#    ifndef __NO_WIDE_CHAR                                                       /*- mm 980204 -*/
+#ifndef __NO_WIDE_CHAR  /*- mm 980204 -*/
 
-#        pragma ANSI_strict reset
+#pragma ANSI_strict reset
 
-#        include <ansi_fp.h>
-#        include <ctype.h>
-#        include <errno.h>
-#        include <float.h>
-#        include <lconv.h>
-#        include <limits.h>
-#        include <locale.h>
-#        include <stdio.h>
-#        include <stdlib.h>
-#        include <string.h>
-#        include <wchar.h>
-#        include <wctype.h>
+#include <ansi_fp.h>
+#include <ctype.h>
+#include <errno.h>
+#include <float.h>
+#include <lconv.h>
+#include <limits.h>
+#include <locale.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <wchar.h>
+#include <wctype.h>
 
-#        if (_MWMT && (__dest_os == __win32_os || __dest_os == __wince_os))      /*- mm 010521 -*/
-#            include <ThreadLocalData.h>
-#        endif
-
+#if (_MWMT && (__dest_os == __win32_os || __dest_os == __wince_os)) /*- mm 010521   \
+                                                                       -*/
+#include <ThreadLocalData.h>
+#endif
 enum scan_states
 {
     start = 0x0001,
@@ -143,27 +143,25 @@ enum scan_states
     finished = 0x0800,
     failure = 0x1000
 };
+#define MAX_SIG_DIG             20                                  /*- mm 970609 -*/
 
-#        define MAX_SIG_DIG             20                                       /*- mm 970609 -*/
+#define final_state(scan_state) (scan_state & (finished | failure))
 
-#        define final_state(scan_state) (scan_state & (finished | failure))
+#define success(scan_state)                                                         \
+    (scan_state & (leading_sig_zeroes | int_digit_loop | frac_digit_loop |          \
+                   leading_exp_zeroes | exp_digit_loop | finished))
 
-#        define success(scan_state)                                                                                    \
-            (scan_state                                                                                                \
-             & (leading_sig_zeroes | int_digit_loop | frac_digit_loop | leading_exp_zeroes | exp_digit_loop            \
-                | finished))
-
-#        define fetch()    (count++, (*wReadProc)(wReadProcArg, 0, __GetAwChar)) /*- mm 990311 -*/
-#        define unfetch(c) (*wReadProc)(wReadProcArg, c, __UngetAwChar)          /*- mm 990311 -*/
-
+#define fetch()                                                                     \
+    (count++, (*wReadProc)(wReadProcArg, 0, __GetAwChar))           /*- mm 990311 -*/
+#define unfetch(c) (*wReadProc)(wReadProcArg, c, __UngetAwChar)     /*- mm 990311 -*/
 long double
-__wcstold(int max_width, wint_t (*wReadProc)(void*, wint_t, int),                /*- mm 990311 -*/
-          void* wReadProcArg,                                                    /*- mm 990311 -*/
+__wcstold(int max_width, wint_t (*wReadProc)(void*, wint_t, int),   /*- mm 990311 -*/
+          void* wReadProcArg,                                       /*- mm 990311 -*/
           int* chars_scanned, int* overflow)
 {
     int     scan_state = start;
     int     count = 0;
-    int     spaces = 0;                                                          /*- mm 970708 -*/
+    int     spaces = 0;                                             /*- mm 970708 -*/
     wchar_t c;
     decimal d = {
         0, 0, 0, { 0, "" }
@@ -173,13 +171,15 @@ __wcstold(int max_width, wint_t (*wReadProc)(void*, wint_t, int),               
     long        exp_value = 0;
     int         exp_adjust = 0;
     long double result;
-    wchar_t     dot;                                                             /*- mm 990315 -*/
-#        if !(_MWMT && (__dest_os == __win32_os || __dest_os == __wince_os)) /*- mm 010521 -*/
+    wchar_t     dot;                                                /*- mm 990315 -*/
+#if !(_MWMT &&                                                                      \
+      (__dest_os == __win32_os || __dest_os == __wince_os))         /*- mm 010521 -*/
     dot = (wchar_t)(*(unsigned char*)__lconv.decimal_point);
-#        else                                                                    /*- mm 010503 -*/
-    struct lconv* lconvptr = _GetThreadLocalData(_MSL_TRUE)->tls_lconv; /*- mm 010503 -*/ /*- cc 010531 -*/
-    dot = (wchar_t)(*(unsigned char*)lconvptr->decimal_point);                            /*- mm 010503 -*/
-#        endif                                                                   /*- mm 010503 -*/
+#else                                                               /*- mm 010503 -*/
+    struct lconv* lconvptr = _GetThreadLocalData(_MSL_TRUE)->tls_lconv;
+    /*- mm 010503 -*/                                          /*- cc 010531 -*/
+    dot = (wchar_t)(*(unsigned char*)lconvptr->decimal_point); /*- mm 010503 -*/
+#endif                                                              /*- mm 010503 -*/
 
     *overflow = 0;
 
@@ -189,13 +189,13 @@ __wcstold(int max_width, wint_t (*wReadProc)(void*, wint_t, int),               
     {
         switch (scan_state)
         {
-            case start :
+            case start:
 
                 if (iswspace(c))
                 {
                     c = fetch();
-                    count--;                                                     /*- mani 970101 -*/
-                    spaces++;                                                    /*- mani 970101 -*/
+                    count--;                    /*- mani 970101 -*/
+                    spaces++;                   /*- mani 970101 -*/
 
                     break;
                 }
@@ -215,7 +215,7 @@ __wcstold(int max_width, wint_t (*wReadProc)(void*, wint_t, int),               
 
                 break;
 
-            case sig_start :
+            case sig_start:
 
                 if (c == dot)
                 {
@@ -246,7 +246,7 @@ __wcstold(int max_width, wint_t (*wReadProc)(void*, wint_t, int),               
 
                 break;
 
-            case leading_sig_zeroes :
+            case leading_sig_zeroes:
 
                 if (c == L'0')
                 {
@@ -259,7 +259,7 @@ __wcstold(int max_width, wint_t (*wReadProc)(void*, wint_t, int),               
 
                 break;
 
-            case int_digit_loop :
+            case int_digit_loop:
 
                 if (!iswdigit(c))
                 {
@@ -277,7 +277,7 @@ __wcstold(int max_width, wint_t (*wReadProc)(void*, wint_t, int),               
                     break;
                 }
 
-                if (d.sig.length < MAX_SIG_DIG)                                  /*- mm 970609 -*/
+                if (d.sig.length < MAX_SIG_DIG) /*- mm 970609 -*/
                 {
                     d.sig.text[d.sig.length++] = c;
                 }
@@ -290,7 +290,7 @@ __wcstold(int max_width, wint_t (*wReadProc)(void*, wint_t, int),               
 
                 break;
 
-            case frac_start :
+            case frac_start:
 
                 if (!iswdigit(c))
                 {
@@ -303,7 +303,7 @@ __wcstold(int max_width, wint_t (*wReadProc)(void*, wint_t, int),               
 
                 break;
 
-            case frac_digit_loop :
+            case frac_digit_loop:
 
                 if (!iswdigit(c))
                 {
@@ -312,9 +312,10 @@ __wcstold(int max_width, wint_t (*wReadProc)(void*, wint_t, int),               
                     break;
                 }
 
-                if (d.sig.length < MAX_SIG_DIG)                                  /*- mm 970609 -*/
+                if (d.sig.length < MAX_SIG_DIG) /*- mm 970609 -*/
                 {
-                    if (c != L'0' || d.sig.length) /* __dec2num doesn't like leading zeroes*/
+                    if (c != L'0' ||
+                        d.sig.length)    /* __dec2num doesn't like leading zeroes*/
                     {
                         d.sig.text[d.sig.length++] = c;
                     }
@@ -325,7 +326,7 @@ __wcstold(int max_width, wint_t (*wReadProc)(void*, wint_t, int),               
 
                 break;
 
-            case sig_end :
+            case sig_end:
 
                 if (c == L'E' || c == L'e')
                 {
@@ -340,7 +341,7 @@ __wcstold(int max_width, wint_t (*wReadProc)(void*, wint_t, int),               
 
                 break;
 
-            case exp_start :
+            case exp_start:
 
                 if (c == L'+')
                 {
@@ -357,7 +358,7 @@ __wcstold(int max_width, wint_t (*wReadProc)(void*, wint_t, int),               
 
                 break;
 
-            case leading_exp_digit :
+            case leading_exp_digit:
 
                 if (!iswdigit(c))
                 {
@@ -379,7 +380,7 @@ __wcstold(int max_width, wint_t (*wReadProc)(void*, wint_t, int),               
 
                 break;
 
-            case leading_exp_zeroes :
+            case leading_exp_zeroes:
 
                 if (c == L'0')
                 {
@@ -392,7 +393,7 @@ __wcstold(int max_width, wint_t (*wReadProc)(void*, wint_t, int),               
 
                 break;
 
-            case exp_digit_loop :
+            case exp_digit_loop:
 
                 if (!iswdigit(c))
                 {
@@ -416,13 +417,13 @@ __wcstold(int max_width, wint_t (*wReadProc)(void*, wint_t, int),               
 
     if (!success(scan_state))
     {
-        count = 0;                                 /*- mf 092497 -*/
+        count = 0;                       /*- mf 092497 -*/
         *chars_scanned = 0;
     }
     else
     {
         count--;
-        *chars_scanned = count + spaces;           /*- mani 970101 -*/
+        *chars_scanned = count + spaces; /*- mani 970101 -*/
     }
 
     unfetch(c);
@@ -472,11 +473,12 @@ __wcstold(int max_width, wint_t (*wReadProc)(void*, wint_t, int),               
 
     result = __dec2num(&d);
 
-                                                   /*
-                                                    *	Note: If you look at <ansi_fp.h> you'll see that __dec2num only supports double.
-                                                    *				If you look at <float.h> you'll see that long double == double. Ergo, the
-                                                    *				difference is moot *until* a truly long double type is supported.
-                                                    */
+                                         /*
+                                          *	Note: If you look at <ansi_fp.h> you'll see that __dec2num only supports
+                                          *double.                                      If you look at <float.h> you'll
+                                          *see that long double == double. Ergo,                                      the                                      difference is moot *until* a truly
+                                          *long double type is supported.
+                                          */
 
     if (result != 0.0 && result < LDBL_MIN)
     {
@@ -496,7 +498,6 @@ __wcstold(int max_width, wint_t (*wReadProc)(void*, wint_t, int),               
 
     return (result);
 }
-
 double
 wcstod(const wchar_t* str, wchar_t** end)
 {
@@ -522,42 +523,39 @@ wcstod(const wchar_t* str, wchar_t** end)
 
     return (value);
 }
-
 double
 watof(const wchar_t* str)
 {
     return (wcstod(str, NULL));
 }
+#endif /* ndef __NO_WIDE_CHAR*/ /*- mm 981020 -*/
+#endif                          /* ndef _No_Floating_Point */
 
-#    endif /* ndef __NO_WIDE_CHAR*/ /*- mm 981020 -*/
-#endif                              /* ndef _No_Floating_Point */
-
-                                    /* Change record:
-                                     * JFH 950622 First code release.
-                                     * JFH 950727 Removed stray SysBreak(). Added code to make use of the remembered sign of
-                                     *			  of the significand.
-                                     * JFH 950929 Discovered __dec2num doesn't like leading zeroes except for zeroes, so numbers
-                                     *			  like .01 would get interpreted as zero. Fixed by suppressing leading zeroes.
-                                     * JFH 951114 Fixed bug in wcstod where value was checked against DBL_MIN and DBL_MAX instead
-                                     *			  of the absolute value.
-                                     * JFH 960425 Changed __wcstold to return -HUGE_VAL instead of HUGE_VAL on overflow if a
-                                     *			  minus sign was previously detected.
-                                     * mani970101 Fix a scanf bug dealing with white space. Things like
-                                     *			  scanf("%5lx") weren't working properly when there was
-                                     *			  white space.
-                                     * mm  970609 Changed the max number of significant digits to MAX_SIG_DIG(==32) instead of DBL_DIG
-                                     * mm  970708 Inserted Be changes
-                                     * mf  970924 If there are no digits in the string then the value of &endp must remain unchanged
-                                     *            In this case the variable chars_scanned of wcstold should be 0
-                                     * JCM 980121 First wchar release.
-                                     * mm  980206 Added cide to handle wide char unget properly and implementation of fwide.
-                                     * blc 980324 Fixed prototypes to match latest C9X standard (wchar_t** as
-                                     *            second parameter)
-                                     * mm  981020 Added #ifndef __NO_WIDE_CHAR wrappers
-                                     * mm  990315 Corrected encoding of dot for wide characters IL9903_1178
-                                     * mm  990325 Changes to separate char input from file i/o
-                                     * mm  990817 Deleted include of <string_io.h>
-                                     * mm  010503 Added code for thread local storage for lconv
-                                     * mm  010521 Added _MWMT wrappers
-                                     * cc  010531 Added _GetThreadLocalData's flag
-                                     */
+                                /* Change record:
+                                 * JFH 950622 First code release.
+                                 * JFH 950727 Removed stray SysBreak(). Added code to make use of the remembered sign
+                                 *of                                 of the significand.                                 JFH 950929 Discovered
+                                 *__dec2num doesn't like leading zeroes                                 except for zeroes, so numbers                                 like .01 would
+                                 *get interpreted as zero. Fixed by                                 suppressing leading zeroes.                                 JFH 951114 Fixed bug
+                                 *in wcstod where value was checked                                 against DBL_MIN and DBL_MAX instead                                 of the
+                                 *absolute value.                                 JFH 960425 Changed
+                                 *__wcstold to return -HUGE_VAL instead of HUGE_VAL on overflow if a                                 minus sign was
+                                 *previously detected.                                 mani970101 Fix a scanf bug
+                                 *dealing with white space. Things                                 like                                 scanf("%5lx")
+                                 *weren't working properly when there was                                 white
+                                 *space.                                 mm  970609                                 Changed the max number of
+                                 *significant digits to MAX_SIG_DIG(==32) instead of                                 DBL_DIG                                 mm  970708 Inserted Be
+                                 *changes                                 mf  970924 If there are no digits in the
+                                 *string then the value of &endp must remain unchanged                                 In this case the variable
+                                 *chars_scanned of wcstold should be 0                                 JCM 980121
+                                 *First wchar release.                                 mm  980206                                 Added cide to
+                                 *handle wide char unget properly and implementation of fwide.                                 blc                                 980324 Fixed
+                                 *prototypes to match latest C9X standard (wchar_t** as                                 second                                 parameter)                                 mm  981020
+                                 *Added #ifndef __NO_WIDE_CHAR wrappers                                 mm  990315
+                                 *Corrected                                 encoding of dot for wide characters IL9903_1178                                 mm  990325 Changes to
+                                 *separate char                                 input from file i/o                                 mm  990817
+                                 *Deleted include of <string_io.h>                                 mm  010503 Added
+                                 *code for thread local storage for lconv                                 mm  010521
+                                 *Added _MWMT wrappers                                 cc  010531                                 Added
+                                 *_GetThreadLocalData's flag
+                                 */

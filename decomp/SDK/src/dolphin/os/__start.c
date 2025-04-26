@@ -17,32 +17,28 @@ extern void InitMetroTRK();
 __declspec(section ".init") extern s8 _stack_addr[];
 __declspec(section ".init") extern s8 _SDA_BASE_[];
 __declspec(section ".init") extern s8 _SDA2_BASE_[];
-
 typedef struct __rom_copy_info
 {
     char*        rom;
     char*        addr;
     unsigned int size;
 } __rom_copy_info;
-
 __declspec(section ".init") extern __rom_copy_info _rom_copy_info[];
-
 typedef struct __bss_init_info
 {
     char*        addr;
     unsigned int size;
 } __bss_init_info;
-
 __declspec(section ".init") extern __bss_init_info _bss_init_info[];
 extern int                                         main(int argc, char* argv[]);
 extern void                                        exit(int);
 
 __declspec(section ".init") extern void __init_hardware(void);
-__declspec(section ".init") extern void __flush_cache(void* address, unsigned int size);
+__declspec(section ".init") extern void __flush_cache(void*        address,
+                                                      unsigned int size);
 
 static void __init_registers(void);
 static void __init_data(void);
-
 __declspec(section ".init") __declspec(weak) asm void
 __start(void)
 {
@@ -126,7 +122,6 @@ _goto_skip_init_bba:
 	b exit
     // clang-format on
 }
-
 static void
 __copy_rom_section(void* dst, const void* src, u32 size)
 {
@@ -136,7 +131,6 @@ __copy_rom_section(void* dst, const void* src, u32 size)
         __flush_cache(dst, size);
     }
 }
-
 static void
 __init_bss_section(void* dst, u32 size)
 {
@@ -145,7 +139,6 @@ __init_bss_section(void* dst, u32 size)
         memset(dst, 0, size);
     }
 }
-
 asm static void
 __init_registers(void)
 {
@@ -160,7 +153,6 @@ __init_registers(void)
 	blr
     // clang-format on
 }
-
 static void
 __init_data(void)
 {

@@ -6,7 +6,6 @@
 
 // functions
 static void DeleteCallback(s32 chan, s32 result);
-
 static void
 DeleteCallback(s32 chan, s32 result)
 {
@@ -36,7 +35,6 @@ error:
         callback(chan, result);
     }
 }
-
 s32
 CARDFastDeleteAsync(s32 chan, s32 fileNo, CARDCallback callback)
 {
@@ -80,7 +78,6 @@ CARDFastDeleteAsync(s32 chan, s32 fileNo, CARDCallback callback)
     }
     return result;
 }
-
 s32
 CARDFastDelete(s32 chan, long fileNo)
 {
@@ -92,7 +89,6 @@ CARDFastDelete(s32 chan, long fileNo)
     }
     return __CARDSync(chan);
 }
-
 s32
 CARDDeleteAsync(s32 chan, char* fileName, CARDCallback callback)
 {
@@ -130,7 +126,6 @@ CARDDeleteAsync(s32 chan, char* fileName, CARDCallback callback)
     }
     return result;
 }
-
 s32
 CARDDelete(s32 chan, char* fileName)
 {

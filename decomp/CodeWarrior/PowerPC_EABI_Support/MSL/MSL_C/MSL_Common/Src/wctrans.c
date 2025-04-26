@@ -20,31 +20,27 @@
 
 #ifndef __NO_WIDE_CHAR              /*- mm 980204 -*/
 
-#    pragma ANSI_strict reset
+#pragma ANSI_strict reset
 
-#    include <string.h>             /*- mm 990806 -*/
-#    include <wctrans.h>
-#    include <wctype.h>             /*- mm 990806 -*/
-
+#include <string.h>                 /*- mm 990806 -*/
+#include <wctrans.h>
+#include <wctype.h>                 /*- mm 990806 -*/
 static const struct wctable
 {
     const char* string;
     wctype_t    value;
 }
 
-wtable[]
-    = {
-          {      "tolower", 0 },
-          {      "toupper", 1 },
-          { (const char*)0, 0 }
+wtable[] = {
+    {      "tolower", 0 },
+    {      "toupper", 1 },
+    { (const char*)0, 0 }
 };
-
 wint_t
 towctrans(wint_t c, wctrans_t value)
 {
     return (value == 1 ? towupper(c) : towlower(c));
 }
-
 wctrans_t
 wctrans(const char* name)
 {
@@ -60,7 +56,6 @@ wctrans(const char* name)
 
     return 0;
 }
-
 #endif /* #ifndef __NO_WIDE_CHAR */ /*- mm 981030 -*/
 
 /* Change record:

@@ -1,5 +1,6 @@
 /* Metrowerks Standard Library
- * Copyright ÃÂ¯ÃÂ½C 1995-2001 Metrowerks Corporation.  All rights reserved.
+ * Copyright ÃÂ¯ÃÂ½C 1995-2001 Metrowerks Corporation.  All rights
+ * reserved.
  *
  * $Date: 2001/05/21 18:59:24 $
  * $Revision: 1.21 $
@@ -8,72 +9,69 @@
 // valarray
 
 #ifndef _VALARRAY
-#    define _VALARRAY
+#define _VALARRAY
 
-#    include <algorithm>
-#    include <cmath>
-#    include <mslconfig>
+#include <algorithm>
+#include <cmath>
+#include <mslconfig>
 
-#    ifndef RC_INVOKED // hh 971230
+#ifndef RC_INVOKED // hh 971230
 
-#        pragma options align = native
+#pragma options align = native
 
-#        ifdef _MSL_FORCE_ENUMS_ALWAYS_INT
-#            if _MSL_FORCE_ENUMS_ALWAYS_INT
-#                pragma enumsalwaysint on
-#            else
-#                pragma enumsalwaysint off
-#            endif
-#        endif
+#ifdef _MSL_FORCE_ENUMS_ALWAYS_INT
+#if _MSL_FORCE_ENUMS_ALWAYS_INT
+#pragma enumsalwaysint on
+#else
+#pragma enumsalwaysint off
+#endif
+#endif
 
-#        ifdef _MSL_FORCE_ENABLE_BOOL_SUPPORT
-#            if _MSL_FORCE_ENABLE_BOOL_SUPPORT
-#                pragma bool on
-#            else
-#                pragma bool off
-#            endif
-#        endif
+#ifdef _MSL_FORCE_ENABLE_BOOL_SUPPORT
+#if _MSL_FORCE_ENABLE_BOOL_SUPPORT
+#pragma bool on
+#else
+#pragma bool off
+#endif
+#endif
 
-#        ifdef min
-#            undef min
-#        endif
+#ifdef min
+#undef min
+#endif
 
-#        ifdef max
-#            undef max
-#        endif
+#ifdef max
+#undef max
+#endif
 
-#        ifndef _MSL_NO_CPP_NAMESPACE
+#ifndef _MSL_NO_CPP_NAMESPACE
 namespace std
 {
-#        endif
-
+#endif
 // slice
 
 class slice
 {
 public:
     slice() : start_(0), size_(0), stride_(0) {}
-
-    slice(size_t start, size_t size, size_t stride) : start_(start), size_(size), stride_(stride) {}
-
+    slice(size_t start, size_t size, size_t stride)
+      : start_(start), size_(size), stride_(stride)
+    {
+    }
     size_t
     start() const
     {
         return start_;
     }
-
     size_t
     size() const
     {
         return size_;
     }
-
     size_t
     stride() const
     {
         return stride_;
     }
-
     size_t
     length() const
     {
@@ -185,7 +183,6 @@ template <class T> valarray<T> sinh(const valarray<T>&);
 template <class T> valarray<T> sqrt(const valarray<T>&);
 template <class T> valarray<T> tan(const valarray<T>&);
 template <class T> valarray<T> tanh(const valarray<T>&);
-
 template <class T> class valarray
 {
 public:
@@ -273,14 +270,14 @@ private:
 
     void change_size(size_t newsize);
 };
-
 // gslice
 
 class gslice
 {
 public:
     gslice();
-    gslice(size_t start, const valarray<size_t>& sizes, const valarray<size_t>& strides);
+    gslice(size_t start, const valarray<size_t>& sizes,
+           const valarray<size_t>& strides);
 
     size_t                  start() const;
     const valarray<size_t>& size() const;
@@ -293,14 +290,13 @@ private:
     valarray<size_t> stride_;
     size_t           length_;
 };
-
 // gslice Implementation
 
 inline gslice::gslice() : start_(0), length_(0)
 {
 }
-
-inline gslice::gslice(size_t start, const valarray<size_t>& sizes, const valarray<size_t>& strides)
+inline gslice::gslice(size_t start, const valarray<size_t>& sizes,
+                      const valarray<size_t>& strides)
   : start_(start), size_(sizes), stride_(strides), length_(0)
 {
     if (size_.size() > 0)
@@ -312,31 +308,26 @@ inline gslice::gslice(size_t start, const valarray<size_t>& sizes, const valarra
         }
     }
 }
-
 inline size_t
 gslice::start() const
 {
     return start_;
 }
-
 inline const valarray<size_t>&
 gslice::size() const
 {
     return size_;
 }
-
 inline const valarray<size_t>&
 gslice::stride() const
 {
     return stride_;
 }
-
 inline size_t
 gslice::length() const
 {
     return length_;
 }
-
 // valarray Implementation
 
 template <class T>
@@ -344,92 +335,89 @@ inline void
 valarray<T>::change_size(size_t newsize)
 {
     T* newdata = new T[newsize];
-#        ifdef _MSL_NO_EXCEPTIONS
+#ifdef _MSL_NO_EXCEPTIONS
     if (newdata == 0)
     {
         __msl_error("valarray<T>::change_size out of memory");
     }
-#        endif
+#endif
     delete[] data_;
     data_ = newdata;
     size_ = newsize;
 }
-
 template <class T> inline valarray<T>::valarray() : size_(0), data_(0)
 {
 }
-
 template <class T> valarray<T>::valarray(size_t n) : size_(n), data_(0)
 {
     if (size_ > 0)
     {
         data_ = new T[size_];
-#        ifdef _MSL_NO_EXCEPTIONS
+#ifdef _MSL_NO_EXCEPTIONS
         if (data_ == 0)
         {
             __msl_error("valarray<T>::valarray out of memory");
         }
-#        endif
+#endif
         _STD::fill_n(data_, size_, T());
     }
 }
-
 template <class T> valarray<T>::valarray(const T& t, size_t n) : size_(n), data_(0)
 {
     if (size_ > 0)
     {
         data_ = new T[size_];
-#        ifdef _MSL_NO_EXCEPTIONS
+#ifdef _MSL_NO_EXCEPTIONS
         if (data_ == 0)
         {
             __msl_error("valarray<T>::valarray out of memory");
         }
-#        endif
+#endif
         _STD::fill_n(data_, size_, t);
     }
 }
-
 template <class T> valarray<T>::valarray(const T* t, size_t n) : size_(n), data_(0)
 {
     if (size_ > 0)
     {
         data_ = new T[size_];
-#        ifdef _MSL_NO_EXCEPTIONS
+#ifdef _MSL_NO_EXCEPTIONS
         if (data_ == 0)
         {
             __msl_error("valarray<T>::valarray out of memory");
         }
-#        endif
+#endif
         _STD::copy(t, t + size_, data_);
     }
 }
-
-template <class T> valarray<T>::valarray(const valarray& v) : size_(v.size_), data_(0)
+template <class T>
+valarray<T>::valarray(const valarray& v) : size_(v.size_), data_(0)
 {
     if (size_ > 0)
     {
         data_ = new T[size_];
-#        ifdef _MSL_NO_EXCEPTIONS
+#ifdef _MSL_NO_EXCEPTIONS
         if (data_ == 0)
         {
             __msl_error("valarray<T>::valarray out of memory");
         }
-#        endif
+#endif
         _STD::copy(v.data_, v.data_ + size_, data_);
     }
 }
-
-template <class T> valarray<T>::valarray(const slice_array<T>& sa) : size_(sa.get_slice().length()), data_(0)
+template <class T>
+valarray<T>::valarray(const slice_array<T>& sa)
+  : size_(sa.get_slice().length()), data_(0)
 {
     if (size_ > 0)
     {
         data_ = new T[size_];
-#        ifdef _MSL_NO_EXCEPTIONS
+#ifdef _MSL_NO_EXCEPTIONS
         if (data_ == 0)
         {
             __msl_error("valarray<T>::valarray out of memory");
         }
-#        endif
+#endif
         typename slice_array<T>::iterator k = sa.begin();
         for (size_t i = 0; i < size_; ++i, ++k)
         {
@@ -437,18 +425,19 @@ template <class T> valarray<T>::valarray(const slice_array<T>& sa) : size_(sa.ge
         }
     }
 }
-
-template <class T> valarray<T>::valarray(const gslice_array<T>& gsa) : size_(gsa.get_gslice().length()), data_(0)
+template <class T>
+valarray<T>::valarray(const gslice_array<T>& gsa)
+  : size_(gsa.get_gslice().length()), data_(0)
 {
     if (size_ > 0)
     {
         data_ = new T[size_];
-#        ifdef _MSL_NO_EXCEPTIONS
+#ifdef _MSL_NO_EXCEPTIONS
         if (data_ == 0)
         {
             __msl_error("valarray<T>::valarray out of memory");
         }
-#        endif
+#endif
         typename gslice_array<T>::iterator k = gsa.begin();
         for (size_t i = 0; i < size_; ++i, ++k)
         {
@@ -456,18 +445,18 @@ template <class T> valarray<T>::valarray(const gslice_array<T>& gsa) : size_(gsa
         }
     }
 }
-
-template <class T> valarray<T>::valarray(const mask_array<T>& ma) : size_(ma.length()), data_(0)
+template <class T>
+valarray<T>::valarray(const mask_array<T>& ma) : size_(ma.length()), data_(0)
 {
     if (size_ > 0)
     {
         data_ = new T[size_];
-#        ifdef _MSL_NO_EXCEPTIONS
+#ifdef _MSL_NO_EXCEPTIONS
         if (data_ == 0)
         {
             __msl_error("valarray<T>::valarray out of memory");
         }
-#        endif
+#endif
         typename mask_array<T>::iterator k = ma.begin();
         for (size_t i = 0; i < size_; ++i, ++k)
         {
@@ -475,18 +464,18 @@ template <class T> valarray<T>::valarray(const mask_array<T>& ma) : size_(ma.len
         }
     }
 }
-
-template <class T> valarray<T>::valarray(const indirect_array<T>& ia) : size_(ia.length()), data_(0)
+template <class T>
+valarray<T>::valarray(const indirect_array<T>& ia) : size_(ia.length()), data_(0)
 {
     if (size_ > 0)
     {
         data_ = new T[size_];
-#        ifdef _MSL_NO_EXCEPTIONS
+#ifdef _MSL_NO_EXCEPTIONS
         if (data_ == 0)
         {
             __msl_error("valarray<T>::valarray out of memory");
         }
-#        endif
+#endif
         typename indirect_array<T>::iterator k = ia.begin();
         for (size_t i = 0; i < size_; ++i, ++k)
         {
@@ -494,12 +483,10 @@ template <class T> valarray<T>::valarray(const indirect_array<T>& ia) : size_(ia
         }
     }
 }
-
 template <class T> inline valarray<T>::ÃÂ¢ÃÂÃÂ¾valarray()
 {
     delete[] data_;
 }
-
 template <class T>
 valarray<T>&
 valarray<T>::operator=(const valarray<T>& v)
@@ -515,7 +502,6 @@ valarray<T>::operator=(const valarray<T>& v)
     _STD::copy(v.data_, v.data_ + size_, data_);
     return *this;
 }
-
 template <class T>
 inline valarray<T>&
 valarray<T>::operator=(const T& t)
@@ -523,7 +509,6 @@ valarray<T>::operator=(const T& t)
     _STD::fill_n(data_, size_, t);
     return *this;
 }
-
 template <class T>
 valarray<T>&
 valarray<T>::operator=(const slice_array<T>& sa)
@@ -545,7 +530,6 @@ valarray<T>::operator=(const slice_array<T>& sa)
     }
     return *this;
 }
-
 template <class T>
 valarray<T>&
 valarray<T>::operator=(const gslice_array<T>& gsa)
@@ -567,7 +551,6 @@ valarray<T>::operator=(const gslice_array<T>& gsa)
     }
     return *this;
 }
-
 template <class T>
 valarray<T>&
 valarray<T>::operator=(const mask_array<T>& ma)
@@ -588,7 +571,6 @@ valarray<T>::operator=(const mask_array<T>& ma)
     }
     return *this;
 }
-
 template <class T>
 valarray<T>&
 valarray<T>::operator=(const indirect_array<T>& ia)
@@ -609,77 +591,66 @@ valarray<T>::operator=(const indirect_array<T>& ia)
     }
     return *this;
 }
-
 template <class T>
 inline T
 valarray<T>::operator[](size_t i) const
 {
     return data_[i];
 }
-
 template <class T>
 inline T&
 valarray<T>::operator[](size_t i)
 {
     return data_[i];
 }
-
 template <class T>
 inline valarray<T>
 valarray<T>::operator[](slice s) const
 {
     return slice_array<T>(const_cast<valarray<T>&>(*this), s);
 }
-
 template <class T>
 inline slice_array<T>
 valarray<T>::operator[](slice s)
 {
     return slice_array<T>(*this, s);
 }
-
 template <class T>
 inline valarray<T>
 valarray<T>::operator[](const gslice& gs) const
 {
     return gslice_array<T>(const_cast<valarray<T>&>(*this), gs);
 }
-
 template <class T>
 inline gslice_array<T>
 valarray<T>::operator[](const gslice& gs)
 {
     return gslice_array<T>(*this, gs);
 }
-
 template <class T>
 inline valarray<T>
 valarray<T>::operator[](const valarray<bool>& b) const
 {
     return mask_array<T>(const_cast<valarray<T>&>(*this), b);
 }
-
 template <class T>
 inline mask_array<T>
 valarray<T>::operator[](const valarray<bool>& b)
 {
     return mask_array<T>(*this, b);
 }
-
 template <class T>
 inline valarray<T>
 valarray<T>::operator[](const valarray<size_t>& ia) const
 {
     return indirect_array<T>(const_cast<valarray<T>&>(*this), ia);
 }
-
 template <class T>
 inline indirect_array<T>
 valarray<T>::operator[](const valarray<size_t>& ia)
 {
     return indirect_array<T>(*this, ia);
 }
-
 template <class T>
 valarray<T>
 valarray<T>::operator+() const
@@ -691,7 +662,6 @@ valarray<T>::operator+() const
     }
     return result;
 }
-
 template <class T>
 valarray<T>
 valarray<T>::operator-() const
@@ -703,7 +673,6 @@ valarray<T>::operator-() const
     }
     return result;
 }
-
 template <class T>
 valarray<T>
 valarray<T>::operator!() const
@@ -715,7 +684,6 @@ valarray<T>::operator!() const
     }
     return result;
 }
-
 template <class T>
 valarray<T>
 valarray<T>::operatorÃÂ¢ÃÂÃÂ¾() const
@@ -727,7 +695,6 @@ valarray<T>::operatorÃÂ¢ÃÂÃÂ¾() const
     }
     return result;
 }
-
 template <class T>
 inline valarray<T>&
 valarray<T>::operator*=(const T& t)
@@ -738,7 +705,6 @@ valarray<T>::operator*=(const T& t)
     }
     return *this;
 }
-
 template <class T>
 inline valarray<T>&
 valarray<T>::operator/=(const T& t)
@@ -749,7 +715,6 @@ valarray<T>::operator/=(const T& t)
     }
     return *this;
 }
-
 template <class T>
 inline valarray<T>&
 valarray<T>::operator%=(const T& t)
@@ -760,7 +725,6 @@ valarray<T>::operator%=(const T& t)
     }
     return *this;
 }
-
 template <class T>
 inline valarray<T>&
 valarray<T>::operator+=(const T& t)
@@ -771,7 +735,6 @@ valarray<T>::operator+=(const T& t)
     }
     return *this;
 }
-
 template <class T>
 inline valarray<T>&
 valarray<T>::operator-=(const T& t)
@@ -782,7 +745,6 @@ valarray<T>::operator-=(const T& t)
     }
     return *this;
 }
-
 template <class T>
 inline valarray<T>&
 valarray<T>::operator^=(const T& t)
@@ -793,7 +755,6 @@ valarray<T>::operator^=(const T& t)
     }
     return *this;
 }
-
 template <class T>
 inline valarray<T>&
 valarray<T>::operator&=(const T& t)
@@ -804,7 +765,6 @@ valarray<T>::operator&=(const T& t)
     }
     return *this;
 }
-
 template <class T>
 inline valarray<T>&
 valarray<T>::operator|=(const T& t)
@@ -815,7 +775,6 @@ valarray<T>::operator|=(const T& t)
     }
     return *this;
 }
-
 template <class T>
 inline valarray<T>&
 valarray<T>::operator<<=(const T& t)
@@ -826,7 +785,6 @@ valarray<T>::operator<<=(const T& t)
     }
     return *this;
 }
-
 template <class T>
 inline valarray<T>&
 valarray<T>::operator>>=(const T& t)
@@ -837,7 +795,6 @@ valarray<T>::operator>>=(const T& t)
     }
     return *this;
 }
-
 template <class T>
 inline valarray<T>&
 valarray<T>::operator*=(const valarray<T>& v)
@@ -848,7 +805,6 @@ valarray<T>::operator*=(const valarray<T>& v)
     }
     return *this;
 }
-
 template <class T>
 inline valarray<T>&
 valarray<T>::operator/=(const valarray<T>& v)
@@ -859,7 +815,6 @@ valarray<T>::operator/=(const valarray<T>& v)
     }
     return *this;
 }
-
 template <class T>
 inline valarray<T>&
 valarray<T>::operator%=(const valarray<T>& v)
@@ -870,7 +825,6 @@ valarray<T>::operator%=(const valarray<T>& v)
     }
     return *this;
 }
-
 template <class T>
 inline valarray<T>&
 valarray<T>::operator+=(const valarray<T>& v)
@@ -881,7 +835,6 @@ valarray<T>::operator+=(const valarray<T>& v)
     }
     return *this;
 }
-
 template <class T>
 inline valarray<T>&
 valarray<T>::operator-=(const valarray<T>& v)
@@ -892,7 +845,6 @@ valarray<T>::operator-=(const valarray<T>& v)
     }
     return *this;
 }
-
 template <class T>
 inline valarray<T>&
 valarray<T>::operator^=(const valarray<T>& v)
@@ -903,7 +855,6 @@ valarray<T>::operator^=(const valarray<T>& v)
     }
     return *this;
 }
-
 template <class T>
 inline valarray<T>&
 valarray<T>::operator|=(const valarray<T>& v)
@@ -914,7 +865,6 @@ valarray<T>::operator|=(const valarray<T>& v)
     }
     return *this;
 }
-
 template <class T>
 inline valarray<T>&
 valarray<T>::operator&=(const valarray<T>& v)
@@ -925,7 +875,6 @@ valarray<T>::operator&=(const valarray<T>& v)
     }
     return *this;
 }
-
 template <class T>
 inline valarray<T>&
 valarray<T>::operator<<=(const valarray<T>& v)
@@ -936,7 +885,6 @@ valarray<T>::operator<<=(const valarray<T>& v)
     }
     return *this;
 }
-
 template <class T>
 inline valarray<T>&
 valarray<T>::operator>>=(const valarray<T>& v)
@@ -947,14 +895,12 @@ valarray<T>::operator>>=(const valarray<T>& v)
     }
     return *this;
 }
-
 template <class T>
 inline size_t
 valarray<T>::size() const
 {
     return size_;
 }
-
 template <class T>
 inline T
 valarray<T>::sum() const
@@ -966,7 +912,6 @@ valarray<T>::sum() const
     }
     return result;
 }
-
 template <class T>
 T
 valarray<T>::min() const
@@ -981,7 +926,6 @@ valarray<T>::min() const
     }
     return result;
 }
-
 template <class T>
 T
 valarray<T>::max() const
@@ -996,7 +940,6 @@ valarray<T>::max() const
     }
     return result;
 }
-
 template <class T>
 valarray<T>
 valarray<T>::shift(int n) const
@@ -1027,7 +970,6 @@ valarray<T>::shift(int n) const
     }
     return result;
 }
-
 template <class T>
 valarray<T>
 valarray<T>::cshift(int n) const
@@ -1043,7 +985,6 @@ valarray<T>::cshift(int n) const
     }
     return result;
 }
-
 template <class T>
 valarray<T>
 valarray<T>::apply(T func(T)) const
@@ -1055,7 +996,6 @@ valarray<T>::apply(T func(T)) const
     }
     return result;
 }
-
 template <class T>
 valarray<T>
 valarray<T>::apply(T func(const T&)) const
@@ -1067,7 +1007,6 @@ valarray<T>::apply(T func(const T&)) const
     }
     return result;
 }
-
 template <class T>
 void
 valarray<T>::resize(size_t sz, T c)
@@ -1078,7 +1017,6 @@ valarray<T>::resize(size_t sz, T c)
     }
     _STD::fill_n(data_, size_, c);
 }
-
 // slice_array
 
 template <class T> class slice_array_iterator
@@ -1095,14 +1033,12 @@ private:
 
     friend class slice_array<T>;
 };
-
 template <class T>
 inline T&
 slice_array_iterator<T>::operator*()
 {
     return *ptr_;
 }
-
 template <class T>
 inline slice_array_iterator<T>&
 slice_array_iterator<T>::operator++()
@@ -1110,14 +1046,13 @@ slice_array_iterator<T>::operator++()
     ptr_ += stride_;
     return *this;
 }
-
-template <class T> inline slice_array_iterator<T>::slice_array_iterator(const slice_array<T>* sa)
+template <class T>
+inline slice_array_iterator<T>::slice_array_iterator(const slice_array<T>* sa)
 {
     const slice& s = sa->get_slice();
     stride_ = s.stride();
     ptr_ = &const_cast<slice_array<T>*>(sa)->array()[s.start()];
 }
-
 template <class T> class slice_array
 {
 public:
@@ -1157,7 +1092,6 @@ private:
     friend class valarray<T>;
     friend class slice_array_iterator<T>;
 };
-
 // slice_array Implementation
 
 template <class T>
@@ -1171,7 +1105,6 @@ slice_array<T>::operator=(const valarray<T>& v) const
         *k = v[i];
     }
 }
-
 template <class T>
 void
 slice_array<T>::operator*=(const valarray<T>& v) const
@@ -1183,7 +1116,6 @@ slice_array<T>::operator*=(const valarray<T>& v) const
         *k *= v[i];
     }
 }
-
 template <class T>
 void
 slice_array<T>::operator/=(const valarray<T>& v) const
@@ -1195,7 +1127,6 @@ slice_array<T>::operator/=(const valarray<T>& v) const
         *k /= v[i];
     }
 }
-
 template <class T>
 void
 slice_array<T>::operator%=(const valarray<T>& v) const
@@ -1207,7 +1138,6 @@ slice_array<T>::operator%=(const valarray<T>& v) const
         *k %= v[i];
     }
 }
-
 template <class T>
 void
 slice_array<T>::operator+=(const valarray<T>& v) const
@@ -1219,7 +1149,6 @@ slice_array<T>::operator+=(const valarray<T>& v) const
         *k += v[i];
     }
 }
-
 template <class T>
 void
 slice_array<T>::operator-=(const valarray<T>& v) const
@@ -1231,7 +1160,6 @@ slice_array<T>::operator-=(const valarray<T>& v) const
         *k -= v[i];
     }
 }
-
 template <class T>
 void
 slice_array<T>::operator^=(const valarray<T>& v) const
@@ -1243,7 +1171,6 @@ slice_array<T>::operator^=(const valarray<T>& v) const
         *k ^= v[i];
     }
 }
-
 template <class T>
 void
 slice_array<T>::operator&=(const valarray<T>& v) const
@@ -1255,7 +1182,6 @@ slice_array<T>::operator&=(const valarray<T>& v) const
         *k &= v[i];
     }
 }
-
 template <class T>
 void
 slice_array<T>::operator|=(const valarray<T>& v) const
@@ -1267,7 +1193,6 @@ slice_array<T>::operator|=(const valarray<T>& v) const
         *k |= v[i];
     }
 }
-
 template <class T>
 void
 slice_array<T>::operator<<=(const valarray<T>& v) const
@@ -1279,7 +1204,6 @@ slice_array<T>::operator<<=(const valarray<T>& v) const
         *k <<= v[i];
     }
 }
-
 template <class T>
 void
 slice_array<T>::operator>>=(const valarray<T>& v) const
@@ -1291,7 +1215,6 @@ slice_array<T>::operator>>=(const valarray<T>& v) const
         *k >>= v[i];
     }
 }
-
 template <class T>
 void
 slice_array<T>::operator=(const T& t)
@@ -1303,39 +1226,34 @@ slice_array<T>::operator=(const T& t)
         *k = t;
     }
 }
-
-template <class T> inline slice_array<T>::slice_array(valarray<T>& v, const slice& s) : v_(v), slice_(s)
+template <class T>
+inline slice_array<T>::slice_array(valarray<T>& v, const slice& s) : v_(v), slice_(s)
 {
 }
-
 template <class T>
 inline const slice&
 slice_array<T>::get_slice() const
 {
     return slice_;
 }
-
 template <class T>
 inline valarray<T>&
 slice_array<T>::array()
 {
     return v_;
 }
-
 template <class T>
 inline const valarray<T>&
 slice_array<T>::array() const
 {
     return v_;
 }
-
 template <class T>
 inline typename slice_array<T>::iterator
 slice_array<T>::begin() const
 {
     return iterator(this);
 }
-
 // gslice_array
 
 template <class T> class gslice_array_iterator
@@ -1356,14 +1274,12 @@ private:
 
     friend class gslice_array<T>;
 };
-
 template <class T>
 inline T&
 gslice_array_iterator<T>::operator*()
 {
     return *ptr_;
 }
-
 template <class T>
 gslice_array_iterator<T>&
 gslice_array_iterator<T>::operator++()
@@ -1398,9 +1314,9 @@ gslice_array_iterator<T>::operator++()
     }
     return *this;
 }
-
 template <class T>
-gslice_array_iterator<T>::gslice_array_iterator(const gslice_array<T>* gsa) : indices_(gsa->get_gslice().size().size())
+gslice_array_iterator<T>::gslice_array_iterator(const gslice_array<T>* gsa)
+  : indices_(gsa->get_gslice().size().size())
 {
     const gslice& gs = gsa->get_gslice();
     sizes_ = &gs.size();
@@ -1409,7 +1325,6 @@ gslice_array_iterator<T>::gslice_array_iterator(const gslice_array<T>* gsa) : in
     stride_ = (*strides_)[indices_.size() - 1];
     ptr_ = start_ptr_;
 }
-
 template <class T> class gslice_array
 {
 public:
@@ -1449,7 +1364,6 @@ private:
     friend class valarray<T>;
     friend class gslice_array_iterator<T>;
 };
-
 // gslice_array Implementation
 
 template <class T>
@@ -1463,7 +1377,6 @@ gslice_array<T>::operator=(const valarray<T>& v) const
         *k = v[i];
     }
 }
-
 template <class T>
 void
 gslice_array<T>::operator*=(const valarray<T>& v) const
@@ -1475,7 +1388,6 @@ gslice_array<T>::operator*=(const valarray<T>& v) const
         *k *= v[i];
     }
 }
-
 template <class T>
 void
 gslice_array<T>::operator/=(const valarray<T>& v) const
@@ -1487,7 +1399,6 @@ gslice_array<T>::operator/=(const valarray<T>& v) const
         *k /= v[i];
     }
 }
-
 template <class T>
 void
 gslice_array<T>::operator%=(const valarray<T>& v) const
@@ -1499,7 +1410,6 @@ gslice_array<T>::operator%=(const valarray<T>& v) const
         *k %= v[i];
     }
 }
-
 template <class T>
 void
 gslice_array<T>::operator+=(const valarray<T>& v) const
@@ -1511,7 +1421,6 @@ gslice_array<T>::operator+=(const valarray<T>& v) const
         *k += v[i];
     }
 }
-
 template <class T>
 void
 gslice_array<T>::operator-=(const valarray<T>& v) const
@@ -1523,7 +1432,6 @@ gslice_array<T>::operator-=(const valarray<T>& v) const
         *k -= v[i];
     }
 }
-
 template <class T>
 void
 gslice_array<T>::operator^=(const valarray<T>& v) const
@@ -1535,7 +1443,6 @@ gslice_array<T>::operator^=(const valarray<T>& v) const
         *k ^= v[i];
     }
 }
-
 template <class T>
 void
 gslice_array<T>::operator&=(const valarray<T>& v) const
@@ -1547,7 +1454,6 @@ gslice_array<T>::operator&=(const valarray<T>& v) const
         *k &= v[i];
     }
 }
-
 template <class T>
 void
 gslice_array<T>::operator|=(const valarray<T>& v) const
@@ -1559,7 +1465,6 @@ gslice_array<T>::operator|=(const valarray<T>& v) const
         *k |= v[i];
     }
 }
-
 template <class T>
 void
 gslice_array<T>::operator<<=(const valarray<T>& v) const
@@ -1571,7 +1476,6 @@ gslice_array<T>::operator<<=(const valarray<T>& v) const
         *k <<= v[i];
     }
 }
-
 template <class T>
 void
 gslice_array<T>::operator>>=(const valarray<T>& v) const
@@ -1583,7 +1487,6 @@ gslice_array<T>::operator>>=(const valarray<T>& v) const
         *k >>= v[i];
     }
 }
-
 template <class T>
 void
 gslice_array<T>::operator=(const T& t)
@@ -1595,39 +1498,35 @@ gslice_array<T>::operator=(const T& t)
         *k = t;
     }
 }
-
-template <class T> inline gslice_array<T>::gslice_array(valarray<T>& v, const gslice& gs) : v_(v), gslice_(gs)
+template <class T>
+inline gslice_array<T>::gslice_array(valarray<T>& v, const gslice& gs)
+  : v_(v), gslice_(gs)
 {
 }
-
 template <class T>
 inline const gslice&
 gslice_array<T>::get_gslice() const
 {
     return gslice_;
 }
-
 template <class T>
 inline valarray<T>&
 gslice_array<T>::array()
 {
     return v_;
 }
-
 template <class T>
 inline const valarray<T>&
 gslice_array<T>::array() const
 {
     return v_;
 }
-
 template <class T>
 inline typename gslice_array<T>::iterator
 gslice_array<T>::begin() const
 {
     return iterator(this);
 }
-
 // mask_array
 
 template <class T> class mask_array_iterator
@@ -1645,14 +1544,12 @@ private:
 
     friend class mask_array<T>;
 };
-
 template <class T>
 inline T&
 mask_array_iterator<T>::operator*()
 {
     return *ptr_;
 }
-
 template <class T>
 inline mask_array_iterator<T>&
 mask_array_iterator<T>::operator++()
@@ -1666,7 +1563,6 @@ mask_array_iterator<T>::operator++()
     }
     return *this;
 }
-
 template <class T>
 mask_array_iterator<T>::mask_array_iterator(const mask_array<T>* ma)
   : mask_(&ma->mask()), i_(0), ptr_(&const_cast<mask_array<T>*>(ma)->array()[0])
@@ -1677,7 +1573,6 @@ mask_array_iterator<T>::mask_array_iterator(const mask_array<T>* ma)
         ++ptr_;
     }
 }
-
 template <class T> class mask_array
 {
 public:
@@ -1719,7 +1614,6 @@ private:
     friend class valarray<T>;
     friend class mask_array_iterator<T>;
 };
-
 template <class T>
 void
 mask_array<T>::operator=(const valarray<T>& v) const
@@ -1731,7 +1625,6 @@ mask_array<T>::operator=(const valarray<T>& v) const
         *k = v[i];
     }
 }
-
 template <class T>
 void
 mask_array<T>::operator*=(const valarray<T>& v) const
@@ -1743,7 +1636,6 @@ mask_array<T>::operator*=(const valarray<T>& v) const
         *k *= v[i];
     }
 }
-
 template <class T>
 void
 mask_array<T>::operator/=(const valarray<T>& v) const
@@ -1755,7 +1647,6 @@ mask_array<T>::operator/=(const valarray<T>& v) const
         *k /= v[i];
     }
 }
-
 template <class T>
 void
 mask_array<T>::operator%=(const valarray<T>& v) const
@@ -1767,7 +1658,6 @@ mask_array<T>::operator%=(const valarray<T>& v) const
         *k %= v[i];
     }
 }
-
 template <class T>
 void
 mask_array<T>::operator+=(const valarray<T>& v) const
@@ -1779,7 +1669,6 @@ mask_array<T>::operator+=(const valarray<T>& v) const
         *k += v[i];
     }
 }
-
 template <class T>
 void
 mask_array<T>::operator-=(const valarray<T>& v) const
@@ -1791,7 +1680,6 @@ mask_array<T>::operator-=(const valarray<T>& v) const
         *k -= v[i];
     }
 }
-
 template <class T>
 void
 mask_array<T>::operator^=(const valarray<T>& v) const
@@ -1803,7 +1691,6 @@ mask_array<T>::operator^=(const valarray<T>& v) const
         *k ^= v[i];
     }
 }
-
 template <class T>
 void
 mask_array<T>::operator&=(const valarray<T>& v) const
@@ -1815,7 +1702,6 @@ mask_array<T>::operator&=(const valarray<T>& v) const
         *k &= v[i];
     }
 }
-
 template <class T>
 void
 mask_array<T>::operator|=(const valarray<T>& v) const
@@ -1827,7 +1713,6 @@ mask_array<T>::operator|=(const valarray<T>& v) const
         *k |= v[i];
     }
 }
-
 template <class T>
 void
 mask_array<T>::operator<<=(const valarray<T>& v) const
@@ -1839,7 +1724,6 @@ mask_array<T>::operator<<=(const valarray<T>& v) const
         *k <<= v[i];
     }
 }
-
 template <class T>
 void
 mask_array<T>::operator>>=(const valarray<T>& v) const
@@ -1851,7 +1735,6 @@ mask_array<T>::operator>>=(const valarray<T>& v) const
         *k >>= v[i];
     }
 }
-
 template <class T>
 void
 mask_array<T>::operator=(const T& t)
@@ -1863,9 +1746,9 @@ mask_array<T>::operator=(const T& t)
         *k = t;
     }
 }
-
 template <class T>
-mask_array<T>::mask_array(valarray<T>& v, const valarray<bool>& mask) : v_(v), mask_(mask), length_(0)
+mask_array<T>::mask_array(valarray<T>& v, const valarray<bool>& mask)
+  : v_(v), mask_(mask), length_(0)
 {
     for (size_t i = 0; i < v.size(); ++i)
     {
@@ -1875,42 +1758,36 @@ mask_array<T>::mask_array(valarray<T>& v, const valarray<bool>& mask) : v_(v), m
         }
     }
 }
-
 template <class T>
 inline const valarray<bool>&
 mask_array<T>::mask() const
 {
     return mask_;
 }
-
 template <class T>
 inline valarray<T>&
 mask_array<T>::array()
 {
     return v_;
 }
-
 template <class T>
 inline const valarray<T>&
 mask_array<T>::array() const
 {
     return v_;
 }
-
 template <class T>
 inline typename mask_array<T>::iterator
 mask_array<T>::begin() const
 {
     return iterator(this);
 }
-
 template <class T>
 inline size_t
 mask_array<T>::length() const
 {
     return length_;
 }
-
 // indirect_array
 
 template <class T> class indirect_array_iterator
@@ -1928,14 +1805,12 @@ private:
 
     friend class indirect_array<T>;
 };
-
 template <class T>
 inline T&
 indirect_array_iterator<T>::operator*()
 {
     return *ptr_;
 }
-
 template <class T>
 inline indirect_array_iterator<T>&
 indirect_array_iterator<T>::operator++()
@@ -1943,13 +1818,12 @@ indirect_array_iterator<T>::operator++()
     ptr_ = &const_cast<indirect_array<T>*>(ia_)->array()[ia_->ia()[++i_]];
     return *this;
 }
-
 template <class T>
-inline indirect_array_iterator<T>::indirect_array_iterator(const indirect_array<T>* ia)
+inline indirect_array_iterator<T>::indirect_array_iterator(
+    const indirect_array<T>* ia)
   : i_(0), ia_(ia), ptr_(&const_cast<indirect_array<T>*>(ia)->array()[ia->ia()[0]])
 {
 }
-
 template <class T> class indirect_array
 {
 public:
@@ -1990,7 +1864,6 @@ private:
     friend class valarray<T>;
     friend class indirect_array_iterator<T>;
 };
-
 // indirect_array Implementation
 
 template <class T>
@@ -2004,7 +1877,6 @@ indirect_array<T>::operator=(const valarray<T>& v) const
         *k = v[i];
     }
 }
-
 template <class T>
 void
 indirect_array<T>::operator*=(const valarray<T>& v) const
@@ -2016,7 +1888,6 @@ indirect_array<T>::operator*=(const valarray<T>& v) const
         *k *= v[i];
     }
 }
-
 template <class T>
 void
 indirect_array<T>::operator/=(const valarray<T>& v) const
@@ -2028,7 +1899,6 @@ indirect_array<T>::operator/=(const valarray<T>& v) const
         *k /= v[i];
     }
 }
-
 template <class T>
 void
 indirect_array<T>::operator%=(const valarray<T>& v) const
@@ -2040,7 +1910,6 @@ indirect_array<T>::operator%=(const valarray<T>& v) const
         *k %= v[i];
     }
 }
-
 template <class T>
 void
 indirect_array<T>::operator+=(const valarray<T>& v) const
@@ -2052,7 +1921,6 @@ indirect_array<T>::operator+=(const valarray<T>& v) const
         *k += v[i];
     }
 }
-
 template <class T>
 void
 indirect_array<T>::operator-=(const valarray<T>& v) const
@@ -2064,7 +1932,6 @@ indirect_array<T>::operator-=(const valarray<T>& v) const
         *k -= v[i];
     }
 }
-
 template <class T>
 void
 indirect_array<T>::operator^=(const valarray<T>& v) const
@@ -2076,7 +1943,6 @@ indirect_array<T>::operator^=(const valarray<T>& v) const
         *k ^= v[i];
     }
 }
-
 template <class T>
 void
 indirect_array<T>::operator&=(const valarray<T>& v) const
@@ -2088,7 +1954,6 @@ indirect_array<T>::operator&=(const valarray<T>& v) const
         *k &= v[i];
     }
 }
-
 template <class T>
 void
 indirect_array<T>::operator|=(const valarray<T>& v) const
@@ -2100,7 +1965,6 @@ indirect_array<T>::operator|=(const valarray<T>& v) const
         *k |= v[i];
     }
 }
-
 template <class T>
 void
 indirect_array<T>::operator<<=(const valarray<T>& v) const
@@ -2112,7 +1976,6 @@ indirect_array<T>::operator<<=(const valarray<T>& v) const
         *k <<= v[i];
     }
 }
-
 template <class T>
 void
 indirect_array<T>::operator>>=(const valarray<T>& v) const
@@ -2124,7 +1987,6 @@ indirect_array<T>::operator>>=(const valarray<T>& v) const
         *k >>= v[i];
     }
 }
-
 template <class T>
 void
 indirect_array<T>::operator=(const T& t)
@@ -2136,46 +1998,41 @@ indirect_array<T>::operator=(const T& t)
         *k = t;
     }
 }
-
-template <class T> inline indirect_array<T>::indirect_array(valarray<T>& v, const valarray<size_t>& ia) : v_(v), ia_(ia)
+template <class T>
+inline indirect_array<T>::indirect_array(valarray<T>& v, const valarray<size_t>& ia)
+  : v_(v), ia_(ia)
 {
 }
-
 template <class T>
 inline const valarray<size_t>&
 indirect_array<T>::ia() const
 {
     return ia_;
 }
-
 template <class T>
 inline valarray<T>&
 indirect_array<T>::array()
 {
     return v_;
 }
-
 template <class T>
 inline const valarray<T>&
 indirect_array<T>::array() const
 {
     return v_;
 }
-
 template <class T>
 inline typename indirect_array<T>::iterator
 indirect_array<T>::begin() const
 {
     return iterator(this);
 }
-
 template <class T>
 inline size_t
 indirect_array<T>::length() const
 {
     return ia_.size();
 }
-
 // valarray binary operators
 
 template <class T>
@@ -2189,7 +2046,6 @@ operator*(const valarray<T>& x, const valarray<T>& y)
     }
     return result;
 }
-
 template <class T>
 valarray<T>
 operator*(const valarray<T>& x, const T& t)
@@ -2201,7 +2057,6 @@ operator*(const valarray<T>& x, const T& t)
     }
     return result;
 }
-
 template <class T>
 valarray<T>
 operator*(const T& t, const valarray<T>& x)
@@ -2213,7 +2068,6 @@ operator*(const T& t, const valarray<T>& x)
     }
     return result;
 }
-
 template <class T>
 valarray<T>
 operator/(const valarray<T>& x, const valarray<T>& y)
@@ -2225,7 +2079,6 @@ operator/(const valarray<T>& x, const valarray<T>& y)
     }
     return result;
 }
-
 template <class T>
 valarray<T>
 operator/(const valarray<T>& x, const T& t)
@@ -2237,7 +2090,6 @@ operator/(const valarray<T>& x, const T& t)
     }
     return result;
 }
-
 template <class T>
 valarray<T>
 operator/(const T& t, const valarray<T>& x)
@@ -2249,7 +2101,6 @@ operator/(const T& t, const valarray<T>& x)
     }
     return result;
 }
-
 template <class T>
 valarray<T>
 operator%(const valarray<T>& x, const valarray<T>& y)
@@ -2261,7 +2112,6 @@ operator%(const valarray<T>& x, const valarray<T>& y)
     }
     return result;
 }
-
 template <class T>
 valarray<T>
 operator%(const valarray<T>& x, const T& t)
@@ -2273,7 +2123,6 @@ operator%(const valarray<T>& x, const T& t)
     }
     return result;
 }
-
 template <class T>
 valarray<T>
 operator%(const T& t, const valarray<T>& x)
@@ -2285,7 +2134,6 @@ operator%(const T& t, const valarray<T>& x)
     }
     return result;
 }
-
 template <class T>
 valarray<T>
 operator+(const valarray<T>& x, const valarray<T>& y)
@@ -2297,7 +2145,6 @@ operator+(const valarray<T>& x, const valarray<T>& y)
     }
     return result;
 }
-
 template <class T>
 valarray<T>
 operator+(const valarray<T>& x, const T& t)
@@ -2309,7 +2156,6 @@ operator+(const valarray<T>& x, const T& t)
     }
     return result;
 }
-
 template <class T>
 valarray<T>
 operator+(const T& t, const valarray<T>& x)
@@ -2321,7 +2167,6 @@ operator+(const T& t, const valarray<T>& x)
     }
     return result;
 }
-
 template <class T>
 valarray<T>
 operator-(const valarray<T>& x, const valarray<T>& y)
@@ -2333,7 +2178,6 @@ operator-(const valarray<T>& x, const valarray<T>& y)
     }
     return result;
 }
-
 template <class T>
 valarray<T>
 operator-(const valarray<T>& x, const T& t)
@@ -2345,7 +2189,6 @@ operator-(const valarray<T>& x, const T& t)
     }
     return result;
 }
-
 template <class T>
 valarray<T>
 operator-(const T& t, const valarray<T>& x)
@@ -2357,7 +2200,6 @@ operator-(const T& t, const valarray<T>& x)
     }
     return result;
 }
-
 template <class T>
 valarray<T>
 operator^(const valarray<T>& x, const valarray<T>& y)
@@ -2369,7 +2211,6 @@ operator^(const valarray<T>& x, const valarray<T>& y)
     }
     return result;
 }
-
 template <class T>
 valarray<T>
 operator^(const valarray<T>& x, const T& t)
@@ -2381,7 +2222,6 @@ operator^(const valarray<T>& x, const T& t)
     }
     return result;
 }
-
 template <class T>
 valarray<T>
 operator^(const T& t, const valarray<T>& x)
@@ -2393,7 +2233,6 @@ operator^(const T& t, const valarray<T>& x)
     }
     return result;
 }
-
 template <class T>
 valarray<T>
 operator&(const valarray<T>& x, const valarray<T>& y)
@@ -2405,7 +2244,6 @@ operator&(const valarray<T>& x, const valarray<T>& y)
     }
     return result;
 }
-
 template <class T>
 valarray<T>
 operator&(const valarray<T>& x, const T& t)
@@ -2417,7 +2255,6 @@ operator&(const valarray<T>& x, const T& t)
     }
     return result;
 }
-
 template <class T>
 valarray<T>
 operator&(const T& t, const valarray<T>& x)
@@ -2429,7 +2266,6 @@ operator&(const T& t, const valarray<T>& x)
     }
     return result;
 }
-
 template <class T>
 valarray<T>
 operator|(const valarray<T>& x, const valarray<T>& y)
@@ -2441,7 +2277,6 @@ operator|(const valarray<T>& x, const valarray<T>& y)
     }
     return result;
 }
-
 template <class T>
 valarray<T>
 operator|(const valarray<T>& x, const T& t)
@@ -2453,7 +2288,6 @@ operator|(const valarray<T>& x, const T& t)
     }
     return result;
 }
-
 template <class T>
 valarray<T>
 operator|(const T& t, const valarray<T>& x)
@@ -2465,7 +2299,6 @@ operator|(const T& t, const valarray<T>& x)
     }
     return result;
 }
-
 template <class T>
 valarray<T>
 operator<<(const valarray<T>& x, const valarray<T>& y)
@@ -2477,7 +2310,6 @@ operator<<(const valarray<T>& x, const valarray<T>& y)
     }
     return result;
 }
-
 template <class T>
 valarray<T>
 operator<<(const valarray<T>& x, const T& t)
@@ -2489,7 +2321,6 @@ operator<<(const valarray<T>& x, const T& t)
     }
     return result;
 }
-
 template <class T>
 valarray<T>
 operator<<(const T& t, const valarray<T>& x)
@@ -2501,7 +2332,6 @@ operator<<(const T& t, const valarray<T>& x)
     }
     return result;
 }
-
 template <class T>
 valarray<T>
 operator>>(const valarray<T>& x, const valarray<T>& y)
@@ -2513,7 +2343,6 @@ operator>>(const valarray<T>& x, const valarray<T>& y)
     }
     return result;
 }
-
 template <class T>
 valarray<T>
 operator>>(const valarray<T>& x, const T& t)
@@ -2525,7 +2354,6 @@ operator>>(const valarray<T>& x, const T& t)
     }
     return result;
 }
-
 template <class T>
 valarray<T>
 operator>>(const T& t, const valarray<T>& x)
@@ -2537,7 +2365,6 @@ operator>>(const T& t, const valarray<T>& x)
     }
     return result;
 }
-
 // valarray logical operators
 
 template <class T>
@@ -2551,7 +2378,6 @@ operator&&(const valarray<T>& x, const valarray<T>& y)
     }
     return result;
 }
-
 template <class T>
 valarray<bool>
 operator&&(const valarray<T>& x, const T& t)
@@ -2563,7 +2389,6 @@ operator&&(const valarray<T>& x, const T& t)
     }
     return result;
 }
-
 template <class T>
 valarray<bool>
 operator&&(const T& t, const valarray<T>& x)
@@ -2575,7 +2400,6 @@ operator&&(const T& t, const valarray<T>& x)
     }
     return result;
 }
-
 template <class T>
 valarray<bool>
 operator||(const valarray<T>& x, const valarray<T>& y)
@@ -2587,7 +2411,6 @@ operator||(const valarray<T>& x, const valarray<T>& y)
     }
     return result;
 }
-
 template <class T>
 valarray<bool>
 operator||(const valarray<T>& x, const T& t)
@@ -2599,7 +2422,6 @@ operator||(const valarray<T>& x, const T& t)
     }
     return result;
 }
-
 template <class T>
 valarray<bool>
 operator||(const T& t, const valarray<T>& x)
@@ -2611,7 +2433,6 @@ operator||(const T& t, const valarray<T>& x)
     }
     return result;
 }
-
 template <class T>
 valarray<bool>
 operator==(const valarray<T>& x, const valarray<T>& y)
@@ -2623,7 +2444,6 @@ operator==(const valarray<T>& x, const valarray<T>& y)
     }
     return result;
 }
-
 template <class T>
 valarray<bool>
 operator==(const valarray<T>& x, const T& t)
@@ -2635,7 +2455,6 @@ operator==(const valarray<T>& x, const T& t)
     }
     return result;
 }
-
 template <class T>
 valarray<bool>
 operator==(const T& t, const valarray<T>& x)
@@ -2647,7 +2466,6 @@ operator==(const T& t, const valarray<T>& x)
     }
     return result;
 }
-
 template <class T>
 valarray<bool>
 operator!=(const valarray<T>& x, const valarray<T>& y)
@@ -2659,7 +2477,6 @@ operator!=(const valarray<T>& x, const valarray<T>& y)
     }
     return result;
 }
-
 template <class T>
 valarray<bool>
 operator!=(const valarray<T>& x, const T& t)
@@ -2671,7 +2488,6 @@ operator!=(const valarray<T>& x, const T& t)
     }
     return result;
 }
-
 template <class T>
 valarray<bool>
 operator!=(const T& t, const valarray<T>& x)
@@ -2683,7 +2499,6 @@ operator!=(const T& t, const valarray<T>& x)
     }
     return result;
 }
-
 template <class T>
 valarray<bool>
 operator<(const valarray<T>& x, const valarray<T>& y)
@@ -2695,7 +2510,6 @@ operator<(const valarray<T>& x, const valarray<T>& y)
     }
     return result;
 }
-
 template <class T>
 valarray<bool>
 operator<(const valarray<T>& x, const T& t)
@@ -2707,7 +2521,6 @@ operator<(const valarray<T>& x, const T& t)
     }
     return result;
 }
-
 template <class T>
 valarray<bool>
 operator<(const T& t, const valarray<T>& x)
@@ -2719,7 +2532,6 @@ operator<(const T& t, const valarray<T>& x)
     }
     return result;
 }
-
 template <class T>
 valarray<bool>
 operator>(const valarray<T>& x, const valarray<T>& y)
@@ -2731,7 +2543,6 @@ operator>(const valarray<T>& x, const valarray<T>& y)
     }
     return result;
 }
-
 template <class T>
 valarray<bool>
 operator>(const valarray<T>& x, const T& t)
@@ -2743,7 +2554,6 @@ operator>(const valarray<T>& x, const T& t)
     }
     return result;
 }
-
 template <class T>
 valarray<bool>
 operator>(const T& t, const valarray<T>& x)
@@ -2755,7 +2565,6 @@ operator>(const T& t, const valarray<T>& x)
     }
     return result;
 }
-
 template <class T>
 valarray<bool>
 operator<=(const valarray<T>& x, const valarray<T>& y)
@@ -2767,7 +2576,6 @@ operator<=(const valarray<T>& x, const valarray<T>& y)
     }
     return result;
 }
-
 template <class T>
 valarray<bool>
 operator<=(const valarray<T>& x, const T& t)
@@ -2779,7 +2587,6 @@ operator<=(const valarray<T>& x, const T& t)
     }
     return result;
 }
-
 template <class T>
 valarray<bool>
 operator<=(const T& t, const valarray<T>& x)
@@ -2791,7 +2598,6 @@ operator<=(const T& t, const valarray<T>& x)
     }
     return result;
 }
-
 template <class T>
 valarray<bool>
 operator>=(const valarray<T>& x, const valarray<T>& y)
@@ -2803,7 +2609,6 @@ operator>=(const valarray<T>& x, const valarray<T>& y)
     }
     return result;
 }
-
 template <class T>
 valarray<bool>
 operator>=(const valarray<T>& x, const T& t)
@@ -2815,7 +2620,6 @@ operator>=(const valarray<T>& x, const T& t)
     }
     return result;
 }
-
 template <class T>
 valarray<bool>
 operator>=(const T& t, const valarray<T>& x)
@@ -2827,7 +2631,6 @@ operator>=(const T& t, const valarray<T>& x)
     }
     return result;
 }
-
 // valarray transcendentals
 
 template <class T>
@@ -2842,7 +2645,6 @@ abs(const valarray<T>& x)
     }
     return result;
 }
-
 template <class T>
 valarray<T>
 acos(const valarray<T>& x)
@@ -2855,7 +2657,6 @@ acos(const valarray<T>& x)
     }
     return result;
 }
-
 template <class T>
 valarray<T>
 asin(const valarray<T>& x)
@@ -2868,7 +2669,6 @@ asin(const valarray<T>& x)
     }
     return result;
 }
-
 template <class T>
 valarray<T>
 atan(const valarray<T>& x)
@@ -2881,7 +2681,6 @@ atan(const valarray<T>& x)
     }
     return result;
 }
-
 template <class T>
 valarray<T>
 atan2(const valarray<T>& x, const valarray<T>& y)
@@ -2894,7 +2693,6 @@ atan2(const valarray<T>& x, const valarray<T>& y)
     }
     return result;
 }
-
 template <class T>
 valarray<T>
 atan2(const valarray<T>& x, const T& t)
@@ -2907,7 +2705,6 @@ atan2(const valarray<T>& x, const T& t)
     }
     return result;
 }
-
 template <class T>
 valarray<T>
 atan2(const T& t, const valarray<T>& x)
@@ -2920,7 +2717,6 @@ atan2(const T& t, const valarray<T>& x)
     }
     return result;
 }
-
 template <class T>
 valarray<T>
 cos(const valarray<T>& x)
@@ -2933,7 +2729,6 @@ cos(const valarray<T>& x)
     }
     return result;
 }
-
 template <class T>
 valarray<T>
 cosh(const valarray<T>& x)
@@ -2946,7 +2741,6 @@ cosh(const valarray<T>& x)
     }
     return result;
 }
-
 template <class T>
 valarray<T>
 exp(const valarray<T>& x)
@@ -2959,7 +2753,6 @@ exp(const valarray<T>& x)
     }
     return result;
 }
-
 template <class T>
 valarray<T>
 log(const valarray<T>& x)
@@ -2972,7 +2765,6 @@ log(const valarray<T>& x)
     }
     return result;
 }
-
 template <class T>
 valarray<T>
 log10(const valarray<T>& x)
@@ -2985,7 +2777,6 @@ log10(const valarray<T>& x)
     }
     return result;
 }
-
 template <class T>
 valarray<T>
 pow(const valarray<T>& x, const valarray<T>& y)
@@ -2998,7 +2789,6 @@ pow(const valarray<T>& x, const valarray<T>& y)
     }
     return result;
 }
-
 template <class T>
 valarray<T>
 pow(const valarray<T>& x, const T& t)
@@ -3011,7 +2801,6 @@ pow(const valarray<T>& x, const T& t)
     }
     return result;
 }
-
 template <class T>
 valarray<T>
 pow(const T& t, const valarray<T>& x)
@@ -3024,7 +2813,6 @@ pow(const T& t, const valarray<T>& x)
     }
     return result;
 }
-
 template <class T>
 valarray<T>
 sin(const valarray<T>& x)
@@ -3037,7 +2825,6 @@ sin(const valarray<T>& x)
     }
     return result;
 }
-
 template <class T>
 valarray<T>
 sinh(const valarray<T>& x)
@@ -3050,7 +2837,6 @@ sinh(const valarray<T>& x)
     }
     return result;
 }
-
 template <class T>
 valarray<T>
 sqrt(const valarray<T>& x)
@@ -3063,7 +2849,6 @@ sqrt(const valarray<T>& x)
     }
     return result;
 }
-
 template <class T>
 valarray<T>
 tan(const valarray<T>& x)
@@ -3076,7 +2861,6 @@ tan(const valarray<T>& x)
     }
     return result;
 }
-
 template <class T>
 valarray<T>
 tanh(const valarray<T>& x)
@@ -3089,24 +2873,23 @@ tanh(const valarray<T>& x)
     }
     return result;
 }
-
-#        ifndef _MSL_NO_CPP_NAMESPACE
+#ifndef _MSL_NO_CPP_NAMESPACE
 } // namespace std
-#        endif
+#endif
 
-#        ifdef _MSL_FORCE_ENUMS_ALWAYS_INT
-#            pragma enumsalwaysint reset
-#        endif
+#ifdef _MSL_FORCE_ENUMS_ALWAYS_INT
+#pragma enumsalwaysint reset
+#endif
 
-#        ifdef _MSL_FORCE_ENABLE_BOOL_SUPPORT
-#            pragma bool reset
-#        endif
+#ifdef _MSL_FORCE_ENABLE_BOOL_SUPPORT
+#pragma bool reset
+#endif
 
-#        pragma options align = reset
+#pragma options align = reset
 
-#    endif // RC_INVOKED
+#endif // RC_INVOKED
 
-#endif     // _VALARRAY
+#endif // _VALARRAY
 
 // hh 971220 fixed MOD_INCLUDE
 // hh 971226 added alignment wrapper
@@ -3116,7 +2899,8 @@ tanh(const valarray<T>& x)
 // hh 971229 Changed the friend declarations to not require member templates
 // hh 971229 removed :: from fill_n in fill
 // hh 971229 added val_array prototypes
-// hh 971229 gslice_array, indirect_array and mask_array moved up in file to avoid "using
+// hh 971229 gslice_array, indirect_array and mask_array moved up in file to avoid
+// "using
 //           incomplete type" errors.
 // hh 971230 added RC_INVOKED wrapper
 // hh 980408 wrapped in #ifndef _No_Floating_Point

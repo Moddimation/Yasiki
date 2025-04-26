@@ -124,138 +124,138 @@ inline __vec2x32float__ sincosf_f(__vec2x32float__ x);
 
 #if !USE_ASM
 
-#    define sine_core_series_fast(x)                                                                                   \
-        square_x = x * x;                                                                                              \
-        result *= square_x;                                                                                            \
-        result -= const1;                                                                                              \
-        result *= square_x;                                                                                            \
-        result += const2;                                                                                              \
-        result *= x;
+#define sine_core_series_fast(x)                                                    \
+    square_x = x * x;                                                               \
+    result *= square_x;                                                             \
+    result -= const1;                                                               \
+    result *= square_x;                                                             \
+    result += const2;                                                               \
+    result *= x;
 
-#    define sine_core_series(x)                                                                                        \
-        square_x = x * x;                                                                                              \
-        result *= square_x;                                                                                            \
-        result += const1;                                                                                              \
-        result *= square_x;                                                                                            \
-        result -= const2;                                                                                              \
-        result *= square_x;                                                                                            \
-        result += const3;                                                                                              \
-        result *= square_x;                                                                                            \
-        result -= const4;                                                                                              \
-        result *= square_x;                                                                                            \
-        result += const5;                                                                                              \
-        result *= x;
+#define sine_core_series(x)                                                         \
+    square_x = x * x;                                                               \
+    result *= square_x;                                                             \
+    result += const1;                                                               \
+    result *= square_x;                                                             \
+    result -= const2;                                                               \
+    result *= square_x;                                                             \
+    result += const3;                                                               \
+    result *= square_x;                                                             \
+    result -= const4;                                                               \
+    result *= square_x;                                                             \
+    result += const5;                                                               \
+    result *= x;
 
-#    define cosine_core_series_fast(x)                                                                                 \
-        square_x = x * x;                                                                                              \
-        result *= square_x;                                                                                            \
-        result -= const1;                                                                                              \
-        result *= square_x;                                                                                            \
-        result += const2;
+#define cosine_core_series_fast(x)                                                  \
+    square_x = x * x;                                                               \
+    result *= square_x;                                                             \
+    result -= const1;                                                               \
+    result *= square_x;                                                             \
+    result += const2;
 
-#    define cosine_core_series(x)                                                                                      \
-        square_x = x * x;                                                                                              \
-        result *= square_x;                                                                                            \
-        result += const1;                                                                                              \
-        result *= square_x;                                                                                            \
-        result -= const2;                                                                                              \
-        result *= square_x;                                                                                            \
-        result += const3;                                                                                              \
-        result *= square_x;                                                                                            \
-        result -= const4;                                                                                              \
-        result *= square_x;                                                                                            \
-        result += const5;
+#define cosine_core_series(x)                                                       \
+    square_x = x * x;                                                               \
+    result *= square_x;                                                             \
+    result += const1;                                                               \
+    result *= square_x;                                                             \
+    result -= const2;                                                               \
+    result *= square_x;                                                             \
+    result += const3;                                                               \
+    result *= square_x;                                                             \
+    result -= const4;                                                               \
+    result *= square_x;                                                             \
+    result += const5;
 
 #else
 
-#    define sine_core_series_fast(x)                                                                                   \
-        asm {\
+#define sine_core_series_fast(x)                                                    \
+    asm {\
             fmuls   square_x, x, x;\
             fmsubs  result, result, square_x, const1;\
             fmadds  result, result, square_x, const2;\
-            fmuls   result, result, x;                                                                                                         \
-        }
+            fmuls   result, result, x;                                                                          \
+    }
 
-#    define sine_core_series(x)                                                                                        \
-        asm {\
+#define sine_core_series(x)                                                         \
+    asm {\
             fmuls   square_x, x, x;\
             fmadds  result, result, square_x, const1;\
             fmsubs  result, result, square_x, const2;\
             fmadds  result, result, square_x, const3;\
             fmsubs  result, result, square_x, const4;\
             fmadds  result, result, square_x, const5;\
-            fmuls   result, result, x;                                                                                                         \
-        }
+            fmuls   result, result, x;                                                                          \
+    }
 
-#    define cosine_core_series_fast(x)                                                                                 \
-        asm {\
+#define cosine_core_series_fast(x)                                                  \
+    asm {\
             fmuls   square_x, x, x;\
             fmsubs  result, result, square_x, const1;\
-            fmadds  result, result, square_x, const2; }
+            fmadds  result, result, square_x, const2;                                                                          \
+    }
 
-#    define cosine_core_series(x)                                                                                      \
-        asm {\
+#define cosine_core_series(x)                                                       \
+    asm {\
             fmuls   square_x, x, x;\
             fmadds  result, result, square_x, const1;\
             fmsubs  result, result, square_x, const2;\
             fmadds  result, result, square_x, const3;\
             fmsubs  result, result, square_x, const4;\
-            fmadds  result, result, square_x, const5;                                                                                                         \
-        }
+            fmadds  result, result, square_x, const5;                                                                          \
+    }
 #endif
 
 #if __PPCGEKKO__
 
-#    define vector_core_series_fast(x)                                                                                 \
-        ps_mul     square_x, x, x;                                                                                     \
-        ps_msub    result, result, square_x, const1;                                                                   \
-        ps_madd    tempf, result, square_x, const2;                                                                    \
-        ps_mul     result, tempf, x;                                                                                   \
-        ps_merge01 result, result, tempf
+#define vector_core_series_fast(x)                                                  \
+    ps_mul     square_x, x, x;                                                      \
+    ps_msub    result, result, square_x, const1;                                    \
+    ps_madd    tempf, result, square_x, const2;                                     \
+    ps_mul     result, tempf, x;                                                    \
+    ps_merge01 result, result, tempf
 
-#    define vector_core_series(x)                                                                                      \
-        ps_mul     square_x, x, x;                                                                                     \
-        ps_madd    result, result, square_x, const1;                                                                   \
-        ps_msub    result, result, square_x, const2;                                                                   \
-        ps_madd    result, result, square_x, const3;                                                                   \
-        ps_msub    result, result, square_x, const4;                                                                   \
-        ps_madd    tempf, result, square_x, const5;                                                                    \
-        ps_mul     result, tempf, x;                                                                                   \
-        ps_merge01 result, result, tempf
+#define vector_core_series(x)                                                       \
+    ps_mul     square_x, x, x;                                                      \
+    ps_madd    result, result, square_x, const1;                                    \
+    ps_msub    result, result, square_x, const2;                                    \
+    ps_madd    result, result, square_x, const3;                                    \
+    ps_msub    result, result, square_x, const4;                                    \
+    ps_madd    tempf, result, square_x, const5;                                     \
+    ps_mul     result, tempf, x;                                                    \
+    ps_merge01 result, result, tempf
 
 #endif
 
-#define MAP_TO_FIRST_QUAD(core, I, II, III, IV)                                                                        \
-    if (x <= __PI)                                                                                                     \
-    {                                                                                                                  \
-        if (x <= __PIO2__)                                                                                             \
-        {                                                                                                              \
-            core;                                                                                                      \
-            return I##result;                                                                                          \
-        }                                                                                                              \
-        else                                                                                                           \
-        {                                                                                                              \
-            x = __PIO2__ - (x - __PIO2__);                                                                             \
-            core;                                                                                                      \
-            return II##result;                                                                                         \
-        }                                                                                                              \
-    }                                                                                                                  \
-    else                                                                                                               \
-    {                                                                                                                  \
-        if (x < 3.0f * __PIO2__)                                                                                       \
-        {                                                                                                              \
-            x = x - __PI;                                                                                              \
-            core;                                                                                                      \
-            return III##result;                                                                                        \
-        }                                                                                                              \
-        else                                                                                                           \
-        {                                                                                                              \
-            x = (__PIO2__) - (x - 3.0f * __PIO2__);                                                                    \
-            core;                                                                                                      \
-            return IV##result;                                                                                         \
-        }                                                                                                              \
+#define MAP_TO_FIRST_QUAD(core, I, II, III, IV)                                     \
+    if (x <= __PI)                                                                  \
+    {                                                                               \
+        if (x <= __PIO2__)                                                          \
+        {                                                                           \
+            core;                                                                   \
+            return I##result;                                                       \
+        }                                                                           \
+        else                                                                        \
+        {                                                                           \
+            x = __PIO2__ - (x - __PIO2__);                                          \
+            core;                                                                   \
+            return II##result;                                                      \
+        }                                                                           \
+    }                                                                               \
+    else                                                                            \
+    {                                                                               \
+        if (x < 3.0f * __PIO2__)                                                    \
+        {                                                                           \
+            x = x - __PI;                                                           \
+            core;                                                                   \
+            return III##result;                                                     \
+        }                                                                           \
+        else                                                                        \
+        {                                                                           \
+            x = (__PIO2__) - (x - 3.0f * __PIO2__);                                 \
+            core;                                                                   \
+            return IV##result;                                                      \
+        }                                                                           \
     }
-
 float
 sinf_a(register float x)
 {
@@ -269,7 +269,6 @@ sinf_a(register float x)
 
     MAP_TO_FIRST_QUAD(sine_core_series(x), +, +, -, -);
 }
-
 float
 sinf_f(register float x)
 {
@@ -280,7 +279,6 @@ sinf_f(register float x)
 
     MAP_TO_FIRST_QUAD(sine_core_series_fast(x), +, +, -, -);
 }
-
 float
 cosf_a(register float x)
 {
@@ -294,7 +292,6 @@ cosf_a(register float x)
 
     MAP_TO_FIRST_QUAD(cosine_core_series(x), +, -, -, +);
 }
-
 float
 cosf_f(register float x)
 {
@@ -305,9 +302,7 @@ cosf_f(register float x)
 
     MAP_TO_FIRST_QUAD(cosine_core_series_fast(x), +, -, -, +);
 }
-
 #if __PPCGEKKO__
-
 __vec2x32float__
 sincosf_f(register __vec2x32float__ x)
 {
@@ -420,7 +415,6 @@ finish:
 
     return result;
 }
-
 __vec2x32float__
 sincosf_a(register __vec2x32float__ x)
 {
@@ -545,7 +539,6 @@ finish:
 
     return result;
 }
-
 #endif
 
 #pragma fp_contract reset

@@ -1,18 +1,20 @@
 /* Metrowerks Standard Library
- * Copyright ÃÂ¯ÃÂ½C 1995-2001 Metrowerks Corporation.  All rights reserved.
+ * Copyright ÃÂ¯ÃÂ½C 1995-2001 Metrowerks Corporation.  All rights
+ * reserved.
  *
  * $Date: 2001/03/08 20:53:53 $
  * $Revision: 1.13 $
  */
 
-// functional.h            // hh 971207 Changed filename from functional to functional.h
+// functional.h            // hh 971207 Changed filename from functional to
+// functional.h
 
-#ifndef _FUNCTIONAL_H             // hh 971207 added standard include guards
-#    define _FUNCTIONAL_H
+#ifndef _FUNCTIONAL_H         // hh 971207 added standard include guards
+#define _FUNCTIONAL_H
 
-#    include <functional>
+#include <functional>
 
-#    ifndef _MSL_NO_CPP_NAMESPACE // hh 971207 Added backward compatibility
+#ifndef _MSL_NO_CPP_NAMESPACE // hh 971207 Added backward compatibility
 using std::binary_function;
 using std::binary_negate;
 using std::bind1st;
@@ -49,15 +51,15 @@ using std::pointer_to_unary_function_with_const_args;
 using std::ptr_fun;
 using std::unary_function;
 using std::unary_negate;
-#        if !defined(__MWERKS__) || (defined(__MWERKS__) && __MWERKS__ >= 0x2400)
+#if !defined(__MWERKS__) || (defined(__MWERKS__) && __MWERKS__ >= 0x2400)
 using std::const_mem_fun1_ref_t;
 using std::const_mem_fun1_t;
 using std::const_mem_fun_ref_t;
 using std::const_mem_fun_t;
-#        endif
-#    endif
+#endif
+#endif
 
-#endif                            // _FUNCTIONAL_H
+#endif                        // _FUNCTIONAL_H
 
 // hh 971207 Changed filename from functional to functional.h
 // hh 971207 added standard include guards

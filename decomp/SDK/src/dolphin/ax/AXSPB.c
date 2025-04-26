@@ -17,17 +17,15 @@ static s32 __AXSpbAAS;
 static s32 __AXSpbABL;
 static s32 __AXSpbABR;
 static s32 __AXSpbABS;
-
 u32
 __AXGetStudio(void)
 {
     return (u32)&__AXStudio;
 }
-
 void
 __AXDepopFade(s32* hostSum, long* dspVolume, s16* dspDelta)
 {
-    int  frames;
+    int frames;
     s32 delta;
 
     frames = *hostSum / 160;
@@ -52,7 +50,6 @@ __AXDepopFade(s32* hostSum, long* dspVolume, s16* dspDelta)
     *dspVolume = 0;
     *dspDelta = 0;
 }
-
 void
 __AXPrintStudio(void)
 {
@@ -67,16 +64,15 @@ __AXPrintStudio(void)
     __AXDepopFade(&__AXSpbABS, (void*)&__AXStudio.dpopBSHi, &__AXStudio.dpopBSDelta);
     DCFlushRange(&__AXStudio, sizeof(__AXStudio));
 }
-
 void
 __AXSPBInit(void)
 {
 #ifdef DEBUG
     OSReport("Initializing AXSPB code module¥n");
 #endif
-    __AXSpbAL = __AXSpbAR = __AXSpbAS = __AXSpbAAL = __AXSpbAAR = __AXSpbAAS = __AXSpbABL = __AXSpbABR = __AXSpbABS = 0;
+    __AXSpbAL = __AXSpbAR = __AXSpbAS = __AXSpbAAL = __AXSpbAAR = __AXSpbAAS =
+        __AXSpbABL = __AXSpbABR = __AXSpbABS = 0;
 }
-
 void
 __AXSPBQuit(void)
 {
@@ -84,7 +80,6 @@ __AXSPBQuit(void)
     OSReport("Shutting down AXSPB code module¥n");
 #endif
 }
-
 void
 __AXDepopVoice(AXPB* p)
 {

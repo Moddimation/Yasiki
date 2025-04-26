@@ -6,11 +6,10 @@ static int Initialized;
 int AD16Init(void);
 int AD16WriteReg(u32 word);
 int AD16ReadReg(u32* word);
-
 int
 AD16Init(void)
 {
-    int           err;
+    int err;
     u32 cmd;
     u32 id;
 
@@ -42,11 +41,10 @@ AD16Init(void)
     Initialized = 1;
     return 1;
 }
-
 int
 AD16WriteReg(u32 word)
 {
-    int           err;
+    int err;
     u32 cmd;
 
     if (Initialized == 0 || EXILock(2, 0, 0) == 0)
@@ -72,11 +70,10 @@ AD16WriteReg(u32 word)
     }
     return 1;
 }
-
 int
 AD16ReadReg(u32* word)
 {
-    int           err;
+    int err;
     u32 cmd;
 
     if (Initialized == 0 || EXILock(2, 0, 0) == 0)

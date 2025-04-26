@@ -1,9 +1,8 @@
 #ifndef __jmp_buf_h
-#    define __jmp_buf_h
+#define __jmp_buf_h
 
-#    if ELF_PROCESSOR
-#        warning elf support enabled!
-
+#if ELF_PROCESSOR
+#warning elf support enabled!
 union MWE_ElfVector64
 {
     unsigned long  l[2];
@@ -12,8 +11,7 @@ union MWE_ElfVector64
 };
 
 typedef union MWE_ElfVector64 MWE_ElfVector64;
-#    endif
-
+#endif
 /* 	__jmp_buf.h is a private runtime file which declares the structure __jmp_buf */
 
 /*
@@ -27,18 +25,18 @@ typedef struct __jmp_buf
     unsigned long sp;                /*  8: saved SP			*/
     unsigned long rtoc;              /* 12: saved RTOC		*/
 
-#    if __VEC__                      /* true if altivec model is true */
+#if __VEC__                          /* true if altivec model is true */
     unsigned long vrsave;            /* 16: old vrsave		*/
-#    else
+#else
     unsigned long reserved; /* 16: not used			*/
-#    endif
-#    if ELF_PROCESSOR
+#endif
+#if ELF_PROCESSOR
     MWE_ElfVector64 gprs[19];        /* 20: saved R13-R31	*/
-#    else
+#else
     unsigned long gprs[19]; /* 20: saved R13-R31	*/
-#    endif
+#endif
 
-#    ifndef _No_Floating_Point_Regs
+#ifndef _No_Floating_Point_Regs
     double fp14;                     /* 96: saved FP14-FP31	*/
     double fp15;
     double fp16;
@@ -58,8 +56,8 @@ typedef struct __jmp_buf
     double fp30;
     double fp31;
     double fpscr;                    /* 240: saved FPSCR		*/
-#    endif                           /* ndef _No_Floating_Point_Regs */
-#    if __VEC__
+#endif                               /* ndef _No_Floating_Point_Regs */
+#if __VEC__
     unsigned long        reserved_2; /* 248			*/
     unsigned long        reserved_3; /* 252			*/
     __vector signed long vr20;       /* 256			*/
@@ -78,9 +76,8 @@ typedef struct __jmp_buf
     unsigned long        reserved_5;
     unsigned long        reserved_6;
     unsigned long        vscr;       /* 16-byte align VSCR	*/
-#    endif
+#endif
 } __jmp_buf;
-
 #endif                               /* __jmp_buf_h */
 
                                      /*

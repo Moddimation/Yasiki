@@ -6,15 +6,15 @@
  */
 
 #ifndef _MSL_STDIO_H
-#    define _MSL_STDIO_H
+#define _MSL_STDIO_H
 
-#    if __MACH__
-#        error You must have the /usr/include access path before the MSL access path
-#    else
+#if __MACH__
+#error You must have the /usr/include access path before the MSL access path
+#else
 
-#        include <cstdio>
+#include <cstdio>
 
-#        if defined(__cplusplus) && defined(_MSL_USING_NAMESPACE)
+#if defined(__cplusplus) && defined(_MSL_USING_NAMESPACE)
 using std::clearerr;
 using std::fclose;
 using std::feof;
@@ -26,16 +26,16 @@ using std::fgets;
 using std::FILE;
 using std::fpos_t;
 using std::size_t;
-#            ifndef _No_Disk_File_OS_Support
+#ifndef _No_Disk_File_OS_Support
 using std::fopen;
-#            endif
+#endif
 using std::fprintf;
 using std::fputc;
 using std::fputs;
 using std::fread;
-#            ifndef _No_Disk_File_OS_Support
+#ifndef _No_Disk_File_OS_Support
 using std::freopen;
-#            endif
+#endif
 using std::fscanf;
 using std::fseek;
 using std::fsetpos;
@@ -49,10 +49,10 @@ using std::printf;
 using std::putc;
 using std::putchar;
 using std::puts;
-#            ifndef _No_Disk_File_OS_Support
+#ifndef _No_Disk_File_OS_Support
 using std::remove;
 using std::rename;
-#            endif
+#endif
 using std::rewind;
 using std::scanf;
 using std::setbuf;
@@ -60,10 +60,10 @@ using std::setvbuf;
 using std::snprintf;
 using std::sprintf;
 using std::sscanf;
-#            ifndef _No_Disk_File_OS_Support
+#ifndef _No_Disk_File_OS_Support
 using std::tmpfile;
 using std::tmpnam;
-#            endif
+#endif
 using std::ungetc;
 using std::vfprintf;
 using std::vfscanf;
@@ -72,17 +72,17 @@ using std::vsprintf;
 //	using std::vscanf;
 using std::vsnprintf;
 using std::vsscanf;
-#            ifndef __NO_WIDE_CHAR
+#ifndef __NO_WIDE_CHAR
 using std::fwide;
-#            endif
-#        endif
+#endif
+#endif
 
-#    endif /* __MACH__ */
+#endif /* __MACH__ */
 
-#endif     /* _MSL_STDIO_H */
+#endif /* _MSL_STDIO_H */
 
-           /* Change record:
-            * hh  971206 Created.
-            * hh  991112 Fixed using bug.
-            * JWW 001208 Added case for targeting Mach-O
-            */
+       /* Change record:
+        * hh  971206 Created.
+        * hh  991112 Fixed using bug.
+        * JWW 001208 Added case for targeting Mach-O
+        */

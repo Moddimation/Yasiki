@@ -1,5 +1,6 @@
 /* Metrowerks Standard Library
- * Copyright ÃÂ¯ÃÂ½C 1995-2001 Metrowerks Corporation.  All rights reserved.
+ * Copyright ÃÂ¯ÃÂ½C 1995-2001 Metrowerks Corporation.  All rights
+ * reserved.
  *
  * $Date: 2001/05/21 18:58:36 $
  * $Revision: 1.26 $
@@ -8,56 +9,55 @@
 // deque
 
 #ifndef _DEQUE
-#    define _DEQUE
+#define _DEQUE
 
-#    include <algorithm>
-#    include <cdeque>
-#    include <iterator>
-#    include <limits>
-#    include <memory>
-#    include <mslconfig>
-#    include <new>
+#include <algorithm>
+#include <cdeque>
+#include <iterator>
+#include <limits>
+#include <memory>
+#include <mslconfig>
+#include <new>
 
-#    ifndef RC_INVOKED
+#ifndef RC_INVOKED
 
-#        pragma options align = native
+#pragma options align = native
 
-#        ifdef _MSL_FORCE_ENUMS_ALWAYS_INT
-#            if _MSL_FORCE_ENUMS_ALWAYS_INT
-#                pragma enumsalwaysint on
-#            else
-#                pragma enumsalwaysint off
-#            endif
-#        endif
+#ifdef _MSL_FORCE_ENUMS_ALWAYS_INT
+#if _MSL_FORCE_ENUMS_ALWAYS_INT
+#pragma enumsalwaysint on
+#else
+#pragma enumsalwaysint off
+#endif
+#endif
 
-#        ifdef _MSL_FORCE_ENABLE_BOOL_SUPPORT
-#            if _MSL_FORCE_ENABLE_BOOL_SUPPORT
-#                pragma bool on
-#            else
-#                pragma bool off
-#            endif
-#        endif
+#ifdef _MSL_FORCE_ENABLE_BOOL_SUPPORT
+#if _MSL_FORCE_ENABLE_BOOL_SUPPORT
+#pragma bool on
+#else
+#pragma bool off
+#endif
+#endif
 
-#        ifdef min
-#            undef min
-#        endif
+#ifdef min
+#undef min
+#endif
 
-#        ifdef max
-#            undef max
-#        endif
+#ifdef max
+#undef max
+#endif
 
-#        ifndef _MSL_NO_CPP_NAMESPACE
+#ifndef _MSL_NO_CPP_NAMESPACE
 namespace std
 {
-#        endif
-
+#endif
 template <class T, class Allocator = allocator<T> > class deque
 {
-#        ifndef _MSL_NO_MEMBER_TEMPLATE
+#ifndef _MSL_NO_MEMBER_TEMPLATE
     template <bool b> struct chooser
     {
     };
-#        endif
+#endif
 
 public:
     // types:
@@ -80,24 +80,21 @@ private:
 
 public:
     friend class iterator;
-
-    class iterator : public _STD::iterator<random_access_iterator_tag, T, difference_type, pointer, reference>
+    class iterator : public _STD::iterator<random_access_iterator_tag, T,
+                                           difference_type, pointer, reference>
     {
     public:
         iterator() {}
-
         reference
         operator*() const
         {
             return *cur_;
         }
-
         pointer
         operator->() const
         {
             return cur_;
         }
-
         iterator&
         operator++()
         {
@@ -112,7 +109,6 @@ public:
             }
             return *this;
         }
-
         iterator
         operator++(int)
         {
@@ -120,7 +116,6 @@ public:
             ++(*this);
             return tmp;
         }
-
         iterator&
         operator--()
         {
@@ -139,7 +134,6 @@ public:
             }
             return *this;
         }
-
         iterator
         operator--(int)
         {
@@ -147,7 +141,6 @@ public:
             --(*this);
             return tmp;
         }
-
         iterator&
         operator+=(difference_type n)
         {
@@ -172,13 +165,11 @@ public:
             }
             return *this;
         }
-
         iterator
         operator+(difference_type n) const
         {
             return iterator(*this) += n;
         }
-
         iterator&
         operator-=(difference_type n)
         {
@@ -203,19 +194,16 @@ public:
             }
             return *this;
         }
-
         iterator
         operator-(difference_type n) const
         {
             return iterator(*this) -= n;
         }
-
         friend difference_type
         operator-(const iterator& x, const iterator& y)
         {
             return difference_type(x.pos_ - y.pos_);
         }
-
         reference
         operator[](difference_type i) const
         {
@@ -223,43 +211,36 @@ public:
             tmp += i;
             return *tmp;
         }
-
         friend bool
         operator==(const iterator& x, const iterator& y)
         {
             return x.cur_ == y.cur_;
         } // hh 990720
-
         friend bool
         operator!=(const iterator& x, const iterator& y)
         {
             return x.cur_ != y.cur_;
         }
-
         friend bool
         operator<(const iterator& x, const iterator& y)
         {
             return x.pos_ < y.pos_;
         }
-
         friend bool
         operator<=(const iterator& x, const iterator& y)
         {
             return x.pos_ <= y.pos_;
         }
-
         friend bool
         operator>(const iterator& x, const iterator& y)
         {
             return x.pos_ > y.pos_;
         }
-
         friend bool
         operator>=(const iterator& x, const iterator& y)
         {
             return x.pos_ >= y.pos_;
         }
-
         friend iterator
         operator+(difference_type n, const iterator& rhs)
         {
@@ -271,8 +252,8 @@ public:
         pointer                     cur_;
         pointer                     end_;
         size_type                   pos_;
-
-        iterator(const typename buf_type::iterator& beg, pointer cur, pointer end, size_type pos)
+        iterator(const typename buf_type::iterator& beg, pointer cur, pointer end,
+                 size_type pos)
           : beg_(beg), cur_(cur), end_(end), pos_(pos)
         {
         }
@@ -282,27 +263,26 @@ public:
     };
 
     friend class const_iterator;
-
     class const_iterator
-      : public _STD::iterator<random_access_iterator_tag, T, difference_type, const_pointer, const_reference>
+      : public _STD::iterator<random_access_iterator_tag, T, difference_type,
+                              const_pointer, const_reference>
     {
     public:
         const_iterator() {}
-
-        const_iterator(const deque::iterator& rhs) : beg_(rhs.beg_), cur_(rhs.cur_), end_(rhs.end_), pos_(rhs.pos_) {}
-
+        const_iterator(const deque::iterator& rhs)
+          : beg_(rhs.beg_), cur_(rhs.cur_), end_(rhs.end_), pos_(rhs.pos_)
+        {
+        }
         const_reference
         operator*() const
         {
             return *cur_;
         }
-
         const_pointer
         operator->() const
         {
             return cur_;
         }
-
         const_iterator&
         operator++()
         {
@@ -317,7 +297,6 @@ public:
             }
             return *this;
         }
-
         const_iterator
         operator++(int)
         {
@@ -325,7 +304,6 @@ public:
             ++(*this);
             return tmp;
         }
-
         const_iterator&
         operator--()
         {
@@ -344,7 +322,6 @@ public:
             }
             return *this;
         }
-
         const_iterator
         operator--(int)
         {
@@ -352,7 +329,6 @@ public:
             --(*this);
             return tmp;
         }
-
         const_iterator&
         operator+=(difference_type n)
         {
@@ -377,13 +353,11 @@ public:
             }
             return *this;
         }
-
         const_iterator
         operator+(difference_type n) const
         {
             return const_iterator(*this) += n;
         }
-
         const_iterator&
         operator-=(difference_type n)
         {
@@ -408,19 +382,16 @@ public:
             }
             return *this;
         }
-
         const_iterator
         operator-(difference_type n) const
         {
             return const_iterator(*this) -= n;
         }
-
         friend difference_type
         operator-(const const_iterator& x, const const_iterator& y)
         {
             return difference_type(x.pos_ - y.pos_);
         }
-
         const_reference
         operator[](difference_type i) const
         {
@@ -428,43 +399,36 @@ public:
             tmp += i;
             return *tmp;
         }
-
         friend bool
         operator==(const const_iterator& x, const const_iterator& y)
         {
             return x.cur_ == y.cur_;
         } // hh 990720
-
         friend bool
         operator!=(const const_iterator& x, const const_iterator& y)
         {
             return x.cur_ != y.cur_;
         }
-
         friend bool
         operator<(const const_iterator& x, const const_iterator& y)
         {
             return x.pos_ < y.pos_;
         }
-
         friend bool
         operator<=(const const_iterator& x, const const_iterator& y)
         {
             return x.pos_ <= y.pos_;
         }
-
         friend bool
         operator>(const const_iterator& x, const const_iterator& y)
         {
             return x.pos_ > y.pos_;
         }
-
         friend bool
         operator>=(const const_iterator& x, const const_iterator& y)
         {
             return x.pos_ >= y.pos_;
         }
-
         friend const_iterator
         operator+(difference_type n, const const_iterator& rhs)
         {
@@ -476,45 +440,47 @@ public:
         const_pointer                     cur_;
         const_pointer                     end_;
         size_type                         pos_;
-
-        const_iterator(const typename buf_type::const_iterator& beg, const_pointer cur, const_pointer end,
-                       size_type pos)
+        const_iterator(const typename buf_type::const_iterator& beg,
+                       const_pointer cur, const_pointer end, size_type pos)
           : beg_(beg), cur_(cur), end_(end), pos_(pos)
         {
         }
 
         friend class deque;
     };
-
     // _lib.deque.cons_ construct/copy/destroy:
     explicit deque(const Allocator& = Allocator());
     explicit deque(size_type n); // hh 990826
     explicit deque(size_type n, const T& value, const Allocator& = Allocator());
-#        ifndef _MSL_NO_MEMBER_TEMPLATE
+#ifndef _MSL_NO_MEMBER_TEMPLATE
     template <class InputIterator>
-    inline deque(InputIterator first, InputIterator last, const Allocator& a = Allocator())
+    inline deque(InputIterator first, InputIterator last,
+                 const Allocator& a = Allocator())
       : alloc_(a, default_bufsize_s), buf_(buf_allocator(a)), start_(0), size_(0)
     {
-        choose_init(first, last, chooser<numeric_limits<InputIterator>::is_integer>());
+        choose_init(first, last,
+                    chooser<numeric_limits<InputIterator>::is_integer>());
     }
-#        else
+#else
     deque(const_iterator first, const_iterator last, const Allocator& = Allocator());
-    deque(const value_type* first, const value_type* last, const Allocator& = Allocator());
-#        endif
+    deque(const value_type* first, const value_type* last,
+          const Allocator& = Allocator());
+#endif
     deque(const deque<T, Allocator>& x);
     ÃÂ¢ÃÂÃÂ¾deque();
     deque<T, Allocator>& operator=(const deque<T, Allocator>& x);
-#        ifndef _MSL_NO_MEMBER_TEMPLATE
+#ifndef _MSL_NO_MEMBER_TEMPLATE
     template <class InputIterator>
     inline void
     assign(InputIterator first, InputIterator last)
     {
-        choose_assign(first, last, chooser<numeric_limits<InputIterator>::is_integer>());
+        choose_assign(first, last,
+                      chooser<numeric_limits<InputIterator>::is_integer>());
     }
-#        else
+#else
     void assign(const_iterator first, const_iterator last);
     void assign(const value_type* first, const value_type* last);
-#        endif
+#endif
     void                   assign(size_type n, const T& t);
     allocator_type         get_allocator() const;
     // iterators:
@@ -547,17 +513,18 @@ public:
     void            push_back(const T& x);
     iterator        insert(iterator position, const T& x);
     void            insert(iterator position, size_type n, const T& x);
-#        ifndef _MSL_NO_MEMBER_TEMPLATE
+#ifndef _MSL_NO_MEMBER_TEMPLATE
     template <class InputIterator>
     inline void
     insert(iterator position, InputIterator first, InputIterator last)
     {
-        choose_insert(position, first, last, chooser<numeric_limits<InputIterator>::is_integer>());
+        choose_insert(position, first, last,
+                      chooser<numeric_limits<InputIterator>::is_integer>());
     }
-#        else
+#else
     void insert(iterator position, const_iterator first, const_iterator last);
     void insert(iterator position, const value_type* first, const value_type* last);
-#        endif
+#endif
     void     pop_front();
     void     pop_back();
     iterator erase(iterator position);
@@ -568,61 +535,59 @@ public:
 private:
     static const size_type min_buf_size_s = 8;
     static const size_type min_foot_print_s = 512;
-    static const size_type default_bufsize_s
-        = sizeof(T) * min_buf_size_s < min_foot_print_s ? min_foot_print_s / sizeof(T) : min_buf_size_s;
+    static const size_type default_bufsize_s =
+        sizeof(T) * min_buf_size_s < min_foot_print_s ? min_foot_print_s / sizeof(T)
+                                                      : min_buf_size_s;
     _EmptyMemberOpt<Allocator, size_type> alloc_;           // alloc_.m_ is bufsize_
     buf_type                              buf_;
     size_type                             start_;
     size_type                             size_;
 
-#        ifndef _MSL_NO_MEMBER_TEMPLATE
+#ifndef _MSL_NO_MEMBER_TEMPLATE
     template <class InputIterator>
     inline void
     choose_init(InputIterator first, InputIterator last, chooser<true>)
     {
         init(static_cast<size_type>(first), static_cast<value_type>(last));
     }
-
     template <class InputIterator>
     inline void
     choose_init(InputIterator first, InputIterator last, chooser<false>)
     {
         init(first, last, iterator_traits<InputIterator>::iterator_category());
     }
-
     template <class InputIterator>
     void
     init(InputIterator first, InputIterator last, input_iterator_tag)
     {
-#            ifndef _MSL_NO_EXCEPTIONS
+#ifndef _MSL_NO_EXCEPTIONS
         try
         {
-#            endif
+#endif
             for (; first != last; ++first)
             {
                 push_back(*first);
             }
-#            ifndef _MSL_NO_EXCEPTIONS
+#ifndef _MSL_NO_EXCEPTIONS
         }
         catch (...)
         {
             tear_down();
             throw;
         }
-#            endif
+#endif
     }
-
     template <class ForwardIterator>
     void
     init(ForwardIterator first, ForwardIterator last, forward_iterator_tag)
     {
         size_ = (size_type)_STD::distance(first, last);
         if (size_ > max_size())
-#            ifndef _MSL_NO_EXCEPTIONS
+#ifndef _MSL_NO_EXCEPTIONS
             throw length_error("deque::construction length error");
-#            else
+#else
             __msl_error("deque::construction length error\n");
-#            endif
+#endif
         if (size_ > 0)
         {
             init_buf();
@@ -631,39 +596,36 @@ private:
                 alloc_.m_ = size_;
             }
             pointer tmp = alloc_.allocate(alloc_.m_);
-#            ifndef _MSL_NO_EXCEPTIONS
+#ifndef _MSL_NO_EXCEPTIONS
             try
             {
-#            endif
+#endif
                 buf_.front() = tmp;
                 buf_.push_back(0);
                 start_ = (alloc_.m_ - size_) / 2;
                 _STD::uninitialized_copy(first, last, tmp + start_);
-#            ifndef _MSL_NO_EXCEPTIONS
+#ifndef _MSL_NO_EXCEPTIONS
             }
             catch (...)
             {
                 alloc_.deallocate(tmp, alloc_.m_);
                 throw;
             }
-#            endif
+#endif
         }
     }
-
     template <class InputIterator>
     inline void
     choose_assign(InputIterator first, InputIterator last, chooser<true>)
     {
         assign(static_cast<size_type>(first), static_cast<value_type>(last));
     }
-
     template <class InputIterator>
     inline void
     choose_assign(InputIterator first, InputIterator last, chooser<false>)
     {
         do_assign(first, last, iterator_traits<InputIterator>::iterator_category());
     }
-
     template <class InputIterator>
     void
     do_assign(InputIterator first, InputIterator last, input_iterator_tag)
@@ -672,18 +634,17 @@ private:
         const deque& tempr = temp;
         do_assign(tempr.begin(), tempr.end(), random_access_iterator_tag());
     }
-
     template <class ForwardIterator>
     void
     do_assign(ForwardIterator first, ForwardIterator last, forward_iterator_tag)
     {
         size_type n = (size_type)_STD::distance(first, last);
         if (n > max_size())
-#            ifndef _MSL_NO_EXCEPTIONS
+#ifndef _MSL_NO_EXCEPTIONS
             throw length_error("deque::assign length error");
-#            else
+#else
             __msl_error("deque::assign length error\n");
-#            endif
+#endif
         if (buf_.empty())
         {
             init_buf();
@@ -691,13 +652,13 @@ private:
         while (n > capacity())
         {
             pointer tmp = alloc_.allocate(alloc_.m_);
-#            ifndef _MSL_NO_EXCEPTIONS
+#ifndef _MSL_NO_EXCEPTIONS
             try
             {
-#            endif
+#endif
                 buf_.back() = tmp;
                 buf_.push_back(0);
-#            ifndef _MSL_NO_EXCEPTIONS
+#ifndef _MSL_NO_EXCEPTIONS
             }
             catch (...)
             {
@@ -705,7 +666,7 @@ private:
                 buf_.back() = 0;
                 throw;
             }
-#            endif
+#endif
         }
         destroy(begin(), end());
         size_ = 0;
@@ -721,33 +682,36 @@ private:
         _STD::uninitialized_copy(first, last, begin());
         size_ = n;
     }
-
     template <class InputIterator>
     inline void
-    choose_insert(iterator position, InputIterator first, InputIterator last, chooser<true>)
+    choose_insert(iterator position, InputIterator first, InputIterator last,
+                  chooser<true>)
     {
-        insert(position, static_cast<size_type>(first), static_cast<value_type>(last));
+        insert(position, static_cast<size_type>(first),
+               static_cast<value_type>(last));
     }
-
     template <class InputIterator>
     inline void
-    choose_insert(iterator position, InputIterator first, InputIterator last, chooser<false>)
+    choose_insert(iterator position, InputIterator first, InputIterator last,
+                  chooser<false>)
     {
-        do_insert(position, first, last, iterator_traits<InputIterator>::iterator_category());
+        do_insert(position, first, last,
+                  iterator_traits<InputIterator>::iterator_category());
     }
-
     template <class InputIterator>
     void
-    do_insert(iterator position, InputIterator first, InputIterator last, input_iterator_tag)
+    do_insert(iterator position, InputIterator first, InputIterator last,
+              input_iterator_tag)
     {
         deque        temp(first, last, get_allocator());
         const deque& tempr = temp;
-        do_insert(position, tempr.begin(), tempr.end(), random_access_iterator_tag());
+        do_insert(position, tempr.begin(), tempr.end(),
+                  random_access_iterator_tag());
     }
-
     template <class ForwardIterator>
     void
-    do_insert(iterator position, ForwardIterator first, ForwardIterator last, forward_iterator_tag)
+    do_insert(iterator position, ForwardIterator first, ForwardIterator last,
+              forward_iterator_tag)
     {
         size_type n = (size_type)_STD::distance(first, last);
         if (n == 0)
@@ -756,11 +720,11 @@ private:
         }
         size_type ms = max_size();
         if (n > ms || size_ > ms - n)
-#            ifndef _MSL_NO_EXCEPTIONS
+#ifndef _MSL_NO_EXCEPTIONS
             throw length_error("deque::insert length error");
-#            else
+#else
             __msl_error("deque::insert length error\n");
-#            endif
+#endif
         if (buf_.empty())
         {
             init_buf();
@@ -783,10 +747,10 @@ private:
             }
             size_type done = 0;
             iterator  beg = begin();
-#            ifndef _MSL_NO_EXCEPTIONS
+#ifndef _MSL_NO_EXCEPTIONS
             try
             {
-#            endif
+#endif
                 if (pb == 0)                                // insert at begin()
                 {
                     _STD::uninitialized_copy(first, last, beg);
@@ -829,7 +793,7 @@ private:
                     _STD::copy(i, last, t);
                 }
                 size_ += n;
-#            ifndef _MSL_NO_EXCEPTIONS
+#ifndef _MSL_NO_EXCEPTIONS
             }
             catch (...)
             {
@@ -846,7 +810,7 @@ private:
                 start_ = oldstart;
                 throw;
             }
-#            endif
+#endif
         }
         else                                                // pos >= size_ / 2
         {
@@ -860,15 +824,15 @@ private:
                 buf_invalidated = grow_buf_back(e, orig_buf, new_buffers, n);
             }
             iterator t2;
-#            ifndef _MSL_NO_EXCEPTIONS
+#ifndef _MSL_NO_EXCEPTIONS
             try
             {
-#            endif
+#endif
                 if (pe == 0)                                // insert at end()
                 {
                     _STD::uninitialized_copy(first, last, end());
                 }
-                else                                        // pos in [size_ / 2, size_)
+                else // pos in [size_ / 2, size_)
                 {
                     iterator ei = end();
                     iterator e_n = ei - difference_type(n);
@@ -903,7 +867,7 @@ private:
                     }
                 }
                 size_ += n;
-#            ifndef _MSL_NO_EXCEPTIONS
+#ifndef _MSL_NO_EXCEPTIONS
             }
             catch (...)
             {
@@ -924,12 +888,11 @@ private:
                 }
                 throw;
             }
-#            endif
+#endif
         }
         invalidate_iterators();
     }
-
-#        endif
+#endif
     void           init(size_type n, const T& value);
     void           tear_down();
     void           destroy(iterator first, iterator last);
@@ -938,26 +901,34 @@ private:
     const_iterator make_iterator(size_type pos) const;
     void           init_buf();
     size_type      capacity() const;
-    bool           grow_buf_front(size_type oldstart, buf_type& orig_buf, size_type& new_buffers, size_type n);
-    bool           grow_buf_back(size_type e, buf_type& orig_buf, size_type& new_buffers, size_type n);
+    bool           grow_buf_front(size_type oldstart, buf_type& orig_buf,
+                                  size_type& new_buffers, size_type n);
+    bool grow_buf_back(size_type e, buf_type& orig_buf, size_type& new_buffers,
+                       size_type n);
 };
 
-template <class T, class Allocator> bool operator==(const deque<T, Allocator>& x, const deque<T, Allocator>& y);
+template <class T, class Allocator>
+bool operator==(const deque<T, Allocator>& x, const deque<T, Allocator>& y);
 
-template <class T, class Allocator> bool operator<(const deque<T, Allocator>& x, const deque<T, Allocator>& y);
+template <class T, class Allocator>
+bool operator<(const deque<T, Allocator>& x, const deque<T, Allocator>& y);
 
-template <class T, class Allocator> bool operator!=(const deque<T, Allocator>& x, const deque<T, Allocator>& y);
+template <class T, class Allocator>
+bool operator!=(const deque<T, Allocator>& x, const deque<T, Allocator>& y);
 
-template <class T, class Allocator> bool operator>(const deque<T, Allocator>& x, const deque<T, Allocator>& y);
+template <class T, class Allocator>
+bool operator>(const deque<T, Allocator>& x, const deque<T, Allocator>& y);
 
-template <class T, class Allocator> bool operator>=(const deque<T, Allocator>& x, const deque<T, Allocator>& y);
+template <class T, class Allocator>
+bool operator>=(const deque<T, Allocator>& x, const deque<T, Allocator>& y);
 
-template <class T, class Allocator> bool operator<=(const deque<T, Allocator>& x, const deque<T, Allocator>& y);
+template <class T, class Allocator>
+bool operator<=(const deque<T, Allocator>& x, const deque<T, Allocator>& y);
 
 // specialized algorithms:
 
-template <class T, class Allocator> void swap(deque<T, Allocator>& x, deque<T, Allocator>& y);
-
+template <class T, class Allocator>
+void swap(deque<T, Allocator>& x, deque<T, Allocator>& y);
 // Implementation deque
 
 template <class T, class Allocator>
@@ -971,7 +942,6 @@ deque<T, Allocator>::invalidate_iterators()
         start_ -= alloc_.m_;
     }
 }
-
 template <class T, class Allocator>
 typename deque<T, Allocator>::iterator
 deque<T, Allocator>::make_iterator(size_type pos)
@@ -999,7 +969,6 @@ deque<T, Allocator>::make_iterator(size_type pos)
     }
     return iterator(b, cur, beg + alloc_.m_, pos);
 }
-
 template <class T, class Allocator>
 typename deque<T, Allocator>::const_iterator
 deque<T, Allocator>::make_iterator(size_type pos) const
@@ -1027,7 +996,6 @@ deque<T, Allocator>::make_iterator(size_type pos) const
     }
     return const_iterator(b, cur, beg + alloc_.m_, pos);
 }
-
 template <class T, class Allocator>
 inline void
 deque<T, Allocator>::init_buf()
@@ -1035,7 +1003,6 @@ deque<T, Allocator>::init_buf()
     buf_.reserve(2);
     buf_.resize(1);
 }
-
 template <class T, class Allocator>
 inline typename deque<T, Allocator>::size_type
 deque<T, Allocator>::capacity() const
@@ -1046,11 +1013,12 @@ deque<T, Allocator>::capacity() const
 template <class T, class Allocator>
 bool
 deque<T, Allocator>::grow_buf_front(size_type
-#        ifndef _MSL_NO_EXCEPTIONS
+#ifndef _MSL_NO_EXCEPTIONS
                                         oldstart
-#        endif
+#endif
                                     ,
-                                    buf_type& orig_buf, size_type& new_buffers, size_type n)
+                                    buf_type& orig_buf, size_type& new_buffers,
+                                    size_type n)
 {
     bool      buf_invalidated = false;
     size_type nc = n;
@@ -1058,10 +1026,10 @@ deque<T, Allocator>::grow_buf_front(size_type
     while (true)
     {
         pointer tmp = alloc_.allocate(alloc_.m_);
-#        ifndef _MSL_NO_EXCEPTIONS
+#ifndef _MSL_NO_EXCEPTIONS
         try
         {
-#        endif
+#endif
             if (!buf_invalidated && buf_.size() == buf_.capacity())
             {
                 buf_.swap(orig_buf);
@@ -1085,7 +1053,7 @@ deque<T, Allocator>::grow_buf_front(size_type
                 break;
             }
             nc -= alloc_.m_;
-#        ifndef _MSL_NO_EXCEPTIONS
+#ifndef _MSL_NO_EXCEPTIONS
         }
         catch (...)
         {
@@ -1102,14 +1070,14 @@ deque<T, Allocator>::grow_buf_front(size_type
             start_ = oldstart;
             throw;
         }
-#        endif
+#endif
     }
     return buf_invalidated;
 }
-
 template <class T, class Allocator>
 bool
-deque<T, Allocator>::grow_buf_back(size_type e, buf_type& orig_buf, size_type& new_buffers, size_type n)
+deque<T, Allocator>::grow_buf_back(size_type e, buf_type& orig_buf,
+                                   size_type& new_buffers, size_type n)
 {
     bool      buf_invalidated = false;
     size_type nc = n;
@@ -1117,10 +1085,10 @@ deque<T, Allocator>::grow_buf_back(size_type e, buf_type& orig_buf, size_type& n
     while (true)
     {
         pointer tmp = alloc_.allocate(alloc_.m_);
-#        ifndef _MSL_NO_EXCEPTIONS
+#ifndef _MSL_NO_EXCEPTIONS
         try
         {
-#        endif
+#endif
             if (!buf_invalidated && buf_.size() == buf_.capacity())
             {
                 buf_.swap(orig_buf);
@@ -1136,7 +1104,7 @@ deque<T, Allocator>::grow_buf_back(size_type e, buf_type& orig_buf, size_type& n
                 break;
             }
             nc -= alloc_.m_;
-#        ifndef _MSL_NO_EXCEPTIONS
+#ifndef _MSL_NO_EXCEPTIONS
         }
         catch (...)
         {
@@ -1158,7 +1126,7 @@ deque<T, Allocator>::grow_buf_back(size_type e, buf_type& orig_buf, size_type& n
             }
             throw;
         }
-#        endif
+#endif
     }
     return buf_invalidated;
 }
@@ -1166,9 +1134,9 @@ deque<T, Allocator>::grow_buf_back(size_type e, buf_type& orig_buf, size_type& n
 template <class T, class Allocator>
 deque<T, Allocator>::deque(const Allocator& a)
   : alloc_(a, default_bufsize_s),
-#        ifndef _MSL_NO_MEMBER_TEMPLATE
+#ifndef _MSL_NO_MEMBER_TEMPLATE
     buf_(buf_allocator(a)),
-#        endif
+#endif
     start_(0), size_(0)
 {
 }
@@ -1176,9 +1144,9 @@ deque<T, Allocator>::deque(const Allocator& a)
 template <class T, class Allocator>
 deque<T, Allocator>::deque(size_type n)
   : alloc_(Allocator(), default_bufsize_s),
-#        ifndef _MSL_NO_MEMBER_TEMPLATE
+#ifndef _MSL_NO_MEMBER_TEMPLATE
     buf_(buf_allocator(alloc_)),
-#        endif
+#endif
     start_(0), size_(0)
 {
     init(n, T());
@@ -1187,30 +1155,31 @@ deque<T, Allocator>::deque(size_type n)
 template <class T, class Allocator>
 deque<T, Allocator>::deque(size_type n, const T& value, const Allocator& a)
   : alloc_(a, default_bufsize_s),
-#        ifndef _MSL_NO_MEMBER_TEMPLATE
+#ifndef _MSL_NO_MEMBER_TEMPLATE
     buf_(buf_allocator(a)),
-#        endif
+#endif
     start_(0), size_(0)
 {
     init(n, value);
 }
 
-#        ifdef _MSL_NO_MEMBER_TEMPLATE
+#ifdef _MSL_NO_MEMBER_TEMPLATE
 
 template <class T, class Allocator>
-deque<T, Allocator>::deque(const_iterator first, const_iterator last, const Allocator& a)
+deque<T, Allocator>::deque(const_iterator first, const_iterator last,
+                           const Allocator& a)
   : alloc_(a, default_bufsize_s),
-#            ifndef _MSL_NO_MEMBER_TEMPLATE
+#ifndef _MSL_NO_MEMBER_TEMPLATE
     buf_(buf_allocator(a)),
-#            endif
+#endif
     start_(0), size_(size_type(last - first))
 {
     if (size_ > max_size())
-#            ifndef _MSL_NO_EXCEPTIONS
+#ifndef _MSL_NO_EXCEPTIONS
         throw length_error("deque::construction length error");
-#            else
+#else
         __msl_error("deque::construction length error\n");
-#            endif
+#endif
     if (size_ > 0)
     {
         init_buf();
@@ -1219,39 +1188,40 @@ deque<T, Allocator>::deque(const_iterator first, const_iterator last, const Allo
             alloc_.m_ = size_;
         }
         pointer tmp = alloc_.allocate(alloc_.m_);
-#            ifndef _MSL_NO_EXCEPTIONS
+#ifndef _MSL_NO_EXCEPTIONS
         try
         {
-#            endif
+#endif
             buf_.front() = tmp;
             buf_.push_back(0);
             start_ = (alloc_.m_ - size_) / 2;
             _STD::uninitialized_copy(first, last, tmp + start_);
-#            ifndef _MSL_NO_EXCEPTIONS
+#ifndef _MSL_NO_EXCEPTIONS
         }
         catch (...)
         {
             alloc_.deallocate(tmp, alloc_.m_);
             throw;
         }
-#            endif
+#endif
     }
 }
 
 template <class T, class Allocator>
-deque<T, Allocator>::deque(const value_type* first, const value_type* last, const Allocator& a)
+deque<T, Allocator>::deque(const value_type* first, const value_type* last,
+                           const Allocator& a)
   : alloc_(a, default_bufsize_s),
-#            ifndef _MSL_NO_MEMBER_TEMPLATE
+#ifndef _MSL_NO_MEMBER_TEMPLATE
     buf_(buf_allocator(a)),
-#            endif
+#endif
     start_(0), size_(size_type(last - first))
 {
     if (size_ > max_size())
-#            ifndef _MSL_NO_EXCEPTIONS
+#ifndef _MSL_NO_EXCEPTIONS
         throw length_error("deque::construction length error");
-#            else
+#else
         __msl_error("deque::construction length error\n");
-#            endif
+#endif
     if (size_ > 0)
     {
         init_buf();
@@ -1260,37 +1230,36 @@ deque<T, Allocator>::deque(const value_type* first, const value_type* last, cons
             alloc_.m_ = size_;
         }
         pointer tmp = alloc_.allocate(alloc_.m_);
-#            ifndef _MSL_NO_EXCEPTIONS
+#ifndef _MSL_NO_EXCEPTIONS
         try
         {
-#            endif
+#endif
             buf_.front() = tmp;
             buf_.push_back(0);
             start_ = (alloc_.m_ - size_) / 2;
             _STD::uninitialized_copy(first, last, tmp + start_);
-#            ifndef _MSL_NO_EXCEPTIONS
+#ifndef _MSL_NO_EXCEPTIONS
         }
         catch (...)
         {
             alloc_.deallocate(tmp, alloc_.m_);
             throw;
         }
-#            endif
+#endif
     }
 }
 
-#        endif
-
+#endif
 template <class T, class Allocator>
 void
 deque<T, Allocator>::init(size_type n, const T& value)
 {
     if (n > max_size())
-#        ifndef _MSL_NO_EXCEPTIONS
+#ifndef _MSL_NO_EXCEPTIONS
         throw length_error("deque::construction length error");
-#        else
+#else
         __msl_error("deque::construction length error\n");
-#        endif
+#endif
     if (n > 0)
     {
         init_buf();
@@ -1299,32 +1268,32 @@ deque<T, Allocator>::init(size_type n, const T& value)
             alloc_.m_ = n;
         }
         pointer tmp = alloc_.allocate(alloc_.m_);
-#        ifndef _MSL_NO_EXCEPTIONS
+#ifndef _MSL_NO_EXCEPTIONS
         try
         {
-#        endif
+#endif
             buf_.front() = tmp;
             buf_.push_back(0);
             size_ = n;
             start_ = (alloc_.m_ - size_) / 2;
             _STD::uninitialized_fill_n(tmp + start_, size_, value);
-#        ifndef _MSL_NO_EXCEPTIONS
+#ifndef _MSL_NO_EXCEPTIONS
         }
         catch (...)
         {
             alloc_.deallocate(tmp, alloc_.m_);
             throw;
         }
-#        endif
+#endif
     }
 }
 
 template <class T, class Allocator>
 deque<T, Allocator>::deque(const deque<T, Allocator>& x)
   : alloc_(x.alloc_, default_bufsize_s),
-#        ifndef _MSL_NO_MEMBER_TEMPLATE
+#ifndef _MSL_NO_MEMBER_TEMPLATE
     buf_(buf_allocator(alloc_)),
-#        endif
+#endif
     start_(0), size_(x.size_)
 {
     if (size_ > 0)
@@ -1335,30 +1304,29 @@ deque<T, Allocator>::deque(const deque<T, Allocator>& x)
             alloc_.m_ = size_;
         }
         pointer tmp = alloc_.allocate(alloc_.m_);
-#        ifndef _MSL_NO_EXCEPTIONS
+#ifndef _MSL_NO_EXCEPTIONS
         try
         {
-#        endif
+#endif
             buf_.front() = tmp;
             buf_.push_back(0);
             start_ = (alloc_.m_ - size_) / 2;
             _STD::uninitialized_copy(x.begin(), x.end(), tmp + start_);
-#        ifndef _MSL_NO_EXCEPTIONS
+#ifndef _MSL_NO_EXCEPTIONS
         }
         catch (...)
         {
             alloc_.deallocate(tmp, alloc_.m_);
             throw;
         }
-#        endif
+#endif
     }
 }
-
-template <class T, class Allocator> inline deque<T, Allocator>::ÃÂ¢ÃÂÃÂ¾deque()
+template <class T, class Allocator>
+inline deque<T, Allocator>::ÃÂ¢ÃÂÃÂ¾deque()
 {
     tear_down();
 }
-
 template <class T, class Allocator>
 void
 deque<T, Allocator>::tear_down()
@@ -1373,7 +1341,6 @@ deque<T, Allocator>::tear_down()
         }
     }
 }
-
 template <class T, class Allocator>
 void
 deque<T, Allocator>::destroy(iterator first, iterator last)
@@ -1408,7 +1375,6 @@ deque<T, Allocator>::destroy(iterator first, iterator last)
         }
     }
 }
-
 template <class T, class Allocator>
 inline deque<T, Allocator>&
 deque<T, Allocator>::operator=(const deque<T, Allocator>& x)
@@ -1419,20 +1385,18 @@ deque<T, Allocator>::operator=(const deque<T, Allocator>& x)
     }
     return *this;
 }
-
-#        ifdef _MSL_NO_MEMBER_TEMPLATE
-
+#ifdef _MSL_NO_MEMBER_TEMPLATE
 template <class T, class Allocator>
 void
 deque<T, Allocator>::assign(const_iterator first, const_iterator last)
 {
     size_type n = (size_type)_STD::distance(first, last);
     if (n > max_size())
-#            ifndef _MSL_NO_EXCEPTIONS
+#ifndef _MSL_NO_EXCEPTIONS
         throw length_error("deque::assign length error");
-#            else
+#else
         __msl_error("deque::assign length error\n");
-#            endif
+#endif
     if (buf_.empty())
     {
         init_buf();
@@ -1440,13 +1404,13 @@ deque<T, Allocator>::assign(const_iterator first, const_iterator last)
     while (n > capacity())
     {
         pointer tmp = alloc_.allocate(alloc_.m_);
-#            ifndef _MSL_NO_EXCEPTIONS
+#ifndef _MSL_NO_EXCEPTIONS
         try
         {
-#            endif
+#endif
             buf_.back() = tmp;
             buf_.push_back(0);
-#            ifndef _MSL_NO_EXCEPTIONS
+#ifndef _MSL_NO_EXCEPTIONS
         }
         catch (...)
         {
@@ -1454,7 +1418,7 @@ deque<T, Allocator>::assign(const_iterator first, const_iterator last)
             buf_.back() = 0;
             throw;
         }
-#            endif
+#endif
     }
     destroy(begin(), end());
     size_ = 0;
@@ -1470,18 +1434,17 @@ deque<T, Allocator>::assign(const_iterator first, const_iterator last)
     _STD::uninitialized_copy(first, last, begin());
     size_ = n;
 }
-
 template <class T, class Allocator>
 void
 deque<T, Allocator>::assign(const value_type* first, const value_type* last)
 {
     size_type n = (size_type)_STD::distance(first, last);
     if (n > max_size())
-#            ifndef _MSL_NO_EXCEPTIONS
+#ifndef _MSL_NO_EXCEPTIONS
         throw length_error("deque::assign length error");
-#            else
+#else
         __msl_error("deque::assign length error\n");
-#            endif
+#endif
     if (buf_.empty())
     {
         init_buf();
@@ -1489,13 +1452,13 @@ deque<T, Allocator>::assign(const value_type* first, const value_type* last)
     while (n > capacity())
     {
         pointer tmp = alloc_.allocate(alloc_.m_);
-#            ifndef _MSL_NO_EXCEPTIONS
+#ifndef _MSL_NO_EXCEPTIONS
         try
         {
-#            endif
+#endif
             buf_.back() = tmp;
             buf_.push_back(0);
-#            ifndef _MSL_NO_EXCEPTIONS
+#ifndef _MSL_NO_EXCEPTIONS
         }
         catch (...)
         {
@@ -1503,7 +1466,7 @@ deque<T, Allocator>::assign(const value_type* first, const value_type* last)
             buf_.back() = 0;
             throw;
         }
-#            endif
+#endif
     }
     destroy(begin(), end());
     size_ = 0;
@@ -1519,19 +1482,17 @@ deque<T, Allocator>::assign(const value_type* first, const value_type* last)
     _STD::uninitialized_copy(first, last, begin());
     size_ = n;
 }
-
-#        endif
-
+#endif
 template <class T, class Allocator>
 void
 deque<T, Allocator>::assign(size_type n, const T& t)
 {
     if (n > max_size())
-#        ifndef _MSL_NO_EXCEPTIONS
+#ifndef _MSL_NO_EXCEPTIONS
         throw length_error("deque::assign length error");
-#        else
+#else
         __msl_error("deque::assign length error\n");
-#        endif
+#endif
     if (buf_.empty())
     {
         init_buf();
@@ -1539,13 +1500,13 @@ deque<T, Allocator>::assign(size_type n, const T& t)
     while (n > capacity())
     {
         pointer tmp = alloc_.allocate(alloc_.m_);
-#        ifndef _MSL_NO_EXCEPTIONS
+#ifndef _MSL_NO_EXCEPTIONS
         try
         {
-#        endif
+#endif
             buf_.back() = tmp;
             buf_.push_back(0);
-#        ifndef _MSL_NO_EXCEPTIONS
+#ifndef _MSL_NO_EXCEPTIONS
         }
         catch (...)
         {
@@ -1553,7 +1514,7 @@ deque<T, Allocator>::assign(size_type n, const T& t)
             buf_.back() = 0;
             throw;
         }
-#        endif
+#endif
     }
     destroy(begin(), end());
     size_ = 0;
@@ -1569,84 +1530,72 @@ deque<T, Allocator>::assign(size_type n, const T& t)
     _STD::uninitialized_fill_n(begin(), n, t);
     size_ = n;
 }
-
 template <class T, class Allocator>
 inline typename deque<T, Allocator>::allocator_type
 deque<T, Allocator>::get_allocator() const
 {
     return alloc_;
 }
-
 template <class T, class Allocator>
 inline typename deque<T, Allocator>::iterator
 deque<T, Allocator>::begin()
 {
     return make_iterator(start_);
 }
-
 template <class T, class Allocator>
 inline typename deque<T, Allocator>::const_iterator
 deque<T, Allocator>::begin() const
 {
     return make_iterator(start_);
 }
-
 template <class T, class Allocator>
 inline typename deque<T, Allocator>::iterator
 deque<T, Allocator>::end()
 {
     return make_iterator(start_ + size_);
 }
-
 template <class T, class Allocator>
 inline typename deque<T, Allocator>::const_iterator
 deque<T, Allocator>::end() const
 {
     return make_iterator(start_ + size_);
 }
-
 template <class T, class Allocator>
 inline typename deque<T, Allocator>::reverse_iterator
 deque<T, Allocator>::rbegin()
 {
     return reverse_iterator(end());
 }
-
 template <class T, class Allocator>
 inline typename deque<T, Allocator>::const_reverse_iterator
 deque<T, Allocator>::rbegin() const
 {
     return const_reverse_iterator(end());
 }
-
 template <class T, class Allocator>
 inline typename deque<T, Allocator>::reverse_iterator
 deque<T, Allocator>::rend()
 {
     return reverse_iterator(begin());
 }
-
 template <class T, class Allocator>
 inline typename deque<T, Allocator>::const_reverse_iterator
 deque<T, Allocator>::rend() const
 {
     return const_reverse_iterator(begin());
 }
-
 template <class T, class Allocator>
 inline typename deque<T, Allocator>::size_type
 deque<T, Allocator>::size() const
 {
     return size_;
 }
-
 template <class T, class Allocator>
 inline typename deque<T, Allocator>::size_type
 deque<T, Allocator>::max_size() const
 {
     return alloc_.max_size();
 }
-
 template <class T, class Allocator>
 inline void
 deque<T, Allocator>::resize(size_type sz)
@@ -1660,7 +1609,6 @@ deque<T, Allocator>::resize(size_type sz)
         erase(begin() + difference_type(sz), end());
     }
 }
-
 template <class T, class Allocator>
 void
 deque<T, Allocator>::resize(size_type sz, const T& value)
@@ -1674,14 +1622,12 @@ deque<T, Allocator>::resize(size_type sz, const T& value)
         erase(begin() + difference_type(sz), end());
     }
 }
-
 template <class T, class Allocator>
 inline bool
 deque<T, Allocator>::empty() const
 {
     return size_ == 0;
 }
-
 template <class T, class Allocator>
 inline typename deque<T, Allocator>::reference
 deque<T, Allocator>::operator[](size_type n)
@@ -1689,7 +1635,6 @@ deque<T, Allocator>::operator[](size_type n)
     size_type i = n + start_;
     return *(buf_[i / alloc_.m_] + i % alloc_.m_);
 }
-
 template <class T, class Allocator>
 inline typename deque<T, Allocator>::const_reference
 deque<T, Allocator>::operator[](size_type n) const
@@ -1697,49 +1642,44 @@ deque<T, Allocator>::operator[](size_type n) const
     size_type i = n + start_;
     return *(buf_[i / alloc_.m_] + i % alloc_.m_);
 }
-
 template <class T, class Allocator>
 typename deque<T, Allocator>::reference
 deque<T, Allocator>::at(size_type n)
 {
     if (n >= size_)
-#        ifndef _MSL_NO_EXCEPTIONS
+#ifndef _MSL_NO_EXCEPTIONS
         throw out_of_range("deque::at index out of range");
-#        else
+#else
         __msl_error("deque::at index out of range");
-#        endif
+#endif
     size_type i = n + start_;
     return *(buf_[i / alloc_.m_] + i % alloc_.m_);
 }
-
 template <class T, class Allocator>
 typename deque<T, Allocator>::const_reference
 deque<T, Allocator>::at(size_type n) const
 {
     if (n >= size_)
-#        ifndef _MSL_NO_EXCEPTIONS
+#ifndef _MSL_NO_EXCEPTIONS
         throw out_of_range("deque::at index out of range");
-#        else
+#else
         __msl_error("deque::at index out of range");
-#        endif
+#endif
     size_type i = n + start_;
     return *(buf_[i / alloc_.m_] + i % alloc_.m_);
 }
-
 template <class T, class Allocator>
 inline typename deque<T, Allocator>::reference
 deque<T, Allocator>::front()
 {
     return *(buf_[start_ / alloc_.m_] + start_ % alloc_.m_);
 }
-
 template <class T, class Allocator>
 inline typename deque<T, Allocator>::const_reference
 deque<T, Allocator>::front() const
 {
     return *(buf_[start_ / alloc_.m_] + start_ % alloc_.m_);
 }
-
 template <class T, class Allocator>
 inline typename deque<T, Allocator>::reference
 deque<T, Allocator>::back()
@@ -1747,7 +1687,6 @@ deque<T, Allocator>::back()
     size_type i = start_ + size_ - 1;
     return *(buf_[i / alloc_.m_] + i % alloc_.m_);
 }
-
 template <class T, class Allocator>
 inline typename deque<T, Allocator>::const_reference
 deque<T, Allocator>::back() const
@@ -1755,17 +1694,16 @@ deque<T, Allocator>::back() const
     size_type i = start_ + size_ - 1;
     return *(buf_[i / alloc_.m_] + i % alloc_.m_);
 }
-
 template <class T, class Allocator>
 void
 deque<T, Allocator>::push_front(const T& x)
 {
     if (size_ > max_size() - 1)
-#        ifndef _MSL_NO_EXCEPTIONS
+#ifndef _MSL_NO_EXCEPTIONS
         throw length_error("deque::push_front length error");
-#        else
+#else
         __msl_error("deque::push_front length error\n");
-#        endif
+#endif
     if (buf_.empty())
     {
         init_buf();
@@ -1782,10 +1720,10 @@ deque<T, Allocator>::push_front(const T& x)
     {
         --start_;
     }
-#        ifndef _MSL_NO_EXCEPTIONS
+#ifndef _MSL_NO_EXCEPTIONS
     try
     {
-#        endif
+#endif
         if (start_ < alloc_.m_)
         {
             ::new (buf_.front() + start_) value_type(x);
@@ -1795,7 +1733,7 @@ deque<T, Allocator>::push_front(const T& x)
             ::new (buf_[start_ / alloc_.m_] + start_ % alloc_.m_) value_type(x);
         }
         ++size_;
-#        ifndef _MSL_NO_EXCEPTIONS
+#ifndef _MSL_NO_EXCEPTIONS
     }
     catch (...)
     {
@@ -1811,20 +1749,19 @@ deque<T, Allocator>::push_front(const T& x)
         start_ = oldstart;
         throw;
     }
-#        endif
+#endif
     invalidate_iterators();
 }
-
 template <class T, class Allocator>
 void
 deque<T, Allocator>::push_back(const T& x)
 {
     if (size_ > max_size() - 1)
-#        ifndef _MSL_NO_EXCEPTIONS
+#ifndef _MSL_NO_EXCEPTIONS
         throw length_error("deque::push_back length error");
-#        else
+#else
         __msl_error("deque::push_back length error\n");
-#        endif
+#endif
     if (buf_.empty())
     {
         init_buf();
@@ -1838,10 +1775,10 @@ deque<T, Allocator>::push_back(const T& x)
             buf_invalidated = grow_buf_back(0, orig_buf, new_buffers, 1);
         }
         size_type pos = start_ + size_;
-#        ifndef _MSL_NO_EXCEPTIONS
+#ifndef _MSL_NO_EXCEPTIONS
         try
         {
-#        endif
+#endif
             if (pos < alloc_.m_)
             {
                 ::new (buf_.front() + pos) value_type(x);
@@ -1851,7 +1788,7 @@ deque<T, Allocator>::push_back(const T& x)
                 ::new (buf_[pos / alloc_.m_] + pos % alloc_.m_) value_type(x);
             }
             ++size_;
-#        ifndef _MSL_NO_EXCEPTIONS
+#ifndef _MSL_NO_EXCEPTIONS
         }
         catch (...)
         {
@@ -1868,11 +1805,10 @@ deque<T, Allocator>::push_back(const T& x)
             }
             throw;
         }
-#        endif
+#endif
     }
     invalidate_iterators();
 }
-
 template <class T, class Allocator>
 typename deque<T, Allocator>::iterator
 deque<T, Allocator>::insert(iterator position, const T& x)
@@ -1881,7 +1817,6 @@ deque<T, Allocator>::insert(iterator position, const T& x)
     insert(position, 1, x);
     return begin() + pos;
 }
-
 template <class T, class Allocator>
 void
 deque<T, Allocator>::insert(iterator position, size_type n, const T& x)
@@ -1892,11 +1827,11 @@ deque<T, Allocator>::insert(iterator position, size_type n, const T& x)
     }
     size_type ms = max_size();
     if (n > ms || size_ > ms - n)
-#        ifndef _MSL_NO_EXCEPTIONS
+#ifndef _MSL_NO_EXCEPTIONS
         throw length_error("deque::insert length error");
-#        else
+#else
         __msl_error("deque::insert length error\n");
-#        endif
+#endif
     if (buf_.empty())
     {
         init_buf();
@@ -1919,10 +1854,10 @@ deque<T, Allocator>::insert(iterator position, size_type n, const T& x)
         }
         size_type done = 0;
         iterator  beg = begin();
-#        ifndef _MSL_NO_EXCEPTIONS
+#ifndef _MSL_NO_EXCEPTIONS
         try
         {
-#        endif
+#endif
             if (pb == 0)                                // insert at begin()
             {
                 _STD::uninitialized_fill_n(beg, n, x);
@@ -1963,7 +1898,7 @@ deque<T, Allocator>::insert(iterator position, size_type n, const T& x)
                 _STD::fill(t, b_n_pb, x);
             }
             size_ += n;
-#        ifndef _MSL_NO_EXCEPTIONS
+#ifndef _MSL_NO_EXCEPTIONS
         }
         catch (...)
         {
@@ -1980,7 +1915,7 @@ deque<T, Allocator>::insert(iterator position, size_type n, const T& x)
             start_ = oldstart;
             throw;
         }
-#        endif
+#endif
     }
     else                                                // pos >= size_ / 2
     {
@@ -1994,10 +1929,10 @@ deque<T, Allocator>::insert(iterator position, size_type n, const T& x)
             buf_invalidated = grow_buf_back(e, orig_buf, new_buffers, n);
         }
         iterator t2;
-#        ifndef _MSL_NO_EXCEPTIONS
+#ifndef _MSL_NO_EXCEPTIONS
         try
         {
-#        endif
+#endif
             if (pe == 0)                                // insert at end()
             {
                 _STD::uninitialized_fill_n(end(), n, x);
@@ -2036,7 +1971,7 @@ deque<T, Allocator>::insert(iterator position, size_type n, const T& x)
                 }
             }
             size_ += n;
-#        ifndef _MSL_NO_EXCEPTIONS
+#ifndef _MSL_NO_EXCEPTIONS
         }
         catch (...)
         {
@@ -2057,16 +1992,15 @@ deque<T, Allocator>::insert(iterator position, size_type n, const T& x)
             }
             throw;
         }
-#        endif
+#endif
     }
     invalidate_iterators();
 }
-
-#        ifdef _MSL_NO_MEMBER_TEMPLATE
-
+#ifdef _MSL_NO_MEMBER_TEMPLATE
 template <class T, class Allocator>
 void
-deque<T, Allocator>::insert(iterator position, const_iterator first, const_iterator last)
+deque<T, Allocator>::insert(iterator position, const_iterator first,
+                            const_iterator last)
 {
     size_type n = (size_type)_STD::distance(first, last);
     if (n == 0)
@@ -2075,11 +2009,11 @@ deque<T, Allocator>::insert(iterator position, const_iterator first, const_itera
     }
     size_type ms = max_size();
     if (n > ms || size_ > ms - n)
-#            ifndef _MSL_NO_EXCEPTIONS
+#ifndef _MSL_NO_EXCEPTIONS
         throw length_error("deque::insert length error");
-#            else
+#else
         __msl_error("deque::insert length error\n");
-#            endif
+#endif
     if (buf_.empty())
     {
         init_buf();
@@ -2102,10 +2036,10 @@ deque<T, Allocator>::insert(iterator position, const_iterator first, const_itera
         }
         size_type done = 0;
         iterator  beg = begin();
-#            ifndef _MSL_NO_EXCEPTIONS
+#ifndef _MSL_NO_EXCEPTIONS
         try
         {
-#            endif
+#endif
             if (pb == 0)                                // insert at begin()
             {
                 _STD::uninitialized_copy(first, last, beg);
@@ -2148,7 +2082,7 @@ deque<T, Allocator>::insert(iterator position, const_iterator first, const_itera
                 _STD::copy(i, last, t);
             }
             size_ += n;
-#            ifndef _MSL_NO_EXCEPTIONS
+#ifndef _MSL_NO_EXCEPTIONS
         }
         catch (...)
         {
@@ -2165,7 +2099,7 @@ deque<T, Allocator>::insert(iterator position, const_iterator first, const_itera
             start_ = oldstart;
             throw;
         }
-#            endif
+#endif
     }
     else                                                // pos >= size_ / 2
     {
@@ -2179,10 +2113,10 @@ deque<T, Allocator>::insert(iterator position, const_iterator first, const_itera
             buf_invalidated = grow_buf_back(e, orig_buf, new_buffers, n);
         }
         iterator t2;
-#            ifndef _MSL_NO_EXCEPTIONS
+#ifndef _MSL_NO_EXCEPTIONS
         try
         {
-#            endif
+#endif
             if (pe == 0)                                // insert at end()
             {
                 _STD::uninitialized_copy(first, last, end());
@@ -2222,7 +2156,7 @@ deque<T, Allocator>::insert(iterator position, const_iterator first, const_itera
                 }
             }
             size_ += n;
-#            ifndef _MSL_NO_EXCEPTIONS
+#ifndef _MSL_NO_EXCEPTIONS
         }
         catch (...)
         {
@@ -2243,14 +2177,14 @@ deque<T, Allocator>::insert(iterator position, const_iterator first, const_itera
             }
             throw;
         }
-#            endif
+#endif
     }
     invalidate_iterators();
 }
-
 template <class T, class Allocator>
 void
-deque<T, Allocator>::insert(iterator position, const value_type* first, const value_type* last)
+deque<T, Allocator>::insert(iterator position, const value_type* first,
+                            const value_type* last)
 {
     size_type n = (size_type)_STD::distance(first, last);
     if (n == 0)
@@ -2259,11 +2193,11 @@ deque<T, Allocator>::insert(iterator position, const value_type* first, const va
     }
     size_type ms = max_size();
     if (n > ms || size_ > ms - n)
-#            ifndef _MSL_NO_EXCEPTIONS
+#ifndef _MSL_NO_EXCEPTIONS
         throw length_error("deque::insert length error");
-#            else
+#else
         __msl_error("deque::insert length error\n");
-#            endif
+#endif
     if (buf_.empty())
     {
         init_buf();
@@ -2286,10 +2220,10 @@ deque<T, Allocator>::insert(iterator position, const value_type* first, const va
         }
         size_type done = 0;
         iterator  beg = begin();
-#            ifndef _MSL_NO_EXCEPTIONS
+#ifndef _MSL_NO_EXCEPTIONS
         try
         {
-#            endif
+#endif
             if (pb == 0)                                // insert at begin()
             {
                 _STD::uninitialized_copy(first, last, beg);
@@ -2332,7 +2266,7 @@ deque<T, Allocator>::insert(iterator position, const value_type* first, const va
                 _STD::copy(i, last, t);
             }
             size_ += n;
-#            ifndef _MSL_NO_EXCEPTIONS
+#ifndef _MSL_NO_EXCEPTIONS
         }
         catch (...)
         {
@@ -2349,7 +2283,7 @@ deque<T, Allocator>::insert(iterator position, const value_type* first, const va
             start_ = oldstart;
             throw;
         }
-#            endif
+#endif
     }
     else                                                // pos >= size_ / 2
     {
@@ -2363,10 +2297,10 @@ deque<T, Allocator>::insert(iterator position, const value_type* first, const va
             buf_invalidated = grow_buf_back(e, orig_buf, new_buffers, n);
         }
         iterator t2;
-#            ifndef _MSL_NO_EXCEPTIONS
+#ifndef _MSL_NO_EXCEPTIONS
         try
         {
-#            endif
+#endif
             if (pe == 0)                                // insert at end()
             {
                 _STD::uninitialized_copy(first, last, end());
@@ -2406,7 +2340,7 @@ deque<T, Allocator>::insert(iterator position, const value_type* first, const va
                 }
             }
             size_ += n;
-#            ifndef _MSL_NO_EXCEPTIONS
+#ifndef _MSL_NO_EXCEPTIONS
         }
         catch (...)
         {
@@ -2427,13 +2361,11 @@ deque<T, Allocator>::insert(iterator position, const value_type* first, const va
             }
             throw;
         }
-#            endif
+#endif
     }
     invalidate_iterators();
 }
-
-#        endif
-
+#endif
 template <class T, class Allocator>
 void
 deque<T, Allocator>::pop_front()
@@ -2452,7 +2384,6 @@ deque<T, Allocator>::pop_front()
         start_ = alloc_.m_ / 2;
     }
 }
-
 template <class T, class Allocator>
 void
 deque<T, Allocator>::pop_back()
@@ -2478,14 +2409,12 @@ deque<T, Allocator>::pop_back()
         start_ = alloc_.m_ / 2;
     }
 }
-
 template <class T, class Allocator>
 inline typename deque<T, Allocator>::iterator
 deque<T, Allocator>::erase(iterator position)
 {
     return erase(position, position + 1);
 }
-
 template <class T, class Allocator>
 typename deque<T, Allocator>::iterator
 deque<T, Allocator>::erase(iterator first, iterator last)
@@ -2499,13 +2428,13 @@ deque<T, Allocator>::erase(iterator first, iterator last)
     const size_type diff = size_type(last - first);
     if (pb < pe)
     {
-        if (pb == 0)                                    // erase from beginning, no copying necessary
+        if (pb == 0)   // erase from beginning, no copying necessary
         {
             destroy(first, last);
             start_ += diff;
             size_ -= diff;
         }
-        else                                            // erase from beginning, needs copying
+        else           // erase from beginning, needs copying
         {
             iterator bi = begin();
             _STD::copy_backward(bi, first, last);
@@ -2515,13 +2444,13 @@ deque<T, Allocator>::erase(iterator first, iterator last)
             invalidate_iterators();
         }
     }
-    else                                                // pb >= pe - erase from end
+    else               // pb >= pe - erase from end
     {
-        if (pe == 0)                                    // erase from end, no copying necessary
+        if (pe == 0)   // erase from end, no copying necessary
         {
             destroy(first, last);
         }
-        else                                            // erase from end, needs copying
+        else           // erase from end, needs copying
         {
             iterator ei = end();
             _STD::copy(last, ei, first);
@@ -2550,7 +2479,6 @@ deque<T, Allocator>::erase(iterator first, iterator last)
     }
     return make_iterator(start_ + pb);
 }
-
 template <class T, class Allocator>
 void
 deque<T, Allocator>::swap(deque<T, Allocator>& x)
@@ -2563,12 +2491,11 @@ deque<T, Allocator>::swap(deque<T, Allocator>& x)
         _STD::swap(size_, x.size_);
     }
 }
-
 template <class T, class Allocator>
 void
 deque<T, Allocator>::clear()
 {
-    if (!buf_.empty())                                  // hh 981209
+    if (!buf_.empty()) // hh 981209
     {
         destroy(begin(), end());
         size_ = 0;
@@ -2582,59 +2509,50 @@ deque<T, Allocator>::clear()
         start_ = alloc_.m_ / 2;
     }
 }
-
 template <class T, class Allocator>
 inline bool
 operator==(const deque<T, Allocator>& x, const deque<T, Allocator>& y)
 {
     return x.size() == y.size() && equal(x.begin(), x.end(), y.begin());
 }
-
 template <class T, class Allocator>
 inline bool
 operator!=(const deque<T, Allocator>& x, const deque<T, Allocator>& y)
 {
     return !(x == y);
 }
-
 template <class T, class Allocator>
 inline bool
 operator<(const deque<T, Allocator>& x, const deque<T, Allocator>& y)
 {
     return lexicographical_compare(x.begin(), x.end(), y.begin(), y.end());
 }
-
 template <class T, class Allocator>
 inline bool
 operator>(const deque<T, Allocator>& x, const deque<T, Allocator>& y)
 {
     return y < x;
 }
-
 template <class T, class Allocator>
 inline bool
 operator>=(const deque<T, Allocator>& x, const deque<T, Allocator>& y)
 {
     return !(x < y);
 }
-
 template <class T, class Allocator>
 inline bool
 operator<=(const deque<T, Allocator>& x, const deque<T, Allocator>& y)
 {
     return !(y < x);
 }
-
 template <class T, class Allocator>
 inline void
 swap(deque<T, Allocator>& x, deque<T, Allocator>& y)
 {
     x.swap(y);
 }
-
-#        if !defined(_MSL_NO_PARTIAL_SPECIALIZATION) && !defined(_MSL_NO_MEMBER_TEMPLATE)                              \
-            && !defined(_Inhibit_Container_Optimization)
-
+#if !defined(_MSL_NO_PARTIAL_SPECIALIZATION) &&                                     \
+    !defined(_MSL_NO_MEMBER_TEMPLATE) && !defined(_Inhibit_Container_Optimization)
 // Specialize for T* to save on code bloat
 
 // hh 990825 changed void* to const void*
@@ -2667,24 +2585,21 @@ private:
 
 public:
     friend class iterator;
-
-    class iterator : public _STD::iterator<random_access_iterator_tag, value_type, difference_type, pointer, reference>
+    class iterator : public _STD::iterator<random_access_iterator_tag, value_type,
+                                           difference_type, pointer, reference>
     {
     public:
         iterator() {}
-
         reference
         operator*() const
         {
             return *cur_;
         }
-
         pointer
         operator->() const
         {
             return cur_;
         }
-
         iterator&
         operator++()
         {
@@ -2699,7 +2614,6 @@ public:
             }
             return *this;
         }
-
         iterator
         operator++(int)
         {
@@ -2707,7 +2621,6 @@ public:
             ++(*this);
             return tmp;
         }
-
         iterator&
         operator--()
         {
@@ -2726,7 +2639,6 @@ public:
             }
             return *this;
         }
-
         iterator
         operator--(int)
         {
@@ -2734,7 +2646,6 @@ public:
             --(*this);
             return tmp;
         }
-
         iterator&
         operator+=(difference_type n)
         {
@@ -2759,13 +2670,11 @@ public:
             }
             return *this;
         }
-
         iterator
         operator+(difference_type n) const
         {
             return iterator(*this) += n;
         }
-
         iterator&
         operator-=(difference_type n)
         {
@@ -2790,19 +2699,16 @@ public:
             }
             return *this;
         }
-
         iterator
         operator-(difference_type n) const
         {
             return iterator(*this) -= n;
         }
-
         friend difference_type
         operator-(const iterator& x, const iterator& y)
         {
             return difference_type(x.pos_ - y.pos_);
         }
-
         reference
         operator[](difference_type i) const
         {
@@ -2810,90 +2716,81 @@ public:
             tmp += i;
             return *tmp;
         }
-
         friend bool
         operator==(const iterator& x, const iterator& y)
         {
             return x.cur_ == y.cur_;
         } // hh 990720
-
         friend bool
         operator!=(const iterator& x, const iterator& y)
         {
             return x.cur_ != y.cur_;
         }
-
         friend bool
         operator<(const iterator& x, const iterator& y)
         {
             return x.pos_ < y.pos_;
         }
-
         friend bool
         operator<=(const iterator& x, const iterator& y)
         {
             return x.pos_ <= y.pos_;
         }
-
         friend bool
         operator>(const iterator& x, const iterator& y)
         {
             return x.pos_ > y.pos_;
         }
-
         friend bool
         operator>=(const iterator& x, const iterator& y)
         {
             return x.pos_ >= y.pos_;
         }
-
         friend iterator
         operator+(difference_type n, const iterator& rhs)
         {
             return iterator(rhs) += n;
         }
-#            ifndef __GNUC__
+#ifndef __GNUC__
 
     private:
-#            endif
+#endif
         typename buf_type::iterator beg_;
         pointer                     cur_;
         pointer                     end_;
         size_type                   pos_;
-
-        iterator(const typename buf_type::iterator& beg, pointer cur, pointer end, size_type pos)
+        iterator(const typename buf_type::iterator& beg, pointer cur, pointer end,
+                 size_type pos)
           : beg_(beg), cur_(cur), end_(end), pos_(pos)
         {
         }
-
-#            ifndef __GNUC__
+#ifndef __GNUC__
         friend class deque;
         friend class deque::const_iterator;
-#            endif
+#endif
     };
 
     friend class const_iterator;
-
     class const_iterator
-      : public _STD::iterator<random_access_iterator_tag, value_type, difference_type, const_pointer, const_reference>
+      : public _STD::iterator<random_access_iterator_tag, value_type,
+                              difference_type, const_pointer, const_reference>
     {
     public:
         const_iterator() {}
-
-        const_iterator(const deque::iterator& rhs) : beg_(rhs.beg_), cur_(rhs.cur_), end_(rhs.end_), pos_(rhs.pos_) {}
-
+        const_iterator(const deque::iterator& rhs)
+          : beg_(rhs.beg_), cur_(rhs.cur_), end_(rhs.end_), pos_(rhs.pos_)
+        {
+        }
         const_reference
         operator*() const
         {
             return *cur_;
         }
-
         const_pointer
         operator->() const
         {
             return cur_;
         }
-
         const_iterator&
         operator++()
         {
@@ -2908,7 +2805,6 @@ public:
             }
             return *this;
         }
-
         const_iterator
         operator++(int)
         {
@@ -2916,7 +2812,6 @@ public:
             ++(*this);
             return tmp;
         }
-
         const_iterator&
         operator--()
         {
@@ -2935,7 +2830,6 @@ public:
             }
             return *this;
         }
-
         const_iterator
         operator--(int)
         {
@@ -2943,7 +2837,6 @@ public:
             --(*this);
             return tmp;
         }
-
         const_iterator&
         operator+=(difference_type n)
         {
@@ -2968,13 +2861,11 @@ public:
             }
             return *this;
         }
-
         const_iterator
         operator+(difference_type n) const
         {
             return const_iterator(*this) += n;
         }
-
         const_iterator&
         operator-=(difference_type n)
         {
@@ -2999,19 +2890,16 @@ public:
             }
             return *this;
         }
-
         const_iterator
         operator-(difference_type n) const
         {
             return const_iterator(*this) -= n;
         }
-
         friend difference_type
         operator-(const const_iterator& x, const const_iterator& y)
         {
             return difference_type(x.pos_ - y.pos_);
         }
-
         const_reference
         operator[](difference_type i) const
         {
@@ -3019,90 +2907,79 @@ public:
             tmp += i;
             return *tmp;
         }
-
         friend bool
         operator==(const const_iterator& x, const const_iterator& y)
         {
             return x.cur_ == y.cur_;
         } // hh 990720
-
         friend bool
         operator!=(const const_iterator& x, const const_iterator& y)
         {
             return x.cur_ != y.cur_;
         }
-
         friend bool
         operator<(const const_iterator& x, const const_iterator& y)
         {
             return x.pos_ < y.pos_;
         }
-
         friend bool
         operator<=(const const_iterator& x, const const_iterator& y)
         {
             return x.pos_ <= y.pos_;
         }
-
         friend bool
         operator>(const const_iterator& x, const const_iterator& y)
         {
             return x.pos_ > y.pos_;
         }
-
         friend bool
         operator>=(const const_iterator& x, const const_iterator& y)
         {
             return x.pos_ >= y.pos_;
         }
-
         friend const_iterator
         operator+(difference_type n, const const_iterator& rhs)
         {
             return const_iterator(rhs) += n;
         }
-#            ifndef __GNUC__
+#ifndef __GNUC__
 
     private:
-#            endif
+#endif
         typename buf_type::const_iterator beg_;
         const_pointer                     cur_;
         const_pointer                     end_;
         size_type                         pos_;
-
-        const_iterator(const typename buf_type::const_iterator& beg, const_pointer cur, const_pointer end,
-                       size_type pos)
+        const_iterator(const typename buf_type::const_iterator& beg,
+                       const_pointer cur, const_pointer end, size_type pos)
           : beg_(beg), cur_(cur), end_(end), pos_(pos)
         {
         }
-
-#            ifndef __GNUC__
+#ifndef __GNUC__
         friend class deque;
-#            endif
+#endif
     };
-
     // _lib.deque.cons_ construct/copy/destroy:
     explicit deque(const Allocator& = Allocator());
-    explicit deque(size_type n, const value_type& value = 0, const Allocator& = Allocator());
-
+    explicit deque(size_type n, const value_type& value = 0,
+                   const Allocator& = Allocator());
     template <class InputIterator>
     deque(InputIterator first, InputIterator last, const Allocator& a = Allocator())
       : alloc_(a, default_bufsize_s), buf_(buf_allocator(a)), start_(0), size_(0)
     {
-        choose_init(first, last, chooser<numeric_limits<InputIterator>::is_integer>());
+        choose_init(first, last,
+                    chooser<numeric_limits<InputIterator>::is_integer>());
     }
-
     deque(const deque& x);
     ÃÂ¢ÃÂÃÂ¾deque();
     deque& operator=(const deque& x);
-
     template <class InputIterator>
     inline void
     assign(InputIterator first, InputIterator last)
     {
-        choose_assign(first, last, chooser<numeric_limits<InputIterator>::is_integer>());
+        choose_assign(first, last,
+                      chooser<numeric_limits<InputIterator>::is_integer>());
     }
-
     void                   assign(size_type n, const value_type& t);
     allocator_type         get_allocator() const;
     // iterators:
@@ -3134,14 +3011,13 @@ public:
     void            push_back(const value_type& x);
     iterator        insert(iterator position, const value_type& x);
     void            insert(iterator position, size_type n, const value_type& x);
-
     template <class InputIterator>
     inline void
     insert(iterator position, InputIterator first, InputIterator last)
     {
-        choose_insert(position, first, last, chooser<numeric_limits<InputIterator>::is_integer>());
+        choose_insert(position, first, last,
+                      chooser<numeric_limits<InputIterator>::is_integer>());
     }
-
     void     pop_front();
     void     pop_back();
     iterator erase(iterator position);
@@ -3150,63 +3026,61 @@ public:
     void     clear();
 
 private:
-    static const size_type                min_buf_size_s = 8;
-    static const size_type                min_foot_print_s = 512;
-    static const size_type                default_bufsize_s = sizeof(value_type) * min_buf_size_s < min_foot_print_s
-                                                                  ? min_foot_print_s / sizeof(value_type)
-                                                                  : min_buf_size_s;
-    _EmptyMemberOpt<Allocator, size_type> alloc_;                                // alloc_.m_ is bufsize_
+    static const size_type min_buf_size_s = 8;
+    static const size_type min_foot_print_s = 512;
+    static const size_type default_bufsize_s =
+        sizeof(value_type) * min_buf_size_s < min_foot_print_s
+            ? min_foot_print_s / sizeof(value_type)
+            : min_buf_size_s;
+    _EmptyMemberOpt<Allocator, size_type> alloc_; // alloc_.m_ is bufsize_
     buf_type                              buf_;
     size_type                             start_;
     size_type                             size_;
-
     template <class InputIterator>
     inline void
     choose_init(InputIterator first, InputIterator last, chooser<true>)
     {
-        init(static_cast<size_type>(first), reinterpret_cast<value_type>(last)); // hh 981208
+        init(static_cast<size_type>(first),
+             reinterpret_cast<value_type>(last)); // hh 981208
     }
-
     template <class InputIterator>
     inline void
     choose_init(InputIterator first, InputIterator last, chooser<false>)
     {
         init(first, last, iterator_traits<InputIterator>::iterator_category());
     }
-
     template <class InputIterator>
     void
     init(InputIterator first, InputIterator last, input_iterator_tag)
     {
-#            ifndef _MSL_NO_EXCEPTIONS
+#ifndef _MSL_NO_EXCEPTIONS
         try
         {
-#            endif
+#endif
             for (; first != last; ++first)
             {
                 push_back(*first);
             }
-#            ifndef _MSL_NO_EXCEPTIONS
+#ifndef _MSL_NO_EXCEPTIONS
         }
         catch (...)
         {
             tear_down();
             throw;
         }
-#            endif
+#endif
     }
-
     template <class ForwardIterator>
     void
     init(ForwardIterator first, ForwardIterator last, forward_iterator_tag)
     {
         size_ = (size_type)_STD::distance(first, last);
         if (size_ > max_size())
-#            ifndef _MSL_NO_EXCEPTIONS
+#ifndef _MSL_NO_EXCEPTIONS
             throw length_error("deque::construction length error");
-#            else
+#else
             __msl_error("deque::construction length error\n");
-#            endif
+#endif
         if (size_ > 0)
         {
             init_buf();
@@ -3215,39 +3089,36 @@ private:
                 alloc_.m_ = size_;
             }
             pointer tmp = alloc_.allocate(alloc_.m_);
-#            ifndef _MSL_NO_EXCEPTIONS
+#ifndef _MSL_NO_EXCEPTIONS
             try
             {
-#            endif
+#endif
                 buf_.front() = tmp;
                 buf_.push_back(0);
                 start_ = (alloc_.m_ - size_) / 2;
                 _STD::copy(first, last, tmp + start_);
-#            ifndef _MSL_NO_EXCEPTIONS
+#ifndef _MSL_NO_EXCEPTIONS
             }
             catch (...)
             {
                 alloc_.deallocate(tmp, alloc_.m_);
                 throw;
             }
-#            endif
+#endif
         }
     }
-
     template <class InputIterator>
     inline void
     choose_assign(InputIterator first, InputIterator last, chooser<true>)
     {
         assign(static_cast<size_type>(first), static_cast<value_type>(last));
     }
-
     template <class InputIterator>
     inline void
     choose_assign(InputIterator first, InputIterator last, chooser<false>)
     {
         do_assign(first, last, iterator_traits<InputIterator>::iterator_category());
     }
-
     template <class InputIterator>
     void
     do_assign(InputIterator first, InputIterator last, input_iterator_tag)
@@ -3256,18 +3127,17 @@ private:
         const deque& tempr = temp;
         do_assign(tempr.begin(), tempr.end(), random_access_iterator_tag());
     }
-
     template <class ForwardIterator>
     void
     do_assign(ForwardIterator first, ForwardIterator last, forward_iterator_tag)
     {
         size_type n = (size_type)_STD::distance(first, last);
         if (n > max_size())
-#            ifndef _MSL_NO_EXCEPTIONS
+#ifndef _MSL_NO_EXCEPTIONS
             throw length_error("deque::assign length error");
-#            else
+#else
             __msl_error("deque::assign length error\n");
-#            endif
+#endif
         if (buf_.empty())
         {
             init_buf();
@@ -3275,20 +3145,20 @@ private:
         while (n > capacity())
         {
             pointer tmp = alloc_.allocate(alloc_.m_);
-#            ifndef _MSL_NO_EXCEPTIONS
+#ifndef _MSL_NO_EXCEPTIONS
             try
             {
-#            endif
+#endif
                 buf_.back() = tmp;
                 buf_.push_back(0);
-#            ifndef _MSL_NO_EXCEPTIONS
+#ifndef _MSL_NO_EXCEPTIONS
             }
             catch (...)
             {
                 alloc_.deallocate(tmp, alloc_.m_);
                 throw;
             }
-#            endif
+#endif
         }
         start_ = (capacity() - n) / 2;
         while (start_ >= alloc_.m_)
@@ -3302,33 +3172,36 @@ private:
         _STD::copy(first, last, begin());
         size_ = n;
     }
-
     template <class InputIterator>
     inline void
-    choose_insert(iterator position, InputIterator first, InputIterator last, chooser<true>)
+    choose_insert(iterator position, InputIterator first, InputIterator last,
+                  chooser<true>)
     {
-        insert(position, static_cast<size_type>(first), static_cast<value_type>(last));
+        insert(position, static_cast<size_type>(first),
+               static_cast<value_type>(last));
     }
-
     template <class InputIterator>
     inline void
-    choose_insert(iterator position, InputIterator first, InputIterator last, chooser<false>)
+    choose_insert(iterator position, InputIterator first, InputIterator last,
+                  chooser<false>)
     {
-        do_insert(position, first, last, iterator_traits<InputIterator>::iterator_category());
+        do_insert(position, first, last,
+                  iterator_traits<InputIterator>::iterator_category());
     }
-
     template <class InputIterator>
     void
-    do_insert(iterator position, InputIterator first, InputIterator last, input_iterator_tag)
+    do_insert(iterator position, InputIterator first, InputIterator last,
+              input_iterator_tag)
     {
         deque        temp(first, last, get_allocator());
         const deque& tempr = temp;
-        do_insert(position, tempr.begin(), tempr.end(), random_access_iterator_tag());
+        do_insert(position, tempr.begin(), tempr.end(),
+                  random_access_iterator_tag());
     }
-
     template <class ForwardIterator>
     void
-    do_insert(iterator position, ForwardIterator first, ForwardIterator last, forward_iterator_tag)
+    do_insert(iterator position, ForwardIterator first, ForwardIterator last,
+              forward_iterator_tag)
     {
         size_type n = (size_type)_STD::distance(first, last);
         if (n == 0)
@@ -3337,18 +3210,18 @@ private:
         }
         size_type ms = max_size();
         if (n > ms || size_ > ms - n)
-#            ifndef _MSL_NO_EXCEPTIONS
+#ifndef _MSL_NO_EXCEPTIONS
             throw length_error("deque::insert length error");
-#            else
+#else
             __msl_error("deque::insert length error\n");
-#            endif
+#endif
         if (buf_.empty())
         {
             init_buf();
         }
         size_type pb = position.pos_ - start_;
         size_type pe = size_ - pb;
-        if (pb <= pe)                                                            // hh 981210
+        if (pb <= pe)                             // hh 981210
         {
             if (start_ < n)
             {
@@ -3358,11 +3231,11 @@ private:
             {
                 start_ -= n;
             }
-            if (pb == 0)                                                         // insert at begin()
+            if (pb == 0)                          // insert at begin()
             {
                 _STD::copy(first, last, begin());
             }
-            else                                                                 // pos in [1, size_ / 2)
+            else                                  // pos in [1, size_ / 2)
             {
                 iterator b = begin();
                 _STD::copy(b + difference_type(n), b + difference_type(n + pb), b);
@@ -3370,18 +3243,18 @@ private:
             }
             size_ += n;
         }
-        else                                                                     // pos >= size_ / 2
+        else                                      // pos >= size_ / 2
         {
             size_type e = capacity() - (start_ + size_);
             if (e < n)
             {
                 grow_buf_back(e, n);
             }
-            if (pe == 0)                                                         // insert at end()
+            if (pe == 0)                          // insert at end()
             {
                 _STD::copy(first, last, end());
             }
-            else                                                                 // pos in [size_ / 2, size_)
+            else                                  // pos in [size_ / 2, size_)
             {
                 iterator e = end();
                 iterator p = e - difference_type(pe);
@@ -3392,7 +3265,6 @@ private:
         }
         invalidate_iterators();
     }
-
     void           init(size_type n, const value_type& value);
     void           tear_down();
     void           invalidate_iterators();
@@ -3403,8 +3275,7 @@ private:
     void           grow_buf_front(size_type n);
     void           grow_buf_back(size_type e, size_type n);
 };
-
-                                                                                 // Implementation deque<const void*>
+// Implementation deque<const void*>
 
 template <class Allocator>
 inline void
@@ -3417,7 +3288,6 @@ deque<const void*, Allocator>::invalidate_iterators()
         start_ -= alloc_.m_;
     }
 }
-
 template <class Allocator>
 typename deque<const void*, Allocator>::iterator
 deque<const void*, Allocator>::make_iterator(size_type pos)
@@ -3445,7 +3315,6 @@ deque<const void*, Allocator>::make_iterator(size_type pos)
     }
     return iterator(b, cur, beg + alloc_.m_, pos);
 }
-
 template <class Allocator>
 typename deque<const void*, Allocator>::const_iterator
 deque<const void*, Allocator>::make_iterator(size_type pos) const
@@ -3473,7 +3342,6 @@ deque<const void*, Allocator>::make_iterator(size_type pos) const
     }
     return const_iterator(b, cur, beg + alloc_.m_, pos);
 }
-
 template <class Allocator>
 inline void
 deque<const void*, Allocator>::init_buf()
@@ -3481,14 +3349,12 @@ deque<const void*, Allocator>::init_buf()
     buf_.reserve(2);
     buf_.resize(1);
 }
-
 template <class Allocator>
 inline typename deque<const void*, Allocator>::size_type
 deque<const void*, Allocator>::capacity() const
 {
     return (buf_.size() - 1) * alloc_.m_;
 }
-
 template <class Allocator>
 void
 deque<const void*, Allocator>::grow_buf_front(size_type n)
@@ -3502,10 +3368,10 @@ deque<const void*, Allocator>::grow_buf_front(size_type n)
     while (true)
     {
         pointer tmp = alloc_.allocate(alloc_.m_);
-#            ifndef _MSL_NO_EXCEPTIONS
+#ifndef _MSL_NO_EXCEPTIONS
         try
         {
-#            endif
+#endif
             if (!buf_invalidated && buf_.size() == buf_.capacity())
             {
                 buf_.swap(orig_buf);
@@ -3529,7 +3395,7 @@ deque<const void*, Allocator>::grow_buf_front(size_type n)
                 break;
             }
             nc -= alloc_.m_;
-#            ifndef _MSL_NO_EXCEPTIONS
+#ifndef _MSL_NO_EXCEPTIONS
         }
         catch (...)
         {
@@ -3546,10 +3412,9 @@ deque<const void*, Allocator>::grow_buf_front(size_type n)
             start_ = oldstart;
             throw;
         }
-#            endif
+#endif
     }
 }
-
 template <class Allocator>
 void
 deque<const void*, Allocator>::grow_buf_back(size_type e, size_type n)
@@ -3562,10 +3427,10 @@ deque<const void*, Allocator>::grow_buf_back(size_type e, size_type n)
     while (true)
     {
         pointer tmp = alloc_.allocate(alloc_.m_);
-#            ifndef _MSL_NO_EXCEPTIONS
+#ifndef _MSL_NO_EXCEPTIONS
         try
         {
-#            endif
+#endif
             if (!buf_invalidated && buf_.size() == buf_.capacity())
             {
                 buf_.swap(orig_buf);
@@ -3581,7 +3446,7 @@ deque<const void*, Allocator>::grow_buf_back(size_type e, size_type n)
                 break;
             }
             nc -= alloc_.m_;
-#            ifndef _MSL_NO_EXCEPTIONS
+#ifndef _MSL_NO_EXCEPTIONS
         }
         catch (...)
         {
@@ -3603,33 +3468,31 @@ deque<const void*, Allocator>::grow_buf_back(size_type e, size_type n)
             }
             throw;
         }
-#            endif
+#endif
     }
 }
-
 template <class Allocator>
 deque<const void*, Allocator>::deque(const Allocator& a)
   : alloc_(a, default_bufsize_s), buf_(buf_allocator(a)), start_(0), size_(0)
 {
 }
-
 template <class Allocator>
-deque<const void*, Allocator>::deque(size_type n, const value_type& value, const Allocator& a)
+deque<const void*, Allocator>::deque(size_type n, const value_type& value,
+                                     const Allocator& a)
   : alloc_(a, default_bufsize_s), buf_(buf_allocator(a)), start_(0), size_(0)
 {
     init(n, value);
 }
-
 template <class Allocator>
 void
 deque<const void*, Allocator>::init(size_type n, const value_type& value)
 {
     if (n > max_size())
-#            ifndef _MSL_NO_EXCEPTIONS
+#ifndef _MSL_NO_EXCEPTIONS
         throw length_error("deque::construction length error");
-#            else
+#else
         __msl_error("deque::construction length error\n");
-#            endif
+#endif
     if (n > 0)
     {
         init_buf();
@@ -3638,29 +3501,29 @@ deque<const void*, Allocator>::init(size_type n, const value_type& value)
             alloc_.m_ = n;
         }
         pointer tmp = alloc_.allocate(alloc_.m_);
-#            ifndef _MSL_NO_EXCEPTIONS
+#ifndef _MSL_NO_EXCEPTIONS
         try
         {
-#            endif
+#endif
             buf_.front() = tmp;
             buf_.push_back(0);
             size_ = n;
             start_ = (alloc_.m_ - size_) / 2;
             _STD::fill_n(tmp + start_, size_, value);
-#            ifndef _MSL_NO_EXCEPTIONS
+#ifndef _MSL_NO_EXCEPTIONS
         }
         catch (...)
         {
             alloc_.deallocate(tmp, alloc_.m_);
             throw;
         }
-#            endif
+#endif
     }
 }
-
 template <class Allocator>
 deque<const void*, Allocator>::deque(const deque& x)
-  : alloc_(x.alloc_, default_bufsize_s), buf_(buf_allocator(alloc_)), start_(0), size_(x.size_)
+  : alloc_(x.alloc_, default_bufsize_s), buf_(buf_allocator(alloc_)), start_(0),
+    size_(x.size_)
 {
     if (size_ > 0)
     {
@@ -3670,30 +3533,29 @@ deque<const void*, Allocator>::deque(const deque& x)
             alloc_.m_ = size_;
         }
         pointer tmp = alloc_.allocate(alloc_.m_);
-#            ifndef _MSL_NO_EXCEPTIONS
+#ifndef _MSL_NO_EXCEPTIONS
         try
         {
-#            endif
+#endif
             buf_.front() = tmp;
             buf_.push_back(0);
             start_ = (alloc_.m_ - size_) / 2;
             _STD::copy(x.begin(), x.end(), tmp + start_);
-#            ifndef _MSL_NO_EXCEPTIONS
+#ifndef _MSL_NO_EXCEPTIONS
         }
         catch (...)
         {
             alloc_.deallocate(tmp, alloc_.m_);
             throw;
         }
-#            endif
+#endif
     }
 }
-
-template <class Allocator> inline deque<const void*, Allocator>::ÃÂ¢ÃÂÃÂ¾deque()
+template <class Allocator>
+inline deque<const void*, Allocator>::ÃÂ¢ÃÂÃÂ¾deque()
 {
     tear_down();
 }
-
 template <class Allocator>
 void
 deque<const void*, Allocator>::tear_down()
@@ -3707,7 +3569,6 @@ deque<const void*, Allocator>::tear_down()
         }
     }
 }
-
 template <class Allocator>
 deque<const void*, Allocator>&
 deque<const void*, Allocator>::operator=(const deque& x)
@@ -3718,17 +3579,16 @@ deque<const void*, Allocator>::operator=(const deque& x)
     }
     return *this;
 }
-
 template <class Allocator>
 void
 deque<const void*, Allocator>::assign(size_type n, const value_type& t)
 {
     if (n > max_size())
-#            ifndef _MSL_NO_EXCEPTIONS
+#ifndef _MSL_NO_EXCEPTIONS
         throw length_error("deque::assign length error");
-#            else
+#else
         __msl_error("deque::assign length error\n");
-#            endif
+#endif
     if (buf_.empty())
     {
         init_buf();
@@ -3736,13 +3596,13 @@ deque<const void*, Allocator>::assign(size_type n, const value_type& t)
     while (n > capacity())
     {
         pointer tmp = alloc_.allocate(alloc_.m_);
-#            ifndef _MSL_NO_EXCEPTIONS
+#ifndef _MSL_NO_EXCEPTIONS
         try
         {
-#            endif
+#endif
             buf_.back() = tmp;
             buf_.push_back(0);
-#            ifndef _MSL_NO_EXCEPTIONS
+#ifndef _MSL_NO_EXCEPTIONS
         }
         catch (...)
         {
@@ -3750,7 +3610,7 @@ deque<const void*, Allocator>::assign(size_type n, const value_type& t)
             buf_.back() = 0;
             throw;
         }
-#            endif
+#endif
     }
     start_ = (capacity() - n) / 2;
     while (start_ >= alloc_.m_)
@@ -3764,84 +3624,72 @@ deque<const void*, Allocator>::assign(size_type n, const value_type& t)
     _STD::fill_n(begin(), n, t);
     size_ = n;
 }
-
 template <class Allocator>
 inline typename deque<const void*, Allocator>::allocator_type
 deque<const void*, Allocator>::get_allocator() const
 {
     return alloc_;
 }
-
 template <class Allocator>
 inline typename deque<const void*, Allocator>::iterator
 deque<const void*, Allocator>::begin()
 {
     return make_iterator(start_);
 }
-
 template <class Allocator>
 inline typename deque<const void*, Allocator>::const_iterator
 deque<const void*, Allocator>::begin() const
 {
     return make_iterator(start_);
 }
-
 template <class Allocator>
 inline typename deque<const void*, Allocator>::iterator
 deque<const void*, Allocator>::end()
 {
     return make_iterator(start_ + size_);
 }
-
 template <class Allocator>
 inline typename deque<const void*, Allocator>::const_iterator
 deque<const void*, Allocator>::end() const
 {
     return make_iterator(start_ + size_);
 }
-
 template <class Allocator>
 inline typename deque<const void*, Allocator>::reverse_iterator
 deque<const void*, Allocator>::rbegin()
 {
     return reverse_iterator(end());
 }
-
 template <class Allocator>
 inline typename deque<const void*, Allocator>::const_reverse_iterator
 deque<const void*, Allocator>::rbegin() const
 {
     return const_reverse_iterator(end());
 }
-
 template <class Allocator>
 inline typename deque<const void*, Allocator>::reverse_iterator
 deque<const void*, Allocator>::rend()
 {
     return reverse_iterator(begin());
 }
-
 template <class Allocator>
 inline typename deque<const void*, Allocator>::const_reverse_iterator
 deque<const void*, Allocator>::rend() const
 {
     return const_reverse_iterator(begin());
 }
-
 template <class Allocator>
 inline typename deque<const void*, Allocator>::size_type
 deque<const void*, Allocator>::size() const
 {
     return size_;
 }
-
 template <class Allocator>
 inline typename deque<const void*, Allocator>::size_type
 deque<const void*, Allocator>::max_size() const
 {
     return alloc_.max_size();
 }
-
 template <class Allocator>
 void
 deque<const void*, Allocator>::resize(size_type sz, value_type c)
@@ -3855,14 +3703,12 @@ deque<const void*, Allocator>::resize(size_type sz, value_type c)
         erase(begin() + difference_type(sz), end());
     }
 }
-
 template <class Allocator>
 inline bool
 deque<const void*, Allocator>::empty() const
 {
     return size_ == 0;
 }
-
 template <class Allocator>
 inline typename deque<const void*, Allocator>::reference
 deque<const void*, Allocator>::operator[](size_type n)
@@ -3870,7 +3716,6 @@ deque<const void*, Allocator>::operator[](size_type n)
     size_type i = n + start_;
     return *(buf_[i / alloc_.m_] + i % alloc_.m_);
 }
-
 template <class Allocator>
 inline typename deque<const void*, Allocator>::const_reference
 deque<const void*, Allocator>::operator[](size_type n) const
@@ -3878,49 +3723,44 @@ deque<const void*, Allocator>::operator[](size_type n) const
     size_type i = n + start_;
     return *(buf_[i / alloc_.m_] + i % alloc_.m_);
 }
-
 template <class Allocator>
 typename deque<const void*, Allocator>::reference
 deque<const void*, Allocator>::at(size_type n)
 {
     if (n >= size_)
-#            ifndef _MSL_NO_EXCEPTIONS
+#ifndef _MSL_NO_EXCEPTIONS
         throw out_of_range("deque::at index out of range");
-#            else
+#else
         __msl_error("deque::at index out of range");
-#            endif
+#endif
     size_type i = n + start_;
     return *(buf_[i / alloc_.m_] + i % alloc_.m_);
 }
-
 template <class Allocator>
 typename deque<const void*, Allocator>::const_reference
 deque<const void*, Allocator>::at(size_type n) const
 {
     if (n >= size_)
-#            ifndef _MSL_NO_EXCEPTIONS
+#ifndef _MSL_NO_EXCEPTIONS
         throw out_of_range("deque::at index out of range");
-#            else
+#else
         __msl_error("deque::at index out of range");
-#            endif
+#endif
     size_type i = n + start_;
     return *(buf_[i / alloc_.m_] + i % alloc_.m_);
 }
-
 template <class Allocator>
 inline typename deque<const void*, Allocator>::reference
 deque<const void*, Allocator>::front()
 {
     return *(buf_[start_ / alloc_.m_] + start_ % alloc_.m_);
 }
-
 template <class Allocator>
 inline typename deque<const void*, Allocator>::const_reference
 deque<const void*, Allocator>::front() const
 {
     return *(buf_[start_ / alloc_.m_] + start_ % alloc_.m_);
 }
-
 template <class Allocator>
 inline typename deque<const void*, Allocator>::reference
 deque<const void*, Allocator>::back()
@@ -3928,7 +3768,6 @@ deque<const void*, Allocator>::back()
     size_type i = start_ + size_ - 1;
     return *(buf_[i / alloc_.m_] + i % alloc_.m_);
 }
-
 template <class Allocator>
 inline typename deque<const void*, Allocator>::const_reference
 deque<const void*, Allocator>::back() const
@@ -3936,17 +3775,16 @@ deque<const void*, Allocator>::back() const
     size_type i = start_ + size_ - 1;
     return *(buf_[i / alloc_.m_] + i % alloc_.m_);
 }
-
 template <class Allocator>
 void
 deque<const void*, Allocator>::push_front(const value_type& x)
 {
     if (size_ > max_size() - 1)
-#            ifndef _MSL_NO_EXCEPTIONS
+#ifndef _MSL_NO_EXCEPTIONS
         throw length_error("deque::push_front length error");
-#            else
+#else
         __msl_error("deque::push_front length error\n");
-#            endif
+#endif
     if (buf_.empty())
     {
         init_buf();
@@ -3970,17 +3808,16 @@ deque<const void*, Allocator>::push_front(const value_type& x)
     ++size_;
     invalidate_iterators();
 }
-
 template <class Allocator>
 void
 deque<const void*, Allocator>::push_back(const value_type& x)
 {
     if (size_ > max_size() - 1)
-#            ifndef _MSL_NO_EXCEPTIONS
+#ifndef _MSL_NO_EXCEPTIONS
         throw length_error("deque::insert length error");
-#            else
+#else
         __msl_error("deque::insert length error\n");
-#            endif
+#endif
     if (buf_.empty())
     {
         init_buf();
@@ -4003,7 +3840,6 @@ deque<const void*, Allocator>::push_back(const value_type& x)
     }
     invalidate_iterators();
 }
-
 template <class Allocator>
 typename deque<const void*, Allocator>::iterator
 deque<const void*, Allocator>::insert(iterator position, const value_type& x)
@@ -4012,10 +3848,10 @@ deque<const void*, Allocator>::insert(iterator position, const value_type& x)
     insert(position, 1, x);
     return begin() + pos;
 }
-
 template <class Allocator>
 void
-deque<const void*, Allocator>::insert(iterator position, size_type n, const value_type& x)
+deque<const void*, Allocator>::insert(iterator position, size_type n,
+                                      const value_type& x)
 {
     if (n == 0)
     {
@@ -4023,11 +3859,11 @@ deque<const void*, Allocator>::insert(iterator position, size_type n, const valu
     }
     size_type ms = max_size();
     if (n > ms || size_ > ms - n)
-#            ifndef _MSL_NO_EXCEPTIONS
+#ifndef _MSL_NO_EXCEPTIONS
         throw length_error("deque::insert length error");
-#            else
+#else
         __msl_error("deque::insert length error\n");
-#            endif
+#endif
     if (buf_.empty())
     {
         init_buf();
@@ -4080,7 +3916,6 @@ deque<const void*, Allocator>::insert(iterator position, size_type n, const valu
     }
     invalidate_iterators();
 }
-
 template <class Allocator>
 inline void
 deque<const void*, Allocator>::pop_front()
@@ -4098,7 +3933,6 @@ deque<const void*, Allocator>::pop_front()
         start_ = alloc_.m_ / 2;
     }
 }
-
 template <class Allocator>
 inline void
 deque<const void*, Allocator>::pop_back()
@@ -4123,14 +3957,12 @@ deque<const void*, Allocator>::pop_back()
         start_ = alloc_.m_ / 2;
     }
 }
-
 template <class Allocator>
 inline typename deque<const void*, Allocator>::iterator
 deque<const void*, Allocator>::erase(iterator position)
 {
     return erase(position, position + 1);
 }
-
 template <class Allocator>
 typename deque<const void*, Allocator>::iterator
 deque<const void*, Allocator>::erase(iterator first, iterator last)
@@ -4144,12 +3976,12 @@ deque<const void*, Allocator>::erase(iterator first, iterator last)
     const size_type diff = size_type(last - first);
     if (pb < pe)
     {
-        if (pb == 0)                                    // erase from beginning, no copying necessary
+        if (pb == 0) // erase from beginning, no copying necessary
         {
             start_ += diff;
             size_ -= diff;
         }
-        else                                            // erase from beginning, needs copying
+        else         // erase from beginning, needs copying
         {
             _STD::copy_backward(begin(), first, last);
             start_ += diff;
@@ -4157,9 +3989,9 @@ deque<const void*, Allocator>::erase(iterator first, iterator last)
             invalidate_iterators();
         }
     }
-    else                                                // pb >= pe - erase from end
+    else             // pb >= pe - erase from end
     {
-        if (pe != 0)                                    // erase from end, needs copying
+        if (pe != 0) // erase from end, needs copying
         {
             _STD::copy(last, end(), first);
             invalidate_iterators();
@@ -4186,7 +4018,6 @@ deque<const void*, Allocator>::erase(iterator first, iterator last)
     }
     return make_iterator(start_ + pb);
 }
-
 template <class Allocator>
 void
 deque<const void*, Allocator>::swap(deque& x)
@@ -4199,7 +4030,6 @@ deque<const void*, Allocator>::swap(deque& x)
         _STD::swap(size_, x.size_);
     }
 }
-
 template <class Allocator>
 void
 deque<const void*, Allocator>::clear()
@@ -4217,63 +4047,62 @@ deque<const void*, Allocator>::clear()
         start_ = alloc_.m_ / 2;
     }
 }
-
 template <class Allocator>
 inline bool
-operator==(const deque<const void*, Allocator>& x, const deque<const void*, Allocator>& y)
+operator==(const deque<const void*, Allocator>& x,
+           const deque<const void*, Allocator>& y)
 {
     return x.size() == y.size() && equal(x.begin(), x.end(), y.begin());
 }
-
 template <class Allocator>
 inline bool
-operator!=(const deque<const void*, Allocator>& x, const deque<const void*, Allocator>& y)
+operator!=(const deque<const void*, Allocator>& x,
+           const deque<const void*, Allocator>& y)
 {
     return !(x == y);
 }
-
 template <class Allocator>
 inline bool
-operator<(const deque<const void*, Allocator>& x, const deque<const void*, Allocator>& y)
+operator<(const deque<const void*, Allocator>& x,
+          const deque<const void*, Allocator>& y)
 {
     return lexicographical_compare(x.begin(), x.end(), y.begin(), y.end());
 }
-
 template <class Allocator>
 inline bool
-operator>(const deque<const void*, Allocator>& x, const deque<const void*, Allocator>& y)
+operator>(const deque<const void*, Allocator>& x,
+          const deque<const void*, Allocator>& y)
 {
     return y < x;
 }
-
 template <class Allocator>
 inline bool
-operator>=(const deque<const void*, Allocator>& x, const deque<const void*, Allocator>& y)
+operator>=(const deque<const void*, Allocator>& x,
+           const deque<const void*, Allocator>& y)
 {
     return !(x < y);
 }
-
 template <class Allocator>
 inline bool
-operator<=(const deque<const void*, Allocator>& x, const deque<const void*, Allocator>& y)
+operator<=(const deque<const void*, Allocator>& x,
+           const deque<const void*, Allocator>& y)
 {
     return !(y < x);
 }
-
 template <class Allocator>
 inline void
 swap(deque<const void*, Allocator>& x, deque<const void*, Allocator>& y)
 {
     x.swap(y);
 }
-
-                                                        // T*
+// T*
 
 template <class T, class Allocator>
-class deque<T*, Allocator> : private deque<const void*, typename Allocator::rebind<const void*>::other>
+class deque<T*, Allocator>
+  : private deque<const void*, typename Allocator::rebind<const void*>::other>
 {
     typedef deque<const void*, typename Allocator::rebind<const void*>::other> base;
-    typedef typename base::allocator_type                                      base_allocator;
+    typedef typename base::allocator_type base_allocator;
 
 public:
     // types:
@@ -4289,35 +4118,29 @@ public:
     typedef typename Allocator::const_pointer      const_pointer;
     typedef _STD::reverse_iterator<iterator>       reverse_iterator;
     typedef _STD::reverse_iterator<const_iterator> const_reverse_iterator;
-
-    class iterator : public _STD::iterator<random_access_iterator_tag, value_type, difference_type, pointer, reference>
+    class iterator : public _STD::iterator<random_access_iterator_tag, value_type,
+                                           difference_type, pointer, reference>
     {
     public:
         iterator() {}
-
         explicit iterator(const typename base::iterator& i) : i_(i) {}
-
         operator typename base::iterator() const { return i_; }
-
         reference
         operator*() const
         {
             return reference(*i_);
         }
-
         pointer
         operator->() const
         {
             return pointer(i_.operator->());
         }
-
         iterator&
         operator++()
         {
             ++i_;
             return *this;
         }
-
         iterator
         operator++(int)
         {
@@ -4325,14 +4148,12 @@ public:
             ++i_;
             return tmp;
         }
-
         iterator&
         operator--()
         {
             --i_;
             return *this;
         }
-
         iterator
         operator--(int)
         {
@@ -4340,81 +4161,68 @@ public:
             --i_;
             return tmp;
         }
-
         iterator&
         operator+=(difference_type n)
         {
             i_ += n;
             return *this;
         }
-
         iterator
         operator+(difference_type n) const
         {
             return iterator(*this) += n;
         }
-
         iterator&
         operator-=(difference_type n)
         {
             i_ -= n;
             return *this;
         }
-
         iterator
         operator-(difference_type n) const
         {
             return iterator(*this) -= n;
         }
-
         friend difference_type
         operator-(const iterator& x, const iterator& y)
         {
             return x.i_ - y.i_;
         }
-
         reference
         operator[](difference_type i) const
         {
             return reference(i_[i]);
         }
-
         friend bool
         operator==(const iterator& x, const iterator& y)
         {
             return x.i_ == y.i_;
         } // hh 990720
-
         friend bool
         operator!=(const iterator& x, const iterator& y)
         {
             return x.i_ != y.i_;
         }
-
         friend bool
         operator<(const iterator& x, const iterator& y)
         {
             return x.i_ < y.i_;
         }
-
         friend bool
         operator<=(const iterator& x, const iterator& y)
         {
             return x.i_ <= y.i_;
         }
-
         friend bool
         operator>(const iterator& x, const iterator& y)
         {
             return x.i_ > y.i_;
         }
-
         friend bool
         operator>=(const iterator& x, const iterator& y)
         {
             return x.i_ >= y.i_;
         }
-
         friend iterator
         operator+(difference_type n, const iterator& rhs)
         {
@@ -4426,38 +4234,31 @@ public:
 
         friend class deque::const_iterator;
     };
-
     class const_iterator
-      : public _STD::iterator<random_access_iterator_tag, value_type, difference_type, const_pointer, const_reference>
+      : public _STD::iterator<random_access_iterator_tag, value_type,
+                              difference_type, const_pointer, const_reference>
     {
     public:
         const_iterator() {}
-
         const_iterator(const deque::iterator& rhs) : i_(rhs.i_) {}
-
         explicit const_iterator(const typename base::const_iterator& i) : i_(i) {}
-
         operator typename base::const_iterator() const { return i_; }
-
         const_reference
         operator*() const
         {
             return const_reference(*i_);
         }
-
         const_pointer
         operator->() const
         {
             return const_pointer(i_.operator->());
         }
-
         const_iterator&
         operator++()
         {
             ++i_;
             return *this;
         }
-
         const_iterator
         operator++(int)
         {
@@ -4465,14 +4266,12 @@ public:
             ++i_;
             return tmp;
         }
-
         const_iterator&
         operator--()
         {
             --i_;
             return *this;
         }
-
         const_iterator
         operator--(int)
         {
@@ -4480,81 +4279,68 @@ public:
             --i_;
             return tmp;
         }
-
         const_iterator&
         operator+=(difference_type n)
         {
             i_ += n;
             return *this;
         }
-
         const_iterator
         operator+(difference_type n) const
         {
             return const_iterator(*this) += n;
         }
-
         const_iterator&
         operator-=(difference_type n)
         {
             i_ -= n;
             return *this;
         }
-
         const_iterator
         operator-(difference_type n) const
         {
             return const_iterator(*this) -= n;
         }
-
         friend difference_type
         operator-(const const_iterator& x, const const_iterator& y)
         {
             return x.i_ - y.i_;
         }
-
         const_reference
         operator[](difference_type i) const
         {
             return const_reference(i_[i]);
         }
-
         friend bool
         operator==(const const_iterator& x, const const_iterator& y)
         {
             return x.i_ == y.i_;
         } // hh 990720
-
         friend bool
         operator!=(const const_iterator& x, const const_iterator& y)
         {
             return x.i_ != y.i_;
         }
-
         friend bool
         operator<(const const_iterator& x, const const_iterator& y)
         {
             return x.i_ < y.i_;
         }
-
         friend bool
         operator<=(const const_iterator& x, const const_iterator& y)
         {
             return x.i_ <= y.i_;
         }
-
         friend bool
         operator>(const const_iterator& x, const const_iterator& y)
         {
             return x.i_ > y.i_;
         }
-
         friend bool
         operator>=(const const_iterator& x, const const_iterator& y)
         {
             return x.i_ >= y.i_;
         }
-
         friend const_iterator
         operator+(difference_type n, const const_iterator& rhs)
         {
@@ -4564,26 +4350,26 @@ public:
     private:
         typename base::const_iterator i_;
     };
-
     // _lib.deque.cons_ construct/copy/destroy:
     explicit deque(const Allocator& = Allocator());
-    explicit deque(size_type n, const value_type& value = 0, const Allocator& = Allocator());
-
+    explicit deque(size_type n, const value_type& value = 0,
+                   const Allocator& = Allocator());
     template <class InputIterator>
-    inline deque(InputIterator first, InputIterator last, const Allocator& a = Allocator())
+    inline deque(InputIterator first, InputIterator last,
+                 const Allocator& a = Allocator())
       : base(__convert_iterator<__implicit_convert<pointer, InputIterator> >(first),
-             __convert_iterator<__implicit_convert<pointer, InputIterator> >(last), base_allocator(a))
+             __convert_iterator<__implicit_convert<pointer, InputIterator> >(last),
+             base_allocator(a))
     {
     }
-
     template <class InputIterator>
     inline void
     assign(InputIterator first, InputIterator last)
     {
-        base::assign(__convert_iterator<__implicit_convert<pointer, InputIterator> >(first),
-                     __convert_iterator<__implicit_convert<pointer, InputIterator> >(last));
+        base::assign(
+            __convert_iterator<__implicit_convert<pointer, InputIterator> >(first),
+            __convert_iterator<__implicit_convert<pointer, InputIterator> >(last));
     }
-
     void                   assign(size_type n, const value_type& t);
     allocator_type         get_allocator() const;
     // iterators:
@@ -4615,15 +4401,15 @@ public:
     void            push_back(const value_type& x);
     iterator        insert(iterator position, const value_type& x);
     void            insert(iterator position, size_type n, const value_type& x);
-
     template <class InputIterator>
     void
     insert(iterator position, InputIterator first, InputIterator last)
     {
-        base::insert(position, __convert_iterator<__implicit_convert<pointer, InputIterator> >(first),
-                     __convert_iterator<__implicit_convert<pointer, InputIterator> >(last));
+        base::insert(
+            position,
+            __convert_iterator<__implicit_convert<pointer, InputIterator> >(first),
+            __convert_iterator<__implicit_convert<pointer, InputIterator> >(last));
     }
-
     void     pop_front();
     void     pop_back();
     iterator erase(iterator position);
@@ -4631,312 +4417,273 @@ public:
     void     swap(deque&);
     void     clear();
 };
-
 // Implementation deque<T*>
 
-template <class T, class Allocator> inline deque<T*, Allocator>::deque(const Allocator& a) : base(base_allocator(a))
+template <class T, class Allocator>
+inline deque<T*, Allocator>::deque(const Allocator& a) : base(base_allocator(a))
 {
 }
-
 template <class T, class Allocator>
-inline deque<T*, Allocator>::deque(size_type n, const value_type& value, const Allocator& a)
+inline deque<T*, Allocator>::deque(size_type n, const value_type& value,
+                                   const Allocator& a)
   : base(n, value, base_allocator(a))
 {
 }
-
 template <class T, class Allocator>
 inline void
 deque<T*, Allocator>::assign(size_type n, const value_type& t)
 {
     base::assign(n, t);
 }
-
 template <class T, class Allocator>
 inline typename deque<T*, Allocator>::allocator_type
 deque<T*, Allocator>::get_allocator() const
 {
     return base::get_allocator();
 }
-
 template <class T, class Allocator>
 inline typename deque<T*, Allocator>::iterator
 deque<T*, Allocator>::begin()
 {
     return iterator(base::begin());
 }
-
 template <class T, class Allocator>
 inline typename deque<T*, Allocator>::const_iterator
 deque<T*, Allocator>::begin() const
 {
     return const_iterator(base::begin());
 }
-
 template <class T, class Allocator>
 inline typename deque<T*, Allocator>::iterator
 deque<T*, Allocator>::end()
 {
     return iterator(base::end());
 }
-
 template <class T, class Allocator>
 inline typename deque<T*, Allocator>::const_iterator
 deque<T*, Allocator>::end() const
 {
     return const_iterator(base::end());
 }
-
 template <class T, class Allocator>
 inline typename deque<T*, Allocator>::reverse_iterator
 deque<T*, Allocator>::rbegin()
 {
     return reverse_iterator(end());
 }
-
 template <class T, class Allocator>
 inline typename deque<T*, Allocator>::const_reverse_iterator
 deque<T*, Allocator>::rbegin() const
 {
     return const_reverse_iterator(end());
 }
-
 template <class T, class Allocator>
 inline typename deque<T*, Allocator>::reverse_iterator
 deque<T*, Allocator>::rend()
 {
     return reverse_iterator(begin());
 }
-
 template <class T, class Allocator>
 inline typename deque<T*, Allocator>::const_reverse_iterator
 deque<T*, Allocator>::rend() const
 {
     return const_reverse_iterator(begin());
 }
-
 template <class T, class Allocator>
 inline typename deque<T*, Allocator>::size_type
 deque<T*, Allocator>::size() const
 {
     return base::size();
 }
-
 template <class T, class Allocator>
 inline typename deque<T*, Allocator>::size_type
 deque<T*, Allocator>::max_size() const
 {
     return base::max_size();
 }
-
 template <class T, class Allocator>
 inline void
 deque<T*, Allocator>::resize(size_type sz, value_type c)
 {
     base::resize(sz, c);
 }
-
 template <class T, class Allocator>
 inline bool
 deque<T*, Allocator>::empty() const
 {
     return base::empty();
 }
-
 template <class T, class Allocator>
 inline typename deque<T*, Allocator>::reference
 deque<T*, Allocator>::operator[](size_type n)
 {
     return reference(base::operator[](n));
 }
-
 template <class T, class Allocator>
 inline typename deque<T*, Allocator>::const_reference
 deque<T*, Allocator>::operator[](size_type n) const
 {
     return const_reference(base::operator[](n));
 }
-
 template <class T, class Allocator>
 inline typename deque<T*, Allocator>::reference
 deque<T*, Allocator>::at(size_type n)
 {
     return reference(base::at(n));
 }
-
 template <class T, class Allocator>
 inline typename deque<T*, Allocator>::const_reference
 deque<T*, Allocator>::at(size_type n) const
 {
     return const_reference(base::at(n));
 }
-
 template <class T, class Allocator>
 inline typename deque<T*, Allocator>::reference
 deque<T*, Allocator>::front()
 {
     return reference(base::front());
 }
-
 template <class T, class Allocator>
 inline typename deque<T*, Allocator>::const_reference
 deque<T*, Allocator>::front() const
 {
     return const_reference(base::front());
 }
-
 template <class T, class Allocator>
 inline typename deque<T*, Allocator>::reference
 deque<T*, Allocator>::back()
 {
     return reference(base::back());
 }
-
 template <class T, class Allocator>
 inline typename deque<T*, Allocator>::const_reference
 deque<T*, Allocator>::back() const
 {
     return const_reference(base::back());
 }
-
 template <class T, class Allocator>
 inline void
 deque<T*, Allocator>::push_front(const value_type& x)
 {
     base::push_front(x);
 }
-
 template <class T, class Allocator>
 inline void
 deque<T*, Allocator>::push_back(const value_type& x)
 {
     base::push_back(x);
 }
-
 template <class T, class Allocator>
 inline typename deque<T*, Allocator>::iterator
 deque<T*, Allocator>::insert(iterator position, const value_type& x)
 {
     return iterator(base::insert(position, x));
 }
-
 template <class T, class Allocator>
 inline void
 deque<T*, Allocator>::insert(iterator position, size_type n, const value_type& x)
 {
     base::insert(position, n, x);
 }
-
 template <class T, class Allocator>
 inline void
 deque<T*, Allocator>::pop_front()
 {
     base::pop_front();
 }
-
 template <class T, class Allocator>
 inline void
 deque<T*, Allocator>::pop_back()
 {
     base::pop_back();
 }
-
 template <class T, class Allocator>
 inline typename deque<T*, Allocator>::iterator
 deque<T*, Allocator>::erase(iterator position)
 {
     return iterator(base::erase(position));
 }
-
 template <class T, class Allocator>
 inline typename deque<T*, Allocator>::iterator
 deque<T*, Allocator>::erase(iterator first, iterator last)
 {
     return iterator(base::erase(first, last));
 }
-
 template <class T, class Allocator>
 inline void
 deque<T*, Allocator>::swap(deque& x)
 {
     base::swap((base&)x);
 }
-
 template <class T, class Allocator>
 inline void
 deque<T*, Allocator>::clear()
 {
     base::clear();
 }
-
 template <class T, class Allocator>
 inline bool
 operator==(const deque<T*, Allocator>& x, const deque<T*, Allocator>& y)
 {
     return x.size() == y.size() && equal(x.begin(), x.end(), y.begin());
 }
-
 template <class T, class Allocator>
 inline bool
 operator!=(const deque<T*, Allocator>& x, const deque<T*, Allocator>& y)
 {
     return !(x == y);
 }
-
 template <class T, class Allocator>
 inline bool
 operator<(const deque<T*, Allocator>& x, const deque<T*, Allocator>& y)
 {
     return lexicographical_compare(x.begin(), x.end(), y.begin(), y.end());
 }
-
 template <class T, class Allocator>
 inline bool
 operator>(const deque<T*, Allocator>& x, const deque<T*, Allocator>& y)
 {
     return y < x;
 }
-
 template <class T, class Allocator>
 inline bool
 operator>=(const deque<T*, Allocator>& x, const deque<T*, Allocator>& y)
 {
     return !(x < y);
 }
-
 template <class T, class Allocator>
 inline bool
 operator<=(const deque<T*, Allocator>& x, const deque<T*, Allocator>& y)
 {
     return !(y < x);
 }
-
 template <class T, class Allocator>
 inline void
 swap(deque<T*, Allocator>& x, deque<T*, Allocator>& y)
 {
     x.swap(y);
 }
+#endif // !defined(_MSL_NO_PARTIAL_SPECIALIZATION) &&
+       // !defined(_MSL_NO_MEMBER_TEMPLATE) &&
+       // !defined(_Inhibit_Container_Optimization)
 
-#        endif // !defined(_MSL_NO_PARTIAL_SPECIALIZATION) && !defined(_MSL_NO_MEMBER_TEMPLATE) &&
-               // !defined(_Inhibit_Container_Optimization)
-
-#        ifndef _MSL_NO_CPP_NAMESPACE
+#ifndef _MSL_NO_CPP_NAMESPACE
 } // namespace std
-#        endif
+#endif
 
-#        ifdef _MSL_FORCE_ENUMS_ALWAYS_INT
-#            pragma enumsalwaysint reset
-#        endif
+#ifdef _MSL_FORCE_ENUMS_ALWAYS_INT
+#pragma enumsalwaysint reset
+#endif
 
-#        ifdef _MSL_FORCE_ENABLE_BOOL_SUPPORT
-#            pragma bool reset
-#        endif
+#ifdef _MSL_FORCE_ENABLE_BOOL_SUPPORT
+#pragma bool reset
+#endif
 
-#        pragma options align = reset
+#pragma options align = reset
 
-#    endif // RC_INVOKED
+#endif // RC_INVOKED
 
-#endif     // _DEQUE
+#endif // _DEQUE
 
 // hh 971220 fixed MOD_INCLUDE
 // hh 971221 Changed filename from deque.h to deque
@@ -4944,16 +4691,15 @@ swap(deque<T*, Allocator>& x, deque<T*, Allocator>& y)
 // hh 971221 Added qualified name to const_iterator
 // hh 971221 Added qualified name to iterator
 // hh 971230 added RC_INVOKED wrapper
-// hh 980105 changed pointer & reference to const versions in const_iterator base class
-// hh 980105 rewrote some constructors to get rid of unused arg dq warning
-// hh 980111 <string> added so deque could throw a stdexcept
-// hh 980111 made at and operator[] standard compliant
-// hh 980713 Temporarily moved member templates into class definition to support compiler
-// hh 980902 #ifdef'd out exception code when ndef MSIPL_EXCEPT
-// hh 981027 rewrote
-// hh 981208 changed static_cast to reinterpret_cast on the value_type (pointer specialization only)
-// hh 981209 Protected clear() from an empty buf_
-// hh 981210 Modified insertion into front half to preserve outstanding iterators under exceptions
+// hh 980105 changed pointer & reference to const versions in const_iterator base
+// class hh 980105 rewrote some constructors to get rid of unused arg dq warning hh
+// 980111 <string> added so deque could throw a stdexcept hh 980111 made at and
+// operator[] standard compliant hh 980713 Temporarily moved member templates into
+// class definition to support compiler hh 980902 #ifdef'd out exception code when
+// ndef MSIPL_EXCEPT hh 981027 rewrote hh 981208 changed static_cast to
+// reinterpret_cast on the value_type (pointer specialization only) hh 981209
+// Protected clear() from an empty buf_ hh 981210 Modified insertion into front half
+// to preserve outstanding iterators under exceptions
 //           and made it more efficient when the initial size is zero.
 // hh 981210 Added forgotten for loop in insert
 // hh 981220 Rewrote iterators to gain higher performance
@@ -4965,14 +4711,11 @@ swap(deque<T*, Allocator>& x, deque<T*, Allocator>& y)
 // hh 990825 changed void* to const void*
 // hh 990826 Seperated out calls involving T()
 // hh 991005 Fixed type-o in deque<void*>::erase
-// hh 991116 Fixed pointer conversion bug in T* specialization by introducing __convert_iterator
-// hh 991208 #ifdef'd out oldstart argument name in grow_buf_front for when exceptions are turned off.
-// hh 000130 Added :: to placement new.
-// hh 000130 Silenced some conversion warnings in the iterators.
-// hh 000130 Changed name of std::__cdeque to Metrowerks::cdeque
-// hh 001011 Fixed several typename bugs
-// hh 001011 Disabled friends of iterators for gcc
-// hh 010301 Protected min and max from macro abuse.
-// hh 010314 Qualified internal calls with std::
-// hh 010402 Removed 68K CMF support
-// hh 010509 Made iterator difference a global friend
+// hh 991116 Fixed pointer conversion bug in T* specialization by introducing
+// __convert_iterator hh 991208 #ifdef'd out oldstart argument name in grow_buf_front
+// for when exceptions are turned off. hh 000130 Added :: to placement new. hh 000130
+// Silenced some conversion warnings in the iterators. hh 000130 Changed name of
+// std::__cdeque to Metrowerks::cdeque hh 001011 Fixed several typename bugs hh
+// 001011 Disabled friends of iterators for gcc hh 010301 Protected min and max from
+// macro abuse. hh 010314 Qualified internal calls with std:: hh 010402 Removed 68K
+// CMF support hh 010509 Made iterator difference a global friend

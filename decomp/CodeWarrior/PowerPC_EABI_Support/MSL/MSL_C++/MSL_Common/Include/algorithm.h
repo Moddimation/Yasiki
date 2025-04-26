@@ -1,5 +1,6 @@
 /* Metrowerks Standard Library
- * Copyright ÃÂ¯ÃÂ½C 1995-2001 Metrowerks Corporation.  All rights reserved.
+ * Copyright ÃÂ¯ÃÂ½C 1995-2001 Metrowerks Corporation.  All rights
+ * reserved.
  *
  * $Date: 2001/03/08 20:52:40 $
  * $Revision: 1.13 $
@@ -7,20 +8,20 @@
 
 // algorithm.h          hh 971206 filename changed from algorithm
 
-#ifndef _ALGORITHM_H              // hh 971206 include guards added
-#    define _ALGORITHM_H
+#ifndef _ALGORITHM_H          // hh 971206 include guards added
+#define _ALGORITHM_H
 
-#    include <algorithm>
+#include <algorithm>
 
-#    ifndef _MSL_NO_CPP_NAMESPACE // hh 971206 backward compatibility
+#ifndef _MSL_NO_CPP_NAMESPACE // hh 971206 backward compatibility
 
-#        ifdef min
-#            undef min
-#        endif
+#ifdef min
+#undef min
+#endif
 
-#        ifdef max
-#            undef max
-#        endif
+#ifdef max
+#undef max
+#endif
 
 using std::adjacent_find;
 using std::binary_search;
@@ -88,9 +89,9 @@ using std::transform;
 using std::unique;
 using std::unique_copy;
 using std::upper_bound;
-#    endif
+#endif
 
-#endif                            // _ALGORITHM_H
+#endif                        // _ALGORITHM_H
 
 // hh 971206 filename changed from algorithm to algorithm.h
 // hh 971206 include guards added

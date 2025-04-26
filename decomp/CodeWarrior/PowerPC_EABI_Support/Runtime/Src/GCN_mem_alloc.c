@@ -18,7 +18,6 @@
 #include <os.h>
 #include <pool_alloc.h>
 #include <Stdio.h>
-
 /*
  * InitDefaultHeap ()
  * Allocate a default heap
@@ -60,7 +59,6 @@ InitDefaultHeap()
     // respectively
     OSSetArenaLo(arenaLo = arenaHi);
 }
-
 /*
  * __sys_alloc
  *
@@ -83,7 +81,6 @@ __sys_alloc(__std(size_t) blocksize)
 
     return OSAllocFromHeap(__OSCurrHeap, blocksize);
 }
-
 /*
  * __sys_free
  *

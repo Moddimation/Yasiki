@@ -1,9 +1,8 @@
 #ifndef __jmp_buf_h
-#    define __jmp_buf_h
+#define __jmp_buf_h
 
-#    if __PPCe500__
-#        warning elf support enabled!
-
+#if __PPCe500__
+#warning elf support enabled!
 union MWE_ElfVector64
 {
     unsigned long  l[2];
@@ -12,11 +11,10 @@ union MWE_ElfVector64
 };
 
 typedef union MWE_ElfVector64 MWE_ElfVector64;
-#    endif
+#endif
 
-#    if __PPCGEKKO__
-#        warning gecko support enabled!
-
+#if __PPCGEKKO__
+#warning gecko support enabled!
 /* This structure exists both here and in ExceptionPPC.c */
 union MWE_GeckoVector64
 {
@@ -25,7 +23,6 @@ union MWE_GeckoVector64
 };
 
 typedef union MWE_GeckoVector64 MWE_GeckoVector64;
-
 struct GeckoFPRContext
 {
     double            d;
@@ -33,8 +30,7 @@ struct GeckoFPRContext
 };
 
 typedef struct GeckoFPRContext GeckoFPRContext;
-#    endif
-
+#endif
 /* 	__jmp_buf.h is a private runtime file which declares the structure __jmp_buf */
 
 /*
@@ -48,21 +44,21 @@ typedef struct __jmp_buf
     unsigned long sp;                /*  8: saved SP			*/
     unsigned long rtoc;              /* 12: saved RTOC		*/
 
-#    if __VEC__                      /* true if altivec model is true */
+#if __VEC__                          /* true if altivec model is true */
     unsigned long vrsave;            /* 16: old vrsave		*/
-#    else
+#else
     unsigned long reserved; /* 16: not used			*/
-#    endif
-#    if ELF_PROCESSOR
+#endif
+#if ELF_PROCESSOR
     MWE_ElfVector64 gprs[19];        /* 20-172: saved R13-R31*/
-#    else
+#else
     unsigned long gprs[19]; /* 20: saved R13-R31	*/
-#    endif
+#endif
 
-#    ifndef _No_Floating_Point_Regs
-#        if __PPCGEKKO__
+#ifndef _No_Floating_Point_Regs
+#if __PPCGEKKO__
     GeckoFPRContext fprs[18];        /* 96: saved FP vec regs */
-#        else
+#else
     double fp14; /* 96: saved FP14-FP31	 */
     double fp15;
     double fp16;
@@ -81,10 +77,10 @@ typedef struct __jmp_buf
     double fp29;
     double fp30;
     double fp31;
-#        endif                       /* __PPCGEKKO__ */
+#endif                               /* __PPCGEKKO__ */
     double fpscr;                    /* 240: saved FPSCR		*/
-#    endif                           /* ndef _No_Floating_Point_Regs */
-#    if __VEC__
+#endif                               /* ndef _No_Floating_Point_Regs */
+#if __VEC__
     unsigned long        reserved_2; /* 248			*/
     unsigned long        reserved_3; /* 252			*/
     __vector signed long vr20;       /* 256			*/
@@ -103,9 +99,8 @@ typedef struct __jmp_buf
     unsigned long        reserved_5;
     unsigned long        reserved_6;
     unsigned long        vscr;       /* 16-byte align VSCR	*/
-#    endif
+#endif
 } __jmp_buf;
-
 #endif                               /* __jmp_buf_h */
 
                                      /*

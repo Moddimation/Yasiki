@@ -3,7 +3,6 @@
 #include "__vi.h"
 
 static int lastError;
-
 static int
 wait4ClkHigh(void)
 {
@@ -19,7 +18,6 @@ wait4ClkHigh(void)
     lastError = 2;
     return 0;
 }
-
 static int
 sendSlaveAddr(u8 slaveAddr)
 {
@@ -59,7 +57,6 @@ sendSlaveAddr(u8 slaveAddr)
     __VISetSCL(0);
     return 1;
 }
-
 int
 __VISendI2CData(u8 slaveAddr, u8* pData, int nBytes)
 {

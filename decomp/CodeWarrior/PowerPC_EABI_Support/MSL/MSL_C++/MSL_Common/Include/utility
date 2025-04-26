@@ -1,5 +1,6 @@
 /* Metrowerks Standard Library
- * Copyright ÃÂ¯ÃÂ½C 1995-2001 Metrowerks Corporation.  All rights reserved.
+ * Copyright ÃÂ¯ÃÂ½C 1995-2001 Metrowerks Corporation.  All rights
+ * reserved.
  *
  * $Date: 2001/05/10 14:40:14 $
  * $Revision: 1.15 $
@@ -8,73 +9,67 @@
 // utility
 
 #ifndef _UTILITY
-#    define _UTILITY
+#define _UTILITY
 
-#    include <mslconfig>
+#include <mslconfig>
 
-#    ifndef RC_INVOKED
+#ifndef RC_INVOKED
 
-#        pragma options align = native
+#pragma options align = native
 
-#        ifdef _MSL_FORCE_ENUMS_ALWAYS_INT
-#            if _MSL_FORCE_ENUMS_ALWAYS_INT
-#                pragma enumsalwaysint on
-#            else
-#                pragma enumsalwaysint off
-#            endif
-#        endif
+#ifdef _MSL_FORCE_ENUMS_ALWAYS_INT
+#if _MSL_FORCE_ENUMS_ALWAYS_INT
+#pragma enumsalwaysint on
+#else
+#pragma enumsalwaysint off
+#endif
+#endif
 
-#        ifdef _MSL_FORCE_ENABLE_BOOL_SUPPORT
-#            if _MSL_FORCE_ENABLE_BOOL_SUPPORT
-#                pragma bool on
-#            else
-#                pragma bool off
-#            endif
-#        endif
+#ifdef _MSL_FORCE_ENABLE_BOOL_SUPPORT
+#if _MSL_FORCE_ENABLE_BOOL_SUPPORT
+#pragma bool on
+#else
+#pragma bool off
+#endif
+#endif
 
-#        ifndef _MSL_NO_CPP_NAMESPACE
+#ifndef _MSL_NO_CPP_NAMESPACE
 namespace std
 {
-#        endif
+#endif
 
 //  lib.operators, operators:
-#        ifndef _MSL_NO_CPP_NAMESPACE
+#ifndef _MSL_NO_CPP_NAMESPACE
 namespace rel_ops
 {
-#        endif
-
+#endif
 template <class T>
 inline bool
 operator!=(const T& x, const T& y)
 {
     return static_cast<bool>(!(x == y));
 }
-
 template <class T>
 inline bool
 operator>(const T& x, const T& y)
 {
     return static_cast<bool>(y < x);
 }
-
 template <class T>
 inline bool
 operator<=(const T& x, const T& y)
 {
     return static_cast<bool>(!(y < x));
 }
-
 template <class T>
 inline bool
 operator>=(const T& x, const T& y)
 {
     return static_cast<bool>(!(x < y));
 }
-
-#        ifndef _MSL_NO_CPP_NAMESPACE
+#ifndef _MSL_NO_CPP_NAMESPACE
 } // std::rel_ops
-#        endif
-
+#endif
 //  lib.pairs, pairs:
 template <class T1, class T2> struct pair
 {
@@ -85,77 +80,70 @@ template <class T1, class T2> struct pair
     T2 second;
     pair();
     pair(const T1& x, const T2& y);
-#        ifndef _MSL_NO_MEMBER_TEMPLATE
-#            ifndef _MSL_MUST_INLINE_MEMBER_TEMPLATE
+#ifndef _MSL_NO_MEMBER_TEMPLATE
+#ifndef _MSL_MUST_INLINE_MEMBER_TEMPLATE
     template <class U, class V> pair(const pair<U, V>& p);
-#            else
-    template <class U, class V> inline pair(const pair<U, V>& p) : first(p.first), second(p.second) {}
-#            endif
-#        endif
+#else
+    template <class U, class V>
+    inline pair(const pair<U, V>& p) : first(p.first), second(p.second)
+    {
+    }
+#endif
+#endif
 };
-
 template <class T1, class T2> inline pair<T1, T2>::pair() : first(), second()
 {
 }
-
-template <class T1, class T2> inline pair<T1, T2>::pair(const T1& x, const T2& y) : first(x), second(y)
+template <class T1, class T2>
+inline pair<T1, T2>::pair(const T1& x, const T2& y) : first(x), second(y)
 {
 }
-
-#        ifndef _MSL_NO_MEMBER_TEMPLATE
-#            ifndef _MSL_MUST_INLINE_MEMBER_TEMPLATE
-
+#ifndef _MSL_NO_MEMBER_TEMPLATE
+#ifndef _MSL_MUST_INLINE_MEMBER_TEMPLATE
 template <class T1, class T2>
 template <class U, class V>
 inline pair<T1, T2>::pair(const pair<U, V>& p) : first(p.first), second(p.second)
 {
 }
-
-#            endif
-#        endif
-
+#endif
+#endif
 template <class T1, class T2>
 inline bool
 operator==(const pair<T1, T2>& x, const pair<T1, T2>& y)
 {
     return static_cast<bool>(x.first == y.first && x.second == y.second);
 }
-
 template <class T1, class T2>
 inline bool
 operator<(const pair<T1, T2>& x, const pair<T1, T2>& y)
 {
-    return static_cast<bool>(x.first < y.first || (!(y.first < x.first) && x.second < y.second));
+    return static_cast<bool>(x.first < y.first ||
+                             (!(y.first < x.first) && x.second < y.second));
 }
-
 template <class T1, class T2>
 inline bool
 operator!=(const pair<T1, T2>& x, const pair<T1, T2>& y)
 {
     return static_cast<bool>(!(x == y));
 }
-
 template <class T1, class T2>
 inline bool
 operator>(const pair<T1, T2>& x, const pair<T1, T2>& y)
 {
     return y < x;
 }
-
 template <class T1, class T2>
 inline bool
 operator>=(const pair<T1, T2>& x, const pair<T1, T2>& y)
 {
     return static_cast<bool>(!(x < y));
 }
-
 template <class T1, class T2>
 inline bool
 operator<=(const pair<T1, T2>& x, const pair<T1, T2>& y)
 {
     return static_cast<bool>(!(y < x));
 }
-
 // make_pair is in flux right now.  The standard version does not work with
 // built-in c-strings.  There are two possible solutions in front of the C++
 // committee.  The std, but broken version is commented out, and the most
@@ -176,24 +164,23 @@ make_pair(T1 x, T2 y)
 {
     return pair<T1, T2>(x, y);
 }
-
-#        ifndef _MSL_NO_CPP_NAMESPACE
+#ifndef _MSL_NO_CPP_NAMESPACE
 } // namespace std
-#        endif
+#endif
 
-#        ifdef _MSL_FORCE_ENUMS_ALWAYS_INT
-#            pragma enumsalwaysint reset
-#        endif
+#ifdef _MSL_FORCE_ENUMS_ALWAYS_INT
+#pragma enumsalwaysint reset
+#endif
 
-#        ifdef _MSL_FORCE_ENABLE_BOOL_SUPPORT
-#            pragma bool reset
-#        endif
+#ifdef _MSL_FORCE_ENABLE_BOOL_SUPPORT
+#pragma bool reset
+#endif
 
-#        pragma options align = reset
+#pragma options align = reset
 
-#    endif // RC_INVOKED
+#endif // RC_INVOKED
 
-#endif     // _UTILITY
+#endif // _UTILITY
 
 // hh 971220 fixed MOD_INCLUDE
 // hh 971226 Changed filename from utility.h to utility

@@ -24,7 +24,6 @@ u32 DemoNumValidPads;
 static void DEMOPadCopy(struct PADStatus* pad, DEMODMPad* dmpad);
 void        DEMOPadRead();
 void        DEMOPadInit();
-
 static void
 DEMOPadCopy(struct PADStatus* pad, DEMODMPad* dmpad)
 {
@@ -74,11 +73,10 @@ DEMOPadCopy(struct PADStatus* pad, DEMODMPad* dmpad)
     dmpad->substickDeltaY = (pad->substickY - dmpad->pst.substickY);
     dmpad->pst = *pad;
 }
-
 void
 DEMOPadRead()
 {
-    s32          i;
+    s32 i;
     u32 ResetReq;
 
     ResetReq = 0;
@@ -105,7 +103,6 @@ DEMOPadRead()
         PADReset(ResetReq);
     }
 }
-
 void
 DEMOPadInit()
 {

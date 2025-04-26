@@ -1,5 +1,6 @@
 /* Metrowerks Standard Library
- * Copyright ÃÂ¯ÃÂ½C 1995-2001 Metrowerks Corporation.  All rights reserved.
+ * Copyright ÃÂ¯ÃÂ½C 1995-2001 Metrowerks Corporation.  All rights
+ * reserved.
  *
  * $Date: 2001/03/08 20:53:40 $
  * $Revision: 1.13 $
@@ -8,11 +9,11 @@
 // exception.h
 
 #ifndef _EXCEPTION_H
-#    define _EXCEPTION_H
+#define _EXCEPTION_H
 
-#    include <exception>
+#include <exception>
 
-#    ifndef _MSL_NO_CPP_NAMESPACE
+#ifndef _MSL_NO_CPP_NAMESPACE
 using std::bad_exception;
 using std::exception;
 using std::set_unexpected;
@@ -22,7 +23,7 @@ using std::unexpected_handler;
 using std::set_terminate;
 using std::terminate;
 using std::terminate_handler;
-#    endif
+#endif
 
 #endif // _EXCEPTION_H
 

@@ -6,11 +6,11 @@
  */
 
 #ifndef _MSL_STRING_CONFIG_H
-#    define _MSL_STRING_CONFIG_H
+#define _MSL_STRING_CONFIG_H
 
-#    if __MC68K__
-#        include <string.68k.h>
-#    endif
+#if __MC68K__
+#include <string.68k.h>
+#endif
 
 #endif /* _MSL_STRING_CONFIG_H */
 

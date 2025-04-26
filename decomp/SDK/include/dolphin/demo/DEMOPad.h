@@ -2,7 +2,6 @@
 #define _DOLPHIN_DEMOPAD_H_
 
 #include <dolphin/pad.h>
-
 typedef struct
 {
     /* 0x00 */ struct PADStatus pst;
@@ -16,7 +15,6 @@ typedef struct
     /* 0x1A */ s16              substickDeltaX;
     /* 0x1C */ s16              substickDeltaY;
 } DEMODMPad;
-
 extern DEMODMPad DemoPad[4];
 
 extern u32 DemoNumValidPads;

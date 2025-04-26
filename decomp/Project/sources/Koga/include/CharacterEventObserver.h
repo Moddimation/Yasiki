@@ -2,7 +2,6 @@
 #define CHARACTER_EVENT_OBSERVER_H_
 
 #include "Koga/Observer.h"
-
 namespace Koga
 {
 class CharacterEvent
@@ -20,7 +19,6 @@ public:
 
     bool* mUnknownEntityBools;
 };
-
 class CharacterEventObserver : public Observer<CharacterEvent, bool>
 {
 public:
@@ -62,12 +60,12 @@ public:
     /* Called when the player enters the actor's current room. */
     virtual bool onPlayerEnteredRoom(CharacterEvent* msg);
 
-    /* Called when the player presses the A button on the actor; treasure chests only? */
+    /* Called when the player presses the A button on the actor; treasure chests
+     * only? */
     virtual bool onPlayerTapped(CharacterEvent* msg);
 
     /* TODO: What does this do? */
     virtual bool FUN_800ea44c(CharacterEvent* msg);
 };
 } // namespace Koga
-
 #endif

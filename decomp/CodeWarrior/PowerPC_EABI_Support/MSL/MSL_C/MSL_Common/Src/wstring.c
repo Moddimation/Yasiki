@@ -38,16 +38,15 @@
 
 #ifndef __NO_WIDE_CHAR  /*- mm 980204 -*/
 
-#    pragma ANSI_strict reset
+#pragma ANSI_strict reset
 
-#    include <errno.h>
-#    include <stddef.h>
-#    include <stdio.h>
-#    include <string.h>
-#    include <wchar.h>
+#include <errno.h>
+#include <stddef.h>
+#include <stdio.h>
+#include <string.h>
+#include <wchar.h>
 
-#    pragma warn_possunwant off
-
+#pragma warn_possunwant off
 /*
     This routine returns the length of the wide character string str
 
@@ -56,14 +55,14 @@ size_t(wcslen)(const wchar_t* str)
 {
     size_t len = -1;
 
-#    if !__POWERPC__
+#if !__POWERPC__
 
     do {
         len++;
     }
     while (*str++);
 
-#    else
+#else
 
     wchar_t* p = (wchar_t*)str - 1;
 
@@ -72,36 +71,34 @@ size_t(wcslen)(const wchar_t* str)
     }
     while (*++p);
 
-#    endif
+#endif
 
     return (len);
 }
-
 wchar_t*(wcscpy)(wchar_t* dst, const wchar_t* src)
 {
-#    if !__POWERPC__
+#if !__POWERPC__
 
     const wchar_t* p = src;
     wchar_t*       q = dst;
 
     while (*q++ = *p++);
 
-#    else
+#else
 
     const wchar_t* p = (wchar_t*)src - 1;
     wchar_t*       q = (wchar_t*)dst - 1;
 
     while (*++q = *++p);
 
-#    endif
+#endif
 
     return (dst);
 }
-
 wchar_t*
 wcsncpy(wchar_t* dst, const wchar_t* src, size_t n)
 {
-#    if !__POWERPC__
+#if !__POWERPC__
 
     const wchar_t* p = src;
     wchar_t*       q = dst;
@@ -120,7 +117,7 @@ wcsncpy(wchar_t* dst, const wchar_t* src, size_t n)
         }
     }
 
-#    else
+#else
 
     const wchar_t* p = (const wchar_t*)src - 1;
     wchar_t*       q = (wchar_t*)dst - 1;
@@ -140,15 +137,14 @@ wcsncpy(wchar_t* dst, const wchar_t* src, size_t n)
         }
     }
 
-#    endif
+#endif
 
     return (dst);
 }
-
 wchar_t*
 wcscat(wchar_t* dst, const wchar_t* src)
 {
-#    if !__POWERPC__
+#if !__POWERPC__
 
     const wchar_t* p = src;
     wchar_t*       q = dst;
@@ -159,7 +155,7 @@ wcscat(wchar_t* dst, const wchar_t* src)
 
     while (*q++ = *p++);
 
-#    else
+#else
 
     const wchar_t* p = (wchar_t*)src - 1;
     wchar_t*       q = (wchar_t*)dst - 1;
@@ -170,15 +166,14 @@ wcscat(wchar_t* dst, const wchar_t* src)
 
     while (*++q = *++p);
 
-#    endif
+#endif
 
     return (dst);
 }
-
 wchar_t*
 wcsncat(wchar_t* dst, const wchar_t* src, size_t n)
 {
-#    if !__POWERPC__
+#if !__POWERPC__
 
     const wchar_t* p = src;
     wchar_t*       q = dst;
@@ -199,7 +194,7 @@ wcsncat(wchar_t* dst, const wchar_t* src, size_t n)
 
     *q = 0;
 
-#    else
+#else
 
     const wchar_t* p = (wchar_t*)src - 1;
     wchar_t*       q = (wchar_t*)dst - 1;
@@ -220,15 +215,14 @@ wcsncat(wchar_t* dst, const wchar_t* src, size_t n)
 
     *++q = 0;
 
-#    endif
+#endif
 
     return (dst);
 }
-
 int
 wcscmp(const wchar_t* str1, const wchar_t* str2)
 {
-#    if !__POWERPC__
+#if !__POWERPC__
 
     const wchar_t* p1 = (wchar_t*)str1;
     const wchar_t* p2 = (wchar_t*)str2;
@@ -242,7 +236,7 @@ wcscmp(const wchar_t* str1, const wchar_t* str2)
         }
     }
 
-#    else
+#else
 
     const wchar_t* p1 = (wchar_t*)str1 - 1;
     const wchar_t* p2 = (wchar_t*)str2 - 1;
@@ -256,15 +250,14 @@ wcscmp(const wchar_t* str1, const wchar_t* str2)
         }
     }
 
-#    endif
+#endif
 
     return (c1 - c2);
 }
-
 int
 wcsncmp(const wchar_t* str1, const wchar_t* str2, size_t n)
 {
-#    if !__POWERPC__
+#if !__POWERPC__
 
     const wchar_t* p1 = (wchar_t*)str1;
     const wchar_t* p2 = (wchar_t*)str2;
@@ -284,7 +277,7 @@ wcsncmp(const wchar_t* str1, const wchar_t* str2, size_t n)
         }
     }
 
-#    else
+#else
 
     const wchar_t* p1 = (wchar_t*)str1 - 1;
     const wchar_t* p2 = (wchar_t*)str2 - 1;
@@ -304,15 +297,14 @@ wcsncmp(const wchar_t* str1, const wchar_t* str2, size_t n)
         }
     }
 
-#    endif
+#endif
 
     return (0);
 }
-
 wchar_t*
 wcschr(const wchar_t* str, const wchar_t chr)
 {
-#    if !__POWERPC__
+#if !__POWERPC__
 
     const wchar_t* p = str;
     wchar_t        c = chr;
@@ -328,7 +320,7 @@ wcschr(const wchar_t* str, const wchar_t chr)
 
     return (c ? 0 : (wchar_t*)(p - 1));
 
-#    else
+#else
 
     const wchar_t* p = (wchar_t*)str - 1;
     wchar_t        c = (chr & 0xffff); /*- mm 970327 -*/
@@ -344,15 +336,13 @@ wcschr(const wchar_t* str, const wchar_t chr)
 
     return (c ? 0 : (wchar_t*)p);
 
-#    endif
+#endif
 }
-
 int
 wcscoll(const wchar_t* str1, const wchar_t* str2)
 {
     return (wcscmp(str1, str2));
 }
-
 size_t
 wcsxfrm(wchar_t* str1, const wchar_t* str2, size_t n)
 {
@@ -367,11 +357,10 @@ wcsxfrm(wchar_t* str1, const wchar_t* str2, size_t n)
     } /*- mm 990630 -*/
     return (len);
 }
-
 wchar_t*
 wcsrchr(const wchar_t* str, wchar_t chr)
 {
-#    if !__POWERPC__
+#if !__POWERPC__
 
     const wchar_t* p = str;
     const wchar_t* q = 0;
@@ -393,7 +382,7 @@ wcsrchr(const wchar_t* str, wchar_t chr)
 
     return (c ? 0 : (wchar_t*)(p - 1));
 
-#    else
+#else
 
     const wchar_t* p = (wchar_t*)str - 1;
     const wchar_t* q = 0;
@@ -415,13 +404,11 @@ wcsrchr(const wchar_t* str, wchar_t chr)
 
     return (c ? 0 : (wchar_t*)p);
 
-#    endif
+#endif
 }
-
 typedef char char_map[8192];                                /*- mm 990914 -*/
-#    define set_char_map(map, ch) map[ch >> 3] |= (1 << (ch & 7))
-#    define tst_char_map(map, ch) (map[ch >> 3] & (1 << (ch & 7)))
-
+#define set_char_map(map, ch) map[ch >> 3] |= (1 << (ch & 7))
+#define tst_char_map(map, ch) (map[ch >> 3] & (1 << (ch & 7)))
 wchar_t*
 wcspbrk(const wchar_t* str, const wchar_t* set)
 {
@@ -430,7 +417,7 @@ wcspbrk(const wchar_t* str, const wchar_t* set)
     char_map       map;                                     /*- mm 000419 -*/
     memset(&map, 0, sizeof(char_map)); /* initialize map */ /*- mm 000419 -*/
 
-#    if !__POWERPC__
+#if !__POWERPC__
 
     p = (wchar_t*)set;
 
@@ -451,7 +438,7 @@ wcspbrk(const wchar_t* str, const wchar_t* set)
 
     return (NULL);
 
-#    else
+#else
 
     p = (wchar_t*)set - 1;
 
@@ -472,9 +459,8 @@ wcspbrk(const wchar_t* str, const wchar_t* set)
 
     return (NULL);
 
-#    endif
+#endif
 }
-
 size_t
 wcsspn(const wchar_t* str, const wchar_t* set)
 {
@@ -483,7 +469,7 @@ wcsspn(const wchar_t* str, const wchar_t* set)
     char_map       map;                                     /*- mm 000419 -*/
     memset(&map, 0, sizeof(char_map)); /* initialize map */ /*- mm 000419 -*/
 
-#    if !__POWERPC__
+#if !__POWERPC__
 
     p = (wchar_t*)set;
 
@@ -504,7 +490,7 @@ wcsspn(const wchar_t* str, const wchar_t* set)
 
     return (p - (wchar_t*)str - 1);
 
-#    else
+#else
 
     p = (wchar_t*)set - 1;
 
@@ -525,9 +511,8 @@ wcsspn(const wchar_t* str, const wchar_t* set)
 
     return (p - (wchar_t*)str);
 
-#    endif
+#endif
 }
-
 size_t
 wcscspn(const wchar_t* str, const wchar_t* set)
 {
@@ -536,7 +521,7 @@ wcscspn(const wchar_t* str, const wchar_t* set)
     char_map       map;                                     /*- mm 000419 -*/
     memset(&map, 0, sizeof(char_map)); /* initialize map */ /*- mm 000419 -*/
 
-#    if !__POWERPC__
+#if !__POWERPC__
 
     p = (wchar_t*)set;
 
@@ -557,7 +542,7 @@ wcscspn(const wchar_t* str, const wchar_t* set)
 
     return (p - (wchar_t*)str - 1);
 
-#    else
+#else
 
     p = (wchar_t*)set - 1;
 
@@ -578,14 +563,14 @@ wcscspn(const wchar_t* str, const wchar_t* set)
 
     return (p - (wchar_t*)str);
 
-#    endif
+#endif
 }
-
-/* Code deleted here mm 010316  The version of wcstok for Windows made use of the thread-local
-   data belonging to strtok, which breaks the requirement that strtok behave as if no other library
-   function calls it.  Further, the Standards committe learnt from its experience with strtok that
-   requiring a state that the library had to look after was a bad thing and so they gave wcstok an
-   extra parameter so that thread-local storage is no longer needed for it.                         */
+/* Code deleted here mm 010316  The version of wcstok for Windows made use of the
+   thread-local data belonging to strtok, which breaks the requirement that strtok
+   behave as if no other library function calls it.  Further, the Standards committe
+   learnt from its experience with strtok that requiring a state that the library had
+   to look after was a bad thing and so they gave wcstok an extra parameter so that
+   thread-local storage is no longer needed for it.                         */
 
 wchar_t*
 wcstok(wchar_t* str, const wchar_t* set, wchar_t** ptr)     /*- mm 000422 -*/
@@ -610,7 +595,7 @@ wcstok(wchar_t* str, const wchar_t* set, wchar_t** ptr)     /*- mm 000422 -*/
         return (NULL);                                      /*- mm 000422 -*/
     }
 
-#    if !__POWERPC__
+#if !__POWERPC__
 
     p = (wchar_t*)set;
 
@@ -666,7 +651,7 @@ wcstok(wchar_t* str, const wchar_t* set, wchar_t** ptr)     /*- mm 000422 -*/
     }
     return ((wchar_t*)q);
 
-#    else                                                   /* __POWERPC__ */
+#else                                                       /* __POWERPC__ */
 
     p = (wchar_t*)set - 1;
 
@@ -722,19 +707,18 @@ wcstok(wchar_t* str, const wchar_t* set, wchar_t** ptr)     /*- mm 000422 -*/
     }
     return ((wchar_t*)q);
 
-#    endif                                                  /* __POWERPC__ */
+#endif                                                      /* __POWERPC__ */
 }
-
 wchar_t*
 wcsstr(const wchar_t* str, const wchar_t* pat)
 {
-#    if !__POWERPC__
+#if !__POWERPC__
 
     wchar_t* s1 = (wchar_t*)str;
     wchar_t* p1 = (wchar_t*)pat;
     wchar_t  firstc, c1, c2;
 
-    if (!(firstc = *p1++))                                  /* if pat is an empty string we return str */
+    if (!(firstc = *p1++))          /* if pat is an empty string we return str */
     {
         return ((wchar_t*)str);
     }
@@ -757,7 +741,7 @@ wcsstr(const wchar_t* str, const wchar_t* pat)
 
     return (NULL);
 
-#    else
+#else
 
     wchar_t* s1 = (wchar_t*)str - 1;
     wchar_t* p1 = (wchar_t*)pat - 1;
@@ -786,12 +770,11 @@ wcsstr(const wchar_t* str, const wchar_t* pat)
 
     return (NULL);
 
-#    endif
+#endif
 }
+#pragma warn_possunwant reset
 
-#    pragma warn_possunwant reset
-
-#endif /* #ifndef __NO_WIDE_CHAR */                         /*- mm 981030 -*/
+#endif /* #ifndef __NO_WIDE_CHAR */ /*- mm 981030 -*/
 
 /* Change record:
  * JCM 980121 First code release.
@@ -801,8 +784,10 @@ wcsstr(const wchar_t* str, const wchar_t* pat)
  * mf  980512 wince changes
  * mm  981030 Added #ifndef __NO_WIDE_CHAR wrappers
  * mm  990630 Corrected wcsxfrm
- * mm  990914 Corrected size of char_map to allow for full wchar character set IR9909-0523
- * mm  000419 Initialized char_map objects without using a static object---thanks to Andreas
+ * mm  990914 Corrected size of char_map to allow for full wchar character set
+ IR9909-0523
+ * mm  000419 Initialized char_map objects without using a static object---thanks to
+ Andreas
  * mm  000422 Make wcstok work according to C99
  * mm  000505 Correction to mm000422 for Windows
  * mm  010316 Deleted the Windows version of wcstok---see note in source.

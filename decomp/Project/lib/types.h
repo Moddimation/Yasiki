@@ -2,7 +2,7 @@
 #define _TYPES_H
 
 #ifndef _DOLPHIN_STL_H
-#    include <cstdarg>
+#include <cstdarg>
 #endif
 #include <macros.h>
 
@@ -20,14 +20,14 @@ typedef u16 unk16;
 typedef u32 unk32;
 typedef u64 unk64;
 
-#define DEFINE_ENUM_TYPE(name, ...)                                                                                    \
-    struct name                                                                                                        \
-    {                                                                                                                  \
-        enum Values                                                                                                    \
-        {                                                                                                              \
-            __VA_ARGS__                                                                                                \
-        };                                                                                                             \
-        typedef Values Type;                                                                                           \
+#define DEFINE_ENUM_TYPE(name, ...)                                                 \
+    struct name                                                                     \
+    {                                                                               \
+        enum Values                                                                 \
+        {                                                                           \
+            __VA_ARGS__                                                             \
+        };                                                                          \
+        typedef Values Type;                                                        \
     }
 
 #endif // _TYPES_H
