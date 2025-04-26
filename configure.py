@@ -356,11 +356,12 @@ linker_version_default = "GC/1.2.5"
 # Helper function for SDK libraries
 def SDKLib(lib_name: str, files: List[Tuple[bool, str]], conf: Dict[str,str]={"":""}) -> Dict[str, Any]:
     objects = []
+    dirname = f"SDK/src/{lib_name}"
     for matching, filename in files:
-        filepath = f"SDK/src/{lib_name}/{filename}"
+        filepath = f"{dirname}/{filename}"
         objects.append(Object(matching, filepath))
 
-    __cflags = cflags_sdk + [f"-i {os.path.dirname(f'decomp/{filepath}')}"]
+    __cflags = cflags_sdk + [f"-i decomp/{dirname}"]
 
     return {
         "lib": lib_name,
@@ -379,11 +380,12 @@ def DolphinLib(lib_name: str, files: List[Tuple[bool, str]], conf:Dict[str,str]=
 # Helper function for JSystem libraries
 def JSystemLib(lib_name: str, sub_dir: str, files: List[Tuple[bool, str]], conf: Dict[str, str]={"":""}) -> Dict[str, Any]:
     objects = []
+    dirpath = f"JSystem/{sub_dir}/src"
     for matching, filename in files:
-        filepath = f"JSystem/{sub_dir}/src/{filename}"
+        filepath = f"{dirpath}/{filename}"
         objects.append(Object(matching, filepath))
 
-    __cflags = cflags_jsys + [f"-i {os.path.dirname(f'decomp/{filepath}')}"]
+    __cflags = cflags_jsys + [f"-i decomp/{dirpath}"]
 
     return {
         "lib": lib_name,
@@ -398,11 +400,12 @@ def JSystemLib(lib_name: str, sub_dir: str, files: List[Tuple[bool, str]], conf:
 # Helper function for CodeWarrior runtime libraries
 def CWLib(lib_name: str, sub_path: str, files: List[Tuple[bool, str]], conf: Dict[str, str]={"":""}) -> Dict[str, Any]:
     objects = []
+    dirpath = f"CodeWarrior/PowerPC_EABI_Support/{sub_path}"
     for matching, filename in files:
-        filepath = f"CodeWarrior/PowerPC_EABI_Support/{sub_path}/{filename}"
+        filepath = f"{dirpath}/{filename}"
         objects.append(Object(matching, filepath))
 
-    __cflags = cflags_cw + [f"-i {os.path.dirname(f'decomp/{filepath}')}"]
+    __cflags = cflags_cw + [f"-i decomp/{dirpath}"]
 
     return {
         "lib": lib_name,
@@ -417,11 +420,12 @@ def CWLib(lib_name: str, sub_path: str, files: List[Tuple[bool, str]], conf: Dic
 # Helper function for Game app libraries
 def GameSource(lib_name: str, files: List[Tuple[bool, str]], conf: Dict[str, str]={"":""}) -> Dict[str, Any]:
     objects = []
+    dirpath = f"sources/{lib_name}/src"
     for matching, filename in files:
-        filepath = f"sources/{lib_name}/src/{filename}"
+        filepath = f"{dirpath}/{filename}"
         objects.append(Object(matching, filepath))
 
-    __cflags = cflags_game + [f"-i {os.path.dirname(f'decomp/{filepath}')}"]
+    __cflags = cflags_game + [f"-i decomp/{dirpath}"]
 
     return {
         "lib": lib_name,
@@ -434,10 +438,11 @@ def GameSource(lib_name: str, files: List[Tuple[bool, str]], conf: Dict[str, str
     }
 def GameMain(file: Tuple[bool, str], conf: Dict[str, str]={"":""}) -> Dict[str, Any]:
     objects = []
-    filepath = f"sources/{file}"
+    dirpath = "sources"
+    filepath = f"{dirpath}/{file}"
     objects.append(Object(matching, filepath))
 
-    __cflags = cflags_game + [f"-i {os.path.dirname(f'decomp/{filepath}')}"]
+    __cflags = cflags_game + [f"-i decomp/{dirpath}"]
 
     return {
         "lib": lib_name,
@@ -465,7 +470,7 @@ config.libs = [
 
     # Game source folders
 
-#    GameMain("sysMain.cpp")
+#    GameMain("main.cpp")
 #    GameSource("system", [
 #        (NonMatching, "initthread.cpp"),
 #        (NonMatching, "memory.cpp"),
@@ -575,11 +580,12 @@ config.libs = [
     # SDK
 
     DolphinLib("dvd", [
-        (NonMatching, "dvdfs.c"),
+        (Matching, "dvdlow.c"),
+        (Matching, "dvdfs.c"),
         (Matching, "dvd.c"),
         (Matching, "dvdqueue.c"),
         (Matching, "dvderror.c"),
-        (Matching, "fstload.c"),
+        (Matching, "emu_level2/fstload.c"),
     ]),
 
     DolphinLib("vi", [
@@ -640,8 +646,7 @@ config.libs = [
     # CodeWarrior
 
 #    CWLib("Runtime.PPCEABI.H", "Runtime/Src", [
-#        (NonMatching, "global_destructor_chain.c"),
-#        (NonMatching, "__init_cpp_exceptions.cpp"),
+#        (NonMatching, ""),
 #    ]),
 #    CWLib("MSL_C.PPCEABI.bare.H", "MSL/MSL_C/MSL_Common/Src", [
 #        (NonMatching, ""),
@@ -649,14 +654,9 @@ config.libs = [
 #    CWLib("MSL_C.PPCEABI.bare.H", "MSL/MSL_C/MSL_Common_Embedded/Src", [
 #        (NonMatching, ""),
 #    ]),
-    CWLib("MSL_C.PPCEABI.bare.H", "MSL/MSL_C/MSL_Common_Embedded/Math", [
-        (NonMatching, "Double_precision/e_asin.c"),
-        (NonMatching, "Single_precision/inverse_trig.c"),
-        (Matching, "Single_precision/roundingf.c"),
-        (NonMatching, "Single_precision/trigf.c"),
-        (Matching, "Single_precision/common_float_tables.c"),
-        (Matching, "Single_precision/lnf.c"),
-    ]),
+#    CWLib("MSL_C.PPCEABI.bare.H", "MSL/MSL_C/MSL_Common_Embedded/Math", [
+#        (NonMatching, ""),
+#    ]),
 #    CWLib("MSL_C.PPCEABI.bare.H", "MSL/MSL_C/PPC_EABI/SRC", [
 #        (NonMatching, ""),
 #    ]),

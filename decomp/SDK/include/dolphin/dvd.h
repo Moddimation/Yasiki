@@ -48,9 +48,9 @@ typedef struct
 } DVDDir;
 typedef struct
 {
-    u32   entryNum;
-    BOOL  isDir;
-    char* name;
+    u32  entryNum;
+    BOOL isDir;
+    u8*  name;
 } DVDDirEntry;
 typedef struct DVDBB2
 {
@@ -145,12 +145,12 @@ BOOL DVDCheckDisk();
 void __DVDPrepareResetAsync(DVDCBCallback cb);
 
 // dvdfs.c
-s32   DVDConvertPathToEntrynum(char* pathPtr);
+s32   DVDConvertPathToEntrynum(u8* pathPtr);
 BOOL  DVDFastOpen(s32 entrynum, DVDFileInfo* fileInfo);
-BOOL  DVDOpen(char* fileName, DVDFileInfo* fileInfo);
+BOOL  DVDOpen(u8* fileName, DVDFileInfo* fileInfo);
 BOOL  DVDClose(DVDFileInfo* fileInfo);
-BOOL  DVDGetCurrentDir(char* path, u32 maxlen);
-BOOL  DVDChangeDir(char* dirName);
+BOOL  DVDGetCurrentDir(u8* path, u32 maxlen);
+BOOL  DVDChangeDir(u8* dirName);
 BOOL  DVDReadAsyncPrio(DVDFileInfo* fileInfo, void* addr, s32 length, s32 offset,
                        DVDCallback callback, s32 prio);
 s32   DVDReadPrio(struct DVDFileInfo* fileInfo, void* addr, long length, s32 offset,
@@ -159,7 +159,7 @@ int   DVDSeekAsyncPrio(struct DVDFileInfo* fileInfo, s32 offset,
                        void (*callback)(s32, struct DVDFileInfo*), long prio);
 s32   DVDSeekPrio(struct DVDFileInfo* fileInfo, long offset, long prio);
 s32   DVDGetFileInfoStatus(struct DVDFileInfo* fileInfo);
-int   DVDOpenDir(char* dirName, DVDDir* dir);
+int   DVDOpenDir(u8* dirName, DVDDir* dir);
 int   DVDReadDir(DVDDir* dir, DVDDirEntry* dirent);
 int   DVDCloseDir(DVDDir* dir);
 void* DVDGetFSTLocation();
