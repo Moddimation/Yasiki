@@ -18,13 +18,11 @@ static u32 LatencyTable[8] = {
 // functions
 static s32  DoMount(s32 chan);
 static void DoUnmount(s32 chan, s32 v);
-
 int
 CARDProbe(s32 chan)
 {
     EXIProbe(chan);
 }
-
 s32
 CARDProbeEx(s32 chan, s32* memSize, s32* sectorSize)
 {
@@ -98,7 +96,6 @@ CARDProbeEx(s32 chan, s32* memSize, s32* sectorSize)
     OSRestoreInterrupts(enabled);
     return result;
 }
-
 static s32
 DoMount(s32 chan)
 {
@@ -205,7 +202,8 @@ DoMount(s32 chan)
 
     step = card->mountStep - 2;
     result = __CARDRead(chan, (u32)card->sectorSize * step, CARD_SYSTEM_BLOCK_SIZE,
-                        (u8*)card->workArea + (CARD_SYSTEM_BLOCK_SIZE * step), __CARDMountCallback);
+                        (u8*)card->workArea + (CARD_SYSTEM_BLOCK_SIZE * step),
+                        __CARDMountCallback);
     if (result < 0)
     {
         __CARDPutControlBlock(card, result);
@@ -217,7 +215,6 @@ error:
     DoUnmount(chan, result);
     return result;
 }
-
 void
 __CARDMountCallback(s32 chan, s32 result)
 {
@@ -229,7 +226,7 @@ __CARDMountCallback(s32 chan, s32 result)
     card = &__CARDBlock[chan];
     switch (result)
     {
-        case CARD_RESULT_READY :
+        case CARD_RESULT_READY:
             if (++card->mountStep < CARD_MAX_MOUNT_STEP)
             {
                 result = DoMount(chan);
@@ -243,15 +240,17 @@ __CARDMountCallback(s32 chan, s32 result)
                 result = __CARDVerify(card);
             }
             break;
-        case CARD_RESULT_UNLOCKED :
+        case CARD_RESULT_UNLOCKED:
             result = DoMount(chan);
             if (result >= 0)
             {
                 return;
             }
             break;
-        case CARD_RESULT_IOERROR :
-        case CARD_RESULT_NOCARD  : DoUnmount(chan, result); break;
+        case CARD_RESULT_IOERROR:
+        case CARD_RESULT_NOCARD:
+            DoUnmount(chan, result);
+            break;
     }
 
     callback = card->apiCallback;
@@ -260,9 +259,9 @@ __CARDMountCallback(s32 chan, s32 result)
     ASSERTLINE(0x1AB, callback);
     callback(chan, result);
 }
-
 s32
-CARDMountAsync(s32 chan, void* workArea, CARDCallback detachCallback, CARDCallback attachCallback)
+CARDMountAsync(s32 chan, void* workArea, CARDCallback detachCallback,
+               CARDCallback attachCallback)
 {
     CARDControl* card;
     BOOL         enabled;
@@ -322,7 +321,6 @@ CARDMountAsync(s32 chan, void* workArea, CARDCallback detachCallback, CARDCallba
     card->unlockCallback = 0;
     return DoMount(chan);
 }
-
 s32
 CARDMount(s32 chan, void* workArea, CARDCallback detachCallback)
 {
@@ -334,7 +332,6 @@ CARDMount(s32 chan, void* workArea, CARDCallback detachCallback)
     }
     return __CARDSync(chan);
 }
-
 static void
 DoUnmount(s32 chan, s32 result)
 {
@@ -356,7 +353,6 @@ DoUnmount(s32 chan, s32 result)
     }
     OSRestoreInterrupts(enabled);
 }
-
 s32
 CARDUnmount(s32 chan)
 {

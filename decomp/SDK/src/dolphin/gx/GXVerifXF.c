@@ -1,10 +1,10 @@
 #if DEBUG
 
-#    include <dolphin/gx.h>
+#include <dolphin/gx.h>
 
-#    include <stdio.h>
+#include <stdio.h>
 
-#    include "GXPrivate.h"
+#include "GXPrivate.h"
 
 static u8  internalDebug;
 static u32 DumpCount;
@@ -17,7 +17,8 @@ static u32 numColorTextures;
 static s32 XFChannel = -1;
 
 static GXAttr TextureEnums[8] = {
-    GX_VA_TEX0, GX_VA_TEX1, GX_VA_TEX2, GX_VA_TEX3, GX_VA_TEX4, GX_VA_TEX5, GX_VA_TEX6, GX_VA_TEX7,
+    GX_VA_TEX0, GX_VA_TEX1, GX_VA_TEX2, GX_VA_TEX3,
+    GX_VA_TEX4, GX_VA_TEX5, GX_VA_TEX6, GX_VA_TEX7,
 };
 
 static u8 lightRegisterNames[13][256] = {
@@ -36,14 +37,13 @@ static u8 lightRegisterNames[13][256] = {
     "Z Light Direction / Half Angle Z Component",
 };
 
-#    define LOWORD(var) (((u16*)&(var))[0])
-#    define HIWORD(var) (((u16*)&(var))[1])
+#define LOWORD(var) (((u16*)&(var))[0])
+#define HIWORD(var) (((u16*)&(var))[1])
 
-#    define BYTE0(var)  (((u8*)&(var))[0])
-#    define BYTE1(var)  (((u8*)&(var))[1])
-#    define BYTE2(var)  (((u8*)&(var))[2])
-#    define BYTE3(var)  (((u8*)&(var))[3])
-
+#define BYTE0(var)  (((u8*)&(var))[0])
+#define BYTE1(var)  (((u8*)&(var))[1])
+#define BYTE2(var)  (((u8*)&(var))[2])
+#define BYTE3(var)  (((u8*)&(var))[3])
 static void
 CountTextureTypes(void)
 {
@@ -84,13 +84,11 @@ CountTextureTypes(void)
     }
     numColorTextures = numColor0Textures + numColor1Textures;
 }
-
 static void
 InitializeXFVerifyData(void)
 {
     CountTextureTypes();
 }
-
 static void
 CheckDirty(u32 index, const char* name)
 {
@@ -99,7 +97,6 @@ CheckDirty(u32 index, const char* name)
         __GX_WARNF(GXWARN_XF_CTRL_UNINIT, index, name);
     }
 }
-
 static void
 CheckClean(u32 index, const char* name)
 {
@@ -108,7 +105,6 @@ CheckClean(u32 index, const char* name)
         __GX_WARNF(GXWARN_XF_CTRL_INIT, index, name);
     }
 }
-
 static void
 CheckCTGColors(void)
 {
@@ -118,14 +114,16 @@ CheckCTGColors(void)
         {
             if (numColorTextures != 0 && numColorTextures != 1)
             {
-                __GX_WARNF(GXWARN_INV_COLOR_TG_COMB, (u8)(BYTE3(__gxVerif->xfRegs[9]) & 3), numColorTextures);
+                __GX_WARNF(GXWARN_INV_COLOR_TG_COMB,
+                           (u8)(BYTE3(__gxVerif->xfRegs[9]) & 3), numColorTextures);
             }
         }
         else if ((u32)(BYTE3(__gxVerif->xfRegs[9]) & 3) == 2)
         {
             if (numColorTextures != 0 && numColorTextures != 2)
             {
-                __GX_WARNF(GXWARN_INV_COLOR_TG_COMB, (u8)(BYTE3(__gxVerif->xfRegs[9]) & 3), numColorTextures);
+                __GX_WARNF(GXWARN_INV_COLOR_TG_COMB,
+                           (u8)(BYTE3(__gxVerif->xfRegs[9]) & 3), numColorTextures);
             }
         }
         else
@@ -134,38 +132,61 @@ CheckCTGColors(void)
         }
     }
 }
-
 static GXBool
 __GXVertexPacketHas(GXAttr attr)
 {
     switch (attr)
     {
-        case GX_VA_POS        : return GET_REG_FIELD(__GXData->vcdLo, 2, 9) != 0;
-        case GX_VA_NRM        : return __GXData->hasNrms ? GET_REG_FIELD(__GXData->vcdLo, 2, 11) != 0 : GX_FALSE;
-        case GX_VA_NBT        : return __GXData->hasBiNrms ? GET_REG_FIELD(__GXData->vcdLo, 2, 11) != 0 : GX_FALSE;
-        case GX_VA_CLR0       : return GET_REG_FIELD(__GXData->vcdLo, 2, 13) != 0;
-        case GX_VA_CLR1       : return GET_REG_FIELD(__GXData->vcdLo, 2, 15) != 0;
-        case GX_VA_TEX0       : return GET_REG_FIELD(__GXData->vcdHi, 2, 0) != 0;
-        case GX_VA_TEX1       : return GET_REG_FIELD(__GXData->vcdHi, 2, 2) != 0;
-        case GX_VA_TEX2       : return GET_REG_FIELD(__GXData->vcdHi, 2, 4) != 0;
-        case GX_VA_TEX3       : return GET_REG_FIELD(__GXData->vcdHi, 2, 6) != 0;
-        case GX_VA_TEX4       : return GET_REG_FIELD(__GXData->vcdHi, 2, 8) != 0;
-        case GX_VA_TEX5       : return GET_REG_FIELD(__GXData->vcdHi, 2, 10) != 0;
-        case GX_VA_TEX6       : return GET_REG_FIELD(__GXData->vcdHi, 2, 12) != 0;
-        case GX_VA_TEX7       : return GET_REG_FIELD(__GXData->vcdHi, 2, 14) != 0;
-        case GX_VA_PNMTXIDX   : return GET_REG_FIELD(__GXData->vcdLo, 1, 0) != 0;
-        case GX_VA_TEX0MTXIDX : return GET_REG_FIELD(__GXData->vcdLo, 1, 1) != 0;
-        case GX_VA_TEX1MTXIDX : return GET_REG_FIELD(__GXData->vcdLo, 1, 2) != 0;
-        case GX_VA_TEX2MTXIDX : return GET_REG_FIELD(__GXData->vcdLo, 1, 3) != 0;
-        case GX_VA_TEX3MTXIDX : return GET_REG_FIELD(__GXData->vcdLo, 1, 4) != 0;
-        case GX_VA_TEX4MTXIDX : return GET_REG_FIELD(__GXData->vcdLo, 1, 5) != 0;
-        case GX_VA_TEX5MTXIDX : return GET_REG_FIELD(__GXData->vcdLo, 1, 6) != 0;
-        case GX_VA_TEX6MTXIDX : return GET_REG_FIELD(__GXData->vcdLo, 1, 7) != 0;
-        case GX_VA_TEX7MTXIDX : return GET_REG_FIELD(__GXData->vcdLo, 1, 8) != 0;
-        default               : return GX_FALSE;
+        case GX_VA_POS:
+            return GET_REG_FIELD(__GXData->vcdLo, 2, 9) != 0;
+        case GX_VA_NRM:
+            return __GXData->hasNrms ? GET_REG_FIELD(__GXData->vcdLo, 2, 11) != 0
+                                     : GX_FALSE;
+        case GX_VA_NBT:
+            return __GXData->hasBiNrms ? GET_REG_FIELD(__GXData->vcdLo, 2, 11) != 0
+                                       : GX_FALSE;
+        case GX_VA_CLR0:
+            return GET_REG_FIELD(__GXData->vcdLo, 2, 13) != 0;
+        case GX_VA_CLR1:
+            return GET_REG_FIELD(__GXData->vcdLo, 2, 15) != 0;
+        case GX_VA_TEX0:
+            return GET_REG_FIELD(__GXData->vcdHi, 2, 0) != 0;
+        case GX_VA_TEX1:
+            return GET_REG_FIELD(__GXData->vcdHi, 2, 2) != 0;
+        case GX_VA_TEX2:
+            return GET_REG_FIELD(__GXData->vcdHi, 2, 4) != 0;
+        case GX_VA_TEX3:
+            return GET_REG_FIELD(__GXData->vcdHi, 2, 6) != 0;
+        case GX_VA_TEX4:
+            return GET_REG_FIELD(__GXData->vcdHi, 2, 8) != 0;
+        case GX_VA_TEX5:
+            return GET_REG_FIELD(__GXData->vcdHi, 2, 10) != 0;
+        case GX_VA_TEX6:
+            return GET_REG_FIELD(__GXData->vcdHi, 2, 12) != 0;
+        case GX_VA_TEX7:
+            return GET_REG_FIELD(__GXData->vcdHi, 2, 14) != 0;
+        case GX_VA_PNMTXIDX:
+            return GET_REG_FIELD(__GXData->vcdLo, 1, 0) != 0;
+        case GX_VA_TEX0MTXIDX:
+            return GET_REG_FIELD(__GXData->vcdLo, 1, 1) != 0;
+        case GX_VA_TEX1MTXIDX:
+            return GET_REG_FIELD(__GXData->vcdLo, 1, 2) != 0;
+        case GX_VA_TEX2MTXIDX:
+            return GET_REG_FIELD(__GXData->vcdLo, 1, 3) != 0;
+        case GX_VA_TEX3MTXIDX:
+            return GET_REG_FIELD(__GXData->vcdLo, 1, 4) != 0;
+        case GX_VA_TEX4MTXIDX:
+            return GET_REG_FIELD(__GXData->vcdLo, 1, 5) != 0;
+        case GX_VA_TEX5MTXIDX:
+            return GET_REG_FIELD(__GXData->vcdLo, 1, 6) != 0;
+        case GX_VA_TEX6MTXIDX:
+            return GET_REG_FIELD(__GXData->vcdLo, 1, 7) != 0;
+        case GX_VA_TEX7MTXIDX:
+            return GET_REG_FIELD(__GXData->vcdLo, 1, 8) != 0;
+        default:
+            return GX_FALSE;
     }
 }
-
 static void
 CheckVertexPacket(void)
 {
@@ -256,10 +277,10 @@ CheckVertexPacket(void)
     }
     if (numHostTextures != (u32)((BYTE3(__gxVerif->xfRegs[8]) >> 4) & 0xF))
     {
-        __GX_WARNF(GXWARN_TEX_XFN_CPM, (u8)((BYTE3(__gxVerif->xfRegs[8]) >> 4) & 0xF), numHostTextures);
+        __GX_WARNF(GXWARN_TEX_XFN_CPM,
+                   (u8)((BYTE3(__gxVerif->xfRegs[8]) >> 4) & 0xF), numHostTextures);
     }
 }
-
 static void
 CheckSourceRows(void)
 {
@@ -269,19 +290,20 @@ CheckSourceRows(void)
     {
         switch ((HIWORD(__gxVerif->xfRegs[i + 64]) >> 7) & 0x1F)
         {
-            case 0 :
+            case 0:
                 if (!__GXVertexPacketHas(GX_VA_POS))
                 {
                     __GX_WARNF(GXWARN_TEX_SRC_NPOS, i);
                 }
                 break;
-            case 1 :
-                if (!__GXVertexPacketHas(GX_VA_NRM) && !__GXVertexPacketHas(GX_VA_NBT))
+            case 1:
+                if (!__GXVertexPacketHas(GX_VA_NRM) &&
+                    !__GXVertexPacketHas(GX_VA_NBT))
                 {
                     __GX_WARNF(GXWARN_TEX_SRC_NNRM, i);
                 }
                 break;
-            case 2 :
+            case 2:
                 if (!__GXVertexPacketHas(GX_VA_CLR0))
                 {
                     __GX_WARNF(GXWARN_TEX_SRC_NCLR0, i);
@@ -291,31 +313,37 @@ CheckSourceRows(void)
                     __GX_WARNF(GXWARN_TEX_SRC_NCLR1, i);
                 }
                 break;
-            case 3 :
-            case 4 :
+            case 3:
+            case 4:
                 if (!__GXVertexPacketHas(GX_VA_NBT))
                 {
                     __GX_WARNF(GXWARN_TEX_SRC_NNBT, i);
                 }
                 break;
-            case 5 :
-            case 6 :
-            case 7 :
-            case 8 :
-            case 9 :
-            case 10 :
-            case 11 :
-            case 12 :
-                if (!__GXVertexPacketHas(TextureEnums[((HIWORD(__gxVerif->xfRegs[i + 64]) >> 7) & 0x1F) - 5]))
+            case 5:
+            case 6:
+            case 7:
+            case 8:
+            case 9:
+            case 10:
+            case 11:
+            case 12:
+                if (!__GXVertexPacketHas(
+                        TextureEnums
+                            [((HIWORD(__gxVerif->xfRegs[i + 64]) >> 7) & 0x1F) - 5]))
                 {
-                    __GX_WARNF(GXWARN_TEX_SRC_NTEX, i, ((HIWORD(__gxVerif->xfRegs[i + 64]) >> 7) & 0x1F) - 5);
+                    __GX_WARNF(GXWARN_TEX_SRC_NTEX, i,
+                               ((HIWORD(__gxVerif->xfRegs[i + 64]) >> 7) & 0x1F) -
+                                   5);
                 }
                 break;
-            default : __GX_WARNF(GXWARN_INV_TEX_SRC, i, (u8)((HIWORD(__gxVerif->xfRegs[i + 64]) >> 7) & 0x1F)); break;
+            default:
+                __GX_WARNF(GXWARN_INV_TEX_SRC, i,
+                           (u8)((HIWORD(__gxVerif->xfRegs[i + 64]) >> 7) & 0x1F));
+                break;
         }
     }
 }
-
 static void
 CheckTextureOrder(void)
 {
@@ -324,7 +352,8 @@ CheckTextureOrder(void)
 
     while (!done)
     {
-        if (count == __gxVerif->xfRegs[0x3F] || ((BYTE3(__gxVerif->xfRegs[count + 64]) >> 4) & 7))
+        if (count == __gxVerif->xfRegs[0x3F] ||
+            ((BYTE3(__gxVerif->xfRegs[count + 64]) >> 4) & 7))
         {
             done = 1;
         }
@@ -362,8 +391,8 @@ CheckTextureOrder(void)
         {
             done = 1;
         }
-        else if (!((BYTE3(__gxVerif->xfRegs[count + 64]) >> 4) & 7)
-                 || (u32)((BYTE3(__gxVerif->xfRegs[count + 64]) >> 4) & 7) == 1)
+        else if (!((BYTE3(__gxVerif->xfRegs[count + 64]) >> 4) & 7) ||
+                 (u32)((BYTE3(__gxVerif->xfRegs[count + 64]) >> 4) & 7) == 1)
         {
             __GX_WARN(GXWARN_INV_TG_ORDER);
             done = 1;
@@ -374,7 +403,6 @@ CheckTextureOrder(void)
         }
     }
 }
-
 static void
 CheckRAM(u8 Normal, u32 StartingAddress, u32 Count, s32 WarnID, char* Str)
 {
@@ -405,15 +433,14 @@ CheckRAM(u8 Normal, u32 StartingAddress, u32 Count, s32 WarnID, char* Str)
         }
     }
 }
-
 static void
 CheckBumpmapTextures(void)
 {
-    u32  i;
-    u32  BumpMapSource;
-    u32  BumpMapLight;
-    u32  lightRAMOffset;
-    s8 Preamble[256];
+    u32 i;
+    u32 BumpMapSource;
+    u32 BumpMapLight;
+    u32 lightRAMOffset;
+    s8  Preamble[256];
 
     if (!__GXVertexPacketHas(GX_VA_PNMTXIDX))
     {
@@ -421,8 +448,10 @@ CheckBumpmapTextures(void)
         {
             __GX_WARNF(0x50, (u8)(BYTE3(__gxVerif->xfRegs[24]) & 0x3F));
         }
-        sprintf(Preamble, __gxvWarnings[0x6A], (u8)(BYTE3(__gxVerif->xfRegs[24]) & 0x3F));
-        CheckRAM(1, ((BYTE3(__gxVerif->xfRegs[24]) & 0x3F) * 3) + 0x400, 9U, 0x6A, Preamble);
+        sprintf(Preamble, __gxvWarnings[0x6A],
+                (u8)(BYTE3(__gxVerif->xfRegs[24]) & 0x3F));
+        CheckRAM(1, ((BYTE3(__gxVerif->xfRegs[24]) & 0x3F) * 3) + 0x400, 9U, 0x6A,
+                 Preamble);
     }
 
     for (i = 0; i < numBumpmapTextures; i++)
@@ -457,71 +486,74 @@ CheckBumpmapTextures(void)
     lightRAMOffset;
     lightRAMOffset; // needed to match
 }
-
 static void
 CheckTextureTransformMatrices(void)
 {
-    u32  i;
-    u32  StartingAddress;
-    u32  Size;
-    u8   MtxIndexInVertexPacket;
-    s8 Preamble[256];
-    u32  Val;
+    u32 i;
+    u32 StartingAddress;
+    u32 Size;
+    u8  MtxIndexInVertexPacket;
+    s8  Preamble[256];
+    u32 Val;
 
     for (i = 0; i < numRegularTextures; i++)
     {
         MtxIndexInVertexPacket = 0;
         switch (i)
         {
-            case 0 :
-                StartingAddress = (u8)((HIWORD(__gxVerif->xfRegs[0x18]) >> 4U) & 0xFC);
+            case 0:
+                StartingAddress =
+                    (u8)((HIWORD(__gxVerif->xfRegs[0x18]) >> 4U) & 0xFC);
                 Val = HIWORD(__gxVerif->xfRegs[0x18]);
                 Val = (Val >> 6) & 0x3F;
                 MtxIndexInVertexPacket = __GXVertexPacketHas(GX_VA_TEX0MTXIDX);
                 break;
-            case 1 :
+            case 1:
                 StartingAddress = (u8)((__gxVerif->xfRegs[0x18] >> 10) & 0xFC);
                 Val = __gxVerif->xfRegs[0x18];
                 Val = (Val >> 12) & 0x3F;
                 MtxIndexInVertexPacket = __GXVertexPacketHas(GX_VA_TEX1MTXIDX);
                 break;
-            case 2 :
+            case 2:
                 StartingAddress = (u8)(BYTE1(__gxVerif->xfRegs[0x18]) & 0xFC);
                 Val = BYTE1(__gxVerif->xfRegs[0x18]);
                 Val = (Val >> 2) & 0x3F;
                 MtxIndexInVertexPacket = __GXVertexPacketHas(GX_VA_TEX2MTXIDX);
                 break;
-            case 3 :
+            case 3:
                 StartingAddress = (BYTE0(__gxVerif->xfRegs[0x18]) * 4) & 0xFC;
                 Val = BYTE0(__gxVerif->xfRegs[0x18]);
                 Val = Val & 0x3F;
                 MtxIndexInVertexPacket = __GXVertexPacketHas(GX_VA_TEX3MTXIDX);
                 break;
-            case 4 :
+            case 4:
                 StartingAddress = (BYTE3(__gxVerif->xfRegs[0x19]) * 4) & 0xFC;
                 Val = BYTE3(__gxVerif->xfRegs[0x19]);
                 Val = Val & 0x3F;
                 MtxIndexInVertexPacket = __GXVertexPacketHas(GX_VA_TEX4MTXIDX);
                 break;
-            case 5 :
-                StartingAddress = (u8)((HIWORD(__gxVerif->xfRegs[0x19]) >> 4) & 0xFC);
+            case 5:
+                StartingAddress =
+                    (u8)((HIWORD(__gxVerif->xfRegs[0x19]) >> 4) & 0xFC);
                 Val = HIWORD(__gxVerif->xfRegs[0x19]);
                 Val = (Val >> 6) & 0x3F;
                 MtxIndexInVertexPacket = __GXVertexPacketHas(GX_VA_TEX5MTXIDX);
                 break;
-            case 6 :
+            case 6:
                 StartingAddress = (u8)((__gxVerif->xfRegs[0x19] >> 10) & 0xFC);
                 Val = __gxVerif->xfRegs[0x19];
                 Val = (Val >> 12) & 0x3F;
                 MtxIndexInVertexPacket = __GXVertexPacketHas(GX_VA_TEX6MTXIDX);
                 break;
-            case 7 :
+            case 7:
                 StartingAddress = (u8)(BYTE1(__gxVerif->xfRegs[0x19]) & 0xFC);
                 Val = BYTE1(__gxVerif->xfRegs[0x19]);
                 Val = (Val >> 2) & 0x3F;
                 MtxIndexInVertexPacket = __GXVertexPacketHas(GX_VA_TEX7MTXIDX);
                 break;
-            default : __GX_WARNF(0x54, i); break;
+            default:
+                __GX_WARNF(0x54, i);
+                break;
         }
         if (MtxIndexInVertexPacket != 0)
         {
@@ -572,7 +604,6 @@ CheckTextureTransformMatrices(void)
     MtxIndexInVertexPacket;
     MtxIndexInVertexPacket;
 }
-
 static void
 CheckInputForms(void)
 {
@@ -582,23 +613,24 @@ CheckInputForms(void)
     {
         switch ((HIWORD(__gxVerif->xfRegs[i + 64]) >> 7) & 0x1F)
         {
-            case 2 :
-            case 5 :
-            case 6 :
-            case 7 :
-            case 8 :
-            case 9 :
-            case 10 :
-            case 11 :
-            case 12 :
+            case 2:
+            case 5:
+            case 6:
+            case 7:
+            case 8:
+            case 9:
+            case 10:
+            case 11:
+            case 12:
                 if ((BYTE3(__gxVerif->xfRegs[i + 64]) >> 2) & 1)
                 {
-                    __GX_WARNF(0x55, i, (u8)((HIWORD(__gxVerif->xfRegs[i + 64]) >> 7) & 0x1F));
+                    __GX_WARNF(
+                        0x55, i,
+                        (u8)((HIWORD(__gxVerif->xfRegs[i + 64]) >> 7) & 0x1F));
                 }
         }
     }
 }
-
 static void
 CheckLight(u32 lightSource)
 {
@@ -621,14 +653,13 @@ CheckLight(u32 lightSource)
         }
     }
 }
-
 static void
 CheckColor0(void)
 {
-    s8 Preamble[256];
-    u8   haveLight;
-    u32  i;
-    u8   lightUsed;
+    s8  Preamble[256];
+    u8  haveLight;
+    u32 i;
+    u8  lightUsed;
 
     if ((u8)(BYTE3(__gxVerif->xfRegs[9]) & 3) || numColorTextures != 0)
     {
@@ -644,11 +675,13 @@ CheckColor0(void)
         {
             __GX_WARNF(0x57, 0, 0, 0x100C);
         }
-        if (!((BYTE3(__gxVerif->xfRegs[14]) >> 6) & 1) && !__gxVerif->xfRegsDirty[10])
+        if (!((BYTE3(__gxVerif->xfRegs[14]) >> 6) & 1) &&
+            !__gxVerif->xfRegsDirty[10])
         {
             __GX_WARNF(0x58, 0, 0, 0x100A);
         }
-        if ((u32)((BYTE3(__gxVerif->xfRegs[14]) >> 1) & 1) == 1 || (u32)((BYTE3(__gxVerif->xfRegs[16]) >> 1) & 1) == 1)
+        if ((u32)((BYTE3(__gxVerif->xfRegs[14]) >> 1) & 1) == 1 ||
+            (u32)((BYTE3(__gxVerif->xfRegs[16]) >> 1) & 1) == 1)
         {
             haveLight = 0;
             for (i = 0; i < 8; i++)
@@ -656,58 +689,58 @@ CheckColor0(void)
                 lightUsed = 0;
                 switch (i)
                 {
-                    case 0 :
-                        if ((u8)((BYTE3(__gxVerif->xfRegs[14]) >> 2) & 1)
-                            || (u8)((BYTE3(__gxVerif->xfRegs[16]) >> 2) & 1))
+                    case 0:
+                        if ((u8)((BYTE3(__gxVerif->xfRegs[14]) >> 2) & 1) ||
+                            (u8)((BYTE3(__gxVerif->xfRegs[16]) >> 2) & 1))
                         {
                             lightUsed = 1;
                         }
                         break;
-                    case 1 :
-                        if ((u8)((BYTE3(__gxVerif->xfRegs[14]) >> 3) & 1)
-                            || (u8)((BYTE3(__gxVerif->xfRegs[16]) >> 3) & 1))
+                    case 1:
+                        if ((u8)((BYTE3(__gxVerif->xfRegs[14]) >> 3) & 1) ||
+                            (u8)((BYTE3(__gxVerif->xfRegs[16]) >> 3) & 1))
                         {
                             lightUsed = 1;
                         }
                         break;
-                    case 2 :
-                        if ((u8)((BYTE3(__gxVerif->xfRegs[14]) >> 4) & 1)
-                            || (u8)((BYTE3(__gxVerif->xfRegs[16]) >> 4) & 1))
+                    case 2:
+                        if ((u8)((BYTE3(__gxVerif->xfRegs[14]) >> 4) & 1) ||
+                            (u8)((BYTE3(__gxVerif->xfRegs[16]) >> 4) & 1))
                         {
                             lightUsed = 1;
                         }
                         break;
-                    case 3 :
-                        if ((u8)((BYTE3(__gxVerif->xfRegs[14]) >> 5) & 1)
-                            || (u8)((BYTE3(__gxVerif->xfRegs[16]) >> 5) & 1))
+                    case 3:
+                        if ((u8)((BYTE3(__gxVerif->xfRegs[14]) >> 5) & 1) ||
+                            (u8)((BYTE3(__gxVerif->xfRegs[16]) >> 5) & 1))
                         {
                             lightUsed = 1;
                         }
                         break;
-                    case 4 :
-                        if ((u8)((BYTE2(__gxVerif->xfRegs[14]) >> 3) & 1)
-                            || (u8)((BYTE2(__gxVerif->xfRegs[16]) >> 3) & 1))
+                    case 4:
+                        if ((u8)((BYTE2(__gxVerif->xfRegs[14]) >> 3) & 1) ||
+                            (u8)((BYTE2(__gxVerif->xfRegs[16]) >> 3) & 1))
                         {
                             lightUsed = 1;
                         }
                         break;
-                    case 5 :
-                        if ((u8)((BYTE2(__gxVerif->xfRegs[14]) >> 4) & 1)
-                            || (u8)((BYTE2(__gxVerif->xfRegs[16]) >> 4) & 1))
+                    case 5:
+                        if ((u8)((BYTE2(__gxVerif->xfRegs[14]) >> 4) & 1) ||
+                            (u8)((BYTE2(__gxVerif->xfRegs[16]) >> 4) & 1))
                         {
                             lightUsed = 1;
                         }
                         break;
-                    case 6 :
-                        if ((u8)((BYTE2(__gxVerif->xfRegs[14]) >> 5) & 1)
-                            || (u8)((BYTE2(__gxVerif->xfRegs[16]) >> 5) & 1))
+                    case 6:
+                        if ((u8)((BYTE2(__gxVerif->xfRegs[14]) >> 5) & 1) ||
+                            (u8)((BYTE2(__gxVerif->xfRegs[16]) >> 5) & 1))
                         {
                             lightUsed = 1;
                         }
                         break;
-                    case 7 :
-                        if ((u8)((BYTE2(__gxVerif->xfRegs[14]) >> 6) & 1)
-                            || (u8)((BYTE2(__gxVerif->xfRegs[16]) >> 6) & 1))
+                    case 7:
+                        if ((u8)((BYTE2(__gxVerif->xfRegs[14]) >> 6) & 1) ||
+                            (u8)((BYTE2(__gxVerif->xfRegs[16]) >> 6) & 1))
                         {
                             lightUsed = 1;
                         }
@@ -721,22 +754,25 @@ CheckColor0(void)
             }
             if (haveLight != 0)
             {
-                if (!((BYTE2(__gxVerif->xfRegs[14]) >> 2) & 1) && ((HIWORD(__gxVerif->xfRegs[14]) >> 7) & 3))
+                if (!((BYTE2(__gxVerif->xfRegs[14]) >> 2) & 1) &&
+                    ((HIWORD(__gxVerif->xfRegs[14]) >> 7) & 3))
                 {
                     __GX_WARNF(0x59, "COLOR0", "COLOR0");
                 }
-                if (!((BYTE2(__gxVerif->xfRegs[16]) >> 2) & 1) && ((HIWORD(__gxVerif->xfRegs[16]) >> 7) & 3))
+                if (!((BYTE2(__gxVerif->xfRegs[16]) >> 2) & 1) &&
+                    ((HIWORD(__gxVerif->xfRegs[16]) >> 7) & 3))
                 {
                     __GX_WARNF(0x59, "ALPHA0", "ALPHA0");
                 }
-                if (((HIWORD(__gxVerif->xfRegs[14]) >> 7) & 3)
-                    || ((u8)((BYTE2(__gxVerif->xfRegs[14]) >> 1) & 1)
-                        && ((u32)((BYTE2(__gxVerif->xfRegs[14]) >> 2) & 1) == 1))
-                    || ((HIWORD(__gxVerif->xfRegs[16]) >> 7) & 3)
-                    || ((u8)((BYTE2(__gxVerif->xfRegs[16]) >> 1) & 1)
-                        && ((u32)((BYTE2(__gxVerif->xfRegs[16]) >> 2) & 1) == 1)))
+                if (((HIWORD(__gxVerif->xfRegs[14]) >> 7) & 3) ||
+                    ((u8)((BYTE2(__gxVerif->xfRegs[14]) >> 1) & 1) &&
+                     ((u32)((BYTE2(__gxVerif->xfRegs[14]) >> 2) & 1) == 1)) ||
+                    ((HIWORD(__gxVerif->xfRegs[16]) >> 7) & 3) ||
+                    ((u8)((BYTE2(__gxVerif->xfRegs[16]) >> 1) & 1) &&
+                     ((u32)((BYTE2(__gxVerif->xfRegs[16]) >> 2) & 1) == 1)))
                 {
-                    if ((__GXVertexPacketHas(GX_VA_NRM) == 0) && (__GXVertexPacketHas(GX_VA_NBT) == 0))
+                    if ((__GXVertexPacketHas(GX_VA_NRM) == 0) &&
+                        (__GXVertexPacketHas(GX_VA_NBT) == 0))
                     {
                         __GX_WARNF(0x5A, 0);
                     }
@@ -744,28 +780,34 @@ CheckColor0(void)
                     {
                         if ((u32)(BYTE3(__gxVerif->xfRegs[24]) & 0x3F) > 30)
                         {
-                            __GX_WARNF(0x5B, 0, (u8)(BYTE3(__gxVerif->xfRegs[24]) & 0x3F));
+                            __GX_WARNF(0x5B, 0,
+                                       (u8)(BYTE3(__gxVerif->xfRegs[24]) & 0x3F));
                         }
-                        sprintf(Preamble, __gxvWarnings[0x6D], 0, (u8)(BYTE3(__gxVerif->xfRegs[24]) & 0x3F));
-                        CheckRAM(1, ((BYTE3(__gxVerif->xfRegs[24]) & 0x3F) * 3) + 0x400, 9, 0x6D, Preamble);
+                        sprintf(Preamble, __gxvWarnings[0x6D], 0,
+                                (u8)(BYTE3(__gxVerif->xfRegs[24]) & 0x3F));
+                        CheckRAM(1,
+                                 ((BYTE3(__gxVerif->xfRegs[24]) & 0x3F) * 3) + 0x400,
+                                 9, 0x6D, Preamble);
                     }
                 }
             }
         }
     }
 }
-
 static void
 CheckColor1(void)
 {
-    u8   usingColor1;
-    s8 Preamble[256];
-    u8   haveLight;
-    u32  i;
-    u8   lightUsed;
+    u8  usingColor1;
+    s8  Preamble[256];
+    u8  haveLight;
+    u32 i;
+    u8  lightUsed;
 
-    if (numColorTextures > 1
-        && ((u32)((BYTE3(__gxVerif->xfRegs[numRegularTextures + numBumpmapTextures + 1 + 64]) >> 4) & 7) == 3))
+    if (numColorTextures > 1 &&
+        ((u32)((BYTE3(__gxVerif->xfRegs[numRegularTextures + numBumpmapTextures + 1 +
+                                        64]) >>
+                4) &
+               7) == 3))
     {
         usingColor1 = 1;
     }
@@ -788,11 +830,13 @@ CheckColor1(void)
         {
             __GX_WARNF(0x57, 1, 1, 0x100D);
         }
-        if (!((BYTE3(__gxVerif->xfRegs[15]) >> 6) & 1) && !__gxVerif->xfRegsDirty[11])
+        if (!((BYTE3(__gxVerif->xfRegs[15]) >> 6) & 1) &&
+            !__gxVerif->xfRegsDirty[11])
         {
             __GX_WARNF(0x58, 1, 1, 0x100B);
         }
-        if ((u32)((BYTE3(__gxVerif->xfRegs[15]) >> 1) & 1) == 1 || (u32)((BYTE3(__gxVerif->xfRegs[17]) >> 1) & 1) == 1)
+        if ((u32)((BYTE3(__gxVerif->xfRegs[15]) >> 1) & 1) == 1 ||
+            (u32)((BYTE3(__gxVerif->xfRegs[17]) >> 1) & 1) == 1)
         {
             haveLight = 0;
             for (i = 0; i < 8; i++)
@@ -800,58 +844,58 @@ CheckColor1(void)
                 lightUsed = 0;
                 switch (i)
                 {
-                    case 0 :
-                        if ((u8)((BYTE3(__gxVerif->xfRegs[15]) >> 2) & 1)
-                            || (u8)((BYTE3(__gxVerif->xfRegs[17]) >> 2) & 1))
+                    case 0:
+                        if ((u8)((BYTE3(__gxVerif->xfRegs[15]) >> 2) & 1) ||
+                            (u8)((BYTE3(__gxVerif->xfRegs[17]) >> 2) & 1))
                         {
                             lightUsed = 1;
                         }
                         break;
-                    case 1 :
-                        if ((u8)((BYTE3(__gxVerif->xfRegs[15]) >> 3) & 1)
-                            || (u8)((BYTE3(__gxVerif->xfRegs[17]) >> 3) & 1))
+                    case 1:
+                        if ((u8)((BYTE3(__gxVerif->xfRegs[15]) >> 3) & 1) ||
+                            (u8)((BYTE3(__gxVerif->xfRegs[17]) >> 3) & 1))
                         {
                             lightUsed = 1;
                         }
                         break;
-                    case 2 :
-                        if ((u8)((BYTE3(__gxVerif->xfRegs[15]) >> 4) & 1)
-                            || (u8)((BYTE3(__gxVerif->xfRegs[17]) >> 4) & 1))
+                    case 2:
+                        if ((u8)((BYTE3(__gxVerif->xfRegs[15]) >> 4) & 1) ||
+                            (u8)((BYTE3(__gxVerif->xfRegs[17]) >> 4) & 1))
                         {
                             lightUsed = 1;
                         }
                         break;
-                    case 3 :
-                        if ((u8)((BYTE3(__gxVerif->xfRegs[15]) >> 5) & 1)
-                            || (u8)((BYTE3(__gxVerif->xfRegs[17]) >> 5) & 1))
+                    case 3:
+                        if ((u8)((BYTE3(__gxVerif->xfRegs[15]) >> 5) & 1) ||
+                            (u8)((BYTE3(__gxVerif->xfRegs[17]) >> 5) & 1))
                         {
                             lightUsed = 1;
                         }
                         break;
-                    case 4 :
-                        if ((u8)((BYTE2(__gxVerif->xfRegs[15]) >> 3) & 1)
-                            || (u8)((BYTE2(__gxVerif->xfRegs[17]) >> 3) & 1))
+                    case 4:
+                        if ((u8)((BYTE2(__gxVerif->xfRegs[15]) >> 3) & 1) ||
+                            (u8)((BYTE2(__gxVerif->xfRegs[17]) >> 3) & 1))
                         {
                             lightUsed = 1;
                         }
                         break;
-                    case 5 :
-                        if ((u8)((BYTE2(__gxVerif->xfRegs[15]) >> 4) & 1)
-                            || (u8)((BYTE2(__gxVerif->xfRegs[17]) >> 4) & 1))
+                    case 5:
+                        if ((u8)((BYTE2(__gxVerif->xfRegs[15]) >> 4) & 1) ||
+                            (u8)((BYTE2(__gxVerif->xfRegs[17]) >> 4) & 1))
                         {
                             lightUsed = 1;
                         }
                         break;
-                    case 6 :
-                        if ((u8)((BYTE2(__gxVerif->xfRegs[15]) >> 5) & 1)
-                            || (u8)((BYTE2(__gxVerif->xfRegs[17]) >> 5) & 1))
+                    case 6:
+                        if ((u8)((BYTE2(__gxVerif->xfRegs[15]) >> 5) & 1) ||
+                            (u8)((BYTE2(__gxVerif->xfRegs[17]) >> 5) & 1))
                         {
                             lightUsed = 1;
                         }
                         break;
-                    case 7 :
-                        if ((u8)((BYTE2(__gxVerif->xfRegs[15]) >> 6) & 1)
-                            || (u8)((BYTE2(__gxVerif->xfRegs[17]) >> 6) & 1))
+                    case 7:
+                        if ((u8)((BYTE2(__gxVerif->xfRegs[15]) >> 6) & 1) ||
+                            (u8)((BYTE2(__gxVerif->xfRegs[17]) >> 6) & 1))
                         {
                             lightUsed = 1;
                         }
@@ -865,22 +909,25 @@ CheckColor1(void)
             }
             if (haveLight != 0)
             {
-                if (!((BYTE2(__gxVerif->xfRegs[15]) >> 2) & 1) && ((HIWORD(__gxVerif->xfRegs[15]) >> 7) & 3))
+                if (!((BYTE2(__gxVerif->xfRegs[15]) >> 2) & 1) &&
+                    ((HIWORD(__gxVerif->xfRegs[15]) >> 7) & 3))
                 {
                     __GX_WARNF(0x59, "COLOR1", "COLOR1");
                 }
-                if (!((BYTE2(__gxVerif->xfRegs[17]) >> 2) & 1) && ((HIWORD(__gxVerif->xfRegs[17]) >> 7) & 3))
+                if (!((BYTE2(__gxVerif->xfRegs[17]) >> 2) & 1) &&
+                    ((HIWORD(__gxVerif->xfRegs[17]) >> 7) & 3))
                 {
                     __GX_WARNF(0x59, "ALPHA1", "ALPHA1");
                 }
-                if (((HIWORD(__gxVerif->xfRegs[15]) >> 7) & 3)
-                    || ((u8)((BYTE2(__gxVerif->xfRegs[15]) >> 1) & 1)
-                        && ((u32)((BYTE2(__gxVerif->xfRegs[15]) >> 2) & 1) == 1))
-                    || ((HIWORD(__gxVerif->xfRegs[17]) >> 7) & 3)
-                    || ((u8)((BYTE2(__gxVerif->xfRegs[17]) >> 1) & 1)
-                        && ((u32)((BYTE2(__gxVerif->xfRegs[17]) >> 2) & 1) == 1)))
+                if (((HIWORD(__gxVerif->xfRegs[15]) >> 7) & 3) ||
+                    ((u8)((BYTE2(__gxVerif->xfRegs[15]) >> 1) & 1) &&
+                     ((u32)((BYTE2(__gxVerif->xfRegs[15]) >> 2) & 1) == 1)) ||
+                    ((HIWORD(__gxVerif->xfRegs[17]) >> 7) & 3) ||
+                    ((u8)((BYTE2(__gxVerif->xfRegs[17]) >> 1) & 1) &&
+                     ((u32)((BYTE2(__gxVerif->xfRegs[17]) >> 2) & 1) == 1)))
                 {
-                    if ((__GXVertexPacketHas(GX_VA_NRM) == 0) && (__GXVertexPacketHas(GX_VA_NBT) == 0))
+                    if ((__GXVertexPacketHas(GX_VA_NRM) == 0) &&
+                        (__GXVertexPacketHas(GX_VA_NBT) == 0))
                     {
                         __GX_WARNF(0x5A, 1);
                     }
@@ -888,17 +935,20 @@ CheckColor1(void)
                     {
                         if ((u32)(BYTE3(__gxVerif->xfRegs[24]) & 0x3F) > 30)
                         {
-                            __GX_WARNF(0x5B, 1, (u8)(BYTE3(__gxVerif->xfRegs[24]) & 0x3F));
+                            __GX_WARNF(0x5B, 1,
+                                       (u8)(BYTE3(__gxVerif->xfRegs[24]) & 0x3F));
                         }
-                        sprintf(Preamble, __gxvWarnings[0x6D], 1, (u8)(BYTE3(__gxVerif->xfRegs[24]) & 0x3F));
-                        CheckRAM(1, ((BYTE3(__gxVerif->xfRegs[24]) & 0x3F) * 3) + 0x400, 9, 0x6D, Preamble);
+                        sprintf(Preamble, __gxvWarnings[0x6D], 1,
+                                (u8)(BYTE3(__gxVerif->xfRegs[24]) & 0x3F));
+                        CheckRAM(1,
+                                 ((BYTE3(__gxVerif->xfRegs[24]) & 0x3F) * 3) + 0x400,
+                                 9, 0x6D, Preamble);
                     }
                 }
             }
         }
     }
 }
-
 static void
 ComputeSignExponentMantissa(f32 floatVal, u32* sign, u32* exponent, u32* mantissa)
 {
@@ -908,7 +958,6 @@ ComputeSignExponentMantissa(f32 floatVal, u32* sign, u32* exponent, u32* mantiss
     *exponent = (intVal >> 23) & 0xFF;
     *mantissa = intVal & 0x7FFFFF;
 }
-
 static void
 CheckFloatingPointValue(u8 dirtyBit, u32 value, char* label)
 {
@@ -964,53 +1013,52 @@ CheckFloatingPointValue(u8 dirtyBit, u32 value, char* label)
         }
     }
 }
-
 static void
 CheckMatrixRAMRanges(void)
 {
-    u32  i;
-    s8 label[256];
+    u32 i;
+    s8  label[256];
 
     for (i = 0; i <= 255; i++)
     {
         sprintf(label, "Geometry/Texture Matrix ram address 0x%04x", i);
-        CheckFloatingPointValue(__gxVerif->xfMtxDirty[i], __gxVerif->xfMtx[i], label);
+        CheckFloatingPointValue(__gxVerif->xfMtxDirty[i], __gxVerif->xfMtx[i],
+                                label);
     }
 }
-
 static void
 CheckNormalRAMRanges(void)
 {
-    u32  i;
-    s8 label[256];
+    u32 i;
+    s8  label[256];
 
     for (i = 1024; i <= 1119; i++)
     {
         sprintf(label, "Normal Matrix ram address 0x%04x", i);
-        CheckFloatingPointValue(__gxVerif->xfNrmDirty[i - 1024], __gxVerif->xfNrm[i - 1024], label);
+        CheckFloatingPointValue(__gxVerif->xfNrmDirty[i - 1024],
+                                __gxVerif->xfNrm[i - 1024], label);
     }
 }
-
 static void
 CheckDMatrixRAMRanges(void)
 {
-    u32  i;
-    s8 label[256];
+    u32 i;
+    s8  label[256];
 
     for (i = 1280; i <= 1535; i++)
     {
         sprintf(label, "Dual Texture Matrix ram address 0x%04x", i);
-        CheckFloatingPointValue(__gxVerif->xfDMtxDirty[i - 1280], __gxVerif->xfDMtx[i - 1280], label);
+        CheckFloatingPointValue(__gxVerif->xfDMtxDirty[i - 1280],
+                                __gxVerif->xfDMtx[i - 1280], label);
     }
 }
-
 static void
 CheckLightRAMRanges(void)
 {
-    u32  lightSource;
-    u32  lightRAMOffset;
-    s8 label[256];
-    u32  i;
+    u32 lightSource;
+    u32 lightRAMOffset;
+    s8  label[256];
+    u32 i;
 
     for (lightSource = 0; lightSource < 8; lightSource++)
     {
@@ -1018,33 +1066,45 @@ CheckLightRAMRanges(void)
         {
             lightRAMOffset = (lightSource << 4) + i;
             lightRAMOffset += 0x603;
-            sprintf(label, "Light %d %s (address 0x%04x)", lightSource, lightRegisterNames[i], lightRAMOffset);
-            CheckFloatingPointValue(__gxVerif->xfLightDirty[lightRAMOffset - 0x600],
-                                    __gxVerif->xfLight[(s32)(lightRAMOffset - 0x600)], label);
+            sprintf(label, "Light %d %s (address 0x%04x)", lightSource,
+                    lightRegisterNames[i], lightRAMOffset);
+            CheckFloatingPointValue(
+                __gxVerif->xfLightDirty[lightRAMOffset - 0x600],
+                __gxVerif->xfLight[(s32)(lightRAMOffset - 0x600)], label);
         }
     }
 
     i;
     lightSource; // needed to match
 }
-
 static void
 CheckControlRAMRanges(void)
 {
-    CheckFloatingPointValue(__gxVerif->xfRegsDirty[0x1A], __gxVerif->xfRegs[0x1A], "Viewport Scale X");
-    CheckFloatingPointValue(__gxVerif->xfRegsDirty[0x1B], __gxVerif->xfRegs[0x1B], "Viewport Scale Y");
-    CheckFloatingPointValue(__gxVerif->xfRegsDirty[0x1C], __gxVerif->xfRegs[0x1C], "Viewport Scale Z");
-    CheckFloatingPointValue(__gxVerif->xfRegsDirty[0x1D], __gxVerif->xfRegs[0x1D], "Viewport Offset X");
-    CheckFloatingPointValue(__gxVerif->xfRegsDirty[0x1E], __gxVerif->xfRegs[0x1E], "Viewport Offset Y");
-    CheckFloatingPointValue(__gxVerif->xfRegsDirty[0x1F], __gxVerif->xfRegs[0x1F], "Viewport Offset Z");
-    CheckFloatingPointValue(__gxVerif->xfRegsDirty[0x20], __gxVerif->xfRegs[0x20], "Projection Matrix A Value");
-    CheckFloatingPointValue(__gxVerif->xfRegsDirty[0x21], __gxVerif->xfRegs[0x21], "Projection Matrix B Value");
-    CheckFloatingPointValue(__gxVerif->xfRegsDirty[0x22], __gxVerif->xfRegs[0x22], "Projection Matrix C Value");
-    CheckFloatingPointValue(__gxVerif->xfRegsDirty[0x23], __gxVerif->xfRegs[0x23], "Projection Matrix D Value");
-    CheckFloatingPointValue(__gxVerif->xfRegsDirty[0x24], __gxVerif->xfRegs[0x24], "Projection Matrix E Value");
-    CheckFloatingPointValue(__gxVerif->xfRegsDirty[0x25], __gxVerif->xfRegs[0x25], "Projection Matrix F Value");
+    CheckFloatingPointValue(__gxVerif->xfRegsDirty[0x1A], __gxVerif->xfRegs[0x1A],
+                            "Viewport Scale X");
+    CheckFloatingPointValue(__gxVerif->xfRegsDirty[0x1B], __gxVerif->xfRegs[0x1B],
+                            "Viewport Scale Y");
+    CheckFloatingPointValue(__gxVerif->xfRegsDirty[0x1C], __gxVerif->xfRegs[0x1C],
+                            "Viewport Scale Z");
+    CheckFloatingPointValue(__gxVerif->xfRegsDirty[0x1D], __gxVerif->xfRegs[0x1D],
+                            "Viewport Offset X");
+    CheckFloatingPointValue(__gxVerif->xfRegsDirty[0x1E], __gxVerif->xfRegs[0x1E],
+                            "Viewport Offset Y");
+    CheckFloatingPointValue(__gxVerif->xfRegsDirty[0x1F], __gxVerif->xfRegs[0x1F],
+                            "Viewport Offset Z");
+    CheckFloatingPointValue(__gxVerif->xfRegsDirty[0x20], __gxVerif->xfRegs[0x20],
+                            "Projection Matrix A Value");
+    CheckFloatingPointValue(__gxVerif->xfRegsDirty[0x21], __gxVerif->xfRegs[0x21],
+                            "Projection Matrix B Value");
+    CheckFloatingPointValue(__gxVerif->xfRegsDirty[0x22], __gxVerif->xfRegs[0x22],
+                            "Projection Matrix C Value");
+    CheckFloatingPointValue(__gxVerif->xfRegsDirty[0x23], __gxVerif->xfRegs[0x23],
+                            "Projection Matrix D Value");
+    CheckFloatingPointValue(__gxVerif->xfRegsDirty[0x24], __gxVerif->xfRegs[0x24],
+                            "Projection Matrix E Value");
+    CheckFloatingPointValue(__gxVerif->xfRegsDirty[0x25], __gxVerif->xfRegs[0x25],
+                            "Projection Matrix F Value");
 }
-
 static void
 CheckFloatingPointRanges(void)
 {
@@ -1054,33 +1114,37 @@ CheckFloatingPointRanges(void)
     CheckLightRAMRanges();
     CheckControlRAMRanges();
 }
-
 static void
 CheckMatrixIndices(void)
 {
-    if (!__GXVertexPacketHas(GX_VA_PNMTXIDX) || !__GXVertexPacketHas(GX_VA_TEX0MTXIDX)
-        || !__GXVertexPacketHas(GX_VA_TEX1MTXIDX) || !__GXVertexPacketHas(GX_VA_TEX2MTXIDX)
-        || !__GXVertexPacketHas(GX_VA_TEX3MTXIDX))
+    if (!__GXVertexPacketHas(GX_VA_PNMTXIDX) ||
+        !__GXVertexPacketHas(GX_VA_TEX0MTXIDX) ||
+        !__GXVertexPacketHas(GX_VA_TEX1MTXIDX) ||
+        !__GXVertexPacketHas(GX_VA_TEX2MTXIDX) ||
+        !__GXVertexPacketHas(GX_VA_TEX3MTXIDX))
     {
         CheckDirty(0x1018U, "Geometry & Textures [0-3] transform matrix indices");
     }
     if (__gxVerif->verifyLevel >= 1 && !__GXVertexPacketHas(GX_VA_PNMTXIDX))
     {
-        CheckRAM(0U, (BYTE3(__gxVerif->xfRegs[24]) * 4) & 0xFC, 0xCU, 0x6E, __gxvWarnings[0x6E]);
+        CheckRAM(0U, (BYTE3(__gxVerif->xfRegs[24]) * 4) & 0xFC, 0xCU, 0x6E,
+                 __gxvWarnings[0x6E]);
     }
-    if ((!__GXVertexPacketHas(GX_VA_TEX4MTXIDX) || !__GXVertexPacketHas(GX_VA_TEX5MTXIDX)
-         || !__GXVertexPacketHas(GX_VA_TEX6MTXIDX) || !__GXVertexPacketHas(GX_VA_TEX7MTXIDX))
-        && numRegularTextures > 4 && __gxVerif->verifyLevel >= 1 && !__gxVerif->xfRegsDirty[0x19])
+    if ((!__GXVertexPacketHas(GX_VA_TEX4MTXIDX) ||
+         !__GXVertexPacketHas(GX_VA_TEX5MTXIDX) ||
+         !__GXVertexPacketHas(GX_VA_TEX6MTXIDX) ||
+         !__GXVertexPacketHas(GX_VA_TEX7MTXIDX)) &&
+        numRegularTextures > 4 && __gxVerif->verifyLevel >= 1 &&
+        !__gxVerif->xfRegsDirty[0x19])
     {
         __GX_WARNF(0x60, numRegularTextures, 0x1019U);
     }
 }
-
 static void
 CheckErrors(void)
 {
-    u32  i;
-    s8 registerName[80];
+    u32 i;
+    s8  registerName[80];
 
     CheckDirty(0x103FU, "Number of XF output textures");
     CheckDirty(0x1009U, "Number of XF output colors");
@@ -1109,7 +1173,8 @@ CheckErrors(void)
         {
             __GX_WARN(0x62);
         }
-        if ((u32)(BYTE3(__gxVerif->xfRegs[9]) & 3) != (u8)((__gxVerif->rasRegs[0] >> 4U) & 7))
+        if ((u32)(BYTE3(__gxVerif->xfRegs[9]) & 3) !=
+            (u8)((__gxVerif->rasRegs[0] >> 4U) & 7))
         {
             __GX_WARN(0x63);
         }
@@ -1152,9 +1217,13 @@ CheckErrors(void)
             CheckBumpmapTextures();
         }
         CheckTextureTransformMatrices();
-        if (numColorTextures != 0
-            && (u32)((BYTE3(__gxVerif->xfRegs[numRegularTextures + numBumpmapTextures + 64]) >> 4) & 7) != 2)
-        { //((u32) (((u8) *(__gxVerif + (((numRegularTextures + (numBumpmapTextures + 0x40)) * 4) + 0xB)) >> 4U) & 7) !=
+        if (numColorTextures != 0 &&
+            (u32)((BYTE3(__gxVerif->xfRegs[numRegularTextures + numBumpmapTextures +
+                                           64]) >>
+                   4) &
+                  7) != 2)
+        { //((u32) (((u8) *(__gxVerif + (((numRegularTextures + (numBumpmapTextures +
+          // 0x40)) * 4) + 0xB)) >> 4U) & 7) !=
           // 2)) {
             __GX_WARN(0x68U);
         }
@@ -1162,7 +1231,6 @@ CheckErrors(void)
         CheckColor1();
     }
 }
-
 static void
 CheckWarnings(void)
 {
@@ -1180,13 +1248,11 @@ CheckWarnings(void)
         CheckFloatingPointRanges();
     }
 }
-
 static void
 DumpXFRegisters(void)
 {
     static u8 firstTime = 1;
 }
-
 void
 __GXVerifyXF(void)
 {
@@ -1199,5 +1265,4 @@ __GXVerifyXF(void)
     CheckWarnings();
     DumpCount++;
 }
-
 #endif

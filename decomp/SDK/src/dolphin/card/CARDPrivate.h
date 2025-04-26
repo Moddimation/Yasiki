@@ -3,7 +3,6 @@
 
 #include <dolphin/card.h>
 #include <dolphin/exi.h>
-
 typedef struct CARDID
 {
     /* 0x000 */ u8  serial[32];
@@ -14,7 +13,6 @@ typedef struct CARDID
     /* 0x1FC */ u16 checkSum;
     /* 0x1FE */ u16 checkSumInv;
 } CARDID;
-
 typedef struct CARDDir
 {
     u8  gameName[4];
@@ -22,9 +20,9 @@ typedef struct CARDDir
     u8  _padding0;
     u8  bannerFormat;
     u8  fileName[CARD_FILENAME_MAX];
-    u32 time;                                 // seconds since 01/01/2000 midnight
+    u32 time;                       // seconds since 01/01/2000 midnight
 
-    u32 iconAddr;                             // 0xffffffff if not used
+    u32 iconAddr;                   // 0xffffffff if not used
     u16 iconFormat;
     u16 iconSpeed;
 
@@ -34,9 +32,8 @@ typedef struct CARDDir
     u16 length;
     u8  _padding1[2];
 
-    u32 commentAddr;                          // 0xffffffff if not used
-} CARDDir;                                    // total size 64 bytes
-
+    u32 commentAddr;                // 0xffffffff if not used
+} CARDDir;                          // total size 64 bytes
 typedef struct CARDControl
 {
     /* 0x00 */ BOOL          attached;
@@ -77,7 +74,6 @@ typedef struct CARDControl
     /* 0xDC */ CARDCallback  unlockCallback;
     /* 0xE4 */ OSAlarm       alarm;
 } CARDControl;
-
 typedef struct CARDDecParam
 {
     /* 0x00 */ u8* inputAddr;
@@ -85,7 +81,6 @@ typedef struct CARDDecParam
     /* 0x08 */ u32 aramAddr;
     /* 0x0C */ u8* outputAddr;
 } CARDDecParam;
-
 typedef struct CARDDirCheck
 {
     u8  padding0[64 - 2 * 4];
@@ -93,68 +88,69 @@ typedef struct CARDDirCheck
     s16 checkCode;
     u16 checkSum;
     u16 checkSumInv;
-} CARDDirCheck;                               // total 64 bytes
+} CARDDirCheck;                     // total 64 bytes
+#define CARD_PAGE_SIZE         128u
+#define CARD_SEG_SIZE          512u
+#define CARD_MAX_SIZE          (16u * 1024u * 1024u)
 
-#define CARD_PAGE_SIZE                   128u
-#define CARD_SEG_SIZE                    512u
-#define CARD_MAX_SIZE                    (16u * 1024u * 1024u)
+#define CARD_NUM_SYSTEM_BLOCK  5
+#define CARD_SYSTEM_BLOCK_SIZE (8 * 1024u)
 
-#define CARD_NUM_SYSTEM_BLOCK            5
-#define CARD_SYSTEM_BLOCK_SIZE           (8 * 1024u)
+#define CARD_MAX_MOUNT_STEP    (CARD_NUM_SYSTEM_BLOCK + 2)
 
-#define CARD_MAX_MOUNT_STEP              (CARD_NUM_SYSTEM_BLOCK + 2)
+#define CARD_CUSTOM_ID         0x00000000
+#define CARD_CUSTOM_ID_MASK    0xffff0000
 
-#define CARD_CUSTOM_ID                   0x00000000
-#define CARD_CUSTOM_ID_MASK              0xffff0000
+#define CARD_ID_SIZE           0x000000fc
+#define CARD_ID_CHIPS          0x00000003
+#define CARD_ID_LATENCY        0x00000700
+#define CARD_ID_LATENCY_SHIFT  8
+#define CARD_ID_SECTOR         0x00003800
+#define CARD_ID_SECTOR_SHIFT   11
 
-#define CARD_ID_SIZE                     0x000000fc
-#define CARD_ID_CHIPS                    0x00000003
-#define CARD_ID_LATENCY                  0x00000700
-#define CARD_ID_LATENCY_SHIFT            8
-#define CARD_ID_SECTOR                   0x00003800
-#define CARD_ID_SECTOR_SHIFT             11
+#define CARD_CMD_CUSTOM_ID     0x00000000
+#define CARD_CMD_INT_ENABLE    0x81010000
+#define CARD_CMD_INT_DISABLE   0x81000000
+#define CARD_CMD_CLEAR_STATUS  0x89000000
+#define CARD_CMD_READ_STATUS   0x83000000
+#define CARD_CMD_VENDOR_ID     0x85000000
+#define CARD_CMD_READ          0x52
+#define CARD_CMD_WRITE         0xF2
+#define CARD_CMD_ERASE         0xF4
+#define CARD_CMD_ERASE_SECTOR  0xF1
+#define CARD_CMD_WAKEUP        0x87000000
+#define CARD_CMD_SLEEP         0x88000000
 
-#define CARD_CMD_CUSTOM_ID               0x00000000
-#define CARD_CMD_INT_ENABLE              0x81010000
-#define CARD_CMD_INT_DISABLE             0x81000000
-#define CARD_CMD_CLEAR_STATUS            0x89000000
-#define CARD_CMD_READ_STATUS             0x83000000
-#define CARD_CMD_VENDOR_ID               0x85000000
-#define CARD_CMD_READ                    0x52
-#define CARD_CMD_WRITE                   0xF2
-#define CARD_CMD_ERASE                   0xF4
-#define CARD_CMD_ERASE_SECTOR            0xF1
-#define CARD_CMD_WAKEUP                  0x87000000
-#define CARD_CMD_SLEEP                   0x88000000
+#define CARD_STS_COMPLETE      (1u << 7)
+#define CARD_STS_SECURITY_PASS (1u << 6)
+#define CARD_STS_SLEEPING      (1u << 5)
+#define CARD_STS_ERASE_FAIL    (1u << 4)
+#define CARD_STS_PROGRAM_FAIL  (1u << 3)
+#define CARD_STS_NA_FAIL       (1u << 2)
+#define CARD_STS_INT_ENABLE    (1u << 1)
+#define CARD_STS_READY         (1u << 0)
 
-#define CARD_STS_COMPLETE                (1u << 7)
-#define CARD_STS_SECURITY_PASS           (1u << 6)
-#define CARD_STS_SLEEPING                (1u << 5)
-#define CARD_STS_ERASE_FAIL              (1u << 4)
-#define CARD_STS_PROGRAM_FAIL            (1u << 3)
-#define CARD_STS_NA_FAIL                 (1u << 2)
-#define CARD_STS_INT_ENABLE              (1u << 1)
-#define CARD_STS_READY                   (1u << 0)
+#define CARD_FAT_AVAIL         0x0000u
+#define CARD_FAT_VOID          0x0001u
+#define CARD_FAT_EOF           0xFFFFu
 
-#define CARD_FAT_AVAIL                   0x0000u
-#define CARD_FAT_VOID                    0x0001u
-#define CARD_FAT_EOF                     0xFFFFu
+#define CARD_FAT_CHECKSUM      0x0000u
+#define CARD_FAT_CHECKSUMINV   0x0001u
+#define CARD_FAT_CHECKCODE     0x0002u
+#define CARD_FAT_FREEBLOCKS    0x0003u
+#define CARD_FAT_LASTSLOT      0x0004u
 
-#define CARD_FAT_CHECKSUM                0x0000u
-#define CARD_FAT_CHECKSUMINV             0x0001u
-#define CARD_FAT_CHECKCODE               0x0002u
-#define CARD_FAT_FREEBLOCKS              0x0003u
-#define CARD_FAT_LASTSLOT                0x0004u
+#define CARD_VENDOR_SAMSUNG    0xEC // high byte
 
-#define CARD_VENDOR_SAMSUNG              0xEC // high byte
+#define CARDIsValidBlockNo(card, iBlock)                                            \
+    (CARD_NUM_SYSTEM_BLOCK <= (iBlock) && (iBlock) < (card)->cBlock)
 
-#define CARDIsValidBlockNo(card, iBlock) (CARD_NUM_SYSTEM_BLOCK <= (iBlock) && (iBlock) < (card)->cBlock)
-
-#define CARDGetDirCheck(dir)             ((CARDDirCheck*)&(dir)[CARD_MAX_FILE])
+#define CARDGetDirCheck(dir) ((CARDDirCheck*)&(dir)[CARD_MAX_FILE])
 
 // CARDStatEx.c
 s32 __CARDGetStatusEx(long chan, long fileNo, struct CARDDir* dirent);
-s32 __CARDSetStatusExAsync(long chan, long fileNo, struct CARDDir* dirent, void (*callback)(long, long));
+s32 __CARDSetStatusExAsync(long chan, long fileNo, struct CARDDir* dirent,
+                           void (*callback)(long, long));
 s32 __CARDSetStatusEx(long chan, long fileNo, struct CARDDir* dirent);
 
 // CARDUnlock.c
@@ -164,11 +160,14 @@ s32 __CARDUnlock(s32 chan, u8 flashID[12]);
 s32 __CARDSeek(CARDFileInfo* fileInfo, s32 length, s32 offset, CARDControl** pcard);
 
 // CARDRdwr.c
-s32 __CARDRead(long chan, u32 addr, long length, void* dst, void (*callback)(long, long));
-s32 __CARDWrite(long chan, u32 addr, long length, void* dst, void (*callback)(long, long));
+s32 __CARDRead(long chan, u32 addr, long length, void* dst,
+               void (*callback)(long, long));
+s32 __CARDWrite(long chan, u32 addr, long length, void* dst,
+                void (*callback)(long, long));
 
 // CARDRaw.c
-s32 __CARDRawReadAsync(long chan, void* buf, long length, long offset, void (*callback)(long, long));
+s32 __CARDRawReadAsync(long chan, void* buf, long length, long offset,
+                       void (*callback)(long, long));
 s32 __CARDRawRead(long chan, void* buf, long length, long offset);
 
 // CARDOpen.c
@@ -214,11 +213,11 @@ int  __CARDReadNintendoID(s32 chan, u32* id);
 s32  __CARDEnableInterrupt(s32 chan, BOOL enable);
 s32  __CARDReadStatus(s32 chan, u8* status);
 s32  __CARDClearStatus(s32 chan);
-s32 __CARDSleep(long chan);
-s32 __CARDWakeup(long chan);
+s32  __CARDSleep(long chan);
+s32  __CARDWakeup(long chan);
 s32  __CARDReadSegment(s32 chan, CARDCallback callback);
 s32  __CARDWritePage(s32 chan, CARDCallback callback);
-s32 __CARDErase(long chan, void (*callback)(long, long));
+s32  __CARDErase(long chan, void (*callback)(long, long));
 s32  __CARDEraseSector(s32 chan, u32 addr, CARDCallback callback);
 void __CARDSetDiskID(DVDDiskID* id);
 s32  __CARDGetControlBlock(s32 chan, CARDControl** pcard);

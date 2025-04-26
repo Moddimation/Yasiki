@@ -7,7 +7,6 @@
 // functions
 static void BlockReadCallback(s32 chan, long result);
 static void BlockWriteCallback(s32 chan, long result);
-
 static void
 BlockReadCallback(s32 chan, long result)
 {
@@ -42,7 +41,6 @@ BlockReadCallback(s32 chan, long result)
         callback(chan, result);
     }
 }
-
 s32
 __CARDRead(s32 chan, u32 addr, long length, void* dst, void (*callback)(long, long))
 {
@@ -61,7 +59,6 @@ __CARDRead(s32 chan, u32 addr, long length, void* dst, void (*callback)(long, lo
     card->buffer = dst;
     return __CARDReadSegment(chan, BlockReadCallback);
 }
-
 static void
 BlockWriteCallback(s32 chan, long result)
 {
@@ -95,7 +92,6 @@ BlockWriteCallback(s32 chan, long result)
         callback(chan, result);
     }
 }
-
 s32
 __CARDWrite(s32 chan, u32 addr, long length, void* dst, void (*callback)(long, long))
 {
@@ -114,7 +110,6 @@ __CARDWrite(s32 chan, u32 addr, long length, void* dst, void (*callback)(long, l
     card->buffer = dst;
     return __CARDWritePage(chan, BlockWriteCallback);
 }
-
 s32
 CARDGetXferredBytes(s32 chan)
 {

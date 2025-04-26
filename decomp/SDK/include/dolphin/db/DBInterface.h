@@ -9,7 +9,6 @@ extern "C"
 #endif
 
 typedef void (*MTRCallbackType)(s32);
-
 typedef struct DBInterface
 {
     u32   bPresent;
@@ -17,7 +16,6 @@ typedef struct DBInterface
     void  (*ExceptionDestination)(void);
     void* exceptionReturn;
 } DBInterface;
-
 extern DBInterface* __DBInterface;
 
 void DBInit(void);

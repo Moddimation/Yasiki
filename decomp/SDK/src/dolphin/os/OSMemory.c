@@ -2,7 +2,6 @@
 #include <dolphin/os.h>
 
 #include <dolphin.h>
-
 u32
 OSGetPhysicalMemSize(void)
 {
@@ -14,7 +13,6 @@ OSGetPhysicalMemSize(void)
     return __OSPhysicalMemSize;
 #endif
 }
-
 u32
 OSGetConsoleSimulatedMemSize(void)
 {

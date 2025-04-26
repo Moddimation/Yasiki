@@ -4,7 +4,6 @@
 #include <dolphin.h>
 
 #include "DVDPrivate.h"
-
 static struct
 {
     /* 0x00 */ struct DVDCommandBlock* next;
@@ -12,7 +11,6 @@ static struct
 } WaitingQueue[4];
 
 static struct DVDCommandBlock* PopWaitingQueuePrio(s32 prio);
-
 void
 __DVDClearWaitingQueue(void)
 {
@@ -26,7 +24,6 @@ __DVDClearWaitingQueue(void)
         q->prev = q;
     }
 }
-
 int
 __DVDPushWaitingQueue(s32 prio, struct DVDCommandBlock* block)
 {
@@ -40,7 +37,6 @@ __DVDPushWaitingQueue(s32 prio, struct DVDCommandBlock* block)
     OSRestoreInterrupts(enabled);
     return 1;
 }
-
 static struct DVDCommandBlock*
 PopWaitingQueuePrio(s32 prio)
 {
@@ -59,7 +55,6 @@ PopWaitingQueuePrio(s32 prio)
     tmp->prev = 0;
     return tmp;
 }
-
 struct DVDCommandBlock*
 __DVDPopWaitingQueue(void)
 {
@@ -80,7 +75,6 @@ __DVDPopWaitingQueue(void)
     OSRestoreInterrupts(enabled);
     return NULL;
 }
-
 int
 __DVDCheckWaitingQueue(void)
 {
@@ -101,7 +95,6 @@ __DVDCheckWaitingQueue(void)
     OSRestoreInterrupts(enabled);
     return 0;
 }
-
 int
 __DVDDequeueWaitingQueue(struct DVDCommandBlock* block)
 {
@@ -122,7 +115,6 @@ __DVDDequeueWaitingQueue(struct DVDCommandBlock* block)
     OSRestoreInterrupts(enabled);
     return 1;
 }
-
 int
 __DVDIsBlockInWaitingQueue(struct DVDCommandBlock* block)
 {
@@ -147,7 +139,6 @@ __DVDIsBlockInWaitingQueue(struct DVDCommandBlock* block)
     }
     return 0;
 }
-
 static char* CommandNames[16] = {
     "",
     "READ",
@@ -166,7 +157,6 @@ static char* CommandNames[16] = {
     "INQUIRY",
     "BS_CHANGE_DISK",
 };
-
 void
 DVDDumpWaitingQueue(void)
 {
@@ -188,8 +178,7 @@ DVDDumpWaitingQueue(void)
             OSReport("\n");
             for (q = start->next; q != start; q = q->next)
             {
-                OSReport("0x%08x: Command: %s ", q,
-                         CommandNames[q->command]);
+                OSReport("0x%08x: Command: %s ", q, CommandNames[q->command]);
                 if (q->command == 1)
                 {
                     OSReport("Disk offset: %d, Length: %d, Addr: 0x%08x\n",

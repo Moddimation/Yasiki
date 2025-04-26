@@ -6,7 +6,6 @@
 #include "fake_tgmath.h"
 
 static G2DGlob glob;
-
 void
 G2DInitSprite(G2DSprite* sprite)
 {
@@ -20,7 +19,6 @@ G2DInitSprite(G2DSprite* sprite)
     sprite->rT0 = (0.5f + (f32)sprite->nTlcT) * rInvHeight;
     sprite->rT1 = rInvHeight * (((f32)sprite->nTlcT + (f32)sprite->nHeight) - 0.5f);
 }
-
 void
 G2DDrawSprite(G2DSprite* sprite, G2DPosOri* po)
 {
@@ -90,17 +88,17 @@ G2DDrawSprite(G2DSprite* sprite, G2DPosOri* po)
 
     GXEnd();
 }
-
 static inline void
-FillSection(G2DLayer* layer, s8* aSortBuffer, s32* nScanLine, s32 nEvent, s16* nIdx, s32* nL, s32* nR, f32* rLeft,
-            f32* rRight, f32 rStep0, f32 rStep1, s32 nMapX, s32 nMapY)
+FillSection(G2DLayer* layer, s8* aSortBuffer, s32* nScanLine, s32 nEvent, s16* nIdx,
+            s32* nL, s32* nR, f32* rLeft, f32* rRight, f32 rStep0, f32 rStep1,
+            s32 nMapX, s32 nMapY)
 {
-    s32 nHMask;
-    s32 nVMask;
-    s32 nI;
-    s32 nJ;
-    s32 nK;
-    s32 nM;
+    s32  nHMask;
+    s32  nVMask;
+    s32  nI;
+    s32  nJ;
+    s32  nK;
+    s32  nM;
     s16  nMaterial;
     s16* pAddr;
 
@@ -283,7 +281,6 @@ FillSection(G2DLayer* layer, s8* aSortBuffer, s32* nScanLine, s32 nEvent, s16* n
         }
     }
 }
-
 void
 G2DDrawLayer(G2DLayer* layer, s8* aSortBuffer)
 {
@@ -458,8 +455,10 @@ G2DDrawLayer(G2DLayer* layer, s8* aSortBuffer)
         f32 rInvTileHeight = 1.0f / (f32)layer->nTileHeight;
         f32 rLocalPosX = glob.poCam.rPosX;
         f32 rLocalPosY = glob.poCam.rPosY;
-        f32 rSplitX = 0.5f * (glob.rWorldX + (f32)(layer->nTileWidth * (1 << layer->nHS)));
-        f32 rSplitY = 0.5f * (glob.rWorldY + (f32)(layer->nTileHeight * (1 << layer->nVS)));
+        f32 rSplitX =
+            0.5f * (glob.rWorldX + (f32)(layer->nTileWidth * (1 << layer->nHS)));
+        f32 rSplitY =
+            0.5f * (glob.rWorldY + (f32)(layer->nTileHeight * (1 << layer->nVS)));
 
         if (rLocalPosX >= rSplitX)
         {
@@ -478,8 +477,8 @@ G2DDrawLayer(G2DLayer* layer, s8* aSortBuffer)
         nLocalMapY = floor(rFrcY);
     }
 
-    FillSection(layer, aSortBuffer, &nScanLine, nEvent0, &nIdx, &nL, &nR, &rLeft, &rRight, rStep0, rStep1, nLocalMapX,
-                nLocalMapY);
+    FillSection(layer, aSortBuffer, &nScanLine, nEvent0, &nIdx, &nL, &nR, &rLeft,
+                &rRight, rStep0, rStep1, nLocalMapX, nLocalMapY);
 
     pAddr = (s16*)&layer->matDesc[0].nReserved;
     aCount0 = pAddr[1];
@@ -504,8 +503,8 @@ G2DDrawLayer(G2DLayer* layer, s8* aSortBuffer)
         rRightY = 1000.0f;
     }
 
-    FillSection(layer, aSortBuffer, &nScanLine, nEvent1, &nIdx, &nL, &nR, &rLeft, &rRight, rMid, rMid, nLocalMapX,
-                nLocalMapY);
+    FillSection(layer, aSortBuffer, &nScanLine, nEvent1, &nIdx, &nL, &nR, &rLeft,
+                &rRight, rMid, rMid, nLocalMapX, nLocalMapY);
 
     pAddr = (s16*)&layer->matDesc[0].nReserved;
     aCount0 = pAddr[1];
@@ -528,8 +527,8 @@ G2DDrawLayer(G2DLayer* layer, s8* aSortBuffer)
         rRight += rStep0 * (((f32)nScanLine - rRightY) - 1.0f);
     }
 
-    FillSection(layer, aSortBuffer, &nScanLine, nEvent2 + 1, &nIdx, &nL, &nR, &rLeft, &rRight, rStep1, rStep0,
-                nLocalMapX, nLocalMapY);
+    FillSection(layer, aSortBuffer, &nScanLine, nEvent2 + 1, &nIdx, &nL, &nR, &rLeft,
+                &rRight, rStep1, rStep0, nLocalMapX, nLocalMapY);
 
     pAddr = (s16*)&layer->matDesc[0].nReserved;
     aCount0 = pAddr[1];
@@ -548,9 +547,10 @@ G2DDrawLayer(G2DLayer* layer, s8* aSortBuffer)
 
         switch (layer->matDesc[nMaterial].nCategory)
         {
-            case G2D_CTG_EMPTY : continue;
+            case G2D_CTG_EMPTY:
+                continue;
 
-            case G2D_CTG_RGBA_INDEX8 :
+            case G2D_CTG_RGBA_INDEX8:
                 {
                     GXClearVtxDesc();
 
@@ -560,13 +560,16 @@ G2DDrawLayer(G2DLayer* layer, s8* aSortBuffer)
                     GXSetNumTexGens(0);
                     GXSetVtxDesc(GX_VA_TEX0, GX_NONE);
                     GXSetTevOp(GX_TEVSTAGE0, GX_PASSCLR);
-                    GXSetTevOrder(GX_TEVSTAGE0, GX_TEXCOORD_NULL, GX_TEXMAP_NULL, GX_COLOR0A0);
-                    GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_CLR0, GX_CLR_RGBA, GX_RGBA8, 0);
+                    GXSetTevOrder(GX_TEVSTAGE0, GX_TEXCOORD_NULL, GX_TEXMAP_NULL,
+                                  GX_COLOR0A0);
+                    GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_CLR0, GX_CLR_RGBA, GX_RGBA8,
+                                    0);
                     GXSetVtxDesc(GX_VA_CLR0, GX_INDEX8);
                     GXSetArray(GX_VA_CLR0, layer->matDesc[nMaterial].clut, 4);
 
                     GXSetNumChans(1);
-                    GXSetChanCtrl(GX_COLOR0A0, 0, GX_SRC_VTX, GX_SRC_VTX, 1, GX_DF_NONE, GX_AF_NONE);
+                    GXSetChanCtrl(GX_COLOR0A0, 0, GX_SRC_VTX, GX_SRC_VTX, 1,
+                                  GX_DF_NONE, GX_AF_NONE);
 
                     nIdx = nMaterial << 1;
                     GXBegin(GX_QUADS, GX_VTXFMT0, pAddr[1] << 2);
@@ -593,7 +596,8 @@ G2DDrawLayer(G2DLayer* layer, s8* aSortBuffer)
                         GXPosition2f32(rI + (f32)layer->nTileWidth, rJ);
                         GXColor1x8(nCI);
 
-                        GXPosition2f32(rI + (f32)layer->nTileWidth, rJ + (f32)layer->nTileHeight);
+                        GXPosition2f32(rI + (f32)layer->nTileWidth,
+                                       rJ + (f32)layer->nTileHeight);
                         GXColor1x8(nCI);
 
                         GXPosition2f32(rI, rJ + (f32)layer->nTileHeight);
@@ -607,7 +611,7 @@ G2DDrawLayer(G2DLayer* layer, s8* aSortBuffer)
                     break;
                 }
 
-            case G2D_CTG_RGB_DIRECT :
+            case G2D_CTG_RGB_DIRECT:
                 {
                     GXClearVtxDesc();
 
@@ -617,12 +621,14 @@ G2DDrawLayer(G2DLayer* layer, s8* aSortBuffer)
                     GXSetNumTexGens(0);
                     GXSetVtxDesc(GX_VA_TEX0, GX_NONE);
                     GXSetTevOp(GX_TEVSTAGE0, GX_PASSCLR);
-                    GXSetTevOrder(GX_TEVSTAGE0, GX_TEXCOORD_NULL, GX_TEXMAP_NULL, GX_COLOR0A0);
+                    GXSetTevOrder(GX_TEVSTAGE0, GX_TEXCOORD_NULL, GX_TEXMAP_NULL,
+                                  GX_COLOR0A0);
                     GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_CLR0, GX_CLR_RGB, GX_RGB8, 0);
                     GXSetVtxDesc(GX_VA_CLR0, GX_DIRECT);
 
                     GXSetNumChans(1);
-                    GXSetChanCtrl(GX_COLOR0A0, 0, GX_SRC_VTX, GX_SRC_VTX, 1, GX_DF_NONE, GX_AF_NONE);
+                    GXSetChanCtrl(GX_COLOR0A0, 0, GX_SRC_VTX, GX_SRC_VTX, 1,
+                                  GX_DF_NONE, GX_AF_NONE);
 
                     nIdx = nMaterial << 1;
                     GXBegin(GX_QUADS, GX_VTXFMT0, pAddr[1] << 2);
@@ -652,7 +658,8 @@ G2DDrawLayer(G2DLayer* layer, s8* aSortBuffer)
                         GXPosition2f32(rI + (f32)layer->nTileWidth, rJ);
                         GXColor3u8(nR, nG, nB);
 
-                        GXPosition2f32(rI + (f32)layer->nTileWidth, rJ + (f32)layer->nTileHeight);
+                        GXPosition2f32(rI + (f32)layer->nTileWidth,
+                                       rJ + (f32)layer->nTileHeight);
                         GXColor3u8(nR, nG, nB);
 
                         GXPosition2f32(rI, rJ + (f32)layer->nTileHeight);
@@ -666,10 +673,12 @@ G2DDrawLayer(G2DLayer* layer, s8* aSortBuffer)
                     break;
                 }
 
-            case G2D_CTG_TEXTURE :
+            case G2D_CTG_TEXTURE:
                 {
-                    f32 rInvTileWidth = 1.0f / (f32)GXGetTexObjWidth(layer->matDesc[nMaterial].to);
-                    f32 rInvTileHeight = 1.0f / (f32)GXGetTexObjHeight(layer->matDesc[nMaterial].to);
+                    f32 rInvTileWidth =
+                        1.0f / (f32)GXGetTexObjWidth(layer->matDesc[nMaterial].to);
+                    f32 rInvTileHeight =
+                        1.0f / (f32)GXGetTexObjHeight(layer->matDesc[nMaterial].to);
 
                     f32 rWidth = (f32)layer->nTileWidth * rInvTileWidth;
                     f32 rHeight = (f32)layer->nTileHeight * rInvTileHeight;
@@ -692,16 +701,20 @@ G2DDrawLayer(G2DLayer* layer, s8* aSortBuffer)
                     if (layer->matDesc[nMaterial].color)
                     {
                         GXSetNumChans(1);
-                        GXSetChanMatColor(GX_COLOR0A0, *layer->matDesc[nMaterial].color);
-                        GXSetChanCtrl(GX_COLOR0A0, 0, GX_SRC_REG, GX_SRC_REG, 1, GX_DF_NONE, GX_AF_NONE);
+                        GXSetChanMatColor(GX_COLOR0A0,
+                                          *layer->matDesc[nMaterial].color);
+                        GXSetChanCtrl(GX_COLOR0A0, 0, GX_SRC_REG, GX_SRC_REG, 1,
+                                      GX_DF_NONE, GX_AF_NONE);
                         GXSetTevOp(GX_TEVSTAGE0, GX_MODULATE);
-                        GXSetTevOrder(GX_TEVSTAGE0, GX_TEXCOORD0, GX_TEXMAP0, GX_COLOR0A0);
+                        GXSetTevOrder(GX_TEVSTAGE0, GX_TEXCOORD0, GX_TEXMAP0,
+                                      GX_COLOR0A0);
                     }
                     else
                     {
                         GXSetNumChans(0);
                         GXSetTevOp(GX_TEVSTAGE0, GX_REPLACE);
-                        GXSetTevOrder(GX_TEVSTAGE0, GX_TEXCOORD0, GX_TEXMAP0, GX_COLOR_NULL);
+                        GXSetTevOrder(GX_TEVSTAGE0, GX_TEXCOORD0, GX_TEXMAP0,
+                                      GX_COLOR_NULL);
                     }
 
                     nIdx = nMaterial << 1;
@@ -733,7 +746,8 @@ G2DDrawLayer(G2DLayer* layer, s8* aSortBuffer)
                         GXPosition2f32(rI + (f32)layer->nTileWidth, rJ);
                         GXTexCoord2f32(rS + rS1, rT);
 
-                        GXPosition2f32(rI + (f32)layer->nTileWidth, rJ + (f32)layer->nTileHeight);
+                        GXPosition2f32(rI + (f32)layer->nTileWidth,
+                                       rJ + (f32)layer->nTileHeight);
                         GXTexCoord2f32(rS + rS1, rT + rT1);
 
                         GXPosition2f32(rI, rJ + (f32)layer->nTileHeight);
@@ -749,7 +763,6 @@ G2DDrawLayer(G2DLayer* layer, s8* aSortBuffer)
         }
     }
 }
-
 void
 G2DSetCamera(G2DPosOri* po)
 {
@@ -780,7 +793,6 @@ G2DSetCamera(G2DPosOri* po)
     MTXLookAt(mView, &vPos, &vUp, &vAt);
     GXLoadPosMtxImm(mView, GX_PNMTX0);
 }
-
 void
 G2DInitWorld(u32 nWorldX, u32 nWorldY)
 {
@@ -794,7 +806,6 @@ G2DInitWorld(u32 nWorldX, u32 nWorldY)
     MTXOrtho(mProjection, 224.0f, -224.0f, -320.0f, 320.0f, 100.0f, 1000.0f);
     GXSetProjection(mProjection, GX_ORTHOGRAPHIC);
 }
-
 void
 G2DSetViewport(u16 nLeft, u16 nTop, u16 nWidth, u16 nHeight)
 {

@@ -11,13 +11,11 @@ static u32  __AXCommandListPosition;
 static u16* __AXClWrite;
 static u32  __AXCommandListCycles;
 u32         __AXClMode;
-
 u32
 __AXGetCommandListCycles(void)
 {
     return __AXCommandListCycles;
 }
-
 u32
 __AXGetCommandListAddress(void)
 {
@@ -29,14 +27,12 @@ __AXGetCommandListAddress(void)
     __AXClWrite = (void*)&__AXCommandList[__AXCommandListPosition][0];
     return address;
 }
-
 void
 __AXWriteToCommandList(u16 data)
 {
     *__AXClWrite = data;
     __AXClWrite++;
 }
-
 void
 __AXNextFrame(void* sbuffer, void* buffer)
 {
@@ -52,7 +48,7 @@ __AXNextFrame(void* sbuffer, void* buffer)
     __AXCommandListCycles += 0x2E44;
     switch (__AXClMode)
     {
-        case 1 :
+        case 1:
             __AXWriteToCommandList(8);
             __AXWriteToCommandList((u16)((u32)&__AXHRTFHistory >> 0x10U));
             __AXWriteToCommandList((u16)&__AXHRTFHistory);
@@ -60,15 +56,16 @@ __AXNextFrame(void* sbuffer, void* buffer)
             __AXWriteToCommandList((u32)sbuffer);
             __AXCommandListCycles += 0xAFC8;
             break;
-        case 0 :
-        case 3 :
-        case 4 :
+        case 0:
+        case 3:
+        case 4:
             __AXWriteToCommandList(7);
             __AXWriteToCommandList((u16)((u32)sbuffer >> 0x10U));
             __AXWriteToCommandList((u32)sbuffer);
             __AXCommandListCycles += 0x5E6;
             break;
-        default : ASSERTLINE(0x96, 0);
+        default:
+            ASSERTLINE(0x96, 0);
     }
     data = (u32)__AXGetPBs();
     __AXWriteToCommandList(2U);
@@ -115,7 +112,6 @@ __AXNextFrame(void* sbuffer, void* buffer)
     __AXCommandListCycles += 2;
     DCFlushRange(pCommandList, 0x300);
 }
-
 void
 __AXClInit(void)
 {
@@ -128,7 +124,6 @@ __AXClInit(void)
     __AXCommandListPosition = 0;
     __AXClWrite = (void*)&__AXCommandList;
 }
-
 void
 __AXClQuit(void)
 {
@@ -136,7 +131,6 @@ __AXClQuit(void)
     OSReport("Shutting down AXCL code module¥n");
 #endif
 }
-
 void
 AXSetMode(u32 mode)
 {
@@ -149,7 +143,6 @@ AXSetMode(u32 mode)
         __AXClMode = mode;
     }
 }
-
 u32
 AXGetMode(void)
 {

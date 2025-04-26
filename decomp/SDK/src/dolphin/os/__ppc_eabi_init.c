@@ -7,7 +7,6 @@
 
 __declspec(section ".ctors") extern void (*_ctors[])(); // size: 0x0, address: 0x0
 __declspec(section ".dtors") extern void (*_dtors[])(); // size: 0x0, address: 0x0
-
 __declspec(section ".init") asm void
 __init_hardware(void)
 {                                                       // clang-format off

@@ -24,7 +24,7 @@ int  __DVDPushWaitingQueue(s32 prio, struct DVDCommandBlock* block);
 struct DVDCommandBlock* __DVDPopWaitingQueue();
 int                     __DVDCheckWaitingQueue();
 int                     __DVDDequeueWaitingQueue(struct DVDCommandBlock* block);
-int __DVDIsBlockInWaitingQueue(struct DVDCommandBlock* block);
+int                     __DVDIsBlockInWaitingQueue(struct DVDCommandBlock* block);
 
 // fstload.c
 void __fstLoad();

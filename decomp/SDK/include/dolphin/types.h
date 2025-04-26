@@ -36,24 +36,23 @@ typedef u16 wchar_t;
 #endif
 
 #ifndef NULL
-#    define NULL ((void*)0)
+#define NULL ((void*)0)
 #endif
 
 #ifndef nullptr
-#    define nullptr 0
+#define nullptr 0
 #endif
 
 #define FALSE 0
 #define TRUE  1
 
 #if defined(__MWERKS__)
-#    define AT_ADDRESS(addr) : (addr)
+#define AT_ADDRESS(addr) : (addr)
 #elif defined(__GNUC__)
 // #define AT_ADDRESS(addr) __attribute__((address((addr))))
-#    define AT_ADDRESS(                                                     \
-        addr) // was removed in GCC. define in linker script instead.
+#define AT_ADDRESS(addr) // was removed in GCC. define in linker script instead.
 #else
-#    error unknown compiler
+#error unknown compiler
 #endif
 
 #define ATTRIBUTE_ALIGN(num) __attribute__((aligned(num)))

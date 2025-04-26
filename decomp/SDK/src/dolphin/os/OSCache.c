@@ -10,7 +10,6 @@
 #define HID2 920
 
 void DMAErrorHandler(OSError error, OSContext* context, ...);
-
 /* clang-format off */
 asm void DCFlashInvalidate(void) {
   nofralloc
@@ -451,17 +450,17 @@ asm void LCStoreBlocks(register void* destAddr, register void* srcTag, register 
   mtspr   DMA_L, r6
   blr
 }
-
 /* clang-format on */
-
 void
 LCAlloc(void* addr, u32 nBytes)
 {
     u32 numBlocks = nBytes >> 5;
     u32 hid2 = PPCMfhid2();
 
-    ASSERTMSGLINE(0x530, !((u32)addr & 31), "LCAlloc(): addr must be 32 byte aligned");
-    ASSERTMSGLINE(0x532, !((u32)nBytes & 31), "LCAlloc(): nBytes must be 32 byte aligned");
+    ASSERTMSGLINE(0x530, !((u32)addr & 31),
+                  "LCAlloc(): addr must be 32 byte aligned");
+    ASSERTMSGLINE(0x532, !((u32)nBytes & 31),
+                  "LCAlloc(): nBytes must be 32 byte aligned");
 
     if ((hid2 & 0x10000000) == 0)
     {
@@ -469,15 +468,16 @@ LCAlloc(void* addr, u32 nBytes)
     }
     LCAllocTags(1, addr, numBlocks);
 }
-
 void
 LCAllocNoInvalidate(void* addr, u32 nBytes)
 {
     u32 numBlocks = nBytes >> 5;
     u32 hid2 = PPCMfhid2();
 
-    ASSERTMSGLINE(0x55F, !((u32)addr & 31), "LCAllocNoFlush(): addr must be 32 byte aligned");
-    ASSERTMSGLINE(0x561, !((u32)nBytes & 31), "LCAllocNoFlush(): nBytes must be 32 byte aligned");
+    ASSERTMSGLINE(0x55F, !((u32)addr & 31),
+                  "LCAllocNoFlush(): addr must be 32 byte aligned");
+    ASSERTMSGLINE(0x561, !((u32)nBytes & 31),
+                  "LCAllocNoFlush(): nBytes must be 32 byte aligned");
 
     if ((hid2 & 0x10000000) == 0)
     {
@@ -485,15 +485,16 @@ LCAllocNoInvalidate(void* addr, u32 nBytes)
     }
     LCAllocTags(0, addr, numBlocks);
 }
-
 u32
 LCLoadData(void* destAddr, void* srcAddr, u32 nBytes)
 {
     u32 numBlocks = (nBytes + 31) / 32;
     u32 numTransactions = (numBlocks + 128 - 1) / 128;
 
-    ASSERTMSGLINE(0x59B, !((u32)srcAddr & 31), "LCLoadData(): srcAddr not 32 byte aligned");
-    ASSERTMSGLINE(0x59D, !((u32)destAddr & 31), "LCLoadData(): destAddr not 32 byte aligned");
+    ASSERTMSGLINE(0x59B, !((u32)srcAddr & 31),
+                  "LCLoadData(): srcAddr not 32 byte aligned");
+    ASSERTMSGLINE(0x59D, !((u32)destAddr & 31),
+                  "LCLoadData(): destAddr not 32 byte aligned");
 
     while (numBlocks > 0)
     {
@@ -513,15 +514,16 @@ LCLoadData(void* destAddr, void* srcAddr, u32 nBytes)
 
     return numTransactions;
 }
-
 u32
 LCStoreData(void* destAddr, void* srcAddr, u32 nBytes)
 {
     u32 numBlocks = (nBytes + 31) / 32;
     u32 numTransactions = (numBlocks + 128 - 1) / 128;
 
-    ASSERTMSGLINE(0x5DF, !((u32)srcAddr & 31), "LCStoreData(): srcAddr not 32 byte aligned");
-    ASSERTMSGLINE(0x5E1, !((u32)destAddr & 31), "LCStoreData(): destAddr not 32 byte aligned");
+    ASSERTMSGLINE(0x5DF, !((u32)srcAddr & 31),
+                  "LCStoreData(): srcAddr not 32 byte aligned");
+    ASSERTMSGLINE(0x5E1, !((u32)destAddr & 31),
+                  "LCStoreData(): destAddr not 32 byte aligned");
 
     while (numBlocks > 0)
     {
@@ -541,7 +543,6 @@ LCStoreData(void* destAddr, void* srcAddr, u32 nBytes)
 
     return numTransactions;
 }
-
 /* clang-format off */
 asm u32 LCQueueLength(void) {
   nofralloc
@@ -594,9 +595,7 @@ static void L2Init(void) {
 void L2Enable(void) { 
     PPCMtl2cr((PPCMfl2cr() | L2CR_L2E) & ~L2CR_L2I);
 }
-
 /* clang-format on */
-
 void
 L2Disable(void)
 {
@@ -604,7 +603,6 @@ L2Disable(void)
     PPCMtl2cr(PPCMfl2cr() & ~0x80000000);
     __sync();
 }
-
 void
 L2GlobalInvalidate(void)
 {
@@ -617,7 +615,6 @@ L2GlobalInvalidate(void)
         DBPrintf(">>> L2 INVALIDATE : SHOULD NEVER HAPPEN\n");
     }
 }
-
 void
 L2SetDataOnly(BOOL dataOnly)
 {
@@ -628,7 +625,6 @@ L2SetDataOnly(BOOL dataOnly)
     }
     PPCMtl2cr(PPCMfl2cr() & 0xFFBFFFFF);
 }
-
 void
 L2SetWriteThrough(BOOL writeThrough)
 {
@@ -639,7 +635,6 @@ L2SetWriteThrough(BOOL writeThrough)
     }
     PPCMtl2cr(PPCMfl2cr() & 0xFFF7FFFF);
 }
-
 void
 DMAErrorHandler(OSError error, OSContext* context, ...)
 {
@@ -647,7 +642,8 @@ DMAErrorHandler(OSError error, OSContext* context, ...)
 
     OSReport("Machine check received\n");
     OSReport("HID2 = 0x%x   SRR1 = 0x%x\n", hid2, context->srr1);
-    if (!(hid2 & (HID2_DCHERR | HID2_DNCERR | HID2_DCMERR | HID2_DQOERR)) || !(context->srr1 & SRR1_DMA_BIT))
+    if (!(hid2 & (HID2_DCHERR | HID2_DNCERR | HID2_DCMERR | HID2_DQOERR)) ||
+        !(context->srr1 & SRR1_DMA_BIT))
     {
         OSReport("Machine check was not DMA/locked cache related\n");
         OSDumpContext(context);
@@ -680,7 +676,6 @@ DMAErrorHandler(OSError error, OSContext* context, ...)
     // write hid2 back to clear the error bits
     PPCMthid2(hid2);
 }
-
 void
 __OSCacheInit()
 {

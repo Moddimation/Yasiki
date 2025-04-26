@@ -9,16 +9,18 @@
 static __GXFifoObj           DisplayListFifo;
 static volatile __GXFifoObj* OldCPUFifo;
 static GXData                __savedGXdata;
-
 void
 GXBeginDisplayList(void* list, u32 size)
 {
     __GXFifoObj* CPUFifo = (__GXFifoObj*)GXGetCPUFifo();
 
     CHECK_GXBEGIN(137, "GXBeginDisplayList");
-    ASSERTMSGLINE(138, !__GXData->inDispList, "GXBeginDisplayList: display list already in progress");
-    ASSERTMSGLINE(139, (size & 0x1F) == 0, "GXBeginDisplayList: size is not 32 byte aligned");
-    ASSERTMSGLINE(140, ((u32)list & 0x1F) == 0, "GXBeginDisplayList: list is not 32 byte aligned");
+    ASSERTMSGLINE(138, !__GXData->inDispList,
+                  "GXBeginDisplayList: display list already in progress");
+    ASSERTMSGLINE(139, (size & 0x1F) == 0,
+                  "GXBeginDisplayList: size is not 32 byte aligned");
+    ASSERTMSGLINE(140, ((u32)list & 0x1F) == 0,
+                  "GXBeginDisplayList: list is not 32 byte aligned");
 
     if (__GXData->dirtyState != 0)
     {
@@ -41,7 +43,6 @@ GXBeginDisplayList(void* list, u32 size)
     OldCPUFifo = CPUFifo;
     GXSetCPUFifo((GXFifoObj*)&DisplayListFifo);
 }
-
 u32
 GXEndDisplayList(void)
 {
@@ -51,7 +52,8 @@ GXEndDisplayList(void)
     u32  cpenable;
 
     CHECK_GXBEGIN(195, "GXEndDisplayList");
-    ASSERTMSGLINE(196, __GXData->inDispList == TRUE, "GXEndDisplayList: no display list in progress");
+    ASSERTMSGLINE(196, __GXData->inDispList == TRUE,
+                  "GXEndDisplayList: no display list in progress");
     if (__GXData->dirtyState != 0)
     {
         __GXSetDirtyState();
@@ -63,7 +65,8 @@ GXEndDisplayList(void)
     ov = (GX_GET_PI_REG(5) >> 26) & 1;
 #endif
     __GXSaveCPUFifoAux(&DisplayListFifo);
-    ASSERTMSGLINE(213, !ov, "GXEndDisplayList: display list commands overflowed buffer");
+    ASSERTMSGLINE(213, !ov,
+                  "GXEndDisplayList: display list commands overflowed buffer");
     GXSetCPUFifo((GXFifoObj*)OldCPUFifo);
 
     if (__GXData->dlSaveContext != 0)
@@ -86,14 +89,16 @@ GXEndDisplayList(void)
         return 0;
     }
 }
-
 void
 GXCallDisplayList(void* list, u32 nbytes)
 {
     CHECK_GXBEGIN(254, "GXCallDisplayList");
-    ASSERTMSGLINE(255, !__GXData->inDispList, "GXCallDisplayList: display list already in progress");
-    ASSERTMSGLINE(256, (nbytes & 0x1F) == 0, "GXCallDisplayList: nbytes is not 32 byte aligned");
-    ASSERTMSGLINE(257, ((u32)list & 0x1F) == 0, "GXCallDisplayList: list is not 32 byte aligned");
+    ASSERTMSGLINE(255, !__GXData->inDispList,
+                  "GXCallDisplayList: display list already in progress");
+    ASSERTMSGLINE(256, (nbytes & 0x1F) == 0,
+                  "GXCallDisplayList: nbytes is not 32 byte aligned");
+    ASSERTMSGLINE(257, ((u32)list & 0x1F) == 0,
+                  "GXCallDisplayList: list is not 32 byte aligned");
 
     if (__GXData->dirtyState != 0)
     {

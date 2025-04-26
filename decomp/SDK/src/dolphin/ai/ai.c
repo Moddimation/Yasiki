@@ -17,7 +17,6 @@ static OSTime      bound_48KHz;
 static OSTime      min_wait;
 static OSTime      max_wait;
 static OSTime      buffer;
-
 struct STRUCT_TIMELOG
 {
     OSTime t_start;
@@ -40,7 +39,6 @@ static void __AIDHandler(__OSInterrupt interrupt, OSContext* context);
 static void __AISHandler(__OSInterrupt interrupt, OSContext* context);
 static void __AICallbackStackSwitch(void* cb);
 static void __AI_SRC_INIT(void);
-
 AIDCallback
 AIRegisterDMACallback(AIDCallback callback)
 {
@@ -53,7 +51,6 @@ AIRegisterDMACallback(AIDCallback callback)
     OSRestoreInterrupts(old);
     return old_callback;
 }
-
 void
 AIInitDMA(u32 start_addr, u32 length)
 {
@@ -62,53 +59,46 @@ AIInitDMA(u32 start_addr, u32 length)
     old = OSDisableInterrupts();
     __DSPReg[24] = (__DSPReg[24] & 0xFFFFFC00) | (start_addr >> 16);
     __DSPReg[25] = (__DSPReg[25] & 0xFFFF001F) | (start_addr & 0xFFFF);
-    ASSERTMSGLINE(0x12E, (length & 0x1F) == 0, "AIStartDMA: length must be multiple of 32 bytes");
+    ASSERTMSGLINE(0x12E, (length & 0x1F) == 0,
+                  "AIStartDMA: length must be multiple of 32 bytes");
     __DSPReg[27] = (__DSPReg[27] & 0xFFFF8000) | ((length >> 5) & 0xFFFF);
     OSRestoreInterrupts(old);
 }
-
 BOOL
 AIGetDMAEnableFlag(void)
 {
     return (__DSPReg[27] & (1 << 15)) >> 15;
 }
-
 void
 AIStartDMA(void)
 {
     __DSPReg[27] = __DSPReg[27] | 0x8000;
 }
-
 void
 AIStopDMA(void)
 {
     __DSPReg[27] = __DSPReg[27] & ~0x8000;
 }
-
 u32
 AIGetDMABytesLeft(void)
 {
     return (__DSPReg[29] & 0x7FFF) << 5;
 }
-
 u32
 AIGetDMAStartAddr(void)
 {
     return ((__DSPReg[24] << 16) & 0x03FF0000) | (__DSPReg[25] & 0xFFE0);
 }
-
 u32
 AIGetDMALength(void)
 {
     return (__DSPReg[27] & 0x7FFF) << 5;
 }
-
 BOOL
 AICheckInit(void)
 {
     return __AI_init_flag;
 }
-
 AISCallback
 AIRegisterStreamCallback(AISCallback callback)
 {
@@ -121,31 +111,26 @@ AIRegisterStreamCallback(AISCallback callback)
     OSRestoreInterrupts(old);
     return old_callback;
 }
-
 u32
 AIGetStreamSampleCount(void)
 {
     return __AIRegs[2];
 }
-
 void
 AIResetStreamSampleCount(void)
 {
     __AIRegs[0] = (__AIRegs[0] & ~0x20) | 0x20;
 }
-
 void
 AISetStreamTrigger(u32 trigger)
 {
     __AIRegs[3] = trigger;
 }
-
 u32
 AIGetStreamTrigger(void)
 {
     return __AIRegs[3];
 }
-
 void
 AISetStreamPlayState(u32 state)
 {
@@ -173,13 +158,11 @@ AISetStreamPlayState(u32 state)
         SET_REG_FIELD(0x27F, __AIRegs[0], 1, 0, state);
     }
 }
-
 u32
 AIGetStreamPlayState(void)
 {
     return __AIRegs[0] & 1;
 }
-
 void
 AISetDSPSampleRate(u32 rate)
 {
@@ -212,13 +195,11 @@ AISetDSPSampleRate(u32 rate)
         }
     }
 }
-
 u32
 AIGetDSPSampleRate(void)
 {
     return GET_REG_FIELD(__AIRegs[0], 1, 6) ^ 1;
 }
-
 void
 AISetStreamSampleRate(u32 rate)
 {
@@ -228,16 +209,16 @@ AISetStreamSampleRate(u32 rate)
         return;
     }
 #if DEBUG
-    OSReport("AISetStreamSampleRate(): OBSOLETED. Only 48KHz streaming from disk is supported!\n");
+    OSReport(
+        "AISetStreamSampleRate(): OBSOLETED. Only 48KHz streaming from disk is "
+        "supported!\n");
 #endif
 }
-
 void
 __AI_DEBUG_set_stream_sample_rate(u32 rate)
 {
     __AI_set_stream_sample_rate(rate);
 }
-
 static void
 __AI_set_stream_sample_rate(u32 rate)
 {
@@ -267,37 +248,31 @@ __AI_set_stream_sample_rate(u32 rate)
         AISetStreamVolRight(vol_right);
     }
 }
-
 u32
 AIGetStreamSampleRate(void)
 {
     return GET_REG_FIELD(__AIRegs[0], 1, 1);
 }
-
 void
 AISetStreamVolLeft(u8 vol)
 {
     SET_REG_FIELD(0x3A3, __AIRegs[1], 8, 0, vol);
 }
-
 u8
 AIGetStreamVolLeft(void)
 {
     return GET_REG_FIELD(__AIRegs[1], 8, 0);
 }
-
 void
 AISetStreamVolRight(u8 vol)
 {
     SET_REG_FIELD(0x3CC, __AIRegs[1], 8, 8, vol);
 }
-
 u8
 AIGetStreamVolRight(void)
 {
     return (__AIRegs[1] & (0xFF << 8)) >> 8;
 }
-
 void
 AIInit(u8* stack)
 {
@@ -322,7 +297,8 @@ AIInit(u8* stack)
         __CallbackStack = stack;
         if (stack)
         {
-            ASSERTMSGLINE(0x444, ((u32)stack & 7) != 0, "AIInit: stack must be 8-byte aligned");
+            ASSERTMSGLINE(0x444, ((u32)stack & 7) != 0,
+                          "AIInit: stack must be 8-byte aligned");
         }
         __OSSetInterruptHandler(5, __AIDHandler);
         __OSUnmaskInterrupts(0x04000000);
@@ -331,13 +307,11 @@ AIInit(u8* stack)
         __AI_init_flag = TRUE;
     }
 }
-
 void
 AIReset(void)
 {
     __AI_init_flag = FALSE;
 }
-
 static void
 __AISHandler(__OSInterrupt interrupt, OSContext* context)
 {
@@ -353,7 +327,6 @@ __AISHandler(__OSInterrupt interrupt, OSContext* context)
     OSClearContext(&exceptionContext);
     OSSetCurrentContext(context);
 }
-
 static void
 __AIDHandler(__OSInterrupt interrupt, OSContext* context)
 {
@@ -379,7 +352,6 @@ __AIDHandler(__OSInterrupt interrupt, OSContext* context)
     OSClearContext(&exceptionContext);
     OSSetCurrentContext(context);
 }
-
 static asm void
 __AICallbackStackSwitch(register void* cb)
 {
@@ -407,7 +379,6 @@ __AICallbackStackSwitch(register void* cb)
     mtlr r0;
     blr
 }
-
 void
 __AI_SRC_INIT(void)
 {
@@ -477,7 +448,6 @@ __AI_SRC_INIT(void)
     profile.t_end = OSGetTime();
 #endif
 }
-
 struct STRUCT_TIMELOG*
 __ai_src_get_time(void)
 {

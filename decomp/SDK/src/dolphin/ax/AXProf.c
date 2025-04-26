@@ -9,7 +9,6 @@ static AXPROFILE* __AXProfile;
 static u32        __AXMaxProfiles;
 static u32        __AXCurrentProfile;
 static u32        __AXProfileInitialized;
-
 AXPROFILE*
 __AXGetCurrentProfile(void)
 {
@@ -24,7 +23,6 @@ __AXGetCurrentProfile(void)
     }
     return 0;
 }
-
 void
 AXInitProfile(AXPROFILE* profile, u32 maxProfiles)
 {
@@ -36,7 +34,6 @@ AXInitProfile(AXPROFILE* profile, u32 maxProfiles)
     __AXCurrentProfile = 0;
     __AXProfileInitialized = 1;
 }
-
 u32
 AXGetProfile(void)
 {

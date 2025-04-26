@@ -1,7 +1,7 @@
 /* symbols just to satisfy the linker*/
-#define TEXT_STUB(name)                                                                                                \
-    void name(void)                                                                                                    \
-    {                                                                                                                  \
+#define TEXT_STUB(name)                                                             \
+    void name(void)                                                                 \
+    {                                                                               \
     }
 #define DATA_STUB(name) int name;
 

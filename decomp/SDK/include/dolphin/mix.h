@@ -2,7 +2,6 @@
 #define _DOLPHIN_MIX_H_
 
 #include <dolphin/ax.h>
-
 struct MIXChannel
 {
     /* 0x00 */ AXVPB* axvpb;
@@ -38,11 +37,11 @@ struct MIXChannel
     /* 0x54 */ u16    vBS;
     /* 0x56 */ u16    vBS1;
 };
-
 // mix.c
 void MIXInit(void);
 void MIXQuit(void);
-void MIXInitChannel(AXVPB* axvpb, u32 mode, int input, int auxA, int auxB, int pan, int span, int fader);
+void MIXInitChannel(AXVPB* axvpb, u32 mode, int input, int auxA, int auxB, int pan,
+                    int span, int fader);
 void MIXReleaseChannel(AXVPB* axvpb);
 void MIXResetControls(AXVPB* p);
 void MIXSetInput(AXVPB* p, int dB);

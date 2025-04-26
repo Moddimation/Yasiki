@@ -9,13 +9,11 @@ static s32         Chan = -1;
 static HIOCallback ExiCallback;
 static HIOCallback TxCallback;
 static HIOCallback RxCallback;
-
 static void
 ExtHandler(s32 chan, OSContext* context)
 {
     Chan = -1;
 }
-
 static void
 ExiHandler(s32 chan, OSContext* context)
 {
@@ -24,7 +22,6 @@ ExiHandler(s32 chan, OSContext* context)
         ExiCallback();
     }
 }
-
 static void
 DbgHandler(__OSInterrupt interrupt, OSContext* context)
 {
@@ -34,7 +31,6 @@ DbgHandler(__OSInterrupt interrupt, OSContext* context)
         ExiCallback();
     }
 }
-
 static void
 TxHandler(s32 chan, OSContext* context)
 {
@@ -45,7 +41,6 @@ TxHandler(s32 chan, OSContext* context)
         TxCallback();
     }
 }
-
 static void
 RxHandler(s32 chan, OSContext* context)
 {
@@ -56,7 +51,6 @@ RxHandler(s32 chan, OSContext* context)
         RxCallback();
     }
 }
-
 BOOL
 HIOEnumDevices(HIOEnumCallback callback)
 {
@@ -118,7 +112,6 @@ HIOEnumDevices(HIOEnumCallback callback)
     }
     return 0;
 }
-
 BOOL
 HIOInit(s32 chan, HIOCallback callback)
 {
@@ -189,7 +182,6 @@ HIOInit(s32 chan, HIOCallback callback)
     }
     return 1;
 }
-
 BOOL
 HIOReadMailbox(u32* word)
 {
@@ -219,7 +211,6 @@ HIOReadMailbox(u32* word)
     EXIUnlock(Chan);
     return !err;
 }
-
 BOOL
 HIOWriteMailbox(u32 word)
 {
@@ -247,7 +238,6 @@ HIOWriteMailbox(u32 word)
     EXIUnlock(Chan);
     return !err;
 }
-
 BOOL
 HIORead(u32 addr, void* buffer, s32 size)
 {
@@ -278,7 +268,6 @@ HIORead(u32 addr, void* buffer, s32 size)
     EXIUnlock(Chan);
     return !err;
 }
-
 BOOL
 HIOWrite(u32 addr, void* buffer, s32 size)
 {
@@ -309,7 +298,6 @@ HIOWrite(u32 addr, void* buffer, s32 size)
     EXIUnlock(Chan);
     return !err;
 }
-
 BOOL
 HIOReadAsync(u32 addr, void* buffer, s32 size, HIOCallback callback)
 {
@@ -338,7 +326,6 @@ HIOReadAsync(u32 addr, void* buffer, s32 size, HIOCallback callback)
     err |= !EXIDma(Chan, buffer, size, 0, RxHandler);
     return !err;
 }
-
 BOOL
 HIOWriteAsync(u32 addr, void* buffer, s32 size, HIOCallback callback)
 {
@@ -367,7 +354,6 @@ HIOWriteAsync(u32 addr, void* buffer, s32 size, HIOCallback callback)
     err |= !EXIDma(Chan, buffer, size, 1, TxHandler);
     return !err;
 }
-
 BOOL
 HIOReadStatus(u32* status)
 {

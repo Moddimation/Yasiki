@@ -5,7 +5,6 @@
 #include <string.h>
 
 void bzero(void* start, u32 len);
-
 void
 bzero(void* start, u32 len)
 {
@@ -17,7 +16,6 @@ bzero(void* start, u32 len)
         a[0] = 0; // BUG: this only zeros the first byte!
     }
 }
-
 void*
 DOLLoadImage(u8* buffer, BOOL verbose)
 {
@@ -32,16 +30,18 @@ DOLLoadImage(u8* buffer, BOOL verbose)
         {
             if (ip->textData[segment] != NULL)
             {
-                DBPrintf("TEXT[%d]- offset 0x%x, length %d(0x%x) -> VA 0x%x¥n", segment, ip->textData[segment],
-                         ip->textLen[segment], ip->textLen[segment], ip->text[segment]);
+                DBPrintf("TEXT[%d]- offset 0x%x, length %d(0x%x) -> VA 0x%x¥n",
+                         segment, ip->textData[segment], ip->textLen[segment],
+                         ip->textLen[segment], ip->text[segment]);
             }
         }
         for (segment = 0; segment < DOL_MAX_DATA; segment++)
         {
             if (ip->dataData[segment] != NULL)
             {
-                DBPrintf("DATA[%d]- offset 0x%x, length %d (0x%x) -> VA 0x%x¥n", segment, ip->dataData[segment],
-                         ip->dataLen[segment], ip->dataLen[segment], ip->data[segment]);
+                DBPrintf("DATA[%d]- offset 0x%x, length %d (0x%x) -> VA 0x%x¥n",
+                         segment, ip->dataData[segment], ip->dataLen[segment],
+                         ip->dataLen[segment], ip->data[segment]);
             }
         }
         DBPrintf("BSS segment length %d -> VA 0x%x¥n", ip->bssLen, ip->bss);
@@ -60,7 +60,8 @@ DOLLoadImage(u8* buffer, BOOL verbose)
             {
                 DBPrintf("[%d]", segment);
             }
-            memcpy((void*)ip->text[segment], buffer + (u32)ip->textData[segment], ip->textLen[segment]);
+            memcpy((void*)ip->text[segment], buffer + (u32)ip->textData[segment],
+                   ip->textLen[segment]);
             DCFlushRange((void*)ip->text[segment], ip->textLen[segment]);
         }
     }
@@ -77,7 +78,8 @@ DOLLoadImage(u8* buffer, BOOL verbose)
             {
                 DBPrintf("[%d]", segment);
             }
-            memcpy((void*)ip->data[segment], buffer + (u32)ip->dataData[segment], ip->dataLen[segment]);
+            memcpy((void*)ip->data[segment], buffer + (u32)ip->dataData[segment],
+                   ip->dataLen[segment]);
             DCFlushRange((void*)ip->data[segment], ip->dataLen[segment]);
         }
     }
@@ -89,7 +91,6 @@ DOLLoadImage(u8* buffer, BOOL verbose)
     ICSync();
     return (void*)ip->entry;
 }
-
 asm void
 DOLRunApp(register void* entryPoint)
 {

@@ -3,7 +3,6 @@
 #include <dolphin.h>
 
 #include "AXPrivate.h"
-
 void
 AXInit(void)
 {
@@ -17,7 +16,6 @@ AXInit(void)
     __AXClInit();
     __AXOutInit();
 }
-
 void
 AXQuit(void)
 {

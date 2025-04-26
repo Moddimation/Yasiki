@@ -20,8 +20,8 @@ static void*                    DefaultFifo = NULL;    // size: 0x4, address: 0x
 static GXFifoObj*               DefaultFifoObj = NULL; // size: 0x4, address: 0x4
 static struct _GXRenderModeObj* rmode;                 // size: 0x4, address: 0x8
 static int                      BypassWorkaround;      // size: 0x4, address: 0xC
-static u32            FrameCount;            // size: 0x4, address: 0x10
-static u32            FrameMissThreshold;    // size: 0x4, address: 0x14
+static u32                      FrameCount;            // size: 0x4, address: 0x10
+static u32                      FrameMissThreshold;    // size: 0x4, address: 0x14
 void*                           DemoFrameBuffer1;      // size: 0x4, address: 0x20
 void*                           DemoFrameBuffer2;      // size: 0x4, address: 0x1C
 void*                           DemoCurrentBuffer;     // size: 0x4, address: 0x18
@@ -35,7 +35,6 @@ static void __DEMOInitForEmu();
 static void __BypassRetraceCallback();
 static void __BypassDoneRender();
 static void LoadMemInfo();
-
 void
 DEMOInit(struct _GXRenderModeObj* mode)
 {
@@ -51,7 +50,6 @@ DEMOInit(struct _GXRenderModeObj* mode)
     __DEMOInitGX();
     __DEMOInitVI();
 }
-
 static void
 __DEMOInitRenderMode(struct _GXRenderModeObj* mode)
 {
@@ -62,29 +60,37 @@ __DEMOInitRenderMode(struct _GXRenderModeObj* mode)
     }
     switch (VIGetTvFormat())
     {
-        case VI_NTSC : rmode = &GXNtsc480IntDf; break;
-        case VI_PAL  : rmode = &GXPal528IntDf; break;
-        case VI_MPAL : rmode = &GXMpal480IntDf; break;
-        default      : OSPanic(__FILE__, 0x1A6, "DEMOInit: invalid TV format\n"); break;
+        case VI_NTSC:
+            rmode = &GXNtsc480IntDf;
+            break;
+        case VI_PAL:
+            rmode = &GXPal528IntDf;
+            break;
+        case VI_MPAL:
+            rmode = &GXMpal480IntDf;
+            break;
+        default:
+            OSPanic(__FILE__, 0x1A6, "DEMOInit: invalid TV format\n");
+            break;
     }
     GXAdjustForOverscan(rmode, &rmodeobj, 0, 0x10);
     rmode = &rmodeobj;
 }
-
 static void
 __DEMOInitMem()
 {
-    void*         arenaLo = OSGetArenaLo();
-    void*         arenaHi = OSGetArenaHi();
-    u32 fbSize = ((u16)(rmode->fbWidth + 15) & 0xFFF0) * rmode->xfbHeight * 2;
+    void* arenaLo = OSGetArenaLo();
+    void* arenaHi = OSGetArenaHi();
+    u32   fbSize = ((u16)(rmode->fbWidth + 15) & 0xFFF0) * rmode->xfbHeight * 2;
 
     DemoFrameBuffer1 = (void*)(((u32)arenaLo + 0x1F) & 0xFFFFFFE0);
     DemoFrameBuffer2 = (void*)(((u32)DemoFrameBuffer1 + fbSize + 0x1F) & 0xFFFFFFE0);
     DemoCurrentBuffer = DemoFrameBuffer2;
     arenaLo = (void*)(((u32)DemoFrameBuffer2 + fbSize + 0x1F) & 0xFFFFFFE0);
     OSSetArenaLo(arenaLo);
-    if (((OSGetConsoleType() + 0xF0000000) == 4U) && ((OSGetPhysicalMemSize() + 0xFFC00000) != 0U)
-        && (OSGetConsoleSimulatedMemSize() < 0x01800000U))
+    if (((OSGetConsoleType() + 0xF0000000) == 4U) &&
+        ((OSGetPhysicalMemSize() + 0xFFC00000) != 0U) &&
+        (OSGetConsoleSimulatedMemSize() < 0x01800000U))
     {
         LoadMemInfo();
         return;
@@ -98,7 +104,6 @@ __DEMOInitMem()
     OSSetCurrentHeap(OSCreateHeap((void*)(((u32)arenaLo)), arenaHi));
     OSSetArenaLo((arenaLo = arenaHi));
 }
-
 static void
 __DEMOInitGX()
 {
@@ -122,7 +127,6 @@ __DEMOInitGX()
 #endif
     GXSetDispCopyGamma(0);
 }
-
 static void
 __DEMOInitVI()
 {
@@ -138,12 +142,10 @@ __DEMOInitVI()
         VIWaitForRetrace();
     }
 }
-
 static void
 __DEMOInitForEmu()
 {
 }
-
 void
 DEMOBeforeRender()
 {
@@ -153,7 +155,8 @@ DEMOBeforeRender()
     }
     if (rmode->field_rendering != 0)
     {
-        GXSetViewportJitter(0.0f, 0.0f, rmode->fbWidth, rmode->xfbHeight, 0.0f, 1.0f, VIGetNextField());
+        GXSetViewportJitter(0.0f, 0.0f, rmode->fbWidth, rmode->xfbHeight, 0.0f, 1.0f,
+                            VIGetNextField());
     }
     else
     {
@@ -162,7 +165,6 @@ DEMOBeforeRender()
     GXInvalidateVtxCache();
     GXInvalidateTexAll();
 }
-
 void
 DEMODoneRender()
 {
@@ -185,7 +187,6 @@ DEMODoneRender()
     GXDrawDone();
     DEMOSwapBuffers();
 }
-
 void
 DEMOSwapBuffers()
 {
@@ -204,9 +205,9 @@ DEMOSwapBuffers()
     }
     DemoCurrentBuffer = DemoFrameBuffer1;
 }
-
 void
-DEMOSetTevColorIn(enum _GXTevStageID stage, enum _GXTevColorArg a, enum _GXTevColorArg b, enum _GXTevColorArg c,
+DEMOSetTevColorIn(enum _GXTevStageID stage, enum _GXTevColorArg a,
+                  enum _GXTevColorArg b, enum _GXTevColorArg c,
                   enum _GXTevColorArg d)
 {
     u32 swap;
@@ -254,7 +255,6 @@ DEMOSetTevColorIn(enum _GXTevStageID stage, enum _GXTevColorArg a, enum _GXTevCo
         GXSetTevSwapMode(stage, 0, swap - 0xF);
     }
 }
-
 void
 DEMOSetTevOp(enum _GXTevStageID id, enum _GXTevMode mode)
 {
@@ -270,44 +270,43 @@ DEMOSetTevOp(enum _GXTevStageID id, enum _GXTevMode mode)
     }
     switch (mode)
     {
-        case 0 :
+        case 0:
             DEMOSetTevColorIn(id, 0xF, 8, carg, 0xF);
             GXSetTevAlphaIn(id, 7, 4, aarg, 7);
             break;
-        case 1 :
+        case 1:
             DEMOSetTevColorIn(id, carg, 8, 9, 0xF);
             GXSetTevAlphaIn(id, 7, 7, 7, aarg);
             break;
-        case 2 :
+        case 2:
             DEMOSetTevColorIn(id, carg, 0xC, 8, 0xF);
             GXSetTevAlphaIn(id, 7, 4, aarg, 7);
             break;
-        case 3 :
+        case 3:
             DEMOSetTevColorIn(id, 0xF, 0xF, 0xF, 8);
             GXSetTevAlphaIn(id, 7, 7, 7, 4);
             break;
-        case 4 :
+        case 4:
             GXSetTevColorIn(id, 0xF, 0xF, 0xF, carg);
             GXSetTevAlphaIn(id, 7, 7, 7, aarg);
             break;
-        default : ASSERTMSGLINE(0x367, FALSE, "DEMOSetTevOp: Invalid Tev Mode"); break;
+        default:
+            ASSERTMSGLINE(0x367, FALSE, "DEMOSetTevOp: Invalid Tev Mode");
+            break;
     }
     GXSetTevColorOp(id, 0, 0, 0, 1, 0);
     GXSetTevAlphaOp(id, 0, 0, 0, 1, 0);
 }
-
 struct _GXRenderModeObj*
 DEMOGetRenderModeObj()
 {
     return rmode;
 }
-
 u32
 DEMOGetCurrentBuffer(void)
 {
     return (u32)DemoCurrentBuffer;
 }
-
 void
 DEMOEnableBypassWorkaround(u32 timeoutFrames)
 {
@@ -315,13 +314,11 @@ DEMOEnableBypassWorkaround(u32 timeoutFrames)
     FrameMissThreshold = timeoutFrames;
     VISetPreRetraceCallback(__BypassRetraceCallback);
 }
-
 static void
 __BypassRetraceCallback()
 {
     FrameCount += 1;
 }
-
 static void
 __BypassDoneRender()
 {
@@ -342,15 +339,14 @@ __BypassDoneRender()
     }
     DEMOSwapBuffers();
 }
-
 void
 DEMOReInit(struct _GXRenderModeObj* mode)
 {
-    GXFifoObj     tmpobj;
-    void*         tmpFifo;
-    GXFifoObj*    realFifoObj;
-    void*         realFifoBase;
-    u32 realFifoSize;
+    GXFifoObj  tmpobj;
+    void*      tmpFifo;
+    GXFifoObj* realFifoObj;
+    void*      realFifoBase;
+    u32        realFifoSize;
 
     tmpFifo = OSAllocFromHeap(__OSCurrHeap, 0x10000);
     realFifoObj = GXGetCPUFifo();
@@ -367,7 +363,6 @@ DEMOReInit(struct _GXRenderModeObj* mode)
     __DEMOInitVI();
     OSFreeToHeap(__OSCurrHeap, tmpFifo);
 }
-
 static void
 LoadMemInfo()
 {
@@ -376,24 +371,25 @@ LoadMemInfo()
     void*              arenaHi;
     void*              simMemEnd;
     struct DVDFileInfo fileInfo;
-    u32      length;
-    u32      transferLength;
-    s32               offset;
-    u32      i;
-    u32      indexMax;
+    u32                length;
+    u32                transferLength;
+    s32                offset;
+    u32                i;
+    u32                indexMax;
     char*              buf[63];
-
     struct
     {
         void* start;
         void* end;
     }* memEntry;
-
     OSReport("\nNow, try to find memory info file...\n\n");
     if (!DVDOpen("/meminfo.bin", &fileInfo))
     {
-        OSReport("\nCan't find memory info file. Use /XXX toolname/ to maximize available\n");
-        OSReport("memory space. For now, we only use the first %dMB.\n", OSGetConsoleSimulatedMemSize() >> 0x14);
+        OSReport(
+            "\nCan't find memory info file. Use /XXX toolname/ to maximize "
+            "available\n");
+        OSReport("memory space. For now, we only use the first %dMB.\n",
+                 OSGetConsoleSimulatedMemSize() >> 0x14);
         arenaLo = OSGetArenaLo();
         arenaHi = OSGetArenaHi();
         arenaLo = OSInitAlloc(arenaLo, arenaHi, 1);
@@ -423,16 +419,20 @@ LoadMemInfo()
     {
         OSReport("loop\n");
         transferLength = (length < 0x20) ? length : 0x20;
-        if (DVDReadPrio(&fileInfo, memEntry, (transferLength + 0x1F) & 0xFFFFFFE0, offset, 2) < 0)
+        if (DVDReadPrio(&fileInfo, memEntry, (transferLength + 0x1F) & 0xFFFFFFE0,
+                        offset, 2) < 0)
         {
-            OSPanic(__FILE__, 0x49F, "An error occurred when issuing read to /meminfo.bin\n");
+            OSPanic(__FILE__, 0x49F,
+                    "An error occurred when issuing read to /meminfo.bin\n");
         }
         indexMax = (transferLength / 8);
         for (i = 0; i < indexMax; i++)
         {
-            OSReport("start: 0x%08x, end: 0x%08x\n", memEntry[i].start, memEntry[i].end);
+            OSReport("start: 0x%08x, end: 0x%08x\n", memEntry[i].start,
+                     memEntry[i].end);
             OSAllocFixed(&memEntry[i].start, &memEntry[i].end);
-            OSReport("Removed 0x%08x - 0x%08x from the current heap\n", memEntry[i].start, (char*)memEntry[i].end - 1);
+            OSReport("Removed 0x%08x - 0x%08x from the current heap\n",
+                     memEntry[i].start, (char*)memEntry[i].end - 1);
         }
         length -= transferLength;
         offset += transferLength;

@@ -13,41 +13,42 @@
 static struct OSAlarm PERFAlarm; // size: 0x28, address: 0x0
 
 // .sdata
-static volatile s32          CurrAutoSample = 0xFFFFFFFF; // size: 0x4, address: 0x0
+static volatile s32 CurrAutoSample = 0xFFFFFFFF; // size: 0x4, address: 0x0
 static volatile u32 CurrToken = 0x0000FFFF;      // size: 0x4, address: 0x4
 
 // .sbss
-static volatile u16 magic;                       // size: 0x1, address: 0x0
-static void*                  (*PerfAlloc)(u32); // size: 0x4, address: 0x4
-static void                   (*PerfFree)(void*);          // size: 0x4, address: 0x8
-static void                   (*DSCB)(u16);     // size: 0x4, address: 0xC
-u32                 PERFNumFrames;               // size: 0x4, address: 0x28
-u32                 PERFNumEvents;               // size: 0x4, address: 0x24
-u32                 PERFNumSamples;              // size: 0x4, address: 0x20
-struct Frame*                 PERFFrames;                  // size: 0x4, address: 0x1C
-struct PerfEvent*             PERFEvents;                  // size: 0x4, address: 0x18
-u32                 PERFCurrFrame;               // size: 0x4, address: 0x14
-volatile s32                 PERFCurrSample;              // size: 0x4, address: 0x10
+static volatile u16 magic;              // size: 0x1, address: 0x0
+static void*        (*PerfAlloc)(u32);  // size: 0x4, address: 0x4
+static void         (*PerfFree)(void*); // size: 0x4, address: 0x8
+static void         (*DSCB)(u16);       // size: 0x4, address: 0xC
+u32                 PERFNumFrames;      // size: 0x4, address: 0x28
+u32                 PERFNumEvents;      // size: 0x4, address: 0x24
+u32                 PERFNumSamples;     // size: 0x4, address: 0x20
+struct Frame*       PERFFrames;         // size: 0x4, address: 0x1C
+struct PerfEvent*   PERFEvents;         // size: 0x4, address: 0x18
+u32                 PERFCurrFrame;      // size: 0x4, address: 0x14
+volatile s32        PERFCurrSample;     // size: 0x4, address: 0x10
 
 // functions
-static void           PERFResetAllMemMetrics();
-static void           PERFGetAllMemMetrics(struct PerfSample* s, u32 i);
-void                  PERFSetDrawSyncCallback(void (*cb)(u16));
-static void           PERFTokenCallback(u16 token);
+static void PERFResetAllMemMetrics();
+static void PERFGetAllMemMetrics(struct PerfSample* s, u32 i);
+void        PERFSetDrawSyncCallback(void (*cb)(u16));
+static void PERFTokenCallback(u16 token);
 u32         PERFInit(u32 numSamples, u32 numFramesHistory, unsigned long numTypes,
-                               void* (*allocator)(u32), void (*deallocator)(void*), void (*initDraw)());
-void                  PERFSetEvent(u16 id, char* name, PerfType type);
-void                  PERFSetEventColor(u16 id, GXColor color);
-void                  PERFStartFrame();
-void                  PERFEndFrame();
-void                  PERFEventStart(u16 id);
+                     void* (*allocator)(u32), void (*deallocator)(void*),
+                     void (*initDraw)());
+void        PERFSetEvent(u16 id, char* name, PerfType type);
+void        PERFSetEventColor(u16 id, GXColor color);
+void        PERFStartFrame();
+void        PERFEndFrame();
+void        PERFEventStart(u16 id);
 __declspec(weak) s32 PERFGetNewSample();
-void                  PERFEventEnd(u16 id);
-static void           PERFStartAutoSample();
-static void           PERFEndAutoSample();
-static void           PERFTimerCallback(OSAlarm* alarm, OSContext* context);
-void                  PERFStartAutoSampling(float msInterval);
-void                  PERFStopAutoSampling();
+void                 PERFEventEnd(u16 id);
+static void          PERFStartAutoSample();
+static void          PERFEndAutoSample();
+static void          PERFTimerCallback(OSAlarm* alarm, OSContext* context);
+void                 PERFStartAutoSampling(float msInterval);
+void                 PERFStopAutoSampling();
 
 #ifndef DEBUG
 inline s32
@@ -61,7 +62,6 @@ PERFGetNewSample()
     return PERFCurrSample++;
 }
 #endif
-
 static void
 PERFResetAllMemMetrics()
 {
@@ -86,14 +86,14 @@ PERFResetAllMemMetrics()
     ((u16*)__memReg)[44] = 0;
     ((u16*)__memReg)[43] = 0;
 }
-
 static void
 PERFGetAllMemMetrics(struct PerfSample* s, u32 i)
 {
     u32 ctrl;
     u32 ctrh;
 
-    GXReadXfRasMetric(&s->xfWaitIn[i], &s->xfWaitOut[i], &s->rasBusy[i], &s->rasClocks[i]);
+    GXReadXfRasMetric(&s->xfWaitIn[i], &s->xfWaitOut[i], &s->rasBusy[i],
+                      &s->rasClocks[i]);
 
     ctrl = ((u16*)__memReg)[26];
     ctrh = ((u16*)__memReg)[25];
@@ -135,19 +135,18 @@ PERFGetAllMemMetrics(struct PerfSample* s, u32 i)
     ctrh = ((u16*)__memReg)[43];
     s->fiReq[i] = ((ctrh << 0x10) | ctrl);
 }
-
 void
 PERFSetDrawSyncCallback(void (*cb)(u16))
 {
     DSCB = cb;
 }
-
 static void
 PERFTokenCallback(u16 token)
 {
     s32 sample;
 
-    if ((token < 0xE000) || (((int)((u32)token >> 8) & 0xF) != magic) || (PERFCurrSample == 0))
+    if ((token < 0xE000) || (((int)((u32)token >> 8) & 0xF) != magic) ||
+        (PERFCurrSample == 0))
     {
         if (DSCB)
         {
@@ -201,16 +200,15 @@ PERFTokenCallback(u16 token)
         sample = (u8)(u32)token;
         PERFFrames[PERFCurrFrame].samples[sample].cacheMisses[0] = PPCMfpmc3();
         PERFFrames[PERFCurrFrame].samples[sample].instructions[0] = PPCMfpmc1();
-        PERFFrames[PERFCurrFrame].samples[sample].gpTimeStampStart
-            = PERFFrames[PERFCurrFrame].samples[sample].origgpStart = PPCMfpmc4();
+        PERFFrames[PERFCurrFrame].samples[sample].gpTimeStampStart =
+            PERFFrames[PERFCurrFrame].samples[sample].origgpStart = PPCMfpmc4();
         PERFGetAllMemMetrics(&PERFFrames[PERFCurrFrame].samples[sample], 0);
         CurrToken = (u32)(u16)token;
     }
 }
-
 u32
-PERFInit(u32 numSamples, u32 numFramesHistory, u32 numTypes,
-         void* (*allocator)(u32), void (*deallocator)(void*), void (*initDraw)())
+PERFInit(u32 numSamples, u32 numFramesHistory, u32 numTypes, void* (*allocator)(u32),
+         void (*deallocator)(void*), void (*initDraw)())
 {
     u32 i;
     u32 size;
@@ -244,7 +242,6 @@ PERFInit(u32 numSamples, u32 numFramesHistory, u32 numTypes,
     OSInitAlarm();
     return size;
 }
-
 void
 PERFSetEvent(u16 id, char* name, PerfType type)
 {
@@ -255,13 +252,11 @@ PERFSetEvent(u16 id, char* name, PerfType type)
     PERFEvents[id].currSample = -1;
     PERFEvents[id].color = def;
 }
-
 void
 PERFSetEventColor(u16 id, GXColor color)
 {
     PERFEvents[id].color = color;
 }
-
 void
 PERFStartFrame()
 {
@@ -282,12 +277,11 @@ PERFStartFrame()
     PERFStartAutoSample();
     OSRestoreInterrupts(enabled);
 }
-
 void
 PERFEndFrame()
 {
     u32 i;
-    int           enabled;
+    int enabled;
 
     enabled = OSDisableInterrupts();
     PERFEndAutoSample();
@@ -309,11 +303,10 @@ PERFEndFrame()
     }
     OSRestoreInterrupts(enabled);
 }
-
 void
 PERFEventStart(u16 id)
 {
-    int  enabled;
+    int enabled;
     s32 sample;
 
     enabled = OSDisableInterrupts();
@@ -328,28 +321,39 @@ PERFEventStart(u16 id)
 
         switch (PERFEvents[id].type)
         {
-            case PERF_GP_EVENT :
+            case PERF_GP_EVENT:
                 PERFFrames[PERFCurrFrame].samples[sample].cacheMisses[0] = 0;
                 PERFFrames[PERFCurrFrame].samples[sample].instructions[0] = 0;
                 PERFFrames[PERFCurrFrame].samples[sample].gpTimeStampStart = 0;
                 PERFFrames[PERFCurrFrame].samples[sample].gpTimeStampEnd = 0;
-                GXSetDrawSync(((u16)sample + 0x10000) + (((u16)magic << 8) & 0xFF00) - 0x2000);
+                GXSetDrawSync(((u16)sample + 0x10000) +
+                              (((u16)magic << 8) & 0xFF00) - 0x2000);
                 break;
-            case PERF_CPU_GP_EVENT :
+            case PERF_CPU_GP_EVENT:
                 PERFFrames[PERFCurrFrame].samples[sample].gpTimeStampStart = 0;
                 PERFFrames[PERFCurrFrame].samples[sample].gpTimeStampEnd = 0;
-                PERFFrames[PERFCurrFrame].samples[sample].cacheMisses[0] = PPCMfpmc3();
-                PERFFrames[PERFCurrFrame].samples[sample].instructions[0] = PPCMfpmc1();
-                GXSetDrawSync(((u16)sample + 0x10000) + (((u16)magic << 8) & 0xFF00) - 0x2000);
+                PERFFrames[PERFCurrFrame].samples[sample].cacheMisses[0] =
+                    PPCMfpmc3();
+                PERFFrames[PERFCurrFrame].samples[sample].instructions[0] =
+                    PPCMfpmc1();
+                GXSetDrawSync(((u16)sample + 0x10000) +
+                              (((u16)magic << 8) & 0xFF00) - 0x2000);
                 // fallthrough
-            case PERF_CPU_EVENT :
-                PERFFrames[PERFCurrFrame].samples[sample].cacheMisses[2] = PPCMfpmc3();
-                PERFFrames[PERFCurrFrame].samples[sample].instructions[2] = PPCMfpmc1();
-                PERFFrames[PERFCurrFrame].samples[sample].origcpuStart
-                    = PERFFrames[PERFCurrFrame].samples[sample].cpuTimeStampStart = PPCMfpmc4();
+            case PERF_CPU_EVENT:
+                PERFFrames[PERFCurrFrame].samples[sample].cacheMisses[2] =
+                    PPCMfpmc3();
+                PERFFrames[PERFCurrFrame].samples[sample].instructions[2] =
+                    PPCMfpmc1();
+                PERFFrames[PERFCurrFrame].samples[sample].origcpuStart =
+                    PERFFrames[PERFCurrFrame].samples[sample].cpuTimeStampStart =
+                        PPCMfpmc4();
                 PERFFrames[PERFCurrFrame].samples[sample].cpuTimeStampEnd = 0;
                 break;
-            default : OSReport("PERF : Unknown event type for ID %d - possibly out of memory\n", id); break;
+            default:
+                OSReport(
+                    "PERF : Unknown event type for ID %d - possibly out of memory\n",
+                    id);
+                break;
         }
     }
     else
@@ -358,7 +362,6 @@ PERFEventStart(u16 id)
     }
     OSRestoreInterrupts(enabled);
 }
-
 #if DEBUG
 __declspec(weak) s32
 PERFGetNewSample()
@@ -371,11 +374,10 @@ PERFGetNewSample()
     return PERFCurrSample++;
 }
 #endif
-
 void
 PERFEventEnd(u16 id)
 {
-    int  enabled;
+    int enabled;
     s32 sample;
 
     enabled = OSDisableInterrupts();
@@ -388,9 +390,14 @@ PERFEventEnd(u16 id)
     }
     switch (PERFEvents[id].type)
     {
-        case PERF_GP_EVENT     : GXSetDrawSync(((u16)sample + 0x10000) + (((u16)magic << 8) & 0xFF00) - 0x1000); break;
-        case PERF_CPU_GP_EVENT : GXSetDrawSync(((u16)sample + 0x10000) + (((u16)magic << 8) & 0xFF00) - 0x1000);
-        case PERF_CPU_EVENT :
+        case PERF_GP_EVENT:
+            GXSetDrawSync(((u16)sample + 0x10000) + (((u16)magic << 8) & 0xFF00) -
+                          0x1000);
+            break;
+        case PERF_CPU_GP_EVENT:
+            GXSetDrawSync(((u16)sample + 0x10000) + (((u16)magic << 8) & 0xFF00) -
+                          0x1000);
+        case PERF_CPU_EVENT:
             PERFFrames[PERFCurrFrame].samples[sample].cpuTimeStampEnd = PPCMfpmc4();
             PERFFrames[PERFCurrFrame].samples[sample].cacheMisses[3] = PPCMfpmc3();
             PERFFrames[PERFCurrFrame].samples[sample].instructions[3] = PPCMfpmc1();
@@ -399,7 +406,6 @@ PERFEventEnd(u16 id)
     PERFEvents[id].currSample = -1;
     OSRestoreInterrupts(enabled);
 }
-
 static void
 PERFStartAutoSample()
 {
@@ -412,20 +418,21 @@ PERFStartAutoSample()
     PERFFrames[PERFCurrFrame].samples[CurrAutoSample].cacheMisses[0] = PPCMfpmc3();
     PERFFrames[PERFCurrFrame].samples[CurrAutoSample].instructions[0] = PPCMfpmc1();
 }
-
 static void
 PERFEndAutoSample()
 {
     if (CurrAutoSample >= 0)
     {
-        PERFFrames[PERFCurrFrame].samples[CurrAutoSample].gpTimeStampEnd = PPCMfpmc4();
+        PERFFrames[PERFCurrFrame].samples[CurrAutoSample].gpTimeStampEnd =
+            PPCMfpmc4();
         PERFGetAllMemMetrics(&PERFFrames[PERFCurrFrame].samples[CurrAutoSample], 1);
-        PERFFrames[PERFCurrFrame].samples[CurrAutoSample].cacheMisses[1] = PPCMfpmc3();
-        PERFFrames[PERFCurrFrame].samples[CurrAutoSample].instructions[1] = PPCMfpmc1();
+        PERFFrames[PERFCurrFrame].samples[CurrAutoSample].cacheMisses[1] =
+            PPCMfpmc3();
+        PERFFrames[PERFCurrFrame].samples[CurrAutoSample].instructions[1] =
+            PPCMfpmc1();
     }
     CurrAutoSample = -1;
 }
-
 static void
 PERFTimerCallback(OSAlarm* alarm, OSContext* context)
 {
@@ -446,10 +453,14 @@ PERFTimerCallback(OSAlarm* alarm, OSContext* context)
             }
             ASSERTLINE(0x36A, CurrAutoSample < 0);
             newsample = PERFGetNewSample();
-            memcpy(&PERFFrames[PERFCurrFrame].samples[newsample], &PERFFrames[PERFCurrFrame].samples[sample], 0xB0);
-            PERFFrames[PERFCurrFrame].samples[newsample].gpTimeStampEnd = PPCMfpmc4();
-            PERFFrames[PERFCurrFrame].samples[newsample].cacheMisses[1] = PPCMfpmc3();
-            PERFFrames[PERFCurrFrame].samples[newsample].instructions[1] = PPCMfpmc1();
+            memcpy(&PERFFrames[PERFCurrFrame].samples[newsample],
+                   &PERFFrames[PERFCurrFrame].samples[sample], 0xB0);
+            PERFFrames[PERFCurrFrame].samples[newsample].gpTimeStampEnd =
+                PPCMfpmc4();
+            PERFFrames[PERFCurrFrame].samples[newsample].cacheMisses[1] =
+                PPCMfpmc3();
+            PERFFrames[PERFCurrFrame].samples[newsample].instructions[1] =
+                PPCMfpmc1();
             PERFGetAllMemMetrics(&PERFFrames[PERFCurrFrame].samples[newsample], 1);
             PERFFrames[PERFCurrFrame].samples[newsample].id = 0xFF;
             PERFFrames[PERFCurrFrame].samples[sample].gpTimeStampStart = PPCMfpmc4();
@@ -469,13 +480,12 @@ PERFTimerCallback(OSAlarm* alarm, OSContext* context)
         PERFStartAutoSample();
     }
 }
-
 void
 PERFStartAutoSampling(float msInterval)
 {
-    OSSetPeriodicAlarm(&PERFAlarm, OSGetTime(), (u32)OSMillisecondsToTicks(msInterval), PERFTimerCallback);
+    OSSetPeriodicAlarm(&PERFAlarm, OSGetTime(),
+                       (u32)OSMillisecondsToTicks(msInterval), PERFTimerCallback);
 }
-
 void
 PERFStopAutoSampling()
 {
@@ -483,7 +493,8 @@ PERFStopAutoSampling()
 
     if (CurrAutoSample >= 0)
     {
-        PERFFrames[PERFCurrFrame].samples[CurrAutoSample].gpTimeStampEnd = PPCMfpmc4();
+        PERFFrames[PERFCurrFrame].samples[CurrAutoSample].gpTimeStampEnd =
+            PPCMfpmc4();
         PERFGetAllMemMetrics(&PERFFrames[PERFCurrFrame].samples[CurrAutoSample], 1);
     }
     OSCancelAlarm(&PERFAlarm);

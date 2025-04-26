@@ -18,7 +18,6 @@ static u8 DSPInitCode[128] = {
 };
 
 #define __DSPWorkBuffer (void*)0x81000000
-
 void
 __OSInitAudioSystem(void)
 {
@@ -30,9 +29,12 @@ __OSInitAudioSystem(void)
     DCFlushRange(__DSPWorkBuffer, 128);
 
     __DSPRegs[9] = 0x43;
-    ASSERTMSGLINE(0x67, !(__DSPRegs[5] & 0x200), "__OSInitAudioSystem(): ARAM DMA already in progress");
-    ASSERTMSGLINE(0x6B, !(__DSPRegs[5] & 0x400), "__OSInitAudioSystem(): DSP DMA already in progress");
-    ASSERTMSGLINE(0x6F, (__DSPRegs[5] & 0x004), "__OSInitAudioSystem(): DSP already working");
+    ASSERTMSGLINE(0x67, !(__DSPRegs[5] & 0x200),
+                  "__OSInitAudioSystem(): ARAM DMA already in progress");
+    ASSERTMSGLINE(0x6B, !(__DSPRegs[5] & 0x400),
+                  "__OSInitAudioSystem(): DSP DMA already in progress");
+    ASSERTMSGLINE(0x6F, (__DSPRegs[5] & 0x004),
+                  "__OSInitAudioSystem(): DSP already working");
     __DSPRegs[5] = 0x8AC;
     __DSPRegs[5] |= 1;
     while (__DSPRegs[5] & 1);
@@ -87,18 +89,17 @@ __OSInitAudioSystem(void)
     __DSPRegs[5] |= 1;
     while (__DSPRegs[5] & 1);
 }
-
 void
 __OSStopAudioSystem(void)
 {
     u16 reg16;
     u32 start_tick;
 
-#define waitUntil(load, mask)                                                                                          \
-    reg16 = (load);                                                                                                    \
-    while (reg16 & (mask))                                                                                             \
-    {                                                                                                                  \
-        reg16 = (load);                                                                                                \
+#define waitUntil(load, mask)                                                       \
+    reg16 = (load);                                                                 \
+    while (reg16 & (mask))                                                          \
+    {                                                                               \
+        reg16 = (load);                                                             \
     }
 
     __DSPRegs[5] = 0x804;

@@ -4,7 +4,6 @@
 #include <dolphin/os.h>
 
 typedef void (*DSPCallback)(void* task);
-
 typedef struct STRUCT_DSP_TASK
 {
     /*0x00*/ volatile u32            state;
@@ -27,7 +26,6 @@ typedef struct STRUCT_DSP_TASK
     OSTime                           t_context;
     OSTime                           t_task;
 } DSPTaskInfo;
-
 u32          DSPCheckMailToDSP(void);
 u32          DSPCheckMailFromDSP(void);
 u32          DSPReadCPUToDSPMbox(void);

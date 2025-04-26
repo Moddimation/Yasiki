@@ -3,15 +3,14 @@
 #include <dolphin.h>
 
 #include "OSPrivate.h"
-
 struct Timer
 {
-    void           (*callback)();
+    void (*callback)();
     u32  currval;
     u32  startval;
-    u16 mode;
-    int            stopped;
-    int            initialized;
+    u16  mode;
+    int  stopped;
+    int  initialized;
 };
 
 static struct Timer Timer; // .bss
@@ -21,8 +20,7 @@ void        OSInitTimer(u32 time, u16 mode);
 void        OSStartTimer(void);
 void        OSStopTimer(void);
 static void DecrementerExceptionHandler(u16 exception, struct OSContext* context);
-
-void (*OSSetTimerCallback(void (*callback)()))()
+void        (*OSSetTimerCallback(void (*callback)()))()
 {
     void (*prevCallback)();
 
@@ -38,14 +36,14 @@ void (*OSSetTimerCallback(void (*callback)()))()
     Timer.callback = callback;
     return prevCallback;
 }
-
 void
 OSInitTimer(u32 time, u16 mode)
 {
 #if DEBUG
     if (time >= 0x80000000)
     {
-        OSPanic("OSTimer.c", 0x97, "OSInitTimer(): time param must be less than 0x80000000.");
+        OSPanic("OSTimer.c", 0x97,
+                "OSInitTimer(): time param must be less than 0x80000000.");
     }
 #endif
 
@@ -63,7 +61,6 @@ OSInitTimer(u32 time, u16 mode)
 #endif
     }
 }
-
 void
 OSStartTimer(void)
 {
@@ -80,7 +77,6 @@ OSStartTimer(void)
     Timer.stopped = 0;
     OSRestoreInterrupts(enabled);
 }
-
 void
 OSStopTimer(void)
 {
@@ -105,7 +101,6 @@ OSStopTimer(void)
     }
     OSRestoreInterrupts(enabled);
 }
-
 static void
 DecrementerExceptionCallback(u16 exception, struct OSContext* context)
 {
@@ -132,7 +127,6 @@ DecrementerExceptionCallback(u16 exception, struct OSContext* context)
     OSSetCurrentContext(context);
     OSLoadContext(context);
 }
-
 static asm void
 DecrementerExceptionHandler(u16 exception, register struct OSContext* context)
 {

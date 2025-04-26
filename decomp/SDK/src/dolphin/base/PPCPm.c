@@ -1,7 +1,6 @@
 #include <dolphin/base/PPCArch.h>
 
 #include <dolphin.h>
-
 void
 PMBegin(void)
 {
@@ -14,32 +13,27 @@ PMBegin(void)
     PPCMtmmcr0(0x4F);
     PPCMtmmcr1(0x78800000);
 }
-
 void
 PMEnd(void)
 {
     PPCMtmmcr0(0);
     PPCMtmmcr1(0);
 }
-
 void
 PMCycles(void)
 {
     PPCMfpmc1();
 }
-
 void
 PML1FetchMisses(void)
 {
     PPCMfpmc2();
 }
-
 void
 PML1MissCycles(void)
 {
     PPCMfpmc3();
 }
-
 void
 PMInstructions(void)
 {

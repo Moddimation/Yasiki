@@ -9,21 +9,20 @@
 #undef OSUncachedToPhysical
 #undef OSCachedToUncached
 #undef OSUncachedToCached
-
 void*
 OSPhysicalToCached(u32 paddr)
 {
-    ASSERTMSGLINE(0x2C, paddr < 0x10000000U, "OSPhysicalToCached(): illegal address.");
+    ASSERTMSGLINE(0x2C, paddr < 0x10000000U,
+                  "OSPhysicalToCached(): illegal address.");
     return (void*)(paddr + 0x80000000);
 }
-
 void*
 OSPhysicalToUncached(u32 paddr)
 {
-    ASSERTMSGLINE(0x3B, paddr < 0x10000000U, "OSPhysicalToUncached(): illegal address.");
+    ASSERTMSGLINE(0x3B, paddr < 0x10000000U,
+                  "OSPhysicalToUncached(): illegal address.");
     return (void*)(paddr - 0x40000000);
 }
-
 u32
 OSCachedToPhysical(void* caddr)
 {
@@ -31,7 +30,6 @@ OSCachedToPhysical(void* caddr)
                   "OSCachedToPhysical(): illegal address.");
     return (u32)caddr + 0x80000000;
 }
-
 u32
 OSUncachedToPhysical(void* ucaddr)
 {
@@ -39,7 +37,6 @@ OSUncachedToPhysical(void* ucaddr)
                   "OSUncachedToPhysical(): illegal address.");
     return (u32)ucaddr + 0x40000000;
 }
-
 void*
 OSCachedToUncached(void* caddr)
 {
@@ -47,7 +44,6 @@ OSCachedToUncached(void* caddr)
                   "OSCachedToUncached(): illegal address.");
     return (void*)((u32)caddr + 0x40000000);
 }
-
 void*
 OSUncachedToCached(void* ucaddr)
 {

@@ -45,7 +45,6 @@ typedef u8 VIBool;
 
 #define VI_HD720             8
 #define VI_TVMODE_HD720_PROG ((VITVMode)VI_TVMODE(VI_HD720, VI_PROGRESSIVE))
-
 typedef enum
 {
     VI_TVMODE_NTSC_INT = 0,       // VI_TVMODE(VI_NTSC, VI_INTERLACE),
@@ -68,7 +67,6 @@ typedef enum
     VI_TVMODE_DEBUG_PAL_INT = 16, // VI_TVMODE(VI_DEBUG_PAL, VI_INTERLACE),
     VI_TVMODE_DEBUG_PAL_DS = 17,  // VI_TVMODE(VI_DEBUG_PAL, VI_NON_INTERLACE)
 } VITVMode;
-
 typedef enum
 {
     VI_TV_FMT_NTSC,               // 0
@@ -81,20 +79,17 @@ typedef enum
     VI_TV_FMT_7,                  // 7
     VI_TV_FMT_8,                  // 8
 } VITvFormat;
-
 typedef enum VIScanMode
 {
     VI_SCAN_MODE_INT,
     VI_SCAN_MODE_DS,
     VI_SCAN_MODE_PROG
 } VIScanMode;
-
 typedef enum VIXFBMode
 {
     VI_XFB_MODE_SF,
     VI_XFB_MODE_DF,
 } VIXFBMode;
-
 typedef void (*VIRetraceCallback)(u32 retraceCount);
 
 #endif

@@ -11,7 +11,8 @@ extern "C"
 void GXPokeAlphaMode(GXCompare func, u8 threshold);
 void GXPokeAlphaRead(GXAlphaReadMode mode);
 void GXPokeAlphaUpdate(GXBool update_enable);
-void GXPokeBlendMode(GXBlendMode type, GXBlendFactor src_factor, GXBlendFactor dst_factor, GXLogicOp op);
+void GXPokeBlendMode(GXBlendMode type, GXBlendFactor src_factor,
+                     GXBlendFactor dst_factor, GXLogicOp op);
 void GXPokeColorUpdate(GXBool update_enable);
 void GXPokeDstAlpha(GXBool enable, u8 alpha);
 void GXPokeDither(GXBool dither);

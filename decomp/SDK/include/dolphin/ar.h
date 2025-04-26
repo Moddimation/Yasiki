@@ -4,7 +4,6 @@
 #include <dolphin/types.h>
 
 typedef void (*ARQCallback)(u32 pointerToARQRequest);
-
 struct ARQRequest
 {
     /* 0x00 */ struct ARQRequest* next;
@@ -16,14 +15,15 @@ struct ARQRequest
     /* 0x18 */ u32                length;
     /* 0x1C */ ARQCallback        callback;
 };
+#define ARQ_DMA_ALIGNMENT     32
 
-#define ARQ_DMA_ALIGNMENT                32
+#define ARAM_DIR_MRAM_TO_ARAM 0x00
+#define ARAM_DIR_ARAM_TO_MRAM 0x01
 
-#define ARAM_DIR_MRAM_TO_ARAM            0x00
-#define ARAM_DIR_ARAM_TO_MRAM            0x01
-
-#define ARStartDMARead(mmem, aram, len)  ARStartDMA(ARAM_DIR_ARAM_TO_MRAM, mmem, aram, len)
-#define ARStartDMAWrite(mmem, aram, len) ARStartDMA(ARAM_DIR_MRAM_TO_ARAM, mmem, aram, len)
+#define ARStartDMARead(mmem, aram, len)                                             \
+    ARStartDMA(ARAM_DIR_ARAM_TO_MRAM, mmem, aram, len)
+#define ARStartDMAWrite(mmem, aram, len)                                            \
+    ARStartDMA(ARAM_DIR_MRAM_TO_ARAM, mmem, aram, len)
 
 typedef struct ARQRequest ARQRequest;
 
@@ -49,8 +49,8 @@ u32         ARGetSize(void);
 // arq.c
 void ARQInit(void);
 void ARQReset(void);
-void ARQPostRequest(struct ARQRequest* request, u32 owner, u32 type, u32 priority, u32 source, u32 dest, u32 length,
-                    ARQCallback callback);
+void ARQPostRequest(struct ARQRequest* request, u32 owner, u32 type, u32 priority,
+                    u32 source, u32 dest, u32 length, ARQCallback callback);
 void ARQRemoveRequest(struct ARQRequest* request);
 void ARQRemoveOwnerRequest(u32 owner);
 void ARQFlushQueue(void);

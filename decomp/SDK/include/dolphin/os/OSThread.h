@@ -10,31 +10,26 @@ struct OSMutex;
 struct OSMutexQueue;
 
 typedef struct OSThread OSThread;
-
 typedef struct OSThreadQueue
 {
     struct OSThread* head;
     struct OSThread* tail;
 } OSThreadQueue;
-
 typedef struct OSThreadLink
 {
     struct OSThread* next;
     struct OSThread* prev;
 } OSThreadLink;
-
 typedef struct OSMutexQueue
 {
     struct OSMutex* head;
     struct OSMutex* tail;
 } OSMutexQueue;
-
 typedef struct OSMutexLink
 {
     struct OSMutex* next;
     struct OSMutex* prev;
 } OSMutexLink;
-
 typedef struct OSThread
 {
     /*0x000*/ struct OSContext      context;
@@ -53,7 +48,6 @@ typedef struct OSThread
     /*0x304*/ u8*                   stackBase;
     /*0x308*/ u32*                  stackEnd;
 } OSThread;
-
 enum OS_THREAD_STATE
 {
     OS_THREAD_STATE_READY = 1,
@@ -61,7 +55,6 @@ enum OS_THREAD_STATE
     OS_THREAD_STATE_WAITING = 4,
     OS_THREAD_STATE_MORIBUND = 8,
 };
-
 #define OS_PRIORITY_MIN       0  // highest
 #define OS_PRIORITY_MAX       31 // lowest
 #define OS_PRIORITY_IDLE      OS_PRIORITY_MAX

@@ -56,8 +56,8 @@ u32           __OSBusClock : (OS_BASE_CACHED | 0x00F8);
 u32           __OSCoreClock : (OS_BASE_CACHED | 0x00FC);
 unsigned int  __gUnknown800030C0[2] : (OS_BASE_CACHED | 0x30C0);
 #else
-#    define __OSBusClock  (*(u32*)(OS_BASE_CACHED | 0x00F8))
-#    define __OSCoreClock (*(u32*)(OS_BASE_CACHED | 0x00FC))
+#define __OSBusClock  (*(u32*)(OS_BASE_CACHED | 0x00F8))
+#define __OSCoreClock (*(u32*)(OS_BASE_CACHED | 0x00FC))
 #endif
 #define OS_BUS_CLOCK                 __OSBusClock
 #define OS_CORE_CLOCK                __OSCoreClock
@@ -71,8 +71,8 @@ unsigned int  __gUnknown800030C0[2] : (OS_BASE_CACHED | 0x30C0);
 #define OSNanosecondsToTicks(nsec)   (((nsec) * (OS_TIMER_CLOCK / 125000)) / 8000)
 #define OSMicrosecondsToTicks(usec)  (((usec) * (OS_TIMER_CLOCK / 125000)) / 8)
 
-u32 OSGetConsoleType(void);
-void          OSInit(void);
+u32  OSGetConsoleType(void);
+void OSInit(void);
 
 void* OSGetArenaHi(void);
 void* OSGetArenaLo(void);
@@ -84,7 +84,6 @@ void* OSAllocFromArenaHi(u32 size, u32 align);
 u32 OSGetPhysicalMemSize(void);
 
 void __OSPSInit();
-
 typedef struct OSCalendarTime
 {
     /*0x00*/ int sec;
@@ -98,22 +97,7 @@ typedef struct OSCalendarTime
     /*0x20*/ int msec;
     /*0x24*/ int usec;
 } OSCalendarTime;
-
-#include <dolphin/dvd.h>
-
-typedef struct OSBootInfo_s
-{
-    // total size: 0x40
-    DVDDiskID     DVDDiskID;    // offset 0x0, size 0x20
-    u32 magic;        // offset 0x20, size 0x4
-    u32 version;      // offset 0x24, size 0x4
-    u32 memorySize;   // offset 0x28, size 0x4
-    u32 consoleType;  // offset 0x2C, size 0x4
-    void*         arenaLo;      // offset 0x30, size 0x4
-    void*         arenaHi;      // offset 0x34, size 0x4
-    void*         FSTLocation;  // offset 0x38, size 0x4
-    u32 FSTMaxLength; // offset 0x3C, size 0x4
-} OSBootInfo;
+#include <dolphin/os/OSBootInfo.h>
 
 OSTick OSGetTick(void);
 OSTime OSGetTime(void);
@@ -164,12 +148,14 @@ u32   OSUncachedToPhysical(void* ucaddr);
 void* OSCachedToUncached(void* caddr);
 void* OSUncachedToCached(void* ucaddr);
 #if !DEBUG
-#    define OSPhysicalToCached(paddr)    ((void*)((u32)(OS_BASE_CACHED + (u32)(paddr))))
-#    define OSPhysicalToUncached(paddr)  ((void*)((u32)(OS_BASE_UNCACHED + (u32)(paddr))))
-#    define OSCachedToPhysical(caddr)    ((u32)((u32)(caddr) - OS_BASE_CACHED))
-#    define OSUncachedToPhysical(ucaddr) ((u32)((u32)(ucaddr) - OS_BASE_UNCACHED))
-#    define OSCachedToUncached(caddr)    ((void*)((u8*)(caddr) + (OS_BASE_UNCACHED - OS_BASE_CACHED)))
-#    define OSUncachedToCached(ucaddr)   ((void*)((u8*)(ucaddr) - (OS_BASE_UNCACHED - OS_BASE_CACHED)))
+#define OSPhysicalToCached(paddr)    ((void*)((u32)(OS_BASE_CACHED + (u32)(paddr))))
+#define OSPhysicalToUncached(paddr)  ((void*)((u32)(OS_BASE_UNCACHED + (u32)(paddr))))
+#define OSCachedToPhysical(caddr)    ((u32)((u32)(caddr) - OS_BASE_CACHED))
+#define OSUncachedToPhysical(ucaddr) ((u32)((u32)(ucaddr) - OS_BASE_UNCACHED))
+#define OSCachedToUncached(caddr)                                                   \
+    ((void*)((u8*)(caddr) + (OS_BASE_UNCACHED - OS_BASE_CACHED)))
+#define OSUncachedToCached(ucaddr)                                                  \
+    ((void*)((u8*)(ucaddr) - (OS_BASE_UNCACHED - OS_BASE_CACHED)))
 #endif
 
 #ifdef __cplusplus
