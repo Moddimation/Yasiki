@@ -14,6 +14,7 @@ extern struct OSThreadQueue __DVDThreadQueue;
 extern u32                  __DVDLongFileNameFlag;
 
 void __DVDFSInit();
+void __DVDLowSetWAType(u32 type, s32 seekLoc);
 
 // dvdlow.c
 void __DVDInterruptHandler(s16 unused, struct OSContext* context);

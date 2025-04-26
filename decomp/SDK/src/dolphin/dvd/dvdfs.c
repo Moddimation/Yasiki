@@ -12,17 +12,17 @@ typedef struct FSTEntry
 // .sbss
 static OSBootInfo*   BootInfo;              // size: 0x4, address: 0x0
 static FSTEntry*     FstStart;              // size: 0x4, address: 0x4
-static char*         FstStringStart;        // size: 0x4, address: 0x8
+static u8*           FstStringStart;        // size: 0x4, address: 0x8
 static u32           MaxEntryNum;           // size: 0x4, address: 0xC
 static u32           currentDirectory;      // size: 0x4, address: 0x10
 struct OSThreadQueue __DVDThreadQueue;      // size: 0x8, address: 0x18
 u32                  __DVDLongFileNameFlag; // size: 0x4, address: 0x14
 
 // functions
-static BOOL isSame(const char* path, const char* string);
-static u32  myStrncpy(char* dest, char* src, u32 maxlen);
-static u32  entryToPath(u32 entry, char* path, u32 maxlen);
-static BOOL DVDConvertEntrynumToPath(s32 entrynum, char* path, u32 maxlen);
+static BOOL isSame(const u8* path, const u8* string);
+static u32  myStrncpy(u8* dest, u8* src, u32 maxlen);
+static u32  entryToPath(u32 entry, u8* path, u32 maxlen);
+static BOOL DVDConvertEntrynumToPath(s32 entrynum, u8* path, u32 maxlen);
 static void cbForReadAsync(s32 result, DVDCommandBlock* block);
 static void cbForReadSync();
 static void cbForSeekAsync(s32 result, struct DVDCommandBlock* block);
@@ -37,7 +37,7 @@ __DVDFSInit()
     if (FstStart)
     {
         MaxEntryNum = FstStart->nextEntryOrLength;
-        FstStringStart = (char*)FstStart + (MaxEntryNum * 0xC);
+        FstStringStart = (u8*)FstStart + (MaxEntryNum * 0xC);
     }
 }
 /* For convenience */
@@ -49,7 +49,7 @@ __DVDFSInit()
 #define filePosition(i) (FstStart[i].parentOrPosition)
 #define fileLength(i)   (FstStart[i].nextEntryOrLength)
 static BOOL
-isSame(const char* path, const char* string)
+isSame(const u8* path, const u8* string)
 {
     while (*string != '\0')
     {
@@ -67,18 +67,18 @@ isSame(const char* path, const char* string)
     return FALSE;
 }
 s32
-DVDConvertPathToEntrynum(char* pathPtr)
+DVDConvertPathToEntrynum(u8* pathPtr)
 {
-    const char* ptr;
-    char*       stringPtr;
-    BOOL        isDir;
-    u32         length;
-    u32         dirLookAt;
-    u32         i;
-    const char* origPathPtr = pathPtr;
-    const char* extentionStart;
-    BOOL        illegal;
-    BOOL        extention;
+    const u8* ptr;
+    u8*       stringPtr;
+    BOOL      isDir;
+    u32       length;
+    u32       dirLookAt;
+    u32       i;
+    const u8* origPathPtr = pathPtr;
+    const u8* extentionStart;
+    BOOL      illegal;
+    BOOL      extention;
 
     ASSERTMSGLINE(0x126, pathPtr,
                   "DVDConvertPathToEntrynum(): null pointer is specified  ");
@@ -153,7 +153,7 @@ DVDConvertPathToEntrynum(char* pathPtr)
 
             if (illegal)
             {
-                OSPanic(__FILE__, 0x16B,
+                OSPanic(__FILE__, 0x175,
                         "DVDConvertEntrynumToPath(possibly DVDOpen or DVDChangeDir "
                         "or DVDOpenDir): "
                         "specified directory or file (%s) doesn't match standard "
@@ -225,10 +225,10 @@ DVDFastOpen(s32 entrynum, DVDFileInfo* fileInfo)
     return TRUE;
 }
 BOOL
-DVDOpen(char* fileName, DVDFileInfo* fileInfo)
+DVDOpen(u8* fileName, DVDFileInfo* fileInfo)
 {
     s32 entry;
-    s8  currentDir[128];
+    u8  currentDir[128];
 
     ASSERTMSGLINE(0x1D3, fileName,
                   "DVDOpen(): null pointer is specified to file name  ");
@@ -269,7 +269,7 @@ DVDClose(DVDFileInfo* fileInfo)
     return TRUE;
 }
 static u32
-myStrncpy(char* dest, char* src, u32 maxlen)
+myStrncpy(u8* dest, u8* src, u32 maxlen)
 {
     u32 i = maxlen;
 
@@ -282,10 +282,10 @@ myStrncpy(char* dest, char* src, u32 maxlen)
     return (maxlen - i);
 }
 static u32
-entryToPath(u32 entry, char* path, u32 maxlen)
+entryToPath(u32 entry, u8* path, u32 maxlen)
 {
-    char* name;
-    u32   loc;
+    u8* name;
+    u32 loc;
 
     if (entry == 0)
     {
@@ -308,7 +308,7 @@ entryToPath(u32 entry, char* path, u32 maxlen)
     return loc;
 }
 static BOOL
-DVDConvertEntrynumToPath(s32 entrynum, char* path, u32 maxlen)
+DVDConvertEntrynumToPath(s32 entrynum, u8* path, u32 maxlen)
 {
     u32 loc;
 
@@ -347,7 +347,7 @@ DVDConvertEntrynumToPath(s32 entrynum, char* path, u32 maxlen)
     return TRUE;
 }
 BOOL
-DVDGetCurrentDir(char* path, u32 maxlen)
+DVDGetCurrentDir(u8* path, u32 maxlen)
 {
     ASSERTMSG1LINE(
         0x286, (maxlen > 1),
@@ -355,7 +355,7 @@ DVDGetCurrentDir(char* path, u32 maxlen)
     return DVDConvertEntrynumToPath((s32)currentDirectory, path, maxlen);
 }
 BOOL
-DVDChangeDir(char* dirName)
+DVDChangeDir(u8* dirName)
 {
     s32 entry;
     s8  currentDir[128];
@@ -398,14 +398,14 @@ DVDReadAsyncPrio(DVDFileInfo* fileInfo, void* addr, s32 length, s32 offset,
 
     if (!((0 <= offset) && (offset < fileInfo->length)))
     {
-        OSPanic(__FILE__, 0x2D5,
+        OSPanic(__FILE__, 0x2DF,
                 "DVDReadAsync(): specified area is out of the file  ");
     }
 
     if (!((0 <= offset + length) &&
           (offset + length < fileInfo->length + DVD_MIN_TRANSFER_SIZE)))
     {
-        OSPanic(__FILE__, 0x2DB,
+        OSPanic(__FILE__, 0x2E5,
                 "DVDReadAsync(): specified area is out of the file  ");
     }
 
@@ -423,7 +423,7 @@ cbForReadAsync(s32 result, DVDCommandBlock* block)
 {
     DVDFileInfo* fileInfo;
 
-    fileInfo = (DVDFileInfo*)((char*)block - offsetof(DVDFileInfo, cb));
+    fileInfo = (DVDFileInfo*)((u8*)block - offsetof(DVDFileInfo, cb));
     ASSERTLINE(0x2ED, (void*)&fileInfo->cb == (void*)block);
     if (fileInfo->callback)
     {
@@ -452,13 +452,13 @@ DVDReadPrio(struct DVDFileInfo* fileInfo, void* addr, s32 length, long offset,
 
     if (!((0 <= offset) && (offset < fileInfo->length)))
     {
-        OSPanic(__FILE__, 0x31B, "DVDRead(): specified area is out of the file  ");
+        OSPanic(__FILE__, 0x325, "DVDRead(): specified area is out of the file  ");
     }
 
     if (!((0 <= offset + length) &&
           (offset + length < fileInfo->length + DVD_MIN_TRANSFER_SIZE)))
     {
-        OSPanic(__FILE__, 0x321, "DVDRead(): specified area is out of the file  ");
+        OSPanic(__FILE__, 0x32B, "DVDRead(): specified area is out of the file  ");
     }
 
     block = &fileInfo->cb;
@@ -485,7 +485,7 @@ DVDReadPrio(struct DVDFileInfo* fileInfo, void* addr, s32 length, long offset,
         }
         else if (state == 10)
         {
-            retVal = -6;
+            retVal = -3;
             break;
         }
         OSSleepThread(&__DVDThreadQueue);
@@ -513,7 +513,7 @@ DVDSeekAsyncPrio(struct DVDFileInfo* fileInfo, s32 offset,
     }
 
     fileInfo->callback = callback;
-    DVDSeekAbsAsyncPrio(&fileInfo->cb, (u32)(char*)fileInfo->startAddr + offset,
+    DVDSeekAbsAsyncPrio(&fileInfo->cb, (u32)(u8*)fileInfo->startAddr + offset,
                         cbForSeekAsync, prio);
     return 1;
 }
@@ -546,7 +546,7 @@ DVDSeekPrio(struct DVDFileInfo* fileInfo, s32 offset, long prio)
                   "DVDSeek(): offset is out of the file  ");
 
     block = &fileInfo->cb;
-    result = DVDSeekAbsAsyncPrio(block, (u32)(char*)fileInfo->startAddr + offset,
+    result = DVDSeekAbsAsyncPrio(block, (u32)(u8*)fileInfo->startAddr + offset,
                                  cbForSeekSync, prio);
     if (!result)
     {
@@ -588,7 +588,7 @@ DVDGetFileInfoStatus(struct DVDFileInfo* fileInfo)
     return fileInfo->cb.state;
 }
 int
-DVDOpenDir(char* dirName, DVDDir* dir)
+DVDOpenDir(u8* dirName, DVDDir* dir)
 {
     s32 entry;
 #if DEBUG
@@ -654,7 +654,7 @@ DVDPrepareStreamAsync(DVDFileInfo* fileInfo, u32 length, u32 offset,
 
     if (!Is32KBAligned(start))
     {
-        OSPanic(__FILE__, 0x472,
+        OSPanic(__FILE__, 0x47E,
                 "DVDPrepareStreamAsync(): Specified start address (filestart(0x%x) "
                 "+ offset(0x%x)) is "
                 "not 32KB aligned",
@@ -668,7 +668,7 @@ DVDPrepareStreamAsync(DVDFileInfo* fileInfo, u32 length, u32 offset,
 
     if (!Is32KBAligned(length))
     {
-        OSPanic(__FILE__, 0x47C,
+        OSPanic(__FILE__, 0x488,
                 "DVDPrepareStreamAsync(): Specified length (0x%x) is not a multiple "
                 "of 32768(32*1024)",
                 length);
@@ -676,7 +676,7 @@ DVDPrepareStreamAsync(DVDFileInfo* fileInfo, u32 length, u32 offset,
 
     if (!((offset < fileInfo->length) && (offset + length <= fileInfo->length)))
     {
-        OSPanic(__FILE__, 0x484,
+        OSPanic(__FILE__, 0x490,
                 "DVDPrepareStreamAsync(): The area specified (offset(0x%x), "
                 "length(0x%x)) is out of "
                 "the file",
@@ -693,7 +693,7 @@ cbForPrepareStreamAsync(s32 result, DVDCommandBlock* block)
 {
     DVDFileInfo* fileInfo;
 
-    fileInfo = (DVDFileInfo*)((char*)block - offsetof(DVDFileInfo, cb));
+    fileInfo = (DVDFileInfo*)((u8*)block - offsetof(DVDFileInfo, cb));
 
     ASSERTLINE(0x497, (void*)&fileInfo->cb == (void*)block);
 
