@@ -1,12 +1,9 @@
-#include "dolphin/hw_regs.h"
-#include "dolphin/os/OSAlarm.h"
-#include <dolphin/dvd.h>
-#include <dolphin/os.h>
+#include <dolphin/hw_regs.h>
 
 #include <dolphin.h>
 
 #include "../os/OSPrivate.h"
-#include "DVDPrivate.h"
+#include "dvd_private.h"
 #include "macros.h"
 
 #define ERROR_FATAL            1
@@ -19,29 +16,29 @@ static OSAlarm         ResetAlarm;
 
 static int autoInvalidation = 1;
 
-static DVDCommandBlock*     executing;
-static void*                tmp;
-static struct DVDDiskID*    currID;
-static struct OSBootInfo_s* bootInfo;
-static volatile int         PauseFlag;
-static volatile int         PausingFlag;
-static int                  AutoFinishing;
-static volatile BOOL        FatalErrorFlag;
-static volatile u32         CurrCommand;
-static volatile u32         Canceling;
-static DVDCommandBlock*     CancelingCommandBlock;
-static void                 (*CancelCallback)(s32, DVDCommandBlock*);
-static volatile u32         ResumeFromHere;
-static volatile u32         CancelLastError;
-static u32                  LastError;
-static volatile s32         NumInternalRetry;
-static int                  ResetRequired;
-static int                  CancelAllSyncComplete;
-static volatile u32         ResetCount;
-static int                  FirstTimeInBootrom;
-static s32                  ResultForSyncCommand;
-static int                  DVDInitialized;
-void                        (*LastState)(DVDCommandBlock*);
+static DVDCommandBlock* executing;
+static void*            tmp;
+static DVDDiskID*       currID;
+static OSBootInfo*      bootInfo;
+static volatile BOOL    PauseFlag;
+static volatile BOOL    PausingFlag;
+static int              AutoFinishing;
+static volatile BOOL    FatalErrorFlag;
+static vu32             CurrCommand;
+static vu32             Canceling;
+static DVDCommandBlock* CancelingCommandBlock;
+static void             (*CancelCallback)(s32, DVDCommandBlock*);
+static vu32             ResumeFromHere;
+static vu32             CancelLastError;
+static u32              LastError;
+static vs32             NumInternalRetry;
+static int              ResetRequired;
+static int              CancelAllSyncComplete;
+static vu32             ResetCount;
+static int              FirstTimeInBootrom;
+static s32              ResultForSyncCommand;
+static int              DVDInitialized;
+void                    (*LastState)(DVDCommandBlock*);
 
 static void stateReadingFST();
 static void cbForStateReadingFST(u32 intType);

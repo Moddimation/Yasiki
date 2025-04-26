@@ -3,7 +3,7 @@
 #include <dolphin.h>
 
 #include "../os/OSPrivate.h"
-#include "DVDPrivate.h"
+#include "dvd_private.h"
 
 // .sbss
 static void         (*Callback)(u32);           // size: 0x4, address: 0x0
