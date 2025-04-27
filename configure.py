@@ -579,6 +579,13 @@ config.libs = [
 
     # SDK
 
+    DolphinLib("mtx", [
+        (Matching, "mtx.c"),
+        (Matching, "mtx44.c"),
+        (Matching, "vec.c"),
+        (Matching, "mtxvec.c"),
+    ]),
+
     DolphinLib("dvd", [
         (Matching, "dvdlow.c"),
         (Matching, "dvdfs.c"),
