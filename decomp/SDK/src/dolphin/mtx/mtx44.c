@@ -1,8 +1,7 @@
 #include <dolphin/mtx.h>
 
+#include <cmath>
 #include <dolphin.h>
-
-#include "fake_tgmath.h"
 
 // functions
 void MTXFrustum(Mtx m, f32 t, f32 b, f32 l, f32 r, f32 n, f32 f);
