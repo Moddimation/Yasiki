@@ -579,6 +579,10 @@ config.libs = [
 
     # SDK
 
+    DolphinLib("db", [
+        (Matching, "db.c"), 
+    ]),
+
     DolphinLib("mtx", [
         (Matching, "mtx.c"),
         (Matching, "mtx44.c"),
