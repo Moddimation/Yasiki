@@ -1,17 +1,18 @@
-
-Luigi's Mansion                 
-[![Discord Badge]][discord]
+Luigi's Mansion  
+[![Build Status]][actions] [![Code Progress]][progress] [![Functions]][progress] [![Discord Badge]][discord] [![Wiki]][wikipage]
 =============
-<!-- [![Build Status]][actions] [![Progress]][progress site]  -->
 
-<!-- [Build Status]: https://github.com/zeldaret/tww/actions/workflows/build.yml/badge.svg
-[actions]: https://github.com/zeldaret/tww/actions/workflows/build.yml
-[Progress]: https://decomp.dev/zeldaret/tww.svg?mode=shield&measure=code&label=Code&category=all
-[progress site]: https://zeldaret.github.io/tww/ -->
-[Discord Badge]: https://img.shields.io/discord/688807550715560050?color=%237289DA&logo=discord&logoColor=%23FFFFFF
+[Build Status]: https://github.com/Moddimation/YasikiDolphin/actions/workflows/build.yml/badge.svg
+[actions]: https://github.com/Moddimation/YasikiDolphin/actions/workflows/build.yml
+[Code Progress]: https://decomp.dev/Moddimation/YasikiDolphin.svg?mode=shield&measure=code&label=Code
+[progress]: https://decomp.dev/Moddimation/YasikiDolphin
+[Discord Badge]: https://img.shields.io/discord/727908905392275526?color=%237289DA&logo=discord&logoColor=%23FFFFFF
 [discord]: https://discord.gg/hKx3FJJgrV
+[Wiki]: https://img.shields.io/badge/Wiki-page-blue
+[wikipage]: https://wiki.decomp.dev/en/projects/gamecube-wii/luigis-mansion
+[Functions]: https://decomp.dev/Moddimation/YasikiDolphin.svg?mode=shield&measure=functions&label=Functions
 
-A work-in-progress decompilation of Luigi's Mansion (GameCube, 2001).
+This repository contains a work-in-progress decompilation work of [*Luigi's Mansion*](https://wikipedia.org/wiki/Luigi%27s_Mansion) for the [Nintendo GameCube system](https://en.wikipedia.org/wiki/GameCube).
 
 Supported versions (active):
 - `GLMJ01`: Japan (Rev 0)
@@ -28,7 +29,7 @@ Supported versions (to be worked on):
 > This project will not allow you to play the game if you don't provide your own copy.
 
 > [!WARNING]
-> This game does *no*t ship with *symbols*, so information is scraped together with *RTTI* and *LM* for *3DS* (has a few folder /file names).
+> This game does *no*t ship with *symbols*, so information is scraped together with *RTTI* and *LM for 3DS* (has a few folder /file names).
 > 
 > Not recommended for beginners, but noone shall remove your right to advance.
 
@@ -112,9 +113,9 @@ Building
   git clone https://github.com/Moddimation/YasikiDolphin.git
   ```
 
-- Copy your game's disc image to `orig/GLMJ01` (or whatever version you wish to work on).
+- Copy your game's disc image to `orig/<VERSION>`.
   - Supported formats: ISO (GCM), RVZ, WIA, WBFS, CISO, NFS, GCZ, TGC
-  - After the initial build, the disc image can be deleted to save space.
+  - After the initial build, the disc image can be deleted to save space. It is recommended to keep `orig/<VERSION>/sys/main.dol`, though, which is the only file being actually needed. If deleted, you'll need to redownload it if you delete the build/ folder.
 
 - Configure:
   ```
@@ -123,21 +124,28 @@ Building
   To use a version other than `GLMJ01` (Japan), specify `--version <version`.
   Example usage (See its github for detailed usage):
   - `python configure.py --version GLME01` (US Release).
-  - `python configure.py --version GLMP01_1` (EU Release Rev 1)
+  - `python configure.py --version GLMP01_2` (EU Release Rev 1)
   - `python configure.py --debug` Build with debug
+  - `python configure.py --map` Build and generate map (for comparison)
   - `python configure.py progress` Show progress
 
 - Build:
   ```
   ninja
   ```
+- Useful:
+  - `ninja diff` When failing to build, check the differences (command line only).
+  - `ninja apply` When finished decompiling a file, and marking it as Matching in configure.py, this updates the symbols.txt for correctness.
+
 
 Diffing
 =======
 
 Once the initial build succeeds, an `objdiff.json` should exist in the project root. 
 
-Download the latest release from [encounter/objdiff](https://github.com/encounter/objdiff). Under project settings, set `Project directory`. The configuration should be loaded automatically. 
+Download the latest release from [encounter/objdiff](https://github.com/encounter/objdiff).
+
+Under project settings, set `Project directory` to the root, aka the file containing the `objdiff.json` file. The configuration should be loaded automatically, and if not, ensure that the build generated no errors. If it did, resolve these and try again.
 
 Select an object from the left sidebar to begin diffing. Changes to the project will rebuild automatically: changes to source files, headers, `configure.py`, `splits.txt` or `symbols.txt`.
 
@@ -146,9 +154,9 @@ Select an object from the left sidebar to begin diffing. Changes to the project 
 Setting up Ghidra
 =================
 
-Ghidra is a tool that automatically decompiles code. Although Ghidra's output is not accurate enough to be directly copy-pasted into this decompilation project, it can still be helpful for understanding functions and decompiling them faster.
+Ghidra is a tool that automatically decompiles code. Although Ghidra's output is not accurate enough to be directly copy-pasted into this decompilation project, it can still be helpful for understanding functions and decompiling them faster. You are free to use other decompilation methods, such as IDA, m2c or manually, but ghidra was chosen as the preferred tool in the gamecube/wii decomp scene.
 
-I have a shared Ghidra project for LuigisMansion already set up. To get access to this server:
+I've got a shared Ghidra project for LuigisMansion already set up, that I usually update. To get access to this server:
 
 * Go to https://ghidra.decomp.dev and link your Discord account.
 * Create a Ghidra account by entering a new username and password into the form on the right.
@@ -157,7 +165,8 @@ I have a shared Ghidra project for LuigisMansion already set up. To get access t
 Then wait for an admin to approve your request. Once you have access, you can set up the Ghidra project like so:
 
 * To use Ghidra, you first need to install JDK. You can download OpenJDK 17 from [here](https://adoptium.net/temurin/releases/).
-* Download the RootCubed Ghidra build ghidra_11.1_DEV_20240115 from [here](https://rootcubed.dev/ghidra_builds/).
+* Download the RootCubed Ghidra build ghidra_11.4_DEV_20250425 from the link in the `Download section `[here](https://rootcubed.dev/ghidra_builds/).
+(*OPTIONAL) If you wish to load/analyze other binaries for gamecube/wii, you need the `Ghidra-GameCube-Loader` extension, which you can get on the RootCubed Ghidra page.
 * Launch Ghidra with `ghidraRun`.
 * In Ghidra, go to `File -> New Project...`. Select `Shared Project` and input the following information:
     * Server Name: ghidra.decomp.dev
@@ -172,10 +181,11 @@ For an introduction on how to use Ghidra, you can read [this section of the Twil
 
 Contributing
 =======
-The state of the repo is rather early, but you're nevertheless free to contribute if you want to!
+
 
 Credits
 =======
+- Nintendo and it's developers for this great masterpiece
 - encounter and NWPlayer123 for dtk-template, the used build system.
 - Sage-of-Mirrors, EpochFlame and NWPlayer123 for past documentation of Luigi's Mansion.
 - Modding community of Luigi's Mansion for research, documentation and modding tools of Luigi's Mansion.
