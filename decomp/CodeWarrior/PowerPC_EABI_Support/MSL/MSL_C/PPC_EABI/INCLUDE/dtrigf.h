@@ -114,7 +114,7 @@ inline __vec2x32float__ sincosf_f(__vec2x32float__ x);
 
 #pragma fp_contract on
 
-#define USE_ASM   1
+#define USE_ ASM    1
 
 #define __PIO2__  1.57079632679489661923132169163975f
 #define __PI      3.1415926535897932384626433832795f
@@ -122,7 +122,7 @@ inline __vec2x32float__ sincosf_f(__vec2x32float__ x);
 
 #define FTYPE     float
 
-#if !USE_ASM
+#if !USE_ ASM 
 
 #define sine_core_series_fast(x)                                                    \
     square_x = x * x;                                                               \
@@ -169,7 +169,7 @@ inline __vec2x32float__ sincosf_f(__vec2x32float__ x);
 #else
 
 #define sine_core_series_fast(x)                                                    \
-    asm {\
+    ASM {\
             fmuls   square_x, x, x;\
             fmsubs  result, result, square_x, const1;\
             fmadds  result, result, square_x, const2;\
@@ -177,7 +177,7 @@ inline __vec2x32float__ sincosf_f(__vec2x32float__ x);
     }
 
 #define sine_core_series(x)                                                         \
-    asm {\
+    ASM {\
             fmuls   square_x, x, x;\
             fmadds  result, result, square_x, const1;\
             fmsubs  result, result, square_x, const2;\
@@ -188,14 +188,14 @@ inline __vec2x32float__ sincosf_f(__vec2x32float__ x);
     }
 
 #define cosine_core_series_fast(x)                                                  \
-    asm {\
+    ASM {\
             fmuls   square_x, x, x;\
             fmsubs  result, result, square_x, const1;\
             fmadds  result, result, square_x, const2;                                                                          \
     }
 
 #define cosine_core_series(x)                                                       \
-    asm {\
+    ASM {\
             fmuls   square_x, x, x;\
             fmadds  result, result, square_x, const1;\
             fmsubs  result, result, square_x, const2;\

@@ -42,7 +42,7 @@ void        PERFSetEventColor(u16 id, GXColor color);
 void        PERFStartFrame();
 void        PERFEndFrame();
 void        PERFEventStart(u16 id);
-__declspec(weak) s32 PERFGetNewSample();
+WEAKFUNC s32 PERFGetNewSample();
 void                 PERFEventEnd(u16 id);
 static void          PERFStartAutoSample();
 static void          PERFEndAutoSample();
@@ -363,7 +363,7 @@ PERFEventStart(u16 id)
     OSRestoreInterrupts(enabled);
 }
 #if DEBUG
-__declspec(weak) s32
+WEAKFUNC s32
 PERFGetNewSample()
 {
     if (PERFCurrSample >= (PERFNumSamples - 1))

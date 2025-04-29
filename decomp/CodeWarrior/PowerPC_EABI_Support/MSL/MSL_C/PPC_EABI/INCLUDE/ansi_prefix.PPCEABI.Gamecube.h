@@ -14,6 +14,7 @@
 #ifndef __ansi_prefix__
 #define __ansi_prefix__
 
+#include <mslGlobals.h>
 #include <os_enum.h>
 #define __dest_os __dolphin_os
 
@@ -30,7 +31,9 @@
  * before main.
  */
 
+#ifndef _MSL_ANSI_PARMS_H
 #include <ansi_parms.h>
+#endif
 
 /* Two macros determine what the floating support will be 	*/
 /* in the MSL and runtime support.							*/

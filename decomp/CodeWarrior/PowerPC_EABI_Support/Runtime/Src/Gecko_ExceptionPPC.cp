@@ -1395,7 +1395,7 @@ __unexpected(CatchInfo* catchinfo)
 /* Input....: destination PC											*/
 /* Return...: ---														*/
 /************************************************************************/
-static asm void
+static ASM void
 ExPPC_LongJump(register ThrowContext* context, register void* newRTOC,
                register void* newPC)
 {

@@ -1,7 +1,7 @@
 #if !(__MIPS__ && __MIPS_ISA3__ && __MIPS_single_fpu__)
 
 // #undef _INLINE
-// #define _INLINE __declspec(weak)
+// #define _INLINE WEAKFUNC
 
 #include <math.h>
 /*

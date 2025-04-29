@@ -352,7 +352,7 @@ __AIDHandler(__OSInterrupt interrupt, OSContext* context)
     OSClearContext(&exceptionContext);
     OSSetCurrentContext(context);
 }
-static asm void
+static ASM void
 __AICallbackStackSwitch(register void* cb)
 {
     nofralloc;

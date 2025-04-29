@@ -134,16 +134,33 @@
 
 #define IGNORE_ALL  inline
 
-#if defined(VERSION_GLMJ01)
+#if defined(VERSION_GLMJ01)   // Japan
 #undef IGNORE_GLMJ01
 #define IGNORE_GLMJ01 inline
 #undef ONLY_GLMJ01
 #define ONLY_GLMJ01
-#elif defined(VERSION_GLME01)
+#elif defined(VERSION_GLME01) // US
 #undef IGNORE_GLME01
 #define IGNORE_GLME01 inline
 #undef ONLY_GLME01
 #define ONLY_GLME01
 #endif
 
-#endif // _H_MACROS_
+#ifndef __PPCGEKKO__
+#define __PPCGEKKO__
+#endif
+#ifndef GEKKO
+#define GEKKO
+#endif
+
+#ifndef __MWERKS__
+#define __option(x)   0
+#define __declspec(x) 0
+#define __frsqrte(x)  0
+#define __fabsf(x)    0
+#define __sync()      0
+#define __cntlzw(x)   0
+#define asm
+#endif
+
+#endif                        // _H_MACROS_

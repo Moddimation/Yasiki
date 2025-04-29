@@ -1,7 +1,7 @@
 #ifndef _DOLPHIN_PPCARCH
 #define _DOLPHIN_PPCARCH
 
-#include "dolphin/types.h"
+#include "types.h"
 
 #ifdef __cplusplus
 extern "C"

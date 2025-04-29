@@ -424,7 +424,7 @@ _ptrglpas(void)
 //	__save_fpr_XX	-	save FPR's XX through 31
 //
 
-static asm void
+static ASM void
 __save_fpr(void)
 {
 #if __PPC_EABI__
@@ -451,7 +451,7 @@ __save_fpr(void)
         -8(save_restore_reg)blr
 }
 #if __ALTIVEC__
-static asm void
+static ASM void
 _savevr(void)
 {
     nofralloc machine altivec
@@ -475,7 +475,7 @@ _savevr(void)
 //	__restore_fpr_XX	-	restore FPR's XX through 31
 //
 
-static asm void
+static ASM void
 __restore_fpr(void)
 {
 #if __PPC_EABI__
@@ -508,7 +508,7 @@ __restore_fpr(void)
 //	_savegpr_XX	-	save GPR's XX through 31
 //
 
-static asm void
+static ASM void
 __save_gpr(void)
 {
 #if __PPC_EABI__
@@ -537,7 +537,7 @@ __save_gpr(void)
 //	__restgpr_XX	-	restore FPR's XX through 31
 //
 
-static asm void
+static ASM void
 __restore_gpr(void)
 {
 #if __PPC_EABI__
@@ -565,7 +565,7 @@ __restore_gpr(void)
 #endif
 
 #if __ALTIVEC__
-static asm void
+static ASM void
 _restorevr(void)
 {
     nofralloc machine altivec ENTRY_RESTORE_VPR(20) ENTRY_RESTORE_VPR2(20) addi r12,

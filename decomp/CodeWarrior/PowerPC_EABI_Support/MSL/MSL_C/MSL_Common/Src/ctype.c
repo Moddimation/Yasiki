@@ -33,7 +33,7 @@
  * sw 081601
  */
 
-#define _INLINE __declspec(weak)
+#define _INLINE WEAKFUNC
 #pragma require_prototypes off
 #include <ctype.h>
 #pragma require_prototypes reset

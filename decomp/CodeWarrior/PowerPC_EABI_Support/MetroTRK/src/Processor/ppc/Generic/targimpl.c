@@ -208,7 +208,7 @@ DSError TRKValidMemory32(const void* addr, size_t length,
     return err;
 }
 
-static asm void
+static ASM void
 TRK_ppc_memcpy(register void* dest, register const void* src, register int n,
                register u32 param_4, register u32 param_5) {
 #ifdef __MWERKS__ // clang-format off
@@ -682,7 +682,7 @@ L_802CF694:
 	b TRKPostInterruptEvent
 #endif // clang-format on
 }
-static asm void
+static ASM void
 TRKExceptionHandler(u16)
 {
 #ifdef __MWERKS__ // clang-format off

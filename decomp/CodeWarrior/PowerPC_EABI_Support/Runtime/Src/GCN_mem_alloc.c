@@ -70,7 +70,7 @@ InitDefaultHeap()
  * sys_alloc.
  */
 
-__declspec(weak) extern void*
+WEAKFUNC extern void*
 __sys_alloc(__std(size_t) blocksize)
 {
     /* Check if there is already a default heap */
@@ -88,7 +88,7 @@ __sys_alloc(__std(size_t) blocksize)
  *
  */
 
-__declspec(weak) extern void
+WEAKFUNC extern void
 __sys_free(void* block)
 {
     if (__OSCurrHeap == -1)

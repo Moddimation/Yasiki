@@ -2,7 +2,7 @@
 #define _DOLPHIN_SI_H_
 
 #include <dolphin/os.h>
-#include <dolphin/types.h>
+#include <types.h>
 
 #define PAD_CHAN0_BIT         0x80000000
 #define PAD_CHAN1_BIT         0x40000000

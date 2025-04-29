@@ -1,5 +1,5 @@
 #include <dolphin/os.h>
-#include <dolphin/types.h>
+#include <types.h>
 #include <dolphin/vi.h>
 typedef struct
 {

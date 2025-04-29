@@ -1,7 +1,7 @@
 #ifndef _DOLPHIN_GX_GXCOMMANDLIST_H_
 #define _DOLPHIN_GX_GXCOMMANDLIST_H_
 
-#include <dolphin/types.h>
+#include <types.h>
 
 #define GX_NOP                 0x00
 #define GX_LOAD_CP_REG         0x08

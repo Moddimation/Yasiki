@@ -610,12 +610,12 @@ OPERATOR_ARRAY_DELETE(void* ptr) _MSL_THROW
 
 #if __MWERKS__ >= 0x2400
 #ifndef _MSL_NO_EXCEPTIONS
-_MSL_IMP_EXP_RUNTIME extern __declspec(weak) void
+_MSL_IMP_EXP_RUNTIME extern WEAKFUNC void
 OPERATOR_DELETE(void* ptr, const _STD::nothrow_t&) _MSL_THROW
 {
     OPERATOR_DELETE(ptr);
 }
-_MSL_IMP_EXP_RUNTIME extern __declspec(weak) void
+_MSL_IMP_EXP_RUNTIME extern WEAKFUNC void
 OPERATOR_ARRAY_DELETE(void* ptr, const _STD::nothrow_t&) _MSL_THROW
 {
     OPERATOR_DELETE(ptr);

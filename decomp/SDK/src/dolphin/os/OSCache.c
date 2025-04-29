@@ -306,7 +306,7 @@ asm void ICSync(void) {
 #define LC_LINES    512
 #define CACHE_LINES 1024
 
-static asm void __LCEnable(void) {
+static ASM void __LCEnable(void) {
   nofralloc
   mfmsr   r5
   ori     r5, r5, 0x1000

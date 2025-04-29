@@ -1,7 +1,7 @@
 #ifndef _DOLPHIN_VITYPES_H_
 #define _DOLPHIN_VITYPES_H_
 
-#include <dolphin/types.h>
+#include <types.h>
 
 // Merge format/mode to one value for TV info (see GXRenderModeObj)
 #define VI_TV_INFO(format, mode) (((format) << 2) + (mode))

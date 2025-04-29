@@ -18,24 +18,7 @@
 #ifndef _MSLGLOBALS_H
 #define _MSLGLOBALS_H
 
-/*
-    Project Specific
-*/
-
-#ifdef GH_ACTION
-#define __PPCGEKKO__
-#define GEKKO
-#endif
-
-#ifndef __MWERKS__
-#define __option(x)   0
-#define __declspec(x) 0
-#define __frsqrte(x)  0
-#define __fabsf(x)    0
-#define __sync()      0
-#define __cntlzw(x)   0
-#define asm
-#endif
+#include <macros.h>
 
 #ifndef __ansi_prefix__
 

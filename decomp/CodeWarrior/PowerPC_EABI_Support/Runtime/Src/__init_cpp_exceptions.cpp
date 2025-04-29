@@ -45,7 +45,7 @@ static int fragmentID = -2;    /* ID given to fragment by exception-handling		*/
                                /* valid numbers are 0 - MAX_INT; if -1 then		*/
 /* too many fragments were loaded					*/
 
-static asm char*
+static ASM char*
 GetR2(void)
 {
     /*

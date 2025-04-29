@@ -1,7 +1,7 @@
 #ifndef _DOLPHIN_AR_H_
 #define _DOLPHIN_AR_H_
 
-#include <dolphin/types.h>
+#include <types.h>
 
 typedef void (*ARQCallback)(u32 pointerToARQRequest);
 struct ARQRequest

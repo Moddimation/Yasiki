@@ -8,7 +8,7 @@
 
 volatile OSContext* __OSCurrentContext : (OS_BASE_CACHED | 0x00D4);
 volatile OSContext* __OSFPUContext : (OS_BASE_CACHED | 0x00D8);
-static asm void
+static ASM void
 __OSLoadFPUContext(register u32, register OSContext* fpuContext)
 {
     // clang-format off
@@ -93,7 +93,7 @@ _return:
   blr
     // clang-format on
 }
-static asm void
+static ASM void
 __OSSaveFPUContext(register u32, register u32, register OSContext* fpuContext)
 {
     // clang-format off
@@ -530,7 +530,7 @@ OSDumpContext(OSContext* context)
         OSReport("0x%08x:   0x%08x    0x%08x\n", p, p[0], p[1]);
     }
 }
-static asm void
+static ASM void
 OSSwitchFPUContext(register __OSException exception, register OSContext* context)
 {
     // clang-format off
