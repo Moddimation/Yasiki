@@ -336,6 +336,7 @@ cflags_sdk = [
     "-DBUILD_DATE=\"\\\"Jul 19 2001\\\"\"",
     "-DBUILD_TIME=\"\\\"05:43:42\\\"\"",
     "-i decomp/SDK/include",
+    "-i decomp/CodeWarrior/PowerPC_EABI_Support/MetroTRK",
     "-O4,p",
     "-inline auto",
 ]
@@ -578,6 +579,11 @@ config.libs = [
 #    }),
 
     # SDK
+
+    DolphinLib("os", [
+        (Matching, "init/__start.c"),
+        (Matching, "init/__ppc_eabi_init.cpp"),
+    ],),
 
     DolphinLib("db", [
         (Matching, "db.c"), 

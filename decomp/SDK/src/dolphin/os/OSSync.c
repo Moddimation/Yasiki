@@ -6,7 +6,7 @@
 
 void __OSSystemCallVectorStart();
 void __OSSystemCallVectorEnd();
-static asm void
+static ASM void
 SystemCallVector(void)
 {
     entry __OSSystemCallVectorStart nofralloc mfspr r9, HID0 ori r10, r9,

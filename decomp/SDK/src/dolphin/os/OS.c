@@ -56,7 +56,7 @@ static int                  AreWeInitialized;
 static void                 (**OSExceptionTable)(u16, struct OSContext*);
 
 // functions
-static asm void __OSInitFPRs(void);
+static ASM void __OSInitFPRs(void);
 static void     OSExceptionInit(void);
 static void     OSDefaultExceptionHandler(u16               exception /* r3 */,
                                           struct OSContext* context /* r4 */);
@@ -66,7 +66,7 @@ __OSIsDebuggerPresent()
     return *(u32*)OSPhysicalToCached(0x40);
 }
 /* clang-format off */
-static asm void __OSInitFPRs(void)
+static ASM void __OSInitFPRs(void)
 {
     nofralloc
     lfd     fp0, ZeroF
@@ -301,7 +301,7 @@ static void OSExceptionInit(void) {
     DBPrintf("Exceptions initialized...\n");
 }
 
-static asm void __OSDBIntegrator(void) {
+static ASM void __OSDBIntegrator(void) {
   /* clang-format off */
     nofralloc
 entry __OSDBINTSTART
@@ -317,7 +317,7 @@ entry __OSDBINTSTART
 entry __OSDBINTEND
     /* clang-format on */
 }
-static asm void
+static ASM void
 __OSDBJump(void) {
     /* clang-format off */
 
@@ -348,7 +348,7 @@ __OSGetExceptionHandler(__OSException exception)
                   "__OSGetExceptionHandler(): unknown exception.");
     return OSExceptionTable[exception];
 }
-static asm void
+static ASM void
 OSExceptionVector(void)
 {
     /* clang-format off */

@@ -3,7 +3,7 @@
 #include <cmath>
 #include <dolphin.h>
 
-// defines to make asm work
+// defines to make ASM work
 #define qr0 0
 void
 C_VECAdd(Vec* a, Vec* b, Vec* c)
@@ -104,7 +104,7 @@ PSVECNormalize(register Vec* vec1, register Vec* dst)
     register float nwork1;
 
 #ifdef __MWERKS__
-    asm {
+    ASM {
         psq_l v1_xy, Vec.x(vec1), 0, qr0;
         ps_mul xx_yy, v1_xy, v1_xy;
         psq_l v1_z, Vec.z(vec1), 1, qr0;

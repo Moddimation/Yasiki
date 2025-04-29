@@ -2,7 +2,7 @@
 #define _DOLPHIN_VIFUNCS_H_
 
 #include <dolphin/gx/GXStruct.h>
-#include <dolphin/types.h>
+#include <types.h>
 #include <dolphin/vi/vitypes.h>
 
 #ifdef __cplusplus

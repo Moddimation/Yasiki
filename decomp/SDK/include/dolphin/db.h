@@ -2,7 +2,7 @@
 #define _DOLPHIN_DB_H_
 
 #include <dolphin/db/DBInterface.h>
-#include <dolphin/types.h>
+#include <types.h>
 
 #ifdef __cplusplus
 extern "C"

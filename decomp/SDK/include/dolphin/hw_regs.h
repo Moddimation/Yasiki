@@ -5,6 +5,7 @@
 
 // Register base adresses
 
+#ifdef __MWERKS__
 volatile u32 __RAMRegs[] AT_ADDRESS(0x80000000); // RAM Register
 volatile u16 __CPRegs[] AT_ADDRESS(0xCC000000);  // Command Processor Register
 volatile u16 __PERegs[] AT_ADDRESS(0xCC001000);  // Pixel Engine Register
@@ -17,6 +18,20 @@ volatile u32 __SIRegs[] AT_ADDRESS(0xCC006400);  // Serial Interface Register
 volatile u32 __EXIRegs[] AT_ADDRESS(0xCC006800); // External Interface Register
 volatile u32 __AIRegs[] AT_ADDRESS(0xCC006C00);  // Audio Interface Register
 volatile u8  __GXRegs[] AT_ADDRESS(0xCC008000);  // Graphics FIFO Register
+#else
+volatile u32* __RAMRegs; // RAM Register
+volatile u16* __CPRegs;  // Command Processor Register
+volatile u16* __PERegs;  // Pixel Engine Register
+volatile u16* __VIRegs;  // Video Interface Register
+volatile u32* __PIRegs;  // Process Interrupt Register
+volatile u16* __MIRegs;  // Memory Interrupt Register
+volatile u16* __DSPRegs; // Digital Signal Processor Register
+volatile u32* __DIRegs;  // DVD Interface Register
+volatile u32* __SIRegs;  // Serial Interface Register
+volatile u32* __EXIRegs; // External Interface Register
+volatile u32* __AIRegs;  // Audio Interface Register
+volatile u8*  __GXRegs;  // Graphics FIFO Register
+#endif
 
 // Register offsets
 
@@ -334,3 +349,4 @@ volatile u8  __GXRegs[] AT_ADDRESS(0xCC008000);  // Graphics FIFO Register
 #define AI_IT                       (3) // ai interface timing
 
 #endif
+

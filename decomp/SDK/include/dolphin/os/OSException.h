@@ -2,7 +2,7 @@
 #define _DOLPHIN_OSEXCEPTION_H_
 
 #include <dolphin/os/OSContext.h>
-#include <dolphin/types.h>
+#include <types.h>
 
 #ifdef __cplusplus
 extern "C"

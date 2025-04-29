@@ -3,6 +3,13 @@
 
 #include <dolphin/os.h>
 
+#ifdef __cplusplus
+extern "C"
+{
+#endif
+
+#define SEC_INIT DECL_SECT(".init")
+
 // OS.c
 extern char* __OSExceptionNames[15]; // D ONLY
 
@@ -83,29 +90,23 @@ void __OSSetTime(s64 time);
 s64  __OSGetSystemTime();
 void __OSSetTick(register u32 newTicks);
 
-// ppc_eabi_init.c
-#ifdef __MWERKS__
-__declspec(section ".init") asm void __init_hardware(void);
-__declspec(section ".init") asm void __flush_cache(void* address, unsigned int size);
-#else
-asm void __init_hardware(void);
-asm void __flush_cache(void* address, unsigned int size);
-#endif
-void __init_user(void);
-void __init_cpp(void);
-void __fini_cpp(void);
-void _ExitProcess(void);
+// __ppc_eabi_init.c
+SEC_INIT ASM void __init_hardware(void);
+SEC_INIT ASM void __flush_cache(void* address, unsigned int size);
+void              __init_user(void);
+void              __init_cpp(void);
+void              __fini_cpp(void);
+void              _ExitProcess(void);
 
-// start.c
+// __start.c
 void __start(void);
 
 #ifdef __MWERKS__
-__declspec(section ".init") extern void __start(void);
-__declspec(section ".init") void __copy_rom_section(void* dst, const void* src,
-                                                    u32 size);
-__declspec(section ".init") void __init_bss_section(void* dst, u32 size);
-__declspec(section ".init") extern void __init_registers(void);
-__declspec(section ".init") extern void __init_data(void);
+SEC_INIT extern void __start(void);
+SEC_INIT void        __copy_rom_section(void* dst, const void* src, u32 size);
+SEC_INIT void        __init_bss_section(void* dst, u32 size);
+SEC_INIT extern void __init_registers(void);
+SEC_INIT extern void __init_data(void);
 #else
 extern void __start(void);
 void        __copy_rom_section(void* dst, const void* src, u32 size);
@@ -118,5 +119,9 @@ extern void __init_data(void);
 s64 __get_clock(void);
 u32 __get_time(void);
 int __to_gm_time(void);
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif // _DOLPHIN_OS_INTERNAL_H_

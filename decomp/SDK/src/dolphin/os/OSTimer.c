@@ -127,7 +127,7 @@ DecrementerExceptionCallback(u16 exception, struct OSContext* context)
     OSSetCurrentContext(context);
     OSLoadContext(context);
 }
-static asm void
+static ASM void
 DecrementerExceptionHandler(u16 exception, register struct OSContext* context)
 {
     // clang-format off

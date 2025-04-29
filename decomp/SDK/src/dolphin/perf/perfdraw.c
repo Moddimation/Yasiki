@@ -6,8 +6,8 @@
 #include "fake_tgmath.h"
 #include "PERFPrivate.h"
 
-__declspec(weak) float HEIGHT(u32 a, float f);
-__declspec(weak) float COORD(u32 a /* r3 */);
+WEAKFUNC float HEIGHT(u32 a, float f);
+WEAKFUNC float COORD(u32 a /* r3 */);
 
 extern Mtx mID;
 
@@ -323,12 +323,12 @@ DrawBWBar(struct PerfSample* s)
     }
 }
 #if DEBUG
-__declspec(weak) float
+WEAKFUNC float
 HEIGHT(u32 a, float f)
 {
     return 140.0f * ((f32)a / ((f32)MaxBusTransactions * f));
 }
-__declspec(weak) float
+WEAKFUNC float
 COORD(u32 a)
 {
     return 616.0f * ((f32)a / (f32)DrawFrameMax);

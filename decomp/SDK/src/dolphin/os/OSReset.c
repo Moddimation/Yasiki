@@ -79,7 +79,7 @@
 static struct OSResetFunctionQueue ResetFunctionQueue;
 
 static int      CallResetFunctions(int final);
-static asm void Reset(u32 resetCode);
+static ASM void Reset(u32 resetCode);
 void
 OSRegisterResetFunction(struct OSResetFunctionInfo* info)
 {
@@ -109,7 +109,7 @@ CallResetFunctions(int final)
     }
     return 1;
 }
-static asm void
+static ASM void
 Reset(u32 resetCode)
 {
     nofralloc b L_000001BC L_000001A0 : mfspr    r8,

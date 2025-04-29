@@ -270,7 +270,7 @@ DecrementerExceptionCallback(register __OSException exception,
     __OSReschedule();
     OSLoadContext(context);
 }
-static asm void
+static ASM void
 DecrementerExceptionHandler(register __OSException exception,
                             register OSContext*    context)
 {

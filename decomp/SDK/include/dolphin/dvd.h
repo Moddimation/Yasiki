@@ -1,7 +1,7 @@
 #ifndef _DOLPHIN_DVD_H_
 #define _DOLPHIN_DVD_H_
 
-#include <dolphin/types.h>
+#include <types.h>
 typedef struct DVDDiskID
 {
     u8 gameName[4];
