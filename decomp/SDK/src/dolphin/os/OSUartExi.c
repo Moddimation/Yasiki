@@ -43,14 +43,14 @@ QueueLength(void)
 int
 WriteUARTN(void* buf, u32 len)
 {
-    u32   cmd;
-    s32   xLen;
-    int   qLen;
-    char* ptr;
-    int   locked;
-    int   error;
+    u32 cmd;
+    s32 xLen;
+    int qLen;
+    u8* ptr;
+    int locked;
+    int error;
 
-    if ((serEnabled + 0x5A010000) != 0x5A)
+    if (serEnabled != -0x5a00ffa6)
     {
         return 2;
     }
@@ -62,16 +62,15 @@ WriteUARTN(void* buf, u32 len)
     }
     else
     {
-        ptr = (char*)buf;
+        ptr = (u8*)buf;
     }
 
-    while ((u32)ptr - (u32)buf < len)
+    for (ptr = (u8*)buf; (s32)ptr - (s32)buf < len; ptr++)
     {
-        if (*(s8*)ptr == 0xA)
+        if (*ptr == '\n')
         {
-            *ptr = 0xD;
+            *ptr = '\r';
         }
-        ptr++;
     }
     error = 0;
     cmd = 0xA0010000;
@@ -85,7 +84,7 @@ WriteUARTN(void* buf, u32 len)
             break;
         }
 
-        if ((qLen >= 0xC) || (qLen >= len))
+        if ((qLen >= 12) || (qLen >= len))
         {
             if (EXISelect(0, 1, 3) == 0)
             {
@@ -106,7 +105,7 @@ WriteUARTN(void* buf, u32 len)
                 xLen = len < 4 ? (s32)len : 4;
 
                 EXIImm(0, buf, xLen, 1, 0);
-                (char*)buf += xLen;
+                (u8*)buf += xLen;
                 len -= xLen;
                 qLen -= xLen;
                 EXISync(0);

@@ -1,24 +1,23 @@
+
 #include <types.h>
 
-#include "dolphin/db/DBInterface.h"
-#include "dolphin/hw_regs.h"
-#include "dolphin/os/OSInterrupt.h"
+#include <dolphin/db.h>
+#include <dolphin/gx.h>
+#include <dolphin/os.h>
 
-#include <dolphin.h>
+#include "macros.h"
 
-#define DB_NO_ERROR          0x0
-#define DB_STAT_SEND         0x1
-#define DB_STAT_RECIEVE      0x2
+#define DB_NO_ERROR       0x0
+#define DB_STAT_SEND      0x1
+#define DB_STAT_RECIEVE   0x2
 
-#define ODEMU_NO_ERROR       1
-#define ODEMU_ERROR          1;
+#define ODEMU_NO_ERROR    1;
+#define ODEMU_ERROR       1;
 
-#define ODEMU_ADDR_NNGC2PC   0x0001C000
-#define ODEMU_ADDR_PC2NNGC   0x0001E000
-#define ODEMU_OFFSET_NNGC2PC 0x00001000
-#define ODEMU_OFFSET_PC2NNGC 0x00001000
-#define ODEMU_MAIL_MAGIC     0x1F000000
-#define ODEMU_MAIL_MASK      0x1fffffff
+#define ODEMU_ADDR_RECV   0x0001E000
+#define ODEMU_OFFSET_RECV 0x00001000
+#define ODEMU_MAIL_MAGIC  0x1F000000
+#define ODEMU_MAIL_MASK   0x1fffffff
 
 typedef void (*DBGCallbackType)(u32, OSContext*);
 
@@ -31,6 +30,9 @@ MTRCallbackType MTRCallback;
 
 #ifdef VERSION_GLMJ01
 #pragma peephole off
+#pragma optimization_level 4
+#undef ODEMU_ERROR
+#define ODEMU_ERROR 0
 #endif
 ONLY_GLMJ01
 void
@@ -62,11 +64,9 @@ ONLY_GLMJ01
 BOOL
 DBGEXIDeselect(void)
 {
-    u32 regs = __EXIRegs[EXI_C2_SR] & 0x405;
-    __EXIRegs[EXI_C2_SR] = regs;
+    __EXIRegs[EXI_C2_SR] = __EXIRegs[EXI_C2_SR] & 0x405;
     return ODEMU_NO_ERROR;
 }
-// NON_MATCHING
 ONLY_GLMJ01
 BOOL
 DBGEXISync(void)
@@ -76,7 +76,6 @@ DBGEXISync(void)
     while ((__EXIRegs[EXI_C2_CR] & 1) != 0);
     return ODEMU_NO_ERROR;
 }
-// NON_MATCHING
 BOOL
 DBGEXIImm(const void* data, s32 size, u32 mode)
 {
@@ -318,8 +317,8 @@ BOOL
 DBRead(const u32* data, s32 size)
 {
     BOOL irq = OSDisableInterrupts();
-    u32  v = SendMailData & 0x10000 ? ODEMU_OFFSET_PC2NNGC : 0;
-    v += ODEMU_ADDR_PC2NNGC;
+    u32  v = SendMailData & 0x10000 ? ODEMU_OFFSET_RECV : 0;
+    v += ODEMU_ADDR_RECV;
 
     DBGRead(v, data, ALIGN_NEXT(size, 4));
 

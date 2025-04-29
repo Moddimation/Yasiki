@@ -326,9 +326,9 @@ cflags_game = [
 ]
 
 if config.version == "GLMJ01":
-    cflags_odemu.extend(["-O3,p", "-proc 750", "-use_lmw_stmw off"])
+    cflags_odemu.extend(["-O3,p", "-use_lmw_stmw off"])
 else:
-    cflags_odemu.extend(["-O4,p", "-proc gekko", "-inline all"])
+    cflags_odemu.extend(["-O4,p", "-inline all"])
 
 # SDK flags
 cflags_sdk = [
@@ -581,6 +581,7 @@ config.libs = [
     # SDK
 
     DolphinLib("os", [
+        (Matching, "OSUartExi.c"),
         (Matching, "init/__start.c"),
         (Matching, "init/__ppc_eabi_init.cpp"),
     ],),
@@ -686,7 +687,7 @@ config.libs = [
         (Matching, "AmcExi2Stubs.c"),
     ]),
     SDKLib("OdemuExi2", [
-        (MatchingFor("GLME01"), "DebuggerDriver.c")
+        (Matching, "DebuggerDriver.c")
     ],{
         "cflags": cflags_odemu
     }),
