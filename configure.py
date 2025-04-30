@@ -594,7 +594,7 @@ config.libs = [
         (Matching, "mtx.c"),
         (Matching, "mtx44.c"),
         (Matching, "vec.c"),
-        (Matching, "mtxvec.c"),
+        (Matching, "mtxvec.c"), 
     ]),
 
     DolphinLib("dvd", [
