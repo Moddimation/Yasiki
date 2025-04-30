@@ -2,15 +2,15 @@ Luigi's Mansion
 [![Build Status]][actions] [![Code Progress]][progress] [![Functions]][progress] [![Discord Badge]][discord] [![Wiki]][wikipage]
 =============
 
-[Build Status]: https://github.com/Moddimation/YasikiDolphin/actions/workflows/build.yml/badge.svg
-[actions]: https://github.com/Moddimation/YasikiDolphin/actions/workflows/build.yml
-[Code Progress]: https://decomp.dev/Moddimation/YasikiDolphin.svg?mode=shield&measure=code&label=Code
-[progress]: https://decomp.dev/Moddimation/YasikiDolphin
+[Build Status]: https://github.com/Moddimation/Yasiki/actions/workflows/build.yml/badge.svg
+[actions]: https://github.com/Moddimation/Yasiki/actions/workflows/build.yml
+[Code Progress]: https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=code&label=Code
+[progress]: https://decomp.dev/Moddimation/Yasiki
 [Discord Badge]: https://img.shields.io/discord/727908905392275526?color=%237289DA&logo=discord&logoColor=%23FFFFFF
 [discord]: https://discord.gg/hKx3FJJgrV
 [Wiki]: https://img.shields.io/badge/Wiki-page-blue
 [wikipage]: https://wiki.decomp.dev/en/projects/gamecube-wii/luigis-mansion
-[Functions]: https://decomp.dev/Moddimation/YasikiDolphin.svg?mode=shield&measure=functions&label=Functions
+[Functions]: https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=functions&label=Functions
 
 This repository contains a work-in-progress decompilation work of [*Luigi's Mansion*](https://wikipedia.org/wiki/Luigi%27s_Mansion) for the [Nintendo GameCube system](https://en.wikipedia.org/wiki/GameCube).
 
@@ -110,7 +110,7 @@ Building
 
 - Clone the repository:
   ```
-  git clone https://github.com/Moddimation/YasikiDolphin.git
+  git clone https://github.com/Moddimation/Yasiki.git
   ```
 
 - Copy your game's disc image to `orig/<VERSION>`.
