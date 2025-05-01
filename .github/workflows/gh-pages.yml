@@ -22,23 +22,25 @@ jobs:
       with:
         python-version: '3.x'
 
-    - name: Clone private yasiki repository
-      run: |
-        find .
-        mkdir -p private/yasiki
-        git clone https://github.com/Moddimation/YasikiWebsite.git private/yasiki
-      env:
-        GG_TOKEN: ${{ secrets.GG_TOKEN }}
-
     - name: Install dependencies
       run: |
         sudo apt update
         sudo apt install doxygen python3
         python -m pip install --upgrade pip
         pip install mkdocs mkdocs-material pymdown-extensions mkdocs-macros-plugin mkdocs-redirects mkdoxy
+        
+    - name: Clone repo
+      uses: GuillaumeFalourd/clone-github-repo-action@v2.3
+      with:
+        owner: 'Moddimation'
+        repository: 'YasikiWebsite'
+        branch: 'master'
+        access-token: ${{ secrets.GG_TOKEN }}
 
     - name: Build and Deploy
       run: |
+        mkdir private
+        mv YasikiWebsite private/yasiki
         python -m mkdocs gh-deploy --config-file private/yasiki/mkdocs.yml --force --remote-branch website
       env:
         GG_TOKEN: ${{ secrets.GG_TOKEN }}
