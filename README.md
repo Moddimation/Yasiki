@@ -9,7 +9,7 @@ Luigi's Mansion
 [Discord Badge]: https://img.shields.io/discord/727908905392275526?color=%237289DA&logo=discord&logoColor=%23FFFFFF
 [discord]: https://discord.gg/hKx3FJJgrV
 [Wiki]: https://img.shields.io/badge/Wiki-page-blue
-[wikipage]: https://wiki.decomp.dev/en/projects/gamecube-wii/luigis-mansion
+[wikipage]: https://moddimation.github.io/Yasiki
 [Functions]: https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=functions&label=Functions
 
 This repository contains a work-in-progress decompilation work of [*Luigi's Mansion*](https://wikipedia.org/wiki/Luigi%27s_Mansion) for the [Nintendo GameCube system](https://en.wikipedia.org/wiki/GameCube).
