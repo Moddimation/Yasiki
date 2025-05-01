@@ -104,41 +104,6 @@ static s32                  Reschedule;
 
 #define ALIGN4(val) (((val) + 0x3) & ~0x3)
 #define ALIGN8(val) (((val) + 0x7) & ~0x7)
-
-// functions
-static void OSInitMutexQueue(struct OSMutexQueue* queue);
-;
-void                    OSInitThreadQueue(struct OSThreadQueue* queue);
-struct OSThread*        OSGetCurrentThread();
-static void             __OSSwitchThread(struct OSThread* nextThread);
-int                     OSIsThreadSuspended(struct OSThread* thread);
-int                     OSIsThreadTerminated(struct OSThread* thread);
-static int              __OSIsThreadActive(struct OSThread* thread);
-s32                     OSDisableScheduler();
-s32                     OSEnableScheduler();
-static void             SetRun(struct OSThread* thread);
-static void             UnsetRun(struct OSThread* thread);
-static struct OSThread* SetEffectivePriority(struct OSThread* thread, s32 priority);
-static void             UpdatePriority(struct OSThread* thread);
-static struct OSThread* SelectThread(int yield);
-void                    OSYieldThread(void);
-int  OSCreateThread(struct OSThread* thread, void* (*func)(void*), void* param,
-                    void* stack, u32 stackSize, s32 priority, u16 attr);
-void OSExitThread(void* val);
-void OSCancelThread(struct OSThread* thread);
-int  OSJoinThread(struct OSThread* thread, void* val);
-void OSDetachThread(struct OSThread* thread);
-s32  OSResumeThread(struct OSThread* thread);
-void OSSleepThread(struct OSThreadQueue* queue);
-void OSWakeupThread(struct OSThreadQueue* queue);
-int  OSSetThreadPriority(struct OSThread* thread, s32 priority);
-s32  OSGetThreadPriority(struct OSThread* thread);
-struct OSThread* OSSetIdleFunction(void (*idleFunction)(void*), void* param,
-                                   void* stack, u32 stackSize);
-struct OSThread* OSGetIdleFunction();
-static int       CheckThreadQueue(struct OSThreadQueue* queue);
-static int       IsMember(struct OSThreadQueue* queue, struct OSThread* thread);
-s32              OSCheckActiveThreads();
 void
 __OSThreadInit()
 {
@@ -165,8 +130,8 @@ __OSThreadInit()
     __gUnkThread1 = thread;
     OSClearContext(&thread->context);
     OSSetCurrentContext(&thread->context);
-    thread->stackBase = (u16*)&_stack_addr;
-    thread->stackEnd = (u32*)&_stack_end;
+    thread->stackBase = (void*)&_stack_addr;
+    thread->stackEnd = (void*)&_stack_end;
     *(u32*)thread->stackEnd = 0xDEADBABE;
     __gCurrentThread = thread;
     RunQueueBits = 0;
@@ -618,7 +583,7 @@ OSCancelThread(struct OSThread* thread)
     OSRestoreInterrupts(enabled);
 }
 int
-OSJoinThread(struct OSThread* thread, void* val)
+OSJoinThread(struct OSThread* thread, void** val)
 {
     int enabled = OSDisableInterrupts();
 

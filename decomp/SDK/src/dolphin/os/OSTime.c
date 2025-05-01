@@ -14,42 +14,45 @@ static int LeapYearDays[MONTH_MAX] = { 0,   31,  60,  91,  121, 152,
 asm s64
 OSGetTime(void)
 {
-    // clang-format off
-jump:
-    nofralloc
+#ifdef __MWERKS__
+    nofralloc;
 
-    mftbu r3
-    mftb r4
+    mftbu r3;
+    mftb  r4;
 
     // Check for possible carry from TBL to TBU
-    mftbu r5
-    cmpw r3, r5
-    bne jump
+    mftbu r5;
+    cmpw  r3, r5;
+    bne   OSGetTime;
 
-    blr
-    // clang-format on
+    blr;
+#else
+    return 0;
+#endif
 }
 asm u32
 OSGetTick(void)
 {
-    // clang-format off
-    nofralloc
+#ifdef __MWERKS__
+    nofralloc;
 
-    mftb r3
-    blr
-    // clang-format on
+    mftb r3;
+    blr;
+#else
+    return 0;
+#endif
 }
 asm static void
 __SetTime(s64 time)
 {
-    // clang-format off
-    nofralloc
-    li r5, 0
-    mttbl r5
-    mttbu r3
-    mttbl r4
-    blr
-    // clang-format on
+#ifdef __MWERKS__
+    nofralloc;
+    li    r5, 0;
+    mttbl r5;
+    mttbu r3;
+    mttbl r4;
+    blr;
+#endif
 }
 void
 __OSSetTime(s64 time)
@@ -82,11 +85,11 @@ __OSGetSystemTime()
 asm void
 __OSSetTick(register u32 newTicks)
 {
-    // clang-format off
-    nofralloc
-    mttbl newTicks
-    blr
-    // clang-format on
+#ifdef __MWERKS__
+    nofralloc;
+    mttbl newTicks;
+    blr;
+#endif
 }
 static int
 IsLeapYear(int year)
@@ -203,14 +206,11 @@ OSCalendarTimeToTicks(OSCalendarTime* td)
 
     year = td->year + ov_mon;
 
-    // clang-format off
     secs = (s64)SECS_IN_YEAR * year +
-              (s64)SECS_IN_DAY * (GetLeapDays(year) + GetYearDays(year, mon) + td->mday - 1) +
-              (s64)SECS_IN_HOUR * td->hour +
-              (s64)SECS_IN_MIN * td->min +
-              td->sec -
-              (s64)0xEB1E1BF80ULL;
-    // clang-format on
+           (s64)SECS_IN_DAY *
+               (GetLeapDays(year) + GetYearDays(year, mon) + td->mday - 1) +
+           (s64)SECS_IN_HOUR * td->hour + (s64)SECS_IN_MIN * td->min + td->sec -
+           (s64)0xEB1E1BF80ULL;
 
     return OS_SEC_TO_TICKS(secs) + OS_MSEC_TO_TICKS((s64)td->msec) +
            OS_USEC_TO_TICKS((s64)td->usec);
