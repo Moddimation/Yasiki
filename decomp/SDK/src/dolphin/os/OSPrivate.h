@@ -55,6 +55,9 @@ void __OSUnlockAllMutex(struct OSThread* thread);
 int  __OSCheckDeadLock(struct OSThread* thread);
 int  __OSCheckMutexes(struct OSThread* thread);
 
+// OSReset.c
+void __OSDoHotReset(s32 code);
+
 // OSResetSW.c
 void __OSResetSWInterruptHandler(s16 exception, struct OSContext* context);
 
@@ -124,6 +127,12 @@ extern void __init_data(void);
 s64 __get_clock(void);
 u32 __get_time(void);
 int __to_gm_time(void);
+
+unsigned long __OSIsDebuggerPresent(void);
+void          __OSPSInit(void);
+
+extern void* BOOT_REGION_START;
+extern void* BOOT_REGION_END;
 
 #ifdef __cplusplus
 }
