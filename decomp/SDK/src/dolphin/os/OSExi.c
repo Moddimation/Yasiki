@@ -34,6 +34,9 @@ struct EXIControl
 
 #define EXI_READ                   0
 #define EXI_WRITE                  1
+#ifdef __MWERKS__
+unsigned int __gUnknown800030C0[2] : (OS_BASE_CACHED | 0x30C0);
+#endif
 
 static struct EXIControl Ecb[3];
 

@@ -31,9 +31,6 @@ extern "C"
 #include <dolphin/os/OSThread.h>
 #include <dolphin/os/OSTime.h>
 
-// private macro, maybe shouldn't be defined here?
-#define OFFSET(addr, align) (((u32)(addr) & ((align) - 1)))
-
 u32 OSGetPhysicalMemSize(void);
 u32 OSGetConsoleSimulatedMemSize(void);
 
@@ -46,15 +43,8 @@ u32 OSGetConsoleSimulatedMemSize(void);
 #define OS_BASE_UNCACHED          (OS_UNCACHED_REGION_PREFIX << 16)
 
 #ifdef __MWERKS__
-u32           __OSPhysicalMemSize : (OS_BASE_CACHED | 0x0028);
-volatile int  __OSTVMode : (OS_BASE_CACHED | 0x00CC);
-OSThread*     __gUnkThread1 : (OS_BASE_CACHED | 0x00D8);
-OSThreadQueue __OSActiveThreadQueue : (OS_BASE_CACHED | 0x00DC);
-OSThread*     __gCurrentThread : (OS_BASE_CACHED | 0x00E4);
-u32           __OSSimulatedMemSize : (OS_BASE_CACHED | 0x00F0);
-u32           __OSBusClock : (OS_BASE_CACHED | 0x00F8);
-u32           __OSCoreClock : (OS_BASE_CACHED | 0x00FC);
-unsigned int  __gUnknown800030C0[2] : (OS_BASE_CACHED | 0x30C0);
+u32 __OSBusClock : (OS_BASE_CACHED | 0x00F8);
+u32 __OSCoreClock : (OS_BASE_CACHED | 0x00FC);
 #else
 #define __OSBusClock  (*(u32*)(OS_BASE_CACHED | 0x00F8))
 #define __OSCoreClock (*(u32*)(OS_BASE_CACHED | 0x00FC))
@@ -86,16 +76,16 @@ u32 OSGetPhysicalMemSize(void);
 void __OSPSInit();
 typedef struct OSCalendarTime
 {
-    /*0x00*/ int sec;
-    /*0x04*/ int min;
-    /*0x08*/ int hour;
-    /*0x0C*/ int mday;
-    /*0x10*/ int mon;
-    /*0x14*/ int year;
-    /*0x18*/ int wday;
-    /*0x1C*/ int yday;
-    /*0x20*/ int msec;
-    /*0x24*/ int usec;
+    int sec;                              ///< 0x00
+    int min;                              ///< 0x04
+    int hour;                             ///< 0x08
+    int mday;                             ///< 0x0C
+    int mon;                              ///< 0x10
+    int year;                             ///< 0x14
+    int wday;                             ///< 0x18
+    int yday;                             ///< 0x1C
+    int msec;                             ///< 0x20
+    int usec;                             ///< 0x24
 } OSCalendarTime;
 #include <dolphin/os/OSBootInfo.h>
 
@@ -107,27 +97,15 @@ BOOL   OSEnableInterrupts(void);
 BOOL   OSDisableInterrupts(void);
 BOOL   OSRestoreInterrupts(BOOL level);
 
-#define OS_CONSOLE_MASK        0xf0000000
-#define OS_CONSOLE_RETAIL      0x00000000
-#define OS_CONSOLE_DEVELOPMENT 0x10000000
-#define OS_CONSOLE_TDEV        0x20000000
-
-#define OS_CONSOLE_RETAIL4     0x00000004
-#define OS_CONSOLE_RETAIL3     0x00000003
 #define OS_CONSOLE_RETAIL2     0x00000002
 #define OS_CONSOLE_RETAIL1     0x00000001
-#define OS_CONSOLE_TDEVHW4     0x20000007
-#define OS_CONSOLE_TDEVHW3     0x20000006
-#define OS_CONSOLE_TDEVHW2     0x20000005
-#define OS_CONSOLE_TDEVHW1     0x20000004
-#define OS_CONSOLE_DEVHW4      0x10000007
-#define OS_CONSOLE_DEVHW3      0x10000006
 #define OS_CONSOLE_DEVHW2      0x10000005
 #define OS_CONSOLE_DEVHW1      0x10000004
 #define OS_CONSOLE_MINNOW      0x10000003
 #define OS_CONSOLE_ARTHUR      0x10000002
 #define OS_CONSOLE_PC_EMULATOR 0x10000001
 #define OS_CONSOLE_EMULATOR    0x10000000
+#define OS_CONSOLE_DEVELOPMENT 0x10000000 // bit mask
 
 #define OS_SOUND_MODE_MONO     0
 #define OS_SOUND_MODE_STEREO   1

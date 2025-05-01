@@ -1,67 +1,68 @@
-#include <dolphin/os.h>
 #include <types.h>
+
+#include <dolphin/os.h>
 #include <dolphin/vi.h>
 typedef struct
 {
-    /*0x00*/ u8  equ;
-    /*0x01*/ u16 acv;
-    /*0x03*/ u16 prbOdd;
-    /*0x05*/ u16 prbEven;
-    /*0x07*/ u16 psbOdd;
-    /*0x09*/ u16 psbEven;
-    /*0x0B*/ u8  bs1;
-    /*0x0C*/ u8  bs2;
-    /*0x0D*/ u8  bs3;
-    /*0x0E*/ u8  bs4;
-    /*0x0F*/ u16 be1;
-    /*0x11*/ u16 be2;
-    /*0x13*/ u16 be3;
-    /*0x15*/ u16 be4;
-    /*0x17*/ u16 nhlines;
-    /*0x19*/ u16 hlw;
-    /*0x1B*/ u8  hsy;
-    /*0x1C*/ u8  hcs;
-    /*0x1D*/ u8  hce;
-    /*0x1E*/ u8  hbe640;
-    /*0x1F*/ u16 hbs640;
-    /*0x21*/ u8  hbeCCIR656;
-    /*0x22*/ u16 hbsCCIR656;
-    /*0x24*/ // total size = 0x24
+    u8  equ;                     ///< 0x00
+    u16 acv;                     ///< 0x01
+    u16 prbOdd;                  ///< 0x03
+    u16 prbEven;                 ///< 0x05
+    u16 psbOdd;                  ///< 0x07
+    u16 psbEven;                 ///< 0x09
+    u8  bs1;                     ///< 0x0B
+    u8  bs2;                     ///< 0x0C
+    u8  bs3;                     ///< 0x0D
+    u8  bs4;                     ///< 0x0E
+    u16 be1;                     ///< 0x0F
+    u16 be2;                     ///< 0x11
+    u16 be3;                     ///< 0x13
+    u16 be4;                     ///< 0x15
+    u16 nhlines;                 ///< 0x17
+    u16 hlw;                     ///< 0x19
+    u8  hsy;                     ///< 0x1B
+    u8  hcs;                     ///< 0x1C
+    u8  hce;                     ///< 0x1D
+    u8  hbe640;                  ///< 0x1E
+    u16 hbs640;                  ///< 0x1F
+    u8  hbeCCIR656;              ///< 0x21
+    u16 hbsCCIR656;              ///< 0x22
+    /*0x24*/                     // total size = 0x24
 } VITiming;
 typedef struct
 {
-    /*0x00*/ u16       DispPosX;
-    /*0x02*/ u16       DispPosY;
-    /*0x04*/ u16       DispSizeX;
-    /*0x06*/ u16       DispSizeY;
-    /*0x08*/ u16       AdjustedDispPosX;
-    /*0x0A*/ u16       AdjustedDispPosY;
-    /*0x0C*/ u16       AdjustedDispSizeY;
-    /*0x0E*/ u16       AdjustedPanPosY;
-    /*0x10*/ u16       AdjustedPanSizeY;
-    /*0x12*/ u16       FBSizeX;
-    /*0x14*/ u16       FBSizeY;
-    /*0x16*/ u16       PanPosX;
-    /*0x18*/ u16       PanPosY;
-    /*0x1A*/ u16       PanSizeX;
-    /*0x1C*/ u16       PanSizeY;
-    /*0x1E*/ VIXFBMode FBMode;
-    /*0x22*/ u32       nonInter;
-    /*0x26*/ u32       tv;
-    /*0x2A*/ u8        wordPerLine;
-    /*0x2B*/ u8        std;
-    /*0x2C*/ u8        wpl;
-    /*0x2E*/ u32       bufAddr;
-    /*0x32*/ u32       tfbb;
-    /*0x36*/ u32       bfbb;
-    /*0x3A*/ u8        xof;
-    /*0x3B*/ BOOL      black;
-    /*0x3C*/ BOOL      threeD;
-    /*0x40*/ u32       rbufAddr;
-    /*0x44*/ u32       rtfbb;
-    /*0x48*/ u32       rbfbb;
-    /*0x4C*/ VITiming* timing;
-    /*0x50*/ // total size = 0x50
+    u16       DispPosX;          ///< 0x00
+    u16       DispPosY;          ///< 0x02
+    u16       DispSizeX;         ///< 0x04
+    u16       DispSizeY;         ///< 0x06
+    u16       AdjustedDispPosX;  ///< 0x08
+    u16       AdjustedDispPosY;  ///< 0x0A
+    u16       AdjustedDispSizeY; ///< 0x0C
+    u16       AdjustedPanPosY;   ///< 0x0E
+    u16       AdjustedPanSizeY;  ///< 0x10
+    u16       FBSizeX;           ///< 0x12
+    u16       FBSizeY;           ///< 0x14
+    u16       PanPosX;           ///< 0x16
+    u16       PanPosY;           ///< 0x18
+    u16       PanSizeX;          ///< 0x1A
+    u16       PanSizeY;          ///< 0x1C
+    VIXFBMode FBMode;            ///< 0x1E
+    u32       nonInter;          ///< 0x22
+    u32       tv;                ///< 0x26
+    u8        wordPerLine;       ///< 0x2A
+    u8        std;               ///< 0x2B
+    u8        wpl;               ///< 0x2C
+    u32       bufAddr;           ///< 0x2E
+    u32       tfbb;              ///< 0x32
+    u32       bfbb;              ///< 0x36
+    u8        xof;               ///< 0x3A
+    BOOL      black;             ///< 0x3B
+    BOOL      threeD;            ///< 0x3C
+    u32       rbufAddr;          ///< 0x40
+    u32       rtfbb;             ///< 0x44
+    u32       rbfbb;             ///< 0x48
+    VITiming* timing;            ///< 0x4C
+    /*0x50*/                     // total size = 0x50
 } SomeVIStruct;
 static volatile u32         retraceCount;
 static u32                  changeMode;

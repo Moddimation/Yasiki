@@ -5,13 +5,13 @@
 #include <dolphin/exi.h>
 typedef struct CARDID
 {
-    /* 0x000 */ u8  serial[32];
-    /* 0x020 */ u16 deviceID;
-    /* 0x022 */ u16 size;
-    /* 0x024 */ u16 encode;
-    /* 0x026 */ u8  padding[470];
-    /* 0x1FC */ u16 checkSum;
-    /* 0x1FE */ u16 checkSumInv;
+    u8  serial[32];                 ///< 0x000
+    u16 deviceID;                   ///< 0x020
+    u16 size;                       ///< 0x022
+    u16 encode;                     ///< 0x024
+    u8  padding[470];               ///< 0x026
+    u16 checkSum;                   ///< 0x1FC
+    u16 checkSumInv;                ///< 0x1FE
 } CARDID;
 typedef struct CARDDir
 {
@@ -36,50 +36,50 @@ typedef struct CARDDir
 } CARDDir;                          // total size 64 bytes
 typedef struct CARDControl
 {
-    /* 0x00 */ BOOL          attached;
-    /* 0x04 */ s32           result;
-    /* 0x08 */ u16           size;
-    /* 0x0A */ u16           pageSize;
-    /* 0x0C */ s32           sectorSize;
-    /* 0x10 */ u16           cBlock;
-    /* 0x12 */ u16           vendorID;
-    /* 0x14 */ s32           latency;
-    /* 0x18 */ u8            id[12];
-    /* 0x24 */ int           mountStep;
-    /* 0x28 */ u32           scramble;
-    /* 0x2C */ int           formatStep;
-    /* 0x30 */ DSPTaskInfo   task;
-    /* 0x80 */ void*         workArea;
-    /* 0x84 */ CARDDir*      currentDir;
-    /* 0x88 */ u16*          currentFat;
-    /* 0x8C */ OSThreadQueue threadQueue;
-    /* 0x94 */ u8            cmd[9];
-    /* 0x9D */ u8            _pad9D[3];
-    /* 0xA0 */ s32           cmdlen;
-    /* 0xA4 */ volatile u32  mode;
-    /* 0xA8 */ int           retry;
-    /* 0xAC */ int           repeat;
-    /* 0xB0 */ u32           addr;
-    /* 0xB4 */ void*         buffer;
-    /* 0xB8 */ s32           xferred;
-    /* 0xBC */ u16           freeNo;
-    /* 0xBE */ u16           startBlock;
-    /* 0xC0 */ CARDFileInfo* fileInfo;
-    /* 0xC4 */ CARDCallback  extCallback;
-    /* 0xC8 */ CARDCallback  txCallback;
-    /* 0xCC */ CARDCallback  exiCallback;
-    /* 0xD0 */ CARDCallback  apiCallback;
-    /* 0xD4 */ CARDCallback  xferCallback;
-    /* 0xD8 */ CARDCallback  eraseCallback;
-    /* 0xDC */ CARDCallback  unlockCallback;
-    /* 0xE4 */ OSAlarm       alarm;
+    BOOL          attached;         ///< 0x00
+    s32           result;           ///< 0x04
+    u16           size;             ///< 0x08
+    u16           pageSize;         ///< 0x0A
+    s32           sectorSize;       ///< 0x0C
+    u16           cBlock;           ///< 0x10
+    u16           vendorID;         ///< 0x12
+    s32           latency;          ///< 0x14
+    u8            id[12];           ///< 0x18
+    int           mountStep;        ///< 0x24
+    u32           scramble;         ///< 0x28
+    int           formatStep;       ///< 0x2C
+    DSPTaskInfo   task;             ///< 0x30
+    void*         workArea;         ///< 0x80
+    CARDDir*      currentDir;       ///< 0x84
+    u16*          currentFat;       ///< 0x88
+    OSThreadQueue threadQueue;      ///< 0x8C
+    u8            cmd[9];           ///< 0x94
+    u8            _pad9D[3];        ///< 0x9D
+    s32           cmdlen;           ///< 0xA0
+    volatile u32  mode;             ///< 0xA4
+    int           retry;            ///< 0xA8
+    int           repeat;           ///< 0xAC
+    u32           addr;             ///< 0xB0
+    void*         buffer;           ///< 0xB4
+    s32           xferred;          ///< 0xB8
+    u16           freeNo;           ///< 0xBC
+    u16           startBlock;       ///< 0xBE
+    CARDFileInfo* fileInfo;         ///< 0xC0
+    CARDCallback  extCallback;      ///< 0xC4
+    CARDCallback  txCallback;       ///< 0xC8
+    CARDCallback  exiCallback;      ///< 0xCC
+    CARDCallback  apiCallback;      ///< 0xD0
+    CARDCallback  xferCallback;     ///< 0xD4
+    CARDCallback  eraseCallback;    ///< 0xD8
+    CARDCallback  unlockCallback;   ///< 0xDC
+    OSAlarm       alarm;            ///< 0xE4
 } CARDControl;
 typedef struct CARDDecParam
 {
-    /* 0x00 */ u8* inputAddr;
-    /* 0x04 */ u32 inputLength;
-    /* 0x08 */ u32 aramAddr;
-    /* 0x0C */ u8* outputAddr;
+    u8* inputAddr;                  ///< 0x00
+    u32 inputLength;                ///< 0x04
+    u32 aramAddr;                   ///< 0x08
+    u8* outputAddr;                 ///< 0x0C
 } CARDDecParam;
 typedef struct CARDDirCheck
 {

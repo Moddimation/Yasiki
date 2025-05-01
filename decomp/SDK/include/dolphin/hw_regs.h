@@ -349,4 +349,3 @@ volatile u8*  __GXRegs;  // Graphics FIFO Register
 #define AI_IT                       (3) // ai interface timing
 
 #endif
-

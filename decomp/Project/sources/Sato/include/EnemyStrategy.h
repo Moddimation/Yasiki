@@ -28,11 +28,11 @@ public:
     static void* operator new(size_t size, void* mem);
     static void  operator delete(void* mem);
 
-    /* 0x04 */ void* mpZako;
-    /* 0x08 */ void* mpUserData;
-    /* 0x0C */ u16   mNextState;
-    /* 0x0E */ u16   mCurState;
-    /* 0x10 */ s32   mTimer;
+    void* mpZako;                   ///< 0x04
+    void* mpUserData;               ///< 0x08
+    u16   mNextState;               ///< 0x0C
+    u16   mCurState;                ///< 0x0E
+    s32   mTimer;                   ///< 0x10
 };
 class EnemyStrategyDecorator : public EnemyStrategy
 {
@@ -42,7 +42,7 @@ public:
     virtual void update();
     s32          setTsuriStrategy(EnemyStrategy* i_tsuriStrategy);
 
-    /* 0x14 */ EnemyStrategy* mpTsuriStrategy;
-    /* 0x18 */ s16            mTsuriState;
+    EnemyStrategy* mpTsuriStrategy; ///< 0x14
+    s16            mTsuriState;     ///< 0x18
 };
 #endif

@@ -21,10 +21,10 @@ enum MCC_CHANNEL
 };
 typedef struct
 {
-    /* 0x00 */ u8 firstBlock;
-    /* 0x01 */ u8 blockLength;
-    /* 0x02 */ u8 connect;
-    /* 0x03 */ u8 isLocked;
+    u8 firstBlock;                       ///< 0x00
+    u8 blockLength;                      ///< 0x01
+    u8 connect;                          ///< 0x02
+    u8 isLocked;                         ///< 0x03
 } MCC_Info;
 enum MCC_EXI
 {
@@ -46,22 +46,22 @@ typedef void (*MCC_CBSysEvent)(enum MCC_SYSEVENT sysEvent);
 typedef int  (*MCC_CBEnumDevices)(s32);
 typedef struct
 {
-    /* 0x00 */ u32 length;
-    /* 0x04 */ u16 rsvd;
-    /* 0x06 */ u16 protocol;
+    u32 length;                          ///< 0x00
+    u16 rsvd;                            ///< 0x04
+    u16 protocol;                        ///< 0x06
 } MCC_Hdr;
 typedef struct
 {
-    /* 0x00 */ u32 code;
-    /* 0x04 */ u32 number;
+    u32 code;                            ///< 0x00
+    u32 number;                          ///< 0x04
 } MCC_HdrFio;
 typedef struct
 {
-    /* 0x00 */ MCC_Info    info;
-    /* 0x04 */ MCC_CBEvent callbackEvent;
-    /* 0x08 */ u32         eventMask;
-    /* 0x0C */ int         isStreamDone;
-    /* 0x10 */ int         isStreamConnection;
+    MCC_Info    info;                    ///< 0x00
+    MCC_CBEvent callbackEvent;           ///< 0x04
+    u32         eventMask;               ///< 0x08
+    int         isStreamDone;            ///< 0x0C
+    int         isStreamConnection;      ///< 0x10
 } MCC_ChannelInfo;
 enum MCC_MODE
 {
@@ -89,35 +89,35 @@ enum FIO_ASYNC_STATE
 };
 struct FIO_Date
 {
-    /* 0x00 */ u16 year;
-    /* 0x02 */ u8  month;
-    /* 0x03 */ u8  day;
+    u16 year;                            ///< 0x00
+    u8  month;                           ///< 0x02
+    u8  day;                             ///< 0x03
 };
 struct FIO_Daytime
 {
-    /* 0x00 */ u8 hour;
-    /* 0x01 */ u8 minute;
-    /* 0x02 */ u8 second;
-    /* 0x03 */ u8 reserved;
+    u8 hour;                             ///< 0x00
+    u8 minute;                           ///< 0x01
+    u8 second;                           ///< 0x02
+    u8 reserved;                         ///< 0x03
 };
 struct FIO_Timestamp
 {
-    /* 0x00 */ struct FIO_Date    date;
-    /* 0x04 */ struct FIO_Daytime time;
+    struct FIO_Date    date;             ///< 0x00
+    struct FIO_Daytime time;             ///< 0x04
 };
 struct FIO_Stat
 {
-    /* 0x00 */ u32                  fileAttributes;
-    /* 0x04 */ struct FIO_Timestamp creationTime;
-    /* 0x0C */ struct FIO_Timestamp lastAccessTime;
-    /* 0x14 */ struct FIO_Timestamp lastWriteTime;
-    /* 0x1C */ u32                  fileSizeHigh;
-    /* 0x20 */ u32                  fileSizeLow;
+    u32                  fileAttributes; ///< 0x00
+    struct FIO_Timestamp creationTime;   ///< 0x04
+    struct FIO_Timestamp lastAccessTime; ///< 0x0C
+    struct FIO_Timestamp lastWriteTime;  ///< 0x14
+    u32                  fileSizeHigh;   ///< 0x1C
+    u32                  fileSizeLow;    ///< 0x20
 };
 struct FIO_Finddata
 {
-    /* 0x00 */ struct FIO_Stat stat;
-    /* 0x24 */ s8              filename[256];
+    struct FIO_Stat stat;                ///< 0x00
+    s8              filename[256];       ///< 0x24
 };
 // fio.c
 int  FIOInit(enum MCC_EXI exiChannel, enum MCC_CHANNEL chID, u8 blockSize);

@@ -552,8 +552,8 @@ PADRead(struct PADStatus* status)
 }
 typedef struct XY
 {
-    /* 0x00 */ u8 line;
-    /* 0x01 */ u8 count;
+    u8 line;                                                          ///< 0x00
+    u8 count;                                                         ///< 0x01
 } XY;
 static XY XYNTSC[12] = {
     { 0xF7, 0x02 },

@@ -7,12 +7,12 @@ typedef void (*DTKCallback)(u32 eventMask);
 typedef void (*DTKFlushCallback)(void);
 typedef struct DTKTrack
 {
-    /*0x00*/ struct DTKTrack* prev;
-    /*0x04*/ struct DTKTrack* next;
-    /*0x08*/ char*            fileName;
-    /*0x0C*/ u32              eventMask;
-    /*0x10*/ DTKCallback      callback;
-    /*0x14*/ DVDFileInfo      dvdFileInfo;
+    struct DTKTrack* prev;        ///< 0x00
+    struct DTKTrack* next;        ///< 0x04
+    char*            fileName;    ///< 0x08
+    u32              eventMask;   ///< 0x0C
+    DTKCallback      callback;    ///< 0x10
+    DVDFileInfo      dvdFileInfo; ///< 0x14
 } DTKTrack;
 #define DTK_STATE_STOP     0
 #define DTK_STATE_RUN      1

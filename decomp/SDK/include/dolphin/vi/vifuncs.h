@@ -1,8 +1,9 @@
 #ifndef _DOLPHIN_VIFUNCS_H_
 #define _DOLPHIN_VIFUNCS_H_
 
-#include <dolphin/gx/GXStruct.h>
 #include <types.h>
+
+#include <dolphin/gx/GXStruct.h>
 #include <dolphin/vi/vitypes.h>
 
 #ifdef __cplusplus

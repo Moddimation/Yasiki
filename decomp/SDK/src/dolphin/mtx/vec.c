@@ -104,22 +104,23 @@ PSVECNormalize(register Vec* vec1, register Vec* dst)
     register float nwork1;
 
 #ifdef __MWERKS__
-    ASM {
-        psq_l v1_xy, Vec.x(vec1), 0, qr0;
-        ps_mul xx_yy, v1_xy, v1_xy;
-        psq_l v1_z, Vec.z(vec1), 1, qr0;
-        ps_madd xx_zz, v1_z, v1_z, xx_yy;
-        ps_sum0 sqsum, xx_zz, v1_z, xx_yy;
+    ASM
+    {
+        psq_l     v1_xy, Vec.x(vec1), 0, qr0;
+        ps_mul    xx_yy, v1_xy, v1_xy;
+        psq_l     v1_z, Vec.z(vec1), 1, qr0;
+        ps_madd   xx_zz, v1_z, v1_z, xx_yy;
+        ps_sum0   sqsum, xx_zz, v1_z, xx_yy;
         ps_rsqrte rsqrt, sqsum;
-        fmuls nwork0, rsqrt, rsqrt;
-        fmuls nwork1, rsqrt, c_half;
-        fmuls nwork0, nwork0, sqsum;
-        fsubs nwork0, c_three, nwork0;
-        fmuls rsqrt, nwork0, nwork1;
-        ps_muls0 v1_xy, v1_xy, rsqrt;
-        psq_st v1_xy, Vec.x(dst), 0, qr0;
-        ps_muls0 v1_z, v1_z, rsqrt;
-        psq_st v1_z, Vec.z(dst), 1, qr0;
+        fmuls     nwork0, rsqrt, rsqrt;
+        fmuls     nwork1, rsqrt, c_half;
+        fmuls     nwork0, nwork0, sqsum;
+        fsubs     nwork0, c_three, nwork0;
+        fmuls     rsqrt, nwork0, nwork1;
+        ps_muls0  v1_xy, v1_xy, rsqrt;
+        psq_st    v1_xy, Vec.x(dst), 0, qr0;
+        ps_muls0  v1_z, v1_z, rsqrt;
+        psq_st    v1_z, Vec.z(dst), 1, qr0;
     }
 #endif
 }
