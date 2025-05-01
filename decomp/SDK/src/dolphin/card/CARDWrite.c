@@ -5,6 +5,8 @@
 // internal includes
 #include "CARDPrivate.h"
 
+#define OFFSET(addr, align) (((u32)(addr) & ((align) - 1)))
+
 // functions
 static void WriteCallback(s32 chan, long result);
 static void EraseCallback(s32 chan, long result);

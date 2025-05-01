@@ -157,9 +157,9 @@ typedef struct __bss_init_info
 ;                       /*
                        ; *	If you use the CodeWarrior start-up routines in __start.c and
                        __ppc_eabi_init.c,                       ; *	the above are the only linker
-                       generated symbols you will                       need.  The linker, however                       ; *
-                       will still automatically generate symbols for each                       output section in your project.
-                       ; *	The following are declarations for the                       standard sections.
+                       generated symbols you will                       need.  The linker, however                       ; *                       will
+                       still automatically generate symbols for each                       output section
+                       in your project.                       ; *	The following are declarations for the                       standard sections.
                        ; */
 
 ;                       /*

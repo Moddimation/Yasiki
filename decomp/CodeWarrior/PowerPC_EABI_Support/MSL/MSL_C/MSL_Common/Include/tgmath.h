@@ -276,7 +276,7 @@ _MSL_END_NAMESPACE_STD /*- cc 010409 -*/
         *            set of int overloads for two argument functions
         * mf  031099 tgmath.h is a general C++ header-- let cmath turn on k6 calling
         * convention        vss 990803 Clean up code a bit        mf  000416 removed
-        * dependency on cmath.        mf  000512 wrapped with #pragma cplusplus on ( cc )        hh        000519
-        * wrapped in __dest_os != __mac_os.        JWW 001208 Added case for targeting Mach-O        cc
-        * 010409 updated defines to JWW new namespace macros
+        * dependency on cmath.        mf  000512 wrapped with #pragma cplusplus on ( cc )        hh
+        * 000519        wrapped in __dest_os != __mac_os.        JWW 001208 Added case for
+        * targeting Mach-O        cc        010409 updated defines to JWW new namespace macros
         */

@@ -12,33 +12,33 @@ enum DEMOWinItem
 #define DEMOWIN_FLAGS_OPENED (1 << 1)
 struct STRUCT_DEMOWIN
 {
-    /* 0x00 */ s32                    x1;
-    /* 0x04 */ s32                    y1;
-    /* 0x08 */ s32                    x2;
-    /* 0x0C */ s32                    y2;
-    /* 0x10 */ u32                    priority;
-    /* 0x14 */ u32                    flags;
-    /* 0x18 */ u16                    x_cal;
-    /* 0x1A */ u16                    y_cal;
-    /* 0x1C */ u16                    pixel_width;
-    /* 0x1E */ u16                    pixel_height;
-    /* 0x20 */ u16                    char_width;
-    /* 0x22 */ u16                    char_height;
-    /* 0x24 */ u16                    num_scroll_lines;
-    /* 0x26 */ u16                    total_lines;
-    /* 0x28 */ u16                    curr_output_line;
-    /* 0x2A */ u16                    curr_output_col;
-    /* 0x2C */ u16                    curr_view_line;
-    /* 0x2E */ s16                    cursor_line;
-    /* 0x30 */ char*                  caption;
-    /* 0x34 */ u16*                   buffer;
-    /* 0x38 */ GXColor                bkgnd;
-    /* 0x3C */ GXColor                cap;
-    /* 0x40 */ GXColor                border;
-    /* 0x44 */ void                   (*refresh)(struct STRUCT_DEMOWIN*);
-    /* 0x48 */ struct STRUCT_DEMOWIN* next;
-    /* 0x4C */ struct STRUCT_DEMOWIN* prev;
-    /* 0x50 */ void*                  parent;
+    s32                    x1;                                 ///< 0x00
+    s32                    y1;                                 ///< 0x04
+    s32                    x2;                                 ///< 0x08
+    s32                    y2;                                 ///< 0x0C
+    u32                    priority;                           ///< 0x10
+    u32                    flags;                              ///< 0x14
+    u16                    x_cal;                              ///< 0x18
+    u16                    y_cal;                              ///< 0x1A
+    u16                    pixel_width;                        ///< 0x1C
+    u16                    pixel_height;                       ///< 0x1E
+    u16                    char_width;                         ///< 0x20
+    u16                    char_height;                        ///< 0x22
+    u16                    num_scroll_lines;                   ///< 0x24
+    u16                    total_lines;                        ///< 0x26
+    u16                    curr_output_line;                   ///< 0x28
+    u16                    curr_output_col;                    ///< 0x2A
+    u16                    curr_view_line;                     ///< 0x2C
+    s16                    cursor_line;                        ///< 0x2E
+    char*                  caption;                            ///< 0x30
+    u16*                   buffer;                             ///< 0x34
+    GXColor                bkgnd;                              ///< 0x38
+    GXColor                cap;                                ///< 0x3C
+    GXColor                border;                             ///< 0x40
+    void                   (*refresh)(struct STRUCT_DEMOWIN*); ///< 0x44
+    struct STRUCT_DEMOWIN* next;                               ///< 0x48
+    struct STRUCT_DEMOWIN* prev;                               ///< 0x4C
+    void*                  parent;                             ///< 0x50
 };
 // functions
 void                   DEMOWinInit();

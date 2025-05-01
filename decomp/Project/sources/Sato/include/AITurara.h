@@ -26,13 +26,13 @@ public:
     bool procWait_init();
     bool procWait();
 
-    /* 0x01A8 */ s32 mRespawnTimer;
+    s32 mRespawnTimer;            ///< 0x01A8
 
-    /* 0x01AC */ s32 mIcicleCount;
-    /* 0x01B0 */ s32 mIcicleCharacterIdxs[10];
+    s32 mIcicleCount;             ///< 0x01AC
+    s32 mIcicleCharacterIdxs[10]; ///< 0x01B0
 
-    /* 0x01D8 */ u8 mDummy[0x18];
+    u8 mDummy[0x18];              ///< 0x01D8
 
-    /* 0x01F0 */ float mScale;
+    float mScale;                 ///< 0x01F0
 };
 #endif

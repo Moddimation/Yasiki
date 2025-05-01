@@ -30,25 +30,25 @@ u32                 PERFCurrFrame;      // size: 0x4, address: 0x14
 volatile s32        PERFCurrSample;     // size: 0x4, address: 0x10
 
 // functions
-static void PERFResetAllMemMetrics();
-static void PERFGetAllMemMetrics(struct PerfSample* s, u32 i);
-void        PERFSetDrawSyncCallback(void (*cb)(u16));
-static void PERFTokenCallback(u16 token);
-u32         PERFInit(u32 numSamples, u32 numFramesHistory, unsigned long numTypes,
-                     void* (*allocator)(u32), void (*deallocator)(void*),
-                     void (*initDraw)());
-void        PERFSetEvent(u16 id, char* name, PerfType type);
-void        PERFSetEventColor(u16 id, GXColor color);
-void        PERFStartFrame();
-void        PERFEndFrame();
-void        PERFEventStart(u16 id);
+static void  PERFResetAllMemMetrics();
+static void  PERFGetAllMemMetrics(struct PerfSample* s, u32 i);
+void         PERFSetDrawSyncCallback(void (*cb)(u16));
+static void  PERFTokenCallback(u16 token);
+u32          PERFInit(u32 numSamples, u32 numFramesHistory, unsigned long numTypes,
+                      void* (*allocator)(u32), void (*deallocator)(void*),
+                      void (*initDraw)());
+void         PERFSetEvent(u16 id, char* name, PerfType type);
+void         PERFSetEventColor(u16 id, GXColor color);
+void         PERFStartFrame();
+void         PERFEndFrame();
+void         PERFEventStart(u16 id);
 WEAKFUNC s32 PERFGetNewSample();
-void                 PERFEventEnd(u16 id);
-static void          PERFStartAutoSample();
-static void          PERFEndAutoSample();
-static void          PERFTimerCallback(OSAlarm* alarm, OSContext* context);
-void                 PERFStartAutoSampling(float msInterval);
-void                 PERFStopAutoSampling();
+void         PERFEventEnd(u16 id);
+static void  PERFStartAutoSample();
+static void  PERFEndAutoSample();
+static void  PERFTimerCallback(OSAlarm* alarm, OSContext* context);
+void         PERFStartAutoSampling(float msInterval);
+void         PERFStopAutoSampling();
 
 #ifndef DEBUG
 inline s32

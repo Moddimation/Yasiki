@@ -1,8 +1,9 @@
 #ifndef _DOLPHIN_DB_H_
 #define _DOLPHIN_DB_H_
 
-#include <dolphin/db/DBInterface.h>
 #include <types.h>
+
+#include <dolphin/db/DBInterface.h>
 
 #ifdef __cplusplus
 extern "C"

@@ -11,6 +11,6 @@ public:
     virtual ~EnemyTypicalStrategy() {}
     virtual bool onFishingBegin(Koga::CharacterEvent* msg);
 
-    /* 0x20 */ EnTsuriStrategies mTsuriStrategies;
+    EnTsuriStrategies mTsuriStrategies; ///< 0x20
 };
 #endif

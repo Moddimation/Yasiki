@@ -2,6 +2,11 @@
 #include <dolphin/os.h>
 
 #include <dolphin.h>
+
+#ifdef __MWERKS__
+u32 __OSPhysicalMemSize : (OS_BASE_CACHED | 0x0028);
+u32 __OSSimulatedMemSize : (OS_BASE_CACHED | 0x00F0);
+#endif
 u32
 OSGetPhysicalMemSize(void)
 {

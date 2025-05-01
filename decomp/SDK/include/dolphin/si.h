@@ -1,8 +1,9 @@
 #ifndef _DOLPHIN_SI_H_
 #define _DOLPHIN_SI_H_
 
-#include <dolphin/os.h>
 #include <types.h>
+
+#include <dolphin/os.h>
 
 #define PAD_CHAN0_BIT         0x80000000
 #define PAD_CHAN1_BIT         0x40000000

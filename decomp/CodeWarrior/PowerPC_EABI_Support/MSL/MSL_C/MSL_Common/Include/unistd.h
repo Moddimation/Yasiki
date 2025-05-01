@@ -126,16 +126,16 @@ _MSL_END_EXTERN_C /*- cc 010409 -*/
                    * cc  000502 dest_os _getpid()
                    * mm  000607 Changed definitions of read and write to accord with POSIX
                    *Standard.               JWW 000727 Uninlined various routines when compiling
-                   *for 68K MPW               cc               000809 added execl and other defines to mac only.
-                   *It is too late to add to win               will fix after pro6               cc  000828 made execl and
-                   *others common.               JWW 001208 Added case for targeting Mach-O               mm  010119 Completed
-                   *change of mm 000607 for write and for access               cc  010405 removed pragma options
-                   *align native and reset               cc  010409 updated defines to JWW new namespace macros
-                   * cc  010427 Changed exec #defines to inlines
-                   * JWW 010510 Removed special case for Mach-O - the cname/name.h header split is
-                   *a better fix               cc  010517 Fixes getfamily to have void in param and
-                   *removed cast               to int               cc  010517 Removed __BUILDING_MPW__ if else
-                   *cc  010622 Removed ifndef
+                   *for 68K MPW               cc               000809 added execl and other defines
+                   *to mac only.               It is too late to add to win               will fix after pro6               cc
+                   *000828 made execl and               others common.               JWW 001208 Added case for
+                   *targeting Mach-O               mm  010119 Completed               change of mm 000607 for
+                   *write and for access               cc  010405 removed pragma options               align
+                   *native and reset               cc  010409 updated defines to JWW new namespace
+                   *macros               cc  010427 Changed exec #defines to inlines               JWW 010510 Removed special
+                   *case for Mach-O - the cname/name.h header split is               a better fix               cc  010517
+                   *Fixes getfamily to have void in param and               removed cast               to int               cc
+                   *010517 Removed __BUILDING_MPW__ if else               cc  010622 Removed ifndef
                    *__stdio__               mm  010626 Changed the value of X_OK to make it
                    *distinct from the               others---WB1-23773
                    */

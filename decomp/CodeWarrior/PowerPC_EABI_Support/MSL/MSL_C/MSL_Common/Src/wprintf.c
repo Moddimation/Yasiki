@@ -1711,8 +1711,10 @@ vswprintf(wchar_t* s, size_t n, const wchar_t* format, va_list arg)
                                     * 990701 Implemented %ll                                    mm  990817 Deleted
                                     * include of <string_io.h>                                    mm                                    990904 Corrected
                                     * translation from multibyte to wchar                                    mm  990905
-                                    * Move blank where                                    there is zero fill and a blank sign space holder IL9908-4231                                    mm
-                                    * 990906 Print                                    correct sign for zero.Il9908-4232                                    mm  001018 Threadsafety changes for
-                                    * fwprintf,                                    wprintf, vfwprintf, vwprintf                                    mm
-                                    * 001024 Inserted missing __begin_critical_region
+                                    * Move blank where                                    there is zero fill and a blank
+                                    * sign space holder IL9908-4231                                    mm                                    990906 Print
+                                    * correct sign for zero.Il9908-4232                                    mm  001018
+                                    * Threadsafety changes for                                    fwprintf,                                    wprintf,
+                                    * vfwprintf, vwprintf                                    mm                                    001024 Inserted missing
+                                    * __begin_critical_region
                                     */

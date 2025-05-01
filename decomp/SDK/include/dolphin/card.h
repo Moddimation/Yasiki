@@ -37,36 +37,36 @@ extern "C"
 // todo: sort into headers
 typedef struct CARDFileInfo
 {
-    /*0x00*/ s32 chan;
-    /*0x04*/ s32 fileNo;
+    s32 chan;   ///< 0x00
+    s32 fileNo; ///< 0x04
 
-    /*0x08*/ s32 offset;
-    /*0x0C*/ s32 length;
-    /*0x10*/ u16 iBlock;
+    s32 offset; ///< 0x08
+    s32 length; ///< 0x0C
+    u16 iBlock; ///< 0x10
 } CARDFileInfo;
 typedef struct CARDStat
 {
     // read-only (Set by CARDGetStatus)
-    /*0x00*/ s8  fileName[CARD_FILENAME_MAX];
-    /*0x20*/ u32 length;
-    /*0x24*/ u32 time; // (seconds since 01/01/2000 midnight)
-    /*0x28*/ u8  gameName[4];
-    /*0x2C*/ u8  company[2];
+    s8  fileName[CARD_FILENAME_MAX]; ///< 0x00
+    u32 length;                      ///< 0x20
+    u32 time;                        ///< 0x24 // (seconds since 01/01/2000 midnight)
+    u8  gameName[4];                 ///< 0x28
+    u8  company[2];                  ///< 0x2C
 
-                       // read/write (Set by CARDGetStatus/CARDSetStatus)
-    /*0x2E*/ u8 bannerFormat;
+    // read/write (Set by CARDGetStatus/CARDSetStatus)
+    u8 bannerFormat; ///< 0x2E
     /*0x30*/ u32
-        iconAddr; // (offset to the banner, bannerTlut, icon, iconTlut data set)
-    /*0x34*/ u16 iconFormat;
-    /*0x36*/ u16 iconSpeed;
-    /*0x38*/ u32 commentAddr; // (offset to the pair of 32 byte character strings)
+        iconAddr;    // (offset to the banner, bannerTlut, icon, iconTlut data set)
+    u16 iconFormat;  ///< 0x34
+    u16 iconSpeed;   ///< 0x36
+    u32 commentAddr; ///< 0x38 // (offset to the pair of 32 byte character strings)
 
-                              // read-only (Set by CARDGetStatus)
-    /*0x3C*/ u32 offsetBanner;
-    /*0x40*/ u32 offsetBannerTlut;
-    /*0x44*/ u32 offsetIcon[CARD_ICON_MAX]; // per entry (8 entries * = 3)
-    /*0x64*/ u32 offsetIconTlut;
-    /*0x68*/ u32 offsetData;
+                     // read-only (Set by CARDGetStatus)
+    u32 offsetBanner;              ///< 0x3C
+    u32 offsetBannerTlut;          ///< 0x40
+    u32 offsetIcon[CARD_ICON_MAX]; ///< 0x44 // per entry (8 entries * = 3)
+    u32 offsetIconTlut;            ///< 0x64
+    u32 offsetData;                ///< 0x68
 } CARDStat;
 #define CARDGetBannerFormat(stat) (((stat)->bannerFormat) & CARD_STAT_BANNER_MASK)
 #define CARDGetIconAnim(stat)     (((stat)->bannerFormat) & CARD_STAT_ANIM_MASK)

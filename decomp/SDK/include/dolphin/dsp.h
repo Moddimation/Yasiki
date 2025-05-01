@@ -6,25 +6,25 @@
 typedef void (*DSPCallback)(void* task);
 typedef struct STRUCT_DSP_TASK
 {
-    /*0x00*/ volatile u32            state;
-    /*0x04*/ volatile u32            priority;
-    /*0x08*/ volatile u32            flags;
-    /*0x0C*/ u16*                    iram_mmem_addr;
-    /*0x10*/ u32                     iram_length;
-    /*0x14*/ u32                     iram_addr;
-    /*0x18*/ u16*                    dram_mmem_addr;
-    /*0x1C*/ u32                     dram_length;
-    /*0x20*/ u32                     dram_addr;
-    /*0x24*/ u16                     dsp_init_vector;
-    /*0x26*/ u16                     dsp_resume_vector;
-    /*0x28*/ DSPCallback             init_cb;
-    /*0x2C*/ DSPCallback             res_cb;
-    /*0x30*/ DSPCallback             done_cb;
-    /*0x34*/ DSPCallback             req_cb;
-    /*0x38*/ struct STRUCT_DSP_TASK* next;
-    /*0x3C*/ struct STRUCT_DSP_TASK* prev;
-    OSTime                           t_context;
-    OSTime                           t_task;
+    volatile u32            state;             ///< 0x00
+    volatile u32            priority;          ///< 0x04
+    volatile u32            flags;             ///< 0x08
+    u16*                    iram_mmem_addr;    ///< 0x0C
+    u32                     iram_length;       ///< 0x10
+    u32                     iram_addr;         ///< 0x14
+    u16*                    dram_mmem_addr;    ///< 0x18
+    u32                     dram_length;       ///< 0x1C
+    u32                     dram_addr;         ///< 0x20
+    u16                     dsp_init_vector;   ///< 0x24
+    u16                     dsp_resume_vector; ///< 0x26
+    DSPCallback             init_cb;           ///< 0x28
+    DSPCallback             res_cb;            ///< 0x2C
+    DSPCallback             done_cb;           ///< 0x30
+    DSPCallback             req_cb;            ///< 0x34
+    struct STRUCT_DSP_TASK* next;              ///< 0x38
+    struct STRUCT_DSP_TASK* prev;              ///< 0x3C
+    OSTime                  t_context;
+    OSTime                  t_task;
 } DSPTaskInfo;
 u32          DSPCheckMailToDSP(void);
 u32          DSPCheckMailFromDSP(void);

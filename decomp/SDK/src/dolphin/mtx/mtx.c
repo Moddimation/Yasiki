@@ -37,15 +37,16 @@ PSMTXIdentity(register Mtx m)
     register f32 c_10;
 
 #ifdef __MWERKS__
-    ASM {
-        psq_st c_zero, 8(m), 0, qr0;
+    ASM
+    {
+        psq_st     c_zero, 8(m), 0, qr0;
         ps_merge01 c_01, c_zero, c_one;
-        psq_st c_zero, 24(m), 0, qr0;
+        psq_st     c_zero, 24(m), 0, qr0;
         ps_merge10 c_10, c_one, c_zero;
-        psq_st c_zero, 32(m), 0, qr0;
-        psq_st c_01, 16(m), 0, qr0;
-        psq_st c_10, 0(m), 0, qr0;
-        psq_st c_10, 40(m), 0, qr0;
+        psq_st     c_zero, 32(m), 0, qr0;
+        psq_st     c_01, 16(m), 0, qr0;
+        psq_st     c_10, 0(m), 0, qr0;
+        psq_st     c_10, 40(m), 0, qr0;
     }
 #endif
 }
@@ -236,33 +237,36 @@ PSMTXTranspose(register Mtx src, register Mtx xPose)
     register f32 trns2;
 
 #ifdef __MWERKS__
-    ASM {
+    ASM
+    {
         psq_l row0a, 0(src), 0, qr0;
     }
 #endif
     xPose[2][3] = c_zero;
 
 #ifdef __MWERKS__
-    ASM {
-        psq_l row1a, 16(src), 0, qr0;
+    ASM
+    {
+        psq_l      row1a, 16(src), 0, qr0;
         ps_merge00 trns0, row0a, row1a;
-        psq_l row0b, 8(src), 1, qr0;
+        psq_l      row0b, 8(src), 1, qr0;
         ps_merge11 trns1, row0a, row1a;
-        psq_l row1b, 24(src), 1, qr0;
-        psq_st trns0, 0(xPose), 0, qr0;
-        psq_l row0a, 32(src), 0, qr0;
+        psq_l      row1b, 24(src), 1, qr0;
+        psq_st     trns0, 0(xPose), 0, qr0;
+        psq_l      row0a, 32(src), 0, qr0;
         ps_merge00 trns2, row0b, row1b;
-        psq_st trns1, 16(xPose), 0, qr0;
+        psq_st     trns1, 16(xPose), 0, qr0;
         ps_merge00 trns0, row0a, c_zero;
-        psq_st trns2, 32(xPose), 0, qr0;
+        psq_st     trns2, 32(xPose), 0, qr0;
         ps_merge10 trns1, row0a, c_zero;
-        psq_st trns0, 8(xPose), 0, qr0;
+        psq_st     trns0, 8(xPose), 0, qr0;
     }
 #endif
     row0b = src[2][2];
 
 #ifdef __MWERKS__
-    ASM {
+    ASM
+    {
         psq_st trns1, 24(xPose), 0, qr0;
     }
 #endif

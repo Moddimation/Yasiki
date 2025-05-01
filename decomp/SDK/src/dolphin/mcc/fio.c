@@ -220,13 +220,13 @@ FIOFopen(const char* filename, u32 mode)
 {
     struct FIO_Code
     {
-        /* 0x00 */ u32 flag;
-        /* 0x04 */ s8  filename; // dynamic length
+        u32 flag;               ///< 0x00
+        s8  filename;           ///< 0x04 // dynamic length
     }* code;
     struct FIO_Coder
     {
-        /* 0x00 */ u32 result;
-        /* 0x04 */ u32 descriptor;
+        u32 result;             ///< 0x00
+        u32 descriptor;         ///< 0x04
     }* coder;
     if (filename == NULL)
     {
@@ -268,11 +268,11 @@ FIOFclose(int handle)
 {
     struct FIO_Code
     {
-        /* 0x00 */ u32 descriptor;
+        u32 descriptor;         ///< 0x00
     }* code;
     struct FIO_Coder
     {
-        /* 0x00 */ u32 result;
+        u32 result;             ///< 0x00
     }* coder;
     if (handle == 0)
     {
@@ -402,14 +402,14 @@ FIOFseek(int handle, s32 offset, u32 mode)
 {
     struct FIO_Code
     {
-        /* 0x00 */ u32 descriptor;
-        /* 0x04 */ u32 offset;
-        /* 0x08 */ u32 base;
+        u32 descriptor;         ///< 0x00
+        u32 offset;             ///< 0x04
+        u32 base;               ///< 0x08
     }* code;
     struct FIO_Coder
     {
-        /* 0x00 */ u32 result;
-        /* 0x04 */ u32 pos;
+        u32 result;             ///< 0x00
+        u32 pos;                ///< 0x04
     }* coder;
     if (handle == 0)
     {
@@ -513,11 +513,11 @@ FIOFflush(int handle)
 {
     struct FIO_Code
     {
-        /* 0x00 */ u32 descriptor;
+        u32 descriptor;         ///< 0x00
     }* code;
     struct FIO_Coder
     {
-        /* 0x00 */ u32 result;
+        u32 result;             ///< 0x00
     }* coder;
     if (handle == 0)
     {
@@ -559,12 +559,12 @@ FIOFstat(int handle, struct FIO_Stat* stat)
 {
     struct FIO_Code
     {
-        /* 0x00 */ u32 descriptor;
+        u32 descriptor;         ///< 0x00
     }* code;
     struct FIO_Coder
     {
-        /* 0x00 */ u32             result;
-        /* 0x04 */ struct FIO_Stat stat;
+        u32             result; ///< 0x00
+        struct FIO_Stat stat;   ///< 0x04
     }* coder;
     if (handle == 0)
     {
@@ -614,11 +614,11 @@ FIOFerror(int handle)
 {
     struct FIO_Code
     {
-        /* 0x00 */ u32 descriptor;
+        u32 descriptor;         ///< 0x00
     }* code;
     struct FIO_Coder
     {
-        /* 0x00 */ u32 result;
+        u32 result;             ///< 0x00
     }* coder;
     if (handle == 0)
     {
@@ -659,12 +659,12 @@ FIOFindFirst(const char* filename, struct FIO_Finddata* finddata)
 {
     struct FIO_Code
     {
-        /* 0x00 */ u8 filename; // dynamic length
+        u8 filename;            ///< 0x00 // dynamic length
     }* code;
     struct FIO_Coder
     {
-        /* 0x00 */ u32                 result;
-        /* 0x04 */ struct FIO_Finddata findData;
+        u32                 result;                         ///< 0x00
+        struct FIO_Finddata findData;                       ///< 0x04
     }* coder;
     if (filename == NULL)
     {
@@ -709,12 +709,12 @@ FIOFindNext(struct FIO_Finddata* finddata)
 {
     struct FIO_Code
     {
-        /* 0x00 */ u32 reserved;
+        u32 reserved;                                       ///< 0x00
     }* code;
     struct FIO_Coder
     {
-        /* 0x00 */ u32                 result;
-        /* 0x04 */ struct FIO_Finddata findData;
+        u32                 result;                         ///< 0x00
+        struct FIO_Finddata findData;                       ///< 0x04
     }* coder;
     if (finddata == NULL)
     {
@@ -988,8 +988,8 @@ fioPacketRead(int fd, void* buffer, int size, int async)
 {
     struct FIO_Code
     {
-        /* 0x00 */ u32 descriptor;
-        /* 0x04 */ u32 nbytes;
+        u32 descriptor;                                     ///< 0x00
+        u32 nbytes;                                         ///< 0x04
     }* code;
     code = fioPacketMakeHeader(4, sizeof(struct FIO_Code), 0);
     code->descriptor = fd;
@@ -1011,8 +1011,8 @@ fioPacketWrite(int fd, void* buffer, int size, int async)
 {
     struct FIO_Code
     {
-        /* 0x00 */ u32 descriptor;
-        /* 0x04 */ u32 nbytes;
+        u32 descriptor;                                     ///< 0x00
+        u32 nbytes;                                         ///< 0x04
     }* code;
     code = fioPacketMakeHeader(6U, 0xC, 0);
     code->descriptor = fd;
@@ -1133,9 +1133,9 @@ fioPacketResultRead(void* buffer, u32 dataSize)
     {
         struct FIO_Coder
         {
-            /* 0x00 */ u32 result;
-            /* 0x04 */ u32 nbytes;
-            /* 0x08 */ s8  data;
+            u32 result;              ///< 0x00
+            u32 nbytes;              ///< 0x04
+            s8  data;                ///< 0x08
         }* coder;
         coder = fioPacketReceiveResult(5U, 0);
         if (coder == NULL)
@@ -1232,8 +1232,8 @@ exit_loop:;
     {
         struct FIO_Coder
         {
-            /* 0x00 */ u32 result;
-            /* 0x04 */ u32 nbytes;
+            u32 result;              ///< 0x00
+            u32 nbytes;              ///< 0x04
         }* coder;
         oldMaskWrite = MCCSetChannelEventMask(gChID, oldMaskWrite);
         coder = fioPacketReceiveResult(7U, 1);

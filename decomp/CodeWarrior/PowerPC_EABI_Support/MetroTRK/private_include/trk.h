@@ -201,11 +201,11 @@ typedef int MessageBufferID;
 #define TRKMSGBUF_SIZE (0x800 + 0x80)
 typedef struct TRKBuffer
 {
-    /* 0x00 */ u32  mutex;
-    /* 0x04 */ BOOL isInUse;
-    /* 0x08 */ u32  length;
-    /* 0x0C */ u32  position;
-    /* 0x10 */ u8   data[TRKMSGBUF_SIZE];
+    u32  mutex;                   ///< 0x00
+    BOOL isInUse;                 ///< 0x04
+    u32  length;                  ///< 0x08
+    u32  position;                ///< 0x0C
+    u8   data[TRKMSGBUF_SIZE];    ///< 0x10
 } TRKBuffer;
 typedef struct TRKFramingState
 {

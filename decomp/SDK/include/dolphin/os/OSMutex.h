@@ -9,10 +9,10 @@ extern "C"
 #endif
 typedef struct OSMutex
 {
-    /*0x00*/ OSThreadQueue queue;
-    /*0x08*/ OSThread*     thread;
-    /*0x0C*/ s32           count;
-    /*0x10*/ OSMutexLink   link;
+    OSThreadQueue queue;  ///< 0x00
+    OSThread*     thread; ///< 0x08
+    s32           count;  ///< 0x0C
+    OSMutexLink   link;   ///< 0x10
 } OSMutex;
 struct OSCond
 {

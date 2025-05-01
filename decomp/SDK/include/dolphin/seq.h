@@ -4,28 +4,28 @@
 #include <dolphin/syn.h>
 typedef struct _SEQTRACK
 {
-    /* 0x00 */ void* sequence;
-    /* 0x04 */ u8*   start;
-    /* 0x08 */ u8*   end;
-    /* 0x0C */ u8*   current;
-    /* 0x10 */ u8    status;
-    /* 0x14 */ float beatsPerSec;
-    /* 0x18 */ u32   defaultTicksPerFrame;
-    /* 0x1C */ u32   ticksPerFrame;
-    /* 0x20 */ u32   delay;
-    /* 0x24 */ u32   state;
+    void* sequence;                              ///< 0x00
+    u8*   start;                                 ///< 0x04
+    u8*   end;                                   ///< 0x08
+    u8*   current;                               ///< 0x0C
+    u8    status;                                ///< 0x10
+    float beatsPerSec;                           ///< 0x14
+    u32   defaultTicksPerFrame;                  ///< 0x18
+    u32   ticksPerFrame;                         ///< 0x1C
+    u32   delay;                                 ///< 0x20
+    u32   state;                                 ///< 0x24
 } SEQTRACK;
 typedef struct _SEQSEQUENCE
 {
-    /* 0x0000 */ void*           next;
-    /* 0x0004 */ u32             state;
-    /* 0x0008 */ u16             nTracks;
-    /* 0x000A */ s16             timeFormat;
-    /* 0x000C */ u32             tracksRunning;
-    /* 0x0010 */ u32             end;
-    /* 0x0014 */ struct SYNSYNTH synth;
-    /* 0x3148 */ void            (*callback[128])(void*, u8);
-    /* 0x3348 */ SEQTRACK        track[64];
+    void*           next;                        ///< 0x0000
+    u32             state;                       ///< 0x0004
+    u16             nTracks;                     ///< 0x0008
+    s16             timeFormat;                  ///< 0x000A
+    u32             tracksRunning;               ///< 0x000C
+    u32             end;                         ///< 0x0010
+    struct SYNSYNTH synth;                       ///< 0x0014
+    void            (*callback[128])(void*, u8); ///< 0x3148
+    SEQTRACK        track[64];                   ///< 0x3348
 } SEQSEQUENCE;
 #define SEQ_ALL_TRACKS -1
 

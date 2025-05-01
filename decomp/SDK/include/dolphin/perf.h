@@ -33,30 +33,30 @@ struct PerfEvent
 };
 typedef struct PerfSample
 {
-    /* 0x00 */ u8  id;
-    /* 0x04 */ u32 cpuTimeStampStart;
-    /* 0x08 */ u32 cpuTimeStampEnd;
-    /* 0x0C */ u32 gpTimeStampStart;
-    /* 0x10 */ u32 gpTimeStampEnd;
-    /* 0x14 */ int interrupted;
-    /* 0x18 */ u32 origcpuStart;
-    /* 0x1C */ u32 origgpStart;
-    /* 0x20 */ u32 cacheMisses[4];
-    /* 0x30 */ u32 instructions[4];
-    /* 0x40 */ u32 cpReq[2];
-    /* 0x48 */ u32 tcReq[2];
-    /* 0x50 */ u32 cpuRdReq[2];
-    /* 0x58 */ u32 cpuWrReq[2];
-    /* 0x60 */ u32 dspReq[2];
-    /* 0x68 */ u32 ioReq[2];
-    /* 0x70 */ u32 viReq[2];
-    /* 0x78 */ u32 peReq[2];
-    /* 0x80 */ u32 rfReq[2];
-    /* 0x88 */ u32 fiReq[2];
-    /* 0x90 */ u32 xfWaitIn[2];
-    /* 0x98 */ u32 xfWaitOut[2];
-    /* 0xA0 */ u32 rasBusy[2];
-    /* 0xA8 */ u32 rasClocks[2];
+    u8  id;                             ///< 0x00
+    u32 cpuTimeStampStart;              ///< 0x04
+    u32 cpuTimeStampEnd;                ///< 0x08
+    u32 gpTimeStampStart;               ///< 0x0C
+    u32 gpTimeStampEnd;                 ///< 0x10
+    int interrupted;                    ///< 0x14
+    u32 origcpuStart;                   ///< 0x18
+    u32 origgpStart;                    ///< 0x1C
+    u32 cacheMisses[4];                 ///< 0x20
+    u32 instructions[4];                ///< 0x30
+    u32 cpReq[2];                       ///< 0x40
+    u32 tcReq[2];                       ///< 0x48
+    u32 cpuRdReq[2];                    ///< 0x50
+    u32 cpuWrReq[2];                    ///< 0x58
+    u32 dspReq[2];                      ///< 0x60
+    u32 ioReq[2];                       ///< 0x68
+    u32 viReq[2];                       ///< 0x70
+    u32 peReq[2];                       ///< 0x78
+    u32 rfReq[2];                       ///< 0x80
+    u32 fiReq[2];                       ///< 0x88
+    u32 xfWaitIn[2];                    ///< 0x90
+    u32 xfWaitOut[2];                   ///< 0x98
+    u32 rasBusy[2];                     ///< 0xA0
+    u32 rasClocks[2];                   ///< 0xA8
 } PerfSample;
 typedef void* (*PERFAllocator)(u32 size);
 typedef void  (*PERFDeallocator)(void* block);

@@ -1112,8 +1112,9 @@ swscanf(const wchar_t* s, const wchar_t* format, ...)
                                          * 990804 Corrected 	calls under __PPC_EABI__ || __MIPS__                                         mm  990805 Changed
                                          * vfwscanf to wsformatter in embedded targets                                         mm  990817 Deleted include of
                                          * <string_io.h>                                         mm  990914 Corrected size of
-                                         * char_map to allow for full wchar                                         character set IR9909-0523                                         mm  000404 Inserted
-                                         * code to detect null input fle                                         WB1-12370                                         mm
+                                         * char_map to allow for full wchar                                         character
+                                         * set IR9909-0523                                         mm  000404 Inserted                                         code
+                                         * to detect null input fle                                         WB1-12370                                         mm
                                          * 000419 Initialized char_map without large static area, thanks to                                         Andreas                                         mm                                         001018
                                          * Added threadsafety to vwscanf, fwscanf, wscanf, and vfwscanf
                                          */

@@ -285,13 +285,16 @@ _MSL_END_EXTERN_C /*- cc 010409 -*/
                                  * corresponding macros for 68K                                 PAF 940222                                 Modified
                                  * for                                 68K compatability                                 ali 920823 included                                 C++
                                  * extern "C" wrappers to make them C++                                 friendly.                                 ali
-                                 * 930408 changed "enums" to                                 "macros" to be more compatible with the                                 FPCE of NCEG                                 JPO
-                                 * 930205 Changed function                                 types of feclearexcept,fegetexcept,                                 feraiseexcept, and
+                                 * 930408 changed "enums" to                                 "macros" to be more
+                                 * compatible with the                                 FPCE of NCEG                                 JPO                                 930205
+                                 * Changed function                                 types of
+                                 * feclearexcept,fegetexcept,                                 feraiseexcept, and
                                  * fesetexcept                                 from int to                                 void to reflect changes in
                                  * NCEG                                 specification.  Changed definition of
                                  * FE_DFL_ENV                                 from typedef to #define.                                 Modified
                                  * comments                                 describing functionality.                                 JWW 001208
                                  * Added case                                 for targeting Mach-O                                 cc                                 010409 updated
                                  * defines to                                 JWW new namespace macros                                 JWW 010729
-                                 * Updated Mach-O                                 section to get the system fenv.h from the CoreServices framework
+                                 * Updated Mach-O                                 section to get the system fenv.h
+                                 * from the CoreServices framework
                                  */

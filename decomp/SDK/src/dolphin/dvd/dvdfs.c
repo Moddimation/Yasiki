@@ -5,9 +5,9 @@
 #include "dvd_private.h"
 typedef struct FSTEntry
 {
-    /* 0x00 */ u32 isDirAndStringOff;
-    /* 0x04 */ u32 parentOrPosition;
-    /* 0x08 */ u32 nextEntryOrLength;
+    u32 isDirAndStringOff; ///< 0x00
+    u32 parentOrPosition;  ///< 0x04
+    u32 nextEntryOrLength; ///< 0x08
 } FSTEntry;
 // .sbss
 static OSBootInfo*   BootInfo;              // size: 0x4, address: 0x0

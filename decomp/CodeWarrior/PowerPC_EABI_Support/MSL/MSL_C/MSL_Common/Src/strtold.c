@@ -718,8 +718,8 @@ __strtold(int max_width, int (*ReadProc)(void*, int, int),   /*- mm 990325 -*/
                                          /*
                                           *	Note: If you look at <ansi_fp.h> you'll see that __dec2num only supports
                                           *double.                                  If you look at <float.h> you'll
-                                          *see that long double == double.                                  Ergo, the                                  difference is moot *until* a
-                                          *truly long double type is supported.
+                                          *see that long double == double.                                  Ergo, the
+                                          *difference is moot *until* a                                  truly long double type is supported.
                                           */
 
         if (result != 0.0 && result < LDBL_MIN)

@@ -17,28 +17,28 @@ typedef struct DVDCommandBlock DVDCommandBlock;
 typedef void                   (*DVDCBCallback)(s32 result, DVDCommandBlock* block);
 struct DVDCommandBlock
 {
-    /*0x00*/ DVDCommandBlock* next;
-    /*0x04*/ DVDCommandBlock* prev;
-    /*0x08*/ u32              command;
-    /*0x0C*/ s32              state;
-    /*0x10*/ u32              offset;
-    /*0x14*/ u32              length;
-    /*0x18*/ void*            addr;
-    /*0x1C*/ u32              currTransferSize;
-    /*0x20*/ u32              transferredSize;
-    /*0x24*/ DVDDiskID*       id;
-    /*0x28*/ DVDCBCallback    callback;
-    /*0x2C*/ void*            userData;
+    DVDCommandBlock* next;             ///< 0x00
+    DVDCommandBlock* prev;             ///< 0x04
+    u32              command;          ///< 0x08
+    s32              state;            ///< 0x0C
+    u32              offset;           ///< 0x10
+    u32              length;           ///< 0x14
+    void*            addr;             ///< 0x18
+    u32              currTransferSize; ///< 0x1C
+    u32              transferredSize;  ///< 0x20
+    DVDDiskID*       id;               ///< 0x24
+    DVDCBCallback    callback;         ///< 0x28
+    void*            userData;         ///< 0x2C
 };
 
 typedef struct DVDFileInfo DVDFileInfo;
 typedef void               (*DVDCallback)(s32 result, DVDFileInfo* fileInfo);
 struct DVDFileInfo
 {
-    /*0x00*/ DVDCommandBlock cb;
-    /*0x30*/ u32             startAddr;
-    /*0x34*/ u32             length;
-    /*0x38*/ DVDCallback     callback;
+    DVDCommandBlock cb;                ///< 0x00
+    u32             startAddr;         ///< 0x30
+    u32             length;            ///< 0x34
+    DVDCallback     callback;          ///< 0x38
 };
 typedef struct
 {
@@ -54,21 +54,21 @@ typedef struct
 } DVDDirEntry;
 typedef struct DVDBB2
 {
-    /* 0x00 */ u32   bootFilePosition;
-    /* 0x04 */ u32   FSTPosition;
-    /* 0x08 */ u32   FSTLength;
-    /* 0x0C */ u32   FSTMaxLength;
-    /* 0x10 */ void* FSTAddress;
-    /* 0x14 */ u32   userPosition;
-    /* 0x18 */ u32   userLength;
-    /* 0x1C */ u32   padding0;
+    u32   bootFilePosition;            ///< 0x00
+    u32   FSTPosition;                 ///< 0x04
+    u32   FSTLength;                   ///< 0x08
+    u32   FSTMaxLength;                ///< 0x0C
+    void* FSTAddress;                  ///< 0x10
+    u32   userPosition;                ///< 0x14
+    u32   userLength;                  ///< 0x18
+    u32   padding0;                    ///< 0x1C
 } DVDBB2;
 typedef struct DVDDriveInfo
 {
-    /* 0x00 */ u16 revisionLevel;
-    /* 0x02 */ u16 deviceCode;
-    /* 0x04 */ u32 releaseDate;
-    /* 0x08 */ u8  padding[24];
+    u16 revisionLevel;                 ///< 0x00
+    u16 deviceCode;                    ///< 0x02
+    u32 releaseDate;                   ///< 0x04
+    u8  padding[24];                   ///< 0x08
 } DVDDriveInfo;
 void DVDDumpWaitingQueue(void);
 int  DVDLowRead(void* addr, u32 length, u32 offset, void (*callback)(u32));
@@ -236,10 +236,10 @@ int DVDReadAbsAsyncPrio(struct DVDCommandBlock* block /* r29 */,
 int DVDSeekAbsAsyncPrio(struct DVDCommandBlock* block /* r31 */,
                         s32                     offset /* r28 */,
                         void (*callback)(s32, struct DVDCommandBlock*) /* r1+0x10 */,
-                        s32  prio /* r1+0x14 */);
-int DVDPrepareStreamAbsAsync(
-    struct DVDCommandBlock* block /* r31 */, u32 length /* r1+0xC */,
-    u32  offset /* r1+0x10 */,
-    void (*callback)(s32, struct DVDCommandBlock*) /* r1+0x14 */);
+                        s32  prio);                                       ///< 0x14
+int DVDPrepareStreamAbsAsync(struct DVDCommandBlock* block /* r31 */,
+                             u32 length /* r1+0xC */, u32 offset /* r1+0x10 */,
+                             void (*callback)(s32,
+                                              struct DVDCommandBlock*)); ///< 0x14
 
 #endif

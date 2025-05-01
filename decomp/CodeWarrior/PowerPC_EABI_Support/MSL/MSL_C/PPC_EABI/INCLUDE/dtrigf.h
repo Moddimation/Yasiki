@@ -114,7 +114,7 @@ inline __vec2x32float__ sincosf_f(__vec2x32float__ x);
 
 #pragma fp_contract on
 
-#define USE_ ASM    1
+#define USE_      ASM 1
 
 #define __PIO2__  1.57079632679489661923132169163975f
 #define __PI      3.1415926535897932384626433832795f
@@ -122,7 +122,7 @@ inline __vec2x32float__ sincosf_f(__vec2x32float__ x);
 
 #define FTYPE     float
 
-#if !USE_ ASM 
+#if !USE_ ASM
 
 #define sine_core_series_fast(x)                                                    \
     square_x = x * x;                                                               \
@@ -169,39 +169,43 @@ inline __vec2x32float__ sincosf_f(__vec2x32float__ x);
 #else
 
 #define sine_core_series_fast(x)                                                    \
-    ASM {\
-            fmuls   square_x, x, x;\
-            fmsubs  result, result, square_x, const1;\
-            fmadds  result, result, square_x, const2;\
-            fmuls   result, result, x;                                                                          \
+    ASM                                                                             \
+    {                                                                               \
+        fmuls  square_x, x, x;                                                      \
+        fmsubs result, result, square_x, const1;                                    \
+        fmadds result, result, square_x, const2;                                    \
+        fmuls  result, result, x;                                                   \
     }
 
 #define sine_core_series(x)                                                         \
-    ASM {\
-            fmuls   square_x, x, x;\
-            fmadds  result, result, square_x, const1;\
-            fmsubs  result, result, square_x, const2;\
-            fmadds  result, result, square_x, const3;\
-            fmsubs  result, result, square_x, const4;\
-            fmadds  result, result, square_x, const5;\
-            fmuls   result, result, x;                                                                          \
+    ASM                                                                             \
+    {                                                                               \
+        fmuls  square_x, x, x;                                                      \
+        fmadds result, result, square_x, const1;                                    \
+        fmsubs result, result, square_x, const2;                                    \
+        fmadds result, result, square_x, const3;                                    \
+        fmsubs result, result, square_x, const4;                                    \
+        fmadds result, result, square_x, const5;                                    \
+        fmuls  result, result, x;                                                   \
     }
 
 #define cosine_core_series_fast(x)                                                  \
-    ASM {\
-            fmuls   square_x, x, x;\
-            fmsubs  result, result, square_x, const1;\
-            fmadds  result, result, square_x, const2;                                                                          \
+    ASM                                                                             \
+    {                                                                               \
+        fmuls  square_x, x, x;                                                      \
+        fmsubs result, result, square_x, const1;                                    \
+        fmadds result, result, square_x, const2;                                    \
     }
 
 #define cosine_core_series(x)                                                       \
-    ASM {\
-            fmuls   square_x, x, x;\
-            fmadds  result, result, square_x, const1;\
-            fmsubs  result, result, square_x, const2;\
-            fmadds  result, result, square_x, const3;\
-            fmsubs  result, result, square_x, const4;\
-            fmadds  result, result, square_x, const5;                                                                          \
+    ASM                                                                             \
+    {                                                                               \
+        fmuls  square_x, x, x;                                                      \
+        fmadds result, result, square_x, const1;                                    \
+        fmsubs result, result, square_x, const2;                                    \
+        fmadds result, result, square_x, const3;                                    \
+        fmsubs result, result, square_x, const4;                                    \
+        fmadds result, result, square_x, const5;                                    \
     }
 #endif
 

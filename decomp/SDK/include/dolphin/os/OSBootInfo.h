@@ -1,6 +1,7 @@
 
-#include <dolphin/dvd.h>
 #include <types.h>
+
+#include <dolphin/dvd.h>
 
 #ifndef _DOLPHIN_OS_BOOTINFO_H_
 #define _DOLPHIN_OS_BOOTINFO_H_

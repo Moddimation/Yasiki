@@ -6,14 +6,14 @@
 typedef void (*ARQCallback)(u32 pointerToARQRequest);
 struct ARQRequest
 {
-    /* 0x00 */ struct ARQRequest* next;
-    /* 0x04 */ u32                owner;
-    /* 0x08 */ u32                type;
-    /* 0x0C */ u32                priority;
-    /* 0x10 */ u32                source;
-    /* 0x14 */ u32                dest;
-    /* 0x18 */ u32                length;
-    /* 0x1C */ ARQCallback        callback;
+    struct ARQRequest* next;     ///< 0x00
+    u32                owner;    ///< 0x04
+    u32                type;     ///< 0x08
+    u32                priority; ///< 0x0C
+    u32                source;   ///< 0x10
+    u32                dest;     ///< 0x14
+    u32                length;   ///< 0x18
+    ARQCallback        callback; ///< 0x1C
 };
 #define ARQ_DMA_ALIGNMENT     32
 

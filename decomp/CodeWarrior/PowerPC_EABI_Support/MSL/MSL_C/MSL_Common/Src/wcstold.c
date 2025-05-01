@@ -476,8 +476,8 @@ __wcstold(int max_width, wint_t (*wReadProc)(void*, wint_t, int),   /*- mm 99031
                                          /*
                                           *	Note: If you look at <ansi_fp.h> you'll see that __dec2num only supports
                                           *double.                                      If you look at <float.h> you'll
-                                          *see that long double == double. Ergo,                                      the                                      difference is moot *until* a truly
-                                          *long double type is supported.
+                                          *see that long double == double. Ergo,                                      the
+                                          *difference is moot *until* a truly                                      long double type is supported.
                                           */
 
     if (result != 0.0 && result < LDBL_MIN)
@@ -535,10 +535,11 @@ watof(const wchar_t* str)
                                  * JFH 950622 First code release.
                                  * JFH 950727 Removed stray SysBreak(). Added code to make use of the remembered sign
                                  *of                                 of the significand.                                 JFH 950929 Discovered
-                                 *__dec2num doesn't like leading zeroes                                 except for zeroes, so numbers                                 like .01 would
-                                 *get interpreted as zero. Fixed by                                 suppressing leading zeroes.                                 JFH 951114 Fixed bug
-                                 *in wcstod where value was checked                                 against DBL_MIN and DBL_MAX instead                                 of the
-                                 *absolute value.                                 JFH 960425 Changed
+                                 *__dec2num doesn't like leading zeroes                                 except for
+                                 *zeroes, so numbers                                 like .01 would                                 get interpreted
+                                 *as zero. Fixed by                                 suppressing leading zeroes.                                 JFH
+                                 *951114 Fixed bug                                 in wcstod where value was checked                                 against DBL_MIN and DBL_MAX
+                                 *instead                                 of the                                 absolute value.                                 JFH 960425 Changed
                                  *__wcstold to return -HUGE_VAL instead of HUGE_VAL on overflow if a                                 minus sign was
                                  *previously detected.                                 mani970101 Fix a scanf bug
                                  *dealing with white space. Things                                 like                                 scanf("%5lx")
@@ -552,10 +553,11 @@ watof(const wchar_t* str)
                                  *handle wide char unget properly and implementation of fwide.                                 blc                                 980324 Fixed
                                  *prototypes to match latest C9X standard (wchar_t** as                                 second                                 parameter)                                 mm  981020
                                  *Added #ifndef __NO_WIDE_CHAR wrappers                                 mm  990315
-                                 *Corrected                                 encoding of dot for wide characters IL9903_1178                                 mm  990325 Changes to
-                                 *separate char                                 input from file i/o                                 mm  990817
-                                 *Deleted include of <string_io.h>                                 mm  010503 Added
-                                 *code for thread local storage for lconv                                 mm  010521
-                                 *Added _MWMT wrappers                                 cc  010531                                 Added
-                                 *_GetThreadLocalData's flag
+                                 *Corrected                                 encoding of dot for wide characters
+                                 *IL9903_1178                                 mm  990325 Changes to                                 separate char
+                                 *input from file i/o                                 mm  990817                                 Deleted include of
+                                 *<string_io.h>                                 mm  010503 Added                                 code for thread
+                                 *local storage for lconv                                 mm  010521                                 Added _MWMT
+                                 *wrappers                                 cc  010531                                 Added                                 _GetThreadLocalData's
+                                 *flag
                                  */

@@ -6,8 +6,8 @@
 #include "dvd_private.h"
 static struct
 {
-    /* 0x00 */ DVDCommandBlock* next;
-    /* 0x04 */ DVDCommandBlock* prev;
+    DVDCommandBlock* next; ///< 0x00
+    DVDCommandBlock* prev; ///< 0x04
 } WaitingQueue[4];
 static DVDCommandBlock* PopWaitingQueuePrio(s32 prio);
 void

@@ -89,6 +89,16 @@
     }                                                                               \
     while (0);
 
+#ifdef __MWERKS__
+OSThreadQueue __OSActiveThreadQueue : (OS_BASE_CACHED | 0x00DC);
+OSThread*     __OSFPUContext : (OS_BASE_CACHED | 0x00D8);
+OSThread*     __OSCurrentThread : (OS_BASE_CACHED | 0x00E4);
+#else
+OSThreadQueue __OSActiveThreadQueue;
+OSThread*     __OSFPUContext;
+OSThread*     __OSCurrentThread;
+#endif
+
 // which header should these go in?
 extern u16 _stack_end[];
 extern u16 _stack_addr[];
@@ -127,13 +137,13 @@ __OSThreadInit()
 
     ASSERTLINE(282, PPCMfmsr() & MSR_FP);
 
-    __gUnkThread1 = thread;
+    __OSFPUContext = thread;
     OSClearContext(&thread->context);
     OSSetCurrentContext(&thread->context);
     thread->stackBase = (void*)&_stack_addr;
     thread->stackEnd = (void*)&_stack_end;
     *(u32*)thread->stackEnd = 0xDEADBABE;
-    __gCurrentThread = thread;
+    __OSCurrentThread = thread;
     RunQueueBits = 0;
     RunQueueHint = 0;
 
@@ -163,12 +173,12 @@ OSInitThreadQueue(struct OSThreadQueue* queue)
 struct OSThread*
 OSGetCurrentThread()
 {
-    return __gCurrentThread;
+    return __OSCurrentThread;
 }
 static void
 __OSSwitchThread(struct OSThread* nextThread)
 {
-    __gCurrentThread = nextThread;
+    __OSCurrentThread = nextThread;
     OSSetCurrentContext(&nextThread->context);
     OSLoadContext(&nextThread->context);
 }
@@ -397,7 +407,7 @@ SelectThread(int yield)
         }
     }
 
-    __gCurrentThread = 0;
+    __OSCurrentThread = 0;
 
     if (RunQueueBits == 0)
     {
