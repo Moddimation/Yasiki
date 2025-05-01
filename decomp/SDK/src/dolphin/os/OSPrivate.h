@@ -90,6 +90,11 @@ void __OSSetTime(s64 time);
 s64  __OSGetSystemTime();
 void __OSSetTick(register u32 newTicks);
 
+extern OSTime __OSStartTime;
+
+// OSReboot.c
+void __OSReboot(u32 resetCode, BOOL forceMenu);
+
 // __ppc_eabi_init.c
 SEC_INIT ASM void __init_hardware(void);
 SEC_INIT ASM void __flush_cache(void* address, unsigned int size);

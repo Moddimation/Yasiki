@@ -21,47 +21,48 @@ typedef struct OSCond       OSCond;
 typedef void (*OSIdleFunction)(void* param);
 struct OSThreadQueue
 {
-    OSThread* head;
-    OSThread* tail;
+    OSThread* head;                      ///< 0x00
+    OSThread* tail;                      ///< 0x04
 };
 struct OSThreadLink
 {
-    OSThread* next;
-    OSThread* prev;
+    OSThread* next;                      ///< 0x00
+    OSThread* prev;                      ///< 0x04
 };
 struct OSMutexQueue
 {
-    OSMutex* head;
-    OSMutex* tail;
+    OSMutex* head;                       ///< 0x00
+    OSMutex* tail;                       ///< 0x04
 };
 struct OSMutexLink
 {
-    OSMutex* next;
-    OSMutex* prev;
+    OSMutex* next;                       ///< 0x00
+    OSMutex* prev;                       ///< 0x04
 };
 struct OSThread
 {
-    OSContext context;                   // register context
+    OSContext context;                   ///< 0x00 register context
 
-    u16        state;                    // OS_THREAD_STATE_*
-    u16        attr;                     // OS_THREAD_ATTR_*
-    s32        suspend;      // suspended if the count is greater than zero
-    OSPriority priority;     // effective scheduling priority
-    OSPriority base;         // base scheduling priority
-    void*      val;          // exit value
+    u16        state;                    ///< 0x2C8 OS_THREAD_STATE_*
+    u16        attr;                     ///< 0x2CA OS_THREAD_ATTR_*
+    s32        suspend;   ///< 0x2CC suspended if the count is greater than zero
+    OSPriority priority;  ///< 0x2D0 effective scheduling priority
+    OSPriority base;      ///< 0x2D4 base scheduling priority
+    void*      val;       ///< 0x2D8 exit value
 
-    OSThreadQueue* queue;    // queue thread is on
-    OSThreadLink   link;     // queue link
+    OSThreadQueue* queue; ///< 0x2DC queue thread is on
+    OSThreadLink   link;  ///< 0x2E0 queue link
 
-    OSThreadQueue queueJoin; // list of threads waiting for termination (join)
+    OSThreadQueue
+        queueJoin;        ///< 0x2E8 list of threads waiting for termination (join)
 
-    OSMutex*     mutex;      // mutex trying to lock
-    OSMutexQueue queueMutex; // list of mutexes owned
+    OSMutex*     mutex;   ///< 0x2F0 mutex trying to lock
+    OSMutexQueue queueMutex; ///< 0x2F4 list of mutexes owned
 
-    OSThreadLink linkActive; // link of all threads for debugging
+    OSThreadLink linkActive; ///< 0x2FC link of all threads for debugging
 
-    u8*  stackBase;          // the thread's designated stack (high address)
-    u32* stackEnd;           // last word of stack (low address)
+    u8*  stackBase;          ///< 0x304 the thread's designated stack (high address)
+    u32* stackEnd;           ///< 0x308 last word of stack (low address)
 };
 // Thread states
 enum OS_THREAD_STATE

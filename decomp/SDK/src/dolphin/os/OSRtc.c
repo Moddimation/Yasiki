@@ -5,16 +5,16 @@
 
 // internal include
 #include "OSPrivate.h"
+#define RTC_SRAM_SIZE 64
 struct SramControl
 {
-    u16  sram[64];
-    u32  offset;
-    int  enabled;
-    int  locked;
-    int  sync;
-    void (*callback)();
+    u8   sram[RTC_SRAM_SIZE]; ///< 0x00
+    u32  offset;              ///< 0x40
+    int  enabled;             ///< 0x44
+    int  locked;              ///< 0x48
+    int  sync;                ///< 0x4C
+    void (*callback)();       ///< 0x50
 };
-
 static struct SramControl Scb ATTRIBUTE_ALIGN(32);
 
 static int   GetRTC(u32* rtc);
@@ -106,7 +106,7 @@ ReadSram(void* buffer)
     int err;
     u32 cmd;
 
-    DCInvalidateRange(buffer, 0x40);
+    DCInvalidateRange(buffer, RTC_SRAM_SIZE);
     if (!EXILock(0, 1, NULL))
     {
         return 0;
@@ -120,7 +120,7 @@ ReadSram(void* buffer)
     err = 0;
     err |= !EXIImm(0, &cmd, 4, 1, 0);
     err |= !EXISync(0);
-    err |= !EXIDma(0, buffer, 0x40, 0, NULL);
+    err |= !EXIDma(0, buffer, RTC_SRAM_SIZE, 0, NULL);
     err |= !EXISync(0);
     err |= !EXIDeselect(0);
     EXIUnlock(0);
@@ -131,10 +131,11 @@ WriteSramCallback()
 {
     int unused;
     ASSERTLINE(0xF0, !Scb.locked);
-    Scb.sync = WriteSram(&Scb.sram[Scb.offset], Scb.offset, 0x40 - Scb.offset);
+    Scb.sync =
+        WriteSram(&Scb.sram[Scb.offset], Scb.offset, RTC_SRAM_SIZE - Scb.offset);
     if (Scb.sync != 0)
     {
-        Scb.offset = 0x40;
+        Scb.offset = RTC_SRAM_SIZE;
     }
     ASSERTLINE(0xF6, Scb.sync);
 }
@@ -169,7 +170,7 @@ __OSInitSram()
     Scb.locked = Scb.enabled = 0;
     Scb.sync = ReadSram(&Scb);
     ASSERTLINE(0x12C, Scb.sync);
-    Scb.offset = 0x40;
+    Scb.offset = RTC_SRAM_SIZE;
 }
 static void*
 LockSram(u32 offset)
@@ -207,7 +208,11 @@ UnlockSram(int commit, u32 offset)
     {
         if (offset == 0)
         {
-            struct OSSram* sram = (struct OSSram*)&Scb.sram[0];
+            struct OSSram* sram = (struct OSSram*)&Scb.sram;
+            if ((sram->flags & 3) > 2U)
+            {
+                sram->flags &= ~3;
+            }
             sram->checkSum = sram->checkSumInv = 0;
             for (p = (u16*)&sram->counterBias;
                  p < ((u16*)&Scb.sram[sizeof(struct OSSram)]); p++)
@@ -220,10 +225,11 @@ UnlockSram(int commit, u32 offset)
         {
             Scb.offset = offset;
         }
-        Scb.sync = WriteSram(&Scb.sram[Scb.offset], Scb.offset, 0x40 - Scb.offset);
+        Scb.sync =
+            WriteSram(Scb.sram + Scb.offset, Scb.offset, RTC_SRAM_SIZE - Scb.offset);
         if (Scb.sync != 0)
         {
-            Scb.offset = 0x40;
+            Scb.offset = RTC_SRAM_SIZE;
         }
     }
     Scb.locked = 0;
@@ -233,12 +239,12 @@ UnlockSram(int commit, u32 offset)
 int
 __OSUnlockSram(int commit)
 {
-    UnlockSram(commit, 0);
+    return UnlockSram(commit, 0);
 }
 int
 __OSUnlockSramEx(int commit)
 {
-    UnlockSram(commit, 0x14);
+    return UnlockSram(commit, 0x14);
 }
 int
 __OSSyncSram()
@@ -362,6 +368,36 @@ OSSetSoundMode(u32 mode)
     sram->flags &= 0xFFFFFFFB;
     sram->flags |= mode;
     __OSUnlockSram(1);
+}
+u32
+OSGetProgressiveMode()
+{
+    OSSram* sram;
+    u32     mode;
+
+    sram = __OSLockSram();
+    mode = (sram->flags & 0x80) ? TRUE : FALSE;
+    __OSUnlockSram(FALSE);
+    return mode;
+}
+void
+OSSetProgressiveMode(u32 mode)
+{
+    char    trash[0x2];       // TODO: intermediate vars or inlines?
+    OSSram* sram;
+    mode <<= 7;
+    mode &= 0x80;
+
+    sram = __OSLockSram();
+    if (mode == (sram->flags & 0x80))
+    {
+        __OSUnlockSram(FALSE);
+        return;
+    }
+
+    sram->flags &= ~0x80;
+    sram->flags |= mode;
+    __OSUnlockSram(TRUE);
 }
 u32
 OSGetVideoMode()

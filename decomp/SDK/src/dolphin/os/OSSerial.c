@@ -1,6 +1,46 @@
 #include <dolphin/os.h>
 
 #include <dolphin.h>
+#define CHAN_NONE                 -1
+
+#define SI_MAX_CHAN               4
+
+#define SI_COMCSR_IDX             13
+#define SI_STATUS_IDX             14
+
+#define SI_COMCSR_TCINT_MASK      (1 << 31)
+#define SI_COMCSR_TCINTMSK_MASK   (1 << 30)
+#define SI_COMCSR_COMERR_MASK     (1 << 29)
+#define SI_COMCSR_RDSTINT_MASK    (1 << 28)
+#define SI_COMCSR_RDSTINTMSK_MASK (1 << 27)
+// 4 bits of padding
+#define SI_COMCSR_OUTLNGTH_MASK                                                     \
+    (1 << 22) | (1 << 21) | (1 << 20) | (1 << 19) | (1 << 18) | (1 << 17) | (1 << 16)
+// 1 bit of padding
+#define SI_COMCSR_INLNGTH_MASK                                                      \
+    (1 << 14) | (1 << 13) | (1 << 12) | (1 << 11) | (1 << 10) | (1 << 9) | (1 << 8)
+// 5 bits of padding
+#define SI_COMCSR_CHANNEL_MASK (1 << 2) | (1 << 1)
+#define SI_COMCSR_TSTART_MASK  (1 << 0)
+#define ROUND(n, a)            (((u32)(n) + (a) - 1) & ~((a) - 1))
+typedef struct SIControl
+{
+    s32   chan;                              ///< 0x00
+    u32   poll;                              ///< 0x04
+    u32   inputBytes;                        ///< 0x08
+    void* input;                             ///< 0x0C
+    void  (*callback)(s32, u32, OSContext*); ///< 0x10
+} SIControl;
+typedef struct SIPacket
+{
+    s32   chan;                              ///< 0x00
+    void* output;                            ///< 0x04
+    u32   outputBytes;                       ///< 0x08
+    void* input;                             ///< 0x0C
+    u32   inputBytes;                        ///< 0x10
+    void  (*callback)(s32, u32, OSContext*); ///< 0x14
+    s64   time;                              ///< 0x18
+} SIPacket;
 
 static struct SIControl Si = {
     /* chan */ -1,
@@ -52,7 +92,7 @@ CompleteTransfer()
             temp = __SIRegs[i + 32];
             for (i = 0; i < rLen; i++)
             {
-                *(input++) = temp >> ((3 - i) * 8);
+                *((u8*)input)++ = temp >> ((3 - i) * 8);
             }
         }
         sr >>= ((3 - Si.chan) * 8);
@@ -263,7 +303,6 @@ SIEnablePolling(u32 poll)
     }
 
     enabled = OSDisableInterrupts();
-    __SIRegs[0x30 / 4] = 0;
     poll = poll >> 24;
     en = poll & 0xF0;
     ASSERTLINE(0x202, en);
