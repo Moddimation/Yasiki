@@ -77,6 +77,11 @@
     while (0);
 
 static struct OSResetFunctionQueue ResetFunctionQueue;
+#ifdef __MWERKS__
+OSThreadQueue __OSActiveThreadQueue : (OS_BASE_CACHED | 0x00DC);
+#else
+OSThreadQueue __OSActiveThreadQueue;
+#endif
 
 static int      CallResetFunctions(int final);
 static ASM void Reset(u32 resetCode);
@@ -112,62 +117,129 @@ CallResetFunctions(int final)
 static ASM void
 Reset(u32 resetCode)
 {
-    nofralloc b L_000001BC L_000001A0 : mfspr    r8,
-                                        HID0 ori r8,
-                                        r8,
-                                        0x8 mtspr                      HID0,
-                                        r8 isync sync nop b L_000001C0 L_000001BC
-      : b L_000001DC L_000001C0 : mftb r5,
-                                  268 L_000001C4
-      : mftb     r6,
-        268 subf r7,
-        r5,
-        r6 cmplwi                              r7,
-        0x1124 blt L_000001C4 nop b L_000001E0 L_000001DC : b L_000001FC L_000001E0
-      : lis                                                              r8,
-        0xcc00 ori                                                       r8,
-        r8,
-        0x3000 li                r4,
-        0x3 stw                  r4,
-        0x24(r8)stw              r3,
-        0x24(r8)nop b L_00000200 L_000001FC : b L_00000208 L_00000200
-      : nop b L_00000200                                   L_00000208 : b L_000001A0
+#ifdef __MWERKS__
+    nofralloc;
+    b L_000001BC;
+
+L_000001A0:
+    mfspr r8, HID0;
+    ori   r8, r8, 0x8;
+    mtspr HID0, r8;
+    isync;
+    sync;
+    nop;
+    b L_000001C0;
+
+L_000001BC:
+    b L_000001DC;
+
+L_000001C0:
+    mftb r5, 268;
+
+L_000001C4:
+    mftb   r6, 268;
+    subf   r7, r5, r6;
+    cmplwi r7, 0x1124;
+    blt    L_000001C4;
+    nop;
+    b L_000001E0;
+
+L_000001DC:
+    b L_000001FC;
+
+L_000001E0:
+    lis r8, 0xcc00;
+    ori r8, r8, 0x3000;
+    li  r4, 0x3;
+    stw r4, 0x24(r8);
+    stw r3, 0x24(r8);
+    nop;
+    b L_00000200;
+
+L_000001FC:
+    b L_00000208;
+
+L_00000200:
+    nop;
+    b L_00000200;
+
+L_00000208:
+    b L_000001A0;
+#endif
+}
+static void
+KillThreads(void)
+{
+    OSThread* thread;
+    OSThread* next;
+
+    for (thread = __OSActiveThreadQueue.head; thread; thread = next)
+    {
+        next = thread->linkActive.next;
+        switch (thread->state)
+        {
+            case 1:
+            case 4:
+                OSCancelThread(thread);
+                break;
+        }
+    }
 }
 void
-OSResetSystem(int reset, u32 resetCode, int forceMenu)
+__OSDoHotReset(s32 code)
 {
-    int            rc;
-    int            enabled;
-    struct OSSram* sram;
+    OSDisableInterrupts();
+    __VIRegs[VI_DISP_CONFIG] = 0;
+    ICFlashInvalidate();
+    Reset(code * 8);
+}
+void
+OSResetSystem(int reset, u32 resetCode, BOOL forceMenu)
+{
+    BOOL rc;
+    BOOL disableRecalibration;
+    BOOL enabled;
 
     OSDisableScheduler();
     __OSStopAudioSystem();
-    do {
-    }
-    while (CallResetFunctions(0) == 0);
 
-    if ((reset != 0 && (forceMenu != 0)))
+    while (!CallResetFunctions(FALSE))
     {
+        ;
+    }
+
+    if (reset && forceMenu)
+    {
+        OSSram* sram;
+
         sram = __OSLockSram();
         sram->flags |= 0x40;
-        __OSUnlockSram(1);
-        do {
+        __OSUnlockSram(TRUE);
+
+        while (!__OSSyncSram())
+        {
+            ;
         }
-        while (__OSSyncSram() == 0);
     }
+
     enabled = OSDisableInterrupts();
-    rc = CallResetFunctions(1);
-    ASSERTLINE(0x117, rc);
-    if (reset != 0)
+    CallResetFunctions(TRUE);
+    if (reset == OS_RESET_HOTRESET)
     {
-        ICFlashInvalidate();
-        Reset(resetCode * 8);
+        __OSDoHotReset(resetCode);
     }
+    else
+    {
+        KillThreads();
+        OSEnableScheduler();
+        __OSReboot(resetCode, forceMenu);
+    }
+
     OSRestoreInterrupts(enabled);
     OSEnableScheduler();
 }
 u32
 OSGetResetCode()
 {
-    return (__PIRegs[9] & 0xFFFFFFF8) / 8;
+    return (__PIRegs[PI_RESET_CODE] & 0xFFFFFFF8) / 8;
 }

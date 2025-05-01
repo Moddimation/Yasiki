@@ -5,23 +5,36 @@
 #include "OSPrivate.h"
 
 static OSResetCallback ResetCallback;
-static int             Down;
-static s64             Hold;
+
+static BOOL Down;
+
+static BOOL LastState;
+
+static OSTime HoldUp;
+static OSTime HoldDown;
 void
-__OSResetSWInterruptHandler(s16 exception, struct OSContext* context)
+__OSResetSWInterruptHandler(__OSInterrupt exception, struct OSContext* context)
 {
     OSResetCallback callback;
 
-    Down = 1;
-    __PIRegs[0] = 2;
-    __OSMaskInterrupts(0x200);
-
-    if (ResetCallback)
+    HoldDown = __OSGetSystemTime();
+    while (__OSGetSystemTime() - HoldDown < OSMicrosecondsToTicks(100) &&
+           !(__PIRegs[0] & 0x00010000))
     {
-        callback = ResetCallback;
-        ResetCallback = NULL;
-        callback();
+        ;
     }
+    if (!(__PIRegs[0] & 0x00010000))
+    {
+        LastState = Down = TRUE;
+        __OSMaskInterrupts(OS_INTERRUPTMASK_PI_RSW);
+        if (ResetCallback)
+        {
+            callback = ResetCallback;
+            ResetCallback = NULL;
+            callback();
+        }
+    }
+    __PIRegs[0] = 2;
 }
 OSResetCallback
 OSSetResetCallback(OSResetCallback callback)
@@ -48,41 +61,48 @@ OSSetResetCallback(OSResetCallback callback)
 int
 OSGetResetSwitchState()
 {
-    int enabled;
-    int state;
-    u32 reg;
+    BOOL enabled = OSDisableInterrupts();
+    BOOL state;
+    u32  reg = __PIRegs[0];
 
-    enabled = OSDisableInterrupts();
-    reg = __PIRegs[0];
-
-    if (!(reg & 0x10000))
+    if (!(reg & 0x00010000))
     {
-        Down = 1;
-        state = 1;
-    }
-    else if (Down != 0)
-    {
-        if (reg & 2)
+        if (!Down)
         {
-            __PIRegs[0] = 2;
-            Down = 1;
+            Down = TRUE;
+            state = HoldUp ? TRUE : FALSE;
+            HoldDown = __OSGetSystemTime();
         }
         else
         {
-            Down = 0;
-            Hold = __OSGetSystemTime();
+            state = (HoldUp ||
+                     (OSMicrosecondsToTicks(100) < __OSGetSystemTime() - HoldDown))
+                        ? TRUE
+                        : FALSE;
         }
-        state = 1;
     }
-    else if (Hold && (__OSGetSystemTime() - Hold) < OSMillisecondsToTicks(50))
+    else if (Down)
     {
-        state = 1;
+        Down = FALSE;
+        state = LastState;
+        if (state)
+        {
+            HoldUp = __OSGetSystemTime();
+        }
+    }
+    else if (HoldUp && (__OSGetSystemTime() - HoldUp < OSMillisecondsToTicks(40)))
+
+    {
+        state = TRUE;
     }
     else
     {
-        state = 0;
-        Hold = 0;
+        state = FALSE;
+        HoldUp = 0;
     }
+
+    LastState = state;
+
     OSRestoreInterrupts(enabled);
     return state;
 }

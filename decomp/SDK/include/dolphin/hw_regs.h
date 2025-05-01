@@ -235,6 +235,7 @@ volatile u8*  __GXRegs;  // Graphics FIFO Register
 
 #define PI_RESET                    (7) // reset (write = full reset)
 #define PI_TYPE                     (8) // hw type?
+#define PI_RESET_CODE               (9)
 
 //
 // offsets for MI Regs
