@@ -18,7 +18,6 @@ from typing import List
 script_dir = os.path.dirname(os.path.realpath(__file__))
 root_dir = os.path.abspath(os.path.join(script_dir, ".."))
 src_dir = os.path.join(root_dir, "src")
-lib_dir = os.path.join(root_dir, "lib")
 include_dirs: List[str] = []  # Set with -I flag
 
 include_pattern = re.compile(r'^#\s*include\s*[<"](.+?)[>"]')

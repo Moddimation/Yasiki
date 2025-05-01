@@ -581,6 +581,8 @@ config.libs = [
     # SDK
 
     DolphinLib("os", [
+        (Matching, "OSThread.c"),
+        (Matching, "OSTime.c"),
         (Matching, "OSUartExi.c"),
         (Matching, "init/__start.c"),
         (Matching, "init/__ppc_eabi_init.cpp"),
