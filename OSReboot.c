@@ -1,44 +1,53 @@
-#include <dolphin/ai.h>
-#include <dolphin/os.h>
+#include "Dolphin/ai.h"
+#include "Dolphin/os.h"
 
 static volatile BOOL Prepared;
 
 extern void* BOOT_REGION_START AT_ADDRESS(0x812FDFF0);
 extern void* BOOT_REGION_END   AT_ADDRESS(0x812FDFEC);
 extern u32 OS_RESET_CODE       AT_ADDRESS(0x800030F0);
+// unknown function, set to true by __OSReboot
 extern u8 OS_REBOOT_BOOL       AT_ADDRESS(0x800030E2);
 extern u32 OS_UNK_CODE         AT_ADDRESS(0x817FFFF8);
 extern u32 OS_HOT_RESET_CODE   AT_ADDRESS(0x817FFFFC);
-
-#include "OSPrivate.h"
 
 extern void* __OSSavedRegionStart;
 extern void* __OSSavedRegionEnd;
 // Struct for Apploader header (size 0x20).
 typedef struct _ApploaderHeader
 {
-    char date[16];   ///< 0x00
-    u32  entry;      ///< 0x10
-    u32  size;       ///< 0x14
-    u32  rebootSize; ///< 0x18
-    u32  reserved2;  ///< 0x1C
+    char date[16];   // _00
+    u32  entry;      // _10
+    u32  size;       // _14
+    u32  rebootSize; // _18
+    u32  reserved2;  // _1C
 } ApploaderHeader;
 static ApploaderHeader Header ATTRIBUTE_ALIGN(32);
+/*
+ * --INFO--
+ * Address:	801F9EC4
+ * Size:	000040
+ */
 static ASM void
 Run(register u32 addr)
 {
-#ifdef __MWERKS__
-    fralloc;
-    bl OSDisableInterrupts;
-    bl ICFlashInvalidate;
-    sync;
-    isync;
-    mtlr addr;
-    blr;
-    frfree;
-    blr;
-#endif
+#ifdef __MWERKS__ // clang-format off
+	fralloc
+	bl OSDisableInterrupts
+	bl ICFlashInvalidate
+	sync
+	isync
+	mtlr addr
+	blr
+	frfree
+	blr
+#endif // clang-format on
 }
+/*
+ * --INFO--
+ * Address:	........
+ * Size:	0000A0
+ */
 static void
 ReadApploader(DVDCommandBlock* dvdCmd, void* addr, u32 offset, u32 numBytes)
 {
@@ -73,13 +82,23 @@ ReadApploader(DVDCommandBlock* dvdCmd, void* addr, u32 offset, u32 numBytes)
         break;
     }
 }
+/*
+ * --INFO--
+ * Address:	801F9F04
+ * Size:	00000C
+ */
 static void
-Callback(s32 result, DVDCommandBlock* block)
+Callback(s32 result, struct DVDCommandBlock* block)
 {
     Prepared = TRUE;
 }
+/*
+ * --INFO--
+ * Address:	801F9F10
+ * Size:	0001B0
+ */
 void
-__OSReboot(u32 resetCode, BOOL forceMenu)
+__OSReboot(u32 resetCode, u32 bootDol)
 {
     OSContext       exceptionContext;
     DVDCommandBlock dvdCmd;
@@ -89,9 +108,9 @@ __OSReboot(u32 resetCode, BOOL forceMenu)
 
     OSDisableInterrupts();
 
+    OS_HOT_RESET_CODE = resetCode;
     OS_UNK_CODE = 0;
     OS_REBOOT_BOOL = TRUE;
-    OS_HOT_RESET_CODE = resetCode;
     OSClearContext(&exceptionContext);
     OSSetCurrentContext(&exceptionContext);
     DVDInit();
@@ -119,4 +138,3 @@ __OSReboot(u32 resetCode, BOOL forceMenu)
     ICInvalidateRange((void*)OS_BOOTROM_ADDR, numBytes);
     Run(OS_BOOTROM_ADDR);
 }
-

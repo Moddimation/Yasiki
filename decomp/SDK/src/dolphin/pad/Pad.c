@@ -1,4 +1,4 @@
-#include "dolphin/os/OSSerial.h"
+#include <dolphin/os/OSSerial.h>
 #include <dolphin/pad.h>
 #include <dolphin/si.h>
 
