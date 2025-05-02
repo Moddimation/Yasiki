@@ -1,18 +1,9 @@
 #ifndef _TYPES_H
 #define _TYPES_H
 
-#ifndef _DOLPHIN_STL_H
-#include <cstdarg>
-#endif
 #include <macros.h>
 
 #include <dolphin/types.h>
-
-#include <cstddef>
-#include <cstring>
-
-// r2 is  803F0200
-// r13 is 803E4D20
 
 typedef u32 unk;
 typedef u8  unk8;
