@@ -204,7 +204,7 @@ config.asflags = [
     "-i decomp/CodeWarrior/**/Include",
     "-i decomp/CodeWarrior/**/INCLUDE",
     "-i decomp/CodeWarrior/**/Inc",
-    f"-I build/{config.version}/include",
+    f"-I {config.build_dir}/{config.version}/include",
     f"--defsym version={version_num}",
 ]
 # fill in * , because MWCC not supporting that
@@ -246,7 +246,7 @@ cflags_base = [
     "-i decomp/CodeWarrior/**/Include",
     "-i decomp/CodeWarrior/**/INCLUDE",
     "-i decomp/CodeWarrior/**/Inc",
-    f"-i build/{config.version}/include",
+    f"-i {config.build_dir}/{config.version}/include",
     f"-DVERSION_{config.version}",
 ]
 
@@ -595,7 +595,7 @@ config.libs = [
         (NonMatching, "OSLink.c"),
         (NonMatching, "OSMessage.c"),
         (NonMatching, "OSMutex.c"),
-        (NonMatching, "OSReboot.c"),
+        (Matching, "OSReboot.c"),
         (Matching, "OSReset.c"),
         (Matching, "OSResetSW.c"),
         (Matching, "OSRtc.c"),
