@@ -6,6 +6,7 @@ static int Initialized;
 int AD16Init (void);
 int AD16WriteReg (u32 word);
 int AD16ReadReg (u32* word);
+
 int
 AD16Init (void)
 {
@@ -41,6 +42,7 @@ AD16Init (void)
     Initialized = 1;
     return 1;
 }
+
 int
 AD16WriteReg (u32 word)
 {
@@ -70,6 +72,7 @@ AD16WriteReg (u32 word)
     }
     return 1;
 }
+
 int
 AD16ReadReg (u32* word)
 {

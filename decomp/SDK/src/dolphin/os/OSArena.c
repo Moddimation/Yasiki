@@ -1,12 +1,11 @@
 #include <dolphin/os.h>
 
-#include <dolphin.h>
-
 #define ROUND(n, a) (((u32)(n) + (a) - 1) & ~((a) - 1))
 #define TRUNC(n, a) (((u32)(n)) & ~((a) - 1))
 
 static void* __OSArenaHi;
 static void* __OSArenaLo = (void*)-1;
+
 void*
 OSGetArenaHi ()
 {
@@ -18,6 +17,7 @@ OSGetArenaHi ()
                    "OSGetArenaHi(): invalid arena (hi < lo).");
     return __OSArenaHi;
 }
+
 void*
 OSGetArenaLo ()
 {
@@ -29,16 +29,19 @@ OSGetArenaLo ()
                    "OSGetArenaLo(): invalid arena (hi < lo).");
     return __OSArenaLo;
 }
+
 void
 OSSetArenaHi (void* newHi)
 {
     __OSArenaHi = newHi;
 }
+
 void
 OSSetArenaLo (void* newLo)
 {
     __OSArenaLo = newLo;
 }
+
 void*
 OSAllocFromArenaLo (u32 size, u32 align)
 {
@@ -52,6 +55,7 @@ OSAllocFromArenaLo (u32 size, u32 align)
     OSSetArenaLo (arenaLo);
     return ptr;
 }
+
 void*
 OSAllocFromArenaHi (u32 size, u32 align)
 {

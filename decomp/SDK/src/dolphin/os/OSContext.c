@@ -1,15 +1,14 @@
 #include <dolphin/os.h>
 
-#include <dolphin.h>
-
 #include "OSPrivate.h"
 
 #define HID2 920
 
-volatile OSContext* __OSCurrentContext : (OS_BASE_CACHED | 0x00D4);
-volatile OSContext* __OSFPUContext : (OS_BASE_CACHED | 0x00D8);
+volatile OSContext* __OSCurrentContext AT_ADDRESS (OS_BASE_CACHED | 0x00D4);
+volatile OSContext* __OSFPUContext     AT_ADDRESS (OS_BASE_CACHED | 0x00D8);
+
 static ASM void
-__OSLoadFPUContext (register u32, register OSContext* fpuContext)
+__OSLoadFPUContext (register u32 p0, register OSContext* fpuContext)
 {
 #ifdef __MWERKS__
     nofralloc;
@@ -93,8 +92,9 @@ _return:
     blr;
 #endif
 }
+
 static ASM void
-__OSSaveFPUContext (register u32, register u32, register OSContext* fpuContext)
+__OSSaveFPUContext (register u32 p0, register u32 p1, register OSContext* fpuContext)
 {
 #ifdef __MWERKS__
     nofralloc;
@@ -182,6 +182,7 @@ _return:
     blr;
 #endif
 }
+
 asm void
 OSLoadFPUContext (register OSContext* fpuContext)
 {
@@ -191,6 +192,7 @@ OSLoadFPUContext (register OSContext* fpuContext)
     b    __OSLoadFPUContext;
 #endif
 }
+
 asm void
 OSSaveFPUContext (register OSContext* fpuContext)
 {
@@ -200,6 +202,7 @@ OSSaveFPUContext (register OSContext* fpuContext)
     b    __OSSaveFPUContext;
 #endif
 }
+
 asm void
 OSSetCurrentContext (register OSContext* context)
 {
@@ -237,11 +240,13 @@ _disableFPU:
     blr;
 #endif
 }
+
 OSContext*
 OSGetCurrentContext (void)
 {
     return (OSContext*)__OSCurrentContext;
 }
+
 asm u32
 OSSaveContext (register OSContext* context)
 {
@@ -279,10 +284,14 @@ OSSaveContext (register OSContext* context)
     stw   r0, context->gpr[3];
     li    r3, 0;
     blr;
+#else
+    return 0;
 #endif
 }
+
 extern void __RAS_OSDisableInterrupts_begin ();
 extern void __RAS_OSDisableInterrupts_end ();
+
 asm void
 OSLoadContext (register OSContext* context)
 {
@@ -359,6 +368,7 @@ misc:
     rfi;
 #endif
 }
+
 asm u32
 OSGetStackPointer ()
 {
@@ -366,8 +376,11 @@ OSGetStackPointer ()
     nofralloc;
     mr r3, r1;
     blr;
+#else
+    return NULL;
 #endif
 }
+
 asm u32
 OSSwitchStack (register u32 newsp)
 {
@@ -377,8 +390,11 @@ OSSwitchStack (register u32 newsp)
     mr r1, newsp;
     mr r3, r5;
     blr;
+#else
+    return NULL;
 #endif
 }
+
 asm int
 OSSwitchFiber (register u32 pc, register u32 newsp)
 {
@@ -396,8 +412,11 @@ OSSwitchFiber (register u32 pc, register u32 newsp)
     mtlr r0;
     mr   r1, r5;
     blr;
+#else
+    return NULL;
 #endif
 }
+
 void
 OSClearContext (register OSContext* context)
 {
@@ -408,6 +427,7 @@ OSClearContext (register OSContext* context)
         __OSFPUContext = NULL;
     }
 }
+
 asm void
 OSInitContext (register OSContext* context, register u32 pc, register u32 newsp)
 {
@@ -468,14 +488,14 @@ OSInitContext (register OSContext* context, register u32 pc, register u32 newsp)
     b OSClearContext;
 #endif
 }
+
 void
 OSDumpContext (OSContext* context)
 {
     u32  i;
     u32* p;
 
-    OSReport ("------------------------- Context 0x%08x -------------------------\n",
-              context);
+    OSReport ("------------------------- Context 0x%08x -------------------------\n", context);
 
     for (i = 0; i < 16; ++i)
     {
@@ -488,11 +508,8 @@ OSDumpContext (OSContext* context)
                   context->gpr[i + 16]);
     }
 
-    OSReport (
-        "LR   = 0x%08x                   CR   = 0x%08x\n", context->lr, context->cr);
-    OSReport ("SRR0 = 0x%08x                   SRR1 = 0x%08x\n",
-              context->srr0,
-              context->srr1);
+    OSReport ("LR   = 0x%08x                   CR   = 0x%08x\n", context->lr, context->cr);
+    OSReport ("SRR0 = 0x%08x                   SRR1 = 0x%08x\n", context->srr0, context->srr1);
 
     OSReport ("\nGQRs----------\n");
     for (i = 0; i < 4; ++i)
@@ -540,12 +557,12 @@ OSDumpContext (OSContext* context)
     }
 
     OSReport ("\nAddress:      Back Chain    LR Save\n");
-    for (i = 0, p = (u32*)context->gpr[1]; p && (u32)p != 0xffffffff && i++ < 16;
-         p = (u32*)*p)
+    for (i = 0, p = (u32*)context->gpr[1]; p && (u32)p != 0xffffffff && i++ < 16; p = (u32*)*p)
     {
         OSReport ("0x%08x:   0x%08x    0x%08x\n", p, p[0], p[1]);
     }
 }
+
 static ASM void
 OSSwitchFPUContext (register __OSException exception, register OSContext* context)
 {
@@ -590,7 +607,9 @@ _restoreAndExit:
     rfi;
 #endif
 }
+
 extern void DBPrintf (char*, ...);
+
 void
 __OSContextInit (void)
 {
@@ -598,6 +617,7 @@ __OSContextInit (void)
     __OSFPUContext = NULL;
     DBPrintf ("FPU-unavailable handler installed\n");
 }
+
 asm void
 OSFillFPUContext (register OSContext* context)
 {

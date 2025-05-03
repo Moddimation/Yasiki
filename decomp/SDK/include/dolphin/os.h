@@ -8,6 +8,7 @@ extern "C"
 {
 #endif
 
+#include <dolphin/base/PPCArch.h>
 #include <dolphin/os/OSAlarm.h>
 #include <dolphin/os/OSAlloc.h>
 #include <dolphin/os/OSCache.h>
@@ -74,6 +75,7 @@ void* OSAllocFromArenaHi (u32 size, u32 align);
 u32 OSGetPhysicalMemSize (void);
 
 void __OSPSInit ();
+
 typedef struct OSCalendarTime
 {
     int sec;                              ///< 0x00
@@ -87,6 +89,7 @@ typedef struct OSCalendarTime
     int msec;                             ///< 0x20
     int usec;                             ///< 0x24
 } OSCalendarTime;
+
 #include <dolphin/os/OSBootInfo.h>
 
 OSTick OSGetTick (void);
@@ -97,6 +100,7 @@ BOOL   OSEnableInterrupts (void);
 BOOL   OSDisableInterrupts (void);
 BOOL   OSRestoreInterrupts (BOOL level);
 
+#define OS_CONSOLE_RETAIL      0x00000000
 #define OS_CONSOLE_RETAIL2     0x00000002
 #define OS_CONSOLE_RETAIL1     0x00000001
 #define OS_CONSOLE_DEVHW2      0x10000005
@@ -130,10 +134,8 @@ void* OSUncachedToCached (void* ucaddr);
 #define OSPhysicalToUncached(paddr)  ((void*)((u32)(OS_BASE_UNCACHED + (u32)(paddr))))
 #define OSCachedToPhysical(caddr)    ((u32)((u32)(caddr) - OS_BASE_CACHED))
 #define OSUncachedToPhysical(ucaddr) ((u32)((u32)(ucaddr) - OS_BASE_UNCACHED))
-#define OSCachedToUncached(caddr)                                                   \
-    ((void*)((u8*)(caddr) + (OS_BASE_UNCACHED - OS_BASE_CACHED)))
-#define OSUncachedToCached(ucaddr)                                                  \
-    ((void*)((u8*)(ucaddr) - (OS_BASE_UNCACHED - OS_BASE_CACHED)))
+#define OSCachedToUncached(caddr)    ((void*)((u8*)(caddr) + (OS_BASE_UNCACHED - OS_BASE_CACHED)))
+#define OSUncachedToCached(ucaddr)   ((void*)((u8*)(ucaddr) - (OS_BASE_UNCACHED - OS_BASE_CACHED)))
 #endif
 
 #ifdef __cplusplus

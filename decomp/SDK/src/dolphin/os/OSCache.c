@@ -1,8 +1,6 @@
 #include <dolphin/db.h>
 #include <dolphin/os.h>
 
-#include "OSPrivate.h"
-
 // Can't use this due to weird condition register issues
 // #include "asm_types.h"
 #define HID2 920
@@ -278,6 +276,7 @@ DCTouchRange (register void* addr, register u32 nBytes)
     bdnz @1;
 
     blr;
+#endif
 }
 
 asm void
@@ -503,9 +502,7 @@ LCAllocOneTag (register BOOL invalidate, register void* tag)
 }
 
 asm void
-LCAllocTags (register BOOL  invalidate,
-             register void* startTag,
-             register u32   numBlocks)
+LCAllocTags (register BOOL invalidate, register void* startTag, register u32 numBlocks)
 {
 #ifdef __MWERKS__
     nofralloc;
@@ -549,9 +546,7 @@ LCLoadBlocks (register void* destTag, register void* srcAddr, register u32 numBl
 }
 
 asm void
-LCStoreBlocks (register void* destAddr,
-               register void* srcTag,
-               register u32   numBlocks)
+LCStoreBlocks (register void* destAddr, register void* srcTag, register u32 numBlocks)
 {
 #ifdef __MWERKS__
     nofralloc;
@@ -573,10 +568,8 @@ LCAlloc (void* addr, u32 nBytes)
     u32 numBlocks = nBytes >> 5;
     u32 hid2 = PPCMfhid2();
 
-    ASSERTMSGLINE (
-        0x530, !((u32)addr & 31), "LCAlloc(): addr must be 32 byte aligned");
-    ASSERTMSGLINE (
-        0x532, !((u32)nBytes & 31), "LCAlloc(): nBytes must be 32 byte aligned");
+    ASSERTMSGLINE (0x530, !((u32)addr & 31), "LCAlloc(): addr must be 32 byte aligned");
+    ASSERTMSGLINE (0x532, !((u32)nBytes & 31), "LCAlloc(): nBytes must be 32 byte aligned");
 
     if ((hid2 & 0x10000000) == 0)
     {
@@ -591,11 +584,8 @@ LCAllocNoInvalidate (void* addr, u32 nBytes)
     u32 numBlocks = nBytes >> 5;
     u32 hid2 = PPCMfhid2();
 
-    ASSERTMSGLINE (
-        0x55F, !((u32)addr & 31), "LCAllocNoFlush(): addr must be 32 byte aligned");
-    ASSERTMSGLINE (0x561,
-                   !((u32)nBytes & 31),
-                   "LCAllocNoFlush(): nBytes must be 32 byte aligned");
+    ASSERTMSGLINE (0x55F, !((u32)addr & 31), "LCAllocNoFlush(): addr must be 32 byte aligned");
+    ASSERTMSGLINE (0x561, !((u32)nBytes & 31), "LCAllocNoFlush(): nBytes must be 32 byte aligned");
 
     if ((hid2 & 0x10000000) == 0)
     {
@@ -610,10 +600,8 @@ LCLoadData (void* destAddr, void* srcAddr, u32 nBytes)
     u32 numBlocks = (nBytes + 31) / 32;
     u32 numTransactions = (numBlocks + 128 - 1) / 128;
 
-    ASSERTMSGLINE (
-        0x59B, !((u32)srcAddr & 31), "LCLoadData(): srcAddr not 32 byte aligned");
-    ASSERTMSGLINE (
-        0x59D, !((u32)destAddr & 31), "LCLoadData(): destAddr not 32 byte aligned");
+    ASSERTMSGLINE (0x59B, !((u32)srcAddr & 31), "LCLoadData(): srcAddr not 32 byte aligned");
+    ASSERTMSGLINE (0x59D, !((u32)destAddr & 31), "LCLoadData(): destAddr not 32 byte aligned");
 
     while (numBlocks > 0)
     {
@@ -640,10 +628,8 @@ LCStoreData (void* destAddr, void* srcAddr, u32 nBytes)
     u32 numBlocks = (nBytes + 31) / 32;
     u32 numTransactions = (numBlocks + 128 - 1) / 128;
 
-    ASSERTMSGLINE (
-        0x5DF, !((u32)srcAddr & 31), "LCStoreData(): srcAddr not 32 byte aligned");
-    ASSERTMSGLINE (
-        0x5E1, !((u32)destAddr & 31), "LCStoreData(): destAddr not 32 byte aligned");
+    ASSERTMSGLINE (0x5DF, !((u32)srcAddr & 31), "LCStoreData(): srcAddr not 32 byte aligned");
+    ASSERTMSGLINE (0x5E1, !((u32)destAddr & 31), "LCStoreData(): destAddr not 32 byte aligned");
 
     while (numBlocks > 0)
     {
@@ -797,8 +783,7 @@ DMAErrorHandler (OSError error, OSContext* context, ...)
 
     if (hid2 & HID2_DCHERR)
     {
-        OSReport (
-            "\t- Requested a locked cache tag that was already in the cache\n");
+        OSReport ("\t- Requested a locked cache tag that was already in the cache\n");
     }
 
     if (hid2 & HID2_DNCERR)

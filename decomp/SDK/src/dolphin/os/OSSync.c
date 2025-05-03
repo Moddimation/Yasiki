@@ -1,11 +1,10 @@
 #include <dolphin/os.h>
 
-#include <dolphin.h>
-
 #include "OSPrivate.h"
 
 void __OSSystemCallVectorStart ();
 void __OSSystemCallVectorEnd ();
+
 static ASM void
 SystemCallVector (void)
 {
@@ -23,6 +22,7 @@ SystemCallVector (void)
     nop;
 #endif
 }
+
 void
 __OSInitSystemCall (void)
 {

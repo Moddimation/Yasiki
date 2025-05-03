@@ -15,6 +15,7 @@ extern "C"
 // make the asserts happy
 #define OS_VIDEO_MODE_NTSC   0
 #define OS_VIDEO_MODE_MPAL   2
+
 typedef struct OSSram
 {
     u16 checkSum;           ///< 0x00
@@ -27,6 +28,7 @@ typedef struct OSSram
     u8  language;           ///< 0x12
     u8  flags;              ///< 0x13
 } OSSram;
+
 typedef struct OSSramEx
 {
     u8  flashID[2][12];     ///< 0x00
@@ -37,6 +39,7 @@ typedef struct OSSramEx
     u8  flashIDCheckSum[2]; ///< 0x26
     u8  _padding1[4];       ///< 0x28
 } OSSramEx;
+
 u32  OSGetSoundMode ();
 void OSSetSoundMode (u32 mode);
 u32  OSGetVideoMode ();

@@ -1,16 +1,13 @@
 #include <dolphin/os.h>
 
-#include <dolphin.h>
-
-#include "OSPrivate.h"
 struct Timer
 {
-    void (*callback)();
-    u32  currval;
-    u32  startval;
-    u16  mode;
-    int  stopped;
-    int  initialized;
+    void (*callback)();    ///< 0x00
+    u32  currval;          ///< 0x04
+    u32  startval;         ///< 0x08
+    u16  mode;             ///< 0x0C
+    int  stopped;          ///< 0x0E
+    int  initialized;      ///< 0x04
 };
 
 static struct Timer Timer; // .bss
@@ -19,16 +16,16 @@ void        (*OSSetTimerCallback (void (*callback)()))();
 void        OSInitTimer (u32 time, u16 mode);
 void        OSStartTimer (void);
 void        OSStopTimer (void);
-static void DecrementerExceptionHandler (u16 exception, OSContext* context);
-void        (*OSSetTimerCallback (void (*callback)()))()
+static void DecrementerExceptionHandler (u8 exception, OSContext* context);
+
+void (*OSSetTimerCallback (void (*callback)()))()
 {
     void (*prevCallback)();
 
 #if DEBUG
     if (Timer.initialized == 0)
     {
-        OSPanic (
-            "OSTimer.c", 127, "OSSetTimerCallback(): timer is not initialized.");
+        OSPanic ("OSTimer.c", 127, "OSSetTimerCallback(): timer is not initialized.");
     }
 #endif
 
@@ -37,15 +34,14 @@ void        (*OSSetTimerCallback (void (*callback)()))()
     Timer.callback = callback;
     return prevCallback;
 }
+
 void
 OSInitTimer (u32 time, u16 mode)
 {
 #if DEBUG
     if (time >= 0x80000000)
     {
-        OSPanic ("OSTimer.c",
-                 0x97,
-                 "OSInitTimer(): time param must be less than 0x80000000.");
+        OSPanic ("OSTimer.c", 0x97, "OSInitTimer(): time param must be less than 0x80000000.");
     }
 #endif
 
@@ -63,6 +59,7 @@ OSInitTimer (u32 time, u16 mode)
 #endif
     }
 }
+
 void
 OSStartTimer (void)
 {
@@ -79,6 +76,7 @@ OSStartTimer (void)
     Timer.stopped = 0;
     OSRestoreInterrupts (enabled);
 }
+
 void
 OSStopTimer (void)
 {
@@ -103,8 +101,9 @@ OSStopTimer (void)
     }
     OSRestoreInterrupts (enabled);
 }
+
 static void
-DecrementerExceptionCallback (u16 exception, OSContext* context)
+DecrementerExceptionCallback (u8 exception, OSContext* context)
 {
     OSContext exceptionContext;
 
@@ -129,32 +128,33 @@ DecrementerExceptionCallback (u16 exception, OSContext* context)
     OSSetCurrentContext (context);
     OSLoadContext (context);
 }
+
 static ASM void
-DecrementerExceptionHandler (u16 exception, register OSContext* context)
+DecrementerExceptionHandler (u8 exception, register OSContext* context)
 {
-    // clang-format off
-    nofralloc
+#ifdef __MWERKS__
+    nofralloc;
 
-    stw r0, context->gpr[0]
-    stw r1, context->gpr[1]
-    stw r2, context->gpr[2]
-    stmw r6, context->gpr[6]
+    stw  r0, context->gpr[0];
+    stw  r1, context->gpr[1];
+    stw  r2, context->gpr[2];
+    stmw r6, context->gpr[6];
 
-    mfspr r0, GQR1
-    stw r0, context->gqr[1]
-    mfspr r0, GQR2
-    stw r0, context->gqr[2]
-    mfspr r0, GQR3
-    stw r0, context->gqr[3]
-    mfspr r0, GQR4
-    stw r0, context->gqr[4]
-    mfspr r0, GQR5
-    stw r0, context->gqr[5]
-    mfspr r0, GQR6
-    stw r0, context->gqr[6]
-    mfspr r0, GQR7
-    stw r0, context->gqr[7]
+    mfspr r0, GQR1;
+    stw   r0, context->gqr[1];
+    mfspr r0, GQR2;
+    stw   r0, context->gqr[2];
+    mfspr r0, GQR3;
+    stw   r0, context->gqr[3];
+    mfspr r0, GQR4;
+    stw   r0, context->gqr[4];
+    mfspr r0, GQR5;
+    stw   r0, context->gqr[5];
+    mfspr r0, GQR6;
+    stw   r0, context->gqr[6];
+    mfspr r0, GQR7;
+    stw   r0, context->gqr[7];
 
-    b DecrementerExceptionCallback
-    // clang-format on
+    b DecrementerExceptionCallback;
+#endif
 }

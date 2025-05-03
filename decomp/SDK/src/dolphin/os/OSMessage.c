@@ -1,4 +1,5 @@
 #include <dolphin/os.h>
+
 void
 OSInitMessageQueue (OSMessageQueue* mq, void* msgArray, s32 msgCount)
 {
@@ -9,6 +10,7 @@ OSInitMessageQueue (OSMessageQueue* mq, void* msgArray, s32 msgCount)
     mq->firstIndex = 0;
     mq->usedCount = 0;
 }
+
 int
 OSSendMessage (OSMessageQueue* mq, void* msg, s32 flags)
 {
@@ -32,6 +34,7 @@ OSSendMessage (OSMessageQueue* mq, void* msg, s32 flags)
     OSRestoreInterrupts (enabled);
     return 1;
 }
+
 int
 OSReceiveMessage (OSMessageQueue* mq, void* msg, s32 flags)
 {
@@ -57,6 +60,7 @@ OSReceiveMessage (OSMessageQueue* mq, void* msg, s32 flags)
     OSRestoreInterrupts (enabled);
     return 1;
 }
+
 int
 OSJamMessage (OSMessageQueue* mq, void* msg, s32 flags)
 {

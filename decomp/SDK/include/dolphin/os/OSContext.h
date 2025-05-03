@@ -134,6 +134,7 @@ extern "C"
 #define OS_CONTEXT_STATE_EXC     0x02u
 
 #define OS_CONTEXT_STATE_FPSAVED 0x01u
+
 typedef struct OSContext
 {
     u32 gpr[32];   ///< 0x000
@@ -151,6 +152,7 @@ typedef struct OSContext
     u32 gqr[8];    ///< 0x1A4
     f64 psf[32];   ///< 0x1C4
 } OSContext;
+
 u32        OSGetStackPointer (void);
 void       OSDumpContext (OSContext* context);
 void       OSLoadContext (OSContext* context);

@@ -14,7 +14,7 @@ static OSResetFunctionInfo ResetFunctionInfo = {
 static inline u16
 GetWirelessID (s32 chan)
 {
-    struct OSSramEx* sram;
+    OSSramEx* sram;
     u16              id;
 
     sram = __OSLockSramEx();
@@ -25,7 +25,7 @@ GetWirelessID (s32 chan)
 static inline void
 SetWirelessID (s32 chan, u16 id)
 {
-    struct OSSramEx* sram = __OSLockSramEx();
+    OSSramEx* sram = __OSLockSramEx();
 
     if (sram->wirelessPadID[chan] != id)
     {

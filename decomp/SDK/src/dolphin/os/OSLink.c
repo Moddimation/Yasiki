@@ -1,8 +1,6 @@
 #include "dolphin/types.h"
 #include <dolphin/os.h>
 
-#include <dolphin.h>
-
 #include "OSPrivate.h"
 
 #define SHN_UNDEF             0
@@ -82,56 +80,61 @@
 OSModuleQueue __OSModuleInfoList AT_ADDRESS (OS_BASE_CACHED | 0x30C8);
 const void* __OSStringTable      AT_ADDRESS (OS_BASE_CACHED | 0x30D0);
 
-#define ENQUEUE_INFO(queue, info, link)                                             \
-    do {                                                                            \
-        OSModuleInfo* __prev;                                                       \
-                                                                                    \
-        __prev = (queue)->tail;                                                     \
-        if (__prev == NULL)                                                         \
-            (queue)->head = (info);                                                 \
-        else                                                                        \
-            __prev->link.next = (info);                                             \
-        (info)->link.prev = __prev;                                                 \
-        (info)->link.next = NULL;                                                   \
-        (queue)->tail = (info);                                                     \
-    }                                                                               \
+#define ENQUEUE_INFO(queue, info, link)                                                            \
+    do {                                                                                           \
+        OSModuleInfo* __prev;                                                                      \
+                                                                                                   \
+        __prev = (queue)->tail;                                                                    \
+        if (__prev == NULL)                                                                        \
+            (queue)->head = (info);                                                                \
+        else                                                                                       \
+            __prev->link.next = (info);                                                            \
+        (info)->link.prev = __prev;                                                                \
+        (info)->link.next = NULL;                                                                  \
+        (queue)->tail = (info);                                                                    \
+    }                                                                                              \
     while (0)
 
-#define DEQUEUE_INFO(info, queue, link)                                             \
-    do {                                                                            \
-        OSModuleInfo* __next;                                                       \
-        OSModuleInfo* __prev;                                                       \
-                                                                                    \
-        __next = (info)->link.next;                                                 \
-        __prev = (info)->link.prev;                                                 \
-                                                                                    \
-        if (__next == NULL)                                                         \
-            (queue)->tail = __prev;                                                 \
-        else                                                                        \
-            __next->link.prev = __prev;                                             \
-                                                                                    \
-        if (__prev == NULL)                                                         \
-            (queue)->head = __next;                                                 \
-        else                                                                        \
-            __prev->link.next = __next;                                             \
-    }                                                                               \
+#define DEQUEUE_INFO(info, queue, link)                                                            \
+    do {                                                                                           \
+        OSModuleInfo* __next;                                                                      \
+        OSModuleInfo* __prev;                                                                      \
+                                                                                                   \
+        __next = (info)->link.next;                                                                \
+        __prev = (info)->link.prev;                                                                \
+                                                                                                   \
+        if (__next == NULL)                                                                        \
+            (queue)->tail = __prev;                                                                \
+        else                                                                                       \
+            __next->link.prev = __prev;                                                            \
+                                                                                                   \
+        if (__prev == NULL)                                                                        \
+            (queue)->head = __next;                                                                \
+        else                                                                                       \
+            __prev->link.next = __next;                                                            \
+    }                                                                                              \
     while (0)
 
 #pragma dont_inline on
+
 void
 OSNotifyLink ()
 {
 }
+
 void
 OSNotifyUnlink ()
 {
 }
+
 #pragma dont_inline reset
+
 void
 OSSetStringTable (const void* stringTable)
 {
     __OSStringTable = stringTable;
 }
+
 static BOOL
 Relocate (OSModuleHeader* newModule, OSModuleHeader* module)
 {
@@ -230,6 +233,7 @@ Found:
 
     return TRUE;
 }
+
 BOOL
 OSLink (OSModuleInfo* newModule, void* bss)
 {
@@ -291,8 +295,7 @@ OSLink (OSModuleInfo* newModule, void* bss)
 
     Relocate (0, moduleHeader);
 
-    for (moduleInfo = __OSModuleInfoList.head; moduleInfo;
-         moduleInfo = moduleInfo->link.next)
+    for (moduleInfo = __OSModuleInfoList.head; moduleInfo; moduleInfo = moduleInfo->link.next)
     {
         Relocate (moduleHeader, (OSModuleHeader*)moduleInfo);
         if (moduleInfo != newModule)
@@ -305,6 +308,7 @@ OSLink (OSModuleInfo* newModule, void* bss)
 
     return TRUE;
 }
+
 static BOOL
 Undo (OSModuleHeader* newModule, OSModuleHeader* module)
 {
@@ -397,6 +401,7 @@ Found:
 
     return TRUE;
 }
+
 BOOL
 OSUnlink (OSModuleInfo* oldModule)
 {
@@ -408,8 +413,7 @@ OSUnlink (OSModuleInfo* oldModule)
 
     DEQUEUE_INFO (oldModule, &__OSModuleInfoList, link);
 
-    for (moduleInfo = __OSModuleInfoList.head; moduleInfo;
-         moduleInfo = moduleInfo->link.next)
+    for (moduleInfo = __OSModuleInfoList.head; moduleInfo; moduleInfo = moduleInfo->link.next)
     {
         Undo (moduleHeader, (OSModuleHeader*)moduleInfo);
     }
@@ -418,6 +422,7 @@ OSUnlink (OSModuleInfo* oldModule)
 
     return TRUE;
 }
+
 void
 __OSModuleInit (void)
 {

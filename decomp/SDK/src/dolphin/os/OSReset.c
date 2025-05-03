@@ -1,79 +1,76 @@
 #include <dolphin/os.h>
 
-#include <dolphin.h>
-
 #include "OSPrivate.h"
 
 // These macros are copied from OSThread.c. Or ARE they the same
 // macros? They dont seem to be in the SDK headers.
-#define ENQUEUE_INFO(info, queue)                                                   \
-    do {                                                                            \
-        struct OSResetFunctionInfo* __prev = (queue)->tail;                         \
-        if (__prev == 0)                                                            \
-        {                                                                           \
-            (queue)->head = (info);                                                 \
-        }                                                                           \
-        else                                                                        \
-        {                                                                           \
-            __prev->next = (info);                                                  \
-        }                                                                           \
-        (info)->prev = __prev;                                                      \
-        (info)->next = 0;                                                           \
-        (queue)->tail = (info);                                                     \
-    }                                                                               \
+#define ENQUEUE_INFO(info, queue)                                                                  \
+    do {                                                                                           \
+        struct OSResetFunctionInfo* __prev = (queue)->tail;                                        \
+        if (__prev == 0)                                                                           \
+        {                                                                                          \
+            (queue)->head = (info);                                                                \
+        }                                                                                          \
+        else                                                                                       \
+        {                                                                                          \
+            __prev->next = (info);                                                                 \
+        }                                                                                          \
+        (info)->prev = __prev;                                                                     \
+        (info)->next = 0;                                                                          \
+        (queue)->tail = (info);                                                                    \
+    }                                                                                              \
     while (0);
 
-#define DEQUEUE_INFO(info, queue)                                                   \
-    do {                                                                            \
-        struct OSResetFunctionInfo* __next = (info)->next;                          \
-        struct OSResetFunctionInfo* __prev = (info)->prev;                          \
-        if (__next == 0)                                                            \
-        {                                                                           \
-            (queue)->tail = __prev;                                                 \
-        }                                                                           \
-        else                                                                        \
-        {                                                                           \
-            __next->prev = __prev;                                                  \
-        }                                                                           \
-        if (__prev == 0)                                                            \
-        {                                                                           \
-            (queue)->head = __next;                                                 \
-        }                                                                           \
-        else                                                                        \
-        {                                                                           \
-            __prev->next = __next;                                                  \
-        }                                                                           \
-    }                                                                               \
+#define DEQUEUE_INFO(info, queue)                                                                  \
+    do {                                                                                           \
+        struct OSResetFunctionInfo* __next = (info)->next;                                         \
+        struct OSResetFunctionInfo* __prev = (info)->prev;                                         \
+        if (__next == 0)                                                                           \
+        {                                                                                          \
+            (queue)->tail = __prev;                                                                \
+        }                                                                                          \
+        else                                                                                       \
+        {                                                                                          \
+            __next->prev = __prev;                                                                 \
+        }                                                                                          \
+        if (__prev == 0)                                                                           \
+        {                                                                                          \
+            (queue)->head = __next;                                                                \
+        }                                                                                          \
+        else                                                                                       \
+        {                                                                                          \
+            __prev->next = __next;                                                                 \
+        }                                                                                          \
+    }                                                                                              \
     while (0);
 
-#define ENQUEUE_INFO_PRIO(info, queue)                                              \
-    do {                                                                            \
-        struct OSResetFunctionInfo* __prev;                                         \
-        struct OSResetFunctionInfo* __next;                                         \
-        for (__next = (queue)->head;                                                \
-             __next && (__next->priority <= (info)->priority);                      \
-             __next = __next->next);                                                \
-                                                                                    \
-        if (__next == 0)                                                            \
-        {                                                                           \
-            ENQUEUE_INFO (info, queue);                                             \
-        }                                                                           \
-        else                                                                        \
-        {                                                                           \
-            (info)->next = __next;                                                  \
-            __prev = __next->prev;                                                  \
-            __next->prev = (info);                                                  \
-            (info)->prev = __prev;                                                  \
-            if (__prev == 0)                                                        \
-            {                                                                       \
-                (queue)->head = (info);                                             \
-            }                                                                       \
-            else                                                                    \
-            {                                                                       \
-                __prev->next = (info);                                              \
-            }                                                                       \
-        }                                                                           \
-    }                                                                               \
+#define ENQUEUE_INFO_PRIO(info, queue)                                                             \
+    do {                                                                                           \
+        struct OSResetFunctionInfo* __prev;                                                        \
+        struct OSResetFunctionInfo* __next;                                                        \
+        for (__next = (queue)->head; __next && (__next->priority <= (info)->priority);             \
+             __next = __next->next);                                                               \
+                                                                                                   \
+        if (__next == 0)                                                                           \
+        {                                                                                          \
+            ENQUEUE_INFO (info, queue);                                                            \
+        }                                                                                          \
+        else                                                                                       \
+        {                                                                                          \
+            (info)->next = __next;                                                                 \
+            __prev = __next->prev;                                                                 \
+            __next->prev = (info);                                                                 \
+            (info)->prev = __prev;                                                                 \
+            if (__prev == 0)                                                                       \
+            {                                                                                      \
+                (queue)->head = (info);                                                            \
+            }                                                                                      \
+            else                                                                                   \
+            {                                                                                      \
+                __prev->next = (info);                                                             \
+            }                                                                                      \
+        }                                                                                          \
+    }                                                                                              \
     while (0);
 
 static struct OSResetFunctionQueue ResetFunctionQueue;
@@ -85,6 +82,7 @@ OSThreadQueue __OSActiveThreadQueue;
 
 static int      CallResetFunctions (int final);
 static ASM void Reset (u32 resetCode);
+
 void
 OSRegisterResetFunction (struct OSResetFunctionInfo* info)
 {
@@ -92,11 +90,13 @@ OSRegisterResetFunction (struct OSResetFunctionInfo* info)
 
     ENQUEUE_INFO_PRIO (info, &ResetFunctionQueue);
 }
+
 void
 OSUnregisterResetFunction (struct OSResetFunctionInfo* info)
 {
     DEQUEUE_INFO (info, &ResetFunctionQueue);
 }
+
 static int
 CallResetFunctions (int final)
 {
@@ -114,6 +114,7 @@ CallResetFunctions (int final)
     }
     return 1;
 }
+
 static ASM void
 Reset (u32 resetCode)
 {
@@ -167,6 +168,7 @@ L_00000208:
     b L_000001A0;
 #endif
 }
+
 static void
 KillThreads (void)
 {
@@ -185,6 +187,7 @@ KillThreads (void)
         }
     }
 }
+
 void
 __OSDoHotReset (s32 code)
 {
@@ -193,6 +196,7 @@ __OSDoHotReset (s32 code)
     ICFlashInvalidate();
     Reset (code * 8);
 }
+
 void
 OSResetSystem (int reset, u32 resetCode, BOOL forceMenu)
 {
@@ -203,10 +207,7 @@ OSResetSystem (int reset, u32 resetCode, BOOL forceMenu)
     OSDisableScheduler();
     __OSStopAudioSystem();
 
-    while (!CallResetFunctions (FALSE))
-    {
-        ;
-    }
+    while (!CallResetFunctions (FALSE));
 
     if (reset && forceMenu)
     {
@@ -216,10 +217,7 @@ OSResetSystem (int reset, u32 resetCode, BOOL forceMenu)
         sram->flags |= 0x40;
         __OSUnlockSram (TRUE);
 
-        while (!__OSSyncSram())
-        {
-            ;
-        }
+        while (!__OSSyncSram());
     }
 
     enabled = OSDisableInterrupts();
@@ -238,6 +236,7 @@ OSResetSystem (int reset, u32 resetCode, BOOL forceMenu)
     OSRestoreInterrupts (enabled);
     OSEnableScheduler();
 }
+
 u32
 OSGetResetCode ()
 {

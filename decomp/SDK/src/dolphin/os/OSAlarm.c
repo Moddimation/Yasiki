@@ -1,35 +1,34 @@
 #include <dolphin/os.h>
 
-#include <dolphin.h>
-
 // internal header
 #include "OSPrivate.h"
-struct OSAlarmQueue
-{
-    struct OSAlarm* head;
-    struct OSAlarm* tail;
-};
 
-static struct OSAlarmQueue AlarmQueue;
+typedef struct OSAlarmQueue
+{
+    OSAlarm* head; ///< 0x00
+    OSAlarm* tail; ///< 0x04
+} OSAlarmQueue;
+
+static OSAlarmQueue AlarmQueue;
 
 // functions
-static void SetTimer (struct OSAlarm* alarm);
+static void SetTimer (OSAlarm* alarm);
 static void InsertAlarm (OSAlarm* alarm, OSTime fire, OSAlarmHandler handler);
 static void DecrementerExceptionCallback (register __OSException exception,
                                           register OSContext*    context);
-static void DecrementerExceptionHandler (__OSException exception,
-                                         OSContext*    context);
+static void DecrementerExceptionHandler (__OSException exception, OSContext* context);
 
-#define ASSERTREPORT(line, cond)                                                    \
-    if (!(cond))                                                                    \
-    {                                                                               \
-        OSReport ("OSCheckAlarmQueue: Failed " #cond " in %d", line);               \
-        return 0;                                                                   \
+#define ASSERTREPORT(line, cond)                                                                   \
+    if (!(cond))                                                                                   \
+    {                                                                                              \
+        OSReport ("OSCheckAlarmQueue: Failed " #cond " in %d", line);                              \
+        return 0;                                                                                  \
     }
+
 BOOL
 OSCheckAlarmQueue (void)
 {
-    struct OSAlarm* alarm;
+    OSAlarm* alarm;
 
     ASSERTREPORT (0x70,
                   AlarmQueue.head == NULL && AlarmQueue.tail == NULL ||
@@ -44,8 +43,9 @@ OSCheckAlarmQueue (void)
     }
     return TRUE;
 }
+
 static void
-SetTimer (struct OSAlarm* alarm)
+SetTimer (OSAlarm* alarm)
 {
     OSTime delta = alarm->fire - OSGetTime();
 
@@ -62,6 +62,7 @@ SetTimer (struct OSAlarm* alarm)
         PPCMtdec (0x7fffffff);
     }
 }
+
 void
 OSInitAlarm (void)
 {
@@ -71,11 +72,13 @@ OSInitAlarm (void)
         __OSSetExceptionHandler (8, DecrementerExceptionHandler);
     }
 }
+
 void
 OSCreateAlarm (OSAlarm* alarm)
 {
     alarm->handler = 0;
 }
+
 static void
 InsertAlarm (OSAlarm* alarm, OSTime fire, OSAlarmHandler handler)
 {
@@ -140,6 +143,7 @@ InsertAlarm (OSAlarm* alarm, OSTime fire, OSAlarmHandler handler)
         SetTimer (alarm);
     }
 }
+
 void
 OSSetAlarm (OSAlarm* alarm, OSTime tick, OSAlarmHandler handler)
 {
@@ -152,10 +156,9 @@ OSSetAlarm (OSAlarm* alarm, OSTime tick, OSAlarmHandler handler)
     ASSERTLINE (0x11C, OSCheckAlarmQueue());
     OSRestoreInterrupts (enabled);
 }
+
 void
-OSSetAbsAlarm (struct OSAlarm* alarm,
-               s64             time,
-               void            (*handler) (struct OSAlarm*, OSContext*))
+OSSetAbsAlarm (OSAlarm* alarm, s64 time, void (*handler) (OSAlarm*, OSContext*))
 {
     int enabled;
 
@@ -166,17 +169,13 @@ OSSetAbsAlarm (struct OSAlarm* alarm,
     ASSERTLINE (0x137, OSCheckAlarmQueue());
     OSRestoreInterrupts (enabled);
 }
+
 void
-OSSetPeriodicAlarm (OSAlarm*       alarm,
-                    OSTime         start,
-                    OSTime         period,
-                    OSAlarmHandler handler)
+OSSetPeriodicAlarm (OSAlarm* alarm, OSTime start, OSTime period, OSAlarmHandler handler)
 {
     BOOL enabled;
-    ASSERTMSGLINE (
-        0x14D, period > 0, "OSSetPeriodicAlarm(): period was less than zero.");
-    ASSERTMSGLINE (
-        0x14E, handler, "OSSetPeriodicAlarm(): null handler was specified.");
+    ASSERTMSGLINE (0x14D, period > 0, "OSSetPeriodicAlarm(): period was less than zero.");
+    ASSERTMSGLINE (0x14E, handler, "OSSetPeriodicAlarm(): null handler was specified.");
     enabled = OSDisableInterrupts();
     alarm->period = period;
     alarm->start = start;
@@ -184,6 +183,7 @@ OSSetPeriodicAlarm (OSAlarm*       alarm,
     ASSERTLINE (0x156, OSCheckAlarmQueue());
     OSRestoreInterrupts (enabled);
 }
+
 void
 OSCancelAlarm (OSAlarm* alarm)
 {
@@ -223,9 +223,9 @@ OSCancelAlarm (OSAlarm* alarm)
     ASSERTLINE (0x189, OSCheckAlarmQueue());
     OSRestoreInterrupts (enabled);
 }
+
 static void
-DecrementerExceptionCallback (register __OSException exception,
-                              register OSContext*    context)
+DecrementerExceptionCallback (register __OSException exception, register OSContext* context)
 {
     OSAlarm*       alarm;
     OSAlarm*       next;
@@ -275,9 +275,13 @@ DecrementerExceptionCallback (register __OSException exception,
     __OSReschedule();
     OSLoadContext (context);
 }
+
 static ASM void
-DecrementerExceptionHandler (register __OSException exception,
-                             register OSContext*    context)
+DecrementerExceptionHandler (register __OSException exception, register OSContext* context)
 {
-    nofralloc OS_EXCEPTION_SAVE_GPRS (context) b DecrementerExceptionCallback
+#ifdef __MWERKS__
+    nofralloc;
+    OS_EXCEPTION_SAVE_GPRS (context);
+    b DecrementerExceptionCallback;
+#endif
 }

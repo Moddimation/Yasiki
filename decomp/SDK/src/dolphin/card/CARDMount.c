@@ -103,7 +103,7 @@ DoMount (s32 chan)
     u32              id;
     u8               status;
     s32              result;
-    struct OSSramEx* sram;
+    OSSramEx* sram;
     int              i;
     u8               checkSum;
     int              step;

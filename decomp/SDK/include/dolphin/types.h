@@ -3,6 +3,7 @@
 
 #include <stdarg.h>
 #include <stddef.h>
+#include <string.h>
 
 typedef signed char            s8;
 typedef unsigned char          u8;
@@ -34,8 +35,10 @@ typedef volatile f32  vf32;
 typedef volatile f64  vf64;
 typedef volatile f128 vf128;
 
+#ifdef __MWERKS__
 #ifndef __cplusplus
 typedef u16 wchar_t;
+#endif
 #endif
 
 #ifndef NULL

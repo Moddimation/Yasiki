@@ -15,7 +15,7 @@ static FSTEntry*     FstStart;              // size: 0x4, address: 0x4
 static u8*           FstStringStart;        // size: 0x4, address: 0x8
 static u32           MaxEntryNum;           // size: 0x4, address: 0xC
 static u32           currentDirectory;      // size: 0x4, address: 0x10
-struct OSThreadQueue __DVDThreadQueue;      // size: 0x8, address: 0x18
+OSThreadQueue __DVDThreadQueue;      // size: 0x8, address: 0x18
 u32                  __DVDLongFileNameFlag; // size: 0x4, address: 0x14
 
 // functions

@@ -12,7 +12,7 @@ void __DVDAudioBufferConfig (DVDCommandBlock* block,
 void __DVDInitWA ();
 
 // dvdfs.c
-extern struct OSThreadQueue __DVDThreadQueue;
+extern OSThreadQueue __DVDThreadQueue;
 extern u32                  __DVDLongFileNameFlag;
 
 void __DVDFSInit ();

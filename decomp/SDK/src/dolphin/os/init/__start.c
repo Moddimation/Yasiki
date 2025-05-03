@@ -1,7 +1,5 @@
 #include <dolphin/os.h>
 
-#include <dolphin.h>
-
 // internal header
 #include "OSPrivate.h"
 
@@ -23,18 +21,22 @@ extern "C"
 SEC_INIT extern s8 _stack_addr[];
 SEC_INIT extern s8 _SDA_BASE_[];
 SEC_INIT extern s8 _SDA2_BASE_[];
+
 typedef struct __rom_copy_info
 {
     char*        rom;
     char*        addr;
     unsigned int size;
 } __rom_copy_info;
+
 SEC_INIT extern __rom_copy_info _rom_copy_info[];
+
 typedef struct __bss_init_info
 {
     char*        addr;
     unsigned int size;
 } __bss_init_info;
+
 SEC_INIT extern __bss_init_info _bss_init_info[];
 extern int                      main (int argc, char* argv[]);
 extern void                     exit (int);
@@ -44,6 +46,7 @@ SEC_INIT extern void __flush_cache (void* address, unsigned int size);
 
 void __init_registers (void);
 void __init_data (void);
+
 SEC_INIT WEAKFUNC asm void
 __start (void)
 {
@@ -127,6 +130,7 @@ _goto_skip_init_bba:
     b  exit;
 #endif
 }
+
 void
 __copy_rom_section (void* dst, const void* src, u32 size)
 {
@@ -136,6 +140,7 @@ __copy_rom_section (void* dst, const void* src, u32 size)
         __flush_cache (dst, size);
     }
 }
+
 void
 __init_bss_section (void* dst, u32 size)
 {
@@ -144,6 +149,7 @@ __init_bss_section (void* dst, u32 size)
         memset (dst, 0, size);
     }
 }
+
 asm void
 __init_registers (void)
 {
@@ -159,6 +165,7 @@ __init_registers (void)
 
 #endif
 }
+
 void
 __init_data (void)
 {

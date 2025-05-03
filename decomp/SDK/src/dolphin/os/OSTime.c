@@ -1,16 +1,13 @@
-#include <macros.h>
-
 #include <dolphin/exi.h>
 #include <dolphin/os.h>
 
 #include "OSPrivate.h"
 
 // End of each month in standard year
-static int YearDays[MONTH_MAX] = { 0,   31,  59,  90,  120, 151,
-                                   181, 212, 243, 273, 304, 334 };
+static int YearDays[MONTH_MAX] = { 0, 31, 59, 90, 120, 151, 181, 212, 243, 273, 304, 334 };
 // End of each month in leap year
-static int LeapYearDays[MONTH_MAX] = { 0,   31,  60,  91,  121, 152,
-                                       182, 213, 244, 274, 305, 335 };
+static int LeapYearDays[MONTH_MAX] = { 0, 31, 60, 91, 121, 152, 182, 213, 244, 274, 305, 335 };
+
 asm s64
 OSGetTime (void)
 {
@@ -30,6 +27,7 @@ OSGetTime (void)
     return 0;
 #endif
 }
+
 asm u32
 OSGetTick (void)
 {
@@ -42,6 +40,7 @@ OSGetTick (void)
     return 0;
 #endif
 }
+
 asm static void
 __SetTime (s64 time)
 {
@@ -54,6 +53,7 @@ __SetTime (s64 time)
     blr;
 #endif
 }
+
 void
 __OSSetTime (s64 time)
 {
@@ -68,6 +68,7 @@ __OSSetTime (s64 time)
     EXIProbeReset();
     OSRestoreInterrupts (enabled);
 }
+
 s64
 __OSGetSystemTime ()
 {
@@ -82,6 +83,7 @@ __OSGetSystemTime ()
     OSRestoreInterrupts (enabled);
     return result;
 }
+
 asm void
 __OSSetTick (register u32 newTicks)
 {
@@ -91,11 +93,13 @@ __OSSetTick (register u32 newTicks)
     blr;
 #endif
 }
+
 static int
 IsLeapYear (int year)
 {
     return (year % 4 == 0 && year % 100 != 0) || (year % 400 == 0);
 }
+
 static int
 GetYearDays (int year, int mon)
 {
@@ -103,6 +107,7 @@ GetYearDays (int year, int mon)
 
     return md[mon];
 }
+
 static int
 GetLeapDays (int year)
 {
@@ -114,6 +119,7 @@ GetLeapDays (int year)
     }
     return (year + 3) / 4 - (year - 1) / 100 + (year - 1) / 400;
 }
+
 static void
 GetDates (int days, OSCalendarTime* td)
 {
@@ -126,9 +132,7 @@ GetDates (int days, OSCalendarTime* td)
 
     td->wday = (days + 6) % WEEK_DAY_MAX;
 
-    for (year = days / YEAR_DAY_MAX;
-         days < (n = year * YEAR_DAY_MAX + GetLeapDays (year));
-         year--)
+    for (year = days / YEAR_DAY_MAX; days < (n = year * YEAR_DAY_MAX + GetLeapDays (year)); year--)
     {
         ;
     }
@@ -145,6 +149,7 @@ GetDates (int days, OSCalendarTime* td)
     td->mon = month;
     td->mday = days - md[month] + 1;
 }
+
 void
 OSTicksToCalendarTime (s64 ticks, OSCalendarTime* td)
 {
@@ -186,6 +191,7 @@ OSTicksToCalendarTime (s64 ticks, OSCalendarTime* td)
     td->min = secs / 60 % 60;
     td->sec = secs % 60;
 }
+
 OSTime
 OSCalendarTimeToTicks (OSCalendarTime* td)
 {
@@ -210,8 +216,7 @@ OSCalendarTimeToTicks (OSCalendarTime* td)
     year = td->year + ov_mon;
 
     secs = (s64)SECS_IN_YEAR * year +
-           (s64)SECS_IN_DAY *
-               (GetLeapDays (year) + GetYearDays (year, mon) + td->mday - 1) +
+           (s64)SECS_IN_DAY * (GetLeapDays (year) + GetYearDays (year, mon) + td->mday - 1) +
            (s64)SECS_IN_HOUR * td->hour + (s64)SECS_IN_MIN * td->min + td->sec -
            (s64)0xEB1E1BF80ULL;
 
