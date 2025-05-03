@@ -176,7 +176,7 @@ Reserved[0..12] = 0;
 ;
 POW[13] = 0(power mgmt disabled);
 ;
-TGPR[14] = 0(no temporary TGPR remapping(603e));
+TGPR[14] = 0(no temporary TGPR remapping (603e));
 ;
 ILE[15] = 0(big - endian exception context);
 ;

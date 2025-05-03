@@ -209,8 +209,8 @@
 typedef unsigned char bool;
 #endif
 #ifndef true
-#define false static_cast<unsigned char>(0)
-#define true  static_cast<unsigned char>(1)
+#define false static_cast<unsigned char> (0)
+#define true  static_cast<unsigned char> (1)
 #endif
 #endif
 
@@ -248,7 +248,7 @@ namespace std
 {
 #endif
 
-void __msl_error(const char*);
+void __msl_error (const char*);
 
 #ifndef _MSL_NO_CPP_NAMESPACE
 } // namespace std
@@ -262,9 +262,9 @@ void __msl_error(const char*);
 #include <cstdio>
 #include <cstdlib>
 inline void
-_STD::__msl_error(const char* str)
+_STD::__msl_error (const char* str)
 {
-    fprintf(stderr, str);
+    fprintf (stderr, str);
     abort();
 }
 /*

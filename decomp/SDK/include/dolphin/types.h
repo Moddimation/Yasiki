@@ -58,6 +58,6 @@ typedef u16 wchar_t;
 #error unknown compiler
 #endif
 
-#define ATTRIBUTE_ALIGN(num) __attribute__((aligned(num)))
+#define ATTRIBUTE_ALIGN(num) __attribute__ ((aligned (num)))
 
 #endif

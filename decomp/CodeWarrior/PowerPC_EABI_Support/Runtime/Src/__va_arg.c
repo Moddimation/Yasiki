@@ -35,9 +35,9 @@ typedef enum
 #define ALIGN(addr, amount)                                                         \
     (((unsigned int)(addr) + ((amount) - 1)) & ~((amount) - 1))
 
-void* __va_arg(va_list ap, _va_arg_type type);
+void* __va_arg (va_list ap, _va_arg_type type);
 void*
-__va_arg(va_list ap, _va_arg_type type)
+__va_arg (va_list ap, _va_arg_type type)
 {
     char* addr;           /* return value - the address of the next 'parameter'	*/
     char* r = &(ap->gpr); /* address of current register number					*/
@@ -55,7 +55,7 @@ __va_arg(va_list ap, _va_arg_type type)
     {
         size = SIZEOF_VECTOR;
         addr = ap->input_arg_area;
-        addr = (char*)ALIGN(addr, size);
+        addr = (char*)ALIGN (addr, size);
         ap->input_arg_area = addr + size;
         return addr;
     }
@@ -97,7 +97,7 @@ __va_arg(va_list ap, _va_arg_type type)
         *r = MAX_SAVED_REGS; /* if arg_DOUBLEWORD, make sure that gprs won't be used
                                 again */
         addr = ap->input_arg_area;
-        addr = (char*)ALIGN(addr, size);
+        addr = (char*)ALIGN (addr, size);
         ap->input_arg_area = addr + size;
     }
     if (type == arg_ARGPOINTER)

@@ -4,7 +4,7 @@
 
 #include "CARDPrivate.h"
 BOOL
-__CARDCompareFileName(CARDDir* ent, const char* fileName)
+__CARDCompareFileName (CARDDir* ent, const char* fileName)
 {
     char* entName = (char*)ent->fileName;
     s8    c1;
@@ -30,7 +30,7 @@ __CARDCompareFileName(CARDDir* ent, const char* fileName)
     return FALSE;
 }
 s32
-__CARDAccess(CARDDir* ent)
+__CARDAccess (CARDDir* ent)
 {
     if (ent->gameName[0] == 0xFF)
     {
@@ -38,8 +38,9 @@ __CARDAccess(CARDDir* ent)
     }
 
     if (__CARDDiskID == &__CARDDiskNone ||
-        (memcmp(ent->gameName, __CARDDiskID->gameName, sizeof(ent->gameName)) == 0 &&
-         memcmp(ent->company, __CARDDiskID->company, sizeof(ent->company)) == 0))
+        (memcmp (ent->gameName, __CARDDiskID->gameName, sizeof (ent->gameName)) ==
+             0 &&
+         memcmp (ent->company, __CARDDiskID->company, sizeof (ent->company)) == 0))
     {
         return CARD_RESULT_READY;
     }
@@ -47,7 +48,7 @@ __CARDAccess(CARDDir* ent)
     return CARD_RESULT_NOPERM;
 }
 s32
-__CARDIsPublic(CARDDir* ent)
+__CARDIsPublic (CARDDir* ent)
 {
     if (ent->gameName[0] == 0xFF)
     {
@@ -60,7 +61,7 @@ __CARDIsPublic(CARDDir* ent)
     return CARD_RESULT_NOPERM;
 }
 s32
-__CARDGetFileNo(CARDControl* card, const char* fileName, s32* pfileNo)
+__CARDGetFileNo (CARDControl* card, const char* fileName, s32* pfileNo)
 {
     CARDDir* dir;
     s32      fileNo;
@@ -70,17 +71,17 @@ __CARDGetFileNo(CARDControl* card, const char* fileName, s32* pfileNo)
         return CARD_RESULT_NOCARD;
     }
 
-    dir = __CARDGetDirBlock(card);
+    dir = __CARDGetDirBlock (card);
     for (fileNo = 0; fileNo < CARD_MAX_FILE; fileNo++)
     {
         CARDDir* ent = &dir[fileNo];
-        s32      result = __CARDAccess(ent);
+        s32      result = __CARDAccess (ent);
 
         if (result < 0)
         {
             continue;
         }
-        if (__CARDCompareFileName(ent, fileName))
+        if (__CARDCompareFileName (ent, fileName))
         {
             *pfileNo = fileNo;
             return CARD_RESULT_READY;
@@ -89,15 +90,15 @@ __CARDGetFileNo(CARDControl* card, const char* fileName, s32* pfileNo)
     return CARD_RESULT_NOFILE;
 }
 s32
-CARDFastOpen(s32 chan, s32 fileNo, CARDFileInfo* fileInfo)
+CARDFastOpen (s32 chan, s32 fileNo, CARDFileInfo* fileInfo)
 {
     CARDControl* card;
     s32          result;
     CARDDir*     dir;
     CARDDir*     ent;
 
-    ASSERTLINE(0xDC, 0 <= fileNo && fileNo < CARD_MAX_FILE);
-    ASSERTLINE(0xDD, 0 <= chan && chan < 2);
+    ASSERTLINE (0xDC, 0 <= fileNo && fileNo < CARD_MAX_FILE);
+    ASSERTLINE (0xDD, 0 <= chan && chan < 2);
 
     if (fileNo < 0 || fileNo >= CARD_MAX_FILE)
     {
@@ -105,22 +106,22 @@ CARDFastOpen(s32 chan, s32 fileNo, CARDFileInfo* fileInfo)
     }
 
     fileInfo->chan = -1;
-    result = __CARDGetControlBlock(chan, &card);
+    result = __CARDGetControlBlock (chan, &card);
     if (result < 0)
     {
         return result;
     }
 
-    dir = __CARDGetDirBlock(card);
+    dir = __CARDGetDirBlock (card);
     ent = &dir[fileNo];
-    result = __CARDAccess(ent);
+    result = __CARDAccess (ent);
     if (result == CARD_RESULT_NOPERM)
     {
-        result = __CARDIsPublic(ent);
+        result = __CARDIsPublic (ent);
     }
     if (result >= 0)
     {
-        if (!CARDIsValidBlockNo(card, ent->startBlock))
+        if (!CARDIsValidBlockNo (card, ent->startBlock))
         {
             result = CARD_RESULT_BROKEN;
         }
@@ -132,10 +133,10 @@ CARDFastOpen(s32 chan, s32 fileNo, CARDFileInfo* fileInfo)
             fileInfo->iBlock = ent->startBlock;
         }
     }
-    return __CARDPutControlBlock(card, result);
+    return __CARDPutControlBlock (card, result);
 }
 s32
-CARDOpen(s32 chan, char* fileName, CARDFileInfo* fileInfo)
+CARDOpen (s32 chan, char* fileName, CARDFileInfo* fileInfo)
 {
     CARDControl* card;
     s32          result;
@@ -143,21 +144,21 @@ CARDOpen(s32 chan, char* fileName, CARDFileInfo* fileInfo)
     CARDDir*     ent;
     s32          fileNo;
 
-    ASSERTLINE(0x11A, 0 <= chan && chan < 2);
+    ASSERTLINE (0x11A, 0 <= chan && chan < 2);
 
     fileInfo->chan = -1;
-    result = __CARDGetControlBlock(chan, &card);
+    result = __CARDGetControlBlock (chan, &card);
     if (result < 0)
     {
         return result;
     }
 
-    result = __CARDGetFileNo(card, fileName, &fileNo);
+    result = __CARDGetFileNo (card, fileName, &fileNo);
     if (result >= 0)
     {
-        dir = __CARDGetDirBlock(card);
+        dir = __CARDGetDirBlock (card);
         ent = &dir[fileNo];
-        if (!CARDIsValidBlockNo(card, ent->startBlock))
+        if (!CARDIsValidBlockNo (card, ent->startBlock))
         {
             result = CARD_RESULT_BROKEN;
         }
@@ -169,28 +170,28 @@ CARDOpen(s32 chan, char* fileName, CARDFileInfo* fileInfo)
             fileInfo->iBlock = ent->startBlock;
         }
     }
-    return __CARDPutControlBlock(card, result);
+    return __CARDPutControlBlock (card, result);
 }
 s32
-CARDClose(CARDFileInfo* fileInfo)
+CARDClose (CARDFileInfo* fileInfo)
 {
     CARDControl* card;
     s32          result;
 
-    ASSERTLINE(0x146, 0 <= fileInfo->chan && fileInfo->chan < 2);
-    ASSERTLINE(0x147, 0 <= fileInfo->fileNo && fileInfo->fileNo < CARD_MAX_FILE);
+    ASSERTLINE (0x146, 0 <= fileInfo->chan && fileInfo->chan < 2);
+    ASSERTLINE (0x147, 0 <= fileInfo->fileNo && fileInfo->fileNo < CARD_MAX_FILE);
 
-    result = __CARDGetControlBlock(fileInfo->chan, &card);
+    result = __CARDGetControlBlock (fileInfo->chan, &card);
     if (result < 0)
     {
         return result;
     }
 
     fileInfo->chan = -1;
-    return __CARDPutControlBlock(card, CARD_RESULT_READY);
+    return __CARDPutControlBlock (card, CARD_RESULT_READY);
 }
 BOOL
-__CARDIsOpened(CARDControl* card, s32 fileNo)
+__CARDIsOpened (CARDControl* card, s32 fileNo)
 {
     return FALSE;
 }

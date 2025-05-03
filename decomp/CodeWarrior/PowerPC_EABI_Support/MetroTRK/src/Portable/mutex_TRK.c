@@ -1,16 +1,16 @@
 #include "Portable/mutex_TRK.h"
 DSError
-TRKInitializeMutex(void*)
+TRKInitializeMutex (void*)
 {
     return DS_NoError;
 }
 DSError
-TRKAcquireMutex(void*)
+TRKAcquireMutex (void*)
 {
     return DS_NoError;
 }
 DSError
-TRKReleaseMutex(void*)
+TRKReleaseMutex (void*)
 {
     return DS_NoError;
 }

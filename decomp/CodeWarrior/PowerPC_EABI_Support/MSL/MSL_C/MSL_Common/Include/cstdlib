@@ -28,8 +28,8 @@
 
 #ifndef RC_INVOKED                             /*- hh 971230 -*/
 
-_MSL_BEGIN_NAMESPACE_STD                                    /*- cc  010410 -*/
-    _MSL_BEGIN_EXTERN_C                                     /*- cc  010410 -*/
+_MSL_BEGIN_NAMESPACE_STD                                     /*- cc  010410 -*/
+    _MSL_BEGIN_EXTERN_C                                      /*- cc  010410 -*/
 
 #define RAND_MAX     32767
 #define MB_CUR_MAX   3                         /*- mm 010523 -*/
@@ -43,119 +43,122 @@ _MSL_BEGIN_NAMESPACE_STD                                    /*- cc  010410 -*/
 
 #ifndef _No_Floating_Point
         _MSL_IMP_EXP_C double
-                           atof(const char*);
-_MSL_IMP_EXP_C double      strtod(const char*, char**);
-_MSL_IMP_EXP_C long double strtold(const char*, char**);    /*- mm 990930 -*/
+                           atof (const char*);
+_MSL_IMP_EXP_C double      strtod (const char*, char**);
+_MSL_IMP_EXP_C long double strtold (const char*, char**);    /*- mm 990930 -*/
 #endif
 
-_MSL_IMP_EXP_C int           atoi(const char*);
-_MSL_IMP_EXP_C long          atol(const char*);
-_MSL_IMP_EXP_C long          strtol(const char*, char**, int);
-_MSL_IMP_EXP_C unsigned long strtoul(const char*, char**, int);
+_MSL_IMP_EXP_C int           atoi (const char*);
+_MSL_IMP_EXP_C long          atol (const char*);
+_MSL_IMP_EXP_C long          strtol (const char*, char**, int);
+_MSL_IMP_EXP_C unsigned long strtoul (const char*, char**, int);
 
 #ifdef __MSL_LONGLONG_SUPPORT__                /*- mm 961219 -*/
-_MSL_IMP_EXP_C long long strtoll(const char*, char**, int); /*- mm 961219 -*/
-_MSL_IMP_EXP_C unsigned long long strtoull(const char*, char**,
-                                           int);            /*- mm 961219 -*/
+_MSL_IMP_EXP_C long long strtoll (const char*, char**, int); /*- mm 961219 -*/
+_MSL_IMP_EXP_C unsigned long long strtoull (const char*,
+                                            char**,
+                                            int);            /*- mm 961219 -*/
 #endif /*__MSL_LONGLONG_SUPPORT__*/            /*- mm 961220 -*/
 
-_MSL_IMP_EXP_C int    rand(void);
-_MSL_IMP_EXP_C void   srand(unsigned int);
-_MSL_IMP_EXP_C void*  calloc(size_t, size_t);               /*- mf 990715 -*/
-_MSL_IMP_EXP_C void   free(void*);                          /*- mf 990715 -*/
-_MSL_IMP_EXP_C void*  malloc(size_t);                       /*- mf 990715 -*/
-_MSL_IMP_EXP_C void*  realloc(void*, size_t);               /*- mf 990715 -*/
-_MSL_IMP_EXP_C size_t __msize(void*);                       /*- mf 990715 -*/
+_MSL_IMP_EXP_C int    rand (void);
+_MSL_IMP_EXP_C void   srand (unsigned int);
+_MSL_IMP_EXP_C void*  calloc (size_t, size_t);               /*- mf 990715 -*/
+_MSL_IMP_EXP_C void   free (void*);                          /*- mf 990715 -*/
+_MSL_IMP_EXP_C void*  malloc (size_t);                       /*- mf 990715 -*/
+_MSL_IMP_EXP_C void*  realloc (void*, size_t);               /*- mf 990715 -*/
+_MSL_IMP_EXP_C size_t __msize (void*);                       /*- mf 990715 -*/
 
 #if __VEC__
 /*
  * AltiVec memory-related routines which 16-byte align the blocks.
  */
-_MSL_IMP_EXP_C void* vec_calloc(size_t, size_t);    /*- mf 990715 -*/
-_MSL_IMP_EXP_C void  vec_free(void*);               /*- mf 990715 -*/
-_MSL_IMP_EXP_C void* vec_malloc(size_t);            /*- mf 990715 -*/
-_MSL_IMP_EXP_C void* vec_realloc(void*, size_t);    /*- mf 990715 -*/
+_MSL_IMP_EXP_C void* vec_calloc (size_t, size_t);                 /*- mf 990715 -*/
+_MSL_IMP_EXP_C void  vec_free (void*);                            /*- mf 990715 -*/
+_MSL_IMP_EXP_C void* vec_malloc (size_t);                         /*- mf 990715 -*/
+_MSL_IMP_EXP_C void* vec_realloc (void*, size_t);                 /*- mf 990715 -*/
 #endif                                         /* VEC */
 
 #if (__dest_os == __win32_os)
-/*_MSL_IMP_EXP_C */ void  abort(void);
-/* _MSL_IMP_EXP_C*/ int   atexit(void (*func)(void));
-/* _MSL_IMP_EXP_C */ void exit(int status);
+/*_MSL_IMP_EXP_C */ void  abort (void);
+/* _MSL_IMP_EXP_C*/ int   atexit (void (*func) (void));
+/* _MSL_IMP_EXP_C */ void exit (int status);
 #else
-_MSL_IMP_EXP_C void abort(void);
-_MSL_IMP_EXP_C void exit(int status);
-_MSL_IMP_EXP_C int  atexit(void (*func)(void));
+_MSL_IMP_EXP_C void abort (void);
+_MSL_IMP_EXP_C void exit (int status);
+_MSL_IMP_EXP_C int  atexit (void (*func) (void));
 #endif                                         /* __dest_os ==__win32_os */
 
-_MSL_IMP_EXP_C char* getenv(const char*);
-_MSL_IMP_EXP_C int   system(const char*);
+_MSL_IMP_EXP_C char* getenv (const char*);
+_MSL_IMP_EXP_C int   system (const char*);
 
-typedef int (*_compare_function)(const void*, const void*);
-/*- mm 961031 -*/                                   /*- cc 042400 -*/
+typedef int (*_compare_function) (const void*, const void*);
+/*- mm 961031 -*/                                                 /*- cc 042400 -*/
 
-_MSL_IMP_EXP_C void* bsearch(const void*, const void*, size_t, size_t,
-                             _compare_function);    /*- mm 961031 -*/
+_MSL_IMP_EXP_C void* bsearch (
+    const void*, const void*, size_t, size_t, _compare_function); /*- mm 961031 -*/
 
-_MSL_IMP_EXP_C void qsort(void*, size_t, size_t,
-                          _compare_function);       /*- mm 961031 -*/
+_MSL_IMP_EXP_C void qsort (void*,
+                           size_t,
+                           size_t,
+                           _compare_function);                    /*- mm 961031 -*/
 
 #if __POWERPC__
 
-_MSL_IMP_EXP_C int  abs(int);
-_MSL_IMP_EXP_C long labs(long);
+_MSL_IMP_EXP_C int  abs (int);
+_MSL_IMP_EXP_C long labs (long);
 
 #ifdef __MSL_LONGLONG_SUPPORT__                /*- mm 990520 -*/
-_MSL_IMP_EXP_C long long llabs(long long);          /*- hh 980122 -*/
+_MSL_IMP_EXP_C long long llabs (long long);                       /*- hh 980122 -*/
 #endif /*__MSL_LONGLONG_SUPPORT__*/            /*- mm 990520 -*/
 
 #ifndef __cplusplus                            /*- hh 980206 -*/
 #if !__MOTO__ && !__MRC__
-#define abs(n)  __abs(n)
-#define labs(n) __labs(n)
+#define abs(n)  __abs (n)
+#define labs(n) __labs (n)
 #endif
 #endif
 
 #else                                          /* __POWERPC__ */
 
-_MSL_IMP_EXP_C int  abs(int);
-_MSL_IMP_EXP_C long labs(long);
+_MSL_IMP_EXP_C int  abs (int);
+_MSL_IMP_EXP_C long labs (long);
 
 #ifdef __MSL_LONGLONG_SUPPORT__                /*- mm 981023 -*/
-_MSL_IMP_EXP_C long long llabs(long long); /*- hh 980122 -*/
+_MSL_IMP_EXP_C long long llabs (long long); /*- hh 980122 -*/
 #endif /* #ifdef __MSL_LONGLONG_SUPPORT__	*/ /*- mm 981023 -*/
 
 #endif                                         /* __POWERPC__ */
 
-_MSL_IMP_EXP_C div_t  div(int, int);
-_MSL_IMP_EXP_C ldiv_t ldiv(long, long);
+_MSL_IMP_EXP_C div_t  div (int, int);
+_MSL_IMP_EXP_C ldiv_t ldiv (long, long);
 
 #ifdef __MSL_LONGLONG_SUPPORT__                /*- mm 981023 -*/
-_MSL_IMP_EXP_C lldiv_t lldiv(long long, long long); /*- hh 980122 -*/
+_MSL_IMP_EXP_C lldiv_t lldiv (long long, long long);              /*- hh 980122 -*/
 #endif /* #ifdef __MSL_LONGLONG_SUPPORT__	*/ /*- mm 981023 -*/
 /*- hh 980122 -*/
 #ifdef __cplusplus
 _MSL_END_EXTERN_C          /*- cc  010410 -*/
 
     inline long
-    abs(long n)
+    abs (long n)
 {
-    return labs(n);
+    return labs (n);
 }
 inline ldiv_t
-div(long numerator, long denominator)
+div (long numerator, long denominator)
 {
-    return ldiv(numerator, denominator);
+    return ldiv (numerator, denominator);
 }
 #ifdef __MSL_LONGLONG_SUPPORT__                /*- mm 990520 -*/
 inline long long
-abs(long long n)
+abs (long long n)
 {
-    return llabs(n);
+    return llabs (n);
 }
 inline lldiv_t
-div(long long numerator, long long denominator)
+div (long long numerator, long long denominator)
 {
-    return lldiv(numerator, denominator);
+    return lldiv (numerator, denominator);
 }
 #endif /*__MSL_LONGLONG_SUPPORT__*/            /*- mm 990520 -*/
 
@@ -163,19 +166,19 @@ _MSL_BEGIN_EXTERN_C        /*- cc  010410 -*/
 #endif                                         /* __cplusplus*/
 
     _MSL_IMP_EXP_C int
-    mblen(const char*, size_t);
+    mblen (const char*, size_t);
 
 #ifndef __NO_WIDE_CHAR                         /*- mm 990624 -*/
-_MSL_IMP_EXP_C int    mbtowc(wchar_t*, const char*, size_t);
-_MSL_IMP_EXP_C int    wctomb(char*, wchar_t);
-_MSL_IMP_EXP_C size_t mbstowcs(wchar_t*, const char*, size_t);
-_MSL_IMP_EXP_C size_t wcstombs(char*, const wchar_t*, size_t);
+_MSL_IMP_EXP_C int    mbtowc (wchar_t*, const char*, size_t);
+_MSL_IMP_EXP_C int    wctomb (char*, wchar_t);
+_MSL_IMP_EXP_C size_t mbstowcs (wchar_t*, const char*, size_t);
+_MSL_IMP_EXP_C size_t wcstombs (char*, const wchar_t*, size_t);
 #endif
 
 #if (__dest_os == __wince_os)
-unsigned long __cdecl _beginthreadex(void*, unsigned, unsigned(__stdcall*)(void*),
-                                     void*, unsigned, unsigned*);
-void __cdecl _endthreadex(unsigned);
+unsigned long __cdecl _beginthreadex (
+    void*, unsigned, unsigned (__stdcall*) (void*), void*, unsigned, unsigned*);
+void __cdecl _endthreadex (unsigned);
 #endif                                         /*  __dest_os == __wince_os  */
 
 _MSL_END_EXTERN_C          /*- cc  010410 -*/

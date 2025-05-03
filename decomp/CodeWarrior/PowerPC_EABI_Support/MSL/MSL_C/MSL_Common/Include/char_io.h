@@ -14,7 +14,7 @@
 _MSL_BEGIN_EXTERN_C     /*- cc 010409 -*/
 
     int
-    __ungotten(__std(FILE) *);
+    __ungotten (__std (FILE) *);
 /*- hh 990121 -*/       /*- mf 990715 -*/
 
 _MSL_END_EXTERN_C       /*- cc 010409 -*/

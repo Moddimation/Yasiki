@@ -12,8 +12,8 @@ extern "C"
 
 #define OS_DBINTERFACE_ADDR 0x00000040
 
-BOOL DBIsDebuggerPresent(void);
-void DBPrintf(char* str, ...);
+BOOL DBIsDebuggerPresent (void);
+void DBPrintf (char* str, ...);
 
 #ifdef __cplusplus
 }

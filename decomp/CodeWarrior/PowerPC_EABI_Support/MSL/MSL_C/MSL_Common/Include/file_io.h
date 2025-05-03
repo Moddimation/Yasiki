@@ -14,30 +14,37 @@
 _MSL_BEGIN_EXTERN_C     /*- cc 010409 -*/
 
     /*- hh 990121 -*/
-    extern _MSL_IMP_EXP_C __std(__file_modes) __temp_file_mode;
-int                       __open_file(const char* name, __std(__file_modes) mode,
-                                      __std(__file_handle) * handle);
-int                       __open_temp_file(__std(__file_handle) * handle);
-int  __read_file(__std(__file_handle) handle, unsigned char* buffer,
-                 __std(size_t) * count, __std(__idle_proc) idle_proc);
-int  __write_file(__std(__file_handle) handle, unsigned char* buffer,
-                  __std(size_t) * count, __std(__idle_proc) idle_proc);
-int  __position_file(__std(__file_handle) handle, __std(fpos_t) * position, int mode,
-                     __std(__idle_proc) idle_proc);
-int  __close_file(__std(__file_handle) handle);
-void __temp_file_name(char* name_str, void*);
-int  __delete_file(const char* name);
-int  __rename_file(const char* old_name, const char* new_name);
-__std(FILE) * __reopen(__std(FILE) * file); /*- mm 990609 -*/     /*- hh 990921 -*/
-_MSL_IMP_EXP_C int __get_file_modes(const char* mode, __std(__file_modes) * modes);
-int                __flush_line_buffered_output_files(void);      /*- mm 970702 -*/
-char*              __msl_itoa(int, char*, int);                   /*- cc 010605 -*/
-char*              __msl_strrev(char*);                           /*- cc 010605 -*/
-int                __msl_strnicmp(const char*, const char*, int); /*- cc 010605 -*/
-char*              __msl_getcwd(char*, int);                      /*- cc 010605 -*/
-char*              __msl_strdup(const char*);                     /*- cc 010725 -*/
+    extern _MSL_IMP_EXP_C __std (__file_modes) __temp_file_mode;
+int                       __open_file (const char* name,
+                                       __std (__file_modes) mode,
+                                       __std (__file_handle) * handle);
+int                       __open_temp_file (__std (__file_handle) * handle);
+int                       __read_file (__std (__file_handle) handle,
+                                       unsigned char* buffer,
+                                       __std (size_t) * count,
+                                       __std (__idle_proc) idle_proc);
+int                       __write_file (__std (__file_handle) handle,
+                                        unsigned char* buffer,
+                                        __std (size_t) * count,
+                                        __std (__idle_proc) idle_proc);
+int                       __position_file (__std (__file_handle) handle,
+                                           __std (fpos_t) * position,
+                                           int mode,
+                                           __std (__idle_proc) idle_proc);
+int                       __close_file (__std (__file_handle) handle);
+void                      __temp_file_name (char* name_str, void*);
+int                       __delete_file (const char* name);
+int                       __rename_file (const char* old_name, const char* new_name);
+__std (FILE) * __reopen (__std (FILE) * file); /*- mm 990609 -*/   /*- hh 990921 -*/
+_MSL_IMP_EXP_C int __get_file_modes (const char* mode, __std (__file_modes) * modes);
+int                __flush_line_buffered_output_files (void);      /*- mm 970702 -*/
+char*              __msl_itoa (int, char*, int);                   /*- cc 010605 -*/
+char*              __msl_strrev (char*);                           /*- cc 010605 -*/
+int                __msl_strnicmp (const char*, const char*, int); /*- cc 010605 -*/
+char*              __msl_getcwd (char*, int);                      /*- cc 010605 -*/
+char*              __msl_strdup (const char*);                     /*- cc 010725 -*/
 
-_MSL_END_EXTERN_C                                                 /*- cc 010409 -*/
+_MSL_END_EXTERN_C                                                  /*- cc 010409 -*/
 
 #endif /* _MSL_FILE_IO_H */
 

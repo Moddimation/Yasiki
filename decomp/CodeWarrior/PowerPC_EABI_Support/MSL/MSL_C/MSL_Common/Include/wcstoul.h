@@ -13,45 +13,55 @@
 #include <ansi_parms.h>
 #include <wchar_t.h>
 
-_MSL_BEGIN_EXTERN_C                                       /*- cc 010409 -*/
+_MSL_BEGIN_EXTERN_C                                               /*- cc 010409 -*/
 
     _MSL_IMP_EXP_C int
-                    watoi(const wchar_t*);
-_MSL_IMP_EXP_C long watol(const wchar_t*);
+                    watoi (const wchar_t*);
+_MSL_IMP_EXP_C long watol (const wchar_t*);
 
-extern unsigned long __wcstoul(int base, int max_width,
-                               __std(wint_t) (*ReadProc)(void*, __std(wint_t), int),
-                               /*- mm 990326 -*/          /*- hh 990507 -*/
-                               void*         ReadProcArg, /*- mm 990326 -*/
-                               int* chars_scanned, int* negative, int* overflow);
+extern unsigned long __wcstoul (int            base,
+                                int            max_width,
+                                __std (wint_t) (*ReadProc) (void*,
+                                                            __std (wint_t),
+                                                            int),
+                                /*- mm 990326 -*/                 /*- hh 990507 -*/
+                                void*          ReadProcArg,       /*- mm 990326 -*/
+                                int*           chars_scanned,
+                                int*           negative,
+                                int*           overflow);
 
-#ifdef __MSL_LONGLONG_SUPPORT__                           /*- mm 970110 -*/
-extern unsigned long long __wcstoull(
-    int base, int max_width, __std(wint_t) (*ReadProc)(void*, __std(wint_t), int),
-    /*- mm 990326 -*/                                     /*- hh 990507 -*/
-    void* ReadProcArg,                                    /*- mm 990326 -*/
-    int* chars_scanned, int* negative, int* overflow);
-#endif /*__MSL_LONGLONG_SUPPORT__*/                       /*- mm 970110 -*/
+#ifdef __MSL_LONGLONG_SUPPORT__                                   /*- mm 970110 -*/
+extern unsigned long long __wcstoull (int            base,
+                                      int            max_width,
+                                      __std (wint_t) (*ReadProc) (void*,
+                                                                  __std (wint_t),
+                                                                  int),
+                                      /*- mm 990326 -*/           /*- hh 990507 -*/
+                                      void*          ReadProcArg, /*- mm 990326 -*/
+                                      int*           chars_scanned,
+                                      int*           negative,
+                                      int*           overflow);
+#endif /*__MSL_LONGLONG_SUPPORT__*/                               /*- mm 970110 -*/
 
-_MSL_END_EXTERN_C                                         /*- cc 010409 -*/
+_MSL_END_EXTERN_C                                                 /*- cc 010409 -*/
 
-    _MSL_BEGIN_NAMESPACE_STD                              /*- cc 010409 -*/
-        _MSL_BEGIN_EXTERN_C                               /*- cc 010409 -*/
+    _MSL_BEGIN_NAMESPACE_STD                                      /*- cc 010409 -*/
+        _MSL_BEGIN_EXTERN_C                                       /*- cc 010409 -*/
 
             _MSL_IMP_EXP_C unsigned long
-            wcstoul(const wchar_t*, wchar_t**, int);
+            wcstoul (const wchar_t*, wchar_t**, int);
 
-#ifdef __MSL_LONGLONG_SUPPORT__                           /*- mm 981023 -*/
-_MSL_IMP_EXP_C unsigned long long wcstoull(const wchar_t*, wchar_t**, int);
-_MSL_IMP_EXP_C long long          wcstoll(const wchar_t*, wchar_t**, int);
-#endif /* #ifdef __MSL_LONGLONG_SUPPORT__	*/            /*- mm 981023 -*/
+#ifdef __MSL_LONGLONG_SUPPORT__                                   /*- mm 981023 -*/
+_MSL_IMP_EXP_C unsigned long long wcstoull (const wchar_t*, wchar_t**, int);
+_MSL_IMP_EXP_C long long          wcstoll (const wchar_t*, wchar_t**, int);
+#endif /* #ifdef __MSL_LONGLONG_SUPPORT__	*/                    /*- mm 981023 -*/
 
-_MSL_IMP_EXP_C long wcstol(const wchar_t*, wchar_t**, int);
+_MSL_IMP_EXP_C long wcstol (const wchar_t*, wchar_t**, int);
 
-_MSL_END_EXTERN_C                                         /*- cc 010409 -*/
-    _MSL_END_NAMESPACE_STD                                /*- cc 010409 -*/
+_MSL_END_EXTERN_C                                                 /*- cc 010409 -*/
+    _MSL_END_NAMESPACE_STD                                        /*- cc 010409 -*/
 
-#endif                                                    /* __NO_WIDE_CHAR  */
+#endif /* __NO_WIDE_CHAR  */
 #endif /* #ifndef _MSL_WCSTOUL_H */
 
     /* Change record:

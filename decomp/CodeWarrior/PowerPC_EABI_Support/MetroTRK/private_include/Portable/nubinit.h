@@ -8,10 +8,10 @@ extern "C"
 {
 #endif
 
-void    TRKNubWelcome(void);
-void    TRKNubMainLoop(void);
-DSError TRKTerminateNub(void);
-DSError TRKInitializeNub(void);
+void    TRKNubWelcome (void);
+void    TRKNubMainLoop (void);
+DSError TRKTerminateNub (void);
+DSError TRKInitializeNub (void);
 
 extern BOOL gTRKBigEndian;
 

@@ -39,15 +39,15 @@ new_handler __new_handler;
 /*	Return...:	---														*/
 /************************************************************************/
 extern void
-__throw_bad_alloc()
+__throw_bad_alloc ()
 {
     if (__throws_bad_alloc)
 #ifndef _MSL_NO_EXCEPTIONS
         throw bad_alloc();
 #else
     {
-        fprintf(stderr, "Could not allocate memory\n");
-        exit(1);
+        fprintf (stderr, "Could not allocate memory\n");
+        exit (1);
     }
 #endif
 }
@@ -57,7 +57,7 @@ __throw_bad_alloc()
 /*	Return...:	old new_handler function pointer						*/
 /************************************************************************/
 extern new_handler
-set_new_handler(new_handler new_new_handler) _MSL_THROW
+set_new_handler (new_handler new_new_handler) _MSL_THROW
 {
     new_handler old_new_handler = __new_handler;
     __new_handler = new_new_handler;
@@ -74,13 +74,13 @@ set_new_handler(new_handler new_new_handler) _MSL_THROW
 /*	Return...:	handle to memory or 0L									*/
 /************************************************************************/
 void*
-__new_hdl(size_t size)
+__new_hdl (size_t size)
 {
     void* ptr;
 
     for (;;)
     {
-        if ((ptr = NewHandle(size)) != NULL)
+        if ((ptr = NewHandle (size)) != NULL)
         {
             break;
         }
@@ -99,11 +99,11 @@ __new_hdl(size_t size)
 /*	Return...:	---														*/
 /************************************************************************/
 void
-__del_hdl(void* hdl)
+__del_hdl (void* hdl)
 {
     if (hdl)
     {
-        DisposeHandle((Handle)hdl);
+        DisposeHandle ((Handle)hdl);
     }
 }
 #endif /* __dest_os == __mac_os */

@@ -55,23 +55,23 @@
 
 #define max_funcs 64
 
-extern void __destroy_global_chain(void);
+extern void __destroy_global_chain (void);
 
 int __aborting = 0;                                                /*- hh 971206 -*/
 
 #if !(__dest_os == __win32_os)
-static void (*__atexit_funcs[max_funcs])(void);
+static void (*__atexit_funcs[max_funcs]) (void);
 static long __atexit_curr_func = 0;
 #endif
 
-void (*__stdio_exit)(void) = 0;
-void (*__console_exit)(void) = 0;
+void (*__stdio_exit) (void) = 0;
+void (*__console_exit) (void) = 0;
 
 #if (__dest_os == __win32_os) && (STOP_PROGRAM_BEFORE_EXIT == 1)   /*- mm 981227 -*/
-static void __StopProgramBeforeExit();                             /*- mm 981227 -*/
+static void __StopProgramBeforeExit ();                            /*- mm 981227 -*/
 #endif                                                             /*- mm 981227 -*/
 void
-abort(void)
+abort (void)
 {
 #if (__dest_os == __win32_os) && (_WINSIOUX == 1)                  /*- mm 981227 -*/
     WinSIOUXAbort();                                               /*- mm 981227 -*/
@@ -79,39 +79,39 @@ abort(void)
                                                                       -*/
     __StopProgramBeforeExit(); /*- mm 981227 -*/
 #endif                                                             /*- mm 981227 -*/
-    raise(SIGABRT);
+    raise (SIGABRT);
 
     __aborting = 1;
 
-    exit(EXIT_FAILURE);
+    exit (EXIT_FAILURE);
 }
-int __register_atexit(void (*func)(void));
+int __register_atexit (void (*func) (void));
 int
-atexit(void (*func)(void))
+atexit (void (*func) (void))
 {
     int result;
-    __begin_critical_region(atexit_funcs_access);
+    __begin_critical_region (atexit_funcs_access);
     __setup_exit();
-    result = __register_atexit(func);
-    __end_critical_region(atexit_funcs_access);
+    result = __register_atexit (func);
+    __end_critical_region (atexit_funcs_access);
     return (result);
 }
 #if !(__dest_os == __win32_os)
 int
-__atexit(void (*func)(void))
+__atexit (void (*func) (void))
 {
     if (__atexit_curr_func == max_funcs)
     {
         return (-1);
     }
 
-    __begin_critical_region(atexit_funcs_access);                  /*- KO 961218 -*/
+    __begin_critical_region (atexit_funcs_access);                 /*- KO 961218 -*/
 
     __setup_exit();
 
     __atexit_funcs[__atexit_curr_func++] = func;
 
-    __end_critical_region(atexit_funcs_access);
+    __end_critical_region (atexit_funcs_access);
 
     return (0);
 }
@@ -119,26 +119,30 @@ __atexit(void (*func)(void))
 
 #if (__dest_os == __win32_os) && (STOP_PROGRAM_BEFORE_EXIT == 1)
 static void
-__StopProgramBeforeExit()
+__StopProgramBeforeExit ()
 {
     DWORD               read;
     HANDLE              h;
-    SECURITY_ATTRIBUTES sa = { sizeof(SECURITY_ATTRIBUTES), NULL, TRUE };
+    SECURITY_ATTRIBUTES sa = { sizeof (SECURITY_ATTRIBUTES), NULL, TRUE };
     char*               buf = "\n";
 
-    if (GetFileType(GetStdHandle(STD_OUTPUT_HANDLE)) == FILE_TYPE_CHAR)
+    if (GetFileType (GetStdHandle (STD_OUTPUT_HANDLE)) == FILE_TYPE_CHAR)
     {
-        printf("\n \n Press Enter to continue \n");
+        printf ("\n \n Press Enter to continue \n");
         /*  fflush(stdin);           */                            /*- mdf 971119 -*/
         /*- mdf 971019 -*/
-        h = CreateFile("CONIN$", GENERIC_READ | GENERIC_WRITE,
-                       FILE_SHARE_READ | FILE_SHARE_WRITE, &sa, OPEN_EXISTING, NULL,
-                       NULL);
+        h = CreateFile ("CONIN$",
+                        GENERIC_READ | GENERIC_WRITE,
+                        FILE_SHARE_READ | FILE_SHARE_WRITE,
+                        &sa,
+                        OPEN_EXISTING,
+                        NULL,
+                        NULL);
 
-        if (!ReadFile(h, &buf, 1, &read, 0))
+        if (!ReadFile (h, &buf, 1, &read, 0))
         {
             read = GetLastError();
-            printf("exit routine error GetLastError=%i \n", read);
+            printf ("exit routine error GetLastError=%i \n", read);
         }
     }
     return;
@@ -148,26 +152,26 @@ __StopProgramBeforeExit()
 
 #if defined(__m56800__)
 
-void exit_dsp568();
+void exit_dsp568 ();
 void
-exit(int status)
+exit (int status)
 {
     exit_dsp568();
 }
 #elif defined(__m56800E__)
-void exit_halt();
+void exit_halt ();
 void
-exit(int status)
+exit (int status)
 {
     exit_halt();
 }
 #else
 void
-exit(int status)         /*- cc 010326 -*/
+exit (int status)        /*- cc 010326 -*/
 {
     if (!__aborting)
     {
-        __begin_critical_region(atexit_funcs_access);
+        __begin_critical_region (atexit_funcs_access);
 
 #if (__dest_os == __win32_os) && (_WINSIOUX == 1)                  /*- mm 990122 -*/
         WinSIOUXAbort(); /*- mm 990122 -*/
@@ -175,7 +179,7 @@ exit(int status)         /*- cc 010326 -*/
                                                                       -*/
         __StopProgramBeforeExit(); /*- mm 981227 -*/
 #endif                                                             /*- mm 981227 -*/
-        __end_critical_region(atexit_funcs_access);
+        __end_critical_region (atexit_funcs_access);
 
         /* 970218 bkoz need to move destroy global chain above __stdio_exit as
                some static objects may have destructors that flush streams	 */
@@ -186,7 +190,7 @@ exit(int status)         /*- cc 010326 -*/
 
 #if __PPC_EABI__
         {
-            typedef void (*voidfunctionptr)(
+            typedef void (*voidfunctionptr) (
                 void); /* ptr to function returning void */
             extern voidfunctionptr _dtors[];
             voidfunctionptr*       destructor;
@@ -209,15 +213,15 @@ exit(int status)         /*- cc 010326 -*/
 #endif
     }
 
-    __exit(status);
+    __exit (status);
 }
 #endif /* defined(__m56800__) */ /*- mm 981015 -*/                 /*- mm 981029 -*/
 void
-__exit(int status)
+__exit (int status)
 {
 #pragma unused(status)
 
-    __begin_critical_region(atexit_funcs_access);
+    __begin_critical_region (atexit_funcs_access);
 
 #if !(__dest_os == __win32_os)
     while (__atexit_curr_func > 0)
@@ -226,7 +230,7 @@ __exit(int status)
     }
 #endif
 
-    __end_critical_region(atexit_funcs_access);
+    __end_critical_region (atexit_funcs_access);
 
 #if __dest_os == __win32_os
     _CleanUpMSL();
@@ -243,9 +247,9 @@ __exit(int status)
 #if __dest_os == __mac_os
     ExitToShell();
 #elif __dest_os == __win32_os
-    ExitProcess(status);
+    ExitProcess (status);
 #elif __dest_os == __wince_os
-    TerminateProcess(GetCurrentProcess(), status); /*CE doesn't have ExitProcess */
+    TerminateProcess (GetCurrentProcess(), status); /*CE doesn't have ExitProcess */
 #elif __dest_os == __ppc_eabi || __dest_os == __nec_eabi ||                         \
     __dest_os == __emb_68k || __dest_os == __mcore_bare ||                          \
     __dest_os == __dolphin_os                                      /*- beb 990727 -*/

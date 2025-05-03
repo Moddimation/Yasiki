@@ -25,11 +25,11 @@ typedef struct TRKEventQueue
 } TRKEventQueue;
 extern TRKEventQueue gTRKEventQueue;
 
-BOOL    TRKGetNextEvent(TRKEvent* event);
-void    TRKDestructEvent(TRKEvent*);
-void    TRKConstructEvent(TRKEvent*, NubEventType);
-DSError TRKPostEvent(TRKEvent*);
-DSError TRKInitializeEventQueue();
+BOOL    TRKGetNextEvent (TRKEvent* event);
+void    TRKDestructEvent (TRKEvent*);
+void    TRKConstructEvent (TRKEvent*, NubEventType);
+DSError TRKPostEvent (TRKEvent*);
+DSError TRKInitializeEventQueue ();
 
 #ifdef __cplusplus
 }

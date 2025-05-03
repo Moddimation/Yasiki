@@ -29,35 +29,35 @@
 #include "critical_regions.h"
 #include "file_io.h"
 void
-clearerr(FILE* file)
+clearerr (FILE* file)
 {
     file->state.eof = 0;
     file->state.error = 0;
 }
-int(feof)(FILE* file)
+int (feof) (FILE* file)
 {
-    return (feof(file));
+    return (feof (file));
 }
-int(ferror)(FILE* file)
+int (ferror) (FILE* file)
 {
-    return (ferror(file));
+    return (ferror (file));
 }
 void
-perror(const char* s)
+perror (const char* s)
 {
     char errstr[__max_errstr];
 
 #ifndef _No_Disk_File_OS_Support
     if (s)
     {
-        fprintf(stderr, "%s: ", s);
+        fprintf (stderr, "%s: ", s);
     }
 
-    fprintf(stderr, "%s\n", __strerror(errno, errstr));
+    fprintf (stderr, "%s\n", __strerror (errno, errstr));
 #endif
 }
 void
-__stdio_atexit(void)
+__stdio_atexit (void)
 {
 #ifndef _No_Disk_File_OS_Support
     __stdio_exit = __close_all;

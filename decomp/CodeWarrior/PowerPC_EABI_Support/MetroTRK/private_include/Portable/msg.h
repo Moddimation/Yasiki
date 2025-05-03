@@ -16,7 +16,7 @@ extern "C"
 {
 #endif
 
-DSError TRKMessageSend(TRK_Msg* msg);
+DSError TRKMessageSend (TRK_Msg* msg);
 
 #ifdef __cplusplus
 }

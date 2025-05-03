@@ -18,37 +18,37 @@
 
 #include "ansi_files.h"
 char*
-strdup(const char* str)  /*- 010725 -*/
+strdup (const char* str)  /*- 010725 -*/
 {
-    return __msl_strdup(str);
+    return __msl_strdup (str);
 }
 char*
-_strdup(const char* str) /*- 010725 -*/
+_strdup (const char* str) /*- 010725 -*/
 {
-    return __msl_strdup(str);
+    return __msl_strdup (str);
 }
 char*
-strlwr(char* string)
+strlwr (char* string)
 {
     char* s = string;
 
     while (*s)
     {
-        *s = tolower(*s);
+        *s = tolower (*s);
         s++;
     }
 
     return string;
 }
 char*
-_strlwr(char* string)
+_strlwr (char* string)
 {
-    return strlwr(string);
+    return strlwr (string);
 }
 /* Convert unsigned integer to a string */
 
 char*
-ultoa(unsigned long val, char* str, int radix)
+ultoa (unsigned long val, char* str, int radix)
 {
     unsigned long theNum = val;
     int           StrIndex = 0;
@@ -71,51 +71,51 @@ ultoa(unsigned long val, char* str, int radix)
     str[StrIndex++] = 0;
 
     /* Now reverse the string.*/
-    _strrev(str);
+    _strrev (str);
 
     return str;
 }
 char*
-_ultoa(unsigned long val, char* str, int radix)
+_ultoa (unsigned long val, char* str, int radix)
 {
-    return ultoa(val, str, radix);
+    return ultoa (val, str, radix);
 }
 /* Convert a value as a g format */
 #ifndef _No_Floating_Point
 char*
-gcvt(double value, int digits, char* buffer)
+gcvt (double value, int digits, char* buffer)
 {
-    sprintf(buffer, "%.*g", digits, value);
+    sprintf (buffer, "%.*g", digits, value);
     return buffer;
 }
 char*
-_gcvt(double value, int digits, char* buffer)
+_gcvt (double value, int digits, char* buffer)
 {
-    return gcvt(value, digits, buffer);
+    return gcvt (value, digits, buffer);
 }
 #endif
 /* return unused heap memory */
 int
-heapmin(void)
+heapmin (void)
 {
     errno = ENOSYS;
     return -1;
 }
 int
-_heapmin(void)
+_heapmin (void)
 {
     return heapmin();
 }
 /* Compare lexigraphically two strings */
 
 int
-stricmp(const char* s1, const char* s2) /*- cc 010713 -*/
+stricmp (const char* s1, const char* s2) /*- cc 010713 -*/
 {
     char c1, c2;
     while (1)
     {
-        c1 = tolower(*s1++);
-        c2 = tolower(*s2++);
+        c1 = tolower (*s1++);
+        c2 = tolower (*s2++);
         if (c1 < c2)
         {
             return -1;
@@ -131,57 +131,57 @@ stricmp(const char* s1, const char* s2) /*- cc 010713 -*/
     }
 }
 int
-_stricmp(const char* s1, const char* s2)
+_stricmp (const char* s1, const char* s2)
 {
-    return stricmp(s1, s2);
+    return stricmp (s1, s2);
 }
 /* Compare lexigraphically two strings up to a max length */
 
 int
-strnicmp(const char* s1, const char* s2, size_t n) /*- cc 010713 -*/
+strnicmp (const char* s1, const char* s2, size_t n) /*- cc 010713 -*/
 {
-    return __msl_strnicmp(s1, s2, n);
+    return __msl_strnicmp (s1, s2, n);
 }
 int
-_strnicmp(const char* s1, const char* s2, size_t n)
+_strnicmp (const char* s1, const char* s2, size_t n)
 {
-    return __msl_strnicmp(s1, s2, n);              /*- cc 010605 -*/
+    return __msl_strnicmp (s1, s2, n);              /*- cc 010605 -*/
 }
 /* Uppercase a string */
 char*
-strupr(char* str)
+strupr (char* str)
 {
-    char* temp = str;           /*- mm 010116 -*/
-    while (*temp)               /*- mm 010116 -*/
+    char* temp = str;            /*- mm 010116 -*/
+    while (*temp)                /*- mm 010116 -*/
     {
-        *temp = toupper(*temp); /*- mm 010116 -*/
-        temp++;                 /*- mm 010116 -*/
+        *temp = toupper (*temp); /*- mm 010116 -*/
+        temp++;                  /*- mm 010116 -*/
     }
     return str;
 }
 char*
-_strupr(char* str)
+_strupr (char* str)
 {
-    return strupr(str);
+    return strupr (str);
 }
 /* Get the date in a string */
 
 char*
-strdate(char* str)
+strdate (char* str)
 {
     time_t timer;
-    time(&timer);
-    strftime(str, 10, "%m/%d/%y", localtime(&timer));
+    time (&timer);
+    strftime (str, 10, "%m/%d/%y", localtime (&timer));
     return str;
 }
 char*
-_strdate(char* str)
+_strdate (char* str)
 {
-    return strdate(str);
+    return strdate (str);
 }
 /* Set characters of string to character */
 char*
-strset(char* str, int c)
+strset (char* str, int c)
 {
     char* save = str;
 
@@ -193,14 +193,14 @@ strset(char* str, int c)
     return save;
 }
 char*
-_strset(char* str, int c)
+_strset (char* str, int c)
 {
-    return strset(str, c);
+    return strset (str, c);
 }
 /* Set first n characters of string to character */
 
 char*
-strnset(char* str, int c, size_t n)
+strnset (char* str, int c, size_t n)
 {
     char* save = str;
 
@@ -213,14 +213,14 @@ strnset(char* str, int c, size_t n)
     return save;
 }
 char*
-_strnset(char* str, int c, size_t n)
+_strnset (char* str, int c, size_t n)
 {
-    return strnset(str, c, n);
+    return strnset (str, c, n);
 }
 /* return pointer to first character in s1 that isn't in s2 */
 
 char*
-strspnp(char* s1, const char* s2)
+strspnp (char* s1, const char* s2)
 {
     while (*s1)
     {
@@ -239,147 +239,147 @@ strspnp(char* s1, const char* s2)
     return NULL;
 }
 char*
-_strspnp(char* s1, const char* s2)
+_strspnp (char* s1, const char* s2)
 {
-    return strspnp(s1, s2);
+    return strspnp (s1, s2);
 }
 /* Case-insensitive string comparison */
 int
-strncasecmp(const char* s1, const char* s2, size_t n)
+strncasecmp (const char* s1, const char* s2, size_t n)
 {
-    return __msl_strnicmp(s1, s2, n);
+    return __msl_strnicmp (s1, s2, n);
 }
 int
-_strncasecmp(const char* s1, const char* s2, size_t n)
+_strncasecmp (const char* s1, const char* s2, size_t n)
 {
-    return __msl_strnicmp(s1, s2, n);
+    return __msl_strnicmp (s1, s2, n);
 }
 int
-strcmpi(const char* s1, const char* s2)
+strcmpi (const char* s1, const char* s2)
 {
-    return stricmp(s1, s2);
+    return stricmp (s1, s2);
 }
 int
-_strcmpi(const char* s1, const char* s2)
+_strcmpi (const char* s1, const char* s2)
 {
-    return stricmp(s1, s2);
+    return stricmp (s1, s2);
 }
 int
-strncmpi(const char* s1, const char* s2, size_t n)
+strncmpi (const char* s1, const char* s2, size_t n)
 {
-    return __msl_strnicmp(s1, s2, n);
+    return __msl_strnicmp (s1, s2, n);
 }
 int
-_strncmpi(const char* s1, const char* s2, size_t n)
+_strncmpi (const char* s1, const char* s2, size_t n)
 {
-    return __msl_strnicmp(s1, s2, n);
+    return __msl_strnicmp (s1, s2, n);
 }
 int
-strcasecmp(const char* s1, const char* s2)
+strcasecmp (const char* s1, const char* s2)
 {
-    return stricmp(s1, s2);
+    return stricmp (s1, s2);
 }
 int
-_strcasecmp(const char* s1, const char* s2)
+_strcasecmp (const char* s1, const char* s2)
 {
-    return stricmp(s1, s2);
+    return stricmp (s1, s2);
 }
 char*
-itoa(int val, char* str, int radix)
+itoa (int val, char* str, int radix)
 {
-    return __msl_itoa(val, str, radix); /*- cc 010605 -*/
+    return __msl_itoa (val, str, radix); /*- cc 010605 -*/
 }
 char*
-_itoa(int val, char* str, int radix)
+_itoa (int val, char* str, int radix)
 {
-    return __msl_itoa(val, str, radix); /*- cc 010605 -*/
+    return __msl_itoa (val, str, radix); /*- cc 010605 -*/
 }
 /* reverse a string in place */
 char*
-strrev(char* str)
+strrev (char* str)
 {
-    return __msl_strrev(str); /*- cc 010713 -*/
+    return __msl_strrev (str); /*- cc 010713 -*/
 }
 char*
-_strrev(char* str)
+_strrev (char* str)
 {
-    return __msl_strrev(str); /*- cc 010605 -*/
+    return __msl_strrev (str); /*- cc 010605 -*/
 }
 int
-filelength(int fileno)
+filelength (int fileno)
 {
     struct stat st;
-    if (fstat(fileno, &st))
+    if (fstat (fileno, &st))
     {
         return -1;
     }
     return st.st_size;
 }
 int
-_filelength(int fileno)
+_filelength (int fileno)
 {
-    return filelength(fileno);
+    return filelength (fileno);
 }
 #ifndef __NO_WIDE_CHAR
 /* lowercase all characters in str */
 int
-wtoi(const wchar_t* _a)
+wtoi (const wchar_t* _a)
 {
-    return wcstol(_a, NULL, 10);
+    return wcstol (_a, NULL, 10);
 }
 int
-_wtoi(const wchar_t* _a)
+_wtoi (const wchar_t* _a)
 {
-    return wcstol(_a, NULL, 10);
+    return wcstol (_a, NULL, 10);
 }
 wchar_t*
-wcslwr(wchar_t* str)
+wcslwr (wchar_t* str)
 {
     wchar_t* saved = str;
 
     while (*str)
     {
-        *str = towlower(*str);
+        *str = towlower (*str);
         str++;
     }
 
     return saved;
 }
 wchar_t*
-_wcslwr(wchar_t* str)
+_wcslwr (wchar_t* str)
 {
-    return wcslwr(str);
+    return wcslwr (str);
 }
 /*
  * uppercase all characters in str
  */
 
 wchar_t*
-wcsupr(wchar_t* str)
+wcsupr (wchar_t* str)
 {
     wchar_t* saved = str;
 
     while (*str)
     {
-        *str = towupper(*str);
+        *str = towupper (*str);
         str++;
     }
 
     return saved;
 }
 wchar_t*
-_wcsupr(wchar_t* str)
+_wcsupr (wchar_t* str)
 {
-    return wcsupr(str);
+    return wcsupr (str);
 }
 int
-wcsicmp(const wchar_t* s1, const wchar_t* s2)
+wcsicmp (const wchar_t* s1, const wchar_t* s2)
 {
     wchar_t c1, c2;
     while (1)
     {
-        c1 = towlower(*s1++);
-        c2 = towlower(*s2++);
+        c1 = towlower (*s1++);
+        c2 = towlower (*s2++);
         if (c1 < c2)
         {
             return -1;
@@ -395,23 +395,23 @@ wcsicmp(const wchar_t* s1, const wchar_t* s2)
     }
 }
 int
-_wcsicmp(const wchar_t* s1, const wchar_t* s2)
+_wcsicmp (const wchar_t* s1, const wchar_t* s2)
 {
-    return wcsicmp(s1, s2);
+    return wcsicmp (s1, s2);
 }
 /*
  * case-insensitive compare of s1, s2, stopping after n characters
  */
 
 int
-wcsnicmp(const wchar_t* s1, const wchar_t* s2, size_t n)
+wcsnicmp (const wchar_t* s1, const wchar_t* s2, size_t n)
 {
     int     i;
     wchar_t c1, c2;
     for (i = 0; i < n; i++)
     {
-        c1 = towlower(*s1++);
-        c2 = towlower(*s2++);
+        c1 = towlower (*s1++);
+        c2 = towlower (*s2++);
         if (c1 < c2)
         {
             return -1;
@@ -428,19 +428,19 @@ wcsnicmp(const wchar_t* s1, const wchar_t* s2, size_t n)
     return 0;
 }
 int
-_wcsnicmp(const wchar_t* s1, const wchar_t* s2, size_t n)
+_wcsnicmp (const wchar_t* s1, const wchar_t* s2, size_t n)
 {
-    return wcsnicmp(s1, s2, n);
+    return wcsnicmp (s1, s2, n);
 }
 /*
  * reverse order of characters in str
  */
 
 wchar_t*
-wcsrev(wchar_t* str)
+wcsrev (wchar_t* str)
 {
     int SmallIndex = 0;
-    int BigIndex = wcslen(str) - 1;
+    int BigIndex = wcslen (str) - 1;
 
     while (SmallIndex < BigIndex)
     {
@@ -456,16 +456,16 @@ wcsrev(wchar_t* str)
     return str;
 }
 wchar_t*
-_wcsrev(wchar_t* str)
+_wcsrev (wchar_t* str)
 {
-    return wcsrev(str);
+    return wcsrev (str);
 }
 /*
  * set all characters of str to wc
  */
 
 wchar_t*
-wcsset(wchar_t* str, wchar_t wc)
+wcsset (wchar_t* str, wchar_t wc)
 {
     wchar_t* saved = str;
 
@@ -477,16 +477,16 @@ wcsset(wchar_t* str, wchar_t wc)
     return saved;
 }
 wchar_t*
-_wcsset(wchar_t* str, wchar_t wc)
+_wcsset (wchar_t* str, wchar_t wc)
 {
-    return wcsset(str, wc);
+    return wcsset (str, wc);
 }
 /*
  * set characters of str to wc, up to max of n characters
  */
 
 wchar_t*
-wcsnset(wchar_t* str, wchar_t wc, size_t n)
+wcsnset (wchar_t* str, wchar_t wc, size_t n)
 {
     wchar_t* saved = str;
 
@@ -498,14 +498,14 @@ wcsnset(wchar_t* str, wchar_t wc, size_t n)
     return saved;
 }
 wchar_t*
-_wcsnset(wchar_t* str, wchar_t wc, size_t n)
+_wcsnset (wchar_t* str, wchar_t wc, size_t n)
 {
-    return wcsnset(str, wc, n);
+    return wcsnset (str, wc, n);
 }
 /* return pointer to first character in s1 that isn't in s2 */
 
 wchar_t*
-wcsspnp(const wchar_t* s1, const wchar_t* s2)
+wcsspnp (const wchar_t* s1, const wchar_t* s2)
 {
     const wchar_t* set;
     while (*s1)
@@ -524,33 +524,33 @@ wcsspnp(const wchar_t* s1, const wchar_t* s2)
     return NULL;
 }
 wchar_t*
-_wcsspnp(const wchar_t* s1, const wchar_t* s2)
+_wcsspnp (const wchar_t* s1, const wchar_t* s2)
 {
-    return wcsspnp(s1, s2);
+    return wcsspnp (s1, s2);
 }
 wchar_t*
-wcsdup(const wchar_t* str)
+wcsdup (const wchar_t* str)
 {
     wchar_t* rval =
-        (wchar_t*)__std(malloc)((__std(wcslen)(str) + 1) * sizeof(wchar_t));
+        (wchar_t*)__std (malloc) ((__std (wcslen) (str) + 1) * sizeof (wchar_t));
 
     if (rval)
     {
-        __std(wcscpy)(rval, str);
+        __std (wcscpy) (rval, str);
     }
 
     return rval;
 }
 wchar_t*
-_wcsdup(const wchar_t* str)
+_wcsdup (const wchar_t* str)
 {
-    return wcsdup(str);
+    return wcsdup (str);
 }
 wchar_t*
-wstrrev(wchar_t* str)
+wstrrev (wchar_t* str)
 {
     int SmallIndex = 0;
-    int BigIndex = wcslen(str) - 1;
+    int BigIndex = wcslen (str) - 1;
 
     while (SmallIndex < BigIndex)
     {
@@ -566,12 +566,12 @@ wstrrev(wchar_t* str)
     return str;
 }
 wchar_t*
-_wstrrev(wchar_t* str)
+_wstrrev (wchar_t* str)
 {
-    return wstrrev(str);
+    return wstrrev (str);
 }
 wchar_t*
-itow(int val, wchar_t* str, int radix)
+itow (int val, wchar_t* str, int radix)
 {
     char         IsNegative = 0;
     int          theNum = val;
@@ -609,14 +609,14 @@ itow(int val, wchar_t* str, int radix)
     str[StrIndex++] = 0;
 
     /* Now reverse the string.*/
-    _wstrrev(str);
+    _wstrrev (str);
 
     return str;
 }
 wchar_t*
-_itow(int val, wchar_t* str, int radix)
+_itow (int val, wchar_t* str, int radix)
 {
-    return itow(val, str, radix);
+    return itow (val, str, radix);
 }
 #endif
 

@@ -10,11 +10,11 @@ extern "C"
 {
 #endif
 
-DECL_SECT(".ctors") extern void (*_ctors[])(); // size: 0x0, address: 0x0
-DECL_SECT(".dtors") extern void (*_dtors[])(); // size: 0x0, address: 0x0
-DECL_SECT(".init")
+DECL_SECT (".ctors") extern void (*_ctors[])(); // size: 0x0, address: 0x0
+DECL_SECT (".dtors") extern void (*_dtors[])(); // size: 0x0, address: 0x0
+DECL_SECT (".init")
 asm void
-__init_hardware(void)
+__init_hardware (void)
 {
 #ifdef __MWERKS__
     nofralloc;
@@ -29,9 +29,9 @@ __init_hardware(void)
 #endif
 }
 
-DECL_SECT(".init")
+DECL_SECT (".init")
 asm void
-__flush_cache(void* address, unsigned int size)
+__flush_cache (void* address, unsigned int size)
 {
 #ifdef __MWERKS__
     nofralloc;
@@ -53,12 +53,12 @@ rept:
 #endif
 }
 void
-__init_user(void)
+__init_user (void)
 {
     __init_cpp();
 }
 void
-__init_cpp(void)
+__init_cpp (void)
 {
 #ifdef __MWERKS__
     void (**constructor)();
@@ -73,7 +73,7 @@ __init_cpp(void)
 #endif
 }
 void
-__fini_cpp(void)
+__fini_cpp (void)
 {
 #ifdef __MWERKS__
     void (**destructor)();
@@ -89,19 +89,19 @@ __fini_cpp(void)
 }
 WEAKFUNC
 void
-abort(void)
+abort (void)
 {
     _ExitProcess();
 }
 WEAKFUNC
 void
-exit(int status)
+exit (int status)
 {
     __fini_cpp();
     _ExitProcess();
 }
 void
-_ExitProcess(void)
+_ExitProcess (void)
 {
     PPCHalt();
 }

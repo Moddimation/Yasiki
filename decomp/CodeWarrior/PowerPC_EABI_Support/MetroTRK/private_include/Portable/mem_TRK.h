@@ -8,8 +8,8 @@ extern "C"
 {
 #endif
 
-void* TRK_memset(void* dst, int val, size_t n);
-void* TRK_memcpy(void* dst, const void* src, size_t n);
+void* TRK_memset (void* dst, int val, size_t n);
+void* TRK_memcpy (void* dst, const void* src, size_t n);
 
 #ifdef __cplusplus
 }

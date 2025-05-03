@@ -3,7 +3,7 @@
 
 #include <dolphin/os.h>
 
-typedef void (*DSPCallback)(void* task);
+typedef void (*DSPCallback) (void* task);
 typedef struct STRUCT_DSP_TASK
 {
     volatile u32            state;             ///< 0x00
@@ -26,22 +26,22 @@ typedef struct STRUCT_DSP_TASK
     OSTime                  t_context;
     OSTime                  t_task;
 } DSPTaskInfo;
-u32          DSPCheckMailToDSP(void);
-u32          DSPCheckMailFromDSP(void);
-u32          DSPReadCPUToDSPMbox(void);
-u32          DSPReadMailFromDSP(void);
-void         DSPSendMailToDSP(u32 mail);
-void         DSPAssertInt(void);
-void         DSPInit(void);
-BOOL         DSPCheckInit(void);
-void         DSPReset(void);
-void         DSPHalt(void);
-void         DSPUnhalt(void);
-u32          DSPGetDMAStatus(void);
-DSPTaskInfo* DSPAddTask(DSPTaskInfo* task);
-DSPTaskInfo* DSPCancelTask(DSPTaskInfo* task);
-DSPTaskInfo* DSPAssertTask(DSPTaskInfo* task);
+u32          DSPCheckMailToDSP (void);
+u32          DSPCheckMailFromDSP (void);
+u32          DSPReadCPUToDSPMbox (void);
+u32          DSPReadMailFromDSP (void);
+void         DSPSendMailToDSP (u32 mail);
+void         DSPAssertInt (void);
+void         DSPInit (void);
+BOOL         DSPCheckInit (void);
+void         DSPReset (void);
+void         DSPHalt (void);
+void         DSPUnhalt (void);
+u32          DSPGetDMAStatus (void);
+DSPTaskInfo* DSPAddTask (DSPTaskInfo* task);
+DSPTaskInfo* DSPCancelTask (DSPTaskInfo* task);
+DSPTaskInfo* DSPAssertTask (DSPTaskInfo* task);
 
-DSPTaskInfo* __DSPGetCurrentTask(void);
+DSPTaskInfo* __DSPGetCurrentTask (void);
 
 #endif

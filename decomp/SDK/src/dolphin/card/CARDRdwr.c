@@ -5,13 +5,13 @@
 #include "CARDPrivate.h"
 
 // functions
-static void BlockReadCallback(s32 chan, long result);
-static void BlockWriteCallback(s32 chan, long result);
+static void BlockReadCallback (s32 chan, long result);
+static void BlockWriteCallback (s32 chan, long result);
 static void
-BlockReadCallback(s32 chan, long result)
+BlockReadCallback (s32 chan, long result)
 {
     struct CARDControl* card;
-    void                (*callback)(s32, long);
+    void                (*callback) (s32, long);
 
     card = &__CARDBlock[chan];
 
@@ -23,7 +23,7 @@ BlockReadCallback(s32 chan, long result)
 
         if (--card->repeat > 0)
         {
-            result = __CARDReadSegment(chan, BlockReadCallback);
+            result = __CARDReadSegment (chan, BlockReadCallback);
             if (result >= 0)
             {
                 return;
@@ -32,22 +32,23 @@ BlockReadCallback(s32 chan, long result)
     }
     if (!card->apiCallback)
     {
-        __CARDPutControlBlock(card, result);
+        __CARDPutControlBlock (card, result);
     }
     callback = card->xferCallback;
     if (callback)
     {
         card->xferCallback = NULL;
-        callback(chan, result);
+        callback (chan, result);
     }
 }
 s32
-__CARDRead(s32 chan, u32 addr, long length, void* dst, void (*callback)(long, long))
+__CARDRead (
+    s32 chan, u32 addr, long length, void* dst, void (*callback) (long, long))
 {
     struct CARDControl* card;
 
-    ASSERTLINE(0x58, 0 < length && length % CARD_SEG_SIZE == 0);
-    ASSERTLINE(0x59, 0 <= chan && chan < 2);
+    ASSERTLINE (0x58, 0 < length && length % CARD_SEG_SIZE == 0);
+    ASSERTLINE (0x59, 0 <= chan && chan < 2);
     card = &__CARDBlock[chan];
     if (card->attached == 0)
     {
@@ -57,13 +58,13 @@ __CARDRead(s32 chan, u32 addr, long length, void* dst, void (*callback)(long, lo
     card->repeat = (length / 512u);
     card->addr = addr;
     card->buffer = dst;
-    return __CARDReadSegment(chan, BlockReadCallback);
+    return __CARDReadSegment (chan, BlockReadCallback);
 }
 static void
-BlockWriteCallback(s32 chan, long result)
+BlockWriteCallback (s32 chan, long result)
 {
     struct CARDControl* card;
-    void                (*callback)(s32, long);
+    void                (*callback) (s32, long);
 
     card = &__CARDBlock[chan];
     if (result >= 0)
@@ -74,7 +75,7 @@ BlockWriteCallback(s32 chan, long result)
 
         if (--card->repeat > 0)
         {
-            result = __CARDWritePage(chan, BlockWriteCallback);
+            result = __CARDWritePage (chan, BlockWriteCallback);
             if (result >= 0)
             {
                 return;
@@ -83,22 +84,23 @@ BlockWriteCallback(s32 chan, long result)
     }
     if (!card->apiCallback)
     {
-        __CARDPutControlBlock(card, result);
+        __CARDPutControlBlock (card, result);
     }
     callback = card->xferCallback;
     if (callback)
     {
         card->xferCallback = NULL;
-        callback(chan, result);
+        callback (chan, result);
     }
 }
 s32
-__CARDWrite(s32 chan, u32 addr, long length, void* dst, void (*callback)(long, long))
+__CARDWrite (
+    s32 chan, u32 addr, long length, void* dst, void (*callback) (long, long))
 {
     struct CARDControl* card;
 
-    ASSERTLINE(0x95, 0 < length && length % CARD_PAGE_SIZE == 0);
-    ASSERTLINE(0x96, 0 <= chan && chan < 2);
+    ASSERTLINE (0x95, 0 < length && length % CARD_PAGE_SIZE == 0);
+    ASSERTLINE (0x96, 0 <= chan && chan < 2);
     card = &__CARDBlock[chan];
     if (card->attached == 0)
     {
@@ -108,11 +110,11 @@ __CARDWrite(s32 chan, u32 addr, long length, void* dst, void (*callback)(long, l
     card->repeat = (length / 128u);
     card->addr = addr;
     card->buffer = dst;
-    return __CARDWritePage(chan, BlockWriteCallback);
+    return __CARDWritePage (chan, BlockWriteCallback);
 }
 s32
-CARDGetXferredBytes(s32 chan)
+CARDGetXferredBytes (s32 chan)
 {
-    ASSERTLINE(0xB4, 0 <= chan && chan < 2);
+    ASSERTLINE (0xB4, 0 <= chan && chan < 2);
     return __CARDBlock[chan].xferred;
 }

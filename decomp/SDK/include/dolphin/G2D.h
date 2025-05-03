@@ -69,11 +69,11 @@ typedef struct G2DLayer
     G2DTileDesc* tileDesc;
     G2DMatDesc*  matDesc;
 } G2DLayer;
-void G2DInitSprite(G2DSprite* sprite);
-void G2DDrawSprite(G2DSprite* sprite, G2DPosOri* po);
-void G2DDrawLayer(G2DLayer* layer, s8* aSortBuffer);
-void G2DSetCamera(G2DPosOri* po);
-void G2DInitWorld(u32 nWorldX, u32 nWorldY);
-void G2DSetViewport(u16 nLeft, u16 nTop, u16 nWidth, u16 nHeight);
+void G2DInitSprite (G2DSprite* sprite);
+void G2DDrawSprite (G2DSprite* sprite, G2DPosOri* po);
+void G2DDrawLayer (G2DLayer* layer, s8* aSortBuffer);
+void G2DSetCamera (G2DPosOri* po);
+void G2DInitWorld (u32 nWorldX, u32 nWorldY);
+void G2DSetViewport (u16 nLeft, u16 nTop, u16 nWidth, u16 nHeight);
 
 #endif               // _DOLPHIN_G2D_H_

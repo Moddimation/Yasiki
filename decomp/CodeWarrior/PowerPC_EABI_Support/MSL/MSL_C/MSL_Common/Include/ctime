@@ -99,26 +99,26 @@ struct tm
     int tm_isdst;
 };
 #ifndef _No_Time_OS_Support
-_MSL_IMP_EXP_C clock_t clock(void);
+_MSL_IMP_EXP_C clock_t clock (void);
 #endif
 
 #ifndef _No_Floating_Point
-_MSL_IMP_EXP_C double difftime(time_t, time_t);
+_MSL_IMP_EXP_C double difftime (time_t, time_t);
 #endif
 
-_MSL_IMP_EXP_C time_t     mktime(struct tm*);
-_MSL_IMP_EXP_C time_t     time(time_t*);
-_MSL_IMP_EXP_C char*      asctime(const struct tm*);
-_MSL_IMP_EXP_C char*      ctime(const time_t*);
-_MSL_IMP_EXP_C struct tm* gmtime(const time_t*);
-_MSL_IMP_EXP_C struct tm* localtime(const time_t*);
-_MSL_IMP_EXP_C size_t     strftime(char*, size_t, const char*, const struct tm*);
+_MSL_IMP_EXP_C time_t     mktime (struct tm*);
+_MSL_IMP_EXP_C time_t     time (time_t*);
+_MSL_IMP_EXP_C char*      asctime (const struct tm*);
+_MSL_IMP_EXP_C char*      ctime (const time_t*);
+_MSL_IMP_EXP_C struct tm* gmtime (const time_t*);
+_MSL_IMP_EXP_C struct tm* localtime (const time_t*);
+_MSL_IMP_EXP_C size_t     strftime (char*, size_t, const char*, const struct tm*);
 
 #ifndef _No_Time_OS_Support
-clock_t __get_clock(void);
-time_t  __get_time(void);
-int     __to_gm_time(time_t* time);
-int     __isdst(void);     /*- mm 000420 -*/
+clock_t __get_clock (void);
+time_t  __get_time (void);
+int     __to_gm_time (time_t* time);
+int     __isdst (void);    /*- mm 000420 -*/
 #endif
 
 _MSL_END_EXTERN_C          /*- cc 010409 -*/

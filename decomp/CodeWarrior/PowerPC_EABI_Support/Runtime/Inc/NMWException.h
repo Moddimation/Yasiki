@@ -46,32 +46,36 @@ extern "C"
 #endif
 
 _MSL_IMP_EXP_RUNTIME extern DestructorChain* __global_destructor_chain;
-_MSL_IMP_EXP_RUNTIME extern void*            __register_global_object(void* object,
-                                                                      void* destructor,
-                                                                      void* regmem);
-_MSL_IMP_EXP_RUNTIME extern void             __destroy_global_chain(void);
+_MSL_IMP_EXP_RUNTIME extern void*            __register_global_object (void* object,
+                                                                       void* destructor,
+                                                                       void* regmem);
+_MSL_IMP_EXP_RUNTIME extern void             __destroy_global_chain (void);
 
-extern void                      __init__catch(CatchInfo* catchinfo);
-_MSL_IMP_EXP_RUNTIME extern void __end__catch(CatchInfo* catchinfo);
-_MSL_IMP_EXP_RUNTIME extern void __throw(char* throwtype, void* location,
-                                         void* dtor);
-_MSL_IMP_EXP_RUNTIME extern void __rethrow(void);
-_MSL_IMP_EXP_RUNTIME extern char __throw_catch_compare(const char* throwtype,
-                                                       const char* catchtype,
-                                                       long*       offset_result);
-_MSL_IMP_EXP_RUNTIME extern void __unexpected(CatchInfo* catchinfo);
-void                             __call_static_initializers(
+extern void                      __init__catch (CatchInfo* catchinfo);
+_MSL_IMP_EXP_RUNTIME extern void __end__catch (CatchInfo* catchinfo);
+_MSL_IMP_EXP_RUNTIME extern void __throw (char* throwtype,
+                                          void* location,
+                                          void* dtor);
+_MSL_IMP_EXP_RUNTIME extern void __rethrow (void);
+_MSL_IMP_EXP_RUNTIME extern char __throw_catch_compare (const char* throwtype,
+                                                        const char* catchtype,
+                                                        long*       offset_result);
+_MSL_IMP_EXP_RUNTIME extern void __unexpected (CatchInfo* catchinfo);
+void                             __call_static_initializers (
                                 void); /* hh 971215 added per John McEnerney's instructions */
 #if defined(__PPC_EABI__)
-_MSL_IMP_EXP_RUNTIME extern int  __register_fragment(struct __eti_init_info* info,
-                                                     char*                   TOC);
-_MSL_IMP_EXP_RUNTIME extern void __unregister_fragment(int fragmentID);
+_MSL_IMP_EXP_RUNTIME extern int  __register_fragment (struct __eti_init_info* info,
+                                                      char*                   TOC);
+_MSL_IMP_EXP_RUNTIME extern void __unregister_fragment (int fragmentID);
 #elif defined(__POWERPC__)
-_MSL_IMP_EXP_RUNTIME extern int __register_fragment(char* code_start, char* code_end,
-                                                    char* data_start, char* data_end,
-                                                    char* exception_start,
-                                                    char* exception_end, char* TOC);
-_MSL_IMP_EXP_RUNTIME extern void __unregister_fragment(int fragmentID);
+_MSL_IMP_EXP_RUNTIME extern int  __register_fragment (char* code_start,
+                                                      char* code_end,
+                                                      char* data_start,
+                                                      char* data_end,
+                                                      char* exception_start,
+                                                      char* exception_end,
+                                                      char* TOC);
+_MSL_IMP_EXP_RUNTIME extern void __unregister_fragment (int fragmentID);
 #endif
 
 #if __CFM68K__

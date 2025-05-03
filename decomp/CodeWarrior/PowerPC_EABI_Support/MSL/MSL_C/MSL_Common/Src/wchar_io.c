@@ -52,14 +52,14 @@
 
 /* threadsafety protection is in fwrite */
 wchar_t
-putwc(wchar_t c, FILE* file)
+putwc (wchar_t c, FILE* file)
 {
-    if (fwide(file, 1) <= 0)                        /*- mm 980206 -*/
+    if (fwide (file, 1) <= 0)                         /*- mm 980206 -*/
     {
-        return (WEOF);                              /*- mm 980206 -*/
+        return (WEOF);                                /*- mm 980206 -*/
     }
 
-    if (fwrite((char*)&c, sizeof(c), 1, file) == 0) /*- mm 980130 -*/
+    if (fwrite ((char*)&c, sizeof (c), 1, file) == 0) /*- mm 980130 -*/
     {
         return WEOF;
     }
@@ -73,13 +73,13 @@ putwc(wchar_t c, FILE* file)
 
 /* threadsafety is in fwrite */
 wchar_t
-putwchar(wchar_t c)
+putwchar (wchar_t c)
 {
-    if (fwide(stdout, 1) <= 0)                           /*- mm 980206 -*/
+    if (fwide (stdout, 1) <= 0)                            /*- mm 980206 -*/
     {
-        return (WEOF);                                   /*- mm 980206 -*/
+        return (WEOF);                                     /*- mm 980206 -*/
     }
-    if (fwrite((char*)&c, sizeof(c), 1, stdout) == WEOF) /*- mm 980130 -*/
+    if (fwrite ((char*)&c, sizeof (c), 1, stdout) == WEOF) /*- mm 980130 -*/
     {
         return WEOF;
     }
@@ -91,9 +91,9 @@ putwchar(wchar_t c)
 */
 
 wchar_t
-fputwc(wchar_t c, FILE* file)
+fputwc (wchar_t c, FILE* file)
 {
-    return (putwc(c, file));
+    return (putwc (c, file));
 }
 /*
     This function gets the wide character c
@@ -121,33 +121,33 @@ fputwc(wchar_t c, FILE* file)
 */
 
 wchar_t
-getwc(FILE* file)            /*- jcm 971208 -*/
+getwc (FILE* file)            /*- jcm 971208 -*/
 {
-    wchar_t c;               /* wide char to hold the final result */
+    wchar_t c;                /* wide char to hold the final result */
 
-    if (fwide(file, 1) <= 0) /*- mm 980206 -*/
+    if (fwide (file, 1) <= 0) /*- mm 980206 -*/
     {
-        return (WEOF);       /*- mm 980206 -*/
+        return (WEOF);        /*- mm 980206 -*/
     }
     /* threadsafety protection is in fread to add a critical region here would
      * deadlock */
-    if (fread((char*)&c, sizeof(c), 1, file) == 0) /*- mm 980130 -*/
+    if (fread ((char*)&c, sizeof (c), 1, file) == 0) /*- mm 980130 -*/
     {
         return WEOF;
     }
     return (c);
 }
 wchar_t
-getwchar(void)                                     /*- jcm 971208 -*/
+getwchar (void)                                      /*- jcm 971208 -*/
 {
     wchar_t c;                    /* wide char to hold the final result */
 
-    if (fwide(stdin, 1) <= 0)     /*- mm 980206 -*/
+    if (fwide (stdin, 1) <= 0)    /*- mm 980206 -*/
     {
         return (WEOF);            /*- mm 980206 -*/
     }
     /* fread has threadsafety  */ /*- mm 001018 -*/
-    if (fread((char*)&c, sizeof(c), 1, stdin) == 0) /*- mm 980102 -*/
+    if (fread ((char*)&c, sizeof (c), 1, stdin) == 0) /*- mm 980102 -*/
     {
         return WEOF;
     }
@@ -159,22 +159,22 @@ getwchar(void)                                     /*- jcm 971208 -*/
 */
 
 wchar_t
-fgetwc(FILE* file) /*- jcm 971208 -*/
+fgetwc (FILE* file) /*- jcm 971208 -*/
 {
     wchar_t c;
 
     /* getwc calls fread, which has threadsafety, adding critical regions here would
        lead to deadlock 	*/				/*- mm 001013 -*/
-    c = getwc(file);
+    c = getwc (file);
     return (c);
 }
 wchar_t
-ungetwc(wchar_t c, FILE* file)
+ungetwc (wchar_t c, FILE* file)
 {
     int state = file->state.io_state;
-    if (fwide(file, 1) <= 0)               /*- mm 980206 -*/
+    if (fwide (file, 1) <= 0)               /*- mm 980206 -*/
     {
-        return (WEOF);                     /*- mm 980206 -*/
+        return (WEOF);                      /*- mm 980206 -*/
     }
 
     if (state == __writing || state == __rereading + __ungetc_buffer_size - 1 ||
@@ -182,7 +182,7 @@ ungetwc(wchar_t c, FILE* file)
     {
         return (WEOF);
     }
-    __begin_critical_region(files_access); /*- mm 001013 -*/
+    __begin_critical_region (files_access); /*- mm 001013 -*/
 
     if (state < __rereading)
     {
@@ -199,7 +199,7 @@ ungetwc(wchar_t c, FILE* file)
     file->ungetwc_buffer[state - __rereading] = c;
 
     file->state.eof = 0;
-    __end_critical_region(files_access);   /*- mm 001013 -*/
+    __end_critical_region (files_access);   /*- mm 001013 -*/
     return ((wchar_t)c);
 }
 /*
@@ -219,31 +219,31 @@ ungetwc(wchar_t c, FILE* file)
 */
 
 int
-fputws(const wchar_t* s, FILE* file)
+fputws (const wchar_t* s, FILE* file)
 {
     int     i;
-    /*int		errno;*/                   /*- mm 010404 -*/
+    /*int		errno;*/                    /*- mm 010404 -*/
     int     retval = 1;
     wchar_t c;
 
-    if (fwide(file, 1) <= 0)               /*- mm 980206 -*/
+    if (fwide (file, 1) <= 0)               /*- mm 980206 -*/
     {
-        return (WEOF);                     /*- mm 980206 -*/
+        return (WEOF);                      /*- mm 980206 -*/
     }
 
-    __begin_critical_region(files_access); /*- mm 001013 -*/
+    __begin_critical_region (files_access); /*- mm 001013 -*/
     for (i = 0; s[i] != L'\0'; i++) /* go through the string until reaching NULL */
     {
         /*errno = 0; 									/* initialize errno to zero
          */ /*- mm 010404 -*/
         c = s[i]; /* get the current character */
 
-        if (__fwrite((void*)&c, sizeof(c), 1, file) == 0) /*- mm 001018 -*/
+        if (__fwrite ((void*)&c, sizeof (c), 1, file) == 0) /*- mm 001018 -*/
         {
-            retval = WEOF;                                /* return wide EOF error */
+            retval = WEOF;                /* return wide EOF error */
         }
     }
-    __end_critical_region(files_access);                  /*- mm 001013 -*/
+    __end_critical_region (files_access); /*- mm 001013 -*/
 
     return (retval);
 }
@@ -271,15 +271,15 @@ fputws(const wchar_t* s, FILE* file)
 */
 
 wchar_t*
-fgetws(wchar_t* s, int n, FILE* file)
+fgetws (wchar_t* s, int n, FILE* file)
 {
     wchar_t* p = s;
     wchar_t* retval = s;
     wchar_t  c;
 
-    if (fwide(file, 1) <= 0)                                 /*- mm 980206 -*/
+    if (fwide (file, 1) <= 0)                                  /*- mm 980206 -*/
     {
-        return (NULL);                                       /*- mm 980206 -*/
+        return (NULL);                                         /*- mm 980206 -*/
     }
 
     if (--n < 0)
@@ -287,11 +287,11 @@ fgetws(wchar_t* s, int n, FILE* file)
         return (NULL);
     }
 
-    __begin_critical_region(files_access);                   /*-mm 001013 -*/
+    __begin_critical_region (files_access);                    /*-mm 001013 -*/
     if (n)
     {
         do {
-            if (__fread((void*)&c, sizeof(c), 1, file) == 0) /*- mm 001018 -*/
+            if (__fread ((void*)&c, sizeof (c), 1, file) == 0) /*- mm 001018 -*/
             {
                 if (file->state.eof && p == s)
                 {
@@ -308,17 +308,17 @@ fgetws(wchar_t* s, int n, FILE* file)
     {
         *p = L'\0';
     }
-    __end_critical_region(files_access);                     /*- mm 001013 -*/
-    return (retval);                                         /*- mm 001013 -*/
+    __end_critical_region (files_access);                      /*- mm 001013 -*/
+    return (retval);                                           /*- mm 001013 -*/
 }
 int
-fwide(FILE* stream, int mode)
+fwide (FILE* stream, int mode)
 {
     int orientation;
     int result;
 
     if ((stream == NULL) ||
-        (stream->mode.file_kind == __closed_file))           /*- mm 990618 -*/
+        (stream->mode.file_kind == __closed_file))             /*- mm 990618 -*/
     {
         return 0; /* there is no associated stream therefore no orientation */
     }

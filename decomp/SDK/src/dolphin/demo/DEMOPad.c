@@ -21,11 +21,11 @@ DEMODMPad               DemoPad[4];
 u32 DemoNumValidPads;
 
 // functions
-static void DEMOPadCopy(struct PADStatus* pad, DEMODMPad* dmpad);
-void        DEMOPadRead();
-void        DEMOPadInit();
+static void DEMOPadCopy (struct PADStatus* pad, DEMODMPad* dmpad);
+void        DEMOPadRead ();
+void        DEMOPadInit ();
 static void
-DEMOPadCopy(struct PADStatus* pad, DEMODMPad* dmpad)
+DEMOPadCopy (struct PADStatus* pad, DEMODMPad* dmpad)
 {
     u16 dirs;
 
@@ -74,14 +74,14 @@ DEMOPadCopy(struct PADStatus* pad, DEMODMPad* dmpad)
     dmpad->pst = *pad;
 }
 void
-DEMOPadRead()
+DEMOPadRead ()
 {
     s32 i;
     u32 ResetReq;
 
     ResetReq = 0;
-    PADRead(&Pad[0]);
-    PADClamp(&Pad[0]);
+    PADRead (&Pad[0]);
+    PADClamp (&Pad[0]);
     DemoNumValidPads = 0;
     for (i = 0; i < 4; i++)
     {
@@ -95,16 +95,16 @@ DEMOPadRead()
         }
         if (Pad[i].err != -3)
         {
-            DEMOPadCopy(&Pad[i], &DemoPad[i]);
+            DEMOPadCopy (&Pad[i], &DemoPad[i]);
         }
     }
     if (ResetReq != 0)
     {
-        PADReset(ResetReq);
+        PADReset (ResetReq);
     }
 }
 void
-DEMOPadInit()
+DEMOPadInit ()
 {
     s32 i;
 

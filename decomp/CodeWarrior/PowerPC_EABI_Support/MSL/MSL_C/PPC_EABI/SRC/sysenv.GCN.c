@@ -20,13 +20,13 @@
 
 #include <cstdlib> /* for getenv */
 char*
-getenv(const char* inVarName)
+getenv (const char* inVarName)
 {
 #pragma unused(inVarName)
     return 0;
 }
 int
-system(const char* cmdLine)
+system (const char* cmdLine)
 {
 #pragma unused(cmdLine)
     return 0;

@@ -59,27 +59,28 @@
     }                                                                               \
     while (0);
 
-static int IsMember(struct OSMutexQueue* queue, struct OSMutex* mutex);
-int        __OSCheckMutex(struct OSMutex* mutex);
-int        __OSCheckDeadLock(struct OSThread* thread);
-int        __OSCheckMutexes(struct OSThread* thread);
+static int IsMember (struct OSMutexQueue* queue, struct OSMutex* mutex);
+int        __OSCheckMutex (struct OSMutex* mutex);
+int        __OSCheckDeadLock (struct OSThread* thread);
+int        __OSCheckMutexes (struct OSThread* thread);
 void
-OSInitMutex(struct OSMutex* mutex)
+OSInitMutex (struct OSMutex* mutex)
 {
-    OSInitThreadQueue(&mutex->queue);
+    OSInitThreadQueue (&mutex->queue);
     mutex->thread = 0;
     mutex->count = 0;
 }
 void
-OSLockMutex(struct OSMutex* mutex)
+OSLockMutex (struct OSMutex* mutex)
 {
     int              enabled = OSDisableInterrupts();
     struct OSThread* currentThread = OSGetCurrentThread();
 
-    ASSERTMSGLINE(0x8C, currentThread,
-                  "OSLockMutex(): current thread does not exist.");
-    ASSERTMSGLINE(0x8E, currentThread->state == 2,
-                  "OSLockMutex(): current thread is not running.");
+    ASSERTMSGLINE (
+        0x8C, currentThread, "OSLockMutex(): current thread does not exist.");
+    ASSERTMSGLINE (0x8E,
+                   currentThread->state == 2,
+                   "OSLockMutex(): current thread is not running.");
 
     while (1)
     {
@@ -88,7 +89,7 @@ OSLockMutex(struct OSMutex* mutex)
         {
             mutex->thread = currentThread;
             mutex->count++;
-            ENQUEUE_MUTEX(mutex, &currentThread->queueMutex, link);
+            ENQUEUE_MUTEX (mutex, &currentThread->queueMutex, link);
             break;
         }
         else if (ownerThread == currentThread)
@@ -99,80 +100,86 @@ OSLockMutex(struct OSMutex* mutex)
         else
         {
             currentThread->mutex = mutex;
-            __OSPromoteThread(mutex->thread, currentThread->priority);
-            ASSERTMSG2LINE(
-                0xA4, __OSCheckDeadLock(currentThread) == 0,
+            __OSPromoteThread (mutex->thread, currentThread->priority);
+            ASSERTMSG2LINE (
+                0xA4,
+                __OSCheckDeadLock (currentThread) == 0,
                 "OSLockMutex(): detected deadlock: current thread %p, mutex %p.",
-                currentThread, mutex);
-            OSSleepThread(&mutex->queue);
+                currentThread,
+                mutex);
+            OSSleepThread (&mutex->queue);
             currentThread->mutex = NULL;
         }
     }
-    OSRestoreInterrupts(enabled);
+    OSRestoreInterrupts (enabled);
 }
 void
-OSUnlockMutex(struct OSMutex* mutex)
+OSUnlockMutex (struct OSMutex* mutex)
 {
     int              enabled = OSDisableInterrupts();
     struct OSThread* currentThread = OSGetCurrentThread();
 
-    ASSERTMSGLINE(0xBD, currentThread,
-                  "OSUnlockMutex(): current thread does not exist.");
-    ASSERTMSGLINE(0xBF, currentThread->state == 2,
-                  "OSUnlockMutex(): current thread is not running.");
-    ASSERTMSG2LINE(
-        0xC2, mutex->thread == currentThread,
+    ASSERTMSGLINE (
+        0xBD, currentThread, "OSUnlockMutex(): current thread does not exist.");
+    ASSERTMSGLINE (0xBF,
+                   currentThread->state == 2,
+                   "OSUnlockMutex(): current thread is not running.");
+    ASSERTMSG2LINE (
+        0xC2,
+        mutex->thread == currentThread,
         "OSUnlockMutex(): current thread %p is not the owner of mutex %p.",
-        currentThread, mutex);
+        currentThread,
+        mutex);
 
     if (mutex->thread == currentThread)
     {
         if (!--mutex->count)
         {
-            DEQUEUE_MUTEX(mutex, &currentThread->queueMutex, link);
+            DEQUEUE_MUTEX (mutex, &currentThread->queueMutex, link);
             mutex->thread = 0;
 
             if (currentThread->priority < currentThread->base)
             {
-                currentThread->priority = __OSGetEffectivePriority(currentThread);
+                currentThread->priority = __OSGetEffectivePriority (currentThread);
             }
-            OSWakeupThread(&mutex->queue);
+            OSWakeupThread (&mutex->queue);
         }
     }
-    OSRestoreInterrupts(enabled);
+    OSRestoreInterrupts (enabled);
 }
 void
-__OSUnlockAllMutex(struct OSThread* thread)
+__OSUnlockAllMutex (struct OSThread* thread)
 {
     struct OSMutex* mutex;
 
     while (thread->queueMutex.head)
     {
         mutex = thread->queueMutex.head;
-        DEQUEUE_HEAD(mutex, &thread->queueMutex, link);
-        ASSERTLINE(0xE5, mutex->thread == thread);
+        DEQUEUE_HEAD (mutex, &thread->queueMutex, link);
+        ASSERTLINE (0xE5, mutex->thread == thread);
         mutex->count = 0;
         mutex->thread = 0;
-        OSWakeupThread(&mutex->queue);
+        OSWakeupThread (&mutex->queue);
     }
 }
 int
-OSTryLockMutex(struct OSMutex* mutex)
+OSTryLockMutex (struct OSMutex* mutex)
 {
     int              enabled = OSDisableInterrupts();
     struct OSThread* currentThread = OSGetCurrentThread();
     int              locked;
 
-    ASSERTMSGLINE(0xFF, currentThread,
-                  "OSTryLockMutex(): current thread does not exist.");
-    ASSERTMSGLINE(0x101, currentThread->state == 2,
-                  "OSTryLockMutex(): current thread is not running.");
+    ASSERTMSGLINE (
+        0xFF, currentThread, "OSTryLockMutex(): current thread does not exist.");
+    ASSERTMSGLINE (0x101,
+                   currentThread->state == 2,
+                   "OSTryLockMutex(): current thread is not running.");
 
     if (!mutex->thread)
     {
         mutex->thread = currentThread;
         mutex->count++;
-        ENQUEUE_MUTEX(mutex, &currentThread->queueMutex, link);
+        ENQUEUE_MUTEX (mutex, &currentThread->queueMutex, link);
         locked = 1;
     }
     else if (mutex->thread == currentThread)
@@ -184,54 +191,57 @@ OSTryLockMutex(struct OSMutex* mutex)
     {
         locked = 0;
     }
-    OSRestoreInterrupts(enabled);
+    OSRestoreInterrupts (enabled);
     return locked;
 }
 void
-OSInitCond(struct OSCond* cond)
+OSInitCond (struct OSCond* cond)
 {
-    OSInitThreadQueue(&cond->queue);
+    OSInitThreadQueue (&cond->queue);
 }
 void
-OSWaitCond(struct OSCond* cond, struct OSMutex* mutex)
+OSWaitCond (struct OSCond* cond, struct OSMutex* mutex)
 {
     int              enabled = OSDisableInterrupts();
     struct OSThread* currentThread = OSGetCurrentThread();
 
-    ASSERTMSGLINE(0x139, currentThread,
-                  "OSWaitCond(): current thread does not exist.");
-    ASSERTMSGLINE(0x13B, currentThread->state == 2,
-                  "OSWaitCond(): current thread is not running.");
-    ASSERTMSG2LINE(0x13E, mutex->thread == currentThread,
-                   "OSWaitCond(): current thread %p is not the owner of mutex %p.",
-                   currentThread, mutex);
+    ASSERTMSGLINE (
+        0x139, currentThread, "OSWaitCond(): current thread does not exist.");
+    ASSERTMSGLINE (0x13B,
+                   currentThread->state == 2,
+                   "OSWaitCond(): current thread is not running.");
+    ASSERTMSG2LINE (0x13E,
+                    mutex->thread == currentThread,
+                    "OSWaitCond(): current thread %p is not the owner of mutex %p.",
+                    currentThread,
+                    mutex);
 
     if (mutex->thread == currentThread)
     {
         s32 count = mutex->count;
         mutex->count = 0;
-        DEQUEUE_MUTEX(mutex, &currentThread->queueMutex, link);
+        DEQUEUE_MUTEX (mutex, &currentThread->queueMutex, link);
         mutex->thread = 0;
         if (currentThread->priority < currentThread->base)
         {
-            currentThread->priority = __OSGetEffectivePriority(currentThread);
+            currentThread->priority = __OSGetEffectivePriority (currentThread);
         }
         OSDisableScheduler();
-        OSWakeupThread(&mutex->queue);
+        OSWakeupThread (&mutex->queue);
         OSEnableScheduler();
-        OSSleepThread(&cond->queue);
-        OSLockMutex(mutex);
+        OSSleepThread (&cond->queue);
+        OSLockMutex (mutex);
         mutex->count = count;
     }
-    OSRestoreInterrupts(enabled);
+    OSRestoreInterrupts (enabled);
 }
 void
-OSSignalCond(struct OSCond* cond)
+OSSignalCond (struct OSCond* cond)
 {
-    OSWakeupThread(&cond->queue);
+    OSWakeupThread (&cond->queue);
 }
 static int
-IsMember(struct OSMutexQueue* queue, struct OSMutex* mutex)
+IsMember (struct OSMutexQueue* queue, struct OSMutex* mutex)
 {
     struct OSMutex* member = queue->head;
 
@@ -246,7 +256,7 @@ IsMember(struct OSMutexQueue* queue, struct OSMutex* mutex)
     return 0;
 }
 int
-__OSCheckMutex(struct OSMutex* mutex)
+__OSCheckMutex (struct OSMutex* mutex)
 {
     struct OSThread*      thread;
     struct OSThreadQueue* queue;
@@ -299,7 +309,7 @@ __OSCheckMutex(struct OSMutex* mutex)
     return 1;
 }
 int
-__OSCheckDeadLock(struct OSThread* thread)
+__OSCheckDeadLock (struct OSThread* thread)
 {
     struct OSMutex* mutex = thread->mutex;
 
@@ -314,7 +324,7 @@ __OSCheckDeadLock(struct OSThread* thread)
     return 0;
 }
 int
-__OSCheckMutexes(struct OSThread* thread)
+__OSCheckMutexes (struct OSThread* thread)
 {
     struct OSMutex* mutex = thread->queueMutex.head;
 
@@ -324,7 +334,7 @@ __OSCheckMutexes(struct OSThread* thread)
         {
             return 0;
         }
-        if (__OSCheckMutex(mutex) == 0)
+        if (__OSCheckMutex (mutex) == 0)
         {
             return 0;
         }

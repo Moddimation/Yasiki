@@ -44,10 +44,10 @@ typedef struct
 } DIR;
 #endif                           /* __dest_os == __win32_os */
 
-DIR*           opendir(const char*);
-struct dirent* readdir(DIR*);
-void           rewinddir(DIR*);
-int            closedir(DIR*);
+DIR*           opendir (const char*);
+struct dirent* readdir (DIR*);
+void           rewinddir (DIR*);
+int            closedir (DIR*);
 
 _MSL_END_EXTERN_C
 

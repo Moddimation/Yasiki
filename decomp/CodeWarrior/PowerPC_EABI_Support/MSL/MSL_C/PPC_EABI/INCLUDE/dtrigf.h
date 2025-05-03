@@ -39,7 +39,7 @@
  *      Notes
  *          maximum absolute error = 2E-09
  */
-inline float sinf_a(float x);
+inline float sinf_a (float x);
 
 /*
  *  sinf_f
@@ -52,7 +52,7 @@ inline float sinf_a(float x);
  *      Notes
  *          maximum absolute error = 2E-04
  */
-inline float sinf_f(float x);
+inline float sinf_f (float x);
 
 /*
  *  cosf_a
@@ -65,7 +65,7 @@ inline float sinf_f(float x);
  *      Notes
  *          maximum absolute error = 2E-09
  */
-inline float cosf_a(float x);
+inline float cosf_a (float x);
 
 /*
  *  cosf_f
@@ -78,7 +78,7 @@ inline float cosf_a(float x);
  *      Notes
  *          maximum absolute error = 9E-04
  */
-inline float cosf_f(float x);
+inline float cosf_f (float x);
 
 /*
  *  sincosf_a
@@ -94,7 +94,7 @@ inline float cosf_f(float x);
  *          sine maximum absolute error   = 2E-09
  *          cosine maximum absolute error = 2E-09
  */
-inline __vec2x32float__ sincosf_a(__vec2x32float__ x);
+inline __vec2x32float__ sincosf_a (__vec2x32float__ x);
 
 /*
  *  sincosf_f
@@ -110,7 +110,7 @@ inline __vec2x32float__ sincosf_a(__vec2x32float__ x);
  *          sine maximum absolute error   = 2E-04
  *          cosine maximum absolute error = 9E-04
  */
-inline __vec2x32float__ sincosf_f(__vec2x32float__ x);
+inline __vec2x32float__ sincosf_f (__vec2x32float__ x);
 
 #pragma fp_contract on
 
@@ -261,7 +261,7 @@ inline __vec2x32float__ sincosf_f(__vec2x32float__ x);
         }                                                                           \
     }
 float
-sinf_a(register float x)
+sinf_a (register float x)
 {
     register FTYPE square_x;
     register FTYPE result = -2.39e-08f;
@@ -271,20 +271,20 @@ sinf_a(register float x)
     register FTYPE const4 = 1.666666664e-01f;
     register FTYPE const5 = 1.0f;
 
-    MAP_TO_FIRST_QUAD(sine_core_series(x), +, +, -, -);
+    MAP_TO_FIRST_QUAD (sine_core_series (x), +, +, -, -);
 }
 float
-sinf_f(register float x)
+sinf_f (register float x)
 {
     register FTYPE square_x;
     register FTYPE result = 7.61E-03f;
     register FTYPE const1 = 1.6605E-01f;
     register FTYPE const2 = 1.0f;
 
-    MAP_TO_FIRST_QUAD(sine_core_series_fast(x), +, +, -, -);
+    MAP_TO_FIRST_QUAD (sine_core_series_fast (x), +, +, -, -);
 }
 float
-cosf_a(register float x)
+cosf_a (register float x)
 {
     register FTYPE square_x;
     register FTYPE result = -2.605e-07f;
@@ -294,21 +294,21 @@ cosf_a(register float x)
     register FTYPE const4 = 4.999999963e-01f;
     register FTYPE const5 = 1.0f;
 
-    MAP_TO_FIRST_QUAD(cosine_core_series(x), +, -, -, +);
+    MAP_TO_FIRST_QUAD (cosine_core_series (x), +, -, -, +);
 }
 float
-cosf_f(register float x)
+cosf_f (register float x)
 {
     register FTYPE square_x;
     register FTYPE result = 3.705E-02f;
     register FTYPE const1 = 4.967E-01f;
     register FTYPE const2 = 1.0f;
 
-    MAP_TO_FIRST_QUAD(cosine_core_series_fast(x), +, -, -, +);
+    MAP_TO_FIRST_QUAD (cosine_core_series_fast (x), +, -, -, +);
 }
 #if __PPCGEKKO__
 __vec2x32float__
-sincosf_f(register __vec2x32float__ x)
+sincosf_f (register __vec2x32float__ x)
 {
     const long long one_negone = 0x3f800000bf800000;
     const long long negone_one = 0xbf8000003f800000;
@@ -420,7 +420,7 @@ finish:
     return result;
 }
 __vec2x32float__
-sincosf_a(register __vec2x32float__ x)
+sincosf_a (register __vec2x32float__ x)
 {
     const long long one_negone = 0x3f800000bf800000;
     const long long negone_one = 0xbf8000003f800000;

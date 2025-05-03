@@ -88,7 +88,7 @@ static const float  __two_to_x[]={.6931471803f,.2402265069f,.05550410856f,
                                   .7111562337e-8};
  */
 inline float
-__2_to_x(float x)
+__2_to_x (float x)
 {
     _INT32 int_part; // truncated x
     float  z;        // intermediate value evaluated by polynomial
@@ -138,7 +138,7 @@ __2_to_x(float x)
 }
 extern "C" const float __two_to_log2e_m1_tI[];
 extern "C" float
-expf(float x)
+expf (float x)
 {
     /* Maple 8th degree Chebyshev compaction polynomial for [-1,1] */
 
@@ -198,53 +198,53 @@ expf(float x)
            (power_of_two * (.9921875f + (.007812501f + z)));
 }
 extern "C" float
-powf(float x, float y)
+powf (float x, float y)
 {
     int tmp;
     if (x > 0.0f)
     {
 #if __DSP
-        return exp(y * logf(x));
+        return exp (y * logf (x));
 #else
-        return __2_to_x(y * __log2f(x));
+        return __2_to_x (y * __log2f (x));
 #endif
     }
-    else if (x < 0.0f)                     // bug: bad for -0
+    else if (x < 0.0f)                       // bug: bad for -0
     {
         tmp = y;
         if ((y - (float)tmp))
         {
-            return __NAN;                  /* true for non-integral exponents */
+            return __NAN;                    /* true for non-integral exponents */
         }
         else
         {
 #if __DSP
             if (tmp % 2)
             {
-                return -exp(y * logf(-x)); /* odd integral exponent */
+                return -exp (y * logf (-x)); /* odd integral exponent */
             }
 
-            return exp(y * logf(-x));      /* even integral exponent */
+            return exp (y * logf (-x));      /* even integral exponent */
 #else
             if (tmp % 2)
             {
-                return -__2_to_x(y * __log2f(-x)); /* odd integral exponent */
+                return -__2_to_x (y * __log2f (-x)); /* odd integral exponent */
             }
 
-            return __2_to_x(y * __log2f(-x));      /* even integral exponent */
+            return __2_to_x (y * __log2f (-x));      /* even integral exponent */
 #endif
         }
     }
 
     /* x=0.0f or perhaps a __NAN */
-    if (isnan(x))
+    if (isnan (x))
     {
         return x;
     }
 
     /* x is 0.0 if we reach the switch */
 
-    switch (fpclassify(y))
+    switch (fpclassify (y))
     {
         case FP_ZERO:
             return 1.0f;

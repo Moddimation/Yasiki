@@ -43,16 +43,16 @@ namespace std
 class exception
 {      // hh 971226 moved from mexcept.h
 public:
-    exception() _MSL_THROW {}
-    exception(const exception&) _MSL_THROW {}
+    exception () _MSL_THROW {}
+    exception (const exception&) _MSL_THROW {}
     exception&
-    operator=(const exception&) _MSL_THROW
+    operator= (const exception&) _MSL_THROW
     {
         return *this;
     }
-    virtual ÃÂ¢ÃÂÃÂ¾exception() _MSL_THROW {}
+    virtual ÃÂ¢ÃÂÃÂ¾exception () _MSL_THROW {}
     virtual const char*
-    what() const _MSL_THROW
+    what () const _MSL_THROW
     {
         return "exception";
     }
@@ -60,33 +60,33 @@ public:
 class bad_exception : public exception
 {
 public:
-    bad_exception() _MSL_THROW {}
-    bad_exception(const bad_exception&) _MSL_THROW {}
+    bad_exception () _MSL_THROW {}
+    bad_exception (const bad_exception&) _MSL_THROW {}
     bad_exception&
-    operator=(const bad_exception&) _MSL_THROW
+    operator= (const bad_exception&) _MSL_THROW
     {
         return *this;
     }
-    virtual ÃÂ¢ÃÂÃÂ¾bad_exception() _MSL_THROW {}
+    virtual ÃÂ¢ÃÂÃÂ¾bad_exception () _MSL_THROW {}
     virtual const char*
-    what() const _MSL_THROW
+    what () const _MSL_THROW
     {
         return "bad_exception";
     }
 };
 typedef void                            (*unexpected_handler)();
-_MSL_IMP_EXP_RUNTIME unexpected_handler set_unexpected(unexpected_handler f)
+_MSL_IMP_EXP_RUNTIME unexpected_handler set_unexpected (unexpected_handler f)
     _MSL_THROW;
-_MSL_IMP_EXP_RUNTIME void unexpected();
+_MSL_IMP_EXP_RUNTIME void unexpected ();
 
 #ifdef __MC68K__
 #ifndef _MSL_MULTITHREAD
-_MSL_IMP_EXP_RUNTIME bool __quick_uncaught_exception();
+_MSL_IMP_EXP_RUNTIME bool __quick_uncaught_exception ();
 #else
-_MSL_IMP_EXP_RUNTIME bool __uncaught_exception();
+_MSL_IMP_EXP_RUNTIME bool __uncaught_exception ();
 #endif
 inline bool
-uncaught_exception()
+uncaught_exception ()
 {
 #ifndef _MSL_MULTITHREAD
     return __quick_uncaught_exception();
@@ -97,8 +97,9 @@ uncaught_exception()
 #endif // __MC68K__
 
 typedef void                           (*terminate_handler)();
-_MSL_IMP_EXP_RUNTIME terminate_handler set_terminate(terminate_handler f) _MSL_THROW;
-_MSL_IMP_EXP_RUNTIME void              terminate();
+_MSL_IMP_EXP_RUNTIME terminate_handler set_terminate (terminate_handler f)
+    _MSL_THROW;
+_MSL_IMP_EXP_RUNTIME void terminate ();
 
 #ifndef _MSL_NO_CPP_NAMESPACE
 }

@@ -143,19 +143,22 @@ struct SYNVOICE
 #define SYN_SAMPLE_FORMAT_PCM8  2
 
 // syn.c
-void SYNInit();
-void SYNQuit();
-void SYNRunAudioFrame();
-void SYNInitSynth(struct SYNSYNTH* synth, void* wavetable, u32 aramBase,
-                  u32 priorityVoiceAlloc, u32 priorityNoteOn,
-                  u32 priorityNoteRelease);
-void SYNQuitSynth(struct SYNSYNTH* synth);
-void SYNMidiInput(struct SYNSYNTH* synth, u8* input);
-void SYNSetMasterVolume(struct SYNSYNTH* synth, s32 dB);
-s32  SYNGetMasterVolume(struct SYNSYNTH* synth);
-u32  SYNGetActiveNotes(struct SYNSYNTH* synth);
+void SYNInit ();
+void SYNQuit ();
+void SYNRunAudioFrame ();
+void SYNInitSynth (struct SYNSYNTH* synth,
+                   void*            wavetable,
+                   u32              aramBase,
+                   u32              priorityVoiceAlloc,
+                   u32              priorityNoteOn,
+                   u32              priorityNoteRelease);
+void SYNQuitSynth (struct SYNSYNTH* synth);
+void SYNMidiInput (struct SYNSYNTH* synth, u8* input);
+void SYNSetMasterVolume (struct SYNSYNTH* synth, s32 dB);
+s32  SYNGetMasterVolume (struct SYNSYNTH* synth);
+u32  SYNGetActiveNotes (struct SYNSYNTH* synth);
 
 // synctrl.c
-u8 SYNGetMidiController(struct SYNSYNTH* synth, u8 midiChannel, u8 function);
+u8 SYNGetMidiController (struct SYNSYNTH* synth, u8 midiChannel, u8 function);
 
 #endif // _DOLPHIN_SYN_H_

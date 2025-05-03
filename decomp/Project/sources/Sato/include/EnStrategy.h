@@ -10,20 +10,20 @@ class EnStrategyContainer
     EnemyStrategy* mpStrategy;
 
 public:
-    EnStrategyContainer();
-    virtual ~EnStrategyContainer();
+    EnStrategyContainer ();
+    virtual ~EnStrategyContainer ();
 
-    virtual s32 getStrategyId(int i_entityIdx) = 0;
+    virtual s32 getStrategyId (int i_entityIdx) = 0;
 
-    void           destroyStrategy();
-    EnemyStrategy* createStrategy(int i_entityIdx);
+    void           destroyStrategy ();
+    EnemyStrategy* createStrategy (int i_entityIdx);
     void*
-    getBuffer()
+    getBuffer ()
     {
         return mBuffer;
     }
     int
-    getBufferSize()
+    getBufferSize ()
     {
         return 0x180;
     }
@@ -31,12 +31,12 @@ public:
 class EnTsuriStrategies : public EnStrategyContainer
 {
 public:
-    virtual s32 getStrategyId(int i_entityIdx);
+    virtual s32 getStrategyId (int i_entityIdx);
 };
 class EnAttackStrategies : public EnStrategyContainer
 {
 public:
-    virtual s32 getStrategyId(int i_entityIdx);
+    virtual s32 getStrategyId (int i_entityIdx);
 };
 class EnCondStrategies
 {
@@ -44,19 +44,19 @@ class EnCondStrategies
     EnemyStrategy* mpCondStrategy;
 
 public:
-    virtual ~EnCondStrategies();
+    virtual ~EnCondStrategies ();
 
-    void           destroyCondStrategy();
-    EnemyStrategy* createCondStrategy(int i_condType);
+    void           destroyCondStrategy ();
+    EnemyStrategy* createCondStrategy (int i_condType);
 
-    s32 getCondStrategyId(int i_entityIdx);
+    s32 getCondStrategyId (int i_entityIdx);
     void*
-    getBuffer()
+    getBuffer ()
     {
         return mBuffer;
     }
     int
-    getBufferSize()
+    getBufferSize ()
     {
         return 0x40;
     }

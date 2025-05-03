@@ -4,18 +4,18 @@
 #include "Portable/serpoll.h"
 #include "Processor/ppc/Generic/targimpl.h"
 void
-TRKHandleRequestEvent(TRKEvent* event)
+TRKHandleRequestEvent (TRKEvent* event)
 {
-    TRKBuffer* buffer = TRKGetBuffer(event->msgBufID);
-    TRKDispatchMessage(buffer);
+    TRKBuffer* buffer = TRKGetBuffer (event->msgBufID);
+    TRKDispatchMessage (buffer);
 }
 void
-TRKHandleSupportEvent(TRKEvent* event)
+TRKHandleSupportEvent (TRKEvent* event)
 {
     TRKTargetSupportRequest();
 }
 void
-TRKIdle()
+TRKIdle ()
 {
     if (TRKTargetStopped() == FALSE)
     {
@@ -23,7 +23,7 @@ TRKIdle()
     }
 }
 void
-TRKNubMainLoop(void)
+TRKNubMainLoop (void)
 {
     void*    msg;
     TRKEvent event;
@@ -34,7 +34,7 @@ TRKNubMainLoop(void)
     isNewInput = FALSE;
     while (isShutdownRequested == FALSE)
     {
-        if (TRKGetNextEvent(&event) != FALSE)
+        if (TRKGetNextEvent (&event) != FALSE)
         {
             isNewInput = FALSE;
 
@@ -44,7 +44,7 @@ TRKNubMainLoop(void)
                     break;
 
                 case NUBEVENT_Request:
-                    TRKHandleRequestEvent(&event);
+                    TRKHandleRequestEvent (&event);
                     break;
 
                 case NUBEVENT_Shutdown:
@@ -53,15 +53,15 @@ TRKNubMainLoop(void)
 
                 case NUBEVENT_Breakpoint:
                 case NUBEVENT_Exception:
-                    TRKTargetInterrupt(&event);
+                    TRKTargetInterrupt (&event);
                     break;
 
                 case NUBEVENT_Support:
-                    TRKHandleSupportEvent(&event);
+                    TRKHandleSupportEvent (&event);
                     break;
             }
 
-            TRKDestructEvent(&event);
+            TRKDestructEvent (&event);
             continue;
         }
 

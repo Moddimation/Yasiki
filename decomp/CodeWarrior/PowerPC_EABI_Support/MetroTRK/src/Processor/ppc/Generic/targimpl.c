@@ -82,27 +82,29 @@ Default_PPC gTRKSaveState;
 #define DSFetch_u64(_p_) (*((u64*)_p_))
 
                                 DSError
-                                TRKPPCAccessSPR(void* value, u32 spr_register_num,
-                                                BOOL read);
-DSError     TRKPPCAccessPairedSingleRegister(void* srcDestPtr, u32 psr, BOOL read);
-DSError     TRKPPCAccessFPRegister(void* srcDestPtr, u32 fpr, BOOL read);
-DSError     TRKPPCAccessSpecialReg(void* value, u32* access_func, BOOL read);
-static void TRKExceptionHandler(u16);
-void        TRKInterruptHandlerEnableInterrupts(void);
-void        WriteFPSCR(register f64*);
-void        ReadFPSCR(register f64*);
-void        __TRK_set_MSR(u32 msr);
-u32         __TRK_get_MSR();
-static void TRK_ppc_memcpy(register void* dest, register const void* src,
-                           register int n, register u32 param_4,
-                           register u32 param_5);
+                                TRKPPCAccessSPR (
+                                    void* value, u32 spr_register_num, BOOL read);
+DSError     TRKPPCAccessPairedSingleRegister (void* srcDestPtr, u32 psr, BOOL read);
+DSError     TRKPPCAccessFPRegister (void* srcDestPtr, u32 fpr, BOOL read);
+DSError     TRKPPCAccessSpecialReg (void* value, u32* access_func, BOOL read);
+static void TRKExceptionHandler (u16);
+void        TRKInterruptHandlerEnableInterrupts (void);
+void        WriteFPSCR (register f64*);
+void        ReadFPSCR (register f64*);
+void        __TRK_set_MSR (u32 msr);
+u32         __TRK_get_MSR ();
+static void TRK_ppc_memcpy (register void*       dest,
+                            register const void* src,
+                            register int         n,
+                            register u32         param_4,
+                            register u32         param_5);
 
-void TRKRestoreExtended1Block();
-void TRKUARTInterruptHandler();
+void TRKRestoreExtended1Block ();
+void TRKUARTInterruptHandler ();
 
-static BOOL TRKTargetCheckStep();
+static BOOL TRKTargetCheckStep ();
 asm u32
-__TRK_get_MSR()
+__TRK_get_MSR ()
 {
 #ifdef __MWERKS__ // clang-format off
 	nofralloc
@@ -112,7 +114,7 @@ __TRK_get_MSR()
 }
 
 asm void
-__TRK_set_MSR(register u32 msr) {
+__TRK_set_MSR (register u32 msr) {
 #ifdef __MWERKS__ // clang-format off
 	nofralloc
 	mtmsr msr
@@ -120,8 +122,9 @@ __TRK_set_MSR(register u32 msr) {
 #endif                              // clang-format on
 }
 
-DSError TRKValidMemory32(const void* addr, size_t length,
-                         ValidMemoryOptions readWriteable)
+DSError TRKValidMemory32 (const void*        addr,
+                          size_t             length,
+                          ValidMemoryOptions readWriteable)
 {
     DSError err = DS_InvalidMemory; /* assume range is invalid */
 
@@ -146,7 +149,7 @@ DSError TRKValidMemory32(const void* addr, size_t length,
     ** range falls within the valid ranges in the map.
     */
 
-    for (i = 0; (i < (s32)(sizeof(gTRKMemMap) / sizeof(memRange))); i++)
+    for (i = 0; (i < (s32)(sizeof (gTRKMemMap) / sizeof (memRange))); i++)
     {
         /*
         ** If the requested range is not completely above
@@ -183,8 +186,9 @@ DSError TRKValidMemory32(const void* addr, size_t length,
                 */
 
                 if (start < (const u8*)gTRKMemMap[i].start)
-                    err = TRKValidMemory32(
-                        start, (u32)((const u8*)gTRKMemMap[i].start - start),
+                    err = TRKValidMemory32 (
+                        start,
+                        (u32)((const u8*)gTRKMemMap[i].start - start),
                         readWriteable);
 
                 /*
@@ -196,9 +200,10 @@ DSError TRKValidMemory32(const void* addr, size_t length,
                 */
 
                 if ((err == DS_NoError) && (end > (const u8*)gTRKMemMap[i].end))
-                    err = TRKValidMemory32((const u8*)gTRKMemMap[i].end,
-                                           (u32)(end - (const u8*)gTRKMemMap[i].end),
-                                           readWriteable);
+                    err =
+                        TRKValidMemory32 ((const u8*)gTRKMemMap[i].end,
+                                          (u32)(end - (const u8*)gTRKMemMap[i].end),
+                                          readWriteable);
             }
 
             break;
@@ -209,8 +214,11 @@ DSError TRKValidMemory32(const void* addr, size_t length,
 }
 
 static ASM void
-TRK_ppc_memcpy(register void* dest, register const void* src, register int n,
-               register u32 param_4, register u32 param_5) {
+TRK_ppc_memcpy (register void*       dest,
+                register const void* src,
+                register int         n,
+                register u32         param_4,
+                register u32         param_5) {
 #ifdef __MWERKS__ // clang-format off
 #define msr		r8
 #define byte	r9
@@ -248,8 +256,11 @@ out_loop:
 #endif // clang-format on
 }
 
-DSError TRKTargetAccessMemory(void* data, u32 start, size_t* length,
-                              MemoryAccessOptions accessOptions, BOOL read)
+DSError TRKTargetAccessMemory (void*               data,
+                               u32                 start,
+                               size_t*             length,
+                               MemoryAccessOptions accessOptions,
+                               BOOL                read)
 {
     DSError            error;
     u32                target_msr;
@@ -258,9 +269,9 @@ DSError TRKTargetAccessMemory(void* data, u32 start, size_t* length,
     TRKExceptionStatus tempExceptionStatus = gTRKExceptionStatus;
     gTRKExceptionStatus.exceptionDetected = FALSE;
 
-    addr = (void*)TRKTargetTranslate(start);
-    error = TRKValidMemory32(addr, *length,
-                             read ? VALIDMEM_Readable : VALIDMEM_Writeable);
+    addr = (void*)TRKTargetTranslate (start);
+    error = TRKValidMemory32 (
+        addr, *length, read ? VALIDMEM_Readable : VALIDMEM_Writeable);
 
     if (error != DS_NoError)
     {
@@ -273,15 +284,15 @@ DSError TRKTargetAccessMemory(void* data, u32 start, size_t* length,
 
         if (read)
         {
-            TRK_ppc_memcpy(data, addr, *length, target_msr, trk_msr);
+            TRK_ppc_memcpy (data, addr, *length, target_msr, trk_msr);
         }
         else
         {
-            TRK_ppc_memcpy(addr, data, *length, trk_msr, target_msr);
-            TRK_flush_cache(addr, *length);
+            TRK_ppc_memcpy (addr, data, *length, trk_msr, target_msr);
+            TRK_flush_cache (addr, *length);
             if ((void*)start != addr)
             {
-                TRK_flush_cache((void*)start, *length);
+                TRK_flush_cache ((void*)start, *length);
             }
         }
     }
@@ -296,13 +307,13 @@ DSError TRKTargetAccessMemory(void* data, u32 start, size_t* length,
     return error;
 }
 DSError
-TRKTargetReadInstruction(void* data, u32 start)
+TRKTargetReadInstruction (void* data, u32 start)
 {
     DSError error;
     size_t  registersLength = 4;
 
-    error = TRKTargetAccessMemory(data, start, &registersLength,
-                                  MEMACCESS_UserMemory, TRUE);
+    error = TRKTargetAccessMemory (
+        data, start, &registersLength, MEMACCESS_UserMemory, TRUE);
 
     if (error == DS_NoError && registersLength != 4)
     {
@@ -312,8 +323,11 @@ TRKTargetReadInstruction(void* data, u32 start)
     return error;
 }
 DSError
-TRKTargetAccessDefault(u32 firstRegister, u32 lastRegister, TRKBuffer* b,
-                       size_t* registersLengthPtr, BOOL read)
+TRKTargetAccessDefault (u32        firstRegister,
+                        u32        lastRegister,
+                        TRKBuffer* b,
+                        size_t*    registersLengthPtr,
+                        BOOL       read)
 {
     DSError            error;
     u32                count;
@@ -333,15 +347,15 @@ TRKTargetAccessDefault(u32 firstRegister, u32 lastRegister, TRKBuffer* b,
 
     gTRKExceptionStatus.exceptionDetected = FALSE;
 
-    *registersLengthPtr = count * sizeof(u32);
+    *registersLengthPtr = count * sizeof (u32);
 
     if (read)
     {
-        error = TRKAppendBuffer_ui32(b, data, count);
+        error = TRKAppendBuffer_ui32 (b, data, count);
     }
     else
     {
-        error = TRKReadBuffer_ui32(b, data, count);
+        error = TRKReadBuffer_ui32 (b, data, count);
     }
 
     if (gTRKExceptionStatus.exceptionDetected)
@@ -354,8 +368,11 @@ TRKTargetAccessDefault(u32 firstRegister, u32 lastRegister, TRKBuffer* b,
     return error;
 }
 DSError
-TRKTargetAccessFP(u32 firstRegister, u32 lastRegister, TRKBuffer* b,
-                  size_t* registersLengthPtr, BOOL read)
+TRKTargetAccessFP (u32        firstRegister,
+                   u32        lastRegister,
+                   TRKBuffer* b,
+                   size_t*    registersLengthPtr,
+                   BOOL       read)
 {
     u64                temp;
     DSError            error;
@@ -370,23 +387,23 @@ TRKTargetAccessFP(u32 firstRegister, u32 lastRegister, TRKBuffer* b,
     tempExceptionStatus = gTRKExceptionStatus;
     gTRKExceptionStatus.exceptionDetected = FALSE;
 
-    __TRK_set_MSR(__TRK_get_MSR() | 0x2000);
+    __TRK_set_MSR (__TRK_get_MSR() | 0x2000);
 
     *registersLengthPtr = 0;
     error = DS_NoError;
 
     for (current = firstRegister; (current <= lastRegister) && (error == DS_NoError);
-         current++, *registersLengthPtr += sizeof(f64))
+         current++, *registersLengthPtr += sizeof (f64))
     {
         if (read)
         {
-            TRKPPCAccessFPRegister(&temp, current, read);
-            error = TRKAppendBuffer1_ui64(b, temp);
+            TRKPPCAccessFPRegister (&temp, current, read);
+            error = TRKAppendBuffer1_ui64 (b, temp);
         }
         else
         {
-            TRKReadBuffer1_ui64(b, &temp);
-            error = TRKPPCAccessFPRegister(&temp, current, read);
+            TRKReadBuffer1_ui64 (b, &temp);
+            error = TRKPPCAccessFPRegister (&temp, current, read);
         }
     }
 
@@ -400,8 +417,11 @@ TRKTargetAccessFP(u32 firstRegister, u32 lastRegister, TRKBuffer* b,
     return error;
 }
 DSError
-TRKTargetAccessExtended1(u32 firstRegister, u32 lastRegister, TRKBuffer* b,
-                         size_t* registersLengthPtr, BOOL read)
+TRKTargetAccessExtended1 (u32        firstRegister,
+                          u32        lastRegister,
+                          TRKBuffer* b,
+                          size_t*    registersLengthPtr,
+                          BOOL       read)
 {
     TRKExceptionStatus tempExceptionStatus;
     int                error;
@@ -422,11 +442,11 @@ TRKTargetAccessExtended1(u32 firstRegister, u32 lastRegister, TRKBuffer* b,
     {
         data = (u32*)&gTRKCPUState.Extended1 + firstRegister;
         count = lastRegister - firstRegister + 1;
-        *registersLengthPtr += count * sizeof(u32);
+        *registersLengthPtr += count * sizeof (u32);
 
         if (read)
         {
-            error = TRKAppendBuffer_ui32(b, data, count);
+            error = TRKAppendBuffer_ui32 (b, data, count);
         }
         else
         {
@@ -441,7 +461,7 @@ TRKTargetAccessExtended1(u32 firstRegister, u32 lastRegister, TRKBuffer* b,
             {
                 gTRKRestoreFlags.DEC = 1;
             }
-            error = TRKReadBuffer_ui32(b, data, count);
+            error = TRKReadBuffer_ui32 (b, data, count);
         }
     }
     if (gTRKExceptionStatus.exceptionDetected)
@@ -454,8 +474,11 @@ TRKTargetAccessExtended1(u32 firstRegister, u32 lastRegister, TRKBuffer* b,
     return error;
 }
 DSError
-TRKTargetAccessExtended2(u32 firstRegister, u32 lastRegister, TRKBuffer* b,
-                         size_t* registerStorageSize, BOOL read)
+TRKTargetAccessExtended2 (u32        firstRegister,
+                          u32        lastRegister,
+                          TRKBuffer* b,
+                          size_t*    registerStorageSize,
+                          BOOL       read)
 {
     TRKExceptionStatus savedException;
     u32                i;
@@ -476,13 +499,13 @@ TRKTargetAccessExtended2(u32 firstRegister, u32 lastRegister, TRKBuffer* b,
     savedException = gTRKExceptionStatus;
     gTRKExceptionStatus.exceptionDetected = FALSE;
 
-    TRKPPCAccessSPR(value_buf0, SPR_HID2, TRUE);
+    TRKPPCAccessSPR (value_buf0, SPR_HID2, TRUE);
 
     value_buf0[0] |= 0xA0000000;
-    TRKPPCAccessSPR(value_buf0, SPR_HID2, FALSE);
+    TRKPPCAccessSPR (value_buf0, SPR_HID2, FALSE);
 
     value_buf0[0] = 0;
-    TRKPPCAccessSPR(value_buf0, SPR_GQR0, FALSE);
+    TRKPPCAccessSPR (value_buf0, SPR_GQR0, FALSE);
 
     *registerStorageSize = 0;
     err = DS_NoError;
@@ -491,16 +514,16 @@ TRKTargetAccessExtended2(u32 firstRegister, u32 lastRegister, TRKBuffer* b,
     {
         if (read)
         {
-            err = TRKPPCAccessPairedSingleRegister((u64*)value_buf, i, read);
-            err = TRKAppendBuffer1_ui64(b, *(u64*)value_buf);
+            err = TRKPPCAccessPairedSingleRegister ((u64*)value_buf, i, read);
+            err = TRKAppendBuffer1_ui64 (b, *(u64*)value_buf);
         }
         else
         {
-            err = TRKReadBuffer1_ui64(b, (u64*)value_buf);
-            err = TRKPPCAccessPairedSingleRegister((u64*)value_buf, i, read);
+            err = TRKReadBuffer1_ui64 (b, (u64*)value_buf);
+            err = TRKPPCAccessPairedSingleRegister ((u64*)value_buf, i, read);
         }
 
-        *registerStorageSize += sizeof(u64);
+        *registerStorageSize += sizeof (u64);
     }
 
     if (gTRKExceptionStatus.exceptionDetected)
@@ -514,7 +537,7 @@ TRKTargetAccessExtended2(u32 firstRegister, u32 lastRegister, TRKBuffer* b,
     return err;
 }
 DSError
-TRKTargetVersions(DSVersions* versions)
+TRKTargetVersions (DSVersions* versions)
 {
     versions->kernelMajor = 0;
     versions->kernelMinor = 8;
@@ -523,7 +546,7 @@ TRKTargetVersions(DSVersions* versions)
     return DS_NoError;
 }
 DSError
-TRKTargetSupportMask(u8 mask[32])
+TRKTargetSupportMask (u8 mask[32])
 {
     mask[0] = 0x7a;
     mask[1] = 0;
@@ -561,7 +584,7 @@ TRKTargetSupportMask(u8 mask[32])
 }
 extern BOOL gTRKBigEndian;
 DSError
-TRKTargetCPUType(DSCPUType* cpuType)
+TRKTargetCPUType (DSCPUType* cpuType)
 {
     cpuType->cpuMajor = 0;
     cpuType->cpuMinor = TRKTargetCPUMinorType();
@@ -573,7 +596,7 @@ TRKTargetCPUType(DSCPUType* cpuType)
     return DS_NoError;
 }
 asm void
-TRKInterruptHandler()
+TRKInterruptHandler ()
 {
 #ifdef __MWERKS__ // clang-format off
 	nofralloc
@@ -683,7 +706,7 @@ L_802CF694:
 #endif // clang-format on
 }
 static ASM void
-TRKExceptionHandler(u16)
+TRKExceptionHandler (u16)
 {
 #ifdef __MWERKS__ // clang-format off
 	nofralloc
@@ -731,7 +754,7 @@ LAB_00010bb0:
 #endif // clang-format on
 }
 void
-TRKPostInterruptEvent(void)
+TRKPostInterruptEvent (void)
 {
     NubEventType eventType;
     u32          inst;
@@ -747,7 +770,7 @@ TRKPostInterruptEvent(void)
         {
             case 0xd00:
             case 0x700:
-                TRKTargetReadInstruction(&inst, gTRKCPUState.Default.PC);
+                TRKTargetReadInstruction (&inst, gTRKCPUState.Default.PC);
 
                 if (inst == 0xfe00000)
                 {
@@ -763,12 +786,12 @@ TRKPostInterruptEvent(void)
                 break;
         }
 
-        TRKConstructEvent(&event, eventType);
-        TRKPostEvent(&event);
+        TRKConstructEvent (&event, eventType);
+        TRKPostEvent (&event);
     }
 }
 asm void
-TRKSwapAndGo()
+TRKSwapAndGo ()
 {
 #ifdef __MWERKS__ // clang-format off
 	nofralloc
@@ -825,7 +848,7 @@ L_802CF930:
 #endif // clang-format on
 }
 asm void
-TRKInterruptHandlerEnableInterrupts(void)
+TRKInterruptHandlerEnableInterrupts (void)
 {
 #ifdef __MWERKS__ // clang-format off
 	nofralloc;
@@ -853,7 +876,7 @@ TRKInterruptHandlerEnableInterrupts(void)
 #endif // clang-format on
 }
 DSError
-TRKTargetInterrupt(TRKEvent* event)
+TRKTargetInterrupt (TRKEvent* event)
 {
     DSError error = DS_NoError;
     switch (event->eventType)
@@ -862,8 +885,8 @@ TRKTargetInterrupt(TRKEvent* event)
         case NUBEVENT_Exception:
             if (TRKTargetCheckStep() == FALSE)
             {
-                TRKTargetSetStopped(TRUE);
-                error = TRKDoNotifyStopped(DSMSG_NotifyStopped);
+                TRKTargetSetStopped (TRUE);
+                error = TRKDoNotifyStopped (DSMSG_NotifyStopped);
             }
             break;
         default:
@@ -873,48 +896,48 @@ TRKTargetInterrupt(TRKEvent* event)
     return error;
 }
 DSError
-TRKTargetAddStopInfo(TRKBuffer* buffer)
+TRKTargetAddStopInfo (TRKBuffer* buffer)
 {
     DSError error;
     u32     instruction;
 
-    error = TRKAppendBuffer1_ui32(buffer, gTRKCPUState.Default.PC);
+    error = TRKAppendBuffer1_ui32 (buffer, gTRKCPUState.Default.PC);
     if (error == 0)
     {
-        error = TRKTargetReadInstruction(&instruction, gTRKCPUState.Default.PC);
+        error = TRKTargetReadInstruction (&instruction, gTRKCPUState.Default.PC);
     }
     if (error == 0)
-        error = TRKAppendBuffer1_ui32(buffer, instruction);
+        error = TRKAppendBuffer1_ui32 (buffer, instruction);
     if (error == 0)
-        error = TRKAppendBuffer1_ui16(buffer, gTRKCPUState.Extended1.exceptionID);
+        error = TRKAppendBuffer1_ui16 (buffer, gTRKCPUState.Extended1.exceptionID);
     return error;
 }
 DSError
-TRKTargetAddExceptionInfo(TRKBuffer* buffer)
+TRKTargetAddExceptionInfo (TRKBuffer* buffer)
 {
     DSError error;
     u32     local_10;
 
-    error = TRKAppendBuffer1_ui32(buffer, gTRKExceptionStatus.exceptionInfo.PC);
+    error = TRKAppendBuffer1_ui32 (buffer, gTRKExceptionStatus.exceptionInfo.PC);
     if (error == 0)
     {
-        error = TRKTargetReadInstruction(&local_10,
-                                         gTRKExceptionStatus.exceptionInfo.PC);
+        error = TRKTargetReadInstruction (&local_10,
+                                          gTRKExceptionStatus.exceptionInfo.PC);
     }
     if (error == 0)
     {
-        error = TRKAppendBuffer1_ui32(buffer, local_10);
+        error = TRKAppendBuffer1_ui32 (buffer, local_10);
     }
     if (error == 0)
     {
-        error = TRKAppendBuffer1_ui16(buffer,
-                                      gTRKExceptionStatus.exceptionInfo.exceptionID);
+        error = TRKAppendBuffer1_ui16 (
+            buffer, gTRKExceptionStatus.exceptionInfo.exceptionID);
     }
 
     return error;
 }
 static DSError
-TRKTargetEnableTrace(BOOL val)
+TRKTargetEnableTrace (BOOL val)
 {
     if (val)
     {
@@ -927,7 +950,7 @@ TRKTargetEnableTrace(BOOL val)
     return DS_NoError;
 }
 static BOOL
-TRKTargetStepDone()
+TRKTargetStepDone ()
 {
     BOOL result = TRUE;
 
@@ -957,10 +980,10 @@ TRKTargetStepDone()
     return result;
 }
 static DSError
-TRKTargetDoStep()
+TRKTargetDoStep ()
 {
     gTRKStepStatus.active = TRUE;
-    TRKTargetEnableTrace(TRUE);
+    TRKTargetEnableTrace (TRUE);
 
     if (gTRKStepStatus.type == DSSTEP_IntoCount ||
         gTRKStepStatus.type == DSSTEP_OverCount)
@@ -968,15 +991,15 @@ TRKTargetDoStep()
         gTRKStepStatus.count--;
     }
 
-    TRKTargetSetStopped(FALSE);
+    TRKTargetSetStopped (FALSE);
     return DS_NoError;
 }
 static BOOL
-TRKTargetCheckStep()
+TRKTargetCheckStep ()
 {
     if (gTRKStepStatus.active)
     {
-        TRKTargetEnableTrace(FALSE);
+        TRKTargetEnableTrace (FALSE);
 
         if (TRKTargetStepDone())
         {
@@ -991,7 +1014,7 @@ TRKTargetCheckStep()
     return gTRKStepStatus.active;
 }
 DSError
-TRKTargetSingleStep(u32 count, BOOL stepOver)
+TRKTargetSingleStep (u32 count, BOOL stepOver)
 {
     DSError error = DS_NoError;
 
@@ -1009,7 +1032,7 @@ TRKTargetSingleStep(u32 count, BOOL stepOver)
     return error;
 }
 DSError
-TRKTargetStepOutOfRange(u32 rangeStart, u32 rangeEnd, BOOL stepOver)
+TRKTargetStepOutOfRange (u32 rangeStart, u32 rangeEnd, BOOL stepOver)
 {
     DSError error = DS_NoError;
 
@@ -1030,12 +1053,12 @@ TRKTargetStepOutOfRange(u32 rangeStart, u32 rangeEnd, BOOL stepOver)
     return error;
 }
 u32
-TRKTargetGetPC()
+TRKTargetGetPC ()
 {
     return gTRKCPUState.Default.PC;
 }
 DSError
-TRKTargetSupportRequest()
+TRKTargetSupportRequest ()
 {
     DSError          error;
     size_t*          length;
@@ -1046,16 +1069,19 @@ TRKTargetSupportRequest()
     commandId = gTRKCPUState.Default.GPR[3];
     if (commandId != DSMSG_ReadFile && commandId != DSMSG_WriteFile)
     {
-        TRKConstructEvent(&event, 4);
-        TRKPostEvent(&event);
+        TRKConstructEvent (&event, 4);
+        TRKPostEvent (&event);
         return DS_NoError;
     }
     else
     {
         length = (size_t*)gTRKCPUState.Default.GPR[5];
-        error = TRKSuppAccessFile((u8)gTRKCPUState.Default.GPR[4],
-                                  (u8*)gTRKCPUState.Default.GPR[6], length,
-                                  &ioResult, TRUE, commandId == DSMSG_ReadFile);
+        error = TRKSuppAccessFile ((u8)gTRKCPUState.Default.GPR[4],
+                                   (u8*)gTRKCPUState.Default.GPR[6],
+                                   length,
+                                   &ioResult,
+                                   TRUE,
+                                   commandId == DSMSG_ReadFile);
 
         if (ioResult == DS_IONoError && error != DS_NoError)
         {
@@ -1066,7 +1092,7 @@ TRKTargetSupportRequest()
 
         if (commandId == DSMSG_ReadFile)
         {
-            TRK_flush_cache((void*)gTRKCPUState.Default.GPR[6], *length);
+            TRK_flush_cache ((void*)gTRKCPUState.Default.GPR[6], *length);
         }
     }
 
@@ -1074,34 +1100,34 @@ TRKTargetSupportRequest()
     return error;
 }
 DSError
-TRKTargetFlushCache(u8, void* start, void* end)
+TRKTargetFlushCache (u8, void* start, void* end)
 {
     if (start < end)
     {
-        TRK_flush_cache(start, (u8*)end - (u8*)start);
+        TRK_flush_cache (start, (u8*)end - (u8*)start);
         return DS_NoError;
     }
 
     return DS_InvalidMemory;
 }
 BOOL
-TRKTargetStopped()
+TRKTargetStopped ()
 {
     return gTRKState.isStopped;
 }
 void
-TRKTargetSetStopped(unsigned int stopped)
+TRKTargetSetStopped (unsigned int stopped)
 {
     gTRKState.isStopped = stopped;
 }
 u32
-TRKTargetStop()
+TRKTargetStop ()
 {
-    TRKTargetSetStopped(1);
+    TRKTargetSetStopped (1);
     return 0;
 }
 DSError
-TRKPPCAccessSPR(void* value, u32 spr_register_num, BOOL read)
+TRKPPCAccessSPR (void* value, u32 spr_register_num, BOOL read)
 {
     /* Initialize instruction array with nop */
 
@@ -1125,74 +1151,76 @@ TRKPPCAccessSPR(void* value, u32 spr_register_num, BOOL read)
 
     if (read)
     {
-        access_func[0] = INSTR_MFSPR(4, spr_register_num);
-        access_func[1] = (u32)INSTR_STW(4, 0, 3);
+        access_func[0] = INSTR_MFSPR (4, spr_register_num);
+        access_func[1] = (u32)INSTR_STW (4, 0, 3);
     }
     else
     {
-        access_func[0] = (u32)INSTR_LWZ(4, 0, 3);
-        access_func[1] = INSTR_MTSPR(spr_register_num, 4);
+        access_func[0] = (u32)INSTR_LWZ (4, 0, 3);
+        access_func[1] = INSTR_MTSPR (spr_register_num, 4);
     }
 
-    return TRKPPCAccessSpecialReg(value, access_func, read);
+    return TRKPPCAccessSpecialReg (value, access_func, read);
 }
 DSError
-TRKPPCAccessPairedSingleRegister(void* srcDestPtr, u32 psr, BOOL read)
+TRKPPCAccessPairedSingleRegister (void* srcDestPtr, u32 psr, BOOL read)
 {
     // all nop by default
-    u32 instructionData[] = { INSTR_NOP, INSTR_NOP, INSTR_NOP, INSTR_NOP,
-                              INSTR_NOP };
+    u32 instructionData[] = {
+        INSTR_NOP, INSTR_NOP, INSTR_NOP, INSTR_NOP, INSTR_NOP
+    };
 
     if (read)
     {
         instructionData[0] =
-            INSTR_PSQ_ST(psr, 0, 3, 0, 0);                 // psq_st psr, 0(r3), 0, 0
+            INSTR_PSQ_ST (psr, 0, 3, 0, 0); // psq_st psr, 0(r3), 0, 0
     }
     else
     {
-        instructionData[0] = INSTR_PSQ_L(psr, 0, 3, 0, 0); // psq_l psr, 0(r3), 0, 0
+        instructionData[0] = INSTR_PSQ_L (psr, 0, 3, 0, 0); // psq_l psr, 0(r3), 0, 0
     }
 
-    return TRKPPCAccessSpecialReg(srcDestPtr, instructionData, read);
+    return TRKPPCAccessSpecialReg (srcDestPtr, instructionData, read);
 }
 DSError
-TRKPPCAccessFPRegister(void* srcDestPtr, u32 fpr, BOOL read)
+TRKPPCAccessFPRegister (void* srcDestPtr, u32 fpr, BOOL read)
 {
     DSError error = DS_NoError;
     // all nop by default
-    u32     instructionData1[] = { INSTR_NOP, INSTR_NOP, INSTR_NOP, INSTR_NOP,
-                                   INSTR_NOP };
+    u32     instructionData1[] = {
+        INSTR_NOP, INSTR_NOP, INSTR_NOP, INSTR_NOP, INSTR_NOP
+    };
 
     if (fpr < 0x20)
     {
         if (read)
         {
-            instructionData1[0] = INSTR_STFD(fpr, 0, 3); // stfd fpr, 0(r3)
+            instructionData1[0] = INSTR_STFD (fpr, 0, 3); // stfd fpr, 0(r3)
         }
         else
         {
-            instructionData1[0] = INSTR_LFD(fpr, 0, 3);  // lfd fpr, 0(r3)
+            instructionData1[0] = INSTR_LFD (fpr, 0, 3);  // lfd fpr, 0(r3)
         }
 
-        error = TRKPPCAccessSpecialReg(srcDestPtr, instructionData1, read);
+        error = TRKPPCAccessSpecialReg (srcDestPtr, instructionData1, read);
     }
     else if (fpr == 0x20)
     {
         if (read)
         {
-            instructionData1[0] = INSTR_STFD(1, 0, 4);   // stfd f1, 0(r4)
-            instructionData1[1] = 0xfc20048e;            // mtfsf 0xff, f1
-            instructionData1[2] = INSTR_STFD(1, 0, 3);   // stfd f1, 0(r3)
-            instructionData1[3] = INSTR_LFD(1, 0, 4);    // lfd f1, 0(r4)
+            instructionData1[0] = INSTR_STFD (1, 0, 4);   // stfd f1, 0(r4)
+            instructionData1[1] = 0xfc20048e;             // mtfsf 0xff, f1
+            instructionData1[2] = INSTR_STFD (1, 0, 3);   // stfd f1, 0(r3)
+            instructionData1[3] = INSTR_LFD (1, 0, 4);    // lfd f1, 0(r4)
         }
         else
         {
-            instructionData1[0] = INSTR_STFD(1, 0, 4);   // stfd f1, 0(r4)
-            instructionData1[1] = INSTR_LFD(1, 0, 3);    // lfd f1, 0(r4)
-            instructionData1[2] = 0xfdfe0d8e;            // mtfsf 0xff, f1
-            instructionData1[3] = INSTR_LFD(1, 0, 4);    // lfd f1, 0(r4)
+            instructionData1[0] = INSTR_STFD (1, 0, 4);   // stfd f1, 0(r4)
+            instructionData1[1] = INSTR_LFD (1, 0, 3);    // lfd f1, 0(r4)
+            instructionData1[2] = 0xfdfe0d8e;             // mtfsf 0xff, f1
+            instructionData1[3] = INSTR_LFD (1, 0, 4);    // lfd f1, 0(r4)
         }
-        error = TRKPPCAccessSpecialReg(srcDestPtr, instructionData1, read);
+        error = TRKPPCAccessSpecialReg (srcDestPtr, instructionData1, read);
         *(u64*)srcDestPtr &= 0xFFFFFFFF;
     }
     else if (fpr == 0x21)
@@ -1202,10 +1230,10 @@ TRKPPCAccessFPRegister(void* srcDestPtr, u32 fpr, BOOL read)
             *(u32*)srcDestPtr = *((u32*)(srcDestPtr) + 1);
         }
 
-        error = TRKPPCAccessSPR(srcDestPtr, SPR_FPECR, read);
+        error = TRKPPCAccessSPR (srcDestPtr, SPR_FPECR, read);
         if (read)
         {
-            DSFetch_u64(srcDestPtr) = DSFetch_u32(srcDestPtr) & 0xffffffffLL;
+            DSFetch_u64 (srcDestPtr) = DSFetch_u32 (srcDestPtr) & 0xffffffffLL;
         }
     }
 
@@ -1213,9 +1241,9 @@ TRKPPCAccessFPRegister(void* srcDestPtr, u32 fpr, BOOL read)
 }
 #define DEBUG_VECTORREG_ACCESS 0
 DSError
-TRKPPCAccessSpecialReg(void* value, u32* access_func, BOOL read)
+TRKPPCAccessSpecialReg (void* value, u32* access_func, BOOL read)
 {
-    typedef void (*asm_access_type)(void*, void*);
+    typedef void (*asm_access_type) (void*, void*);
 
     asm_access_type asm_access;
 
@@ -1243,33 +1271,33 @@ TRKPPCAccessSpecialReg(void* value, u32* access_func, BOOL read)
 
 #if DEBUG_VECTORREG_ACCESS
 
-    __puts("ﾂ･rﾂ･nasm_access: ");
-    __puthex8((u32)asm_access);
-    __puts("   access_func: ");
-    __puthex8((u32)access_func);
+    __puts ("ﾂ･rﾂ･nasm_access: ");
+    __puthex8 ((u32)asm_access);
+    __puts ("   access_func: ");
+    __puthex8 ((u32)access_func);
 
     for (i = 0; i < 10; i++)
     {
-        __puts("ﾂ･rﾂ･ninst[");
-        __puthex2(i);
-        __puts("]: ");
-        __puthex8(access_func[i]);
-        __puts("  ;  ");
-        __puthex8(*((u32*)asm_access + i));
+        __puts ("ﾂ･rﾂ･ninst[");
+        __puthex2 (i);
+        __puts ("]: ");
+        __puthex8 (access_func[i]);
+        __puts ("  ;  ");
+        __puthex8 (*((u32*)asm_access + i));
     }
 
-    __puts("ﾂ･rﾂ･n");
+    __puts ("ﾂ･rﾂ･n");
 
 #endif
 
     // Flush cache
-    TRK_flush_cache(access_func, (sizeof(access_func) * 10));
-    (*asm_access)((u32*)value, (void*)&TRKvalue128_temp);
+    TRK_flush_cache (access_func, (sizeof (access_func) * 10));
+    (*asm_access) ((u32*)value, (void*)&TRKvalue128_temp);
 
     return DS_NoError;
 }
 void
-TRKTargetSetInputPendingPtr(void* ptr)
+TRKTargetSetInputPendingPtr (void* ptr)
 {
     gTRKState.inputPendingPtr = ptr;
 }

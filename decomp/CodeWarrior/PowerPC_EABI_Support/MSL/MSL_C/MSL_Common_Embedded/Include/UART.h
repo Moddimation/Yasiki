@@ -63,18 +63,18 @@ typedef enum
 } UARTBaudRate;
 /****************************************************************************/
 
-UARTError InitializeUART(UARTBaudRate baudRate);
-UARTError TerminateUART(void);
+UARTError InitializeUART (UARTBaudRate baudRate);
+UARTError TerminateUART (void);
 
-UARTError ReadUARTPoll(char* c);
+UARTError ReadUARTPoll (char* c);
 
-UARTError ReadUART1(char* c);
-UARTError ReadUARTN(void* bytes, unsigned long length);
-UARTError ReadUARTString(char* string, unsigned long limit, char terminateChar);
+UARTError ReadUART1 (char* c);
+UARTError ReadUARTN (void* bytes, unsigned long length);
+UARTError ReadUARTString (char* string, unsigned long limit, char terminateChar);
 
-UARTError WriteUART1(char c);
-UARTError WriteUARTN(const void* bytes, unsigned long length);
-UARTError WriteUARTString(const char* string);
+UARTError WriteUART1 (char c);
+UARTError WriteUARTN (const void* bytes, unsigned long length);
+UARTError WriteUARTString (const char* string);
 
 #endif /* uart_h_included */
 

@@ -31,7 +31,7 @@ char*(strcpy)(char* dst, const char* src)
     return (dst);
 }
 int
-strcmp(const char* str1, const char* str2)
+strcmp (const char* str1, const char* str2)
 {
     const unsigned char* p1 = (unsigned char*)str1 - 1;
     const unsigned char* p2 = (unsigned char*)str2 - 1;

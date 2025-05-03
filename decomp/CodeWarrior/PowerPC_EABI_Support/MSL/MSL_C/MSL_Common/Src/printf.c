@@ -89,7 +89,7 @@ enum argument_options
 #if !__VEC__
 #define vec_va_arg(ap)                                                              \
     (*(((MWVector128*)(ap = (char*)((((unsigned long)ap + 15) & ~(15)) + 16))) - 1))
-#define va_arg_replacement1(ap, vec_val) (vec_val = vec_va_arg(ap))
+#define va_arg_replacement1(ap, vec_val) (vec_val = vec_va_arg (ap))
 #endif /* !__VEC__ */
 /* METROWERKS 128 BIT VECTOR: Not sure what this is going to be used for */
 union MWVector128      /* used to get at the vec field values 				*/
@@ -155,7 +155,7 @@ typedef struct
 /* PARSE_FORMAT: Big function, need to parse the format so appropriate types,
  * precision, and formatting are used */
 static const char*
-parse_format(const char* format_string, va_list* arg, print_format* format)
+parse_format (const char* format_string, va_list* arg, print_format* format)
 {
     print_format f;
     const char*  s = format_string;
@@ -252,14 +252,14 @@ getFlags:
 #if __ALTIVEC__
     if (f.useSepString)
     {
-        f.vecSeperator = va_arg(*arg, char*);
-        f.vecSepLen = strlen(f.vecSeperator);
+        f.vecSeperator = va_arg (*arg, char*);
+        f.vecSepLen = strlen (f.vecSeperator);
     }
 #endif                    /* __ALTIVEC__ */
 
     if (c == '*')
     {
-        if ((f.field_width = va_arg(*arg, int)) < 0)
+        if ((f.field_width = va_arg (*arg, int)) < 0)
         {
             f.justification_options = left_justification;
             f.field_width = -f.field_width;
@@ -269,7 +269,7 @@ getFlags:
     }
     else
     {
-        while (isdigit(c))
+        while (isdigit (c))
         {
             f.field_width = (f.field_width * 10) + (c - '0');
             c = *++s;
@@ -289,7 +289,7 @@ getFlags:
 
         if ((c = *++s) == '*')
         {
-            if ((f.precision = va_arg(*arg, int)) < 0)
+            if ((f.precision = va_arg (*arg, int)) < 0)
             {
                 f.precision_specified = 0;
             }
@@ -298,7 +298,7 @@ getFlags:
         }
         else
         {
-            while (isdigit(c))
+            while (isdigit (c))
             {
                 f.precision = (f.precision * 10) + (c - '0');
                 c = *++s;
@@ -630,7 +630,7 @@ getFlags:
 }
 /* LONG2STRING: */
 static char*
-long2str(long num, char* buff, print_format format)
+long2str (long num, char* buff, print_format format)
 {
     unsigned long unsigned_num, base;
     char*         p;
@@ -778,7 +778,7 @@ long2str(long num, char* buff, print_format format)
 /* LONGLONG2STRING: */
 #ifdef __MSL_LONGLONG_SUPPORT__ /*- mm 961219 -*/
 static char*
-longlong2str(long long num, char* buff, print_format format)
+longlong2str (long long num, char* buff, print_format format)
 {
     unsigned long long unsigned_num, base;
     char*              p;
@@ -929,7 +929,7 @@ longlong2str(long long num, char* buff, print_format format)
 #if !__MC68K__
 /*- mm 990722 -*/ /*/ - mm 000414 -*/ /*- PMK 010703 -*/
 static char*
-double2hex(long double num, char* buff, print_format format)
+double2hex (long double num, char* buff, print_format format)
 { /* num = fp#, buff = ascii representation of fp#, format = formating of the number,
      i.e. %a */
 #if __option(little_endian) &&                                                      \
@@ -965,7 +965,7 @@ double2hex(long double num, char* buff, print_format format)
     }
     form.style = FLOATDECIMAL;
     form.digits = MAX_SIG_DIG;
-    __num2dec(&form, num, &dec);
+    __num2dec (&form, num, &dec);
 
 #if __option(little_endian) &&                                                      \
     __dest_os == __win32_os   /*- STEP#2: check for INFINITY or NAN -*/
@@ -976,11 +976,11 @@ double2hex(long double num, char* buff, print_format format)
             p = buff - 5;
             if (format.conversion_char == 'A')
             {
-                strcpy(p, "-INF");
+                strcpy (p, "-INF");
             }
             else
             {
-                strcpy(p, "-inf");
+                strcpy (p, "-inf");
             }
         }
         else
@@ -988,11 +988,11 @@ double2hex(long double num, char* buff, print_format format)
             p = buff - 4;
             if (format.conversion_char == 'A')
             {
-                strcpy(p, "INF");
+                strcpy (p, "INF");
             }
             else
             {
-                strcpy(p, "inf");
+                strcpy (p, "inf");
             }
         }
         return (p);
@@ -1005,11 +1005,11 @@ double2hex(long double num, char* buff, print_format format)
             p = buff - 5;
             if (format.conversion_char == 'A')
             {
-                strcpy(p, "-NAN");
+                strcpy (p, "-NAN");
             }
             else
             {
-                strcpy(p, "-nan");
+                strcpy (p, "-nan");
             }
         }
         else
@@ -1017,11 +1017,11 @@ double2hex(long double num, char* buff, print_format format)
             p = buff - 4;
             if (format.conversion_char == 'A')
             {
-                strcpy(p, "NAN");
+                strcpy (p, "NAN");
             }
             else
             {
-                strcpy(p, "nan");
+                strcpy (p, "nan");
             }
         }
         return (p);
@@ -1034,11 +1034,11 @@ double2hex(long double num, char* buff, print_format format)
             p = buff - 5;
             if (format.conversion_char == 'A')
             {
-                strcpy(p, "-INF");
+                strcpy (p, "-INF");
             }
             else
             {
-                strcpy(p, "-inf");
+                strcpy (p, "-inf");
             }
         }
         else
@@ -1046,11 +1046,11 @@ double2hex(long double num, char* buff, print_format format)
             p = buff - 4;
             if (format.conversion_char == 'A')
             {
-                strcpy(p, "INF");
+                strcpy (p, "INF");
             }
             else
             {
-                strcpy(p, "inf");
+                strcpy (p, "inf");
             }
         }
 
@@ -1063,11 +1063,11 @@ double2hex(long double num, char* buff, print_format format)
             p = buff - 5;
             if (format.conversion_char == 'A')
             {
-                strcpy(p, "-NAN");
+                strcpy (p, "-NAN");
             }
             else
             {
-                strcpy(p, "-nan");
+                strcpy (p, "-nan");
             }
         }
         else
@@ -1075,11 +1075,11 @@ double2hex(long double num, char* buff, print_format format)
             p = buff - 4;
             if (format.conversion_char == 'A')
             {
-                strcpy(p, "NAN");
+                strcpy (p, "NAN");
             }
             else
             {
-                strcpy(p, "nan");
+                strcpy (p, "nan");
             }
         }
         return (p);
@@ -1100,8 +1100,8 @@ double2hex(long double num, char* buff, print_format format)
     sptr = (((short*)&ld) + 3);   /* point sptr to exponent information */
     snum = (*sptr & 0x7ff0) >> 4; /* mask fp # to extract just the exponent values */
     exp = snum - 1023;            /* remove the bias */
-    p = long2str(exp, buff,
-                 exp_format);     /* start filling p with exponent characters */
+    p = long2str (
+        exp, buff, exp_format);   /* start filling p with exponent characters */
     if (format.conversion_char == 'a')
     {
         *--p = 'p';
@@ -1175,7 +1175,7 @@ double2hex(long double num, char* buff, print_format format)
 #else                                              /* BIG ENDIAN VERSION (MAC) */
     snum = (*sptr & 0x7ff0) >> 4;
     exp = snum - 1023;
-    p = long2str(exp, buff, exp_format);
+    p = long2str (exp, buff, exp_format);
     if (format.conversion_char == 'a')
     {
         *--p = 'p';
@@ -1250,7 +1250,7 @@ double2hex(long double num, char* buff, print_format format)
 #endif /* !__MC68K__  */ /*- mm 000414 -*/ /*- mm 990722 -*/
 /*- ROUND_DECIMAL -*/
 static void
-round_decimal(decimal* dec, int new_length)
+round_decimal (decimal* dec, int new_length)
 {
     char  c;
     char* p;
@@ -1326,7 +1326,7 @@ round_decimal(decimal* dec, int new_length)
 /*- FLOAT2STRING -*/
 #ifndef _No_Floating_Point                 /*- scm 970709 -*/
 static char*
-float2str(long double num, char* buff, print_format format)
+float2str (long double num, char* buff, print_format format)
 {
     decimal dec;
     decform form;
@@ -1350,7 +1350,7 @@ float2str(long double num, char* buff, print_format format)
     form.style = FLOATDECIMAL;
     form.digits = MAX_SIG_DIG;                /*- mm 970609 -*/
 
-    __num2dec(&form, num, &dec);
+    __num2dec (&form, num, &dec);
 
     p = (char*)dec.sig.text + dec.sig.length; /* strip off trailing zeroes */
 
@@ -1373,26 +1373,26 @@ float2str(long double num, char* buff, print_format format)
 
             if (num < 0)           /*- mm 970213 -*/
             {                      /*- mm 970213 -*/
-                p = buff - 5; /*- mm 970213 -*/          /* special cases */
-                if (isupper(format.conversion_char))     /*- mm 990430 -*/
+                p = buff - 5; /*- mm 970213 -*/           /* special cases */
+                if (isupper (format.conversion_char))     /*- mm 990430 -*/
                 {
-                    strcpy(p, "-INF");                   /*- mm 990430 -*/
+                    strcpy (p, "-INF");                   /*- mm 990430 -*/
+                }
+                else                                      /*- mm 990430 -*/
+                {
+                    strcpy (p, "-inf"); /*- mm 970213 -*/ /*- mm 990430 -*/
+                }
+            } /*- mm 970213 -*/
+            else                                         /*- mm 970213 -*/
+            {                                            /*- mm 970213 -*/
+                p = buff - 4; /*- mm 970213 -*/          /* special cases */
+                if (isupper (format.conversion_char))    /*- mm 990430 -*/
+                {
+                    strcpy (p, "INF");                   /*- mm 990430 -*/
                 }
                 else                                     /*- mm 990430 -*/
                 {
-                    strcpy(p, "-inf"); /*- mm 970213 -*/ /*- mm 990430 -*/
-                }
-            } /*- mm 970213 -*/
-            else                                        /*- mm 970213 -*/
-            {                                           /*- mm 970213 -*/
-                p = buff - 4; /*- mm 970213 -*/         /* special cases */
-                if (isupper(format.conversion_char))    /*- mm 990430 -*/
-                {
-                    strcpy(p, "INF");                   /*- mm 990430 -*/
-                }
-                else                                    /*- mm 990430 -*/
-                {
-                    strcpy(p, "inf"); /*- mm 970213 -*/ /*- mm 990430 -*/
+                    strcpy (p, "inf"); /*- mm 970213 -*/ /*- mm 990430 -*/
                 }
             } /*- mm 970213 -*/
 
@@ -1400,28 +1400,28 @@ float2str(long double num, char* buff, print_format format)
 
         case 'N':
 
-            if (dec.sgn)                             /*- mm 990816 -*/
-            {                                        /*- mm 990816 -*/
-                p = buff - 5;                        /*- mm 990816 -*/
-                if (isupper(format.conversion_char)) /*- mm 990816 -*/
+            if (dec.sgn)                              /*- mm 990816 -*/
+            {                                         /*- mm 990816 -*/
+                p = buff - 5;                         /*- mm 990816 -*/
+                if (isupper (format.conversion_char)) /*- mm 990816 -*/
                 {
-                    strcpy(p, "-NAN");               /*- mm 990816 -*/
+                    strcpy (p, "-NAN");               /*- mm 990816 -*/
                 }
-                else                                 /*- mm 990816 -*/
+                else                                  /*- mm 990816 -*/
                 {
-                    strcpy(p, "-nan");               /*- mm 990816 -*/
+                    strcpy (p, "-nan");               /*- mm 990816 -*/
                 }
             } /*- mm 990816 -*/
-            else                                     /*- mm 990816 -*/
-            {                                        /*- mm 990816 -*/
-                p = buff - 4;                        /*- mm 990816 -*/
-                if (isupper(format.conversion_char)) /*- mm 990816 -*/
+            else                                      /*- mm 990816 -*/
+            {                                         /*- mm 990816 -*/
+                p = buff - 4;                         /*- mm 990816 -*/
+                if (isupper (format.conversion_char)) /*- mm 990816 -*/
                 {
-                    strcpy(p, "NAN");                /*- mm 990816 -*/
+                    strcpy (p, "NAN");                /*- mm 990816 -*/
                 }
-                else                                 /*- mm 990816 -*/
+                else                                  /*- mm 990816 -*/
                 {
-                    strcpy(p, "nan");                /*- mm 990816 -*/
+                    strcpy (p, "nan");                /*- mm 990816 -*/
                 }
             } /*- mm 990816 -*/
 
@@ -1441,7 +1441,7 @@ float2str(long double num, char* buff, print_format format)
 
             if (dec.sig.length > format.precision)
             {
-                round_decimal(&dec, format.precision);
+                round_decimal (&dec, format.precision);
             }
 
             if (dec.exp < -4 || dec.exp >= format.precision)
@@ -1484,7 +1484,7 @@ float2str(long double num, char* buff, print_format format)
 
             if (dec.sig.length > format.precision + 1)
             {
-                round_decimal(&dec, format.precision + 1);
+                round_decimal (&dec, format.precision + 1);
             }
 
             n = dec.exp;
@@ -1556,8 +1556,8 @@ float2str(long double num, char* buff, print_format format)
 
             if (frac_digits > format.precision)
             {
-                round_decimal(&dec,
-                              dec.sig.length - (frac_digits - format.precision));
+                round_decimal (&dec,
+                               dec.sig.length - (frac_digits - format.precision));
 
                 if ((frac_digits = -dec.exp + dec.sig.length - 1) < 0)
                 {
@@ -1643,41 +1643,44 @@ float2str(long double num, char* buff, print_format format)
 #endif /* ndef _No_Floating_Point */ /*- scm 970709 -*/
 /* __PFORMATTER -*/
 static int
-__pformatter(void* (*WriteProc)(void*, const char*, size_t), void* WriteProcArg,
-             const char* format_str, va_list arg) /*- mm 990325 -*/
+__pformatter (void*       (*WriteProc) (void*, const char*, size_t),
+              void*       WriteProcArg,
+              const char* format_str,
+              va_list     arg)            /*- mm 990325 -*/
 {
     int          num_chars, chars_written, field_width;
     const char*  format_ptr;
     const char*  curr_format;
     print_format format;
     long         long_num;
-#ifdef __MSL_LONGLONG_SUPPORT__                   /*- mm 961219 -*/
-    long long long_long_num;                      /*- mm 961219 -*/
-#endif /* __MSL_LONGLONG_SUPPORT__ */             /*- mm 961219 -*/
+#ifdef __MSL_LONGLONG_SUPPORT__       /*- mm 961219 -*/
+    long long long_long_num;          /*- mm 961219 -*/
+#endif /* __MSL_LONGLONG_SUPPORT__ */ /*- mm 961219 -*/
 #ifndef _No_Floating_Point
     long double long_double_num;
 #endif
     char  buff[conversion_buff_size];
     char* buff_ptr;
     char* string_end;
-    char  fill_char = ' ';                        /*- mm 960722 -*/
+    char  fill_char = ' ';            /*- mm 960722 -*/
 #if __ALTIVEC__
-    int         vecIndex;                         /* counts vector elements							*/
+    int         vecIndex;             /* counts vector elements							*/
     MWVector128 vec_val;
-#endif                                            /* __ALTIVEC__ */
+#endif                                /* __ALTIVEC__ */
 
     format_ptr = format_str;
     chars_written = 0;
 
     while (*format_ptr)
     {
-        if (!(curr_format = strchr(format_ptr, '%')))
+        if (!(curr_format = strchr (format_ptr, '%')))
         {
-            num_chars = strlen(format_ptr);
+            num_chars = strlen (format_ptr);
             chars_written += num_chars;
 
-            if (num_chars &&
-                !(*WriteProc)(WriteProcArg, format_ptr, num_chars)) /*- mm 990325 -*/
+            if (num_chars && !(*WriteProc) (WriteProcArg,
+                                            format_ptr,
+                                            num_chars))          /*- mm 990325 -*/
             {
                 return (-1);
             }
@@ -1689,7 +1692,7 @@ __pformatter(void* (*WriteProc)(void*, const char*, size_t), void* WriteProcArg,
         chars_written += num_chars;
 
         if (num_chars &&
-            !(*WriteProc)(WriteProcArg, format_ptr, num_chars))     /*- mm 990325 -*/
+            !(*WriteProc) (WriteProcArg, format_ptr, num_chars)) /*- mm 990325 -*/
         {
             return (-1);
         }
@@ -1697,13 +1700,13 @@ __pformatter(void* (*WriteProc)(void*, const char*, size_t), void* WriteProcArg,
         format_ptr = curr_format;
 
 #if __PPC_EABI__
-        format_ptr = parse_format(format_ptr, (va_list*)arg, &format);
+        format_ptr = parse_format (format_ptr, (va_list*)arg, &format);
 #else
-        format_ptr = parse_format(format_ptr, (va_list*)&arg, &format);
+        format_ptr = parse_format (format_ptr, (va_list*)&arg, &format);
 #if __ALTIVEC__
         vecIndex = 0;
         do { /* can be done repeatedly for each vector field */
-#endif                                                              /* __ALTIVEC__ */
+#endif                                                           /* __ALTIVEC__ */
 #endif
         switch (format.conversion_char)
         {
@@ -1720,9 +1723,9 @@ __pformatter(void* (*WriteProc)(void*, const char*, size_t), void* WriteProcArg,
                             format.vec_access = U8;
                         }
 #if __VEC__
-                        vec_val = va_arg(arg, MWVector128);
+                        vec_val = va_arg (arg, MWVector128);
 #else
-                        va_arg_replacement1(arg, vec_val);
+                        va_arg_replacement1 (arg, vec_val);
 #endif
                     }
                     switch (format.vec_access)
@@ -1742,18 +1745,18 @@ __pformatter(void* (*WriteProc)(void*, const char*, size_t), void* WriteProcArg,
 #endif                                            /* __ALTIVEC__ */
                     if (format.argument_options == long_argument)
                     {
-                        long_num = va_arg(arg, long);
+                        long_num = va_arg (arg, long);
                     }
 #ifdef __MSL_LONGLONG_SUPPORT__                   /*- mm 961219 -*/
                     else if (format.argument_options ==
                              long_long_argument)  /*- mm 961219 -*/
                     {
-                        long_long_num = va_arg(arg, long long);    /*- mm 961219 -*/
+                        long_long_num = va_arg (arg, long long);   /*- mm 961219 -*/
                     }
 #endif /* __MSL_LONGLONG_SUPPORT__ */                              /*- mm 961219 -*/
                     else
                     {
-                        long_num = va_arg(arg, int);
+                        long_num = va_arg (arg, int);
                     }
 
                 if (format.argument_options == short_argument)
@@ -1768,17 +1771,17 @@ __pformatter(void* (*WriteProc)(void*, const char*, size_t), void* WriteProcArg,
 #ifdef __MSL_LONGLONG_SUPPORT__                                    /*- mm 961219 -*/
                 if (format.argument_options == long_long_argument) /*- mm 961219 -*/
                 {                                                  /*- bb 971019 -*/
-                    if (!(buff_ptr = longlong2str(long_long_num,   /*- mm 961219 -*/
-                                                  buff + conversion_buff_size,
-                                                  format)))        /*- mm 961219 -*/
+                    if (!(buff_ptr = longlong2str (long_long_num,  /*- mm 961219 -*/
+                                                   buff + conversion_buff_size,
+                                                   format)))       /*- mm 961219 -*/
                     {
                         goto conversion_error;                     /*- mm 961219 -*/
                     }
                 } /*- bb 971019 -*/
                 else                              /*- mm 961219 -*/
 #endif /* __MSL_LONGLONG_SUPPORT__ */             /*- mm 961219 -*/
-                    if (!(buff_ptr = long2str(long_num, buff + conversion_buff_size,
-                                              format)))
+                    if (!(buff_ptr = long2str (
+                              long_num, buff + conversion_buff_size, format)))
                     {
                         goto conversion_error;
                     }
@@ -1802,9 +1805,9 @@ __pformatter(void* (*WriteProc)(void*, const char*, size_t), void* WriteProcArg,
                             format.vec_access = U8;
                         }
 #if __VEC__
-                        vec_val = va_arg(arg, MWVector128);
+                        vec_val = va_arg (arg, MWVector128);
 #else
-                        va_arg_replacement1(arg, vec_val);
+                        va_arg_replacement1 (arg, vec_val);
 #endif
                     }
                     switch (format.vec_access)
@@ -1824,18 +1827,18 @@ __pformatter(void* (*WriteProc)(void*, const char*, size_t), void* WriteProcArg,
 #endif                                            /* __ALTIVEC__ */
                     if (format.argument_options == long_argument)
                     {
-                        long_num = va_arg(arg, unsigned long);
+                        long_num = va_arg (arg, unsigned long);
                     }
 #ifdef __MSL_LONGLONG_SUPPORT__                   /*- mm 961219 -*/
                     else if (format.argument_options ==
                              long_long_argument)  /*- mm 961219 -*/
                     {
-                        long_long_num = va_arg(arg, long long);    /*- mm 961219 -*/
+                        long_long_num = va_arg (arg, long long);   /*- mm 961219 -*/
                     }
 #endif /* __MSL_LONGLONG_SUPPORT__ */                              /*- mm 961219 -*/
                     else
                     {
-                        long_num = va_arg(arg, unsigned int);
+                        long_num = va_arg (arg, unsigned int);
                     }
 
                 if (format.argument_options == short_argument)
@@ -1850,17 +1853,17 @@ __pformatter(void* (*WriteProc)(void*, const char*, size_t), void* WriteProcArg,
 #ifdef __MSL_LONGLONG_SUPPORT__                                    /*- mm 961219 -*/
                 if (format.argument_options == long_long_argument) /*- mm 961219 -*/
                 {                                                  /*- mf 971020 -*/
-                    if (!(buff_ptr = longlong2str(long_long_num,   /*- mm 961219 -*/
-                                                  buff + conversion_buff_size,
-                                                  format)))        /*- mm 961219 -*/
+                    if (!(buff_ptr = longlong2str (long_long_num,  /*- mm 961219 -*/
+                                                   buff + conversion_buff_size,
+                                                   format)))       /*- mm 961219 -*/
                     {
                         goto conversion_error;                     /*- mm 961219 -*/
                     }
                 } /*- mf 971020 -*/
                 else                              /*- mm 961219 -*/
 #endif /* __MSL_LONGLONG_SUPPORT__ */             /*- mm 961219 -*/
-                    if (!(buff_ptr = long2str(long_num, buff + conversion_buff_size,
-                                              format)))
+                    if (!(buff_ptr = long2str (
+                              long_num, buff + conversion_buff_size, format)))
                     {
                         goto conversion_error;
                     }
@@ -1888,9 +1891,9 @@ __pformatter(void* (*WriteProc)(void*, const char*, size_t), void* WriteProcArg,
                             format.vec_access = U32;
                         }
 #if __VEC__
-                        vec_val = va_arg(arg, MWVector128);
+                        vec_val = va_arg (arg, MWVector128);
 #else
-                        va_arg_replacement1(arg, vec_val);
+                        va_arg_replacement1 (arg, vec_val);
 #endif
                     }
                     switch (format.vec_access)
@@ -1910,15 +1913,15 @@ __pformatter(void* (*WriteProc)(void*, const char*, size_t), void* WriteProcArg,
 #endif                                            /* __ALTIVEC__ */
                     if (format.argument_options == long_double_argument)
                     {
-                        long_double_num = va_arg(arg, long double);
+                        long_double_num = va_arg (arg, long double);
                     }
                     else
                     {
-                        long_double_num = va_arg(arg, double);
+                        long_double_num = va_arg (arg, double);
                     }
 
-                if (!(buff_ptr = float2str(long_double_num,
-                                           buff + conversion_buff_size, format)))
+                if (!(buff_ptr = float2str (
+                          long_double_num, buff + conversion_buff_size, format)))
                 {
                     goto conversion_error;
                 }
@@ -1933,15 +1936,15 @@ __pformatter(void* (*WriteProc)(void*, const char*, size_t), void* WriteProcArg,
             case 'A':
                 if (format.argument_options == long_double_argument)
                 {
-                    long_double_num = va_arg(arg, long double);
+                    long_double_num = va_arg (arg, long double);
                 }
                 else
                 {
-                    long_double_num = va_arg(arg, double);
+                    long_double_num = va_arg (arg, double);
                 }
 
-                if (!(buff_ptr = double2hex(long_double_num,
-                                            buff + conversion_buff_size, format)))
+                if (!(buff_ptr = double2hex (
+                          long_double_num, buff + conversion_buff_size, format)))
                 {
                     goto conversion_error;
                 }
@@ -1956,12 +1959,12 @@ __pformatter(void* (*WriteProc)(void*, const char*, size_t), void* WriteProcArg,
 #ifndef __NO_WIDE_CHAR                                         /*- vss 990624 -*/
                 if (format.argument_options == wchar_argument) /*- mm 990325 -*/
                 {                                              /*- mm 990325 -*/
-                    wchar_t* wcs_ptr = va_arg(arg, wchar_t*);  /*- mm 990325 -*/
+                    wchar_t* wcs_ptr = va_arg (arg, wchar_t*); /*- mm 990325 -*/
                     if (wcs_ptr == NULL)
                     {
                         wcs_ptr = L"";
                     }
-                    if ((num_chars = wcstombs(buff, wcs_ptr, sizeof(buff))) < 0)
+                    if ((num_chars = wcstombs (buff, wcs_ptr, sizeof (buff))) < 0)
                     {
                         goto conversion_error;
                     }
@@ -1969,7 +1972,7 @@ __pformatter(void* (*WriteProc)(void*, const char*, size_t), void* WriteProcArg,
                 }
                 else
 #endif                                                         /* __NO_WIDE_CHAR */
-                    buff_ptr = va_arg(arg, char*);
+                    buff_ptr = va_arg (arg, char*);
                 if (buff_ptr == NULL)                          /*- mm 970708 -*/
                 {
                     buff_ptr = "";                             /*- mm 970708 -*/
@@ -1987,14 +1990,14 @@ __pformatter(void* (*WriteProc)(void*, const char*, size_t), void* WriteProcArg,
                 {
                     num_chars = format.precision;
 
-                    if ((string_end = (char*)memchr(buff_ptr, 0, num_chars)) != 0)
+                    if ((string_end = (char*)memchr (buff_ptr, 0, num_chars)) != 0)
                     {
                         num_chars = string_end - buff_ptr;
                     }
                 }
                 else
                 {
-                    num_chars = strlen(buff_ptr);
+                    num_chars = strlen (buff_ptr);
                 }
 
                 break;
@@ -2003,9 +2006,9 @@ __pformatter(void* (*WriteProc)(void*, const char*, size_t), void* WriteProcArg,
                 {
 #ifdef __m56800E__
                     int* buff_ptr;
-                    buff_ptr = va_arg(arg, int*);
+                    buff_ptr = va_arg (arg, int*);
 #else
-                        buff_ptr = va_arg(arg, char*);
+                        buff_ptr = va_arg (arg, char*);
 #endif                                /* __m56800E__ */
 
                     switch (format.argument_options)
@@ -2048,9 +2051,9 @@ __pformatter(void* (*WriteProc)(void*, const char*, size_t), void* WriteProcArg,
                             format.vecSepLen = *format.c_vecSeperator ? 1 : 0;
                         }
 #if __VEC__
-                        vec_val = va_arg(arg, MWVector128);
+                        vec_val = va_arg (arg, MWVector128);
 #else
-                        va_arg_replacement1(arg, vec_val);
+                        va_arg_replacement1 (arg, vec_val);
 #endif
                     }
                     switch (format.vec_access)
@@ -2068,7 +2071,7 @@ __pformatter(void* (*WriteProc)(void*, const char*, size_t), void* WriteProcArg,
                 }
                 else
 #endif                                            /* __ALTIVEC__ */
-                    *buff_ptr = va_arg(arg, int);
+                    *buff_ptr = va_arg (arg, int);
 
                 num_chars = 1;
 
@@ -2087,11 +2090,12 @@ __pformatter(void* (*WriteProc)(void*, const char*, size_t), void* WriteProcArg,
             case bad_conversion:
             conversion_error:
             default:
-                num_chars = strlen(curr_format);
+                num_chars = strlen (curr_format);
                 chars_written += num_chars;
 
-                if (num_chars && !(*WriteProc)(WriteProcArg, curr_format,
-                                               num_chars))          /*- mm 990325 -*/
+                if (num_chars && !(*WriteProc) (WriteProcArg,
+                                                curr_format,
+                                                num_chars))        /*- mm 990325 -*/
                 {
                     return (-1);
                 }
@@ -2102,23 +2106,24 @@ __pformatter(void* (*WriteProc)(void*, const char*, size_t), void* WriteProcArg,
         field_width = num_chars;
 
         if (format.justification_options != left_justification)
-        {                                                           /*- mm 960722 -*/
+        {                                                          /*- mm 960722 -*/
             fill_char = (format.justification_options == zero_fill)
                             ? '0'
-                            : ' ';                                  /*- mm 960722 -*/
+                            : ' ';                                 /*- mm 960722 -*/
             if (((*buff_ptr == '+') || (*buff_ptr == '-') || (*buff_ptr == ' ')) &&
-                (fill_char == '0')) /*- mm 970206 -*/               /*- mm 990831 -*/
-            {                                                       /*- mm 970206 -*/
-                if ((*WriteProc)(WriteProcArg, buff_ptr, 1) == 0)   /*- mm 990325 -*/
+                (fill_char == '0')) /*- mm 970206 -*/              /*- mm 990831 -*/
+            {                                                      /*- mm 970206 -*/
+                if ((*WriteProc) (WriteProcArg, buff_ptr, 1) == 0) /*- mm 990325 -*/
                 {
-                    return (-1);                                    /*- mm 970206 -*/
+                    return (-1);                                   /*- mm 970206 -*/
                 }
-                ++buff_ptr;                                         /*- mm 970206 -*/
-                num_chars--;                                        /*- mm 970723 -*/
+                ++buff_ptr;                                        /*- mm 970206 -*/
+                num_chars--;                                       /*- mm 970723 -*/
             }
             while (field_width < format.field_width)
             {
-                if ((*WriteProc)(WriteProcArg, &fill_char, 1) == 0) /*- mm 990325 -*/
+                if ((*WriteProc) (WriteProcArg, &fill_char, 1) ==
+                    0)                                             /*- mm 990325 -*/
                 {
                     return (-1);
                 }
@@ -2127,7 +2132,7 @@ __pformatter(void* (*WriteProc)(void*, const char*, size_t), void* WriteProcArg,
             }
         } /*- mm 960722 -*/
         if (num_chars &&
-            !(*WriteProc)(WriteProcArg, buff_ptr, num_chars))   /*- mm 990325 -*/
+            !(*WriteProc) (WriteProcArg, buff_ptr, num_chars))   /*- mm 990325 -*/
         {
             return (-1);
         }
@@ -2137,7 +2142,7 @@ __pformatter(void* (*WriteProc)(void*, const char*, size_t), void* WriteProcArg,
             while (field_width < format.field_width)
             {
                 char blank = ' ';
-                if ((*WriteProc)(WriteProcArg, &blank, 1) == 0) /*- mm 990325 -*/
+                if ((*WriteProc) (WriteProcArg, &blank, 1) == 0) /*- mm 990325 -*/
                 {
                     return (-1);
                 }
@@ -2157,14 +2162,15 @@ __pformatter(void* (*WriteProc)(void*, const char*, size_t), void* WriteProcArg,
             {
                 if (format.vecSepLen == 1)
                 {
-                    if ((*WriteProc)(WriteProcArg, format.vecSeperator, 1) ==
-                        0)                                /*- mm 990325 -*/
+                    if ((*WriteProc) (WriteProcArg, format.vecSeperator, 1) ==
+                        0)                                 /*- mm 990325 -*/
                     {
                         return (-1);
                     }
                 }
-                else if (!(*WriteProc)(WriteProcArg, format.vecSeperator,
-                                       format.vecSepLen)) /*- mm 990325 -*/
+                else if (!(*WriteProc) (WriteProcArg,
+                                        format.vecSeperator,
+                                        format.vecSepLen)) /*- mm 990325 -*/
                 {
                     return (-1);
                 }
@@ -2176,19 +2182,19 @@ __pformatter(void* (*WriteProc)(void*, const char*, size_t), void* WriteProcArg,
         }
     }
     while (format.argument_options == vector_argument && vecIndex < format.vecCount);
-#endif                                                    /* __ALTIVEC__ */
+#endif                                                     /* __ALTIVEC__ */
 }
 return (chars_written);
 }
-/*- __FILEWRITE -*/                                       /*- mm 990325 -*/
+/*- __FILEWRITE -*/                                        /*- mm 990325 -*/
 void*
-__FileWrite(void* File, const char* Buffer, size_t NumChars)
+__FileWrite (void* File, const char* Buffer, size_t NumChars)
 {
-    return (fwrite(Buffer, 1, NumChars, (FILE*)File) == NumChars ? File : 0);
+    return (fwrite (Buffer, 1, NumChars, (FILE*)File) == NumChars ? File : 0);
 }
 /*- __STRINGWRITE -*/
 void*
-__StringWrite(void* osc, const char* Buffer, size_t NumChars)
+__StringWrite (void* osc, const char* Buffer, size_t NumChars)
 {
     size_t        CharsToBeWritten;
     void*         MemCpyResult;
@@ -2198,115 +2204,116 @@ __StringWrite(void* osc, const char* Buffer, size_t NumChars)
                            ? NumChars
                            : Oscp->MaxCharCount - Oscp->CharsWritten;
     MemCpyResult =
-        (void*)memcpy(Oscp->CharStr + Oscp->CharsWritten, Buffer, CharsToBeWritten);
+        (void*)memcpy (Oscp->CharStr + Oscp->CharsWritten, Buffer, CharsToBeWritten);
     Oscp->CharsWritten += CharsToBeWritten;
     /*return(MemCpyResult);*/ /*- mm 000404 -*/
     return ((void*)1);        /*- mm 000404 -*/
 }
 /*- PRINTF -*/
-#if __dest_os != __n64_os                                        /*- ard 990128  -*/
+#if __dest_os != __n64_os                   /*- ard 990128  -*/
 #ifndef _No_Console
 int
-printf(const char* format, ...)
+printf (const char* format, ...)
 {
-    int result;                                                  /*- mm 001013 -*/
+    int result;                             /*- mm 001013 -*/
 #ifndef __NO_WIDE_CHAR
-#endif                                                           /* __NO_WIDE_CHAR */
+#endif                                      /* __NO_WIDE_CHAR */
 
 #if __PPC_EABI__ || __MIPS__
     va_list args;
 #ifndef __NO_WIDE_CHAR
-    if (fwide(stdout, -1) >= 0)
+    if (fwide (stdout, -1) >= 0)
     {
         return (-1);
     }
-#endif                                                           /* __NO_WIDE_CHAR */
-    va_start(args, format);
-    __begin_critical_region(files_access);                       /*- mm 001013 -*/
+#endif                                      /* __NO_WIDE_CHAR */
+    va_start (args, format);
+    __begin_critical_region (files_access); /*- mm 001013 -*/
     result =
-        __pformatter(&__FileWrite, (void*)stdout, format, args); /*- mm 001013 -*/
+        __pformatter (&__FileWrite, (void*)stdout, format, args); /*- mm 001013 -*/
 #else
 #ifndef __NO_WIDE_CHAR
-    if (fwide(stdout, -1) >= 0)
+    if (fwide (stdout, -1) >= 0)
     {
         return (-1);
     }
-#endif                                                           /* __NO_WIDE_CHAR */
-    __begin_critical_region(files_access);     /*- mm 001013 -*/
-    result = __pformatter(&__FileWrite, (void*)stdout, format,
-                          __va_start(format)); /*- mm 001013 -*/
-#endif                                     /* __PPC_EABI__||__MIPS__  */
-    __end_critical_region(files_access);   /*- mm 001013 -*/
-    return (result);                       /*- mm 001013 -*/
+#endif                                      /* __NO_WIDE_CHAR */
+    __begin_critical_region (files_access);                        /*- mm 001013 -*/
+    result = __pformatter (
+        &__FileWrite, (void*)stdout, format, __va_start (format)); /*- mm 001013 -*/
+#endif                                      /* __PPC_EABI__||__MIPS__  */
+    __end_critical_region (files_access);   /*- mm 001013 -*/
+    return (result);                        /*- mm 001013 -*/
 }
-#endif                                     /* _No_Console */
-#endif                                     /* __dest_os != __n64_os */
+#endif                                      /* _No_Console */
+#endif                                      /* __dest_os != __n64_os */
 
 #ifndef _No_Disk_File_OS_Support
 int
-fprintf(FILE* file, const char* format, ...)
+fprintf (FILE* file, const char* format, ...)
 {
-    int result;                            /*- mm 001013 -*/
+    int result;                             /*- mm 001013 -*/
 #if __PPC_EABI__ || __MIPS__
     va_list args;
 #ifndef __NO_WIDE_CHAR
-    if (fwide(file, -1) >= 0)
+    if (fwide (file, -1) >= 0)
     {
         return (-1);
     }
-#endif                                     /* __NO_WIDE_CHAR */
-    va_start(args, format);
-    __begin_critical_region(files_access); /*- mm 001013 -*/
-    result = __pformatter(&__FileWrite, (void*)file, format, args); /*- mm 001013 -*/
+#endif                                      /* __NO_WIDE_CHAR */
+    va_start (args, format);
+    __begin_critical_region (files_access); /*- mm 001013 -*/
+    result =
+        __pformatter (&__FileWrite, (void*)file, format, args); /*- mm 001013 -*/
 #else
 #ifndef __NO_WIDE_CHAR
-    if (fwide(file, -1) >= 0)
-    {
-        return (-1);
-    }
-#endif                                     /* __NO_WIDE_CHAR */
-    __begin_critical_region(files_access);     /*- mm 001013 -*/
-    result = __pformatter(&__FileWrite, (void*)file, format,
-                          __va_start(format)); /*- mm 001013 -*/
-#endif                                     /* __PPC_EABI__||__MIPS__ */
-    __end_critical_region(files_access);   /*- mm 001013 -*/
-    return (result);                       /* -mm 001013 -*/
-}
-#endif                                     /* _No_Disk_File_OS_Support */
-int
-vprintf(const char* format, va_list arg)
-{
-    int retval;                            /*- mm 001013 -*/
-#ifndef __NO_WIDE_CHAR
-    if (fwide(stdout, -1) >= 0)
-    {
-        return (-1);
-    }
-#endif                                     /* __NO_WIDE_CHAR */
-    __begin_critical_region(files_access); /*- mm 001013 -*/
-    retval =
-        __pformatter(&__FileWrite, (void*)stdout, format, arg); /*- mm 001013 -*/
-    __end_critical_region(files_access);                        /*- mm 001013 -*/
-    return (retval);                                            /*- mm 001013 -*/
-}
-int
-vfprintf(FILE* file, const char* format, va_list arg)
-{
-    int retval;                                                 /*- mm 001013 -*/
-#ifndef __NO_WIDE_CHAR
-    if (fwide(file, -1) >= 0)
+    if (fwide (file, -1) >= 0)
     {
         return (-1);
     }
 #endif                                                          /* __NO_WIDE_CHAR */
-
-    __begin_critical_region(files_access);                      /*- mm 001013 -*/
-    retval = __pformatter(&__FileWrite, (void*)file, format, arg); /*- mm 001013 -*/
-    __end_critical_region(files_access);                           /*- mm 001013 -*/
-    return (retval);                                               /*- mm 001013 -*/
+    __begin_critical_region (files_access);                      /*- mm 001013 -*/
+    result = __pformatter (
+        &__FileWrite, (void*)file, format, __va_start (format)); /*- mm 001013 -*/
+#endif                                      /* __PPC_EABI__||__MIPS__ */
+    __end_critical_region (files_access);   /*- mm 001013 -*/
+    return (result);                        /* -mm 001013 -*/
+}
+#endif                                      /* _No_Disk_File_OS_Support */
+int
+vprintf (const char* format, va_list arg)
+{
+    int retval;                             /*- mm 001013 -*/
+#ifndef __NO_WIDE_CHAR
+    if (fwide (stdout, -1) >= 0)
+    {
+        return (-1);
+    }
+#endif                                      /* __NO_WIDE_CHAR */
+    __begin_critical_region (files_access); /*- mm 001013 -*/
+    retval =
+        __pformatter (&__FileWrite, (void*)stdout, format, arg); /*- mm 001013 -*/
+    __end_critical_region (files_access);                        /*- mm 001013 -*/
+    return (retval);                                             /*- mm 001013 -*/
 }
 int
-vsnprintf(char* s, size_t n, const char* format, va_list arg)
+vfprintf (FILE* file, const char* format, va_list arg)
+{
+    int retval;                                                  /*- mm 001013 -*/
+#ifndef __NO_WIDE_CHAR
+    if (fwide (file, -1) >= 0)
+    {
+        return (-1);
+    }
+#endif                                                           /* __NO_WIDE_CHAR */
+
+    __begin_critical_region (files_access);                      /*- mm 001013 -*/
+    retval = __pformatter (&__FileWrite, (void*)file, format, arg); /*- mm 001013 -*/
+    __end_critical_region (files_access);                           /*- mm 001013 -*/
+    return (retval);                                                /*- mm 001013 -*/
+}
+int
+vsnprintf (char* s, size_t n, const char* format, va_list arg)
 {
     int          end;
     __OutStrCtrl osc;
@@ -2315,9 +2322,9 @@ vsnprintf(char* s, size_t n, const char* format, va_list arg)
     osc.MaxCharCount = n;
     osc.CharsWritten = 0;
 
-    end = __pformatter(&__StringWrite, &osc, format, arg);
+    end = __pformatter (&__StringWrite, &osc, format, arg);
 
-    if (s)                                                         /*- mm 000404 -*/
+    if (s)                                                          /*- mm 000404 -*/
     {
         s[(end < n) ? end : n - 1] = '\0';
     }
@@ -2325,33 +2332,33 @@ vsnprintf(char* s, size_t n, const char* format, va_list arg)
     return (end);
 }
 int
-vsprintf(char* s, const char* format, va_list arg)
+vsprintf (char* s, const char* format, va_list arg)
 {
-    return (vsnprintf(s, ULONG_MAX, format, arg));
+    return (vsnprintf (s, ULONG_MAX, format, arg));
 }
 int
-snprintf(char* s, size_t n, const char* format, ...)
+snprintf (char* s, size_t n, const char* format, ...)
 {
 #if __PPC_EABI__ || __MIPS__
     va_list args;
 
-    va_start(args, format);
-    return (vsnprintf(s, n, format, args));
+    va_start (args, format);
+    return (vsnprintf (s, n, format, args));
 #else
-        return (vsnprintf(s, n, format, __va_start(format)));
+        return (vsnprintf (s, n, format, __va_start (format)));
 #endif                    /* __PPC_EABI__ || __MIPS__ */
 }
 #if __dest_os != __n64_os /*- ard 990126 -*/
 int
-sprintf(char* s, const char* format, ...)
+sprintf (char* s, const char* format, ...)
 {
 #if __PPC_EABI__ || __MIPS__
     va_list args;
 
-    va_start(args, format);
-    return (vsnprintf(s, ULONG_MAX, format, args));
+    va_start (args, format);
+    return (vsnprintf (s, ULONG_MAX, format, args));
 #else
-    return (vsnprintf(s, ULONG_MAX, format, __va_start(format)));
+    return (vsnprintf (s, ULONG_MAX, format, __va_start (format)));
 #endif                    /* __PPC_EABI__ || __MIPS__ */
 }
 #endif                    /* __dest_os != __n64_os */

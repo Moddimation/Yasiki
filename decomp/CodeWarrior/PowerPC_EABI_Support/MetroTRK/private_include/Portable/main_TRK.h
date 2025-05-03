@@ -8,7 +8,7 @@ extern "C"
 {
 #endif
 
-DSError TRK_main(void);
+DSError TRK_main (void);
 
 #ifdef __cplusplus
 }

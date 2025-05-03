@@ -88,97 +88,97 @@ namespace
 using Metrowerks::mutex;
 #endif
 mutex&
-get_Init_lock()
+get_Init_lock ()
 {
     static mutex lock;
     return lock;
 }
 } // namespace
 #endif
-__nInit::__nInit()
+__nInit::__nInit ()
 {
-    _MSL_LOCK_MUTEX(lock, get_Init_lock())
-    static filebuf fin(stdin);
-    static filebuf fout(stdout);
-    static filebuf ferr(stderr);
+    _MSL_LOCK_MUTEX (lock, get_Init_lock())
+    static filebuf fin (stdin);
+    static filebuf fout (stdout);
+    static filebuf ferr (stderr);
 
     if (ninit_cnt_s++ == 0)
     {
-        new (&cin) istream(&fin);
-        new (&cout) ostream(&fout);
-        new (&cerr) ostream(&ferr);
-        new (&clog) ostream(&ferr);
-        cin.tie(&cout);
-        cerr.tie(&cout);
-        cerr.setf(ios_base::unitbuf);
-        clog.tie(&cout);
+        new (&cin) istream (&fin);
+        new (&cout) ostream (&fout);
+        new (&cerr) ostream (&ferr);
+        new (&clog) ostream (&ferr);
+        cin.tie (&cout);
+        cerr.tie (&cout);
+        cerr.setf (ios_base::unitbuf);
+        clog.tie (&cout);
 
-        fin.pubsetbuf(0, 0);
-        fout.pubsetbuf(0, 0);
-        ferr.pubsetbuf(0, 0);
+        fin.pubsetbuf (0, 0);
+        fout.pubsetbuf (0, 0);
+        ferr.pubsetbuf (0, 0);
     }
 }
-__nInit::~__nInit()
+__nInit::~__nInit ()
 {
-    _MSL_LOCK_MUTEX(lock, get_Init_lock())
+    _MSL_LOCK_MUTEX (lock, get_Init_lock())
     if (--ninit_cnt_s == 0)
     {
         cout.flush();
         cerr.flush();
         clog.flush();
 #ifdef __MWERKS__
-        __destroy(&cin);
-        __destroy(&cout);
-        __destroy(&cerr);
-        __destroy(&clog);
+        __destroy (&cin);
+        __destroy (&cout);
+        __destroy (&cerr);
+        __destroy (&clog);
 #endif
     }
 }
-__wInit::__wInit()
+__wInit::__wInit ()
 {
 #ifndef _MSL_NO_WCHART_CPP_SUPPORT
-    _MSL_LOCK_MUTEX(lock, get_Init_lock())
+    _MSL_LOCK_MUTEX (lock, get_Init_lock())
 
-    static wfilebuf wfin(stdin);
-    static wfilebuf wfout(stdout);
-    static wfilebuf wferr(stderr);
+    static wfilebuf wfin (stdin);
+    static wfilebuf wfout (stdout);
+    static wfilebuf wferr (stderr);
 
     if (winit_cnt_s++ == 0)
     {
-        new (&wcin) wistream(&wfin);
-        new (&wcout) wostream(&wfout);
-        new (&wcerr) wostream(&wferr);
-        new (&wclog) wostream(&wferr);
-        wcin.tie(&wcout);
-        wcerr.tie(&wcout);
-        wcerr.setf(ios_base::unitbuf);
-        wclog.tie(&wcout);
+        new (&wcin) wistream (&wfin);
+        new (&wcout) wostream (&wfout);
+        new (&wcerr) wostream (&wferr);
+        new (&wclog) wostream (&wferr);
+        wcin.tie (&wcout);
+        wcerr.tie (&wcout);
+        wcerr.setf (ios_base::unitbuf);
+        wclog.tie (&wcout);
 
-        wfin.pubsetbuf(0, 0);
-        wfout.pubsetbuf(0, 0);
-        wferr.pubsetbuf(0, 0);
+        wfin.pubsetbuf (0, 0);
+        wfout.pubsetbuf (0, 0);
+        wferr.pubsetbuf (0, 0);
     }
 #endif
 }
-__wInit::~__wInit()
+__wInit::~__wInit ()
 {
 #ifndef _MSL_NO_WCHART_CPP_SUPPORT
-    _MSL_LOCK_MUTEX(lock, get_Init_lock())
+    _MSL_LOCK_MUTEX (lock, get_Init_lock())
     if (--winit_cnt_s == 0)
     {
         wcout.flush();
         wcerr.flush();
         wclog.flush();
 #ifdef __MWERKS__
-        __destroy(&wcin);
-        __destroy(&wcout);
-        __destroy(&wcerr);
-        __destroy(&wclog);
+        __destroy (&wcin);
+        __destroy (&wcout);
+        __destroy (&wcerr);
+        __destroy (&wclog);
 #endif
     }
 #endif
 }
-ios_base::Init::Init()
+ios_base::Init::Init ()
 {
     static __nInit n;
     static __wInit w;

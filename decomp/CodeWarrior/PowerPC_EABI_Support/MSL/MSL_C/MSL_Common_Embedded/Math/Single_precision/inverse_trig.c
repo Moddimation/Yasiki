@@ -16,7 +16,7 @@
 */
 
 float
-atanf(float x)
+atanf (float x)
 {
     float     z, z_square;
     int       index = -1, inv = 0;
@@ -65,25 +65,25 @@ atanf(float x)
     else if (.4142135624f < x) // 0x3ED413CD  //(4.14213583e-01
     {
         index++;               // index is now 0
-        switch (__HI(x) & 0x7f800000)
+        switch (__HI (x) & 0x7f800000)
         {
             case 0x3F000000:   /* .5  <= x < 1 */
-                if (__HI(x) >= 0x3F08D5B9)
+                if (__HI (x) >= 0x3F08D5B9)
                 {
                     index++;   // 0.5345111 == tan(5pi/32)
                 }
-                if (__HI(x) >= 0x3F521801)
+                if (__HI (x) >= 0x3F521801)
                 {
                     index++;   // 0.8206788
                 }
                 break;
             case 0x3F800000:   /* 1 <= x < 2    */
                 index += 2;
-                if (__HI(x) >= 0x3F9bf7ec)
+                if (__HI (x) >= 0x3F9bf7ec)
                 {
                     index++;   // 1.2185035
                 }
-                if (__HI(x) >= 0x3FEF789E)
+                if (__HI (x) >= 0x3FEF789E)
                 {
                     index++;   // 1.8708684
                 }
@@ -129,22 +129,22 @@ atanf(float x)
     return z;
 }
 float
-atan2f(float y, float x)
+atan2f (float y, float x)
 {
     // need to figure out which quadrant we're in first
     // note |atanf(y/x)| < pi/2 and will return quadrant 1 if y and x
     // have the same sign and quadrant 4 if the signs differ.
-    const _INT32 _sign_x = __HI(x) & 0x80000000;
-    const _INT32 _sign_y = __HI(y) & 0x80000000;
+    const _INT32 _sign_x = __HI (x) & 0x80000000;
+    const _INT32 _sign_y = __HI (y) & 0x80000000;
     if (_sign_x == _sign_y)
     {
         if (_sign_x) // we know both x, y<0 and angle is in quad 3
         {
-            return atanf(y / x) - __PI;
+            return atanf (y / x) - __PI;
         }
         if (x)
         {
-            return atanf(y / x);
+            return atanf (y / x);
         }
         else
         {
@@ -154,31 +154,31 @@ atan2f(float y, float x)
     // signs differ
     if (x < 0.0f) // (x,y) in quadrant 2
     {
-        return __PI + atanf(y / x);
+        return __PI + atanf (y / x);
     }
     // (x,y) in quadrant 4
     if (x)
     {
-        return atanf(y / x);
+        return atanf (y / x);
     }
 
-    __HI(y) = _sign_y + 0x3FC90FDB;
+    __HI (y) = _sign_y + 0x3FC90FDB;
     return y;
 }
 double
-atan(double x)
+atan (double x)
 {
-    return atanf((float)x);
+    return atanf ((float)x);
 }
 float
-acosf(float x)
+acosf (float x)
 {
-    return __PI_O2 - atan(x * _inv_sqrtf(1.0f - x * x));
+    return __PI_O2 - atan (x * _inv_sqrtf (1.0f - x * x));
     /* note if |x| > 1 a quiet NaN will be returned via the sqrtf function */
 }
 inline float
-asinf(float x)
+asinf (float x)
 {
-    return atan(x * _inv_sqrtf(1.0f - x * x));
+    return atan (x * _inv_sqrtf (1.0f - x * x));
     /* note if |x| > 1 a quiet NaN will be returned via the sqrtf function */
 }

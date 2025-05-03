@@ -63,7 +63,7 @@ typedef struct
 #define set_char_map(map, ch) map[ch >> 3] |= (1 << (ch & 7))
 #define tst_char_map(map, ch) (map[ch >> 3] & (1 << (ch & 7)))
 static const wchar_t*
-parse_format(const wchar_t* format_string, scan_format* format)
+parse_format (const wchar_t* format_string, scan_format* format)
 {
     const wchar_t* s = format_string;
     wchar_t        c;
@@ -77,7 +77,7 @@ parse_format(const wchar_t* format_string, scan_format* format)
     f.argument_options = normal_argument;           /*- mm 000419 -*/
     f.conversion_char = 0;                          /*- mm 000419 -*/
     f.field_width = INT_MAX;                        /*- mm 000419 -*/
-    memset(&f.char_set, 0, sizeof(char_map));       /*- mm 000419 -*/
+    memset (&f.char_set, 0, sizeof (char_map));     /*- mm 000419 -*/
 
     if ((c = *++s) == L'%')
     {
@@ -93,7 +93,7 @@ parse_format(const wchar_t* format_string, scan_format* format)
         c = *++s;
     }
 
-    if (iswdigit(c))
+    if (iswdigit (c))
     {
         f.field_width = 0;
 
@@ -101,7 +101,7 @@ parse_format(const wchar_t* format_string, scan_format* format)
             f.field_width = (f.field_width * 10) + (c - L'0');
             c = *++s;
         }
-        while (iswdigit(c));
+        while (iswdigit (c));
 
         if (f.field_width == 0)
         {
@@ -234,7 +234,7 @@ parse_format(const wchar_t* format_string, scan_format* format)
                 int   i;
                 char* p;
 
-                for (i = sizeof(f.char_set), p = f.char_set; i; --i)
+                for (i = sizeof (f.char_set), p = f.char_set; i; --i)
                 {
                     *p++ = 0xFF;
                 }
@@ -272,7 +272,7 @@ parse_format(const wchar_t* format_string, scan_format* format)
 
             if (c == L']')
             {
-                set_char_map(f.char_set, L']');
+                set_char_map (f.char_set, L']');
                 c = *++s;
             }
 
@@ -280,13 +280,13 @@ parse_format(const wchar_t* format_string, scan_format* format)
             {
                 int d;
 
-                set_char_map(f.char_set, c);
+                set_char_map (f.char_set, c);
 
                 if (*(s + 1) == L'-' && (d = *(s + 2)) != 0 && d != L']')
                 {
                     while (++c <= d)
                     {
-                        set_char_map(f.char_set, c);
+                        set_char_map (f.char_set, c);
                     }
 
                     c = *(s += 3);
@@ -308,7 +308,7 @@ parse_format(const wchar_t* format_string, scan_format* format)
                 int   i;
                 char* p;                                           /*- mm 990408 -*/
 
-                for (i = sizeof(f.char_set), p = (char*)f.char_set; i;
+                for (i = sizeof (f.char_set), p = (char*)f.char_set; i;
                      --i, ++p)                                     /*- mm 990408 -*/
                 {
                     *p = ~*p;
@@ -327,8 +327,10 @@ parse_format(const wchar_t* format_string, scan_format* format)
     return ((const wchar_t*)s + 1);
 }
 static int
-__wsformatter(wint_t (*wReadProc)(void*, wint_t, int), void* wReadProcArg,
-              const wchar_t* format_str, va_list arg)              /*- mm 990325 -*/
+__wsformatter (wint_t         (*wReadProc) (void*, wint_t, int),
+               void*          wReadProcArg,
+               const wchar_t* format_str,
+               va_list        arg)                                        /*- mm 990325 -*/
 {
     int            num_chars, chars_read, items_assigned, conversions, i;
     int            base, negative, overflow;
@@ -356,31 +358,32 @@ __wsformatter(wint_t (*wReadProc)(void*, wint_t, int), void* wReadProcArg,
     while (!terminate &&
            (format_char = *format_ptr) != 0) /*- mm 990311 -*/     /*- mm 990608 -*/
     {
-        if (iswspace(format_char))
+        if (iswspace (format_char))
         {
             do {
                 format_char = *++format_ptr;
             }
-            while (iswspace(format_char));
+            while (iswspace (format_char));
 
-            while ((iswspace)(c = (*wReadProc)(
-                                  wReadProcArg, 0,
+            while ((iswspace)(c = (*wReadProc) (
+                                  wReadProcArg,
+                                  0,
                                   __GetAwChar))) /*- mm 990325 -*/ /*- mm 990409 -*/
             {
                 ++chars_read;
             }
 
-            (*wReadProc)(wReadProcArg, c, __UngetAwChar);          /*- mm 990325 -*/
+            (*wReadProc) (wReadProcArg, c, __UngetAwChar);         /*- mm 990325 -*/
 
             continue;
         }
 
         if (format_char != L'%')
         {
-            if ((c = (*wReadProc)(wReadProcArg, 0, __GetAwChar)) !=
+            if ((c = (*wReadProc) (wReadProcArg, 0, __GetAwChar)) !=
                 format_char)                                       /*- mm 990325 -*/
             {
-                (*wReadProc)(wReadProcArg, c, __UngetAwChar);      /*- mm 990325 -*/
+                (*wReadProc) (wReadProcArg, c, __UngetAwChar);     /*- mm 990325 -*/
                 goto exit;
             }
 
@@ -390,9 +393,9 @@ __wsformatter(wint_t (*wReadProc)(void*, wint_t, int), void* wReadProcArg,
             continue;
         }
 
-        format_ptr = parse_format(format_ptr, &format);
+        format_ptr = parse_format (format_ptr, &format);
         if ((format.conversion_char != L'n') &&
-            (*wReadProc)(wReadProcArg, 0, __TestForwcsError))      /*- mm 990608 -*/
+            (*wReadProc) (wReadProcArg, 0, __TestForwcsError))     /*- mm 990608 -*/
         {                                                          /*- mm 990608 -*/
             terminate = 1;                                         /*- mm 990608 -*/
             goto exit;                                             /*- mm 990608 -*/
@@ -400,7 +403,7 @@ __wsformatter(wint_t (*wReadProc)(void*, wint_t, int), void* wReadProcArg,
 
         if (!format.suppress_assignment && format.conversion_char != L'%')
         {
-            arg_ptr = va_arg(arg, unsigned short*);
+            arg_ptr = va_arg (arg, unsigned short*);
         }
         else
         {
@@ -422,15 +425,23 @@ __wsformatter(wint_t (*wReadProc)(void*, wint_t, int), void* wReadProcArg,
                 if (format.argument_options == long_long_argument) /*- mm 961219 -*/
                 {
                     u_long_long_num =                              /*- mm 961219 -*/
-                        __wcstoull(base, format.field_width, wReadProc, wReadProcArg,
-                                   &num_chars, &negative,
-                                   &overflow);                     /*- mm 990325 -*/
+                        __wcstoull (base,
+                                    format.field_width,
+                                    wReadProc,
+                                    wReadProcArg,
+                                    &num_chars,
+                                    &negative,
+                                    &overflow);                    /*- mm 990325 -*/
                 }
                 else                                               /*- mm 961219 -*/
 #endif                                                             /*- mm 961219 -*/
-                    u_long_num = __wcstoul(base, format.field_width, wReadProc,
-                                           wReadProcArg, &num_chars, &negative,
-                                           &overflow);             /*- mm 990325 -*/
+                    u_long_num = __wcstoul (base,
+                                            format.field_width,
+                                            wReadProc,
+                                            wReadProcArg,
+                                            &num_chars,
+                                            &negative,
+                                            &overflow);            /*- mm 990325 -*/
 
                 if (!num_chars)
                 {
@@ -497,15 +508,23 @@ __wsformatter(wint_t (*wReadProc)(void*, wint_t, int), void* wReadProcArg,
                 if (format.argument_options == long_long_argument) /*- mm 961219 -*/
                 {
                     u_long_long_num =                              /*- mm 961219 -*/
-                        __wcstoull(base, format.field_width, wReadProc, wReadProcArg,
-                                   &num_chars, &negative,
-                                   &overflow);                     /*- mm 990325 -*/
+                        __wcstoull (base,
+                                    format.field_width,
+                                    wReadProc,
+                                    wReadProcArg,
+                                    &num_chars,
+                                    &negative,
+                                    &overflow);                    /*- mm 990325 -*/
                 }
                 else                                               /*- mm 961219 -*/
 #endif                                                             /*- mm 961219 -*/
-                    u_long_num = __wcstoul(base, format.field_width, wReadProc,
-                                           wReadProcArg, &num_chars, &negative,
-                                           &overflow);             /*- mm 990325 -*/
+                    u_long_num = __wcstoul (base,
+                                            format.field_width,
+                                            wReadProc,
+                                            wReadProcArg,
+                                            &num_chars,
+                                            &negative,
+                                            &overflow);            /*- mm 990325 -*/
 
                 if (!num_chars)
                 {
@@ -564,9 +583,11 @@ __wsformatter(wint_t (*wReadProc)(void*, wint_t, int), void* wReadProcArg,
             case L'g':
             case L'G':
 
-                long_double_num =
-                    __wcstold(format.field_width, wReadProc, wReadProcArg,
-                              &num_chars, &overflow);              /*- mm 990325 -*/
+                long_double_num = __wcstold (format.field_width,
+                                             wReadProc,
+                                             wReadProcArg,
+                                             &num_chars,
+                                             &overflow);           /*- mm 990325 -*/
 
                 if (!num_chars)
                 {
@@ -612,7 +633,7 @@ __wsformatter(wint_t (*wReadProc)(void*, wint_t, int), void* wReadProcArg,
 
                     while (
                         format.field_width-- &&
-                        (c = (*wReadProc)(wReadProcArg, 0, __GetAwChar)) !=
+                        (c = (*wReadProc) (wReadProcArg, 0, __GetAwChar)) !=
                             WEOF) /*- mm 980202 -*/ /*- mm 990325 -*/ /*- mm 990624
                                                                          -*/
                     {
@@ -623,7 +644,7 @@ __wsformatter(wint_t (*wReadProc)(void*, wint_t, int), void* wReadProcArg,
                         }
                         else                                    /*- mm 990407 -*/
                         {
-                            i = wctomb((char*)arg_ptr, c);      /*- mm 990407 -*/
+                            i = wctomb ((char*)arg_ptr, c);     /*- mm 990407 -*/
                             if (i < 0)                          /*- mm 990407 -*/
                             {
                                 goto exit;                      /*- mm 990407 -*/
@@ -649,7 +670,7 @@ __wsformatter(wint_t (*wReadProc)(void*, wint_t, int), void* wReadProcArg,
 
                     while (
                         format.field_width-- &&
-                        (c = (*wReadProc)(wReadProcArg, 0, __GetAwChar)) !=
+                        (c = (*wReadProc) (wReadProcArg, 0, __GetAwChar)) !=
                             WEOF) /*- mm 980202 -*/ /*- mm 990325 -*/ /*- mm 990624
                                                                          -*/
                     {
@@ -668,15 +689,16 @@ __wsformatter(wint_t (*wReadProc)(void*, wint_t, int), void* wReadProcArg,
 
             case L'%':
 
-                while ((iswspace)(c = (*wReadProc)(wReadProcArg, 0,
-                                                   __GetAwChar))) /*- mm 990409 -*/
+                while ((iswspace)(c = (*wReadProc) (wReadProcArg,
+                                                    0,
+                                                    __GetAwChar))) /*- mm 990409 -*/
                 {
                     ++chars_read;
                 }
 
                 if (c != L'%')
                 {
-                    (*wReadProc)(wReadProcArg, c, __UngetAwChar);
+                    (*wReadProc) (wReadProcArg, c, __UngetAwChar);
                     goto exit;
                 }
 
@@ -686,16 +708,16 @@ __wsformatter(wint_t (*wReadProc)(void*, wint_t, int), void* wReadProcArg,
 
             case L's':
 
-                c = (*wReadProc)(wReadProcArg, 0, __GetAwChar);
-                /*- mm 970218 -*/ /*- mm 990325 -*/               /*- mm 990413 -*/
-                while (iswspace(c))                               /*- mm 970218 -*/
-                {                                                 /*- mm 970218 -*/
-                    ++chars_read;                                 /*- mm 970218 -*/
-                    c = (*wReadProc)(wReadProcArg, 0, __GetAwChar);
-                    /*- mm 970218 -*/ /*- mm 980130 -*/           /*- mm 990325 -*/
+                c = (*wReadProc) (wReadProcArg, 0, __GetAwChar);
+                /*- mm 970218 -*/ /*- mm 990325 -*/                /*- mm 990413 -*/
+                while (iswspace (c))                               /*- mm 970218 -*/
+                {                                                  /*- mm 970218 -*/
+                    ++chars_read;                                  /*- mm 970218 -*/
+                    c = (*wReadProc) (wReadProcArg, 0, __GetAwChar);
+                    /*- mm 970218 -*/ /*- mm 980130 -*/            /*- mm 990325 -*/
                 } /*- mm 970218 -*/
 
-                (*wReadProc)(wReadProcArg, c, __UngetAwChar);       /*- mm 990325 -*/
+                (*wReadProc) (wReadProcArg, c, __UngetAwChar);      /*- mm 990325 -*/
 
             case L'[':
 
@@ -704,8 +726,8 @@ __wsformatter(wint_t (*wReadProc)(void*, wint_t, int), void* wReadProcArg,
                     num_chars = 0;
                     while (
                         format.field_width-- &&
-                        (c = (*wReadProc)(wReadProcArg, 0, __GetAwChar)) != WEOF &&
-                        tst_char_map(
+                        (c = (*wReadProc) (wReadProcArg, 0, __GetAwChar)) != WEOF &&
+                        tst_char_map (
                             format.char_set,
                             c)) /*- mm 980202 -*/ /*- mm 990325 -*/ /*- mm 990624 -*/
                     {
@@ -714,12 +736,12 @@ __wsformatter(wint_t (*wReadProc)(void*, wint_t, int), void* wReadProcArg,
                         {
                             *(wchar_t*)arg_ptr = c;
                             /*- mm 990407 -*/                       /*- mm 990616 -*/
-                            arg_ptr = (wchar_t*)((char*)arg_ptr + sizeof(wchar_t));
+                            arg_ptr = (wchar_t*)((char*)arg_ptr + sizeof (wchar_t));
                             /*- mm 990407 -*/                       /*- mm 990624 -*/
                         } /*- mm 990420 -*/
                         else
                         {
-                            i = wctomb((char*)arg_ptr, c);          /*- mm 990407 -*/
+                            i = wctomb ((char*)arg_ptr, c);         /*- mm 990407 -*/
                             if (i < 0)                              /*- mm 990407 -*/
                             {
                                 goto exit;                          /*- mm 990407 -*/
@@ -733,7 +755,7 @@ __wsformatter(wint_t (*wReadProc)(void*, wint_t, int), void* wReadProcArg,
 
                     if (!num_chars)
                     {
-                        (*wReadProc)(wReadProcArg, c, __UngetAwChar);
+                        (*wReadProc) (wReadProcArg, c, __UngetAwChar);
                         /*- mm 961114 -*/                           /*- mm 990325 -*/
                         goto exit;
                     }
@@ -750,8 +772,8 @@ __wsformatter(wint_t (*wReadProc)(void*, wint_t, int), void* wReadProcArg,
 
                     while (
                         format.field_width-- &&
-                        (c = (*wReadProc)(wReadProcArg, 0, __GetAwChar)) != WEOF &&
-                        tst_char_map(
+                        (c = (*wReadProc) (wReadProcArg, 0, __GetAwChar)) != WEOF &&
+                        tst_char_map (
                             format.char_set,
                             c)) /*- mm 980202 -*/ /*- mm 990325 -*/ /*- mm 990624 -*/
                     {
@@ -760,7 +782,7 @@ __wsformatter(wint_t (*wReadProc)(void*, wint_t, int), void* wReadProcArg,
 
                     if (!num_chars)
                     {
-                        (*wReadProc)(wReadProcArg, c, __UngetAwChar);
+                        (*wReadProc) (wReadProcArg, c, __UngetAwChar);
                         /*- mm 970513 -*/                           /*- mm 990325 -*/
                         goto exit;
                     }
@@ -769,7 +791,7 @@ __wsformatter(wint_t (*wReadProc)(void*, wint_t, int), void* wReadProcArg,
 
                 if (format.field_width >= 0)
                 {
-                    (*wReadProc)(wReadProcArg, c, __UngetAwChar);   /*- mm 990325 -*/
+                    (*wReadProc) (wReadProcArg, c, __UngetAwChar);  /*- mm 990325 -*/
                 }
 
                 ++conversions;
@@ -812,7 +834,7 @@ __wsformatter(wint_t (*wReadProc)(void*, wint_t, int), void* wReadProcArg,
 
 exit:
 
-    if ((*wReadProc)(wReadProcArg, 0, __TestForwcsError) &&
+    if ((*wReadProc) (wReadProcArg, 0, __TestForwcsError) &&
         conversions == 0)                                           /*- mm 990325 -*/
     {
         return (EOF);                                               /*- mm 980202 -*/
@@ -822,21 +844,21 @@ exit:
 }
 /*- mm 990325 -*/
 wint_t
-__wFileRead(void* File, wint_t ch, int Action)
+__wFileRead (void* File, wint_t ch, int Action)
 {
     switch (Action)
     {
         case __GetAwChar:
-            return (fgetwc((FILE*)File));
+            return (fgetwc ((FILE*)File));
         case __UngetAwChar:
-            return (ungetwc(ch, (FILE*)File));
+            return (ungetwc (ch, (FILE*)File));
         case __TestForwcsError:
-            return (ferror((FILE*)File) || feof((FILE*)File));
+            return (ferror ((FILE*)File) || feof ((FILE*)File));
     }
     return 0;                                /* to satisfy compiler */
 }
 wint_t
-__wStringRead(void* isc, wint_t ch, int Action)
+__wStringRead (void* isc, wint_t ch, int Action)
 {
     wchar_t       RetVal;
     __wInStrCtrl* Iscp = (__wInStrCtrl*)isc;
@@ -895,30 +917,30 @@ __wStringRead(void* isc, wint_t ch, int Action)
 */
 
 int
-fwscanf(FILE* file, const wchar_t* format, ...)
+fwscanf (FILE* file, const wchar_t* format, ...)
 {
-    int retval;                                  /*- mm 001018 -*/
-#if __PPC_EABI__ || __MIPS__                     /*__dest_os == __mips_bare  */
+    int retval;                                   /*- mm 001018 -*/
+#if __PPC_EABI__ || __MIPS__                      /*__dest_os == __mips_bare  */
     va_list args;
-    if ((file == NULL) || (fwide(file, 1) <= 0)) /*- mm 000404 -*/
+    if ((file == NULL) || (fwide (file, 1) <= 0)) /*- mm 000404 -*/
     {
         return (EOF);
     }
-    va_start(args, format);
-    __begin_critical_region(files_access);       /*- mm 001018 -*/
-    retval = __wsformatter(&__wFileRead, (void*)file, format, args);
-    /*- mm 990804 -*/                            /*- mm 001018 -*/
+    va_start (args, format);
+    __begin_critical_region (files_access);       /*- mm 001018 -*/
+    retval = __wsformatter (&__wFileRead, (void*)file, format, args);
+    /*- mm 990804 -*/                             /*- mm 001018 -*/
 #else
-    if ((file == NULL) || (fwide(file, 1) <= 0))      /*- mm 000404 -*/
+    if ((file == NULL) || (fwide (file, 1) <= 0))                 /*- mm 000404 -*/
     {
         return (EOF);
     }
-    __begin_critical_region(files_access);            /*- mm 001018 -*/
-    retval = __wsformatter(&__wFileRead, (void*)file, format,
-                           __va_start(format));       /*- mm 001018 -*/
+    __begin_critical_region (files_access);                       /*- mm 001018 -*/
+    retval = __wsformatter (
+        &__wFileRead, (void*)file, format, __va_start (format));  /*- mm 001018 -*/
 #endif
-    __end_critical_region(files_access);         /*- mm 001018 -*/
-    return (retval);                             /*- mm 001018 -*/
+    __end_critical_region (files_access);         /*- mm 001018 -*/
+    return (retval);                              /*- mm 001018 -*/
 }
 /*
     wscanf
@@ -938,30 +960,30 @@ fwscanf(FILE* file, const wchar_t* format, ...)
 */
 
 int
-wscanf(const wchar_t* format, ...)
+wscanf (const wchar_t* format, ...)
 {
-    int retval;                            /*- mm 001018 -*/
-#if __PPC_EABI__ || __MIPS__               /*__dest_os == __mips_bare  */
+    int retval;                             /*- mm 001018 -*/
+#if __PPC_EABI__ || __MIPS__                /*__dest_os == __mips_bare  */
     va_list args;
-    if (fwide(stdin, 1) <= 0)
+    if (fwide (stdin, 1) <= 0)
     {
         return (EOF);
     }
-    va_start(args, format);
-    __begin_critical_region(files_access); /*- mm 001018 -*/
-    retval = __wsformatter(&__wFileRead, (void*)stdin, format, args);
-    /*- mm 990804 -*/                      /*- mm 001018 -*/
+    va_start (args, format);
+    __begin_critical_region (files_access); /*- mm 001018 -*/
+    retval = __wsformatter (&__wFileRead, (void*)stdin, format, args);
+    /*- mm 990804 -*/                       /*- mm 001018 -*/
 #else
-    if (fwide(stdin, 1) <= 0)
+    if (fwide (stdin, 1) <= 0)
     {
         return (EOF);
     }
-    __begin_critical_region(files_access);            /*- mm 001018 -*/
-    retval = __wsformatter(&__wFileRead, (void*)stdin, format,
-                           __va_start(format));       /*- mm 001018 -*/
+    __begin_critical_region (files_access);                       /*- mm 001018 -*/
+    retval = __wsformatter (
+        &__wFileRead, (void*)stdin, format, __va_start (format)); /*- mm 001018 -*/
 #endif
-    __end_critical_region(files_access);   /*- mm 001018 -*/
-    return (retval);                       /*- mm 001018 -*/
+    __end_critical_region (files_access);   /*- mm 001018 -*/
+    return (retval);                        /*- mm 001018 -*/
 }
 /*
     vwscanf
@@ -984,18 +1006,18 @@ wscanf(const wchar_t* format, ...)
 */
 
 int
-vwscanf(const wchar_t* format, va_list arg)
+vwscanf (const wchar_t* format, va_list arg)
 {
-    int retval;                                                 /*- mm 001018 -*/
-    if (fwide(stdin, 1) <= 0)
+    int retval;                                                  /*- mm 001018 -*/
+    if (fwide (stdin, 1) <= 0)
     {
         return (EOF);
     }
-    __begin_critical_region(files_access);                      /*- mm 001018 -*/
+    __begin_critical_region (files_access);                      /*- mm 001018 -*/
     retval =
-        __wsformatter(&__wFileRead, (void*)stdin, format, arg); /*- mm 001018 -*/
-    __end_critical_region(files_access);                        /*- mm 001018 -*/
-    return (retval);                                            /*- mm 001018 -*/
+        __wsformatter (&__wFileRead, (void*)stdin, format, arg); /*- mm 001018 -*/
+    __end_critical_region (files_access);                        /*- mm 001018 -*/
+    return (retval);                                             /*- mm 001018 -*/
 }
 /*  vfwscanf
 
@@ -1016,18 +1038,18 @@ vwscanf(const wchar_t* format, va_list arg)
        even zero, in the event of an early matching failure.
 */
 int
-vfwscanf(FILE* stream, const wchar_t* format, va_list arg)       /*- mm 990829 -*/
+vfwscanf (FILE* stream, const wchar_t* format, va_list arg)       /*- mm 990829 -*/
 {
-    int retval;                                                  /*- mm 001018 -*/
-    if ((stream == NULL) || (fwide(stream, 1) <= 0))             /*- mm 000404 -*/
+    int retval;                                                   /*- mm 001018 -*/
+    if ((stream == NULL) || (fwide (stream, 1) <= 0))             /*- mm 000404 -*/
     {
         return (EOF);
     }
-    __begin_critical_region(files_access);                       /*- mm 001018 -*/
+    __begin_critical_region (files_access);                       /*- mm 001018 -*/
     retval =
-        __wsformatter(&__wFileRead, (void*)stream, format, arg); /*- mm 001018 -*/
-    __end_critical_region(files_access);                         /*- mm 001018 -*/
-    return (retval);                                             /*- mm 001018 -*/
+        __wsformatter (&__wFileRead, (void*)stream, format, arg); /*- mm 001018 -*/
+    __end_critical_region (files_access);                         /*- mm 001018 -*/
+    return (retval);                                              /*- mm 001018 -*/
 }
 /*
     vswscanf
@@ -1050,17 +1072,17 @@ vfwscanf(FILE* stream, const wchar_t* format, va_list arg)       /*- mm 990829 -
 */
 
 int
-vswscanf(const wchar_t* s, const wchar_t* format, va_list arg) /*- mm 990828 -*/
+vswscanf (const wchar_t* s, const wchar_t* format, va_list arg) /*- mm 990828 -*/
 {
     __wInStrCtrl wisc;
     wisc.wNextChar = (wchar_t*)s;
-    if ((s == NULL) || (*wisc.wNextChar == L'\0'))             /*- mm 990617 -*/
+    if ((s == NULL) || (*wisc.wNextChar == L'\0'))              /*- mm 990617 -*/
     {
-        return (EOF);                                          /*- mm 990617 -*/
+        return (EOF);                                           /*- mm 990617 -*/
     }
     wisc.wNullCharDetected = 0;
 
-    return (__wsformatter(&__wStringRead, (void*)&wisc, format, arg));
+    return (__wsformatter (&__wStringRead, (void*)&wisc, format, arg));
 }
 /*
     swscanf
@@ -1084,37 +1106,37 @@ vswscanf(const wchar_t* s, const wchar_t* format, va_list arg) /*- mm 990828 -*/
 */
 
 int
-swscanf(const wchar_t* s, const wchar_t* format, ...)
+swscanf (const wchar_t* s, const wchar_t* format, ...)
 {
-#if __PPC_EABI__ || __MIPS__            /*   __dest_os == __mips_bare  */
+#if __PPC_EABI__ || __MIPS__             /*   __dest_os == __mips_bare  */
     va_list args;
-    va_start(args, format);
-    return (vswscanf(s, format, args)); /*- mm 990828 -*/
+    va_start (args, format);
+    return (vswscanf (s, format, args)); /*- mm 990828 -*/
 #else
-    return (vswscanf(s, format, __va_start(format))); /*- mm 990828 -*/
+    return (vswscanf (s, format, __va_start (format)));           /*- mm 990828 -*/
 #endif
 }
-#endif /* #ifndef __NO_WIDE_CHAR*/      /*- mm 981020 -*/
+#endif /* #ifndef __NO_WIDE_CHAR*/       /*- mm 981020 -*/
 
-                                        /* Change record:
-                                         * JCM 980121 First code release.
-                                         * mm  980206 Added call to fwide()
-                                         * mm  981020 Added #ifndef __NO_WIDE_CHAR wrappers
-                                         * mm  990325 Changes to split string scan functions from file i/o
-                                         * mm  990407 Changes to handle %ls and %lc
-                                         * mm  990408 Correction to invert char set map code.
-                                         * mm  990409 Correction to avoid using macro for iswspace() where there are
-                                         * side-effects.                                         mm  990409 Change to handle
-                                         * NULL source string.                                         mm  990413 Corrected
-                                         * handling of case where source text quits early IL9904-0736                                         mm  990624 Corrected
-                                         * assignment to wide-char target                                         mm  990624
-                                         * Implemented the %l[ specification                                         mm
-                                         * 990804 Corrected 	calls under __PPC_EABI__ || __MIPS__                                         mm  990805 Changed
-                                         * vfwscanf to wsformatter in embedded targets                                         mm  990817 Deleted include of
-                                         * <string_io.h>                                         mm  990914 Corrected size of
-                                         * char_map to allow for full wchar                                         character
-                                         * set IR9909-0523                                         mm  000404 Inserted                                         code
-                                         * to detect null input fle                                         WB1-12370                                         mm
-                                         * 000419 Initialized char_map without large static area, thanks to                                         Andreas                                         mm                                         001018
-                                         * Added threadsafety to vwscanf, fwscanf, wscanf, and vfwscanf
-                                         */
+                                         /* Change record:
+                                          * JCM 980121 First code release.
+                                          * mm  980206 Added call to fwide()
+                                          * mm  981020 Added #ifndef __NO_WIDE_CHAR wrappers
+                                          * mm  990325 Changes to split string scan functions from file i/o
+                                          * mm  990407 Changes to handle %ls and %lc
+                                          * mm  990408 Correction to invert char set map code.
+                                          * mm  990409 Correction to avoid using macro for iswspace() where there are
+                                          * side-effects.                                         mm  990409 Change to handle
+                                          * NULL source string.                                         mm  990413 Corrected
+                                          * handling of case where source text quits early IL9904-0736                                          mm  990624 Corrected
+                                          * assignment to wide-char target                                         mm  990624
+                                          * Implemented the %l[ specification                                         mm
+                                          * 990804 Corrected 	calls under __PPC_EABI__ || __MIPS__                                          mm  990805 Changed
+                                          * vfwscanf to wsformatter in embedded targets                                          mm  990817 Deleted include of
+                                          * <string_io.h>                                         mm  990914 Corrected size of
+                                          * char_map to allow for full wchar                                         character
+                                          * set IR9909-0523                                         mm  000404 Inserted                                          code
+                                          * to detect null input fle                                         WB1-12370                                          mm
+                                          * 000419 Initialized char_map without large static area, thanks to                                          Andreas                                          mm                                          001018
+                                          * Added threadsafety to vwscanf, fwscanf, wscanf, and vfwscanf
+                                          */

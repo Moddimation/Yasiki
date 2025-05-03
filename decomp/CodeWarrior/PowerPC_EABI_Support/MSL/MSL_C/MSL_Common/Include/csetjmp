@@ -14,7 +14,7 @@
 #include <setjmp.h>
 #else
 
-#ifndef RC_INVOKED                                   /*- hh 971230 -*/
+#ifndef RC_INVOKED                                     /*- hh 971230 -*/
 
 #pragma options align = native
 
@@ -25,13 +25,13 @@ _MSL_BEGIN_NAMESPACE_STD   /*- cc  010410 -*/
 
 #if __VEC__
     typedef __vector unsigned long jmp_buf[29];
-#define setjmp(jmp_buf) __std(__vec_setjmp(jmp_buf)) /*- hh 990521 -*/
+#define setjmp(jmp_buf) __std (__vec_setjmp (jmp_buf)) /*- hh 990521 -*/
 #elif __PPCGEKKO__
     typedef long* jmp_buf[100];
-#define setjmp(jmp_buf) __std(__setjmp(jmp_buf))     /*- hh 990521 -*/
+#define setjmp(jmp_buf) __std (__setjmp (jmp_buf))     /*- hh 990521 -*/
 #else
     typedef long* jmp_buf[70];
-#define setjmp(jmp_buf) __std(__setjmp(jmp_buf))     /*- hh 990521 -*/
+#define setjmp(jmp_buf) __std (__setjmp (jmp_buf))     /*- hh 990521 -*/
 #endif
 
 #elif __MIPS__
@@ -45,24 +45,24 @@ _MSL_BEGIN_NAMESPACE_STD   /*- cc  010410 -*/
 #endif
 } __jmp_buf;
 typedef struct __jmp_buf jmp_buf;
-_MSL_IMP_EXP_C void      __longjmp(register __jmp_buf*, int);
-_MSL_IMP_EXP_C int       __setjmp(register __jmp_buf*);
-#define setjmp(jmp_buf) __std(__setjmp(&jmp_buf))    /*- hh 990521 -*/
+_MSL_IMP_EXP_C void      __longjmp (register __jmp_buf*, int);
+_MSL_IMP_EXP_C int       __setjmp (register __jmp_buf*);
+#define setjmp(jmp_buf) __std (__setjmp (&jmp_buf))    /*- hh 990521 -*/
 #ifdef __cplusplus
 inline void
-longjmp(jmp_buf env, int val)
+longjmp (jmp_buf env, int val)
 {
-    __longjmp(&env, val);
+    __longjmp (&env, val);
 }
 #else
-#define longjmp(env, val) __longjmp(&env, val)
+#define longjmp(env, val) __longjmp (&env, val)
 #endif
 
 #elif __INTEL__
 
     typedef int    jmp_buf[10];
-#define setjmp(jmp_buf) __std(_Setjmp(jmp_buf))      /*- hh 990521 -*/
-_MSL_IMP_EXP_C int _Setjmp(jmp_buf);
+#define setjmp(jmp_buf) __std (_Setjmp (jmp_buf))      /*- hh 990521 -*/
+_MSL_IMP_EXP_C int _Setjmp (jmp_buf);
 
 #elif __SH__
 
@@ -86,12 +86,12 @@ _MSL_IMP_EXP_C int _Setjmp(jmp_buf);
 } __jmp_buf;
 
 typedef struct __jmp_buf jmp_buf;
-_MSL_IMP_EXP_C int       __setjmp(__jmp_buf*);
-_MSL_IMP_EXP_C void      __longjmp(__jmp_buf*, int);
-#define setjmp(jmp_buf)   __setjmp(&jmp_buf)
-#define longjmp(env, val) __longjmp(&env, val)
+_MSL_IMP_EXP_C int       __setjmp (__jmp_buf*);
+_MSL_IMP_EXP_C void      __longjmp (__jmp_buf*, int);
+#define setjmp(jmp_buf)   __setjmp (&jmp_buf)
+#define longjmp(env, val) __longjmp (&env, val)
 
-#elif __m56800E__                                    /*- US 010225 -*/
+#elif __m56800E__                                      /*- US 010225 -*/
 
     typedef unsigned int jmp_buf[36];
 
@@ -108,9 +108,9 @@ _MSL_IMP_EXP_C void      __longjmp(__jmp_buf*, int);
 #endif
 
 #if __VEC__
-_MSL_IMP_EXP_C int __vec_setjmp(jmp_buf);
+_MSL_IMP_EXP_C int __vec_setjmp (jmp_buf);
 #else
-_MSL_IMP_EXP_C int __setjmp(jmp_buf);
+_MSL_IMP_EXP_C int __setjmp (jmp_buf);
 #endif
 
 #ifndef __SETJMP_NOT_INTERNAL__
@@ -118,21 +118,21 @@ _MSL_IMP_EXP_C int __setjmp(jmp_buf);
 #endif
 
 #if __VEC__
-int __vec_longjmp(jmp_buf, int);
+int __vec_longjmp (jmp_buf, int);
 #ifdef __cplusplus
 inline void
-longjmp(jmp_buf j, int val)
+longjmp (jmp_buf j, int val)
 {
-    __vec_longjmp(j, val);
+    __vec_longjmp (j, val);
 }
 #else
-#define longjmp(jmp_buf, val) __vec_longjmp(jmp_buf, val)
+#define longjmp(jmp_buf, val) __vec_longjmp (jmp_buf, val)
 #endif
 #else
-void longjmp(jmp_buf, int);
+void longjmp (jmp_buf, int);
 #endif
 
-#else                                                /* !__POWERPC__ */
+#else                                                  /* !__POWERPC__ */
 
 #if !defined(__MIPS__) && !defined(__SH__)
 
@@ -140,19 +140,19 @@ _MSL_END_EXTERN_C            /*- cc  010410 -*/
     _MSL_END_NAMESPACE_STD   /*- cc  010410 -*/
         _MSL_BEGIN_EXTERN_C  /*- cc  010410 -*/
 
-            _MSL_IMP_EXP_C int setjmp(__std(jmp_buf));
+            _MSL_IMP_EXP_C int setjmp (__std (jmp_buf));
 
 _MSL_END_EXTERN_C            /*- cc  010410 -*/
     _MSL_BEGIN_NAMESPACE_STD /*- cc  010410 -*/
         _MSL_BEGIN_EXTERN_C  /*- cc  010410 -*/
 
             _MSL_IMP_EXP_C void
-            longjmp(jmp_buf, int);
+            longjmp (jmp_buf, int);
 #endif /* !defined(__MIPS__) && !defined(__SH__) */
 
 #endif
 
-_MSL_IMP_EXP_C void __longjmp_ldestr(jmp_buf, int);
+_MSL_IMP_EXP_C void __longjmp_ldestr (jmp_buf, int);
 
 _MSL_END_EXTERN_C          /*- cc  010410 -*/
     _MSL_END_NAMESPACE_STD /*- cc  010410 -*/

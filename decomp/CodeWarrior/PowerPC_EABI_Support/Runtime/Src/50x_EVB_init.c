@@ -15,7 +15,7 @@
     ".init"                                                                         \
     ".init"
 asm void
-usr_init()
+usr_init ()
 {
     nofralloc
 

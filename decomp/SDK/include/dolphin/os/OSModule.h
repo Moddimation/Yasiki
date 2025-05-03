@@ -94,18 +94,18 @@ struct OSRel
 #define R_DOLPHIN_END     203 //  CBh
 #define R_DOLPHIN_MRKREF  204 //  CCh
 
-void OSSetStringTable(const void* stringTable);
-BOOL OSLink(OSModuleInfo* newModule, void* bss);
+void OSSetStringTable (const void* stringTable);
+BOOL OSLink (OSModuleInfo* newModule, void* bss);
 #if (3 <= OS_MODULE_VERSION)
-BOOL OSLinkFixed(OSModuleInfo* newModule, void* bss);
+BOOL OSLinkFixed (OSModuleInfo* newModule, void* bss);
 #endif
-BOOL OSUnlink(OSModuleInfo* oldModule);
+BOOL OSUnlink (OSModuleInfo* oldModule);
 
-OSModuleInfo* OSSearchModule(void* ptr, u32* section, u32* offset);
+OSModuleInfo* OSSearchModule (void* ptr, u32* section, u32* offset);
 
 // debugger notification
-void OSNotifyLink(void);
-void OSNotifyUnlink(void);
+void OSNotifyLink (void);
+void OSNotifyUnlink (void);
 
 #ifdef __cplusplus
 }

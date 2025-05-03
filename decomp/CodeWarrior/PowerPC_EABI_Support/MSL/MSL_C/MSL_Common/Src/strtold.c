@@ -152,7 +152,7 @@ enum hex_scan_states
     hex_leading_exp_zeroes = 0x0080,
     hex_exp_digit_loop = 0x0100
 };
-#define MAX_SIG_DIG             20                           /*- mm 970609  -*/
+#define MAX_SIG_DIG             20                            /*- mm 970609  -*/
 
 #define final_state(scan_state) (scan_state & (finished | failure))
 
@@ -161,18 +161,20 @@ enum hex_scan_states
                    leading_exp_zeroes | exp_digit_loop | finished))
 
 #define fetch()                                                                     \
-    (count++, (*ReadProc)(ReadProcArg, 0, __GetAChar))       /*- mm 990325          \
-                                                                -*/
-#define unfetch(c) (*ReadProc)(ReadProcArg, c, __UngetAChar) /*- mm 990325 -*/
+    (count++, (*ReadProc) (ReadProcArg, 0, __GetAChar))       /*- mm 990325         \
+                                                                 -*/
+#define unfetch(c) (*ReadProc) (ReadProcArg, c, __UngetAChar) /*- mm 990325 -*/
 long double
-__strtold(int max_width, int (*ReadProc)(void*, int, int),   /*- mm 990325 -*/
-          void* ReadProcArg,                                 /*- mm 990325 -*/
-          int* chars_scanned, int* overflow)
+__strtold (int   max_width,
+           int   (*ReadProc) (void*, int, int),               /*- mm 990325 -*/
+           void* ReadProcArg,                                 /*- mm 990325 -*/
+           int*  chars_scanned,
+           int*  overflow)
 {
     int     scan_state = start;
     int     hex_scan_state = not_hex;
     int     count = 0;
-    int     spaces = 0;                                      /*- mm 970708 -*/
+    int     spaces = 0;                                       /*- mm 970708 -*/
     int     c;
     decimal d = {
         0, 0, 0, { 0, "" }
@@ -182,7 +184,7 @@ __strtold(int max_width, int (*ReadProc)(void*, int, int),   /*- mm 990325 -*/
     long        exp_value = 0;
     int         exp_adjust = 0;
     long double result;
-    int         sign_detected = 0;                           /*- mm 990921 -*/
+    int         sign_detected = 0;                            /*- mm 990921 -*/
 
     unsigned char* chptr = (unsigned char*)&result;
     unsigned char  uch, uch1;
@@ -196,31 +198,31 @@ __strtold(int max_width, int (*ReadProc)(void*, int, int),   /*- mm 990325 -*/
     short          exponent = 0;
     int            dot;
 #if !((__dest_os == __win32_os || __dest_os == __wince_os) &&                       \
-      _MWMT)                                                 /*- mm 010521 -*/
+      _MWMT)                                                  /*- mm 010521 -*/
     dot = *(unsigned char*)__lconv.decimal_point;
-#else                                                        /*- mm 010503 -*/
-    struct lconv* lconvptr = _GetThreadLocalData(_MSL_TRUE)->tls_lconv;
+#else                                                         /*- mm 010503 -*/
+    struct lconv* lconvptr = _GetThreadLocalData (_MSL_TRUE)->tls_lconv;
     /*- mm 010503 -*/                               /*- cc 010531 -*/
     dot = *(unsigned char*)lconvptr->decimal_point; /*- mm 010503 -*/
-#endif                                                       /*- mm 010503 -*/
+#endif                                                        /*- mm 010503 -*/
     *overflow = 0;
     c = fetch();
 
-    while (count <= max_width && c != EOF && !final_state(scan_state))
+    while (count <= max_width && c != EOF && !final_state (scan_state))
     {
         switch (scan_state)
         {
             case start:
-                if (isspace(c))
+                if (isspace (c))
                 {
                     c = fetch();
-                    count--;                                 /*- mani 970101 -*/
-                    spaces++;                                /*- mani 970101 -*/
+                    count--;                                  /*- mani 970101 -*/
+                    spaces++;                                 /*- mani 970101 -*/
                     break;
                 }
 
                 /*- mm 990921 -*/
-                switch (toupper(c))
+                switch (toupper (c))
                 {
                     case '-':
                         sig_negative = 1;
@@ -251,7 +253,7 @@ __strtold(int max_width, int (*ReadProc)(void*, int, int),   /*- mm 990325 -*/
                 {
                     int  i = 1;
                     char model[] = "INFINITY";
-                    while ((i < 8) && (toupper(c) == model[i]))
+                    while ((i < 8) && (toupper (c) == model[i]))
                     {
                         i++;
                         c = fetch();
@@ -281,7 +283,7 @@ __strtold(int max_width, int (*ReadProc)(void*, int, int),   /*- mm 990325 -*/
                     int  i = 1, j = 0;
                     char model[] = "NAN(";
                     char nan_arg[32] = "";
-                    while ((i < 4) && (toupper(c) == model[i]))
+                    while ((i < 4) && (toupper (c) == model[i]))
                     {
                         i++;
                         c = fetch();
@@ -290,7 +292,7 @@ __strtold(int max_width, int (*ReadProc)(void*, int, int),   /*- mm 990325 -*/
                     {
                         if (i == 4)
                         {
-                            while ((j < 32) && (isdigit(c) || isalpha(c)))
+                            while ((j < 32) && (isdigit (c) || isalpha (c)))
                             {
                                 nan_arg[j++] = c;
                                 c = fetch();
@@ -309,11 +311,11 @@ __strtold(int max_width, int (*ReadProc)(void*, int, int),   /*- mm 990325 -*/
 
                         if (sig_negative)
                         {
-                            result = -nan(nan_arg);
+                            result = -nan (nan_arg);
                         }
                         else
                         {
-                            result = nan(nan_arg);
+                            result = nan (nan_arg);
                         }
                         *chars_scanned = spaces + i + j + sign_detected;
                         return (result);
@@ -333,7 +335,7 @@ __strtold(int max_width, int (*ReadProc)(void*, int, int),   /*- mm 990325 -*/
                     c = fetch();
                     break;
                 }
-                if (!isdigit(c))
+                if (!isdigit (c))
                 {
                     scan_state = failure;
                     break;
@@ -342,7 +344,7 @@ __strtold(int max_width, int (*ReadProc)(void*, int, int),   /*- mm 990325 -*/
                 {
                     /*- mm 990921 -*/
                     c = fetch();
-                    if (toupper(c) == 'X')
+                    if (toupper (c) == 'X')
                     {
                         scan_state = hex_state;
                         hex_scan_state = hex_start;
@@ -368,7 +370,7 @@ __strtold(int max_width, int (*ReadProc)(void*, int, int),   /*- mm 990325 -*/
                 break;
 
             case int_digit_loop:
-                if (!isdigit(c))
+                if (!isdigit (c))
                 {
                     if (c == dot)
                     {
@@ -393,7 +395,7 @@ __strtold(int max_width, int (*ReadProc)(void*, int, int),   /*- mm 990325 -*/
                 break;
 
             case frac_start:
-                if (!isdigit(c))
+                if (!isdigit (c))
                 {
                     scan_state = failure;
                     break;
@@ -402,7 +404,7 @@ __strtold(int max_width, int (*ReadProc)(void*, int, int),   /*- mm 990325 -*/
                 break;
 
             case frac_digit_loop:
-                if (!isdigit(c))
+                if (!isdigit (c))
                 {
                     scan_state = sig_end;
                     break;
@@ -420,7 +422,7 @@ __strtold(int max_width, int (*ReadProc)(void*, int, int),   /*- mm 990325 -*/
                 break;
 
             case sig_end:
-                if (toupper(c) == 'E')
+                if (toupper (c) == 'E')
                 {
                     scan_state = exp_start;
                     c = fetch();
@@ -443,7 +445,7 @@ __strtold(int max_width, int (*ReadProc)(void*, int, int),   /*- mm 990325 -*/
                 break;
 
             case leading_exp_digit:
-                if (!isdigit(c))
+                if (!isdigit (c))
                 {
                     scan_state = failure;
                     break;
@@ -467,7 +469,7 @@ __strtold(int max_width, int (*ReadProc)(void*, int, int),   /*- mm 990325 -*/
                 break;
 
             case exp_digit_loop:
-                if (!isdigit(c))
+                if (!isdigit (c))
                 {
                     scan_state = finished;
                     break;
@@ -506,7 +508,7 @@ __strtold(int max_width, int (*ReadProc)(void*, int, int),   /*- mm 990325 -*/
                             break;
 
                         case hex_int_digit_loop:
-                            if (!isxdigit(c))
+                            if (!isxdigit (c))
                             {
                                 if (c == dot)
                                 {
@@ -523,7 +525,7 @@ __strtold(int max_width, int (*ReadProc)(void*, int, int),   /*- mm 990325 -*/
                             {
                                 intdigits++;
                                 uch = *(chptr + NibbleIndex / 2);
-                                ui = toupper(c);
+                                ui = toupper (c);
                                 if (ui >= 'A')
                                 {
                                     ui = ui - 'A' + 10;
@@ -552,7 +554,7 @@ __strtold(int max_width, int (*ReadProc)(void*, int, int),   /*- mm 990325 -*/
                             break;
 
                         case hex_frac_digit_loop:
-                            if (!isxdigit(c))
+                            if (!isxdigit (c))
                             {
                                 hex_scan_state = hex_sig_end;
                                 break;
@@ -560,7 +562,7 @@ __strtold(int max_width, int (*ReadProc)(void*, int, int),   /*- mm 990325 -*/
                             if (NibbleIndex < 17)
                             {
                                 uch = *(chptr + NibbleIndex / 2);
-                                ui = toupper(c);
+                                ui = toupper (c);
                                 if (ui >= 'A')
                                 {
                                     ui = ui - 'A' + 10;
@@ -588,7 +590,7 @@ __strtold(int max_width, int (*ReadProc)(void*, int, int),   /*- mm 990325 -*/
                             break;
 
                         case hex_sig_end:
-                            if (toupper(c) == 'P')
+                            if (toupper (c) == 'P')
                             {
                                 hex_scan_state = hex_exp_start;
                                 exp_digits++;
@@ -608,7 +610,7 @@ __strtold(int max_width, int (*ReadProc)(void*, int, int),   /*- mm 990325 -*/
                             }
                             else if (c != '+')
                             {
-                                c = unfetch(c);
+                                c = unfetch (c);
                                 exp_digits--;
                             }
                             hex_scan_state = hex_leading_exp_digit;
@@ -617,7 +619,7 @@ __strtold(int max_width, int (*ReadProc)(void*, int, int),   /*- mm 990325 -*/
 
                         case hex_leading_exp_digit:
 
-                            if (!isdigit(c))
+                            if (!isdigit (c))
                             {
                                 scan_state = failure;
                                 break;
@@ -633,7 +635,7 @@ __strtold(int max_width, int (*ReadProc)(void*, int, int),   /*- mm 990325 -*/
                             break;
 
                         case hex_exp_digit_loop:
-                            if (!isdigit(c))
+                            if (!isdigit (c))
                             {
                                 scan_state = finished;
                                 break;
@@ -654,7 +656,7 @@ __strtold(int max_width, int (*ReadProc)(void*, int, int),   /*- mm 990325 -*/
         }
     }
 
-    if (!success(scan_state))
+    if (!success (scan_state))
     {
         count = 0;                       /*- mf 092497 -*/
         *chars_scanned = 0;
@@ -665,7 +667,7 @@ __strtold(int max_width, int (*ReadProc)(void*, int, int),   /*- mm 990325 -*/
         *chars_scanned = count + spaces; /*- mani 970101 -*/
     }
 
-    unfetch(c);
+    unfetch (c);
 
     if (hex_scan_state == not_hex)
     {                                    /* This was decimal input */
@@ -713,18 +715,19 @@ __strtold(int max_width, int (*ReadProc)(void*, int, int),   /*- mm 990325 -*/
 
         d.exp = exp_value;
 
-        result = __dec2num(&d);
+        result = __dec2num (&d);
 
                                          /*
                                           *	Note: If you look at <ansi_fp.h> you'll see that __dec2num only supports
                                           *double.                                  If you look at <float.h> you'll
                                           *see that long double == double.                                  Ergo, the
-                                          *difference is moot *until* a                                  truly long double type is supported.
+                                          *difference is moot *until* a                                  truly long
+                                          *double type is supported.
                                           */
 
         if (result != 0.0 && result < LDBL_MIN)
         {
-            *overflow = 1;                       /*- hh 000126 -*/
+            *overflow = 1;                        /*- hh 000126 -*/
         }
         else if (result > LDBL_MAX)
         {
@@ -732,7 +735,7 @@ __strtold(int max_width, int (*ReadProc)(void*, int, int),   /*- mm 990325 -*/
             result = HUGE_VAL;
         }
 
-        if (sig_negative && success(scan_state)) /*- mm 990921 -*/
+        if (sig_negative && success (scan_state)) /*- mm 990921 -*/
         {
             result = -result;
         }
@@ -740,15 +743,15 @@ __strtold(int max_width, int (*ReadProc)(void*, int, int),   /*- mm 990325 -*/
         return (result);
     }
     else
-    {                                            /* The input was in hex */
+    {                                             /* The input was in hex */
 #ifdef __MSL_LONGLONG_SUPPORT__
         unsigned long long* uptr = (unsigned long long*)&result;
 #else
         unsigned long* uptr = (unsigned long*)&result;
 #endif
 
-        if (result)                              /*- mm 010517 -*/
-        {                                        /*- mm 010517 -*/
+        if (result)                               /*- mm 010517 -*/
+        {                                         /*- mm 010517 -*/
             if (expsign)
             {
                 exponent = -exponent;
@@ -787,7 +790,7 @@ __strtold(int max_width, int (*ReadProc)(void*, int, int),   /*- mm 990325 -*/
 }
 /*- mm 990930 -*/
 long double
-strtold(const char* nptr, char** endptr)
+strtold (const char* nptr, char** endptr)
 {
     long double value, abs_value;
     int         count, overflow;
@@ -796,14 +799,14 @@ strtold(const char* nptr, char** endptr)
     isc.NextChar = (char*)nptr;
     isc.NullCharDetected = 0;
 
-    value = __strtold(INT_MAX, &__StringRead, (void*)&isc, &count, &overflow);
+    value = __strtold (INT_MAX, &__StringRead, (void*)&isc, &count, &overflow);
 
     if (endptr)
     {
         *endptr = (char*)nptr + count;
     }
 
-    abs_value = fabs(value);
+    abs_value = fabs (value);
 
     if (overflow || (value != 0.0 && (abs_value < DBL_MIN || abs_value > DBL_MAX)))
     {
@@ -815,7 +818,7 @@ strtold(const char* nptr, char** endptr)
 /*- mm 990930 -*/
 
 double
-strtod(const char* str, char** end)
+strtod (const char* str, char** end)
 {
     long double value, abs_value;
     int         count, overflow;
@@ -824,14 +827,14 @@ strtod(const char* str, char** end)
     isc.NextChar = (char*)str;
     isc.NullCharDetected = 0;
 
-    value = __strtold(INT_MAX, &__StringRead, (void*)&isc, &count, &overflow);
+    value = __strtold (INT_MAX, &__StringRead, (void*)&isc, &count, &overflow);
 
     if (end)
     {
         *end = (char*)str + count;
     }
 
-    abs_value = fabs(value);
+    abs_value = fabs (value);
 
     if (overflow || (value != 0.0 && (abs_value < DBL_MIN || abs_value > DBL_MAX)))
     {
@@ -841,9 +844,9 @@ strtod(const char* str, char** end)
     return (value);
 }
 double
-atof(const char* str)
+atof (const char* str)
 {
-    return (strtod(str, NULL));
+    return (strtod (str, NULL));
 }
 #endif /* ndef _No_Floating_Point */
 

@@ -121,32 +121,32 @@ struct AXFX_CHORUS
     u32                     period;                    ///< 0x98
 };
 // chorus.c
-int  AXFXChorusInit(struct AXFX_CHORUS* c);
-int  AXFXChorusShutdown(struct AXFX_CHORUS* c);
-int  AXFXChorusSettings(struct AXFX_CHORUS* c);
-void AXFXChorusCallback(struct AXFX_BUFFERUPDATE* bufferUpdate,
-                        struct AXFX_CHORUS*       chorus);
+int  AXFXChorusInit (struct AXFX_CHORUS* c);
+int  AXFXChorusShutdown (struct AXFX_CHORUS* c);
+int  AXFXChorusSettings (struct AXFX_CHORUS* c);
+void AXFXChorusCallback (struct AXFX_BUFFERUPDATE* bufferUpdate,
+                         struct AXFX_CHORUS*       chorus);
 
 // delay.c
-void AXFXDelayCallback(struct AXFX_BUFFERUPDATE* bufferUpdate,
-                       struct AXFX_DELAY*        delay);
-int  AXFXDelaySettings(struct AXFX_DELAY* delay);
-int  AXFXDelayInit(struct AXFX_DELAY* delay);
-int  AXFXDelayShutdown(struct AXFX_DELAY* delay);
+void AXFXDelayCallback (struct AXFX_BUFFERUPDATE* bufferUpdate,
+                        struct AXFX_DELAY*        delay);
+int  AXFXDelaySettings (struct AXFX_DELAY* delay);
+int  AXFXDelayInit (struct AXFX_DELAY* delay);
+int  AXFXDelayShutdown (struct AXFX_DELAY* delay);
 
 // reverb_hi.c
-void DoCrossTalk(s32* l, long* r, float cross, float invcross);
-int  AXFXReverbHiInit(struct AXFX_REVERBHI* rev);
-int  AXFXReverbHiShutdown(struct AXFX_REVERBHI* rev);
-int  AXFXReverbHiSettings(struct AXFX_REVERBHI* rev);
-void AXFXReverbHiCallback(struct AXFX_BUFFERUPDATE* bufferUpdate,
-                          struct AXFX_REVERBHI*     reverb);
+void DoCrossTalk (s32* l, long* r, float cross, float invcross);
+int  AXFXReverbHiInit (struct AXFX_REVERBHI* rev);
+int  AXFXReverbHiShutdown (struct AXFX_REVERBHI* rev);
+int  AXFXReverbHiSettings (struct AXFX_REVERBHI* rev);
+void AXFXReverbHiCallback (struct AXFX_BUFFERUPDATE* bufferUpdate,
+                           struct AXFX_REVERBHI*     reverb);
 
 // reverb_std.c
-int  AXFXReverbStdInit(struct AXFX_REVERBSTD* rev);
-int  AXFXReverbStdShutdown(struct AXFX_REVERBSTD* rev);
-int  AXFXReverbStdSettings(struct AXFX_REVERBSTD* rev);
-void AXFXReverbStdCallback(struct AXFX_BUFFERUPDATE* bufferUpdate,
-                           struct AXFX_REVERBSTD*    reverb);
+int  AXFXReverbStdInit (struct AXFX_REVERBSTD* rev);
+int  AXFXReverbStdShutdown (struct AXFX_REVERBSTD* rev);
+int  AXFXReverbStdSettings (struct AXFX_REVERBSTD* rev);
+void AXFXReverbStdCallback (struct AXFX_BUFFERUPDATE* bufferUpdate,
+                            struct AXFX_REVERBSTD*    reverb);
 
 #endif // _DOLPHIN_AXFX_H_

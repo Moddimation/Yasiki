@@ -10,15 +10,15 @@ class IncludeStrategy
     EnemyStrategy* mpStrategy;
 
 public:
-    IncludeStrategy();
+    IncludeStrategy ();
 
-    virtual ~IncludeStrategy();
-    virtual void unknownVirtualFunc() = 0;
+    virtual ~IncludeStrategy ();
+    virtual void unknownVirtualFunc () = 0;
 
-    void setStrategy(int i_entityIdx);
-    void destroyStrategy();
+    void setStrategy (int i_entityIdx);
+    void destroyStrategy ();
     void*
-    getBuffer()
+    getBuffer ()
     {
         return mStrategyMemory;
     }

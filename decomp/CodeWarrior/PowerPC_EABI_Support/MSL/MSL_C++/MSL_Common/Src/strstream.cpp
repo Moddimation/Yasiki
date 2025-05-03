@@ -34,13 +34,13 @@ namespace std
 #endif
 // strstreambuf
 
-strstreambuf::~strstreambuf()
+strstreambuf::~strstreambuf ()
 {
     if ((strmode_ & allocated) != 0 && (strmode_ & frozen) == 0) // hh 990422
     {
         if (pfree_ != 0)
         {
-            pfree_(eback());
+            pfree_ (eback());
         }
         else
         {
@@ -49,7 +49,7 @@ strstreambuf::~strstreambuf()
     }
 }
 void
-strstreambuf::freeze(bool freezefl)
+strstreambuf::freeze (bool freezefl)
 {
     if ((strmode_ & dynamic) != 0)                               // hh 990422
     {
@@ -64,7 +64,7 @@ strstreambuf::freeze(bool freezefl)
     }
 }
 strstreambuf::int_type
-strstreambuf::overflow(int_type c)
+strstreambuf::overflow (int_type c)
 {
     if (c == EOF)
     {
@@ -73,7 +73,7 @@ strstreambuf::overflow(int_type c)
     if (pptr() < epptr())
     {
         *pptr() = (char)c;
-        pbump(1);
+        pbump (1);
         return c;
     }
     if ((strmode_ & dynamic) == 0 || (strmode_ & frozen) != 0)   // hh 990422
@@ -97,7 +97,7 @@ strstreambuf::overflow(int_type c)
     char* newbuffer;                                             // hh 990423
     if (palloc_ != 0)
     {
-        newbuffer = (char*)palloc_((size_t)newsize);
+        newbuffer = (char*)palloc_ ((size_t)newsize);
     }
     else
     {
@@ -118,28 +118,28 @@ strstreambuf::overflow(int_type c)
         }
         if (pfree_ != 0)
         {
-            pfree_(eback());
+            pfree_ (eback());
         }
         else
         {
             delete[] eback();
         }
     }
-    setg(newbuffer, newbuffer + getpos, newbuffer + getlen);
-    setp(newbuffer + putstart, newbuffer + newsize);             // hh 980910, 990423
-    pbump(putpos);
+    setg (newbuffer, newbuffer + getpos, newbuffer + getlen);
+    setp (newbuffer + putstart, newbuffer + newsize);            // hh 980910, 990423
+    pbump (putpos);
     *pptr() = (char)c;
-    pbump(1);
+    pbump (1);
     return c;
 }
 strstreambuf::int_type
-strstreambuf::pbackfail(int_type c)
+strstreambuf::pbackfail (int_type c)
 {
     if (gptr() <= eback())
     {
         return EOF;
     }
-    gbump(-1);
+    gbump (-1);
     if (c == EOF)
     {
         return 0;
@@ -153,11 +153,11 @@ strstreambuf::pbackfail(int_type c)
         *gptr() = (char)c;
         return c;
     }
-    gbump(1);
+    gbump (1);
     return EOF;
 }
 strstreambuf::int_type
-strstreambuf::underflow()
+strstreambuf::underflow ()
 {
     if (gptr() < egptr())
     {
@@ -165,18 +165,18 @@ strstreambuf::underflow()
     }
     if (egptr() < pptr())
     {
-        setg(eback(), gptr(), pptr());                           // hh 990423
+        setg (eback(), gptr(), pptr());                          // hh 990423
         return (unsigned char)*gptr();
     }
     return EOF;
 }
 strstreambuf::pos_type
-strstreambuf::seekoff(off_type off, ios_base::seekdir way, ios_base::openmode which)
+strstreambuf::seekoff (off_type off, ios_base::seekdir way, ios_base::openmode which)
 {
     ios_base::openmode inout = ios_base::in | ios_base::out;     // hh 990423
     if ((which & inout) == inout && way == ios_base::cur || (which & inout) == 0)
     {
-        return pos_type(-1);
+        return pos_type (-1);
     }
     off_type newoff = -1;
     if (which & ios_base::in)
@@ -193,14 +193,14 @@ strstreambuf::seekoff(off_type off, ios_base::seekdir way, ios_base::openmode wh
                 newoff = egptr() - eback();
                 break;
             default:
-                return pos_type(-1);
+                return pos_type (-1);
         }
         newoff += off;
         if (newoff < 0 || newoff > egptr() - eback())
         {
-            return pos_type(-1);
+            return pos_type (-1);
         }
-        setg(eback(), eback() + newoff, egptr());
+        setg (eback(), eback() + newoff, egptr());
     }
     if (which & ios_base::out)
     {
@@ -216,20 +216,20 @@ strstreambuf::seekoff(off_type off, ios_base::seekdir way, ios_base::openmode wh
                 newoff = epptr() - pbase();
                 break;
             default:
-                return pos_type(-1);
+                return pos_type (-1);
         }
         newoff += off;
         if (newoff < 0 || newoff > epptr() - pbase())
         {
-            return pos_type(-1);
+            return pos_type (-1);
         }
-        setp(pbase(), epptr());
-        pbump(newoff);
+        setp (pbase(), epptr());
+        pbump (newoff);
     }
-    return pos_type(newoff);
+    return pos_type (newoff);
 }
 strstreambuf::pos_type
-strstreambuf::seekpos(pos_type sp, ios_base::openmode which)
+strstreambuf::seekpos (pos_type sp, ios_base::openmode which)
 {
     off_type newoff = -1;
     if (which & ios_base::in)
@@ -237,24 +237,24 @@ strstreambuf::seekpos(pos_type sp, ios_base::openmode which)
         newoff = sp;                                             // hh 980909
         if (newoff < 0 || newoff > egptr() - eback())
         {
-            return pos_type(-1);
+            return pos_type (-1);
         }
-        setg(eback(), eback() + newoff, egptr());
+        setg (eback(), eback() + newoff, egptr());
     }
     if (which & ios_base::out)
     {
         newoff = sp;                                             // hh 980909
         if (newoff < 0 || newoff > epptr() - pbase())
         {
-            return pos_type(-1);
+            return pos_type (-1);
         }
-        setp(pbase(), epptr());
-        pbump(newoff);
+        setp (pbase(), epptr());
+        pbump (newoff);
     }
-    return pos_type(newoff);
+    return pos_type (newoff);
 }
 streambuf*
-strstreambuf::setbuf(char* s, streamsize n)
+strstreambuf::setbuf (char* s, streamsize n)
 {                                                                // hh 990423
     if (s == 0 || n == 0)
     {
@@ -264,7 +264,7 @@ strstreambuf::setbuf(char* s, streamsize n)
     {
         if (pfree_ != 0)
         {
-            pfree_(eback());
+            pfree_ (eback());
         }
         else
         {
@@ -272,16 +272,16 @@ strstreambuf::setbuf(char* s, streamsize n)
         }
     }
     strmode_ = 0;
-    init(s, n, s);
+    init (s, n, s);
     return this;
 }
 void
-strstreambuf::init(char* gnext_arg, streamsize n, char* pbeg_arg)
+strstreambuf::init (char* gnext_arg, streamsize n, char* pbeg_arg)
 {
     streamsize N = n;
     if (N == 0)
     {
-        N = (streamsize)strlen(gnext_arg);
+        N = (streamsize)strlen (gnext_arg);
     }
     else if (N < 0)
     {
@@ -289,12 +289,12 @@ strstreambuf::init(char* gnext_arg, streamsize n, char* pbeg_arg)
     }
     if (pbeg_arg == 0)
     {
-        setg(gnext_arg, gnext_arg, gnext_arg + N);
+        setg (gnext_arg, gnext_arg, gnext_arg + N);
     }
     else
     {
-        setg(gnext_arg, gnext_arg, pbeg_arg);
-        setp(pbeg_arg, pbeg_arg + N);
+        setg (gnext_arg, gnext_arg, pbeg_arg);
+        setp (pbeg_arg, pbeg_arg + N);
     }
 }
 // istrstream

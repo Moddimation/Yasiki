@@ -56,21 +56,22 @@ namespace std
 #ifndef _MSL_NO_LOCALE
 template <class charT, class traits, class T, class U>
 void
-__read_ctype_entry(basic_istream<charT, traits>& infile,
-                   Metrowerks::range_map<T, U>&  ctype_table,
-                   const string* code_names, const ctype<char>& ct)
+__read_ctype_entry (basic_istream<charT, traits>& infile,
+                    Metrowerks::range_map<T, U>&  ctype_table,
+                    const string*                 code_names,
+                    const ctype<char>&            ct)
 {
     charT syntax;
     infile >> syntax;
     if (infile.fail() || syntax != '[')
 #ifndef _MSL_NO_EXCEPTIONS
-        throw runtime_error("syntax error reading ctype table");
+        throw runtime_error ("syntax error reading ctype table");
 #else
-        __msl_error("syntax error reading ctype table");
+        __msl_error ("syntax error reading ctype table");
 #endif
     T    x1, x2;
     bool was_quoted;
-    __read_formatted_char(infile, x1, was_quoted);
+    __read_formatted_char (infile, x1, was_quoted);
     infile >> syntax;
     if (syntax == ']')
     {
@@ -78,72 +79,72 @@ __read_ctype_entry(basic_istream<charT, traits>& infile,
     }
     else if (syntax != '-')
 #ifndef _MSL_NO_EXCEPTIONS
-        throw runtime_error("syntax error reading ctype table");
+        throw runtime_error ("syntax error reading ctype table");
 #else
-        __msl_error("syntax error reading ctype table");
+        __msl_error ("syntax error reading ctype table");
 #endif
     else
     {
-        __read_formatted_char(infile, x2, was_quoted);
+        __read_formatted_char (infile, x2, was_quoted);
         infile >> syntax;
         if (syntax != ']')
 #ifndef _MSL_NO_EXCEPTIONS
-            throw runtime_error("syntax error reading ctype table");
+            throw runtime_error ("syntax error reading ctype table");
 #else
-            __msl_error("syntax error reading ctype table");
+            __msl_error ("syntax error reading ctype table");
 #endif
     }
     infile >> syntax;
     if (syntax != '=')
 #ifndef _MSL_NO_EXCEPTIONS
-        throw runtime_error("syntax error reading ctype table");
+        throw runtime_error ("syntax error reading ctype table");
 #else
-        __msl_error("syntax error reading ctype table");
+        __msl_error ("syntax error reading ctype table");
 #endif
     ios_base::iostate         err = ios_base::goodbit;
-    istreambuf_iterator<char> in(infile), end;
+    istreambuf_iterator<char> in (infile), end;
     U                         y = U();
     while (true)
     {
-        ws(infile);
+        ws (infile);
         const string* i =
-            __parse_a_word(in, end, code_names, code_names + 8, ct, err);
+            __parse_a_word (in, end, code_names, code_names + 8, ct, err);
         if (err)
         {
-            infile.setstate(err);
+            infile.setstate (err);
         }
         if (infile.fail() || i == code_names + 8)
 #ifndef _MSL_NO_EXCEPTIONS
-            throw runtime_error("syntax error reading ctype table");
+            throw runtime_error ("syntax error reading ctype table");
 #else
-            __msl_error("syntax error reading ctype table");
+            __msl_error ("syntax error reading ctype table");
 #endif
-        y |= static_cast<U>(U(1) << (i - code_names));
-        ws(infile);
+        y |= static_cast<U> (U (1) << (i - code_names));
+        ws (infile);
         if (infile.peek() != '|')
         {
             break;
         }
         infile >> syntax;
     }
-    ctype_table.insert(x1, x2, y);
+    ctype_table.insert (x1, x2, y);
 }
 template <class charT, class traits, class T, class U>
 void
-__read_case_entry(basic_istream<charT, traits>& infile,
-                  Metrowerks::range_map<T, U>&  case_table)
+__read_case_entry (basic_istream<charT, traits>& infile,
+                   Metrowerks::range_map<T, U>&  case_table)
 {
     charT syntax;
     infile >> syntax;
     if (infile.fail() || syntax != '[')
 #ifndef _MSL_NO_EXCEPTIONS
-        throw runtime_error("syntax error reading case table");
+        throw runtime_error ("syntax error reading case table");
 #else
-        __msl_error("syntax error reading case table");
+        __msl_error ("syntax error reading case table");
 #endif
     T    x1, x2;
     bool was_quoted;
-    __read_formatted_char(infile, x1, was_quoted);
+    __read_formatted_char (infile, x1, was_quoted);
     infile >> syntax;
     if (syntax == ']')
     {
@@ -151,88 +152,89 @@ __read_case_entry(basic_istream<charT, traits>& infile,
     }
     else if (syntax != '-')
 #ifndef _MSL_NO_EXCEPTIONS
-        throw runtime_error("syntax error reading case table");
+        throw runtime_error ("syntax error reading case table");
 #else
-        __msl_error("syntax error reading case table");
+        __msl_error ("syntax error reading case table");
 #endif
     else
     {
-        __read_formatted_char(infile, x2, was_quoted);
+        __read_formatted_char (infile, x2, was_quoted);
         infile >> syntax;
         if (syntax != ']')
 #ifndef _MSL_NO_EXCEPTIONS
-            throw runtime_error("syntax error reading case table");
+            throw runtime_error ("syntax error reading case table");
 #else
-            __msl_error("syntax error reading case table");
+            __msl_error ("syntax error reading case table");
 #endif
     }
     infile >> syntax;
     if (syntax != '=')
 #ifndef _MSL_NO_EXCEPTIONS
-        throw runtime_error("syntax error reading case table");
+        throw runtime_error ("syntax error reading case table");
 #else
-        __msl_error("syntax error reading case table");
+        __msl_error ("syntax error reading case table");
 #endif
     U y1, y2;
-    __read_formatted_char(infile, y1, was_quoted);
+    __read_formatted_char (infile, y1, was_quoted);
     if (infile.fail())
 #ifndef _MSL_NO_EXCEPTIONS
-        throw runtime_error("syntax error reading case table");
+        throw runtime_error ("syntax error reading case table");
 #else
-        __msl_error("syntax error reading case table");
+        __msl_error ("syntax error reading case table");
 #endif
-    ws(infile);
+    ws (infile);
     if (infile.peek() == '-')
     {
         infile >> syntax;
-        __read_formatted_char(infile, y2, was_quoted);
+        __read_formatted_char (infile, y2, was_quoted);
         if (infile.fail())
 #ifndef _MSL_NO_EXCEPTIONS
-            throw runtime_error("syntax error reading case table");
+            throw runtime_error ("syntax error reading case table");
 #else
-            __msl_error("syntax error reading case table");
+            __msl_error ("syntax error reading case table");
 #endif
     }
     else
     {
         y2 = y1;
     }
-    case_table.insert(x1, x2, y1, y2);
+    case_table.insert (x1, x2, y1, y2);
 }
 template <class charT>
 void
-__ctype_byname_init(const char* std_name, const string& ctype_marker,
-                    Metrowerks::range_map<charT, ctype_base::mask>& ctype_table,
-                    Metrowerks::range_map<charT, charT>&            lower_table,
-                    Metrowerks::range_map<charT, charT>&            upper_table)
+__ctype_byname_init (const char*                                     std_name,
+                     const string&                                   ctype_marker,
+                     Metrowerks::range_map<charT, ctype_base::mask>& ctype_table,
+                     Metrowerks::range_map<charT, charT>&            lower_table,
+                     Metrowerks::range_map<charT, charT>&            upper_table)
 {
     if (std_name == 0)
 #ifndef _MSL_NO_EXCEPTIONS
-        throw runtime_error("ctype_byname constructed with null name");
+        throw runtime_error ("ctype_byname constructed with null name");
 #else
-        __msl_error("ctype_byname constructed with null name");
+        __msl_error ("ctype_byname constructed with null name");
 #endif
-    if (strlen(std_name) == 0)
+    if (strlen (std_name) == 0)
     {
-        std_name = getenv("LANG");
+        std_name = getenv ("LANG");
     }
-    if (std_name != 0 && strcmp(std_name, "C") != 0)
+    if (std_name != 0 && strcmp (std_name, "C") != 0)
     {
 #ifndef _MSL_NO_FILE_IO
-        ifstream infile(std_name);
+        ifstream infile (std_name);
         if (!infile.is_open())
 #ifndef _MSL_NO_EXCEPTIONS
-            throw runtime_error(
-                string("ctype_byname constructed with unsupported name: ") +
+            throw runtime_error (
+                string ("ctype_byname constructed with unsupported name: ") +
                 std_name);
 #else
-            __msl_error("ctype_byname constructed with unsupported name");
+            __msl_error ("ctype_byname constructed with unsupported name");
 #endif
         string word;
         bool   success = true;
         while (infile.good())
         {
-            infile.ignore(numeric_limits<streamsize>::max(), '$');
+            infile.ignore (numeric_limits<streamsize>::max(), '$');
             infile >> word;
             if (infile.fail())
             {
@@ -248,7 +250,7 @@ __ctype_byname_init(const char* std_name, const string& ctype_marker,
                 table_names[0] = "ctype";
                 table_names[1] = "lower";
                 table_names[2] = "upper";
-                const string(&ctable_names)[3] = table_names;
+                const string (&ctable_names)[3] = table_names;
                 string code_names[8];
                 code_names[0] = "control";
                 code_names[1] = "motion";
@@ -258,17 +260,17 @@ __ctype_byname_init(const char* std_name, const string& ctype_marker,
                 code_names[5] = "xdigit";
                 code_names[6] = "lower";
                 code_names[7] = "upper";
-                const ctype<char>& ct = _USE_FACET(ctype<char>, infile.getloc());
+                const ctype<char>& ct = _USE_FACET (ctype<char>, infile.getloc());
                 ios_base::iostate  err = ios_base::goodbit;
-                istreambuf_iterator<char> in(infile), end;
+                istreambuf_iterator<char> in (infile), end;
                 while (true)
                 {
-                    ws(infile);
-                    const string* i = __parse_a_word(in, end, ctable_names,
-                                                     ctable_names + 3, ct, err);
+                    ws (infile);
+                    const string* i = __parse_a_word (
+                        in, end, ctable_names, ctable_names + 3, ct, err);
                     if (err)
                     {
-                        infile.setstate(err);
+                        infile.setstate (err);
                     }
                     if (i == ctable_names + 3)
                     {
@@ -277,13 +279,13 @@ __ctype_byname_init(const char* std_name, const string& ctype_marker,
                     switch (i - ctable_names)
                     {
                         case 0: // ctype
-                            __read_ctype_entry(infile, ctype_table, code_names, ct);
+                            __read_ctype_entry (infile, ctype_table, code_names, ct);
                             break;
                         case 1: // lower
-                            __read_case_entry(infile, lower_table);
+                            __read_case_entry (infile, lower_table);
                             break;
                         case 2: // upper
-                            __read_case_entry(infile, upper_table);
+                            __read_case_entry (infile, upper_table);
                             break;
                     }
                 }
@@ -293,17 +295,17 @@ __ctype_byname_init(const char* std_name, const string& ctype_marker,
         }
         if (!success)
 #ifndef _MSL_NO_EXCEPTIONS
-            throw runtime_error(string("ctype_byname file input error: ") +
-                                std_name);
+            throw runtime_error (string ("ctype_byname file input error: ") +
+                                 std_name);
 #else
-            __msl_error("ctype_byname file input error");
+            __msl_error ("ctype_byname file input error");
 #endif
 #else                           // _MSL_NO_FILE_IO
 #ifndef _MSL_NO_EXCEPTIONS
-        throw runtime_error(
-            string("ctype_byname constructed with unsupported name: ") + std_name);
+        throw runtime_error (
+            string ("ctype_byname constructed with unsupported name: ") + std_name);
 #else
-        __msl_error("ctype_byname constructed with unsupported name");
+        __msl_error ("ctype_byname constructed with unsupported name");
 #endif
         ctype_marker;
         ctype_table;
@@ -316,43 +318,46 @@ template <class charT> class ctype_byname : public ctype<charT>
 {
 public:
     typedef typename ctype<charT>::mask mask;
-    explicit ctype_byname(const char* std_name, size_t refs = 0);
+    explicit ctype_byname (const char* std_name, size_t refs = 0);
 
 protected:
-    virtual ÃÂ¢ÃÂÃÂ¾ctype_byname() {}
+    virtual ÃÂ¢ÃÂÃÂ¾ctype_byname () {}
 };
 template <class charT>
-inline ctype_byname<charT>::ctype_byname(const char* std_name, size_t refs)
-  : ctype<charT>(refs)
+inline ctype_byname<charT>::ctype_byname (const char* std_name, size_t refs)
+  : ctype<charT> (refs)
 {
     typedef ctype<charT> base;
-    __ctype_byname_init(std_name, "ctype_wide", base::__table_, base::__lower_map_,
-                        base::__upper_map_);
+    __ctype_byname_init (std_name,
+                         "ctype_wide",
+                         base::__table_,
+                         base::__lower_map_,
+                         base::__upper_map_);
 }
 template <> class ctype_byname<char> : public ctype<char>
 {
 public:
     typedef ctype<char>::mask mask;
-    explicit ctype_byname(const char* std_name, size_t refs = 0);
+    explicit ctype_byname (const char* std_name, size_t refs = 0);
 
 protected:
-    virtual ÃÂ¢ÃÂÃÂ¾ctype_byname();
+    virtual ÃÂ¢ÃÂÃÂ¾ctype_byname ();
 };
 template <>
-inline ctype_byname<char>::ctype_byname(const char* std_name, size_t refs)
-  : ctype<char>(0, false, refs)
+inline ctype_byname<char>::ctype_byname (const char* std_name, size_t refs)
+  : ctype<char> (0, false, refs)
 {
     Metrowerks::range_map<unsigned char, unsigned char> ctype_table;
     Metrowerks::range_map<unsigned char, unsigned char> lower_table;
     Metrowerks::range_map<unsigned char, unsigned char> upper_table;
-    __ctype_byname_init(std_name, "ctype_narrow", ctype_table, lower_table,
-                        upper_table);
+    __ctype_byname_init (
+        std_name, "ctype_narrow", ctype_table, lower_table, upper_table);
     typedef Metrowerks::alloc_ptr<unsigned char,
                                   Metrowerks::array_deleter<unsigned char> >
              auto_ptr;
-    auto_ptr p1(new unsigned char[256]);
-    auto_ptr p2(new unsigned char[256]);
-    auto_ptr p3(new unsigned char[256]);
+    auto_ptr p1 (new unsigned char[256]);
+    auto_ptr p2 (new unsigned char[256]);
+    auto_ptr p3 (new unsigned char[256]);
     __table_ = p1.release();
     __lower_map_ = p2.release();
     __upper_map_ = p3.release();
@@ -360,21 +365,21 @@ inline ctype_byname<char>::ctype_byname(const char* std_name, size_t refs)
     {
         for (int i = 0; i < 256; ++i)
         {
-            const_cast<ctype_base::mask&>(__table_[i]) =
+            const_cast<ctype_base::mask&> (__table_[i]) =
                 ctype_table[(unsigned char)i];
         }
     }
     {
         for (int i = 0; i < 256; ++i)
         {
-            const_cast<unsigned char&>(__lower_map_[i]) =
+            const_cast<unsigned char&> (__lower_map_[i]) =
                 lower_table[(unsigned char)i];
         }
     }
     {
         for (int i = 0; i < 256; ++i)
         {
-            const_cast<unsigned char&>(__upper_map_[i]) =
+            const_cast<unsigned char&> (__upper_map_[i]) =
                 upper_table[(unsigned char)i];
         }
     }

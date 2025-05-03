@@ -4,7 +4,7 @@
 
 extern u8 gTRKRestoreFlags[9 + 3 /* padding */];
 asm void
-TRKSaveExtended1Block()
+TRKSaveExtended1Block ()
 {
 #ifdef __MWERKS__ // clang-format off
 	nofralloc
@@ -125,7 +125,7 @@ end:
 #endif // clang-format on
 }
 asm void
-TRKRestoreExtended1Block()
+TRKRestoreExtended1Block ()
 {
 #ifdef __MWERKS__ // clang-format off
 	nofralloc
@@ -246,7 +246,7 @@ lbl_8037149C:
 #endif // clang-format on
 }
 u32
-TRKTargetCPUMinorType(void)
+TRKTargetCPUMinorType (void)
 {
     return 0x54;
 }

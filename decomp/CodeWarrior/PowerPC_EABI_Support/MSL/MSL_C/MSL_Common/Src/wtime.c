@@ -54,11 +54,11 @@ static const char* month_name[] = {
  */
 
 static int
-leap_year(int year)
+leap_year (int year)
 {
-    return (__msl_mod(year, 4) == 0 &&
-            (__msl_mod(year, 100) != 0 ||
-             __msl_mod(year, 400) == 100)); /*- cc 010510 -*/
+    return (__msl_mod (year, 4) == 0 &&
+            (__msl_mod (year, 100) != 0 ||
+             __msl_mod (year, 400) == 100)); /*- cc 010510 -*/
 }
 /*
  *	leap_days - return the number of leap days between 1900 (year 0)
@@ -67,35 +67,35 @@ leap_year(int year)
  */
 
 static int
-leap_days(int year, int mon)
+leap_days (int year, int mon)
 {
     int   n;
     div_t q;
 
-    q = div(year, 4);
+    q = div (year, 4);
     /* 1 leap day every four years */
 
     n = q.quot;
 
-    q = div(year, 100); /* except at the turn of the century */
+    q = div (year, 100); /* except at the turn of the century */
 
     n -= q.quot;
 
     if (year < 100)
     /* not counting the turn of the millenium */
     {
-        q = __msl_div(year + 899, 1000); /*- cc 010510 -*/
+        q = __msl_div (year + 899, 1000); /*- cc 010510 -*/
 
         n += q.quot;
     }
     else
     {
-        q = __msl_div(year - 100, 1000); /*- cc 010510 -*/
+        q = __msl_div (year - 100, 1000); /*- cc 010510 -*/
 
         n += q.quot + 1;
     }
 
-    if (leap_year(year))
+    if (leap_year (year))
     {
         if (year < 0)
         {
@@ -117,15 +117,15 @@ leap_days(int year, int mon)
  */
 
 static int
-adjust(int* x, int y, int* z)
+adjust (int* x, int y, int* z)
 {
     div_t q;
 
-    q = __msl_div(*x, y);          /*- cc 010510 -*/
+    q = __msl_div (*x, y);          /*- cc 010510 -*/
 
     *x = q.rem;
 
-    return (__msl_add(z, q.quot)); /*- cc 010510 -*/
+    return (__msl_add (z, q.quot)); /*- cc 010510 -*/
 }
 /*
  *	__time2tm - convert seconds since midnight, 1/1/1900 (or 1970 on Win32),
@@ -134,10 +134,10 @@ adjust(int* x, int y, int* z)
 
 #if (__dest_os == __win32_os || __dest_os == __wince_os)
 static void
-__time2tm(time_t inTime, struct tm* tm)
+__time2tm (time_t inTime, struct tm* tm)
 #else
 static void
-__time2tm(time_t time, struct tm* tm)
+__time2tm (time_t time, struct tm* tm)
 #endif
 {
     unsigned long years, months, days, seconds;
@@ -167,7 +167,7 @@ __time2tm(time_t time, struct tm* tm)
 
     for (;;)
     {
-        unsigned long days_this_year = leap_year(years) ? 366 : 365;
+        unsigned long days_this_year = leap_year (years) ? 366 : 365;
 
         if (days < days_this_year)
         {
@@ -183,7 +183,7 @@ __time2tm(time_t time, struct tm* tm)
 
     months = 0;
 
-    is_leap_year = leap_year(years);
+    is_leap_year = leap_year (years);
 
     for (;;)
     {
@@ -228,7 +228,7 @@ __time2tm(time_t time, struct tm* tm)
  */
 
 static int
-__tm2time(struct tm* tm, time_t* time)
+__tm2time (struct tm* tm, time_t* time)
 {
     long   days;
     time_t seconds, day_secs;
@@ -242,23 +242,23 @@ __tm2time(struct tm* tm, time_t* time)
     --tm->tm_mday;
     /* zero-based in the first place */
 
-    if (!adjust(&tm->tm_sec, 60, &tm->tm_min))
+    if (!adjust (&tm->tm_sec, 60, &tm->tm_min))
     {
         goto no_exit;
     }
     /* put sec  in range 0-59 */
-    if (!adjust(&tm->tm_min, 60, &tm->tm_hour))
+    if (!adjust (&tm->tm_min, 60, &tm->tm_hour))
     {
         goto no_exit;
     }
     /* put min  in range 0-59 */
-    if (!adjust(&tm->tm_hour, 24, &tm->tm_mday))
+    if (!adjust (&tm->tm_hour, 24, &tm->tm_mday))
     {
         goto no_exit;
     }
     /* put hour in range 0-23 */
 
-    if (!adjust(&tm->tm_mon, 12, &tm->tm_year))
+    if (!adjust (&tm->tm_mon, 12, &tm->tm_year))
     {
         goto no_exit;
     }
@@ -266,21 +266,21 @@ __tm2time(struct tm* tm, time_t* time)
 
     days = tm->tm_year;
 
-    if (!__msl_lmul(&days, 365)) /*- cc 010510 -*/
+    if (!__msl_lmul (&days, 365)) /*- cc 010510 -*/
     {
-        goto no_exit;            /* convert year to days */
+        goto no_exit;             /* convert year to days */
     }
-    if (!__msl_ladd(&days, leap_days(tm->tm_year, tm->tm_mon))) /*- cc 010510 -*/
+    if (!__msl_ladd (&days, leap_days (tm->tm_year, tm->tm_mon))) /*- cc 010510 -*/
     {
-        goto no_exit;                                           /* add leap days */
+        goto no_exit;                                             /* add leap days */
     }
-    if (!__msl_ladd(&days, month_to_days[0][tm->tm_mon]))       /*- cc 010510 -*/
+    if (!__msl_ladd (&days, month_to_days[0][tm->tm_mon]))        /*- cc 010510 -*/
     {
-        goto no_exit;                    /* add days to month */
+        goto no_exit;                     /* add days to month */
     }
-    if (!__msl_ladd(&days, tm->tm_mday)) /*- cc 010510 -*/
+    if (!__msl_ladd (&days, tm->tm_mday)) /*- cc 010510 -*/
     {
-        goto no_exit;                    /* add days in month */
+        goto no_exit;                     /* add days in month */
     }
 
     if (days < 0 || days > (ULONG_MAX / seconds_per_day))
@@ -312,7 +312,7 @@ __tm2time(struct tm* tm, time_t* time)
 
     *time = seconds;
 
-    __time2tm(seconds, tm);
+    __time2tm (seconds, tm);
 
     return (1);
 
@@ -326,40 +326,42 @@ string as input
  */
 
 static void
-wasciitime(struct tm tm, wchar_t* str)
+wasciitime (struct tm tm, wchar_t* str)
 {
     size_t n;
 
-    if (mktime(&tm) == (time_t)-1)
+    if (mktime (&tm) == (time_t)-1)
     {
-        n = wcslen(L"xxx xxx xx xx:xx:xx xxxx\n");
-        swprintf(str, n, L"xxx xxx xx xx:xx:xx xxxx\n");
+        n = wcslen (L"xxx xxx xx xx:xx:xx xxxx\n");
+        swprintf (str, n, L"xxx xxx xx xx:xx:xx xxxx\n");
         return;
     }
 
-    n = wcslen(L"%.3s %.3s%3d %.2d:%.2d:%.2d %d\n");
-    swprintf(str, n, L"%.3s %.3s%3d %.2d:%.2d:%.2d %d\n",
+    n = wcslen (L"%.3s %.3s%3d %.2d:%.2d:%.2d %d\n");
+    swprintf (str,
+              n,
+              L"%.3s %.3s%3d %.2d:%.2d:%.2d %d\n",
 
-             day_name[tm.tm_wday],
+              day_name[tm.tm_wday],
 
-             month_name[tm.tm_mon],
+              month_name[tm.tm_mon],
 
-             tm.tm_mday,
+              tm.tm_mday,
 
-             tm.tm_hour,
+              tm.tm_hour,
 
-             tm.tm_min,
+              tm.tm_min,
 
-             tm.tm_sec,
+              tm.tm_sec,
 
-             tm.tm_year + 1900);
+              tm.tm_year + 1900);
 }
 /*
  *	clear_tm - sets a broken-down time to the equivalent of 1900/1/1 00:00:00
  */
 
 static void
-clear_tm(struct tm* tm)
+clear_tm (struct tm* tm)
 {
     tm->tm_sec = 0;
     tm->tm_min = 0;
@@ -376,12 +378,12 @@ clear_tm(struct tm* tm)
  */
 
 static int
-wemit(wchar_t* str, size_t size, size_t* max_size, const wchar_t* format_str, ...)
+wemit (wchar_t* str, size_t size, size_t* max_size, const wchar_t* format_str, ...)
 {
-#if __PPC_EABI__ || __MIPS__ /* __dest_os == __mips_bare */       /*- scm 970709 -*/
-    va_list args;                                                 /*- scm 970709 -*/
-    va_start(args, format_str);                                   /*- scm 970709 -*/
-#endif                                                            /*- scm 970709 -*/
+#if __PPC_EABI__ || __MIPS__ /* __dest_os == __mips_bare */        /*- scm 970709 -*/
+    va_list args;                                                  /*- scm 970709 -*/
+    va_start (args, format_str);                                   /*- scm 970709 -*/
+#endif                                                             /*- scm 970709 -*/
 
     if (size > *max_size)
     {
@@ -390,20 +392,20 @@ wemit(wchar_t* str, size_t size, size_t* max_size, const wchar_t* format_str, ..
 
     *max_size -= size;
 
-#if __PPC_EABI__ || __MIPS__ /* __dest_os == __mips_bare */       /*- scm 970709 */
-    return (vswprintf(str, size + 1, format_str, args));
-    /*- scm 970709 -*/                                            /*- mm 990322 -*/
+#if __PPC_EABI__ || __MIPS__ /* __dest_os == __mips_bare */        /*- scm 970709 */
+    return (vswprintf (str, size + 1, format_str, args));
+    /*- scm 970709 -*/                                             /*- mm 990322 -*/
 #else
-    return (vswprintf(str, size + 1, format_str,
-                      __va_start(format_str))); /*- mm 990322 -*/
+    return (vswprintf (
+        str, size + 1, format_str, __va_start (format_str))); /*- mm 990322 -*/
 #endif
 }
 static int
-week_num(const struct tm* tm, int starting_day)
+week_num (const struct tm* tm, int starting_day)
 {
     int days = tm->tm_yday;
 
-    days -= __msl_mod(tm->tm_wday - starting_day, 7);             /*- cc 010510 -*/
+    days -= __msl_mod (tm->tm_wday - starting_day, 7);             /*- cc 010510 -*/
 
     if (days < 0)
     {
@@ -413,8 +415,10 @@ week_num(const struct tm* tm, int starting_day)
     return ((days / 7) + 1);
 }
 size_t
-wcsftime(wchar_t* str, size_t max_size, const wchar_t* format_str,
-         const struct tm* timeptr)
+wcsftime (wchar_t*         str,
+          size_t           max_size,
+          const wchar_t*   format_str,
+          const struct tm* timeptr)
 {
     struct tm              tm;
     static const struct tm default_tm = { 0, 0, 0, 1, 0, 0, 1, 0, -1 };
@@ -434,7 +438,7 @@ wcsftime(wchar_t* str, size_t max_size, const wchar_t* format_str,
     {
         tm = *timeptr;
 
-        if (mktime(&tm) == (time_t)-1)
+        if (mktime (&tm) == (time_t)-1)
         {
             tm = default_tm;
         }
@@ -445,11 +449,11 @@ wcsftime(wchar_t* str, size_t max_size, const wchar_t* format_str,
 
     while (*format_ptr)
     {
-        if (!(curr_format = wcschr(format_ptr, '%')))
+        if (!(curr_format = wcschr (format_ptr, '%')))
         {
-            if ((num_chars = wcslen(format_ptr)) != 0)
+            if ((num_chars = wcslen (format_ptr)) != 0)
             {
-                wmemcpy(str, format_ptr, num_chars);
+                wmemcpy (str, format_ptr, num_chars);
 
                 chars_written += num_chars;
                 str += num_chars;
@@ -460,7 +464,7 @@ wcsftime(wchar_t* str, size_t max_size, const wchar_t* format_str,
 
         if ((num_chars = curr_format - format_ptr) != 0)
         {
-            wmemcpy(str, format_ptr, num_chars);
+            wmemcpy (str, format_ptr, num_chars);
 
             chars_written += num_chars;
             str += num_chars;
@@ -471,110 +475,120 @@ wcsftime(wchar_t* str, size_t max_size, const wchar_t* format_str,
         switch (*++format_ptr)
         {
             case L'a':
-                num_chars = wemit(str, 3, &max_size, L"%.3s", day_name[tm.tm_wday]);
+                num_chars = wemit (str, 3, &max_size, L"%.3s", day_name[tm.tm_wday]);
                 break;
 
             case L'A':
 
-                num_chars = wemit(str, strlen(day_name[tm.tm_wday]), &max_size,
-                                  L"%s", day_name[tm.tm_wday]);   /*- mm 990331 -*/
+                num_chars = wemit (str,
+                                   strlen (day_name[tm.tm_wday]),
+                                   &max_size,
+                                   L"%s",
+                                   day_name[tm.tm_wday]);          /*- mm 990331 -*/
                 break;
 
             case L'b':
-                num_chars = wemit(str, 3, &max_size, L"%.3s", month_name[tm.tm_mon]);
+                num_chars =
+                    wemit (str, 3, &max_size, L"%.3s", month_name[tm.tm_mon]);
                 break;
 
             case L'B':
 
-                num_chars = wemit(str, strlen(month_name[tm.tm_mon]), &max_size,
-                                  L"%s", month_name[tm.tm_mon]);  /*- mm 990331 -*/
+                num_chars = wemit (str,
+                                   strlen (month_name[tm.tm_mon]),
+                                   &max_size,
+                                   L"%s",
+                                   month_name[tm.tm_mon]);         /*- mm 990331 -*/
                 break;
 
             case L'c':
 
                 num_chars =
-                    wcsftime(str, max_size, L"%A, %d %B, %Y  %I:%M:%S %p", &tm);
+                    wcsftime (str, max_size, L"%A, %d %B, %Y  %I:%M:%S %p", &tm);
                 max_size -= num_chars;
                 break;
 
             case L'd':
-                num_chars = wemit(str, 2, &max_size, L"%.2d", tm.tm_mday);
+                num_chars = wemit (str, 2, &max_size, L"%.2d", tm.tm_mday);
                 break;
 
             case L'H':
-                num_chars = wemit(str, 2, &max_size, L"%.2d", tm.tm_hour);
+                num_chars = wemit (str, 2, &max_size, L"%.2d", tm.tm_hour);
                 break;
 
             case L'I':
-                num_chars = wemit(str, 2, &max_size, L"%.2d",
-                                  (n = tm.tm_hour % 12) ? n : 12);
+                num_chars = wemit (
+                    str, 2, &max_size, L"%.2d", (n = tm.tm_hour % 12) ? n : 12);
                 break;
 
             case L'j':
-                num_chars = wemit(str, 3, &max_size, L"%.3d", tm.tm_yday + 1);
+                num_chars = wemit (str, 3, &max_size, L"%.3d", tm.tm_yday + 1);
                 break;
 
             case L'm':
-                num_chars = wemit(str, 2, &max_size, L"%.2d", tm.tm_mon + 1);
+                num_chars = wemit (str, 2, &max_size, L"%.2d", tm.tm_mon + 1);
                 break;
 
             case L'M':
-                num_chars = wemit(str, 2, &max_size, L"%.2d", tm.tm_min);
+                num_chars = wemit (str, 2, &max_size, L"%.2d", tm.tm_min);
                 break;
 
             case L'p':
 
-                num_chars = wemit(str, 2, &max_size, L"%.2s",
-                                  tm.tm_hour < 12 ? "AM" : "PM"); /*- mm 990322 -*/
+                num_chars = wemit (str,
+                                   2,
+                                   &max_size,
+                                   L"%.2s",
+                                   tm.tm_hour < 12 ? "AM" : "PM"); /*- mm 990322 -*/
                 break;
 
             case L'S':
-                num_chars = wemit(str, 2, &max_size, L"%.2d", tm.tm_sec);
+                num_chars = wemit (str, 2, &max_size, L"%.2d", tm.tm_sec);
                 break;
 
             case L'U':
-                num_chars = wemit(str, 2, &max_size, L"%.2d", week_num(&tm, 0));
+                num_chars = wemit (str, 2, &max_size, L"%.2d", week_num (&tm, 0));
                 break;
 
             case L'w':
-                num_chars = wemit(str, 1, &max_size, L"%.1d", tm.tm_wday);
+                num_chars = wemit (str, 1, &max_size, L"%.1d", tm.tm_wday);
                 break;
 
             case L'W':
-                num_chars = wemit(str, 2, &max_size, L"%.2d", week_num(&tm, 1));
+                num_chars = wemit (str, 2, &max_size, L"%.2d", week_num (&tm, 1));
                 break;
 
             case L'x':
 
-                num_chars = wcsftime(str, max_size, L"%d %B, %Y", &tm);
+                num_chars = wcsftime (str, max_size, L"%d %B, %Y", &tm);
                 max_size -= num_chars;
                 break;
 
             case L'X':
 
-                num_chars = wcsftime(str, max_size, L"%H:%M:%S", &tm);
+                num_chars = wcsftime (str, max_size, L"%H:%M:%S", &tm);
                 max_size -= num_chars;
                 break;
 
             case L'y':
 
-                num_chars = wemit(str, 2, &max_size, L"%.2d",
-                                  tm.tm_year % 100);              /*- mm 970728 -*/
+                num_chars = wemit (
+                    str, 2, &max_size, L"%.2d", tm.tm_year % 100); /*- mm 970728 -*/
                 break;
 
             case L'Y':
-                num_chars = wemit(str, 4, &max_size, L"%.4d", tm.tm_year + 1900);
+                num_chars = wemit (str, 4, &max_size, L"%.4d", tm.tm_year + 1900);
                 break;
 
             case L'Z':
                 ++format_ptr;
                 continue;
-            case L'%':                                            /*- mf 092497 -*/
-                num_chars = wemit(str, 2, &max_size, L"%%", *format_ptr);
+            case L'%':                                             /*- mf 092497 -*/
+                num_chars = wemit (str, 2, &max_size, L"%%", *format_ptr);
                 break;
 
             default:
-                num_chars = wemit(str, 2, &max_size, L"%%%c", *format_ptr);
+                num_chars = wemit (str, 2, &max_size, L"%%%c", *format_ptr);
                 break;
         }
 
@@ -599,7 +613,7 @@ wcsftime(wchar_t* str, size_t max_size, const wchar_t* format_str,
         return (chars_written);
     }
 }
-#endif /* #ifndef __NO_WIDE_CHAR*/                                /*- mm 981020 -*/
+#endif /* #ifndef __NO_WIDE_CHAR*/                                 /*- mm 981020 -*/
 
 /* Change record:
  * JCM 980128 First code release.

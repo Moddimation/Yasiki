@@ -97,20 +97,21 @@ _MSL_BEGIN_EXTERN_C   /*- cc 010409 -*/
     gid_t   st_gid;   /* Group ID of the file's group 	*/
     dev_t   st_rdev;  /* Device type 						*/
     off_t   st_size;  /* File size in bytes 				*/
-    __std(time_t) st_atime; /* Time of last access 				*/ /*- hh 990124 -*/
-    __std(time_t) st_mtime; /* Time of last data modification 	*/
-    __std(time_t) st_ctime; /* Time of last file status change 	*/
-    long st_blksize;        /* Optimal blocksize 				*/
-    long st_blocks;         /* blocks allocated for file 		*/
+    __std (time_t) st_atime; /* Time of last access 				*/ /*- hh 990124
+                                                                          -*/
+    __std (time_t) st_mtime; /* Time of last data modification 	*/
+    __std (time_t) st_ctime; /* Time of last file status change 	*/
+    long st_blksize;         /* Optimal blocksize 				*/
+    long st_blocks;          /* blocks allocated for file 		*/
 };
 
 #pragma options align = reset
 
-_MSL_IMP_EXP_C int stat(const char*, struct stat*);
-_MSL_IMP_EXP_C int fstat(int, struct stat*);
-_MSL_IMP_EXP_C int mkdir(const char*, ...);
+_MSL_IMP_EXP_C int stat (const char*, struct stat*);
+_MSL_IMP_EXP_C int fstat (int, struct stat*);
+_MSL_IMP_EXP_C int mkdir (const char*, ...);
 
-_MSL_END_EXTERN_C           /*- cc 010409 -*/
+_MSL_END_EXTERN_C            /*- cc 010409 -*/
 
 #endif /*  (__dest_os == __win32_os || __dest_os == __wince_os) */
 

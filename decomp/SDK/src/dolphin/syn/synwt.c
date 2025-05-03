@@ -5,7 +5,7 @@
 #include "fake_tgmath.h"
 #include "SYNPrivate.h"
 int
-__SYNGetWavetableData(struct SYNVOICE* voice)
+__SYNGetWavetableData (struct SYNVOICE* voice)
 {
     u32              regionIndex;
     struct SYNSYNTH* synth;

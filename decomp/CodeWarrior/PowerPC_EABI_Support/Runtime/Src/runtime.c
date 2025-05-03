@@ -27,12 +27,12 @@ extern "C"
 #define SAVE_VPR(reg)          _savev##reg
 #define RESTORE_VPR(reg)       _restv##reg
 
-#define ENTRY_SAVE_FPR(reg)    entry SAVE_FPR(reg)
-#define ENTRY_RESTORE_FPR(reg) entry RESTORE_FPR(reg)
-#define ENTRY_SAVE_GPR(reg)    entry SAVE_GPR(reg)
-#define ENTRY_RESTORE_GPR(reg) entry RESTORE_GPR(reg)
-#define ENTRY_SAVE_VPR(reg)    entry SAVE_VPR(reg)
-#define ENTRY_RESTORE_VPR(reg) entry RESTORE_VPR(reg)
+#define ENTRY_SAVE_FPR(reg)    entry SAVE_FPR (reg)
+#define ENTRY_RESTORE_FPR(reg) entry RESTORE_FPR (reg)
+#define ENTRY_SAVE_GPR(reg)    entry SAVE_GPR (reg)
+#define ENTRY_RESTORE_GPR(reg) entry RESTORE_GPR (reg)
+#define ENTRY_SAVE_VPR(reg)    entry SAVE_VPR (reg)
+#define ENTRY_RESTORE_VPR(reg) entry RESTORE_VPR (reg)
 
 #define SAVE_FPR2(reg)         _savef##reg
 #define RESTORE_FPR2(reg)      _restf##reg
@@ -41,213 +41,213 @@ extern "C"
 
 #define SAVE_VPR2(reg)          _savevr##reg
 #define RESTORE_VPR2(reg)       _restvr##reg
-#define ENTRY_SAVE_VPR2(reg)    entry SAVE_VPR2(reg)
-#define ENTRY_RESTORE_VPR2(reg) entry RESTORE_VPR2(reg)
+#define ENTRY_SAVE_VPR2(reg)    entry SAVE_VPR2 (reg)
+#define ENTRY_RESTORE_VPR2(reg) entry RESTORE_VPR2 (reg)
 
 #else
 
 #define SAVE_FPR(reg)           __save_fpr_##reg
 #define RESTORE_FPR(reg)        __restore_fpr_##reg
-#define ENTRY_SAVE_FPR(reg)     entry SAVE_FPR(reg)
-#define ENTRY_RESTORE_FPR(reg)  entry RESTORE_FPR(reg)
+#define ENTRY_SAVE_FPR(reg)     entry SAVE_FPR (reg)
+#define ENTRY_RESTORE_FPR(reg)  entry RESTORE_FPR (reg)
 
 #define SAVE_FPR2(reg)          _savef##reg
 #define RESTORE_FPR2(reg)       _restf##reg
-#define ENTRY_SAVE_FPR2(reg)    entry SAVE_FPR2(reg)
-#define ENTRY_RESTORE_FPR2(reg) entry RESTORE_FPR2(reg)
+#define ENTRY_SAVE_FPR2(reg)    entry SAVE_FPR2 (reg)
+#define ENTRY_RESTORE_FPR2(reg) entry RESTORE_FPR2 (reg)
 
 #define SAVE_VPR(reg)           _savev##reg
 #define RESTORE_VPR(reg)        _restv##reg
-#define ENTRY_SAVE_VPR(reg)     entry SAVE_VPR(reg)
-#define ENTRY_RESTORE_VPR(reg)  entry RESTORE_VPR(reg)
+#define ENTRY_SAVE_VPR(reg)     entry SAVE_VPR (reg)
+#define ENTRY_RESTORE_VPR(reg)  entry RESTORE_VPR (reg)
 
 #define SAVE_VPR2(reg)          __savev##reg
 #define RESTORE_VPR2(reg)       __restv##reg
-#define ENTRY_SAVE_VPR2(reg)    entry SAVE_VPR2(reg)
-#define ENTRY_RESTORE_VPR(reg)  entry RESTORE_VPR2(reg)
+#define ENTRY_SAVE_VPR2(reg)    entry SAVE_VPR2 (reg)
+#define ENTRY_RESTORE_VPR(reg)  entry RESTORE_VPR2 (reg)
 
 #endif
 
-unsigned long __cvt_fp2unsigned(double d);
-unsigned long __uitrunc(double d);
-void          __ptr_glue(void);
-void          _ptrgl12(void);
-void          _ptrgl(void);
-asm void      _ptrglpas(void);
-void          SAVE_FPR(14)(void);
-void          SAVE_FPR(15)(void);
-void          SAVE_FPR(16)(void);
-void          SAVE_FPR(17)(void);
-void          SAVE_FPR(18)(void);
-void          SAVE_FPR(19)(void);
-void          SAVE_FPR(20)(void);
-void          SAVE_FPR(21)(void);
-void          SAVE_FPR(22)(void);
-void          SAVE_FPR(23)(void);
-void          SAVE_FPR(24)(void);
-void          SAVE_FPR(25)(void);
-void          SAVE_FPR(26)(void);
-void          SAVE_FPR(27)(void);
-void          SAVE_FPR(28)(void);
-void          SAVE_FPR(29)(void);
-void          SAVE_FPR(30)(void);
-void          SAVE_FPR(31)(void);
-void          SAVE_FPR2(14)(void);
-void          SAVE_FPR2(15)(void);
-void          SAVE_FPR2(16)(void);
-void          SAVE_FPR2(17)(void);
-void          SAVE_FPR2(18)(void);
-void          SAVE_FPR2(19)(void);
-void          SAVE_FPR2(20)(void);
-void          SAVE_FPR2(21)(void);
-void          SAVE_FPR2(22)(void);
-void          SAVE_FPR2(23)(void);
-void          SAVE_FPR2(24)(void);
-void          SAVE_FPR2(25)(void);
-void          SAVE_FPR2(26)(void);
-void          SAVE_FPR2(27)(void);
-void          SAVE_FPR2(28)(void);
-void          SAVE_FPR2(29)(void);
-void          SAVE_FPR2(30)(void);
-void          SAVE_FPR2(31)(void);
+unsigned long __cvt_fp2unsigned (double d);
+unsigned long __uitrunc (double d);
+void          __ptr_glue (void);
+void          _ptrgl12 (void);
+void          _ptrgl (void);
+asm void      _ptrglpas (void);
+void          SAVE_FPR (14) (void);
+void          SAVE_FPR (15) (void);
+void          SAVE_FPR (16) (void);
+void          SAVE_FPR (17) (void);
+void          SAVE_FPR (18) (void);
+void          SAVE_FPR (19) (void);
+void          SAVE_FPR (20) (void);
+void          SAVE_FPR (21) (void);
+void          SAVE_FPR (22) (void);
+void          SAVE_FPR (23) (void);
+void          SAVE_FPR (24) (void);
+void          SAVE_FPR (25) (void);
+void          SAVE_FPR (26) (void);
+void          SAVE_FPR (27) (void);
+void          SAVE_FPR (28) (void);
+void          SAVE_FPR (29) (void);
+void          SAVE_FPR (30) (void);
+void          SAVE_FPR (31) (void);
+void          SAVE_FPR2 (14) (void);
+void          SAVE_FPR2 (15) (void);
+void          SAVE_FPR2 (16) (void);
+void          SAVE_FPR2 (17) (void);
+void          SAVE_FPR2 (18) (void);
+void          SAVE_FPR2 (19) (void);
+void          SAVE_FPR2 (20) (void);
+void          SAVE_FPR2 (21) (void);
+void          SAVE_FPR2 (22) (void);
+void          SAVE_FPR2 (23) (void);
+void          SAVE_FPR2 (24) (void);
+void          SAVE_FPR2 (25) (void);
+void          SAVE_FPR2 (26) (void);
+void          SAVE_FPR2 (27) (void);
+void          SAVE_FPR2 (28) (void);
+void          SAVE_FPR2 (29) (void);
+void          SAVE_FPR2 (30) (void);
+void          SAVE_FPR2 (31) (void);
 #if __ALTIVEC__
-void SAVE_VPR(20)(void);
-void SAVE_VPR(21)(void);
-void SAVE_VPR(22)(void);
-void SAVE_VPR(23)(void);
-void SAVE_VPR(24)(void);
-void SAVE_VPR(25)(void);
-void SAVE_VPR(26)(void);
-void SAVE_VPR(27)(void);
-void SAVE_VPR(28)(void);
-void SAVE_VPR(29)(void);
-void SAVE_VPR(30)(void);
-void SAVE_VPR(31)(void);
-void SAVE_VPR2(20)(void);
-void SAVE_VPR2(21)(void);
-void SAVE_VPR2(22)(void);
-void SAVE_VPR2(23)(void);
-void SAVE_VPR2(24)(void);
-void SAVE_VPR2(25)(void);
-void SAVE_VPR2(26)(void);
-void SAVE_VPR2(27)(void);
-void SAVE_VPR2(28)(void);
-void SAVE_VPR2(29)(void);
-void SAVE_VPR2(30)(void);
-void SAVE_VPR2(31)(void);
+void SAVE_VPR (20) (void);
+void SAVE_VPR (21) (void);
+void SAVE_VPR (22) (void);
+void SAVE_VPR (23) (void);
+void SAVE_VPR (24) (void);
+void SAVE_VPR (25) (void);
+void SAVE_VPR (26) (void);
+void SAVE_VPR (27) (void);
+void SAVE_VPR (28) (void);
+void SAVE_VPR (29) (void);
+void SAVE_VPR (30) (void);
+void SAVE_VPR (31) (void);
+void SAVE_VPR2 (20) (void);
+void SAVE_VPR2 (21) (void);
+void SAVE_VPR2 (22) (void);
+void SAVE_VPR2 (23) (void);
+void SAVE_VPR2 (24) (void);
+void SAVE_VPR2 (25) (void);
+void SAVE_VPR2 (26) (void);
+void SAVE_VPR2 (27) (void);
+void SAVE_VPR2 (28) (void);
+void SAVE_VPR2 (29) (void);
+void SAVE_VPR2 (30) (void);
+void SAVE_VPR2 (31) (void);
 #endif
-void RESTORE_FPR(14)(void);
-void RESTORE_FPR(15)(void);
-void RESTORE_FPR(16)(void);
-void RESTORE_FPR(17)(void);
-void RESTORE_FPR(18)(void);
-void RESTORE_FPR(19)(void);
-void RESTORE_FPR(20)(void);
-void RESTORE_FPR(21)(void);
-void RESTORE_FPR(22)(void);
-void RESTORE_FPR(23)(void);
-void RESTORE_FPR(24)(void);
-void RESTORE_FPR(25)(void);
-void RESTORE_FPR(26)(void);
-void RESTORE_FPR(27)(void);
-void RESTORE_FPR(28)(void);
-void RESTORE_FPR(29)(void);
-void RESTORE_FPR(30)(void);
-void RESTORE_FPR(31)(void);
-void RESTORE_FPR2(14)(void);
-void RESTORE_FPR2(15)(void);
-void RESTORE_FPR2(16)(void);
-void RESTORE_FPR2(17)(void);
-void RESTORE_FPR2(18)(void);
-void RESTORE_FPR2(19)(void);
-void RESTORE_FPR2(20)(void);
-void RESTORE_FPR2(21)(void);
-void RESTORE_FPR2(22)(void);
-void RESTORE_FPR2(23)(void);
-void RESTORE_FPR2(24)(void);
-void RESTORE_FPR2(25)(void);
-void RESTORE_FPR2(26)(void);
-void RESTORE_FPR2(27)(void);
-void RESTORE_FPR2(28)(void);
-void RESTORE_FPR2(29)(void);
-void RESTORE_FPR2(30)(void);
-void RESTORE_FPR2(31)(void);
+void RESTORE_FPR (14) (void);
+void RESTORE_FPR (15) (void);
+void RESTORE_FPR (16) (void);
+void RESTORE_FPR (17) (void);
+void RESTORE_FPR (18) (void);
+void RESTORE_FPR (19) (void);
+void RESTORE_FPR (20) (void);
+void RESTORE_FPR (21) (void);
+void RESTORE_FPR (22) (void);
+void RESTORE_FPR (23) (void);
+void RESTORE_FPR (24) (void);
+void RESTORE_FPR (25) (void);
+void RESTORE_FPR (26) (void);
+void RESTORE_FPR (27) (void);
+void RESTORE_FPR (28) (void);
+void RESTORE_FPR (29) (void);
+void RESTORE_FPR (30) (void);
+void RESTORE_FPR (31) (void);
+void RESTORE_FPR2 (14) (void);
+void RESTORE_FPR2 (15) (void);
+void RESTORE_FPR2 (16) (void);
+void RESTORE_FPR2 (17) (void);
+void RESTORE_FPR2 (18) (void);
+void RESTORE_FPR2 (19) (void);
+void RESTORE_FPR2 (20) (void);
+void RESTORE_FPR2 (21) (void);
+void RESTORE_FPR2 (22) (void);
+void RESTORE_FPR2 (23) (void);
+void RESTORE_FPR2 (24) (void);
+void RESTORE_FPR2 (25) (void);
+void RESTORE_FPR2 (26) (void);
+void RESTORE_FPR2 (27) (void);
+void RESTORE_FPR2 (28) (void);
+void RESTORE_FPR2 (29) (void);
+void RESTORE_FPR2 (30) (void);
+void RESTORE_FPR2 (31) (void);
 #if __ALTIVEC__
-void RESTORE_VPR(20)(void);
-void RESTORE_VPR(21)(void);
-void RESTORE_VPR(22)(void);
-void RESTORE_VPR(23)(void);
-void RESTORE_VPR(24)(void);
-void RESTORE_VPR(25)(void);
-void RESTORE_VPR(26)(void);
-void RESTORE_VPR(27)(void);
-void RESTORE_VPR(28)(void);
-void RESTORE_VPR(29)(void);
-void RESTORE_VPR(30)(void);
-void RESTORE_VPR(31)(void);
-void RESTORE_VPR2(20)(void);
-void RESTORE_VPR2(21)(void);
-void RESTORE_VPR2(22)(void);
-void RESTORE_VPR2(23)(void);
-void RESTORE_VPR2(24)(void);
-void RESTORE_VPR2(25)(void);
-void RESTORE_VPR2(26)(void);
-void RESTORE_VPR2(27)(void);
-void RESTORE_VPR2(28)(void);
-void RESTORE_VPR2(29)(void);
-void RESTORE_VPR2(30)(void);
-void RESTORE_VPR2(31)(void);
+void RESTORE_VPR (20) (void);
+void RESTORE_VPR (21) (void);
+void RESTORE_VPR (22) (void);
+void RESTORE_VPR (23) (void);
+void RESTORE_VPR (24) (void);
+void RESTORE_VPR (25) (void);
+void RESTORE_VPR (26) (void);
+void RESTORE_VPR (27) (void);
+void RESTORE_VPR (28) (void);
+void RESTORE_VPR (29) (void);
+void RESTORE_VPR (30) (void);
+void RESTORE_VPR (31) (void);
+void RESTORE_VPR2 (20) (void);
+void RESTORE_VPR2 (21) (void);
+void RESTORE_VPR2 (22) (void);
+void RESTORE_VPR2 (23) (void);
+void RESTORE_VPR2 (24) (void);
+void RESTORE_VPR2 (25) (void);
+void RESTORE_VPR2 (26) (void);
+void RESTORE_VPR2 (27) (void);
+void RESTORE_VPR2 (28) (void);
+void RESTORE_VPR2 (29) (void);
+void RESTORE_VPR2 (30) (void);
+void RESTORE_VPR2 (31) (void);
 #endif
 #if __PPC_EABI__
-void SAVE_GPR(14)(void);
-void SAVE_GPR(15)(void);
-void SAVE_GPR(16)(void);
-void SAVE_GPR(17)(void);
-void SAVE_GPR(18)(void);
-void SAVE_GPR(19)(void);
-void SAVE_GPR(20)(void);
-void SAVE_GPR(21)(void);
-void SAVE_GPR(22)(void);
-void SAVE_GPR(23)(void);
-void SAVE_GPR(24)(void);
-void SAVE_GPR(25)(void);
-void SAVE_GPR(26)(void);
-void SAVE_GPR(27)(void);
-void SAVE_GPR(28)(void);
-void SAVE_GPR(29)(void);
-void SAVE_GPR(30)(void);
-void SAVE_GPR(31)(void);
-void RESTORE_GPR(14)(void);
-void RESTORE_GPR(15)(void);
-void RESTORE_GPR(16)(void);
-void RESTORE_GPR(17)(void);
-void RESTORE_GPR(18)(void);
-void RESTORE_GPR(19)(void);
-void RESTORE_GPR(20)(void);
-void RESTORE_GPR(21)(void);
-void RESTORE_GPR(22)(void);
-void RESTORE_GPR(23)(void);
-void RESTORE_GPR(24)(void);
-void RESTORE_GPR(25)(void);
-void RESTORE_GPR(26)(void);
-void RESTORE_GPR(27)(void);
-void RESTORE_GPR(28)(void);
-void RESTORE_GPR(29)(void);
-void RESTORE_GPR(30)(void);
-void RESTORE_GPR(31)(void);
+void SAVE_GPR (14) (void);
+void SAVE_GPR (15) (void);
+void SAVE_GPR (16) (void);
+void SAVE_GPR (17) (void);
+void SAVE_GPR (18) (void);
+void SAVE_GPR (19) (void);
+void SAVE_GPR (20) (void);
+void SAVE_GPR (21) (void);
+void SAVE_GPR (22) (void);
+void SAVE_GPR (23) (void);
+void SAVE_GPR (24) (void);
+void SAVE_GPR (25) (void);
+void SAVE_GPR (26) (void);
+void SAVE_GPR (27) (void);
+void SAVE_GPR (28) (void);
+void SAVE_GPR (29) (void);
+void SAVE_GPR (30) (void);
+void SAVE_GPR (31) (void);
+void RESTORE_GPR (14) (void);
+void RESTORE_GPR (15) (void);
+void RESTORE_GPR (16) (void);
+void RESTORE_GPR (17) (void);
+void RESTORE_GPR (18) (void);
+void RESTORE_GPR (19) (void);
+void RESTORE_GPR (20) (void);
+void RESTORE_GPR (21) (void);
+void RESTORE_GPR (22) (void);
+void RESTORE_GPR (23) (void);
+void RESTORE_GPR (24) (void);
+void RESTORE_GPR (25) (void);
+void RESTORE_GPR (26) (void);
+void RESTORE_GPR (27) (void);
+void RESTORE_GPR (28) (void);
+void RESTORE_GPR (29) (void);
+void RESTORE_GPR (30) (void);
+void RESTORE_GPR (31) (void);
 #endif
-asm void __div2u(void);
-asm void __div2i(void);
-asm void __mod2u(void);
-asm void __mod2i(void);
-asm void __shl2i(void);
-asm void __shr2u(void);
-asm void __shr2i(void);
-asm void __cvt_sll_dbl(void);
-asm void __cvt_ull_dbl(void);
-asm void __cvt_sll_flt(void);
-asm void __cvt_ull_flt(void);
-asm void __cvt_dbl_usll(void);
+asm void __div2u (void);
+asm void __div2i (void);
+asm void __mod2u (void);
+asm void __mod2i (void);
+asm void __shl2i (void);
+asm void __shr2u (void);
+asm void __shr2i (void);
+asm void __cvt_sll_dbl (void);
+asm void __cvt_ull_dbl (void);
+asm void __cvt_sll_flt (void);
+asm void __cvt_ull_flt (void);
+asm void __cvt_dbl_usll (void);
 
 #ifdef __cplusplus
 }
@@ -301,32 +301,32 @@ static const unsigned long long __constants[] = {
 //
 
 asm unsigned long
-__cvt_fp2unsigned(register double d)
+__cvt_fp2unsigned (register double d)
 {
 #if __PPC_EABI__
     nofralloc stwu SP, -16(SP)lis r4, __constants @h ori r4, r4,
         __constants @l
 #else
     entry __uitrunc lwz r4,
-        __constants(RTOC)
+        __constants (RTOC)
 #endif
             li r3,
-        0               // r3 = 0
+        0                // r3 = 0
         lfd fp0,
-        0(r4)           // fp0 = 0.0
+        0(r4)            // fp0 = 0.0
         lfd fp3,
-        8(r4)           // fp3 = 2**32
+        8(r4)            // fp3 = 2**32
         lfd fp4,
-        16(r4)          // fp4 = 2**31
+        16(r4)           // fp4 = 2**31
         fcmpu cr0,
         fp1,
-        fp0             // cr0 = compare(fp1,0.0)
+        fp0              // cr0 = compare(fp1,0.0)
             fcmpu cr6,
         fp1,
-        fp3             // cr6 = compare(fp1,2**32)
+        fp3              // cr6 = compare(fp1,2**32)
 #if __PPC_EABI__
             blt cr0,
-        @fall_through   // return 0x00000000 if input was < 0.0
+        @fall_through    // return 0x00000000 if input was < 0.0
 #else
             bltlr cr0 // return 0x00000000 if input was < 0.0
 #endif
@@ -335,25 +335,25 @@ __cvt_fp2unsigned(register double d)
         -1
 #if __PPC_EABI__
         bge cr6,
-        @fall_through   // return 0xFFFFFFFF if input was >= 2**32
+        @fall_through    // return 0xFFFFFFFF if input was >= 2**32
 #else
         bgelr cr6     // return 0xFFFFFFFF if input was >= 2**32
 #endif
             fcmpu cr7,
         fp1,
-        fp4             // cr7 = compare(fp1,2**31)
+        fp4              // cr7 = compare(fp1,2**31)
             fmr fp2,
         fp1 blt cr7,
-        @1              // use fp1 if < 2**31
+        @1               // use fp1 if < 2**31
         fsub fp2,
         fp1,
-        fp4             // subtract 2**31
+        fp4              // subtract 2**31
         @1 fctiwz fp2,
-        fp2             // convert float to 8-byte integer
+        fp2              // convert float to 8-byte integer
             stfd fp2,
-        storedouble(SP) // store 8-byte integer
+        storedouble (SP) // store 8-byte integer
         lwz r3,
-        getloword(SP)   // load 4-byte integer
+        getloword (SP)   // load 4-byte integer
 #if __PPC_EABI__
         blt cr7,
         @fall_through
@@ -362,7 +362,7 @@ __cvt_fp2unsigned(register double d)
 #endif
             addis r3,
         r3,
-        -32768          // add 2**31 if input was >= 2**31
+        -32768           // add 2**31 if input was >= 2**31
 #if __PPC_EABI__
         @fall_through : addi SP,
         SP,
@@ -370,7 +370,7 @@ __cvt_fp2unsigned(register double d)
 #endif
         blr
 }
-#endif                  /* ifndef _No_Floating_Point_Regs */
+#endif                   /* ifndef _No_Floating_Point_Regs */
 
 #if !__PPC_EABI__
 //	__ptr_glue		-	glue for function calls through pointers
@@ -379,7 +379,7 @@ __cvt_fp2unsigned(register double d)
 //
 
 asm void
-__ptr_glue(void)
+__ptr_glue (void)
 {
     smclass GL lwz r0, 0(r12)stw RTOC, 20(SP)mtctr r0 lwz RTOC, 4(r12)bctr
 }
@@ -389,7 +389,7 @@ __ptr_glue(void)
 //
 
 asm void
-_ptrgl12(void)
+_ptrgl12 (void)
 {
     smclass GL lwz r0, 0(r12)stw RTOC, 20(SP)mtctr r0 lwz RTOC, 4(r12)bctr
 }
@@ -401,7 +401,7 @@ _ptrgl12(void)
 //
 
 asm void
-_ptrgl(void)
+_ptrgl (void)
 {
     smclass GL lwz r0, 0(r11)stw RTOC, 20(SP)mtctr r0 lwz RTOC, 4(r11)mr r12,
         r11 bctr
@@ -412,7 +412,7 @@ _ptrgl(void)
 //
 
 asm void
-_ptrglpas(void)
+_ptrglpas (void)
 {
     smclass GL lwz r0, 0(r11)stw RTOC, 20(SP)mtctr r0 lwz RTOC, 4(r11)lwz r11,
         8(r11)bctr
@@ -425,49 +425,49 @@ _ptrglpas(void)
 //
 
 static ASM void
-__save_fpr(void)
+__save_fpr (void)
 {
 #if __PPC_EABI__
     nofralloc
 #endif
-        ENTRY_SAVE_FPR(14) ENTRY_SAVE_FPR2(14) stfd                       fp14,
-        -144(save_restore_reg)ENTRY_SAVE_FPR(15) ENTRY_SAVE_FPR2(15) stfd fp15,
-        -136(save_restore_reg)ENTRY_SAVE_FPR(16) ENTRY_SAVE_FPR2(16) stfd fp16,
-        -128(save_restore_reg)ENTRY_SAVE_FPR(17) ENTRY_SAVE_FPR2(17) stfd fp17,
-        -120(save_restore_reg)ENTRY_SAVE_FPR(18) ENTRY_SAVE_FPR2(18) stfd fp18,
-        -112(save_restore_reg)ENTRY_SAVE_FPR(19) ENTRY_SAVE_FPR2(19) stfd fp19,
-        -104(save_restore_reg)ENTRY_SAVE_FPR(20) ENTRY_SAVE_FPR2(20) stfd fp20,
-        -96(save_restore_reg)ENTRY_SAVE_FPR(21) ENTRY_SAVE_FPR2(21) stfd  fp21,
-        -88(save_restore_reg)ENTRY_SAVE_FPR(22) ENTRY_SAVE_FPR2(22) stfd  fp22,
-        -80(save_restore_reg)ENTRY_SAVE_FPR(23) ENTRY_SAVE_FPR2(23) stfd  fp23,
-        -72(save_restore_reg)ENTRY_SAVE_FPR(24) ENTRY_SAVE_FPR2(24) stfd  fp24,
-        -64(save_restore_reg)ENTRY_SAVE_FPR(25) ENTRY_SAVE_FPR2(25) stfd  fp25,
-        -56(save_restore_reg)ENTRY_SAVE_FPR(26) ENTRY_SAVE_FPR2(26) stfd  fp26,
-        -48(save_restore_reg)ENTRY_SAVE_FPR(27) ENTRY_SAVE_FPR2(27) stfd  fp27,
-        -40(save_restore_reg)ENTRY_SAVE_FPR(28) ENTRY_SAVE_FPR2(28) stfd  fp28,
-        -32(save_restore_reg)ENTRY_SAVE_FPR(29) ENTRY_SAVE_FPR2(29) stfd  fp29,
-        -24(save_restore_reg)ENTRY_SAVE_FPR(30) ENTRY_SAVE_FPR2(30) stfd  fp30,
-        -16(save_restore_reg)ENTRY_SAVE_FPR(31) ENTRY_SAVE_FPR2(31) stfd  fp31,
+        ENTRY_SAVE_FPR (14) ENTRY_SAVE_FPR2 (14) stfd                       fp14,
+        -144(save_restore_reg)ENTRY_SAVE_FPR (15) ENTRY_SAVE_FPR2 (15) stfd fp15,
+        -136(save_restore_reg)ENTRY_SAVE_FPR (16) ENTRY_SAVE_FPR2 (16) stfd fp16,
+        -128(save_restore_reg)ENTRY_SAVE_FPR (17) ENTRY_SAVE_FPR2 (17) stfd fp17,
+        -120(save_restore_reg)ENTRY_SAVE_FPR (18) ENTRY_SAVE_FPR2 (18) stfd fp18,
+        -112(save_restore_reg)ENTRY_SAVE_FPR (19) ENTRY_SAVE_FPR2 (19) stfd fp19,
+        -104(save_restore_reg)ENTRY_SAVE_FPR (20) ENTRY_SAVE_FPR2 (20) stfd fp20,
+        -96(save_restore_reg)ENTRY_SAVE_FPR (21) ENTRY_SAVE_FPR2 (21) stfd  fp21,
+        -88(save_restore_reg)ENTRY_SAVE_FPR (22) ENTRY_SAVE_FPR2 (22) stfd  fp22,
+        -80(save_restore_reg)ENTRY_SAVE_FPR (23) ENTRY_SAVE_FPR2 (23) stfd  fp23,
+        -72(save_restore_reg)ENTRY_SAVE_FPR (24) ENTRY_SAVE_FPR2 (24) stfd  fp24,
+        -64(save_restore_reg)ENTRY_SAVE_FPR (25) ENTRY_SAVE_FPR2 (25) stfd  fp25,
+        -56(save_restore_reg)ENTRY_SAVE_FPR (26) ENTRY_SAVE_FPR2 (26) stfd  fp26,
+        -48(save_restore_reg)ENTRY_SAVE_FPR (27) ENTRY_SAVE_FPR2 (27) stfd  fp27,
+        -40(save_restore_reg)ENTRY_SAVE_FPR (28) ENTRY_SAVE_FPR2 (28) stfd  fp28,
+        -32(save_restore_reg)ENTRY_SAVE_FPR (29) ENTRY_SAVE_FPR2 (29) stfd  fp29,
+        -24(save_restore_reg)ENTRY_SAVE_FPR (30) ENTRY_SAVE_FPR2 (30) stfd  fp30,
+        -16(save_restore_reg)ENTRY_SAVE_FPR (31) ENTRY_SAVE_FPR2 (31) stfd  fp31,
         -8(save_restore_reg)blr
 }
 #if __ALTIVEC__
 static ASM void
-_savevr(void)
+_savevr (void)
 {
     nofralloc machine altivec
 
-        ENTRY_SAVE_VPR(20) ENTRY_SAVE_VPR2(20) addi r12,
-        r0, -192 stvx v20, r12, r0 ENTRY_SAVE_VPR(21) ENTRY_SAVE_VPR2(21) addi r12,
-        r0, -176 stvx v21, r12, r0 ENTRY_SAVE_VPR(22) ENTRY_SAVE_VPR2(22) addi r12,
-        r0, -160 stvx v22, r12, r0 ENTRY_SAVE_VPR(23) ENTRY_SAVE_VPR2(23) addi r12,
-        r0, -144 stvx v23, r12, r0 ENTRY_SAVE_VPR(24) ENTRY_SAVE_VPR2(24) addi r12,
-        r0, -128 stvx v24, r12, r0 ENTRY_SAVE_VPR(25) ENTRY_SAVE_VPR2(25) addi r12,
-        r0, -112 stvx v25, r12, r0 ENTRY_SAVE_VPR(26) ENTRY_SAVE_VPR2(26) addi r12,
-        r0, -96 stvx v26, r12, r0 ENTRY_SAVE_VPR(27) ENTRY_SAVE_VPR2(27) addi r12,
-        r0, -80 stvx v27, r12, r0 ENTRY_SAVE_VPR(28) ENTRY_SAVE_VPR2(28) addi r12,
-        r0, -64 stvx v28, r12, r0 ENTRY_SAVE_VPR(29) ENTRY_SAVE_VPR2(29) addi r12,
-        r0, -48 stvx v29, r12, r0 ENTRY_SAVE_VPR(30) ENTRY_SAVE_VPR2(30) addi r12,
-        r0, -32 stvx v30, r12, r0 ENTRY_SAVE_VPR(31) ENTRY_SAVE_VPR2(31) addi r12,
+        ENTRY_SAVE_VPR (20) ENTRY_SAVE_VPR2 (20) addi r12,
+        r0, -192 stvx v20, r12, r0 ENTRY_SAVE_VPR (21) ENTRY_SAVE_VPR2 (21) addi r12,
+        r0, -176 stvx v21, r12, r0 ENTRY_SAVE_VPR (22) ENTRY_SAVE_VPR2 (22) addi r12,
+        r0, -160 stvx v22, r12, r0 ENTRY_SAVE_VPR (23) ENTRY_SAVE_VPR2 (23) addi r12,
+        r0, -144 stvx v23, r12, r0 ENTRY_SAVE_VPR (24) ENTRY_SAVE_VPR2 (24) addi r12,
+        r0, -128 stvx v24, r12, r0 ENTRY_SAVE_VPR (25) ENTRY_SAVE_VPR2 (25) addi r12,
+        r0, -112 stvx v25, r12, r0 ENTRY_SAVE_VPR (26) ENTRY_SAVE_VPR2 (26) addi r12,
+        r0, -96 stvx v26, r12, r0 ENTRY_SAVE_VPR (27) ENTRY_SAVE_VPR2 (27) addi r12,
+        r0, -80 stvx v27, r12, r0 ENTRY_SAVE_VPR (28) ENTRY_SAVE_VPR2 (28) addi r12,
+        r0, -64 stvx v28, r12, r0 ENTRY_SAVE_VPR (29) ENTRY_SAVE_VPR2 (29) addi r12,
+        r0, -48 stvx v29, r12, r0 ENTRY_SAVE_VPR (30) ENTRY_SAVE_VPR2 (30) addi r12,
+        r0, -32 stvx v30, r12, r0 ENTRY_SAVE_VPR (31) ENTRY_SAVE_VPR2 (31) addi r12,
         r0, -16 stvx v31, r12, r0 blr
 }
 #endif
@@ -476,29 +476,35 @@ _savevr(void)
 //
 
 static ASM void
-__restore_fpr(void)
+__restore_fpr (void)
 {
 #if __PPC_EABI__
     nofralloc
 #endif
-        ENTRY_RESTORE_FPR(14) ENTRY_RESTORE_FPR2(14) lfd                       fp14,
-        -144(save_restore_reg)ENTRY_RESTORE_FPR(15) ENTRY_RESTORE_FPR2(15) lfd fp15,
-        -136(save_restore_reg)ENTRY_RESTORE_FPR(16) ENTRY_RESTORE_FPR2(16) lfd fp16,
-        -128(save_restore_reg)ENTRY_RESTORE_FPR(17) ENTRY_RESTORE_FPR2(17) lfd fp17,
-        -120(save_restore_reg)ENTRY_RESTORE_FPR(18) ENTRY_RESTORE_FPR2(18) lfd fp18,
-        -112(save_restore_reg)ENTRY_RESTORE_FPR(19) ENTRY_RESTORE_FPR2(19) lfd fp19,
-        -104(save_restore_reg)ENTRY_RESTORE_FPR(20) ENTRY_RESTORE_FPR2(20) lfd fp20,
-        -96(save_restore_reg)ENTRY_RESTORE_FPR(21) ENTRY_RESTORE_FPR2(21) lfd  fp21,
-        -88(save_restore_reg)ENTRY_RESTORE_FPR(22) ENTRY_RESTORE_FPR2(22) lfd  fp22,
-        -80(save_restore_reg)ENTRY_RESTORE_FPR(23) ENTRY_RESTORE_FPR2(23) lfd  fp23,
-        -72(save_restore_reg)ENTRY_RESTORE_FPR(24) ENTRY_RESTORE_FPR2(24) lfd  fp24,
-        -64(save_restore_reg)ENTRY_RESTORE_FPR(25) ENTRY_RESTORE_FPR2(25) lfd  fp25,
-        -56(save_restore_reg)ENTRY_RESTORE_FPR(26) ENTRY_RESTORE_FPR2(26) lfd  fp26,
-        -48(save_restore_reg)ENTRY_RESTORE_FPR(27) ENTRY_RESTORE_FPR2(27) lfd  fp27,
-        -40(save_restore_reg)ENTRY_RESTORE_FPR(28) ENTRY_RESTORE_FPR2(28) lfd  fp28,
-        -32(save_restore_reg)ENTRY_RESTORE_FPR(29) ENTRY_RESTORE_FPR2(29) lfd  fp29,
-        -24(save_restore_reg)ENTRY_RESTORE_FPR(30) ENTRY_RESTORE_FPR2(30) lfd  fp30,
-        -16(save_restore_reg)ENTRY_RESTORE_FPR(31) ENTRY_RESTORE_FPR2(31) lfd  fp31,
+        ENTRY_RESTORE_FPR (14) ENTRY_RESTORE_FPR2 (14) lfd fp14,
+        -144(save_restore_reg)ENTRY_RESTORE_FPR (15) ENTRY_RESTORE_FPR2 (15)
+            lfd fp15,
+        -136(save_restore_reg)ENTRY_RESTORE_FPR (16) ENTRY_RESTORE_FPR2 (16)
+            lfd fp16,
+        -128(save_restore_reg)ENTRY_RESTORE_FPR (17) ENTRY_RESTORE_FPR2 (17)
+            lfd fp17,
+        -120(save_restore_reg)ENTRY_RESTORE_FPR (18) ENTRY_RESTORE_FPR2 (18)
+            lfd fp18,
+        -112(save_restore_reg)ENTRY_RESTORE_FPR (19) ENTRY_RESTORE_FPR2 (19)
+            lfd fp19,
+        -104(save_restore_reg)ENTRY_RESTORE_FPR (20) ENTRY_RESTORE_FPR2 (20)
+            lfd                                                                 fp20,
+        -96(save_restore_reg)ENTRY_RESTORE_FPR (21) ENTRY_RESTORE_FPR2 (21) lfd fp21,
+        -88(save_restore_reg)ENTRY_RESTORE_FPR (22) ENTRY_RESTORE_FPR2 (22) lfd fp22,
+        -80(save_restore_reg)ENTRY_RESTORE_FPR (23) ENTRY_RESTORE_FPR2 (23) lfd fp23,
+        -72(save_restore_reg)ENTRY_RESTORE_FPR (24) ENTRY_RESTORE_FPR2 (24) lfd fp24,
+        -64(save_restore_reg)ENTRY_RESTORE_FPR (25) ENTRY_RESTORE_FPR2 (25) lfd fp25,
+        -56(save_restore_reg)ENTRY_RESTORE_FPR (26) ENTRY_RESTORE_FPR2 (26) lfd fp26,
+        -48(save_restore_reg)ENTRY_RESTORE_FPR (27) ENTRY_RESTORE_FPR2 (27) lfd fp27,
+        -40(save_restore_reg)ENTRY_RESTORE_FPR (28) ENTRY_RESTORE_FPR2 (28) lfd fp28,
+        -32(save_restore_reg)ENTRY_RESTORE_FPR (29) ENTRY_RESTORE_FPR2 (29) lfd fp29,
+        -24(save_restore_reg)ENTRY_RESTORE_FPR (30) ENTRY_RESTORE_FPR2 (30) lfd fp30,
+        -16(save_restore_reg)ENTRY_RESTORE_FPR (31) ENTRY_RESTORE_FPR2 (31) lfd fp31,
         -8(save_restore_reg)blr
 }
 #endif /* ifndef _No_Floating_Point_Regs */
@@ -509,82 +515,84 @@ __restore_fpr(void)
 //
 
 static ASM void
-__save_gpr(void)
+__save_gpr (void)
 {
 #if __PPC_EABI__
     nofralloc
 #endif
-        ENTRY_SAVE_GPR(14) stw                      r14,
-        -72(save_restore_reg)ENTRY_SAVE_GPR(15) stw r15,
-        -68(save_restore_reg)ENTRY_SAVE_GPR(16) stw r16,
-        -64(save_restore_reg)ENTRY_SAVE_GPR(17) stw r17,
-        -60(save_restore_reg)ENTRY_SAVE_GPR(18) stw r18,
-        -56(save_restore_reg)ENTRY_SAVE_GPR(19) stw r19,
-        -52(save_restore_reg)ENTRY_SAVE_GPR(20) stw r20,
-        -48(save_restore_reg)ENTRY_SAVE_GPR(21) stw r21,
-        -44(save_restore_reg)ENTRY_SAVE_GPR(22) stw r22,
-        -40(save_restore_reg)ENTRY_SAVE_GPR(23) stw r23,
-        -36(save_restore_reg)ENTRY_SAVE_GPR(24) stw r24,
-        -32(save_restore_reg)ENTRY_SAVE_GPR(25) stw r25,
-        -28(save_restore_reg)ENTRY_SAVE_GPR(26) stw r26,
-        -24(save_restore_reg)ENTRY_SAVE_GPR(27) stw r27,
-        -20(save_restore_reg)ENTRY_SAVE_GPR(28) stw r28,
-        -16(save_restore_reg)ENTRY_SAVE_GPR(29) stw r29,
-        -12(save_restore_reg)ENTRY_SAVE_GPR(30) stw r30,
-        -8(save_restore_reg)ENTRY_SAVE_GPR(31) stw  r31, -4(save_restore_reg)blr
+        ENTRY_SAVE_GPR (14) stw                      r14,
+        -72(save_restore_reg)ENTRY_SAVE_GPR (15) stw r15,
+        -68(save_restore_reg)ENTRY_SAVE_GPR (16) stw r16,
+        -64(save_restore_reg)ENTRY_SAVE_GPR (17) stw r17,
+        -60(save_restore_reg)ENTRY_SAVE_GPR (18) stw r18,
+        -56(save_restore_reg)ENTRY_SAVE_GPR (19) stw r19,
+        -52(save_restore_reg)ENTRY_SAVE_GPR (20) stw r20,
+        -48(save_restore_reg)ENTRY_SAVE_GPR (21) stw r21,
+        -44(save_restore_reg)ENTRY_SAVE_GPR (22) stw r22,
+        -40(save_restore_reg)ENTRY_SAVE_GPR (23) stw r23,
+        -36(save_restore_reg)ENTRY_SAVE_GPR (24) stw r24,
+        -32(save_restore_reg)ENTRY_SAVE_GPR (25) stw r25,
+        -28(save_restore_reg)ENTRY_SAVE_GPR (26) stw r26,
+        -24(save_restore_reg)ENTRY_SAVE_GPR (27) stw r27,
+        -20(save_restore_reg)ENTRY_SAVE_GPR (28) stw r28,
+        -16(save_restore_reg)ENTRY_SAVE_GPR (29) stw r29,
+        -12(save_restore_reg)ENTRY_SAVE_GPR (30) stw r30,
+        -8(save_restore_reg)ENTRY_SAVE_GPR (31) stw  r31, -4(save_restore_reg)blr
 }
 //
 //	__restgpr_XX	-	restore FPR's XX through 31
 //
 
 static ASM void
-__restore_gpr(void)
+__restore_gpr (void)
 {
 #if __PPC_EABI__
     nofralloc
 #endif
-        ENTRY_RESTORE_GPR(14) lwz                      r14,
-        -72(save_restore_reg)ENTRY_RESTORE_GPR(15) lwz r15,
-        -68(save_restore_reg)ENTRY_RESTORE_GPR(16) lwz r16,
-        -64(save_restore_reg)ENTRY_RESTORE_GPR(17) lwz r17,
-        -60(save_restore_reg)ENTRY_RESTORE_GPR(18) lwz r18,
-        -56(save_restore_reg)ENTRY_RESTORE_GPR(19) lwz r19,
-        -52(save_restore_reg)ENTRY_RESTORE_GPR(20) lwz r20,
-        -48(save_restore_reg)ENTRY_RESTORE_GPR(21) lwz r21,
-        -44(save_restore_reg)ENTRY_RESTORE_GPR(22) lwz r22,
-        -40(save_restore_reg)ENTRY_RESTORE_GPR(23) lwz r23,
-        -36(save_restore_reg)ENTRY_RESTORE_GPR(24) lwz r24,
-        -32(save_restore_reg)ENTRY_RESTORE_GPR(25) lwz r25,
-        -28(save_restore_reg)ENTRY_RESTORE_GPR(26) lwz r26,
-        -24(save_restore_reg)ENTRY_RESTORE_GPR(27) lwz r27,
-        -20(save_restore_reg)ENTRY_RESTORE_GPR(28) lwz r28,
-        -16(save_restore_reg)ENTRY_RESTORE_GPR(29) lwz r29,
-        -12(save_restore_reg)ENTRY_RESTORE_GPR(30) lwz r30,
-        -8(save_restore_reg)ENTRY_RESTORE_GPR(31) lwz  r31, -4(save_restore_reg)blr
+        ENTRY_RESTORE_GPR (14) lwz                      r14,
+        -72(save_restore_reg)ENTRY_RESTORE_GPR (15) lwz r15,
+        -68(save_restore_reg)ENTRY_RESTORE_GPR (16) lwz r16,
+        -64(save_restore_reg)ENTRY_RESTORE_GPR (17) lwz r17,
+        -60(save_restore_reg)ENTRY_RESTORE_GPR (18) lwz r18,
+        -56(save_restore_reg)ENTRY_RESTORE_GPR (19) lwz r19,
+        -52(save_restore_reg)ENTRY_RESTORE_GPR (20) lwz r20,
+        -48(save_restore_reg)ENTRY_RESTORE_GPR (21) lwz r21,
+        -44(save_restore_reg)ENTRY_RESTORE_GPR (22) lwz r22,
+        -40(save_restore_reg)ENTRY_RESTORE_GPR (23) lwz r23,
+        -36(save_restore_reg)ENTRY_RESTORE_GPR (24) lwz r24,
+        -32(save_restore_reg)ENTRY_RESTORE_GPR (25) lwz r25,
+        -28(save_restore_reg)ENTRY_RESTORE_GPR (26) lwz r26,
+        -24(save_restore_reg)ENTRY_RESTORE_GPR (27) lwz r27,
+        -20(save_restore_reg)ENTRY_RESTORE_GPR (28) lwz r28,
+        -16(save_restore_reg)ENTRY_RESTORE_GPR (29) lwz r29,
+        -12(save_restore_reg)ENTRY_RESTORE_GPR (30) lwz r30,
+        -8(save_restore_reg)ENTRY_RESTORE_GPR (31) lwz  r31, -4(save_restore_reg)blr
 }
 #endif
 
 #if __ALTIVEC__
 static ASM void
-_restorevr(void)
+_restorevr (void)
 {
-    nofralloc machine altivec ENTRY_RESTORE_VPR(20) ENTRY_RESTORE_VPR2(20) addi r12,
+    nofralloc machine altivec ENTRY_RESTORE_VPR (20) ENTRY_RESTORE_VPR2 (20)
+        addi                  r12,
         r0, -192 lvx v20, r12,
-        r0 ENTRY_RESTORE_VPR(21) ENTRY_RESTORE_VPR2(21) addi r12, r0, -176 lvx v21,
-        r12, r0 ENTRY_RESTORE_VPR(22) ENTRY_RESTORE_VPR2(22) addi r12, r0,
-        -160 lvx v22, r12, r0 ENTRY_RESTORE_VPR(23) ENTRY_RESTORE_VPR2(23) addi r12,
-        r0, -144 lvx v23, r12,
-        r0 ENTRY_RESTORE_VPR(24) ENTRY_RESTORE_VPR2(24) addi r12, r0, -128 lvx v24,
-        r12, r0 ENTRY_RESTORE_VPR(25) ENTRY_RESTORE_VPR2(25) addi r12, r0,
-        -112 lvx v25, r12, r0 ENTRY_RESTORE_VPR(26) ENTRY_RESTORE_VPR2(26) addi r12,
-        r0, -96 lvx v26, r12,
-        r0 ENTRY_RESTORE_VPR(27) ENTRY_RESTORE_VPR2(27) addi r12, r0, -80 lvx v27,
-        r12, r0 ENTRY_RESTORE_VPR(28) ENTRY_RESTORE_VPR2(28) addi r12, r0,
-        -64 lvx v28, r12, r0 ENTRY_RESTORE_VPR(29) ENTRY_RESTORE_VPR2(29) addi r12,
-        r0, -48 lvx v29, r12,
-        r0 ENTRY_RESTORE_VPR(30) ENTRY_RESTORE_VPR2(30) addi r12, r0, -32 lvx v30,
-        r12, r0 ENTRY_RESTORE_VPR(31) ENTRY_RESTORE_VPR2(31) addi r12, r0,
-        -16 lvx v31, r12, r0 blr
+        r0 ENTRY_RESTORE_VPR (21) ENTRY_RESTORE_VPR2 (21) addi r12, r0, -176 lvx v21,
+        r12, r0 ENTRY_RESTORE_VPR (22) ENTRY_RESTORE_VPR2 (22) addi r12, r0,
+        -160 lvx v22, r12,
+        r0 ENTRY_RESTORE_VPR (23) ENTRY_RESTORE_VPR2 (23) addi r12, r0, -144 lvx v23,
+        r12, r0 ENTRY_RESTORE_VPR (24) ENTRY_RESTORE_VPR2 (24) addi r12, r0,
+        -128 lvx v24, r12,
+        r0 ENTRY_RESTORE_VPR (25) ENTRY_RESTORE_VPR2 (25) addi r12, r0, -112 lvx v25,
+        r12, r0 ENTRY_RESTORE_VPR (26) ENTRY_RESTORE_VPR2 (26) addi r12, r0,
+        -96 lvx v26, r12, r0 ENTRY_RESTORE_VPR (27) ENTRY_RESTORE_VPR2 (27) addi r12,
+        r0, -80 lvx v27, r12,
+        r0 ENTRY_RESTORE_VPR (28) ENTRY_RESTORE_VPR2 (28) addi r12, r0, -64 lvx v28,
+        r12, r0 ENTRY_RESTORE_VPR (29) ENTRY_RESTORE_VPR2 (29) addi r12, r0,
+        -48 lvx v29, r12, r0 ENTRY_RESTORE_VPR (30) ENTRY_RESTORE_VPR2 (30) addi r12,
+        r0, -32 lvx v30, r12,
+        r0 ENTRY_RESTORE_VPR (31) ENTRY_RESTORE_VPR2 (31) addi r12, r0, -16 lvx v31,
+        r12, r0 blr
 }
 #endif
 
@@ -616,38 +624,38 @@ _restorevr(void)
 //
 
 asm void
-__div2u(void)
+__div2u (void)
 {
 #if __PPC_EABI__
     nofralloc
 #endif
         // count the number of leading 0s in the dividend
         cmpwi cr0,
-        MSW(r3, r4),
-        0           // dvd.msw == 0?
+        MSW (r3, r4),
+        0            // dvd.msw == 0?
         cntlzw r0,
-        MSW(r3, r4) // R0 = dvd.msw.LZ
+        MSW (r3, r4) // R0 = dvd.msw.LZ
         cntlzw r9,
-        LSW(r3, r4) // R9 = dvd.lsw.LZ
+        LSW (r3, r4) // R9 = dvd.lsw.LZ
         bne cr0,
-        lab1        // if(dvd.msw == 0) dvd.LZ = dvd.msw.LZ
+        lab1         // if(dvd.msw == 0) dvd.LZ = dvd.msw.LZ
             addi r0,
         r9,
-        32          // dvd.LZ = dvd.lsw.LZ + 32
+        32           // dvd.LZ = dvd.lsw.LZ + 32
         lab1 :
       // count the number of leading 0s in the divisor
       cmpwi cr0,
-      MSW(r5, r6),
-      0           // dvd.msw == 0?
+      MSW (r5, r6),
+      0            // dvd.msw == 0?
       cntlzw r9,
-      MSW(r5, r6) // R9 = dvs.msw.LZ
+      MSW (r5, r6) // R9 = dvs.msw.LZ
       cntlzw r10,
-      LSW(r5, r6) // R10 = dvs.lsw.LZ
+      LSW (r5, r6) // R10 = dvs.lsw.LZ
       bne cr0,
-      lab2        // if(dvs.msw == 0) dvs.LZ = dvs.msw.LZ
+      lab2         // if(dvs.msw == 0) dvs.LZ = dvs.msw.LZ
           addi r9,
       r10,
-      32          // dvs.LZ = dvs.lsw.LZ + 32
+      32           // dvs.LZ = dvs.lsw.LZ + 32
       lab2 :
       // determine shift amounts to minimize the number of iterations
       cmpw cr0,
@@ -677,31 +685,31 @@ __div2u(void)
               // R7:R8 = R3:R4 >> R9
               cmpwi cr0,
       r9,
-      32                        // compare R9 to 32
+      32                         // compare R9 to 32
       addi
-      MSW(r7, r8),
+      MSW (r7, r8),
       r9,
       -32 blt cr0,
-      lab3                      // if(R9 < 32) jump to lab3
-          srw LSW(r7, r8),
-      MSW(r3, r4),
-      MSW(r7, r8)               // tmp.lsw = dvd.msw >> (R9 - 32)
-      li MSW(r7, r8),
-      0                         // tmp.msw = 0
-      b lab4 lab3 : srw LSW(r7, r8),
-                    LSW(r3, r4),
-                    r9          // R8 = dvd.lsw >> R9
-                        subfic MSW(r7, r8),
+      lab3                       // if(R9 < 32) jump to lab3
+          srw LSW (r7, r8),
+      MSW (r3, r4),
+      MSW (r7, r8)               // tmp.lsw = dvd.msw >> (R9 - 32)
+      li MSW (r7, r8),
+      0                          // tmp.msw = 0
+      b lab4 lab3 : srw LSW (r7, r8),
+                    LSW (r3, r4),
+                    r9           // R8 = dvd.lsw >> R9
+                        subfic MSW (r7, r8),
                     r9,
-                    32 slw MSW(r7, r8),
-                    MSW(r3, r4),
-                    MSW(r7, r8) // R7 = dvd.msw << 32 - R9
-                        or LSW(r7, r8),
-                    LSW(r7, r8),
-                    MSW(r7, r8) // tmp.lsw = R8 | R7
-                    srw MSW(r7, r8),
-                    MSW(r3, r4),
-                    r9          // tmp.msw = dvd.msw >> R9
+                    32 slw MSW (r7, r8),
+                    MSW (r3, r4),
+                    MSW (r7, r8) // R7 = dvd.msw << 32 - R9
+                        or LSW (r7, r8),
+                    LSW (r7, r8),
+                    MSW (r7, r8) // tmp.lsw = R8 | R7
+                    srw MSW (r7, r8),
+                    MSW (r3, r4),
+                    r9           // tmp.msw = dvd.msw >> R9
                         lab4 :
       // R3:R4 = R3:R4 << R0
       cmpwi             cr0,
@@ -711,78 +719,78 @@ __div2u(void)
       r0,
       -32 blt cr0,
       lab5             // if(R0 < 32) jump to lab5
-          slw MSW(r3, r4),
-      LSW(r3, r4),
+          slw MSW (r3, r4),
+      LSW (r3, r4),
       r9               // dvd.msw = dvd.lsw << R9
-          li LSW(r3, r4),
+          li LSW (r3, r4),
       0                // dvd.lsw = 0
-      b lab6 lab5 : slw MSW(r3, r4),
-                    MSW(r3, r4),
+      b lab6 lab5 : slw MSW (r3, r4),
+                    MSW (r3, r4),
                     r0 // R3 = dvd.msw << R0
                         subfic r9,
                     r0,
                     32 srw r9,
-                    LSW(r3, r4),
+                    LSW (r3, r4),
                     r9 // R9 = dvd.lsw >> 32 - R0
-                        or MSW(r3, r4),
-                    MSW(r3, r4),
+                        or MSW (r3, r4),
+                    MSW (r3, r4),
                     r9 // dvd.msw = R3 | R9
-                        slw LSW(r3, r4),
-                    LSW(r3, r4),
+                        slw LSW (r3, r4),
+                    LSW (r3, r4),
                     r0 // dvd.lsw = dvd.lsw << R0
                         lab6 :
       // restoring division shift and subtract loop
       li                r10,
       -1 // R10 = -1
-      addic MSW(r7, r8),
-      MSW(r7, r8),
+      addic MSW (r7, r8),
+      MSW (r7, r8),
       0  // clear carry bit before loop starts
       lab7 :
       // tmp:dvd is considered one large register
       // each portion is shifted left 1 bit by adding it to itself
       // adde sums the carry from the previous and creates a new carry
-      adde LSW(r3, r4),
-      LSW(r3, r4),
-      LSW(r3, r4) // shift dvd.lsw left 1 bit
-      adde MSW(r3, r4),
-      MSW(r3, r4),
-      MSW(r3, r4) // shift dvd.msw to left 1 bit
-      adde LSW(r7, r8),
-      LSW(r7, r8),
-      LSW(r7, r8) // shift tmp.lsw to left 1 bit
-      adde MSW(r7, r8),
-      MSW(r7, r8),
-      MSW(r7, r8) // shift tmp.msw to left 1 bit
+      adde LSW (r3, r4),
+      LSW (r3, r4),
+      LSW (r3, r4) // shift dvd.lsw left 1 bit
+      adde MSW (r3, r4),
+      MSW (r3, r4),
+      MSW (r3, r4) // shift dvd.msw to left 1 bit
+      adde LSW (r7, r8),
+      LSW (r7, r8),
+      LSW (r7, r8) // shift tmp.lsw to left 1 bit
+      adde MSW (r7, r8),
+      MSW (r7, r8),
+      MSW (r7, r8) // shift tmp.msw to left 1 bit
       subfc r0,
-      LSW(r5, r6),
-      LSW(r7, r8) // tmp.lsw - dvs.lsw
+      LSW (r5, r6),
+      LSW (r7, r8) // tmp.lsw - dvs.lsw
       subfe.r9,
-      MSW(r5, r6),
-      MSW(r7, r8) // tmp.msw - dvs.msw
+      MSW (r5, r6),
+      MSW (r7, r8) // tmp.msw - dvs.msw
       blt cr0,
-      lab8        // if(result < 0) clear carry bit
-          mr LSW(r7, r8),
-      r0          // move lsw
-          mr MSW(r7, r8),
-      r9          // move msw
+      lab8         // if(result < 0) clear carry bit
+          mr LSW (r7, r8),
+      r0           // move lsw
+          mr MSW (r7, r8),
+      r9           // move msw
           addic r0,
       r10,
-      1           // set carry bit
+      1            // set carry bit
       lab8 : bdnz lab7
 
                  // write quotient
-                 adde LSW(r3, r4),
-             LSW(r3, r4),
-             LSW(r3, r4) // quo.lsw (lsb = CA)
-             adde MSW(r3, r4),
-             MSW(r3, r4),
-             MSW(r3, r4) // quo.msw (lsb from lsw)
-             blr         // return
+                 adde LSW (r3, r4),
+             LSW (r3, r4),
+             LSW (r3, r4) // quo.lsw (lsb = CA)
+             adde MSW (r3, r4),
+             MSW (r3, r4),
+             MSW (r3, r4) // quo.msw (lsb from lsw)
+             blr          // return
                  lab9 :
       // Quotient is 0 (dvs > dvd)
-      li         LSW(r3, r4),
+      li         LSW (r3, r4),
       0   // dvd.lsw = 0
-      li MSW(r3, r4),
+      li MSW (r3, r4),
       0   // dvd.msw = 0
       blr // return
 }
@@ -807,7 +815,7 @@ __div2u(void)
 //
 
 asm void
-__div2i(void)
+__div2i (void)
 {
 #if __PPC_EABI__
     nofralloc stwu SP,
@@ -815,48 +823,49 @@ __div2i(void)
 #endif
          // first we need the absolute values of both operands. we also
          // remember the signs so that we can adjust the result later.
-         rlwinm.MSW(r9, r10),
-        MSW(r3, r4), 0, 0, 0 beq cr0, positive1 subfic LSW(r3, r4), LSW(r3, r4),
-        0 subfze MSW(r3, r4), MSW(r3, r4) positive1 : stw MSW(r9, r10),
-                                                      hilong(r1) rlwinm.LSW(r9, r10),
-                                                      MSW(r5, r6),
-                                                      0,
-                                                      0,
-                                                      0 beq            cr0,
-                                                      positive2 subfic LSW(r5, r6),
-                                                      LSW(r5, r6),
-                                                      0 subfze MSW(r5, r6),
-                                                      MSW(r5, r6) positive2
-      : stw LSW(r9, r10),
-        lolong(r1)
+         rlwinm.MSW (r9, r10),
+        MSW (r3, r4), 0, 0, 0 beq cr0, positive1 subfic LSW (r3, r4), LSW (r3, r4),
+        0 subfze                     MSW (r3, r4),
+        MSW (r3, r4) positive1 : stw MSW (r9, r10),
+                                 hilong (r1) rlwinm.LSW (r9, r10),
+                                 MSW (r5, r6),
+                                 0,
+                                 0,
+                                 0 beq            cr0,
+                                 positive2 subfic LSW (r5, r6),
+                                 LSW (r5, r6),
+                                 0 subfze MSW (r5, r6),
+                                 MSW (r5, r6) positive2
+      : stw LSW (r9, r10),
+        lolong (r1)
 
         // count the number of leading 0s in the dividend
         cmpwi cr0,
-        MSW(r3, r4),
-        0           // dvd.msw == 0?
+        MSW (r3, r4),
+        0            // dvd.msw == 0?
         cntlzw r0,
-        MSW(r3, r4) // R0 = dvd.msw.LZ
+        MSW (r3, r4) // R0 = dvd.msw.LZ
         cntlzw r9,
-        LSW(r3, r4) // R9 = dvd.lsw.LZ
+        LSW (r3, r4) // R9 = dvd.lsw.LZ
         bne cr0,
-        lab1        // if(dvd.msw == 0) dvd.LZ = dvd.msw.LZ
+        lab1         // if(dvd.msw == 0) dvd.LZ = dvd.msw.LZ
             addi r0,
         r9,
-        32          // dvd.LZ = dvd.lsw.LZ + 32
+        32           // dvd.LZ = dvd.lsw.LZ + 32
         lab1 :
       // count the number of leading 0s in the divisor
       cmpwi cr0,
-      MSW(r5, r6),
-      0           // dvd.msw == 0?
+      MSW (r5, r6),
+      0            // dvd.msw == 0?
       cntlzw r9,
-      MSW(r5, r6) // R9 = dvs.msw.LZ
+      MSW (r5, r6) // R9 = dvs.msw.LZ
       cntlzw r10,
-      LSW(r5, r6) // R10 = dvs.lsw.LZ
+      LSW (r5, r6) // R10 = dvs.lsw.LZ
       bne cr0,
-      lab2        // if(dvs.msw == 0) dvs.LZ = dvs.msw.LZ
+      lab2         // if(dvs.msw == 0) dvs.LZ = dvs.msw.LZ
           addi r9,
       r10,
-      32          // dvs.LZ = dvs.lsw.LZ + 32
+      32           // dvs.LZ = dvs.lsw.LZ + 32
       lab2 :
       // determine shift amounts to minimize the number of iterations
       cmpw cr0,
@@ -886,30 +895,30 @@ __div2i(void)
               // R7:R8 = R3:R4 >> R9
               cmpwi cr0,
       r9,
-      32                        // compare R9 to 32
-      addi MSW(r7, r8),
+      32                         // compare R9 to 32
+      addi MSW (r7, r8),
       r9,
       -32 blt cr0,
-      lab3                      // if(R9 < 32) jump to lab3
-          srw LSW(r7, r8),
-      MSW(r3, r4),
-      MSW(r7, r8)               // tmp.lsw = dvd.msw >> (R9 - 32)
-      li MSW(r7, r8),
-      0                         // tmp.msw = 0
-      b lab4 lab3 : srw LSW(r7, r8),
-                    LSW(r3, r4),
-                    r9          // R8 = dvd.lsw >> R9
-                        subfic MSW(r7, r8),
+      lab3                       // if(R9 < 32) jump to lab3
+          srw LSW (r7, r8),
+      MSW (r3, r4),
+      MSW (r7, r8)               // tmp.lsw = dvd.msw >> (R9 - 32)
+      li MSW (r7, r8),
+      0                          // tmp.msw = 0
+      b lab4 lab3 : srw LSW (r7, r8),
+                    LSW (r3, r4),
+                    r9           // R8 = dvd.lsw >> R9
+                        subfic MSW (r7, r8),
                     r9,
-                    32 slw MSW(r7, r8),
-                    MSW(r3, r4),
-                    MSW(r7, r8) // R7 = dvd.msw << 32 - R9
-                        or LSW(r7, r8),
-                    LSW(r7, r8),
-                    MSW(r7, r8) // tmp.lsw = R8 | R7
-                    srw MSW(r7, r8),
-                    MSW(r3, r4),
-                    r9          // tmp.msw = dvd.msw >> R9
+                    32 slw MSW (r7, r8),
+                    MSW (r3, r4),
+                    MSW (r7, r8) // R7 = dvd.msw << 32 - R9
+                        or LSW (r7, r8),
+                    LSW (r7, r8),
+                    MSW (r7, r8) // tmp.lsw = R8 | R7
+                    srw MSW (r7, r8),
+                    MSW (r3, r4),
+                    r9           // tmp.msw = dvd.msw >> R9
                         lab4 :
       // R3:R4 = R3:R4 << R0
       cmpwi             cr0,
@@ -919,88 +928,88 @@ __div2i(void)
       r0,
       -32 blt cr0,
       lab5             // if(R0 < 32) jump to lab5
-          slw MSW(r3, r4),
-      LSW(r3, r4),
+          slw MSW (r3, r4),
+      LSW (r3, r4),
       r9               // dvd.msw = dvd.lsw << R9
-          li LSW(r3, r4),
+          li LSW (r3, r4),
       0                // dvd.lsw = 0
-      b lab6 lab5 : slw MSW(r3, r4),
-                    MSW(r3, r4),
+      b lab6 lab5 : slw MSW (r3, r4),
+                    MSW (r3, r4),
                     r0 // R3 = dvd.msw << R0
                         subfic r9,
                     r0,
                     32 srw r9,
-                    LSW(r3, r4),
+                    LSW (r3, r4),
                     r9 // R9 = dvd.lsw >> 32 - R0
-                        or MSW(r3, r4),
-                    MSW(r3, r4),
+                        or MSW (r3, r4),
+                    MSW (r3, r4),
                     r9 // dvd.msw = R3 | R9
-                        slw LSW(r3, r4),
-                    LSW(r3, r4),
+                        slw LSW (r3, r4),
+                    LSW (r3, r4),
                     r0 // dvd.lsw = dvd.lsw << R0
                         lab6 :
       // restoring division shift and subtract loop
       li                r10,
       -1 // R10 = -1
-      addic MSW(r7, r8),
-      MSW(r7, r8),
+      addic MSW (r7, r8),
+      MSW (r7, r8),
       0  // clear carry bit before loop starts
       lab7 :
       // tmp:dvd is considered one large register
       // each portion is shifted left 1 bit by adding it to itself
       // adde sums the carry from the previous and creates a new carry
-      adde LSW(r3, r4),
-      LSW(r3, r4),
-      LSW(r3, r4) // shift dvd.lsw left 1 bit
-      adde MSW(r3, r4),
-      MSW(r3, r4),
-      MSW(r3, r4) // shift dvd.msw to left 1 bit
-      adde LSW(r7, r8),
-      LSW(r7, r8),
-      LSW(r7, r8) // shift tmp.lsw to left 1 bit
-      adde MSW(r7, r8),
-      MSW(r7, r8),
-      MSW(r7, r8) // shift tmp.msw to left 1 bit
+      adde LSW (r3, r4),
+      LSW (r3, r4),
+      LSW (r3, r4) // shift dvd.lsw left 1 bit
+      adde MSW (r3, r4),
+      MSW (r3, r4),
+      MSW (r3, r4) // shift dvd.msw to left 1 bit
+      adde LSW (r7, r8),
+      LSW (r7, r8),
+      LSW (r7, r8) // shift tmp.lsw to left 1 bit
+      adde MSW (r7, r8),
+      MSW (r7, r8),
+      MSW (r7, r8) // shift tmp.msw to left 1 bit
       subfc r0,
-      LSW(r5, r6),
-      LSW(r7, r8) // tmp.lsw - dvs.lsw
+      LSW (r5, r6),
+      LSW (r7, r8) // tmp.lsw - dvs.lsw
       subfe.r9,
-      MSW(r5, r6),
-      MSW(r7, r8) // tmp.msw - dvs.msw
+      MSW (r5, r6),
+      MSW (r7, r8) // tmp.msw - dvs.msw
       blt cr0,
-      lab8        // if(result < 0) clear carry bit
-          mr LSW(r7, r8),
-      r0          // move lsw
-          mr MSW(r7, r8),
-      r9          // move msw
+      lab8         // if(result < 0) clear carry bit
+          mr LSW (r7, r8),
+      r0           // move lsw
+          mr MSW (r7, r8),
+      r9           // move msw
           addic r0,
       r10,
-      1           // set carry bit
+      1            // set carry bit
       lab8 : bdnz lab7
 
                  // write quotient
-                 adde LSW(r3, r4),
-             LSW(r3, r4),
-             LSW(r3, r4) // quo.lsw (lsb = CA)
-             adde MSW(r3, r4),
-             MSW(r3, r4),
-             MSW(r3, r4) // quo.msw (lsb from lsw)
+                 adde LSW (r3, r4),
+             LSW (r3, r4),
+             LSW (r3, r4) // quo.lsw (lsb = CA)
+             adde MSW (r3, r4),
+             MSW (r3, r4),
+             MSW (r3, r4) // quo.msw (lsb from lsw)
 
              // now adjust result based on sign of original DVD and DVS
-             lwz            MSW(r9, r10),
-             hilong(r1) lwz LSW(r9, r10),
-             lolong(r1) xor.r7,
-             MSW(r9, r10),
-             LSW(r9, r10) beq cr0,
+             lwz             MSW (r9, r10),
+             hilong (r1) lwz LSW (r9, r10),
+             lolong (r1) xor.r7,
+             MSW (r9, r10),
+             LSW (r9, r10) beq cr0,
              no_adjust // sign of DVD and DVS same, no adjust
                  cmpwi cr0,
-             MSW(r9, r10),
+             MSW (r9, r10),
              0
              // sign of DVD and DVS opposite, we negate result
-             subfic LSW(r3, r4),
-             LSW(r3, r4),
-             0 subfze MSW(r3, r4),
-             MSW(r3, r4) no_adjust :
+             subfic LSW (r3, r4),
+             LSW (r3, r4),
+             0 subfze MSW (r3, r4),
+             MSW (r3, r4) no_adjust :
 #if __PPC_EABI__
       b func_end
 #else
@@ -1009,9 +1018,9 @@ __div2i(void)
 
           lab9 :
       // Quotient is 0 (dvs > dvd)
-      li  LSW(r3, r4),
+      li  LSW (r3, r4),
       0              // dvd.lsw = 0
-      li MSW(r3, r4),
+      li MSW (r3, r4),
       0              // dvd.msw = 0
 #if __PPC_EABI__
       func_end : addi SP,
@@ -1042,38 +1051,38 @@ __div2i(void)
 //
 
 asm void
-__mod2u(void)
+__mod2u (void)
 {
 #if __PPC_EABI__
     nofralloc
 #endif
         // count the number of leading 0s in the dividend
         cmpwi cr0,
-        MSW(r3, r4),
-        0           // dvd.msw == 0?
+        MSW (r3, r4),
+        0            // dvd.msw == 0?
         cntlzw r0,
-        MSW(r3, r4) // R0 = dvd.msw.LZ
+        MSW (r3, r4) // R0 = dvd.msw.LZ
         cntlzw r9,
-        LSW(r3, r4) // R9 = dvd.lsw.LZ
+        LSW (r3, r4) // R9 = dvd.lsw.LZ
         bne cr0,
-        lab1        // if(dvd.msw == 0) dvd.LZ = dvd.msw.LZ
+        lab1         // if(dvd.msw == 0) dvd.LZ = dvd.msw.LZ
             addi r0,
         r9,
-        32          // dvd.LZ = dvd.lsw.LZ + 32
+        32           // dvd.LZ = dvd.lsw.LZ + 32
         lab1 :
       // count the number of leading 0s in the divisor
       cmpwi cr0,
-      MSW(r5, r6),
-      0           // dvd.msw == 0?
+      MSW (r5, r6),
+      0            // dvd.msw == 0?
       cntlzw r9,
-      MSW(r5, r6) // R9 = dvs.msw.LZ
+      MSW (r5, r6) // R9 = dvs.msw.LZ
       cntlzw r10,
-      LSW(r5, r6) // R10 = dvs.lsw.LZ
+      LSW (r5, r6) // R10 = dvs.lsw.LZ
       bne cr0,
-      lab2        // if(dvs.msw == 0) dvs.LZ = dvs.msw.LZ
+      lab2         // if(dvs.msw == 0) dvs.LZ = dvs.msw.LZ
           addi r9,
       r10,
-      32          // dvs.LZ = dvs.lsw.LZ + 32
+      32           // dvs.LZ = dvs.lsw.LZ + 32
       lab2 :
       // determine shift amounts to minimize the number of iterations
       cmpw cr0,
@@ -1103,31 +1112,31 @@ __mod2u(void)
               // R7:R8 = R3:R4 >> R9
               cmpwi cr0,
       r9,
-      32                        // compare R9 to 32
+      32                         // compare R9 to 32
       addi
-      MSW(r7, r8),
+      MSW (r7, r8),
       r9,
       -32 blt cr0,
-      lab3                      // if(R9 < 32) jump to lab3
-          srw LSW(r7, r8),
-      MSW(r3, r4),
-      MSW(r7, r8)               // tmp.lsw = dvd.msw >> (R9 - 32)
-      li MSW(r7, r8),
-      0                         // tmp.msw = 0
-      b lab4 lab3 : srw LSW(r7, r8),
-                    LSW(r3, r4),
-                    r9          // R8 = dvd.lsw >> R9
-                        subfic MSW(r7, r8),
+      lab3                       // if(R9 < 32) jump to lab3
+          srw LSW (r7, r8),
+      MSW (r3, r4),
+      MSW (r7, r8)               // tmp.lsw = dvd.msw >> (R9 - 32)
+      li MSW (r7, r8),
+      0                          // tmp.msw = 0
+      b lab4 lab3 : srw LSW (r7, r8),
+                    LSW (r3, r4),
+                    r9           // R8 = dvd.lsw >> R9
+                        subfic MSW (r7, r8),
                     r9,
-                    32 slw MSW(r7, r8),
-                    MSW(r3, r4),
-                    MSW(r7, r8) // R7 = dvd.msw << 32 - R9
-                        or LSW(r7, r8),
-                    LSW(r7, r8),
-                    MSW(r7, r8) // tmp.lsw = R8 | R7
-                    srw MSW(r7, r8),
-                    MSW(r3, r4),
-                    r9          // tmp.msw = dvd.msw >> R9
+                    32 slw MSW (r7, r8),
+                    MSW (r3, r4),
+                    MSW (r7, r8) // R7 = dvd.msw << 32 - R9
+                        or LSW (r7, r8),
+                    LSW (r7, r8),
+                    MSW (r7, r8) // tmp.lsw = R8 | R7
+                    srw MSW (r7, r8),
+                    MSW (r3, r4),
+                    r9           // tmp.msw = dvd.msw >> R9
                         lab4 :
       // R3:R4 = R3:R4 << R0
       cmpwi             cr0,
@@ -1137,71 +1146,71 @@ __mod2u(void)
       r0,
       -32 blt cr0,
       lab5             // if(R0 < 32) jump to lab5
-          slw MSW(r3, r4),
-      LSW(r3, r4),
+          slw MSW (r3, r4),
+      LSW (r3, r4),
       r9               // dvd.msw = dvd.lsw << R9
-          li LSW(r3, r4),
+          li LSW (r3, r4),
       0                // dvd.lsw = 0
-      b lab6 lab5 : slw MSW(r3, r4),
-                    MSW(r3, r4),
+      b lab6 lab5 : slw MSW (r3, r4),
+                    MSW (r3, r4),
                     r0 // R3 = dvd.msw << R0
                         subfic r9,
                     r0,
                     32 srw r9,
-                    LSW(r3, r4),
+                    LSW (r3, r4),
                     r9 // R9 = dvd.lsw >> 32 - R0
-                        or MSW(r3, r4),
-                    MSW(r3, r4),
+                        or MSW (r3, r4),
+                    MSW (r3, r4),
                     r9 // dvd.msw = R3 | R9
-                        slw LSW(r3, r4),
-                    LSW(r3, r4),
+                        slw LSW (r3, r4),
+                    LSW (r3, r4),
                     r0 // dvd.lsw = dvd.lsw << R0
                         lab6 :
       // restoring division shift and subtract loop
       li                r10,
       -1 // R10 = -1
-      addic MSW(r7, r8),
-      MSW(r7, r8),
+      addic MSW (r7, r8),
+      MSW (r7, r8),
       0  // clear carry bit before loop starts
       lab7 :
       // tmp:dvd is considered one large register
       // each portion is shifted left 1 bit by adding it to itself
       // adde sums the carry from the previous and creates a new carry
-      adde LSW(r3, r4),
-      LSW(r3, r4),
-      LSW(r3, r4) // shift dvd.lsw left 1 bit
-      adde MSW(r3, r4),
-      MSW(r3, r4),
-      MSW(r3, r4) // shift dvd.msw to left 1 bit
-      adde LSW(r7, r8),
-      LSW(r7, r8),
-      LSW(r7, r8) // shift tmp.lsw to left 1 bit
-      adde MSW(r7, r8),
-      MSW(r7, r8),
-      MSW(r7, r8) // shift tmp.msw to left 1 bit
+      adde LSW (r3, r4),
+      LSW (r3, r4),
+      LSW (r3, r4) // shift dvd.lsw left 1 bit
+      adde MSW (r3, r4),
+      MSW (r3, r4),
+      MSW (r3, r4) // shift dvd.msw to left 1 bit
+      adde LSW (r7, r8),
+      LSW (r7, r8),
+      LSW (r7, r8) // shift tmp.lsw to left 1 bit
+      adde MSW (r7, r8),
+      MSW (r7, r8),
+      MSW (r7, r8) // shift tmp.msw to left 1 bit
       subfc r0,
-      LSW(r5, r6),
-      LSW(r7, r8) // tmp.lsw - dvs.lsw
+      LSW (r5, r6),
+      LSW (r7, r8) // tmp.lsw - dvs.lsw
       subfe.r9,
-      MSW(r5, r6),
-      MSW(r7, r8) // tmp.msw - dvs.msw
+      MSW (r5, r6),
+      MSW (r7, r8) // tmp.msw - dvs.msw
       blt cr0,
-      lab8        // if(result < 0) clear carry bit
-          mr LSW(r7, r8),
-      r0          // move lsw
-          mr MSW(r7, r8),
-      r9          // move msw
+      lab8         // if(result < 0) clear carry bit
+          mr LSW (r7, r8),
+      r0           // move lsw
+          mr MSW (r7, r8),
+      r9           // move msw
           addic r0,
       r10,
-      1           // set carry bit
+      1            // set carry bit
       lab8 : bdnz lab7
 
                  // write remainder
-                 mr LSW(r3, r4),
-             LSW(r7, r8) // rem.lsw
-             mr MSW(r3, r4),
-             MSW(r7, r8) // rem.msw
-             blr         // return
+                 mr LSW (r3, r4),
+             LSW (r7, r8) // rem.lsw
+             mr MSW (r3, r4),
+             MSW (r7, r8) // rem.msw
+             blr          // return
                  lab9 :
       // remainder already in r3:r4 (quotient is 0 (dvs > dvd))
       blr // return
@@ -1228,49 +1237,50 @@ __mod2u(void)
 //
 
 asm void
-__mod2i(void)
+__mod2i (void)
 {
 #if __PPC_EABI__
     nofralloc
 #endif
         // remember sign of dvd in condition register 7
         cmpwi cr7,
-        MSW(r3, r4), 0 bge cr7, positive1 subfic LSW(r3, r4), LSW(r3, r4),
-        0 subfze MSW(r3, r4), MSW(r3, r4) positive1 : cmpwi cr0,
-                                                      MSW(r5, r6),
-                                                      0 bge            cr0,
-                                                      positive2 subfic LSW(r5, r6),
-                                                      LSW(r5, r6),
-                                                      0 subfze MSW(r5, r6),
-                                                      MSW(r5, r6) positive2 :
+        MSW (r3, r4), 0 bge cr7, positive1 subfic LSW (r3, r4), LSW (r3, r4),
+        0 subfze                       MSW (r3, r4),
+        MSW (r3, r4) positive1 : cmpwi cr0,
+                                 MSW (r5, r6),
+                                 0 bge            cr0,
+                                 positive2 subfic LSW (r5, r6),
+                                 LSW (r5, r6),
+                                 0 subfze MSW (r5, r6),
+                                 MSW (r5, r6) positive2 :
 
       // count the number of leading 0s in the dividend
       cmpwi cr0,
-      MSW(r3, r4),
-      0           // dvd.msw == 0?
+      MSW (r3, r4),
+      0            // dvd.msw == 0?
       cntlzw r0,
-      MSW(r3, r4) // R0 = dvd.msw.LZ
+      MSW (r3, r4) // R0 = dvd.msw.LZ
       cntlzw r9,
-      LSW(r3, r4) // R9 = dvd.lsw.LZ
+      LSW (r3, r4) // R9 = dvd.lsw.LZ
       bne cr0,
-      lab1        // if(dvd.msw == 0) dvd.LZ = dvd.msw.LZ
+      lab1         // if(dvd.msw == 0) dvd.LZ = dvd.msw.LZ
           addi r0,
       r9,
-      32          // dvd.LZ = dvd.lsw.LZ + 32
+      32           // dvd.LZ = dvd.lsw.LZ + 32
       lab1 :
       // count the number of leading 0s in the divisor
       cmpwi cr0,
-      MSW(r5, r6),
-      0           // dvd.msw == 0?
+      MSW (r5, r6),
+      0            // dvd.msw == 0?
       cntlzw r9,
-      MSW(r5, r6) // R9 = dvs.msw.LZ
+      MSW (r5, r6) // R9 = dvs.msw.LZ
       cntlzw r10,
-      LSW(r5, r6) // R10 = dvs.lsw.LZ
+      LSW (r5, r6) // R10 = dvs.lsw.LZ
       bne cr0,
-      lab2        // if(dvs.msw == 0) dvs.LZ = dvs.msw.LZ
+      lab2         // if(dvs.msw == 0) dvs.LZ = dvs.msw.LZ
           addi r9,
       r10,
-      32          // dvs.LZ = dvs.lsw.LZ + 32
+      32           // dvs.LZ = dvs.lsw.LZ + 32
       lab2 :
       // determine shift amounts to minimize the number of iterations
       cmpw cr0,
@@ -1300,30 +1310,30 @@ __mod2i(void)
               // R7:R8 = R3:R4 >> R9
               cmpwi cr0,
       r9,
-      32                        // compare R9 to 32
-      addi MSW(r7, r8),
+      32                         // compare R9 to 32
+      addi MSW (r7, r8),
       r9,
       -32 blt cr0,
-      lab3                      // if(R9 < 32) jump to lab3
-          srw LSW(r7, r8),
-      MSW(r3, r4),
-      MSW(r7, r8)               // tmp.lsw = dvd.msw >> (R9 - 32)
-      li MSW(r7, r8),
-      0                         // tmp.msw = 0
-      b lab4 lab3 : srw LSW(r7, r8),
-                    LSW(r3, r4),
-                    r9          // R8 = dvd.lsw >> R9
-                        subfic MSW(r7, r8),
+      lab3                       // if(R9 < 32) jump to lab3
+          srw LSW (r7, r8),
+      MSW (r3, r4),
+      MSW (r7, r8)               // tmp.lsw = dvd.msw >> (R9 - 32)
+      li MSW (r7, r8),
+      0                          // tmp.msw = 0
+      b lab4 lab3 : srw LSW (r7, r8),
+                    LSW (r3, r4),
+                    r9           // R8 = dvd.lsw >> R9
+                        subfic MSW (r7, r8),
                     r9,
-                    32 slw MSW(r7, r8),
-                    MSW(r3, r4),
-                    MSW(r7, r8) // R7 = dvd.msw << 32 - R9
-                        or LSW(r7, r8),
-                    LSW(r7, r8),
-                    MSW(r7, r8) // tmp.lsw = R8 | R7
-                    srw MSW(r7, r8),
-                    MSW(r3, r4),
-                    r9          // tmp.msw = dvd.msw >> R9
+                    32 slw MSW (r7, r8),
+                    MSW (r3, r4),
+                    MSW (r7, r8) // R7 = dvd.msw << 32 - R9
+                        or LSW (r7, r8),
+                    LSW (r7, r8),
+                    MSW (r7, r8) // tmp.lsw = R8 | R7
+                    srw MSW (r7, r8),
+                    MSW (r3, r4),
+                    r9           // tmp.msw = dvd.msw >> R9
                         lab4 :
       // R3:R4 = R3:R4 << R0
       cmpwi             cr0,
@@ -1333,80 +1343,80 @@ __mod2i(void)
       r0,
       -32 blt cr0,
       lab5             // if(R0 < 32) jump to lab5
-          slw MSW(r3, r4),
-      LSW(r3, r4),
+          slw MSW (r3, r4),
+      LSW (r3, r4),
       r9               // dvd.msw = dvd.lsw << R9
-          li LSW(r3, r4),
+          li LSW (r3, r4),
       0                // dvd.lsw = 0
-      b lab6 lab5 : slw MSW(r3, r4),
-                    MSW(r3, r4),
+      b lab6 lab5 : slw MSW (r3, r4),
+                    MSW (r3, r4),
                     r0 // R3 = dvd.msw << R0
                         subfic r9,
                     r0,
                     32 srw r9,
-                    LSW(r3, r4),
+                    LSW (r3, r4),
                     r9 // R9 = dvd.lsw >> 32 - R0
-                        or MSW(r3, r4),
-                    MSW(r3, r4),
+                        or MSW (r3, r4),
+                    MSW (r3, r4),
                     r9 // dvd.msw = R3 | R9
-                        slw LSW(r3, r4),
-                    LSW(r3, r4),
+                        slw LSW (r3, r4),
+                    LSW (r3, r4),
                     r0 // dvd.lsw = dvd.lsw << R0
                         lab6 :
       // restoring division shift and subtract loop
       li                r10,
       -1 // R10 = -1
-      addic MSW(r7, r8),
-      MSW(r7, r8),
+      addic MSW (r7, r8),
+      MSW (r7, r8),
       0  // clear carry bit before loop starts
       lab7 :
       // tmp:dvd is considered one large register
       // each portion is shifted left 1 bit by adding it to itself
       // adde sums the carry from the previous and creates a new carry
-      adde LSW(r3, r4),
-      LSW(r3, r4),
-      LSW(r3, r4) // shift dvd.lsw left 1 bit
-      adde MSW(r3, r4),
-      MSW(r3, r4),
-      MSW(r3, r4) // shift dvd.msw to left 1 bit
-      adde LSW(r7, r8),
-      LSW(r7, r8),
-      LSW(r7, r8) // shift tmp.lsw to left 1 bit
-      adde MSW(r7, r8),
-      MSW(r7, r8),
-      MSW(r7, r8) // shift tmp.msw to left 1 bit
+      adde LSW (r3, r4),
+      LSW (r3, r4),
+      LSW (r3, r4) // shift dvd.lsw left 1 bit
+      adde MSW (r3, r4),
+      MSW (r3, r4),
+      MSW (r3, r4) // shift dvd.msw to left 1 bit
+      adde LSW (r7, r8),
+      LSW (r7, r8),
+      LSW (r7, r8) // shift tmp.lsw to left 1 bit
+      adde MSW (r7, r8),
+      MSW (r7, r8),
+      MSW (r7, r8) // shift tmp.msw to left 1 bit
       subfc r0,
-      LSW(r5, r6),
-      LSW(r7, r8) // tmp.lsw - dvs.lsw
+      LSW (r5, r6),
+      LSW (r7, r8) // tmp.lsw - dvs.lsw
       subfe.r9,
-      MSW(r5, r6),
-      MSW(r7, r8) // tmp.msw - dvs.msw
+      MSW (r5, r6),
+      MSW (r7, r8) // tmp.msw - dvs.msw
       blt cr0,
-      lab8        // if(result < 0) clear carry bit
-          mr LSW(r7, r8),
-      r0          // move lsw
-          mr MSW(r7, r8),
-      r9          // move msw
+      lab8         // if(result < 0) clear carry bit
+          mr LSW (r7, r8),
+      r0           // move lsw
+          mr MSW (r7, r8),
+      r9           // move msw
           addic r0,
       r10,
-      1           // set carry bit
+      1            // set carry bit
       lab8 : bdnz lab7
 
                  // write remainder
-                 mr LSW(r3, r4),
-             LSW(r7, r8) // rem.lsw
-             mr MSW(r3, r4),
-             MSW(r7, r8) // rem.msw
+                 mr LSW (r3, r4),
+             LSW (r7, r8) // rem.lsw
+             mr MSW (r3, r4),
+             MSW (r7, r8) // rem.msw
 
              lab9 :
       // remainder already in r3:r4 (quotient is 0 (dvs > dvd))
       // now adjust result based on sign of original DVD
       // we negate result if DVD was negative.
       bge              cr7,
-      no_adjust subfic LSW(r3, r4),
-      LSW(r3, r4),
-      0 subfze MSW(r3, r4),
-      MSW(r3, r4) no_adjust : blr // return
+      no_adjust subfic LSW (r3, r4),
+      LSW (r3, r4),
+      0 subfze MSW (r3, r4),
+      MSW (r3, r4) no_adjust : blr // return
 }
 // __shl2i 	- 64-bit shift left for 32-bit PowerPC
 //
@@ -1420,18 +1430,18 @@ __mod2i(void)
 //
 //
 asm void
-__shl2i(void)
+__shl2i (void)
 {
 #if __PPC_EABI__
     nofralloc
 #endif
         subfic r8,
-        r5, 32 subic r9, r5, 32 slw MSW(r3, r4), MSW(r3, r4), r5 srw r10,
-        LSW(r3, r4), r8 or MSW(r3, r4), MSW(r3, r4), r10 slw r10, LSW(r3, r4),
-        r9 or MSW(r3, r4), MSW(r3, r4),
+        r5, 32 subic r9, r5, 32 slw MSW (r3, r4), MSW (r3, r4), r5 srw r10,
+        LSW (r3, r4), r8 or MSW (r3, r4), MSW (r3, r4), r10 slw r10, LSW (r3, r4),
+        r9 or MSW (r3, r4), MSW (r3, r4),
         r10 // high word
-            slw LSW(r3, r4),
-        LSW(r3, r4),
+            slw LSW (r3, r4),
+        LSW (r3, r4),
         r5  // low word
         blr
 }
@@ -1447,18 +1457,18 @@ __shl2i(void)
 //
 //
 asm void
-__shr2u(void)
+__shr2u (void)
 {
 #if __PPC_EABI__
     nofralloc
 #endif
         subfic r8,
-        r5, 32 subic r9, r5, 32 srw LSW(r3, r4), LSW(r3, r4), r5 slw r10,
-        MSW(r3, r4), r8 or LSW(r3, r4), LSW(r3, r4), r10 srw r10, MSW(r3, r4),
-        r9 or LSW(r3, r4), LSW(r3, r4),
+        r5, 32 subic r9, r5, 32 srw LSW (r3, r4), LSW (r3, r4), r5 slw r10,
+        MSW (r3, r4), r8 or LSW (r3, r4), LSW (r3, r4), r10 srw r10, MSW (r3, r4),
+        r9 or LSW (r3, r4), LSW (r3, r4),
         r10 // low word
-            srw MSW(r3, r4),
-        MSW(r3, r4),
+            srw MSW (r3, r4),
+        MSW (r3, r4),
         r5  // high word
         blr
 }
@@ -1474,18 +1484,18 @@ __shr2u(void)
 //
 //
 asm void
-__shr2i(void)
+__shr2i (void)
 {
 #if __PPC_EABI__
     nofralloc
 #endif
         subfic r8,
-        r5, 32 subic.r9, r5, 32 srw LSW(r3, r4), LSW(r3, r4), r5 slw r10,
-        MSW(r3, r4), r8 or LSW(r3, r4), LSW(r3, r4), r10 sraw r10, MSW(r3, r4),
-        r9 ble around or LSW(r3, r4), LSW(r3, r4),
+        r5, 32 subic.r9, r5, 32 srw LSW (r3, r4), LSW (r3, r4), r5 slw r10,
+        MSW (r3, r4), r8 or LSW (r3, r4), LSW (r3, r4), r10 sraw r10, MSW (r3, r4),
+        r9 ble around or LSW (r3, r4), LSW (r3, r4),
         r10             // low word
-            around : sraw MSW(r3, r4),
-                     MSW(r3, r4),
+            around : sraw MSW (r3, r4),
+                     MSW (r3, r4),
                      r5 // high word
                      blr
 }
@@ -1502,7 +1512,7 @@ __shr2i(void)
 //	Coded in PowerPC assembly by Jason Eckhardt.
 //
 asm void
-__cvt_sll_dbl(void)
+__cvt_sll_dbl (void)
 {
 #if __PPC_EABI__
     nofralloc stwu SP,
@@ -1513,30 +1523,30 @@ __cvt_sll_dbl(void)
 
          // remember sign bit and negate r3:r4 if it is negative
          rlwinm.r5,
-        MSW(r3, r4), 0, 0, 0 beq cr0, positive subfic LSW(r3, r4), LSW(r3, r4),
-        0 subfze MSW(r3, r4),
-        MSW(r3, r4) positive :
+        MSW (r3, r4), 0, 0, 0 beq cr0, positive subfic LSW (r3, r4), LSW (r3, r4),
+        0 subfze MSW (r3, r4),
+        MSW (r3, r4) positive :
       // exit early if r3:r4 is 0:0
       or.r7,
-        MSW(r3, r4), LSW(r3, r4) li r6,
+        MSW (r3, r4), LSW (r3, r4) li r6,
         0 // exp = 0
         beq cr0,
         zero
             // count the leading zeroes in r3:r4
-            cntlzw         r7,
-        MSW(r3, r4) cntlzw r8, LSW(r3, r4) rlwinm r9, r7, 26, 0,
+            cntlzw          r7,
+        MSW (r3, r4) cntlzw r8, LSW (r3, r4) rlwinm r9, r7, 26, 0,
         4                      // (i.e. slwi r9,r7,26)
         srawi r9,
         r9, 31 and r9, r9, r8 add r7, r7,
         r9                     // r7 contains number of leading zeroes
                                // shift r3:r4 left by r7 bits
             subfic r8,
-        r7, 32 subic r9, r7, 32 slw MSW(r3, r4), MSW(r3, r4), r7 srw r10,
-        LSW(r3, r4), r8 or MSW(r3, r4), MSW(r3, r4), r10 slw r10, LSW(r3, r4),
-        r9 or MSW(r3, r4), MSW(r3, r4),
+        r7, 32 subic r9, r7, 32 slw MSW (r3, r4), MSW (r3, r4), r7 srw r10,
+        LSW (r3, r4), r8 or MSW (r3, r4), MSW (r3, r4), r10 slw r10, LSW (r3, r4),
+        r9 or MSW (r3, r4), MSW (r3, r4),
         r10                    // high word
-            slw LSW(r3, r4),
-        LSW(r3, r4),
+            slw LSW (r3, r4),
+        LSW (r3, r4),
         r7                     // low word
                                // subtract the number of leading 0's from exponent
             sub r6,
@@ -1544,18 +1554,18 @@ __cvt_sll_dbl(void)
         r7
 #if PPC_RT_ROUND_NEAREST
             rlwinm r7,
-        LSW(r3, r4), 0, 21, 31 cmpi cr0, r7, 0x400 addi r6, r6,
+        LSW (r3, r4), 0, 21, 31 cmpi cr0, r7, 0x400 addi r6, r6,
         1086                   // adjust exponent (scheduled to here)
         blt noround            // if ((nl & 0x7ff) < 0x400) don't round
             bgt round          // if ((nl & 0x7ff) > 0x400) round
                 rlwinm.r7,
-        LSW(r3, r4), 0, 20,
+        LSW (r3, r4), 0, 20,
         20                     // if ((nl & 0x7ff) == 0x400) && (nl & 0x800) round
                                // last case is if exactly half way round to even
-        beq noround round : addic LSW(r3, r4),
-                            LSW(r3, r4),
-                            0x0800 addze      MSW(r3, r4),
-                            MSW(r3, r4) addze r6,
+        beq noround round : addic LSW (r3, r4),
+                            LSW (r3, r4),
+                            0x0800 addze       MSW (r3, r4),
+                            MSW (r3, r4) addze r6,
                             r6 // adjust exponent (if carry add one to exponent)
                                 noround :
 #else
@@ -1565,47 +1575,47 @@ __cvt_sll_dbl(void)
         1086 // adjust exponent
 #endif
       // shift r3:r4 right by 11 bits, but need only lower word
-      rlwinm LSW(r3, r4),
-      LSW(r3, r4),
+      rlwinm LSW (r3, r4),
+      LSW (r3, r4),
       21,
       0,
       31 // (i.e. srwi	r4,r4,11)
-      rlwimi LSW(r3, r4),
-      MSW(r3, r4),
+      rlwimi LSW (r3, r4),
+      MSW (r3, r4),
       21,
       0,
       10 // (i.e. insrwi	r4,r3,11,0)
       // construct high word of double now
-      rlwinm MSW(r3, r4),
-      MSW(r3, r4),
+      rlwinm MSW (r3, r4),
+      MSW (r3, r4),
       21,
       12,
-      31          // (nh >> 11) & 0xfffff
+      31           // (nh >> 11) & 0xfffff
       rlwinm r6,
       r6,
       20,
       0,
-      11          // (exp << 20)
-          or MSW(r3, r4),
+      11           // (exp << 20)
+          or MSW (r3, r4),
       r6,
-      MSW(r3, r4) or MSW(r3, r4),
+      MSW (r3, r4) or MSW (r3, r4),
       r5,
-      MSW(r3, r4) // finally, set the sign bit
+      MSW (r3, r4) // finally, set the sign bit
       zero :
     // r3:r4 now makes up a floating point double
     // we'll transfer to a fpr through memory using input param area
     // as temporary storage (8 words always allocated at sp+24).
 #if !__option(little_endian)
-      stw            MSW(r3, r4),
-      hilong(r1) stw LSW(r3, r4),
-      lolong(r1)
+      stw             MSW (r3, r4),
+      hilong (r1) stw LSW (r3, r4),
+      lolong (r1)
 #else
-      stw            LSW(r3, r4),
-      hilong(r1) stw MSW(r3, r4),
-      lolong(r1)
+      stw             LSW (r3, r4),
+      hilong (r1) stw MSW (r3, r4),
+      lolong (r1)
 #endif
           lfd f1,
-      hilong(r1)
+      hilong (r1)
 #if __PPC_EABI__
           addi SP,
       SP,
@@ -1625,7 +1635,7 @@ __cvt_sll_dbl(void)
 //	Coded in PowerPC assembly by Jason Eckhardt.
 //
 asm void
-__cvt_ull_dbl(void)
+__cvt_ull_dbl (void)
 {
 #if __PPC_EABI__
     nofralloc stwu SP,
@@ -1636,25 +1646,25 @@ __cvt_ull_dbl(void)
 
             // exit early if r3:r4 is 0:0
             or.r7,
-        MSW(r3, r4), LSW(r3, r4) li r6,
+        MSW (r3, r4), LSW (r3, r4) li r6,
         0 // exp = 0
         beq cr0,
         zero
             // count the leading zeroes in r3:r4
-            cntlzw         r7,
-        MSW(r3, r4) cntlzw r8, LSW(r3, r4) rlwinm r9, r7, 26, 0,
+            cntlzw          r7,
+        MSW (r3, r4) cntlzw r8, LSW (r3, r4) rlwinm r9, r7, 26, 0,
         4                      // (i.e. slwi r9,r7,26)
         srawi r9,
         r9, 31 and r9, r9, r8 add r7, r7,
         r9                     // r7 contains number of leading zeroes
                                // shift r3:r4 left by r7 bits
             subfic r8,
-        r7, 32 subic r9, r7, 32 slw MSW(r3, r4), MSW(r3, r4), r7 srw r10,
-        LSW(r3, r4), r8 or MSW(r3, r4), MSW(r3, r4), r10 slw r10, LSW(r3, r4),
-        r9 or MSW(r3, r4), MSW(r3, r4),
+        r7, 32 subic r9, r7, 32 slw MSW (r3, r4), MSW (r3, r4), r7 srw r10,
+        LSW (r3, r4), r8 or MSW (r3, r4), MSW (r3, r4), r10 slw r10, LSW (r3, r4),
+        r9 or MSW (r3, r4), MSW (r3, r4),
         r10                    // high word
-            slw LSW(r3, r4),
-        LSW(r3, r4),
+            slw LSW (r3, r4),
+        LSW (r3, r4),
         r7                     // low word
                                // subtract the number of leading 0's from exponent
             sub r6,
@@ -1662,18 +1672,18 @@ __cvt_ull_dbl(void)
         r7
 #if PPC_RT_ROUND_NEAREST
             rlwinm r7,
-        LSW(r3, r4), 0, 21, 31 cmpi cr0, r7, 0x400 addi r6, r6,
+        LSW (r3, r4), 0, 21, 31 cmpi cr0, r7, 0x400 addi r6, r6,
         1086                   // adjust exponent (scheduled to here)
         blt noround            // if ((nl & 0x7ff) < 0x400) don't round
             bgt round          // if ((nl & 0x7ff) > 0x400) round
                 rlwinm.r7,
-        LSW(r3, r4), 0, 20,
+        LSW (r3, r4), 0, 20,
         20                     // if ((nl & 0x7ff) == 0x400) && (nl & 0x800) round
                                // last case is if exactly half way round to even
-        beq noround round : addic LSW(r3, r4),
-                            LSW(r3, r4),
-                            0x0800 addze      MSW(r3, r4),
-                            MSW(r3, r4) addze r6,
+        beq noround round : addic LSW (r3, r4),
+                            LSW (r3, r4),
+                            0x0800 addze       MSW (r3, r4),
+                            MSW (r3, r4) addze r6,
                             r6 // adjust exponent (if carry add one to exponent)
                                 noround :
 #else
@@ -1682,19 +1692,19 @@ __cvt_ull_dbl(void)
         1086 // adjust exponent
 #endif
       // shift r3:r4 right by 11 bits, but need only lower word
-      rlwinm LSW(r3, r4),
-      LSW(r3, r4),
+      rlwinm LSW (r3, r4),
+      LSW (r3, r4),
       21,
       0,
       31 // (i.e. srwi	r4,r4,11)
-      rlwimi LSW(r3, r4),
-      MSW(r3, r4),
+      rlwimi LSW (r3, r4),
+      MSW (r3, r4),
       21,
       0,
       10 // (i.e. insrwi	r4,r3,11,0)
       // construct high word of double now (sign bit always zero for ull)
-      rlwinm MSW(r3, r4),
-      MSW(r3, r4),
+      rlwinm MSW (r3, r4),
+      MSW (r3, r4),
       21,
       12,
       31 // (nh >> 11) & 0xfffff
@@ -1703,23 +1713,23 @@ __cvt_ull_dbl(void)
       20,
       0,
       11 // (exp << 20)
-          or MSW(r3, r4),
+          or MSW (r3, r4),
       r6,
-      MSW(r3, r4) zero :
+      MSW (r3, r4) zero :
     // r3:r4 now makes up a floating point double
     // we'll transfer to a fpr through memory using input param area
     // as temporary storage (8 words always allocated at sp+24).
 #if !__option(little_endian)
-      stw            MSW(r3, r4),
-      hilong(r1) stw LSW(r3, r4),
-      lolong(r1)
+      stw             MSW (r3, r4),
+      hilong (r1) stw LSW (r3, r4),
+      lolong (r1)
 #else
-      stw            LSW(r3, r4),
-      hilong(r1) stw MSW(r3, r4),
-      lolong(r1)
+      stw             LSW (r3, r4),
+      hilong (r1) stw MSW (r3, r4),
+      lolong (r1)
 #endif
           lfd f1,
-      hilong(r1)
+      hilong (r1)
 #if __PPC_EABI__
           addi SP,
       SP,
@@ -1739,7 +1749,7 @@ __cvt_ull_dbl(void)
 //	Coded in PowerPC assembly by Jason Eckhardt.
 //
 asm void
-__cvt_sll_flt(void)
+__cvt_sll_flt (void)
 {
 #if __PPC_EABI__
     nofralloc stwu SP,
@@ -1750,30 +1760,30 @@ __cvt_sll_flt(void)
 
          // remember sign bit and negate r3:r4 if it is negative
          rlwinm.r5,
-        MSW(r3, r4), 0, 0, 0 beq cr0, positive subfic LSW(r3, r4), LSW(r3, r4),
-        0 subfze MSW(r3, r4),
-        MSW(r3, r4) positive :
+        MSW (r3, r4), 0, 0, 0 beq cr0, positive subfic LSW (r3, r4), LSW (r3, r4),
+        0 subfze MSW (r3, r4),
+        MSW (r3, r4) positive :
       // exit early if r3:r4 is 0:0
       or.r7,
-        MSW(r3, r4), LSW(r3, r4) li r6,
+        MSW (r3, r4), LSW (r3, r4) li r6,
         0 // exp = 0
         beq cr0,
         zero
             // count the leading zeroes in r3:r4
-            cntlzw         r7,
-        MSW(r3, r4) cntlzw r8, LSW(r3, r4) rlwinm r9, r7, 26, 0,
+            cntlzw          r7,
+        MSW (r3, r4) cntlzw r8, LSW (r3, r4) rlwinm r9, r7, 26, 0,
         4                      // (i.e. slwi r9,r7,26)
         srawi r9,
         r9, 31 and r9, r9, r8 add r7, r7,
         r9                     // r7 contains number of leading zeroes
                                // shift r3:r4 left by r7 bits
             subfic r8,
-        r7, 32 subic r9, r7, 32 slw MSW(r3, r4), MSW(r3, r4), r7 srw r10,
-        LSW(r3, r4), r8 or MSW(r3, r4), MSW(r3, r4), r10 slw r10, LSW(r3, r4),
-        r9 or MSW(r3, r4), MSW(r3, r4),
+        r7, 32 subic r9, r7, 32 slw MSW (r3, r4), MSW (r3, r4), r7 srw r10,
+        LSW (r3, r4), r8 or MSW (r3, r4), MSW (r3, r4), r10 slw r10, LSW (r3, r4),
+        r9 or MSW (r3, r4), MSW (r3, r4),
         r10                    // high word
-            slw LSW(r3, r4),
-        LSW(r3, r4),
+            slw LSW (r3, r4),
+        LSW (r3, r4),
         r7                     // low word
                                // subtract the number of leading 0's from exponent
             sub r6,
@@ -1781,18 +1791,18 @@ __cvt_sll_flt(void)
         r7
 #if PPC_RT_ROUND_NEAREST
             rlwinm r7,
-        LSW(r3, r4), 0, 21, 31 cmpi cr0, r7, 0x400 addi r6, r6,
+        LSW (r3, r4), 0, 21, 31 cmpi cr0, r7, 0x400 addi r6, r6,
         1086                   // adjust exponent (scheduled to here)
         blt noround            // if ((nl & 0x7ff) < 0x400) don't round
             bgt round          // if ((nl & 0x7ff) > 0x400) round
                 rlwinm.r7,
-        LSW(r3, r4), 0, 20,
+        LSW (r3, r4), 0, 20,
         20                     // if ((nl & 0x7ff) == 0x400) && (nl & 0x800) round
                                // last case is if exactly half way round to even
-        beq noround round : addic LSW(r3, r4),
-                            LSW(r3, r4),
-                            0x0800 addze      MSW(r3, r4),
-                            MSW(r3, r4) addze r6,
+        beq noround round : addic LSW (r3, r4),
+                            LSW (r3, r4),
+                            0x0800 addze       MSW (r3, r4),
+                            MSW (r3, r4) addze r6,
                             r6 // adjust exponent (if carry add one to exponent)
                                 noround :
 #else
@@ -1801,47 +1811,47 @@ __cvt_sll_flt(void)
         1086 // adjust exponent
 #endif
       // shift r3:r4 right by 11 bits, but need only lower word
-      rlwinm LSW(r3, r4),
-      LSW(r3, r4),
+      rlwinm LSW (r3, r4),
+      LSW (r3, r4),
       21,
       0,
       31 // (i.e. srwi	r4,r4,11)
-      rlwimi LSW(r3, r4),
-      MSW(r3, r4),
+      rlwimi LSW (r3, r4),
+      MSW (r3, r4),
       21,
       0,
       10 // (i.e. insrwi	r4,r3,11,0)
       // construct high word of double now
-      rlwinm MSW(r3, r4),
-      MSW(r3, r4),
+      rlwinm MSW (r3, r4),
+      MSW (r3, r4),
       21,
       12,
-      31          // (nh >> 11) & 0xfffff
+      31           // (nh >> 11) & 0xfffff
       rlwinm r6,
       r6,
       20,
       0,
-      11          // (exp << 20)
-          or MSW(r3, r4),
+      11           // (exp << 20)
+          or MSW (r3, r4),
       r6,
-      MSW(r3, r4) or MSW(r3, r4),
+      MSW (r3, r4) or MSW (r3, r4),
       r5,
-      MSW(r3, r4) // finally, set the sign bit
+      MSW (r3, r4) // finally, set the sign bit
       zero :
     // r3:r4 now makes up a floating point double
     // we'll transfer to a fpr through memory using input param area
     // as temporary storage (8 words always allocated at sp+24).
 #if !__option(little_endian)
-      stw            MSW(r3, r4),
-      hilong(r1) stw LSW(r3, r4),
-      lolong(r1)
+      stw             MSW (r3, r4),
+      hilong (r1) stw LSW (r3, r4),
+      lolong (r1)
 #else
-      stw            LSW(r3, r4),
-      hilong(r1) stw MSW(r3, r4),
-      lolong(r1)
+      stw             LSW (r3, r4),
+      hilong (r1) stw MSW (r3, r4),
+      lolong (r1)
 #endif
-          lfd         f1,
-      hilong(r1) frsp f1,
+          lfd          f1,
+      hilong (r1) frsp f1,
       f1
 #if __PPC_EABI__
           addi SP,
@@ -1862,7 +1872,7 @@ __cvt_sll_flt(void)
 //	Coded in PowerPC assembly by Jason Eckhardt.
 //
 asm void
-__cvt_ull_flt(void)
+__cvt_ull_flt (void)
 {
 #if __PPC_EABI__
     nofralloc stwu SP,
@@ -1873,25 +1883,25 @@ __cvt_ull_flt(void)
 
             // exit early if r3:r4 is 0:0
             or.r7,
-        MSW(r3, r4), LSW(r3, r4) li r6,
+        MSW (r3, r4), LSW (r3, r4) li r6,
         0 // exp = 0
         beq cr0,
         zero
             // count the leading zeroes in r3:r4
-            cntlzw         r7,
-        MSW(r3, r4) cntlzw r8, LSW(r3, r4) rlwinm r9, r7, 26, 0,
+            cntlzw          r7,
+        MSW (r3, r4) cntlzw r8, LSW (r3, r4) rlwinm r9, r7, 26, 0,
         4                      // (i.e. slwi r9,r7,26)
         srawi r9,
         r9, 31 and r9, r9, r8 add r7, r7,
         r9                     // r7 contains number of leading zeroes
                                // shift r3:r4 left by r7 bits
             subfic r8,
-        r7, 32 subic r9, r7, 32 slw MSW(r3, r4), MSW(r3, r4), r7 srw r10,
-        LSW(r3, r4), r8 or MSW(r3, r4), MSW(r3, r4), r10 slw r10, LSW(r3, r4),
-        r9 or MSW(r3, r4), MSW(r3, r4),
+        r7, 32 subic r9, r7, 32 slw MSW (r3, r4), MSW (r3, r4), r7 srw r10,
+        LSW (r3, r4), r8 or MSW (r3, r4), MSW (r3, r4), r10 slw r10, LSW (r3, r4),
+        r9 or MSW (r3, r4), MSW (r3, r4),
         r10                    // high word
-            slw LSW(r3, r4),
-        LSW(r3, r4),
+            slw LSW (r3, r4),
+        LSW (r3, r4),
         r7                     // low word
                                // subtract the number of leading 0's from exponent
             sub r6,
@@ -1899,18 +1909,18 @@ __cvt_ull_flt(void)
         r7
 #if PPC_RT_ROUND_NEAREST
             rlwinm r7,
-        LSW(r3, r4), 0, 21, 31 cmpi cr0, r7, 0x400 addi r6, r6,
+        LSW (r3, r4), 0, 21, 31 cmpi cr0, r7, 0x400 addi r6, r6,
         1086                   // adjust exponent (scheduled to here)
         blt noround            // if ((nl & 0x7ff) < 0x400) don't round
             bgt round          // if ((nl & 0x7ff) > 0x400) round
                 rlwinm.r7,
-        LSW(r3, r4), 0, 20,
+        LSW (r3, r4), 0, 20,
         20                     // if ((nl & 0x7ff) == 0x400) && (nl & 0x800) round
                                // last case is if exactly half way round to even
-        beq noround round : addic LSW(r3, r4),
-                            LSW(r3, r4),
-                            0x0800 addze      MSW(r3, r4),
-                            MSW(r3, r4) addze r6,
+        beq noround round : addic LSW (r3, r4),
+                            LSW (r3, r4),
+                            0x0800 addze       MSW (r3, r4),
+                            MSW (r3, r4) addze r6,
                             r6 // adjust exponent (if carry add one to exponent)
                                 noround :
 #else
@@ -1919,19 +1929,19 @@ __cvt_ull_flt(void)
         1086 // adjust exponent
 #endif
       // shift r3:r4 right by 11 bits, but need only lower word
-      rlwinm LSW(r3, r4),
-      LSW(r3, r4),
+      rlwinm LSW (r3, r4),
+      LSW (r3, r4),
       21,
       0,
       31 // (i.e. srwi	r4,r4,11)
-      rlwimi LSW(r3, r4),
-      MSW(r3, r4),
+      rlwimi LSW (r3, r4),
+      MSW (r3, r4),
       21,
       0,
       10 // (i.e. insrwi	r4,r3,11,0)
       // construct high word of double now (sign bit always zero for ull)
-      rlwinm MSW(r3, r4),
-      MSW(r3, r4),
+      rlwinm MSW (r3, r4),
+      MSW (r3, r4),
       21,
       12,
       31 // (nh >> 11) & 0xfffff
@@ -1940,23 +1950,23 @@ __cvt_ull_flt(void)
       20,
       0,
       11 // (exp << 20)
-          or MSW(r3, r4),
+          or MSW (r3, r4),
       r6,
-      MSW(r3, r4) zero :
+      MSW (r3, r4) zero :
     // r3:r4 now makes up a floating point double
     // we'll transfer to a fpr through memory using input param area
     // as temporary storage (8 words always allocated at sp+24).
 #if !__option(little_endian)
-      stw            MSW(r3, r4),
-      hilong(r1) stw LSW(r3, r4),
-      lolong(r1)
+      stw             MSW (r3, r4),
+      hilong (r1) stw LSW (r3, r4),
+      lolong (r1)
 #else
-      stw            LSW(r3, r4),
-      hilong(r1) stw MSW(r3, r4),
-      lolong(r1)
+      stw             LSW (r3, r4),
+      hilong (r1) stw MSW (r3, r4),
+      lolong (r1)
 #endif
-          lfd         f1,
-      hilong(r1) frsp f1,
+          lfd          f1,
+      hilong (r1) frsp f1,
       f1
 #if __PPC_EABI__
           addi SP,
@@ -1980,7 +1990,7 @@ __cvt_ull_flt(void)
 //	Coded in PowerPC assembly by Jason Eckhardt.
 //
 asm void
-__cvt_dbl_usll(void)
+__cvt_dbl_usll (void)
 {
 #if __PPC_EABI__
     nofralloc stwu SP,
@@ -1993,25 +2003,25 @@ __cvt_dbl_usll(void)
         // through memory. we'll use the input param area as temporary storage
         // (8 words always allocated at sp+24).
         stfd f1,
-        hilong(r1)
+        hilong (r1)
 #if !__option(little_endian)
             lwz
-                       MSW(r3, r4),
-        hilong(r1) lwz LSW(r3, r4),
-        lolong(r1)
+                        MSW (r3, r4),
+        hilong (r1) lwz LSW (r3, r4),
+        lolong (r1)
 #else
             lwz
-                       LSW(r3, r4),
-        hilong(r1) lwz MSW(r3, r4),
-        lolong(r1)
+                        LSW (r3, r4),
+        hilong (r1) lwz MSW (r3, r4),
+        lolong (r1)
 #endif
         // extract the exponent from the floating point value
         rlwinm r5,
-        MSW(r3, r4), 12, 21,
+        MSW (r3, r4), 12, 21,
         31
         // round all fractions to zero and return early
         cmpli cr0,
-        0, r5, 1023 bge cr0, not_fraction li MSW(r3, r4), 0 li LSW(r3, r4),
+        0, r5, 1023 bge cr0, not_fraction li MSW (r3, r4), 0 li LSW (r3, r4),
         0
 #if __PPC_EABI__
         b func_end // return to caller
@@ -2021,14 +2031,14 @@ __cvt_dbl_usll(void)
             not_fraction :
       // remember the sign
       mr    r6,
-      MSW(r3, r4)
+      MSW (r3, r4)
       // mantissa has implied 1 bit [nh = (nh & 0xfffff) | 0x100000]
-      rlwinm MSW(r3, r4),
-      MSW(r3, r4),
+      rlwinm MSW (r3, r4),
+      MSW (r3, r4),
       0,
       12,
-      31 oris MSW(r3, r4),
-      MSW(r3, r4),
+      31 oris MSW (r3, r4),
+      MSW (r3, r4),
       0x0010
       // when exp-1075 < 0 we need to shift right, else shift left
       addi r5,
@@ -2043,19 +2053,19 @@ __cvt_dbl_usll(void)
       r5,
       32 subic r9,
       r5,
-      32 srw LSW(r3, r4),
-      LSW(r3, r4),
+      32 srw LSW (r3, r4),
+      LSW (r3, r4),
       r5 slw r10,
-      MSW(r3, r4),
-      r8 or LSW(r3, r4),
-      LSW(r3, r4),
+      MSW (r3, r4),
+      r8 or LSW (r3, r4),
+      LSW (r3, r4),
       r10 srw r10,
-      MSW(r3, r4),
-      r9 or LSW(r3, r4),
-      LSW(r3, r4),
+      MSW (r3, r4),
+      r9 or LSW (r3, r4),
+      LSW (r3, r4),
       r10 // low word
-          srw MSW(r3, r4),
-      MSW(r3, r4),
+          srw MSW (r3, r4),
+      MSW (r3, r4),
       r5  // high word
           b around left :
       // shift r3:r4 left by 'exp' bits
@@ -2070,8 +2080,8 @@ __cvt_dbl_usll(void)
       0 beq cr0,
       max_positive
           // max negative value is 0x80000000
-          lis   MSW(r3, r4),
-      0x8000 li LSW(r3, r4),
+          lis   MSW (r3, r4),
+      0x8000 li LSW (r3, r4),
       0
 #if __PPC_EABI__
       b func_end // return to caller
@@ -2080,10 +2090,10 @@ __cvt_dbl_usll(void)
 #endif
                  max_positive :
       // max positive is 0x7fffffff
-      lis        MSW(r3, r4),
-      0x7fff ori MSW(r3, r4),
-      MSW(r3, r4),
-      0xffff li LSW(r3, r4),
+      lis        MSW (r3, r4),
+      0x7fff ori MSW (r3, r4),
+      MSW (r3, r4),
+      0xffff li LSW (r3, r4),
       -1
 #if __PPC_EABI__
       b func_end // return to caller
@@ -2094,19 +2104,19 @@ __cvt_dbl_usll(void)
       r5,
       32 subic r9,
       r5,
-      32 slw MSW(r3, r4),
-      MSW(r3, r4),
+      32 slw MSW (r3, r4),
+      MSW (r3, r4),
       r5 srw r10,
-      LSW(r3, r4),
-      r8 or MSW(r3, r4),
-      MSW(r3, r4),
+      LSW (r3, r4),
+      r8 or MSW (r3, r4),
+      MSW (r3, r4),
       r10 slw r10,
-      LSW(r3, r4),
-      r9 or MSW(r3, r4),
-      MSW(r3, r4),
+      LSW (r3, r4),
+      r9 or MSW (r3, r4),
+      MSW (r3, r4),
       r10        // high word
-          slw LSW(r3, r4),
-      LSW(r3, r4),
+          slw LSW (r3, r4),
+      LSW (r3, r4),
       r5         // low word
           around :
       // if the sign bit was set, negate the long long
@@ -2115,10 +2125,10 @@ __cvt_dbl_usll(void)
       0,
       0,
       0 beq           cr0,
-      positive subfic LSW(r3, r4),
-      LSW(r3, r4),
-      0 subfze MSW(r3, r4),
-      MSW(r3, r4) positive :
+      positive subfic LSW (r3, r4),
+      LSW (r3, r4),
+      0 subfze MSW (r3, r4),
+      MSW (r3, r4) positive :
 #if __PPC_EABI__
       func_end : addi SP,
                  SP,

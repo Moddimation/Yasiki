@@ -233,62 +233,159 @@
 unsigned long UpmATable[] = {
 
     // /* DRAM 70ns - single read. (offset 0 in upm RAM) */
-    0x0fffcc24, 0x0fffcc04, 0x0cffcc04, 0x00ffcc04, 0x00ffcc00, 0x37ffcc47,
+    0x0fffcc24,
+    0x0fffcc04,
+    0x0cffcc04,
+    0x00ffcc04,
+    0x00ffcc00,
+    0x37ffcc47,
     // /* offsets 6-7 not used */
-    0xffffffff, 0xffffffff,
+    0xffffffff,
+    0xffffffff,
     // /* DRAM 70ns - burst read. (offset 8 in upm RAM) */
-    0x0fffcc24, 0x0fffcc04, 0x08ffcc04, 0x00ffcc04, 0x00ffcc08, 0x0cffcc44,
-    0x00ffec0c, 0x03ffec00, 0x00ffec44, 0x00ffcc08, 0x0cffcc44, 0x00ffec04,
-    0x00ffec00, 0x3fffec47,
+    0x0fffcc24,
+    0x0fffcc04,
+    0x08ffcc04,
+    0x00ffcc04,
+    0x00ffcc08,
+    0x0cffcc44,
+    0x00ffec0c,
+    0x03ffec00,
+    0x00ffec44,
+    0x00ffcc08,
+    0x0cffcc44,
+    0x00ffec04,
+    0x00ffec00,
+    0x3fffec47,
     // /* offsets 16-17 not used */
-    0xffffffff, 0xffffffff,
+    0xffffffff,
+    0xffffffff,
     // /* DRAM 70ns - single write. (offset 18 in upm RAM) */
-    0x0fafcc24, 0x0fafcc04, 0x08afcc04, 0x00afcc00, 0x37ffcc47,
+    0x0fafcc24,
+    0x0fafcc04,
+    0x08afcc04,
+    0x00afcc00,
+    0x37ffcc47,
     // /* offsets 1d-1f not used */
-    0xffffffff, 0xffffffff, 0xffffffff,
+    0xffffffff,
+    0xffffffff,
+    0xffffffff,
     // /* DRAM 70ns - burst write. (offset 20 in upm RAM) */
-    0x0fafcc24, 0x0fafcc04, 0x08afcc00, 0x07afcc4c, 0x08afcc00, 0x07afcc4c,
-    0x08afcc00, 0x07afcc4c, 0x08afcc00, 0x37afcc47,
+    0x0fafcc24,
+    0x0fafcc04,
+    0x08afcc00,
+    0x07afcc4c,
+    0x08afcc00,
+    0x07afcc4c,
+    0x08afcc00,
+    0x07afcc4c,
+    0x08afcc00,
+    0x37afcc47,
     // /* offsets 2a-2f not used */
-    0xffffffff, 0xffffffff, 0xffffffff, 0xffffffff, 0xffffffff, 0xffffffff,
+    0xffffffff,
+    0xffffffff,
+    0xffffffff,
+    0xffffffff,
+    0xffffffff,
+    0xffffffff,
     // /* refresh 70ns. (offset 30 in upm RAM) */
-    0xe0ffcc84, 0x00ffcc04, 0x00ffcc04, 0x0fffcc04, 0x7fffcc04, 0xffffcc86,
+    0xe0ffcc84,
+    0x00ffcc04,
+    0x00ffcc04,
+    0x0fffcc04,
+    0x7fffcc04,
+    0xffffcc86,
     0xffffcc05,
     // /* offsets 37-3b not used */
-    0xffffffff, 0xffffffff, 0xffffffff, 0xffffffff, 0xffffffff,
+    0xffffffff,
+    0xffffffff,
+    0xffffffff,
+    0xffffffff,
+    0xffffffff,
     // /* exception. (offset 3c in upm RAM) */
     0x33ffcc07,
     // /* offset 3d-3f not used */
-    0xffffffff, 0xffffffff, 0x40004650
+    0xffffffff,
+    0xffffffff,
+    0x40004650
 };
 
 unsigned long UpmBTable[] = {
     // /* SDRAM - single read. (offsets 0x00-0x07 in upm RAM (3-4 not used)) */
-    0x0126cc04, 0x0fb98c00, 0x1ff74c45, 0xffffffff, 0xffffffff, 0x1fe77c34,
-    0xefaabc34, 0x1fa57c35,
+    0x0126cc04,
+    0x0fb98c00,
+    0x1ff74c45,
+    0xffffffff,
+    0xffffffff,
+    0x1fe77c34,
+    0xefaabc34,
+    0x1fa57c35,
     // /* SDRAM - burst read. (offsets 0x08-0x17 in upm RAM) */
-    0x0026fc04, 0x10adfc00, 0xf0affc00, 0xf1affc00, 0xefbbbc00, 0x1ff77c45,
+    0x0026fc04,
+    0x10adfc00,
+    0xf0affc00,
+    0xf1affc00,
+    0xefbbbc00,
+    0x1ff77c45,
     // /* offsets 0x0e-0x17 not used */
-    0xffffffff, 0xffffffff, 0xffffffff, 0xffffffff, 0xffffffff, 0xffffffff,
-    0xffffffff, 0xffffffff, 0xffffffff, 0xffffffff,
+    0xffffffff,
+    0xffffffff,
+    0xffffffff,
+    0xffffffff,
+    0xffffffff,
+    0xffffffff,
+    0xffffffff,
+    0xffffffff,
+    0xffffffff,
+    0xffffffff,
     // /* SDRAM - single write. (offsets 0x18-0x1f in upm RAM) */
-    0x0e26bc04, 0x01b93c00, 0x1ff77c45,
+    0x0e26bc04,
+    0x01b93c00,
+    0x1ff77c45,
     // /* offsets 0x1b-0x1f not used */
-    0xffffffff, 0xffffffff, 0xffffffff, 0xffffffff, 0xffffffff,
+    0xffffffff,
+    0xffffffff,
+    0xffffffff,
+    0xffffffff,
+    0xffffffff,
     // /* SDRAM - burst write. (offsets 0x20-0x2f in upm RAM) */
-    0x0e26bc00, 0x10ad7c00, 0xf0affc00, 0xf0affc00, 0xe1bbbc04, 0x1ff77c45,
+    0x0e26bc00,
+    0x10ad7c00,
+    0xf0affc00,
+    0xf0affc00,
+    0xe1bbbc04,
+    0x1ff77c45,
     // /* offsets 0x26-0x2f not used */
-    0xffffffff, 0xffffffff, 0xffffffff, 0xffffffff, 0xffffffff, 0xffffffff,
-    0xffffffff, 0xffffffff, 0xffffffff, 0xffffffff,
+    0xffffffff,
+    0xffffffff,
+    0xffffffff,
+    0xffffffff,
+    0xffffffff,
+    0xffffffff,
+    0xffffffff,
+    0xffffffff,
+    0xffffffff,
+    0xffffffff,
     // /* refresh (offsets 0x30-0x3b in upm RAM) */
-    0x1ff5fc84, 0xfffffc04, 0xfffffc84, 0xfffffc05,
+    0x1ff5fc84,
+    0xfffffc04,
+    0xfffffc84,
+    0xfffffc05,
     // /* offsets 0x34-0x3b not used */
-    0xffffffff, 0xffffffff, 0xffffffff, 0xffffffff, 0xffffffff, 0xffffffff,
-    0xffffffff, 0xffffffff,
+    0xffffffff,
+    0xffffffff,
+    0xffffffff,
+    0xffffffff,
+    0xffffffff,
+    0xffffffff,
+    0xffffffff,
+    0xffffffff,
     // /* exception. (offsets 0x3c-0x3f in upm RAM) */
     0x7ffffc07,
     // /* offset 3d-3f not used */
-    0xffffffff, 0xffffffff, 0xffffffff
+    0xffffffff,
+    0xffffffff,
+    0xffffffff
 };
 
 #endif
@@ -337,16 +434,16 @@ unsigned long UpmATable[] = {
 extern const char gInterruptVectorTable[];
 extern const char gInterruptVectorTableEnd[];
 static void
-__copy_vectors(void* dst, const void* src, unsigned long size)
+__copy_vectors (void* dst, const void* src, unsigned long size)
 {
     if (size && (dst != src))
     {
-        memcpy(dst, src, size);
-        __flush_cache(dst, size);
+        memcpy (dst, src, size);
+        __flush_cache (dst, size);
     }
 }
 asm void
-usr_init()
+usr_init ()
 {
     fralloc
 
@@ -448,9 +545,9 @@ usr_init()
       : lwz r3,
         0(r5)                     // get data from table
         stw r3,
-        MDR(r4)                   // store the data to MD register
+        MDR (r4)                  // store the data to MD register
         stw r6,
-        MCR(r4)                   // issue command to MCR register
+        MCR (r4)                  // issue command to MCR register
         addi r5,
         r5,
         4                         // next entry in the table
@@ -486,14 +583,14 @@ usr_init()
       li r3,
       0x0800                      // MPTPR = 0x0800 (16bit register)
       sth r3,
-      MPTPR(r4)
+      MPTPR (r4)
 
           lis r3,
       0xc0a2                      // MAMR = 0xc0a21114
       ori r3,
       r3,
       0x1114 stw r3,
-      MAMR(r4)
+      MAMR (r4)
 
       //; Note: the MBMR is only used on the FADS board, but initializing
       //; it for the ADS board as well shouldn't hurt anything.
@@ -502,7 +599,7 @@ usr_init()
       ori r3,
       r3,
       0x2114 stw r3,
-      MBMR(r4)
+      MBMR (r4)
 #endif
 
 #if (__MOT_MBX__ && TARGET_SYSTEM_FREQUENCY == 40) ||                               \
@@ -510,14 +607,14 @@ usr_init()
           li r3,
       0x0200 // MPTPR = 0x0200 (16bit register)
       sth r3,
-      MPTPR(r4)
+      MPTPR (r4)
 
           lis r3,
       0x1382 // MAMR = 0x13821000
       ori r3,
       r3,
       0x1000 stw r3,
-      MAMR(r4)
+      MAMR (r4)
 #endif
 
       ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -531,7 +628,7 @@ usr_init()
       ori r3,
       r3,
       0xFF88 stw r3,
-      SYPCR(r4)
+      SYPCR (r4)
 
       ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
       //
@@ -583,9 +680,9 @@ usr_init()
       0xffe0 // OR0 = 0xffe00954
       ori r5,
       r5,
-      0x0954 stw  r3,
-      BR0(r4) stw r5,
-      OR0(r4)
+      0x0954 stw   r3,
+      BR0 (r4) stw r5,
+      OR0 (r4)
 #endif
 
 #if __MOT_MBX__ || __MOT_MBX_A__
@@ -597,9 +694,9 @@ usr_init()
       0xFF80 // OR0 = 0xFF800930
       ori r5,
       r5,
-      0x0930 stw  r3,
-      BR0(r4) stw r5,
-      OR0(r4)
+      0x0930 stw   r3,
+      BR0 (r4) stw r5,
+      OR0 (r4)
 #endif
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -617,9 +714,9 @@ usr_init()
       0xffff // OR1 = 0xffff8110
       ori r5,
       r5,
-      0x8110 stw  r3,
-      BR1(r4) stw r5,
-      OR1(r4)
+      0x8110 stw   r3,
+      BR1 (r4) stw r5,
+      OR1 (r4)
 #endif
 
 #if __MOT_MBX__ || __MOT_MBX_A__
@@ -631,9 +728,9 @@ usr_init()
       0xffc0 // OR1 = 0xFFC00400
       ori r5,
       r5,
-      0x0400 stw  r3,
-      BR1(r4) stw r5,
-      OR1(r4)
+      0x0400 stw   r3,
+      BR1 (r4) stw r5,
+      OR1 (r4)
 #endif
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -677,9 +774,9 @@ usr_init()
       0xfe00 // OR2 = 0xfe000800
       ori r5,
       r5,
-      0x0800 stw  r3,
-      BR2(r4) stw r5,
-      OR2(r4)
+      0x0800 stw   r3,
+      BR2 (r4) stw r5,
+      OR2 (r4)
 #endif
 
 #if __MOT_MBX__ || __MOT_MBX_A__
@@ -691,9 +788,9 @@ usr_init()
       0x0000 // OR2 = 0x00000400
       ori r5,
       r5,
-      0x0400 stw  r3,
-      BR2(r4) stw r5,
-      OR2(r4)
+      0x0400 stw   r3,
+      BR2 (r4) stw r5,
+      OR2 (r4)
 #endif
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -711,9 +808,9 @@ usr_init()
       0x0000 // OR3 = 0x00000400
       ori r5,
       r5,
-      0x0400 stw  r3,
-      BR3(r4) stw r5,
-      OR3(r4)
+      0x0400 stw   r3,
+      BR3 (r4) stw r5,
+      OR3 (r4)
 #endif
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -733,9 +830,9 @@ usr_init()
       0xffc0 // OR4 = 0xffc00a00
       ori r5,
       r5,
-      0x0a00 stw  r3,
-      BR4(r4) stw r5,
-      OR4(r4)
+      0x0a00 stw   r3,
+      BR4 (r4) stw r5,
+      OR4 (r4)
 #endif
 
 #if __MOT_MBX__ || __MOT_MBX_A__
@@ -747,9 +844,9 @@ usr_init()
       0xFFE0 // OR4 = 0xFFE00920
       ori r5,
       r5,
-      0x0920 stw  r3,
-      BR4(r4) stw r5,
-      OR4(r4)
+      0x0920 stw   r3,
+      BR4 (r4) stw r5,
+      OR4 (r4)
 #endif
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -767,9 +864,9 @@ usr_init()
       0xA000 // OR5 = 0xA0000108
       ori r5,
       r5,
-      0x0108 stw  r3,
-      BR5(r4) stw r5,
-      OR5(r4)
+      0x0108 stw   r3,
+      BR5 (r4) stw r5,
+      OR5 (r4)
 #endif
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -787,9 +884,9 @@ usr_init()
       0xFFFF // OR6 = 0xFFFF0108
       ori r5,
       r5,
-      0x0108 stw  r3,
-      BR6(r4) stw r5,
-      OR6(r4)
+      0x0108 stw   r3,
+      BR6 (r4) stw r5,
+      OR6 (r4)
 #endif
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -807,9 +904,9 @@ usr_init()
       0xFF80 // OR7 = 0xFF800930
       ori r5,
       r5,
-      0x0930 stw  r3,
-      BR7(r4) stw r5,
-      OR7(r4)
+      0x0930 stw   r3,
+      BR7 (r4) stw r5,
+      OR7 (r4)
 #endif
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -821,35 +918,35 @@ usr_init()
 #if __MOT_ADS__
           ori r3,
       r0,
-      0x48     // MAR = 0x48
-      stw         r3,
-      MAR(r4) lis r3,
-      0x8080   // MCR = 0x80808105
+      0x48      // MAR = 0x48
+      stw          r3,
+      MAR (r4) lis r3,
+      0x8080    // MCR = 0x80808105
       ori r3,
       r3,
       0x8105 stw r3,
-      MCR(r4)  // run MRS commands in 5..8 of UPMB
+      MCR (r4)  // run MRS commands in 5..8 of UPMB
 
       lwz r5,
-      MBMR(r4) // get current MBMR value
+      MBMR (r4) // get current MBMR value
       ori r3,
       r0,
       0xf andc r3,
       r5,
-      r3       // clear TFLB field (bits 28..31)
+      r3        // clear TFLB field (bits 28..31)
           ori r3,
       r3,
-      8        // set TFLB field to 8
+      8         // set TFLB field to 8
       stw r3,
-      MBMR(r4) // write back modified MBMR
+      MBMR (r4) // write back modified MBMR
       lis r3,
-      0x8080   // MCR = 0x80808130
+      0x8080    // MCR = 0x80808130
       ori r3,
       r3,
       0x8130 stw r3,
-      MCR(r4)  // run the refresh sequence 8 times
+      MCR (r4)  // run the refresh sequence 8 times
       stw r5,
-      MBMR(r4) // restore original MBMR
+      MBMR (r4) // restore original MBMR
 
 #endif
 
@@ -967,7 +1064,7 @@ usr_init()
       ori r3,
       r3,
       0x0000 stw r3,
-      PLPRCR(r4)
+      PLPRCR (r4)
 #endif
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -982,7 +1079,7 @@ usr_init()
       ori r3,
       r3,
       0x0000 stw r3,
-      SCCR(r4)
+      SCCR (r4)
 #endif
 #endif       // __MOT_MBX__
 
@@ -999,7 +1096,7 @@ usr_init()
       ori r3,
       r3,
       0x5000 stw r3,
-      PLPRCR(r4)
+      PLPRCR (r4)
 #endif
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1014,7 +1111,7 @@ usr_init()
       ori r3,
       r3,
       0x0000 stw r3,
-      SCCR(r4)
+      SCCR (r4)
 #endif
 #endif       // __MOT_MBX_A__
 
@@ -1041,28 +1138,28 @@ usr_init()
 
 #if __MOT_ADS__
           ClockSource : lwz r3,
-                        SCCR(r4) // reading system clock register
+                        SCCR (r4) // reading system clock register
                         andis.r3,
                         r3,
-                        0x0080   // check for bit 8, RTSEL
+                        0x0080    // check for bit 8, RTSEL
                         beq Crystal
 #if TARGET_SYSTEM_FREQUENCY == 24
                             lis r3,
-                        0x0050   // multiply factor from 4MHz at CLK4 ((5+1)*4=24)
-#endif                           // TARGET_SYSTEM_FREQUENCY ==  24
+                        0x0050    // multiply factor from 4MHz at CLK4 ((5+1)*4=24)
+#endif                            // TARGET_SYSTEM_FREQUENCY ==  24
                         b SetPLL
 
                             Crystal :
 // Set the ADS board to 24MHz from 32.768 KHZ
 #if TARGET_SYSTEM_FREQUENCY == 24
       lis r3,
-      0x2dc0       // multiply factor from 32.768KHZ
-#endif             // TARGET_SYSTEM_FREQUENCY ==  24
+      0x2dc0        // multiply factor from 32.768KHZ
+#endif              // TARGET_SYSTEM_FREQUENCY ==  24
 
       SetPLL
       : stw r3,
-        PLPRCR(r4) // set the PLL register
-#endif             // __MOT_ADS__
+        PLPRCR (r4) // set the PLL register
+#endif              // __MOT_ADS__
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     //
@@ -1079,9 +1176,9 @@ usr_init()
 
 #if __MOT_ADS__
         lwz r3,
-        SIUMCR(r4) //  SIUMCR = The old value bitwize
-                   //           ored with 0x00032640
-                   //  For MPC 821 ADS, 25MHz
+        SIUMCR (r4) //  SIUMCR = The old value bitwize
+                    //           ored with 0x00032640
+                    //  For MPC 821 ADS, 25MHz
         addis r5,
         r0,
         0x0003 ori r5,
@@ -1089,16 +1186,16 @@ usr_init()
         0x2640 or r3,
         r3,
         r5 stw r3,
-        SIUMCR(r4)
+        SIUMCR (r4)
 #endif
 
 #if __MOT_MBX__ || __MOT_MBX_A__
             lis r3,
-        0x0060     //  SIUMCR = 0x00602900 : For MBX860-003, 40MHz
+        0x0060      //  SIUMCR = 0x00602900 : For MBX860-003, 40MHz
         ori r3,
         r3,
         0x2900 stw r3,
-        SIUMCR(r4)
+        SIUMCR (r4)
 #endif
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1114,7 +1211,7 @@ usr_init()
         ori r3,
         r3,
         0x0000 stw r3,
-        SIEL(r4)
+        SIEL (r4)
 #endif
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1129,7 +1226,7 @@ usr_init()
         ori r3,
         r3,
         0xFFFF stw r3,
-        TESR(r4)
+        TESR (r4)
 #endif
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1144,7 +1241,7 @@ usr_init()
         ori r3,
         r3,
         0x0001 stw r3,
-        SDCR(r4)
+        SDCR (r4)
 #endif
 
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1174,7 +1271,7 @@ usr_init()
         li r3,
         0x0082 //  PISCR = 0x0082 (16bit register)
         sth r3,
-        PISCR(r4)
+        PISCR (r4)
 
             frfree blr
 }
@@ -1200,7 +1297,7 @@ usr_init()
 
 #pragma section code_type ".init"
 asm void
-CacheInit()
+CacheInit ()
 {
     nofralloc
 
@@ -1282,12 +1379,12 @@ CacheInit()
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 asm void
-soft_reset()
+soft_reset ()
 {
     nofralloc
 
         lis r3,
         0x0000 //  SYPCR = 0x00000080 : generate bus timeout
         ori r3,
-        r3, 0x0080 stw r3, SYPCR(r4) sync sync sync sync sync blr
+        r3, 0x0080 stw r3, SYPCR (r4) sync sync sync sync sync blr
 }

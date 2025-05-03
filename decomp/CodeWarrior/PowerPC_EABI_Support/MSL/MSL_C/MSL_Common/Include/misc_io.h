@@ -13,7 +13,7 @@
 _MSL_BEGIN_EXTERN_C /*- cc 010409 -*/
 
     void
-    __stdio_atexit(void);
+    __stdio_atexit (void);
 
 _MSL_END_EXTERN_C   /*- cc 010409 -*/
 

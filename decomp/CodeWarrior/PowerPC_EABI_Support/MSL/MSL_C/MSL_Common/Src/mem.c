@@ -105,8 +105,8 @@ void*(memcpy)(register void* dst, register const void* src, register size_t n)
         n2 = n / 4;
         for (i = 0; i < n2; i++)
         {
-            q += sizeof(unsigned long);
-            p += sizeof(unsigned long);
+            q += sizeof (unsigned long);
+            p += sizeof (unsigned long);
             *((unsigned long*)q) = *((unsigned long*)p);
 
             n = n - 4;
@@ -124,8 +124,8 @@ void*(memcpy)(register void* dst, register const void* src, register size_t n)
         n2 = n / 8;
         for (i = 0; i < n2; i++)
         {
-            q += sizeof(double);
-            p += sizeof(double);
+            q += sizeof (double);
+            p += sizeof (double);
             *((double*)q) = *((double*)p);
             n -= 8;
         }
@@ -144,7 +144,7 @@ void*(memcpy)(register void* dst, register const void* src, register size_t n)
 
 #else           /*  do BlockMoveData on non-PPC MacOS architectures */
 
-    BlockMoveData(src, dst, n);
+    BlockMoveData (src, dst, n);
 
 #endif          /*  __POWERPC  */
 
@@ -160,11 +160,11 @@ void*(memcpy)(register void* dst, register const void* src, register size_t n)
     {
         if ((((int)dst ^ (int)src)) & 3)
         {
-            __copy_longs_unaligned(dst, src, n);
+            __copy_longs_unaligned (dst, src, n);
         }
         else
         {
-            __copy_longs_aligned(dst, src, n);
+            __copy_longs_aligned (dst, src, n);
         }
 
         return (dst);
@@ -221,7 +221,7 @@ void*(memmove)(void* dst, const void* src, size_t n)
 
     if (src > dst)
     {
-        return memcpy(dst, src, n);
+        return memcpy (dst, src, n);
     }
     if (dst == src)
     {
@@ -260,8 +260,8 @@ void*(memmove)(void* dst, const void* src, size_t n)
             n2 = n / 4;
             for (i = 0; i < n2; i++)
             {
-                q -= sizeof(unsigned long);
-                p -= sizeof(unsigned long);
+                q -= sizeof (unsigned long);
+                p -= sizeof (unsigned long);
                 *((unsigned long*)q) = *((unsigned long*)p);
                 n -= 4;
             }
@@ -273,8 +273,8 @@ void*(memmove)(void* dst, const void* src, size_t n)
             n2 = n / 8;
             for (i = 0; i < n2; i++)
             {
-                q -= sizeof(double);
-                p -= sizeof(double);
+                q -= sizeof (double);
+                p -= sizeof (double);
                 *((double*)q) = *((double*)p);
                 n -= 8;
             }
@@ -291,7 +291,7 @@ void*(memmove)(void* dst, const void* src, size_t n)
 
 #else  /* end optimization __POWERPC__ && MacOS architectures */
 
-    BlockMoveData(src, dst, n);
+    BlockMoveData (src, dst, n);
 
 #endif /* __POWERPC__  */
 
@@ -309,20 +309,20 @@ void*(memmove)(void* dst, const void* src, size_t n)
         {
             if (!rev)
             {
-                __copy_longs_unaligned(dst, src, n);
+                __copy_longs_unaligned (dst, src, n);
             }
             else
             {
-                __copy_longs_rev_unaligned(dst, src, n);
+                __copy_longs_rev_unaligned (dst, src, n);
             }
         }
         else if (!rev)
         {
-            __copy_longs_aligned(dst, src, n);
+            __copy_longs_aligned (dst, src, n);
         }
         else
         {
-            __copy_longs_rev_aligned(dst, src, n);
+            __copy_longs_rev_aligned (dst, src, n);
         }
 
         return (dst);
@@ -365,9 +365,9 @@ void*(memmove)(void* dst, const void* src, size_t n)
 
 #if !__PPC_EABI__
 void*
-memset(void* dst, int val, size_t n)
+memset (void* dst, int val, size_t n)
 {
-    __fill_mem(dst, val, n);
+    __fill_mem (dst, val, n);
 
     return (dst);
 }
@@ -375,7 +375,7 @@ memset(void* dst, int val, size_t n)
 
 #ifndef UNDER_CE
 void*
-memchr(const void* src, int val, size_t n)
+memchr (const void* src, int val, size_t n)
 {
     const unsigned char* p;
 
@@ -408,7 +408,7 @@ memchr(const void* src, int val, size_t n)
 }
 #endif
 void*
-__memrchr(const void* src, int val, size_t n)
+__memrchr (const void* src, int val, size_t n)
 {
     const unsigned char* p;
 
@@ -441,7 +441,7 @@ __memrchr(const void* src, int val, size_t n)
     return (NULL);
 }
 int
-memcmp(const void* src1, const void* src2, size_t n)
+memcmp (const void* src1, const void* src2, size_t n)
 {
     const unsigned char* p1;
     const unsigned char* p2;
@@ -458,7 +458,8 @@ memcmp(const void* src1, const void* src2, size_t n)
 
 #else
 
-    for (p1 = (const unsigned char*)src1 - 1, p2 = (const unsigned char*)src2 - 1,
+    for (p1 = (const unsigned char*)src1 - 1,
+        p2 = (const unsigned char*)src2 - 1,
         n++;
          --n;)
     {

@@ -4,7 +4,7 @@
 
 static DSError TRK_mainError;
 DSError
-TRK_main(void)
+TRK_main (void)
 {
     TRK_mainError = TRKInitializeNub();
 

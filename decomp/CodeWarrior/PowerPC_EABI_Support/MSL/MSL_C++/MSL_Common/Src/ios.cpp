@@ -39,84 +39,85 @@ namespace std
 
 #ifndef _MSL_NO_LOCALE
 locale
-ios_base::imbue(const locale& loc)
+ios_base::imbue (const locale& loc)
 {
     locale result = *loc_;
 #ifndef _MSL_NO_EXCEPTIONS
     try
     {
 #endif
-        locale* newloc = new locale(loc);
+        locale* newloc = new locale (loc);
 #ifdef _MSL_NO_EXCEPTIONS
         if (newloc == 0)
         {
-            __msl_error("ios_base::imbue out of memory");
+            __msl_error ("ios_base::imbue out of memory");
         }
 #endif
         delete loc_;
         loc_ = newloc;
-        do_callbacks(imbue_event);
+        do_callbacks (imbue_event);
 #ifndef _MSL_NO_EXCEPTIONS
     }
     catch (...)
     {
-        setstate(badbit);
+        setstate (badbit);
     }
 #endif
     return result;
 }
 #endif
 long&
-ios_base::iword(int index)
+ios_base::iword (int index)
 {
     if (++index > isize_)
     {
-        long* newarray = static_cast<long*>(realloc(iarray_, index * sizeof(long)));
+        long* newarray =
+            static_cast<long*> (realloc (iarray_, index * sizeof (long)));
         if (newarray == 0)
         {
-            setstate(failbit);
+            setstate (failbit);
             static long err;
             err = 0;
             return err;
         }
-        fill(newarray + isize_, newarray + index, 0L);
+        fill (newarray + isize_, newarray + index, 0L);
         iarray_ = newarray;
-        isize_ = static_cast<size_t>(index);
+        isize_ = static_cast<size_t> (index);
     }
     return iarray_[--index];
 }
 void*&
-ios_base::pword(int index)
+ios_base::pword (int index)
 {
     if (++index > psize_)
     {
         void** newarray =
-            static_cast<void**>(realloc(parray_, index * sizeof(void*)));
+            static_cast<void**> (realloc (parray_, index * sizeof (void*)));
         if (newarray == 0)
         {
-            setstate(failbit);
+            setstate (failbit);
             static void* err;
             err = 0;
             return err;
         }
-        fill(newarray + psize_, newarray + index, static_cast<void*>(0));
+        fill (newarray + psize_, newarray + index, static_cast<void*> (0));
         parray_ = newarray;
-        psize_ = static_cast<size_t>(index);
+        psize_ = static_cast<size_t> (index);
     }
     return parray_[--index];
 }
-ios_base::~ios_base()
+ios_base::~ios_base ()
 {
-    do_callbacks(erase_event);
+    do_callbacks (erase_event);
 #ifndef _MSL_NO_LOCALE
     delete loc_;
 #endif
-    free(parray_);
-    free(iarray_);
-    free(cb_vec_);
+    free (parray_);
+    free (iarray_);
+    free (cb_vec_);
 }
 void
-ios_base::register_callback(event_callback fn, int index)
+ios_base::register_callback (event_callback fn, int index)
 {
     if (cb_siz_ >= cb_cap_)
     {
@@ -129,17 +130,17 @@ ios_base::register_callback(event_callback fn, int index)
         {
             new_cap *= 2;
         }
-        event_data* newevents =
-            static_cast<event_data*>(realloc(cb_vec_, new_cap * sizeof(event_data)));
+        event_data* newevents = static_cast<event_data*> (
+            realloc (cb_vec_, new_cap * sizeof (event_data)));
         if (newevents == 0)
         {
-            setstate(badbit);
+            setstate (badbit);
             return;
         }
         cb_vec_ = newevents;
         cb_cap_ = new_cap;
     }
-    cb_vec_[cb_siz_++] = event_data(fn, index);
+    cb_vec_[cb_siz_++] = event_data (fn, index);
 }
 extern istream cin;
 extern ostream cout;
@@ -155,26 +156,26 @@ extern wostream wcerr;
 
 #endif
 bool
-ios_base::sync_with_stdio(bool sync)
+ios_base::sync_with_stdio (bool sync)
 {
     static ios_base::Init __make_sure_streams_are_constructed;
     static bool           previous_sync = true;
     bool                  result = previous_sync;
     previous_sync = sync;
-    cin.rdbuf()->pubsetbuf(0, !sync);
-    cout.rdbuf()->pubsetbuf(0, !sync);
-    clog.rdbuf()->pubsetbuf(0, !sync);
-    cerr.rdbuf()->pubsetbuf(0, !sync);
+    cin.rdbuf()->pubsetbuf (0, !sync);
+    cout.rdbuf()->pubsetbuf (0, !sync);
+    clog.rdbuf()->pubsetbuf (0, !sync);
+    cerr.rdbuf()->pubsetbuf (0, !sync);
 #ifndef _MSL_NO_WCHART_CPP_SUPPORT
-    wcin.rdbuf()->pubsetbuf(0, !sync);
-    wcout.rdbuf()->pubsetbuf(0, !sync);
-    wclog.rdbuf()->pubsetbuf(0, !sync);
-    wcerr.rdbuf()->pubsetbuf(0, !sync);
+    wcin.rdbuf()->pubsetbuf (0, !sync);
+    wcout.rdbuf()->pubsetbuf (0, !sync);
+    wclog.rdbuf()->pubsetbuf (0, !sync);
+    wcerr.rdbuf()->pubsetbuf (0, !sync);
 #endif
     return result;
 }
 void
-ios_base::init(void* sb)
+ios_base::init (void* sb)
 {
     rdbuf_ = sb;
     exceptions_ = goodbit;
@@ -210,7 +211,7 @@ ios_base::init(void* sb)
     psize_ = 0;
 }
 void
-ios_base::copy_ios_base(const ios_base& rhs)
+ios_base::copy_ios_base (const ios_base& rhs)
 {
 #ifndef _MSL_NO_EXCEPTIONS
     try
@@ -218,51 +219,51 @@ ios_base::copy_ios_base(const ios_base& rhs)
 #endif
         if (cb_cap_ < rhs.cb_siz_)
         {
-            event_data* newevents = static_cast<event_data*>(
-                realloc(cb_vec_, rhs.cb_siz_ * sizeof(event_data)));
+            event_data* newevents = static_cast<event_data*> (
+                realloc (cb_vec_, rhs.cb_siz_ * sizeof (event_data)));
             if (newevents == 0)
             {
-                setstate(badbit);
+                setstate (badbit);
                 return;
             }
             cb_vec_ = newevents;
             cb_cap_ = rhs.cb_siz_;
         }
         cb_siz_ = rhs.cb_siz_;
-        _STD::copy(rhs.cb_vec_, rhs.cb_vec_ + cb_siz_, cb_vec_);
+        _STD::copy (rhs.cb_vec_, rhs.cb_vec_ + cb_siz_, cb_vec_);
 
         if (isize_ < rhs.isize_)
         {
             long* newarray =
-                static_cast<long*>(realloc(iarray_, rhs.isize_ * sizeof(long)));
+                static_cast<long*> (realloc (iarray_, rhs.isize_ * sizeof (long)));
             if (newarray == 0)
             {
-                setstate(badbit);
+                setstate (badbit);
                 return;
             }
             iarray_ = newarray;
         }
-        _STD::copy(rhs.iarray_, rhs.iarray_ + rhs.isize_, iarray_);
+        _STD::copy (rhs.iarray_, rhs.iarray_ + rhs.isize_, iarray_);
 
         if (psize_ < rhs.psize_)
         {
             void** newarray =
-                static_cast<void**>(realloc(parray_, rhs.psize_ * sizeof(void*)));
+                static_cast<void**> (realloc (parray_, rhs.psize_ * sizeof (void*)));
             if (newarray == 0)
             {
-                setstate(badbit);
+                setstate (badbit);
                 return;
             }
             parray_ = newarray;
         }
-        _STD::copy(rhs.parray_, rhs.parray_ + rhs.psize_, parray_);
+        _STD::copy (rhs.parray_, rhs.parray_ + rhs.psize_, parray_);
 
 #ifndef _MSL_NO_LOCALE
-        locale* newloc = new locale(*rhs.loc_);
+        locale* newloc = new locale (*rhs.loc_);
 #ifdef _MSL_NO_EXCEPTIONS
         if (newloc == 0)
         {
-            __msl_error("ios_base::copy_ios_base out of memory");
+            __msl_error ("ios_base::copy_ios_base out of memory");
         }
 #endif
         delete loc_;
@@ -276,7 +277,7 @@ ios_base::copy_ios_base(const ios_base& rhs)
     }
     catch (...)
     {
-        setstate(badbit);
+        setstate (badbit);
     }
 #endif
 }

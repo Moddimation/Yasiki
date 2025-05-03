@@ -322,7 +322,7 @@ Disable watchdog lis r3, 0x0 ori r3, r3, 0x0 lis r4, 0x8007 ori r4, r4,
     0xEFC4 stw r3, 0(r4)
 
     ;
-UART(CS3)
+UART (CS3)
 lis r3, 0x0010 ori r3, r3, 0x0 lis r4, 0x8007 ori r4, r4, 0xFDD0 stw r3,
     0(r4)
 
@@ -331,7 +331,7 @@ lis r3, 0x0010 ori r3, r3, 0x0 lis r4, 0x8007 ori r4, r4, 0xFDD0 stw r3,
 
     ;
 second
-    SRAM(CS2)
+    SRAM (CS2)
 lis r3, 0x0004 ori r3, r3, 0x0 lis r4, 0x8007 ori r4, r4, 0xFDD8 stw r3,
     0(r4)
 
@@ -340,7 +340,7 @@ lis r3, 0x0004 ori r3, r3, 0x0 lis r4, 0x8007 ori r4, r4, 0xFDD8 stw r3,
 
     ;
 first
-    SRAM(CS1)
+    SRAM (CS1)
 lis r3, 0x0 ori r3, r3, 0x0 lis r4, 0x8007 ori r4, r4, 0xFDE0 stw r3,
     0(r4)
 

@@ -60,58 +60,58 @@ public:
     typedef charT               char_type;
     typedef basic_string<charT> string_type;
 
-    explicit numpunct_byname(const char* std_name, size_t refs = 0);
+    explicit numpunct_byname (const char* std_name, size_t refs = 0);
 
 protected:
-    virtual ÃÂ¢ÃÂÃÂ¾numpunct_byname() {}
+    virtual ÃÂ¢ÃÂÃÂ¾numpunct_byname () {}
 };
 inline const string&
-__numeric_marker(char)
+__numeric_marker (char)
 {
-    static string numeric_marker("numeric_narrow");
+    static string numeric_marker ("numeric_narrow");
     return numeric_marker;
 }
 #ifndef _MSL_NO_WCHART_CPP_SUPPORT
 inline const string&
-__numeric_marker(wchar_t)
+__numeric_marker (wchar_t)
 {
-    static string numeric_marker("numeric_wide");
+    static string numeric_marker ("numeric_wide");
     return numeric_marker;
 }
 #endif                          // _MSL_NO_WCHART_CPP_SUPPORT
 template <class charT>
-numpunct_byname<charT>::numpunct_byname(const char* std_name, size_t refs)
-  : numpunct<charT>(refs)
+numpunct_byname<charT>::numpunct_byname (const char* std_name, size_t refs)
+  : numpunct<charT> (refs)
 {
     typedef numpunct<charT> base;
     if (std_name == 0)
 #ifndef _MSL_NO_EXCEPTIONS
-        throw runtime_error("numpunct_byname constructed with null name");
+        throw runtime_error ("numpunct_byname constructed with null name");
 #else
-        __msl_error("numpunct_byname constructed with null name");
+        __msl_error ("numpunct_byname constructed with null name");
 #endif
-    if (strlen(std_name) == 0)
+    if (strlen (std_name) == 0)
     {
-        std_name = getenv("LANG");
+        std_name = getenv ("LANG");
     }
-    if (std_name != 0 && strcmp(std_name, "C") != 0)
+    if (std_name != 0 && strcmp (std_name, "C") != 0)
     {
 #ifndef _MSL_NO_FILE_IO
-        ifstream infile(std_name);
+        ifstream infile (std_name);
         if (!infile.is_open())
 #ifndef _MSL_NO_EXCEPTIONS
-            throw runtime_error(
-                string("numpunct_byname constructed with unsupported name: ") +
+            throw runtime_error (
+                string ("numpunct_byname constructed with unsupported name: ") +
                 std_name);
 #else
-            __msl_error("numpunct_byname constructed with unsupported name");
+            __msl_error ("numpunct_byname constructed with unsupported name");
 #endif
         string       word;
-        const string numeric_marker(__numeric_marker(charT()));
+        const string numeric_marker (__numeric_marker (charT()));
         bool         success = true;
         while (infile.good())
         {
-            infile.ignore(numeric_limits<streamsize>::max(), '$');
+            infile.ignore (numeric_limits<streamsize>::max(), '$');
             infile >> word;
             if (infile.fail())
             {
@@ -126,18 +126,18 @@ numpunct_byname<charT>::numpunct_byname(const char* std_name, size_t refs)
                 numpunct_names[2] = "grouping";
                 numpunct_names[3] = "false_name";
                 numpunct_names[4] = "true_name";
-                const string(&cnumpunct_names)[5] = numpunct_names;
-                const ctype<char>& ct = _USE_FACET(ctype<char>, infile.getloc());
+                const string (&cnumpunct_names)[5] = numpunct_names;
+                const ctype<char>& ct = _USE_FACET (ctype<char>, infile.getloc());
                 ios_base::iostate  err = ios_base::goodbit;
-                istreambuf_iterator<char> in(infile), end;
+                istreambuf_iterator<char> in (infile), end;
                 while (true)
                 {
-                    ws(infile);
-                    const string* i = __parse_a_word(in, end, numpunct_names,
-                                                     numpunct_names + 5, ct, err);
+                    ws (infile);
+                    const string* i = __parse_a_word (
+                        in, end, numpunct_names, numpunct_names + 5, ct, err);
                     if (err)
                     {
-                        infile.setstate(err);
+                        infile.setstate (err);
                     }
                     if (i == numpunct_names + 5)
                     {
@@ -147,57 +147,58 @@ numpunct_byname<charT>::numpunct_byname(const char* std_name, size_t refs)
                     infile >> syntax;
                     if (infile.fail() || syntax != '=')
 #ifndef _MSL_NO_EXCEPTIONS
-                        throw runtime_error("syntax error reading numpunct data");
+                        throw runtime_error ("syntax error reading numpunct data");
 #else
-                        __msl_error("syntax error reading numpunct data");
+                        __msl_error ("syntax error reading numpunct data");
 #endif
                     bool was_quoted;
                     switch (i - numpunct_names)
                     {
                         case 0: // decimal_point
-                            __read_formatted_char(infile, base::__decimal_point_,
-                                                  was_quoted);
+                            __read_formatted_char (
+                                infile, base::__decimal_point_, was_quoted);
                             break;
                         case 1: // thousands_sep
-                            __read_formatted_char(infile, base::__thousands_sep_,
-                                                  was_quoted);
+                            __read_formatted_char (
+                                infile, base::__thousands_sep_, was_quoted);
                             break;
                         case 2: // grouping
                             {
-                                __read_formatted_string(infile, base::__grouping_);
+                                __read_formatted_string (infile, base::__grouping_);
                                 for (string::iterator i = base::__grouping_.begin();
-                                     i < base::__grouping_.end(); ++i)
+                                     i < base::__grouping_.end();
+                                     ++i)
                                 {
                                     *i -= '0';
                                 }
                             }
                             break;
                         case 3: // false_name
-                            __read_formatted_string(infile, base::__falsename_);
+                            __read_formatted_string (infile, base::__falsename_);
                             break;
                         case 4: // true_name
-                            __read_formatted_string(infile, base::__truename_);
+                            __read_formatted_string (infile, base::__truename_);
                             break;
                     }
                 }
-                success = static_cast<bool>(!infile.fail());
+                success = static_cast<bool> (!infile.fail());
                 break;
             }
         }
         if (!success)
 #ifndef _MSL_NO_EXCEPTIONS
-            throw runtime_error(string("numpunct_byname file input error: ") +
-                                std_name);
+            throw runtime_error (string ("numpunct_byname file input error: ") +
+                                 std_name);
 #else
-            __msl_error("numpunct_byname file input error");
+            __msl_error ("numpunct_byname file input error");
 #endif
 #else                           // _MSL_NO_FILE_IO
 #ifndef _MSL_NO_EXCEPTIONS
-        throw runtime_error(
-            string("numpunct_byname constructed with unsupported name: ") +
+        throw runtime_error (
+            string ("numpunct_byname constructed with unsupported name: ") +
             std_name);
 #else
-        __msl_error("numpunct_byname constructed with unsupported name");
+        __msl_error ("numpunct_byname constructed with unsupported name");
 #endif
 #endif                          // _MSL_NO_FILE_IO
     }

@@ -11,19 +11,19 @@
 
 struct SYNVOICE __SYNVoice[64];
 void
-__SYNClearVoiceReferences(void* p)
+__SYNClearVoiceReferences (void* p)
 {
     AXVPB*           axvpb;
     struct SYNSYNTH* synth;
     struct SYNVOICE* voice;
 
-    ASSERTLINE(0x21, p);
+    ASSERTLINE (0x21, p);
     axvpb = p;
     synth = (void*)axvpb->userContext;
     voice = &__SYNVoice[axvpb->index];
-    ASSERTLINE(0x26, synth);
-    ASSERTLINE(0x27, axvpb->index < AX_MAX_VOICES);
-    MIXReleaseChannel(axvpb);
+    ASSERTLINE (0x26, synth);
+    ASSERTLINE (0x27, axvpb->index < AX_MAX_VOICES);
+    MIXReleaseChannel (axvpb);
     if (voice->keyGroup)
     {
         synth->keyGroup[voice->midiChannel][voice->keyGroup] = 0;
@@ -36,15 +36,15 @@ __SYNClearVoiceReferences(void* p)
     synth->notes--;
 }
 void
-__SYNSetVoiceToRelease(struct SYNVOICE* voice, u32 priority)
+__SYNSetVoiceToRelease (struct SYNVOICE* voice, u32 priority)
 {
-    ASSERTLINE(0x3F, voice);
+    ASSERTLINE (0x3F, voice);
     voice->veState = 3;
     voice->peState = 3;
-    AXSetVoicePriority(voice->axvpb, priority);
+    AXSetVoicePriority (voice->axvpb, priority);
 }
 void
-__SYNServiceVoice(int i)
+__SYNServiceVoice (int i)
 {
     struct SYNVOICE* voice;
     struct SYNSYNTH* synth;
@@ -65,7 +65,7 @@ __SYNServiceVoice(int i)
             }
             voice->veState = 4;
         }
-        __SYNRunVolumeEnvelope(voice);
+        __SYNRunVolumeEnvelope (voice);
         if (voice->veState == 4)
         {
             if (voice->keyGroup != 0)
@@ -73,14 +73,14 @@ __SYNServiceVoice(int i)
                 voice->synth->keyGroup[voice->midiChannel][voice->keyGroup] = 0;
             }
             voice->synth = NULL;
-            MIXReleaseChannel(voice->axvpb);
-            AXFreeVoice(voice->axvpb);
+            MIXReleaseChannel (voice->axvpb);
+            AXFreeVoice (voice->axvpb);
             synth->notes--;
             return;
         }
-        __SYNRunLfo(voice);
-        __SYNRunPitchEnvelope(voice);
-        __SYNUpdateMix(voice);
-        __SYNUpdateSrc(voice);
+        __SYNRunLfo (voice);
+        __SYNRunPitchEnvelope (voice);
+        __SYNUpdateMix (voice);
+        __SYNUpdateSrc (voice);
     }
 }

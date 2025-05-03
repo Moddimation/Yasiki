@@ -48,21 +48,22 @@ namespace std
 class _MSLstring
 {
 public:
-    _MSLstring(const char* value);
-    _MSL_IMP_EXP_CPP _MSLstring(const string& value);
-    const char*      c_str() const;
+    _MSLstring (const char* value);
+    _MSL_IMP_EXP_CPP _MSLstring (const string& value);
+    const char*      c_str () const;
 
 protected:
 
 private:
     _RefCountedPtr<char, _Array<char> > data_;
 };
-inline _MSLstring::_MSLstring(const char* value) : data_(new char[strlen(value) + 1])
+inline _MSLstring::_MSLstring (const char* value)
+  : data_ (new char[strlen (value) + 1])
 {
-    strcpy(const_cast<char*>(static_cast<const char*>(data_)), value);
+    strcpy (const_cast<char*> (static_cast<const char*> (data_)), value);
 }
 inline const char*
-_MSLstring::c_str() const
+_MSLstring::c_str () const
 {
     return data_;
 }

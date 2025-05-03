@@ -6,7 +6,7 @@ extern "C"
 {
 #endif
 
-void TRKNubMainLoop(void);
+void TRKNubMainLoop (void);
 
 #ifdef __cplusplus
 }

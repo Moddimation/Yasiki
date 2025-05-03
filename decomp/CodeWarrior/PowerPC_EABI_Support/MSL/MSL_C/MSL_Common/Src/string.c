@@ -53,7 +53,7 @@
 #elif !__MC68K__ || _No_String_Inlines || !defined(__cplusplus)
 
 #if __dest_os != __n64_os                                           /*- ad 990128 -*/
-size_t(strlen)(const char* str)
+size_t (strlen) (const char* str)
 {
     size_t len = -1;
 
@@ -226,7 +226,7 @@ bytecopy:
 
 #if !defined(__INTEL__)
 char*
-strncpy(char* dst, const char* src, size_t n)
+strncpy (char* dst, const char* src, size_t n)
 {
 #if !__POWERPC__
 
@@ -272,7 +272,7 @@ strncpy(char* dst, const char* src, size_t n)
     return (dst);
 }
 char*
-strcat(char* dst, const char* src)
+strcat (char* dst, const char* src)
 {
 #if !__POWERPC__
 
@@ -301,7 +301,7 @@ strcat(char* dst, const char* src)
     return (dst);
 }
 char*
-strncat(char* dst, const char* src, size_t n)
+strncat (char* dst, const char* src, size_t n)
 {
 #if !__POWERPC__
 
@@ -351,7 +351,7 @@ strncat(char* dst, const char* src, size_t n)
 }
 #pragma ANSI_strict off
 int
-strcmp(const char* str1, const char* str2)
+strcmp (const char* str1, const char* str2)
 {
 #if !__POWERPC__ && !__MIPS__ && !__MC68K__
 
@@ -499,7 +499,7 @@ bytecopy:
 }
 #pragma ANSI_strict reset
 int
-strncmp(const char* str1, const char* str2, size_t n)
+strncmp (const char* str1, const char* str2, size_t n)
 {
 #if !__POWERPC__
 
@@ -545,9 +545,9 @@ strncmp(const char* str1, const char* str2, size_t n)
 
     return (0);
 }
-#if __dest_os != __n64_os           /*- ad 990128 -*/
+#if __dest_os != __n64_os            /*- ad 990128 -*/
 char*
-strchr(const char* str, int chr)
+strchr (const char* str, int chr)
 {
 #if !__POWERPC__
 
@@ -583,29 +583,29 @@ strchr(const char* str, int chr)
 
 #endif
 }
-#endif                              /* __dest_os != __n64_os */
-#endif                              /* __dest_os != __win32_os */
+#endif                               /* __dest_os != __n64_os */
+#endif                               /* __dest_os != __win32_os */
 int
-strcoll(const char* str1, const char* str2)
+strcoll (const char* str1, const char* str2)
 {
-    return (strcmp(str1, str2));
+    return (strcmp (str1, str2));
 }
 size_t
-strxfrm(char* str1, const char* str2, size_t n)
+strxfrm (char* str1, const char* str2, size_t n)
 {
-    int len = strlen(str2);
-    if (n > 0)                      /*- mm 990630 -*/
-    {                               /*- mm 990630 -*/
-        strncpy(str1, str2, n - 1); /*- mm 990630 -*/
-        if (n < len)                /*- mm 990630 -*/
+    int len = strlen (str2);
+    if (n > 0)                       /*- mm 990630 -*/
+    {                                /*- mm 990630 -*/
+        strncpy (str1, str2, n - 1); /*- mm 990630 -*/
+        if (n < len)                 /*- mm 990630 -*/
         {
-            str1[n - 1] = '\0';     /*- mm 990630 -*/
+            str1[n - 1] = '\0';      /*- mm 990630 -*/
         }
     } /*- mm 990630 -*/
     return (len);
 }
 char*
-strrchr(const char* str, int chr)
+strrchr (const char* str, int chr)
 {
 #if !__POWERPC__
 
@@ -660,7 +660,7 @@ typedef unsigned char char_map[32];
 #define tst_char_map(map, ch)                                                       \
     (map[(unsigned char)ch >> 3] & (1 << (ch & 7)))                 /*- mm 990913 -*/
 char*
-strpbrk(const char* str, const char* set)
+strpbrk (const char* str, const char* set)
 {
     const unsigned char* p;
     int                  c;
@@ -672,14 +672,14 @@ strpbrk(const char* str, const char* set)
 
     while (c = *p++)
     {
-        set_char_map(map, c);
+        set_char_map (map, c);
     }
 
     p = (unsigned char*)str;
 
     while (c = *p++)
     {
-        if (tst_char_map(map, c))
+        if (tst_char_map (map, c))
         {
             return ((char*)(p - 1));
         }
@@ -693,14 +693,14 @@ strpbrk(const char* str, const char* set)
 
     while (c = *++p)
     {
-        set_char_map(map, c);
+        set_char_map (map, c);
     }
 
     p = (unsigned char*)str - 1;
 
     while (c = *++p)
     {
-        if (tst_char_map(map, c))
+        if (tst_char_map (map, c))
         {
             return ((char*)p);
         }
@@ -711,7 +711,7 @@ strpbrk(const char* str, const char* set)
 #endif
 }
 size_t
-strspn(const char* str, const char* set)
+strspn (const char* str, const char* set)
 {
     const unsigned char* p;
     int                  c;
@@ -723,14 +723,14 @@ strspn(const char* str, const char* set)
 
     while (c = *p++)
     {
-        set_char_map(map, c);
+        set_char_map (map, c);
     }
 
     p = (unsigned char*)str;
 
     while (c = *p++)
     {
-        if (!tst_char_map(map, c))
+        if (!tst_char_map (map, c))
         {
             break;
         }
@@ -744,14 +744,14 @@ strspn(const char* str, const char* set)
 
     while (c = *++p)
     {
-        set_char_map(map, c);
+        set_char_map (map, c);
     }
 
     p = (unsigned char*)str - 1;
 
     while (c = *++p)
     {
-        if (!tst_char_map(map, c))
+        if (!tst_char_map (map, c))
         {
             break;
         }
@@ -762,7 +762,7 @@ strspn(const char* str, const char* set)
 #endif
 }
 size_t
-strcspn(const char* str, const char* set)
+strcspn (const char* str, const char* set)
 {
     const unsigned char* p;
     int                  c;
@@ -774,14 +774,14 @@ strcspn(const char* str, const char* set)
 
     while (c = *p++)
     {
-        set_char_map(map, c);
+        set_char_map (map, c);
     }
 
     p = (unsigned char*)str;
 
     while (c = *p++)
     {
-        if (tst_char_map(map, c))
+        if (tst_char_map (map, c))
         {
             break;
         }
@@ -795,14 +795,14 @@ strcspn(const char* str, const char* set)
 
     while (c = *++p)
     {
-        set_char_map(map, c);
+        set_char_map (map, c);
     }
 
     p = (unsigned char*)str - 1;
 
     while (c = *++p)
     {
-        if (tst_char_map(map, c))
+        if (tst_char_map (map, c))
         {
             break;
         }
@@ -815,7 +815,7 @@ strcspn(const char* str, const char* set)
 #if (_MWMT && (__dest_os == __win32_os || __dest_os == __wince_os)) /*- mm 010521   \
                                                                        -*/
 char*
-strtok(char* str, const char* set)
+strtok (char* str, const char* set)
 {
     unsigned char *p, *q;
     int            c;
@@ -823,7 +823,7 @@ strtok(char* str, const char* set)
 
     if (str)
     {
-        _GetThreadLocalData(_MSL_TRUE)->strtok_s =
+        _GetThreadLocalData (_MSL_TRUE)->strtok_s =
             (unsigned char*)str;                                    /*- cc 010531 -*/
     }
 
@@ -831,14 +831,14 @@ strtok(char* str, const char* set)
 
     while (c = *p++)
     {
-        set_char_map(map, c);
+        set_char_map (map, c);
     }
 
-    p = _GetThreadLocalData(_MSL_TRUE)->strtok_s;                   /*- cc 010531 -*/
+    p = _GetThreadLocalData (_MSL_TRUE)->strtok_s;                  /*- cc 010531 -*/
 
     while (c = *p++)
     {
-        if (!tst_char_map(map, c))
+        if (!tst_char_map (map, c))
         {
             break;
         }
@@ -846,8 +846,8 @@ strtok(char* str, const char* set)
 
     if (!c)
     {
-        _GetThreadLocalData(_MSL_TRUE)->strtok_s =
-            _GetThreadLocalData(_MSL_TRUE)->strtok_n;               /*- cc 010531 -*/
+        _GetThreadLocalData (_MSL_TRUE)->strtok_s =
+            _GetThreadLocalData (_MSL_TRUE)->strtok_n;              /*- cc 010531 -*/
         return (NULL);
     }
 
@@ -855,7 +855,7 @@ strtok(char* str, const char* set)
 
     while (c = *p++)
     {
-        if (tst_char_map(map, c))
+        if (tst_char_map (map, c))
         {
             break;
         }
@@ -863,12 +863,12 @@ strtok(char* str, const char* set)
 
     if (!c)
     {
-        _GetThreadLocalData(_MSL_TRUE)->strtok_s =
-            _GetThreadLocalData(_MSL_TRUE)->strtok_n;               /*- cc 010531 -*/
+        _GetThreadLocalData (_MSL_TRUE)->strtok_s =
+            _GetThreadLocalData (_MSL_TRUE)->strtok_n;              /*- cc 010531 -*/
     }
     else
     {
-        _GetThreadLocalData(_MSL_TRUE)->strtok_s = p;               /*- cc 010531 -*/
+        _GetThreadLocalData (_MSL_TRUE)->strtok_s = p;              /*- cc 010531 -*/
         *--p = 0;
     }
 
@@ -876,7 +876,7 @@ strtok(char* str, const char* set)
 }
 #else  /* !(_MWMT && (__dest_os == __win32_os || __dest_os	== __wince_os)) */
 char*
-strtok(char* str, const char* set)
+strtok (char* str, const char* set)
 {
     unsigned char *             p, *q;
     __tls static unsigned char* n = (unsigned char*)"";
@@ -895,14 +895,14 @@ strtok(char* str, const char* set)
 
     while (c = *p++)
     {
-        set_char_map(map, c);
+        set_char_map (map, c);
     }
 
     p = s;
 
     while (c = *p++)
     {
-        if (!tst_char_map(map, c))
+        if (!tst_char_map (map, c))
         {
             break;
         }
@@ -918,7 +918,7 @@ strtok(char* str, const char* set)
 
     while (c = *p++)
     {
-        if (tst_char_map(map, c))
+        if (tst_char_map (map, c))
         {
             break;
         }
@@ -942,14 +942,14 @@ strtok(char* str, const char* set)
 
     while (c = *++p)
     {
-        set_char_map(map, c);
+        set_char_map (map, c);
     }
 
     p = s - 1;
 
     while (c = *++p)
     {
-        if (!tst_char_map(map, c))
+        if (!tst_char_map (map, c))
         {
             break;
         }
@@ -965,7 +965,7 @@ strtok(char* str, const char* set)
 
     while (c = *++p)
     {
-        if (tst_char_map(map, c))
+        if (tst_char_map (map, c))
         {
             break;
         }
@@ -987,7 +987,7 @@ strtok(char* str, const char* set)
 }
 #endif /*(_MWMT && (__dest_os == __win32_os || __dest_os	== __wince_os))*/
 char*
-strstr(const char* str, const char* pat)
+strstr (const char* str, const char* pat)
 {
 #if !__POWERPC__
 
@@ -1054,152 +1054,152 @@ strstr(const char* str, const char* pat)
 #endif
 }
 char*
-strerror(int errnum)
+strerror (int errnum)
 {
     static char errstr[__max_errstr];
 
-    return (__strerror(errnum, errstr));
+    return (__strerror (errnum, errstr));
 }
 char*
-__strerror(int errnum, char* str)
+__strerror (int errnum, char* str)
 {
     switch (errnum)
     {
         /* begin mm 010412 changes */ /*- mm 010412 -*/
         case E2BIG:
-            strcpy(str, "Argument list too long");
+            strcpy (str, "Argument list too long");
             break;
         case EACCES:
-            strcpy(str, "Permission denied");
+            strcpy (str, "Permission denied");
             break;
         case EAGAIN:
-            strcpy(str, "Resource temporarily unavailable");
+            strcpy (str, "Resource temporarily unavailable");
             break;
         case EBADF:
-            strcpy(str, "Bad file descriptor");
+            strcpy (str, "Bad file descriptor");
             break;
         case EBUSY:
-            strcpy(str, "Device busy");
+            strcpy (str, "Device busy");
             break;
         case ECHILD:
-            strcpy(str, "No child processes");
+            strcpy (str, "No child processes");
             break;
         case EDEADLK:
-            strcpy(str, "Resource deadlock avoided");
+            strcpy (str, "Resource deadlock avoided");
             break;
         case EDOM:
-            strcpy(str, "Numerical argument out of domain");
+            strcpy (str, "Numerical argument out of domain");
             break;
         case EEXIST:
-            strcpy(str, "File exists");
+            strcpy (str, "File exists");
             break;
         case EFAULT:
-            strcpy(str, "Bad address");
+            strcpy (str, "Bad address");
             break;
         case EFBIG:
-            strcpy(str, "File too large");
+            strcpy (str, "File too large");
             break;
         case EFPOS:
-            strcpy(str, "File Position Error");
+            strcpy (str, "File Position Error");
             break;
         case EILSEQ:
-            strcpy(str, "Wide character encoding error");
+            strcpy (str, "Wide character encoding error");
             break;
         case EINTR:
-            strcpy(str, "Interrupted system call");
+            strcpy (str, "Interrupted system call");
             break;
         case EINVAL:
-            strcpy(str, "Invalid argument");
+            strcpy (str, "Invalid argument");
             break;
         case EIO:
-            strcpy(str, "Input/output error");
+            strcpy (str, "Input/output error");
             break;
         case EISDIR:
-            strcpy(str, "Is a directory");
+            strcpy (str, "Is a directory");
             break;
 #if ((__dest_os == __mac_os) || (__dest_os == __mac_os_x))
         case EMACOSERR:
-            sprintf(str, "Mac OS error  (%d)", __MacOSErrNo);
+            sprintf (str, "Mac OS error  (%d)", __MacOSErrNo);
             break;
 #endif
         case EMFILE:
-            strcpy(str, "Too many open files");
+            strcpy (str, "Too many open files");
             break;
         case EMLINK:
-            strcpy(str, "Too many links");
+            strcpy (str, "Too many links");
             break;
         case ENAMETOOLONG:
-            strcpy(str, "File name too long");
+            strcpy (str, "File name too long");
             break;
         case ENFILE:
-            strcpy(str, "Too many open files in system");
+            strcpy (str, "Too many open files in system");
             break;
         case ENODEV:
-            strcpy(str, "Operation not supported by device");
+            strcpy (str, "Operation not supported by device");
             break;
         case ENOENT:
-            strcpy(str, "No such file or directory");
+            strcpy (str, "No such file or directory");
             break;
         case ENOERR:
-            strcpy(str, "No error detected");
+            strcpy (str, "No error detected");
             break;
         case ENOEXEC:
-            strcpy(str, "Exec format error");
+            strcpy (str, "Exec format error");
             break;
         case ENOLCK:
-            strcpy(str, "No locks available");
+            strcpy (str, "No locks available");
             break;
         case ENOMEM:
-            strcpy(str, "Cannot allocate memory");
+            strcpy (str, "Cannot allocate memory");
             break;
         case ENOSPC:
-            strcpy(str, "No space left on device");
+            strcpy (str, "No space left on device");
             break;
         case ENOSYS:
-            strcpy(str, "Function not implemented");
+            strcpy (str, "Function not implemented");
             break;
         case ENOTDIR:
-            strcpy(str, "Not a directory");
+            strcpy (str, "Not a directory");
             break;
         case ENOTEMPTY:
-            strcpy(str, "Directory not empty");
+            strcpy (str, "Directory not empty");
             break;
         case ENOTTY:
-            strcpy(str, "Inappropriate ioctl for device");
+            strcpy (str, "Inappropriate ioctl for device");
             break;
         case ENXIO:
-            strcpy(str, "Device not configured");
+            strcpy (str, "Device not configured");
             break;
         case EPERM:
-            strcpy(str, "Operation not permitted");
+            strcpy (str, "Operation not permitted");
             break;
         case EPIPE:
-            strcpy(str, "Broken pipe");
+            strcpy (str, "Broken pipe");
             break;
         case ERANGE:
-            strcpy(str, "Result too large");
+            strcpy (str, "Result too large");
             break;
         case EROFS:
-            strcpy(str, "Read-only file system");
+            strcpy (str, "Read-only file system");
             break;
         case ESIGPARM:
-            strcpy(str, "Signal error");
+            strcpy (str, "Signal error");
             break;
         case ESPIPE:
-            strcpy(str, "Illegal seek");
+            strcpy (str, "Illegal seek");
             break;
         case ESRCH:
-            strcpy(str, "No such process");
+            strcpy (str, "No such process");
             break;
         case EUNKNOWN:
-            strcpy(str, "Unknown error");
+            strcpy (str, "Unknown error");
             break;
         case EXDEV:
-            strcpy(str, "Cross-device link");
+            strcpy (str, "Cross-device link");
             break;
         /* end mm 010412 changes */   /*- mm 010412 -*/
         default:
-            sprintf(str, "Unknown Error (%d)", errnum);
+            sprintf (str, "Unknown Error (%d)", errnum);
             break;
     }
 
@@ -1224,17 +1224,21 @@ __strerror(int errnum, char* str)
                                        *Change to strchr to                                       allow chars beyond 128 to
                                        *work with signed chars                                       bb                                       970530 Applied
                                        *mm970327 change                                       to the strrchr routine.                                       beb
-                                       *971017 Fix string return                                       value, should be str, not s1                                       mm  980424 Modify strstr so
-                                       *that if the pattern                                       pointer is NULL, a pointer to str                                       is                                       returned.  The Standard
-                                       *leaves this undefined                                       so defined a consistent result.                                       mf                                       980429                                       changed macro
+                                       *971017 Fix string return                                       value, should be
+                                       *str, not s1                                       mm  980424 Modify strstr so                                       that
+                                       *if the pattern                                       pointer is NULL, a pointer to
+                                       *str                                       is                                       returned.  The Standard                                       leaves this
+                                       *undefined                                       so defined a consistent result.                                       mf
+                                       *980429                                       changed macro
                                        *__dest_os_== win32_os to __INTEL__ so all intel oses pick                                       up                                       optimized string
                                        *functions (eg. wince and                                       beos)                                       mf  980512
                                        *wince changes                                       mm  980604                                       Removed part of
                                        *mm970327 from strchr and strrchr as not needed to simplify code.                                       MW06890                                       vss 980804
-                                       *PPC must be pre-increment                                       vss 980807 Fix inadvertant mistype of increment operator
-                                       *on pointer to pattern in                                       strstr                                       mf  981116
-                                       *mips optimizations for                                       strcmp etc...                                       mf
-                                       *990120 changed intel                                       header                                       file name from
+                                       *PPC must be pre-increment                                       vss 980807 Fix
+                                       *inadvertant mistype of increment operator                                       on
+                                       *pointer to pattern in                                       strstr                                       mf                                       981116                                       mips
+                                       *optimizations for                                       strcmp etc...                                       mf                                       990120
+                                       *changed intel                                       header                                       file name from
                                        *string.win32.h to string.x86.h                                       mm  990630
                                        *Corrections to                                       strxfrm                                       ad                                       990128 Added n64 to
                                        *diff out strlen and strchr                                       pc  990802 Don't

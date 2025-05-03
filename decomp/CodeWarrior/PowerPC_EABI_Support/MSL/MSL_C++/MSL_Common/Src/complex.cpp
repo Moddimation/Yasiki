@@ -37,7 +37,7 @@ namespace std
 #ifdef _MSL_CX_LIMITED_RANGE
 template <>
 complex<float>&
-complex<float>::operator*=(const complex& rhs)
+complex<float>::operator*= (const complex& rhs)
 {
     float re = re_ * rhs.real() - im_ * rhs.imag();
     im_ = re_ * rhs.imag() + im_ * rhs.real();
@@ -46,7 +46,7 @@ complex<float>::operator*=(const complex& rhs)
 }
 template <>
 complex<float>&
-complex<float>::operator*=(const complex<double>& rhs)
+complex<float>::operator*= (const complex<double>& rhs)
 {
     float re = re_;
     re_ = re * (float)rhs.real() - im_ * (float)rhs.imag();
@@ -55,7 +55,7 @@ complex<float>::operator*=(const complex<double>& rhs)
 }
 template <>
 complex<float>&
-complex<float>::operator*=(const complex<long double>& rhs)
+complex<float>::operator*= (const complex<long double>& rhs)
 {
     float re = re_;
     re_ = re * (float)rhs.real() - im_ * (float)rhs.imag();
@@ -64,7 +64,7 @@ complex<float>::operator*=(const complex<long double>& rhs)
 }
 template <>
 complex<double>&
-complex<double>::operator*=(const complex& rhs)
+complex<double>::operator*= (const complex& rhs)
 {
     double re = re_ * rhs.real() - im_ * rhs.imag();
     im_ = re_ * rhs.imag() + im_ * rhs.real();
@@ -73,7 +73,7 @@ complex<double>::operator*=(const complex& rhs)
 }
 template <>
 complex<double>&
-complex<double>::operator*=(const complex<float>& rhs)
+complex<double>::operator*= (const complex<float>& rhs)
 {
     double re = re_;
     re_ = re * rhs.real() - im_ * rhs.imag();
@@ -82,7 +82,7 @@ complex<double>::operator*=(const complex<float>& rhs)
 }
 template <>
 complex<double>&
-complex<double>::operator*=(const complex<long double>& rhs)
+complex<double>::operator*= (const complex<long double>& rhs)
 {
     double re = re_;
     re_ = re * (double)rhs.real() - im_ * (double)rhs.imag();
@@ -91,7 +91,7 @@ complex<double>::operator*=(const complex<long double>& rhs)
 }
 template <>
 complex<long double>&
-complex<long double>::operator*=(const complex& rhs)
+complex<long double>::operator*= (const complex& rhs)
 {
     long double re = re_ * rhs.real() - im_ * rhs.imag();
     im_ = re_ * rhs.imag() + im_ * rhs.real();
@@ -100,7 +100,7 @@ complex<long double>::operator*=(const complex& rhs)
 }
 template <>
 complex<long double>&
-complex<long double>::operator*=(const complex<float>& rhs)
+complex<long double>::operator*= (const complex<float>& rhs)
 {
     long double re = re_;
     re_ = re * rhs.real() - im_ * rhs.imag();
@@ -109,7 +109,7 @@ complex<long double>::operator*=(const complex<float>& rhs)
 }
 template <>
 complex<long double>&
-complex<long double>::operator*=(const complex<double>& rhs)
+complex<long double>::operator*= (const complex<double>& rhs)
 {
     long double re = re_;
     re_ = re * rhs.real() - im_ * rhs.imag();
@@ -120,7 +120,7 @@ complex<long double>::operator*=(const complex<double>& rhs)
 
 template <>
 complex<float>&
-complex<float>::operator/=(const complex& rhs)
+complex<float>::operator/= (const complex& rhs)
 {
     float denom = rhs.real() * rhs.real() + rhs.imag() * rhs.imag();
     float re = (re_ * rhs.real() + im_ * rhs.imag()) / denom;
@@ -130,7 +130,7 @@ complex<float>::operator/=(const complex& rhs)
 }
 template <>
 complex<float>&
-complex<float>::operator/=(const complex<double>& rhs)
+complex<float>::operator/= (const complex<double>& rhs)
 {
     float denom = (float)rhs.real() * (float)rhs.real() +
                   (float)rhs.imag() * (float)rhs.imag();
@@ -141,7 +141,7 @@ complex<float>::operator/=(const complex<double>& rhs)
 }
 template <>
 complex<float>&
-complex<float>::operator/=(const complex<long double>& rhs)
+complex<float>::operator/= (const complex<long double>& rhs)
 {
     float denom = (float)rhs.real() * (float)rhs.real() +
                   (float)rhs.imag() * (float)rhs.imag();
@@ -152,7 +152,7 @@ complex<float>::operator/=(const complex<long double>& rhs)
 }
 template <>
 complex<double>&
-complex<double>::operator/=(const complex& rhs)
+complex<double>::operator/= (const complex& rhs)
 {
     double denom = rhs.real() * rhs.real() + rhs.imag() * rhs.imag();
     double re = (re_ * rhs.real() + im_ * rhs.imag()) / denom;
@@ -162,7 +162,7 @@ complex<double>::operator/=(const complex& rhs)
 }
 template <>
 complex<double>&
-complex<double>::operator/=(const complex<float>& rhs)
+complex<double>::operator/= (const complex<float>& rhs)
 {
     double denom = rhs.real() * rhs.real() + rhs.imag() * rhs.imag();
     double re = re_;
@@ -172,7 +172,7 @@ complex<double>::operator/=(const complex<float>& rhs)
 }
 template <>
 complex<double>&
-complex<double>::operator/=(const complex<long double>& rhs)
+complex<double>::operator/= (const complex<long double>& rhs)
 {
     double denom = (double)rhs.real() * (double)rhs.real() +
                    (double)rhs.imag() * (double)rhs.imag();
@@ -183,7 +183,7 @@ complex<double>::operator/=(const complex<long double>& rhs)
 }
 template <>
 complex<long double>&
-complex<long double>::operator/=(const complex& rhs)
+complex<long double>::operator/= (const complex& rhs)
 {
     long double denom = rhs.real() * rhs.real() + rhs.imag() * rhs.imag();
     long double re = (re_ * rhs.real() + im_ * rhs.imag()) / denom;
@@ -193,7 +193,7 @@ complex<long double>::operator/=(const complex& rhs)
 }
 template <>
 complex<long double>&
-complex<long double>::operator/=(const complex<float>& rhs)
+complex<long double>::operator/= (const complex<float>& rhs)
 {
     long double denom = rhs.real() * rhs.real() + rhs.imag() * rhs.imag();
     long double re = re_;
@@ -203,7 +203,7 @@ complex<long double>::operator/=(const complex<float>& rhs)
 }
 template <>
 complex<long double>&
-complex<long double>::operator/=(const complex<double>& rhs)
+complex<long double>::operator/= (const complex<double>& rhs)
 {
     long double denom = rhs.real() * rhs.real() + rhs.imag() * rhs.imag();
     long double re = re_;
@@ -214,7 +214,7 @@ complex<long double>::operator/=(const complex<double>& rhs)
 #else
 template <>
 complex<float>&
-complex<float>::operator*=(const complex& rhs)
+complex<float>::operator*= (const complex& rhs)
 {
     float a = re_;
     float b = im_;
@@ -227,77 +227,77 @@ complex<float>::operator*=(const complex& rhs)
     re_ = ac - bd;
     im_ = ad + bc;
     // Recover infinities that computed as NaN+iNaN ...
-    if (isnan(re_) && isnan(im_))
+    if (isnan (re_) && isnan (im_))
     {
         bool recalc = false;
-        if (isinf(a) || isinf(b)) // z is infinite
+        if (isinf (a) || isinf (b)) // z is infinite
         {
             // "Box" the infinity ...
-            a = copysignf(isinf(a) ? 1.0F : 0.0F, a);
-            b = copysignf(isinf(b) ? 1.0F : 0.0F, b);
+            a = copysignf (isinf (a) ? 1.0F : 0.0F, a);
+            b = copysignf (isinf (b) ? 1.0F : 0.0F, b);
             // Change NaNs in the other factor to 0 ...
-            if (isnan(c))
+            if (isnan (c))
             {
-                c = copysignf(0.0F, c);
+                c = copysignf (0.0F, c);
             }
-            if (isnan(d))
+            if (isnan (d))
             {
-                d = copysignf(0.0F, d);
+                d = copysignf (0.0F, d);
             }
             recalc = true;
         }
-        if (isinf(c) || isinf(d)) // w is infinite
+        if (isinf (c) || isinf (d)) // w is infinite
         {
             // "Box" the infinity ...
-            c = copysignf(isinf(c) ? 1.0F : 0.0F, c);
-            d = copysignf(isinf(d) ? 1.0F : 0.0F, d);
+            c = copysignf (isinf (c) ? 1.0F : 0.0F, c);
+            d = copysignf (isinf (d) ? 1.0F : 0.0F, d);
             // Change NaNs in the other factor to 0 ...
-            if (isnan(a))
+            if (isnan (a))
             {
-                a = copysignf(0.0F, a);
+                a = copysignf (0.0F, a);
             }
-            if (isnan(b))
+            if (isnan (b))
             {
-                b = copysignf(0.0F, b);
+                b = copysignf (0.0F, b);
             }
             recalc = true;
         }
         if (!recalc)
         {
             // Recover infinities from overflow cases ...
-            if (isinf(ac) || isinf(bd) || isinf(ad) || isinf(bc))
+            if (isinf (ac) || isinf (bd) || isinf (ad) || isinf (bc))
             {
                 // Change all NaNs to 0 ...
-                if (isnan(a))
+                if (isnan (a))
                 {
-                    a = copysignf(0.0F, a);
+                    a = copysignf (0.0F, a);
                 }
-                if (isnan(b))
+                if (isnan (b))
                 {
-                    b = copysignf(0.0F, b);
+                    b = copysignf (0.0F, b);
                 }
-                if (isnan(c))
+                if (isnan (c))
                 {
-                    c = copysignf(0.0F, c);
+                    c = copysignf (0.0F, c);
                 }
-                if (isnan(d))
+                if (isnan (d))
                 {
-                    d = copysignf(0.0F, d);
+                    d = copysignf (0.0F, d);
                 }
                 recalc = true;
             }
         }
         if (recalc)
         {
-            re_ = copysignf(HUGE_VALF, (a * c - b * d));
-            im_ = copysignf(HUGE_VALF, (a * d + b * c));
+            re_ = copysignf (HUGE_VALF, (a * c - b * d));
+            im_ = copysignf (HUGE_VALF, (a * d + b * c));
         }
     }
     return *this;
 }
 template <>
 complex<float>&
-complex<float>::operator*=(const complex<double>& rhs)
+complex<float>::operator*= (const complex<double>& rhs)
 {
     float a = re_;
     float b = im_;
@@ -310,77 +310,77 @@ complex<float>::operator*=(const complex<double>& rhs)
     re_ = ac - bd;
     im_ = ad + bc;
     // Recover infinities that computed as NaN+iNaN ...
-    if (isnan(re_) && isnan(im_))
+    if (isnan (re_) && isnan (im_))
     {
         bool recalc = false;
-        if (isinf(a) || isinf(b)) // z is infinite
+        if (isinf (a) || isinf (b)) // z is infinite
         {
             // "Box" the infinity ...
-            a = copysignf(isinf(a) ? 1.0F : 0.0F, a);
-            b = copysignf(isinf(b) ? 1.0F : 0.0F, b);
+            a = copysignf (isinf (a) ? 1.0F : 0.0F, a);
+            b = copysignf (isinf (b) ? 1.0F : 0.0F, b);
             // Change NaNs in the other factor to 0 ...
-            if (isnan(c))
+            if (isnan (c))
             {
-                c = copysignf(0.0F, c);
+                c = copysignf (0.0F, c);
             }
-            if (isnan(d))
+            if (isnan (d))
             {
-                d = copysignf(0.0F, d);
+                d = copysignf (0.0F, d);
             }
             recalc = true;
         }
-        if (isinf(c) || isinf(d)) // w is infinite
+        if (isinf (c) || isinf (d)) // w is infinite
         {
             // "Box" the infinity ...
-            c = copysignf(isinf(c) ? 1.0F : 0.0F, c);
-            d = copysignf(isinf(d) ? 1.0F : 0.0F, d);
+            c = copysignf (isinf (c) ? 1.0F : 0.0F, c);
+            d = copysignf (isinf (d) ? 1.0F : 0.0F, d);
             // Change NaNs in the other factor to 0 ...
-            if (isnan(a))
+            if (isnan (a))
             {
-                a = copysignf(0.0F, a);
+                a = copysignf (0.0F, a);
             }
-            if (isnan(b))
+            if (isnan (b))
             {
-                b = copysignf(0.0F, b);
+                b = copysignf (0.0F, b);
             }
             recalc = true;
         }
         if (!recalc)
         {
             // Recover infinities from overflow cases ...
-            if (isinf(ac) || isinf(bd) || isinf(ad) || isinf(bc))
+            if (isinf (ac) || isinf (bd) || isinf (ad) || isinf (bc))
             {
                 // Change all NaNs to 0 ...
-                if (isnan(a))
+                if (isnan (a))
                 {
-                    a = copysignf(0.0F, a);
+                    a = copysignf (0.0F, a);
                 }
-                if (isnan(b))
+                if (isnan (b))
                 {
-                    b = copysignf(0.0F, b);
+                    b = copysignf (0.0F, b);
                 }
-                if (isnan(c))
+                if (isnan (c))
                 {
-                    c = copysignf(0.0F, c);
+                    c = copysignf (0.0F, c);
                 }
-                if (isnan(d))
+                if (isnan (d))
                 {
-                    d = copysignf(0.0F, d);
+                    d = copysignf (0.0F, d);
                 }
                 recalc = true;
             }
         }
         if (recalc)
         {
-            re_ = copysignf(HUGE_VALF, (a * c - b * d));
-            im_ = copysignf(HUGE_VALF, (a * d + b * c));
+            re_ = copysignf (HUGE_VALF, (a * c - b * d));
+            im_ = copysignf (HUGE_VALF, (a * d + b * c));
         }
     }
     return *this;
 }
 template <>
 complex<float>&
-complex<float>::operator*=(const complex<long double>& rhs)
+complex<float>::operator*= (const complex<long double>& rhs)
 {
     float a = re_;
     float b = im_;
@@ -393,77 +393,77 @@ complex<float>::operator*=(const complex<long double>& rhs)
     re_ = ac - bd;
     im_ = ad + bc;
     // Recover infinities that computed as NaN+iNaN ...
-    if (isnan(re_) && isnan(im_))
+    if (isnan (re_) && isnan (im_))
     {
         bool recalc = false;
-        if (isinf(a) || isinf(b)) // z is infinite
+        if (isinf (a) || isinf (b)) // z is infinite
         {
             // "Box" the infinity ...
-            a = copysignf(isinf(a) ? 1.0F : 0.0F, a);
-            b = copysignf(isinf(b) ? 1.0F : 0.0F, b);
+            a = copysignf (isinf (a) ? 1.0F : 0.0F, a);
+            b = copysignf (isinf (b) ? 1.0F : 0.0F, b);
             // Change NaNs in the other factor to 0 ...
-            if (isnan(c))
+            if (isnan (c))
             {
-                c = copysignf(0.0F, c);
+                c = copysignf (0.0F, c);
             }
-            if (isnan(d))
+            if (isnan (d))
             {
-                d = copysignf(0.0F, d);
+                d = copysignf (0.0F, d);
             }
             recalc = true;
         }
-        if (isinf(c) || isinf(d)) // w is infinite
+        if (isinf (c) || isinf (d)) // w is infinite
         {
             // "Box" the infinity ...
-            c = copysignf(isinf(c) ? 1.0F : 0.0F, c);
-            d = copysignf(isinf(d) ? 1.0F : 0.0F, d);
+            c = copysignf (isinf (c) ? 1.0F : 0.0F, c);
+            d = copysignf (isinf (d) ? 1.0F : 0.0F, d);
             // Change NaNs in the other factor to 0 ...
-            if (isnan(a))
+            if (isnan (a))
             {
-                a = copysignf(0.0F, a);
+                a = copysignf (0.0F, a);
             }
-            if (isnan(b))
+            if (isnan (b))
             {
-                b = copysignf(0.0F, b);
+                b = copysignf (0.0F, b);
             }
             recalc = true;
         }
         if (!recalc)
         {
             // Recover infinities from overflow cases ...
-            if (isinf(ac) || isinf(bd) || isinf(ad) || isinf(bc))
+            if (isinf (ac) || isinf (bd) || isinf (ad) || isinf (bc))
             {
                 // Change all NaNs to 0 ...
-                if (isnan(a))
+                if (isnan (a))
                 {
-                    a = copysignf(0.0F, a);
+                    a = copysignf (0.0F, a);
                 }
-                if (isnan(b))
+                if (isnan (b))
                 {
-                    b = copysignf(0.0F, b);
+                    b = copysignf (0.0F, b);
                 }
-                if (isnan(c))
+                if (isnan (c))
                 {
-                    c = copysignf(0.0F, c);
+                    c = copysignf (0.0F, c);
                 }
-                if (isnan(d))
+                if (isnan (d))
                 {
-                    d = copysignf(0.0F, d);
+                    d = copysignf (0.0F, d);
                 }
                 recalc = true;
             }
         }
         if (recalc)
         {
-            re_ = copysignf(HUGE_VALF, (a * c - b * d));
-            im_ = copysignf(HUGE_VALF, (a * d + b * c));
+            re_ = copysignf (HUGE_VALF, (a * c - b * d));
+            im_ = copysignf (HUGE_VALF, (a * d + b * c));
         }
     }
     return *this;
 }
 template <>
 complex<double>&
-complex<double>::operator*=(const complex& rhs)
+complex<double>::operator*= (const complex& rhs)
 {
     double a = re_;
     double b = im_;
@@ -476,77 +476,77 @@ complex<double>::operator*=(const complex& rhs)
     re_ = ac - bd;
     im_ = ad + bc;
     // Recover infinities that computed as NaN+iNaN ...
-    if (isnan(re_) && isnan(im_))
+    if (isnan (re_) && isnan (im_))
     {
         bool recalc = false;
-        if (isinf(a) || isinf(b)) // z is infinite
+        if (isinf (a) || isinf (b)) // z is infinite
         {
             // "Box" the infinity ...
-            a = copysign(isinf(a) ? 1.0 : 0.0, a);
-            b = copysign(isinf(b) ? 1.0 : 0.0, b);
+            a = copysign (isinf (a) ? 1.0 : 0.0, a);
+            b = copysign (isinf (b) ? 1.0 : 0.0, b);
             // Change NaNs in the other factor to 0 ...
-            if (isnan(c))
+            if (isnan (c))
             {
-                c = copysign(0.0, c);
+                c = copysign (0.0, c);
             }
-            if (isnan(d))
+            if (isnan (d))
             {
-                d = copysign(0.0, d);
+                d = copysign (0.0, d);
             }
             recalc = true;
         }
-        if (isinf(c) || isinf(d)) // w is infinite
+        if (isinf (c) || isinf (d)) // w is infinite
         {
             // "Box" the infinity ...
-            c = copysign(isinf(c) ? 1.0 : 0.0, c);
-            d = copysign(isinf(d) ? 1.0 : 0.0, d);
+            c = copysign (isinf (c) ? 1.0 : 0.0, c);
+            d = copysign (isinf (d) ? 1.0 : 0.0, d);
             // Change NaNs in the other factor to 0 ...
-            if (isnan(a))
+            if (isnan (a))
             {
-                a = copysign(0.0, a);
+                a = copysign (0.0, a);
             }
-            if (isnan(b))
+            if (isnan (b))
             {
-                b = copysign(0.0, b);
+                b = copysign (0.0, b);
             }
             recalc = true;
         }
         if (!recalc)
         {
             // Recover infinities from overflow cases ...
-            if (isinf(ac) || isinf(bd) || isinf(ad) || isinf(bc))
+            if (isinf (ac) || isinf (bd) || isinf (ad) || isinf (bc))
             {
                 // Change all NaNs to 0 ...
-                if (isnan(a))
+                if (isnan (a))
                 {
-                    a = copysign(0.0, a);
+                    a = copysign (0.0, a);
                 }
-                if (isnan(b))
+                if (isnan (b))
                 {
-                    b = copysign(0.0, b);
+                    b = copysign (0.0, b);
                 }
-                if (isnan(c))
+                if (isnan (c))
                 {
-                    c = copysign(0.0, c);
+                    c = copysign (0.0, c);
                 }
-                if (isnan(d))
+                if (isnan (d))
                 {
-                    d = copysign(0.0, d);
+                    d = copysign (0.0, d);
                 }
                 recalc = true;
             }
         }
         if (recalc)
         {
-            re_ = copysign(HUGE_VAL, (a * c - b * d));
-            im_ = copysign(HUGE_VAL, (a * d + b * c));
+            re_ = copysign (HUGE_VAL, (a * c - b * d));
+            im_ = copysign (HUGE_VAL, (a * d + b * c));
         }
     }
     return *this;
 }
 template <>
 complex<double>&
-complex<double>::operator*=(const complex<float>& rhs)
+complex<double>::operator*= (const complex<float>& rhs)
 {
     double a = re_;
     double b = im_;
@@ -559,77 +559,77 @@ complex<double>::operator*=(const complex<float>& rhs)
     re_ = ac - bd;
     im_ = ad + bc;
     // Recover infinities that computed as NaN+iNaN ...
-    if (isnan(re_) && isnan(im_))
+    if (isnan (re_) && isnan (im_))
     {
         bool recalc = false;
-        if (isinf(a) || isinf(b)) // z is infinite
+        if (isinf (a) || isinf (b)) // z is infinite
         {
             // "Box" the infinity ...
-            a = copysign(isinf(a) ? 1.0 : 0.0, a);
-            b = copysign(isinf(b) ? 1.0 : 0.0, b);
+            a = copysign (isinf (a) ? 1.0 : 0.0, a);
+            b = copysign (isinf (b) ? 1.0 : 0.0, b);
             // Change NaNs in the other factor to 0 ...
-            if (isnan(c))
+            if (isnan (c))
             {
-                c = copysign(0.0, c);
+                c = copysign (0.0, c);
             }
-            if (isnan(d))
+            if (isnan (d))
             {
-                d = copysign(0.0, d);
+                d = copysign (0.0, d);
             }
             recalc = true;
         }
-        if (isinf(c) || isinf(d)) // w is infinite
+        if (isinf (c) || isinf (d)) // w is infinite
         {
             // "Box" the infinity ...
-            c = copysign(isinf(c) ? 1.0 : 0.0, c);
-            d = copysign(isinf(d) ? 1.0 : 0.0, d);
+            c = copysign (isinf (c) ? 1.0 : 0.0, c);
+            d = copysign (isinf (d) ? 1.0 : 0.0, d);
             // Change NaNs in the other factor to 0 ...
-            if (isnan(a))
+            if (isnan (a))
             {
-                a = copysign(0.0, a);
+                a = copysign (0.0, a);
             }
-            if (isnan(b))
+            if (isnan (b))
             {
-                b = copysign(0.0, b);
+                b = copysign (0.0, b);
             }
             recalc = true;
         }
         if (!recalc)
         {
             // Recover infinities from overflow cases ...
-            if (isinf(ac) || isinf(bd) || isinf(ad) || isinf(bc))
+            if (isinf (ac) || isinf (bd) || isinf (ad) || isinf (bc))
             {
                 // Change all NaNs to 0 ...
-                if (isnan(a))
+                if (isnan (a))
                 {
-                    a = copysign(0.0, a);
+                    a = copysign (0.0, a);
                 }
-                if (isnan(b))
+                if (isnan (b))
                 {
-                    b = copysign(0.0, b);
+                    b = copysign (0.0, b);
                 }
-                if (isnan(c))
+                if (isnan (c))
                 {
-                    c = copysign(0.0, c);
+                    c = copysign (0.0, c);
                 }
-                if (isnan(d))
+                if (isnan (d))
                 {
-                    d = copysign(0.0, d);
+                    d = copysign (0.0, d);
                 }
                 recalc = true;
             }
         }
         if (recalc)
         {
-            re_ = copysign(HUGE_VAL, (a * c - b * d));
-            im_ = copysign(HUGE_VAL, (a * d + b * c));
+            re_ = copysign (HUGE_VAL, (a * c - b * d));
+            im_ = copysign (HUGE_VAL, (a * d + b * c));
         }
     }
     return *this;
 }
 template <>
 complex<double>&
-complex<double>::operator*=(const complex<long double>& rhs)
+complex<double>::operator*= (const complex<long double>& rhs)
 {
     double a = re_;
     double b = im_;
@@ -642,77 +642,77 @@ complex<double>::operator*=(const complex<long double>& rhs)
     re_ = ac - bd;
     im_ = ad + bc;
     // Recover infinities that computed as NaN+iNaN ...
-    if (isnan(re_) && isnan(im_))
+    if (isnan (re_) && isnan (im_))
     {
         bool recalc = false;
-        if (isinf(a) || isinf(b)) // z is infinite
+        if (isinf (a) || isinf (b)) // z is infinite
         {
             // "Box" the infinity ...
-            a = copysign(isinf(a) ? 1.0 : 0.0, a);
-            b = copysign(isinf(b) ? 1.0 : 0.0, b);
+            a = copysign (isinf (a) ? 1.0 : 0.0, a);
+            b = copysign (isinf (b) ? 1.0 : 0.0, b);
             // Change NaNs in the other factor to 0 ...
-            if (isnan(c))
+            if (isnan (c))
             {
-                c = copysign(0.0, c);
+                c = copysign (0.0, c);
             }
-            if (isnan(d))
+            if (isnan (d))
             {
-                d = copysign(0.0, d);
+                d = copysign (0.0, d);
             }
             recalc = true;
         }
-        if (isinf(c) || isinf(d)) // w is infinite
+        if (isinf (c) || isinf (d)) // w is infinite
         {
             // "Box" the infinity ...
-            c = copysign(isinf(c) ? 1.0 : 0.0, c);
-            d = copysign(isinf(d) ? 1.0 : 0.0, d);
+            c = copysign (isinf (c) ? 1.0 : 0.0, c);
+            d = copysign (isinf (d) ? 1.0 : 0.0, d);
             // Change NaNs in the other factor to 0 ...
-            if (isnan(a))
+            if (isnan (a))
             {
-                a = copysign(0.0, a);
+                a = copysign (0.0, a);
             }
-            if (isnan(b))
+            if (isnan (b))
             {
-                b = copysign(0.0, b);
+                b = copysign (0.0, b);
             }
             recalc = true;
         }
         if (!recalc)
         {
             // Recover infinities from overflow cases ...
-            if (isinf(ac) || isinf(bd) || isinf(ad) || isinf(bc))
+            if (isinf (ac) || isinf (bd) || isinf (ad) || isinf (bc))
             {
                 // Change all NaNs to 0 ...
-                if (isnan(a))
+                if (isnan (a))
                 {
-                    a = copysign(0.0, a);
+                    a = copysign (0.0, a);
                 }
-                if (isnan(b))
+                if (isnan (b))
                 {
-                    b = copysign(0.0, b);
+                    b = copysign (0.0, b);
                 }
-                if (isnan(c))
+                if (isnan (c))
                 {
-                    c = copysign(0.0, c);
+                    c = copysign (0.0, c);
                 }
-                if (isnan(d))
+                if (isnan (d))
                 {
-                    d = copysign(0.0, d);
+                    d = copysign (0.0, d);
                 }
                 recalc = true;
             }
         }
         if (recalc)
         {
-            re_ = copysign(HUGE_VAL, (a * c - b * d));
-            im_ = copysign(HUGE_VAL, (a * d + b * c));
+            re_ = copysign (HUGE_VAL, (a * c - b * d));
+            im_ = copysign (HUGE_VAL, (a * d + b * c));
         }
     }
     return *this;
 }
 template <>
 complex<long double>&
-complex<long double>::operator*=(const complex& rhs)
+complex<long double>::operator*= (const complex& rhs)
 {
     long double a = re_;
     long double b = im_;
@@ -725,77 +725,77 @@ complex<long double>::operator*=(const complex& rhs)
     re_ = ac - bd;
     im_ = ad + bc;
     // Recover infinities that computed as NaN+iNaN ...
-    if (isnan(re_) && isnan(im_))
+    if (isnan (re_) && isnan (im_))
     {
         bool recalc = false;
-        if (isinf(a) || isinf(b)) // z is infinite
+        if (isinf (a) || isinf (b)) // z is infinite
         {
             // "Box" the infinity ...
-            a = copysignl(isinf(a) ? 1.0L : 0.0L, a);
-            b = copysignl(isinf(b) ? 1.0L : 0.0L, b);
+            a = copysignl (isinf (a) ? 1.0L : 0.0L, a);
+            b = copysignl (isinf (b) ? 1.0L : 0.0L, b);
             // Change NaNs in the other factor to 0 ...
-            if (isnan(c))
+            if (isnan (c))
             {
-                c = copysignl(0.0L, c);
+                c = copysignl (0.0L, c);
             }
-            if (isnan(d))
+            if (isnan (d))
             {
-                d = copysignl(0.0L, d);
+                d = copysignl (0.0L, d);
             }
             recalc = true;
         }
-        if (isinf(c) || isinf(d)) // w is infinite
+        if (isinf (c) || isinf (d)) // w is infinite
         {
             // "Box" the infinity ...
-            c = copysignl(isinf(c) ? 1.0L : 0.0L, c);
-            d = copysignl(isinf(d) ? 1.0L : 0.0L, d);
+            c = copysignl (isinf (c) ? 1.0L : 0.0L, c);
+            d = copysignl (isinf (d) ? 1.0L : 0.0L, d);
             // Change NaNs in the other factor to 0 ...
-            if (isnan(a))
+            if (isnan (a))
             {
-                a = copysignl(0.0L, a);
+                a = copysignl (0.0L, a);
             }
-            if (isnan(b))
+            if (isnan (b))
             {
-                b = copysignl(0.0L, b); // hh 980821
+                b = copysignl (0.0L, b); // hh 980821
             }
             recalc = true;
         }
         if (!recalc)
         {
             // Recover infinities from overflow cases ...
-            if (isinf(ac) || isinf(bd) || isinf(ad) || isinf(bc))
+            if (isinf (ac) || isinf (bd) || isinf (ad) || isinf (bc))
             {
                 // Change all NaNs to 0 ...
-                if (isnan(a))
+                if (isnan (a))
                 {
-                    a = copysignl(0.0L, a);
+                    a = copysignl (0.0L, a);
                 }
-                if (isnan(b))
+                if (isnan (b))
                 {
-                    b = copysignl(0.0L, b);
+                    b = copysignl (0.0L, b);
                 }
-                if (isnan(c))
+                if (isnan (c))
                 {
-                    c = copysignl(0.0L, c);
+                    c = copysignl (0.0L, c);
                 }
-                if (isnan(d))
+                if (isnan (d))
                 {
-                    d = copysignl(0.0L, d);
+                    d = copysignl (0.0L, d);
                 }
                 recalc = true;
             }
         }
         if (recalc)
         {
-            re_ = copysignl(HUGE_VALL, (a * c - b * d));
-            im_ = copysignl(HUGE_VALL, (a * d + b * c));
+            re_ = copysignl (HUGE_VALL, (a * c - b * d));
+            im_ = copysignl (HUGE_VALL, (a * d + b * c));
         }
     }
     return *this;
 }
 template <>
 complex<long double>&
-complex<long double>::operator*=(const complex<float>& rhs)
+complex<long double>::operator*= (const complex<float>& rhs)
 {
     long double a = re_;
     long double b = im_;
@@ -808,77 +808,77 @@ complex<long double>::operator*=(const complex<float>& rhs)
     re_ = ac - bd;
     im_ = ad + bc;
     // Recover infinities that computed as NaN+iNaN ...
-    if (isnan(re_) && isnan(im_))
+    if (isnan (re_) && isnan (im_))
     {
         bool recalc = false;
-        if (isinf(a) || isinf(b)) // z is infinite
+        if (isinf (a) || isinf (b)) // z is infinite
         {
             // "Box" the infinity ...
-            a = copysignl(isinf(a) ? 1.0L : 0.0L, a);
-            b = copysignl(isinf(b) ? 1.0L : 0.0L, b);
+            a = copysignl (isinf (a) ? 1.0L : 0.0L, a);
+            b = copysignl (isinf (b) ? 1.0L : 0.0L, b);
             // Change NaNs in the other factor to 0 ...
-            if (isnan(c))
+            if (isnan (c))
             {
-                c = copysignl(0.0L, c);
+                c = copysignl (0.0L, c);
             }
-            if (isnan(d))
+            if (isnan (d))
             {
-                d = copysignl(0.0L, d);
+                d = copysignl (0.0L, d);
             }
             recalc = true;
         }
-        if (isinf(c) || isinf(d)) // w is infinite
+        if (isinf (c) || isinf (d)) // w is infinite
         {
             // "Box" the infinity ...
-            c = copysignl(isinf(c) ? 1.0L : 0.0L, c);
-            d = copysignl(isinf(d) ? 1.0L : 0.0L, d);
+            c = copysignl (isinf (c) ? 1.0L : 0.0L, c);
+            d = copysignl (isinf (d) ? 1.0L : 0.0L, d);
             // Change NaNs in the other factor to 0 ...
-            if (isnan(a))
+            if (isnan (a))
             {
-                a = copysignl(0.0L, a);
+                a = copysignl (0.0L, a);
             }
-            if (isnan(b))
+            if (isnan (b))
             {
-                b = copysignl(0.0L, b); // hh 980821
+                b = copysignl (0.0L, b); // hh 980821
             }
             recalc = true;
         }
         if (!recalc)
         {
             // Recover infinities from overflow cases ...
-            if (isinf(ac) || isinf(bd) || isinf(ad) || isinf(bc))
+            if (isinf (ac) || isinf (bd) || isinf (ad) || isinf (bc))
             {
                 // Change all NaNs to 0 ...
-                if (isnan(a))
+                if (isnan (a))
                 {
-                    a = copysignl(0.0L, a);
+                    a = copysignl (0.0L, a);
                 }
-                if (isnan(b))
+                if (isnan (b))
                 {
-                    b = copysignl(0.0L, b);
+                    b = copysignl (0.0L, b);
                 }
-                if (isnan(c))
+                if (isnan (c))
                 {
-                    c = copysignl(0.0L, c);
+                    c = copysignl (0.0L, c);
                 }
-                if (isnan(d))
+                if (isnan (d))
                 {
-                    d = copysignl(0.0L, d);
+                    d = copysignl (0.0L, d);
                 }
                 recalc = true;
             }
         }
         if (recalc)
         {
-            re_ = copysignl(HUGE_VALL, (a * c - b * d));
-            im_ = copysignl(HUGE_VALL, (a * d + b * c));
+            re_ = copysignl (HUGE_VALL, (a * c - b * d));
+            im_ = copysignl (HUGE_VALL, (a * d + b * c));
         }
     }
     return *this;
 }
 template <>
 complex<long double>&
-complex<long double>::operator*=(const complex<double>& rhs)
+complex<long double>::operator*= (const complex<double>& rhs)
 {
     long double a = re_;
     long double b = im_;
@@ -891,70 +891,70 @@ complex<long double>::operator*=(const complex<double>& rhs)
     re_ = ac - bd;
     im_ = ad + bc;
     // Recover infinities that computed as NaN+iNaN ...
-    if (isnan(re_) && isnan(im_))
+    if (isnan (re_) && isnan (im_))
     {
         bool recalc = false;
-        if (isinf(a) || isinf(b)) // z is infinite
+        if (isinf (a) || isinf (b)) // z is infinite
         {
             // "Box" the infinity ...
-            a = copysignl(isinf(a) ? 1.0L : 0.0L, a);
-            b = copysignl(isinf(b) ? 1.0L : 0.0L, b);
+            a = copysignl (isinf (a) ? 1.0L : 0.0L, a);
+            b = copysignl (isinf (b) ? 1.0L : 0.0L, b);
             // Change NaNs in the other factor to 0 ...
-            if (isnan(c))
+            if (isnan (c))
             {
-                c = copysignl(0.0L, c);
+                c = copysignl (0.0L, c);
             }
-            if (isnan(d))
+            if (isnan (d))
             {
-                d = copysignl(0.0L, d);
+                d = copysignl (0.0L, d);
             }
             recalc = true;
         }
-        if (isinf(c) || isinf(d)) // w is infinite
+        if (isinf (c) || isinf (d)) // w is infinite
         {
             // "Box" the infinity ...
-            c = copysignl(isinf(c) ? 1.0L : 0.0L, c);
-            d = copysignl(isinf(d) ? 1.0L : 0.0L, d);
+            c = copysignl (isinf (c) ? 1.0L : 0.0L, c);
+            d = copysignl (isinf (d) ? 1.0L : 0.0L, d);
             // Change NaNs in the other factor to 0 ...
-            if (isnan(a))
+            if (isnan (a))
             {
-                a = copysignl(0.0L, a);
+                a = copysignl (0.0L, a);
             }
-            if (isnan(b))
+            if (isnan (b))
             {
-                b = copysignl(0.0L, b); // hh 980821
+                b = copysignl (0.0L, b); // hh 980821
             }
             recalc = true;
         }
         if (!recalc)
         {
             // Recover infinities from overflow cases ...
-            if (isinf(ac) || isinf(bd) || isinf(ad) || isinf(bc))
+            if (isinf (ac) || isinf (bd) || isinf (ad) || isinf (bc))
             {
                 // Change all NaNs to 0 ...
-                if (isnan(a))
+                if (isnan (a))
                 {
-                    a = copysignl(0.0L, a);
+                    a = copysignl (0.0L, a);
                 }
-                if (isnan(b))
+                if (isnan (b))
                 {
-                    b = copysignl(0.0L, b);
+                    b = copysignl (0.0L, b);
                 }
-                if (isnan(c))
+                if (isnan (c))
                 {
-                    c = copysignl(0.0L, c);
+                    c = copysignl (0.0L, c);
                 }
-                if (isnan(d))
+                if (isnan (d))
                 {
-                    d = copysignl(0.0L, d);
+                    d = copysignl (0.0L, d);
                 }
                 recalc = true;
             }
         }
         if (recalc)
         {
-            re_ = copysignl(HUGE_VALL, (a * c - b * d));
-            im_ = copysignl(HUGE_VALL, (a * d + b * c));
+            re_ = copysignl (HUGE_VALL, (a * c - b * d));
+            im_ = copysignl (HUGE_VALL, (a * d + b * c));
         }
     }
     return *this;
@@ -963,46 +963,46 @@ complex<long double>::operator*=(const complex<double>& rhs)
 
 template <>
 complex<float>&
-complex<float>::operator/=(const complex& rhs)
+complex<float>::operator/= (const complex& rhs)
 {
     int   ilogbw = 0;
     float a = re_;
     float b = im_;
     float c = rhs.real();
     float d = rhs.imag();
-    float logbw = logbf(fmaxf(fabsf(c), fabsf(d)));
-    if (isfinite(logbw))
+    float logbw = logbf (fmaxf (fabsf (c), fabsf (d)));
+    if (isfinite (logbw))
     {
         ilogbw = (int)logbw;
-        c = scalbnf(c, -ilogbw);
-        d = scalbnf(d, -ilogbw);
+        c = scalbnf (c, -ilogbw);
+        d = scalbnf (d, -ilogbw);
     }
     float denom = c * c + d * d;
-    re_ = scalbnf((a * c + b * d) / denom, -ilogbw);
-    im_ = scalbnf((b * c - a * d) / denom, -ilogbw);
+    re_ = scalbnf ((a * c + b * d) / denom, -ilogbw);
+    im_ = scalbnf ((b * c - a * d) / denom, -ilogbw);
 
     // Recover infinities and zeros that computed
     // as NaN+iNaN; the only cases are non-zero/zero,
     // infinite/finite, and finite/infinite, ...
 
-    if (isnan(re_) && isnan(im_))
+    if (isnan (re_) && isnan (im_))
     {
-        if ((denom == 0) && (!isnan(a) || !isnan(b)))
+        if ((denom == 0) && (!isnan (a) || !isnan (b)))
         {
-            re_ = copysignf(HUGE_VALF, c) * a;
-            im_ = copysignf(HUGE_VALF, c) * b;
+            re_ = copysignf (HUGE_VALF, c) * a;
+            im_ = copysignf (HUGE_VALF, c) * b;
         }
-        else if ((isinf(a) || isinf(b)) && isfinite(c) && isfinite(d))
+        else if ((isinf (a) || isinf (b)) && isfinite (c) && isfinite (d))
         {
-            a = copysignf(isinf(a) ? 1.0F : 0.0F, a);
-            b = copysignf(isinf(b) ? 1.0F : 0.0F, b);
-            re_ = copysignf(HUGE_VALF, (a * c + b * d));
-            im_ = copysignf(HUGE_VALF, (b * c - a * d));
+            a = copysignf (isinf (a) ? 1.0F : 0.0F, a);
+            b = copysignf (isinf (b) ? 1.0F : 0.0F, b);
+            re_ = copysignf (HUGE_VALF, (a * c + b * d));
+            im_ = copysignf (HUGE_VALF, (b * c - a * d));
         }
-        else if (isinf(logbw) && isfinite(a) && isfinite(b))
+        else if (isinf (logbw) && isfinite (a) && isfinite (b))
         {
-            c = copysignf(isinf(c) ? 1.0F : 0.0F, c);
-            d = copysignf(isinf(d) ? 1.0F : 0.0F, d);
+            c = copysignf (isinf (c) ? 1.0F : 0.0F, c);
+            d = copysignf (isinf (d) ? 1.0F : 0.0F, d);
             re_ = 0.0F * (a * c + b * d);
             im_ = 0.0F * (b * c - a * d);
         }
@@ -1011,46 +1011,46 @@ complex<float>::operator/=(const complex& rhs)
 }
 template <>
 complex<float>&
-complex<float>::operator/=(const complex<double>& rhs)
+complex<float>::operator/= (const complex<double>& rhs)
 {
     int   ilogbw = 0;
     float a = re_;
     float b = im_;
     float c = (float)rhs.real();
     float d = (float)rhs.imag();
-    float logbw = logbf(fmaxf(fabsf(c), fabsf(d)));
-    if (isfinite(logbw))
+    float logbw = logbf (fmaxf (fabsf (c), fabsf (d)));
+    if (isfinite (logbw))
     {
         ilogbw = (int)logbw;
-        c = scalbnf(c, -ilogbw);
-        d = scalbnf(d, -ilogbw);
+        c = scalbnf (c, -ilogbw);
+        d = scalbnf (d, -ilogbw);
     }
     float denom = c * c + d * d;
-    re_ = scalbnf((a * c + b * d) / denom, -ilogbw);
-    im_ = scalbnf((b * c - a * d) / denom, -ilogbw);
+    re_ = scalbnf ((a * c + b * d) / denom, -ilogbw);
+    im_ = scalbnf ((b * c - a * d) / denom, -ilogbw);
 
     // Recover infinities and zeros that computed
     // as NaN+iNaN; the only cases are non-zero/zero,
     // infinite/finite, and finite/infinite, ...
 
-    if (isnan(re_) && isnan(im_))
+    if (isnan (re_) && isnan (im_))
     {
-        if ((denom == 0) && (!isnan(a) || !isnan(b)))
+        if ((denom == 0) && (!isnan (a) || !isnan (b)))
         {
-            re_ = copysignf(HUGE_VALF, c) * a;
-            im_ = copysignf(HUGE_VALF, c) * b;
+            re_ = copysignf (HUGE_VALF, c) * a;
+            im_ = copysignf (HUGE_VALF, c) * b;
         }
-        else if ((isinf(a) || isinf(b)) && isfinite(c) && isfinite(d))
+        else if ((isinf (a) || isinf (b)) && isfinite (c) && isfinite (d))
         {
-            a = copysignf(isinf(a) ? 1.0F : 0.0F, a);
-            b = copysignf(isinf(b) ? 1.0F : 0.0F, b);
-            re_ = copysignf(HUGE_VALF, (a * c + b * d));
-            im_ = copysignf(HUGE_VALF, (b * c - a * d));
+            a = copysignf (isinf (a) ? 1.0F : 0.0F, a);
+            b = copysignf (isinf (b) ? 1.0F : 0.0F, b);
+            re_ = copysignf (HUGE_VALF, (a * c + b * d));
+            im_ = copysignf (HUGE_VALF, (b * c - a * d));
         }
-        else if (isinf(logbw) && isfinite(a) && isfinite(b))
+        else if (isinf (logbw) && isfinite (a) && isfinite (b))
         {
-            c = copysignf(isinf(c) ? 1.0F : 0.0F, c);
-            d = copysignf(isinf(d) ? 1.0F : 0.0F, d);
+            c = copysignf (isinf (c) ? 1.0F : 0.0F, c);
+            d = copysignf (isinf (d) ? 1.0F : 0.0F, d);
             re_ = 0.0F * (a * c + b * d);
             im_ = 0.0F * (b * c - a * d);
         }
@@ -1059,46 +1059,46 @@ complex<float>::operator/=(const complex<double>& rhs)
 }
 template <>
 complex<float>&
-complex<float>::operator/=(const complex<long double>& rhs)
+complex<float>::operator/= (const complex<long double>& rhs)
 {
     int   ilogbw = 0;
     float a = re_;
     float b = im_;
     float c = (float)rhs.real();
     float d = (float)rhs.imag();
-    float logbw = logbf(fmaxf(fabsf(c), fabsf(d)));
-    if (isfinite(logbw))
+    float logbw = logbf (fmaxf (fabsf (c), fabsf (d)));
+    if (isfinite (logbw))
     {
         ilogbw = (int)logbw;
-        c = scalbnf(c, -ilogbw);
-        d = scalbnf(d, -ilogbw);
+        c = scalbnf (c, -ilogbw);
+        d = scalbnf (d, -ilogbw);
     }
     float denom = c * c + d * d;
-    re_ = scalbnf((a * c + b * d) / denom, -ilogbw);
-    im_ = scalbnf((b * c - a * d) / denom, -ilogbw);
+    re_ = scalbnf ((a * c + b * d) / denom, -ilogbw);
+    im_ = scalbnf ((b * c - a * d) / denom, -ilogbw);
 
     // Recover infinities and zeros that computed
     // as NaN+iNaN; the only cases are non-zero/zero,
     // infinite/finite, and finite/infinite, ...
 
-    if (isnan(re_) && isnan(im_))
+    if (isnan (re_) && isnan (im_))
     {
-        if ((denom == 0) && (!isnan(a) || !isnan(b)))
+        if ((denom == 0) && (!isnan (a) || !isnan (b)))
         {
-            re_ = copysignf(HUGE_VALF, c) * a;
-            im_ = copysignf(HUGE_VALF, c) * b;
+            re_ = copysignf (HUGE_VALF, c) * a;
+            im_ = copysignf (HUGE_VALF, c) * b;
         }
-        else if ((isinf(a) || isinf(b)) && isfinite(c) && isfinite(d))
+        else if ((isinf (a) || isinf (b)) && isfinite (c) && isfinite (d))
         {
-            a = copysignf(isinf(a) ? 1.0F : 0.0F, a);
-            b = copysignf(isinf(b) ? 1.0F : 0.0F, b);
-            re_ = copysignf(HUGE_VALF, (a * c + b * d));
-            im_ = copysignf(HUGE_VALF, (b * c - a * d));
+            a = copysignf (isinf (a) ? 1.0F : 0.0F, a);
+            b = copysignf (isinf (b) ? 1.0F : 0.0F, b);
+            re_ = copysignf (HUGE_VALF, (a * c + b * d));
+            im_ = copysignf (HUGE_VALF, (b * c - a * d));
         }
-        else if (isinf(logbw) && isfinite(a) && isfinite(b))
+        else if (isinf (logbw) && isfinite (a) && isfinite (b))
         {
-            c = copysignf(isinf(c) ? 1.0F : 0.0F, c);
-            d = copysignf(isinf(d) ? 1.0F : 0.0F, d);
+            c = copysignf (isinf (c) ? 1.0F : 0.0F, c);
+            d = copysignf (isinf (d) ? 1.0F : 0.0F, d);
             re_ = 0.0F * (a * c + b * d);
             im_ = 0.0F * (b * c - a * d);
         }
@@ -1107,46 +1107,46 @@ complex<float>::operator/=(const complex<long double>& rhs)
 }
 template <>
 complex<double>&
-complex<double>::operator/=(const complex& rhs)
+complex<double>::operator/= (const complex& rhs)
 {
     int    ilogbw = 0;
     double a = re_;
     double b = im_;
     double c = rhs.real();
     double d = rhs.imag();
-    double logbw = logb(fmax(fabs(c), fabs(d)));
-    if (isfinite(logbw))
+    double logbw = logb (fmax (fabs (c), fabs (d)));
+    if (isfinite (logbw))
     {
         ilogbw = (int)logbw;
-        c = scalbn(c, -ilogbw);
-        d = scalbn(d, -ilogbw);
+        c = scalbn (c, -ilogbw);
+        d = scalbn (d, -ilogbw);
     }
     double denom = c * c + d * d;
-    re_ = scalbn((a * c + b * d) / denom, -ilogbw);
-    im_ = scalbn((b * c - a * d) / denom, -ilogbw);
+    re_ = scalbn ((a * c + b * d) / denom, -ilogbw);
+    im_ = scalbn ((b * c - a * d) / denom, -ilogbw);
 
     // Recover infinities and zeros that computed
     // as NaN+iNaN; the only cases are non-zero/zero,
     // infinite/finite, and finite/infinite, ...
 
-    if (isnan(re_) && isnan(im_))
+    if (isnan (re_) && isnan (im_))
     {
-        if ((denom == 0) && (!isnan(a) || !isnan(b)))
+        if ((denom == 0) && (!isnan (a) || !isnan (b)))
         {
-            re_ = copysign(HUGE_VAL, c) * a;
-            im_ = copysign(HUGE_VAL, c) * b;
+            re_ = copysign (HUGE_VAL, c) * a;
+            im_ = copysign (HUGE_VAL, c) * b;
         }
-        else if ((isinf(a) || isinf(b)) && isfinite(c) && isfinite(d))
+        else if ((isinf (a) || isinf (b)) && isfinite (c) && isfinite (d))
         {
-            a = copysign(isinf(a) ? 1.0 : 0.0, a);
-            b = copysign(isinf(b) ? 1.0 : 0.0, b);
-            re_ = copysign(HUGE_VAL, (a * c + b * d));
-            im_ = copysign(HUGE_VAL, (b * c - a * d));
+            a = copysign (isinf (a) ? 1.0 : 0.0, a);
+            b = copysign (isinf (b) ? 1.0 : 0.0, b);
+            re_ = copysign (HUGE_VAL, (a * c + b * d));
+            im_ = copysign (HUGE_VAL, (b * c - a * d));
         }
-        else if (isinf(logbw) && isfinite(a) && isfinite(b))
+        else if (isinf (logbw) && isfinite (a) && isfinite (b))
         {
-            c = copysign(isinf(c) ? 1.0 : 0.0, c);
-            d = copysign(isinf(d) ? 1.0 : 0.0, d);
+            c = copysign (isinf (c) ? 1.0 : 0.0, c);
+            d = copysign (isinf (d) ? 1.0 : 0.0, d);
             re_ = 0.0 * (a * c + b * d);
             im_ = 0.0 * (b * c - a * d);
         }
@@ -1155,46 +1155,46 @@ complex<double>::operator/=(const complex& rhs)
 }
 template <>
 complex<double>&
-complex<double>::operator/=(const complex<float>& rhs)
+complex<double>::operator/= (const complex<float>& rhs)
 {
     int    ilogbw = 0;
     double a = re_;
     double b = im_;
     double c = rhs.real();
     double d = rhs.imag();
-    double logbw = logb(fmax(fabs(c), fabs(d)));
-    if (isfinite(logbw))
+    double logbw = logb (fmax (fabs (c), fabs (d)));
+    if (isfinite (logbw))
     {
         ilogbw = (int)logbw;
-        c = scalbn(c, -ilogbw);
-        d = scalbn(d, -ilogbw);
+        c = scalbn (c, -ilogbw);
+        d = scalbn (d, -ilogbw);
     }
     double denom = c * c + d * d;
-    re_ = scalbn((a * c + b * d) / denom, -ilogbw);
-    im_ = scalbn((b * c - a * d) / denom, -ilogbw);
+    re_ = scalbn ((a * c + b * d) / denom, -ilogbw);
+    im_ = scalbn ((b * c - a * d) / denom, -ilogbw);
 
     // Recover infinities and zeros that computed
     // as NaN+iNaN; the only cases are non-zero/zero,
     // infinite/finite, and finite/infinite, ...
 
-    if (isnan(re_) && isnan(im_))
+    if (isnan (re_) && isnan (im_))
     {
-        if ((denom == 0) && (!isnan(a) || !isnan(b)))
+        if ((denom == 0) && (!isnan (a) || !isnan (b)))
         {
-            re_ = copysign(HUGE_VAL, c) * a;
-            im_ = copysign(HUGE_VAL, c) * b;
+            re_ = copysign (HUGE_VAL, c) * a;
+            im_ = copysign (HUGE_VAL, c) * b;
         }
-        else if ((isinf(a) || isinf(b)) && isfinite(c) && isfinite(d))
+        else if ((isinf (a) || isinf (b)) && isfinite (c) && isfinite (d))
         {
-            a = copysign(isinf(a) ? 1.0 : 0.0, a);
-            b = copysign(isinf(b) ? 1.0 : 0.0, b);
-            re_ = copysign(HUGE_VAL, (a * c + b * d));
-            im_ = copysign(HUGE_VAL, (b * c - a * d));
+            a = copysign (isinf (a) ? 1.0 : 0.0, a);
+            b = copysign (isinf (b) ? 1.0 : 0.0, b);
+            re_ = copysign (HUGE_VAL, (a * c + b * d));
+            im_ = copysign (HUGE_VAL, (b * c - a * d));
         }
-        else if (isinf(logbw) && isfinite(a) && isfinite(b))
+        else if (isinf (logbw) && isfinite (a) && isfinite (b))
         {
-            c = copysign(isinf(c) ? 1.0 : 0.0, c);
-            d = copysign(isinf(d) ? 1.0 : 0.0, d);
+            c = copysign (isinf (c) ? 1.0 : 0.0, c);
+            d = copysign (isinf (d) ? 1.0 : 0.0, d);
             re_ = 0.0 * (a * c + b * d);
             im_ = 0.0 * (b * c - a * d);
         }
@@ -1203,46 +1203,46 @@ complex<double>::operator/=(const complex<float>& rhs)
 }
 template <>
 complex<double>&
-complex<double>::operator/=(const complex<long double>& rhs)
+complex<double>::operator/= (const complex<long double>& rhs)
 {
     int    ilogbw = 0;
     double a = re_;
     double b = im_;
     double c = (double)rhs.real();
     double d = (double)rhs.imag();
-    double logbw = logb(fmax(fabs(c), fabs(d)));
-    if (isfinite(logbw))
+    double logbw = logb (fmax (fabs (c), fabs (d)));
+    if (isfinite (logbw))
     {
         ilogbw = (int)logbw;
-        c = scalbn(c, -ilogbw);
-        d = scalbn(d, -ilogbw);
+        c = scalbn (c, -ilogbw);
+        d = scalbn (d, -ilogbw);
     }
     double denom = c * c + d * d;
-    re_ = scalbn((a * c + b * d) / denom, -ilogbw);
-    im_ = scalbn((b * c - a * d) / denom, -ilogbw);
+    re_ = scalbn ((a * c + b * d) / denom, -ilogbw);
+    im_ = scalbn ((b * c - a * d) / denom, -ilogbw);
 
     // Recover infinities and zeros that computed
     // as NaN+iNaN; the only cases are non-zero/zero,
     // infinite/finite, and finite/infinite, ...
 
-    if (isnan(re_) && isnan(im_))
+    if (isnan (re_) && isnan (im_))
     {
-        if ((denom == 0) && (!isnan(a) || !isnan(b)))
+        if ((denom == 0) && (!isnan (a) || !isnan (b)))
         {
-            re_ = copysign(HUGE_VAL, c) * a;
-            im_ = copysign(HUGE_VAL, c) * b;
+            re_ = copysign (HUGE_VAL, c) * a;
+            im_ = copysign (HUGE_VAL, c) * b;
         }
-        else if ((isinf(a) || isinf(b)) && isfinite(c) && isfinite(d))
+        else if ((isinf (a) || isinf (b)) && isfinite (c) && isfinite (d))
         {
-            a = copysign(isinf(a) ? 1.0 : 0.0, a);
-            b = copysign(isinf(b) ? 1.0 : 0.0, b);
-            re_ = copysign(HUGE_VAL, (a * c + b * d));
-            im_ = copysign(HUGE_VAL, (b * c - a * d));
+            a = copysign (isinf (a) ? 1.0 : 0.0, a);
+            b = copysign (isinf (b) ? 1.0 : 0.0, b);
+            re_ = copysign (HUGE_VAL, (a * c + b * d));
+            im_ = copysign (HUGE_VAL, (b * c - a * d));
         }
-        else if (isinf(logbw) && isfinite(a) && isfinite(b))
+        else if (isinf (logbw) && isfinite (a) && isfinite (b))
         {
-            c = copysign(isinf(c) ? 1.0 : 0.0, c);
-            d = copysign(isinf(d) ? 1.0 : 0.0, d);
+            c = copysign (isinf (c) ? 1.0 : 0.0, c);
+            d = copysign (isinf (d) ? 1.0 : 0.0, d);
             re_ = 0.0 * (a * c + b * d);
             im_ = 0.0 * (b * c - a * d);
         }
@@ -1251,46 +1251,46 @@ complex<double>::operator/=(const complex<long double>& rhs)
 }
 template <>
 complex<long double>&
-complex<long double>::operator/=(const complex& rhs)
+complex<long double>::operator/= (const complex& rhs)
 {
     int         ilogbw = 0;
     long double a = re_;
     long double b = im_;
     long double c = rhs.real();
     long double d = rhs.imag();
-    long double logbw = logbl(fmaxl(fabsl(c), fabsl(d)));
-    if (isfinite(logbw))
+    long double logbw = logbl (fmaxl (fabsl (c), fabsl (d)));
+    if (isfinite (logbw))
     {
         ilogbw = (int)logbw;
-        c = scalbnl(c, -ilogbw);
-        d = scalbnl(d, -ilogbw);
+        c = scalbnl (c, -ilogbw);
+        d = scalbnl (d, -ilogbw);
     }
     long double denom = c * c + d * d;
-    re_ = scalbnl((a * c + b * d) / denom, -ilogbw);
-    im_ = scalbnl((b * c - a * d) / denom, -ilogbw);
+    re_ = scalbnl ((a * c + b * d) / denom, -ilogbw);
+    im_ = scalbnl ((b * c - a * d) / denom, -ilogbw);
 
     // Recover infinities and zeros that computed
     // as NaN+iNaN; the only cases are non-zero/zero,
     // infinite/finite, and finite/infinite, ...
 
-    if (isnan(re_) && isnan(im_))
+    if (isnan (re_) && isnan (im_))
     {
-        if ((denom == 0) && (!isnan(a) || !isnan(b)))
+        if ((denom == 0) && (!isnan (a) || !isnan (b)))
         {
-            re_ = copysignl(HUGE_VALL, c) * a;
-            im_ = copysignl(HUGE_VALL, c) * b;
+            re_ = copysignl (HUGE_VALL, c) * a;
+            im_ = copysignl (HUGE_VALL, c) * b;
         }
-        else if ((isinf(a) || isinf(b)) && isfinite(c) && isfinite(d))
+        else if ((isinf (a) || isinf (b)) && isfinite (c) && isfinite (d))
         {
-            a = copysignl(isinf(a) ? 1.0L : 0.0L, a);
-            b = copysignl(isinf(b) ? 1.0L : 0.0L, b);
-            re_ = copysignl(HUGE_VALL, (a * c + b * d));
-            im_ = copysignl(HUGE_VALL, (b * c - a * d));
+            a = copysignl (isinf (a) ? 1.0L : 0.0L, a);
+            b = copysignl (isinf (b) ? 1.0L : 0.0L, b);
+            re_ = copysignl (HUGE_VALL, (a * c + b * d));
+            im_ = copysignl (HUGE_VALL, (b * c - a * d));
         }
-        else if (isinf(logbw) && isfinite(a) && isfinite(b))
+        else if (isinf (logbw) && isfinite (a) && isfinite (b))
         {
-            c = copysignl(isinf(c) ? 1.0L : 0.0L, c);
-            d = copysignl(isinf(d) ? 1.0L : 0.0L, d);
+            c = copysignl (isinf (c) ? 1.0L : 0.0L, c);
+            d = copysignl (isinf (d) ? 1.0L : 0.0L, d);
             re_ = 0.0L * (a * c + b * d);
             im_ = 0.0L * (b * c - a * d);
         }
@@ -1299,46 +1299,46 @@ complex<long double>::operator/=(const complex& rhs)
 }
 template <>
 complex<long double>&
-complex<long double>::operator/=(const complex<float>& rhs)
+complex<long double>::operator/= (const complex<float>& rhs)
 {
     int         ilogbw = 0;
     long double a = re_;
     long double b = im_;
     long double c = rhs.real();
     long double d = rhs.imag();
-    long double logbw = logbl(fmaxl(fabsl(c), fabsl(d)));
-    if (isfinite(logbw))
+    long double logbw = logbl (fmaxl (fabsl (c), fabsl (d)));
+    if (isfinite (logbw))
     {
         ilogbw = (int)logbw;
-        c = scalbnl(c, -ilogbw);
-        d = scalbnl(d, -ilogbw);
+        c = scalbnl (c, -ilogbw);
+        d = scalbnl (d, -ilogbw);
     }
     long double denom = c * c + d * d;
-    re_ = scalbnl((a * c + b * d) / denom, -ilogbw);
-    im_ = scalbnl((b * c - a * d) / denom, -ilogbw);
+    re_ = scalbnl ((a * c + b * d) / denom, -ilogbw);
+    im_ = scalbnl ((b * c - a * d) / denom, -ilogbw);
 
     // Recover infinities and zeros that computed
     // as NaN+iNaN; the only cases are non-zero/zero,
     // infinite/finite, and finite/infinite, ...
 
-    if (isnan(re_) && isnan(im_))
+    if (isnan (re_) && isnan (im_))
     {
-        if ((denom == 0) && (!isnan(a) || !isnan(b)))
+        if ((denom == 0) && (!isnan (a) || !isnan (b)))
         {
-            re_ = copysignl(HUGE_VALL, c) * a;
-            im_ = copysignl(HUGE_VALL, c) * b;
+            re_ = copysignl (HUGE_VALL, c) * a;
+            im_ = copysignl (HUGE_VALL, c) * b;
         }
-        else if ((isinf(a) || isinf(b)) && isfinite(c) && isfinite(d))
+        else if ((isinf (a) || isinf (b)) && isfinite (c) && isfinite (d))
         {
-            a = copysignl(isinf(a) ? 1.0L : 0.0L, a);
-            b = copysignl(isinf(b) ? 1.0L : 0.0L, b);
-            re_ = copysignl(HUGE_VALL, (a * c + b * d));
-            im_ = copysignl(HUGE_VALL, (b * c - a * d));
+            a = copysignl (isinf (a) ? 1.0L : 0.0L, a);
+            b = copysignl (isinf (b) ? 1.0L : 0.0L, b);
+            re_ = copysignl (HUGE_VALL, (a * c + b * d));
+            im_ = copysignl (HUGE_VALL, (b * c - a * d));
         }
-        else if (isinf(logbw) && isfinite(a) && isfinite(b))
+        else if (isinf (logbw) && isfinite (a) && isfinite (b))
         {
-            c = copysignl(isinf(c) ? 1.0L : 0.0L, c);
-            d = copysignl(isinf(d) ? 1.0L : 0.0L, d);
+            c = copysignl (isinf (c) ? 1.0L : 0.0L, c);
+            d = copysignl (isinf (d) ? 1.0L : 0.0L, d);
             re_ = 0.0L * (a * c + b * d);
             im_ = 0.0L * (b * c - a * d);
         }
@@ -1347,46 +1347,46 @@ complex<long double>::operator/=(const complex<float>& rhs)
 }
 template <>
 complex<long double>&
-complex<long double>::operator/=(const complex<double>& rhs)
+complex<long double>::operator/= (const complex<double>& rhs)
 {
     int         ilogbw = 0;
     long double a = re_;
     long double b = im_;
     long double c = rhs.real();
     long double d = rhs.imag();
-    long double logbw = logbl(fmaxl(fabsl(c), fabsl(d)));
-    if (isfinite(logbw))
+    long double logbw = logbl (fmaxl (fabsl (c), fabsl (d)));
+    if (isfinite (logbw))
     {
         ilogbw = (int)logbw;
-        c = scalbnl(c, -ilogbw);
-        d = scalbnl(d, -ilogbw);
+        c = scalbnl (c, -ilogbw);
+        d = scalbnl (d, -ilogbw);
     }
     long double denom = c * c + d * d;
-    re_ = scalbnl((a * c + b * d) / denom, -ilogbw);
-    im_ = scalbnl((b * c - a * d) / denom, -ilogbw);
+    re_ = scalbnl ((a * c + b * d) / denom, -ilogbw);
+    im_ = scalbnl ((b * c - a * d) / denom, -ilogbw);
 
     // Recover infinities and zeros that computed
     // as NaN+iNaN; the only cases are non-zero/zero,
     // infinite/finite, and finite/infinite, ...
 
-    if (isnan(re_) && isnan(im_))
+    if (isnan (re_) && isnan (im_))
     {
-        if ((denom == 0) && (!isnan(a) || !isnan(b)))
+        if ((denom == 0) && (!isnan (a) || !isnan (b)))
         {
-            re_ = copysignl(HUGE_VALL, c) * a;
-            im_ = copysignl(HUGE_VALL, c) * b;
+            re_ = copysignl (HUGE_VALL, c) * a;
+            im_ = copysignl (HUGE_VALL, c) * b;
         }
-        else if ((isinf(a) || isinf(b)) && isfinite(c) && isfinite(d))
+        else if ((isinf (a) || isinf (b)) && isfinite (c) && isfinite (d))
         {
-            a = copysignl(isinf(a) ? 1.0L : 0.0L, a);
-            b = copysignl(isinf(b) ? 1.0L : 0.0L, b);
-            re_ = copysignl(HUGE_VALL, (a * c + b * d));
-            im_ = copysignl(HUGE_VALL, (b * c - a * d));
+            a = copysignl (isinf (a) ? 1.0L : 0.0L, a);
+            b = copysignl (isinf (b) ? 1.0L : 0.0L, b);
+            re_ = copysignl (HUGE_VALL, (a * c + b * d));
+            im_ = copysignl (HUGE_VALL, (b * c - a * d));
         }
-        else if (isinf(logbw) && isfinite(a) && isfinite(b))
+        else if (isinf (logbw) && isfinite (a) && isfinite (b))
         {
-            c = copysignl(isinf(c) ? 1.0L : 0.0L, c);
-            d = copysignl(isinf(d) ? 1.0L : 0.0L, d);
+            c = copysignl (isinf (c) ? 1.0L : 0.0L, c);
+            d = copysignl (isinf (d) ? 1.0L : 0.0L, d);
             re_ = 0.0L * (a * c + b * d);
             im_ = 0.0L * (b * c - a * d);
         }

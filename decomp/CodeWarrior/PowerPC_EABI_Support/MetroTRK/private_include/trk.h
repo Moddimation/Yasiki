@@ -251,7 +251,7 @@ typedef struct ProcessorRestoreFlags_PPC
     u8 DEC;
     u8 linker_padding[0x9 - 0x2];
 } ProcessorRestoreFlags_PPC;
-void TRKSaveExtended1Block();
+void TRKSaveExtended1Block ();
 
 #define SPR_XER                          1
 #define SPR_LR                           8

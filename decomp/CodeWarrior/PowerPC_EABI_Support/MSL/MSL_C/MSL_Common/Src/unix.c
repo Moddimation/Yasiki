@@ -25,7 +25,7 @@
  */
 _MSL_POSIX_PARAMS __new_umask = 0; /*- cc 000517 -*/ /*- cc 010622 -*/
 _MSL_POSIX_PARAMS
-umask(_MSL_POSIX_PARAMS __pmode)                     /*- cc 010622 -*/
+umask (_MSL_POSIX_PARAMS __pmode)                    /*- cc 010622 -*/
 {
     _MSL_POSIX_PARAMS __oldmask = __new_umask;       /*- cc 010622 -*/
 
@@ -40,7 +40,7 @@ umask(_MSL_POSIX_PARAMS __pmode)                     /*- cc 010622 -*/
  */
 
 int
-fileno(FILE* stream)
+fileno (FILE* stream)
 {
     return (stream->handle);
 }

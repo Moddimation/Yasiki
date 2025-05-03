@@ -28,41 +28,47 @@ _MSL_BEGIN_NAMESPACE_STD  /*- cc 010410 -*/
     _MSL_BEGIN_EXTERN_C   /*- cc 010410 -*/
 
 #ifndef WEOF
-#define WEOF (__std(wint_t))(0xFFFF)
+#define WEOF (__std (wint_t)) (0xFFFF)
 #endif                                 /* ifndef WEOF */
 
 #ifdef __cplusplus
         _MSL_END_EXTERN_C /*- cc 010410 -*/
     inline int
-    wctob(wint_t c)
+    wctob (wint_t c)
 {
     return ((c & 0xFF00) ? EOF : (int)c);
 } /*- mm 980625 -*/
 inline wint_t
-btowc(char c)
+btowc (char c)
 {
     return ((c & 0x8000) ? WEOF : (wint_t)c);
 } /*- mm 010529 -*/
-_MSL_BEGIN_EXTERN_C                                                /*- cc 010410 -*/
+_MSL_BEGIN_EXTERN_C                                                 /*- cc 010410 -*/
 #else                                  /* !__cplusplus */
-        _MSL_IMP_EXP_C int wctob(wint_t); /*- mm 980625 -*/
-_MSL_IMP_EXP_C wint_t      btowc(char c); /*- mm 010529 -*/
+        _MSL_IMP_EXP_C int wctob (wint_t); /*- mm 980625 -*/
+_MSL_IMP_EXP_C wint_t      btowc (char c); /*- mm 010529 -*/
 #endif /* __cplusplus */               /*- mm 990401 -*/
 
     _MSL_IMP_EXP_C size_t
-    mbrlen(const char* s, size_t n, mbstate_t* ps);                /*- mm 010529 -*/
+    mbrlen (const char* s, size_t n, mbstate_t* ps);                /*- mm 010529 -*/
 #ifndef __NO_WIDE_CHAR                 /*- mm 010529 -*/
-_MSL_IMP_EXP_C size_t mbrtowc(wchar_t* pwc, const char* s, size_t n,
-                              mbstate_t* ps);                      /*- mm 010529 -*/
-_MSL_IMP_EXP_C size_t wcrtomb(char* s, wchar_t wc, mbstate_t* ps); /*- mm 010529 -*/
-_MSL_IMP_EXP_C size_t mbsrtowcs(wchar_t* dst, const char** src, size_t len,
-                                mbstate_t* ps);                    /*- mm 010529 -*/
-_MSL_IMP_EXP_C size_t wcsrtombs(char* dst, const wchar_t** src, size_t len,
-                                mbstate_t* ps);                    /*- mm 010529 -*/
+_MSL_IMP_EXP_C size_t mbrtowc (wchar_t*    pwc,
+                               const char* s,
+                               size_t      n,
+                               mbstate_t*  ps);                      /*- mm 010529 -*/
+_MSL_IMP_EXP_C size_t wcrtomb (char* s, wchar_t wc, mbstate_t* ps); /*- mm 010529 -*/
+_MSL_IMP_EXP_C size_t mbsrtowcs (wchar_t*     dst,
+                                 const char** src,
+                                 size_t       len,
+                                 mbstate_t*   ps);                    /*- mm 010529 -*/
+_MSL_IMP_EXP_C size_t wcsrtombs (char*           dst,
+                                 const wchar_t** src,
+                                 size_t          len,
+                                 mbstate_t*      ps);                    /*- mm 010529 -*/
 #endif                                 /*- mm 010529 -*/
 
-_MSL_END_EXTERN_C                                                  /*- cc 010410 -*/
-    _MSL_END_NAMESPACE_STD                                         /*- cc 010410 -*/
+_MSL_END_EXTERN_C                                                   /*- cc 010410 -*/
+    _MSL_END_NAMESPACE_STD                                          /*- cc 010410 -*/
 
 #endif                                 /* RC_INVOKED */
 

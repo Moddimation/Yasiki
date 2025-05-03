@@ -31,8 +31,8 @@ extern "C"
 #include <dolphin/os/OSThread.h>
 #include <dolphin/os/OSTime.h>
 
-u32 OSGetPhysicalMemSize(void);
-u32 OSGetConsoleSimulatedMemSize(void);
+u32 OSGetPhysicalMemSize (void);
+u32 OSGetConsoleSimulatedMemSize (void);
 
 // Upper words of the masks, since UIMM is only 16 bits
 #define OS_CACHED_REGION_PREFIX   0x8000
@@ -61,19 +61,19 @@ u32 __OSCoreClock : (OS_BASE_CACHED | 0x00FC);
 #define OSNanosecondsToTicks(nsec)   (((nsec) * (OS_TIMER_CLOCK / 125000)) / 8000)
 #define OSMicrosecondsToTicks(usec)  (((usec) * (OS_TIMER_CLOCK / 125000)) / 8)
 
-u32  OSGetConsoleType(void);
-void OSInit(void);
+u32  OSGetConsoleType (void);
+void OSInit (void);
 
-void* OSGetArenaHi(void);
-void* OSGetArenaLo(void);
-void  OSSetArenaHi(void*);
-void  OSSetArenaLo(void*);
-void* OSAllocFromArenaLo(u32 size, u32 align);
-void* OSAllocFromArenaHi(u32 size, u32 align);
+void* OSGetArenaHi (void);
+void* OSGetArenaLo (void);
+void  OSSetArenaHi (void*);
+void  OSSetArenaLo (void*);
+void* OSAllocFromArenaLo (u32 size, u32 align);
+void* OSAllocFromArenaHi (u32 size, u32 align);
 
-u32 OSGetPhysicalMemSize(void);
+u32 OSGetPhysicalMemSize (void);
 
-void __OSPSInit();
+void __OSPSInit ();
 typedef struct OSCalendarTime
 {
     int sec;                              ///< 0x00
@@ -89,13 +89,13 @@ typedef struct OSCalendarTime
 } OSCalendarTime;
 #include <dolphin/os/OSBootInfo.h>
 
-OSTick OSGetTick(void);
-OSTime OSGetTime(void);
-void   OSTicksToCalendarTime(OSTime ticks, OSCalendarTime* td);
-OSTime OSCalendarTimeToTicks(OSCalendarTime* td);
-BOOL   OSEnableInterrupts(void);
-BOOL   OSDisableInterrupts(void);
-BOOL   OSRestoreInterrupts(BOOL level);
+OSTick OSGetTick (void);
+OSTime OSGetTime (void);
+void   OSTicksToCalendarTime (OSTime ticks, OSCalendarTime* td);
+OSTime OSCalendarTimeToTicks (OSCalendarTime* td);
+BOOL   OSEnableInterrupts (void);
+BOOL   OSDisableInterrupts (void);
+BOOL   OSRestoreInterrupts (BOOL level);
 
 #define OS_CONSOLE_RETAIL2     0x00000002
 #define OS_CONSOLE_RETAIL1     0x00000001
@@ -110,21 +110,21 @@ BOOL   OSRestoreInterrupts(BOOL level);
 #define OS_SOUND_MODE_MONO     0
 #define OS_SOUND_MODE_STEREO   1
 
-u32  OSGetSoundMode(void);
-void OSSetSoundMode(u32 mode);
+u32  OSGetSoundMode (void);
+void OSSetSoundMode (u32 mode);
 
-void OSReport(char*, ...);
-void OSPanic(char* file, int line, char* msg, ...);
+void OSReport (char*, ...);
+void OSPanic (char* file, int line, char* msg, ...);
 
 #define OSRoundUp32B(x)   (((u32)(x) + 32 - 1) & ~(32 - 1))
 #define OSRoundDown32B(x) (((u32)(x)) & ~(32 - 1))
 
-void* OSPhysicalToCached(u32 paddr);
-void* OSPhysicalToUncached(u32 paddr);
-u32   OSCachedToPhysical(void* caddr);
-u32   OSUncachedToPhysical(void* ucaddr);
-void* OSCachedToUncached(void* caddr);
-void* OSUncachedToCached(void* ucaddr);
+void* OSPhysicalToCached (u32 paddr);
+void* OSPhysicalToUncached (u32 paddr);
+u32   OSCachedToPhysical (void* caddr);
+u32   OSUncachedToPhysical (void* ucaddr);
+void* OSCachedToUncached (void* caddr);
+void* OSUncachedToCached (void* ucaddr);
 #if !DEBUG
 #define OSPhysicalToCached(paddr)    ((void*)((u32)(OS_BASE_CACHED + (u32)(paddr))))
 #define OSPhysicalToUncached(paddr)  ((void*)((u32)(OS_BASE_UNCACHED + (u32)(paddr))))

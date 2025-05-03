@@ -41,9 +41,9 @@ enum MCC_SYSEVENT
     MCC_SYSEVENT_PING_RESULT = 4,
     MCC_SYSEVENT_FLUSH = 5,
 };
-typedef void (*MCC_CBEvent)(enum MCC_CHANNEL channel, u32, u32);
-typedef void (*MCC_CBSysEvent)(enum MCC_SYSEVENT sysEvent);
-typedef int  (*MCC_CBEnumDevices)(s32);
+typedef void (*MCC_CBEvent) (enum MCC_CHANNEL channel, u32, u32);
+typedef void (*MCC_CBSysEvent) (enum MCC_SYSEVENT sysEvent);
+typedef int  (*MCC_CBEnumDevices) (s32);
 typedef struct
 {
     u32 length;                          ///< 0x00
@@ -120,49 +120,55 @@ struct FIO_Finddata
     s8              filename[256];       ///< 0x24
 };
 // fio.c
-int  FIOInit(enum MCC_EXI exiChannel, enum MCC_CHANNEL chID, u8 blockSize);
-void FIOExit(void);
-int  FIOQuery(void);
-u8   FIOGetLastError();
-int  FIOFopen(const char* filename, u32 mode);
-int  FIOFclose(int handle);
-u32  FIOFread(int handle, void* data, u32 size);
-u32  FIOFwrite(int handle, void* data, u32 size);
-u32  FIOFseek(int handle, s32 offset, u32 mode);
-int  FIOFprintf(int handle, const char* format, ...);
-int  FIOFflush(int handle);
-int  FIOFstat(int handle, struct FIO_Stat* stat);
-int  FIOFerror(int handle);
-int  FIOFindFirst(const char* filename, struct FIO_Finddata* finddata);
-int  FIOFindNext(struct FIO_Finddata* finddata);
-u32  FIOGetAsyncBufferSize(void);
-int  FIOFreadAsync(int handle, void* data, u32 size);
-int  FIOFwriteAsync(int handle, void* data, u32 size);
-int  FIOCheckAsyncDone(u32* result);
+int  FIOInit (enum MCC_EXI exiChannel, enum MCC_CHANNEL chID, u8 blockSize);
+void FIOExit (void);
+int  FIOQuery (void);
+u8   FIOGetLastError ();
+int  FIOFopen (const char* filename, u32 mode);
+int  FIOFclose (int handle);
+u32  FIOFread (int handle, void* data, u32 size);
+u32  FIOFwrite (int handle, void* data, u32 size);
+u32  FIOFseek (int handle, s32 offset, u32 mode);
+int  FIOFprintf (int handle, const char* format, ...);
+int  FIOFflush (int handle);
+int  FIOFstat (int handle, struct FIO_Stat* stat);
+int  FIOFerror (int handle);
+int  FIOFindFirst (const char* filename, struct FIO_Finddata* finddata);
+int  FIOFindNext (struct FIO_Finddata* finddata);
+u32  FIOGetAsyncBufferSize (void);
+int  FIOFreadAsync (int handle, void* data, u32 size);
+int  FIOFwriteAsync (int handle, void* data, u32 size);
+int  FIOCheckAsyncDone (u32* result);
 
 // mcc.c
-int  MCCStreamOpen(enum MCC_CHANNEL chID, u8 blockSize);
-int  MCCStreamClose(enum MCC_CHANNEL chID);
-int  MCCStreamWrite(enum MCC_CHANNEL chID, void* data, u32 dataBlockSize);
-u32  MCCStreamRead(enum MCC_CHANNEL chID, void* data);
-int  MCCInit(enum MCC_EXI exiChannel, u8 timeout, MCC_CBSysEvent callbackSysEvent);
-void MCCExit(void);
-int  MCCPing(void);
-int  MCCEnumDevices(MCC_CBEnumDevices callbackEnumDevices);
-u8   MCCGetFreeBlocks(enum MCC_MODE mode);
-u8   MCCGetLastError(void);
-int  MCCGetChannelInfo(enum MCC_CHANNEL chID, MCC_Info* info);
-int  MCCGetConnectionStatus(enum MCC_CHANNEL chID, enum MCC_CONNECT* connect);
-int  MCCNotify(enum MCC_CHANNEL chID, u32 notify);
-u32  MCCSetChannelEventMask(enum MCC_CHANNEL chID, u32 event);
-int  MCCOpen(enum MCC_CHANNEL chID, u8 blockSize, MCC_CBEvent callbackEvent);
-int  MCCClose(enum MCC_CHANNEL chID);
-int  MCCLock(enum MCC_CHANNEL chID);
-int  MCCUnlock(enum MCC_CHANNEL chID);
-int  MCCRead(enum MCC_CHANNEL chID, u32 offset, void* data, s32 size,
-             enum MCC_SYNC_STATE async);
-int  MCCWrite(enum MCC_CHANNEL chID, u32 offset, void* data, s32 size,
+int  MCCStreamOpen (enum MCC_CHANNEL chID, u8 blockSize);
+int  MCCStreamClose (enum MCC_CHANNEL chID);
+int  MCCStreamWrite (enum MCC_CHANNEL chID, void* data, u32 dataBlockSize);
+u32  MCCStreamRead (enum MCC_CHANNEL chID, void* data);
+int  MCCInit (enum MCC_EXI exiChannel, u8 timeout, MCC_CBSysEvent callbackSysEvent);
+void MCCExit (void);
+int  MCCPing (void);
+int  MCCEnumDevices (MCC_CBEnumDevices callbackEnumDevices);
+u8   MCCGetFreeBlocks (enum MCC_MODE mode);
+u8   MCCGetLastError (void);
+int  MCCGetChannelInfo (enum MCC_CHANNEL chID, MCC_Info* info);
+int  MCCGetConnectionStatus (enum MCC_CHANNEL chID, enum MCC_CONNECT* connect);
+int  MCCNotify (enum MCC_CHANNEL chID, u32 notify);
+u32  MCCSetChannelEventMask (enum MCC_CHANNEL chID, u32 event);
+int  MCCOpen (enum MCC_CHANNEL chID, u8 blockSize, MCC_CBEvent callbackEvent);
+int  MCCClose (enum MCC_CHANNEL chID);
+int  MCCLock (enum MCC_CHANNEL chID);
+int  MCCUnlock (enum MCC_CHANNEL chID);
+int  MCCRead (enum MCC_CHANNEL    chID,
+              u32                 offset,
+              void*               data,
+              s32                 size,
               enum MCC_SYNC_STATE async);
-int  MCCCheckAsyncDone();
+int  MCCWrite (enum MCC_CHANNEL    chID,
+               u32                 offset,
+               void*               data,
+               s32                 size,
+               enum MCC_SYNC_STATE async);
+int  MCCCheckAsyncDone ();
 
 #endif // _DOLPHIN_MCC_H_

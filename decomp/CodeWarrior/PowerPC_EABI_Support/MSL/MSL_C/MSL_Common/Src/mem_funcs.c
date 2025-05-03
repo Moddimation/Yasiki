@@ -63,7 +63,7 @@
 #define deref_auto_inc(p) *++(p)
 #endif
 void
-__copy_mem(void* dst, const void* src, unsigned long n)
+__copy_mem (void* dst, const void* src, unsigned long n)
 {
     const char* p;
     char*       q;
@@ -72,11 +72,11 @@ __copy_mem(void* dst, const void* src, unsigned long n)
     {
         if ((((int)dst ^ (int)src)) & 3)
         {
-            __copy_longs_unaligned(dst, src, n);
+            __copy_longs_unaligned (dst, src, n);
         }
         else
         {
-            __copy_longs_aligned(dst, src, n);
+            __copy_longs_aligned (dst, src, n);
         }
 
         return;
@@ -97,7 +97,7 @@ __copy_mem(void* dst, const void* src, unsigned long n)
 #endif
 }
 void
-__move_mem(void* dst, const void* src, unsigned long n)
+__move_mem (void* dst, const void* src, unsigned long n)
 {
     const char* p;
     char*       q;
@@ -109,20 +109,20 @@ __move_mem(void* dst, const void* src, unsigned long n)
         {
             if (!rev)
             {
-                __copy_longs_unaligned(dst, src, n);
+                __copy_longs_unaligned (dst, src, n);
             }
             else
             {
-                __copy_longs_rev_unaligned(dst, src, n);
+                __copy_longs_rev_unaligned (dst, src, n);
             }
         }
         else if (!rev)
         {
-            __copy_longs_aligned(dst, src, n);
+            __copy_longs_aligned (dst, src, n);
         }
         else
         {
-            __copy_longs_rev_aligned(dst, src, n);
+            __copy_longs_rev_aligned (dst, src, n);
         }
 
         return;
@@ -155,7 +155,7 @@ __move_mem(void* dst, const void* src, unsigned long n)
     }
 }
 void
-__copy_longs_aligned(void* dst, const void* src, unsigned long n)
+__copy_longs_aligned (void* dst, const void* src, unsigned long n)
 {
 #if (__MOTO__ || __MIPS__)
     unsigned char* cps = ((unsigned char*)src);
@@ -178,7 +178,7 @@ __copy_longs_aligned(void* dst, const void* src, unsigned long n)
         n -= i;
 
         do {
-            deref_auto_inc(cpd) = deref_auto_inc(cps);
+            deref_auto_inc (cpd) = deref_auto_inc (cps);
         }
         while (--i);
     }
@@ -193,14 +193,14 @@ __copy_longs_aligned(void* dst, const void* src, unsigned long n)
     if (i)
     {
         do {
-            deref_auto_inc(lpd) = deref_auto_inc(lps);
-            deref_auto_inc(lpd) = deref_auto_inc(lps);
-            deref_auto_inc(lpd) = deref_auto_inc(lps);
-            deref_auto_inc(lpd) = deref_auto_inc(lps);
-            deref_auto_inc(lpd) = deref_auto_inc(lps);
-            deref_auto_inc(lpd) = deref_auto_inc(lps);
-            deref_auto_inc(lpd) = deref_auto_inc(lps);
-            deref_auto_inc(lpd) = deref_auto_inc(lps);
+            deref_auto_inc (lpd) = deref_auto_inc (lps);
+            deref_auto_inc (lpd) = deref_auto_inc (lps);
+            deref_auto_inc (lpd) = deref_auto_inc (lps);
+            deref_auto_inc (lpd) = deref_auto_inc (lps);
+            deref_auto_inc (lpd) = deref_auto_inc (lps);
+            deref_auto_inc (lpd) = deref_auto_inc (lps);
+            deref_auto_inc (lpd) = deref_auto_inc (lps);
+            deref_auto_inc (lpd) = deref_auto_inc (lps);
         }
         while (--i);
     }
@@ -210,7 +210,7 @@ __copy_longs_aligned(void* dst, const void* src, unsigned long n)
     if (i)
     {
         do {
-            deref_auto_inc(lpd) = deref_auto_inc(lps);
+            deref_auto_inc (lpd) = deref_auto_inc (lps);
         }
         while (--i);
     }
@@ -225,7 +225,7 @@ __copy_longs_aligned(void* dst, const void* src, unsigned long n)
     if (n)
     {
         do {
-            deref_auto_inc(cpd) = deref_auto_inc(cps);
+            deref_auto_inc (cpd) = deref_auto_inc (cps);
         }
         while (--n);
     }
@@ -233,7 +233,7 @@ __copy_longs_aligned(void* dst, const void* src, unsigned long n)
     return;
 }
 void
-__copy_longs_rev_aligned(void* dst, const void* src, unsigned long n)
+__copy_longs_rev_aligned (void* dst, const void* src, unsigned long n)
 {
 #if (__MOTO__ || __MIPS__)
     unsigned char* cps = ((unsigned char*)src);
@@ -298,7 +298,7 @@ __copy_longs_rev_aligned(void* dst, const void* src, unsigned long n)
     return;
 }
 void
-__copy_longs_unaligned(void* dst, const void* src, unsigned long n)
+__copy_longs_unaligned (void* dst, const void* src, unsigned long n)
 {
 #if (__MOTO__ || __MIPS__)
     unsigned char* cps = ((unsigned char*)src);
@@ -322,7 +322,7 @@ __copy_longs_unaligned(void* dst, const void* src, unsigned long n)
         n -= i;
 
         do {
-            deref_auto_inc(cpd) = deref_auto_inc(cps);
+            deref_auto_inc (cpd) = deref_auto_inc (cps);
         }
         while (--i);
     }
@@ -345,20 +345,20 @@ __copy_longs_unaligned(void* dst, const void* src, unsigned long n)
 
     i = n >> 3;
 
-    v1 = deref_auto_inc(lps);
+    v1 = deref_auto_inc (lps);
 
     do {
-        v2 = deref_auto_inc(lps);
-        deref_auto_inc(lpd) = (v1 << left_shift) | (v2 >> right_shift);
-        v1 = deref_auto_inc(lps);
-        deref_auto_inc(lpd) = (v2 << left_shift) | (v1 >> right_shift);
+        v2 = deref_auto_inc (lps);
+        deref_auto_inc (lpd) = (v1 << left_shift) | (v2 >> right_shift);
+        v1 = deref_auto_inc (lps);
+        deref_auto_inc (lpd) = (v2 << left_shift) | (v1 >> right_shift);
     }
     while (--i);
 
     if (n & 4)
     {
-        v2 = deref_auto_inc(lps);
-        deref_auto_inc(lpd) = (v1 << left_shift) | (v2 >> right_shift);
+        v2 = deref_auto_inc (lps);
+        deref_auto_inc (lpd) = (v1 << left_shift) | (v2 >> right_shift);
     }
 
 #if __POWERPC__
@@ -372,7 +372,7 @@ __copy_longs_unaligned(void* dst, const void* src, unsigned long n)
     {
         cps -= 4 - src_offset;
         do {
-            deref_auto_inc(cpd) = deref_auto_inc(cps);
+            deref_auto_inc (cpd) = deref_auto_inc (cps);
         }
         while (--n);
     }
@@ -380,7 +380,7 @@ __copy_longs_unaligned(void* dst, const void* src, unsigned long n)
     return;
 }
 void
-__copy_longs_rev_unaligned(void* dst, const void* src, unsigned long n)
+__copy_longs_rev_unaligned (void* dst, const void* src, unsigned long n)
 {
 #if (__MOTO__ || __MIPS__)
     unsigned char* cps = ((unsigned char*)src);
@@ -447,7 +447,7 @@ __copy_longs_rev_unaligned(void* dst, const void* src, unsigned long n)
 }
 #if ((!__PPC_EABI__) && !defined(__m56800__) && !defined(__m56800E__))
 void
-__fill_mem(void* dst, int val, unsigned long n)
+__fill_mem (void* dst, int val, unsigned long n)
 {
 #if (__MOTO__ || __MIPS__)
     /*	unsigned char *	cps	= ((unsigned char *) src);	*/
@@ -475,7 +475,7 @@ __fill_mem(void* dst, int val, unsigned long n)
             n -= i;
 
             do {
-                deref_auto_inc(cpd) = v;
+                deref_auto_inc (cpd) = v;
             }
             while (--i);
         }
@@ -494,14 +494,14 @@ __fill_mem(void* dst, int val, unsigned long n)
         if (i)
         {
             do {
-                deref_auto_inc(lpd) = v;
-                deref_auto_inc(lpd) = v;
-                deref_auto_inc(lpd) = v;
-                deref_auto_inc(lpd) = v;
-                deref_auto_inc(lpd) = v;
-                deref_auto_inc(lpd) = v;
-                deref_auto_inc(lpd) = v;
-                deref_auto_inc(lpd) = v;
+                deref_auto_inc (lpd) = v;
+                deref_auto_inc (lpd) = v;
+                deref_auto_inc (lpd) = v;
+                deref_auto_inc (lpd) = v;
+                deref_auto_inc (lpd) = v;
+                deref_auto_inc (lpd) = v;
+                deref_auto_inc (lpd) = v;
+                deref_auto_inc (lpd) = v;
             }
             while (--i);
         }
@@ -511,7 +511,7 @@ __fill_mem(void* dst, int val, unsigned long n)
         if (i)
         {
             do {
-                deref_auto_inc(lpd) = v;
+                deref_auto_inc (lpd) = v;
             }
             while (--i);
         }
@@ -526,7 +526,7 @@ __fill_mem(void* dst, int val, unsigned long n)
     if (n)
     {
         do {
-            deref_auto_inc(cpd) = v;
+            deref_auto_inc (cpd) = v;
         }
         while (--n);
     }
@@ -537,7 +537,7 @@ __fill_mem(void* dst, int val, unsigned long n)
 
 #if defined(__m56800__) || defined(__m56800E__)
 void
-__fill_mem(void* dst, int val, unsigned long n)
+__fill_mem (void* dst, int val, unsigned long n)
 {
     unsigned long v = (unsigned char)val;
     unsigned long i;
@@ -554,14 +554,14 @@ __fill_mem(void* dst, int val, unsigned long n)
         if (i)
         {
             do {
-                deref_auto_inc(lpd) = v;
-                deref_auto_inc(lpd) = v;
-                deref_auto_inc(lpd) = v;
-                deref_auto_inc(lpd) = v;
-                deref_auto_inc(lpd) = v;
-                deref_auto_inc(lpd) = v;
-                deref_auto_inc(lpd) = v;
-                deref_auto_inc(lpd) = v;
+                deref_auto_inc (lpd) = v;
+                deref_auto_inc (lpd) = v;
+                deref_auto_inc (lpd) = v;
+                deref_auto_inc (lpd) = v;
+                deref_auto_inc (lpd) = v;
+                deref_auto_inc (lpd) = v;
+                deref_auto_inc (lpd) = v;
+                deref_auto_inc (lpd) = v;
             }
             while (--i);
         }
@@ -570,7 +570,7 @@ __fill_mem(void* dst, int val, unsigned long n)
         if (i)
         {
             do {
-                deref_auto_inc(lpd) = v;
+                deref_auto_inc (lpd) = v;
             }
             while (--i);
         }
@@ -581,7 +581,7 @@ __fill_mem(void* dst, int val, unsigned long n)
     if (n)
     {
         do {
-            deref_auto_inc(cpd) = v;
+            deref_auto_inc (cpd) = v;
         }
         while (--n);
     }

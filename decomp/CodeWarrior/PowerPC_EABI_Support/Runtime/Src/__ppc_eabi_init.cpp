@@ -95,7 +95,7 @@ HISTORY
 #define ALLOC_ADDITIONAL_HEAPS 0
 
 #include <__ppc_eabi_init.h>
-#include <__ppc_eabi_linker.h>         /* linker-generated symbol declarations */
+#include <__ppc_eabi_linker.h>          /* linker-generated symbol declarations */
 #if ALLOC_ADDITIONAL_HEAPS
 #include <pool_alloc.h>
 #endif
@@ -105,14 +105,14 @@ extern "C"
 {
 #endif
 
-static void  __init_cpp(void);
-static void  __fini_cpp(void);
-typedef void (*voidfunctionptr)(void); /* ptr to function returning void */
-__declspec(section ".init") extern voidfunctionptr _ctors[];
-__declspec(section ".init") extern voidfunctionptr _dtors[];
-extern void                                        abort(void);
-extern void                                        exit(int status);
-extern void                                        usr_init();
+static void  __init_cpp (void);
+static void  __fini_cpp (void);
+typedef void (*voidfunctionptr) (void); /* ptr to function returning void */
+__declspec (section ".init") extern voidfunctionptr _ctors[];
+__declspec (section ".init") extern voidfunctionptr _dtors[];
+extern void                                         abort (void);
+extern void                                         exit (int status);
+extern void                                         usr_init ();
 
 #ifdef __cplusplus
 }
@@ -131,7 +131,7 @@ extern void                                        usr_init();
 /***************************************************************************/
 
 asm void
-__init_hardware(void)
+__init_hardware (void)
 {
     /*
      *	Initialize board unless running with MWDebug.
@@ -177,7 +177,7 @@ __init_hardware(void)
 }
 #if ALLOC_ADDITIONAL_HEAPS
 static void
-AllocMoreHeaps(void)
+AllocMoreHeaps (void)
 {
     /*
      *	By default, we MSL's allocation (malloc/free) even with C++.
@@ -186,12 +186,12 @@ AllocMoreHeaps(void)
      *	malloc.  You can add more calls to init_alloc to create additional
      *	heaps.
      */
-    init_alloc(some_address1, some_size1);
-    init_alloc(some_address2, some_size2);
+    init_alloc (some_address1, some_size1);
+    init_alloc (some_address2, some_size2);
 }
 #endif
 asm void
-__init_user(void)
+__init_user (void)
 {
     fralloc
     /*
@@ -215,7 +215,7 @@ __init_user(void)
 }
 #if defined(__cplusplus) || defined(__VEC__)
 static void
-__init_cpp(void)
+__init_cpp (void)
 {
     voidfunctionptr* constructor;
 
@@ -228,7 +228,7 @@ __init_cpp(void)
     }
 }
 static void
-__fini_cpp(void)
+__fini_cpp (void)
 {
     voidfunctionptr* destructor;
 
@@ -244,13 +244,13 @@ __fini_cpp(void)
 
 #pragma overload void abort(void);
 void
-abort(void)
+abort (void)
 {
     _ExitProcess();
 }
 #pragma overload void exit(int status);
 void
-exit(int status)
+exit (int status)
 {
 #pragma unused(status)
 
@@ -265,7 +265,7 @@ exit(int status)
  *	PowerPC EABI Runtime termination
  */
 asm void
-_ExitProcess(void) {
+_ExitProcess (void) {
     nofralloc
 
         opword 0x00454E44 /* arbitrary break trap for halt */
@@ -281,7 +281,7 @@ _ExitProcess(void) {
  *
  */
 /****************************************************************************/
-asm void __flush_cache(register void* address, register unsigned int size)
+asm void __flush_cache (register void* address, register unsigned int size)
 {
 #pragma unused(address, size)
     /* r3 is address, r4 is size */

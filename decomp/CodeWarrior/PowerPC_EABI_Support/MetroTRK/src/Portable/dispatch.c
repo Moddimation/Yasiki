@@ -6,7 +6,7 @@
 u32 gTRKDispatchTableSize;
 struct DispatchEntry
 {
-    int (*fn)(TRKBuffer*);
+    int (*fn) (TRKBuffer*);
 };
 
 struct DispatchEntry gTRKDispatchTable[33] = {
@@ -23,23 +23,23 @@ struct DispatchEntry gTRKDispatchTable[33] = {
     { &TRKDoUnsupported },   { &TRKDoUnsupported },
 };
 DSError
-TRKInitializeDispatcher()
+TRKInitializeDispatcher ()
 {
     gTRKDispatchTableSize = 32;
     return DS_NoError;
 }
 DSError
-TRKDispatchMessage(TRKBuffer* buffer)
+TRKDispatchMessage (TRKBuffer* buffer)
 {
     DSError error;
     u8      command;
 
     error = DS_DispatchError;
-    TRKSetBufferPosition(buffer, 0);
-    TRKReadBuffer1_ui8(buffer, &command);
+    TRKSetBufferPosition (buffer, 0);
+    TRKReadBuffer1_ui8 (buffer, &command);
     if (command < gTRKDispatchTableSize)
     {
-        error = gTRKDispatchTable[command].fn(buffer);
+        error = gTRKDispatchTable[command].fn (buffer);
     }
     return error;
 }

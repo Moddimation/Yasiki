@@ -5,7 +5,7 @@
 
 #include "CARDPrivate.h"
 s32
-CARDRenameAsync(s32 chan, const char* old, const char* new, CARDCallback callback)
+CARDRenameAsync (s32 chan, const char* old, const char* new, CARDCallback callback)
 {
     CARDControl* card;
     CARDDir*     dir;
@@ -15,25 +15,26 @@ CARDRenameAsync(s32 chan, const char* old, const char* new, CARDCallback callbac
     int          newNo;
     int          oldNo;
 
-    ASSERTLINE(0x49, 0 <= chan && chan < 2);
-    ASSERTLINE(0x4A, *old != 0xff && *new != 0xff);
-    ASSERTLINE(0x4B, *old != 0x00 && *new != 0x00);
+    ASSERTLINE (0x49, 0 <= chan && chan < 2);
+    ASSERTLINE (0x4A, *old != 0xff && *new != 0xff);
+    ASSERTLINE (0x4B, *old != 0x00 && *new != 0x00);
 
     if (old[0] == 0xFF || new[0] == 0xFF || old[0] == 0 || new[0] == 0)
     {
         return CARD_RESULT_FATAL_ERROR;
     }
-    if (CARD_FILENAME_MAX < (u32)strlen(old) || CARD_FILENAME_MAX < (u32)strlen(new))
+    if (CARD_FILENAME_MAX < (u32)strlen (old) ||
+        CARD_FILENAME_MAX < (u32)strlen (new))
     {
         return CARD_RESULT_NAMETOOLONG;
     }
-    result = __CARDGetControlBlock(chan, &card);
+    result = __CARDGetControlBlock (chan, &card);
     if (result < 0)
     {
         return result;
     }
     newNo = oldNo = -1;
-    dir = __CARDGetDirBlock(card);
+    dir = __CARDGetDirBlock (card);
     for (fileNo = 0; fileNo < CARD_MAX_FILE; fileNo++)
     {
         ent = &dir[fileNo];
@@ -42,18 +43,18 @@ CARDRenameAsync(s32 chan, const char* old, const char* new, CARDCallback callbac
             continue;
         }
 
-        if (memcmp(ent->gameName, __CARDDiskID->gameName, sizeof(ent->gameName)) !=
+        if (memcmp (ent->gameName, __CARDDiskID->gameName, sizeof (ent->gameName)) !=
                 0 ||
-            memcmp(ent->company, __CARDDiskID->company, sizeof(ent->company)) != 0)
+            memcmp (ent->company, __CARDDiskID->company, sizeof (ent->company)) != 0)
         {
             continue;
         }
 
-        if (__CARDCompareFileName(ent, old))
+        if (__CARDCompareFileName (ent, old))
         {
             oldNo = fileNo;
         }
-        if (__CARDCompareFileName(ent, new))
+        if (__CARDCompareFileName (ent, new))
         {
             newNo = fileNo;
         }
@@ -61,39 +62,39 @@ CARDRenameAsync(s32 chan, const char* old, const char* new, CARDCallback callbac
 
     if (oldNo == -1)
     {
-        return __CARDPutControlBlock(card, CARD_RESULT_NOFILE);
+        return __CARDPutControlBlock (card, CARD_RESULT_NOFILE);
     }
     if (newNo != -1)
     {
-        return __CARDPutControlBlock(card, CARD_RESULT_EXIST);
+        return __CARDPutControlBlock (card, CARD_RESULT_EXIST);
     }
 
     ent = &dir[oldNo];
-    result = __CARDAccess(ent);
+    result = __CARDAccess (ent);
     if (result < 0)
     {
-        return __CARDPutControlBlock(card, result);
+        return __CARDPutControlBlock (card, result);
     }
 
-    strncpy((char*)ent->fileName, new, CARD_FILENAME_MAX);
-    ent->time = (u32)OSTicksToSeconds(OSGetTime());
+    strncpy ((char*)ent->fileName, new, CARD_FILENAME_MAX);
+    ent->time = (u32)OSTicksToSeconds (OSGetTime());
 
-    result = __CARDUpdateDir(chan, callback);
+    result = __CARDUpdateDir (chan, callback);
     if (result < 0)
     {
-        __CARDPutControlBlock(card, result);
+        __CARDPutControlBlock (card, result);
     }
 
     return result;
 }
 s32
-CARDRename(s32 chan, char* oldName, char* newName)
+CARDRename (s32 chan, char* oldName, char* newName)
 {
-    s32 result = CARDRenameAsync(chan, oldName, newName, __CARDSyncCallback);
+    s32 result = CARDRenameAsync (chan, oldName, newName, __CARDSyncCallback);
 
     if (result < 0)
     {
         return result;
     }
-    return __CARDSync(chan);
+    return __CARDSync (chan);
 }

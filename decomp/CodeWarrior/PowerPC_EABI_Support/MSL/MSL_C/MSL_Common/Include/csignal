@@ -20,14 +20,14 @@ _MSL_BEGIN_NAMESPACE_STD   /*- cc 010409 -*/
     _MSL_BEGIN_EXTERN_C    /*- cc 010409 -*/
 
     typedef int sig_atomic_t;
-typedef void    (*__signal_func_ptr)(int);
+typedef void    (*__signal_func_ptr) (int);
 
-_MSL_IMP_EXP_C __signal_func_ptr signal(int signal, __signal_func_ptr signal_func);
-_MSL_IMP_EXP_C int               raise(int signal);
+_MSL_IMP_EXP_C __signal_func_ptr signal (int signal, __signal_func_ptr signal_func);
+_MSL_IMP_EXP_C int               raise (int signal);
 
-#define SIG_DFL      ((__std(__signal_func_ptr))0)
-#define SIG_IGN      ((__std(__signal_func_ptr))1)
-#define SIG_ERR      ((__std(__signal_func_ptr)) - 1)
+#define SIG_DFL      ((__std (__signal_func_ptr))0)
+#define SIG_IGN      ((__std (__signal_func_ptr))1)
+#define SIG_ERR      ((__std (__signal_func_ptr)) - 1)
 
 _MSL_END_EXTERN_C          /*- cc 010409 -*/
     _MSL_END_NAMESPACE_STD /*- cc 010409 -*/

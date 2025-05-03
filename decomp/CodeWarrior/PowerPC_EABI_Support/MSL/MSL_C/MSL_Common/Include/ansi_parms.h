@@ -91,7 +91,7 @@
 #endif             /*- cc 010409 -*/
 
 #if (__dest_os == __win32_os || __dest_os == __wince_os)
-#define __tls      __declspec(thread)
+#define __tls      __declspec (thread)
 #define _MSL_CDECL __cdecl
 #else
 #define __tls

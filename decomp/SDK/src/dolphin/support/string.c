@@ -1,6 +1,6 @@
 #include <charPipeline/structures/dolphinString.h>
 u8
-Strcat(char* str1, char* str2, char* dst)
+Strcat (char* str1, char* str2, char* dst)
 {
     char* srcCursor = str1;
     char* dstCursor = dst;
@@ -35,7 +35,7 @@ Strcat(char* str1, char* str2, char* dst)
     return 1;
 }
 void
-Strcpy(char* dst, char* src)
+Strcpy (char* dst, char* src)
 {
     do {
         *dst = *src;
@@ -45,7 +45,7 @@ Strcpy(char* dst, char* src)
     while ((s8)*src != 0);
 }
 s8
-Strcmp(char* str1, char* str2)
+Strcmp (char* str1, char* str2)
 {
     char* cursor1 = str1;
     char* cursor2 = str2;
@@ -68,7 +68,7 @@ Strcmp(char* str1, char* str2)
     }
 }
 u32
-Strlen(char* str)
+Strlen (char* str)
 {
     char* cursor = str;
     u32   counter = 0;

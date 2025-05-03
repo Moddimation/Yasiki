@@ -10,14 +10,14 @@ extern "C"
 {
 #endif
 
-DSError TRKInitializeTarget();
+DSError TRKInitializeTarget ();
 
-void EnableMetroTRKInterrupts();
-u32  TRKTargetTranslate(u32 param_0);
-void TRK__read_aram(register int c, register u32 p2, void* p3);
-void TRK__write_aram(register int c, register u32 p2, void* p3);
+void EnableMetroTRKInterrupts ();
+u32  TRKTargetTranslate (u32 param_0);
+void TRK__read_aram (register int c, register u32 p2, void* p3);
+void TRK__write_aram (register int c, register u32 p2, void* p3);
 
-void __TRK_copy_vectors(void);
+void __TRK_copy_vectors (void);
 
 #ifdef __cplusplus
 }

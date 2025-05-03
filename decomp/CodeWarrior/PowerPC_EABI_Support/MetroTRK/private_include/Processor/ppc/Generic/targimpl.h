@@ -9,34 +9,49 @@ extern "C"
 {
 #endif
 
-void TRKTargetSetInputPendingPtr(void* ptr);
+void TRKTargetSetInputPendingPtr (void* ptr);
 
-void    TRKSwapAndGo();
-void    TRKTargetSetStopped(unsigned int);
-DSError TRKTargetInterrupt(TRKEvent*);
-DSError TRKTargetSupportRequest();
-void    TRKDestructEvent(TRKEvent*);
-DSError TRKTargetFlushCache(u8, void* start, void* end);
-BOOL    TRKTargetStopped(void);
-DSError TRKTargetAddStopInfo(TRKBuffer* b);
-DSError TRKTargetAddExceptionInfo(TRKBuffer* b);
-DSError TRKTargetAccessARAM(u32 p1, u32 p2, u32* p3, BOOL read);
-DSError TRKTargetAccessMemory(void* data, u32 start, size_t* length,
-                              MemoryAccessOptions accessOptions, BOOL read);
-DSError TRKTargetAccessDefault(u32 firstRegister, u32 lastRegister, TRKBuffer* b,
-                               size_t* registersLengthPtr, BOOL read);
-DSError TRKTargetAccessFP(u32 firstRegister, u32 lastRegister, TRKBuffer* b,
-                          size_t* registersLengthPtr, BOOL read);
-DSError TRKTargetAccessExtended1(u32 firstRegister, u32 lastRegister, TRKBuffer* b,
-                                 size_t* registersLengthPtr, BOOL read);
-DSError TRKTargetAccessExtended2(u32 firstRegister, u32 lastRegister, TRKBuffer* b,
-                                 size_t* registerStorageSize, BOOL read);
-u32     TRKTargetGetPC();
-DSError TRKTargetSingleStep(u32 count, BOOL stepOver);
-DSError TRKTargetStepOutOfRange(u32 rangeStart, u32 rangeEnd, BOOL stepOver);
-u32     TRKTargetStop();
-void    TRKInterruptHandler();
-void    TRKPostInterruptEvent(void);
+void    TRKSwapAndGo ();
+void    TRKTargetSetStopped (unsigned int);
+DSError TRKTargetInterrupt (TRKEvent*);
+DSError TRKTargetSupportRequest ();
+void    TRKDestructEvent (TRKEvent*);
+DSError TRKTargetFlushCache (u8, void* start, void* end);
+BOOL    TRKTargetStopped (void);
+DSError TRKTargetAddStopInfo (TRKBuffer* b);
+DSError TRKTargetAddExceptionInfo (TRKBuffer* b);
+DSError TRKTargetAccessARAM (u32 p1, u32 p2, u32* p3, BOOL read);
+DSError TRKTargetAccessMemory (void*               data,
+                               u32                 start,
+                               size_t*             length,
+                               MemoryAccessOptions accessOptions,
+                               BOOL                read);
+DSError TRKTargetAccessDefault (u32        firstRegister,
+                                u32        lastRegister,
+                                TRKBuffer* b,
+                                size_t*    registersLengthPtr,
+                                BOOL       read);
+DSError TRKTargetAccessFP (u32        firstRegister,
+                           u32        lastRegister,
+                           TRKBuffer* b,
+                           size_t*    registersLengthPtr,
+                           BOOL       read);
+DSError TRKTargetAccessExtended1 (u32        firstRegister,
+                                  u32        lastRegister,
+                                  TRKBuffer* b,
+                                  size_t*    registersLengthPtr,
+                                  BOOL       read);
+DSError TRKTargetAccessExtended2 (u32        firstRegister,
+                                  u32        lastRegister,
+                                  TRKBuffer* b,
+                                  size_t*    registerStorageSize,
+                                  BOOL       read);
+u32     TRKTargetGetPC ();
+DSError TRKTargetSingleStep (u32 count, BOOL stepOver);
+DSError TRKTargetStepOutOfRange (u32 rangeStart, u32 rangeEnd, BOOL stepOver);
+u32     TRKTargetStop ();
+void    TRKInterruptHandler ();
+void    TRKPostInterruptEvent (void);
 typedef struct DSVersions
 {
     u8 kernelMajor;
@@ -44,8 +59,8 @@ typedef struct DSVersions
     u8 protocolMajor;
     u8 protocolMinor;
 } DSVersions;
-DSError TRKTargetVersions(DSVersions* versions);
-DSError TRKTargetSupportMask(u8 mask[32]);
+DSError TRKTargetVersions (DSVersions* versions);
+DSError TRKTargetSupportMask (u8 mask[32]);
 typedef struct DSCPUType
 {
     u8 cpuMajor;
@@ -56,7 +71,7 @@ typedef struct DSCPUType
     u8 extended1TypeSize;
     u8 extended2TypeSize;
 } DSCPUType;
-DSError TRKTargetCPUType(DSCPUType* cpuType);
+DSError TRKTargetCPUType (DSCPUType* cpuType);
 typedef struct Default_PPC
 {
     u32 GPR[32];

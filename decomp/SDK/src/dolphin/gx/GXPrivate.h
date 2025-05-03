@@ -91,10 +91,10 @@ extern "C"
 
 #define GX_WRITE_XF_REG(addr, value)                                                \
     do {                                                                            \
-        GX_WRITE_U8(0x10);                                                          \
-        GX_WRITE_U32(0x1000 + (addr));                                              \
-        GX_WRITE_U32(value);                                                        \
-        VERIF_XF_REG(addr, value);                                                  \
+        GX_WRITE_U8 (0x10);                                                         \
+        GX_WRITE_U32 (0x1000 + (addr));                                             \
+        GX_WRITE_U32 (value);                                                       \
+        VERIF_XF_REG (addr, value);                                                 \
     }                                                                               \
     while (0)
 
@@ -103,44 +103,44 @@ extern "C"
     do {                                                                            \
         u32 xfData = (value);                                                       \
         &xfData;                                                                    \
-        GX_WRITE_U32(value);                                                        \
-        VERIF_XF_REG_alt(addr, xfData);                                             \
+        GX_WRITE_U32 (value);                                                       \
+        VERIF_XF_REG_alt (addr, xfData);                                            \
     }                                                                               \
     while (0)
 #define GX_WRITE_XF_REG_F(addr, value)                                              \
     do {                                                                            \
         f32 xfData = (value);                                                       \
-        GX_WRITE_F32(value);                                                        \
-        VERIF_XF_REG_alt(addr, *(u32*)&xfData);                                     \
+        GX_WRITE_F32 (value);                                                       \
+        VERIF_XF_REG_alt (addr, *(u32*)&xfData);                                    \
     }                                                                               \
     while (0)
 #else
 #define GX_WRITE_XF_REG_2(addr, value)                                              \
     do {                                                                            \
-        GX_WRITE_U32(value);                                                        \
+        GX_WRITE_U32 (value);                                                       \
     }                                                                               \
     while (0)
 #define GX_WRITE_XF_REG_F(addr, value)                                              \
     do {                                                                            \
-        GX_WRITE_F32(value);                                                        \
+        GX_WRITE_F32 (value);                                                       \
     }                                                                               \
     while (0)
 #endif
 
 #define GX_WRITE_RAS_REG(value)                                                     \
     do {                                                                            \
-        GX_WRITE_U8(0x61);                                                          \
-        GX_WRITE_U32(value);                                                        \
-        VERIF_RAS_REG(value);                                                       \
+        GX_WRITE_U8 (0x61);                                                         \
+        GX_WRITE_U32 (value);                                                       \
+        VERIF_RAS_REG (value);                                                      \
     }                                                                               \
     while (0)
 
 #define GX_WRITE_SOME_REG2(a, b, c, addr)                                           \
     do {                                                                            \
         s32 regAddr;                                                                \
-        GX_WRITE_U8(a);                                                             \
-        GX_WRITE_U8(b);                                                             \
-        GX_WRITE_U32(c);                                                            \
+        GX_WRITE_U8 (a);                                                            \
+        GX_WRITE_U8 (b);                                                            \
+        GX_WRITE_U32 (c);                                                           \
         regAddr = addr;                                                             \
         if (regAddr >= 0 && regAddr < 4)                                            \
         {                                                                           \
@@ -151,9 +151,9 @@ extern "C"
 #define GX_WRITE_SOME_REG3(a, b, c, addr)                                           \
     do {                                                                            \
         s32 regAddr;                                                                \
-        GX_WRITE_U8(a);                                                             \
-        GX_WRITE_U8(b);                                                             \
-        GX_WRITE_U32(c);                                                            \
+        GX_WRITE_U8 (a);                                                            \
+        GX_WRITE_U8 (b);                                                            \
+        GX_WRITE_U32 (c);                                                           \
         regAddr = addr;                                                             \
         if (regAddr >= 0 && regAddr < 4)                                            \
         {                                                                           \
@@ -164,9 +164,9 @@ extern "C"
 #define GX_WRITE_SOME_REG4(a, b, c, addr)                                           \
     do {                                                                            \
         s32 regAddr;                                                                \
-        GX_WRITE_U8(a);                                                             \
-        GX_WRITE_U8(b);                                                             \
-        GX_WRITE_U32(c);                                                            \
+        GX_WRITE_U8 (a);                                                            \
+        GX_WRITE_U8 (b);                                                            \
+        GX_WRITE_U32 (c);                                                           \
         regAddr = addr;                                                             \
     }                                                                               \
     while (0)
@@ -176,27 +176,28 @@ extern "C"
 
 #define SET_REG_FIELD(line, reg, size, shift, val)                                  \
     do {                                                                            \
-        ASSERTMSGLINE(line, ((u32)(val) & ~((1 << (size)) - 1)) == 0,               \
-                      "GX Internal: Register field out of range");                  \
+        ASSERTMSGLINE (line,                                                        \
+                       ((u32)(val) & ~((1 << (size)) - 1)) == 0,                    \
+                       "GX Internal: Register field out of range");                 \
         (reg) = ((u32)(reg) & ~(((1 << (size)) - 1) << (shift))) |                  \
                 ((u32)(val) << (shift));                                            \
     }                                                                               \
     while (0)
 
 #define CHECK_GXBEGIN(line, name)                                                   \
-    ASSERTMSGLINE(line, !__GXinBegin,                                               \
-                  "'" name "' is not allowed between GXBegin/GXEnd")
+    ASSERTMSGLINE (                                                                 \
+        line, !__GXinBegin, "'" name "' is not allowed between GXBegin/GXEnd")
 #define CHECK_IN_BEGIN(line, f)                                                     \
-    ASSERTMSGLINE(line, !__GXinBegin,                                               \
-                  "'" #f "' is not allowed between GXBegin/GXEnd")
+    ASSERTMSGLINE (                                                                 \
+        line, !__GXinBegin, "'" #f "' is not allowed between GXBegin/GXEnd")
 
 /* GXAttr */
-void __GXSetVCD(void);
-void __GXSetVAT(void);
+void __GXSetVCD (void);
+void __GXSetVAT (void);
 
 /* GXBump */
-void __GXUpdateBPMask(void);
-void __GXFlushTextureState(void);
+void __GXUpdateBPMask (void);
+void __GXFlushTextureState (void);
 /* GXFifo */
 // GXFifoObj private data
 typedef struct __GXFifoObj
@@ -212,93 +213,93 @@ typedef struct __GXFifoObj
     u8    bind_cpu;
     u8    bind_gp;
 } __GXFifoObj;
-void __GXSaveCPUFifoAux(__GXFifoObj* realFifo);
-void __GXFifoInit(void);
-void __GXInsaneWatermark(void);
-void __GXCleanGPFifo(void);
+void __GXSaveCPUFifoAux (__GXFifoObj* realFifo);
+void __GXFifoInit (void);
+void __GXInsaneWatermark (void);
+void __GXCleanGPFifo (void);
 
 /* GXGeometry */
-void __GXSetDirtyState(void);
-void __GXSendFlushPrim(void);
-void __GXSetGenMode(void);
+void __GXSetDirtyState (void);
+void __GXSendFlushPrim (void);
+void __GXSetGenMode (void);
 typedef struct __GXData_struct
 {
-    u16           vNum;                             // offset 0x0, size 0x2
-    u16           bpSent;                           // offset 0x2, size 0x2
-    u32           vLim;                             // offset 0x4, size 0x4
-    u32           cpEnable;                         // offset 0x8, size 0x4
-    u32           cpStatus;                         // offset 0xC, size 0x4
-    u32           cpClr;                            // offset 0x10, size 0x4
-    u32           vcdLo;                            // offset 0x14, size 0x4
-    u32           vcdHi;                            // offset 0x18, size 0x4
-    u32           vatA[8];                          // offset 0x1C, size 0x20
-    u32           vatB[8];                          // offset 0x3C, size 0x20
-    u32           vatC[8];                          // offset 0x5C, size 0x20
-    u32           lpSize;                           // offset 0x7C, size 0x4
-    u32           matIdxA;                          // offset 0x80, size 0x4
-    u32           matIdxB;                          // offset 0x84, size 0x4
-    u32           indexBase[4];                     // offset 0x88, size 0x10
-    u32           indexStride[4];                   // offset 0x98, size 0x10
-    u32           ambColor[2];                      // offset 0xA8, size 0x8
-    u32           matColor[2];                      // offset 0xB0, size 0x8
-    u32           suTs0[8];                         // offset 0xB8, size 0x20
-    u32           suTs1[8];                         // offset 0xD8, size 0x20
-    u32           suScis0;                          // offset 0xF8, size 0x4
-    u32           suScis1;                          // offset 0xFC, size 0x4
-    u32           tref[8];                          // offset 0x100, size 0x20
-    u32           iref;                             // offset 0x120, size 0x4
-    u32           bpMask;                           // offset 0x124, size 0x4
-    u32           IndTexScale0;                     // offset 0x128, size 0x4
-    u32           IndTexScale1;                     // offset 0x12C, size 0x4
-    u32           tevc[16];                         // offset 0x130, size 0x40
-    u32           teva[16];                         // offset 0x170, size 0x40
-    u32           tevKsel[8];                       // offset 0x1B0, size 0x20
-    u32           cmode0;                           // offset 0x1D0, size 0x4
-    u32           cmode1;                           // offset 0x1D4, size 0x4
-    u32           zmode;                            // offset 0x1D8, size 0x4
-    u32           peCtrl;                           // offset 0x1DC, size 0x4
-    u32           cpDispSrc;                        // offset 0x1E0, size 0x4
-    u32           cpDispSize;                       // offset 0x1E4, size 0x4
-    u32           cpDispStride;                     // offset 0x1E8, size 0x4
-    u32           cpDisp;                           // offset 0x1EC, size 0x4
-    u32           cpTexSrc;                         // offset 0x1F0, size 0x4
-    u32           cpTexSize;                        // offset 0x1F4, size 0x4
-    u32           cpTexStride;                      // offset 0x1F8, size 0x4
-    u32           cpTex;                            // offset 0x1FC, size 0x4
-    u8            cpTexZ;                           // offset 0x200, size 0x1
-    u32           genMode;                          // offset 0x204, size 0x4
-    GXTexRegion   TexRegions[8];                    // offset 0x208, size 0x80
-    GXTexRegion   TexRegionsCI[4];                  // offset 0x288, size 0x40
-    u32           nextTexRgn;                       // offset 0x2C8, size 0x4
-    u32           nextTexRgnCI;                     // offset 0x2CC, size 0x4
-    GXTlutRegion  TlutRegions[20];                  // offset 0x2D0, size 0x140
-    GXTexRegion*  (*texRegionCallback)(GXTexObj*,
-                                      GXTexMapID); // offset 0x410, size 0x4
-    GXTlutRegion* (*tlutRegionCallback)(u32);       // offset 0x414, size 0x4
-    GXAttrType    nrmType;                          // offset 0x418, size 0x4
-    u8            hasNrms;                          // offset 0x41C, size 0x1
-    u8            hasBiNrms;                        // offset 0x41D, size 0x1
-    u32           projType;                         // offset 0x420, size 0x4
-    f32           projMtx[6];                       // offset 0x424, size 0x18
-    f32           vpLeft;                           // offset 0x43C, size 0x4
-    f32           vpTop;                            // offset 0x440, size 0x4
-    f32           vpWd;                             // offset 0x444, size 0x4
-    f32           vpHt;                             // offset 0x448, size 0x4
-    f32           vpNearz;                          // offset 0x44C, size 0x4
-    f32           vpFarz;                           // offset 0x450, size 0x4
-    u8            fgRange;                          // offset 0x454, size 0x1
-    f32           fgSideX;                          // offset 0x458, size 0x4
-    u32           tImage0[8];                       // offset 0x45C, size 0x20
-    u32           tMode0[8];                        // offset 0x47C, size 0x20
-    u32           texmapId[16];                     // offset 0x49C, size 0x40
-    u32           tcsManEnab;                       // offset 0x4DC, size 0x4
-    GXPerf0       perf0;                            // offset 0x4E0, size 0x4
-    GXPerf1       perf1;                            // offset 0x4E4, size 0x4
-    u32           perfSel;                          // offset 0x4E8, size 0x4
-    u8            inDispList;                       // offset 0x4EC, size 0x1
-    u8            dlSaveContext;                    // offset 0x4ED, size 0x1
-    u8            dirtyVAT;                         // offset 0x4EE, size 0x1
-    u32           dirtyState;                       // offset 0x4F0, size 0x4
+    u16           vNum;                              // offset 0x0, size 0x2
+    u16           bpSent;                            // offset 0x2, size 0x2
+    u32           vLim;                              // offset 0x4, size 0x4
+    u32           cpEnable;                          // offset 0x8, size 0x4
+    u32           cpStatus;                          // offset 0xC, size 0x4
+    u32           cpClr;                             // offset 0x10, size 0x4
+    u32           vcdLo;                             // offset 0x14, size 0x4
+    u32           vcdHi;                             // offset 0x18, size 0x4
+    u32           vatA[8];                           // offset 0x1C, size 0x20
+    u32           vatB[8];                           // offset 0x3C, size 0x20
+    u32           vatC[8];                           // offset 0x5C, size 0x20
+    u32           lpSize;                            // offset 0x7C, size 0x4
+    u32           matIdxA;                           // offset 0x80, size 0x4
+    u32           matIdxB;                           // offset 0x84, size 0x4
+    u32           indexBase[4];                      // offset 0x88, size 0x10
+    u32           indexStride[4];                    // offset 0x98, size 0x10
+    u32           ambColor[2];                       // offset 0xA8, size 0x8
+    u32           matColor[2];                       // offset 0xB0, size 0x8
+    u32           suTs0[8];                          // offset 0xB8, size 0x20
+    u32           suTs1[8];                          // offset 0xD8, size 0x20
+    u32           suScis0;                           // offset 0xF8, size 0x4
+    u32           suScis1;                           // offset 0xFC, size 0x4
+    u32           tref[8];                           // offset 0x100, size 0x20
+    u32           iref;                              // offset 0x120, size 0x4
+    u32           bpMask;                            // offset 0x124, size 0x4
+    u32           IndTexScale0;                      // offset 0x128, size 0x4
+    u32           IndTexScale1;                      // offset 0x12C, size 0x4
+    u32           tevc[16];                          // offset 0x130, size 0x40
+    u32           teva[16];                          // offset 0x170, size 0x40
+    u32           tevKsel[8];                        // offset 0x1B0, size 0x20
+    u32           cmode0;                            // offset 0x1D0, size 0x4
+    u32           cmode1;                            // offset 0x1D4, size 0x4
+    u32           zmode;                             // offset 0x1D8, size 0x4
+    u32           peCtrl;                            // offset 0x1DC, size 0x4
+    u32           cpDispSrc;                         // offset 0x1E0, size 0x4
+    u32           cpDispSize;                        // offset 0x1E4, size 0x4
+    u32           cpDispStride;                      // offset 0x1E8, size 0x4
+    u32           cpDisp;                            // offset 0x1EC, size 0x4
+    u32           cpTexSrc;                          // offset 0x1F0, size 0x4
+    u32           cpTexSize;                         // offset 0x1F4, size 0x4
+    u32           cpTexStride;                       // offset 0x1F8, size 0x4
+    u32           cpTex;                             // offset 0x1FC, size 0x4
+    u8            cpTexZ;                            // offset 0x200, size 0x1
+    u32           genMode;                           // offset 0x204, size 0x4
+    GXTexRegion   TexRegions[8];                     // offset 0x208, size 0x80
+    GXTexRegion   TexRegionsCI[4];                   // offset 0x288, size 0x40
+    u32           nextTexRgn;                        // offset 0x2C8, size 0x4
+    u32           nextTexRgnCI;                      // offset 0x2CC, size 0x4
+    GXTlutRegion  TlutRegions[20];                   // offset 0x2D0, size 0x140
+    GXTexRegion*  (*texRegionCallback) (GXTexObj*,
+                                       GXTexMapID); // offset 0x410, size 0x4
+    GXTlutRegion* (*tlutRegionCallback) (u32);       // offset 0x414, size 0x4
+    GXAttrType    nrmType;                           // offset 0x418, size 0x4
+    u8            hasNrms;                           // offset 0x41C, size 0x1
+    u8            hasBiNrms;                         // offset 0x41D, size 0x1
+    u32           projType;                          // offset 0x420, size 0x4
+    f32           projMtx[6];                        // offset 0x424, size 0x18
+    f32           vpLeft;                            // offset 0x43C, size 0x4
+    f32           vpTop;                             // offset 0x440, size 0x4
+    f32           vpWd;                              // offset 0x444, size 0x4
+    f32           vpHt;                              // offset 0x448, size 0x4
+    f32           vpNearz;                           // offset 0x44C, size 0x4
+    f32           vpFarz;                            // offset 0x450, size 0x4
+    u8            fgRange;                           // offset 0x454, size 0x1
+    f32           fgSideX;                           // offset 0x458, size 0x4
+    u32           tImage0[8];                        // offset 0x45C, size 0x20
+    u32           tMode0[8];                         // offset 0x47C, size 0x20
+    u32           texmapId[16];                      // offset 0x49C, size 0x40
+    u32           tcsManEnab;                        // offset 0x4DC, size 0x4
+    GXPerf0       perf0;                             // offset 0x4E0, size 0x4
+    GXPerf1       perf1;                             // offset 0x4E4, size 0x4
+    u32           perfSel;                           // offset 0x4E8, size 0x4
+    u8            inDispList;                        // offset 0x4EC, size 0x1
+    u8            dlSaveContext;                     // offset 0x4ED, size 0x1
+    u8            dirtyVAT;                          // offset 0x4EE, size 0x1
+    u32           dirtyState;                        // offset 0x4F0, size 0x4
 } GXData;
 extern GXData* __GXData;
 extern void*   __memReg;
@@ -326,94 +327,94 @@ extern GXBool __GXinBegin;
     (*(volatile u32*)((volatile u32*)(__piReg) + (offset)) = val)
 
 /* GXMisc */
-void __GXBypass(u32 reg);
-u16  __GXReadPEReg(u32 reg);
-void __GXPEInit(void);
-void __GXAbort();
+void __GXBypass (u32 reg);
+u16  __GXReadPEReg (u32 reg);
+void __GXPEInit (void);
+void __GXAbort ();
 
 /* GXPerf */
-void __GXSetBWDials(u16 cpDial, u16 tcDial, u16 peDial, u16 cpuRdDial,
-                    u16 cpuWrDial);
+void __GXSetBWDials (
+    u16 cpDial, u16 tcDial, u16 peDial, u16 cpuRdDial, u16 cpuWrDial);
 static inline u32
-__GXReadCPCounterU32(u32 regAddrL, u32 regAddrH)
+__GXReadCPCounterU32 (u32 regAddrL, u32 regAddrH)
 {
     u32 ctrH0;
     u32 ctrH1;
     u32 ctrL;
 
-    ctrH0 = GX_GET_CP_REG(regAddrH);
+    ctrH0 = GX_GET_CP_REG (regAddrH);
 
     do {
         ctrH1 = ctrH0;
-        ctrL = GX_GET_CP_REG(regAddrL);
-        ctrH0 = GX_GET_CP_REG(regAddrH);
+        ctrL = GX_GET_CP_REG (regAddrL);
+        ctrH0 = GX_GET_CP_REG (regAddrH);
     }
     while (ctrH0 != ctrH1);
 
     return (ctrH0 << 0x10) | ctrL;
 }
 static inline u32
-__GXReadMEMCounterU32(u32 regAddrL, u32 regAddrH)
+__GXReadMEMCounterU32 (u32 regAddrL, u32 regAddrH)
 {
     u32 ctrH0;
     u32 ctrH1;
     u32 ctrL;
 
-    ctrH0 = GX_GET_MEM_REG(regAddrH);
+    ctrH0 = GX_GET_MEM_REG (regAddrH);
 
     do {
         ctrH1 = ctrH0;
-        ctrL = GX_GET_MEM_REG(regAddrL);
-        ctrH0 = GX_GET_MEM_REG(regAddrH);
+        ctrL = GX_GET_MEM_REG (regAddrL);
+        ctrH0 = GX_GET_MEM_REG (regAddrH);
     }
     while (ctrH0 != ctrH1);
 
     return (ctrH0 << 0x10) | ctrL;
 }
 static inline u32
-__GXReadPECounterU32(u32 regAddrL, u32 regAddrH)
+__GXReadPECounterU32 (u32 regAddrL, u32 regAddrH)
 {
     u32 ctrH0;
     u32 ctrH1;
     u32 ctrL;
 
-    ctrH0 = GX_GET_PE_REG(regAddrH);
+    ctrH0 = GX_GET_PE_REG (regAddrH);
 
     do {
         ctrH1 = ctrH0;
-        ctrL = GX_GET_PE_REG(regAddrL);
-        ctrH0 = GX_GET_PE_REG(regAddrH);
+        ctrL = GX_GET_PE_REG (regAddrL);
+        ctrH0 = GX_GET_PE_REG (regAddrH);
     }
     while (ctrH0 != ctrH1);
 
     return (ctrH0 << 0x10) | ctrL;
 }
 /* GXSave */
-void __GXShadowDispList(void* list, u32 nbytes);
-void __GXShadowIndexState(u32 idx_reg, u32 reg_data);
-void __GXPrintShadowState(void);
+void __GXShadowDispList (void* list, u32 nbytes);
+void __GXShadowIndexState (u32 idx_reg, u32 reg_data);
+void __GXPrintShadowState (void);
 
 /* GXStubs */
-void __GXSetRange(f32 nearz, f32 fgSideX);
+void __GXSetRange (f32 nearz, f32 fgSideX);
 
 /* GXTexture */
-void __GetImageTileCount(GXTexFmt fmt, u16 wd, u16 ht, u32* rowTiles, u32* colTiles,
-                         u32* cmpTiles);
-void __GXSetSUTexRegs(void);
-void __GXGetSUTexSize(GXTexCoordID coord, u16* width, u16* height);
-void __GXSetTmemConfig(u32 config);
+void __GetImageTileCount (
+    GXTexFmt fmt, u16 wd, u16 ht, u32* rowTiles, u32* colTiles, u32* cmpTiles);
+void __GXSetSUTexRegs (void);
+void __GXGetSUTexSize (GXTexCoordID coord, u16* width, u16* height);
+void __GXSetTmemConfig (u32 config);
 
 /* GXTransform */
-void __GXSetMatrixIndex(GXAttr matIdxAttr);
-void __GXSetProjection(void);
-void __GXSetViewport();
+void __GXSetMatrixIndex (GXAttr matIdxAttr);
+void __GXSetProjection (void);
+void __GXSetViewport ();
 
 /* GXVerifRAS */
-void __GXVerifySU(void);
-void __GXVerifyBUMP(void);
-void __GXVerifyTEX(void);
-void __GXVerifyTEV(void);
-void __GXVerifyPE(void);
+void __GXVerifySU (void);
+void __GXVerifyBUMP (void);
+void __GXVerifyTEX (void);
+void __GXVerifyTEV (void);
+void __GXVerifyPE (void);
 /* GXVerif */
 typedef enum
 {
@@ -532,19 +533,19 @@ typedef enum
     GXWARN_REG_UNINIT = 112,
     GXWARN_MAX = 113,
 } GXWarnID;
-#define __GX_WARN(id) (__gxVerif->cb(__gxvWarnLev[(id)], (id), __gxvWarnings[(id)]))
+#define __GX_WARN(id) (__gxVerif->cb (__gxvWarnLev[(id)], (id), __gxvWarnings[(id)]))
 #define __GX_WARNF(id, ...)                                                         \
     do {                                                                            \
-        sprintf(__gxvDummyStr, __gxvWarnings[(id)], __VA_ARGS__);                   \
-        __gxVerif->cb(__gxvWarnLev[(id)], (id), __gxvDummyStr);                     \
+        sprintf (__gxvDummyStr, __gxvWarnings[(id)], __VA_ARGS__);                  \
+        __gxVerif->cb (__gxvWarnLev[(id)], (id), __gxvDummyStr);                    \
     }                                                                               \
     while (0)
 
-#define __GX_WARN2(level, id) (__gxVerif->cb(level, (id), __gxvWarnings[(id)]))
+#define __GX_WARN2(level, id) (__gxVerif->cb (level, (id), __gxvWarnings[(id)]))
 #define __GX_WARN2F(level, id, ...)                                                 \
     do {                                                                            \
-        sprintf(__gxvDummyStr, __gxvWarnings[(id)], __VA_ARGS__);                   \
-        __gxVerif->cb(level, (id), __gxvDummyStr);                                  \
+        sprintf (__gxvDummyStr, __gxvWarnings[(id)], __VA_ARGS__);                  \
+        __gxVerif->cb (level, (id), __gxvDummyStr);                                 \
     }                                                                               \
     while (0)
 typedef struct __GXVerifyData
@@ -568,12 +569,12 @@ extern char*           __gxvWarnings[125];
 extern s8              __gxvDummyStr[256];
 extern GXWarningLevel  __gxvWarnLev[];
 
-void __GXVerifyGlobal(void);
-void __GXVerifyCP(GXVtxFmt fmt);
-void __GXVerifyState(GXVtxFmt vtxfmt);
+void __GXVerifyGlobal (void);
+void __GXVerifyCP (GXVtxFmt fmt);
+void __GXVerifyState (GXVtxFmt vtxfmt);
 
 /* GXVerifXF */
-void __GXVerifyXF(void);
+void __GXVerifyXF (void);
 
 #ifdef __cplusplus
 }

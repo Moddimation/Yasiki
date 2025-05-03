@@ -30,8 +30,8 @@ typedef enum
 } DEMO_STAT_DISP;
 extern u16 DemoStatEnable;
 
-void DEMOSetStats(DemoStatData* stat, u32 nstats, DEMO_STAT_DISP disp);
-void DEMOUpdateStats(u16 inc);
-void DEMOPrintStats(void);
+void DEMOSetStats (DemoStatData* stat, u32 nstats, DEMO_STAT_DISP disp);
+void DEMOUpdateStats (u16 inc);
+void DEMOPrintStats (void);
 
 #endif // _DOLPHIN_DEMOSTATS_H_

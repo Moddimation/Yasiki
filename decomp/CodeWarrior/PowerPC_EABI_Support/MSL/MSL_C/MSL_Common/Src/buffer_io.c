@@ -99,57 +99,57 @@ extern int txtbinFlag;
 
 #if (__dest_os == __mac_os || __dest_os == __mips_bare ||                           \
      __dest_os == __emb_68k) &&                                                     \
-    !__option(mpwc_newline)                            /*- vss 980825 -*/
+    !__option(mpwc_newline)                             /*- vss 980825 -*/
 void
-__convert_from_newlines(unsigned char* buf, size_t* n) /*- mm 970210 -*/
-{                                                      /*- mm 970210 -*/
-    unsigned char* p = buf;                            /*- mm 970210 -*/
-    size_t         i = *n;                             /*- mm 970210 -*/
-    while (i--)                                        /*- mm 970210 -*/
-    {                                                  /*- mm 970210 -*/
+__convert_from_newlines (unsigned char* buf, size_t* n) /*- mm 970210 -*/
+{                                                       /*- mm 970210 -*/
+    unsigned char* p = buf;                             /*- mm 970210 -*/
+    size_t         i = *n;                              /*- mm 970210 -*/
+    while (i--)                                         /*- mm 970210 -*/
+    {                                                   /*- mm 970210 -*/
         if (*p == '\r')
         {
-            *p = '\n';                                 /*- mm 970210 -*/
+            *p = '\n';                                  /*- mm 970210 -*/
         }
         else if (*p == '\n')
         {
-            *p = '\r';                                 /*- mm 970210 -*/
+            *p = '\r';                                  /*- mm 970210 -*/
         }
-        p++;                                           /*- mm 970210 -*/
+        p++;                                            /*- mm 970210 -*/
     } /*- mm 970210 -*/
 }
 void
-__convert_to_newlines(unsigned char* buf, size_t* n) /*- mm 970210 -*/
-{                                                    /*- mm 970210 -*/
-    unsigned char* p = buf;                          /*- mm 970210 -*/
-    size_t         i = *n;                           /*- mm 970210 -*/
-    while (i--)                                      /*- mm 970210 -*/
-    {                                                /*- mm 970210 -*/
+__convert_to_newlines (unsigned char* buf, size_t* n) /*- mm 970210 -*/
+{                                                     /*- mm 970210 -*/
+    unsigned char* p = buf;                           /*- mm 970210 -*/
+    size_t         i = *n;                            /*- mm 970210 -*/
+    while (i--)                                       /*- mm 970210 -*/
+    {                                                 /*- mm 970210 -*/
         if (*p == '\n')
         {
-            *p = '\r';                               /*- mm 970210 -*/
+            *p = '\r';                                /*- mm 970210 -*/
         }
         else if (*p == '\r')
         {
-            *p = '\n';                               /*- mm 970210 -*/
+            *p = '\n';                                /*- mm 970210 -*/
         }
-        p++;                                         /*- mm 970210 -*/
+        p++;                                          /*- mm 970210 -*/
     } /*- mm 970210 -*/
 }
 #else
 void
-__convert_from_newlines(unsigned char* p, size_t* n)
+__convert_from_newlines (unsigned char* p, size_t* n)
 {
 #pragma unused(p, n)
 }
 void
-__convert_to_newlines(unsigned char* p, size_t* n)
+__convert_to_newlines (unsigned char* p, size_t* n)
 {
 #pragma unused(p, n)
 }
 #endif
 void
-__prep_buffer(FILE* file)
+__prep_buffer (FILE* file)
 {
     file->buffer_ptr = file->buffer;
     file->buffer_len = file->buffer_size;
@@ -157,11 +157,11 @@ __prep_buffer(FILE* file)
     file->buffer_pos = file->position;
 }
 int
-__load_buffer(FILE* file, size_t* bytes_loaded, int alignment)
+__load_buffer (FILE* file, size_t* bytes_loaded, int alignment)
 {
     int ioresult;
 
-    __prep_buffer(file);
+    __prep_buffer (file);
 
     if (alignment == __dont_align_buffer)
     {
@@ -176,8 +176,8 @@ __load_buffer(FILE* file, size_t* bytes_loaded, int alignment)
 
 #endif
 
-    ioresult = (*file->read_proc)(file->handle, file->buffer,
-                                  (size_t*)&file->buffer_len, file->idle_proc);
+    ioresult = (*file->read_proc) (
+        file->handle, file->buffer, (size_t*)&file->buffer_len, file->idle_proc);
 
     if (ioresult == __io_EOF) /*- mm 961031 -*/
     {
@@ -220,13 +220,13 @@ __load_buffer(FILE* file, size_t* bytes_loaded, int alignment)
 
     if (!file->mode.binary_io)
     {
-        __convert_to_newlines(file->buffer, (size_t*)&file->buffer_len);
+        __convert_to_newlines (file->buffer, (size_t*)&file->buffer_len);
     }
 
     return (__no_io_error);
 }
 int
-__flush_buffer(FILE* file, size_t* bytes_flushed)
+__flush_buffer (FILE* file, size_t* bytes_flushed)
 {
     size_t buffer_len;
     int    ioresult;
@@ -239,7 +239,7 @@ __flush_buffer(FILE* file, size_t* bytes_flushed)
 
         if (!file->mode.binary_io)
         {
-            __convert_from_newlines(file->buffer, (size_t*)&file->buffer_len);
+            __convert_from_newlines (file->buffer, (size_t*)&file->buffer_len);
         }
 
                     /*#if _dsp_hostio*/
@@ -249,8 +249,8 @@ __flush_buffer(FILE* file, size_t* bytes_flushed)
         txtbinFlag = file->mode.binary_io;
 #endif
 
-        ioresult = (*file->write_proc)(file->handle, file->buffer,
-                                       (size_t*)&file->buffer_len, file->idle_proc);
+        ioresult = (*file->write_proc) (
+            file->handle, file->buffer, (size_t*)&file->buffer_len, file->idle_proc);
 
         if (bytes_flushed)
         {
@@ -265,18 +265,18 @@ __flush_buffer(FILE* file, size_t* bytes_flushed)
         file->position += file->buffer_len;
     }
 
-    __prep_buffer(file);
+    __prep_buffer (file);
 
     return (__no_io_error);
 }
 int
-setvbuf(FILE* file, char* buff, int mode, size_t size)
+setvbuf (FILE* file, char* buff, int mode, size_t size)
 {
     int kind = file->mode.file_kind;
 
     if (mode == _IONBF) /*- mani 970101 -*/              /*- mm 970708 -*/
     {
-        fflush(file); /*- mani 970101 -*/                /*- mm 970708 -*/
+        fflush (file); /*- mani 970101 -*/               /*- mm 970708 -*/
     }
 
     if (file->state.io_state != __neutral ||
@@ -292,12 +292,12 @@ setvbuf(FILE* file, char* buff, int mode, size_t size)
 
     if (file->buffer && file->state.free_buffer)
 #ifndef _No_Disk_File_OS_Support
-        free(file->buffer);
+        free (file->buffer);
 #else
         return (-1);
 #endif
 
-    __begin_critical_region(files_access);               /*- mm 001013 -*/
+    __begin_critical_region (files_access);              /*- mm 001013 -*/
 
     file->mode.buffer_mode = mode;
     file->state.free_buffer = 0;
@@ -316,15 +316,15 @@ setvbuf(FILE* file, char* buff, int mode, size_t size)
     if (!buff)
     {
 #ifndef _No_Disk_File_OS_Support
-        if (!(buff = (char*)malloc(size)))
+        if (!(buff = (char*)malloc (size)))
         {
-            __end_critical_region(files_access);         /*- mm 001013 -*/
+            __end_critical_region (files_access);        /*- mm 001013 -*/
             return (-1);
         }
 
         file->state.free_buffer = 1;
 #else
-        __end_critical_region(files_access); /*- mm 001013 -*/
+        __end_critical_region (files_access); /*- mm 001013 -*/
         return (-1);
 #endif
     }
@@ -351,20 +351,20 @@ setvbuf(FILE* file, char* buff, int mode, size_t size)
     file->buffer_alignment = 0;
 
 #endif
-    __end_critical_region(files_access); /*- mm 001013 -*/
+    __end_critical_region (files_access); /*- mm 001013 -*/
 
     return (0);
 }
 void
-setbuf(FILE* file, char* buff)
+setbuf (FILE* file, char* buff)
 {
     if (buff)
     {
-        setvbuf(file, buff, _IOFBF, BUFSIZ);
+        setvbuf (file, buff, _IOFBF, BUFSIZ);
     }
     else
     {
-        setvbuf(file, 0, _IONBF, 0);
+        setvbuf (file, 0, _IONBF, 0);
     }
 }
 /* Change record:

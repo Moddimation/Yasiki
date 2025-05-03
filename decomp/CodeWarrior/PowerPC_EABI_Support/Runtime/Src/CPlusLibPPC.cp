@@ -15,7 +15,7 @@
  */
 
 void*
-__copy(char* to, char* from, size_t size)
+__copy (char* to, char* from, size_t size)
 {
     char* p;
 
@@ -43,8 +43,10 @@ __copy(char* to, char* from, size_t size)
  */
 
 void*
-__init_arr(void* memptr, ConstructorDestructor constructor, size_t objectsize,
-           size_t nobjects)
+__init_arr (void*                 memptr,
+            ConstructorDestructor constructor,
+            size_t                objectsize,
+            size_t                nobjects)
 {
     char* p;
 
@@ -52,12 +54,12 @@ __init_arr(void* memptr, ConstructorDestructor constructor, size_t objectsize,
     {
         ((size_t*)p)[0] = objectsize;
         ((size_t*)p)[1] = nobjects;
-        p += 2 * sizeof(size_t);
+        p += 2 * sizeof (size_t);
         if (constructor)
         {
             for (; nobjects--; p += objectsize)
             {
-                CTORCALL_COMPLETE(constructor, p);
+                CTORCALL_COMPLETE (constructor, p);
             }
         }
     }
@@ -74,21 +76,21 @@ __init_arr(void* memptr, ConstructorDestructor constructor, size_t objectsize,
  */
 
 void*
-__new_arr(ConstructorDestructor constructor, size_t objectsize, size_t nobjects)
+__new_arr (ConstructorDestructor constructor, size_t objectsize, size_t nobjects)
 {
     char *memptr, *p;
 
-    if ((memptr =
-             (char*)::operator new(2 * sizeof(size_t) + nobjects * objectsize)) != 0)
+    if ((memptr = (char*)::operator new (2 * sizeof (size_t) +
+                                         nobjects * objectsize)) != 0)
     {
-        memptr += 2 * sizeof(size_t);
+        memptr += 2 * sizeof (size_t);
         ((size_t*)memptr)[-2] = objectsize;
         ((size_t*)memptr)[-1] = nobjects;
         if (constructor)
         {
             for (p = memptr; nobjects--; p += objectsize)
             {
-                CTORCALL_COMPLETE(constructor, p);
+                CTORCALL_COMPLETE (constructor, p);
             }
         }
     }
@@ -105,7 +107,7 @@ __new_arr(ConstructorDestructor constructor, size_t objectsize, size_t nobjects)
  */
 
 void
-__del_arr(void* memptr, ConstructorDestructor destructor)
+__del_arr (void* memptr, ConstructorDestructor destructor)
 {
     size_t nobjects, objectsize;
     char*  p;
@@ -119,7 +121,7 @@ __del_arr(void* memptr, ConstructorDestructor destructor)
             for (p = (char*)memptr + objectsize * nobjects; nobjects--;)
             {
                 p -= objectsize;
-                DTORCALL_COMPLETE(destructor, p);
+                DTORCALL_COMPLETE (destructor, p);
             }
         }
         ::delete (&((size_t*)memptr)[-2]);
@@ -134,8 +136,10 @@ __del_arr(void* memptr, ConstructorDestructor destructor)
  */
 
 void
-__dc_arr(void* memptr, ConstructorDestructor constructordestructor, short objectsize,
-         short nobjects)
+__dc_arr (void*                 memptr,
+          ConstructorDestructor constructordestructor,
+          short                 objectsize,
+          short                 nobjects)
 {
     char* p;
 
@@ -143,6 +147,6 @@ __dc_arr(void* memptr, ConstructorDestructor constructordestructor, short object
     //	but this function is not used by the current compilers.
     for (p = (char*)memptr; nobjects--; p += objectsize)
     {
-        DTORCALL_COMPLETE(constructordestructor, p);
+        DTORCALL_COMPLETE (constructordestructor, p);
     }
 }

@@ -57,29 +57,31 @@ public:
     typedef Allocator                 allocator_type;
 
     //  lib.stringbuf.cons Constructors:
-    explicit basic_stringbuf(ios_base::openmode which = ios_base::in |
-                                                        ios_base::out);
-    explicit basic_stringbuf(const basic_string<charT, traits, Allocator>& str,
-                             ios_base::openmode which = ios_base::in |
-                                                        ios_base::out);
+    explicit basic_stringbuf (ios_base::openmode which = ios_base::in |
+                                                         ios_base::out);
+    explicit basic_stringbuf (const basic_string<charT, traits, Allocator>& str,
+                              ios_base::openmode which = ios_base::in |
+                                                         ios_base::out);
 
     //  lib.stringbuf.members Get and set:
-    basic_string<charT, traits, Allocator> str() const;
-    void str(const basic_string<charT, traits, Allocator>& s);
+    basic_string<charT, traits, Allocator> str () const;
+    void str (const basic_string<charT, traits, Allocator>& s);
 
 protected:
     //  lib.stringbuf.virtuals Overridden virtual functions:
-    virtual int_type underflow();
-    virtual int_type pbackfail(int_type c = traits::eof());
-    virtual int_type overflow(int_type c = traits::eof());
+    virtual int_type underflow ();
+    virtual int_type pbackfail (int_type c = traits::eof());
+    virtual int_type overflow (int_type c = traits::eof());
     // virtual basic_streambuf<charT, traits>* setbuf(charT*, streamsize); use base
     // class
 
-    virtual pos_type seekoff(off_type off, ios_base::seekdir way,
-                             ios_base::openmode which = ios_base::in |
-                                                        ios_base::out);
-    virtual pos_type seekpos(pos_type sp, ios_base::openmode which = ios_base::in |
-                                                                     ios_base::out);
+    virtual pos_type seekoff (off_type           off,
+                              ios_base::seekdir  way,
+                              ios_base::openmode which = ios_base::in |
+                                                         ios_base::out);
+    virtual pos_type seekpos (pos_type           sp,
+                              ios_base::openmode which = ios_base::in |
+                                                         ios_base::out);
 
 private:
     typedef vector<charT, Allocator> buf_type;
@@ -99,15 +101,15 @@ public:
     typedef Allocator                 allocator_type;
 
     //  lib.istringstream.cons Constructors:
-    explicit basic_istringstream(ios_base::openmode which = ios_base::in);
-    explicit basic_istringstream(const basic_string<charT, traits, Allocator>& str,
-                                 ios_base::openmode which = ios_base::in);
+    explicit basic_istringstream (ios_base::openmode which = ios_base::in);
+    explicit basic_istringstream (const basic_string<charT, traits, Allocator>& str,
+                                  ios_base::openmode which = ios_base::in);
 
     //  lib.istringstream.members Members:
-    basic_stringbuf<charT, traits, Allocator>* rdbuf() const;
+    basic_stringbuf<charT, traits, Allocator>* rdbuf () const;
 
-    basic_string<charT, traits, Allocator> str() const;
-    void str(const basic_string<charT, traits, Allocator>& s);
+    basic_string<charT, traits, Allocator> str () const;
+    void str (const basic_string<charT, traits, Allocator>& s);
 
 private:
     basic_stringbuf<charT, traits, Allocator> sb_;
@@ -124,15 +126,15 @@ public:
     typedef Allocator                 allocator_type;
 
     //  lib.ostringstream.cons Constructors/destructor:
-    explicit basic_ostringstream(ios_base::openmode which = ios_base::out);
-    explicit basic_ostringstream(const basic_string<charT, traits, Allocator>& str,
-                                 ios_base::openmode which = ios_base::out);
+    explicit basic_ostringstream (ios_base::openmode which = ios_base::out);
+    explicit basic_ostringstream (const basic_string<charT, traits, Allocator>& str,
+                                  ios_base::openmode which = ios_base::out);
 
     //  lib.ostringstream.members Members:
-    basic_stringbuf<charT, traits, Allocator>* rdbuf() const;
+    basic_stringbuf<charT, traits, Allocator>* rdbuf () const;
 
-    basic_string<charT, traits, Allocator> str() const;
-    void str(const basic_string<charT, traits, Allocator>& s);
+    basic_string<charT, traits, Allocator> str () const;
+    void str (const basic_string<charT, traits, Allocator>& s);
 
 private:
     basic_stringbuf<charT, traits, Allocator> sb_;
@@ -149,16 +151,16 @@ public:
     typedef Allocator                 allocator_type;
 
     //  constructors/destructors
-    explicit basic_stringstream(ios_base::openmode which = ios_base::out |
-                                                           ios_base::in);
-    explicit basic_stringstream(const basic_string<charT, traits, Allocator>& str,
-                                ios_base::openmode which = ios_base::out |
-                                                           ios_base::in);
+    explicit basic_stringstream (ios_base::openmode which = ios_base::out |
+                                                            ios_base::in);
+    explicit basic_stringstream (const basic_string<charT, traits, Allocator>& str,
+                                 ios_base::openmode which = ios_base::out |
+                                                            ios_base::in);
 
     //  Members:
-    basic_stringbuf<charT, traits, Allocator>* rdbuf() const;
-    basic_string<charT, traits, Allocator>     str() const;
-    void str(const basic_string<charT, traits, Allocator>& str);
+    basic_stringbuf<charT, traits, Allocator>* rdbuf () const;
+    basic_string<charT, traits, Allocator>     str () const;
+    void str (const basic_string<charT, traits, Allocator>& str);
 
 private:
     basic_stringbuf<charT, traits> sb_;
@@ -166,15 +168,15 @@ private:
 // basic_stringbuf Implementation
 
 template <class charT, class traits, class Allocator>
-inline basic_stringbuf<charT, traits, Allocator>::basic_stringbuf(
+inline basic_stringbuf<charT, traits, Allocator>::basic_stringbuf (
     ios_base::openmode which)
-  : mode_(which)
+  : mode_ (which)
 {
 }
 template <class charT, class traits, class Allocator>
-basic_stringbuf<charT, traits, Allocator>::basic_stringbuf(
+basic_stringbuf<charT, traits, Allocator>::basic_stringbuf (
     const basic_string<charT, traits, Allocator>& str, ios_base::openmode which)
-  : str_(str.begin(), str.end(), str.get_allocator()), mode_(which)
+  : str_ (str.begin(), str.end(), str.get_allocator()), mode_ (which)
 {
     typename buf_type::size_type sz = str_.size();
     if (sz > 0)
@@ -182,107 +184,107 @@ basic_stringbuf<charT, traits, Allocator>::basic_stringbuf(
         charT* p = &str_[0];
         if (mode_ & ios_base::out)
         {
-            base::setp(p, p + sz);
+            base::setp (p, p + sz);
             if (mode_ & (ios_base::app | ios_base::ate))
             {
-                base::pbump((int)sz);
+                base::pbump ((int)sz);
             }
         }
         if (mode_ & ios_base::in)
         {
-            base::setg(p, p, p + sz);
+            base::setg (p, p, p + sz);
         }
     }
 }
 template <class charT, class traits, class Allocator>
 inline basic_string<charT, traits, Allocator>
-basic_stringbuf<charT, traits, Allocator>::str() const
+basic_stringbuf<charT, traits, Allocator>::str () const
 {
     if (mode_ & ios_base::out)
     {
-        return basic_string<charT, traits, Allocator>(base::pbase(), base::epptr(),
-                                                      str_.get_allocator());
+        return basic_string<charT, traits, Allocator> (
+            base::pbase(), base::epptr(), str_.get_allocator());
     }
-    return basic_string<charT, traits, Allocator>(base::eback(), base::egptr(),
-                                                  str_.get_allocator());
+    return basic_string<charT, traits, Allocator> (
+        base::eback(), base::egptr(), str_.get_allocator());
 }
 template <class charT, class traits, class Allocator>
 void
-basic_stringbuf<charT, traits, Allocator>::str(
+basic_stringbuf<charT, traits, Allocator>::str (
     const basic_string<charT, traits, Allocator>& s)
 {
     typename buf_type::size_type sz = s.size();
-    str_.assign(s.begin(), s.end());
+    str_.assign (s.begin(), s.end());
     charT* p = str_.capacity() != 0 ? &str_[0] : 0;
     if (mode_ & ios_base::out)
     {
-        base::setp(p, p + sz);
+        base::setp (p, p + sz);
         if (mode_ & (ios_base::app | ios_base::ate))
         {
-            base::pbump((int)sz);
+            base::pbump ((int)sz);
         }
     }
     if (mode_ & ios_base::in)
     {
-        base::setg(p, p, p + sz);
+        base::setg (p, p, p + sz);
     }
 }
 template <class charT, class traits, class Allocator>
 inline typename basic_stringbuf<charT, traits, Allocator>::int_type
-basic_stringbuf<charT, traits, Allocator>::underflow()
+basic_stringbuf<charT, traits, Allocator>::underflow ()
 {
-    return base::gptr() < base::egptr() ? traits::to_int_type(*base::gptr())
+    return base::gptr() < base::egptr() ? traits::to_int_type (*base::gptr())
                                         : traits::eof();
 }
 template <class charT, class traits, class Allocator>
 typename basic_stringbuf<charT, traits, Allocator>::int_type
-basic_stringbuf<charT, traits, Allocator>::pbackfail(int_type c)
+basic_stringbuf<charT, traits, Allocator>::pbackfail (int_type c)
 {
     if (base::eback() >= base::gptr())
     {
         return traits::eof();
     }
-    if (traits::eq_int_type(c, traits::eof()))
+    if (traits::eq_int_type (c, traits::eof()))
     {
-        base::gbump(-1);
-        return traits::not_eof(c);
+        base::gbump (-1);
+        return traits::not_eof (c);
     }
-    charT ch = traits::to_char_type(c);
-    if (!(mode_ & ios_base::out) && !traits::eq(ch, base::gptr()[-1]))
+    charT ch = traits::to_char_type (c);
+    if (!(mode_ & ios_base::out) && !traits::eq (ch, base::gptr()[-1]))
     {
         return traits::eof();
     }
-    base::gbump(-1);
+    base::gbump (-1);
     *base::gptr() = ch;
     return c;
 }
 template <class charT, class traits, class Allocator>
 typename basic_stringbuf<charT, traits, Allocator>::int_type
-basic_stringbuf<charT, traits, Allocator>::overflow(int_type c)
+basic_stringbuf<charT, traits, Allocator>::overflow (int_type c)
 {
     if (!(mode_ & ios_base::out))
     {
         return traits::eof();
     }
-    if (traits::eq_int_type(c, traits::eof()))
+    if (traits::eq_int_type (c, traits::eof()))
     {
-        return traits::not_eof(c);
+        return traits::not_eof (c);
     }
     if (base::pptr() < base::epptr())
     {
-        *base::pptr() = traits::to_char_type(c);
-        base::pbump(1);
+        *base::pptr() = traits::to_char_type (c);
+        base::pbump (1);
         return c;
     }
     if (str_.size() < str_.capacity())
     {
-        str_.resize(str_.size() + 1, traits::to_char_type(c));
+        str_.resize (str_.size() + 1, traits::to_char_type (c));
         if (mode_ & ios_base::in)
         {
-            base::setg(base::eback(), base::gptr(), base::egptr() + 1);
+            base::setg (base::eback(), base::gptr(), base::egptr() + 1);
         }
-        base::setp(base::pbase(), base::epptr() + 1);
-        base::pbump(base::epptr() - base::pbase());
+        base::setp (base::pbase(), base::epptr() + 1);
+        base::pbump (base::epptr() - base::pbase());
         return c;
     }
 #ifndef _MSL_NO_EXCEPTIONS
@@ -291,15 +293,15 @@ basic_stringbuf<charT, traits, Allocator>::overflow(int_type c)
 #endif
         long inpos = base::gptr() - base::eback();
         long outpos = base::pptr() - base::pbase();
-        str_.resize(str_.size() + 1, traits::to_char_type(c));
+        str_.resize (str_.size() + 1, traits::to_char_type (c));
         typename buf_type::size_type sz = str_.size();
         charT*                       p = &str_[0];
         if (mode_ & ios_base::in)
         {
-            base::setg(p, p + inpos, p + sz);
+            base::setg (p, p + inpos, p + sz);
         }
-        base::setp(p, p + sz);
-        base::pbump(outpos + 1);
+        base::setp (p, p + sz);
+        base::pbump (outpos + 1);
         return c;
 #ifndef _MSL_NO_EXCEPTIONS
     }
@@ -311,19 +313,19 @@ basic_stringbuf<charT, traits, Allocator>::overflow(int_type c)
 }
 template <class charT, class traits, class Allocator>
 typename basic_stringbuf<charT, traits, Allocator>::pos_type
-basic_stringbuf<charT, traits, Allocator>::seekoff(off_type           off,
-                                                   ios_base::seekdir  way,
-                                                   ios_base::openmode which)
+basic_stringbuf<charT, traits, Allocator>::seekoff (off_type           off,
+                                                    ios_base::seekdir  way,
+                                                    ios_base::openmode which)
 {
     ios_base::openmode inout = ios_base::in | ios_base::out;
     if ((which & inout) == inout && way == ios_base::cur || (which & inout) == 0)
     {
-        return pos_type(-1);
+        return pos_type (-1);
     }
     if (which & ios_base::in && !(mode_ & ios_base::in) ||
         which & ios_base::out && !(mode_ & ios_base::out))
     {
-        return pos_type(-1);
+        return pos_type (-1);
     }
     off_type newoff;
     switch (way)
@@ -352,163 +354,164 @@ basic_stringbuf<charT, traits, Allocator>::seekoff(off_type           off,
             }
             break;
         default:
-            return pos_type(-1);
+            return pos_type (-1);
     }
     newoff += off;
     if (newoff < 0 || newoff > str_.size())
     {
-        return pos_type(-1);
+        return pos_type (-1);
     }
     if (mode_ & ios_base::app && which & ios_base::out && newoff != str_.size())
     {
-        return pos_type(-1);
+        return pos_type (-1);
     }
     if (which & ios_base::in)
     {
-        base::setg(base::eback(), base::eback() + newoff, base::egptr());
+        base::setg (base::eback(), base::eback() + newoff, base::egptr());
     }
     if (which & ios_base::out)
     {
-        base::setp(base::pbase(), base::epptr());
-        base::pbump(newoff);
+        base::setp (base::pbase(), base::epptr());
+        base::pbump (newoff);
     }
-    return pos_type(newoff);
+    return pos_type (newoff);
 }
 template <class charT, class traits, class Allocator>
 typename basic_stringbuf<charT, traits, Allocator>::pos_type
-basic_stringbuf<charT, traits, Allocator>::seekpos(pos_type           sp,
-                                                   ios_base::openmode which)
+basic_stringbuf<charT, traits, Allocator>::seekpos (pos_type           sp,
+                                                    ios_base::openmode which)
 {
     if (which & (ios_base::in | ios_base::out) == 0)
     {
-        return pos_type(-1);
+        return pos_type (-1);
     }
     if (which & ios_base::in && !(mode_ & ios_base::in) ||
         which & ios_base::out && !(mode_ & ios_base::out))
     {
-        return pos_type(-1);
+        return pos_type (-1);
     }
     off_type off = sp;
     if (off < 0 || off > str_.size())
     {
-        return pos_type(-1);
+        return pos_type (-1);
     }
     if (mode_ & ios_base::app && which & ios_base::out && off != str_.size())
     {
-        return pos_type(-1);
+        return pos_type (-1);
     }
     if (which & ios_base::in)
     {
-        base::setg(base::eback(), base::eback() + off, base::egptr());
+        base::setg (base::eback(), base::eback() + off, base::egptr());
     }
     if (which & ios_base::out)
     {
-        base::setp(base::pbase(), base::epptr());
-        base::pbump(off);
+        base::setp (base::pbase(), base::epptr());
+        base::pbump (off);
     }
     return sp;
 }
 // basic_istringstream Implementation
 
 template <class charT, class traits, class Allocator>
-inline basic_istringstream<charT, traits, Allocator>::basic_istringstream(
+inline basic_istringstream<charT, traits, Allocator>::basic_istringstream (
     ios_base::openmode which)
-  : basic_istream<charT, traits>(&sb_), sb_(ios_base::openmode(which | ios_base::in))
+  : basic_istream<charT, traits> (&sb_),
+    sb_ (ios_base::openmode (which | ios_base::in))
 {
 }
 template <class charT, class traits, class Allocator>
-inline basic_istringstream<charT, traits, Allocator>::basic_istringstream(
+inline basic_istringstream<charT, traits, Allocator>::basic_istringstream (
     const basic_string<charT, traits, Allocator>& str, ios_base::openmode which)
-  : basic_istream<charT, traits>(&sb_),
-    sb_(str, ios_base::openmode(which | ios_base::in))
+  : basic_istream<charT, traits> (&sb_),
+    sb_ (str, ios_base::openmode (which | ios_base::in))
 {
 }
 template <class charT, class traits, class Allocator>
 inline basic_stringbuf<charT, traits, Allocator>*
-basic_istringstream<charT, traits, Allocator>::rdbuf() const
+basic_istringstream<charT, traits, Allocator>::rdbuf () const
 {
-    return const_cast<basic_stringbuf<charT, traits, Allocator>*>(&sb_);
+    return const_cast<basic_stringbuf<charT, traits, Allocator>*> (&sb_);
 }
 template <class charT, class traits, class Allocator>
 inline basic_string<charT, traits, Allocator>
-basic_istringstream<charT, traits, Allocator>::str() const
+basic_istringstream<charT, traits, Allocator>::str () const
 {
     return rdbuf()->str();
 }
 template <class charT, class traits, class Allocator>
 inline void
-basic_istringstream<charT, traits, Allocator>::str(
+basic_istringstream<charT, traits, Allocator>::str (
     const basic_string<charT, traits, Allocator>& s)
 {
-    rdbuf()->str(s);
+    rdbuf()->str (s);
 }
 // basic_ostringstream Implementation
 
 template <class charT, class traits, class Allocator>
-inline basic_ostringstream<charT, traits, Allocator>::basic_ostringstream(
+inline basic_ostringstream<charT, traits, Allocator>::basic_ostringstream (
     ios_base::openmode which)
-  : basic_ostream<charT, traits>(&sb_),
-    sb_(ios_base::openmode(which | ios_base::out))
+  : basic_ostream<charT, traits> (&sb_),
+    sb_ (ios_base::openmode (which | ios_base::out))
 {
 }
 template <class charT, class traits, class Allocator>
-inline basic_ostringstream<charT, traits, Allocator>::basic_ostringstream(
+inline basic_ostringstream<charT, traits, Allocator>::basic_ostringstream (
     const basic_string<charT, traits, Allocator>& str, ios_base::openmode which)
-  : basic_ostream<charT, traits>(&sb_),
-    sb_(str, ios_base::openmode(which | ios_base::out))
+  : basic_ostream<charT, traits> (&sb_),
+    sb_ (str, ios_base::openmode (which | ios_base::out))
 {
 }
 template <class charT, class traits, class Allocator>
 inline basic_stringbuf<charT, traits, Allocator>*
-basic_ostringstream<charT, traits, Allocator>::rdbuf() const
+basic_ostringstream<charT, traits, Allocator>::rdbuf () const
 {
-    return const_cast<basic_stringbuf<charT, traits, Allocator>*>(&sb_);
+    return const_cast<basic_stringbuf<charT, traits, Allocator>*> (&sb_);
 }
 template <class charT, class traits, class Allocator>
 inline basic_string<charT, traits, Allocator>
-basic_ostringstream<charT, traits, Allocator>::str() const
+basic_ostringstream<charT, traits, Allocator>::str () const
 {
     return rdbuf()->str();
 }
 template <class charT, class traits, class Allocator>
 inline void
-basic_ostringstream<charT, traits, Allocator>::str(
+basic_ostringstream<charT, traits, Allocator>::str (
     const basic_string<charT, traits, Allocator>& s)
 {
-    rdbuf()->str(s);
+    rdbuf()->str (s);
 }
 // basic_stringstream Implementation
 
 template <class charT, class traits, class Allocator>
-inline basic_stringstream<charT, traits, Allocator>::basic_stringstream(
+inline basic_stringstream<charT, traits, Allocator>::basic_stringstream (
     ios_base::openmode which)
-  : basic_iostream<charT, traits>(&sb_), sb_(which)
+  : basic_iostream<charT, traits> (&sb_), sb_ (which)
 {
 }
 template <class charT, class traits, class Allocator>
-inline basic_stringstream<charT, traits, Allocator>::basic_stringstream(
+inline basic_stringstream<charT, traits, Allocator>::basic_stringstream (
     const basic_string<charT, traits, Allocator>& str, ios_base::openmode which)
-  : basic_iostream<charT, traits>(&sb_), sb_(str, which)
+  : basic_iostream<charT, traits> (&sb_), sb_ (str, which)
 {
 }
 template <class charT, class traits, class Allocator>
 inline basic_stringbuf<charT, traits, Allocator>*
-basic_stringstream<charT, traits, Allocator>::rdbuf() const
+basic_stringstream<charT, traits, Allocator>::rdbuf () const
 {
-    return const_cast<basic_stringbuf<charT, traits, Allocator>*>(&sb_);
+    return const_cast<basic_stringbuf<charT, traits, Allocator>*> (&sb_);
 }
 template <class charT, class traits, class Allocator>
 inline basic_string<charT, traits, Allocator>
-basic_stringstream<charT, traits, Allocator>::str() const
+basic_stringstream<charT, traits, Allocator>::str () const
 {
     return rdbuf()->str();
 }
 template <class charT, class traits, class Allocator>
 inline void
-basic_stringstream<charT, traits, Allocator>::str(
+basic_stringstream<charT, traits, Allocator>::str (
     const basic_string<charT, traits, Allocator>& s)
 {
-    rdbuf()->str(s);
+    rdbuf()->str (s);
 }
 #ifndef _MSL_NO_CPP_NAMESPACE
 } // namespace std

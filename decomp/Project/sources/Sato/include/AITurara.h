@@ -7,24 +7,24 @@
 class AITurara : public EnemyTypicalStrategy
 {
 public:
-    AITurara();
-    virtual ~AITurara();
+    AITurara ();
+    virtual ~AITurara ();
 
     // EnemyStrategy overrides
-    virtual s32  unkEnemyStrategyFunc01();
-    virtual void doBehavior();
-    virtual void doBehaviorInit();
+    virtual s32  unkEnemyStrategyFunc01 ();
+    virtual void doBehavior ();
+    virtual void doBehaviorInit ();
 
     // CharacterEventObserver overrides
-    virtual bool onPlayerLeftRoom(Koga::CharacterEvent* msg);
-    virtual bool FUN_800ea44c(Koga::CharacterEvent* msg);
+    virtual bool onPlayerLeftRoom (Koga::CharacterEvent* msg);
+    virtual bool FUN_800ea44c (Koga::CharacterEvent* msg);
 
-    void spawnIcicles();
+    void spawnIcicles ();
 
-    bool procInit_init();
-    bool procInit();
-    bool procWait_init();
-    bool procWait();
+    bool procInit_init ();
+    bool procInit ();
+    bool procWait_init ();
+    bool procWait ();
 
     s32 mRespawnTimer;            ///< 0x01A8
 

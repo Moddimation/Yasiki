@@ -9,9 +9,9 @@ static struct
     DVDCommandBlock* next; ///< 0x00
     DVDCommandBlock* prev; ///< 0x04
 } WaitingQueue[4];
-static DVDCommandBlock* PopWaitingQueuePrio(s32 prio);
+static DVDCommandBlock* PopWaitingQueuePrio (s32 prio);
 void
-__DVDClearWaitingQueue(void)
+__DVDClearWaitingQueue (void)
 {
     u32              i;
     DVDCommandBlock* q;
@@ -24,7 +24,7 @@ __DVDClearWaitingQueue(void)
     }
 }
 int
-__DVDPushWaitingQueue(s32 prio, DVDCommandBlock* block)
+__DVDPushWaitingQueue (s32 prio, DVDCommandBlock* block)
 {
     int              enabled = OSDisableInterrupts();
     DVDCommandBlock* q = (DVDCommandBlock*)&WaitingQueue[prio];
@@ -33,11 +33,11 @@ __DVDPushWaitingQueue(s32 prio, DVDCommandBlock* block)
     block->prev = q->prev;
     block->next = q;
     q->prev = block;
-    OSRestoreInterrupts(enabled);
+    OSRestoreInterrupts (enabled);
     return 1;
 }
 static DVDCommandBlock*
-PopWaitingQueuePrio(s32 prio)
+PopWaitingQueuePrio (s32 prio)
 {
     DVDCommandBlock* tmp;
     int              enabled;
@@ -45,17 +45,17 @@ PopWaitingQueuePrio(s32 prio)
 
     enabled = OSDisableInterrupts();
     q = (DVDCommandBlock*)&WaitingQueue[prio];
-    ASSERTLINE(0x54, q->next != q);
+    ASSERTLINE (0x54, q->next != q);
     tmp = q->next;
     q->next = tmp->next;
     tmp->next->prev = q;
-    OSRestoreInterrupts(enabled);
+    OSRestoreInterrupts (enabled);
     tmp->next = 0;
     tmp->prev = 0;
     return tmp;
 }
 DVDCommandBlock*
-__DVDPopWaitingQueue(void)
+__DVDPopWaitingQueue (void)
 {
     u32              i;
     int              enabled;
@@ -67,15 +67,15 @@ __DVDPopWaitingQueue(void)
         q = (DVDCommandBlock*)&WaitingQueue[i];
         if (q->next != q)
         {
-            OSRestoreInterrupts(enabled);
-            return PopWaitingQueuePrio(i);
+            OSRestoreInterrupts (enabled);
+            return PopWaitingQueuePrio (i);
         }
     }
-    OSRestoreInterrupts(enabled);
+    OSRestoreInterrupts (enabled);
     return NULL;
 }
 int
-__DVDCheckWaitingQueue(void)
+__DVDCheckWaitingQueue (void)
 {
     u32              i;
     int              enabled;
@@ -87,15 +87,15 @@ __DVDCheckWaitingQueue(void)
         q = (DVDCommandBlock*)&WaitingQueue[i];
         if (q->next != q)
         {
-            OSRestoreInterrupts(enabled);
+            OSRestoreInterrupts (enabled);
             return 1;
         }
     }
-    OSRestoreInterrupts(enabled);
+    OSRestoreInterrupts (enabled);
     return 0;
 }
 int
-__DVDDequeueWaitingQueue(DVDCommandBlock* block)
+__DVDDequeueWaitingQueue (DVDCommandBlock* block)
 {
     int              enabled;
     DVDCommandBlock* prev;
@@ -106,16 +106,16 @@ __DVDDequeueWaitingQueue(DVDCommandBlock* block)
     next = block->next;
     if (prev == NULL || next == NULL)
     {
-        OSRestoreInterrupts(enabled);
+        OSRestoreInterrupts (enabled);
         return 0;
     }
     prev->next = next;
     next->prev = prev;
-    OSRestoreInterrupts(enabled);
+    OSRestoreInterrupts (enabled);
     return 1;
 }
 int
-__DVDIsBlockInWaitingQueue(DVDCommandBlock* block)
+__DVDIsBlockInWaitingQueue (DVDCommandBlock* block)
 {
     u32              i;
     DVDCommandBlock* start;
@@ -157,35 +157,37 @@ static char* CommandNames[16] = {
     "BS_CHANGE_DISK",
 };
 void
-DVDDumpWaitingQueue(void)
+DVDDumpWaitingQueue (void)
 {
     u32              i;
     DVDCommandBlock* start;
     DVDCommandBlock* q;
 
-    OSReport("==== DVD Waiting Queue Status ====\n");
+    OSReport ("==== DVD Waiting Queue Status ====\n");
     for (i = 0; i < 4; i++)
     {
-        OSReport("< Queue #%d > ", i);
+        OSReport ("< Queue #%d > ", i);
         start = (DVDCommandBlock*)&WaitingQueue[i];
         if (start->next == start)
         {
-            OSReport("None\n");
+            OSReport ("None\n");
         }
         else
         {
-            OSReport("\n");
+            OSReport ("\n");
             for (q = start->next; q != start; q = q->next)
             {
-                OSReport("0x%08x: Command: %s ", q, CommandNames[q->command]);
+                OSReport ("0x%08x: Command: %s ", q, CommandNames[q->command]);
                 if (q->command == 1)
                 {
-                    OSReport("Disk offset: %d, Length: %d, Addr: 0x%08x\n",
-                             q->offset, q->length, q->addr);
+                    OSReport ("Disk offset: %d, Length: %d, Addr: 0x%08x\n",
+                              q->offset,
+                              q->length,
+                              q->addr);
                 }
                 else
                 {
-                    OSReport("\n");
+                    OSReport ("\n");
                 }
             }
         }

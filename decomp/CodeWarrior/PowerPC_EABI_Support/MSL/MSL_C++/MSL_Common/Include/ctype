@@ -72,85 +72,87 @@ template <> class ctype<char> : public locale::facet, public ctype_base
 public:
     typedef char char_type;
 
-    explicit ctype(const mask* tab = 0, bool del = false, size_t refs = 0);
+    explicit ctype (const mask* tab = 0, bool del = false, size_t refs = 0);
     bool
-    is(mask m, char c) const
+    is (mask m, char c) const
     {
-        return static_cast<bool>(__table_[(unsigned char)c] & m);
+        return static_cast<bool> (__table_[(unsigned char)c] & m);
     }
-    const char* is(const char* low, const char* high, mask* vec) const;
-    const char* scan_is(mask m, const char* low, const char* high) const;
-    const char* scan_not(mask m, const char* low, const char* high) const;
+    const char* is (const char* low, const char* high, mask* vec) const;
+    const char* scan_is (mask m, const char* low, const char* high) const;
+    const char* scan_not (mask m, const char* low, const char* high) const;
     char
-    toupper(char c) const
+    toupper (char c) const
     {
-        return do_toupper(c);
+        return do_toupper (c);
     }
     const char*
-    toupper(char* low, const char* high) const
+    toupper (char* low, const char* high) const
     {
-        return do_toupper(low, high);
+        return do_toupper (low, high);
     }
     char
-    tolower(char c) const
+    tolower (char c) const
     {
-        return do_tolower(c);
+        return do_tolower (c);
     }
     const char*
-    tolower(char* low, const char* high) const
+    tolower (char* low, const char* high) const
     {
-        return do_tolower(low, high);
+        return do_tolower (low, high);
     }
     char
-    widen(char c) const
+    widen (char c) const
     {
-        return do_widen(c);
+        return do_widen (c);
     }
     const char*
-    widen(const char* low, const char* high, char* to) const
+    widen (const char* low, const char* high, char* to) const
     {
-        return do_widen(low, high, to);
+        return do_widen (low, high, to);
     }
     string
-    widen(const string& s) const // hh 980803 added.  non-standard
+    widen (const string& s) const // hh 980803 added.  non-standard
     {
         return s;
     }
     char
-    narrow(char c, char dfault) const
+    narrow (char c, char dfault) const
     {
-        return do_narrow(c, dfault);
+        return do_narrow (c, dfault);
     }
     const char*
-    narrow(const char* low, const char* high, char dfault, char* to) const
+    narrow (const char* low, const char* high, char dfault, char* to) const
     {
-        return do_narrow(low, high, dfault, to);
+        return do_narrow (low, high, dfault, to);
     }
     static locale::id   id;
     static const size_t table_size = __ctype_table_size;
 
 protected:
     const mask*
-    table() const _MSL_THROW
+    table () const _MSL_THROW
     {
         return __table_;
     }
     static const mask*
-    classic_table() _MSL_THROW
+    classic_table () _MSL_THROW
     {
         return (const mask*)__ctype_map;
     }
-    virtual ÃÂ¢ÃÂÃÂ¾ctype();
-    virtual char        do_toupper(char c) const;
-    virtual const char* do_toupper(char* low, const char* high) const;
-    virtual char        do_tolower(char c) const;
-    virtual const char* do_tolower(char* low, const char* high) const;
+    virtual ÃÂ¢ÃÂÃÂ¾ctype ();
+    virtual char        do_toupper (char c) const;
+    virtual const char* do_toupper (char* low, const char* high) const;
+    virtual char        do_tolower (char c) const;
+    virtual const char* do_tolower (char* low, const char* high) const;
 
-    virtual char        do_widen(char c) const;
-    virtual const char* do_widen(const char* low, const char* high, char* to) const;
-    virtual char        do_narrow(char c, char dfault) const;
-    virtual const char* do_narrow(const char* low, const char* high, char dfault,
-                                  char* to) const;
+    virtual char        do_widen (char c) const;
+    virtual const char* do_widen (const char* low, const char* high, char* to) const;
+    virtual char        do_narrow (char c, char dfault) const;
+    virtual const char* do_narrow (const char* low,
+                                   const char* high,
+                                   char        dfault,
+                                   char*       to) const;
 
     const mask*          __table_;
     const unsigned char* __lower_map_;
@@ -166,89 +168,96 @@ template <class charT> class ctype : public locale::facet, public ctype_base
 {
 public:
     typedef charT char_type;
-    explicit ctype(size_t refs = 0);
+    explicit ctype (size_t refs = 0);
     bool
-    is(mask m, charT c) const
+    is (mask m, charT c) const
     {
-        return do_is(m, c);
+        return do_is (m, c);
     }
     const charT*
-    is(const charT* low, const charT* high, mask* vec) const
+    is (const charT* low, const charT* high, mask* vec) const
     {
-        return do_is(low, high, vec);
+        return do_is (low, high, vec);
     }
     const charT*
-    scan_is(mask m, const charT* low, const charT* high) const
+    scan_is (mask m, const charT* low, const charT* high) const
     {
-        return do_scan_is(m, low, high);
+        return do_scan_is (m, low, high);
     }
     const charT*
-    scan_not(mask m, const charT* low, const charT* high) const
+    scan_not (mask m, const charT* low, const charT* high) const
     {
-        return do_scan_not(m, low, high);
+        return do_scan_not (m, low, high);
     }
     charT
-    toupper(charT c) const
+    toupper (charT c) const
     {
-        return do_toupper(c);
+        return do_toupper (c);
     }
     const charT*
-    toupper(charT* low, const charT* high) const
+    toupper (charT* low, const charT* high) const
     {
-        return do_toupper(low, high);
+        return do_toupper (low, high);
     }
     charT
-    tolower(charT c) const
+    tolower (charT c) const
     {
-        return do_tolower(c);
+        return do_tolower (c);
     }
     const charT*
-    tolower(charT* low, const charT* high) const
+    tolower (charT* low, const charT* high) const
     {
-        return do_tolower(low, high);
+        return do_tolower (low, high);
     }
     charT
-    widen(char c) const
+    widen (char c) const
     {
-        return do_widen(c);
+        return do_widen (c);
     }
     const char*
-    widen(const char* low, const char* high, charT* to) const
+    widen (const char* low, const char* high, charT* to) const
     {
-        return do_widen(low, high, to);
+        return do_widen (low, high, to);
     }
-    basic_string<charT> widen(
-        const string& s) const;  // hh 980803 added.  non-standard
+    basic_string<charT> widen (
+        const string& s) const;   // hh 980803 added.  non-standard
     char
-    narrow(charT c, char dfault) const
+    narrow (charT c, char dfault) const
     {
-        return do_narrow(c, dfault);
+        return do_narrow (c, dfault);
     }
     const charT*
-    narrow(const charT* low, const charT* high, char dfault, char* to) const
+    narrow (const charT* low, const charT* high, char dfault, char* to) const
     {
-        return do_narrow(low, high, dfault, to);
+        return do_narrow (low, high, dfault, to);
     }
     static locale::id id;
 
 protected:
-    virtual ÃÂ¢ÃÂÃÂ¾ctype() {}
-    virtual bool         do_is(mask m, charT c) const;
-    virtual const charT* do_is(const charT* low, const charT* high, mask* vec) const;
-    virtual const charT* do_scan_is(mask m, const charT* low,
-                                    const charT* high) const;
-    virtual const charT* do_scan_not(mask m, const charT* low,
+    virtual ÃÂ¢ÃÂÃÂ¾ctype () {}
+    virtual bool         do_is (mask m, charT c) const;
+    virtual const charT* do_is (const charT* low,
+                                const charT* high,
+                                mask*        vec) const;
+    virtual const charT* do_scan_is (mask         m,
+                                     const charT* low,
                                      const charT* high) const;
-    virtual charT        do_toupper(charT) const;
-    virtual const charT* do_toupper(charT* low, const charT* high) const;
-    virtual charT        do_tolower(charT) const;
-    virtual const charT* do_tolower(charT* low, const charT* high) const;
-    virtual charT        do_widen(char) const;
-    virtual const char*  do_widen(const char* low, const char* high,
-                                  charT* dest) const;
-    virtual char         do_narrow(charT, char dfault) const;
-    virtual const charT* do_narrow(const charT* low, const charT* high, char dfault,
-                                   char* dest) const;
+    virtual const charT* do_scan_not (mask         m,
+                                      const charT* low,
+                                      const charT* high) const;
+    virtual charT        do_toupper (charT) const;
+    virtual const charT* do_toupper (charT* low, const charT* high) const;
+    virtual charT        do_tolower (charT) const;
+    virtual const charT* do_tolower (charT* low, const charT* high) const;
+    virtual charT        do_widen (char) const;
+    virtual const char*  do_widen (const char* low,
+                                   const char* high,
+                                   charT*      dest) const;
+    virtual char         do_narrow (charT, char dfault) const;
+    virtual const charT* do_narrow (const charT* low,
+                                    const charT* high,
+                                    char         dfault,
+                                    char*        dest) const;
 
     Metrowerks::range_map<charT, ctype_base::mask> __table_;
     Metrowerks::range_map<charT, charT>            __lower_map_;
@@ -260,48 +269,48 @@ template <class charT> struct __facet_traits<ctype<charT> >
 {
     static const bool is_standard = true;
 };
-template <class charT> ctype<charT>::ctype(size_t refs) : locale::facet(refs)
+template <class charT> ctype<charT>::ctype (size_t refs) : locale::facet (refs)
 {
-    __table_.insert(L'\x00', L'\x08', 0x01);
-    __table_.insert(L'\x09', L'\x0D', 0x02);
-    __table_.insert(L'\x0E', L'\x1F', 0x01);
-    __table_.insert(L'\x20', 0x04);
-    __table_.insert(L'\x21', L'\x2F', 0x08);
-    __table_.insert(L'\x30', L'\x39', 0x30);
-    __table_.insert(L'\x3A', L'\x40', 0x08);
-    __table_.insert(L'\x41', L'\x46', 0xA0);
-    __table_.insert(L'\x47', L'\x5A', 0x80);
-    __table_.insert(L'\x5B', L'\x60', 0x08);
-    __table_.insert(L'\x61', L'\x66', 0x60);
-    __table_.insert(L'\x67', L'\x7A', 0x40);
-    __table_.insert(L'\x7B', L'\x7E', 0x08);
-    __table_.insert(L'\x7F', 0x01);
+    __table_.insert (L'\x00', L'\x08', 0x01);
+    __table_.insert (L'\x09', L'\x0D', 0x02);
+    __table_.insert (L'\x0E', L'\x1F', 0x01);
+    __table_.insert (L'\x20', 0x04);
+    __table_.insert (L'\x21', L'\x2F', 0x08);
+    __table_.insert (L'\x30', L'\x39', 0x30);
+    __table_.insert (L'\x3A', L'\x40', 0x08);
+    __table_.insert (L'\x41', L'\x46', 0xA0);
+    __table_.insert (L'\x47', L'\x5A', 0x80);
+    __table_.insert (L'\x5B', L'\x60', 0x08);
+    __table_.insert (L'\x61', L'\x66', 0x60);
+    __table_.insert (L'\x67', L'\x7A', 0x40);
+    __table_.insert (L'\x7B', L'\x7E', 0x08);
+    __table_.insert (L'\x7F', 0x01);
 
-    __lower_map_.insert(L'\x0000', L'\xFFFF', L'\x0000', L'\xFFFF');
-    __lower_map_.insert(L'A', L'Z', L'a', L'z');
+    __lower_map_.insert (L'\x0000', L'\xFFFF', L'\x0000', L'\xFFFF');
+    __lower_map_.insert (L'A', L'Z', L'a', L'z');
 
-    __upper_map_.insert(L'\x0000', L'\xFFFF', L'\x0000', L'\xFFFF');
-    __upper_map_.insert(L'a', L'z', L'A', L'Z');
+    __upper_map_.insert (L'\x0000', L'\xFFFF', L'\x0000', L'\xFFFF');
+    __upper_map_.insert (L'a', L'z', L'A', L'Z');
 }
 template <class charT>
 basic_string<charT>
-ctype<charT>::widen(const string& s) const
+ctype<charT>::widen (const string& s) const
 {
     basic_string<charT> result;
-    result.resize(s.size());
+    result.resize (s.size());
     const char* s0 = s.c_str();
-    widen(s0, s0 + s.size(), &result[0]);
+    widen (s0, s0 + s.size(), &result[0]);
     return result;
 }
 template <class charT>
 inline bool
-ctype<charT>::do_is(mask m, charT c) const
+ctype<charT>::do_is (mask m, charT c) const
 {
-    return static_cast<bool>(__table_[c] & m);
+    return static_cast<bool> (__table_[c] & m);
 }
 template <class charT>
 const charT*
-ctype<charT>::do_is(const charT* low, const charT* high, mask* vec) const
+ctype<charT>::do_is (const charT* low, const charT* high, mask* vec) const
 {
     const charT* p;
     for (p = low; p < high; ++p, ++vec)
@@ -312,7 +321,7 @@ ctype<charT>::do_is(const charT* low, const charT* high, mask* vec) const
 }
 template <class charT>
 const charT*
-ctype<charT>::do_scan_is(mask m, const charT* low, const charT* high) const
+ctype<charT>::do_scan_is (mask m, const charT* low, const charT* high) const
 {
     const charT* p;
     for (p = low; p < high; ++p)
@@ -326,7 +335,7 @@ ctype<charT>::do_scan_is(mask m, const charT* low, const charT* high) const
 }
 template <class charT>
 const charT*
-ctype<charT>::do_scan_not(mask m, const charT* low, const charT* high) const
+ctype<charT>::do_scan_not (mask m, const charT* low, const charT* high) const
 {
     const charT* p;
     for (p = low; p < high; ++p)
@@ -340,13 +349,13 @@ ctype<charT>::do_scan_not(mask m, const charT* low, const charT* high) const
 }
 template <class charT>
 inline charT
-ctype<charT>::do_toupper(charT c) const
+ctype<charT>::do_toupper (charT c) const
 {
     return __upper_map_[c];
 }
 template <class charT>
 const charT*
-ctype<charT>::do_toupper(charT* low, const charT* high) const
+ctype<charT>::do_toupper (charT* low, const charT* high) const
 {
     for (; low < high; ++low)
     {
@@ -356,13 +365,13 @@ ctype<charT>::do_toupper(charT* low, const charT* high) const
 }
 template <class charT>
 inline charT
-ctype<charT>::do_tolower(charT c) const
+ctype<charT>::do_tolower (charT c) const
 {
     return __lower_map_[c];
 }
 template <class charT>
 const charT*
-ctype<charT>::do_tolower(charT* low, const charT* high) const
+ctype<charT>::do_tolower (charT* low, const charT* high) const
 {
     for (; low < high; ++low)
     {
@@ -372,44 +381,46 @@ ctype<charT>::do_tolower(charT* low, const charT* high) const
 }
 template <class charT>
 inline charT
-ctype<charT>::do_widen(char c) const
+ctype<charT>::do_widen (char c) const
 {
-    return charT(c);
+    return charT (c);
 }
 template <class charT>
 const char*
-ctype<charT>::do_widen(const char* low, const char* high, charT* dest) const
+ctype<charT>::do_widen (const char* low, const char* high, charT* dest) const
 {
     while (low < high)
     {
-        *dest++ = charT(*low++);
+        *dest++ = charT (*low++);
     }
     return high;
 }
 template <class charT>
 inline char
-ctype<charT>::do_narrow(charT c, char dfault) const
+ctype<charT>::do_narrow (charT c, char dfault) const
 {
     if (c >= 0x00FF)
     {
         return dfault;
     }
-    return char(c);
+    return char (c);
 }
 template <class charT>
 const charT*
-ctype<charT>::do_narrow(const charT* low, const charT* high, char dfault,
-                        char* dest) const
+ctype<charT>::do_narrow (const charT* low,
+                         const charT* high,
+                         char         dfault,
+                         char*        dest) const
 {
     while (low < high)
     {
-        *dest++ = do_narrow(*low++, dfault);
+        *dest++ = do_narrow (*low++, dfault);
     }
     return high;
 }
-#endif                           // _MSL_NO_WCHART_CPP_SUPPORT
+#endif                            // _MSL_NO_WCHART_CPP_SUPPORT
 
-#endif                           // _MSL_NO_LOCALE
+#endif                            // _MSL_NO_LOCALE
 
 // __parse_a_word
 // ConstStringIterator is a forward iterator to [const] basic_string<charT>
@@ -420,12 +431,15 @@ template <class InputIterator, class ConstStringIterator, class Ctype>
 template <class InputIterator, class ConstStringIterator>
 #endif
 ConstStringIterator
-__parse_a_word(InputIterator& first, InputIterator last, ConstStringIterator names,
-               ConstStringIterator names_end,
+__parse_a_word (InputIterator&      first,
+                InputIterator       last,
+                ConstStringIterator names,
+                ConstStringIterator names_end,
 #ifndef _MSL_NO_LOCALE
-               const Ctype& ct,
+                const Ctype& ct,
 #endif
-               ios_base::iostate& err, bool force_lower = false)
+                ios_base::iostate& err,
+                bool               force_lower = false)
 {
     if (first == last)
     {
@@ -435,7 +449,8 @@ __parse_a_word(InputIterator& first, InputIterator last, ConstStringIterator nam
     const int                                                   definitely_not = 0;
     const int                                                   maybe = 1;
     const int                                                   got_it = 2;
-    vector<int> status(static_cast<size_t>(_STD::distance(names, names_end)), maybe);
+    vector<int> status (static_cast<size_t> (_STD::distance (names, names_end)),
+                        maybe);
     size_t      num_maybes = status.size();
     size_t      num_got_it = 0;
     size_t      j = 0;
@@ -454,9 +469,9 @@ __parse_a_word(InputIterator& first, InputIterator last, ConstStringIterator nam
         bool  consume = false;
         if (force_lower)
 #ifndef _MSL_NO_LOCALE
-            c = ct.tolower(c);
+            c = ct.tolower (c);
 #else
-            c = charT(tolower(c));
+            c = charT (tolower (c));
 #endif
         {
             j = 0;
@@ -510,7 +525,7 @@ __parse_a_word(InputIterator& first, InputIterator last, ConstStringIterator nam
             if (status[j] == got_it)
             {
                 result = names;
-                _STD::advance(result, j);
+                _STD::advance (result, j);
                 break;
             }
         }

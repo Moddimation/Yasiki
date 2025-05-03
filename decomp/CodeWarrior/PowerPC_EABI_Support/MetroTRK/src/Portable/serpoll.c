@@ -10,7 +10,7 @@ static TRKFramingState gTRKFramingState;
 
 void* gTRKInputPendingPtr;
 MessageBufferID
-TRKTestForPacket()
+TRKTestForPacket ()
 {
     int        bytes;
     int        batch;
@@ -21,19 +21,19 @@ TRKTestForPacket()
     bytes = TRKPollUART();
     if (bytes > 0)
     {
-        TRKGetFreeBuffer(&id, &b);
+        TRKGetFreeBuffer (&id, &b);
         if (bytes > TRKMSGBUF_SIZE)
         {
             for (; bytes > 0; bytes -= batch)
             {
                 batch = bytes > TRKMSGBUF_SIZE ? TRKMSGBUF_SIZE : bytes;
-                TRKReadUARTN(b->data, batch);
+                TRKReadUARTN (b->data, batch);
             }
-            TRKStandardACK(b, 0xff, 6);
+            TRKStandardACK (b, 0xff, 6);
         }
         else
         {
-            err = TRKReadUARTN(b->data, bytes);
+            err = TRKReadUARTN (b->data, bytes);
             if (err == 0)
             {
                 b->length = bytes;
@@ -43,12 +43,12 @@ TRKTestForPacket()
     }
     if (id != -1)
     {
-        TRKReleaseBuffer(id);
+        TRKReleaseBuffer (id);
     }
     return -1;
 }
 void
-TRKGetInput(void)
+TRKGetInput (void)
 {
     MessageBufferID id;
     TRKBuffer*      msgBuffer;
@@ -58,30 +58,30 @@ TRKGetInput(void)
     if (id == -1)
         return;
 
-    msgBuffer = TRKGetBuffer(id);
-    TRKSetBufferPosition(msgBuffer, 0);
-    TRKReadBuffer1_ui8(msgBuffer, &command);
+    msgBuffer = TRKGetBuffer (id);
+    TRKSetBufferPosition (msgBuffer, 0);
+    TRKReadBuffer1_ui8 (msgBuffer, &command);
     if (command < DSMSG_ReplyACK)
     {
-        TRKProcessInput(id);
+        TRKProcessInput (id);
     }
     else
     {
-        TRKReleaseBuffer(id);
+        TRKReleaseBuffer (id);
     }
 }
 void
-TRKProcessInput(int bufferIdx)
+TRKProcessInput (int bufferIdx)
 {
     TRKEvent event;
 
-    TRKConstructEvent(&event, NUBEVENT_Request);
+    TRKConstructEvent (&event, NUBEVENT_Request);
     gTRKFramingState.msgBufID = -1;
     event.msgBufID = bufferIdx;
-    TRKPostEvent(&event);
+    TRKPostEvent (&event);
 }
 DSError
-TRKInitializeSerialHandler(void)
+TRKInitializeSerialHandler (void)
 {
     gTRKFramingState.msgBufID = -1;
     gTRKFramingState.receiveState = DSRECV_Wait;
@@ -90,7 +90,7 @@ TRKInitializeSerialHandler(void)
     return DS_NoError;
 }
 DSError
-TRKTerminateSerialHandler(void)
+TRKTerminateSerialHandler (void)
 {
     return DS_NoError;
 }

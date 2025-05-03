@@ -6,19 +6,29 @@
 #include "fake_tgmath.h"
 
 // functions
-static void DLsetdelay(struct AXFX_REVSTD_DELAYLINE* dl, s32 lag);
-static void DLcreate(struct AXFX_REVSTD_DELAYLINE* dl, s32 max_length);
-static void DLdelete(struct AXFX_REVSTD_DELAYLINE* dl);
-static int ReverbSTDCreate(struct AXFX_REVSTD_WORK* rv, float coloration, float time,
-                           float mix, float damping, float predelay);
-static int ReverbSTDModify(struct AXFX_REVSTD_WORK* rv, float coloration, float time,
-                           float mix, float damping, float predelay);
-static void HandleReverb(s32* sptr, struct AXFX_REVSTD_WORK* rv);
-static void ReverbSTDCallback(s32* left, long* right, long* surround,
-                              struct AXFX_REVSTD_WORK* rv);
-static void ReverbSTDFree(struct AXFX_REVSTD_WORK* rv);
+static void DLsetdelay (struct AXFX_REVSTD_DELAYLINE* dl, s32 lag);
+static void DLcreate (struct AXFX_REVSTD_DELAYLINE* dl, s32 max_length);
+static void DLdelete (struct AXFX_REVSTD_DELAYLINE* dl);
+static int  ReverbSTDCreate (struct AXFX_REVSTD_WORK* rv,
+                             float                    coloration,
+                             float                    time,
+                             float                    mix,
+                             float                    damping,
+                             float                    predelay);
+static int  ReverbSTDModify (struct AXFX_REVSTD_WORK* rv,
+                             float                    coloration,
+                             float                    time,
+                             float                    mix,
+                             float                    damping,
+                             float                    predelay);
+static void HandleReverb (s32* sptr, struct AXFX_REVSTD_WORK* rv);
+static void ReverbSTDCallback (s32*                     left,
+                               long*                    right,
+                               long*                    surround,
+                               struct AXFX_REVSTD_WORK* rv);
+static void ReverbSTDFree (struct AXFX_REVSTD_WORK* rv);
 static void
-DLsetdelay(struct AXFX_REVSTD_DELAYLINE* dl, s32 lag)
+DLsetdelay (struct AXFX_REVSTD_DELAYLINE* dl, s32 lag)
 {
     dl->outPoint = dl->inPoint - (lag * 4);
     while (dl->outPoint < 0)
@@ -27,24 +37,28 @@ DLsetdelay(struct AXFX_REVSTD_DELAYLINE* dl, s32 lag)
     }
 }
 static void
-DLcreate(struct AXFX_REVSTD_DELAYLINE* dl, s32 max_length)
+DLcreate (struct AXFX_REVSTD_DELAYLINE* dl, s32 max_length)
 {
     dl->length = (max_length * 4);
-    dl->inputs = OSAllocFromHeap(__OSCurrHeap, max_length * 4);
-    memset(dl->inputs, 0, max_length * 4);
+    dl->inputs = OSAllocFromHeap (__OSCurrHeap, max_length * 4);
+    memset (dl->inputs, 0, max_length * 4);
     dl->lastOutput = 0.0f;
-    DLsetdelay(dl, max_length >> 1);
+    DLsetdelay (dl, max_length >> 1);
     dl->inPoint = 0;
     dl->outPoint = 0;
 }
 static void
-DLdelete(struct AXFX_REVSTD_DELAYLINE* dl)
+DLdelete (struct AXFX_REVSTD_DELAYLINE* dl)
 {
-    OSFreeToHeap(__OSCurrHeap, dl->inputs);
+    OSFreeToHeap (__OSCurrHeap, dl->inputs);
 }
 static int
-ReverbSTDCreate(struct AXFX_REVSTD_WORK* rv, float coloration, float time, float mix,
-                float damping, float predelay)
+ReverbSTDCreate (struct AXFX_REVSTD_WORK* rv,
+                 float                    coloration,
+                 float                    time,
+                 float                    mix,
+                 float                    damping,
+                 float                    predelay)
 {
     u8         i;
     u8         k;
@@ -62,20 +76,20 @@ ReverbSTDCreate(struct AXFX_REVSTD_WORK* rv, float coloration, float time, float
         return 0;
     }
 
-    memset(rv, 0, sizeof(struct AXFX_REVSTD_WORK));
+    memset (rv, 0, sizeof (struct AXFX_REVSTD_WORK));
     for (k = 0; k < 3; k++)
     {
         for (i = 0; i < 2; i++)
         {
-            DLcreate(&rv->C[i + (k * 2)], lens[i] + 2);
-            DLsetdelay(&rv->C[i + (k * 2)], lens[i]);
+            DLcreate (&rv->C[i + (k * 2)], lens[i] + 2);
+            DLsetdelay (&rv->C[i + (k * 2)], lens[i]);
             rv->combCoef[i + (k * 2)] =
-                powf(10.0f, (lens[i] * -3) / (32000.0f * time));
+                powf (10.0f, (lens[i] * -3) / (32000.0f * time));
         }
         for (i = 0; i < 2; i++)
         {
-            DLcreate(&rv->AP[i + (k * 2)], lens[i + 2] + 2);
-            DLsetdelay(&rv->AP[i + (k * 2)], lens[i + 2]);
+            DLcreate (&rv->AP[i + (k * 2)], lens[i + 2] + 2);
+            DLsetdelay (&rv->AP[i + (k * 2)], lens[i + 2]);
         }
         rv->lpLastout[k] = 0.0f;
     }
@@ -93,8 +107,8 @@ ReverbSTDCreate(struct AXFX_REVSTD_WORK* rv, float coloration, float time, float
         for (i = 0; i < 3; i++)
         {
             rv->preDelayLine[i] =
-                OSAllocFromHeap(__OSCurrHeap, rv->preDelayTime * 4);
-            memset(rv->preDelayLine[i], 0, rv->preDelayTime * 4);
+                OSAllocFromHeap (__OSCurrHeap, rv->preDelayTime * 4);
+            memset (rv->preDelayLine[i], 0, rv->preDelayTime * 4);
             rv->preDelayPtr[i] = rv->preDelayLine[i];
         }
     }
@@ -110,8 +124,12 @@ ReverbSTDCreate(struct AXFX_REVSTD_WORK* rv, float coloration, float time, float
     return 1;
 }
 static int
-ReverbSTDModify(struct AXFX_REVSTD_WORK* rv, float coloration, float time, float mix,
-                float damping, float predelay)
+ReverbSTDModify (struct AXFX_REVSTD_WORK* rv,
+                 float                    coloration,
+                 float                    time,
+                 float                    mix,
+                 float                    damping,
+                 float                    predelay)
 {
     u8 i;
 
@@ -131,35 +149,35 @@ ReverbSTDModify(struct AXFX_REVSTD_WORK* rv, float coloration, float time, float
     rv->damping = (1.0f - (0.05f + (0.8f * rv->damping)));
     for (i = 0; i < 6; i++)
     {
-        DLdelete(&rv->AP[i]);
+        DLdelete (&rv->AP[i]);
     }
     for (i = 0; i < 6; i++)
     {
-        DLdelete(&rv->C[i]);
+        DLdelete (&rv->C[i]);
     }
     if (rv->preDelayTime)
     {
         for (i = 0; i < 3; i++)
         {
-            OSFreeToHeap(__OSCurrHeap, rv->preDelayLine[i]);
+            OSFreeToHeap (__OSCurrHeap, rv->preDelayLine[i]);
         }
     }
-    return ReverbSTDCreate(rv, coloration, time, mix, damping, predelay);
+    return ReverbSTDCreate (rv, coloration, time, mix, damping, predelay);
 }
 const static float  value0_3 = 0.3f;
 const static float  value0_6 = 0.6f;
 const static double i2fMagic = 4503601774854144.0;
 asm static void
-HandleReverb(register s32* sptr, register struct AXFX_REVSTD_WORK* rv)
+HandleReverb (register s32* sptr, register struct AXFX_REVSTD_WORK* rv)
 {
     nofralloc stwu r1, -144(r1)stmw r17, 8(r1)stfd f14, 88(r1)stfd f15,
         96(r1)stfd f16, 104(r1)stfd f17, 112(r1)stfd f18, 120(r1)stfd f19,
         128(r1)stfd f20, 136(r1)lis r31, value0_3 @ha lfs f6,
-        value0_3 @l(r31) lis r31, value0_6 @ha lfs f9, value0_6 @l(r31) lis r31,
-        i2fMagic @ha lfd f5, i2fMagic @l(r31) lfs f2,
-        AXFX_REVSTD_WORK.allPassCoeff(rv) lfs f11,
-        AXFX_REVSTD_WORK.damping(rv) lfs f8, AXFX_REVSTD_WORK.level(rv) fmuls f3, f8,
-        f9 fsubs f4, f9, f3 lis r30,
+        value0_3 @l (r31) lis r31, value0_6 @ha lfs f9, value0_6 @l (r31) lis r31,
+        i2fMagic @ha lfd f5, i2fMagic @l (r31) lfs f2,
+        AXFX_REVSTD_WORK.allPassCoeff (rv) lfs f11,
+        AXFX_REVSTD_WORK.damping (rv) lfs f8, AXFX_REVSTD_WORK.level (rv) fmuls f3,
+        f8, f9 fsubs f4, f9, f3 lis r30,
         0x4330              // 176.0f (0x43300000)
         stw                 r30,
         80(r1)li            r5,
@@ -177,7 +195,7 @@ HandleReverb(register s32* sptr, register struct AXFX_REVSTD_WORK* rv)
                        AXFX_REVSTD_WORK.lpLastout[0](r31) lwz    r27,
                        AXFX_REVSTD_WORK.preDelayLine[0](r31) lwz r28,
                        AXFX_REVSTD_WORK.preDelayPtr[0](r31) lwz  r31,
-                       AXFX_REVSTD_WORK.preDelayTime(rv) subi    r22,
+                       AXFX_REVSTD_WORK.preDelayTime (rv) subi   r22,
                        r31,
                        1 slwi r22,
                        r22,
@@ -510,90 +528,94 @@ HandleReverb(register s32* sptr, register struct AXFX_REVSTD_WORK* rv)
                        AXFX_REVSTD_DELAYLINE.lastOutput + 0x00(r30) // AP array + 0
                            stfs f18,
                        AXFX_REVSTD_DELAYLINE.lastOutput + 0x14(r30) // AP array + 1
-                           stfs                                             f7,
-                       AXFX_REVSTD_WORK.lpLastout(r31) stw                  r28,
-                       AXFX_REVSTD_WORK.preDelayPtr(r31) bne L_00000638 lfd f14,
-                       88(r1)lfd                                            f15,
-                       96(r1)lfd                                            f16,
-                       104(r1)lfd                                           f17,
-                       112(r1)lfd                                           f18,
-                       120(r1)lfd                                           f19,
-                       128(r1)lfd                                           f20,
-                       136(r1)lmw                                           r17,
-                       8(r1)addi                                            r1,
+                           stfs                                              f7,
+                       AXFX_REVSTD_WORK.lpLastout (r31) stw                  r28,
+                       AXFX_REVSTD_WORK.preDelayPtr (r31) bne L_00000638 lfd f14,
+                       88(r1)lfd                                             f15,
+                       96(r1)lfd                                             f16,
+                       104(r1)lfd                                            f17,
+                       112(r1)lfd                                            f18,
+                       120(r1)lfd                                            f19,
+                       128(r1)lfd                                            f20,
+                       136(r1)lmw                                            r17,
+                       8(r1)addi                                             r1,
                        r1,
                        144 blr
 }
 static void
-ReverbSTDCallback(s32* left, long* right, long* surround,
-                  struct AXFX_REVSTD_WORK* rv)
+ReverbSTDCallback (s32*                     left,
+                   long*                    right,
+                   long*                    surround,
+                   struct AXFX_REVSTD_WORK* rv)
 {
-    HandleReverb(left, rv);
+    HandleReverb (left, rv);
 }
 static void
-ReverbSTDFree(struct AXFX_REVSTD_WORK* rv)
+ReverbSTDFree (struct AXFX_REVSTD_WORK* rv)
 {
     u8 i;
 
     for (i = 0; i < 6; i++)
     {
-        DLdelete(&rv->AP[i]);
+        DLdelete (&rv->AP[i]);
     }
     for (i = 0; i < 6; i++)
     {
-        DLdelete(&rv->C[i]);
+        DLdelete (&rv->C[i]);
     }
     if (rv->preDelayTime)
     {
         for (i = 0; i < 3; i++)
         {
-            OSFreeToHeap(__OSCurrHeap, rv->preDelayLine[i]);
+            OSFreeToHeap (__OSCurrHeap, rv->preDelayLine[i]);
         }
     }
 }
 int
-AXFXReverbStdInit(struct AXFX_REVERBSTD* rev)
+AXFXReverbStdInit (struct AXFX_REVERBSTD* rev)
 {
     int ret;
     int old;
 
     old = OSDisableInterrupts();
     rev->tempDisableFX = 0;
-    ret = ReverbSTDCreate(&rev->rv, rev->coloration, rev->time, rev->mix,
-                          rev->damping, rev->preDelay);
-    OSRestoreInterrupts(old);
+    ret = ReverbSTDCreate (
+        &rev->rv, rev->coloration, rev->time, rev->mix, rev->damping, rev->preDelay);
+    OSRestoreInterrupts (old);
     return ret;
 }
 int
-AXFXReverbStdShutdown(struct AXFX_REVERBSTD* rev)
+AXFXReverbStdShutdown (struct AXFX_REVERBSTD* rev)
 {
     int old;
 
     old = OSDisableInterrupts();
-    ReverbSTDFree(&rev->rv);
-    OSRestoreInterrupts(old);
+    ReverbSTDFree (&rev->rv);
+    OSRestoreInterrupts (old);
     return 1;
 }
 int
-AXFXReverbStdSettings(struct AXFX_REVERBSTD* rev)
+AXFXReverbStdSettings (struct AXFX_REVERBSTD* rev)
 {
     int old;
 
     old = OSDisableInterrupts();
     rev->tempDisableFX = 1;
-    ReverbSTDModify(&rev->rv, rev->coloration, rev->time, rev->mix, rev->damping,
-                    rev->preDelay);
+    ReverbSTDModify (
+        &rev->rv, rev->coloration, rev->time, rev->mix, rev->damping, rev->preDelay);
     rev->tempDisableFX = 0;
-    OSRestoreInterrupts(old);
+    OSRestoreInterrupts (old);
     return 1;
 }
 void
-AXFXReverbStdCallback(struct AXFX_BUFFERUPDATE* bufferUpdate,
-                      struct AXFX_REVERBSTD*    reverb)
+AXFXReverbStdCallback (struct AXFX_BUFFERUPDATE* bufferUpdate,
+                       struct AXFX_REVERBSTD*    reverb)
 {
     if (reverb->tempDisableFX == 0)
     {
-        ReverbSTDCallback(bufferUpdate->left, bufferUpdate->right,
-                          bufferUpdate->surround, &reverb->rv);
+        ReverbSTDCallback (bufferUpdate->left,
+                           bufferUpdate->right,
+                           bufferUpdate->surround,
+                           &reverb->rv);
     }
 }

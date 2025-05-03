@@ -54,13 +54,13 @@ namespace Metrowerks
 #endif
 template <class T> struct hash : _STD::unary_function<T, _CSTD::size_t>
 {
-    _CSTD::size_t operator()(const T& key) const;
+    _CSTD::size_t operator() (const T& key) const;
 };
 template <class T>
 inline _CSTD::size_t
-hash<T>::operator()(const T& key) const
+hash<T>::operator() (const T& key) const
 {
-    return static_cast<_CSTD::size_t>(key);
+    return static_cast<_CSTD::size_t> (key);
 }
 // std::basic_string specialization
 
@@ -69,11 +69,11 @@ struct hash<_STD::basic_string<charT, traits, Allocator> >
   : _STD::unary_function<_STD::basic_string<charT, traits, Allocator>, _CSTD::size_t>
 {
     typedef _STD::basic_string<charT, traits, Allocator> string_type;
-    _CSTD::size_t operator()(const string_type& key) const;
+    _CSTD::size_t operator() (const string_type& key) const;
 };
 template <class charT, class traits, class Allocator>
 _CSTD::size_t
-hash<_STD::basic_string<charT, traits, Allocator> >::operator()(
+hash<_STD::basic_string<charT, traits, Allocator> >::operator() (
     const string_type& str) const
 {
     _CSTD::size_t h = 0;
@@ -91,13 +91,13 @@ template <>
 struct hash<const char*> : _STD::unary_function<const char*, _CSTD::size_t>
 {
     typedef const char* string_type;
-    _CSTD::size_t       operator()(string_type key) const;
+    _CSTD::size_t       operator() (string_type key) const;
 };
 #ifndef __GNUC__
 template <>
 #endif
 inline _CSTD::size_t
-hash<const char*>::operator()(string_type p) const
+hash<const char*>::operator() (string_type p) const
 {
     _CSTD::size_t h = 0;
     for (; *p != 0; ++p)

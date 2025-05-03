@@ -12,7 +12,7 @@ precision fscale instruction on any x86 fpu 100% of the time.
 */
 #include <math.h>
 float
-ldexpf(float x, _INT32 n)
+ldexpf (float x, _INT32 n)
 {
     _INT32 new_biased_exp = (0x7f800000 & (*(_UINT32*)&x)) >> 23;
     // takes care of C9X inf/nan compliance and MUST be first to filter out these
@@ -95,7 +95,7 @@ ldexpf(float x, _INT32 n)
 #endif
 }
 float
-frexpf(float x, int* exp)
+frexpf (float x, int* exp)
 {
     const _INT32 tmp_int = 0x3F000000 + ((*(_INT32*)&x) & 0x807fffff);
     switch ((*(_INT32*)&x) & 0x7f800000)

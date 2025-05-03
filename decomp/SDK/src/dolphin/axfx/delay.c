@@ -3,7 +3,7 @@
 
 #include <dolphin.h>
 void
-AXFXDelayCallback(struct AXFX_BUFFERUPDATE* bufferUpdate, struct AXFX_DELAY* delay)
+AXFXDelayCallback (struct AXFX_BUFFERUPDATE* bufferUpdate, struct AXFX_DELAY* delay)
 {
     s32  l;
     s32  r;
@@ -40,7 +40,7 @@ AXFXDelayCallback(struct AXFX_BUFFERUPDATE* bufferUpdate, struct AXFX_DELAY* del
     delay->currentPos[2] = (s32)((delay->currentPos[2] + 1) % delay->currentSize[2]);
 }
 int
-AXFXDelaySettings(struct AXFX_DELAY* delay)
+AXFXDelaySettings (struct AXFX_DELAY* delay)
 {
     u32  i;
     s32* l;
@@ -48,7 +48,7 @@ AXFXDelaySettings(struct AXFX_DELAY* delay)
     s32* s;
     int  old;
 
-    AXFXDelayShutdown(delay);
+    AXFXDelayShutdown (delay);
     old = OSDisableInterrupts();
 
     for (i = 0; i < 3; i++)
@@ -58,12 +58,12 @@ AXFXDelaySettings(struct AXFX_DELAY* delay)
         delay->currentFeedback[i] = (delay->feedback[i] << 7) / 100U;
         delay->currentOutput[i] = (delay->output[i] << 7) / 100U;
     }
-    delay->left = OSAllocFromHeap(__OSCurrHeap, delay->currentSize[0] * 0xA0 * 4);
-    delay->right = OSAllocFromHeap(__OSCurrHeap, delay->currentSize[1] * 0xA0 * 4);
-    delay->sur = OSAllocFromHeap(__OSCurrHeap, delay->currentSize[2] * 0xA0 * 4);
-    ASSERTLINE(0x47, delay->left != NULL);
-    ASSERTLINE(0x48, delay->right != NULL);
-    ASSERTLINE(0x49, delay->sur != NULL);
+    delay->left = OSAllocFromHeap (__OSCurrHeap, delay->currentSize[0] * 0xA0 * 4);
+    delay->right = OSAllocFromHeap (__OSCurrHeap, delay->currentSize[1] * 0xA0 * 4);
+    delay->sur = OSAllocFromHeap (__OSCurrHeap, delay->currentSize[2] * 0xA0 * 4);
+    ASSERTLINE (0x47, delay->left != NULL);
+    ASSERTLINE (0x48, delay->right != NULL);
+    ASSERTLINE (0x49, delay->sur != NULL);
     l = delay->left;
     r = delay->right;
     s = delay->sur;
@@ -79,11 +79,11 @@ AXFXDelaySettings(struct AXFX_DELAY* delay)
     {
         *s++ = 0;
     }
-    OSRestoreInterrupts(old);
+    OSRestoreInterrupts (old);
     return 1;
 }
 int
-AXFXDelayInit(struct AXFX_DELAY* delay)
+AXFXDelayInit (struct AXFX_DELAY* delay)
 {
     int old;
 
@@ -91,27 +91,27 @@ AXFXDelayInit(struct AXFX_DELAY* delay)
     delay->left = NULL;
     delay->right = NULL;
     delay->sur = NULL;
-    OSRestoreInterrupts(old);
-    AXFXDelaySettings(delay);
+    OSRestoreInterrupts (old);
+    AXFXDelaySettings (delay);
 }
 int
-AXFXDelayShutdown(struct AXFX_DELAY* delay)
+AXFXDelayShutdown (struct AXFX_DELAY* delay)
 {
     int old;
 
     old = OSDisableInterrupts();
     if (delay->left)
     {
-        OSFreeToHeap(__OSCurrHeap, delay->left);
+        OSFreeToHeap (__OSCurrHeap, delay->left);
     }
     if (delay->right)
     {
-        OSFreeToHeap(__OSCurrHeap, delay->right);
+        OSFreeToHeap (__OSCurrHeap, delay->right);
     }
     if (delay->sur)
     {
-        OSFreeToHeap(__OSCurrHeap, delay->sur);
+        OSFreeToHeap (__OSCurrHeap, delay->sur);
     }
-    OSRestoreInterrupts(old);
+    OSRestoreInterrupts (old);
     return 1;
 }

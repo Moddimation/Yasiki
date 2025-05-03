@@ -20,7 +20,7 @@ typedef enum
 //              the EXI2 ISR.
 //
 // ---------------------------------------------------------------------------
-void EXI2_Init(volatile u16** inputPendingPtrRef, EXICallback monitorCallback);
+void EXI2_Init (volatile u16** inputPendingPtrRef, EXICallback monitorCallback);
 
 // ---------------------------------------------------------------------------
 //
@@ -31,7 +31,7 @@ void EXI2_Init(volatile u16** inputPendingPtrRef, EXICallback monitorCallback);
 //              after EXI2_Init() has been invoked.
 //
 // ---------------------------------------------------------------------------
-void EXI2_EnableInterrupts(void);
+void EXI2_EnableInterrupts (void);
 
 // ---------------------------------------------------------------------------
 //
@@ -41,7 +41,7 @@ void EXI2_EnableInterrupts(void);
 //              buffer.
 //
 // ---------------------------------------------------------------------------
-int EXI2_Poll(void);
+int EXI2_Poll (void);
 
 // ---------------------------------------------------------------------------
 //
@@ -52,7 +52,7 @@ int EXI2_Poll(void);
 //     Returns: One of AMC_EXI_*.
 //
 // ---------------------------------------------------------------------------
-AmcExiError EXI2_ReadN(void* bytes, u32 length);
+AmcExiError EXI2_ReadN (void* bytes, u32 length);
 
 // ---------------------------------------------------------------------------
 //
@@ -63,7 +63,7 @@ AmcExiError EXI2_ReadN(void* bytes, u32 length);
 //     Returns: One of AMC_EXI_*.
 //
 // ---------------------------------------------------------------------------
-AmcExiError EXI2_WriteN(const void* bytes, u32 length);
+AmcExiError EXI2_WriteN (const void* bytes, u32 length);
 
 // ---------------------------------------------------------------------------
 //
@@ -74,7 +74,7 @@ AmcExiError EXI2_WriteN(const void* bytes, u32 length);
 //              control of the processor.
 //
 // ---------------------------------------------------------------------------
-void EXI2_Reserve(void);
+void EXI2_Reserve (void);
 
 // ---------------------------------------------------------------------------
 //
@@ -85,7 +85,7 @@ void EXI2_Reserve(void);
 //              gives control of the processor back to the application.
 //
 // ---------------------------------------------------------------------------
-void EXI2_Unreserve(void);
+void EXI2_Unreserve (void);
 
 // ---------------------------------------------------------------------------
 //
@@ -96,6 +96,6 @@ void EXI2_Unreserve(void);
 //
 //     Returns: One of AMC_EXI_*.
 // ---------------------------------------------------------------------------
-AmcExiError EXI2_GetStatusReg(u16* pu16StatusReg);
+AmcExiError EXI2_GetStatusReg (u16* pu16StatusReg);
 
 #endif

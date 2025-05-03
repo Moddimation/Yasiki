@@ -29,8 +29,8 @@ extern "C"
 {
 #endif
 
-void InitMetroTRK(void);
-void EnableMetroTRKInterrupts(void);
+void InitMetroTRK (void);
+void EnableMetroTRKInterrupts (void);
 
 #ifdef __cplusplus
 }

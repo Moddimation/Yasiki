@@ -2,7 +2,7 @@
 
 #include <dolphin.h>
 void
-OSInitStopwatch(struct OSStopwatch* sw, char* name)
+OSInitStopwatch (struct OSStopwatch* sw, char* name)
 {
     sw->name = name;
     sw->total = 0;
@@ -11,13 +11,13 @@ OSInitStopwatch(struct OSStopwatch* sw, char* name)
     sw->max = 0;
 }
 void
-OSStartStopwatch(struct OSStopwatch* sw)
+OSStartStopwatch (struct OSStopwatch* sw)
 {
     sw->running = 1;
     sw->last = OSGetTime();
 }
 void
-OSStopStopwatch(struct OSStopwatch* sw)
+OSStopStopwatch (struct OSStopwatch* sw)
 {
     s64 interval;
 
@@ -38,7 +38,7 @@ OSStopStopwatch(struct OSStopwatch* sw)
     }
 }
 s64
-OSCheckStopwatch(struct OSStopwatch* sw)
+OSCheckStopwatch (struct OSStopwatch* sw)
 {
     s64 currTotal;
 
@@ -50,17 +50,17 @@ OSCheckStopwatch(struct OSStopwatch* sw)
     return currTotal;
 }
 void
-OSResetStopwatch(struct OSStopwatch* sw)
+OSResetStopwatch (struct OSStopwatch* sw)
 {
-    OSInitStopwatch(sw, sw->name);
+    OSInitStopwatch (sw, sw->name);
 }
 void
-OSDumpStopwatch(struct OSStopwatch* sw)
+OSDumpStopwatch (struct OSStopwatch* sw)
 {
-    OSReport("Stopwatch [%s]	:\n", sw->name);
-    OSReport("\tTotal= %lld us\n", OSTicksToMicroseconds(sw->total));
-    OSReport("\tHits = %d \n", sw->hits);
-    OSReport("\tMin  = %lld us\n", OSTicksToMicroseconds(sw->min));
-    OSReport("\tMax  = %lld us\n", OSTicksToMicroseconds(sw->max));
-    OSReport("\tMean = %lld us\n", OSTicksToMicroseconds(sw->total / sw->hits));
+    OSReport ("Stopwatch [%s]	:\n", sw->name);
+    OSReport ("\tTotal= %lld us\n", OSTicksToMicroseconds (sw->total));
+    OSReport ("\tHits = %d \n", sw->hits);
+    OSReport ("\tMin  = %lld us\n", OSTicksToMicroseconds (sw->min));
+    OSReport ("\tMax  = %lld us\n", OSTicksToMicroseconds (sw->max));
+    OSReport ("\tMean = %lld us\n", OSTicksToMicroseconds (sw->total / sw->hits));
 }

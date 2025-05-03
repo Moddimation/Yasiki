@@ -16,11 +16,15 @@ _MSL_BEGIN_EXTERN_C /*- cc 010409 -*/
 /*- hh 990121 -*/
 #ifndef _No_Console /*- 990128 -*/
     int
-    __read_console(__std(__file_handle) handle, unsigned char* buffer,
-                   __std(size_t) * count, __std(__idle_proc) idle_proc);
-int __write_console(__std(__file_handle) handle, unsigned char* buffer,
-                    __std(size_t) * count, __std(__idle_proc) idle_proc);
-int __close_console(__std(__file_handle) handle);
+    __read_console (__std (__file_handle) handle,
+                    unsigned char* buffer,
+                    __std (size_t) * count,
+                    __std (__idle_proc) idle_proc);
+int __write_console (__std (__file_handle) handle,
+                     unsigned char* buffer,
+                     __std (size_t) * count,
+                     __std (__idle_proc) idle_proc);
+int __close_console (__std (__file_handle) handle);
 #endif
 
 _MSL_END_EXTERN_C   /*- cc 010409 -*/

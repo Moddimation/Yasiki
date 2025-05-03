@@ -14,16 +14,24 @@
 _MSL_BEGIN_EXTERN_C                                            /*- cc 010409 -*/
 
     extern unsigned long
-    __strtoul(int base, int max_width,
-              int   (*ReadProc)(void*, int, int),              /*- mm 990325 -*/
-              void* ReadProcArg,                               /*- mm 990325 -*/
-              int* chars_scanned, int* negative, int* overflow);
+    __strtoul (int   base,
+               int   max_width,
+               int   (*ReadProc) (void*, int, int),            /*- mm 990325 -*/
+               void* ReadProcArg,                              /*- mm 990325 -*/
+               int*  chars_scanned,
+               int*  negative,
+               int*  overflow);
 
 #ifdef __MSL_LONGLONG_SUPPORT__                                /*- mm 970110 -*/
-extern unsigned long long __strtoull(
-    int base, int max_width, int (*ReadProc)(void*, int, int), /*- mm 990325 -*/
-    void* ReadProcArg,                                         /*- mm 990325 -*/
-    int* chars_scanned, int* negative, int* overflow);
+extern unsigned long long __strtoull (int   base,
+                                      int   max_width,
+                                      int   (*ReadProc) (void*,
+                                                       int,
+                                                       int), /*- mm 990325 -*/
+                                      void* ReadProcArg,       /*- mm 990325 -*/
+                                      int*  chars_scanned,
+                                      int*  negative,
+                                      int*  overflow);
 #endif /*__MSL_LONGLONG_SUPPORT__*/                            /*- mm 970110 -*/
 
 _MSL_END_EXTERN_C                                              /*- cc 010409 -*/

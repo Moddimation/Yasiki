@@ -37,18 +37,18 @@ wtable[] = {
     { (const char*)0, 0 }
 };
 wint_t
-towctrans(wint_t c, wctrans_t value)
+towctrans (wint_t c, wctrans_t value)
 {
-    return (value == 1 ? towupper(c) : towlower(c));
+    return (value == 1 ? towupper (c) : towlower (c));
 }
 wctrans_t
-wctrans(const char* name)
+wctrans (const char* name)
 {
     int i;
 
     for (i = 0; wtable[i].string != 0; ++i)
     {
-        if (strcmp(wtable[i].string, name) == 0)
+        if (strcmp (wtable[i].string, name) == 0)
         {
             return (wtable[i].value);
         }

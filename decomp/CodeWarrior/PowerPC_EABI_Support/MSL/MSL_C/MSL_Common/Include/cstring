@@ -29,18 +29,20 @@
 /*- mm 960927 -*/
 #define __max_errstr 40              /*- mm 010509 -*/
 
-_MSL_BEGIN_NAMESPACE_STD /*- cc  010410 -*/
-    _MSL_BEGIN_EXTERN_C  /*- cc  010410 -*/
+_MSL_BEGIN_NAMESPACE_STD                         /*- cc  010410 -*/
+    _MSL_BEGIN_EXTERN_C                          /*- cc  010410 -*/
 
         _MSL_IMP_EXP_C void*
-                     memset(void*, int, size_t);
-_MSL_IMP_EXP_C void* memchr(const void*, int, size_t);
-_MSL_IMP_EXP_C int   memcmp(const void*, const void*, size_t);
+                     memset (void*, int, size_t);
+_MSL_IMP_EXP_C void* memchr (const void*, int, size_t);
+_MSL_IMP_EXP_C int   memcmp (const void*, const void*, size_t);
 
 #if !__MC68K__ || _No_BlockMove || __dest_os != __mac_os
 
-_MSL_IMP_EXP_C void* _MSL_CDECL memcpy(void*, const void*, size_t); /*- cc 010124 -*/
-_MSL_IMP_EXP_C void*            memmove(void*, const void*, size_t);
+_MSL_IMP_EXP_C void* _MSL_CDECL memcpy (void*,
+                                        const void*,
+                                        size_t); /*- cc 010124 -*/
+_MSL_IMP_EXP_C void*            memmove (void*, const void*, size_t);
 
 #else  /* __MC68K__ && !_No_BlockMove && __dest_os == __mac_os */
 
@@ -70,22 +72,22 @@ void * __memcpy(void * : __A1, const void * : __A0, size_t : __D0) : __A1
 
 		inline void * memcpy (void * dst, const void * src, size_t len)
 {
-    return __memcpy(dst, src, len);
+    return __memcpy (dst, src, len);
 }
 inline void*
-memmove(void* dst, const void* src, size_t len)
+memmove (void* dst, const void* src, size_t len)
 {
-    return __memmove(dst, src, len);
+    return __memmove (dst, src, len);
 }
 
 _MSL_BEGIN_EXTERN_C	/*- cc  010410 -*/
 #else
 	
    		_MSL_IMP_EXP_C void * memcpy (void * , const void * , size_t );
-_MSL_IMP_EXP_C void* memmove(void*, const void*, size_t);
+_MSL_IMP_EXP_C void* memmove (void*, const void*, size_t);
 
-#define memcpy(dst, src, len)  __memcpy(dst, src, len)
-#define memmove(dst, src, len) __memmove(dst, src, len)
+#define memcpy(dst, src, len)  __memcpy (dst, src, len)
+#define memmove(dst, src, len) __memmove (dst, src, len)
 
 #endif /* __cplusplus */
 
@@ -93,8 +95,8 @@ _MSL_IMP_EXP_C void* memmove(void*, const void*, size_t);
 
 #if !__MC68K__ || _No_String_Inlines
 
-_MSL_IMP_EXP_C size_t strlen(const char*);
-_MSL_IMP_EXP_C char*  strcpy(char*, const char*);
+_MSL_IMP_EXP_C size_t strlen (const char*);
+_MSL_IMP_EXP_C char*  strcpy (char*, const char*);
 
 #else  /* !(!__MC68K__ || _No_String_Inlines) */
 	
@@ -118,76 +120,76 @@ _MSL_IMP_EXP_C char*  strcpy(char*, const char*);
 		
 			inline size_t strlen(const char* str)
 {
-    return __strlen(str);
+    return __strlen (str);
 }
 inline char*
-strcpy(char* dst, const char* src)
+strcpy (char* dst, const char* src)
 {
-    return __strcpy(dst, src);
+    return __strcpy (dst, src);
 }
 _MSL_BEGIN_EXTERN_C	/*- cc  010410 -*/
 #else
 	
 			_MSL_IMP_EXP_C size_t strlen(const char * );
-_MSL_IMP_EXP_C char* strcpy(char*, const char*);
+_MSL_IMP_EXP_C char* strcpy (char*, const char*);
 
-#define strlen(str)      __strlen(str)
-#define strcpy(dst, src) __strcpy(dst, src)
+#define strlen(str)      __strlen (str)
+#define strcpy(dst, src) __strcpy (dst, src)
 #endif /* __cplusplus */
 
 #endif /* !__MC68K__ || _No_String_Inlines */
 
-_MSL_IMP_EXP_C char*  strncpy(char*, const char*, size_t);
-_MSL_IMP_EXP_C char*  strcat(char*, const char*);
-_MSL_IMP_EXP_C char*  strncat(char*, const char*, size_t);
-_MSL_IMP_EXP_C int    strcmp(const char*, const char*);
-_MSL_IMP_EXP_C int    strncmp(const char*, const char*, size_t);
-_MSL_IMP_EXP_C int    strcoll(const char*, const char*);
-_MSL_IMP_EXP_C size_t strxfrm(char*, const char*, size_t);
-_MSL_IMP_EXP_C char*  strchr(const char*, int);
-_MSL_IMP_EXP_C char*  strrchr(const char*, int);
-_MSL_IMP_EXP_C char*  strpbrk(const char*, const char*);
-_MSL_IMP_EXP_C size_t strspn(const char*, const char*);
-_MSL_IMP_EXP_C size_t strcspn(const char*, const char*);
-_MSL_IMP_EXP_C char*  strtok(char*, const char*);
-_MSL_IMP_EXP_C char*  strstr(const char*, const char*);
-_MSL_IMP_EXP_C char*  strerror(int);
+_MSL_IMP_EXP_C char*  strncpy (char*, const char*, size_t);
+_MSL_IMP_EXP_C char*  strcat (char*, const char*);
+_MSL_IMP_EXP_C char*  strncat (char*, const char*, size_t);
+_MSL_IMP_EXP_C int    strcmp (const char*, const char*);
+_MSL_IMP_EXP_C int    strncmp (const char*, const char*, size_t);
+_MSL_IMP_EXP_C int    strcoll (const char*, const char*);
+_MSL_IMP_EXP_C size_t strxfrm (char*, const char*, size_t);
+_MSL_IMP_EXP_C char*  strchr (const char*, int);
+_MSL_IMP_EXP_C char*  strrchr (const char*, int);
+_MSL_IMP_EXP_C char*  strpbrk (const char*, const char*);
+_MSL_IMP_EXP_C size_t strspn (const char*, const char*);
+_MSL_IMP_EXP_C size_t strcspn (const char*, const char*);
+_MSL_IMP_EXP_C char*  strtok (char*, const char*);
+_MSL_IMP_EXP_C char*  strstr (const char*, const char*);
+_MSL_IMP_EXP_C char*  strerror (int);
 
-char* __strerror(int, char*);
-void* __memrchr(const void*, int, size_t);
+char* __strerror (int, char*);
+void* __memrchr (const void*, int, size_t);
 
-_MSL_END_EXTERN_C      /*- cc  010410 -*/
+_MSL_END_EXTERN_C                                /*- cc  010410 -*/
 
 #if defined(__cplusplus) && __embedded_cplusplus == 0 /*- hh 971206 -*/
 
     inline char*
-    strchr(char* s, int c)
+    strchr (char* s, int c)
 {
-    return strchr(static_cast<const char*>(s), c);
+    return strchr (static_cast<const char*> (s), c);
 }
 inline char*
-strpbrk(char* s1, const char* s2)
+strpbrk (char* s1, const char* s2)
 {
-    return strpbrk(static_cast<const char*>(s1), s2);
+    return strpbrk (static_cast<const char*> (s1), s2);
 }
 inline char*
-strrchr(char* s, int c)
+strrchr (char* s, int c)
 {
-    return strrchr(static_cast<const char*>(s), c);
+    return strrchr (static_cast<const char*> (s), c);
 }
 inline char*
-strstr(char* s1, const char* s2)
+strstr (char* s1, const char* s2)
 {
-    return strstr(static_cast<const char*>(s1), s2);
+    return strstr (static_cast<const char*> (s1), s2);
 }
 inline void*
-memchr(void* s, int c, size_t n)
+memchr (void* s, int c, size_t n)
 {
-    return memchr(static_cast<const void*>(s), c, n);
+    return memchr (static_cast<const void*> (s), c, n);
 }
 #endif
 
-_MSL_END_NAMESPACE_STD /*- cc  010410 -*/
+_MSL_END_NAMESPACE_STD                           /*- cc  010410 -*/
 
 #if __MC68K__
 #include <string.68k.h>

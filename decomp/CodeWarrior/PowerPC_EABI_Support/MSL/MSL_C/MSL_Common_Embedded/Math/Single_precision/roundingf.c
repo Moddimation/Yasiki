@@ -20,33 +20,33 @@
 */
 
 extern float
-ceilf(float x)
+ceilf (float x)
 {
     _INT32 i = x;
     float  y = x - (float)i;
-    if ((!__HI(y)) || (__HI(x) & 0x7f800000) >= 0x4B800000)
+    if ((!__HI (y)) || (__HI (x) & 0x7f800000) >= 0x4B800000)
     {
         return x;            // x is already an int
     }
-    else if (__HI(x) & 0x80000000)
+    else if (__HI (x) & 0x80000000)
     {
         return (float)i;
     }
     return (float)++i;
 }
 extern float
-floorf(float x)
+floorf (float x)
 {
     _INT32 i = x;            // signed int
     float  y = (float)i - x; // since order of evaluation is NOT guaranteed
                              // this is not guaranteed to work with all compilers for
                              // -0 I currently have no "cheap" work around to this.
 
-    if ((!__HI(y)) || (__HI(x) & 0x7f800000) >= 0x4B800000)
+    if ((!__HI (y)) || (__HI (x) & 0x7f800000) >= 0x4B800000)
     {
         return x;            // x is already an int
     }
-    else if (__HI(x) & 0x80000000)
+    else if (__HI (x) & 0x80000000)
     {
         return (float)--i;
     }

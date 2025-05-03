@@ -82,49 +82,49 @@ public:
     typedef charT               char_type;
     typedef basic_string<charT> string_type;
 
-    explicit moneypunct(size_t refs = 0);
+    explicit moneypunct (size_t refs = 0);
     charT
-    decimal_point() const
+    decimal_point () const
     {
         return do_decimal_point();
     }
     charT
-    thousands_sep() const
+    thousands_sep () const
     {
         return do_thousands_sep();
     }
     string
-    grouping() const
+    grouping () const
     {
         return do_grouping();
     }
     string_type
-    curr_symbol() const
+    curr_symbol () const
     {
         return do_curr_symbol();
     }
     string_type
-    positive_sign() const
+    positive_sign () const
     {
         return do_positive_sign();
     }
     string_type
-    negative_sign() const
+    negative_sign () const
     {
         return do_negative_sign();
     }
     int
-    frac_digits() const
+    frac_digits () const
     {
         return do_frac_digits();
     }
     pattern
-    pos_format() const
+    pos_format () const
     {
         return do_pos_format();
     }
     pattern
-    neg_format() const
+    neg_format () const
     {
         return do_neg_format();
     }
@@ -132,49 +132,49 @@ public:
     static const bool intl = International;
 
 protected:
-    virtual ÃÂ¢ÃÂÃÂ¾moneypunct() {}
+    virtual ÃÂ¢ÃÂÃÂ¾moneypunct () {}
     virtual charT
-    do_decimal_point() const
+    do_decimal_point () const
     {
         return __decimal_point_;
     }
     virtual charT
-    do_thousands_sep() const
+    do_thousands_sep () const
     {
         return __thousands_sep_;
     }
     virtual string
-    do_grouping() const
+    do_grouping () const
     {
         return __grouping_;
     }
     virtual string_type
-    do_curr_symbol() const
+    do_curr_symbol () const
     {
         return __cur_symbol_;
     }
     virtual string_type
-    do_positive_sign() const
+    do_positive_sign () const
     {
         return __positive_sign_;
     }
     virtual string_type
-    do_negative_sign() const
+    do_negative_sign () const
     {
         return __negative_sign_;
     }
     virtual int
-    do_frac_digits() const
+    do_frac_digits () const
     {
         return __frac_digits_;
     }
     virtual pattern
-    do_pos_format() const
+    do_pos_format () const
     {
         return __pos_format_;
     }
     virtual pattern
-    do_neg_format() const
+    do_neg_format () const
     {
         return __neg_format_;
     }
@@ -197,17 +197,17 @@ struct __facet_traits<moneypunct<charT, International> >
     static const bool is_standard = true;
 };
 template <class charT, bool International>
-moneypunct<charT, International>::moneypunct(size_t refs)
-  : locale::facet(refs), __decimal_point_('.'), __thousands_sep_(','),
-    __grouping_("\3"),
-    __cur_symbol_(intl ? __literal("USD ", charT()) : __literal("$", charT())),
-    __negative_sign_(intl ? __literal("()", charT()) : __literal("-", charT())),
-    __frac_digits_(2)
+moneypunct<charT, International>::moneypunct (size_t refs)
+  : locale::facet (refs), __decimal_point_ ('.'), __thousands_sep_ (','),
+    __grouping_ ("\3"),
+    __cur_symbol_ (intl ? __literal ("USD ", charT()) : __literal ("$", charT())),
+    __negative_sign_ (intl ? __literal ("()", charT()) : __literal ("-", charT())),
+    __frac_digits_ (2)
 {
-    __pos_format_.field[0] = __neg_format_.field[0] = char(symbol);
-    __pos_format_.field[1] = __neg_format_.field[1] = char(sign);
-    __pos_format_.field[2] = __neg_format_.field[2] = char(none);
-    __pos_format_.field[3] = __neg_format_.field[3] = char(value);
+    __pos_format_.field[0] = __neg_format_.field[0] = char (symbol);
+    __pos_format_.field[1] = __neg_format_.field[1] = char (sign);
+    __pos_format_.field[2] = __neg_format_.field[2] = char (none);
+    __pos_format_.field[3] = __neg_format_.field[3] = char (value);
 }
 template <class charT, class InputIterator = istreambuf_iterator<charT> >
 class money_get : public locale::facet
@@ -216,31 +216,47 @@ public:
     typedef charT               char_type;
     typedef InputIterator       iter_type;
     typedef basic_string<charT> string_type;
-    explicit money_get(size_t refs = 0) : locale::facet(refs) {}
+    explicit money_get (size_t refs = 0) : locale::facet (refs) {}
 #ifndef _No_Floating_Point
     iter_type
-    get(iter_type in, iter_type end, bool intl, ios_base& str,
-        ios_base::iostate& err, long double& units) const
+    get (iter_type          in,
+         iter_type          end,
+         bool               intl,
+         ios_base&          str,
+         ios_base::iostate& err,
+         long double&       units) const
     {
-        return do_get(in, end, intl, str, err, units);
+        return do_get (in, end, intl, str, err, units);
     }
 #endif
     iter_type
-    get(iter_type in, iter_type end, bool intl, ios_base& str,
-        ios_base::iostate& err, string_type& digits) const
+    get (iter_type          in,
+         iter_type          end,
+         bool               intl,
+         ios_base&          str,
+         ios_base::iostate& err,
+         string_type&       digits) const
     {
-        return do_get(in, end, intl, str, err, digits);
+        return do_get (in, end, intl, str, err, digits);
     }
     static locale::id id;
 
 protected:
-    virtual ÃÂ¢ÃÂÃÂ¾money_get() {}
+    virtual ÃÂ¢ÃÂÃÂ¾money_get () {}
 #ifndef _No_Floating_Point
-    virtual iter_type do_get(iter_type in, iter_type end, bool intl, ios_base& str,
-                             ios_base::iostate& err, long double& units) const;
+    virtual iter_type do_get (iter_type          in,
+                              iter_type          end,
+                              bool               intl,
+                              ios_base&          str,
+                              ios_base::iostate& err,
+                              long double&       units) const;
 #endif
-    virtual iter_type do_get(iter_type in, iter_type end, bool intl, ios_base& str,
-                             ios_base::iostate& err, string_type& digits) const;
+    virtual iter_type do_get (iter_type          in,
+                              iter_type          end,
+                              bool               intl,
+                              ios_base&          str,
+                              ios_base::iostate& err,
+                              string_type&       digits) const;
 };
 
 template <class charT, class InputIterator>
@@ -253,18 +269,21 @@ struct __facet_traits<money_get<charT, InputIterator> >
 #ifndef _No_Floating_Point
 template <class charT, class InputIterator>
 typename money_get<charT, InputIterator>::iter_type
-money_get<charT, InputIterator>::do_get(iter_type in, iter_type end, bool intl,
-                                        ios_base& str, ios_base::iostate& err,
-                                        long double& units) const
+money_get<charT, InputIterator>::do_get (iter_type          in,
+                                         iter_type          end,
+                                         bool               intl,
+                                         ios_base&          str,
+                                         ios_base::iostate& err,
+                                         long double&       units) const
 {
     string_type digits;
-    in = do_get(in, end, intl, str, err, digits);
+    in = do_get (in, end, intl, str, err, digits);
     if (!(err & ios_base::failbit))
     {
         const string_type&                   cdigits = digits;
         typename string_type::const_iterator i = cdigits.begin();
         bool                                 minus = false;
-        if (char(*i) == '-')
+        if (char (*i) == '-')
         {
             minus = true;
             ++i;
@@ -274,7 +293,7 @@ money_get<charT, InputIterator>::do_get(iter_type in, iter_type end, bool intl,
         while (i != end)
         {
             units *= 10;
-            units += char(*i) - '0';
+            units += char (*i) - '0';
             ++i;
         }
         if (minus)
@@ -287,8 +306,11 @@ money_get<charT, InputIterator>::do_get(iter_type in, iter_type end, bool intl,
 #endif               // _No_Floating_Point
 template <class InputIterator1, class InputIterator2>
 bool
-__consume_str(InputIterator1& in, InputIterator1 end, ios_base::iostate& err,
-              InputIterator2 start, InputIterator2 finish)
+__consume_str (InputIterator1&    in,
+               InputIterator1     end,
+               ios_base::iostate& err,
+               InputIterator2     start,
+               InputIterator2     finish)
 {
     if (in == end)
     {
@@ -312,9 +334,13 @@ __consume_str(InputIterator1& in, InputIterator1 end, ios_base::iostate& err,
 }
 template <class charT, class InputIterator, class Ctype>
 int
-__parseMoneyDigits(InputIterator& in, InputIterator end, ios_base::iostate& err,
-                   const Ctype& ct, charT thousands_sep,
-                   const string& allowed_grouping, basic_string<charT>& digits)
+__parseMoneyDigits (InputIterator&       in,
+                    InputIterator        end,
+                    ios_base::iostate&   err,
+                    const Ctype&         ct,
+                    charT                thousands_sep,
+                    const string&        allowed_grouping,
+                    basic_string<charT>& digits)
 {
     if (in == end)
     {
@@ -330,12 +356,12 @@ __parseMoneyDigits(InputIterator& in, InputIterator end, ios_base::iostate& err,
         charT d = *in;
         if (ng != 0 && might_group && d == thousands_sep)
         {
-            actual_grouping.push_back(ng);
+            actual_grouping.push_back (ng);
             ng = 0;
             perform_grouping_check = true;
             goto cycle;
         }
-        if (!ct.is(ctype_base::digit, d))
+        if (!ct.is (ctype_base::digit, d))
         {
             break;
         }
@@ -353,9 +379,9 @@ __parseMoneyDigits(InputIterator& in, InputIterator end, ios_base::iostate& err,
     {
         if (ng != 0) // hh 980804
         {
-            actual_grouping.push_back(ng);
+            actual_grouping.push_back (ng);
         }
-        if (__check_grouping(allowed_grouping, actual_grouping))
+        if (__check_grouping (allowed_grouping, actual_grouping))
         {
             err |= ios_base::failbit;
             count = 0;
@@ -365,9 +391,13 @@ __parseMoneyDigits(InputIterator& in, InputIterator end, ios_base::iostate& err,
 }
 template <class charT, class InputIterator, class Ctype>
 bool
-__parseMoneyFraction(InputIterator& in, InputIterator end, ios_base::iostate& err,
-                     const Ctype& ct, charT decimal_point, int frac_digits,
-                     basic_string<charT>& digits)
+__parseMoneyFraction (InputIterator&       in,
+                      InputIterator        end,
+                      ios_base::iostate&   err,
+                      const Ctype&         ct,
+                      charT                decimal_point,
+                      int                  frac_digits,
+                      basic_string<charT>& digits)
 {
     if (frac_digits <= 0)
     {
@@ -375,7 +405,7 @@ __parseMoneyFraction(InputIterator& in, InputIterator end, ios_base::iostate& er
     }
     if (in == end || *in != decimal_point)
     {
-        digits.append(size_t(frac_digits), ct.widen('0'));
+        digits.append (size_t (frac_digits), ct.widen ('0'));
         return false;
     }
     // Must find exactly frac_digits digits
@@ -388,7 +418,7 @@ __parseMoneyFraction(InputIterator& in, InputIterator end, ios_base::iostate& er
     for (int count = 0; count < frac_digits; ++count)
     {
         charT c = *in;
-        if (!ct.is(ctype_base::digit, c))
+        if (!ct.is (ctype_base::digit, c))
         {
             err |= ios_base::failbit;
             break;
@@ -409,9 +439,12 @@ __parseMoneyFraction(InputIterator& in, InputIterator end, ios_base::iostate& er
 }
 template <class charT, class InputIterator>
 typename money_get<charT, InputIterator>::iter_type
-money_get<charT, InputIterator>::do_get(iter_type in, iter_type end, bool intl,
-                                        ios_base& str, ios_base::iostate& err,
-                                        string_type& digits) const
+money_get<charT, InputIterator>::do_get (iter_type          in,
+                                         iter_type          end,
+                                         bool               intl,
+                                         ios_base&          str,
+                                         ios_base::iostate& err,
+                                         string_type&       digits) const
 {
     if (in == end)
     {
@@ -420,32 +453,33 @@ money_get<charT, InputIterator>::do_get(iter_type in, iter_type end, bool intl,
     }
     err = ios_base::goodbit;
     locale              loc = str.getloc();
-    const ctype<charT>& ct = _USE_FACET(ctype<charT>, loc);
+    const ctype<charT>& ct = _USE_FACET (ctype<charT>, loc);
 #ifndef _MSL_NO_EXPLICIT_FUNC_TEMPLATE_ARG
-    const moneypunct<charT, true>&  mpp = use_facet<moneypunct<charT, true> >(loc);
-    const moneypunct<charT, false>& mpn = use_facet<moneypunct<charT, false> >(loc);
+    const moneypunct<charT, true>&  mpp = use_facet<moneypunct<charT, true> > (loc);
+    const moneypunct<charT, false>& mpn = use_facet<moneypunct<charT, false> > (loc);
 #else
-    const moneypunct<charT, true>& mpp = use_facet(loc, (moneypunct<charT, true>*)0);
+    const moneypunct<charT, true>& mpp =
+        use_facet (loc, (moneypunct<charT, true>*)0);
     const moneypunct<charT, false>& mpn =
-        use_facet(loc, (moneypunct<charT, false>*)0);
+        use_facet (loc, (moneypunct<charT, false>*)0);
 #endif
     money_base::pattern pat = intl ? mpp.neg_format() : mpn.neg_format();
     int                 pend = 4;
     // space not allowed at end.  none at end is a nop
-    if (static_cast<money_base::part>(pat.field[pend - 1]) == money_base::none)
+    if (static_cast<money_base::part> (pat.field[pend - 1]) == money_base::none)
     {
         --pend;
     }
     string_type       result;
     int               more_sign = 0;
-    const string_type pos(intl ? mpp.positive_sign() : mpn.positive_sign());
-    const string_type neg(intl ? mpp.negative_sign() : mpn.negative_sign());
+    const string_type pos (intl ? mpp.positive_sign() : mpn.positive_sign());
+    const string_type neg (intl ? mpp.negative_sign() : mpn.negative_sign());
     for (int p = 0; p < pend; ++p)
     {
-        switch (static_cast<money_base::part>(pat.field[p]))
+        switch (static_cast<money_base::part> (pat.field[p]))
         {
             case money_base::space:
-                if (ct.is(ctype_base::space, *in))
+                if (ct.is (ctype_base::space, *in))
                 {
                     if (++in == end)
                     {
@@ -460,7 +494,7 @@ money_get<charT, InputIterator>::do_get(iter_type in, iter_type end, bool intl,
                 }
                 // drop through
             case money_base::none:
-                while (ct.is(ctype_base::space, *in))
+                while (ct.is (ctype_base::space, *in))
                 {
                     if (++in == end)
                     {
@@ -471,12 +505,12 @@ money_get<charT, InputIterator>::do_get(iter_type in, iter_type end, bool intl,
                 break;
             case money_base::symbol:
                 {
-                    const string_type symbol(intl ? mpp.curr_symbol()
-                                                  : mpn.curr_symbol());
+                    const string_type symbol (intl ? mpp.curr_symbol()
+                                                   : mpn.curr_symbol());
                     if (str.flags() & ios_base::showbase)
                     {
-                        if (!__consume_str(in, end, err, symbol.begin(),
-                                           symbol.end()))
+                        if (!__consume_str (
+                                in, end, err, symbol.begin(), symbol.end()))
                         {
                             err |= ios_base::failbit;
                         }
@@ -485,8 +519,8 @@ money_get<charT, InputIterator>::do_get(iter_type in, iter_type end, bool intl,
                     {
                         if (p < pend - 1 || more_sign)
                         {
-                            __consume_str(in, end, err, symbol.begin(),
-                                          symbol.end());
+                            __consume_str (
+                                in, end, err, symbol.begin(), symbol.end());
                         }
                     }
                 }
@@ -505,7 +539,7 @@ money_get<charT, InputIterator>::do_get(iter_type in, iter_type end, bool intl,
                 }
                 else if (neg.size() > 0 && *in == neg[0])
                 {
-                    result.insert(result.begin(), ct.widen('-'));
+                    result.insert (result.begin(), ct.widen ('-'));
                     if (++in == end)
                     {
                         err |= ios_base::eofbit;
@@ -522,18 +556,26 @@ money_get<charT, InputIterator>::do_get(iter_type in, iter_type end, bool intl,
                 break;
             case money_base::value:
                 {
-                    int count = __parseMoneyDigits(
-                        in, end, err, ct,
+                    int count = __parseMoneyDigits (
+                        in,
+                        end,
+                        err,
+                        ct,
                         intl ? mpp.thousands_sep() : mpn.thousands_sep(),
-                        intl ? mpp.grouping() : mpn.grouping(), result);
+                        intl ? mpp.grouping() : mpn.grouping(),
+                        result);
                     if (err & ios_base::failbit)
                     {
                         break;
                     }
-                    bool found_digits = __parseMoneyFraction(
-                        in, end, err, ct,
+                    bool found_digits = __parseMoneyFraction (
+                        in,
+                        end,
+                        err,
+                        ct,
                         intl ? mpp.decimal_point() : mpn.decimal_point(),
-                        intl ? mpp.frac_digits() : mpn.frac_digits(), result);
+                        intl ? mpp.frac_digits() : mpn.frac_digits(),
+                        result);
                     if (!found_digits && count == 0)
                     {
                         err |= ios_base::failbit;
@@ -550,14 +592,14 @@ money_get<charT, InputIterator>::do_get(iter_type in, iter_type end, bool intl,
     {
         if (more_sign > 0)
         {
-            if (!__consume_str(in, end, err, pos.begin() + 1, pos.end()))
+            if (!__consume_str (in, end, err, pos.begin() + 1, pos.end()))
             {
                 err |= ios_base::failbit;
             }
         }
         else
         {
-            if (!__consume_str(in, end, err, neg.begin() + 1, neg.end()))
+            if (!__consume_str (in, end, err, neg.begin() + 1, neg.end()))
             {
                 err |= ios_base::failbit;
             }
@@ -576,31 +618,40 @@ public:
     typedef charT               char_type;
     typedef OutputIterator      iter_type;
     typedef basic_string<charT> string_type;
-    explicit money_put(size_t refs = 0) : locale::facet(refs) {}
+    explicit money_put (size_t refs = 0) : locale::facet (refs) {}
 #ifndef _No_Floating_Point
     iter_type
-    put(iter_type out, bool intl, ios_base& str, char_type fill,
-        long double units) const
+    put (iter_type out, bool intl, ios_base& str, char_type fill, long double units)
+        const
     {
-        return do_put(out, intl, str, fill, units);
+        return do_put (out, intl, str, fill, units);
     }
 #endif
     iter_type
-    put(iter_type out, bool intl, ios_base& str, char_type fill,
-        const string_type& digits) const
+    put (iter_type          out,
+         bool               intl,
+         ios_base&          str,
+         char_type          fill,
+         const string_type& digits) const
     {
-        return do_put(out, intl, str, fill, digits);
+        return do_put (out, intl, str, fill, digits);
     }
     static locale::id id;
 
 protected:
-    virtual ÃÂ¢ÃÂÃÂ¾money_put() {}
+    virtual ÃÂ¢ÃÂÃÂ¾money_put () {}
 #ifndef _No_Floating_Point
-    virtual iter_type do_put(iter_type out, bool intl, ios_base& str, char_type fill,
-                             long double units) const;
+    virtual iter_type do_put (iter_type   out,
+                              bool        intl,
+                              ios_base&   str,
+                              char_type   fill,
+                              long double units) const;
 #endif
-    virtual iter_type do_put(iter_type out, bool intl, ios_base& str, char_type fill,
-                             const string_type& digits) const;
+    virtual iter_type do_put (iter_type          out,
+                              bool               intl,
+                              ios_base&          str,
+                              char_type          fill,
+                              const string_type& digits) const;
 };
 
 template <class charT, class OutputIterator>
@@ -613,14 +664,14 @@ struct __facet_traits<money_put<charT, OutputIterator> >
 #ifndef _No_Floating_Point
 template <class charT, class OutputIterator>
 typename money_put<charT, OutputIterator>::iter_type
-money_put<charT, OutputIterator>::do_put(iter_type out, bool intl, ios_base& str,
-                                         char_type fill, long double units) const
+money_put<charT, OutputIterator>::do_put (
+    iter_type out, bool intl, ios_base& str, char_type fill, long double units) const
 {
-    const ctype<charT>& ct = _USE_FACET(ctype<charT>, str.getloc());
+    const ctype<charT>& ct = _USE_FACET (ctype<charT>, str.getloc());
     string_type         digits;
     if (units == 0)
     {
-        digits = ct.widen('0');
+        digits = ct.widen ('0');
     }
     else
     {
@@ -629,38 +680,42 @@ money_put<charT, OutputIterator>::do_put(iter_type out, bool intl, ios_base& str
         {
             units = -units;
         }
-        _BCD bcd(floor(units + 0.5L));
+        _BCD bcd (floor (units + 0.5L));
         int  exponent = bcd.exponent();
         int  significant_digits = exponent + 1;
         // significant_digits > 0
-        digits = ct.widen(
-            bcd.to_string(significant_digits,
-                          exponent)); // exponent may increase by 1 due to rounding
+        digits = ct.widen (
+            bcd.to_string (significant_digits,
+                           exponent)); // exponent may increase by 1 due to rounding
         significant_digits = exponent + 1;
         // exponent >= 0
         if (significant_digits > digits.size())
         {
-            digits.append((size_t)(significant_digits - digits.size()),
-                          ct.widen('0'));
+            digits.append ((size_t)(significant_digits - digits.size()),
+                           ct.widen ('0'));
         }
         if (minus)
         {
-            digits.insert(digits.begin(), ct.widen('-'));
+            digits.insert (digits.begin(), ct.widen ('-'));
         }
     }
-    return do_put(out, intl, str, fill, digits);
+    return do_put (out, intl, str, fill, digits);
 }
 #endif
 template <class Ctype, class charT, class InputIterator>
 basic_string<charT>
-__put_value(const Ctype& ct, int frac_digits, charT decimal_point,
-            charT thousands_sep, const string& allowed_grouping, InputIterator begin,
-            InputIterator end)
+__put_value (const Ctype&  ct,
+             int           frac_digits,
+             charT         decimal_point,
+             charT         thousands_sep,
+             const string& allowed_grouping,
+             InputIterator begin,
+             InputIterator end)
 {
     basic_string<charT> result;
     while (begin != end)
     {
-        if (!ct.is(ctype_base::digit, *begin))
+        if (!ct.is (ctype_base::digit, *begin))
         {
             break;
         }
@@ -671,32 +726,36 @@ __put_value(const Ctype& ct, int frac_digits, charT decimal_point,
     {
         if (result.size() <= frac_digits)
         {
-            result.insert(size_t(0), size_t(frac_digits - result.size() + 1),
-                          ct.widen('0'));
+            result.insert (size_t (0),
+                           size_t (frac_digits - result.size() + 1),
+                           ct.widen ('0'));
         }
-        result.insert(result.size() - frac_digits, 1, decimal_point);
+        result.insert (result.size() - frac_digits, 1, decimal_point);
     }
-    __put_grouping_float(decimal_point, thousands_sep, allowed_grouping, result);
+    __put_grouping_float (decimal_point, thousands_sep, allowed_grouping, result);
     return result;
 }
 template <class charT, class OutputIterator>
 typename money_put<charT, OutputIterator>::iter_type
-money_put<charT, OutputIterator>::do_put(iter_type out, bool intl, ios_base& str,
-                                         char_type          fill,
-                                         const string_type& digits) const
+money_put<charT, OutputIterator>::do_put (iter_type          out,
+                                          bool               intl,
+                                          ios_base&          str,
+                                          char_type          fill,
+                                          const string_type& digits) const
 {
     locale              loc = str.getloc();
-    const ctype<charT>& ct = _USE_FACET(ctype<charT>, loc);
+    const ctype<charT>& ct = _USE_FACET (ctype<charT>, loc);
 #ifndef _MSL_NO_EXPLICIT_FUNC_TEMPLATE_ARG
-    const moneypunct<charT, true>&  mpp = use_facet<moneypunct<charT, true> >(loc);
-    const moneypunct<charT, false>& mpn = use_facet<moneypunct<charT, false> >(loc);
+    const moneypunct<charT, true>&  mpp = use_facet<moneypunct<charT, true> > (loc);
+    const moneypunct<charT, false>& mpn = use_facet<moneypunct<charT, false> > (loc);
 #else
-    const moneypunct<charT, true>& mpp = use_facet(loc, (moneypunct<charT, true>*)0);
+    const moneypunct<charT, true>& mpp =
+        use_facet (loc, (moneypunct<charT, true>*)0);
     const moneypunct<charT, false>& mpn =
-        use_facet(loc, (moneypunct<charT, false>*)0);
+        use_facet (loc, (moneypunct<charT, false>*)0);
 #endif
     typename string_type::const_iterator s = digits.begin();
-    bool                                 minus = *s == ct.widen('-');
+    bool                                 minus = *s == ct.widen ('-');
     money_base::pattern                  pat;
     if (minus)
     {
@@ -710,12 +769,12 @@ money_put<charT, OutputIterator>::do_put(iter_type out, bool intl, ios_base& str
     string_type                     result;
     typename string_type::size_type pend = 0;
     bool                            more_sign = false;
-    const string_type               plus_minus(
+    const string_type               plus_minus (
         minus ? (intl ? mpp.negative_sign() : mpn.negative_sign())
               : (intl ? mpp.positive_sign() : mpn.positive_sign()));
     for (int p = 0; p < 4; ++p)
     {
-        switch (static_cast<money_base::part>(pat.field[p]))
+        switch (static_cast<money_base::part> (pat.field[p]))
         {
             case money_base::space:
                 result += fill;
@@ -740,11 +799,14 @@ money_put<charT, OutputIterator>::do_put(iter_type out, bool intl, ios_base& str
                 }
                 break;
             case money_base::value:
-                result += __put_value(
-                    ct, intl ? mpp.frac_digits() : mpn.frac_digits(),
-                    intl ? mpp.decimal_point() : mpn.decimal_point(),
-                    intl ? mpp.thousands_sep() : mpn.thousands_sep(),
-                    intl ? mpp.grouping() : mpn.grouping(), s, digits.end());
+                result +=
+                    __put_value (ct,
+                                 intl ? mpp.frac_digits() : mpn.frac_digits(),
+                                 intl ? mpp.decimal_point() : mpn.decimal_point(),
+                                 intl ? mpp.thousands_sep() : mpn.thousands_sep(),
+                                 intl ? mpp.grouping() : mpn.grouping(),
+                                 s,
+                                 digits.end());
                 break;
         }
     }
@@ -755,8 +817,13 @@ money_put<charT, OutputIterator>::do_put(iter_type out, bool intl, ios_base& str
             result += *s;
         }
     }
-    return __putnumber(out, str, fill, &result[0], (int)pend, &result[pend],
-                       int(result.size() - pend));
+    return __putnumber (out,
+                        str,
+                        fill,
+                        &result[0],
+                        (int)pend,
+                        &result[pend],
+                        int (result.size() - pend));
 }
 template <class charT, bool Intl = false>
 class moneypunct_byname : public moneypunct<charT, Intl>
@@ -765,86 +832,87 @@ public:
     typedef money_base::pattern pattern;
     typedef basic_string<charT> string_type;
 
-    explicit moneypunct_byname(const char* std_name, size_t refs = 0);
+    explicit moneypunct_byname (const char* std_name, size_t refs = 0);
 
 protected:
-    virtual ÃÂ¢ÃÂÃÂ¾moneypunct_byname() {}
+    virtual ÃÂ¢ÃÂÃÂ¾moneypunct_byname () {}
 };
 inline const string&
-__money_marker(char, bool Intl)
+__money_marker (char, bool Intl)
 {
-    static string money_local_marker("money_local_narrow");
-    static string money_international_marker("money_international_narrow");
+    static string money_local_marker ("money_local_narrow");
+    static string money_international_marker ("money_international_narrow");
     return Intl ? money_international_marker : money_local_marker;
 }
 #ifndef _MSL_NO_WCHART_CPP_SUPPORT
 inline const string&
-__money_marker(wchar_t, bool Intl)
+__money_marker (wchar_t, bool Intl)
 {
-    static string money_local_marker("money_local_wide");
-    static string money_international_marker("money_international_wide");
+    static string money_local_marker ("money_local_wide");
+    static string money_international_marker ("money_international_wide");
     return Intl ? money_international_marker : money_local_marker;
 }
 #endif                          // _MSL_NO_WCHART_CPP_SUPPORT
 template <class charT, class traits>
 void
-__read_money_format(basic_istream<charT, traits>& infile,
-                    money_base::pattern& format, const string* cformat_names,
-                    const ctype<char>& ct)
+__read_money_format (basic_istream<charT, traits>& infile,
+                     money_base::pattern&          format,
+                     const string*                 cformat_names,
+                     const ctype<char>&            ct)
 {
     ios_base::iostate         err = ios_base::goodbit;
-    istreambuf_iterator<char> in(infile), end;
+    istreambuf_iterator<char> in (infile), end;
     for (int j = 0; j < 4; ++j)
     {
-        ws(infile);
+        ws (infile);
         const string* i =
-            __parse_a_word(in, end, cformat_names, cformat_names + 5, ct, err);
+            __parse_a_word (in, end, cformat_names, cformat_names + 5, ct, err);
         if (err)
         {
-            infile.setstate(err);
+            infile.setstate (err);
         }
         if (infile.fail() || i == cformat_names + 5)
 #ifndef _MSL_NO_EXCEPTIONS
-            throw runtime_error("syntax error reading money data");
+            throw runtime_error ("syntax error reading money data");
 #else
-            __msl_error("syntax error reading money data");
+            __msl_error ("syntax error reading money data");
 #endif
-        format.field[j] = static_cast<money_base::part>(i - cformat_names);
+        format.field[j] = static_cast<money_base::part> (i - cformat_names);
     }
 }
 template <class charT, bool Intl>
-moneypunct_byname<charT, Intl>::moneypunct_byname(const char* std_name, size_t refs)
-  : moneypunct<charT, Intl>(refs)
+moneypunct_byname<charT, Intl>::moneypunct_byname (const char* std_name, size_t refs)
+  : moneypunct<charT, Intl> (refs)
 {
     typedef moneypunct<charT, Intl> base;
     if (std_name == 0)
 #ifndef _MSL_NO_EXCEPTIONS
-        throw runtime_error("moneypunct_byname constructed with null name");
+        throw runtime_error ("moneypunct_byname constructed with null name");
 #else
-        __msl_error("moneypunct_byname constructed with null name");
+        __msl_error ("moneypunct_byname constructed with null name");
 #endif
-    if (strlen(std_name) == 0)
+    if (strlen (std_name) == 0)
     {
-        std_name = getenv("LANG");
+        std_name = getenv ("LANG");
     }
-    if (std_name != 0 && strcmp(std_name, "C") != 0)
+    if (std_name != 0 && strcmp (std_name, "C") != 0)
     {
 #ifndef _MSL_NO_FILE_IO
-        ifstream infile(std_name);
+        ifstream infile (std_name);
         if (!infile.is_open())
 #ifndef _MSL_NO_EXCEPTIONS
-            throw runtime_error(
-                string("moneypunct_byname constructed with unsupported name: ") +
+            throw runtime_error (
+                string ("moneypunct_byname constructed with unsupported name: ") +
                 std_name);
 #else
-            __msl_error("moneypunct_byname constructed with unsupported name");
+            __msl_error ("moneypunct_byname constructed with unsupported name");
 #endif
         string       word;
-        const string money_marker(__money_marker(charT(), Intl));
+        const string money_marker (__money_marker (charT(), Intl));
         bool         success = true;
         while (infile.good())
         {
-            infile.ignore(numeric_limits<streamsize>::max(), '$');
+            infile.ignore (numeric_limits<streamsize>::max(), '$');
             infile >> word;
             if (infile.fail())
             {
@@ -863,25 +931,25 @@ moneypunct_byname<charT, Intl>::moneypunct_byname(const char* std_name, size_t r
                 money_names[6] = "frac_digits";
                 money_names[7] = "pos_format";
                 money_names[8] = "neg_format";
-                const string(&cmoney_names)[9] = money_names;
+                const string (&cmoney_names)[9] = money_names;
                 string format_names[5];
                 format_names[0] = "none";
                 format_names[1] = "space";
                 format_names[2] = "symbol";
                 format_names[3] = "sign";
                 format_names[4] = "value";
-                const string(&cformat_names)[5] = format_names;
-                const ctype<char>& ct = _USE_FACET(ctype<char>, infile.getloc());
+                const string (&cformat_names)[5] = format_names;
+                const ctype<char>& ct = _USE_FACET (ctype<char>, infile.getloc());
                 ios_base::iostate  err = ios_base::goodbit;
-                istreambuf_iterator<char> in(infile), end;
+                istreambuf_iterator<char> in (infile), end;
                 while (true)
                 {
-                    ws(infile);
-                    const string* i = __parse_a_word(in, end, cmoney_names,
-                                                     cmoney_names + 9, ct, err);
+                    ws (infile);
+                    const string* i = __parse_a_word (
+                        in, end, cmoney_names, cmoney_names + 9, ct, err);
                     if (err)
                     {
-                        infile.setstate(err);
+                        infile.setstate (err);
                     }
                     if (i == cmoney_names + 9)
                     {
@@ -891,71 +959,72 @@ moneypunct_byname<charT, Intl>::moneypunct_byname(const char* std_name, size_t r
                     infile >> syntax;
                     if (infile.fail() || syntax != '=')
 #ifndef _MSL_NO_EXCEPTIONS
-                        throw runtime_error("syntax error reading money data");
+                        throw runtime_error ("syntax error reading money data");
 #else
-                        __msl_error("syntax error reading money data");
+                        __msl_error ("syntax error reading money data");
 #endif
                     bool was_quoted;
                     switch (i - cmoney_names)
                     {
                         case 0: // decimal_point
-                            __read_formatted_char(infile, base::__decimal_point_,
-                                                  was_quoted);
+                            __read_formatted_char (
+                                infile, base::__decimal_point_, was_quoted);
                             break;
                         case 1: // thousands_sep
-                            __read_formatted_char(infile, base::__thousands_sep_,
-                                                  was_quoted);
+                            __read_formatted_char (
+                                infile, base::__thousands_sep_, was_quoted);
                             break;
                         case 2: // grouping
                             {
-                                __read_formatted_string(infile, base::__grouping_);
+                                __read_formatted_string (infile, base::__grouping_);
                                 for (string::iterator i = base::__grouping_.begin();
-                                     i < base::__grouping_.end(); ++i)
+                                     i < base::__grouping_.end();
+                                     ++i)
                                 {
                                     *i -= '0';
                                 }
                             }
                             break;
                         case 3: // curr_symbol
-                            __read_formatted_string(infile, base::__cur_symbol_);
+                            __read_formatted_string (infile, base::__cur_symbol_);
                             break;
                         case 4: // positive_sign
-                            __read_formatted_string(infile, base::__positive_sign_);
+                            __read_formatted_string (infile, base::__positive_sign_);
                             break;
                         case 5: // negative_sign
-                            __read_formatted_string(infile, base::__negative_sign_);
+                            __read_formatted_string (infile, base::__negative_sign_);
                             break;
                         case 6: // frac_digits
                             infile >> base::__frac_digits_;
                             break;
                         case 7: // pos_format
-                            __read_money_format(infile, base::__pos_format_,
-                                                cformat_names, ct);
+                            __read_money_format (
+                                infile, base::__pos_format_, cformat_names, ct);
                             break;
                         case 8: // neg_format
-                            __read_money_format(infile, base::__neg_format_,
-                                                cformat_names, ct);
+                            __read_money_format (
+                                infile, base::__neg_format_, cformat_names, ct);
                             break;
                     }
                 }
-                success = static_cast<bool>(!infile.fail());
+                success = static_cast<bool> (!infile.fail());
                 break;
             }
         }
         if (!success)
 #ifndef _MSL_NO_EXCEPTIONS
-            throw runtime_error(string("moneypunct_byname file input error: ") +
-                                std_name);
+            throw runtime_error (string ("moneypunct_byname file input error: ") +
+                                 std_name);
 #else
-            __msl_error("moneypunct_byname file input error");
+            __msl_error ("moneypunct_byname file input error");
 #endif
 #else                           // _MSL_NO_FILE_IO
 #ifndef _MSL_NO_EXCEPTIONS
-        throw runtime_error(
-            string("moneypunct_byname constructed with unsupported name: ") +
+        throw runtime_error (
+            string ("moneypunct_byname constructed with unsupported name: ") +
             std_name);
 #else
-        __msl_error("moneypunct_byname constructed with unsupported name");
+        __msl_error ("moneypunct_byname constructed with unsupported name");
 #endif
 #endif                          // _MSL_NO_FILE_IO
     }

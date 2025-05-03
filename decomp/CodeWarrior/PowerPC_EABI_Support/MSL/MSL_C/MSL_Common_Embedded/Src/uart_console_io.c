@@ -40,10 +40,12 @@
  * not be handled, and hence a exception would occur
  */
 
-int __TRK_write_console(__file_handle handle, unsigned char* buffer, size_t* count,
-                        __idle_proc idle_proc);
+int __TRK_write_console (__file_handle  handle,
+                         unsigned char* buffer,
+                         size_t*        count,
+                         __idle_proc    idle_proc);
 
-static UARTError __init_uart_console(void);
+static UARTError __init_uart_console (void);
 
 /************************************************************************/
 
@@ -87,11 +89,15 @@ int		__read_console	  (__file_handle handle, unsigned char * buffer,
 #endif
 
 /************************************************************************/
-#pragma overload int __write_console(__file_handle handle, unsigned char* buffer,   \
-                                     size_t* count, __idle_proc idle_proc);
+#pragma overload int __write_console(__file_handle  handle,                         \
+                                     unsigned char* buffer,                         \
+                                     size_t*        count,                          \
+                                     __idle_proc    idle_proc);
 int
-__write_console(__file_handle handle, unsigned char* buffer, size_t* count,
-                __idle_proc idle_proc)
+__write_console (__file_handle  handle,
+                 unsigned char* buffer,
+                 size_t*        count,
+                 __idle_proc    idle_proc)
 {
 #pragma unused(handle, idle_proc)
 
@@ -100,7 +106,7 @@ __write_console(__file_handle handle, unsigned char* buffer, size_t* count,
         return (__io_error);
     }
 
-    if (WriteUARTN(buffer, *count) != kUARTNoError)
+    if (WriteUARTN (buffer, *count) != kUARTNoError)
     {
         *count = 0;
         return (__io_error);
@@ -119,13 +125,13 @@ __write_console(__file_handle handle, unsigned char* buffer, size_t* count,
      * been brought up, and hence the app will crash.
      */
 
-    __TRK_write_console(handle, buffer, count, idle_proc);
+    __TRK_write_console (handle, buffer, count, idle_proc);
 
     return (__no_io_error);
 }
 /************************************************************************/
 int
-__close_console(__file_handle handle)
+__close_console (__file_handle handle)
 {
 #pragma unused(handle)
 
@@ -135,14 +141,14 @@ __close_console(__file_handle handle)
 // #pragma overload UARTError __init_uart_console(void);
 
 UARTError
-__init_uart_console(void)
+__init_uart_console (void)
 {
     UARTError  err = kUARTNoError;
     static int initialized = 0;
 
     if (initialized == 0)
     {
-        err = InitializeUART(UART_CONSOLE_BAUD_RATE);
+        err = InitializeUART (UART_CONSOLE_BAUD_RATE);
 
         if (err == kUARTNoError)
         {
@@ -158,7 +164,7 @@ __init_uart_console(void)
  */
 
 int
-__delete_file(const char* name)
+__delete_file (const char* name)
 {
     return kUARTNoError;
 }
@@ -167,7 +173,7 @@ __delete_file(const char* name)
  */
 
 int
-__rename_file(const char* old_name, const char* new_name)
+__rename_file (const char* old_name, const char* new_name)
 {
     return kUARTNoError;
 }
@@ -175,7 +181,7 @@ __rename_file(const char* old_name, const char* new_name)
  * Unimplemented for GCN  - Host IO does not support this
  */
 void
-__temp_file_name(char* name_str, void* ptr)
+__temp_file_name (char* name_str, void* ptr)
 {
     if (name_str)
     {

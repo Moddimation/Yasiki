@@ -56,7 +56,7 @@
                                                                                     \
         if (__next == 0)                                                            \
         {                                                                           \
-            ENQUEUE_INFO(info, queue);                                              \
+            ENQUEUE_INFO (info, queue);                                             \
         }                                                                           \
         else                                                                        \
         {                                                                           \
@@ -83,29 +83,29 @@ OSThreadQueue __OSActiveThreadQueue : (OS_BASE_CACHED | 0x00DC);
 OSThreadQueue __OSActiveThreadQueue;
 #endif
 
-static int      CallResetFunctions(int final);
-static ASM void Reset(u32 resetCode);
+static int      CallResetFunctions (int final);
+static ASM void Reset (u32 resetCode);
 void
-OSRegisterResetFunction(struct OSResetFunctionInfo* info)
+OSRegisterResetFunction (struct OSResetFunctionInfo* info)
 {
-    ASSERTLINE(0x76, info->func);
+    ASSERTLINE (0x76, info->func);
 
-    ENQUEUE_INFO_PRIO(info, &ResetFunctionQueue);
+    ENQUEUE_INFO_PRIO (info, &ResetFunctionQueue);
 }
 void
-OSUnregisterResetFunction(struct OSResetFunctionInfo* info)
+OSUnregisterResetFunction (struct OSResetFunctionInfo* info)
 {
-    DEQUEUE_INFO(info, &ResetFunctionQueue);
+    DEQUEUE_INFO (info, &ResetFunctionQueue);
 }
 static int
-CallResetFunctions(int final)
+CallResetFunctions (int final)
 {
     struct OSResetFunctionInfo* info;
     int                         err = 0;
 
     for (info = ResetFunctionQueue.head; info; info = info->next)
     {
-        err |= !info->func(final);
+        err |= !info->func (final);
     }
     err |= !__OSSyncSram();
     if (err)
@@ -115,7 +115,7 @@ CallResetFunctions(int final)
     return 1;
 }
 static ASM void
-Reset(u32 resetCode)
+Reset (u32 resetCode)
 {
 #ifdef __MWERKS__
     nofralloc;
@@ -168,7 +168,7 @@ L_00000208:
 #endif
 }
 static void
-KillThreads(void)
+KillThreads (void)
 {
     OSThread* thread;
     OSThread* next;
@@ -180,21 +180,21 @@ KillThreads(void)
         {
             case 1:
             case 4:
-                OSCancelThread(thread);
+                OSCancelThread (thread);
                 break;
         }
     }
 }
 void
-__OSDoHotReset(s32 code)
+__OSDoHotReset (s32 code)
 {
     OSDisableInterrupts();
     __VIRegs[VI_DISP_CONFIG] = 0;
     ICFlashInvalidate();
-    Reset(code * 8);
+    Reset (code * 8);
 }
 void
-OSResetSystem(int reset, u32 resetCode, BOOL forceMenu)
+OSResetSystem (int reset, u32 resetCode, BOOL forceMenu)
 {
     BOOL rc;
     BOOL disableRecalibration;
@@ -203,7 +203,7 @@ OSResetSystem(int reset, u32 resetCode, BOOL forceMenu)
     OSDisableScheduler();
     __OSStopAudioSystem();
 
-    while (!CallResetFunctions(FALSE))
+    while (!CallResetFunctions (FALSE))
     {
         ;
     }
@@ -214,7 +214,7 @@ OSResetSystem(int reset, u32 resetCode, BOOL forceMenu)
 
         sram = __OSLockSram();
         sram->flags |= 0x40;
-        __OSUnlockSram(TRUE);
+        __OSUnlockSram (TRUE);
 
         while (!__OSSyncSram())
         {
@@ -223,23 +223,23 @@ OSResetSystem(int reset, u32 resetCode, BOOL forceMenu)
     }
 
     enabled = OSDisableInterrupts();
-    CallResetFunctions(TRUE);
+    CallResetFunctions (TRUE);
     if (reset == OS_RESET_HOTRESET)
     {
-        __OSDoHotReset(resetCode);
+        __OSDoHotReset (resetCode);
     }
     else
     {
         KillThreads();
         OSEnableScheduler();
-        __OSReboot(resetCode, forceMenu);
+        __OSReboot (resetCode, forceMenu);
     }
 
-    OSRestoreInterrupts(enabled);
+    OSRestoreInterrupts (enabled);
     OSEnableScheduler();
 }
 u32
-OSGetResetCode()
+OSGetResetCode ()
 {
     return (__PIRegs[PI_RESET_CODE] & 0xFFFFFFF8) / 8;
 }

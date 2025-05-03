@@ -33,31 +33,31 @@
  */
 
 static void
-InitDefaultHeap()
+InitDefaultHeap ()
 {
     void* arenaLo;
     void* arenaHi;
 
-    OSReport("GCN_Mem_Alloc.c : InitDefaultHeap. No Heap Available\n");
-    OSReport("Metrowerks CW runtime library initializing default heap\n");
+    OSReport ("GCN_Mem_Alloc.c : InitDefaultHeap. No Heap Available\n");
+    OSReport ("Metrowerks CW runtime library initializing default heap\n");
 
     arenaLo = OSGetArenaLo();
     arenaHi = OSGetArenaHi();
 
     // Create a heap
     // OSInitAlloc should only ever be invoked once.
-    arenaLo = OSInitAlloc(arenaLo, arenaHi, 1); // 1 heap
-    OSSetArenaLo(arenaLo);
+    arenaLo = OSInitAlloc (arenaLo, arenaHi, 1); // 1 heap
+    OSSetArenaLo (arenaLo);
 
     // Ensure boundaries are 32B aligned
-    arenaLo = (void*)OSRoundUp32B(arenaLo);
-    arenaHi = (void*)OSRoundDown32B(arenaHi);
+    arenaLo = (void*)OSRoundUp32B (arenaLo);
+    arenaHi = (void*)OSRoundDown32B (arenaHi);
 
     // The boundaries given to OSCreateHeap should be 32B aligned
-    OSSetCurrentHeap(OSCreateHeap(arenaLo, arenaHi));
+    OSSetCurrentHeap (OSCreateHeap (arenaLo, arenaHi));
     // From here on out, OSAlloc and OSFree behave like malloc and free
     // respectively
-    OSSetArenaLo(arenaLo = arenaHi);
+    OSSetArenaLo (arenaLo = arenaHi);
 }
 /*
  * __sys_alloc
@@ -71,7 +71,7 @@ InitDefaultHeap()
  */
 
 WEAKFUNC extern void*
-__sys_alloc(__std(size_t) blocksize)
+__sys_alloc (__std (size_t) blocksize)
 {
     /* Check if there is already a default heap */
     if (__OSCurrHeap == -1)
@@ -79,7 +79,7 @@ __sys_alloc(__std(size_t) blocksize)
         InitDefaultHeap();
     }
 
-    return OSAllocFromHeap(__OSCurrHeap, blocksize);
+    return OSAllocFromHeap (__OSCurrHeap, blocksize);
 }
 /*
  * __sys_free
@@ -89,12 +89,12 @@ __sys_alloc(__std(size_t) blocksize)
  */
 
 WEAKFUNC extern void
-__sys_free(void* block)
+__sys_free (void* block)
 {
     if (__OSCurrHeap == -1)
     {
         InitDefaultHeap();
     }
 
-    OSFreeToHeap(__OSCurrHeap, block);
+    OSFreeToHeap (__OSCurrHeap, block);
 }

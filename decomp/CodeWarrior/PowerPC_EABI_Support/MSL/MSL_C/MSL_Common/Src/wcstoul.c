@@ -72,11 +72,11 @@
  *
  */
 
-#pragma ANSI_strict off                                         /*- vss 990729 -*/
+#pragma ANSI_strict off                                          /*- vss 990729 -*/
 
 #include <ansi_parms.h>
 
-#ifndef __NO_WIDE_CHAR                                          /*- mm 980204 -*/
+#ifndef __NO_WIDE_CHAR                                           /*- mm 980204 -*/
 
 #pragma ANSI_strict reset
 
@@ -104,13 +104,16 @@ enum scan_states
 #define success(scan_state)     (scan_state & (leading_zero | digit_loop | finished))
 
 #define fetch()                                                                     \
-    (count++, (*wReadProc)(wReadProcArg, 0, __GetAwChar))       /*- mm 990311 -*/
-#define unfetch(c) (*wReadProc)(wReadProcArg, c, __UngetAwChar) /*- mm 990311 -*/
+    (count++, (*wReadProc) (wReadProcArg, 0, __GetAwChar))       /*- mm 990311 -*/
+#define unfetch(c) (*wReadProc) (wReadProcArg, c, __UngetAwChar) /*- mm 990311 -*/
 unsigned long
-__wcstoul(int base, int max_width,
-          wint_t (*wReadProc)(void*, wint_t, int),              /*- mm 990311 -*/
-          void*  wReadProcArg,                                  /*- mm 990311 -*/
-          int* chars_scanned, int* negative, int* overflow)
+__wcstoul (int    base,
+           int    max_width,
+           wint_t (*wReadProc) (void*, wint_t, int),             /*- mm 990311 -*/
+           void*  wReadProcArg,                                  /*- mm 990311 -*/
+           int*   chars_scanned,
+           int*   negative,
+           int*   overflow)
 {
     int           scan_state = start;
     int           count = 0;
@@ -134,13 +137,13 @@ __wcstoul(int base, int max_width,
         value_max = ULONG_MAX / base;
     }
 
-    while (count <= max_width && c != EOF && !final_state(scan_state))
+    while (count <= max_width && c != EOF && !final_state (scan_state))
     {
         switch (scan_state)
         {
             case start:
 
-                if (iswspace(c))
+                if (iswspace (c))
                 {
                     c = fetch();
 
@@ -215,7 +218,7 @@ __wcstoul(int base, int max_width,
                     value_max = ULONG_MAX / base;
                 }
 
-                if (iswdigit(c))
+                if (iswdigit (c))
                 {
                     if ((c -= L'0') >= base)
                     {
@@ -233,7 +236,7 @@ __wcstoul(int base, int max_width,
                         break;
                     }
                 }
-                else if (!iswalpha(c) || (toupper(c) - L'A' + 10) >= base)
+                else if (!iswalpha (c) || (toupper (c) - L'A' + 10) >= base)
                 {
                     if (scan_state == digit_loop)
                     {
@@ -248,7 +251,7 @@ __wcstoul(int base, int max_width,
                 }
                 else
                 {
-                    c = towupper(c) - L'A' + 10;
+                    c = towupper (c) - L'A' + 10;
                 }
 
                 if (value > value_max)
@@ -273,7 +276,7 @@ __wcstoul(int base, int max_width,
         }
     }
 
-    if (!success(scan_state))
+    if (!success (scan_state))
     {
         count = value = 0;
     }
@@ -284,22 +287,25 @@ __wcstoul(int base, int max_width,
 
     *chars_scanned = count;
 
-    unfetch(c);
+    unfetch (c);
 
     return (value);
 }
 #ifdef __MSL_LONGLONG_SUPPORT__          /*- mm 970110 -*/
 unsigned long long
-__wcstoull(int base, int max_width,
-           wint_t (*wReadProc)(void*, wint_t, int), /*- mm 990311 -*/
-           void*  wReadProcArg,                     /*- mm 990311 -*/
-           int* chars_scanned, int* negative, int* overflow)
+__wcstoull (int    base,
+            int    max_width,
+            wint_t (*wReadProc) (void*, wint_t, int), /*- mm 990311 -*/
+            void*  wReadProcArg,                      /*- mm 990311 -*/
+            int*   chars_scanned,
+            int*   negative,
+            int*   overflow)
 {
     int                scan_state = start;
     int                count = 0;
     unsigned long long value = 0;
     unsigned long long value_max = 0;
-    unsigned long long ullmax = ULLONG_MAX;         /*- mm 970102 -*/
+    unsigned long long ullmax = ULLONG_MAX;           /*- mm 970102 -*/
     wchar_t            c;
 
     *negative = *overflow = 0;
@@ -315,16 +321,16 @@ __wcstoull(int base, int max_width,
 
     if (base)
     {
-        value_max = ullmax / base;                  /*- mm 970102 -*/
+        value_max = ullmax / base;                    /*- mm 970102 -*/
     }
 
-    while (count <= max_width && c != EOF && !final_state(scan_state))
+    while (count <= max_width && c != EOF && !final_state (scan_state))
     {
         switch (scan_state)
         {
             case start:
 
-                if (iswspace(c))
+                if (iswspace (c))
                 {
                     c = fetch();
 
@@ -396,10 +402,10 @@ __wcstoull(int base, int max_width,
 
                 if (!value_max)
                 {
-                    value_max = ullmax / base;      /*- mm 970102 -*/
+                    value_max = ullmax / base;        /*- mm 970102 -*/
                 }
 
-                if (iswdigit(c))
+                if (iswdigit (c))
                 {
                     if ((c -= L'0') >= base)
                     {
@@ -417,7 +423,7 @@ __wcstoull(int base, int max_width,
                         break;
                     }
                 }
-                else if (!iswalpha(c) || (towupper(c) - L'A' + 10) >= base)
+                else if (!iswalpha (c) || (towupper (c) - L'A' + 10) >= base)
                 {
                     if (scan_state == digit_loop)
                     {
@@ -432,7 +438,7 @@ __wcstoull(int base, int max_width,
                 }
                 else
                 {
-                    c = towupper(c) - L'A' + 10;
+                    c = towupper (c) - L'A' + 10;
                 }
 
                 if (value > value_max)
@@ -442,7 +448,7 @@ __wcstoull(int base, int max_width,
 
                 value *= base;
 
-                if (c > (ullmax - value))           /*- mm 970102 -*/
+                if (c > (ullmax - value))             /*- mm 970102 -*/
                 {
                     *overflow = 1;
                 }
@@ -457,7 +463,7 @@ __wcstoull(int base, int max_width,
         }
     }
 
-    if (!success(scan_state))
+    if (!success (scan_state))
     {
         count = value = 0;
     }
@@ -468,13 +474,13 @@ __wcstoull(int base, int max_width,
 
     *chars_scanned = count;
 
-    unfetch(c);
+    unfetch (c);
 
     return (value);
 }
 #endif /* __MSL_LONGLONG_SUPPORT__    */ /*- mm 970110 -*/
 unsigned long
-wcstoul(const wchar_t* str, wchar_t** end, int base)
+wcstoul (const wchar_t* str, wchar_t** end, int base)
 {
     unsigned long value;
     int           count, negative, overflow;
@@ -483,8 +489,8 @@ wcstoul(const wchar_t* str, wchar_t** end, int base)
     wisc.wNextChar = (wchar_t*)str;
     wisc.wNullCharDetected = 0;
 
-    value = __wcstoul(base, INT_MAX, &__wStringRead, (void*)&wisc, &count, &negative,
-                      &overflow);
+    value = __wcstoul (
+        base, INT_MAX, &__wStringRead, (void*)&wisc, &count, &negative, &overflow);
 
     if (end)
     {
@@ -505,7 +511,7 @@ wcstoul(const wchar_t* str, wchar_t** end, int base)
 }
 #ifdef __MSL_LONGLONG_SUPPORT__          /*- mm 970110 -*/
 unsigned long long
-wcstoull(const wchar_t* str, wchar_t** end, int base)
+wcstoull (const wchar_t* str, wchar_t** end, int base)
 {
     unsigned long long value;
     int                count, negative, overflow;
@@ -514,8 +520,8 @@ wcstoull(const wchar_t* str, wchar_t** end, int base)
     wisc.wNextChar = (wchar_t*)str;
     wisc.wNullCharDetected = 0;
 
-    value = __wcstoull(base, INT_MAX, &__wStringRead, (void*)&wisc, &count,
-                       &negative, &overflow);
+    value = __wcstoull (
+        base, INT_MAX, &__wStringRead, (void*)&wisc, &count, &negative, &overflow);
 
     if (end)
     {
@@ -536,7 +542,7 @@ wcstoull(const wchar_t* str, wchar_t** end, int base)
 }
 #endif /*__MSL_LONGLONG_SUPPORT__*/      /*- mm 970110 -*/
 long
-wcstol(const wchar_t* str, wchar_t** end, int base)
+wcstol (const wchar_t* str, wchar_t** end, int base)
 {
     unsigned long uvalue;
     long          svalue;
@@ -546,8 +552,8 @@ wcstol(const wchar_t* str, wchar_t** end, int base)
     wisc.wNextChar = (wchar_t*)str;
     wisc.wNullCharDetected = 0;
 
-    uvalue = __wcstoul(base, INT_MAX, &__wStringRead, (void*)&wisc, &count,
-                       &negative, &overflow);
+    uvalue = __wcstoul (
+        base, INT_MAX, &__wStringRead, (void*)&wisc, &count, &negative, &overflow);
 
     if (end)
     {
@@ -569,7 +575,7 @@ wcstol(const wchar_t* str, wchar_t** end, int base)
 }
 #ifdef __MSL_LONGLONG_SUPPORT__          /*- mm 970110 -*/
 long long
-wcstoll(const wchar_t* str, wchar_t** end, int base)
+wcstoll (const wchar_t* str, wchar_t** end, int base)
 {
     unsigned long long uvalue;
     long long          svalue;
@@ -579,8 +585,8 @@ wcstoll(const wchar_t* str, wchar_t** end, int base)
     wisc.wNextChar = (wchar_t*)str;
     wisc.wNullCharDetected = 0;
 
-    uvalue = __wcstoull(base, INT_MAX, &__wStringRead, (void*)&wisc, &count,
-                        &negative, &overflow);
+    uvalue = __wcstoull (
+        base, INT_MAX, &__wStringRead, (void*)&wisc, &count, &negative, &overflow);
 
     if (end)
     {
@@ -602,14 +608,14 @@ wcstoll(const wchar_t* str, wchar_t** end, int base)
 }
 #endif /*__MSL_LONGLONG_SUPPORT__*/                      /*- mm 970110 -*/
 int
-watoi(const wchar_t* str)
+watoi (const wchar_t* str)
 {
-    return (wcstol(str, NULL, 10));
+    return (wcstol (str, NULL, 10));
 }
 long
-watol(const wchar_t* str)
+watol (const wchar_t* str)
 {
-    return (wcstol(str, NULL, 10));
+    return (wcstol (str, NULL, 10));
 }
 #endif /* #ifndef __NO_WIDE_CHAR */                      /*- mm 981030 -*/
 

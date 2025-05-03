@@ -51,7 +51,9 @@ namespace Metrowerks
 #define Metrowerks
 #endif
 #endif
-template <class T, class Hash = hash<T>, class Compare = _STD::equal_to<T>,
+template <class T,
+          class Hash = hash<T>,
+          class Compare = _STD::equal_to<T>,
           class Allocator = _STD::allocator<T> >
 class hash_set
 {
@@ -78,219 +80,269 @@ public:
     typedef typename hash_type::const_iterator iterator;
     typedef typename hash_type::const_iterator const_iterator;
     //  lib.set.cons construct/copy/destroy:
-    explicit hash_set(size_type num_buckets = 0)
-      : table_(num_buckets, key_hasher(), key_compare(), 2, 4, allocator_type())
+    explicit hash_set (size_type num_buckets = 0)
+      : table_ (num_buckets, key_hasher(), key_compare(), 2, 4, allocator_type())
     {
     }
-    hash_set(size_type num_buckets, const key_hasher& hash)
-      : table_(num_buckets, hash, key_compare(), 2, 4, allocator_type())
+    hash_set (size_type num_buckets, const key_hasher& hash)
+      : table_ (num_buckets, hash, key_compare(), 2, 4, allocator_type())
     {
     }
-    hash_set(size_type num_buckets, const key_hasher& hash, const key_compare& comp,
-             float load_factor_limit = 2, float growth_factor = 4)
-      : table_(num_buckets, hash, comp, load_factor_limit, growth_factor,
-               allocator_type())
+    hash_set (size_type          num_buckets,
+              const key_hasher&  hash,
+              const key_compare& comp,
+              float              load_factor_limit = 2,
+              float growth_factor = 4)
+      : table_ (num_buckets,
+                hash,
+                comp,
+                load_factor_limit,
+                growth_factor,
+                allocator_type())
     {
     }
-    hash_set(size_type num_buckets, const key_hasher& hash, const key_compare& comp,
-             float load_factor_limit, float growth_factor, const allocator_type& a)
-      : table_(num_buckets, hash, comp, load_factor_limit, growth_factor, a)
-    {
-    }
-    template <class InputIterator>
-    hash_set(InputIterator first, InputIterator last, size_type num_buckets = 0)
-      : table_(first, last, false, num_buckets, key_hasher(), key_compare(), 2, 4,
-               allocator_type())
-    {
-    }
-    template <class InputIterator>
-    hash_set(InputIterator first, InputIterator last, size_type num_buckets,
-             const key_hasher& hash)
-      : table_(first, last, false, num_buckets, hash, key_compare(), 2, 4,
-               allocator_type())
-    {
-    }
-    template <class InputIterator>
-    hash_set(InputIterator first, InputIterator last, size_type num_buckets,
-             const key_hasher& hash, const key_compare& comp,
-             float load_factor_limit = 2, float growth_factor = 4)
-      : table_(first, last, false, num_buckets, hash, comp, load_factor_limit,
-               growth_factor, allocator_type())
+    hash_set (size_type             num_buckets,
+              const key_hasher&     hash,
+              const key_compare&    comp,
+              float                 load_factor_limit,
+              float                 growth_factor,
+              const allocator_type& a)
+      : table_ (num_buckets, hash, comp, load_factor_limit, growth_factor, a)
     {
     }
     template <class InputIterator>
-    hash_set(InputIterator first, InputIterator last, size_type num_buckets,
-             const key_hasher& hash, const key_compare& comp,
-             float load_factor_limit, float growth_factor, const allocator_type& a)
-      : table_(first, last, false, num_buckets, hash, comp, load_factor_limit,
-               growth_factor, a)
+    hash_set (InputIterator first, InputIterator last, size_type num_buckets = 0)
+      : table_ (first,
+                last,
+                false,
+                num_buckets,
+                key_hasher(),
+                key_compare(),
+                2,
+                4,
+                allocator_type())
+    {
+    }
+    template <class InputIterator>
+    hash_set (InputIterator     first,
+              InputIterator     last,
+              size_type         num_buckets,
+              const key_hasher& hash)
+      : table_ (first,
+                last,
+                false,
+                num_buckets,
+                hash,
+                key_compare(),
+                2,
+                4,
+                allocator_type())
+    {
+    }
+    template <class InputIterator>
+    hash_set (InputIterator      first,
+              InputIterator      last,
+              size_type          num_buckets,
+              const key_hasher&  hash,
+              const key_compare& comp,
+              float              load_factor_limit = 2,
+              float growth_factor = 4)
+      : table_ (first,
+                last,
+                false,
+                num_buckets,
+                hash,
+                comp,
+                load_factor_limit,
+                growth_factor,
+                allocator_type())
+    {
+    }
+    template <class InputIterator>
+    hash_set (InputIterator         first,
+              InputIterator         last,
+              size_type             num_buckets,
+              const key_hasher&     hash,
+              const key_compare&    comp,
+              float                 load_factor_limit,
+              float                 growth_factor,
+              const allocator_type& a)
+      : table_ (first,
+                last,
+                false,
+                num_buckets,
+                hash,
+                comp,
+                load_factor_limit,
+                growth_factor,
+                a)
     {
     }
     allocator_type
-    get_allocator() const
+    get_allocator () const
     {
         return table_.get_allocator();
     }
     //  iterators:
     iterator
-    begin()
+    begin ()
     {
         return table_.begin();
     }
     const_iterator
-    begin() const
+    begin () const
     {
         return table_.begin();
     }
     iterator
-    end()
+    end ()
     {
         return table_.end();
     }
     const_iterator
-    end() const
+    end () const
     {
         return table_.end();
     }
     //  capacity:
     bool
-    empty() const
+    empty () const
     {
         return table_.empty();
     }
     size_type
-    size() const
+    size () const
     {
         return table_.size();
     }
     size_type
-    max_size() const
+    max_size () const
     {
         return table_.max_size();
     }
     size_type
-    bucket_count() const
+    bucket_count () const
     {
         return table_.bucket_count();
     }
     size_type
-    bucket_count(size_type num_buckets)
+    bucket_count (size_type num_buckets)
     {
-        return table_.bucket_count(num_buckets);
+        return table_.bucket_count (num_buckets);
     }
     float
-    load_factor() const
+    load_factor () const
     {
         return table_.load_factor();
     }
     void
-    load_factor_limit(float lf)
+    load_factor_limit (float lf)
     {
-        table_.load_factor_limit(lf);
+        table_.load_factor_limit (lf);
     }
     float
-    load_factor_limit() const
+    load_factor_limit () const
     {
         return table_.load_factor_limit();
     }
     void
-    growth_factor(float gf)
+    growth_factor (float gf)
     {
-        table_.growth_factor(gf);
+        table_.growth_factor (gf);
     }
     float
-    growth_factor() const
+    growth_factor () const
     {
         return table_.growth_factor();
     }
     size_type
-    collision(const_iterator i) const
+    collision (const_iterator i) const
     {
-        return table_.collision(i);
+        return table_.collision (i);
     }
     //  modifiers:
     _STD::pair<iterator, bool>
-    insert(const value_type& x)
+    insert (const value_type& x)
     {
-        return table_.insert_one(x);
+        return table_.insert_one (x);
     }
     iterator
-    insert(iterator, const value_type& x)
+    insert (iterator, const value_type& x)
     {
-        return table_.insert_one(x).first;
+        return table_.insert_one (x).first;
     }
     template <class InputIterator>
     void
-    insert(InputIterator first, InputIterator last)
+    insert (InputIterator first, InputIterator last)
     {
-        table_.insert_one(first, last);
+        table_.insert_one (first, last);
     }
     void
-    erase(iterator position)
+    erase (iterator position)
     {
-        table_.erase(position);
+        table_.erase (position);
     }
     size_type
-    erase(const key_type& x)
+    erase (const key_type& x)
     {
-        return table_.erase_one(x);
+        return table_.erase_one (x);
     }
     void
-    erase(iterator first, iterator last)
+    erase (iterator first, iterator last)
     {
-        table_.erase(first, last);
+        table_.erase (first, last);
     }
     void
-    swap(hash_set& y)
+    swap (hash_set& y)
     {
-        Metrowerks::swap(table_, y.table_);
+        Metrowerks::swap (table_, y.table_);
     }
     friend void
-    swap(hash_set& x, hash_set& y)
+    swap (hash_set& x, hash_set& y)
     {
-        Metrowerks::swap(x.table_, y.table_);
+        Metrowerks::swap (x.table_, y.table_);
     }
     void
-    clear()
+    clear ()
     {
         table_.clear();
     }
     //  observers:
     key_compare
-    key_comp() const
+    key_comp () const
     {
         return table_.value_comp();
     }
     value_compare
-    value_comp() const
+    value_comp () const
     {
         return table_.value_comp();
     }
     key_hasher
-    key_hash() const
+    key_hash () const
     {
         return table_.value_hash();
     }
     value_hasher
-    value_hash() const
+    value_hash () const
     {
         return table_.value_hash();
     }
     //  set operations:
     iterator
-    find(const key_type& x) const
+    find (const key_type& x) const
     {
-        return table_.find(x);
+        return table_.find (x);
     }
     size_type
-    count(const key_type& x) const
+    count (const key_type& x) const
     {
-        return table_.count_one(x);
+        return table_.count_one (x);
     }
     _STD::pair<iterator, iterator>
-    equal_range(const key_type& x) const
+    equal_range (const key_type& x) const
     {
-        return table_.equal_range(x);
+        return table_.equal_range (x);
     }
 
 private:
@@ -298,19 +350,21 @@ private:
 };
 template <class T, class Hash, class Compare, class Allocator>
 inline bool
-operator==(const hash_set<T, Hash, Compare, Allocator>& x,
-           const hash_set<T, Hash, Compare, Allocator>& y)
+operator== (const hash_set<T, Hash, Compare, Allocator>& x,
+            const hash_set<T, Hash, Compare, Allocator>& y)
 {
-    return x.size() == y.size() && _STD::equal(x.begin(), x.end(), y.begin());
+    return x.size() == y.size() && _STD::equal (x.begin(), x.end(), y.begin());
 }
 template <class T, class Hash, class Compare, class Allocator>
 inline bool
-operator!=(const hash_set<T, Hash, Compare, Allocator>& x,
-           const hash_set<T, Hash, Compare, Allocator>& y)
+operator!= (const hash_set<T, Hash, Compare, Allocator>& x,
+            const hash_set<T, Hash, Compare, Allocator>& y)
 {
     return !(x == y);
 }
-template <class T, class Hash = hash<T>, class Compare = _STD::equal_to<T>,
+template <class T,
+          class Hash = hash<T>,
+          class Compare = _STD::equal_to<T>,
           class Allocator = _STD::allocator<T> >
 class hash_multiset
 {
@@ -337,222 +391,271 @@ public:
     typedef typename hash_type::const_iterator iterator;
     typedef typename hash_type::const_iterator const_iterator;
     //  lib.set.cons construct/copy/destroy:
-    explicit hash_multiset(size_type num_buckets = 0)
-      : table_(num_buckets, key_hasher(), key_compare(), 2, 4, allocator_type())
+    explicit hash_multiset (size_type num_buckets = 0)
+      : table_ (num_buckets, key_hasher(), key_compare(), 2, 4, allocator_type())
     {
     }
-    hash_multiset(size_type num_buckets, const key_hasher& hash)
-      : table_(num_buckets, hash, key_compare(), 2, 4, allocator_type())
+    hash_multiset (size_type num_buckets, const key_hasher& hash)
+      : table_ (num_buckets, hash, key_compare(), 2, 4, allocator_type())
     {
     }
-    hash_multiset(size_type num_buckets, const key_hasher& hash,
-                  const key_compare& comp, float load_factor_limit = 2,
-                  float growth_factor = 4)
-      : table_(num_buckets, hash, comp, load_factor_limit, growth_factor,
-               allocator_type())
+    hash_multiset (size_type          num_buckets,
+                   const key_hasher&  hash,
+                   const key_compare& comp,
+                   float              load_factor_limit = 2,
+                   float growth_factor = 4)
+      : table_ (num_buckets,
+                hash,
+                comp,
+                load_factor_limit,
+                growth_factor,
+                allocator_type())
     {
     }
-    hash_multiset(size_type num_buckets, const key_hasher& hash,
-                  const key_compare& comp, float load_factor_limit,
-                  float growth_factor, const allocator_type& a)
-      : table_(num_buckets, hash, comp, load_factor_limit, growth_factor, a)
-    {
-    }
-    template <class InputIterator>
-    hash_multiset(InputIterator first, InputIterator last, size_type num_buckets = 0)
-      : table_(first, last, true, num_buckets, key_hasher(), key_compare(), 2, 4,
-               allocator_type())
-    {
-    }
-    template <class InputIterator>
-    hash_multiset(InputIterator first, InputIterator last, size_type num_buckets,
-                  const key_hasher& hash)
-      : table_(first, last, true, num_buckets, hash, key_compare(), 2, 4,
-               allocator_type())
+    hash_multiset (size_type             num_buckets,
+                   const key_hasher&     hash,
+                   const key_compare&    comp,
+                   float                 load_factor_limit,
+                   float                 growth_factor,
+                   const allocator_type& a)
+      : table_ (num_buckets, hash, comp, load_factor_limit, growth_factor, a)
     {
     }
     template <class InputIterator>
-    hash_multiset(InputIterator first, InputIterator last, size_type num_buckets,
-                  const key_hasher& hash, const key_compare& comp,
-                  float load_factor_limit = 2, float growth_factor = 4)
-      : table_(first, last, true, num_buckets, hash, comp, load_factor_limit,
-               growth_factor, allocator_type())
+    hash_multiset (InputIterator first,
+                   InputIterator last,
+                   size_type     num_buckets = 0)
+      : table_ (first,
+                last,
+                true,
+                num_buckets,
+                key_hasher(),
+                key_compare(),
+                2,
+                4,
+                allocator_type())
     {
     }
     template <class InputIterator>
-    hash_multiset(InputIterator first, InputIterator last, size_type num_buckets,
-                  const key_hasher& hash, const key_compare& comp,
-                  float load_factor_limit, float growth_factor,
-                  const allocator_type& a)
-      : table_(first, last, true, num_buckets, hash, comp, load_factor_limit,
-               growth_factor, a)
+    hash_multiset (InputIterator     first,
+                   InputIterator     last,
+                   size_type         num_buckets,
+                   const key_hasher& hash)
+      : table_ (first,
+                last,
+                true,
+                num_buckets,
+                hash,
+                key_compare(),
+                2,
+                4,
+                allocator_type())
+    {
+    }
+    template <class InputIterator>
+    hash_multiset (InputIterator      first,
+                   InputIterator      last,
+                   size_type          num_buckets,
+                   const key_hasher&  hash,
+                   const key_compare& comp,
+                   float              load_factor_limit = 2,
+                   float growth_factor = 4)
+      : table_ (first,
+                last,
+                true,
+                num_buckets,
+                hash,
+                comp,
+                load_factor_limit,
+                growth_factor,
+                allocator_type())
+    {
+    }
+    template <class InputIterator>
+    hash_multiset (InputIterator         first,
+                   InputIterator         last,
+                   size_type             num_buckets,
+                   const key_hasher&     hash,
+                   const key_compare&    comp,
+                   float                 load_factor_limit,
+                   float                 growth_factor,
+                   const allocator_type& a)
+      : table_ (first,
+                last,
+                true,
+                num_buckets,
+                hash,
+                comp,
+                load_factor_limit,
+                growth_factor,
+                a)
     {
     }
     allocator_type
-    get_allocator() const
+    get_allocator () const
     {
         return table_.get_allocator();
     }
     //  iterators:
     iterator
-    begin()
+    begin ()
     {
         return table_.begin();
     }
     const_iterator
-    begin() const
+    begin () const
     {
         return table_.begin();
     }
     iterator
-    end()
+    end ()
     {
         return table_.end();
     }
     const_iterator
-    end() const
+    end () const
     {
         return table_.end();
     }
     //  capacity:
     bool
-    empty() const
+    empty () const
     {
         return table_.empty();
     }
     size_type
-    size() const
+    size () const
     {
         return table_.size();
     }
     size_type
-    max_size() const
+    max_size () const
     {
         return table_.max_size();
     }
     size_type
-    bucket_count() const
+    bucket_count () const
     {
         return table_.bucket_count();
     }
     size_type
-    bucket_count(size_type num_buckets)
+    bucket_count (size_type num_buckets)
     {
-        return table_.bucket_count(num_buckets);
+        return table_.bucket_count (num_buckets);
     }
     float
-    load_factor() const
+    load_factor () const
     {
         return table_.load_factor();
     }
     void
-    load_factor_limit(float lf)
+    load_factor_limit (float lf)
     {
-        table_.load_factor_limit(lf);
+        table_.load_factor_limit (lf);
     }
     float
-    load_factor_limit() const
+    load_factor_limit () const
     {
         return table_.load_factor_limit();
     }
     void
-    growth_factor(float gf)
+    growth_factor (float gf)
     {
-        table_.growth_factor(gf);
+        table_.growth_factor (gf);
     }
     float
-    growth_factor() const
+    growth_factor () const
     {
         return table_.growth_factor();
     }
     size_type
-    collision(const_iterator i) const
+    collision (const_iterator i) const
     {
-        return table_.collision(i);
+        return table_.collision (i);
     }
     //  modifiers:
     iterator
-    insert(const value_type& x)
+    insert (const value_type& x)
     {
-        return table_.insert_multi(x);
+        return table_.insert_multi (x);
     }
     iterator
-    insert(iterator p, const value_type& x)
+    insert (iterator p, const value_type& x)
     {
-        return table_.insert_multi(p, x);
+        return table_.insert_multi (p, x);
     }
     template <class InputIterator>
     void
-    insert(InputIterator first, InputIterator last)
+    insert (InputIterator first, InputIterator last)
     {
-        table_.insert_multi(first, last);
+        table_.insert_multi (first, last);
     }
     void
-    erase(iterator position)
+    erase (iterator position)
     {
-        table_.erase(position);
+        table_.erase (position);
     }
     size_type
-    erase(const key_type& x)
+    erase (const key_type& x)
     {
-        return table_.erase_multi(x);
+        return table_.erase_multi (x);
     }
     void
-    erase(iterator first, iterator last)
+    erase (iterator first, iterator last)
     {
-        table_.erase(first, last);
+        table_.erase (first, last);
     }
     void
-    swap(hash_multiset& y)
+    swap (hash_multiset& y)
     {
-        Metrowerks::swap(table_, y.table_);
+        Metrowerks::swap (table_, y.table_);
     }
     friend void
-    swap(hash_multiset& x, hash_multiset& y)
+    swap (hash_multiset& x, hash_multiset& y)
     {
-        Metrowerks::swap(x.table_, y.table_);
+        Metrowerks::swap (x.table_, y.table_);
     }
     void
-    clear()
+    clear ()
     {
         table_.clear();
     }
     //  observers:
     key_compare
-    key_comp() const
+    key_comp () const
     {
         return table_.value_comp();
     }
     value_compare
-    value_comp() const
+    value_comp () const
     {
         return table_.value_comp();
     }
     key_hasher
-    key_hash() const
+    key_hash () const
     {
         return table_.value_hash();
     }
     value_hasher
-    value_hash() const
+    value_hash () const
     {
         return table_.value_hash();
     }
     //  set operations:
     iterator
-    find(const key_type& x) const
+    find (const key_type& x) const
     {
-        return table_.find(x);
+        return table_.find (x);
     }
     size_type
-    count(const key_type& x) const
+    count (const key_type& x) const
     {
-        return table_.count_multi(x);
+        return table_.count_multi (x);
     }
     _STD::pair<iterator, iterator>
-    equal_range(const key_type& x) const
+    equal_range (const key_type& x) const
     {
-        return table_.equal_range(x);
+        return table_.equal_range (x);
     }
 
 private:
@@ -560,15 +663,15 @@ private:
 };
 template <class T, class Hash, class Compare, class Allocator>
 inline bool
-operator==(const hash_multiset<T, Hash, Compare, Allocator>& x,
-           const hash_multiset<T, Hash, Compare, Allocator>& y)
+operator== (const hash_multiset<T, Hash, Compare, Allocator>& x,
+            const hash_multiset<T, Hash, Compare, Allocator>& y)
 {
-    return x.size() == y.size() && _STD::equal(x.begin(), x.end(), y.begin());
+    return x.size() == y.size() && _STD::equal (x.begin(), x.end(), y.begin());
 }
 template <class T, class Hash, class Compare, class Allocator>
 inline bool
-operator!=(const hash_multiset<T, Hash, Compare, Allocator>& x,
-           const hash_multiset<T, Hash, Compare, Allocator>& y)
+operator!= (const hash_multiset<T, Hash, Compare, Allocator>& x,
+            const hash_multiset<T, Hash, Compare, Allocator>& y)
 {
     return !(x == y);
 }

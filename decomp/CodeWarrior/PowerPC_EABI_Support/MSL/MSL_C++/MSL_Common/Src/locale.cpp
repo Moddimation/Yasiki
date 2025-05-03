@@ -46,41 +46,41 @@ namespace std
 
 size_t locale::id::id_count_s = 0;
 locale&
-locale::global() _MSL_THROW
+locale::global () _MSL_THROW
 {
-    static locale G(classic());
+    static locale G (classic());
     return G;
 }
 locale
-locale::global(const locale& loc)
+locale::global (const locale& loc)
 {
     locale& g = global();
-    locale  result(g);
+    locale  result (g);
     g = loc;
     if (loc.imp_->name() != "*")
     {
-        setlocale(LC_ALL, loc.imp_->name().c_str());
+        setlocale (LC_ALL, loc.imp_->name().c_str());
     }
     return result;
 }
 const locale&
-locale::classic() _MSL_THROW
+locale::classic () _MSL_THROW
 {
-    static locale C(imp_type(new __locale_imp<true>("C")));
+    static locale C (imp_type (new __locale_imp<true> ("C")));
     return C;
 }
 // ctype<char>
 
 // hh 990109
-#define __ct ctype_base::mask(0x01)
-#define __mt ctype_base::mask(0x02)
-#define __sp ctype_base::mask(0x04)
-#define __pt ctype_base::mask(0x08)
-#define __hd ctype_base::mask(0x30)
-#define __lw ctype_base::mask(0x40)
-#define __up ctype_base::mask(0x80)
-#define __hl ctype_base::mask(0x60)
-#define __hu ctype_base::mask(0xA0)
+#define __ct ctype_base::mask (0x01)
+#define __mt ctype_base::mask (0x02)
+#define __sp ctype_base::mask (0x04)
+#define __pt ctype_base::mask (0x08)
+#define __hd ctype_base::mask (0x30)
+#define __lw ctype_base::mask (0x40)
+#define __up ctype_base::mask (0x80)
+#define __hl ctype_base::mask (0x60)
+#define __hu ctype_base::mask (0xA0)
 
 #ifndef _MSL_USING_MSL_C
 
@@ -184,9 +184,9 @@ unsigned char __upper_map[ctype<char>::table_size] = {
 #ifndef __GNUC__
 template <>
 #endif
-ctype<char>::ctype(const mask* tab, bool del, size_t refs)
-  : locale::facet(refs), __table_(tab), __lower_map_(__lower_map),
-    __upper_map_(__upper_map), __owns_(del)
+ctype<char>::ctype (const mask* tab, bool del, size_t refs)
+  : locale::facet (refs), __table_ (tab), __lower_map_ (__lower_map),
+    __upper_map_ (__upper_map), __owns_ (del)
 {
     if (__table_ == 0)
     {
@@ -208,7 +208,7 @@ ctype<char>::~ctype()
 template <>
 #endif
 const char*
-ctype<char>::is(const char* low, const char* high, mask* vec) const
+ctype<char>::is (const char* low, const char* high, mask* vec) const
 {
     for (const char* p = low; p < high; ++low, ++vec)
     {
@@ -220,7 +220,7 @@ ctype<char>::is(const char* low, const char* high, mask* vec) const
 template <>
 #endif
 const char*
-ctype<char>::scan_is(mask m, const char* low, const char* high) const
+ctype<char>::scan_is (mask m, const char* low, const char* high) const
 {
     const char* p;
     for (p = low; p < high; ++p)
@@ -236,7 +236,7 @@ ctype<char>::scan_is(mask m, const char* low, const char* high) const
 template <>
 #endif
 const char*
-ctype<char>::scan_not(mask m, const char* low, const char* high) const
+ctype<char>::scan_not (mask m, const char* low, const char* high) const
 {
     const char* p;
     for (p = low; p < high; ++p)
@@ -257,7 +257,7 @@ locale::id ctype<char>::id;
 template <>
 #endif
 char
-ctype<char>::do_toupper(char c) const
+ctype<char>::do_toupper (char c) const
 {
     return (char)__upper_map_[(unsigned char)c];
 }
@@ -265,11 +265,11 @@ ctype<char>::do_toupper(char c) const
 template <>
 #endif
 const char*
-ctype<char>::do_toupper(char* low, const char* high) const
+ctype<char>::do_toupper (char* low, const char* high) const
 {
     for (; low < high; ++low)
     {
-        *low = char(__upper_map_[(unsigned char)*low]);
+        *low = char (__upper_map_[(unsigned char)*low]);
     }
     return high;
 }
@@ -277,7 +277,7 @@ ctype<char>::do_toupper(char* low, const char* high) const
 template <>
 #endif
 char
-ctype<char>::do_tolower(char c) const
+ctype<char>::do_tolower (char c) const
 {
     return (char)__lower_map_[(unsigned char)c];
 }
@@ -285,11 +285,11 @@ ctype<char>::do_tolower(char c) const
 template <>
 #endif
 const char*
-ctype<char>::do_tolower(char* low, const char* high) const
+ctype<char>::do_tolower (char* low, const char* high) const
 {
     for (; low < high; ++low)
     {
-        *low = char(__lower_map_[(unsigned char)*low]);
+        *low = char (__lower_map_[(unsigned char)*low]);
     }
     return high;
 }
@@ -297,7 +297,7 @@ ctype<char>::do_tolower(char* low, const char* high) const
 template <>
 #endif
 char
-ctype<char>::do_widen(char c) const
+ctype<char>::do_widen (char c) const
 {
     return c;
 }
@@ -305,16 +305,16 @@ ctype<char>::do_widen(char c) const
 template <>
 #endif
 const char*
-ctype<char>::do_widen(const char* low, const char* high, char* to) const
+ctype<char>::do_widen (const char* low, const char* high, char* to) const
 {
-    memcpy(to, low, size_t(high - low));
+    memcpy (to, low, size_t (high - low));
     return high;
 }
 #ifndef __GNUC__
 template <>
 #endif
 char
-ctype<char>::do_narrow(char c, char) const
+ctype<char>::do_narrow (char c, char) const
 {
     return c;
 }
@@ -322,9 +322,9 @@ ctype<char>::do_narrow(char c, char) const
 template <>
 #endif
 const char*
-ctype<char>::do_narrow(const char* low, const char* high, char, char* to) const
+ctype<char>::do_narrow (const char* low, const char* high, char, char* to) const
 {
-    memcpy(to, low, size_t(high - low));
+    memcpy (to, low, size_t (high - low));
     return high;
 }
 // codecvt<char, char, mbstate_t>
@@ -346,27 +346,27 @@ template <> locale::id codecvt<wchar_t, char, mbstate_t>::id;
 #ifndef _No_Floating_Point
 
 #ifdef _MSL_EXTENDED_PRECISION_OUTP
-_BCD::_BCD(size_t x) : exp_(0)
+_BCD::_BCD (size_t x) : exp_ (0)
 {
     for (; x != 0; x /= 10)
     {
-        mantissa_ += char(x % 10);
+        mantissa_ += char (x % 10);
     }
-    reverse(mantissa_.begin(), mantissa_.end());
+    reverse (mantissa_.begin(), mantissa_.end());
     if (mantissa_.size() > 0)
     {
-        exp_ = short(mantissa_.size() - 1);
+        exp_ = short (mantissa_.size() - 1);
     }
 }
 #endif
-_BCD::_BCD(long double x) : exp_(0), classification_(0)
+_BCD::_BCD (long double x) : exp_ (0), classification_ (0)
 {
-    if (isinf(x))
+    if (isinf (x))
     {
         classification_ = 2;
         return;
     }
-    if (isnan(x))
+    if (isnan (x))
     {
         classification_ = 1;
         return;
@@ -377,34 +377,34 @@ _BCD::_BCD(long double x) : exp_(0), classification_(0)
     decform form;
     form.style = FLOATDECIMAL;
     form.digits = decform_digits_;
-    __num2dec(&form, x, &d);
-    mantissa_.reserve(d.sig.length);
+    __num2dec (&form, x, &d);
+    mantissa_.reserve (d.sig.length);
     for (size_t i = 0; i < d.sig.length; ++i)
     {
-        mantissa_.push_back(char(d.sig.text[i] - '0'));
+        mantissa_.push_back (char (d.sig.text[i] - '0'));
     }
-    exp_ = short(d.sig.length + d.exp - 1);
+    exp_ = short (d.sig.length + d.exp - 1);
 #else  // _MSL_USING_MSL_C
     char buff[40];
-    sprintf(buff, "%#.*Le", 31, x);
+    sprintf (buff, "%#.*Le", 31, x);
     mantissa_ = buff;
     // Get exponent
     string::iterator i = mantissa_.begin() + 35;
     while (i != mantissa_.end())
     {
         exp_ *= 10;
-        exp_ += short(*i - '0');
+        exp_ += short (*i - '0');
         ++i;
     }
     i = mantissa_.begin() + 34;
     if (*i == '-')
     {
-        exp_ = short(-exp_);
+        exp_ = short (-exp_);
     }
     --i;
     // Remove exponent and decimal point
-    mantissa_.erase(i, mantissa_.end());
-    mantissa_.erase(mantissa_.begin() + 1);
+    mantissa_.erase (i, mantissa_.end());
+    mantissa_.erase (mantissa_.begin() + 1);
     for (i = mantissa_.begin(); i != mantissa_.end(); ++i)
     {
         *i -= '0';
@@ -414,20 +414,20 @@ _BCD::_BCD(long double x) : exp_(0), classification_(0)
     if (x > 0)
     {
         int         exp;
-        long double frac = frexpl(x, &exp);
-        _BCD        scale = __two_exp(short(exp));
+        long double frac = frexpl (x, &exp);
+        _BCD        scale = __two_exp (short (exp));
         const short num_bits_extract = numeric_limits<size_t>::digits;
-        const _BCD  inc_scale = __two_exp(-num_bits_extract);
+        const _BCD  inc_scale = __two_exp (-num_bits_extract);
         _BCD        temp;
         while (frac != 0)
         {
             long double integer;
-            frac = modfl(ldexpl(frac, num_bits_extract), &integer);
+            frac = modfl (ldexpl (frac, num_bits_extract), &integer);
             scale *= inc_scale;
             if (integer != 0)
             {
                 temp = scale;
-                temp *= _BCD((size_t)integer);
+                temp *= _BCD ((size_t)integer);
                 *this += temp;
             }
         }
@@ -439,7 +439,7 @@ _BCD::_BCD(long double x) : exp_(0), classification_(0)
 //        0 if mantissa_[pos] == 5 and all following are 0
 //   else 1
 int
-_BCD::must_round(size_t pos) const
+_BCD::must_round (size_t pos) const
 {
     if (pos >= mantissa_.size())
     {
@@ -454,31 +454,31 @@ _BCD::must_round(size_t pos) const
     {
         return -1;
     }
-    if (mantissa_.find_first_not_of(char(0), size_t(pos + 1)) == string::npos)
+    if (mantissa_.find_first_not_of (char (0), size_t (pos + 1)) == string::npos)
     {
         return 0;
     }
     return 1;
 }
 string
-_BCD::to_string(int precision, int& exponent) const
+_BCD::to_string (int precision, int& exponent) const
 {
     if (precision <= 0)
     {
         return string();
     }
-    string result(mantissa_, 0, size_t(precision));
+    string result (mantissa_, 0, size_t (precision));
     exponent = exp_;
     if (precision < mantissa_.size())
     {
-        int might_round = must_round(size_t(precision));
+        int might_round = must_round (size_t (precision));
         if (might_round >= 0)
         {
             string::iterator i = result.end() - 1;
-            bool             round = static_cast<bool>(might_round == 1);
+            bool             round = static_cast<bool> (might_round == 1);
             if (might_round == 0)
             {
-                round = static_cast<bool>(*i % 2);
+                round = static_cast<bool> (*i % 2);
             }
             if (round)
             {
@@ -492,8 +492,8 @@ _BCD::to_string(int precision, int& exponent) const
                     *i = char();
                     if (i == result.begin())
                     {
-                        result.insert(result.begin(), char(1));
-                        result.resize(result.size() - 1);
+                        result.insert (result.begin(), char (1));
+                        result.resize (result.size() - 1);
                         ++exponent;
                         break;
                     }
@@ -510,7 +510,7 @@ _BCD::to_string(int precision, int& exponent) const
     return result;
 }
 long double
-_BCD::to_long_double() const
+_BCD::to_long_double () const
 {
     if (classification_ == 1)
     {
@@ -530,42 +530,42 @@ _BCD::to_long_double() const
         0, 0, 0, { 0, "" }
     };
     d.sig.length =
-        min<unsigned char>(decform_digits_, (unsigned char)mantissa_.size());
+        min<unsigned char> (decform_digits_, (unsigned char)mantissa_.size());
     for (unsigned char i = 0; i < d.sig.length; ++i)
     {
         d.sig.text[i] = (unsigned char)(mantissa_[i] + '0');
     }
-    d.exp = short(exp_ + 1 - d.sig.length);
-    return __dec2num(&d);
+    d.exp = short (exp_ + 1 - d.sig.length);
+    return __dec2num (&d);
 #else  // _MSL_USING_MSL_C
-    string           str(mantissa_);
+    string           str (mantissa_);
     string::iterator e = str.end();
     for (string::iterator i = str.begin(); i < e; ++i)
     {
         *i += '0';
     }
-    str.insert(1, 1, '.');
+    str.insert (1, 1, '.');
     if (exp_ != 0)
     {
-        str.append(1, 'e');
+        str.append (1, 'e');
         if (exp_ >= 0)
         {
-            str.append(1, '+');
+            str.append (1, '+');
         }
         else
         {
-            str.append(1, '-');
+            str.append (1, '-');
         }
-        int               exp = abs(int(exp_));
+        int               exp = abs (int (exp_));
         string::size_type e1 = str.size();
         while (exp > 0)
         {
-            str.append(1, char(exp % 10 + '0'));
+            str.append (1, char (exp % 10 + '0'));
             exp /= 10;
         }
-        reverse(str.begin() + e1, str.end());
+        reverse (str.begin() + e1, str.end());
     }
-    return strtod(str.c_str(), 0);
+    return strtod (str.c_str(), 0);
 #endif // _MSL_USING_MSL_C
 #else
     string::const_iterator e = mantissa_.end();
@@ -583,39 +583,39 @@ _BCD::to_long_double() const
         first_guess = temp2;
         --exponent;
     }
-    first_guess = ldexp(first_guess, exponent);
+    first_guess = ldexp (first_guess, exponent);
     if (exponent < 0)
     {
-        first_guess /= pow(5.L, -exponent);
+        first_guess /= pow (5.L, -exponent);
     }
     else
     {
-        first_guess *= pow(5.L, exponent);
+        first_guess *= pow (5.L, exponent);
     }
-    _BCD feedback1(first_guess);
-    if (feedback1 == *this || isinf(first_guess))
+    _BCD feedback1 (first_guess);
+    if (feedback1 == *this || isinf (first_guess))
     {
         return first_guess;
     }
     if (feedback1 < *this)
     {
         long double next_guess =
-            nextafter(first_guess, static_cast<long double>(INFINITY));
-        if (isinf(next_guess))
+            nextafter (first_guess, static_cast<long double> (INFINITY));
+        if (isinf (next_guess))
         {
             return next_guess;
         }
-        _BCD feedback2(next_guess);
+        _BCD feedback2 (next_guess);
         while (feedback2 < *this)
         {
             feedback1 = feedback2;
             first_guess = next_guess;
-            next_guess = nextafter(next_guess, static_cast<long double>(INFINITY));
-            if (isinf(next_guess))
+            next_guess = nextafter (next_guess, static_cast<long double> (INFINITY));
+            if (isinf (next_guess))
             {
                 return next_guess;
             }
-            feedback2 = _BCD(next_guess);
+            feedback2 = _BCD (next_guess);
         }
         _BCD difflow = *this - feedback1;
         _BCD diffhigh = feedback2 - *this;
@@ -626,14 +626,14 @@ _BCD::to_long_double() const
         return next_guess;
     }
     long double next_guess =
-        nextafter(first_guess, static_cast<long double>(-INFINITY));
-    _BCD feedback2(next_guess);
+        nextafter (first_guess, static_cast<long double> (-INFINITY));
+    _BCD feedback2 (next_guess);
     while (feedback2 > *this)
     {
         feedback1 = feedback2;
         first_guess = next_guess;
-        next_guess = nextafter(next_guess, static_cast<long double>(-INFINITY));
-        feedback2 = _BCD(next_guess);
+        next_guess = nextafter (next_guess, static_cast<long double> (-INFINITY));
+        feedback2 = _BCD (next_guess);
     }
     _BCD difflow = *this - feedback2;
     _BCD diffhigh = feedback1 - *this;
@@ -645,8 +645,8 @@ _BCD::to_long_double() const
 #endif
 }
 #ifdef _MSL_EXTENDED_PRECISION_OUTP
-_BCD::_BCD(const char* mantissa, int exponent)
-  : mantissa_(mantissa), exp_((short)exponent)
+_BCD::_BCD (const char* mantissa, int exponent)
+  : mantissa_ (mantissa), exp_ ((short)exponent)
 {
     string::iterator i = mantissa_.begin();
     string::iterator e = mantissa_.end();
@@ -657,7 +657,7 @@ _BCD::_BCD(const char* mantissa, int exponent)
     trim();
 }
 _BCD&
-_BCD::operator+=(_BCD rhs)
+_BCD::operator+= (_BCD rhs)
 {
     if (rhs.mantissa_.size() == 0)
     {
@@ -670,21 +670,22 @@ _BCD::operator+=(_BCD rhs)
     }
     if (exp_ > rhs.exp_)
     {
-        rhs.mantissa_.insert(rhs.mantissa_.begin(), size_t(exp_ - rhs.exp_), char());
+        rhs.mantissa_.insert (
+            rhs.mantissa_.begin(), size_t (exp_ - rhs.exp_), char());
         rhs.exp_ = exp_;
     }
     else if (exp_ < rhs.exp_)
     {
-        mantissa_.insert(mantissa_.begin(), size_t(rhs.exp_ - exp_), char());
+        mantissa_.insert (mantissa_.begin(), size_t (rhs.exp_ - exp_), char());
         exp_ = rhs.exp_;
     }
     if (rhs.mantissa_.size() > mantissa_.size())
     {
-        mantissa_.resize(rhs.mantissa_.size(), char());
+        mantissa_.resize (rhs.mantissa_.size(), char());
     }
     else if (rhs.mantissa_.size() < mantissa_.size())
     {
-        rhs.mantissa_.resize(mantissa_.size(), char());
+        rhs.mantissa_.resize (mantissa_.size(), char());
     }
     string::iterator       i = mantissa_.end() - 1;
     string::iterator       b = mantissa_.begin();
@@ -692,30 +693,30 @@ _BCD::operator+=(_BCD rhs)
     char                   carry = char();
     for (; i > b; --i, --j)
     {
-        *i += char(*j + carry);
+        *i += char (*j + carry);
         if (*i > 9)
         {
-            carry = char(*i / 10);
-            *i %= char(10);
+            carry = char (*i / 10);
+            *i %= char (10);
         }
         else
         {
             carry = char();
         }
     }
-    *i += char(*j + carry);
+    *i += char (*j + carry);
     if (*i > 9)
     {
-        carry = char(*i / 10);
-        *i %= char(10);
-        mantissa_.insert(b, carry);
+        carry = char (*i / 10);
+        *i %= char (10);
+        mantissa_.insert (b, carry);
         ++exp_;
     }
     trim();
     return *this;
 }
 _BCD&
-_BCD::operator-=(_BCD rhs)
+_BCD::operator-= (_BCD rhs)
 {
     if (rhs.mantissa_.size() == 0)
     {
@@ -723,16 +724,17 @@ _BCD::operator-=(_BCD rhs)
     }
     if (exp_ > rhs.exp_)
     {
-        rhs.mantissa_.insert(rhs.mantissa_.begin(), size_t(exp_ - rhs.exp_), char());
+        rhs.mantissa_.insert (
+            rhs.mantissa_.begin(), size_t (exp_ - rhs.exp_), char());
         rhs.exp_ = exp_;
     }
     if (rhs.mantissa_.size() > mantissa_.size())
     {
-        mantissa_.resize(rhs.mantissa_.size(), char());
+        mantissa_.resize (rhs.mantissa_.size(), char());
     }
     else if (rhs.mantissa_.size() < mantissa_.size())
     {
-        rhs.mantissa_.resize(mantissa_.size(), char());
+        rhs.mantissa_.resize (mantissa_.size(), char());
     }
     string::iterator       i = mantissa_.end() - 1;
     string::iterator       b = mantissa_.begin();
@@ -749,7 +751,7 @@ _BCD::operator-=(_BCD rhs)
             while (k != i)
             {
                 --*k;
-                *++k += char(10);
+                *++k += char (10);
             }
         }
         *i -= *j;
@@ -760,14 +762,14 @@ _BCD::operator-=(_BCD rhs)
     }
     if (i > b)
     {
-        exp_ -= static_cast<short>(i - b);
-        mantissa_.erase(b, i);
+        exp_ -= static_cast<short> (i - b);
+        mantissa_.erase (b, i);
     }
     trim();
     return *this;
 }
 _BCD&
-_BCD::operator*=(_BCD rhs)
+_BCD::operator*= (_BCD rhs)
 {      // hh 990401
     if (mantissa_.size() == 0)
     {
@@ -778,14 +780,14 @@ _BCD::operator*=(_BCD rhs)
         *this = rhs;
         return *this;
     }
-    _BCD                   lhs(*this);
+    _BCD                   lhs (*this);
     unsigned long          accumulator = 0;
-    long                   lhs_sz = static_cast<long>(lhs.mantissa_.size());
-    long                   rhs_sz = static_cast<long>(rhs.mantissa_.size());
+    long                   lhs_sz = static_cast<long> (lhs.mantissa_.size());
+    long                   rhs_sz = static_cast<long> (rhs.mantissa_.size());
     string::const_iterator lhs_beg = lhs.mantissa_.begin();
     string::const_iterator rhs_beg = rhs.mantissa_.begin();
     mantissa_.clear();
-    mantissa_.resize(static_cast<string::size_type>(lhs_sz + rhs_sz - 1), char());
+    mantissa_.resize (static_cast<string::size_type> (lhs_sz + rhs_sz - 1), char());
     string::iterator ip = mantissa_.end();
     for (long i = (long)mantissa_.size() - 1; i >= 0; --i)
     {
@@ -802,13 +804,13 @@ _BCD::operator*=(_BCD rhs)
         {
             accumulator += (unsigned long)*jp * *--kp;
         }
-        *--ip = char(accumulator % 10);
+        *--ip = char (accumulator % 10);
         accumulator /= 10;
     }
-    exp_ = short(lhs.exp_ + rhs.exp_);
+    exp_ = short (lhs.exp_ + rhs.exp_);
     while (accumulator > 0)
     {
-        mantissa_.insert(mantissa_.begin(), char(accumulator % 10));
+        mantissa_.insert (mantissa_.begin(), char (accumulator % 10));
         accumulator /= 10;
         ++exp_;
     }
@@ -816,117 +818,117 @@ _BCD::operator*=(_BCD rhs)
     return *this;
 }
 _BCD
-__two_exp(short x)
+__two_exp (short x)
 {
-    static const _BCD one_half("5", -1);
-    static const _BCD two("2", 0);
+    static const _BCD one_half ("5", -1);
+    static const _BCD two ("2", 0);
     switch (x)
     {
         case -64:
             {
-                static const _BCD one_two_to_the_negative_sixtyfourth(
+                static const _BCD one_two_to_the_negative_sixtyfourth (
                     "542101086242752217003726400434970855712890625", -20);
                 return one_two_to_the_negative_sixtyfourth;
             }
         case -53:
             {
-                static const _BCD one_two_to_the_negative_fiftythird(
+                static const _BCD one_two_to_the_negative_fiftythird (
                     "11102230246251565404236316680908203125", -16);
                 return one_two_to_the_negative_fiftythird;
             }
         case -32:
             {
-                static const _BCD one_two_to_the_negative_thirtysecond(
+                static const _BCD one_two_to_the_negative_thirtysecond (
                     "23283064365386962890625", -10);
                 return one_two_to_the_negative_thirtysecond;
             }
         case -16:
             {
-                static const _BCD one_two_to_the_negative_sixteenth("152587890625",
-                                                                    -5);
+                static const _BCD one_two_to_the_negative_sixteenth ("152587890625",
+                                                                     -5);
                 return one_two_to_the_negative_sixteenth;
             }
         case -8:
             {
-                static const _BCD one_twohundredfiftysixth("390625", -3);
+                static const _BCD one_twohundredfiftysixth ("390625", -3);
                 return one_twohundredfiftysixth;
             }
         case -7:
             {
-                static const _BCD one_onehundredtwentyeighth("78125", -3);
+                static const _BCD one_onehundredtwentyeighth ("78125", -3);
                 return one_onehundredtwentyeighth;
             }
         case -6:
             {
-                static const _BCD one_sixtyfourth("15625", -2);
+                static const _BCD one_sixtyfourth ("15625", -2);
                 return one_sixtyfourth;
             }
         case -5:
             {
-                static const _BCD one_thirtysecond("3125", -2);
+                static const _BCD one_thirtysecond ("3125", -2);
                 return one_thirtysecond;
             }
         case -4:
             {
-                static const _BCD one_sixteenth("625", -2);
+                static const _BCD one_sixteenth ("625", -2);
                 return one_sixteenth;
             }
         case -3:
             {
-                static const _BCD one_eighth("125", -1);
+                static const _BCD one_eighth ("125", -1);
                 return one_eighth;
             }
         case -2:
             {
-                static const _BCD one_fourth("25", -1);
+                static const _BCD one_fourth ("25", -1);
                 return one_fourth;
             }
         case -1:
             return one_half;
         case 0:
             {
-                static const _BCD one("1", 0);
+                static const _BCD one ("1", 0);
                 return one;
             }
         case 1:
             return two;
         case 2:
             {
-                static const _BCD four("4", 0);
+                static const _BCD four ("4", 0);
                 return four;
             }
         case 3:
             {
-                static const _BCD eight("8", 0);
+                static const _BCD eight ("8", 0);
                 return eight;
             }
         case 4:
             {
-                static const _BCD sixteen("16", 1);
+                static const _BCD sixteen ("16", 1);
                 return sixteen;
             }
         case 5:
             {
-                static const _BCD thirtytwo("32", 1);
+                static const _BCD thirtytwo ("32", 1);
                 return thirtytwo;
             }
         case 6:
             {
-                static const _BCD sixtyfour("64", 1);
+                static const _BCD sixtyfour ("64", 1);
                 return sixtyfour;
             }
         case 7:
             {
-                static const _BCD onehundredtwentyeight("128", 2);
+                static const _BCD onehundredtwentyeight ("128", 2);
                 return onehundredtwentyeight;
             }
         case 8:
             {
-                static const _BCD twohundredfiftysix("256", 2);
+                static const _BCD twohundredfiftysix ("256", 2);
                 return twohundredfiftysix;
             }
     }
-    _BCD temp = __two_exp(short(x / 2));
+    _BCD temp = __two_exp (short (x / 2));
     temp *= temp;
     if (x % 2)
     {
@@ -942,7 +944,7 @@ __two_exp(short x)
     return temp;
 }
 bool
-operator<(const _BCD& x, const _BCD& y)
+operator< (const _BCD& x, const _BCD& y)
 {
     bool x_zero = x.mantissa_.empty();
     bool y_zero = y.mantissa_.empty();

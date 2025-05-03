@@ -66,32 +66,34 @@ template <class charT> class messages : public locale::facet, public messages_ba
 public:
     typedef charT               char_type;
     typedef basic_string<charT> string_type;
-    explicit messages(size_t refs = 0) : locale::facet(refs) {}
+    explicit messages (size_t refs = 0) : locale::facet (refs) {}
     catalog
-    open(const basic_string<char>& fn, const locale& loc) const
+    open (const basic_string<char>& fn, const locale& loc) const
     {
-        return do_open(fn, loc);
+        return do_open (fn, loc);
     }
     string_type
-    get(catalog c, int set, int msgid, const string_type& dfault) const
+    get (catalog c, int set, int msgid, const string_type& dfault) const
     {
-        return do_get(c, set, msgid, dfault);
+        return do_get (c, set, msgid, dfault);
     }
     void
-    close(catalog c) const
+    close (catalog c) const
     {
-        do_close(c);
+        do_close (c);
     }
     static locale::id id;
 
 protected:
-    virtual ÃÂ¢ÃÂÃÂ¾messages() {}
-    virtual catalog do_open(const basic_string<char>& fn, const locale& loc) const;
-    virtual string_type do_get(catalog c, int set, int msgid,
-                               const string_type& dfault) const;
-    virtual void        do_close(catalog c) const;
+    virtual ÃÂ¢ÃÂÃÂ¾messages () {}
+    virtual catalog do_open (const basic_string<char>& fn, const locale& loc) const;
+    virtual string_type do_get (catalog            c,
+                                int                set,
+                                int                msgid,
+                                const string_type& dfault) const;
+    virtual void        do_close (catalog c) const;
 
-    string_type& __set(catalog c, int set, int msgid);
+    string_type& __set (catalog c, int set, int msgid);
 
 private:
     typedef map<int, string_type>  _Set;
@@ -111,25 +113,25 @@ template <class charT> struct __facet_traits<messages<charT> >
 };
 template <class charT>
 messages_base::catalog
-messages<charT>::do_open(const basic_string<char>& fn, const locale& loc) const
+messages<charT>::do_open (const basic_string<char>& fn, const locale& loc) const
 {
     catalog result = -1;
 #ifndef _MSL_NO_FILE_IO
     basic_ifstream<charT> in;
-    in.imbue(loc);
-    in.open(fn.c_str());
+    in.imbue (loc);
+    in.open (fn.c_str());
     if (in.is_open())
     {
         result = __next_cat_++;
-        _Registry&                   cats = const_cast<_Registry&>(__cats_);
+        _Registry&                   cats = const_cast<_Registry&> (__cats_);
         typename _Registry::iterator ci =
-            cats.insert(typename _Registry::value_type(result, _Catalog())).first;
+            cats.insert (typename _Registry::value_type (result, _Catalog())).first;
         basic_string<charT>         word;
-        const basic_string<charT>   set_marker(__literal("set", charT()));
+        const basic_string<charT>   set_marker (__literal ("set", charT()));
         typename _Catalog::iterator si;
         while (in.good())
         {
-            in.ignore(numeric_limits<streamsize>::max(), '$');
+            in.ignore (numeric_limits<streamsize>::max(), '$');
             in >> word;
             if (in.fail())
             {
@@ -143,11 +145,11 @@ messages<charT>::do_open(const basic_string<char>& fn, const locale& loc) const
                 {
                     break;
                 }
-                si = ci->second.insert(typename _Catalog::value_type(set, _Set()))
+                si = ci->second.insert (typename _Catalog::value_type (set, _Set()))
                          .first;
                 while (in.good())
                 {
-                    ws(in);
+                    ws (in);
                     typename basic_ifstream<charT>::int_type pk = in.peek();
                     if (pk == basic_ifstream<charT>::traits_type::eof() || pk == '$')
                     {
@@ -155,7 +157,7 @@ messages<charT>::do_open(const basic_string<char>& fn, const locale& loc) const
                     }
                     int msgid;
                     in >> msgid;
-                    __read_formatted_string(in, word);
+                    __read_formatted_string (in, word);
                     if (in.fail())
                     {
                         break;
@@ -173,17 +175,19 @@ messages<charT>::do_open(const basic_string<char>& fn, const locale& loc) const
 }
 template <class charT>
 typename messages<charT>::string_type
-messages<charT>::do_get(catalog c, int set, int msgid,
-                        const string_type& dfault) const
+messages<charT>::do_get (catalog            c,
+                         int                set,
+                         int                msgid,
+                         const string_type& dfault) const
 {
     string_type                        result = dfault;
-    typename _Registry::const_iterator ci = __cats_.find(c);
+    typename _Registry::const_iterator ci = __cats_.find (c);
     if (ci != __cats_.end())
     {
-        typename _Catalog::const_iterator seti = ci->second.find(set);
+        typename _Catalog::const_iterator seti = ci->second.find (set);
         if (seti != ci->second.end())
         {
-            typename _Set::const_iterator msgi = seti->second.find(msgid);
+            typename _Set::const_iterator msgi = seti->second.find (msgid);
             if (msgi != seti->second.end())
             {
                 result = msgi->second;
@@ -194,13 +198,13 @@ messages<charT>::do_get(catalog c, int set, int msgid,
 }
 template <class charT>
 void
-messages<charT>::do_close(catalog c) const
+messages<charT>::do_close (catalog c) const
 {
-    const_cast<_Registry&>(__cats_).erase(c);
+    const_cast<_Registry&> (__cats_).erase (c);
 }
 template <class charT>
 inline typename messages<charT>::string_type&
-messages<charT>::__set(catalog c, int set, int msgid)
+messages<charT>::__set (catalog c, int set, int msgid)
 {
     return __cats_[c][set][msgid];
 }
@@ -209,10 +213,12 @@ template <class charT> class messages_byname : public messages<charT>
 public:
     typedef messages_base::catalog catalog;
     typedef basic_string<charT>    string_type;
-    explicit messages_byname(const char*, size_t refs = 0) : messages<charT>(refs) {}
+    explicit messages_byname (const char*, size_t refs = 0) : messages<charT> (refs)
+    {
+    }
 
 protected:
-    virtual ÃÂ¢ÃÂÃÂ¾messages_byname() {}
+    virtual ÃÂ¢ÃÂÃÂ¾messages_byname () {}
 };
 #endif // _MSL_NO_LOCALE
 

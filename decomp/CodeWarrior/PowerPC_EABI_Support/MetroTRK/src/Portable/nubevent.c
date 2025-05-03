@@ -6,29 +6,29 @@
 
 TRKEventQueue gTRKEventQueue;
 DSError
-TRKInitializeEventQueue()
+TRKInitializeEventQueue ()
 {
-    TRKInitializeMutex(&gTRKEventQueue);
-    TRKAcquireMutex(&gTRKEventQueue);
+    TRKInitializeMutex (&gTRKEventQueue);
+    TRKAcquireMutex (&gTRKEventQueue);
     gTRKEventQueue.count = 0;
     gTRKEventQueue.next = 0;
     gTRKEventQueue.eventID = 0x100;
-    TRKReleaseMutex(&gTRKEventQueue);
+    TRKReleaseMutex (&gTRKEventQueue);
     return DS_NoError;
 }
 void
-TRKCopyEvent(TRKEvent* dstEvent, const TRKEvent* srcEvent)
+TRKCopyEvent (TRKEvent* dstEvent, const TRKEvent* srcEvent)
 {
-    TRK_memcpy(dstEvent, srcEvent, sizeof(TRKEvent));
+    TRK_memcpy (dstEvent, srcEvent, sizeof (TRKEvent));
 }
 BOOL
-TRKGetNextEvent(TRKEvent* event)
+TRKGetNextEvent (TRKEvent* event)
 {
     BOOL status = 0;
-    TRKAcquireMutex(&gTRKEventQueue);
+    TRKAcquireMutex (&gTRKEventQueue);
     if (0 < gTRKEventQueue.count)
     {
-        TRKCopyEvent(event, &gTRKEventQueue.events[gTRKEventQueue.next]);
+        TRKCopyEvent (event, &gTRKEventQueue.events[gTRKEventQueue.next]);
         gTRKEventQueue.count--;
         gTRKEventQueue.next++;
         if (gTRKEventQueue.next == 2)
@@ -36,16 +36,16 @@ TRKGetNextEvent(TRKEvent* event)
 
         status = 1;
     }
-    TRKReleaseMutex(&gTRKEventQueue);
+    TRKReleaseMutex (&gTRKEventQueue);
     return status;
 }
 DSError
-TRKPostEvent(TRKEvent* event)
+TRKPostEvent (TRKEvent* event)
 {
     DSError ret = DS_NoError;
     int     nextEventID;
 
-    TRKAcquireMutex(&gTRKEventQueue);
+    TRKAcquireMutex (&gTRKEventQueue);
 
     if (gTRKEventQueue.count == 2)
     {
@@ -54,7 +54,7 @@ TRKPostEvent(TRKEvent* event)
     else
     {
         nextEventID = (gTRKEventQueue.next + gTRKEventQueue.count) % 2;
-        TRKCopyEvent(&gTRKEventQueue.events[nextEventID], event);
+        TRKCopyEvent (&gTRKEventQueue.events[nextEventID], event);
         gTRKEventQueue.events[nextEventID].eventID = gTRKEventQueue.eventID;
         gTRKEventQueue.eventID++;
         if (gTRKEventQueue.eventID < 0x100)
@@ -63,18 +63,18 @@ TRKPostEvent(TRKEvent* event)
         gTRKEventQueue.count++;
     }
 
-    TRKReleaseMutex(&gTRKEventQueue);
+    TRKReleaseMutex (&gTRKEventQueue);
     return ret;
 }
 void
-TRKConstructEvent(TRKEvent* event, NubEventType eventType)
+TRKConstructEvent (TRKEvent* event, NubEventType eventType)
 {
     event->eventType = eventType;
     event->eventID = 0;
     event->msgBufID = -1;
 }
 void
-TRKDestructEvent(TRKEvent* event)
+TRKDestructEvent (TRKEvent* event)
 {
-    TRKReleaseBuffer(event->msgBufID);
+    TRKReleaseBuffer (event->msgBufID);
 }

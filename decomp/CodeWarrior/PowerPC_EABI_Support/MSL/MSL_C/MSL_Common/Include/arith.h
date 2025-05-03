@@ -14,38 +14,38 @@
 _MSL_BEGIN_EXTERN_C                             /*- cc 010409 -*/
 
     int
-    __msl_add(int* x, int y);                   /*- cc 010510 -*/
+    __msl_add (int* x, int y);                  /*- cc 010510 -*/
 
-int __msl_ladd(long* x, long y);                /*- cc 010510 -*/
+int __msl_ladd (long* x, long y);               /*- cc 010510 -*/
 
 #ifdef __MSL_LONGLONG_SUPPORT__                 /*- mm 981023 -*/
-int __lladd(long long* x, long long y);
+int __lladd (long long* x, long long y);
 #endif /* #ifdef __MSL_LONGLONG_SUPPORT__	 */ /*- mm 981023 -*/
 
-int __msl_mul(int* x, int y);                   /*- cc 010510 -*/
-int __msl_lmul(long* x, long y);                /*- cc 010510 -*/
+int __msl_mul (int* x, int y);                  /*- cc 010510 -*/
+int __msl_lmul (long* x, long y);               /*- cc 010510 -*/
 
 #ifdef __MSL_LONGLONG_SUPPORT__                 /*- mm 981023 -*/
-int __llmul(long long* x, long long y);
+int __llmul (long long* x, long long y);
 #endif /* #ifdef __MSL_LONGLONG_SUPPORT__	*/  /*- mm 981023 -*/
 
 #if defined(__m56800__) || defined(__m56800E__)
-__std(div_t) __div__(int x, int y);
+__std (div_t) __div__ (int x, int y);
 #else
-__std(div_t) __msl_div(int x, int y); /*- cc 010510 -*/
+__std (div_t) __msl_div (int x, int y); /*- cc 010510 -*/
 #endif
 
-__std(ldiv_t) __msl_ldiv(long x, long y);       /*- cc 010510 -*/
+__std (ldiv_t) __msl_ldiv (long x, long y);     /*- cc 010510 -*/
 
 #ifdef __MSL_LONGLONG_SUPPORT__                 /*- mm 981023 -*/
-__std(lldiv_t) __lldiv(long long x, long long y);
+__std (lldiv_t) __lldiv (long long x, long long y);
 #endif /* #ifdef __MSL_LONGLONG_SUPPORT__	*/  /*- mm 981023 -*/
 
 #ifndef __MOTO__
-int  __msl_mod(int x, int y);                   /*- cc 010510 -*/
-long __msl_lmod(long x, long y);                /*- cc 010510 -*/
+int  __msl_mod (int x, int y);                  /*- cc 010510 -*/
+long __msl_lmod (long x, long y);               /*- cc 010510 -*/
 #ifdef __MSL_LONGLONG_SUPPORT__                 /*- mm 981023 -*/
-long long __llmod(long long x, long long y);
+long long __llmod (long long x, long long y);
 #endif /* #ifdef __MSL_LONGLONG_SUPPORT__	*/  /*- mm 981023 -*/
 #endif
 

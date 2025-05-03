@@ -28,7 +28,7 @@ Core Register Initialization;
     lis r5,
     0x6080 stw r5, 0(r4);
 -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --;
-PCU Watchdog timer(Disable Watchdog timer) SWR is RO;
+PCU Watchdog timer (Disable Watchdog timer) SWR is RO;
 -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --lis
                                                                                                           r4,
     0x8007 ori r4, r4, 0xfc00 lis r5, 0x0 ori r5, r5, 0xffff stw r5,
@@ -43,7 +43,7 @@ PCU Watchdog timer(Disable Watchdog timer) SWR is RO;
 
     ;
 -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --;
-MSR(Machine Check Enable and Can recover from Reset and Machine Check);
+MSR (Machine Check Enable and Can recover from Reset and Machine Check);
 -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --lis
                                                                                                           r5,
     0 ori r5, r5, 0x3002 mtmsr r5;
@@ -62,7 +62,7 @@ clear the DER
 
     ;
 -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --;
-ICTRL(Instruction Support Control Register); 0x00000003 = no show cycles will be performed for fetched instructions, serialized
+ICTRL (Instruction Support Control Register); 0x00000003 = no show cycles will be performed for fetched instructions, serialized
 ;
 0x00000007 = no show cycles performed and
              not serialized... error in tech.notes bit 29 not reserved;

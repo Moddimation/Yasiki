@@ -107,14 +107,14 @@ typedef long double double_t;
 #include <msl_t.h>
 
 #if __option(little_endian)
-#define __HI(x)  (sizeof(x) == 8 ? *(1 + (_INT32*)&x) : (*(_INT32*)&x))
+#define __HI(x)  (sizeof (x) == 8 ? *(1 + (_INT32*)&x) : (*(_INT32*)&x))
 #define __LO(x)  (*(_INT32*)&x)
-#define __UHI(x) (sizeof(x) == 8 ? *(1 + (_UINT32*)&x) : (*(_UINT32*)&x))
+#define __UHI(x) (sizeof (x) == 8 ? *(1 + (_UINT32*)&x) : (*(_UINT32*)&x))
 #define __ULO(x) (*(_UINT32*)&x)
 #else
-#define __LO(x)  (sizeof(x) == 8 ? *(1 + (_INT32*)&x) : (*(_INT32*)&x))
+#define __LO(x)  (sizeof (x) == 8 ? *(1 + (_INT32*)&x) : (*(_INT32*)&x))
 #define __HI(x)  (*(_INT32*)&x)
-#define __ULO(x) (sizeof(x) == 8 ? *(1 + (_UINT32*)&x) : (*(_UINT32*)&x))
+#define __ULO(x) (sizeof (x) == 8 ? *(1 + (_UINT32*)&x) : (*(_UINT32*)&x))
 #define __UHI(x) (*(_UINT32*)&x)
 #endif
 /* start out w/ definitions of inlines/macros which are neither extern "C" nor in
@@ -123,7 +123,7 @@ typedef long double double_t;
 /* fpclassify for floats */
 
 _INLINE int
-__fpclassifyf(float x)
+__fpclassifyf (float x)
 {
     switch ((*(_INT32*)&x) & 0x7f800000)
     {
@@ -157,13 +157,13 @@ __fpclassifyf(float x)
 /* fpclassify for doubles or integral types */
 
 _INLINE int
-__fpclassifyd(double x)
+__fpclassifyd (double x)
 {
-    switch (__HI(x) & 0x7ff00000)
+    switch (__HI (x) & 0x7ff00000)
     {
         case 0x7ff00000:
             {
-                if ((__HI(x) & 0x000fffff) || (__LO(x) & 0xffffffff))
+                if ((__HI (x) & 0x000fffff) || (__LO (x) & 0xffffffff))
                 {
                     return FP_NAN;
                 }
@@ -175,7 +175,7 @@ __fpclassifyd(double x)
             }
         case 0:
             {
-                if ((__HI(x) & 0x000fffff) || (__LO(x) & 0xffffffff))
+                if ((__HI (x) & 0x000fffff) || (__LO (x) & 0xffffffff))
                 {
                     return FP_SUBNORMAL;
                 }
@@ -188,7 +188,7 @@ __fpclassifyd(double x)
     }
     return FP_NORMAL;
 }
-#define signbit(x) ((int)(__HI(x) & 0x80000000))
+#define signbit(x) ((int)(__HI (x) & 0x80000000))
 
 /*
  * 7.7
@@ -216,8 +216,8 @@ typedef long double double_t;
 /*  7.7.3  Classification macros */
 
 #define fpclassify(x)                                                               \
-    ((sizeof(x) == sizeof(float)) ? __fpclassifyf((float)(x))                       \
-                                  : __fpclassifyd((double)(x)))
+    ((sizeof (x) == sizeof (float)) ? __fpclassifyf ((float)(x))                    \
+                                    : __fpclassifyd ((double)(x)))
 
 /*- cc 010409 -*/
 /*
@@ -253,31 +253,31 @@ _MSL_END_EXTERN_C /*- cc 010409 -*/
 #endif
 */	/*- cc 010409 -*/
 
-#define isnormal(x) (fpclassify(x) == FP_NORMAL)
-#define isnan(x)    (fpclassify(x) == FP_NAN)
-#define isinf(x)    (fpclassify(x) == FP_INFINITE)
-#define isfinite(x) ((fpclassify(x) > FP_INFINITE))
+#define isnormal(x) (fpclassify (x) == FP_NORMAL)
+#define isnan(x)    (fpclassify (x) == FP_NAN)
+#define isinf(x)    (fpclassify (x) == FP_INFINITE)
+#define isfinite(x) ((fpclassify (x) > FP_INFINITE))
 
 /* m.f.- removed signbit macro per the generalization of __HI macro */
 
 #if __MIPS__
     float
-    __s_abs(float x);
+    __s_abs (float x);
 #if __MIPS_ISA2__ && __fpu__
-float __s_sqrt(float x);
+float __s_sqrt (float x);
 #endif
 #endif
 
 _MSL_BEGIN_NAMESPACE_STD /*- cc 010409 -*/
 
     float
-      acosf(float x);
-float asinf(float x);
-float atanf(float x);
-float atan2f(float y, float x);
-float cosf(float x);
-float sinf(float x);
-float tanf(float x);
+      acosf (float x);
+float asinf (float x);
+float atanf (float x);
+float atan2f (float y, float x);
+float cosf (float x);
+float sinf (float x);
+float tanf (float x);
 
 _MSL_END_NAMESPACE_STD
 
@@ -293,90 +293,90 @@ _MSL_BEGIN_NAMESPACE_STD /*- cc 010409 -*/
                           */
 
     double
-       pow(double, double);      /*- pmk 010404 -*/
-double copysign(double, double); /*- pmk 010404 -*/
-double exp(double);
-double acos(double);
-double asin(double);
-double sin(double x);
-double cos(double x);
-double tan(double);
-double cosh(double);
-double sinh(double);
-double tanh(double);
-double atan(double x);
-double atan2(double, double);
-double fmod(double, double);
-double fabs(double);
-double sqrt(double);
-double frexp(double, int* exp);
-double ldexp(double, int exp);
-double log(double);
-double log10(double);
-double modf(double, double* iptr);
-double ceil(double);
-double floor(double);
-double log2(double);
-double acosh(double);
-double asinh(double);
-double atanh(double);
-double exp2(double);
-double expm1(double);
-double log1p(double);
-double logb(double);
+       pow (double, double);      /*- pmk 010404 -*/
+double copysign (double, double); /*- pmk 010404 -*/
+double exp (double);
+double acos (double);
+double asin (double);
+double sin (double x);
+double cos (double x);
+double tan (double);
+double cosh (double);
+double sinh (double);
+double tanh (double);
+double atan (double x);
+double atan2 (double, double);
+double fmod (double, double);
+double fabs (double);
+double sqrt (double);
+double frexp (double, int* exp);
+double ldexp (double, int exp);
+double log (double);
+double log10 (double);
+double modf (double, double* iptr);
+double ceil (double);
+double floor (double);
+double log2 (double);
+double acosh (double);
+double asinh (double);
+double atanh (double);
+double exp2 (double);
+double expm1 (double);
+double log1p (double);
+double logb (double);
 /* scalbn only differs from ldexp on non base 2 computers(i.e. nothing
  * we support--m.f. 02/05/99)
  */
 _INLINE double
-scalbn(double x, int n)
+scalbn (double x, int n)
 {
-    return ldexp(x, n);
+    return ldexp (x, n);
 }
 _INLINE double
-scalbln(double x, long n)
+scalbln (double x, long n)
 {
-    return ldexp(x, (int)n);
+    return ldexp (x, (int)n);
 }
 /* scalbln can be changed whenever sizeof(long) > sizeof(int)
  * however, since x*2^^INT_MAX=Inf, the additional range allowed by a larger long
  * adds nothing useful to this, not sure why C9X even has scalbln???
  */
 
-double hypot(double, double);
+double hypot (double, double);
 #ifndef __INTEL__
-double erf(double);
-double erfc(double);
-double gamma(double);
-double lgamma(double);
-double nextafter(double, double);
+double erf (double);
+double erfc (double);
+double gamma (double);
+double lgamma (double);
+double nextafter (double, double);
 #endif
 
-double nearbyint(double);
-double rint(double);
-long   rinttol(double);
-double round(double);
-long   roundtol(double);
-double trunc(double);
+double nearbyint (double);
+double rint (double);
+long   rinttol (double);
+double round (double);
+long   roundtol (double);
+double trunc (double);
 
-double remainder(double, double);
-double remquo(double, double, int* quo);
-double fdim(double, double);
-double fmax(double, double);
-double fmin(double, double);
+double remainder (double, double);
+double remquo (double, double, int* quo);
+double fdim (double, double);
+double fmax (double, double);
+double fmin (double, double);
 
-long int lrint(double);
-long int lround(double);
+long int lrint (double);
+long int lround (double);
 #ifdef __MSL_LONGLONG_SUPPORT__            /*- mm 961219 -*/
-long long llrint(double);
-long long llround(double);
+long long llrint (double);
+long long llround (double);
 #endif /*__MSL_LONGLONG_SUPPORT__*/        /*- mm 961220 -*/
 
 #if ((__dest_os == __mac_os) || __INTEL__) /*- mm 991216 -*/
-double nan(const char*);         /*- mm 991216 -*/
+double nan (const char*);        /*- mm 991216 -*/
 #else                                      /*- mm 991216 -*/
 #ifdef __cplusplus                         /*- hh 010411 -*/
 inline double
-nan(const char*)
+nan (const char*)
 {
     return NAN;
 } /*- hh 010411 -*/
@@ -395,271 +395,271 @@ _MSL_END_EXTERN_C                /*- cc 010409 -*/
                                   */
 
             _INLINE long double
-            acosl(long double x)
+            acosl (long double x)
 {
-    return acos((double_t)x);
+    return acos ((double_t)x);
 }
 _INLINE long double
-asinl(long double x)
+asinl (long double x)
 {
-    return asin((double_t)x);
+    return asin ((double_t)x);
 }
 _INLINE long double
-atanl(long double x)
+atanl (long double x)
 {
-    return atan((double_t)x);
+    return atan ((double_t)x);
 }
 _INLINE long double
-atan2l(long double y, long double x)
+atan2l (long double y, long double x)
 {
-    return atan2((double_t)y, (double_t)x);
+    return atan2 ((double_t)y, (double_t)x);
 }
 _INLINE long double
-cosl(long double x)
+cosl (long double x)
 {
-    return cos((double_t)x);
+    return cos ((double_t)x);
 }
 _INLINE long double
-sinl(long double x)
+sinl (long double x)
 {
-    return sin((double_t)x);
+    return sin ((double_t)x);
 }
 _INLINE long double
-tanl(long double x)
+tanl (long double x)
 {
-    return tan((double_t)x);
+    return tan ((double_t)x);
 }
 _INLINE long double
-coshl(long double x)
+coshl (long double x)
 {
-    return cosh((double_t)x);
+    return cosh ((double_t)x);
 }
 _INLINE long double
-sinhl(long double x)
+sinhl (long double x)
 {
-    return sinh((double_t)x);
+    return sinh ((double_t)x);
 }
 _INLINE long double
-tanhl(long double x)
+tanhl (long double x)
 {
-    return tanh((double_t)x);
+    return tanh ((double_t)x);
 }
 _INLINE long double
-acoshl(long double x)
+acoshl (long double x)
 {
-    return acosh((double_t)x);
+    return acosh ((double_t)x);
 }
 _INLINE long double
-asinhl(long double x)
+asinhl (long double x)
 {
-    return asinh((double_t)x);
+    return asinh ((double_t)x);
 }
 _INLINE long double
-atanhl(long double x)
+atanhl (long double x)
 {
-    return atanh((double_t)x);
+    return atanh ((double_t)x);
 }
 _INLINE long double
-expl(long double x)
+expl (long double x)
 {
-    return exp((double_t)x);
+    return exp ((double_t)x);
 }
 _INLINE long double
-frexpl(long double x, int* exp)
+frexpl (long double x, int* exp)
 {
-    return frexp((double_t)x, exp);
+    return frexp ((double_t)x, exp);
 }
 _INLINE long double
-ldexpl(long double x, int exp)
+ldexpl (long double x, int exp)
 {
-    return ldexp((double_t)x, exp);
+    return ldexp ((double_t)x, exp);
 }
 _INLINE long double
-logl(long double x)
+logl (long double x)
 {
-    return log((double_t)x);
+    return log ((double_t)x);
 }
 _INLINE long double
-log10l(long double x)
+log10l (long double x)
 {
-    return log10((double_t)x);
+    return log10 ((double_t)x);
 }
 _INLINE long double
-modfl(long double x, long double* iptr)
+modfl (long double x, long double* iptr)
 {
     double      iptrd;
-    long double result = modf((double)x, &iptrd);
+    long double result = modf ((double)x, &iptrd);
     *iptr = iptrd;
     return result;
 }
 _INLINE long double
-exp2l(long double x)
+exp2l (long double x)
 {
-    return exp2((double_t)x);
+    return exp2 ((double_t)x);
 }
 _INLINE long double
-expm1l(long double x)
+expm1l (long double x)
 {
-    return expm1((double_t)x);
+    return expm1 ((double_t)x);
 }
 _INLINE long double
-log1pl(long double x)
+log1pl (long double x)
 {
-    return log1p((double_t)x);
+    return log1p ((double_t)x);
 }
 _INLINE long double
-log2l(long double x)
+log2l (long double x)
 {
-    return log2((double_t)x);
+    return log2 ((double_t)x);
 }
 _INLINE long double
-logbl(long double x)
+logbl (long double x)
 {
-    return logb((double_t)x);
+    return logb ((double_t)x);
 }
 _INLINE long double
-scalbnl(long double x, int n)
+scalbnl (long double x, int n)
 {
-    return ldexpl(x, n);
+    return ldexpl (x, n);
 }
 _INLINE long double
-scalblnl(long double x, long int n)
+scalblnl (long double x, long int n)
 {
-    return ldexp(x, (int)n);
+    return ldexp (x, (int)n);
 }
 _INLINE long double
-fabsl(long double x)
+fabsl (long double x)
 {
-    return fabs((double_t)x);
+    return fabs ((double_t)x);
 }
 _INLINE long double
-powl(long double x, long double y)
+powl (long double x, long double y)
 {
-    return pow((double_t)x, (double_t)y);
+    return pow ((double_t)x, (double_t)y);
 }
 _INLINE long double
-sqrtl(long double x)
+sqrtl (long double x)
 {
-    return sqrt((double_t)x);
+    return sqrt ((double_t)x);
 }
 _INLINE long double
-hypotl(long double x, long double y)
+hypotl (long double x, long double y)
 {
-    return hypot((double_t)x, (double_t)y);
+    return hypot ((double_t)x, (double_t)y);
 }
 #ifndef __INTEL__
 _INLINE long double
-erfl(long double x)
+erfl (long double x)
 {
-    return erf((double_t)x);
+    return erf ((double_t)x);
 }
 _INLINE long double
-erfcl(long double x)
+erfcl (long double x)
 {
-    return erfc((double_t)x);
+    return erfc ((double_t)x);
 }
 _INLINE long double
-gammal(long double x)
+gammal (long double x)
 {
-    return gamma((double_t)x);
+    return gamma ((double_t)x);
 }
 _INLINE long double
-lgammal(long double x)
+lgammal (long double x)
 {
-    return lgamma((double_t)x);
+    return lgamma ((double_t)x);
 }
 _INLINE long double
-nextafterl(long double x, long double y)
+nextafterl (long double x, long double y)
 {
-    return nextafter((double)x, (double)y);
+    return nextafter ((double)x, (double)y);
 }
 #endif
 _INLINE long double
-ceill(long double x)
+ceill (long double x)
 {
-    return ceil((double_t)x);
+    return ceil ((double_t)x);
 }
 _INLINE long double
-floorl(long double x)
+floorl (long double x)
 {
-    return floor((double_t)x);
+    return floor ((double_t)x);
 }
 _INLINE long double
-nearbyintl(long double x)
+nearbyintl (long double x)
 {
-    return nearbyint((double_t)x);
+    return nearbyint ((double_t)x);
 }
 _INLINE long double
-rintl(long double x)
+rintl (long double x)
 {
-    return rint((double_t)x);
+    return rint ((double_t)x);
 }
 _INLINE long int
-lrintl(long double x)
+lrintl (long double x)
 {
-    return lrint((double)x);
+    return lrint ((double)x);
 }
 #ifdef __MSL_LONGLONG_SUPPORT__            /*- mm 961219 -*/
 _INLINE long long
-llrintl(long double x)
+llrintl (long double x)
 {
-    return llrint((double)x);
+    return llrint ((double)x);
 }
 _INLINE long long
-llroundl(long double x)
+llroundl (long double x)
 {
-    return llround((double)x);
+    return llround ((double)x);
 }
 #endif /*__MSL_LONGLONG_SUPPORT__*/        /*- mm 961220 -*/
 _INLINE long double
-roundl(long double x)
+roundl (long double x)
 {
-    return round((double_t)x);
+    return round ((double_t)x);
 }
 _INLINE long int
-lroundl(long double x)
+lroundl (long double x)
 {
-    return lround((double)x);
+    return lround ((double)x);
 }
 _INLINE long double
-truncl(long double x)
+truncl (long double x)
 {
-    return trunc((double_t)x);
+    return trunc ((double_t)x);
 }
 _INLINE long double
-fmodl(long double x, long double y)
+fmodl (long double x, long double y)
 {
-    return fmod((double_t)x, (double_t)y);
+    return fmod ((double_t)x, (double_t)y);
 }
 _INLINE long double
-remainderl(long double x, long double y)
+remainderl (long double x, long double y)
 {
-    return remainder((double_t)x, (double_t)y);
+    return remainder ((double_t)x, (double_t)y);
 }
 _INLINE long double
-copysignl(long double x, long double y)
+copysignl (long double x, long double y)
 {
-    return copysign((double_t)x, (double_t)y);
+    return copysign ((double_t)x, (double_t)y);
 }
 _INLINE long double
-remquol(long double x, long double y, int* quo)
+remquol (long double x, long double y, int* quo)
 {
-    return remquo((double_t)x, (double_t)y, quo);
+    return remquo ((double_t)x, (double_t)y, quo);
 }
 _INLINE long double
-fdiml(long double x, long double y)
+fdiml (long double x, long double y)
 {
-    return fdim((double_t)x, (double_t)y);
+    return fdim ((double_t)x, (double_t)y);
 }
 _INLINE long double
-fmaxl(long double x, long double y)
+fmaxl (long double x, long double y)
 {
-    return fmax((double_t)x, (double_t)y);
+    return fmax ((double_t)x, (double_t)y);
 }
 _INLINE long double
-fminl(long double x, long double y)
+fminl (long double x, long double y)
 {
-    return fmin((double_t)x, (double_t)y);
+    return fmin ((double_t)x, (double_t)y);
 }
 /* C9X foof's-- only the 22 K&R math functions have actual foof
    implementations(prototypes), keep the others as inlines returning double until/if
@@ -673,37 +673,37 @@ _MSL_END_NAMESPACE_STD       /*- cc 010409 -*/
     _MSL_BEGIN_NAMESPACE_STD /*- cc 010409 -*/
 
     float
-      coshf(float x);
-float sinhf(float x);
-float tanhf(float x);
-float frexpf(float x, int* exp);
-float ldexpf(float x, int exp);
-float expf(float x);
-float logf(float x);
-float log10f(float x);
+      coshf (float x);
+float sinhf (float x);
+float tanhf (float x);
+float frexpf (float x, int* exp);
+float ldexpf (float x, int exp);
+float expf (float x);
+float logf (float x);
+float log10f (float x);
 
-_INLINE float fabsf(float x);
+_INLINE float fabsf (float x);
 _INLINE float
-powf(float x, float y)
+powf (float x, float y)
 {
-    return (float)pow((double_t)x, (double_t)y);
+    return (float)pow ((double_t)x, (double_t)y);
 }
 #if !__PPCGEKKO__
 _INLINE float
-sqrtf(float x)
+sqrtf (float x)
 {
 #if __MIPS__ && __MIPS_ISA2__ && __fpu__
 
     if (x >= 0.0)
     {
-        return __s_sqrt(x);
+        return __s_sqrt (x);
     }
     else
     {
         return NAN;
     }
 #else
-    return (float)sqrt((double_t)x);
+    return (float)sqrt ((double_t)x);
 #endif
 }
 #endif
@@ -732,9 +732,9 @@ _MSL_END_NAMESPACE_STD       /*- cc 010409 -*/
 /*modff is the same everywhere */
 #pragma cplusplus on
         _INLINE float
-        modff(float x, float* iptr)
+        modff (float x, float* iptr)
 {
-    switch (fpclassify(x))
+    switch (fpclassify (x))
     {
         case FP_NAN:
         case FP_ZERO:
@@ -767,170 +767,170 @@ _MSL_END_NAMESPACE_STD       /*- cc 010409 -*/
 
 #pragma cplusplus reset
 _INLINE float
-acoshf(float x)
+acoshf (float x)
 {
-    return (float)acosh((double_t)x);
+    return (float)acosh ((double_t)x);
 }
 _INLINE float
-asinhf(float x)
+asinhf (float x)
 {
-    return (float)asinh((double_t)x);
+    return (float)asinh ((double_t)x);
 }
 _INLINE float
-atanhf(float x)
+atanhf (float x)
 {
-    return (float)atanh((double_t)x);
+    return (float)atanh ((double_t)x);
 }
 _INLINE float
-exp2f(float x)
+exp2f (float x)
 {
-    return (float)exp2((double_t)x);
+    return (float)exp2 ((double_t)x);
 }
 _INLINE float
-expm1f(float x)
+expm1f (float x)
 {
-    return (float)expm1((double_t)x);
+    return (float)expm1 ((double_t)x);
 }
 _INLINE float
-log1pf(float x)
+log1pf (float x)
 {
-    return (float)log1p((double_t)x);
+    return (float)log1p ((double_t)x);
 }
 _INLINE float
-logbf(float x)
+logbf (float x)
 {
-    return (float)logb((double_t)x);
+    return (float)logb ((double_t)x);
 }
 _INLINE float
-scalbnf(float x, int n)
+scalbnf (float x, int n)
 {
-    return (float)ldexpf(x, n);
+    return (float)ldexpf (x, n);
 }
 _INLINE float
-scalblnf(float x, long int n)
+scalblnf (float x, long int n)
 {
-    return (float)ldexpf(x, (int)n);
+    return (float)ldexpf (x, (int)n);
 }
 _INLINE float
-hypotf(float x, float y)
+hypotf (float x, float y)
 {
-    return (float)hypot((double_t)x, (double_t)y);
+    return (float)hypot ((double_t)x, (double_t)y);
 }
 #ifndef __INTEL__
 _INLINE float
-erff(float x)
+erff (float x)
 {
-    return (float)erf((double_t)x);
+    return (float)erf ((double_t)x);
 }
 _INLINE float
-erfcf(float x)
+erfcf (float x)
 {
-    return (float)erfc((double_t)x);
+    return (float)erfc ((double_t)x);
 }
 _INLINE float
-gammaf(float x)
+gammaf (float x)
 {
-    return (float)gamma((double_t)x);
+    return (float)gamma ((double_t)x);
 }
 _INLINE float
-lgammaf(float x)
+lgammaf (float x)
 {
-    return (float)lgamma((double_t)x);
+    return (float)lgamma ((double_t)x);
 }
 _INLINE float
-nextafterf(float x, float y)
+nextafterf (float x, float y)
 {
-    return (float)nextafter((double_t)x, (double_t)y);
+    return (float)nextafter ((double_t)x, (double_t)y);
 }
 #endif
 _INLINE float
-nearbyintf(float x)
+nearbyintf (float x)
 {
-    return (float)nearbyint((double_t)x);
+    return (float)nearbyint ((double_t)x);
 }
 _INLINE float
-rintf(float x)
+rintf (float x)
 {
-    return (float)rint((double_t)x);
+    return (float)rint ((double_t)x);
 }
 _INLINE long int
-lrintf(float x)
+lrintf (float x)
 {
-    return lrint((double)x);
+    return lrint ((double)x);
 }
 _INLINE float
-roundf(float x)
+roundf (float x)
 {
-    return (float)round((double_t)x);
+    return (float)round ((double_t)x);
 }
 _INLINE long int
-lroundf(float x)
+lroundf (float x)
 {
-    return lround((double)x);
+    return lround ((double)x);
 }
 #ifdef __MSL_LONGLONG_SUPPORT__            /*- mm 961219 -*/
 _INLINE long long
-llroundf(float x)
+llroundf (float x)
 {
-    return llround((double)x);
+    return llround ((double)x);
 }
 _INLINE long long
-llrintf(float x)
+llrintf (float x)
 {
-    return llrint((double)x);
+    return llrint ((double)x);
 }
 #endif /*__MSL_LONGLONG_SUPPORT__*/        /*- mm 961220 -*/
 _INLINE float
-truncf(float x)
+truncf (float x)
 {
-    return (float)trunc((double_t)x);
+    return (float)trunc ((double_t)x);
 }
 _INLINE float
-remainderf(float x, float y)
+remainderf (float x, float y)
 {
-    return (float)remainder((double_t)x, (double_t)y);
+    return (float)remainder ((double_t)x, (double_t)y);
 }
 _INLINE float
-copysignf(float x, float y)
+copysignf (float x, float y)
 {
-    return (float)copysign((double_t)x, (double_t)y);
+    return (float)copysign ((double_t)x, (double_t)y);
 }
 _INLINE float
-remquof(float x, float y, int* quo)
+remquof (float x, float y, int* quo)
 {
-    return (float)remquo((double_t)x, (double_t)y, quo);
+    return (float)remquo ((double_t)x, (double_t)y, quo);
 }
 _INLINE float
-fdimf(float x, float y)
+fdimf (float x, float y)
 {
-    return (float)fdim((double_t)x, (double_t)y);
+    return (float)fdim ((double_t)x, (double_t)y);
 }
 _INLINE float
-fmaxf(float x, float y)
+fmaxf (float x, float y)
 {
-    return (float)fmax((double_t)x, (double_t)y);
+    return (float)fmax ((double_t)x, (double_t)y);
 }
 _INLINE float
-fminf(float x, float y)
+fminf (float x, float y)
 {
-    return (float)fmin((double_t)x, (double_t)y);
+    return (float)fmin ((double_t)x, (double_t)y);
 }
 #ifdef __cplusplus
 /*enable these for only C++*/
 _INLINE float
-abs(float x)
+abs (float x)
 {
-    return fabsf(x);
+    return fabsf (x);
 }
 _INLINE double
-abs(double x)
+abs (double x)
 {
-    return fabs(x);
+    return fabs (x);
 }
 _INLINE long double
-abs(long double x)
+abs (long double x)
 {
-    return fabsl(x);
+    return fabsl (x);
 }
 _MSL_END_NAMESPACE_STD /*- cc 010409 -*/
 
@@ -943,316 +943,316 @@ _MSL_END_NAMESPACE_STD /*- cc 010409 -*/
     _MSL_BEGIN_NAMESPACE_STD /*- cc 010409 -*/
 
         _INLINE float
-        acosh(float x)
+        acosh (float x)
 {
-    return acoshf(x);
+    return acoshf (x);
 }
 _INLINE float
-asinh(float x)
+asinh (float x)
 {
-    return asinhf(x);
+    return asinhf (x);
 }
 _INLINE float
-atanh(float x)
+atanh (float x)
 {
-    return atanhf(x);
+    return atanhf (x);
 }
 _INLINE float
-exp2(float x)
+exp2 (float x)
 {
-    return exp2f(x);
+    return exp2f (x);
 }
 _INLINE float
-expm1(float x)
+expm1 (float x)
 {
-    return expm1f(x);
+    return expm1f (x);
 }
 _INLINE float
-log1p(float x)
+log1p (float x)
 {
-    return log1pf(x);
+    return log1pf (x);
 }
 _INLINE float
-log2(float x)
+log2 (float x)
 {
-    return log2f(x);
+    return log2f (x);
 }
 _INLINE float
-logb(float x)
+logb (float x)
 {
-    return logbf(x);
+    return logbf (x);
 }
 _INLINE float
-scalbn(float x, int n)
+scalbn (float x, int n)
 {
-    return ldexpf(x, n);
+    return ldexpf (x, n);
 }
 _INLINE float
-scalbln(float x, long int n)
+scalbln (float x, long int n)
 {
-    return ldexpf(x, (int)n);
+    return ldexpf (x, (int)n);
 }
 _INLINE float
-hypot(float x, float y)
+hypot (float x, float y)
 {
-    return hypotf(x, y);
+    return hypotf (x, y);
 }
 #ifndef __INTEL__
 _INLINE float
-erf(float x)
+erf (float x)
 {
-    return erff(x);
+    return erff (x);
 }
 _INLINE float
-erfc(float x)
+erfc (float x)
 {
-    return erfcf(x);
+    return erfcf (x);
 }
 _INLINE float
-gamma(float x)
+gamma (float x)
 {
-    return gammaf(x);
+    return gammaf (x);
 }
 _INLINE float
-lgamma(float x)
+lgamma (float x)
 {
-    return lgammaf(x);
+    return lgammaf (x);
 }
 _INLINE float
-nextafter(float x, float y)
+nextafter (float x, float y)
 {
-    return nextafterf(x, y);
+    return nextafterf (x, y);
 }
 #endif
 _INLINE float
-nearbyint(float x)
+nearbyint (float x)
 {
-    return nearbyintf(x);
+    return nearbyintf (x);
 }
 _INLINE float
-rint(float x)
+rint (float x)
 {
-    return rintf(x);
+    return rintf (x);
 }
 _INLINE long int
-lrint(float x)
+lrint (float x)
 {
-    return lrintf(x);
+    return lrintf (x);
 } /*- mm 961220 -*/
 _INLINE float
-round(float x)
+round (float x)
 {
-    return roundf(x);
+    return roundf (x);
 }
 _INLINE long int
-lround(float x)
+lround (float x)
 {
-    return lroundf(x);
+    return lroundf (x);
 }
 #ifdef __MSL_LONGLONG_SUPPORT__ /*- mm 961219 -*/
 _INLINE long long
-llround(float x)
+llround (float x)
 {
-    return llroundf(x);
+    return llroundf (x);
 }
 _INLINE long long
-llrint(float x)
+llrint (float x)
 {
-    return llrintf(x);
+    return llrintf (x);
 }
 #endif /*__MSL_LONGLONG_SUPPORT__*/ /*- mm 961220 -*/
 _INLINE float
-trunc(float x)
+trunc (float x)
 {
-    return truncf(x);
+    return truncf (x);
 }
 _INLINE float
-remainder(float x, float y)
+remainder (float x, float y)
 {
-    return remainderf(x, y);
+    return remainderf (x, y);
 }
 _INLINE float
-copysign(float x, float y)
+copysign (float x, float y)
 {
-    return copysignf(x, y);
+    return copysignf (x, y);
 }
 _INLINE float
-remquo(float x, float y, int* quo)
+remquo (float x, float y, int* quo)
 {
-    return remquof(x, y, quo);
+    return remquof (x, y, quo);
 }
 _INLINE float
-fdim(float x, float y)
+fdim (float x, float y)
 {
-    return fdimf(x, y);
+    return fdimf (x, y);
 }
 _INLINE float
-fmax(float x, float y)
+fmax (float x, float y)
 {
-    return fmaxf(x, y);
+    return fmaxf (x, y);
 }
 _INLINE float
-fmin(float x, float y)
+fmin (float x, float y)
 {
-    return fminf(x, y);
+    return fminf (x, y);
 }
 /*  foo(long double) support */
 
 _INLINE long int
-lrint(long double x)
+lrint (long double x)
 {
-    return lrintl(x);
+    return lrintl (x);
 }
 #ifdef __MSL_LONGLONG_SUPPORT__     /*- mm 961219 -*/
 _INLINE long long
-llrint(long double x)
+llrint (long double x)
 {
-    return llrintl(x);
+    return llrintl (x);
 }
 _INLINE long long
-llround(long double x)
+llround (long double x)
 {
-    return llroundl(x);
+    return llroundl (x);
 }
 #endif /*__MSL_LONGLONG_SUPPORT__*/ /*- mm 961220 -*/
 _INLINE long int
-lround(long double x)
+lround (long double x)
 {
-    return lroundl(x);
+    return lroundl (x);
 }
 #ifndef __INTEL__
 _INLINE long double
-nextafter(long double x, long double)
+nextafter (long double x, long double)
 {
-    return nextafterl(x, y);
+    return nextafterl (x, y);
 }
 #endif
 _INLINE long double
-acosh(long double x)
+acosh (long double x)
 {
-    return acoshl(x);
+    return acoshl (x);
 }
 _INLINE long double
-asinh(long double x)
+asinh (long double x)
 {
-    return asinhl(x);
+    return asinhl (x);
 }
 _INLINE long double
-atanh(long double x)
+atanh (long double x)
 {
-    return atanhl(x);
+    return atanhl (x);
 }
 _INLINE long double
-exp2(long double x)
+exp2 (long double x)
 {
-    return exp2l(x);
+    return exp2l (x);
 }
 _INLINE long double
-expm1(long double x)
+expm1 (long double x)
 {
-    return expm1l(x);
+    return expm1l (x);
 }
 _INLINE long double
-log1p(long double x)
+log1p (long double x)
 {
-    return log1pl(x);
+    return log1pl (x);
 }
 _INLINE long double
-log2(long double x)
+log2 (long double x)
 {
-    return log2l(x);
+    return log2l (x);
 }
 _INLINE long double
-logb(long double x)
+logb (long double x)
 {
-    return logbl(x);
+    return logbl (x);
 }
 _INLINE long double
-hypot(long double x, long double y)
+hypot (long double x, long double y)
 {
-    return hypotl(x, y);
+    return hypotl (x, y);
 }
 #ifndef __INTEL__
 _INLINE long double
-erf(long double x)
+erf (long double x)
 {
-    return erfl(x);
+    return erfl (x);
 }
 _INLINE long double
-erfc(long double x)
+erfc (long double x)
 {
-    return erfcl(x);
+    return erfcl (x);
 }
 _INLINE long double
-gamma(long double x)
+gamma (long double x)
 {
-    return gammal(x);
+    return gammal (x);
 }
 _INLINE long double
-lgamma(long double x)
+lgamma (long double x)
 {
-    return lgammal(x);
+    return lgammal (x);
 }
 #endif
 _INLINE long double
-nearbyint(long double x)
+nearbyint (long double x)
 {
-    return nearbyintl(x);
+    return nearbyintl (x);
 }
 _INLINE long double
-rint(long double x)
+rint (long double x)
 {
-    return rintl(x);
+    return rintl (x);
 }
 _INLINE long double
-round(long double x)
+round (long double x)
 {
-    return roundl(x);
+    return roundl (x);
 }
 _INLINE long double
-trunc(long double x)
+trunc (long double x)
 {
-    return truncl(x);
+    return truncl (x);
 }
 _INLINE long double
-remainder(long double x, long double y)
+remainder (long double x, long double y)
 {
-    return remainderl(x, y);
+    return remainderl (x, y);
 }
 _INLINE long double
-copysign(long double x, long double y)
+copysign (long double x, long double y)
 {
-    return copysignl(x, y);
+    return copysignl (x, y);
 }
 _INLINE long double
-remquo(long double x, long double y, int* quo)
+remquo (long double x, long double y, int* quo)
 {
-    return remquol(x, y, quo);
+    return remquol (x, y, quo);
 }
 _INLINE long double
-fdim(long double x, long double y)
+fdim (long double x, long double y)
 {
-    return fdiml(x, y);
+    return fdiml (x, y);
 }
 _INLINE long double
-fmax(long double x, long double y)
+fmax (long double x, long double y)
 {
-    return fmaxl(x, y);
+    return fmaxl (x, y);
 }
 _INLINE long double
-fmin(long double x, long double y)
+fmin (long double x, long double y)
 {
-    return fminl(x, y);
+    return fminl (x, y);
 }
 _INLINE long double
-scalbn(long double x, int n)
+scalbn (long double x, int n)
 {
-    return ldexpl(x, n);
+    return ldexpl (x, n);
 }
 _INLINE long double
-scalbln(long double x, long int n)
+scalbln (long double x, long int n)
 {
-    return ldexpl(x, (int)n);
+    return ldexpl (x, (int)n);
 }
 _MSL_END_NAMESPACE_STD /*- cc 010409 -*/
 

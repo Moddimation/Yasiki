@@ -25,7 +25,7 @@
  ********************************************************************************/
 #include <msl_t.h>
 
-extern float _inv_sqrtf(float x); /* implementation in sqrtf.c */
+extern float _inv_sqrtf (float x); /* implementation in sqrtf.c */
 
 #if __MIPS__
 #include <math_mips.h>
@@ -42,8 +42,8 @@ extern float _inv_sqrtf(float x); /* implementation in sqrtf.c */
 #endif
 #endif
 
-#endif                            /* _MSL_MATH_CONFIG_H */
+#endif                             /* _MSL_MATH_CONFIG_H */
 
-                                  /* Change record:
-                                   * mf  000619 moved amd architecture header from cmath to this one.
-                                   */
+                                   /* Change record:
+                                    * mf  000619 moved amd architecture header from cmath to this one.
+                                    */

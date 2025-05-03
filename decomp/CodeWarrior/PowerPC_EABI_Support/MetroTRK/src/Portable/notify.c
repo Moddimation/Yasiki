@@ -5,14 +5,14 @@
 #include "Processor/ppc/Generic/targimpl.h"
 #include "trk.h"
 DSError
-TRKDoNotifyStopped(MessageCommandID cmd)
+TRKDoNotifyStopped (MessageCommandID cmd)
 {
     DSError    err;
     int        reqIdx;
     int        bufIdx;
     TRKBuffer* msg;
 
-    err = TRKGetFreeBuffer(&bufIdx, &msg);
+    err = TRKGetFreeBuffer (&bufIdx, &msg);
     if (err == DS_NoError)
     {
         if (msg->position >= 0x880)
@@ -30,20 +30,20 @@ TRKDoNotifyStopped(MessageCommandID cmd)
         {
             if (cmd == DSMSG_NotifyStopped)
             {
-                TRKTargetAddStopInfo(msg);
+                TRKTargetAddStopInfo (msg);
             }
             else
             {
-                TRKTargetAddExceptionInfo(msg);
+                TRKTargetAddExceptionInfo (msg);
             }
         }
 
-        err = TRKRequestSend(msg, &reqIdx, 2, 3, 1);
+        err = TRKRequestSend (msg, &reqIdx, 2, 3, 1);
         if (err == DS_NoError)
         {
-            TRKReleaseBuffer(reqIdx);
+            TRKReleaseBuffer (reqIdx);
         }
-        TRKReleaseBuffer(bufIdx);
+        TRKReleaseBuffer (bufIdx);
     }
 
     return err;

@@ -57,32 +57,32 @@ namespace std
 
 template <bool b>
 void
-__locale_imp<b>::init(const char* std_name)
+__locale_imp<b>::init (const char* std_name)
 {
 #ifndef _MSL_MINIMUM_NAMED_LOCALE
     if (name_ != "C")
     {
-        replace(*(new ctype_byname<char>(std_name)));
-        replace(*(new codecvt_byname<char, char, mbstate_t>(std_name)));
-        replace(*(new numpunct_byname<char>(std_name)));
-        replace(*(new collate_byname<char>(std_name)));
-        replace(*(new timepunct_byname<char>(std_name)));
-        replace(*(new time_get_byname<char>(std_name)));
-        replace(*(new time_put_byname<char>(std_name)));
-        replace(*(new moneypunct_byname<char>(std_name)));
-        replace(*(new moneypunct_byname<char, true>(std_name)));
-        replace(*(new messages_byname<char>(std_name)));
+        replace (*(new ctype_byname<char> (std_name)));
+        replace (*(new codecvt_byname<char, char, mbstate_t> (std_name)));
+        replace (*(new numpunct_byname<char> (std_name)));
+        replace (*(new collate_byname<char> (std_name)));
+        replace (*(new timepunct_byname<char> (std_name)));
+        replace (*(new time_get_byname<char> (std_name)));
+        replace (*(new time_put_byname<char> (std_name)));
+        replace (*(new moneypunct_byname<char> (std_name)));
+        replace (*(new moneypunct_byname<char, true> (std_name)));
+        replace (*(new messages_byname<char> (std_name)));
 #ifndef _MSL_NO_WCHART_CPP_SUPPORT
-        replace(*(new ctype_byname<wchar_t>(std_name)));
-        replace(*(new codecvt_byname<wchar_t, char, mbstate_t>(std_name)));
-        replace(*(new numpunct_byname<wchar_t>(std_name)));
-        replace(*(new collate_byname<wchar_t>(std_name)));
-        replace(*(new timepunct_byname<wchar_t>(std_name)));
-        replace(*(new time_get_byname<wchar_t>(std_name)));
-        replace(*(new time_put_byname<wchar_t>(std_name)));
-        replace(*(new moneypunct_byname<wchar_t>(std_name)));
-        replace(*(new moneypunct_byname<wchar_t, true>(std_name)));
-        replace(*(new messages_byname<wchar_t>(std_name)));
+        replace (*(new ctype_byname<wchar_t> (std_name)));
+        replace (*(new codecvt_byname<wchar_t, char, mbstate_t> (std_name)));
+        replace (*(new numpunct_byname<wchar_t> (std_name)));
+        replace (*(new collate_byname<wchar_t> (std_name)));
+        replace (*(new timepunct_byname<wchar_t> (std_name)));
+        replace (*(new time_get_byname<wchar_t> (std_name)));
+        replace (*(new time_put_byname<wchar_t> (std_name)));
+        replace (*(new moneypunct_byname<wchar_t> (std_name)));
+        replace (*(new moneypunct_byname<wchar_t, true> (std_name)));
+        replace (*(new messages_byname<wchar_t> (std_name)));
 #endif
     }
 #else
@@ -90,87 +90,88 @@ __locale_imp<b>::init(const char* std_name)
 #endif
 }
 template <bool b>
-__locale_imp<b>::__locale_imp(const locale& other, const locale& one,
-                              locale::category cat)
+__locale_imp<b>::__locale_imp (const locale&    other,
+                               const locale&    one,
+                               locale::category cat)
 {
     *this = *other.imp_;
     if (cat & locale::collate)
     {
-        replace(_USE_FACET(_STD::collate<char>, one));
+        replace (_USE_FACET (_STD::collate<char>, one));
 #ifndef _MSL_NO_WCHART_CPP_SUPPORT
-        replace(_USE_FACET(_STD::collate<wchar_t>, one));
+        replace (_USE_FACET (_STD::collate<wchar_t>, one));
 #endif
     }
     if (cat & locale::ctype)
     {
-        replace(_USE_FACET(_STD::ctype<char>, one));
+        replace (_USE_FACET (_STD::ctype<char>, one));
 #ifndef _MSL_NO_EXPLICIT_FUNC_TEMPLATE_ARG
-        replace(use_facet<_STD::codecvt<char, char, mbstate_t> >(one));
+        replace (use_facet<_STD::codecvt<char, char, mbstate_t> > (one));
 #else
-        replace(use_facet(one, (_STD::codecvt<char, char, mbstate_t>*)0));
+        replace (use_facet (one, (_STD::codecvt<char, char, mbstate_t>*)0));
 #endif
 #ifndef _MSL_NO_WCHART_CPP_SUPPORT
-        replace(_USE_FACET(_STD::ctype<wchar_t>, one));
+        replace (_USE_FACET (_STD::ctype<wchar_t>, one));
 #ifndef _MSL_NO_EXPLICIT_FUNC_TEMPLATE_ARG
-        replace(use_facet<_STD::codecvt<wchar_t, char, mbstate_t> >(one));
+        replace (use_facet<_STD::codecvt<wchar_t, char, mbstate_t> > (one));
 #else
-        replace(use_facet(one, (_STD::codecvt<wchar_t, char, mbstate_t>*)0));
+        replace (use_facet (one, (_STD::codecvt<wchar_t, char, mbstate_t>*)0));
 #endif
 #endif
     }
     if (cat & locale::monetary)
     {
-        replace(_USE_FACET(_STD::moneypunct<char>, one));
+        replace (_USE_FACET (_STD::moneypunct<char>, one));
 #ifndef _MSL_NO_EXPLICIT_FUNC_TEMPLATE_ARG
-        replace(use_facet<_STD::moneypunct<char, true> >(one));
+        replace (use_facet<_STD::moneypunct<char, true> > (one));
 #else
-        replace(use_facet(one, (_STD::moneypunct<char, true>*)0));
+        replace (use_facet (one, (_STD::moneypunct<char, true>*)0));
 #endif
-        replace(_USE_FACET(_STD::money_get<char>, one));
-        replace(_USE_FACET(_STD::money_put<char>, one));
+        replace (_USE_FACET (_STD::money_get<char>, one));
+        replace (_USE_FACET (_STD::money_put<char>, one));
 #ifndef _MSL_NO_WCHART_CPP_SUPPORT
-        replace(_USE_FACET(_STD::moneypunct<wchar_t>, one));
+        replace (_USE_FACET (_STD::moneypunct<wchar_t>, one));
 #ifndef _MSL_NO_EXPLICIT_FUNC_TEMPLATE_ARG
-        replace(use_facet<_STD::moneypunct<wchar_t, true> >(one));
+        replace (use_facet<_STD::moneypunct<wchar_t, true> > (one));
 #else
-        replace(use_facet(one, (_STD::moneypunct<wchar_t, true>*)0));
+        replace (use_facet (one, (_STD::moneypunct<wchar_t, true>*)0));
 #endif
-        replace(_USE_FACET(_STD::money_get<wchar_t>, one));
-        replace(_USE_FACET(_STD::money_put<wchar_t>, one));
+        replace (_USE_FACET (_STD::money_get<wchar_t>, one));
+        replace (_USE_FACET (_STD::money_put<wchar_t>, one));
 #endif
     }
     if (cat & locale::numeric)
     {
-        replace(_USE_FACET(_STD::numpunct<char>, one));
-        replace(_USE_FACET(_STD::num_get<char>, one));
-        replace(_USE_FACET(_STD::num_put<char>, one));
+        replace (_USE_FACET (_STD::numpunct<char>, one));
+        replace (_USE_FACET (_STD::num_get<char>, one));
+        replace (_USE_FACET (_STD::num_put<char>, one));
 #ifndef _MSL_NO_WCHART_CPP_SUPPORT
-        replace(_USE_FACET(_STD::numpunct<wchar_t>, one));
-        replace(_USE_FACET(_STD::num_get<wchar_t>, one));
-        replace(_USE_FACET(_STD::num_put<wchar_t>, one));
+        replace (_USE_FACET (_STD::numpunct<wchar_t>, one));
+        replace (_USE_FACET (_STD::num_get<wchar_t>, one));
+        replace (_USE_FACET (_STD::num_put<wchar_t>, one));
 #endif
     }
     if (cat & locale::time)
     {
-        replace(_USE_FACET(_STD::timepunct<char>, one));
-        replace(_USE_FACET(_STD::time_get<char>, one));
-        replace(_USE_FACET(_STD::time_put<char>, one));
+        replace (_USE_FACET (_STD::timepunct<char>, one));
+        replace (_USE_FACET (_STD::time_get<char>, one));
+        replace (_USE_FACET (_STD::time_put<char>, one));
 #ifndef _MSL_NO_WCHART_CPP_SUPPORT
-        replace(_USE_FACET(_STD::timepunct<wchar_t>, one));
-        replace(_USE_FACET(_STD::time_get<wchar_t>, one));
-        replace(_USE_FACET(_STD::time_put<wchar_t>, one));
+        replace (_USE_FACET (_STD::timepunct<wchar_t>, one));
+        replace (_USE_FACET (_STD::time_get<wchar_t>, one));
+        replace (_USE_FACET (_STD::time_put<wchar_t>, one));
 #endif
     }
     if (cat & locale::messages)
     {
-        replace(_USE_FACET(_STD::messages<char>, one));
+        replace (_USE_FACET (_STD::messages<char>, one));
 #ifndef _MSL_NO_WCHART_CPP_SUPPORT
-        replace(_USE_FACET(_STD::messages<wchar_t>, one));
+        replace (_USE_FACET (_STD::messages<wchar_t>, one));
 #endif
     }
     if (other.imp_->name() != "*" && one.imp_->name() != "*")
     {
-        name() = combine_names(other.imp_->name(), one.imp_->name(), cat);
+        name() = combine_names (other.imp_->name(), one.imp_->name(), cat);
     }
     else
     {
@@ -183,81 +184,81 @@ __locale_imp<b>::__locale_imp(const locale& other, const locale& one,
 
 template <class charT>
 inline bool
-isspace(charT c, const locale& loc)
+isspace (charT c, const locale& loc)
 {
-    return _USE_FACET(ctype<charT>, loc).is(ctype_base::space, c);
+    return _USE_FACET (ctype<charT>, loc).is (ctype_base::space, c);
 }
 template <class charT>
 inline bool
-isprint(charT c, const locale& loc)
+isprint (charT c, const locale& loc)
 {
-    return _USE_FACET(ctype<charT>, loc).is(ctype_base::print, c);
+    return _USE_FACET (ctype<charT>, loc).is (ctype_base::print, c);
 }
 template <class charT>
 inline bool
-iscntrl(charT c, const locale& loc)
+iscntrl (charT c, const locale& loc)
 {
-    return _USE_FACET(ctype<charT>, loc).is(ctype_base::cntrl, c);
+    return _USE_FACET (ctype<charT>, loc).is (ctype_base::cntrl, c);
 }
 template <class charT>
 inline bool
-isupper(charT c, const locale& loc)
+isupper (charT c, const locale& loc)
 {
-    return _USE_FACET(ctype<charT>, loc).is(ctype_base::upper, c);
+    return _USE_FACET (ctype<charT>, loc).is (ctype_base::upper, c);
 }
 template <class charT>
 inline bool
-islower(charT c, const locale& loc)
+islower (charT c, const locale& loc)
 {
-    return _USE_FACET(ctype<charT>, loc).is(ctype_base::lower, c);
+    return _USE_FACET (ctype<charT>, loc).is (ctype_base::lower, c);
 }
 template <class charT>
 inline bool
-isalpha(charT c, const locale& loc)
+isalpha (charT c, const locale& loc)
 {
-    return _USE_FACET(ctype<charT>, loc).is(ctype_base::alpha, c);
+    return _USE_FACET (ctype<charT>, loc).is (ctype_base::alpha, c);
 }
 template <class charT>
 inline bool
-isdigit(charT c, const locale& loc)
+isdigit (charT c, const locale& loc)
 {
-    return _USE_FACET(ctype<charT>, loc).is(ctype_base::digit, c);
+    return _USE_FACET (ctype<charT>, loc).is (ctype_base::digit, c);
 }
 template <class charT>
 inline bool
-ispunct(charT c, const locale& loc)
+ispunct (charT c, const locale& loc)
 {
-    return _USE_FACET(ctype<charT>, loc).is(ctype_base::punct, c);
+    return _USE_FACET (ctype<charT>, loc).is (ctype_base::punct, c);
 }
 template <class charT>
 inline bool
-isxdigit(charT c, const locale& loc)
+isxdigit (charT c, const locale& loc)
 {
-    return _USE_FACET(ctype<charT>, loc).is(ctype_base::xdigit, c);
+    return _USE_FACET (ctype<charT>, loc).is (ctype_base::xdigit, c);
 }
 template <class charT>
 inline bool
-isalnum(charT c, const locale& loc)
+isalnum (charT c, const locale& loc)
 {
-    return _USE_FACET(ctype<charT>, loc).is(ctype_base::alnum, c);
+    return _USE_FACET (ctype<charT>, loc).is (ctype_base::alnum, c);
 }
 template <class charT>
 inline bool
-isgraph(charT c, const locale& loc)
+isgraph (charT c, const locale& loc)
 {
-    return _USE_FACET(ctype<charT>, loc).is(ctype_base::graph, c);
+    return _USE_FACET (ctype<charT>, loc).is (ctype_base::graph, c);
 }
 template <class charT>
 inline charT
-toupper(charT c, const locale& loc)
+toupper (charT c, const locale& loc)
 {
-    return _USE_FACET(ctype<charT>, loc).toupper(c);
+    return _USE_FACET (ctype<charT>, loc).toupper (c);
 }
 template <class charT>
 inline charT
-tolower(charT c, const locale& loc)
+tolower (charT c, const locale& loc)
 {
-    return _USE_FACET(ctype<charT>, loc).tolower(c);
+    return _USE_FACET (ctype<charT>, loc).tolower (c);
 }
 #endif // _MSL_NO_LOCALE
 

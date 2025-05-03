@@ -60,7 +60,7 @@ namespace std
 template <class T> struct _Single
 {
     static void
-    destroy(T* ptr) _MSL_THROW
+    destroy (T* ptr) _MSL_THROW
     {
         delete ptr;
     }
@@ -74,7 +74,7 @@ template <class T> struct _Single
 template <class T> struct _Array
 {
     static void
-    destroy(T* ptr) _MSL_THROW
+    destroy (T* ptr) _MSL_THROW
     {
         delete[] ptr;
     }
@@ -88,54 +88,54 @@ template <class T> struct _Array
 template <class T, class traits = _Single<T> > class _RefCountedPtr
 {
 public:
-    _RefCountedPtr(T* ptr = 0); // Accepts responsibility for ptr
-    _RefCountedPtr(const _RefCountedPtr<T, traits>& other) _MSL_THROW;
-    ÃÂ¢ÃÂÃÂ¾_RefCountedPtr() _MSL_THROW;
-    _RefCountedPtr<T, traits>& operator=(const _RefCountedPtr<T, traits>& rhs)
+    _RefCountedPtr (T* ptr = 0); // Accepts responsibility for ptr
+    _RefCountedPtr (const _RefCountedPtr<T, traits>& other) _MSL_THROW;
+    ÃÂ¢ÃÂÃÂ¾_RefCountedPtr () _MSL_THROW;
+    _RefCountedPtr<T, traits>& operator= (const _RefCountedPtr<T, traits>& rhs)
         _MSL_THROW;
     T*       operator->() _MSL_THROW;
     const T* operator->() const _MSL_THROW;
-    T&       operator*() _MSL_THROW;
-    const T& operator*() const _MSL_THROW;
-    operator const T *() const _MSL_THROW;
-    bool isNonUnique() const _MSL_THROW;
+    T&       operator* () _MSL_THROW;
+    const T& operator* () const _MSL_THROW;
+    operator const T * () const _MSL_THROW;
+    bool isNonUnique () const _MSL_THROW;
 
 private:
     T*   ptr_;
     int* refCount_;
 };
 template <class T, class traits>
-_RefCountedPtr<T, traits>::_RefCountedPtr(T* ptr) : ptr_(ptr), refCount_(0)
+_RefCountedPtr<T, traits>::_RefCountedPtr (T* ptr) : ptr_ (ptr), refCount_ (0)
 {
 #ifndef _MSL_NO_EXCEPTIONS
     try
     {
         if (ptr_ != 0)
         {
-            refCount_ = new int(1);
+            refCount_ = new int (1);
         }
     }
     catch (...)
     {
-        traits::destroy(ptr_);
+        traits::destroy (ptr_);
         throw;
     }
 #else
     if (ptr_ != 0)
     {
-        refCount_ = new int(1);
+        refCount_ = new int (1);
         if (refCount_ == 0)
         {
-            traits::destroy(ptr_);
-            __msl_error("_RefCountedPtr out of memory");
+            traits::destroy (ptr_);
+            __msl_error ("_RefCountedPtr out of memory");
         }
     }
 #endif
 }
 template <class T, class traits>
-_RefCountedPtr<T, traits>::_RefCountedPtr(const _RefCountedPtr<T, traits>& other)
-    _MSL_THROW : ptr_(other.ptr_),
-                 refCount_(other.refCount_)
+_RefCountedPtr<T, traits>::_RefCountedPtr (const _RefCountedPtr<T, traits>& other)
+    _MSL_THROW : ptr_ (other.ptr_),
+                 refCount_ (other.refCount_)
 {
     if (refCount_ != 0)
     {
@@ -147,19 +147,20 @@ _RefCountedPtr<T, traits>::ÃÂ¢ÃÂÃÂ¾_RefCountedPtr() _MSL_THROW
 {
     if (refCount_ != 0 && --(*refCount_) == 0)
     {
-        traits::destroy(ptr_);
+        traits::destroy (ptr_);
         delete refCount_;
     }
 }
 template <class T, class traits>
 _RefCountedPtr<T, traits>&
-_RefCountedPtr<T, traits>::operator=(const _RefCountedPtr<T, traits>& rhs) _MSL_THROW
+_RefCountedPtr<T, traits>::operator= (const _RefCountedPtr<T, traits>& rhs)
+    _MSL_THROW
 {
     if (ptr_ != rhs.ptr_)
     {
         if (refCount_ != 0 && --(*refCount_) == 0)
         {
-            traits::destroy(ptr_);
+            traits::destroy (ptr_);
             delete refCount_;
         }
         ptr_ = rhs.ptr_;
@@ -185,24 +186,24 @@ _RefCountedPtr<T, traits>::operator->() const _MSL_THROW
 }
 template <class T, class traits>
 inline T&
-_RefCountedPtr<T, traits>::operator*() _MSL_THROW
+_RefCountedPtr<T, traits>::operator* () _MSL_THROW
 {
     return *ptr_;
 }
 template <class T, class traits>
 inline const T&
-_RefCountedPtr<T, traits>::operator*() const _MSL_THROW
+_RefCountedPtr<T, traits>::operator* () const _MSL_THROW
 {
     return *ptr_;
 }
 template <class T, class traits>
-inline _RefCountedPtr<T, traits>::operator const T *() const _MSL_THROW
+inline _RefCountedPtr<T, traits>::operator const T * () const _MSL_THROW
 {
     return ptr_;
 }
 template <class T, class traits>
 inline bool
-_RefCountedPtr<T, traits>::isNonUnique() const _MSL_THROW
+_RefCountedPtr<T, traits>::isNonUnique () const _MSL_THROW
 {
     if (refCount_ == 0)
     {

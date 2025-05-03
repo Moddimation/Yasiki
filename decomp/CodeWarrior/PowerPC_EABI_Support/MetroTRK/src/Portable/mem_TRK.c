@@ -2,7 +2,7 @@
 
 #include "dolphin/types.h"
 void
-TRK_fill_mem(void* dst, int val, size_t n)
+TRK_fill_mem (void* dst, int val, size_t n)
 {
     u32 v, i, j;
     v = (u8)val;
@@ -11,7 +11,7 @@ TRK_fill_mem(void* dst, int val, size_t n)
 
     if (n >= 32)
     {
-        i = (窶ｾ(u32) dst) & 3;
+        i = (窶ｾ (u32) dst) & 3;
 
         if (i)
         {
@@ -60,8 +60,8 @@ TRK_fill_mem(void* dst, int val, size_t n)
         }
         while (--n);
 }
-__declspec(section ".init") void*
-TRK_memcpy(void* dst, const void* src, size_t n)
+__declspec (section ".init") void*
+TRK_memcpy (void* dst, const void* src, size_t n)
 {
     const char* p;
     char*       q;
@@ -70,9 +70,9 @@ TRK_memcpy(void* dst, const void* src, size_t n)
 
     return dst;
 }
-__declspec(section ".init") void*
-TRK_memset(void* dst, int val, size_t n)
+__declspec (section ".init") void*
+TRK_memset (void* dst, int val, size_t n)
 {
-    TRK_fill_mem(dst, val, n);
+    TRK_fill_mem (dst, val, n);
     return dst;
 }

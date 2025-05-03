@@ -28,9 +28,9 @@
 
 #if (defined(UNICODE))
 void
-__wchar_assertion_failed(TCHAR const * condition,
-                         char const *  filename, /*- mm 990419 -*/
-                         int           lineno)
+__wchar_assertion_failed (TCHAR const * condition,
+                          char const *  filename, /*- mm 990419 -*/
+                          int           lineno)
 {
 #define BUFFSIZE 1024
     TCHAR        buf[2 * BUFFSIZE];
@@ -45,9 +45,13 @@ __wchar_assertion_failed(TCHAR const * condition,
     }
 
     tmpfile[i] = 0;
-    swprintf(buf, sizeof(buf) + 1, L"Assertion (%s) failed in \"%s\" on line %d\n",
-             condition, tmpfile, lineno);
-    MessageBox(NULL, buf, L"Assertion Failure", MB_OK);
+    swprintf (buf,
+              sizeof (buf) + 1,
+              L"Assertion (%s) failed in \"%s\" on line %d\n",
+              condition,
+              tmpfile,
+              lineno);
+    MessageBox (NULL, buf, L"Assertion Failure", MB_OK);
 
     abort();
 }
@@ -56,30 +60,37 @@ __wchar_assertion_failed(TCHAR const * condition,
 #error "the macro UNICODE must be defined when compiling MSL C for Windows CE"
 #endif
 void
-__assertion_failed(char const * condition, char const * filename,
-                   int lineno) /*- mm 990419 -*/
+__assertion_failed (char const * condition,
+                    char const * filename,
+                    int          lineno) /*- mm 990419 -*/
 {
 #if (__dest_os == __win32_os)
 
     char buf[4096];
-    sprintf(buf, "Assertion (%s) failed in \"%s\" on line %d\n", condition, filename,
-            lineno);
-    MessageBox(NULL, buf, "Assertion Failure", MB_OK);
+    sprintf (buf,
+             "Assertion (%s) failed in \"%s\" on line %d\n",
+             condition,
+             filename,
+             lineno);
+    MessageBox (NULL, buf, "Assertion Failure", MB_OK);
 
 #elif (__dest_os == __mcore_bare) || defined(_No_Disk_File_OS_Support)
 
-    printf("Assertion (%s) failed in \"%s\" on line %d\n", condition, filename,
-           lineno);
+    printf (
+        "Assertion (%s) failed in \"%s\" on line %d\n", condition, filename, lineno);
 
 #else
 
-    fprintf(stderr, "Assertion (%s) failed in \"%s\" on line %d\n", condition,
-            filename, lineno);
+    fprintf (stderr,
+             "Assertion (%s) failed in \"%s\" on line %d\n",
+             condition,
+             filename,
+             lineno);
 
 #endif
 
 #if _WINSIOUX                  /*- mm 981109 -*/
-    WinSIOUXAbort();           /*- mm 981109 -*/
+    WinSIOUXAbort();            /*- mm 981109 -*/
 #else                          /*- mm 981109 -*/
     abort();
 #endif /* _WINSIOUX */         /*- mm 981109 -*/

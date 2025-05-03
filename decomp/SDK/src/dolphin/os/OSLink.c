@@ -1,3 +1,4 @@
+#include "dolphin/types.h"
 #include <dolphin/os.h>
 
 #include <dolphin.h>
@@ -78,8 +79,8 @@
 #define R_PPC_EMB_BIT_FLD     115 //  uword32 Y
 #define R_PPC_EMB_RELSDA      116 //  uhalf16 Y
 
-OSModuleQueue __OSModuleInfoList : (OS_BASE_CACHED | 0x30C8);
-const void*   __OSStringTable : (OS_BASE_CACHED | 0x30D0);
+OSModuleQueue __OSModuleInfoList AT_ADDRESS (OS_BASE_CACHED | 0x30C8);
+const void* __OSStringTable      AT_ADDRESS (OS_BASE_CACHED | 0x30D0);
 
 #define ENQUEUE_INFO(queue, info, link)                                             \
     do {                                                                            \
@@ -118,21 +119,21 @@ const void*   __OSStringTable : (OS_BASE_CACHED | 0x30D0);
 
 #pragma dont_inline on
 void
-OSNotifyLink()
+OSNotifyLink ()
 {
 }
 void
-OSNotifyUnlink()
+OSNotifyUnlink ()
 {
 }
 #pragma dont_inline reset
 void
-OSSetStringTable(const void* stringTable)
+OSSetStringTable (const void* stringTable)
 {
     __OSStringTable = stringTable;
 }
 static BOOL
-Relocate(OSModuleHeader* newModule, OSModuleHeader* module)
+Relocate (OSModuleHeader* newModule, OSModuleHeader* module)
 {
     OSModuleID     idNew;
     OSImportInfo*  imp;
@@ -145,7 +146,8 @@ Relocate(OSModuleHeader* newModule, OSModuleHeader* module)
 
     idNew = newModule ? newModule->info.id : 0;
     for (imp = (OSImportInfo*)module->impOffset;
-         imp < (OSImportInfo*)(module->impOffset + module->impSize); imp++)
+         imp < (OSImportInfo*)(module->impOffset + module->impSize);
+         imp++)
     {
         if (imp->id == idNew)
         {
@@ -161,8 +163,8 @@ Found:
         (u8*)p += rel->offset;
         if (idNew)
         {
-            si = &OSGetSectionInfo(newModule)[rel->section];
-            offset = OS_SECTIONINFO_OFFSET(si->offset);
+            si = &OSGetSectionInfo (newModule)[rel->section];
+            offset = OS_SECTIONINFO_OFFSET (si->offset);
         }
         else
         {
@@ -203,33 +205,33 @@ Found:
             case R_DOLPHIN_NOP:
                 break;
             case R_DOLPHIN_SECTION:
-                si = &OSGetSectionInfo(module)[rel->section];
-                p = (u32*)OS_SECTIONINFO_OFFSET(si->offset);
+                si = &OSGetSectionInfo (module)[rel->section];
+                p = (u32*)OS_SECTIONINFO_OFFSET (si->offset);
                 if (siFlush)
                 {
-                    offset = OS_SECTIONINFO_OFFSET(siFlush->offset);
-                    DCFlushRange((void*)offset, siFlush->size);
-                    ICInvalidateRange((void*)offset, siFlush->size);
+                    offset = OS_SECTIONINFO_OFFSET (siFlush->offset);
+                    DCFlushRange ((void*)offset, siFlush->size);
+                    ICInvalidateRange ((void*)offset, siFlush->size);
                 }
                 siFlush = (si->offset & OS_SECTIONINFO_EXEC) ? si : 0;
                 break;
             default:
-                OSReport("OSLink: unknown relocation type %3d\n", rel->type);
+                OSReport ("OSLink: unknown relocation type %3d\n", rel->type);
                 break;
         }
     }
 
     if (siFlush)
     {
-        offset = OS_SECTIONINFO_OFFSET(siFlush->offset);
-        DCFlushRange((void*)offset, siFlush->size);
-        ICInvalidateRange((void*)offset, siFlush->size);
+        offset = OS_SECTIONINFO_OFFSET (siFlush->offset);
+        DCFlushRange ((void*)offset, siFlush->size);
+        ICInvalidateRange ((void*)offset, siFlush->size);
     }
 
     return TRUE;
 }
 BOOL
-OSLink(OSModuleInfo* newModule, void* bss)
+OSLink (OSModuleInfo* newModule, void* bss)
 {
     u32             i;
     OSSectionInfo*  si;
@@ -237,20 +239,20 @@ OSLink(OSModuleInfo* newModule, void* bss)
     OSModuleInfo*   moduleInfo;
     OSImportInfo*   imp;
 
-    ASSERTLINE(0xEB, newModule->version == OS_MODULE_VERSION);
+    ASSERTLINE (0xEB, newModule->version == OS_MODULE_VERSION);
 
     moduleHeader = (OSModuleHeader*)newModule;
 
-    ENQUEUE_INFO(&__OSModuleInfoList, newModule, link);
+    ENQUEUE_INFO (&__OSModuleInfoList, newModule, link);
 
-    memset(bss, 0, moduleHeader->bssSize);
+    memset (bss, 0, moduleHeader->bssSize);
     newModule->sectionInfoOffset += (u32)moduleHeader;
     moduleHeader->relOffset += (u32)moduleHeader;
     moduleHeader->impOffset += (u32)moduleHeader;
 
     for (i = 0; i < newModule->numSections; i++)
     {
-        si = &OSGetSectionInfo(newModule)[i];
+        si = &OSGetSectionInfo (newModule)[i];
         if (si->offset != 0)
         {
             si->offset += (u32)moduleHeader;
@@ -269,33 +271,33 @@ OSLink(OSModuleInfo* newModule, void* bss)
     }
     if (moduleHeader->prologSection != SHN_UNDEF)
     {
-        moduleHeader->prolog += OS_SECTIONINFO_OFFSET(
-            OSGetSectionInfo(newModule)[moduleHeader->prologSection].offset);
+        moduleHeader->prolog += OS_SECTIONINFO_OFFSET (
+            OSGetSectionInfo (newModule)[moduleHeader->prologSection].offset);
     }
     if (moduleHeader->epilogSection != SHN_UNDEF)
     {
-        moduleHeader->epilog += OS_SECTIONINFO_OFFSET(
-            OSGetSectionInfo(newModule)[moduleHeader->epilogSection].offset);
+        moduleHeader->epilog += OS_SECTIONINFO_OFFSET (
+            OSGetSectionInfo (newModule)[moduleHeader->epilogSection].offset);
     }
     if (moduleHeader->unresolvedSection != SHN_UNDEF)
     {
-        moduleHeader->unresolved += OS_SECTIONINFO_OFFSET(
-            OSGetSectionInfo(newModule)[moduleHeader->unresolvedSection].offset);
+        moduleHeader->unresolved += OS_SECTIONINFO_OFFSET (
+            OSGetSectionInfo (newModule)[moduleHeader->unresolvedSection].offset);
     }
     if (__OSStringTable)
     {
         newModule->nameOffset += (u32)__OSStringTable;
     }
 
-    Relocate(0, moduleHeader);
+    Relocate (0, moduleHeader);
 
     for (moduleInfo = __OSModuleInfoList.head; moduleInfo;
          moduleInfo = moduleInfo->link.next)
     {
-        Relocate(moduleHeader, (OSModuleHeader*)moduleInfo);
+        Relocate (moduleHeader, (OSModuleHeader*)moduleInfo);
         if (moduleInfo != newModule)
         {
-            Relocate((OSModuleHeader*)moduleInfo, moduleHeader);
+            Relocate ((OSModuleHeader*)moduleInfo, moduleHeader);
         }
     }
 
@@ -304,7 +306,7 @@ OSLink(OSModuleInfo* newModule, void* bss)
     return TRUE;
 }
 static BOOL
-Undo(OSModuleHeader* newModule, OSModuleHeader* module)
+Undo (OSModuleHeader* newModule, OSModuleHeader* module)
 {
     OSModuleID     idNew;
     OSImportInfo*  imp;
@@ -315,12 +317,13 @@ Undo(OSModuleHeader* newModule, OSModuleHeader* module)
     u32            offset;
     u32            x;
 
-    ASSERTLINE(0x147, newModule);
+    ASSERTLINE (0x147, newModule);
     idNew = newModule->info.id;
-    ASSERTLINE(0x149, idNew);
+    ASSERTLINE (0x149, idNew);
 
     for (imp = (OSImportInfo*)module->impOffset;
-         imp < (OSImportInfo*)(module->impOffset + module->impSize); imp++)
+         imp < (OSImportInfo*)(module->impOffset + module->impSize);
+         imp++)
     {
         if (imp->id == idNew)
         {
@@ -334,8 +337,8 @@ Found:
     for (rel = (OSRel*)imp->offset; rel->type != R_DOLPHIN_END; rel++)
     {
         (u8*)p += rel->offset;
-        si = &OSGetSectionInfo(newModule)[rel->section];
-        offset = OS_SECTIONINFO_OFFSET(si->offset);
+        si = &OSGetSectionInfo (newModule)[rel->section];
+        offset = OS_SECTIONINFO_OFFSET (si->offset);
         x = 0;
         switch (rel->type)
         {
@@ -369,46 +372,46 @@ Found:
             case R_DOLPHIN_NOP:
                 break;
             case R_DOLPHIN_SECTION:
-                si = &OSGetSectionInfo(module)[rel->section];
-                p = (u32*)OS_SECTIONINFO_OFFSET(si->offset);
+                si = &OSGetSectionInfo (module)[rel->section];
+                p = (u32*)OS_SECTIONINFO_OFFSET (si->offset);
                 if (siFlush)
                 {
-                    offset = OS_SECTIONINFO_OFFSET(siFlush->offset);
-                    DCFlushRange((void*)offset, siFlush->size);
-                    ICInvalidateRange((void*)offset, siFlush->size);
+                    offset = OS_SECTIONINFO_OFFSET (siFlush->offset);
+                    DCFlushRange ((void*)offset, siFlush->size);
+                    ICInvalidateRange ((void*)offset, siFlush->size);
                 }
                 siFlush = (si->offset & OS_SECTIONINFO_EXEC) ? si : 0;
                 break;
             default:
-                OSReport("OSUnlink: unknown relocation type %3d\n", rel->type);
+                OSReport ("OSUnlink: unknown relocation type %3d\n", rel->type);
                 break;
         }
     }
 
     if (siFlush)
     {
-        offset = OS_SECTIONINFO_OFFSET(siFlush->offset);
-        DCFlushRange((void*)offset, siFlush->size);
-        ICInvalidateRange((void*)offset, siFlush->size);
+        offset = OS_SECTIONINFO_OFFSET (siFlush->offset);
+        DCFlushRange ((void*)offset, siFlush->size);
+        ICInvalidateRange ((void*)offset, siFlush->size);
     }
 
     return TRUE;
 }
 BOOL
-OSUnlink(OSModuleInfo* oldModule)
+OSUnlink (OSModuleInfo* oldModule)
 {
     OSModuleHeader* moduleHeader;
     OSModuleInfo*   moduleInfo;
 
-    ASSERTLINE(0x1AA, oldModule->version == OS_MODULE_VERSION);
+    ASSERTLINE (0x1AA, oldModule->version == OS_MODULE_VERSION);
     moduleHeader = (OSModuleHeader*)oldModule;
 
-    DEQUEUE_INFO(oldModule, &__OSModuleInfoList, link);
+    DEQUEUE_INFO (oldModule, &__OSModuleInfoList, link);
 
     for (moduleInfo = __OSModuleInfoList.head; moduleInfo;
          moduleInfo = moduleInfo->link.next)
     {
-        Undo(moduleHeader, (OSModuleHeader*)moduleInfo);
+        Undo (moduleHeader, (OSModuleHeader*)moduleInfo);
     }
 
     OSNotifyUnlink();
@@ -416,7 +419,7 @@ OSUnlink(OSModuleInfo* oldModule)
     return TRUE;
 }
 void
-__OSModuleInit(void)
+__OSModuleInit (void)
 {
     __OSModuleInfoList.head = __OSModuleInfoList.tail = 0;
     __OSStringTable = 0;

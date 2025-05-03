@@ -19,32 +19,32 @@
 
 #include "ansi_files.h"
 #include "buffer_io.h"
-#include "critical_regions.h"                         /*- mm 001013 -*/
-#include "file_io.h"                                  /*- mm 970708 -*/
+#include "critical_regions.h"                          /*- mm 001013 -*/
+#include "file_io.h"                                   /*- mm 970708 -*/
 #include "misc_io.h"
 size_t
-fread(void* ptr, size_t memb_size, size_t num_memb, FILE* file)
+fread (void* ptr, size_t memb_size, size_t num_memb, FILE* file)
 {
     size_t retval;
-    __begin_critical_region(files_access);            /*- mm 001013 -*/
-    retval = __fread(ptr, memb_size, num_memb, file); /*- mm 001018 -*/
-    __end_critical_region(files_access);              /*- mm 001013 -*/
+    __begin_critical_region (files_access);            /*- mm 001013 -*/
+    retval = __fread (ptr, memb_size, num_memb, file); /*- mm 001018 -*/
+    __end_critical_region (files_access);              /*- mm 001013 -*/
     return (retval);
 }
 /* This does all the work of fread but is not threadsafe it exists so that other
    library functions can do freads in a loop from within a critical region mm
    001018*/
 size_t
-__fread(void* ptr, size_t memb_size, size_t num_memb, FILE* file)
+__fread (void* ptr, size_t memb_size, size_t num_memb, FILE* file)
 {
     unsigned char* read_ptr;
     size_t         num_bytes, bytes_to_go, bytes_read;
     int            ioresult, always_buffer;
 
 #ifndef __NO_WIDE_CHAR      /*- mm 980205 -*/
-    if (fwide(file, 0) == 0)
+    if (fwide (file, 0) == 0)
     {
-        fwide(file, -1);
+        fwide (file, -1);
     }
 #endif /* __NO_WIDE_CHAR */ /*- mm 980205 -*/
 
@@ -69,7 +69,7 @@ __fread(void* ptr, size_t memb_size, size_t num_memb, FILE* file)
 
     if (file->state.io_state < __reading)
     {
-        set_error(file);
+        set_error (file);
         return (0);
     }
 
@@ -78,7 +78,7 @@ __fread(void* ptr, size_t memb_size, size_t num_memb, FILE* file)
     {
         if (__flush_line_buffered_output_files())
         {
-            set_error(file);
+            set_error (file);
             return 0;
         }
     }
@@ -90,14 +90,14 @@ __fread(void* ptr, size_t memb_size, size_t num_memb, FILE* file)
     if (bytes_to_go && file->state.io_state >= __rereading)
     {
         do {
-#ifndef __NO_WIDE_CHAR                                 /*- mm 980205 -*/
-            if (fwide(file, 0) == 1)
+#ifndef __NO_WIDE_CHAR                                  /*- mm 980205 -*/
+            if (fwide (file, 0) == 1)
             {
                 *(wchar_t*)read_ptr =
                     file->ungetwc_buffer[file->state.io_state - __rereading];
-                read_ptr += sizeof(wchar_t);
-                bytes_read += sizeof(wchar_t);
-                bytes_to_go -= sizeof(wchar_t);
+                read_ptr += sizeof (wchar_t);
+                bytes_read += sizeof (wchar_t);
+                bytes_to_go -= sizeof (wchar_t);
             }
             else
             {
@@ -110,7 +110,7 @@ __fread(void* ptr, size_t memb_size, size_t num_memb, FILE* file)
             *read_ptr++ = file->ungetc_buffer[file->state.io_state - __rereading];
             bytes_read++;
             bytes_to_go--;
-#endif /* __NO_WIDE_CHAR */                            /*- mm 980205 -*/
+#endif /* __NO_WIDE_CHAR */                             /*- mm 980205 -*/
 
             file->state.io_state--;
         }
@@ -127,17 +127,17 @@ __fread(void* ptr, size_t memb_size, size_t num_memb, FILE* file)
         do {
             if (!file->buffer_len)
             {
-                ioresult = __load_buffer(file, NULL, __align_buffer);
+                ioresult = __load_buffer (file, NULL, __align_buffer);
 
                 if (ioresult)
                 {
                     if (ioresult == __io_error)
                     {
-                        set_error(file);
+                        set_error (file);
                     }
                     else
                     {
-                        set_eof(file);
+                        set_eof (file);
                     }
                     bytes_to_go = 0;
                     break;
@@ -151,7 +151,7 @@ __fread(void* ptr, size_t memb_size, size_t num_memb, FILE* file)
                 num_bytes = bytes_to_go;
             }
 
-            memcpy(read_ptr, file->buffer_ptr, num_bytes);
+            memcpy (read_ptr, file->buffer_ptr, num_bytes);
 
             read_ptr += num_bytes;
             bytes_read += num_bytes;
@@ -171,17 +171,17 @@ __fread(void* ptr, size_t memb_size, size_t num_memb, FILE* file)
         file->buffer = read_ptr;
         file->buffer_size = bytes_to_go;
 
-        ioresult = __load_buffer(file, &num_bytes, __dont_align_buffer);
+        ioresult = __load_buffer (file, &num_bytes, __dont_align_buffer);
 
         if (ioresult)
         {
             if (ioresult == __io_error)
             {
-                set_error(file);
+                set_error (file);
             }
             else
             {
-                set_eof(file);
+                set_eof (file);
             }
         }
 
@@ -190,36 +190,36 @@ __fread(void* ptr, size_t memb_size, size_t num_memb, FILE* file)
         file->buffer = save_buffer;
         file->buffer_size = save_size;
 
-        __prep_buffer(file);
+        __prep_buffer (file);
 
         file->buffer_len = 0;
     }
 
-    return (bytes_read / memb_size);                   /*- mm 980203 -*/
+    return (bytes_read / memb_size);                    /*- mm 980203 -*/
 }
 size_t
-fwrite(const void* ptr, size_t memb_size, size_t num_memb, FILE* file)
+fwrite (const void* ptr, size_t memb_size, size_t num_memb, FILE* file)
 {
     size_t retval;
-    __begin_critical_region(files_access);             /*- mm 001013 -*/
-    retval = __fwrite(ptr, memb_size, num_memb, file); /*- mm 001018 -*/
-    __end_critical_region(files_access);               /*- mm 001013 -*/
+    __begin_critical_region (files_access);             /*- mm 001013 -*/
+    retval = __fwrite (ptr, memb_size, num_memb, file); /*- mm 001018 -*/
+    __end_critical_region (files_access);               /*- mm 001013 -*/
     return (retval);
 }
 /* This does all the work of fwrite but is not threadsafe it exists so that other
    library functions can do fwrites in a loop from within a critical region mm
    001018*/
 size_t
-__fwrite(const void* ptr, size_t memb_size, size_t num_memb, FILE* file)
+__fwrite (const void* ptr, size_t memb_size, size_t num_memb, FILE* file)
 {
     unsigned char* write_ptr;
     size_t         num_bytes, bytes_to_go, bytes_written;
     int            ioresult, always_buffer;
 
 #ifndef __NO_WIDE_CHAR                                         /*- mm 980205 -*/
-    if (fwide(file, 0) == 0)
+    if (fwide (file, 0) == 0)
     {
-        fwide(file, -1);
+        fwide (file, -1);
     }
 #endif /* __NO_WIDE_CHAR */                                    /*- mm 980205 -*/
 
@@ -248,7 +248,7 @@ __fwrite(const void* ptr, size_t memb_size, size_t num_memb, FILE* file)
         _No_Disk_File_OS_Support) /* we do O_APPEND on open */ /*- mm 970708 -*/
             if (file->mode.io_mode & __append)
             {
-                if (fseek(file, 0, SEEK_END))
+                if (fseek (file, 0, SEEK_END))
                 {
                     return (0);
                 }
@@ -257,13 +257,13 @@ __fwrite(const void* ptr, size_t memb_size, size_t num_memb, FILE* file)
 
             file->state.io_state = __writing;
 
-            __prep_buffer(file);
+            __prep_buffer (file);
         }
     }
 
     if (file->state.io_state != __writing)
     {
-        set_error(file);
+        set_error (file);
         return (0);
     }
 
@@ -288,8 +288,8 @@ __fwrite(const void* ptr, size_t memb_size, size_t num_memb, FILE* file)
 
             if (file->mode.buffer_mode == _IOLBF && num_bytes)
             {
-                if ((newline = (unsigned char*)__memrchr(write_ptr, '\n',
-                                                         num_bytes)) != NULL)
+                if ((newline = (unsigned char*)__memrchr (
+                         write_ptr, '\n', num_bytes)) != NULL)
                 {
                     num_bytes = newline + 1 - write_ptr;
                 }
@@ -299,7 +299,7 @@ __fwrite(const void* ptr, size_t memb_size, size_t num_memb, FILE* file)
 
             if (num_bytes)
             {
-                memcpy(file->buffer_ptr, write_ptr, num_bytes);
+                memcpy (file->buffer_ptr, write_ptr, num_bytes);
 
                 write_ptr += num_bytes;
                 bytes_written += num_bytes;
@@ -311,11 +311,11 @@ __fwrite(const void* ptr, size_t memb_size, size_t num_memb, FILE* file)
             if (!file->buffer_len || newline != NULL ||
                 (file->mode.buffer_mode == _IONBF))            /*- mm 970716 -*/
             {
-                ioresult = __flush_buffer(file, NULL);
+                ioresult = __flush_buffer (file, NULL);
 
                 if (ioresult)
                 {
-                    set_error(file);
+                    set_error (file);
                     bytes_to_go = 0;
                     break;
                 }
@@ -333,9 +333,9 @@ __fwrite(const void* ptr, size_t memb_size, size_t num_memb, FILE* file)
         file->buffer_size = bytes_to_go;
         file->buffer_ptr = write_ptr + bytes_to_go;
 
-        if (__flush_buffer(file, &num_bytes) != __no_io_error)
+        if (__flush_buffer (file, &num_bytes) != __no_io_error)
         {
-            set_error(file);
+            set_error (file);
         }
 
         bytes_written += num_bytes;
@@ -343,7 +343,7 @@ __fwrite(const void* ptr, size_t memb_size, size_t num_memb, FILE* file)
         file->buffer = save_buffer;
         file->buffer_size = save_size;
 
-        __prep_buffer(file);
+        __prep_buffer (file);
 
         file->buffer_len = 0;
     }

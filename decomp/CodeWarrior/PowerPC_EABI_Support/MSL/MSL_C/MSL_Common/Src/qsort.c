@@ -100,8 +100,10 @@
 
 #endif
 void
-qsort(void* table_base, size_t num_members, size_t member_size,
-      _compare_function compare_members) /*- mm 961031 -*/
+qsort (void*             table_base,
+       size_t            num_members,
+       size_t            member_size,
+       _compare_function compare_members) /*- mm 961031 -*/
 {
     size_t l, r, /*i,*/ j;
     char*  lp;
@@ -118,8 +120,8 @@ qsort(void* table_base, size_t num_members, size_t member_size,
     r = num_members;
     l = (r / 2) + 1;
 
-    lp = table_ptr(l);
-    rp = table_ptr(r);
+    lp = table_ptr (l);
+    rp = table_ptr (r);
 
     for (;;)
     {
@@ -130,7 +132,7 @@ qsort(void* table_base, size_t num_members, size_t member_size,
         }
         else
         {
-            swap(lp, rp, member_size);
+            swap (lp, rp, member_size);
 
             if (--r == 1)
             {
@@ -142,7 +144,7 @@ qsort(void* table_base, size_t num_members, size_t member_size,
 
         j = l;
 
-        jp = table_ptr(j);
+        jp = table_ptr (j);
 
         while (j * 2 <= r)
         {
@@ -150,22 +152,22 @@ qsort(void* table_base, size_t num_members, size_t member_size,
             j *= 2;
 
             ip = jp;
-            jp = table_ptr(j);
+            jp = table_ptr (j);
 
             if (j < r)
             {
                 kp = jp + member_size;
 
-                if (compare_members(jp, kp) < 0)
+                if (compare_members (jp, kp) < 0)
                 {
                     j++;
                     jp = kp;
                 }
             }
 
-            if (compare_members(ip, jp) < 0)
+            if (compare_members (ip, jp) < 0)
             {
-                swap(ip, jp, member_size);
+                swap (ip, jp, member_size);
             }
             else
             {

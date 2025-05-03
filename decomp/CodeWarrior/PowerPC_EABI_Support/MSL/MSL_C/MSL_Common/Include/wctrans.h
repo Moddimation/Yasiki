@@ -18,8 +18,8 @@ _MSL_BEGIN_NAMESPACE_STD   /*- cc 010409 -*/
 
     typedef wchar_t wctrans_t;
 
-_MSL_IMP_EXP_C wint_t    towctrans(wint_t, wctrans_t);
-_MSL_IMP_EXP_C wctrans_t wctrans(const char*);
+_MSL_IMP_EXP_C wint_t    towctrans (wint_t, wctrans_t);
+_MSL_IMP_EXP_C wctrans_t wctrans (const char*);
 
 _MSL_END_EXTERN_C          /*- cc 010409 -*/
     _MSL_END_NAMESPACE_STD /*- cc 010409 -*/

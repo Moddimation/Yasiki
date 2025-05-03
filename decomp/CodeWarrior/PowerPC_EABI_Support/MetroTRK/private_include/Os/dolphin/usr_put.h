@@ -6,7 +6,7 @@ extern "C"
 {
 #endif
 
-void usr_put_initialize(void);
+void usr_put_initialize (void);
 
 #ifdef __cplusplus
 }

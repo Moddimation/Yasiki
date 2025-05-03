@@ -8,7 +8,7 @@ extern "C"
 {
 #endif
 
-void TRK_flush_cache(void* param_1, int param_2);
+void TRK_flush_cache (void* param_1, int param_2);
 
 #ifdef __cplusplus
 }

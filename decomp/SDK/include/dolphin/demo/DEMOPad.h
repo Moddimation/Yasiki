@@ -19,7 +19,7 @@ extern DEMODMPad DemoPad[4];
 
 extern u32 DemoNumValidPads;
 
-void DEMOPadRead();
-void DEMOPadInit();
+void DEMOPadRead ();
+void DEMOPadInit ();
 
 #endif                               // _DOLPHIN_DEMOPAD_H_

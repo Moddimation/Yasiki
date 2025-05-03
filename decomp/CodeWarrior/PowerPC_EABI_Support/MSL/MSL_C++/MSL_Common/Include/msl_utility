@@ -158,13 +158,13 @@ of the pair. alloc_ptr        - auto_ptr on steroids
 #ifndef _MSL_NO_CPP_NAMESPACE
 namespace std
 {
-template <class T> void swap(T&, T&);
+template <class T> void swap (T&, T&);
 }
 
 namespace Metrowerks
 {
 #else
-template <class T> void swap(T&, T&);
+template <class T> void swap (T&, T&);
 #ifndef Metrowerks
 #define Metrowerks
 #endif
@@ -173,7 +173,7 @@ template <class T> void swap(T&, T&);
 template <bool b> struct compile_assert;
 template <> struct compile_assert<true>
 {
-    compile_assert() {}
+    compile_assert () {}
 };
 // remove_const
 
@@ -304,7 +304,7 @@ template <class T> struct is_volatile
 
 template <class T> struct is_signed
 {
-    static const bool value = T(-1) < T(0);
+    static const bool value = T (-1) < T (0);
 };
 template <class T> struct is_unsigned
 {
@@ -481,15 +481,15 @@ template <class T, class U> struct is_member_pointer_imp<U T::*>
 #if defined(__MWERKS__) && __MWERKS__ >= 0x2500
 template <class T> struct is_enum_imp
 {
-    static const bool value = __builtin_type(T) == 0x403;
+    static const bool value = __builtin_type (T) == 0x403;
 };
 template <class T> struct is_union_imp
 {
-    static const bool value = __builtin_type(T) == 0x2001;
+    static const bool value = __builtin_type (T) == 0x2001;
 };
 template <class T> struct is_function_imp
 {
-    static const bool value = __builtin_type(T) == 0x8000;
+    static const bool value = __builtin_type (T) == 0x8000;
 };
 #else
 template <class T> struct is_enum_imp
@@ -806,7 +806,8 @@ namespace details
 {
 template <class T,
           bool PassByValue = has_trivial_copy_ctor<T>::value &&
-                                 sizeof(T) <= sizeof(void*) && !is_array<T>::value ||
+                                 sizeof (T) <= sizeof (void*) &&
+                                 !is_array<T>::value ||
                              is_arithmetic<T>::value,
           bool IsReference = is_reference<T>::value,
           bool IsArray = is_array<T>::value>
@@ -895,7 +896,7 @@ template <class T> struct call_traits
 {
 private:
     static const bool PassByValue = has_trivial_copy_ctor<T>::value &&
-                                        sizeof(T) <= sizeof(void*) &&
+                                        sizeof (T) <= sizeof (void*) &&
                                         !is_array<T>::value ||
                                     is_arithmetic<T>::value;
     static const bool IsReference = is_reference<T>::value;
@@ -922,13 +923,13 @@ namespace details
 template <class T, bool b = is_class<T>::value> struct is_empty1 : T
 {
     double d_;
-    is_empty1();
+    is_empty1 ();
 };
 template <class T> struct is_empty1<T, false>
 {
     T      t_;
     double d_;
-    is_empty1();
+    is_empty1 ();
 };
 struct is_empty2
 {
@@ -938,7 +939,7 @@ struct is_empty2
 template <class T> struct is_empty
 {
     static const bool value =
-        sizeof(details::is_empty1<T>) == sizeof(details::is_empty2);
+        sizeof (details::is_empty1<T>) == sizeof (details::is_empty2);
 };
 // compressed_pair
 
@@ -955,11 +956,12 @@ namespace details
 
 #endif
 
-template <
-    class T1, class T2,
-    bool IsSame =
-        is_same<typename remove_cv<T1>::type, typename remove_cv<T2>::type>::value,
-    bool FirstEmpty = is_empty<T1>::value, bool SecondEmpty = is_empty<T2>::value>
+template <class T1,
+          class T2,
+          bool IsSame = is_same<typename remove_cv<T1>::type,
+                                typename remove_cv<T2>::type>::value,
+          bool FirstEmpty = is_empty<T1>::value,
+          bool SecondEmpty = is_empty<T2>::value>
 struct compressed_pair_switch;
 template <class T1, class T2>
 struct compressed_pair_switch<T1, T2, false, true, true>
@@ -1001,39 +1003,39 @@ public:
     typedef typename call_traits<first_type>::const_reference first_const_reference;
     typedef
         typename call_traits<second_type>::const_reference second_const_reference;
-    compressed_pair_imp() {}
-    compressed_pair_imp(first_param_type x, second_param_type y)
-      : first_(x), second_(y)
+    compressed_pair_imp () {}
+    compressed_pair_imp (first_param_type x, second_param_type y)
+      : first_ (x), second_ (y)
     {
     }
-    explicit compressed_pair_imp(first_param_type x) : first_(x) {}
-    explicit compressed_pair_imp(second_param_type y) : second_(y) {}
+    explicit compressed_pair_imp (first_param_type x) : first_ (x) {}
+    explicit compressed_pair_imp (second_param_type y) : second_ (y) {}
     first_reference
-    first()
+    first ()
     {
         return first_;
     }
     first_const_reference
-    first() const
+    first () const
     {
         return first_;
     }
     second_reference
-    second()
+    second ()
     {
         return second_;
     }
     second_const_reference
-    second() const
+    second () const
     {
         return second_;
     }
     void
-    swap(compressed_pair_imp& y)
+    swap (compressed_pair_imp& y)
     {
         using _STD::swap;
-        swap(first_, y.first_);
-        swap(second_, y.second_);
+        swap (first_, y.first_);
+        swap (second_, y.second_);
     }
 
 private:
@@ -1054,38 +1056,38 @@ public:
     typedef typename call_traits<first_type>::const_reference first_const_reference;
     typedef
         typename call_traits<second_type>::const_reference second_const_reference;
-    compressed_pair_imp() {}
-    compressed_pair_imp(first_param_type x, second_param_type y)
-      : first_type(x), second_(y)
+    compressed_pair_imp () {}
+    compressed_pair_imp (first_param_type x, second_param_type y)
+      : first_type (x), second_ (y)
     {
     }
-    explicit compressed_pair_imp(first_param_type x) : first_type(x) {}
-    explicit compressed_pair_imp(second_param_type y) : second_(y) {}
+    explicit compressed_pair_imp (first_param_type x) : first_type (x) {}
+    explicit compressed_pair_imp (second_param_type y) : second_ (y) {}
     first_reference
-    first()
+    first ()
     {
         return *this;
     }
     first_const_reference
-    first() const
+    first () const
     {
         return *this;
     }
     second_reference
-    second()
+    second ()
     {
         return second_;
     }
     second_const_reference
-    second() const
+    second () const
     {
         return second_;
     }
     void
-    swap(compressed_pair_imp& y)
+    swap (compressed_pair_imp& y)
     {
         using _STD::swap;
-        swap(second_, y.second_);
+        swap (second_, y.second_);
     }
 
 private:
@@ -1105,38 +1107,38 @@ public:
     typedef typename call_traits<first_type>::const_reference first_const_reference;
     typedef
         typename call_traits<second_type>::const_reference second_const_reference;
-    compressed_pair_imp() {}
-    compressed_pair_imp(first_param_type x, second_param_type y)
-      : first_(x), second_type(y)
+    compressed_pair_imp () {}
+    compressed_pair_imp (first_param_type x, second_param_type y)
+      : first_ (x), second_type (y)
     {
     }
-    explicit compressed_pair_imp(first_param_type x) : first_(x) {}
-    explicit compressed_pair_imp(second_param_type y) : second_type(y) {}
+    explicit compressed_pair_imp (first_param_type x) : first_ (x) {}
+    explicit compressed_pair_imp (second_param_type y) : second_type (y) {}
     first_reference
-    first()
+    first ()
     {
         return first_;
     }
     first_const_reference
-    first() const
+    first () const
     {
         return first_;
     }
     second_reference
-    second()
+    second ()
     {
         return *this;
     }
     second_const_reference
-    second() const
+    second () const
     {
         return *this;
     }
     void
-    swap(compressed_pair_imp& y)
+    swap (compressed_pair_imp& y)
     {
         using _STD::swap;
-        swap(first_, y.first_);
+        swap (first_, y.first_);
     }
 
 private:
@@ -1157,35 +1159,35 @@ public:
     typedef typename call_traits<first_type>::const_reference first_const_reference;
     typedef
         typename call_traits<second_type>::const_reference second_const_reference;
-    compressed_pair_imp() {}
-    compressed_pair_imp(first_param_type x, second_param_type y)
-      : first_type(x), second_type(y)
+    compressed_pair_imp () {}
+    compressed_pair_imp (first_param_type x, second_param_type y)
+      : first_type (x), second_type (y)
     {
     }
-    explicit compressed_pair_imp(first_param_type x) : first_type(x) {}
-    explicit compressed_pair_imp(second_param_type y) : second_type(y) {}
+    explicit compressed_pair_imp (first_param_type x) : first_type (x) {}
+    explicit compressed_pair_imp (second_param_type y) : second_type (y) {}
     first_reference
-    first()
+    first ()
     {
         return *this;
     }
     first_const_reference
-    first() const
+    first () const
     {
         return *this;
     }
     second_reference
-    second()
+    second ()
     {
         return *this;
     }
     second_const_reference
-    second() const
+    second () const
     {
         return *this;
     }
     void
-    swap(compressed_pair_imp&)
+    swap (compressed_pair_imp&)
     {
     }
 };
@@ -1195,13 +1197,14 @@ public:
 
 #endif
 template <class T1, class T2>
-class compressed_pair : private details::compressed_pair_imp<
-                            T1, T2, details::compressed_pair_switch<T1, T2>::value>
+class compressed_pair
+  : private details::
+        compressed_pair_imp<T1, T2, details::compressed_pair_switch<T1, T2>::value>
 {
 private:
-    typedef details::compressed_pair_imp<
-        T1, T2, details::compressed_pair_switch<T1, T2>::value>
-        base;
+    typedef details::
+        compressed_pair_imp<T1, T2, details::compressed_pair_switch<T1, T2>::value>
+            base;
 
 public:
     typedef T1                                                first_type;
@@ -1213,33 +1216,33 @@ public:
     typedef typename call_traits<first_type>::const_reference first_const_reference;
     typedef
         typename call_traits<second_type>::const_reference second_const_reference;
-    compressed_pair() {}
-    compressed_pair(first_param_type x, second_param_type y) : base(x, y) {}
-    explicit compressed_pair(first_param_type x) : base(x) {}
-    explicit compressed_pair(second_param_type y) : base(y) {}
+    compressed_pair () {}
+    compressed_pair (first_param_type x, second_param_type y) : base (x, y) {}
+    explicit compressed_pair (first_param_type x) : base (x) {}
+    explicit compressed_pair (second_param_type y) : base (y) {}
     template <class U, class V>
-    compressed_pair(const compressed_pair<U, V>& p) : base(p.first(), p.second())
+    compressed_pair (const compressed_pair<U, V>& p) : base (p.first(), p.second())
     {
     }
     using base::first;
     using base::second;
     void
-    swap(compressed_pair& x)
+    swap (compressed_pair& x)
     {
-        base::swap(x);
+        base::swap (x);
     }
 };
 template <class T1, class T2>
 inline void
-swap(compressed_pair<T1, T2>& x, compressed_pair<T1, T2>& y)
+swap (compressed_pair<T1, T2>& x, compressed_pair<T1, T2>& y)
 {
-    x.swap(y);
+    x.swap (y);
 }
 // number
 
 template <class Size, Size sz> struct number
 {
-    operator Size() const { return sz; }
+    operator Size () const { return sz; }
 };
 // deleter's
 
@@ -1255,10 +1258,10 @@ template <class T> struct single_deleter
     {
         typedef single_deleter<U> other;
     };
-    single_deleter() {}
-    template <class U> single_deleter(const single_deleter<U>&) {}
+    single_deleter () {}
+    template <class U> single_deleter (const single_deleter<U>&) {}
     void
-    deallocate(pointer p, size_type)
+    deallocate (pointer p, size_type)
     {
         delete p;
     }
@@ -1276,7 +1279,7 @@ template <class T> struct array_deleter
         typedef array_deleter<T> other;
     };
     void
-    deallocate(pointer p, size_type)
+    deallocate (pointer p, size_type)
     {
         delete[] p;
     }
@@ -1284,7 +1287,8 @@ template <class T> struct array_deleter
 
 // alloc_ptr
 
-template <class T, class Allocator = single_deleter<T>,
+template <class T,
+          class Allocator = single_deleter<T>,
           class Size =
               number<typename call_traits<Allocator>::value_type::size_type, 1> >
 class alloc_ptr;
@@ -1306,22 +1310,22 @@ private:
     typedef compressed_pair<Size, pointer> inner_pair;
 
 public:
-    alloc_ptr_ref(pointer p, allocator_param_type alloc, Size sz)
-      : ptr_(alloc, inner_pair(sz, p))
+    alloc_ptr_ref (pointer p, allocator_param_type alloc, Size sz)
+      : ptr_ (alloc, inner_pair (sz, p))
     {
     }
     pointer
-    release()
+    release ()
     {
         return ptr_.second().second();
     }
     allocator_reference
-    allocator()
+    allocator ()
     {
         return ptr_.first();
     }
     Size&
-    get_size()
+    get_size ()
     {
         return ptr_.second().first();
     }
@@ -1350,41 +1354,42 @@ private:
     typedef compressed_pair<Size, pointer> inner_pair;
 
 public:
-    explicit alloc_ptr(pointer p = 0) : ptr_(allocator_type(), inner_pair(Size(), p))
+    explicit alloc_ptr (pointer p = 0)
+      : ptr_ (allocator_type(), inner_pair (Size(), p))
     {
     }
-    alloc_ptr(pointer p, allocator_param_type alloc, Size sz = Size())
-      : ptr_(alloc, inner_pair(sz, p))
+    alloc_ptr (pointer p, allocator_param_type alloc, Size sz = Size())
+      : ptr_ (alloc, inner_pair (sz, p))
     {
     }
-    alloc_ptr(alloc_ptr& x) : ptr_(x.ptr_) { x.release(); }
+    alloc_ptr (alloc_ptr& x) : ptr_ (x.ptr_) { x.release(); }
     template <class U>
-    alloc_ptr(alloc_ptr<U, typename allocator_type::rebind<U>::other, Size>& x)
-      : ptr_(allocator_type(x.allocator()), inner_pair(x.get_size(), x.release()))
+    alloc_ptr (alloc_ptr<U, typename allocator_type::rebind<U>::other, Size>& x)
+      : ptr_ (allocator_type (x.allocator()), inner_pair (x.get_size(), x.release()))
     {
     }
-    ÃÂ¢ÃÂÃÂ¾alloc_ptr()
+    ÃÂ¢ÃÂÃÂ¾alloc_ptr ()
     {
         if (get() != 0)
         {
-            allocator().deallocate(get(), capacity());
+            allocator().deallocate (get(), capacity());
         }
     }
     alloc_ptr&
-    operator=(alloc_ptr& x)
+    operator= (alloc_ptr& x)
     {
-        reset(x.release(), x.get_size());
+        reset (x.release(), x.get_size());
         return *this;
     }
     template <class U>
     alloc_ptr&
-    operator=(alloc_ptr<U, typename allocator_type::rebind<U>::other, Size>& x)
+    operator= (alloc_ptr<U, typename allocator_type::rebind<U>::other, Size>& x)
     {
-        reset(x.release(), x.get_size());
+        reset (x.release(), x.get_size());
         return *this;
     }
     reference
-    operator*() const
+    operator* () const
     {
         return *get();
     }
@@ -1394,94 +1399,94 @@ public:
         return get();
     }
     reference
-    operator[](size_type n)
+    operator[] (size_type n)
     {
         return *(get() + n);
     }
     const_reference
-    operator[](size_type n) const
+    operator[] (size_type n) const
     {
         return *(get() + n);
     }
     pointer
-    get() const
+    get () const
     {
         return ptr_.second().second();
     }
     pointer
-    release()
+    release ()
     {
         pointer p = get();
         ptr_.second().second() = 0;
         return p;
     }
     void
-    reset(pointer p = 0)
+    reset (pointer p = 0)
     {
         if (get() != p)
         {
-            allocator().deallocate(get(), capacity());
+            allocator().deallocate (get(), capacity());
             ptr_.second().second() = p;
         }
     }
     void
-    reset(pointer p, Size size)
+    reset (pointer p, Size size)
     {
         if (get() != p)
         {
-            allocator().deallocate(get(), capacity());
+            allocator().deallocate (get(), capacity());
             ptr_.second().second() = p;
             ptr_.second().first() = size;
         }
     }
-    alloc_ptr(alloc_ptr_ref<T, Allocator, Size> r)
-      : ptr_(r.allocator(), inner_pair(r.get_size(), r.release()))
+    alloc_ptr (alloc_ptr_ref<T, Allocator, Size> r)
+      : ptr_ (r.allocator(), inner_pair (r.get_size(), r.release()))
     {
     }
     alloc_ptr&
-    operator=(alloc_ptr_ref<T, Allocator, Size> r)
+    operator= (alloc_ptr_ref<T, Allocator, Size> r)
     {
-        reset(r.release(), r.get_size());
+        reset (r.release(), r.get_size());
         return *this;
     }
 #if !defined(__MWERKS__) || __MWERKS__ >= 0x2400
     template <class U>
-    operator alloc_ptr_ref<U, typename allocator_type::rebind<U>::other, Size>()
+    operator alloc_ptr_ref<U, typename allocator_type::rebind<U>::other, Size> ()
     {
-        return alloc_ptr_ref<U, typename allocator_type::rebind<U>::other, Size>(
+        return alloc_ptr_ref<U, typename allocator_type::rebind<U>::other, Size> (
             release(), allocator(), get_size());
     }
     template <class U>
-    operator alloc_ptr<U, typename allocator_type::rebind<U>::other, Size>()
+    operator alloc_ptr<U, typename allocator_type::rebind<U>::other, Size> ()
     {
-        return alloc_ptr<U, typename allocator_type::rebind<U>::other, Size>(
+        return alloc_ptr<U, typename allocator_type::rebind<U>::other, Size> (
             release(), allocator(), get_size());
     }
 #endif
     allocator_reference
-    allocator()
+    allocator ()
     {
         return ptr_.first();
     }
     allocator_const_reference
-    allocator() const
+    allocator () const
     {
         return ptr_.first();
     }
     Size&
-    get_size()
+    get_size ()
     {
         return ptr_.second().first();
     }
     size_type
-    capacity() const
+    capacity () const
     {
-        return static_cast<size_type>(ptr_.second().first());
+        return static_cast<size_type> (ptr_.second().first());
     }
     void
-    swap(alloc_ptr& y)
+    swap (alloc_ptr& y)
     {
-        ptr_.swap(y.ptr_);
+        ptr_.swap (y.ptr_);
     }
 
 private:
@@ -1489,9 +1494,9 @@ private:
 };
 template <class T, class Allocator, class Size>
 inline void
-swap(alloc_ptr<T, Allocator, Size>& x, alloc_ptr<T, Allocator, Size>& y)
+swap (alloc_ptr<T, Allocator, Size>& x, alloc_ptr<T, Allocator, Size>& y)
 {
-    x.swap(y);
+    x.swap (y);
 }
 #ifndef __GNUC__
 // Needed because of the destructive copy constructor

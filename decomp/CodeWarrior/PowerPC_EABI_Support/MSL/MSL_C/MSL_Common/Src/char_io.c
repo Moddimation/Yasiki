@@ -38,12 +38,12 @@
 
 #include "ansi_files.h"
 #include "buffer_io.h"
-#include "critical_regions.h"              /*- mm 001013 -*/
+#include "critical_regions.h"               /*- mm 001013 -*/
 #include "misc_io.h"
 
 #if !defined(_Old_DSP_IO_Interface)
 int
-__get_char(FILE* file)
+__get_char (FILE* file)
 {
     int state, ioresult;
 
@@ -58,7 +58,7 @@ __get_char(FILE* file)
 
     if (state == __writing || !(file->mode.io_mode & __read))
     {
-        set_error(file);
+        set_error (file);
         return (EOF);
     }
 
@@ -78,17 +78,17 @@ __get_char(FILE* file)
         file->state.io_state = __reading;
     }
 
-    ioresult = __load_buffer(file, NULL, __align_buffer);
+    ioresult = __load_buffer (file, NULL, __align_buffer);
 
     if (ioresult || !file->buffer_len)
     {
         if (ioresult == __io_error)
         {
-            set_error(file);
+            set_error (file);
         }
         else
         {
-            set_eof(file);
+            set_eof (file);
         }
 
         return (EOF);
@@ -98,36 +98,36 @@ __get_char(FILE* file)
 
     return (*file->buffer_ptr++);
 }
-#endif                                     /* __get_char conditionals */
+#endif                                      /* __get_char conditionals */
 int
-fgetc(FILE* file)
+fgetc (FILE* file)
 {
-    int retval;                            /*- mm 001013 -*/
-    __begin_critical_region(files_access); /*- mm 001013 -*/
-    retval = getc(file);                   /*- mm 001013 -*/
-    __end_critical_region(files_access);   /*- mm 001013 -*/
-    return (retval);                       /*- mm 001013 -*/
+    int retval;                             /*- mm 001013 -*/
+    __begin_critical_region (files_access); /*- mm 001013 -*/
+    retval = getc (file);                   /*- mm 001013 -*/
+    __end_critical_region (files_access);   /*- mm 001013 -*/
+    return (retval);                        /*- mm 001013 -*/
 }
-int(getc)(FILE* file)
+int (getc) (FILE* file)
 {
-    int retval;                            /*- mm 001013 -*/
-    __begin_critical_region(files_access); /*- mm 001013 -*/
-    retval = getc(file);                   /*- mm 001013 -*/
-    __end_critical_region(files_access);   /*- mm 001013 -*/
-    return (retval);                       /*- mm 001013 -*/
+    int retval;                             /*- mm 001013 -*/
+    __begin_critical_region (files_access); /*- mm 001013 -*/
+    retval = getc (file);                   /*- mm 001013 -*/
+    __end_critical_region (files_access);   /*- mm 001013 -*/
+    return (retval);                        /*- mm 001013 -*/
 }
 #if !defined(_Old_DSP_IO_Interface)
-int(getchar)(void)
+int (getchar) (void)
 {
-    int retval;                            /*- mm 001013 -*/
-    __begin_critical_region(files_access); /*- mm 001013 -*/
-    retval = getchar();                    /*- mm 001013 -*/
-    __end_critical_region(files_access);   /*- mm 001013 -*/
-    return (retval);                       /*- mm 001013 -*/
+    int retval;                             /*- mm 001013 -*/
+    __begin_critical_region (files_access); /*- mm 001013 -*/
+    retval = getchar();                     /*- mm 001013 -*/
+    __end_critical_region (files_access);   /*- mm 001013 -*/
+    return (retval);                        /*- mm 001013 -*/
 }
-#endif                                     /* getchar conditionals */
+#endif                                      /* getchar conditionals */
 char*
-fgets(char* s, int n, FILE* file)
+fgets (char* s, int n, FILE* file)
 {
     char* p = s;
     int   c;
@@ -136,12 +136,12 @@ fgets(char* s, int n, FILE* file)
     {
         return (NULL);
     }
-    __begin_critical_region(files_access); /*- mm 001013 -*/
+    __begin_critical_region (files_access); /*- mm 001013 -*/
 
     if (n)
     {
         do {
-            c = getc(file);
+            c = getc (file);
 
             if (c == EOF)
             {
@@ -151,7 +151,7 @@ fgets(char* s, int n, FILE* file)
                 }
                 else
                 {
-                    __end_critical_region(files_access); /*- mm 001013 -*/
+                    __end_critical_region (files_access); /*- mm 001013 -*/
                     return (NULL);
                 }
             }
@@ -160,23 +160,23 @@ fgets(char* s, int n, FILE* file)
         }
         while (c != '\n' && --n);
     }
-    __end_critical_region(files_access);                 /*- mm 001013 -*/
+    __end_critical_region (files_access);                 /*- mm 001013 -*/
 
     *p = 0;
 
     return (s);
 }
 char*
-gets(char* s)
+gets (char* s)
 {
     char* p = s;
     int   c;
     FILE* file = stdin;
-    __begin_critical_region(files_access);               /*- mm 001013 -*/
+    __begin_critical_region (files_access);               /*- mm 001013 -*/
 
     for (;;)
     {
-        c = getc(file);
+        c = getc (file);
 
         if (c == EOF)
         {
@@ -186,7 +186,7 @@ gets(char* s)
             }
             else
             {
-                __end_critical_region(files_access);     /*- mm 001013 -*/
+                __end_critical_region (files_access);     /*- mm 001013 -*/
                 return (NULL);
             }
         }
@@ -198,7 +198,7 @@ gets(char* s)
 
         *p++ = c;
     }
-    __end_critical_region(files_access);                 /*- mm 001013 -*/
+    __end_critical_region (files_access);                 /*- mm 001013 -*/
 
     *p = 0;
 
@@ -206,23 +206,23 @@ gets(char* s)
 }
 #if !defined(_Old_DSP_IO_Interface)
 int
-ungetc(int c, FILE* file)
+ungetc (int c, FILE* file)
 {
     int state = file->state.io_state;
 
-#ifndef __NO_WIDE_CHAR                                   /*- mm 980205 -*/
-    if (fwide(file, -1) >= 0)
+#ifndef __NO_WIDE_CHAR                                    /*- mm 980205 -*/
+    if (fwide (file, -1) >= 0)
     {
         return (EOF);
     }
-#endif /* __NO_WIDE_CHAR */                              /*- mm 980205 -*/
+#endif /* __NO_WIDE_CHAR */                               /*- mm 980205 -*/
 
     if (state == __writing || state == __rereading + __ungetc_buffer_size - 1 ||
         c == EOF)
     {
         return (EOF);
     }
-    __begin_critical_region(files_access);               /*- mm 001013 -*/
+    __begin_critical_region (files_access);               /*- mm 001013 -*/
 
     if (state < __rereading)
     {
@@ -239,13 +239,13 @@ ungetc(int c, FILE* file)
     file->ungetc_buffer[state - __rereading] = c;
 
     file->state.eof = 0;
-    __end_critical_region(files_access);                 /*- mm 001013 -*/
+    __end_critical_region (files_access);                 /*- mm 001013 -*/
 
     return ((unsigned char)c);
 }
-#endif                                                   /* ungetc conditionals */
+#endif                                                    /* ungetc conditionals */
 int
-__ungotten(FILE* file)
+__ungotten (FILE* file)
 {
     if (file->state.io_state < __rereading)
     {
@@ -256,7 +256,7 @@ __ungotten(FILE* file)
 }
 #if !defined(_Old_DSP_IO_Interface)
 int
-__put_char(int c, FILE* file)
+__put_char (int c, FILE* file)
 {
     int kind = file->mode.file_kind;
 
@@ -279,7 +279,7 @@ __put_char(int c, FILE* file)
 #ifndef _No_Disk_File_OS_Support
             if (file->mode.io_mode & __append)
             {
-                if (fseek(file, 0, SEEK_END))
+                if (fseek (file, 0, SEEK_END))
                 {
                     return (0);
                 }
@@ -288,22 +288,22 @@ __put_char(int c, FILE* file)
 
             file->state.io_state = __writing;
 
-            __prep_buffer(file);
+            __prep_buffer (file);
         }
     }
 
     if (file->state.io_state != __writing)
     {
-        set_error(file);
+        set_error (file);
         return (EOF);
     }
 
     if (file->mode.buffer_mode == _IOFBF ||
         file->buffer_ptr - file->buffer == file->buffer_size)
     {
-        if (__flush_buffer(file, NULL))
+        if (__flush_buffer (file, NULL))
         {
-            set_error(file);
+            set_error (file);
             return (EOF);
         }
     }
@@ -315,9 +315,9 @@ __put_char(int c, FILE* file)
     {
         if ((file->mode.buffer_mode == _IONBF || c == '\n'))
         {
-            if (__flush_buffer(file, NULL))
+            if (__flush_buffer (file, NULL))
             {
-                set_error(file);
+                set_error (file);
                 return (EOF);
             }
         }
@@ -327,74 +327,74 @@ __put_char(int c, FILE* file)
 
     return ((unsigned char)c);
 }
-#endif                                     /* __put_char conditionals */
+#endif                                      /* __put_char conditionals */
 int
-fputc(int c, FILE* file)
+fputc (int c, FILE* file)
 {
-    int retval;                            /*- mm 001013 -*/
-    __begin_critical_region(files_access); /*- mm 001013 -*/
-    retval = putc(c, file);                /*- mm 001013 -*/
-    __end_critical_region(files_access);   /*- mm 001013 -*/
-    return (retval);                       /*- mm 001013 -*/
+    int retval;                             /*- mm 001013 -*/
+    __begin_critical_region (files_access); /*- mm 001013 -*/
+    retval = putc (c, file);                /*- mm 001013 -*/
+    __end_critical_region (files_access);   /*- mm 001013 -*/
+    return (retval);                        /*- mm 001013 -*/
 }
-int(putc)(int c, FILE* file)
+int (putc) (int c, FILE* file)
 {
-    int retval;                            /*- mm 001013 -*/
-    __begin_critical_region(files_access); /*- mm 001013 -*/
-    retval = putc(c, file);                /*- mm 001013 -*/
-    __end_critical_region(files_access);   /*- mm 001013 -*/
-    return (retval);                       /*- mm 001013 -*/
+    int retval;                             /*- mm 001013 -*/
+    __begin_critical_region (files_access); /*- mm 001013 -*/
+    retval = putc (c, file);                /*- mm 001013 -*/
+    __end_critical_region (files_access);   /*- mm 001013 -*/
+    return (retval);                        /*- mm 001013 -*/
 }
 #if !defined(_Old_DSP_IO_Interface)
-int(putchar)(int c)
+int (putchar) (int c)
 {
-    int retval;                            /*- mm 001013 -*/
-    __begin_critical_region(files_access); /*- mm 001013 -*/
-    retval = putchar(c);                   /*- mm 001013 -*/
-    __end_critical_region(files_access);   /*- mm 001013 -*/
-    return (retval);                       /*- mm 001013 -*/
+    int retval;                             /*- mm 001013 -*/
+    __begin_critical_region (files_access); /*- mm 001013 -*/
+    retval = putchar (c);                   /*- mm 001013 -*/
+    __end_critical_region (files_access);   /*- mm 001013 -*/
+    return (retval);                        /*- mm 001013 -*/
 }
-#endif                                     /* putchar conditionals */
+#endif                                      /* putchar conditionals */
 int
-fputs(const char* s, FILE* file)
+fputs (const char* s, FILE* file)
 {
     int c;
-    int retval = 0;                        /*- mm 001013 -*/
-    __begin_critical_region(files_access); /*- mm 001013 -*/
+    int retval = 0;                         /*- mm 001013 -*/
+    __begin_critical_region (files_access); /*- mm 001013 -*/
     while ((c = *s++) != 0)
     {
-        if (putc(c, file) == EOF)
+        if (putc (c, file) == EOF)
         {
-            retval = EOF;                  /*- mm 001013 -*/
-            break;                         /*- mm 001013 -*/
+            retval = EOF;                   /*- mm 001013 -*/
+            break;                          /*- mm 001013 -*/
         }
     }
-    __end_critical_region(files_access);   /*- mm 001013 -*/
-    return (retval);                       /*- mm 001013 -*/
+    __end_critical_region (files_access);   /*- mm 001013 -*/
+    return (retval);                        /*- mm 001013 -*/
 }
 int
-puts(const char* s)
+puts (const char* s)
 {
     int   c;
-    int   retval = 0;                      /*- mm 001013 -*/
+    int   retval = 0;                       /*- mm 001013 -*/
     FILE* file = stdout;
 
-    __begin_critical_region(files_access); /*- mm 001013 -*/
+    __begin_critical_region (files_access); /*- mm 001013 -*/
     while ((c = *s++) != 0)
     {
-        if (putc(c, file) == EOF)
+        if (putc (c, file) == EOF)
         {
-            retval = EOF;                  /*- mm 001013 -*/
-            break;                         /*- mm 001013 -*/
+            retval = EOF;                   /*- mm 001013 -*/
+            break;                          /*- mm 001013 -*/
         }
     }
-    if (retval != EOF)                     /*- mm 001013 -*/
+    if (retval != EOF)                      /*- mm 001013 -*/
     {
-        retval = putc('\n', file);         /*- mm 001013 -*/
+        retval = putc ('\n', file);         /*- mm 001013 -*/
     }
 
-    __end_critical_region(files_access);   /*- mm 001013 -*/
-    return (retval);                       /*- mm 001013 -*/
+    __end_critical_region (files_access);   /*- mm 001013 -*/
+    return (retval);                        /*- mm 001013 -*/
 }
 /* Change record:
  * JFH 950908 First code release.

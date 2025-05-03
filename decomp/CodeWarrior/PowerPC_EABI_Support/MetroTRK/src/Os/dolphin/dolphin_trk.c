@@ -28,13 +28,13 @@ static u32 TRK_ISR_OFFSETS[15] = { PPC_SystemReset,
                                    PPC_InstructionAddressBreakpoint,
                                    PPC_SystemManagementInterrupt,
                                    PPC_ThermalManagementInterrupt };
-__declspec(section ".init") void
-__TRK_reset(void)
+__declspec (section ".init") void
+__TRK_reset (void)
 {
     __TRK_copy_vectors();
 }
 asm void
-InitMetroTRK()
+InitMetroTRK ()
 {
 #ifdef __MWERKS__ // clang-format off
 	nofralloc
@@ -96,12 +96,12 @@ initCommTableSuccess:
 #endif // clang-format on
 }
 void
-EnableMetroTRKInterrupts(void)
+EnableMetroTRKInterrupts (void)
 {
     EnableEXI2Interrupts();
 }
 u32
-TRKTargetTranslate(u32 param_0)
+TRKTargetTranslate (u32 param_0)
 {
     if (param_0 >= lc_base)
     {
@@ -116,30 +116,30 @@ TRKTargetTranslate(u32 param_0)
 }
 extern u8 gTRKInterruptVectorTable[];
 void
-TRK_copy_vector(u32 offset)
+TRK_copy_vector (u32 offset)
 {
-    void* destPtr = (void*)TRKTargetTranslate(offset);
-    TRK_memcpy(destPtr, gTRKInterruptVectorTable + offset, 0x100);
-    TRK_flush_cache(destPtr, 0x100);
+    void* destPtr = (void*)TRKTargetTranslate (offset);
+    TRK_memcpy (destPtr, gTRKInterruptVectorTable + offset, 0x100);
+    TRK_flush_cache (destPtr, 0x100);
 }
 void
-__TRK_copy_vectors(void)
+__TRK_copy_vectors (void)
 {
     int i;
     u32 mask;
 
-    mask = *(u32*)TRKTargetTranslate(0x44);
+    mask = *(u32*)TRKTargetTranslate (0x44);
 
     for (i = 0; i <= 14; ++i)
     {
         if (mask & (1 << i))
         {
-            TRK_copy_vector(TRK_ISR_OFFSETS[i]);
+            TRK_copy_vector (TRK_ISR_OFFSETS[i]);
         }
     }
 }
 DSError
-TRKInitializeTarget()
+TRKInitializeTarget ()
 {
     gTRKState.isStopped = TRUE;
     gTRKState.msr = __TRK_get_MSR();

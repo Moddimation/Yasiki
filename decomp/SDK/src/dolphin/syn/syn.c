@@ -12,10 +12,10 @@
 struct SYNSYNTH* __SYNSynthList;
 
 // functions
-static void __SYNAddSynthToList(struct SYNSYNTH* synth);
-static void __SYNRemoveSynthFromList(struct SYNSYNTH* synth);
+static void __SYNAddSynthToList (struct SYNSYNTH* synth);
+static void __SYNRemoveSynthFromList (struct SYNSYNTH* synth);
 static void
-__SYNAddSynthToList(struct SYNSYNTH* synth)
+__SYNAddSynthToList (struct SYNSYNTH* synth)
 {
     int old = OSDisableInterrupts();
 
@@ -28,10 +28,10 @@ __SYNAddSynthToList(struct SYNSYNTH* synth)
         synth->next = NULL;
     }
     __SYNSynthList = synth;
-    OSRestoreInterrupts(old);
+    OSRestoreInterrupts (old);
 }
 static void
-__SYNRemoveSynthFromList(struct SYNSYNTH* synth)
+__SYNRemoveSynthFromList (struct SYNSYNTH* synth)
 {
     struct SYNSYNTH* tempList;
     struct SYNSYNTH* tempSynth;
@@ -56,10 +56,10 @@ __SYNRemoveSynthFromList(struct SYNSYNTH* synth)
         }
     }
     __SYNSynthList = tempList;
-    OSRestoreInterrupts(old);
+    OSRestoreInterrupts (old);
 }
 void
-SYNInit()
+SYNInit ()
 {
     int i;
 
@@ -70,36 +70,40 @@ SYNInit()
     __SYNSynthList = NULL;
 }
 void
-SYNQuit()
+SYNQuit ()
 {
     SYNInit();
 }
 void
-SYNRunAudioFrame()
+SYNRunAudioFrame ()
 {
     int              i;
     struct SYNSYNTH* synth;
 
     for (i = 0; i < 64; i++)
     {
-        __SYNServiceVoice(i);
+        __SYNServiceVoice (i);
     }
     for (synth = __SYNSynthList; synth; synth = synth->next)
     {
-        __SYNRunInputBufferEvents(synth);
+        __SYNRunInputBufferEvents (synth);
     }
 }
 void
-SYNInitSynth(struct SYNSYNTH* synth, void* wavetable, u32 aramBase,
-             u32 priorityVoiceAlloc, u32 priorityNoteOn, u32 priorityNoteRelease)
+SYNInitSynth (struct SYNSYNTH* synth,
+              void*            wavetable,
+              u32              aramBase,
+              u32              priorityVoiceAlloc,
+              u32              priorityNoteOn,
+              u32              priorityNoteRelease)
 {
     u32* p;
     u32  midiChannel;
     u32  noteNumber;
 
-    ASSERTLINE(0x84, synth);
-    ASSERTLINE(0x85, wavetable);
-    ASSERTLINE(0x86, aramBase);
+    ASSERTLINE (0x84, synth);
+    ASSERTLINE (0x85, wavetable);
+    ASSERTLINE (0x86, aramBase);
     p = wavetable;
     synth->percussiveInst = (void*)((u32)wavetable + *(p));
     p += 1;
@@ -120,7 +124,7 @@ SYNInitSynth(struct SYNSYNTH* synth, void* wavetable, u32 aramBase,
     synth->priorityNoteOn = priorityNoteOn;
     synth->priorityNoteRelease = priorityNoteRelease;
     synth->masterVolume = 0;
-    __SYNResetAllControllers(synth);
+    __SYNResetAllControllers (synth);
     synth->inputPosition = &synth->input[0][0];
     synth->inputCounter = 0;
     synth->notes = 0;
@@ -138,10 +142,10 @@ SYNInitSynth(struct SYNSYNTH* synth, void* wavetable, u32 aramBase,
             synth->voice[midiChannel][noteNumber] = 0;
         }
     }
-    __SYNAddSynthToList(synth);
+    __SYNAddSynthToList (synth);
 }
 void
-SYNQuitSynth(struct SYNSYNTH* synth)
+SYNQuitSynth (struct SYNSYNTH* synth)
 {
     int              i;
     int              old;
@@ -155,22 +159,22 @@ SYNQuitSynth(struct SYNSYNTH* synth)
             voice = &__SYNVoice[i];
             if (voice->synth == synth)
             {
-                MIXReleaseChannel(voice->axvpb);
-                AXFreeVoice(voice->axvpb);
+                MIXReleaseChannel (voice->axvpb);
+                AXFreeVoice (voice->axvpb);
                 voice->synth = 0;
             }
         }
     }
-    __SYNRemoveSynthFromList(synth);
-    OSRestoreInterrupts(old);
+    __SYNRemoveSynthFromList (synth);
+    OSRestoreInterrupts (old);
 }
 void
-SYNMidiInput(struct SYNSYNTH* synth, u8* input)
+SYNMidiInput (struct SYNSYNTH* synth, u8* input)
 {
     u8* src;
 
-    ASSERTLINE(0xD7, synth);
-    ASSERTLINE(0xD8, input);
+    ASSERTLINE (0xD7, synth);
+    ASSERTLINE (0xD8, input);
     src = input;
     *(synth->inputPosition) = *(src);
     (synth->inputPosition) += 1;
@@ -185,25 +189,27 @@ SYNMidiInput(struct SYNSYNTH* synth, u8* input)
 
     if (synth->inputCounter >= SYN_INPUT_BUFFER_SIZE)
     {
-        ASSERTMSGLINE(0xE5, FALSE,
-                      "synth input buffer exceeded, increase SYN_INPUT_BUFFER_SIZE");
+        ASSERTMSGLINE (
+            0xE5,
+            FALSE,
+            "synth input buffer exceeded, increase SYN_INPUT_BUFFER_SIZE");
     }
 }
 void
-SYNSetMasterVolume(struct SYNSYNTH* synth, s32 dB)
+SYNSetMasterVolume (struct SYNSYNTH* synth, s32 dB)
 {
-    ASSERTLINE(0xEE, synth);
+    ASSERTLINE (0xEE, synth);
     synth->masterVolume = (dB << 0x10);
 }
 s32
-SYNGetMasterVolume(struct SYNSYNTH* synth)
+SYNGetMasterVolume (struct SYNSYNTH* synth)
 {
-    ASSERTLINE(0xF9, synth);
+    ASSERTLINE (0xF9, synth);
     return synth->masterVolume << 0x10;
 }
 u32
-SYNGetActiveNotes(struct SYNSYNTH* synth)
+SYNGetActiveNotes (struct SYNSYNTH* synth)
 {
-    ASSERTLINE(0x104, synth);
+    ASSERTLINE (0x104, synth);
     return synth->notes;
 }

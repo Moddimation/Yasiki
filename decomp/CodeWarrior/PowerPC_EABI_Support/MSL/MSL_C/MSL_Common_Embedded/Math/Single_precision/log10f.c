@@ -6,10 +6,11 @@
 #define __log10_2  0.301029995664f
 #define __sqrt2_m1 .41421356237f
 
-static const float _log10_poly[] = { 0.868588961f, 0.289530878375f, 0.173569242f,
-                                     0.1307240643f };
+static const float _log10_poly[] = {
+    0.868588961f, 0.289530878375f, 0.173569242f, 0.1307240643f
+};
 float
-log10f(float x)
+log10f (float x)
 {
     switch ((*(_INT32*)&x) & 0xff800000)
     {

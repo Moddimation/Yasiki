@@ -46,14 +46,14 @@ __tls static struct lconv public_lconv;                             /*- mm 01050
 __tls static char*        locale_name = "C";                        /*- mm 010503 -*/
 #endif                                                              /*- mm 010503 -*/
 char*
-setlocale(int category, const char* locale)
+setlocale (int category, const char* locale)
 {
-    if (!locale || !strcmp(locale, "C") || !strcmp(locale, ""))
+    if (!locale || !strcmp (locale, "C") || !strcmp (locale, ""))
     {
         if (category >= LC_FIRST && category <= LC_LAST)
 #if (_MWMT && (__dest_os == __win32_os || __dest_os == __wince_os)) /*- mm 010521   \
                                                                        -*/
-            return (_GetThreadLocalData(_MSL_TRUE)->locale_name);
+            return (_GetThreadLocalData (_MSL_TRUE)->locale_name);
         /*- mm 010503 -*/                                           /*- cc 010531 -*/
     }
 #else                                                               /*- mm 010503 -*/
@@ -63,13 +63,13 @@ setlocale(int category, const char* locale)
     return (NULL);
 }
 struct lconv*
-localeconv(void)
+localeconv (void)
 {
 #if (_MWMT && (__dest_os == __win32_os || __dest_os == __wince_os)) /*- mm 010521   \
                                                                        -*/
-    _GetThreadLocalData(_MSL_TRUE)->tls_lconv = &__lconv;
+    _GetThreadLocalData (_MSL_TRUE)->tls_lconv = &__lconv;
     /*- mm 010503 -*/                                               /*- cc 010531 -*/
-    return (_GetThreadLocalData(_MSL_TRUE)->tls_lconv);
+    return (_GetThreadLocalData (_MSL_TRUE)->tls_lconv);
     /*- mm 010503 -*/                                               /*- cc 010531 -*/
 #else                                                               /*- mm 010503 -*/
         public_lconv = __lconv;   /*- mm 010503 -*/

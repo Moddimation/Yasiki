@@ -23,27 +23,27 @@
 #ifndef _MSL_CASSERT
 #define _MSL_CASSERT
 
-_MSL_BEGIN_EXTERN_C                                               /*- cc 010409 -*/
+_MSL_BEGIN_EXTERN_C                                                /*- cc 010409 -*/
 
 #ifdef UNICODE /*-	mm 980724 -*/
     _MSL_IMP_EXP_C void
-    __wchar_assertion_failed(wchar_t const *, char const *, int); /*- mm 990415 -*/
+    __wchar_assertion_failed (wchar_t const *, char const *, int); /*- mm 990415 -*/
 #else
     _MSL_IMP_EXP_C void
-    __assertion_failed(char const *, char const *, int); /*- mm 990415 -*/
+    __assertion_failed (char const *, char const *, int); /*- mm 990415 -*/
 #endif
 
-_MSL_END_EXTERN_C                                                 /*- cc 010409 -*/
+_MSL_END_EXTERN_C                                                  /*- cc 010409 -*/
 
 #endif         /* _MSL_CASSERT */
 
 #ifdef UNICODE /*- mm 980724 -*/
 #define assert(condition)                                                           \
     ((condition) ? ((void)0)                                                        \
-                 : __wchar_assertion_failed(L#condition, __FILE__, __LINE__))
+                 : __wchar_assertion_failed (L#condition, __FILE__, __LINE__))
 #else
 #define assert(condition)                                                           \
-    ((condition) ? ((void)0) : __assertion_failed(#condition, __FILE__, __LINE__))
+    ((condition) ? ((void)0) : __assertion_failed (#condition, __FILE__, __LINE__))
 #endif
 
 #endif         /* def NDEBUG */
@@ -60,7 +60,7 @@ _MSL_END_EXTERN_C                                                 /*- cc 010409 
                 * mm  990415 Inserted const into prototype definitions to avoid warnings when
                 * #pragma const_strings on in force                IL9903-1579                hh
                 * 991112 Removed                namespace support                                JWW
-                * 001208 Added                case for targeting Mach-O                                cc  010405
-                * removed pragma                options align native                and reset                cc                010409 updated
-                * defines to JWW new namespace macros
+                * 001208 Added                case for targeting Mach-O                cc  010405
+                * removed pragma                options align native                and reset                cc
+                * 010409 updated                defines to JWW new namespace macros
                 */

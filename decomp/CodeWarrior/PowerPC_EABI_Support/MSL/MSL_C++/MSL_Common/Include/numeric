@@ -40,7 +40,7 @@ namespace std
 #endif
 template <class InputIterator, class T>
 inline T
-accumulate(InputIterator first, InputIterator last, T init)
+accumulate (InputIterator first, InputIterator last, T init)
 {
     for (; first != last; ++first)
     {
@@ -50,19 +50,23 @@ accumulate(InputIterator first, InputIterator last, T init)
 }
 template <class InputIterator, class T, class BinaryOperation>
 inline T
-accumulate(InputIterator first, InputIterator last, T init,
-           BinaryOperation binary_op)
+accumulate (InputIterator   first,
+            InputIterator   last,
+            T               init,
+            BinaryOperation binary_op)
 {
     for (; first != last; ++first)
     {
-        init = binary_op(init, *first);
+        init = binary_op (init, *first);
     }
     return init;
 }
 template <class InputIterator1, class InputIterator2, class T>
 inline T
-inner_product(InputIterator1 first1, InputIterator1 last1, InputIterator2 first2,
-              T init)
+inner_product (InputIterator1 first1,
+               InputIterator1 last1,
+               InputIterator2 first2,
+               T              init)
 {
     for (; first1 != last1; ++first1, ++first2)
     {
@@ -70,27 +74,34 @@ inner_product(InputIterator1 first1, InputIterator1 last1, InputIterator2 first2
     }
     return init;
 }
-template <class InputIterator1, class InputIterator2, class T,
-          class BinaryOperation1, class BinaryOperation2>
+template <class InputIterator1,
+          class InputIterator2,
+          class T,
+          class BinaryOperation1,
+          class BinaryOperation2>
 inline T
-inner_product(InputIterator1 first1, InputIterator1 last1, InputIterator2 first2,
-              T init, BinaryOperation1 binary_op1, BinaryOperation2 binary_op2)
+inner_product (InputIterator1   first1,
+               InputIterator1   last1,
+               InputIterator2   first2,
+               T                init,
+               BinaryOperation1 binary_op1,
+               BinaryOperation2 binary_op2)
 {
     for (; first1 != last1; ++first1, ++first2)
     {
-        init = binary_op1(init, binary_op2(*first1, *first2));
+        init = binary_op1 (init, binary_op2 (*first1, *first2));
     }
     return init;
 }
 template <class InputIterator, class OutputIterator>
 inline OutputIterator
-partial_sum(InputIterator first, InputIterator last, OutputIterator result)
+partial_sum (InputIterator first, InputIterator last, OutputIterator result)
 {
     if (first == last)
     {
         return result;
     }
-    typename iterator_traits<InputIterator>::value_type tmp(*first);
+    typename iterator_traits<InputIterator>::value_type tmp (*first);
     *result = tmp;
     for (++first, ++result; first != last; ++first, ++result)
     {
@@ -100,35 +111,37 @@ partial_sum(InputIterator first, InputIterator last, OutputIterator result)
 }
 template <class InputIterator, class OutputIterator, class BinaryOperation>
 inline OutputIterator
-partial_sum(InputIterator first, InputIterator last, OutputIterator result,
-            BinaryOperation binary_op)
+partial_sum (InputIterator   first,
+             InputIterator   last,
+             OutputIterator  result,
+             BinaryOperation binary_op)
 {
     if (first == last)
     {
         return result;
     }
-    typename iterator_traits<InputIterator>::value_type tmp(*first);
+    typename iterator_traits<InputIterator>::value_type tmp (*first);
     *result = tmp;
     for (++first, ++result; first != last; ++first, ++result)
     {
-        *result = tmp = binary_op(tmp, *first);
+        *result = tmp = binary_op (tmp, *first);
     }
     return result;
 }
 template <class InputIterator, class OutputIterator>
 inline OutputIterator
-adjacent_difference(InputIterator first, InputIterator last, OutputIterator result)
+adjacent_difference (InputIterator first, InputIterator last, OutputIterator result)
 {
     typedef typename iterator_traits<InputIterator>::value_type T;
     if (first == last)
     {
         return result;
     }
-    T tmp1(*first);
+    T tmp1 (*first);
     *result = tmp1;
     for (++first, ++result; first != last; ++first, ++result)
     {
-        T tmp2(*first);
+        T tmp2 (*first);
         *result = tmp2 - tmp1;
         tmp1 = tmp2;
     }
@@ -136,20 +149,22 @@ adjacent_difference(InputIterator first, InputIterator last, OutputIterator resu
 }
 template <class InputIterator, class OutputIterator, class BinaryOperation>
 OutputIterator
-adjacent_difference(InputIterator first, InputIterator last, OutputIterator result,
-                    BinaryOperation binary_op)
+adjacent_difference (InputIterator   first,
+                     InputIterator   last,
+                     OutputIterator  result,
+                     BinaryOperation binary_op)
 {
     typedef typename iterator_traits<InputIterator>::value_type T;
     if (first == last)
     {
         return result;
     }
-    T tmp1(*first);
+    T tmp1 (*first);
     *result = tmp1;
     for (++first, ++result; first != last; ++first, ++result)
     {
-        T tmp2(*first);
-        *result = binary_op(tmp2, tmp1);
+        T tmp2 (*first);
+        *result = binary_op (tmp2, tmp1);
         tmp1 = tmp2;
     }
     return result;

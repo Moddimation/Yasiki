@@ -69,11 +69,11 @@ extern "C"
 #pragma tvectors off
 #pragma internal on
 
-int __vec_setjmp(__jmp_buf* env);
+int __vec_setjmp (__jmp_buf* env);
 
 #pragma internal off
 
-void __vec_longjmp(__jmp_buf* env, int val);
+void __vec_longjmp (__jmp_buf* env, int val);
 
 #ifdef __cplusplus
 }
@@ -94,7 +94,7 @@ void __vec_longjmp(__jmp_buf* env, int val);
 
 #pragma altivec_vrsave off // so we don't save every vector register
 asm int
-__vec_setjmp(register __jmp_buf* env)
+__vec_setjmp (register __jmp_buf* env)
 {
     nofralloc machine altivec
 
@@ -236,7 +236,7 @@ __setjmpv20:
 
 #pragma altivec_vrsave off
 asm void
-__vec_longjmp(register __jmp_buf* env, register int val)
+__vec_longjmp (register __jmp_buf* env, register int val)
 {
     nofralloc
 

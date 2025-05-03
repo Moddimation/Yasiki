@@ -24,7 +24,7 @@
 /*	Return...:	0: equal; >0: s1 > s2; <0: s1 < s2						*/
 /************************************************************************/
 static int
-strequal(register const char* s1, register const char* s2)
+strequal (register const char* s1, register const char* s2)
 {
     for (; *s1 == *s2; ++s1, ++s2)
     {
@@ -152,9 +152,9 @@ typedef struct RTTIVTableHeader
 } RTTIVTableHeader;
 extern "C"
 {
-_MSL_IMP_EXP_RUNTIME void* __get_typeid(void*, long);
-_MSL_IMP_EXP_RUNTIME void* __dynamic_cast(void*, long, type_info_struct*,
-                                          type_info_struct*, short);
+_MSL_IMP_EXP_RUNTIME void* __get_typeid (void*, long);
+_MSL_IMP_EXP_RUNTIME void* __dynamic_cast (
+    void*, long, type_info_struct*, type_info_struct*, short);
 }
 
 static type_info_struct unknown_type = { "???" };
@@ -165,7 +165,7 @@ static type_info_struct unknown_type = { "???" };
 /* Return...: pointer to typeid object									*/
 /************************************************************************/
 void*
-__get_typeid(void* obj, long offset)
+__get_typeid (void* obj, long offset)
 {
     //
     //	Note:	the first entry of an object's vtable is a pointer to the typeid
@@ -178,7 +178,7 @@ __get_typeid(void* obj, long offset)
 #if CABI_ZEROOFFSETVTABLE
 
     if ((obj = *(void**)(*(char**)((char*)obj + offset) -
-                         sizeof(RTTIVTableHeader))) == 0)
+                         sizeof (RTTIVTableHeader))) == 0)
     { //	class was compiled withou the RTTI option
         return &unknown_type;
     }
@@ -202,10 +202,13 @@ __get_typeid(void* obj, long offset)
 /* Input....: true: reference cast										*/
 /* Return...: pointer to casted expression								*/
 /************************************************************************/
-extern void __priv_throwbadcast(void); // hh 980205 prototype for runtime use
+extern void __priv_throwbadcast (void); // hh 980205 prototype for runtime use
 void*
-__dynamic_cast(void* obj, long offset, type_info_struct* typeinfo,
-               type_info_struct* subtypeinfo, short isref)
+__dynamic_cast (void*             obj,
+                long              offset,
+                type_info_struct* typeinfo,
+                type_info_struct* subtypeinfo,
+                short             isref)
 {
     RTTIVTableHeader*    vthead;
     type_info_base_list* list;
@@ -225,40 +228,40 @@ __dynamic_cast(void* obj, long offset, type_info_struct* typeinfo,
 #endif
 
     if (vthead->type_info_ptr)
-    {                                  //	class was compiled with the RTTI option
+    {                                   //	class was compiled with the RTTI option
         completeclass = (char*)obj + vthead->complete_offset;
         if (typeinfo == 0 ||
-            (strequal(vthead->type_info_ptr->tname, typeinfo->tname) == 0))
-        {                              //	success: cast to void* or to complete class
+            (strequal (vthead->type_info_ptr->tname, typeinfo->tname) == 0))
+        {                      //	success: cast to void* or to complete class
             return completeclass;
         }
 
         if ((list = vthead->type_info_ptr->baselist) != 0)
         {
             for (; list->baseti; list++)
-            {                          //	check base classes
+            {                  //	check base classes
                 if (list->offset & 0x80000000)
-                {                      //	ambiguous/access match
+                {              //	ambiguous/access match
                     loffset = (list->offset & 0x7fffffff);
                     n = ((type_info_ambighead*)list)->bases;
                     if (vthead->complete_offset + loffset == 0 &&
-                        (strequal(list->baseti->tname, typeinfo->tname) == 0))
-                    {                  //	check bases
+                        (strequal (list->baseti->tname, typeinfo->tname) == 0))
+                    {          //	check bases
                         list =
                             (type_info_base_list*)((type_info_ambighead*)list + 1);
                         for (i = 0; i < n; i++, list++)
                         {
                             if (vthead->complete_offset + list->offset == 0 &&
-                                (strequal(list->baseti->tname, subtypeinfo->tname) ==
-                                 0))
+                                (strequal (list->baseti->tname,
+                                           subtypeinfo->tname) == 0))
                             {
                                 return (char*)completeclass + list->offset;
                             }
                         }
-                        break;         //	cast cannot be successful
+                        break; //	cast cannot be successful
                     }
                     else
-                    {                  //	skip ambiguous/no access class
+                    {          //	skip ambiguous/no access class
                         list =
                             (type_info_base_list*)((type_info_ambighead*)list + 1);
                         list += (n - 1);
@@ -266,8 +269,8 @@ __dynamic_cast(void* obj, long offset, type_info_struct* typeinfo,
                 }
                 else
                 {
-                    if (strequal(list->baseti->tname, typeinfo->tname) == 0)
-                    { //	success: cast to public unambiguous base class
+                    if (strequal (list->baseti->tname, typeinfo->tname) == 0)
+                    {          //	success: cast to public unambiguous base class
                         return (char*)completeclass + list->offset;
                     }
                 }

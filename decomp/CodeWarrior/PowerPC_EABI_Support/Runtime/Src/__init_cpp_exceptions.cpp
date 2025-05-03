@@ -33,9 +33,9 @@ extern "C"
 {
 #endif
 
-extern void __init_cpp_exceptions(void);
-extern void __fini_cpp_exceptions(void);
-extern void suspend(void);
+extern void __init_cpp_exceptions (void);
+extern void __fini_cpp_exceptions (void);
+extern void suspend (void);
 
 #ifdef __cplusplus
 }
@@ -46,7 +46,7 @@ static int fragmentID = -2;    /* ID given to fragment by exception-handling		*/
 /* too many fragments were loaded					*/
 
 static ASM char*
-GetR2(void)
+GetR2 (void)
 {
     /*
      *	Get the contents of the r2 register
@@ -54,7 +54,7 @@ GetR2(void)
     nofralloc mr r3, r2 blr
 }
 extern void
-__init_cpp_exceptions(void)
+__init_cpp_exceptions (void)
 {
     char* R2; /* r2 register contents								*/
 
@@ -62,7 +62,7 @@ __init_cpp_exceptions(void)
     {
         /* use suspend with some OSes */
 #ifdef TERMINATE_WITH_SUSPEND
-        set_terminate(suspend);
+        set_terminate (suspend);
 #endif
 
         R2 = GetR2();
@@ -70,25 +70,25 @@ __init_cpp_exceptions(void)
         /*
          *	initialize exception tables
          */
-        fragmentID = __register_fragment(_eti_init_info, R2);
+        fragmentID = __register_fragment (_eti_init_info, R2);
     }
 }
 extern void
-__fini_cpp_exceptions(void)
+__fini_cpp_exceptions (void)
 {
     if (fragmentID != -2)
     {
-        __unregister_fragment(fragmentID);
+        __unregister_fragment (fragmentID);
         fragmentID = -2;
     }
 }
 #if __MWERKS__ && __PPC_EABI__
-__declspec(section ".ctors") static void* const __init_cpp_exceptions_reference =
+__declspec (section ".ctors") static void* const __init_cpp_exceptions_reference =
     __init_cpp_exceptions;
 #if __dest_os != __eppc_vxworks
-__declspec(section ".dtors") static void* const __destroy_global_chain_reference =
+__declspec (section ".dtors") static void* const __destroy_global_chain_reference =
     __destroy_global_chain;
-__declspec(section ".dtors") static void* const __fini_cpp_exceptions_reference =
+__declspec (section ".dtors") static void* const __fini_cpp_exceptions_reference =
     __fini_cpp_exceptions;
 #endif
 #endif

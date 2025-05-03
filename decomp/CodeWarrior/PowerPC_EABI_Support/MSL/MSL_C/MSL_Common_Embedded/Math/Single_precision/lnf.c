@@ -9,7 +9,7 @@ const extern float __one_over_F[];
 extern const float __ln_F[];
 #define __ln2 .6931471806f
 float
-logf(float x)
+logf (float x)
 {
     switch ((*(_INT32*)&x) & 0x7f800000)
     {

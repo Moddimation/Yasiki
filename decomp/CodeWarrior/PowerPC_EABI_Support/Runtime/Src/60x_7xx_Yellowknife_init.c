@@ -51,13 +51,13 @@
 
 #pragma section code_type ".init"
 
-asm void disable_L1_icache(void);
-asm void invalidate_and_enable_L1_icache(void);
-asm void disable_L1_dcache(void);
-asm void invalidate_and_enable_L1_dcache(void);
-asm void mmu_setup(void);
-asm void cache_inhibit(void);
-asm void error_dram_init(void);
+asm void disable_L1_icache (void);
+asm void invalidate_and_enable_L1_icache (void);
+asm void disable_L1_dcache (void);
+asm void invalidate_and_enable_L1_dcache (void);
+asm void mmu_setup (void);
+asm void cache_inhibit (void);
+asm void error_dram_init (void);
 
 #define DCACHEON   (1)
 #define ICACHEON   (1)
@@ -73,9 +73,9 @@ asm void error_dram_init(void);
 //
 //;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-asm void init_board();
+asm void init_board ();
 asm void
-init_board()
+init_board ()
 {
     nofralloc
 
@@ -780,7 +780,7 @@ init_board()
 // Processor specific mmu setups are in this section.
 
 asm void
-mmu_setup(void)
+mmu_setup (void)
 {
     nofralloc
 
@@ -883,7 +883,7 @@ mmu_setup(void)
                                      blr
 }
 asm void
-cache_inhibit(void)
+cache_inhibit (void)
 {
     nofralloc
 
@@ -894,7 +894,7 @@ cache_inhibit(void)
         r4 mtspr SPR_HID0, r3 isync blr
 }
 asm void
-invalidate_and_enable_L1_dcache(void)
+invalidate_and_enable_L1_dcache (void)
 {
     nofralloc
 
@@ -910,7 +910,7 @@ invalidate_and_enable_L1_dcache(void)
         r5 isync sync mtspr SPR_HID0, r6 isync sync blr
 }
 asm void
-disable_L1_dcache(void)
+disable_L1_dcache (void)
 {
     nofralloc
 
@@ -918,7 +918,7 @@ disable_L1_dcache(void)
         SPR_HID0 andi.r5, r5, 0xBFFF mtspr SPR_HID0, r5 isync sync blr
 }
 asm void
-invalidate_and_enable_L1_icache(void)
+invalidate_and_enable_L1_icache (void)
 {
     nofralloc
 
@@ -934,7 +934,7 @@ invalidate_and_enable_L1_icache(void)
         r5 isync sync mtspr SPR_HID0, r6 isync sync blr
 }
 asm void
-disable_L1_icache(void)
+disable_L1_icache (void)
 {
     nofralloc
 

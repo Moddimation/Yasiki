@@ -26,13 +26,13 @@
 #error pool_alloc.stub.c can't be in your project if _No_Alloc_OS_Support is defined.
 #endif
 void*
-__sys_alloc(mem_size size, mem_pool_obj* poolObj) /* missing from 6-0 */
+__sys_alloc (mem_size size, mem_pool_obj* poolObj) /* missing from 6-0 */
 {
 #warning "replace 0 with a call to your OS'es allocator"
     return 0;
 }
 void
-__sys_free(void* ptr, mem_pool_obj* poolObj)      /* missing from 6-0 */
+__sys_free (void* ptr, mem_pool_obj* poolObj)      /* missing from 6-0 */
 {
 #warning "replace with a call to your OS'es deallocator"
 }

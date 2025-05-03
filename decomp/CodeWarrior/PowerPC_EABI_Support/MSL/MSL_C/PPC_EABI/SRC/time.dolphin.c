@@ -30,19 +30,19 @@
 // __get_clock returns the processor time used so far
 // Dolphin returns -1 for now. Use OSGetTick or OSGetTime instead.
 clock_t
-__get_clock(void)
+__get_clock (void)
 {
     return (clock_t)-1;
 }
 // __get_time returns the current calendar time in seconds since midnight, 1/1/1900
 time_t
-__get_time(void)
+__get_time (void)
 {
-    return (time_t)(OSTicksToSeconds(OSGetTime())) + BIAS;
+    return (time_t)(OSTicksToSeconds (OSGetTime())) + BIAS;
 }
 // Dolphin does not support time zone and just returns 0
 int
-__to_gm_time(time_t* time)
+__to_gm_time (time_t* time)
 {
 #pragma unused(time)
     return 0;
@@ -54,7 +54,7 @@ __to_gm_time(time_t* time)
  * This always returns false
  */
 int
-__isdst(void)
+__isdst (void)
 {
     return 0;
 }

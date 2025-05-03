@@ -49,44 +49,44 @@ public:
     typedef typename Container::const_reference const_reference;
     typedef typename Container::size_type       size_type;
     typedef Container                           container_type;
-    explicit queue(const Container& x = Container()) : c(x) {}
+    explicit queue (const Container& x = Container()) : c (x) {}
     bool
-    empty() const
+    empty () const
     {
         return c.empty();
     }
     size_type
-    size() const
+    size () const
     {
         return c.size();
     }
     reference
-    front()
+    front ()
     {
         return c.front();
     }
     const_reference
-    front() const
+    front () const
     {
         return c.front();
     }
     reference
-    back()
+    back ()
     {
         return c.back();
     }
     const_reference
-    back() const
+    back () const
     {
         return c.back();
     }
     void
-    push(const value_type& x)
+    push (const value_type& x)
     {
-        c.push_back(x);
+        c.push_back (x);
     }
     void
-    pop()
+    pop ()
     {
         c.pop_front();
     }
@@ -95,55 +95,56 @@ protected:
     Container c;
 
     friend bool operator==
-        <T, Container>(const queue<T, Container>& x, const queue<T, Container>& y);
+        <T, Container> (const queue<T, Container>& x, const queue<T, Container>& y);
     friend bool operator!=
-        <T, Container>(const queue<T, Container>& x, const queue<T, Container>& y);
-    friend bool operator< <T, Container>(const queue<T, Container>& x,
-                                         const queue<T, Container>& y);
+        <T, Container> (const queue<T, Container>& x, const queue<T, Container>& y);
+    friend bool operator< <T, Container> (const queue<T, Container>& x,
+                                          const queue<T, Container>& y);
     friend bool operator<=
-        <T, Container>(const queue<T, Container>& x, const queue<T, Container>& y);
+        <T, Container> (const queue<T, Container>& x, const queue<T, Container>& y);
     friend bool operator>
-        <T, Container>(const queue<T, Container>& x, const queue<T, Container>& y);
+        <T, Container> (const queue<T, Container>& x, const queue<T, Container>& y);
     friend bool operator>=
-        <T, Container>(const queue<T, Container>& x, const queue<T, Container>& y);
+        <T, Container> (const queue<T, Container>& x, const queue<T, Container>& y);
 };
 template <class T, class Container>
 inline bool
-operator==(const queue<T, Container>& x, const queue<T, Container>& y)
+operator== (const queue<T, Container>& x, const queue<T, Container>& y)
 {
     return x.c == y.c;
 }
 template <class T, class Container>
 inline bool
-operator<(const queue<T, Container>& x, const queue<T, Container>& y)
+operator< (const queue<T, Container>& x, const queue<T, Container>& y)
 {
     return x.c < y.c;
 }
 template <class T, class Container>
 inline bool
-operator!=(const queue<T, Container>& x, const queue<T, Container>& y)
+operator!= (const queue<T, Container>& x, const queue<T, Container>& y)
 {
     return x.c != y.c;
 }
 template <class T, class Container>
 inline bool
-operator>(const queue<T, Container>& x, const queue<T, Container>& y)
+operator> (const queue<T, Container>& x, const queue<T, Container>& y)
 {
     return x.c > y.c;
 }
 template <class T, class Container>
 inline bool
-operator>=(const queue<T, Container>& x, const queue<T, Container>& y)
+operator>= (const queue<T, Container>& x, const queue<T, Container>& y)
 {
     return x.c >= y.c;
 }
 template <class T, class Container>
 inline bool
-operator<=(const queue<T, Container>& x, const queue<T, Container>& y)
+operator<= (const queue<T, Container>& x, const queue<T, Container>& y)
 {
     return x.c <= y.c;
 }
-template <class T, class Container = vector<T>,
+template <class T,
+          class Container = vector<T>,
           class Compare = less<typename Container::value_type> >
 class priority_queue
 {
@@ -154,74 +155,79 @@ public:
     typedef typename Container::size_type       size_type;
     typedef Container                           container_type;
 
-    explicit priority_queue(const Compare& x = Compare(),
-                            const Container& = Container());
+    explicit priority_queue (const Compare& x = Compare(),
+                             const Container& = Container());
 #ifndef _MSL_NO_MEMBER_TEMPLATE
     template <class InputIterator>
-    priority_queue(InputIterator first, InputIterator last,
-                   const Compare& x = Compare(), const Container& y = Container())
-      : c(y), comp(x)
+    priority_queue (InputIterator  first,
+                    InputIterator  last,
+                    const Compare& x = Compare(),
+                    const Container& y = Container())
+      : c (y), comp (x)
     {
-        c.insert(c.end(), first, last);
-        _STD::make_heap(c.begin(), c.end(), comp);
+        c.insert (c.end(), first, last);
+        _STD::make_heap (c.begin(), c.end(), comp);
     }
 #else
-    priority_queue(typename Container::const_iterator first,
-                   typename Container::const_iterator last,
-                   const Compare& x = Compare(), const Container& y = Container());
+    priority_queue (typename Container::const_iterator first,
+                    typename Container::const_iterator last,
+                    const Compare&                     x = Compare(),
+                    const Container& y = Container());
 #endif
     bool
-    empty() const
+    empty () const
     {
         return c.empty();
     }
     size_type
-    size() const
+    size () const
     {
         return c.size();
     }
     const_reference
-    top() const
+    top () const
     {
         return c.front();
     }
-    void push(const value_type& x);
-    void pop();
+    void push (const value_type& x);
+    void pop ();
 
 protected:
     Container c;
     Compare   comp;
 };
 template <class T, class Container, class Compare>
-priority_queue<T, Container, Compare>::priority_queue(const Compare&   x,
-                                                      const Container& y)
-  : c(y), comp(x)
+priority_queue<T, Container, Compare>::priority_queue (const Compare&   x,
+                                                       const Container& y)
+  : c (y), comp (x)
 {
-    _STD::make_heap(c.begin(), c.end(), comp);
+    _STD::make_heap (c.begin(), c.end(), comp);
 }
 #ifdef _MSL_NO_MEMBER_TEMPLATE
 template <class T, class Container, class Compare>
-priority_queue<T, Container, Compare>::priority_queue(
+priority_queue<T, Container, Compare>::priority_queue (
     typename Container::const_iterator first,
-    typename Container::const_iterator last, const Compare& x, const Container& y)
-  : c(y), comp(x)
+    typename Container::const_iterator last,
+    const Compare&                     x,
+    const Container&                   y)
+  : c (y), comp (x)
 {
-    c.insert(c.end(), first, last);
-    _STD::make_heap(c.begin(), c.end(), comp);
+    c.insert (c.end(), first, last);
+    _STD::make_heap (c.begin(), c.end(), comp);
 }
 #endif
 template <class T, class Container, class Compare>
 void
-priority_queue<T, Container, Compare>::push(const value_type& x)
+priority_queue<T, Container, Compare>::push (const value_type& x)
 {
-    c.push_back(x);
-    _STD::push_heap(c.begin(), c.end(), comp);
+    c.push_back (x);
+    _STD::push_heap (c.begin(), c.end(), comp);
 }
 template <class T, class Container, class Compare>
 void
-priority_queue<T, Container, Compare>::pop()
+priority_queue<T, Container, Compare>::pop ()
 {
-    _STD::pop_heap(c.begin(), c.end(), comp);
+    _STD::pop_heap (c.begin(), c.end(), comp);
     c.pop_back();
 }
 #ifndef _MSL_NO_CPP_NAMESPACE

@@ -183,20 +183,20 @@ static _INT32 inv_sqrt_guess2[] = {
 #endif /* __IEEE754_COMPLIANT__ */
 
 #if !(__MIPS__ && __MIPS_ISA2__ && __MIPS_single_fpu__)
-float _inv_sqrtf(float x);
-float sqrtf(float x);
+float _inv_sqrtf (float x);
+float sqrtf (float x);
 float
-sqrtf(float x)
+sqrtf (float x)
 {
 #if __IEEE754_COMPLIANT__
-    const _UINT32 numbits = (sizeof(sqrt_guess)) / (4 * 64) + 5;
+    const _UINT32 numbits = (sizeof (sqrt_guess)) / (4 * 64) + 5;
 
     /* calculated at compile time(hopefully)--assumes minimal # of
        elements in sqrt_guess is 32 or an integral (power of two)*32
     */
 
     const _UINT32 bit_shift = 23 - numbits;
-    const _UINT32 bit_mask = 0x007fffff & (~(sizeof(sqrt_guess) >> 2) << bit_shift);
+    const _UINT32 bit_mask = 0x007fffff & (~(sizeof (sqrt_guess) >> 2) << bit_shift);
     const _UINT32 first_several_sig_bits_of_x = (*(_UINT32*)&x) & bit_mask;
     const _INT32  biased_exp = (*(_UINT32*)&x) & 0x7f800000;
     float         guess;
@@ -272,7 +272,7 @@ sqrtf(float x)
         }
     }
 
-    return x * _inv_sqrtf(x);
+    return x * _inv_sqrtf (x);
 #endif
 }
 #endif

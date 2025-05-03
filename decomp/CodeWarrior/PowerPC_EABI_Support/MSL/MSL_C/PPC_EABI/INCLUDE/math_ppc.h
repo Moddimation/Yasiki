@@ -4,22 +4,22 @@
 #pragma cplusplus on
 
 #ifndef _No_Floating_Point_Regs
-extern _INLINE float sqrtf(float x);
+extern _INLINE float sqrtf (float x);
 
-extern _INLINE float _inv_sqrtf(float x);
+extern _INLINE float _inv_sqrtf (float x);
 
-extern _INLINE double sqrt(double x);
+extern _INLINE double sqrt (double x);
 
 #ifdef __USING_INTRINSIC_FABS__
-extern _INLINE double fabs(double x);
+extern _INLINE double fabs (double x);
 
-#endif                                       /* __USING_INTRINSIC_FABS__ */
-#else                                        /* _No_Floating_Point_Regs */
+#endif                                        /* __USING_INTRINSIC_FABS__ */
+#else                                         /* _No_Floating_Point_Regs */
 
 #ifdef __USING_IEEE_MATH__
-extern _INLINE float sqrtf(float x);
+extern _INLINE float sqrtf (float x);
 
-#else                                        /* __USING_IEEE_MATH__ */
+#else                                         /* __USING_IEEE_MATH__ */
 
 static const _UINT32 inv_sqrt_guess[] = {
     0x3FFF017E, 0x3FFE05EC, 0x3FFD0D3E, 0x3FFC1764, 0x3FFB2452, 0x3FFA33F9,
@@ -120,9 +120,9 @@ static const _UINT32 __inv_x_sqr[] = {
     0x3F810182, 0x3F800000, 0x3F7E02FC,
 };
 extern _INLINE float
-_inv_sqrtf(float x)
+_inv_sqrtf (float x)
 {
-    const _UINT32 numbits = (sizeof(inv_sqrt_guess)) / (4 * 64) + 5;
+    const _UINT32 numbits = (sizeof (inv_sqrt_guess)) / (4 * 64) + 5;
 
     /* calculated at compile time(hopefully)--assumes minimal # of
        elements in inv_sqrt_guess is 32 or an integral (power of two)*32
@@ -130,7 +130,7 @@ _inv_sqrtf(float x)
 
     const _UINT32 bit_shift = 23 - numbits;
     const _UINT32 bit_mask =
-        0x007fffff & (~(sizeof(inv_sqrt_guess) >> 2) << bit_shift);
+        0x007fffff & (~(sizeof (inv_sqrt_guess) >> 2) << bit_shift);
     const _UINT32 first_several_sig_bits_of_x = (*(_UINT32*)&x) & bit_mask;
     const _INT32  biased_exp = (*(_UINT32*)&x) & 0x7f800000;
     float         guess;
@@ -196,30 +196,30 @@ sqrtf(float x)
     }
 }
 
-return x * _inv_sqrtf(x);
+return x * _inv_sqrtf (x);
 }
 */
-#endif                                       /* __USING_IEEE_MATH__ */
+#endif                                        /* __USING_IEEE_MATH__ */
 extern _INLINE float
-fabsf(float x)
+fabsf (float x)
 {
-    return (float)fabs((double_t)x);
+    return (float)fabs ((double_t)x);
 }
 extern _INLINE float
-fmodf(float x, float y)
+fmodf (float x, float y)
 {
-    return (float)fmod((double_t)x, (double_t)y);
+    return (float)fmod ((double_t)x, (double_t)y);
 }
-#endif                                       /*_No_Floating_Point_Regs */
+#endif                                        /*_No_Floating_Point_Regs */
 extern inline float
-sqrtf(float x)
+sqrtf (float x)
 {
     const double   _half = .5;
     const double   _three = 3.0;
     volatile float y;
     if (x > 0.0f)
     {
-        double guess = __frsqrte((double)x); // returns an approximation to
+        double guess = __frsqrte ((double)x); // returns an approximation to
         guess = _half * guess * (_three - guess * guess * x); // now have 12 sig bits
         guess = _half * guess * (_three - guess * guess * x); // now have 24 sig bits
         guess = _half * guess * (_three - guess * guess * x); // now have 32 sig bits
@@ -229,14 +229,14 @@ sqrtf(float x)
     return x;
 }
 extern inline float
-sqrt(float x)
+sqrt (float x)
 {
     const double   _half = .5;
     const double   _three = 3.0;
     volatile float y;
     if (x > 0.0f)
     {
-        double guess = __frsqrte((double)x); // returns an approximation to
+        double guess = __frsqrte ((double)x); // returns an approximation to
         guess = _half * guess * (_three - guess * guess * x); // now have 12 sig bits
         guess = _half * guess * (_three - guess * guess * x); // now have 24 sig bits
         guess = _half * guess * (_three - guess * guess * x); // now have 32 sig bits
@@ -248,28 +248,28 @@ sqrt(float x)
     return x;
 }
 extern inline float
-fabs(float x)
+fabs (float x)
 {
 #if __MIPS__
-    return fabsf(x);
+    return fabsf (x);
 #else
     (*(int*)&x) &= 0x7fffffff;
     return x;
 #endif
 }
 extern inline float
-fabsf(float x)
+fabsf (float x)
 {
-    return __fabsf(x);
+    return __fabsf (x);
 }
-extern float cosf(float);
+extern float cosf (float);
 extern inline float
-cos(float x)
+cos (float x)
 {
-    return cosf(x);
+    return cosf (x);
 }
 inline float
-floor(float x)
+floor (float x)
 {
     int   i = (int)x;
     float y = x - (float)i;

@@ -42,7 +42,7 @@ extern int txtbinFlag;
 */
 
 fpos_t
-_ftell(FILE* file)
+_ftell (FILE* file)
 {
     int    charsInUndoBuffer = 0; /*- jz/ma 971105 -*/
     fpos_t position;
@@ -97,31 +97,31 @@ _ftell(FILE* file)
     return (position);
 }
 long
-ftell(FILE* file)
+ftell (FILE* file)
 {
-    long retval;                           /*- mm 001013 -*/
+    long retval;                            /*- mm 001013 -*/
 
-    __begin_critical_region(files_access); /*- mm 001013 -*/
+    __begin_critical_region (files_access); /*- mm 001013 -*/
 
-    retval = (long)_ftell(file);           /*- mm 001013 -*/
+    retval = (long)_ftell (file);           /*- mm 001013 -*/
 
-    __end_critical_region(files_access);   /*- mm 001013 -*/
+    __end_critical_region (files_access);   /*- mm 001013 -*/
 
-    return (retval);                       /*- mm 001013 -*/
+    return (retval);                        /*- mm 001013 -*/
 }
 int
-fgetpos(FILE* file, fpos_t* pos)
+fgetpos (FILE* file, fpos_t* pos)
 {
-    __begin_critical_region(files_access); /*- mm 001013 -*/
+    __begin_critical_region (files_access); /*- mm 001013 -*/
 
-    *pos = _ftell(file);
+    *pos = _ftell (file);
 
-    __end_critical_region(files_access);   /*- mm 001013 -*/
+    __end_critical_region (files_access);   /*- mm 001013 -*/
 
     return (*pos == -1);
 }
 int
-_fseek(FILE* file, fpos_t offset, int mode)
+_fseek (FILE* file, fpos_t offset, int mode)
 {
     fpos_t     position;
     __pos_proc pos_proc;
@@ -136,9 +136,9 @@ _fseek(FILE* file, fpos_t offset, int mode)
 
     if (file->state.io_state == __writing)
     {
-        if (__flush_buffer(file, NULL) != __no_io_error)
+        if (__flush_buffer (file, NULL) != __no_io_error)
         {
-            set_error(file);
+            set_error (file);
             errno = EFPOS;
             return (-1);
         }
@@ -148,7 +148,7 @@ _fseek(FILE* file, fpos_t offset, int mode)
     {
         mode = SEEK_SET;
 
-        if ((position = _ftell(file)) < 0)
+        if ((position = _ftell (file)) < 0)
         {
             position = 0;
         }
@@ -195,9 +195,9 @@ _fseek(FILE* file, fpos_t offset, int mode)
     if (file->state.io_state == __neutral)
     {
         if ((pos_proc = file->position_proc) != 0 &&
-            (*pos_proc)(file->handle, &offset, mode, file->idle_proc))
+            (*pos_proc) (file->handle, &offset, mode, file->idle_proc))
         {
-            set_error(file);
+            set_error (file);
             errno = EFPOS;
             return (-1);
         }
@@ -209,9 +209,9 @@ _fseek(FILE* file, fpos_t offset, int mode)
     /*- mm 970507 -*/
 #else
     if ((pos_proc = file->position_proc) != 0 &&
-        (*pos_proc)(file->handle, &offset, mode, file->idle_proc))
+        (*pos_proc) (file->handle, &offset, mode, file->idle_proc))
     {
-        set_error(file);
+        set_error (file);
         errno = EFPOS;
         return (-1);
     }
@@ -225,40 +225,40 @@ _fseek(FILE* file, fpos_t offset, int mode)
     return (0);
 }
 int
-fseek(FILE* file, long offset, int mode)
+fseek (FILE* file, long offset, int mode)
 {
     fpos_t real_offset = (fpos_t)offset;
-    int    retval;                            /*- mm 001013 -*/
+    int    retval;                             /*- mm 001013 -*/
 
-    __begin_critical_region(files_access);    /*- mm 001013 -*/
+    __begin_critical_region (files_access);    /*- mm 001013 -*/
 
-    retval = _fseek(file, real_offset, mode); /*- mm 000928 -*/
+    retval = _fseek (file, real_offset, mode); /*- mm 000928 -*/
 
-    __end_critical_region(files_access);      /*- mm 001013 -*/
+    __end_critical_region (files_access);      /*- mm 001013 -*/
 
-    return (retval);                          /*- mm 001013 -*/
+    return (retval);                           /*- mm 001013 -*/
 }
 int
-fsetpos(FILE* file, const fpos_t* pos)
+fsetpos (FILE* file, const fpos_t* pos)
 {
-    int retval;                               /*- mm 001013 -*/
+    int retval;                                /*- mm 001013 -*/
 
-    __begin_critical_region(files_access);    /*- mm 001013 -*/
+    __begin_critical_region (files_access);    /*- mm 001013 -*/
 
-    retval = _fseek(file, *pos, SEEK_SET);    /*- mm 001013 -*/
+    retval = _fseek (file, *pos, SEEK_SET);    /*- mm 001013 -*/
 
-    __end_critical_region(files_access);      /*- mm 001013 -*/
+    __end_critical_region (files_access);      /*- mm 001013 -*/
 
-    return (retval);                          /*- mm 001013 -*/
+    return (retval);                           /*- mm 001013 -*/
 }
 /*- mm 970708 -*/
 
 void
-rewind(FILE* file)
+rewind (FILE* file)
 {
     file->state.error = 0; /* give the seek some hope of success */
 
-    fseek(file, 0, SEEK_SET);
+    fseek (file, 0, SEEK_SET);
 
     file->state.error = 0; /* the standard says we have to do this
                             * even if the seek fails (though it's

@@ -12,7 +12,7 @@ typedef char* Ptr;
 typedef Ptr*  Handle;
 typedef int   OSErr;
 
-extern pascal Handle NewHandle(long dataSize);
-extern pascal void   DisposeHandle(Handle h);
+extern pascal Handle NewHandle (long dataSize);
+extern pascal void   DisposeHandle (Handle h);
 
 #endif /* __MWMEMORY_H__ */

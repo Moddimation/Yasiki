@@ -24,8 +24,8 @@ typedef struct DolImage
     u32 entry;
     u8  padding[28];
 } DolImage;
-void* DOLLoadImage(u8* buffer, BOOL verbose);
-void  DOLRunApp(void* entryPoint);
+void* DOLLoadImage (u8* buffer, BOOL verbose);
+void  DOLRunApp (void* entryPoint);
 
 #ifdef __cplusplus
 }

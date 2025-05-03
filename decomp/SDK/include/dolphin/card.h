@@ -111,49 +111,60 @@ typedef struct CARDStat
 #define CARD_ATTR_GLOBAL        0x20u
 #define CARD_ATTR_COMPANY       0x40u
 
-typedef void (*CARDCallback)(s32 chan, s32 result);
+typedef void (*CARDCallback) (s32 chan, s32 result);
 
-void CARDInit(void);
+void CARDInit (void);
 
-s32  CARDCheck(s32 chan);
-s32  CARDCheckAsync(s32 chan, CARDCallback callback);
-s32  CARDCreate(s32 chan, char* fileName, u32 size, CARDFileInfo* fileInfo);
-s32  CARDCreateAsync(s32 chan, char* fileName, u32 size, CARDFileInfo* fileInfo,
-                     CARDCallback callback);
-s32  CARDDelete(s32 chan, char* fileName);
-s32  CARDDeleteAsync(s32 chan, char* fileName, CARDCallback callback);
-s32  CARDFastDelete(s32 chan, s32 fileNo);
-s32  CARDFastDeleteAsync(s32 chan, s32 fileNo, CARDCallback callback);
-s32  CARDFastOpen(s32 chan, s32 fileNo, CARDFileInfo* fileInfo);
-s32  CARDFormat(s32 chan);
-s32  CARDFormatAsync(s32 chan, CARDCallback callback);
-s32  CARDFreeBlocks(s32 chan, s32* byteNotUsed, s32* filesNotUsed);
-s32  CARDGetSectorSize(s32 chan, u32* size);
-s32  CARDGetEncoding(s32 chan, u16* encode);
-s32  CARDGetMemSize(s32 chan, u16* size);
-s32  CARDGetResultCode(s32 chan);
-s32  CARDGetStatus(s32 chan, s32 fileNo, CARDStat* stat);
-s32  CARDGetXferredBytes(s32 chan);
-s32  CARDMount(s32 chan, void* workArea, CARDCallback detachCallback);
-s32  CARDMountAsync(s32 chan, void* workArea, CARDCallback detachCallback,
-                    CARDCallback attachCallback);
-s32  CARDOpen(s32 chan, char* fileName, CARDFileInfo* fileInfo);
-BOOL CARDProbe(s32 chan);
-s32  CARDProbeEx(s32 chan, s32* memSize, s32* sectorSize);
-s32  CARDRename(s32 chan, char* oldName, char* newName);
-s32  CARDRenameAsync(s32 chan, char* oldName, char* newName, CARDCallback callback);
-s32  CARDSetStatus(s32 chan, s32 fileNo, CARDStat* stat);
-s32  CARDSetStatusAsync(s32 chan, s32 fileNo, CARDStat* stat, CARDCallback callback);
-s32  CARDUnmount(s32 chan);
+s32  CARDCheck (s32 chan);
+s32  CARDCheckAsync (s32 chan, CARDCallback callback);
+s32  CARDCreate (s32 chan, char* fileName, u32 size, CARDFileInfo* fileInfo);
+s32  CARDCreateAsync (s32           chan,
+                      char*         fileName,
+                      u32           size,
+                      CARDFileInfo* fileInfo,
+                      CARDCallback  callback);
+s32  CARDDelete (s32 chan, char* fileName);
+s32  CARDDeleteAsync (s32 chan, char* fileName, CARDCallback callback);
+s32  CARDFastDelete (s32 chan, s32 fileNo);
+s32  CARDFastDeleteAsync (s32 chan, s32 fileNo, CARDCallback callback);
+s32  CARDFastOpen (s32 chan, s32 fileNo, CARDFileInfo* fileInfo);
+s32  CARDFormat (s32 chan);
+s32  CARDFormatAsync (s32 chan, CARDCallback callback);
+s32  CARDFreeBlocks (s32 chan, s32* byteNotUsed, s32* filesNotUsed);
+s32  CARDGetSectorSize (s32 chan, u32* size);
+s32  CARDGetEncoding (s32 chan, u16* encode);
+s32  CARDGetMemSize (s32 chan, u16* size);
+s32  CARDGetResultCode (s32 chan);
+s32  CARDGetStatus (s32 chan, s32 fileNo, CARDStat* stat);
+s32  CARDGetXferredBytes (s32 chan);
+s32  CARDMount (s32 chan, void* workArea, CARDCallback detachCallback);
+s32  CARDMountAsync (s32          chan,
+                     void*        workArea,
+                     CARDCallback detachCallback,
+                     CARDCallback attachCallback);
+s32  CARDOpen (s32 chan, char* fileName, CARDFileInfo* fileInfo);
+BOOL CARDProbe (s32 chan);
+s32  CARDProbeEx (s32 chan, s32* memSize, s32* sectorSize);
+s32  CARDRename (s32 chan, char* oldName, char* newName);
+s32  CARDRenameAsync (s32 chan, char* oldName, char* newName, CARDCallback callback);
+s32  CARDSetStatus (s32 chan, s32 fileNo, CARDStat* stat);
+s32 CARDSetStatusAsync (s32 chan, s32 fileNo, CARDStat* stat, CARDCallback callback);
+s32 CARDUnmount (s32 chan);
 
-s32 CARDCancel(CARDFileInfo* fileInfo);
-s32 CARDClose(CARDFileInfo* fileInfo);
-s32 CARDRead(CARDFileInfo* fileInfo, void* addr, s32 length, s32 offset);
-s32 CARDReadAsync(CARDFileInfo* fileInfo, void* addr, s32 length, s32 offset,
-                  CARDCallback callback);
-s32 CARDWrite(CARDFileInfo* fileInfo, void* addr, s32 length, s32 offset);
-s32 CARDWriteAsync(CARDFileInfo* fileInfo, void* addr, s32 length, s32 offset,
-                   CARDCallback callback);
+s32 CARDCancel (CARDFileInfo* fileInfo);
+s32 CARDClose (CARDFileInfo* fileInfo);
+s32 CARDRead (CARDFileInfo* fileInfo, void* addr, s32 length, s32 offset);
+s32 CARDReadAsync (CARDFileInfo* fileInfo,
+                   void*         addr,
+                   s32           length,
+                   s32           offset,
+                   CARDCallback  callback);
+s32 CARDWrite (CARDFileInfo* fileInfo, void* addr, s32 length, s32 offset);
+s32 CARDWriteAsync (CARDFileInfo* fileInfo,
+                    void*         addr,
+                    s32           length,
+                    s32           offset,
+                    CARDCallback  callback);
 
 #define CARDGetFileNo(fileInfo) ((fileInfo)->fileNo)
 

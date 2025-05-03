@@ -18,13 +18,13 @@ struct OSCond
 {
     OSThreadQueue queue;
 };
-void OSInitMutex(struct OSMutex* mutex);
-void OSLockMutex(struct OSMutex* mutex);
-void OSUnlockMutex(struct OSMutex* mutex);
-BOOL OSTryLockMutex(struct OSMutex* mutex);
-void OSInitCond(struct OSCond* cond);
-void OSWaitCond(struct OSCond* cond, struct OSMutex* mutex);
-void OSSignalCond(struct OSCond* cond);
+void OSInitMutex (struct OSMutex* mutex);
+void OSLockMutex (struct OSMutex* mutex);
+void OSUnlockMutex (struct OSMutex* mutex);
+BOOL OSTryLockMutex (struct OSMutex* mutex);
+void OSInitCond (struct OSCond* cond);
+void OSWaitCond (struct OSCond* cond, struct OSMutex* mutex);
+void OSSignalCond (struct OSCond* cond);
 
 #ifdef __cplusplus
 }

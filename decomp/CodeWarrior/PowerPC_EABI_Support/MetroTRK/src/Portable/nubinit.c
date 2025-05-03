@@ -11,9 +11,9 @@
 
 BOOL gTRKBigEndian;
 
-BOOL TRKInitializeEndian(void);
+BOOL TRKInitializeEndian (void);
 DSError
-TRKInitializeNub(void)
+TRKInitializeNub (void)
 {
     DSError ret;
     DSError uartErr;
@@ -31,8 +31,9 @@ TRKInitializeNub(void)
 
     if (ret == DS_NoError)
     {
-        uartErr = TRKInitializeIntDrivenUART(0x0000e100, 1, 0, &gTRKInputPendingPtr);
-        TRKTargetSetInputPendingPtr(gTRKInputPendingPtr);
+        uartErr =
+            TRKInitializeIntDrivenUART (0x0000e100, 1, 0, &gTRKInputPendingPtr);
+        TRKTargetSetInputPendingPtr (gTRKInputPendingPtr);
         if (uartErr != DS_NoError)
         {
             ret = uartErr;
@@ -47,19 +48,19 @@ TRKInitializeNub(void)
     return ret;
 }
 DSError
-TRKTerminateNub(void)
+TRKTerminateNub (void)
 {
     TRKTerminateSerialHandler();
     return DS_NoError;
 }
 void
-TRKNubWelcome(void)
+TRKNubWelcome (void)
 {
-    TRK_board_display("MetroTRK for GAMECUBE v2.6");
+    TRK_board_display ("MetroTRK for GAMECUBE v2.6");
     return;
 }
 BOOL
-TRKInitializeEndian(void)
+TRKInitializeEndian (void)
 {
     u8   bendian[4];
     BOOL result = FALSE;

@@ -24,7 +24,7 @@
 _MSL_BEGIN_EXTERN_C          /*- cc 010409 -*/
 
 #ifndef WEOF
-#define WEOF (__std(wint_t))(0xFFFF)
+#define WEOF (__std (wint_t)) (0xFFFF)
 #endif                                 /* ifndef WEOF */
 
     extern _MSL_IMP_EXP_C wchar_t __wctype_map[];
@@ -54,74 +54,75 @@ _MSL_END_EXTERN_C            /*- cc 010409 -*/
     _MSL_BEGIN_NAMESPACE_STD /*- cc 010409 -*/
 
         _MSL_IMP_EXP_C wctype_t
-                   wctype(const char* property);
-_MSL_IMP_EXP_C int iswctype(wint_t wc, wctype_t desc);
+                   wctype (const char* property);
+_MSL_IMP_EXP_C int iswctype (wint_t wc, wctype_t desc);
 /*- mm 980626 -*/
 __inline int
-iswalnum(wint_t c)
+iswalnum (wint_t c)
 {
-    return ((c < __WCMAP_SIZE) ? (__wctype_map[__wz_fill(c)] & __walphanumeric) : 0);
+    return ((c < __WCMAP_SIZE) ? (__wctype_map[__wz_fill (c)] & __walphanumeric)
+                               : 0);
 }
 __inline int
-iswalpha(wint_t c)
+iswalpha (wint_t c)
 {
-    return ((c < __WCMAP_SIZE) ? (__wctype_map[__wz_fill(c)] & __wletter) : 0);
+    return ((c < __WCMAP_SIZE) ? (__wctype_map[__wz_fill (c)] & __wletter) : 0);
 }
 __inline int
-iswcntrl(wint_t c)
+iswcntrl (wint_t c)
 {
-    return ((c < __WCMAP_SIZE) ? (__wctype_map[__wz_fill(c)] & __wcontrol) : 0);
+    return ((c < __WCMAP_SIZE) ? (__wctype_map[__wz_fill (c)] & __wcontrol) : 0);
 }
 __inline int
-iswdigit(wint_t c)
+iswdigit (wint_t c)
 {
-    return ((c < __WCMAP_SIZE) ? (__wctype_map[__wz_fill(c)] & __wdigit) : 0);
+    return ((c < __WCMAP_SIZE) ? (__wctype_map[__wz_fill (c)] & __wdigit) : 0);
 }
 __inline int
-iswgraph(wint_t c)
+iswgraph (wint_t c)
 {
-    return ((c < __WCMAP_SIZE) ? (__wctype_map[__wz_fill(c)] & __wgraphic) : 0);
+    return ((c < __WCMAP_SIZE) ? (__wctype_map[__wz_fill (c)] & __wgraphic) : 0);
 }
 __inline int
-iswlower(wint_t c)
+iswlower (wint_t c)
 {
-    return ((c < __WCMAP_SIZE) ? (__wctype_map[__wz_fill(c)] & __wlower_case) : 0);
+    return ((c < __WCMAP_SIZE) ? (__wctype_map[__wz_fill (c)] & __wlower_case) : 0);
 }
 __inline int
-iswprint(wint_t c)
+iswprint (wint_t c)
 {
-    return ((c < __WCMAP_SIZE) ? (__wctype_map[__wz_fill(c)] & __wprintable) : 0);
+    return ((c < __WCMAP_SIZE) ? (__wctype_map[__wz_fill (c)] & __wprintable) : 0);
 }
 __inline int
-iswpunct(wint_t c)
+iswpunct (wint_t c)
 {
-    return ((c < __WCMAP_SIZE) ? (__wctype_map[__wz_fill(c)] & __wpunctuation) : 0);
+    return ((c < __WCMAP_SIZE) ? (__wctype_map[__wz_fill (c)] & __wpunctuation) : 0);
 }
 __inline int
-iswspace(wint_t c)
+iswspace (wint_t c)
 {
-    return ((c < __WCMAP_SIZE) ? (__wctype_map[__wz_fill(c)] & __wwhitespace) : 0);
+    return ((c < __WCMAP_SIZE) ? (__wctype_map[__wz_fill (c)] & __wwhitespace) : 0);
 }
 __inline int
-iswupper(wint_t c)
+iswupper (wint_t c)
 {
-    return ((c < __WCMAP_SIZE) ? (__wctype_map[__wz_fill(c)] & __wupper_case) : 0);
+    return ((c < __WCMAP_SIZE) ? (__wctype_map[__wz_fill (c)] & __wupper_case) : 0);
 }
 __inline int
-iswxdigit(wint_t c)
+iswxdigit (wint_t c)
 {
-    return ((c < __WCMAP_SIZE) ? (__wctype_map[__wz_fill(c)] & __whex_digit) : 0);
+    return ((c < __WCMAP_SIZE) ? (__wctype_map[__wz_fill (c)] & __whex_digit) : 0);
 }
 /*- mm 970918 -*/
 __inline wint_t
-towlower(wint_t c)
+towlower (wint_t c)
 {
-    return ((c >= __WCMAP_SIZE) ? c : ((wint_t)__wlower_map[__wz_fill(c)]));
+    return ((c >= __WCMAP_SIZE) ? c : ((wint_t)__wlower_map[__wz_fill (c)]));
 } /*- mm 980205 -*/
 __inline wint_t
-towupper(wint_t c)
+towupper (wint_t c)
 {
-    return ((c >= __WCMAP_SIZE) ? c : ((wint_t)__wupper_map[__wz_fill(c)]));
+    return ((c >= __WCMAP_SIZE) ? c : ((wint_t)__wupper_map[__wz_fill (c)]));
 } /*- mm 980205 -*/
 _MSL_END_NAMESPACE_STD /*- cc 010409 -*/
 

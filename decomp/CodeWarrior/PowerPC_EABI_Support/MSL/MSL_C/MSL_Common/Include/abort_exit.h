@@ -12,22 +12,22 @@
 
 _MSL_BEGIN_EXTERN_C           /*- cc 010409 -*/
 
-    extern void (*__stdio_exit)(void);
-extern void     (*__console_exit)(void);
+    extern void (*__stdio_exit) (void);
+extern void     (*__console_exit) (void);
 extern int      __aborting;
-int             __atexit(void (*func)(void));
-void            __exit(int status);
+int             __atexit (void (*func) (void));
+void            __exit (int status);
 
 #define __setup_exit()
 
 #if (__dest_os == __win32_os || __dest_os == __wince_os)
-_MSL_IMP_EXP_C void _CleanUpMSL();
+_MSL_IMP_EXP_C void _CleanUpMSL ();
 #endif
 
 #if __dest_os == __ppc_eabi || __dest_os == __mips_bare ||                          \
     __dest_os == __emb_68k || __dest_os == __mcore_bare ||                          \
     __dest_os == __dolphin_os /*- beb 990804 -*/
-_MSL_IMP_EXP_C void _ExitProcess(void);
+_MSL_IMP_EXP_C void _ExitProcess (void);
 #endif
 
 _MSL_END_EXTERN_C             /*- cc 010409 -*/

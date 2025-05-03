@@ -37,9 +37,9 @@ AUTHORS
 
 #pragma section code_type ".init"
 
-asm void init_board();
+asm void init_board ();
 asm void
-init_board()
+init_board ()
 {
     nofralloc
 

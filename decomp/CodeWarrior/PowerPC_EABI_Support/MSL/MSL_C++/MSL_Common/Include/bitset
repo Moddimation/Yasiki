@@ -42,7 +42,7 @@ namespace std
 {
 #endif
 inline size_t
-__count4bits(unsigned char flag)
+__count4bits (unsigned char flag)
 {
     switch (flag)
     {
@@ -69,12 +69,12 @@ __count4bits(unsigned char flag)
     return 0;
 }
 inline size_t
-__count1long(unsigned long flag)
+__count1long (unsigned long flag)
 {
     size_t count = 0;
     while (flag != 0)
     {
-        count += __count4bits((unsigned char)(flag & 0xF));
+        count += __count4bits ((unsigned char)(flag & 0xF));
         flag >>= 4;
     }
     return count;
@@ -82,49 +82,49 @@ __count1long(unsigned long flag)
 template <size_t N> class __bitset_base
 {
 public:
-    __bitset_base();
-    __bitset_base(unsigned long val);
-    __bitset_base& operator&=(const __bitset_base& rhs);
-    __bitset_base& operator|=(const __bitset_base& rhs);
-    __bitset_base& operator^=(const __bitset_base& rhs);
-    __bitset_base& left_shift(size_t pos, unsigned long mask);
-    __bitset_base& right_shift(size_t pos);
-    __bitset_base& set(unsigned long mask);
-    __bitset_base& set(size_t pos, bool val);
-    __bitset_base& reset();
-    __bitset_base& reset(size_t pos);
-    __bitset_base& flip_all(unsigned long mask);
-    __bitset_base& flip(size_t pos);
+    __bitset_base ();
+    __bitset_base (unsigned long val);
+    __bitset_base& operator&= (const __bitset_base& rhs);
+    __bitset_base& operator|= (const __bitset_base& rhs);
+    __bitset_base& operator^= (const __bitset_base& rhs);
+    __bitset_base& left_shift (size_t pos, unsigned long mask);
+    __bitset_base& right_shift (size_t pos);
+    __bitset_base& set (unsigned long mask);
+    __bitset_base& set (size_t pos, bool val);
+    __bitset_base& reset ();
+    __bitset_base& reset (size_t pos);
+    __bitset_base& flip_all (unsigned long mask);
+    __bitset_base& flip (size_t pos);
 #if !defined(__MWERKS__) || (defined(__MWERKS__) && __MWERKS__ >= 0x2400)
     template <class charT, class traits, class Allocator>
-    basic_string<charT, traits, Allocator> to_string(unsigned long n) const;
+    basic_string<charT, traits, Allocator> to_string (unsigned long n) const;
 #else
-    string to_string(unsigned long n) const;
+    string to_string (unsigned long n) const;
 #endif
-    unsigned long to_ulong() const;
-    size_t        count() const;
-    bool          operator==(const __bitset_base& rhs) const;
-    bool          test(size_t pos) const;
-    bool          any() const;
+    unsigned long to_ulong () const;
+    size_t        count () const;
+    bool          operator== (const __bitset_base& rhs) const;
+    bool          test (size_t pos) const;
+    bool          any () const;
 
 private:
-    static const size_t num_bits_word = __char<>::bits * sizeof(unsigned long);
+    static const size_t num_bits_word = __char<>::bits * sizeof (unsigned long);
     static const size_t nwords_ = N;
 
     unsigned long data_[N];
 };
 template <size_t N> __bitset_base<N>::__bitset_base()
 {
-    fill(data_, data_ + nwords_, 0UL);
+    fill (data_, data_ + nwords_, 0UL);
 }
-template <size_t N> __bitset_base<N>::__bitset_base(unsigned long val)
+template <size_t N> __bitset_base<N>::__bitset_base (unsigned long val)
 {
     data_[0] = val;
-    fill(data_ + 1, data_ + nwords_, 0UL);
+    fill (data_ + 1, data_ + nwords_, 0UL);
 }
 template <size_t N>
 __bitset_base<N>&
-__bitset_base<N>::operator&=(const __bitset_base& rhs)
+__bitset_base<N>::operator&= (const __bitset_base& rhs)
 {
     for (size_t i = 0; i < nwords_; ++i)
     {
@@ -134,7 +134,7 @@ __bitset_base<N>::operator&=(const __bitset_base& rhs)
 }
 template <size_t N>
 __bitset_base<N>&
-__bitset_base<N>::operator|=(const __bitset_base& rhs)
+__bitset_base<N>::operator|= (const __bitset_base& rhs)
 {
     for (size_t i = 0; i < nwords_; ++i)
     {
@@ -144,7 +144,7 @@ __bitset_base<N>::operator|=(const __bitset_base& rhs)
 }
 template <size_t N>
 __bitset_base<N>&
-__bitset_base<N>::operator^=(const __bitset_base& rhs)
+__bitset_base<N>::operator^= (const __bitset_base& rhs)
 {
     for (size_t i = 0; i < nwords_; ++i)
     {
@@ -154,12 +154,12 @@ __bitset_base<N>::operator^=(const __bitset_base& rhs)
 }
 template <size_t N>
 __bitset_base<N>&
-__bitset_base<N>::left_shift(size_t pos, unsigned long mask)
+__bitset_base<N>::left_shift (size_t pos, unsigned long mask)
 {
-    long offset = long(pos / num_bits_word);
+    long offset = long (pos / num_bits_word);
     if (offset > 0)
     {
-        long i = long(nwords_ - 1);
+        long i = long (nwords_ - 1);
         for (; i - offset >= 0; --i)
         {
             data_[i] = data_[i - offset];
@@ -185,9 +185,9 @@ __bitset_base<N>::left_shift(size_t pos, unsigned long mask)
 }
 template <size_t N>
 __bitset_base<N>&
-__bitset_base<N>::right_shift(size_t pos)
+__bitset_base<N>::right_shift (size_t pos)
 {
-    long offset = long(pos / num_bits_word);
+    long offset = long (pos / num_bits_word);
     if (offset > 0)
     {
         long i = 0;
@@ -212,7 +212,7 @@ __bitset_base<N>::right_shift(size_t pos)
 }
 template <size_t N>
 __bitset_base<N>&
-__bitset_base<N>::set(unsigned long mask)
+__bitset_base<N>::set (unsigned long mask)
 {
     for (size_t i = 0; i < nwords_; ++i)
     {
@@ -226,7 +226,7 @@ __bitset_base<N>::set(unsigned long mask)
 }
 template <size_t N>
 __bitset_base<N>&
-__bitset_base<N>::set(size_t pos, bool val)
+__bitset_base<N>::set (size_t pos, bool val)
 {
     size_t        word = pos / num_bits_word;
     unsigned long bitmask = (unsigned long)1 << pos % num_bits_word;
@@ -242,14 +242,14 @@ __bitset_base<N>::set(size_t pos, bool val)
 }
 template <size_t N>
 __bitset_base<N>&
-__bitset_base<N>::reset()
+__bitset_base<N>::reset ()
 {
-    fill(data_, data_ + nwords_, 0UL);
+    fill (data_, data_ + nwords_, 0UL);
     return *this;
 }
 template <size_t N>
 __bitset_base<N>&
-__bitset_base<N>::reset(size_t pos)
+__bitset_base<N>::reset (size_t pos)
 {
     size_t        word = pos / num_bits_word;
     unsigned long bitmask = (unsigned long)1 << pos % num_bits_word;
@@ -258,7 +258,7 @@ __bitset_base<N>::reset(size_t pos)
 }
 template <size_t N>
 __bitset_base<N>&
-__bitset_base<N>::flip_all(unsigned long mask)
+__bitset_base<N>::flip_all (unsigned long mask)
 {
     for (int i = 0; i < nwords_; ++i)
     {
@@ -272,7 +272,7 @@ __bitset_base<N>::flip_all(unsigned long mask)
 }
 template <size_t N>
 __bitset_base<N>&
-__bitset_base<N>::flip(size_t pos)
+__bitset_base<N>::flip (size_t pos)
 {
     size_t         word = pos / num_bits_word;
     unsigned long  bitmask = (unsigned long)1 << pos % num_bits_word;
@@ -291,14 +291,14 @@ __bitset_base<N>::flip(size_t pos)
 template <size_t N>
 template <class charT, class traits, class Allocator>
 basic_string<charT, traits, Allocator>
-__bitset_base<N>::to_string(unsigned long n) const
+__bitset_base<N>::to_string (unsigned long n) const
 {
-    basic_string<charT, traits, Allocator> result(n, charT('0'));
+    basic_string<charT, traits, Allocator> result (n, charT ('0'));
     for (size_t i = 0; i < n; ++i)
     {
-        if (test(i))
+        if (test (i))
         {
-            result[n - i - 1] = charT('1');
+            result[n - i - 1] = charT ('1');
         }
     }
     return result;
@@ -306,12 +306,12 @@ __bitset_base<N>::to_string(unsigned long n) const
 #else
 template <size_t N>
 string
-__bitset_base<N>::to_string(unsigned long n) const
+__bitset_base<N>::to_string (unsigned long n) const
 {
-    string result(n, '0');
+    string result (n, '0');
     for (size_t i = 0; i < n; ++i)
     {
-        if (test(i))
+        if (test (i))
         {
             result[n - i - 1] = '1';
         }
@@ -321,33 +321,33 @@ __bitset_base<N>::to_string(unsigned long n) const
 #endif
 template <size_t N>
 unsigned long
-__bitset_base<N>::to_ulong() const
+__bitset_base<N>::to_ulong () const
 {
     for (size_t i = 1; i < nwords_; ++i)
     {
         if (data_[i] != 0)
 #ifndef _MSL_NO_EXCEPTIONS
-            throw overflow_error("bitset::to_ulong overflow");
+            throw overflow_error ("bitset::to_ulong overflow");
     }
 #else
-            __msl_error("bitset::to_ulong overflow");
+            __msl_error ("bitset::to_ulong overflow");
 #endif
     return data_[0];
 }
 template <size_t N>
 size_t
-__bitset_base<N>::count() const
+__bitset_base<N>::count () const
 {
     size_t count = 0;
     for (size_t i = 0; i < nwords_; ++i)
     {
-        count += __count1long(data_[i]);
+        count += __count1long (data_[i]);
     }
     return count;
 }
 template <size_t N>
 bool
-__bitset_base<N>::operator==(const __bitset_base& rhs) const
+__bitset_base<N>::operator== (const __bitset_base& rhs) const
 {
     for (size_t i = 0; i < nwords_; ++i)
     {
@@ -360,15 +360,15 @@ __bitset_base<N>::operator==(const __bitset_base& rhs) const
 }
 template <size_t N>
 bool
-__bitset_base<N>::test(size_t pos) const
+__bitset_base<N>::test (size_t pos) const
 {
     size_t        word = pos / num_bits_word;
     unsigned long bitmask = (unsigned long)1 << pos % num_bits_word;
-    return bool(data_[word] & bitmask);
+    return bool (data_[word] & bitmask);
 }
 template <size_t N>
 bool
-__bitset_base<N>::any() const
+__bitset_base<N>::any () const
 {
     for (size_t i = 0; i < nwords_; ++i)
     {
@@ -382,34 +382,34 @@ __bitset_base<N>::any() const
 template <> class __bitset_base<1>
 {
 public:
-    __bitset_base();
-    __bitset_base(unsigned long val);
-    __bitset_base& operator&=(const __bitset_base& rhs);
-    __bitset_base& operator|=(const __bitset_base& rhs);
-    __bitset_base& operator^=(const __bitset_base& rhs);
-    __bitset_base& left_shift(size_t pos, unsigned long mask);
-    __bitset_base& right_shift(size_t pos);
-    __bitset_base& set(unsigned long mask);
-    __bitset_base& set(size_t pos, bool val);
-    __bitset_base& reset();
-    __bitset_base& reset(size_t pos);
-    __bitset_base& flip_all(unsigned long mask);
-    __bitset_base& flip(size_t pos);
+    __bitset_base ();
+    __bitset_base (unsigned long val);
+    __bitset_base& operator&= (const __bitset_base& rhs);
+    __bitset_base& operator|= (const __bitset_base& rhs);
+    __bitset_base& operator^= (const __bitset_base& rhs);
+    __bitset_base& left_shift (size_t pos, unsigned long mask);
+    __bitset_base& right_shift (size_t pos);
+    __bitset_base& set (unsigned long mask);
+    __bitset_base& set (size_t pos, bool val);
+    __bitset_base& reset ();
+    __bitset_base& reset (size_t pos);
+    __bitset_base& flip_all (unsigned long mask);
+    __bitset_base& flip (size_t pos);
 
 #if !defined(__MWERKS__) || (defined(__MWERKS__) && __MWERKS__ >= 0x2400)
     template <class charT, class traits, class Allocator>
-    basic_string<charT, traits, Allocator> to_string(unsigned long n) const;
+    basic_string<charT, traits, Allocator> to_string (unsigned long n) const;
 #else
-        string to_string(unsigned long n) const;
+        string to_string (unsigned long n) const;
 #endif
-    unsigned long to_ulong() const;
-    size_t        count() const;
-    bool          operator==(const __bitset_base& rhs) const;
-    bool          test(size_t pos) const;
-    bool          any() const;
+    unsigned long to_ulong () const;
+    size_t        count () const;
+    bool          operator== (const __bitset_base& rhs) const;
+    bool          test (size_t pos) const;
+    bool          any () const;
 
 private:
-    static const size_t num_bits_word = __char<>::bits * sizeof(unsigned long);
+    static const size_t num_bits_word = __char<>::bits * sizeof (unsigned long);
     static const size_t nwords_ = 1;
     unsigned long       data_;
 };
@@ -417,34 +417,34 @@ template <> inline __bitset_base<1>::__bitset_base()
 {
     data_ = 0;
 }
-template <> inline __bitset_base<1>::__bitset_base(unsigned long val)
+template <> inline __bitset_base<1>::__bitset_base (unsigned long val)
 {
     data_ = val;
 }
 template <>
 inline __bitset_base<1>&
-__bitset_base<1>::operator&=(const __bitset_base& rhs)
+__bitset_base<1>::operator&= (const __bitset_base& rhs)
 {
     data_ &= rhs.data_;
     return *this;
 }
 template <>
 inline __bitset_base<1>&
-__bitset_base<1>::operator|=(const __bitset_base& rhs)
+__bitset_base<1>::operator|= (const __bitset_base& rhs)
 {
     data_ |= rhs.data_;
     return *this;
 }
 template <>
 inline __bitset_base<1>&
-__bitset_base<1>::operator^=(const __bitset_base& rhs)
+__bitset_base<1>::operator^= (const __bitset_base& rhs)
 {
     data_ ^= rhs.data_;
     return *this;
 }
 template <>
 inline __bitset_base<1>&
-__bitset_base<1>::left_shift(size_t pos, unsigned long mask)
+__bitset_base<1>::left_shift (size_t pos, unsigned long mask)
 {
     data_ <<= pos;
     if (mask)
@@ -455,21 +455,21 @@ __bitset_base<1>::left_shift(size_t pos, unsigned long mask)
 }
 template <>
 inline __bitset_base<1>&
-__bitset_base<1>::right_shift(size_t pos)
+__bitset_base<1>::right_shift (size_t pos)
 {
     data_ >>= pos;
     return *this;
 }
 template <>
 inline __bitset_base<1>&
-__bitset_base<1>::set(unsigned long mask)
+__bitset_base<1>::set (unsigned long mask)
 {
     data_ = mask;
     return *this;
 }
 template <>
 inline __bitset_base<1>&
-__bitset_base<1>::set(size_t pos, bool val)
+__bitset_base<1>::set (size_t pos, bool val)
 {
     unsigned long bitmask = (unsigned long)1 << pos;
     if (val)
@@ -484,21 +484,21 @@ __bitset_base<1>::set(size_t pos, bool val)
 }
 template <>
 inline __bitset_base<1>&
-__bitset_base<1>::reset()
+__bitset_base<1>::reset ()
 {
     data_ = 0;
     return *this;
 }
 template <>
 inline __bitset_base<1>&
-__bitset_base<1>::reset(size_t pos)
+__bitset_base<1>::reset (size_t pos)
 {
-    data_ &= ÃÂ¢ÃÂÃÂ¾((unsigned long)1 << pos);
+    data_ &= ÃÂ¢ÃÂÃÂ¾ ((unsigned long)1 << pos);
     return *this;
 }
 template <>
 inline __bitset_base<1>&
-__bitset_base<1>::flip_all(unsigned long mask)
+__bitset_base<1>::flip_all (unsigned long mask)
 {
     data_ = ÃÂ¢ÃÂÃÂ¾data_;
     data_ &= mask;
@@ -506,7 +506,7 @@ __bitset_base<1>::flip_all(unsigned long mask)
 }
 template <>
 inline __bitset_base<1>&
-__bitset_base<1>::flip(size_t pos)
+__bitset_base<1>::flip (size_t pos)
 {
     unsigned long bitmask = (unsigned long)1 << pos;
     if (data_ & bitmask)
@@ -523,26 +523,26 @@ __bitset_base<1>::flip(size_t pos)
 template <>
 template <class charT, class traits, class Allocator>
 basic_string<charT, traits, Allocator>
-__bitset_base<1>::to_string(unsigned long n) const
+__bitset_base<1>::to_string (unsigned long n) const
 {
-    basic_string<charT, traits, Allocator> result(n, charT('0'));
+    basic_string<charT, traits, Allocator> result (n, charT ('0'));
     for (size_t i = 0; i < n; ++i)
     {
-        if (test(i))
+        if (test (i))
         {
-            result[n - i - 1] = charT('1');
+            result[n - i - 1] = charT ('1');
         }
     }
     return result;
 }
 #else
 
-    template <> inline string __bitset_base<1>::to_string(unsigned long n) const
+    template <> inline string __bitset_base<1>::to_string (unsigned long n) const
     {
-        string result(n, '0');
+        string result (n, '0');
         for (size_t i = 0; i < n; ++i)
         {
-            if (test(i))
+            if (test (i))
             {
                 result[n - i - 1] = '1';
             }
@@ -553,42 +553,42 @@ __bitset_base<1>::to_string(unsigned long n) const
 #endif
 template <>
 inline unsigned long
-__bitset_base<1>::to_ulong() const
+__bitset_base<1>::to_ulong () const
 {
     return data_;
 }
 template <>
 inline size_t
-__bitset_base<1>::count() const
+__bitset_base<1>::count () const
 {
-    return __count1long(data_);
+    return __count1long (data_);
 }
 template <>
 inline bool
-__bitset_base<1>::operator==(const __bitset_base& rhs) const
+__bitset_base<1>::operator== (const __bitset_base& rhs) const
 {
     return data_ == rhs.data_;
 }
 template <>
 inline bool
-__bitset_base<1>::test(size_t pos) const
+__bitset_base<1>::test (size_t pos) const
 {
     unsigned long bitmask = (unsigned long)1 << pos;
-    return bool(data_ & bitmask);
+    return bool (data_ & bitmask);
 }
 template <>
 inline bool
-__bitset_base<1>::any() const
+__bitset_base<1>::any () const
 {
-    return static_cast<bool>(data_);
+    return static_cast<bool> (data_);
 }
 template <size_t N>
 class bitset
   : private __bitset_base<
-        N == 0 ? 1 : (N - 1) / (__char<>::bits * sizeof(unsigned long)) + 1>
+        N == 0 ? 1 : (N - 1) / (__char<>::bits * sizeof (unsigned long)) + 1>
 {
     typedef __bitset_base<
-        N == 0 ? 1 : (N - 1) / (__char<>::bits * sizeof(unsigned long)) + 1>
+        N == 0 ? 1 : (N - 1) / (__char<>::bits * sizeof (unsigned long)) + 1>
         base;
 
 public:
@@ -597,104 +597,105 @@ public:
     {
     public:
         reference&
-        operator=(bool x)
+        operator= (bool x)
         {
-            v_.set(pos_, x);
+            v_.set (pos_, x);
             return *this;
         }
         reference&
-        operator=(const reference& rhs)
+        operator= (const reference& rhs)
         {
-            v_.set(pos_, rhs);
+            v_.set (pos_, rhs);
             return *this;
         }
         bool
-        operatorÃÂ¢ÃÂÃÂ¾() const
+        operatorÃÂ¢ÃÂÃÂ¾ () const
         {
-            return !v_.test(pos_);
+            return !v_.test (pos_);
         }
-        operator bool() const { return v_.test(pos_); }
+        operator bool () const { return v_.test (pos_); }
         reference&
-        flip()
+        flip ()
         {
-            v_.flip(pos_);
+            v_.flip (pos_);
             return *this;
         }
 
     private:
         bitset& v_;
         size_t  pos_;
-        reference(bitset& v, size_t pos) : v_(v), pos_(pos) {}
+        reference (bitset& v, size_t pos) : v_ (v), pos_ (pos) {}
 
         friend class bitset;
     };
     // _lib.bitset.cons_ constructors:
-    bitset();
-    bitset(unsigned long val);
+    bitset ();
+    bitset (unsigned long val);
 
 #if !defined(__MWERKS__) || (defined(__MWERKS__) && __MWERKS__ >= 0x2400)
     template <class charT, class traits, class Allocator>
-    bitset(const basic_string<charT, traits, Allocator>&              str,
-           typename basic_string<charT, traits, Allocator>::size_type pos = 0,
-           typename basic_string<charT, traits, Allocator>::size_type n =
+    bitset (const basic_string<charT, traits, Allocator>&              str,
+            typename basic_string<charT, traits, Allocator>::size_type pos = 0,
+            typename basic_string<charT, traits, Allocator>::size_type n =
 #ifndef __GNUC__
-               basic_string<charT, traits, Allocator>::npos);
+                basic_string<charT, traits, Allocator>::npos);
 #else
-               -1);
+                -1);
 #endif
 #else
-        bitset(const string& str, typename string::size_type pos = 0,
-               typename string::size_type n = string::npos);
+        bitset (const string&              str,
+                typename string::size_type pos = 0,
+                typename string::size_type n = string::npos);
 #endif
 
     // _lib.bitset.members_ bitset operations:
-    bitset<N>&    operator&=(const bitset<N>& rhs);
-    bitset<N>&    operator|=(const bitset<N>& rhs);
-    bitset<N>&    operator^=(const bitset<N>& rhs);
-    bitset<N>&    operator<<=(size_t pos);
-    bitset<N>&    operator>>=(size_t pos);
-    bitset<N>&    set();
-    bitset<N>&    set(size_t pos, bool val = true);
-    bitset<N>&    reset();
-    bitset<N>&    reset(size_t pos);
-    bitset<N>     operatorÃÂ¢ÃÂÃÂ¾() const;
-    bitset<N>&    flip();
-    bitset<N>&    flip(size_t pos);
+    bitset<N>&    operator&= (const bitset<N>& rhs);
+    bitset<N>&    operator|= (const bitset<N>& rhs);
+    bitset<N>&    operator^= (const bitset<N>& rhs);
+    bitset<N>&    operator<<= (size_t pos);
+    bitset<N>&    operator>>= (size_t pos);
+    bitset<N>&    set ();
+    bitset<N>&    set (size_t pos, bool val = true);
+    bitset<N>&    reset ();
+    bitset<N>&    reset (size_t pos);
+    bitset<N>     operatorÃÂ¢ÃÂÃÂ¾ () const;
+    bitset<N>&    flip ();
+    bitset<N>&    flip (size_t pos);
     // element access:
-    bool          operator[](size_t pos) const;
-    reference     operator[](size_t pos);
-    unsigned long to_ulong() const;
+    bool          operator[] (size_t pos) const;
+    reference     operator[] (size_t pos);
+    unsigned long to_ulong () const;
 
 #if !defined(__MWERKS__) || (defined(__MWERKS__) && __MWERKS__ >= 0x2400)
     template <class charT, class traits, class Allocator>
-    basic_string<charT, traits, Allocator> to_string() const;
+    basic_string<charT, traits, Allocator> to_string () const;
     template <class charT, class traits>
     basic_string<charT, traits>
-    to_string() const
+    to_string () const
     {
         return to_string<charT, traits, allocator<charT> >();
     }
     template <class charT>
     basic_string<charT>
-    to_string() const
+    to_string () const
     {
         return to_string<charT, char_traits<charT>, allocator<charT> >();
     }
 #else
-        string to_string() const;
+        string to_string () const;
 #endif
-    size_t    count() const;
-    size_t    size() const;
-    bool      operator==(const bitset<N>& rhs) const;
-    bool      operator!=(const bitset<N>& rhs) const;
-    bool      test(size_t pos) const;
-    bool      any() const;
-    bool      none() const;
-    bitset<N> operator<<(size_t pos) const;
-    bitset<N> operator>>(size_t pos) const;
+    size_t    count () const;
+    size_t    size () const;
+    bool      operator== (const bitset<N>& rhs) const;
+    bool      operator!= (const bitset<N>& rhs) const;
+    bool      test (size_t pos) const;
+    bool      any () const;
+    bool      none () const;
+    bitset<N> operator<< (size_t pos) const;
+    bitset<N> operator>> (size_t pos) const;
 
 private:
-    static const size_t num_bits_word = __char<>::bits * sizeof(unsigned long);
+    static const size_t num_bits_word = __char<>::bits * sizeof (unsigned long);
     static const size_t nwords_ = N == 0 ? 1 : (N - 1) / num_bits_word + 1;
     static const unsigned long mask = (unsigned long)(-1) >>
                                       (unsigned long)(num_bits_word -
@@ -704,61 +705,66 @@ private:
 
 template <size_t N>
 inline bitset<N>
-operator&(const bitset<N>& lhs, const bitset<N>& rhs)
+operator& (const bitset<N>& lhs, const bitset<N>& rhs)
 {
-    return bitset<N>(lhs) &= rhs;
+    return bitset<N> (lhs) &= rhs;
 }
 template <size_t N>
 inline bitset<N>
-operator|(const bitset<N>& lhs, const bitset<N>& rhs)
+operator| (const bitset<N>& lhs, const bitset<N>& rhs)
 {
-    return bitset<N>(lhs) |= rhs;
+    return bitset<N> (lhs) |= rhs;
 }
 template <size_t N>
 inline bitset<N>
-operator^(const bitset<N>& lhs, const bitset<N>& rhs)
+operator^ (const bitset<N>& lhs, const bitset<N>& rhs)
 {
-    return bitset<N>(lhs) ^= rhs;
+    return bitset<N> (lhs) ^= rhs;
 }
 #ifndef _MSL_NO_IO
 
 template <class InputIterator, class charT, class traits>
-int __extract_bitset(InputIterator in, InputIterator end,
-                     basic_ios<charT, traits>&                   str,
-                     typename basic_ios<charT, traits>::iostate& err, string& strng,
-                     unsigned long N);
+int __extract_bitset (InputIterator                               in,
+                      InputIterator                               end,
+                      basic_ios<charT, traits>&                   str,
+                      typename basic_ios<charT, traits>::iostate& err,
+                      string&                                     strng,
+                      unsigned long                               N);
 template <class charT, class traits, size_t N>
 basic_istream<charT, traits>&
-operator>>(basic_istream<charT, traits>& is, bitset<N>& rhs)
+operator>> (basic_istream<charT, traits>& is, bitset<N>& rhs)
 {
     typedef basic_istream<charT, traits> stream_type;
-    typename stream_type::sentry         ok(is);
+    typename stream_type::sentry         ok (is);
     if (ok)
     {
         string                        str;
         typename stream_type::iostate err = stream_type::goodbit;
-        if (__extract_bitset(istreambuf_iterator<charT, traits>(is),
-                             istreambuf_iterator<charT, traits>(), is, err, str,
-                             N) == 0)
+        if (__extract_bitset (istreambuf_iterator<charT, traits> (is),
+                              istreambuf_iterator<charT, traits>(),
+                              is,
+                              err,
+                              str,
+                              N) == 0)
         {
             err |= stream_type::failbit;
         }
         else
         {
-            rhs = bitset<N>(str);
+            rhs = bitset<N> (str);
         }
         if (err)
         {
-            is.setstate(err);
+            is.setstate (err);
         }
     }
     return is;
 }
 template <class charT, class traits, size_t N>
 inline basic_ostream<charT, traits>&
-operator<<(basic_ostream<charT, traits>& os, const bitset<N>& rhs)
+operator<< (basic_ostream<charT, traits>& os, const bitset<N>& rhs)
 {
-    typename basic_ostream<charT, traits>::sentry ok(os);
+    typename basic_ostream<charT, traits>::sentry ok (os);
     if (ok)
     {
 #if !defined(__MWERKS__) || (defined(__MWERKS__) && __MWERKS__ >= 0x2400)
@@ -776,24 +782,24 @@ template <size_t N> inline bitset<N>::bitset()
 {
 }
 template <size_t N>
-inline bitset<N>::bitset(unsigned long val)
+inline bitset<N>::bitset (unsigned long val)
   : __bitset_base<N == 0 ? 1
-                         : (N - 1) / (__char<>::bits * sizeof(unsigned long)) + 1>(
+                         : (N - 1) / (__char<>::bits * sizeof (unsigned long)) + 1> (
         N < num_bits_word ? val & mask : val)
 {
 }
 #if !defined(__MWERKS__) || (defined(__MWERKS__) && __MWERKS__ >= 0x2400)
 template <size_t N>
 template <class charT, class traits, class Allocator>
-bitset<N>::bitset(const basic_string<charT, traits, Allocator>&              str,
-                  typename basic_string<charT, traits, Allocator>::size_type pos,
-                  typename basic_string<charT, traits, Allocator>::size_type n)
+bitset<N>::bitset (const basic_string<charT, traits, Allocator>&              str,
+                   typename basic_string<charT, traits, Allocator>::size_type pos,
+                   typename basic_string<charT, traits, Allocator>::size_type n)
 {
     if (pos >= str.size())
 #ifndef _MSL_NO_EXCEPTIONS
-        throw out_of_range("pos out of range of str in bitset constructor");
+        throw out_of_range ("pos out of range of str in bitset constructor");
 #else
-        __msl_error("pos out of range of str in bitset constructor");
+        __msl_error ("pos out of range of str in bitset constructor");
 #endif
     if (n > str.size() - pos)
     {
@@ -805,20 +811,21 @@ bitset<N>::bitset(const basic_string<charT, traits, Allocator>&              str
     }
     for (size_t i = 0; i < n; ++i)
     {
-        char c = char(str[pos + n - 1 - i]);
+        char c = char (str[pos + n - 1 - i]);
         switch (c)
         {
             case '0':
                 break;
             case '1':
-                set(i);
+                set (i);
                 break;
             default:
 #ifndef _MSL_NO_EXCEPTIONS
-                throw invalid_argument(
+                throw invalid_argument (
                     "str contains invalid characters in bitset constructor");
 #else
-                __msl_error("str contains invalid characters in bitset constructor");
+                __msl_error (
+                    "str contains invalid characters in bitset constructor");
 #endif
         }
     }
@@ -826,14 +833,15 @@ bitset<N>::bitset(const basic_string<charT, traits, Allocator>&              str
 #else
 
     template <size_t N>
-    bitset<N>::bitset(const string& str, typename string::size_type pos,
-                      typename string::size_type n)
+    bitset<N>::bitset (const string&              str,
+                       typename string::size_type pos,
+                       typename string::size_type n)
     {
         if (pos >= str.size())
 #ifndef _MSL_NO_EXCEPTIONS
-            throw out_of_range("pos out of range of str in bitset constructor");
+            throw out_of_range ("pos out of range of str in bitset constructor");
 #else
-            __msl_error("pos out of range of str in bitset constructor");
+            __msl_error ("pos out of range of str in bitset constructor");
 #endif
         if (n > str.size() - pos)
         {
@@ -845,20 +853,20 @@ bitset<N>::bitset(const basic_string<charT, traits, Allocator>&              str
         }
         for (size_t i = 0; i < n; ++i)
         {
-            char c = char(str[pos + n - 1 - i]);
+            char c = char (str[pos + n - 1 - i]);
             switch (c)
             {
                 case '0':
                     break;
                 case '1':
-                    set(i);
+                    set (i);
                     break;
                 default:
 #ifndef _MSL_NO_EXCEPTIONS
-                    throw invalid_argument(
+                    throw invalid_argument (
                         "str contains invalid characters in bitset constructor");
 #else
-                    __msl_error(
+                    __msl_error (
                         "str contains invalid characters in bitset constructor");
 #endif
             }
@@ -867,187 +875,187 @@ bitset<N>::bitset(const basic_string<charT, traits, Allocator>&              str
 #endif
 template <size_t N>
 inline bitset<N>&
-bitset<N>::operator&=(const bitset& rhs)
+bitset<N>::operator&= (const bitset& rhs)
 {
-    return (bitset<N>&)base::operator&=((const base&)rhs);
+    return (bitset<N>&)base::operator&= ((const base&)rhs);
 }
 template <size_t N>
 inline bitset<N>&
-bitset<N>::operator|=(const bitset<N>& rhs)
+bitset<N>::operator|= (const bitset<N>& rhs)
 {
-    return (bitset<N>&)base::operator|=((const base&)rhs);
+    return (bitset<N>&)base::operator|= ((const base&)rhs);
 }
 template <size_t N>
 inline bitset<N>&
-bitset<N>::operator^=(const bitset<N>& rhs)
+bitset<N>::operator^= (const bitset<N>& rhs)
 {
-    return (bitset<N>&)base::operator^=((const base&)rhs);
+    return (bitset<N>&)base::operator^= ((const base&)rhs);
 }
 template <size_t N>
 inline bitset<N>&
-bitset<N>::operator<<=(size_t pos)
+bitset<N>::operator<<= (size_t pos)
 {
-    return (bitset<N>&)base::left_shift(pos, mask);
+    return (bitset<N>&)base::left_shift (pos, mask);
 }
 template <size_t N>
 inline bitset<N>&
-bitset<N>::operator>>=(size_t pos)
+bitset<N>::operator>>= (size_t pos)
 {
-    return (bitset<N>&)base::right_shift(pos);
+    return (bitset<N>&)base::right_shift (pos);
 }
 template <size_t N>
 inline bitset<N>&
-bitset<N>::set()
+bitset<N>::set ()
 {
-    return (bitset<N>&)base::set(mask);
+    return (bitset<N>&)base::set (mask);
 }
 template <size_t N>
 inline bitset<N>&
-bitset<N>::set(size_t pos, bool val)
+bitset<N>::set (size_t pos, bool val)
 {
     if (pos >= N)
 #ifndef _MSL_NO_EXCEPTIONS
-        throw out_of_range("index out of range of bitset::set");
+        throw out_of_range ("index out of range of bitset::set");
 #else
-            __msl_error("index out of range of bitset::set");
+            __msl_error ("index out of range of bitset::set");
 #endif
-    return (bitset<N>&)base::set(pos, val);
+    return (bitset<N>&)base::set (pos, val);
 }
 template <size_t N>
 inline bitset<N>&
-bitset<N>::reset()
+bitset<N>::reset ()
 {
     return (bitset<N>&)base::reset();
 }
 template <size_t N>
 inline bitset<N>&
-bitset<N>::reset(size_t pos)
+bitset<N>::reset (size_t pos)
 {
     if (pos >= N)
 #ifndef _MSL_NO_EXCEPTIONS
-        throw out_of_range("index out of range of bitset::reset");
+        throw out_of_range ("index out of range of bitset::reset");
 #else
-            __msl_error("index out of range of bitset::reset");
+            __msl_error ("index out of range of bitset::reset");
 #endif
-    return (bitset<N>&)base::reset(pos);
+    return (bitset<N>&)base::reset (pos);
 }
 template <size_t N>
 inline bitset<N>
-bitset<N>::operatorÃÂ¢ÃÂÃÂ¾() const
+bitset<N>::operatorÃÂ¢ÃÂÃÂ¾ () const
 {
-    return bitset<N>(*this).flip();
+    return bitset<N> (*this).flip();
 }
 template <size_t N>
 inline bitset<N>&
-bitset<N>::flip()
+bitset<N>::flip ()
 {
-    return (bitset<N>&)base::flip_all(mask);
+    return (bitset<N>&)base::flip_all (mask);
 }
 template <size_t N>
 inline bitset<N>&
-bitset<N>::flip(size_t pos)
+bitset<N>::flip (size_t pos)
 {
     if (pos >= N)
 #ifndef _MSL_NO_EXCEPTIONS
-        throw out_of_range("index out of range of bitset::flip");
+        throw out_of_range ("index out of range of bitset::flip");
 #else
-            __msl_error("index out of range of bitset::flip");
+            __msl_error ("index out of range of bitset::flip");
 #endif
-    return (bitset<N>&)base::flip(pos);
+    return (bitset<N>&)base::flip (pos);
 }
 template <size_t N>
 inline bool
-bitset<N>::operator[](size_t pos) const
+bitset<N>::operator[] (size_t pos) const
 {
-    return test(pos);
+    return test (pos);
 }
 template <size_t N>
 inline typename bitset<N>::reference
-bitset<N>::operator[](size_t pos)
+bitset<N>::operator[] (size_t pos)
 {
-    return reference(*this, pos);
+    return reference (*this, pos);
 }
 #if !defined(__MWERKS__) || (defined(__MWERKS__) && __MWERKS__ >= 0x2400)
 template <size_t N>
 template <class charT, class traits, class Allocator>
 inline basic_string<charT, traits, Allocator>
-bitset<N>::to_string() const
+bitset<N>::to_string () const
 {
-    return base::template to_string<charT, traits, Allocator>(N);
+    return base::template to_string<charT, traits, Allocator> (N);
 }
 #else
 
     template <size_t N> inline string bitset<N>::to_string() const
     {
-        return base::to_string(N);
+        return base::to_string (N);
     }
 
 #endif
 template <size_t N>
 unsigned long
-bitset<N>::to_ulong() const
+bitset<N>::to_ulong () const
 {
     return base::to_ulong();
 }
 template <size_t N>
 inline size_t
-bitset<N>::count() const
+bitset<N>::count () const
 {
     return base::count();
 }
 template <size_t N>
 inline size_t
-bitset<N>::size() const
+bitset<N>::size () const
 {
     return N;
 }
 template <size_t N>
 inline bool
-bitset<N>::operator==(const bitset<N>& rhs) const
+bitset<N>::operator== (const bitset<N>& rhs) const
 {
-    return base::operator==((const base&)rhs);
+    return base::operator== ((const base&)rhs);
 }
 template <size_t N>
 inline bool
-bitset<N>::operator!=(const bitset<N>& rhs) const
+bitset<N>::operator!= (const bitset<N>& rhs) const
 {
     return !(*this == rhs);
 }
 template <size_t N>
 inline bool
-bitset<N>::test(size_t pos) const
+bitset<N>::test (size_t pos) const
 {
     if (pos >= N)
 #ifndef _MSL_NO_EXCEPTIONS
-        throw out_of_range("index out of range of bitset::test");
+        throw out_of_range ("index out of range of bitset::test");
 #else
-            __msl_error("index out of range of bitset::test");
+            __msl_error ("index out of range of bitset::test");
 #endif
-    return base::test(pos);
+    return base::test (pos);
 }
 template <size_t N>
 inline bool
-bitset<N>::any() const
+bitset<N>::any () const
 {
     return base::any();
 }
 template <size_t N>
 inline bool
-bitset<N>::none() const
+bitset<N>::none () const
 {
     return !any();
 }
 template <size_t N>
 inline bitset<N>
-bitset<N>::operator<<(size_t pos) const
+bitset<N>::operator<< (size_t pos) const
 {
-    return bitset<N>(*this) <<= pos;
+    return bitset<N> (*this) <<= pos;
 }
 template <size_t N>
 inline bitset<N>
-bitset<N>::operator>>(size_t pos) const
+bitset<N>::operator>> (size_t pos) const
 {
-    return bitset<N>(*this) >>= pos;
+    return bitset<N> (*this) >>= pos;
 }
 #ifndef _MSL_NO_CPP_NAMESPACE // hh 990120
 } // namespace std

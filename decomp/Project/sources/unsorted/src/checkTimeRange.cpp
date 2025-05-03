@@ -1,6 +1,6 @@
 #include "Unsorted/Timer.h"
 int
-checkTimeRange(int rangeLower, int rangeUpper)
+checkTimeRange (int rangeLower, int rangeUpper)
 {
     int totalMinutes;
 

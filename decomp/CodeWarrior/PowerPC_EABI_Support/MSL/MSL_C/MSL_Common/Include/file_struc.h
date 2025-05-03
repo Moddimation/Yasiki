@@ -14,15 +14,15 @@
 
 #include <size_t.h>
 
-#ifndef __NO_WIDE_CHAR                             /*- mm 980204 -*/
-#include <wchar_t.h>                               /*- mm 990217 -*/
-#endif /* __NO_WIDE_CHAR */                        /*- mm 980204 -*/
+#ifndef __NO_WIDE_CHAR                              /*- mm 980204 -*/
+#include <wchar_t.h>                                /*- mm 990217 -*/
+#endif /* __NO_WIDE_CHAR */                         /*- mm 980204 -*/
 
 #ifndef RC_INVOKED
 
 #pragma options align = native
-_MSL_BEGIN_NAMESPACE_STD                           /*- cc 010409 -*/
-    _MSL_BEGIN_EXTERN_C                            /*- cc 010409 -*/
+_MSL_BEGIN_NAMESPACE_STD                            /*- cc 010409 -*/
+    _MSL_BEGIN_EXTERN_C                             /*- cc 010409 -*/
 
     enum __file_kinds
 {
@@ -37,14 +37,14 @@ enum __open_modes
     __create_if_necessary,
     __create_or_truncate
 };
-#ifndef __NO_WIDE_CHAR                             /*- mm 980204 -*/
-enum __file_orientation                            /*- mm 980204 -*/
+#ifndef __NO_WIDE_CHAR                              /*- mm 980204 -*/
+enum __file_orientation                             /*- mm 980204 -*/
 {
     __unoriented,
     __char_oriented,
     __wide_oriented
 };
-#endif /* not __NO_WIDE_CHAR */                    /*- mm 980204 -*/
+#endif /* not __NO_WIDE_CHAR */                     /*- mm 980204 -*/
 enum __io_modes
 {
     __read = 1,
@@ -57,11 +57,11 @@ typedef struct
     unsigned int open_mode   : 2;
     unsigned int io_mode     : 3;
     unsigned int buffer_mode : 2;
-    unsigned int file_kind   : 3;                  /*- mm 980708 -*/
+    unsigned int file_kind   : 3;                   /*- mm 980708 -*/
 
-#ifndef __NO_WIDE_CHAR                             /*- mm 980204 -*/
+#ifndef __NO_WIDE_CHAR                              /*- mm 980204 -*/
     unsigned int file_orientation : 2;
-#endif /* not __NO_WIDE_CHAR */                    /*- mm 980204 -*/
+#endif /* not __NO_WIDE_CHAR */                     /*- mm 980204 -*/
 
     unsigned int binary_io : 1;
 } __file_modes;
@@ -88,14 +88,18 @@ enum __io_results
 {
     __no_io_error,
     __io_error,
-    __io_EOF                                       /*- mm 961031 -*/
+    __io_EOF                                        /*- mm 961031 -*/
 };
-typedef void (*__idle_proc)(void);
-typedef int  (*__pos_proc)(__file_handle file, fpos_t* position, int mode,
-                          __idle_proc idle_proc); /*- mm 970708 -*/
-typedef int  (*__io_proc)(__file_handle file, unsigned char* buff, size_t* count,
-                         __idle_proc idle_proc);
-typedef int  (*__close_proc)(__file_handle file);
+typedef void (*__idle_proc) (void);
+typedef int  (*__pos_proc) (__file_handle file,
+                           fpos_t*       position,
+                           int           mode,
+                           __idle_proc   idle_proc); /*- mm 970708 -*/
+typedef int  (*__io_proc) (__file_handle  file,
+                          unsigned char* buff,
+                          size_t*        count,
+                          __idle_proc    idle_proc);
+typedef int  (*__close_proc) (__file_handle file);
 
 #define __ungetc_buffer_size 2
 struct _FILE
@@ -104,17 +108,17 @@ struct _FILE
     __file_modes  mode;
     __file_state  state;
 
-#ifndef _No_Disk_File_OS_Support                   /*- mm 981007 -*/
-    unsigned char is_dynamically_allocated;        /*- mm 981007 -*/
-#endif /* not _No_Disk_File_OS_Support */          /*- mm 981007 -*/
+#ifndef _No_Disk_File_OS_Support                    /*- mm 981007 -*/
+    unsigned char is_dynamically_allocated;         /*- mm 981007 -*/
+#endif /* not _No_Disk_File_OS_Support */           /*- mm 981007 -*/
 
     unsigned char char_buffer;
     unsigned char char_buffer_overflow;
     unsigned char ungetc_buffer[__ungetc_buffer_size];
 
-#ifndef __NO_WIDE_CHAR                             /*- mm 980204 -*/
+#ifndef __NO_WIDE_CHAR                              /*- mm 980204 -*/
     wchar_t ungetwc_buffer[__ungetc_buffer_size];
-#endif /* not __NO_WIDE_CHAR */                    /*- mm 980204 -*/
+#endif /* not __NO_WIDE_CHAR */                     /*- mm 980204 -*/
 
     unsigned long  position;
     unsigned char* buffer;
@@ -130,9 +134,9 @@ struct _FILE
     __close_proc   close_proc;
     __idle_proc    idle_proc;
 
-#ifndef _No_Disk_File_OS_Support                   /*- mm 981007 -*/
-    struct _FILE* next_file_struct;                /*- mm 981007 -*/
-#endif /* not _No_Disk_File_OS_Support */          /*- mm 981007 -*/
+#ifndef _No_Disk_File_OS_Support                    /*- mm 981007 -*/
+    struct _FILE* next_file_struct;                 /*- mm 981007 -*/
+#endif /* not _No_Disk_File_OS_Support */           /*- mm 981007 -*/
 };
 #if defined(_No_Disk_File_OS_Support) &&                                            \
     (defined(_No_Console) || defined(_Unbuffered_Console))
@@ -177,22 +181,22 @@ struct _FILE
 #define SEEK_END 2
 
 #define stdin                                                                       \
-    (&__std(__files[0])) /*- mm 961031 -*/ /*- mm 961203 -*/ /*- mm 000201 -*/
+    (&__std (__files[0])) /*- mm 961031 -*/ /*- mm 961203 -*/ /*- mm 000201 -*/
 #define stdout                                                                      \
-    (&__std(__files[1])) /*- mm 961031 -*/ /*- mm 961203 -*/ /*- mm 000201 -*/
+    (&__std (__files[1])) /*- mm 961031 -*/ /*- mm 961203 -*/ /*- mm 000201 -*/
 #define stderr                                                                      \
-    (&__std(__files[2])) /*- mm 961031 -*/ /*- mm 961203 -*/ /*- mm 000201 -*/
+    (&__std (__files[2])) /*- mm 961031 -*/ /*- mm 961203 -*/ /*- mm 000201 -*/
 
-extern _MSL_IMP_EXP_C FILE __files[]; /*- mm 961031 -*/      /*- mm 961203 -*/
+extern _MSL_IMP_EXP_C FILE __files[]; /*- mm 961031 -*/       /*- mm 961203 -*/
 
-_MSL_END_EXTERN_C                                            /*- cc 010409 -*/
-    _MSL_END_NAMESPACE_STD                                   /*- cc 010409 -*/
+_MSL_END_EXTERN_C                                             /*- cc 010409 -*/
+    _MSL_END_NAMESPACE_STD                                    /*- cc 010409 -*/
 
 #pragma options align = reset
 
-#endif                                                       /* RC_INVOKED */
+#endif                                                        /* RC_INVOKED */
 
-#endif                                                       /* _MSL_FILE_STRUC_H */
+#endif                                                        /* _MSL_FILE_STRUC_H */
 
     /* Change record:
      * mm  961031 Changes for Pascal

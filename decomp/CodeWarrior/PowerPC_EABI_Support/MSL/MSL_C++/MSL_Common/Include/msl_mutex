@@ -49,44 +49,44 @@ namespace Metrowerks
 class mutex
 {
 public:
-    mutex()
+    mutex ()
     {
 #ifndef _MSL_NO_EXCEPTIONS
-        if (pthread_mutex_init(&m_, 0))
+        if (pthread_mutex_init (&m_, 0))
         {
             throw bad_alloc();
         }
 #else
-        pthread_mutex_init(&m_, 0);
+        pthread_mutex_init (&m_, 0);
 #endif
     }
-    ÃÂ¢ÃÂÃÂ¾mutex() { pthread_mutex_destroy(&m_); }
+    ÃÂ¢ÃÂÃÂ¾mutex () { pthread_mutex_destroy (&m_); }
     void
-    lock()
+    lock ()
     {
-        pthread_mutex_lock(&m_);
+        pthread_mutex_lock (&m_);
     }
     void
-    unlock()
+    unlock ()
     {
-        pthread_mutex_unlock(&m_);
+        pthread_mutex_unlock (&m_);
     }
 
 private:
     pthread_mutex_t m_;
 
-    mutex(const mutex&);                      // Not defined
-    mutex& operator=(const mutex&);           // Not defined
+    mutex (const mutex&);                      // Not defined
+    mutex& operator= (const mutex&);           // Not defined
 };
 #elif __dest_os == __win32_os
 
 struct _RTL_CRITICAL_SECTION;
 typedef _RTL_CRITICAL_SECTION CRITICAL_SECTION;
 
-extern "C" void __stdcall InitializeCriticalSection(CRITICAL_SECTION*);
-extern "C" void __stdcall DeleteCriticalSection(CRITICAL_SECTION*);
-extern "C" void __stdcall EnterCriticalSection(CRITICAL_SECTION*);
-extern "C" void __stdcall LeaveCriticalSection(CRITICAL_SECTION*);
+extern "C" void __stdcall InitializeCriticalSection (CRITICAL_SECTION*);
+extern "C" void __stdcall DeleteCriticalSection (CRITICAL_SECTION*);
+extern "C" void __stdcall EnterCriticalSection (CRITICAL_SECTION*);
+extern "C" void __stdcall LeaveCriticalSection (CRITICAL_SECTION*);
 
 #ifndef _MSL_NO_CPP_NAMESPACE
 namespace Metrowerks
@@ -99,36 +99,36 @@ namespace Metrowerks
 class mutex
 {
 public:
-    mutex() { InitializeCriticalSection((CRITICAL_SECTION*)&m_); }
-    ÃÂ¢ÃÂÃÂ¾mutex()
+    mutex () { InitializeCriticalSection ((CRITICAL_SECTION*)&m_); }
+    ÃÂ¢ÃÂÃÂ¾mutex ()
     {
-        DeleteCriticalSection((CRITICAL_SECTION*)&m_);
+        DeleteCriticalSection ((CRITICAL_SECTION*)&m_);
     }
     void
-    lock()
+    lock ()
     {
-        EnterCriticalSection((CRITICAL_SECTION*)&m_);
+        EnterCriticalSection ((CRITICAL_SECTION*)&m_);
     }
     void
-    unlock()
+    unlock ()
     {
-        LeaveCriticalSection((CRITICAL_SECTION*)&m_);
+        LeaveCriticalSection ((CRITICAL_SECTION*)&m_);
     }
 
 private:
     long m_[6];
 
-    mutex(const mutex&);            // Not defined
-    mutex& operator=(const mutex&); // Not defined
+    mutex (const mutex&);            // Not defined
+    mutex& operator= (const mutex&); // Not defined
 };
 #elif __dest_os == __mac_os
 
 typedef struct OpaqueMPCriticalRegionID* MPCriticalRegionID;
 
-extern "C" long MPCreateCriticalRegion(MPCriticalRegionID*);
-extern "C" long MPDeleteCriticalRegion(MPCriticalRegionID);
-extern "C" long MPEnterCriticalRegion(MPCriticalRegionID, long);
-extern "C" long MPExitCriticalRegion(MPCriticalRegionID);
+extern "C" long MPCreateCriticalRegion (MPCriticalRegionID*);
+extern "C" long MPDeleteCriticalRegion (MPCriticalRegionID);
+extern "C" long MPEnterCriticalRegion (MPCriticalRegionID, long);
+extern "C" long MPExitCriticalRegion (MPCriticalRegionID);
 
 #ifndef _MSL_NO_CPP_NAMESPACE
 namespace Metrowerks
@@ -141,24 +141,24 @@ namespace Metrowerks
 class mutex
 {
 public:
-    mutex() { MPCreateCriticalRegion(&m_); }
-    ÃÂ¢ÃÂÃÂ¾mutex() { MPDeleteCriticalRegion(m_); }
+    mutex () { MPCreateCriticalRegion (&m_); }
+    ÃÂ¢ÃÂÃÂ¾mutex () { MPDeleteCriticalRegion (m_); }
     void
-    lock()
+    lock ()
     {
-        MPEnterCriticalRegion(m_, 0x7FFFFFFF);
+        MPEnterCriticalRegion (m_, 0x7FFFFFFF);
     }
     void
-    unlock()
+    unlock ()
     {
-        MPExitCriticalRegion(m_);
+        MPExitCriticalRegion (m_);
     }
 
 private:
     MPCriticalRegionID m_;
 
-    mutex(const mutex&);            // Not defined
-    mutex& operator=(const mutex&); // Not defined
+    mutex (const mutex&);            // Not defined
+    mutex& operator= (const mutex&); // Not defined
 };
 #elif __dest_os == __eppc_vxworks
 
@@ -175,7 +175,7 @@ namespace Metrowerks
 class mutex
 {
 public:
-    mutex() : m_(semBCreate(SEM_Q_PRIORITY, SEM_FULL))
+    mutex () : m_ (semBCreate (SEM_Q_PRIORITY, SEM_FULL))
     {
 #ifndef _MSL_NO_EXCEPTIONS
         if (m_ == 0)
@@ -184,23 +184,23 @@ public:
         }
 #endif
     }
-    ÃÂ¢ÃÂÃÂ¾mutex() { semDelete(m_); }
+    ÃÂ¢ÃÂÃÂ¾mutex () { semDelete (m_); }
     void
-    lock()
+    lock ()
     {
-        semTake(m_, WAIT_FOREVER);
+        semTake (m_, WAIT_FOREVER);
     }
     void
-    unlock()
+    unlock ()
     {
-        semGive(m_);
+        semGive (m_);
     }
 
 private:
     SEM_ID m_;
 
-    mutex(const mutex&);            // Not defined
-    mutex& operator=(const mutex&); // Not defined
+    mutex (const mutex&);            // Not defined
+    mutex& operator= (const mutex&); // Not defined
 };
 #else
 
@@ -210,17 +210,17 @@ private:
 class mutex_lock
 {
 public:
-    explicit mutex_lock(mutex& m) : m_(m) { m_.lock(); }
-    ÃÂ¢ÃÂÃÂ¾mutex_lock() { m_.unlock(); }
+    explicit mutex_lock (mutex& m) : m_ (m) { m_.lock(); }
+    ÃÂ¢ÃÂÃÂ¾mutex_lock () { m_.unlock(); }
 
 private:
     mutex& m_;
 
-    mutex_lock(const mutex_lock&);            // Not defined
-    mutex_lock& operator=(const mutex_lock&); // Not defined
+    mutex_lock (const mutex_lock&);            // Not defined
+    mutex_lock& operator= (const mutex_lock&); // Not defined
 };
 #define _MSL_DECLARE_MUTEX(mut)    Metrowerks::mutex mut;
-#define _MSL_LOCK_MUTEX(lock, mut) Metrowerks::mutex_lock lock(mut);
+#define _MSL_LOCK_MUTEX(lock, mut) Metrowerks::mutex_lock lock (mut);
 
 #ifndef _MSL_NO_CPP_NAMESPACE
 } // namespace Metrowerks
@@ -239,19 +239,19 @@ namespace Metrowerks
 class mutex
 {
 public:
-    mutex() {}
+    mutex () {}
     void
-    lock()
+    lock ()
     {
     }
     void
-    unlock()
+    unlock ()
     {
     }
 
 private:
-    mutex(const mutex&);            // Not defined
-    mutex& operator=(const mutex&); // Not defined
+    mutex (const mutex&);            // Not defined
+    mutex& operator= (const mutex&); // Not defined
 };
 #ifndef _MSL_NO_CPP_NAMESPACE
 }

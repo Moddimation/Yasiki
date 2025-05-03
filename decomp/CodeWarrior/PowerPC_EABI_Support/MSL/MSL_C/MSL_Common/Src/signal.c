@@ -22,7 +22,7 @@
 
 static __signal_func_ptr signal_funcs[__signal_max];
 __signal_func_ptr
-signal(int signal, __signal_func_ptr signal_func)
+signal (int signal, __signal_func_ptr signal_func)
 {
     __signal_func_ptr old_signal_func;
 
@@ -32,18 +32,18 @@ signal(int signal, __signal_func_ptr signal_func)
         return (SIG_ERR);
     }
 
-    __begin_critical_region(signal_funcs_access);
+    __begin_critical_region (signal_funcs_access);
 
     old_signal_func = signal_funcs[signal - 1];
 
     signal_funcs[signal - 1] = signal_func;
 
-    __end_critical_region(signal_funcs_access);
+    __end_critical_region (signal_funcs_access);
 
     return (old_signal_func);
 }
 int
-raise(int signal)
+raise (int signal)
 {
     __signal_func_ptr signal_func;
 
@@ -52,7 +52,7 @@ raise(int signal)
         return (-1);
     }
 
-    __begin_critical_region(signal_funcs_access);
+    __begin_critical_region (signal_funcs_access);
 
     signal_func = signal_funcs[signal - 1];
 
@@ -61,7 +61,7 @@ raise(int signal)
         signal_funcs[signal - 1] = SIG_DFL;
     }
 
-    __end_critical_region(signal_funcs_access);
+    __end_critical_region (signal_funcs_access);
 
     if (signal_func == SIG_IGN || (signal_func == SIG_DFL && signal == SIGABRT))
     {
@@ -70,10 +70,10 @@ raise(int signal)
 
     if (signal_func == SIG_DFL)
     {
-        exit(0);
+        exit (0);
     }
 
-    (*signal_func)(signal);
+    (*signal_func) (signal);
 
     return (0);
 }

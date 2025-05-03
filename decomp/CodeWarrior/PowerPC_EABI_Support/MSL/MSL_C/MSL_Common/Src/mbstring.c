@@ -29,20 +29,20 @@
 #include <string.h>
 #include <wchar.h>
 int
-mblen(const char* s, size_t n)
+mblen (const char* s, size_t n)
 {
     if (s && *s)
     {
-        return (mbtowc(0, s, n));
+        return (mbtowc (0, s, n));
     }
     else
     {
         return (0);
     }
 }
-static int is_utf8_complete(const char* s, size_t n);
+static int is_utf8_complete (const char* s, size_t n);
 static int
-is_utf8_complete(const char* s, size_t n)
+is_utf8_complete (const char* s, size_t n)
 {
     if (n <= 0) /* 0 or fewer characters do not form a valid multibyte character */
     {
@@ -104,9 +104,9 @@ is_utf8_complete(const char* s, size_t n)
         return (-1);
     }
 }
-static int utf8_to_unicode(wchar_t* pwc, const char* s, size_t n);
+static int utf8_to_unicode (wchar_t* pwc, const char* s, size_t n);
 static int
-utf8_to_unicode(wchar_t* pwc, const char* s, size_t n)
+utf8_to_unicode (wchar_t* pwc, const char* s, size_t n)
 {
     int     number_of_bytes;
     int     check_byte_count;     /*- mm 010607 -*/
@@ -123,7 +123,7 @@ utf8_to_unicode(wchar_t* pwc, const char* s, size_t n)
         return (-1);
     }
 
-    number_of_bytes = is_utf8_complete(s, n);
+    number_of_bytes = is_utf8_complete (s, n);
     if (number_of_bytes < 0)
     {
         return (-1);
@@ -173,13 +173,13 @@ utf8_to_unicode(wchar_t* pwc, const char* s, size_t n)
     return (number_of_bytes);
 }
 int
-mbtowc(wchar_t* pwc, const char* s, size_t n)
+mbtowc (wchar_t* pwc, const char* s, size_t n)
 {
-    return (utf8_to_unicode(pwc, s, n));
+    return (utf8_to_unicode (pwc, s, n));
 }
-static int unicode_to_UTF8(char* s, wchar_t wchar);
+static int unicode_to_UTF8 (char* s, wchar_t wchar);
 static int
-unicode_to_UTF8(char* s, wchar_t wchar)
+unicode_to_UTF8 (char* s, wchar_t wchar)
 {
     int     number_of_bytes;
     wchar_t wide_char;
@@ -222,19 +222,19 @@ unicode_to_UTF8(char* s, wchar_t wchar)
     return (number_of_bytes);
 }
 int
-wctomb(char* s, wchar_t wchar)
+wctomb (char* s, wchar_t wchar)
 {
-    return (unicode_to_UTF8(s, wchar));
+    return (unicode_to_UTF8 (s, wchar));
 }
 size_t
-mbstowcs(wchar_t* pwcs, const char* s, size_t n)
+mbstowcs (wchar_t* pwcs, const char* s, size_t n)
 {
     int    result;
     char*  source;
     int    count;
     size_t source_len;
 
-    source_len = strlen(s);
+    source_len = strlen (s);
 
     if (pwcs)
     {
@@ -243,7 +243,7 @@ mbstowcs(wchar_t* pwcs, const char* s, size_t n)
         {
             if (*source)
             {
-                result = mbtowc(pwcs++, source, source_len);
+                result = mbtowc (pwcs++, source, source_len);
                 if (result > 0)
                 {
                     source += result;
@@ -269,7 +269,7 @@ mbstowcs(wchar_t* pwcs, const char* s, size_t n)
     return (count);
 }
 size_t
-wcstombs(char* s, const wchar_t* pwcs, size_t n)
+wcstombs (char* s, const wchar_t* pwcs, size_t n)
 {
     int      chars_written = 0;
     int      result;
@@ -291,10 +291,10 @@ wcstombs(char* s, const wchar_t* pwcs, size_t n)
         }
         else
         {
-            result = wctomb(temp, *source++);
+            result = wctomb (temp, *source++);
             if ((chars_written + result) <= n)
             {
-                strncpy(s + chars_written, temp, result);
+                strncpy (s + chars_written, temp, result);
                 chars_written += result;
             }
             else
@@ -307,29 +307,29 @@ wcstombs(char* s, const wchar_t* pwcs, size_t n)
     return (chars_written);
 }
 size_t
-mbrlen(const char* s, size_t n, mbstate_t* ps)
+mbrlen (const char* s, size_t n, mbstate_t* ps)
 {
 #pragma unused(ps)
 
     mbstate_t  internal;
     mbstate_t* mbs = ps;
 
-    return (mbrtowc(NULL, s, n, mbs != NULL ? mbs : &internal));
+    return (mbrtowc (NULL, s, n, mbs != NULL ? mbs : &internal));
 }
 size_t
-mbrtowc(wchar_t* pwc, const char* s, size_t n, mbstate_t* ps)
+mbrtowc (wchar_t* pwc, const char* s, size_t n, mbstate_t* ps)
 {
 #pragma unused(ps)
     size_t num_of_chars;
 
     if (s)
     {
-        num_of_chars = is_utf8_complete(s, n);
+        num_of_chars = is_utf8_complete (s, n);
         if ((num_of_chars != (size_t)(-1)) && (num_of_chars != (size_t)(-2)))
         {
             if (pwc)
             {
-                num_of_chars = utf8_to_unicode(pwc, s, n);
+                num_of_chars = utf8_to_unicode (pwc, s, n);
             }
             else if (num_of_chars == (size_t)-1)
             {
@@ -346,7 +346,7 @@ mbrtowc(wchar_t* pwc, const char* s, size_t n, mbstate_t* ps)
     return (0);
 }
 size_t
-wcrtomb(char* s, wchar_t wc, mbstate_t* ps)
+wcrtomb (char* s, wchar_t wc, mbstate_t* ps)
 {
 #pragma unused(ps)
 
@@ -355,10 +355,10 @@ wcrtomb(char* s, wchar_t wc, mbstate_t* ps)
         return (1);
     }
 
-    return (unicode_to_UTF8(s, wc));
+    return (unicode_to_UTF8 (s, wc));
 }
 size_t
-mbsrtowcs(wchar_t* dst, const char** src, size_t len, mbstate_t* ps)
+mbsrtowcs (wchar_t* dst, const char** src, size_t len, mbstate_t* ps)
 {
     int     result;
     char*   source;
@@ -366,15 +366,15 @@ mbsrtowcs(wchar_t* dst, const char** src, size_t len, mbstate_t* ps)
     size_t  source_len;
     wchar_t local_target;
 
-    source_len = strlen(*src);
+    source_len = strlen (*src);
 
     source = (char*)*src;
     for (count = 0; count < len; count++)
     {
         if (*source)
         {
-            result = mbrtowc((dst == NULL) ? &local_target : dst++, source,
-                             source_len, ps);
+            result = mbrtowc (
+                (dst == NULL) ? &local_target : dst++, source, source_len, ps);
             if (result > 0)
             {
                 source += result;
@@ -395,7 +395,7 @@ mbsrtowcs(wchar_t* dst, const char** src, size_t len, mbstate_t* ps)
     return (count);
 }
 size_t
-wcsrtombs(char* dst, const wchar_t** src, size_t len, mbstate_t* ps)
+wcsrtombs (char* dst, const wchar_t** src, size_t len, mbstate_t* ps)
 {
     int      chars_written = 0;
     int      result;
@@ -417,10 +417,10 @@ wcsrtombs(char* dst, const wchar_t** src, size_t len, mbstate_t* ps)
         }
         else
         {
-            result = wcrtomb(temp, *source++, ps);
+            result = wcrtomb (temp, *source++, ps);
             if ((chars_written + result) <= len)
             {
-                strncpy(dst + chars_written, temp, result);
+                strncpy (dst + chars_written, temp, result);
                 chars_written += result;
             }
             else

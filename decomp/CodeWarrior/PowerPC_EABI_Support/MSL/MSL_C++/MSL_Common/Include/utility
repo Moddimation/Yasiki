@@ -45,27 +45,27 @@ namespace rel_ops
 #endif
 template <class T>
 inline bool
-operator!=(const T& x, const T& y)
+operator!= (const T& x, const T& y)
 {
-    return static_cast<bool>(!(x == y));
+    return static_cast<bool> (!(x == y));
 }
 template <class T>
 inline bool
-operator>(const T& x, const T& y)
+operator> (const T& x, const T& y)
 {
-    return static_cast<bool>(y < x);
+    return static_cast<bool> (y < x);
 }
 template <class T>
 inline bool
-operator<=(const T& x, const T& y)
+operator<= (const T& x, const T& y)
 {
-    return static_cast<bool>(!(y < x));
+    return static_cast<bool> (!(y < x));
 }
 template <class T>
 inline bool
-operator>=(const T& x, const T& y)
+operator>= (const T& x, const T& y)
 {
-    return static_cast<bool>(!(x < y));
+    return static_cast<bool> (!(x < y));
 }
 #ifndef _MSL_NO_CPP_NAMESPACE
 } // std::rel_ops
@@ -78,14 +78,14 @@ template <class T1, class T2> struct pair
 
     T1 first;
     T2 second;
-    pair();
-    pair(const T1& x, const T2& y);
+    pair ();
+    pair (const T1& x, const T2& y);
 #ifndef _MSL_NO_MEMBER_TEMPLATE
 #ifndef _MSL_MUST_INLINE_MEMBER_TEMPLATE
-    template <class U, class V> pair(const pair<U, V>& p);
+    template <class U, class V> pair (const pair<U, V>& p);
 #else
     template <class U, class V>
-    inline pair(const pair<U, V>& p) : first(p.first), second(p.second)
+    inline pair (const pair<U, V>& p) : first (p.first), second (p.second)
     {
     }
 #endif
@@ -95,54 +95,54 @@ template <class T1, class T2> inline pair<T1, T2>::pair() : first(), second()
 {
 }
 template <class T1, class T2>
-inline pair<T1, T2>::pair(const T1& x, const T2& y) : first(x), second(y)
+inline pair<T1, T2>::pair (const T1& x, const T2& y) : first (x), second (y)
 {
 }
 #ifndef _MSL_NO_MEMBER_TEMPLATE
 #ifndef _MSL_MUST_INLINE_MEMBER_TEMPLATE
 template <class T1, class T2>
 template <class U, class V>
-inline pair<T1, T2>::pair(const pair<U, V>& p) : first(p.first), second(p.second)
+inline pair<T1, T2>::pair (const pair<U, V>& p) : first (p.first), second (p.second)
 {
 }
 #endif
 #endif
 template <class T1, class T2>
 inline bool
-operator==(const pair<T1, T2>& x, const pair<T1, T2>& y)
+operator== (const pair<T1, T2>& x, const pair<T1, T2>& y)
 {
-    return static_cast<bool>(x.first == y.first && x.second == y.second);
+    return static_cast<bool> (x.first == y.first && x.second == y.second);
 }
 template <class T1, class T2>
 inline bool
-operator<(const pair<T1, T2>& x, const pair<T1, T2>& y)
+operator< (const pair<T1, T2>& x, const pair<T1, T2>& y)
 {
-    return static_cast<bool>(x.first < y.first ||
-                             (!(y.first < x.first) && x.second < y.second));
+    return static_cast<bool> (x.first < y.first ||
+                              (!(y.first < x.first) && x.second < y.second));
 }
 template <class T1, class T2>
 inline bool
-operator!=(const pair<T1, T2>& x, const pair<T1, T2>& y)
+operator!= (const pair<T1, T2>& x, const pair<T1, T2>& y)
 {
-    return static_cast<bool>(!(x == y));
+    return static_cast<bool> (!(x == y));
 }
 template <class T1, class T2>
 inline bool
-operator>(const pair<T1, T2>& x, const pair<T1, T2>& y)
+operator> (const pair<T1, T2>& x, const pair<T1, T2>& y)
 {
     return y < x;
 }
 template <class T1, class T2>
 inline bool
-operator>=(const pair<T1, T2>& x, const pair<T1, T2>& y)
+operator>= (const pair<T1, T2>& x, const pair<T1, T2>& y)
 {
-    return static_cast<bool>(!(x < y));
+    return static_cast<bool> (!(x < y));
 }
 template <class T1, class T2>
 inline bool
-operator<=(const pair<T1, T2>& x, const pair<T1, T2>& y)
+operator<= (const pair<T1, T2>& x, const pair<T1, T2>& y)
 {
-    return static_cast<bool>(!(y < x));
+    return static_cast<bool> (!(y < x));
 }
 // make_pair is in flux right now.  The standard version does not work with
 // built-in c-strings.  There are two possible solutions in front of the C++
@@ -160,9 +160,9 @@ operator<=(const pair<T1, T2>& x, const pair<T1, T2>& y)
 
 template <class T1, class T2>
 inline pair<T1, T2>
-make_pair(T1 x, T2 y)
+make_pair (T1 x, T2 y)
 {
-    return pair<T1, T2>(x, y);
+    return pair<T1, T2> (x, y);
 }
 #ifndef _MSL_NO_CPP_NAMESPACE
 } // namespace std

@@ -152,12 +152,14 @@ enum scan_states
                    leading_exp_zeroes | exp_digit_loop | finished))
 
 #define fetch()                                                                     \
-    (count++, (*wReadProc)(wReadProcArg, 0, __GetAwChar))           /*- mm 990311 -*/
-#define unfetch(c) (*wReadProc)(wReadProcArg, c, __UngetAwChar)     /*- mm 990311 -*/
+    (count++, (*wReadProc) (wReadProcArg, 0, __GetAwChar))          /*- mm 990311 -*/
+#define unfetch(c) (*wReadProc) (wReadProcArg, c, __UngetAwChar)    /*- mm 990311 -*/
 long double
-__wcstold(int max_width, wint_t (*wReadProc)(void*, wint_t, int),   /*- mm 990311 -*/
-          void* wReadProcArg,                                       /*- mm 990311 -*/
-          int* chars_scanned, int* overflow)
+__wcstold (int    max_width,
+           wint_t (*wReadProc) (void*, wint_t, int),                /*- mm 990311 -*/
+           void*  wReadProcArg,                                     /*- mm 990311 -*/
+           int*   chars_scanned,
+           int*   overflow)
 {
     int     scan_state = start;
     int     count = 0;
@@ -176,7 +178,7 @@ __wcstold(int max_width, wint_t (*wReadProc)(void*, wint_t, int),   /*- mm 99031
       (__dest_os == __win32_os || __dest_os == __wince_os))         /*- mm 010521 -*/
     dot = (wchar_t)(*(unsigned char*)__lconv.decimal_point);
 #else                                                               /*- mm 010503 -*/
-    struct lconv* lconvptr = _GetThreadLocalData(_MSL_TRUE)->tls_lconv;
+    struct lconv* lconvptr = _GetThreadLocalData (_MSL_TRUE)->tls_lconv;
     /*- mm 010503 -*/                                          /*- cc 010531 -*/
     dot = (wchar_t)(*(unsigned char*)lconvptr->decimal_point); /*- mm 010503 -*/
 #endif                                                              /*- mm 010503 -*/
@@ -185,13 +187,13 @@ __wcstold(int max_width, wint_t (*wReadProc)(void*, wint_t, int),   /*- mm 99031
 
     c = fetch();
 
-    while (count <= max_width && c != EOF && !final_state(scan_state))
+    while (count <= max_width && c != EOF && !final_state (scan_state))
     {
         switch (scan_state)
         {
             case start:
 
-                if (iswspace(c))
+                if (iswspace (c))
                 {
                     c = fetch();
                     count--;                    /*- mani 970101 -*/
@@ -226,7 +228,7 @@ __wcstold(int max_width, wint_t (*wReadProc)(void*, wint_t, int),   /*- mm 99031
                     break;
                 }
 
-                if (!iswdigit(c))
+                if (!iswdigit (c))
                 {
                     scan_state = failure;
 
@@ -261,7 +263,7 @@ __wcstold(int max_width, wint_t (*wReadProc)(void*, wint_t, int),   /*- mm 99031
 
             case int_digit_loop:
 
-                if (!iswdigit(c))
+                if (!iswdigit (c))
                 {
                     if (c == dot)
                     {
@@ -292,7 +294,7 @@ __wcstold(int max_width, wint_t (*wReadProc)(void*, wint_t, int),   /*- mm 99031
 
             case frac_start:
 
-                if (!iswdigit(c))
+                if (!iswdigit (c))
                 {
                     scan_state = failure;
 
@@ -305,7 +307,7 @@ __wcstold(int max_width, wint_t (*wReadProc)(void*, wint_t, int),   /*- mm 99031
 
             case frac_digit_loop:
 
-                if (!iswdigit(c))
+                if (!iswdigit (c))
                 {
                     scan_state = sig_end;
 
@@ -360,7 +362,7 @@ __wcstold(int max_width, wint_t (*wReadProc)(void*, wint_t, int),   /*- mm 99031
 
             case leading_exp_digit:
 
-                if (!iswdigit(c))
+                if (!iswdigit (c))
                 {
                     scan_state = failure;
 
@@ -395,7 +397,7 @@ __wcstold(int max_width, wint_t (*wReadProc)(void*, wint_t, int),   /*- mm 99031
 
             case exp_digit_loop:
 
-                if (!iswdigit(c))
+                if (!iswdigit (c))
                 {
                     scan_state = finished;
 
@@ -415,7 +417,7 @@ __wcstold(int max_width, wint_t (*wReadProc)(void*, wint_t, int),   /*- mm 99031
         }
     }
 
-    if (!success(scan_state))
+    if (!success (scan_state))
     {
         count = 0;                       /*- mf 092497 -*/
         *chars_scanned = 0;
@@ -426,7 +428,7 @@ __wcstold(int max_width, wint_t (*wReadProc)(void*, wint_t, int),   /*- mm 99031
         *chars_scanned = count + spaces; /*- mani 970101 -*/
     }
 
-    unfetch(c);
+    unfetch (c);
 
     if (exp_negative)
     {
@@ -471,13 +473,14 @@ __wcstold(int max_width, wint_t (*wReadProc)(void*, wint_t, int),   /*- mm 99031
 
     d.exp = exp_value;
 
-    result = __dec2num(&d);
+    result = __dec2num (&d);
 
                                          /*
                                           *	Note: If you look at <ansi_fp.h> you'll see that __dec2num only supports
                                           *double.                                      If you look at <float.h> you'll
                                           *see that long double == double. Ergo,                                      the
-                                          *difference is moot *until* a truly                                      long double type is supported.
+                                          *difference is moot *until* a truly                                      long
+                                          *double type is supported.
                                           */
 
     if (result != 0.0 && result < LDBL_MIN)
@@ -499,7 +502,7 @@ __wcstold(int max_width, wint_t (*wReadProc)(void*, wint_t, int),   /*- mm 99031
     return (result);
 }
 double
-wcstod(const wchar_t* str, wchar_t** end)
+wcstod (const wchar_t* str, wchar_t** end)
 {
     long double  value, abs_value;
     int          count, overflow;
@@ -507,14 +510,14 @@ wcstod(const wchar_t* str, wchar_t** end)
     wisc.wNextChar = (wchar_t*)str;
     wisc.wNullCharDetected = 0;
 
-    value = __wcstold(INT_MAX, &__wStringRead, (void*)&wisc, &count, &overflow);
+    value = __wcstold (INT_MAX, &__wStringRead, (void*)&wisc, &count, &overflow);
 
     if (end)
     {
         *end = (wchar_t*)str + count;
     }
 
-    abs_value = fabs(value);
+    abs_value = fabs (value);
 
     if (overflow || (value != 0.0 && (abs_value < DBL_MIN || abs_value > DBL_MAX)))
     {
@@ -524,9 +527,9 @@ wcstod(const wchar_t* str, wchar_t** end)
     return (value);
 }
 double
-watof(const wchar_t* str)
+watof (const wchar_t* str)
 {
-    return (wcstod(str, NULL));
+    return (wcstod (str, NULL));
 }
 #endif /* ndef __NO_WIDE_CHAR*/ /*- mm 981020 -*/
 #endif                          /* ndef _No_Floating_Point */
@@ -538,8 +541,9 @@ watof(const wchar_t* str)
                                  *__dec2num doesn't like leading zeroes                                 except for
                                  *zeroes, so numbers                                 like .01 would                                 get interpreted
                                  *as zero. Fixed by                                 suppressing leading zeroes.                                 JFH
-                                 *951114 Fixed bug                                 in wcstod where value was checked                                 against DBL_MIN and DBL_MAX
-                                 *instead                                 of the                                 absolute value.                                 JFH 960425 Changed
+                                 *951114 Fixed bug                                 in wcstod where value was checked
+                                 *against DBL_MIN and DBL_MAX                                 instead                                 of the                                 absolute
+                                 *value.                                 JFH 960425 Changed
                                  *__wcstold to return -HUGE_VAL instead of HUGE_VAL on overflow if a                                 minus sign was
                                  *previously detected.                                 mani970101 Fix a scanf bug
                                  *dealing with white space. Things                                 like                                 scanf("%5lx")

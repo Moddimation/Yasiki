@@ -294,15 +294,15 @@ Returns
 */
 #ifdef __MSL_LONGLONG_SUPPORT__
 __inline intmax_t
-imaxabs(intmax_t j)
+imaxabs (intmax_t j)
 {
-    return (llabs(j));
+    return (llabs (j));
 }
 #else
 __inline intmax_t
-imaxabs(intmax_t j)
+imaxabs (intmax_t j)
 {
-    return (labs(j));
+    return (labs (j));
 }
 #endif
 /*
@@ -321,15 +321,15 @@ either part of the result cannot be represented, the behavior is undefined.
 */
 #ifdef __MSL_LONGLONG_SUPPORT__
 __inline imaxdiv_t
-imaxdiv(intmax_t numer, intmax_t denom)
+imaxdiv (intmax_t numer, intmax_t denom)
 {
-    return (lldiv(numer, denom));
+    return (lldiv (numer, denom));
 }
 #else
 __inline imaxdiv_t
-imaxdiv(intmax_t numer, intmax_t denom)
+imaxdiv (intmax_t numer, intmax_t denom)
 {
-    return (ldiv(numer, denom));
+    return (ldiv (numer, denom));
 }
 #endif /* #ifdef __MSL_LONGLONG_SUPPORT__	*/
 
@@ -353,25 +353,25 @@ and strtoull functions (7.20.1.4).
 */
 #ifdef __MSL_LONGLONG_SUPPORT__
 __inline intmax_t
-strtoimax(const char* nptr, char** endptr, int base)
+strtoimax (const char* nptr, char** endptr, int base)
 {
-    return (strtoll(nptr, endptr, base));
+    return (strtoll (nptr, endptr, base));
 }
 __inline uintmax_t
-strtoumax(const char* nptr, char** endptr, int base)
+strtoumax (const char* nptr, char** endptr, int base)
 {
-    return (strtoull(nptr, endptr, base));
+    return (strtoull (nptr, endptr, base));
 }
 #else
 __inline intmax_t
-strtoimax(const char* nptr, char** endptr, int base)
+strtoimax (const char* nptr, char** endptr, int base)
 {
-    return (strtol(nptr, endptr, base));
+    return (strtol (nptr, endptr, base));
 }
 __inline uintmax_t
-strtoumax(const char* nptr, char** endptr, int base)
+strtoumax (const char* nptr, char** endptr, int base)
 {
-    return (strtoul(nptr, endptr, base));
+    return (strtoul (nptr, endptr, base));
 }
 #endif /* #ifdef __MSL_LONGLONG_SUPPORT__	*/
 
@@ -400,25 +400,25 @@ functions (7.24.4.1.2).
 #ifndef __NO_WIDE_CHAR
 #ifdef __MSL_LONGLONG_SUPPORT__
 __inline intmax_t
-wcstoimax(const wchar_t* nptr, wchar_t** endptr, int base)
+wcstoimax (const wchar_t* nptr, wchar_t** endptr, int base)
 {
-    return (wcstoll(nptr, endptr, base));
+    return (wcstoll (nptr, endptr, base));
 }
 __inline uintmax_t
-wcstoumax(const wchar_t* nptr, wchar_t** endptr, int base)
+wcstoumax (const wchar_t* nptr, wchar_t** endptr, int base)
 {
-    return (wcstoull(nptr, endptr, base));
+    return (wcstoull (nptr, endptr, base));
 }
 #else
 __inline intmax_t
-wcstoimax(const wchar_t* nptr, wchar_t** endptr, int base)
+wcstoimax (const wchar_t* nptr, wchar_t** endptr, int base)
 {
-    return (wcstol(nptr, endptr, base));
+    return (wcstol (nptr, endptr, base));
 }
 __inline uintmax_t
-wcstoumax(const wchar_t* nptr, wchar_t** endptr, int base)
+wcstoumax (const wchar_t* nptr, wchar_t** endptr, int base)
 {
-    return (wcstoul(nptr, endptr, base));
+    return (wcstoul (nptr, endptr, base));
 }
 #endif
 #endif /* __NO_WIDE_CHAR */

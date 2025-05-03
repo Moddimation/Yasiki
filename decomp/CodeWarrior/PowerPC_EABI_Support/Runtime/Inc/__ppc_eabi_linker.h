@@ -85,33 +85,34 @@ HISTORY
  *	Stack and heap pointers and size
  */
 
-__declspec(section
-           ".init") extern char _stack_addr[]; /* starting address for stack */
-__declspec(section
-           ".init") extern char _stack_end[];  /* address after end byte of stack */
-__declspec(section ".init") extern char _heap_addr[]; /* starting address for heap */
-__declspec(section
-           ".init") extern char _heap_end[]; /* address after end byte of heap */
+__declspec (section
+            ".init") extern char _stack_addr[]; /* starting address for stack */
+__declspec (section
+            ".init") extern char _stack_end[];  /* address after end byte of stack */
+__declspec (section
+            ".init") extern char _heap_addr[];  /* starting address for heap */
+__declspec (section
+            ".init") extern char _heap_end[];   /* address after end byte of heap */
 
 /*
  *	extabindex -- read only C++ Exception Tables
  */
 
-__declspec(section ".init") extern const char
+__declspec (section ".init") extern const char
     _fextabindex_rom[]; /* extabindex source (ROM) address at beginning */
-__declspec(section ".init") extern char
+__declspec (section ".init") extern char
     _fextabindex[];     /* extabindex dest. (RAM) address at beginning */
-__declspec(section ".init") extern char
+__declspec (section ".init") extern char
     _eextabindex[];     /* extabindex dest. (RAM) address after end byte */
 
 /*
  *	Small Data pointers (PPC EABI)
  */
 
-__declspec(section ".init") extern char
+__declspec (section ".init") extern char
     _SDA_BASE_[];  /* Small Data Area (<=8 bytes) base addr */
                    /* used for .sdata, .sbss */
-__declspec(section ".init") extern char
+__declspec (section ".init") extern char
     _SDA2_BASE_[]; /* Small Data Area 2 (<=8 bytes), base addr */
                    /* used for .sdata2, .sbss2 */
 /*
@@ -126,7 +127,7 @@ typedef struct __rom_copy_info
     char*        addr; /* address in ram (executing address) */
     unsigned int size; /* size of section */
 } __rom_copy_info;
-__declspec(section ".init") extern __rom_copy_info
+__declspec (section ".init") extern __rom_copy_info
     _rom_copy_info[];  /* An array of all initialized (data, text or mixed) sections
                         */
 /*
@@ -140,7 +141,7 @@ typedef struct __bss_init_info
     char*        addr; /* address in ram (executing address) */
     unsigned int size; /* size of section */
 } __bss_init_info;
-__declspec(section ".init") extern __bss_init_info
+__declspec (section ".init") extern __bss_init_info
     _bss_init_info[];  /* An array of all uninitialized data sections */
 /*
  *	Special symbol for initializing c++ exceptions tables: _eti_init_info
@@ -155,7 +156,7 @@ typedef struct __eti_init_info
     void* code_start; /* address of first function */
     unsigned long code_size; /* ((funcN.address - func1.address) + funcN.size) */
 } __eti_init_info;
-__declspec(section ".init") extern __eti_init_info
+__declspec (section ".init") extern __eti_init_info
     _eti_init_info[];        /* An array of all uninitialized data sections */
 
 /*
@@ -169,122 +170,122 @@ __declspec(section ".init") extern __eti_init_info
  *	.init -- executable PowerPC EABI code
  */
 
-__declspec(section ".init") extern const char
+__declspec (section ".init") extern const char
     _f_init_rom[]; /* .init source (ROM) address at beginning */
-__declspec(section ".init") extern char
+__declspec (section ".init") extern char
     _f_init[];     /* .init dest. (RAM) address at beginning */
-__declspec(section ".init") extern char
+__declspec (section ".init") extern char
     _e_init[];     /* .init dest. (RAM) address after end byte */
 
 /*
  *	.text -- executable PowerPC EABI code
  */
 
-__declspec(section ".init") extern const char
+__declspec (section ".init") extern const char
     _f_text_rom[]; /* .text source (ROM) address at beginning */
-__declspec(section ".init") extern char
+__declspec (section ".init") extern char
     _f_text[];     /* .text dest. (RAM) address at beginning */
-__declspec(section ".init") extern char
+__declspec (section ".init") extern char
     _e_text[];     /* .text dest. (RAM) address after end byte */
 
 /*
  *	.rodata -- read only data
  */
 
-__declspec(section ".init") extern const char
+__declspec (section ".init") extern const char
     _f_rodata_rom[]; /* .rodata source (ROM) address at beginning */
-__declspec(section ".init") extern char
+__declspec (section ".init") extern char
     _f_rodata[];     /* .rodata dest. (RAM) address at beginning */
-__declspec(section ".init") extern char
+__declspec (section ".init") extern char
     _e_rodata[];     /* .rodata dest. (RAM) address after end byte */
 
 /*
  *	extab -- read only C++ Exception Tables
  */
 
-__declspec(section ".init") extern const char
+__declspec (section ".init") extern const char
     _fextab_rom[]; /* extab source (ROM) address at beginning */
-__declspec(section ".init") extern char
+__declspec (section ".init") extern char
     _fextab[];     /* extab dest. (RAM) address at beginning */
-__declspec(section ".init") extern char
+__declspec (section ".init") extern char
     _eextab[];     /* extab dest. (RAM) address after end byte */
 
 /*
  *	.data -- read/write initialized data
  */
 
-__declspec(section ".init") extern const char
+__declspec (section ".init") extern const char
     _f_data_rom[]; /* .data source (ROM) address at beginning */
-__declspec(section ".init") extern char
+__declspec (section ".init") extern char
     _f_data[];     /* .data dest. (RAM) address at beginning */
-__declspec(section ".init") extern char
+__declspec (section ".init") extern char
     _e_data[];     /* .data dest. (RAM) address after end byte */
 
 /*
  *	.bss -- read/write initialized (zeroed) data
  */
 
-__declspec(section
-           ".init") extern char _f_bss[]; /* .bss dest. (RAM) address at beginning */
-__declspec(section ".init") extern char
+__declspec (section ".init") extern char
+    _f_bss[]; /* .bss dest. (RAM) address at beginning */
+__declspec (section ".init") extern char
     _e_bss[]; /* .bss dest. (RAM) address after end byte */
 
 /*
  *	.sdata -- small data
  */
 
-__declspec(section ".init") extern const char
+__declspec (section ".init") extern const char
     _f_sdata_rom[]; /* .sdata source (ROM) address at beginning */
-__declspec(section ".init") extern char
+__declspec (section ".init") extern char
     _f_sdata[];     /* .sdata dest. (RAM) address at beginning */
-__declspec(section ".init") extern char
+__declspec (section ".init") extern char
     _e_sdata[];     /* .sdata dest. (RAM) address after end byte */
 
 /*
  *	.sbss -- small initialized (zeroed) data
  */
 
-__declspec(section ".init") extern char
+__declspec (section ".init") extern char
     _f_sbss[]; /* .sbss dest. (RAM) address at beginning */
-__declspec(section ".init") extern char
+__declspec (section ".init") extern char
     _e_sbss[]; /* .sbss dest. (RAM) address after end byte */
 
 /*
  *	.sdata2 -- PPC embedded small initlialized data
  */
 
-__declspec(section ".init") extern const char
+__declspec (section ".init") extern const char
     _f_sdata2_rom[]; /* .sdata2 source (ROM) address at beginning */
-__declspec(section ".init") extern char
+__declspec (section ".init") extern char
     _f_sdata2[];     /* .sdata2 dest. (RAM) address at beginning */
-__declspec(section ".init") extern char
+__declspec (section ".init") extern char
     _e_sdata2[];     /* .sdata2 dest. (RAM) address after end byte */
 
 /*
  *	.sbss2 -- PPC embedded small initialized (zeroed) data
  */
 
-__declspec(section ".init") extern char
+__declspec (section ".init") extern char
     _f_sbss2[]; /* .sbss2 dest. (RAM) address at beginning */
-__declspec(section ".init") extern char
+__declspec (section ".init") extern char
     _e_sbss2[]; /* .sbss2 dest. (RAM) address after end byte */
 
 /*
  *	.PPC.EMB.sdata0 -- PPC embedded small data centered around addr. zero
  */
 
-__declspec(section ".init") extern const char
+__declspec (section ".init") extern const char
     _f_PPC_EMB_sdata0_rom[]; /* .PPC.EMB.sdata0 source (ROM) address at beginning */
-__declspec(section ".init") extern char
+__declspec (section ".init") extern char
     _f_PPC_EMB_sdata0[];     /* .PPC.EMB.sdata0 dest. (RAM) address at beginning */
-__declspec(section ".init") extern char
+__declspec (section ".init") extern char
     _e_PPC_EMB_sdata0[];     /* .PPC.EMB.sdata0 dest. (RAM) address after end byte */
 
 /*
  *	.PPC.EMB.sbss0 -- PPC embedded small initlialized (zeroed) data
  */
 
-__declspec(section ".init") extern char
+__declspec (section ".init") extern char
     _f_PPC_EMB_sbss0[]; /* .PPC.EMB. dest. (RAM) address at beginning */
-__declspec(section ".init") extern char
+__declspec (section ".init") extern char
     _e_PPC_EMB_sbss0[]; /* .PPC.EMB. dest. (RAM) address after end byte */

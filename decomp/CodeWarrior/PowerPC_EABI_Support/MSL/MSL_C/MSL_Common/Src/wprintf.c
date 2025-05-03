@@ -80,7 +80,7 @@ typedef struct
     int           precision;
 } print_format;
 static const wchar_t*
-parse_format(const wchar_t* format_string, va_list* arg, print_format* format)
+parse_format (const wchar_t* format_string, va_list* arg, print_format* format)
 {
     print_format   f;
     const wchar_t* s = format_string;
@@ -154,7 +154,7 @@ parse_format(const wchar_t* format_string, va_list* arg, print_format* format)
 
     if (c == L'*')
     {
-        if ((f.field_width = va_arg(*arg, int)) < 0)
+        if ((f.field_width = va_arg (*arg, int)) < 0)
         {
             f.justification_options = left_justification;
             f.field_width = -f.field_width;
@@ -164,7 +164,7 @@ parse_format(const wchar_t* format_string, va_list* arg, print_format* format)
     }
     else
     {
-        while (iswdigit(c))
+        while (iswdigit (c))
         {
             f.field_width = (f.field_width * 10) + (c - L'0');
             c = *++s;
@@ -184,7 +184,7 @@ parse_format(const wchar_t* format_string, va_list* arg, print_format* format)
 
         if ((c = *++s) == L'*')
         {
-            if ((f.precision = va_arg(*arg, int)) < 0)
+            if ((f.precision = va_arg (*arg, int)) < 0)
             {
                 f.precision_specified = 0;
             }
@@ -193,7 +193,7 @@ parse_format(const wchar_t* format_string, va_list* arg, print_format* format)
         }
         else
         {
-            while (iswdigit(c))
+            while (iswdigit (c))
             {
                 f.precision = (f.precision * 10) + (c - L'0');
                 c = *++s;
@@ -256,8 +256,8 @@ parse_format(const wchar_t* format_string, va_list* arg, print_format* format)
 #ifdef __MSL_LONGLONG_SUPPORT__                          /*- mm 961219 -*/
                 f.argument_options = long_long_argument; /*- mm 961219 -*/
 #else                                                    /*- mm 961220 -*/
-                f.conversion_char = bad_conversion; /*- mm 961219 -*/
-                break;                              /*- mm 961219 -*/
+                f.conversion_char = bad_conversion;                 /*- mm 961219 -*/
+                break;                                              /*- mm 961219 -*/
 #endif                                                   /*- mm 961219 -*/
             }
 
@@ -366,7 +366,7 @@ parse_format(const wchar_t* format_string, va_list* arg, print_format* format)
 #ifdef __MSL_LONGLONG_SUPPORT__                            /*- mm 961219 -*/
                 f.argument_options = long_long_argument;   /*- mm 961219 -*/
 #else                                                      /*- mm 961220 -*/
-                f.conversion_char = bad_conversion; /*- mm 961219 -*/
+                f.conversion_char = bad_conversion;                 /*- mm 961219 -*/
 #endif                                                     /*- mm 961219 -*/
 
             break;
@@ -381,7 +381,7 @@ parse_format(const wchar_t* format_string, va_list* arg, print_format* format)
     return ((const wchar_t*)s + 1);
 }
 static wchar_t*
-long2str(long num, wchar_t* buff, print_format format)
+long2str (long num, wchar_t* buff, print_format format)
 {
     unsigned long unsigned_num, base;
     wchar_t*      p;
@@ -528,7 +528,7 @@ long2str(long num, wchar_t* buff, print_format format)
 }
 #ifdef __MSL_LONGLONG_SUPPORT__                            /*- mm 961219 -*/
 static wchar_t*
-longlong2str(long long num, wchar_t* buff, print_format format)
+longlong2str (long long num, wchar_t* buff, print_format format)
 {
     unsigned long long unsigned_num, base;
     wchar_t*           p;
@@ -675,7 +675,7 @@ longlong2str(long long num, wchar_t* buff, print_format format)
 }
 #endif                               /*__MSL_LONGLONG_SUPPORT__*/
 static void
-round_decimal(decimal* dec, int new_length)
+round_decimal (decimal* dec, int new_length)
 {
     char  c;
     char* p;
@@ -708,16 +708,16 @@ round_decimal(decimal* dec, int new_length)
             ;                                               /*- mm 970614 -*/
         carry = (q == p) ? p[-1] & 1 : 1;                   /*- mm 970614 -*/
     } /*- mm 970614 -*/
-    else                                                        /*- mm 970614 -*/
+    else                                                         /*- mm 970614 -*/
     {
-        carry = (c > 5);                                        /*- mm 970614 -*/
+        carry = (c > 5);                                         /*- mm 970614 -*/
     }
 
     while (new_length)
     {
         c = *--p - L'0' + carry;
 
-        if ((carry = (c > 9)) != 0 || c == 0)                   /*- mm 970614 -*/
+        if ((carry = (c > 9)) != 0 || c == 0)                    /*- mm 970614 -*/
         {
             --new_length;
         }
@@ -742,17 +742,17 @@ round_decimal(decimal* dec, int new_length)
 
     dec->sig.length = new_length;
 }
-#ifndef _No_Floating_Point                                      /*- scm 970709 -*/
+#ifndef _No_Floating_Point                                       /*- scm 970709 -*/
 static wchar_t*
-float2str(long double num, wchar_t* wbuff, print_format format) /*- mm 980129 -*/
+float2str (long double num, wchar_t* wbuff, print_format format) /*- mm 980129 -*/
 {
     decimal  dec;
     decform  form;
-    wchar_t* pw;                                                /*- mm 980129 -*/
-    char*    p;                                                 /*- mm 980129 -*/
-    char     buff[conversion_buff_size];                        /*- mm 980129 -*/
-    char*    q;                                                 /*- mm 980129 -*/
-    int      n, digits, sign;                                   /*- mm 990904 -*/
+    wchar_t* pw;                                                 /*- mm 980129 -*/
+    char*    p;                                                  /*- mm 980129 -*/
+    char     buff[conversion_buff_size];                         /*- mm 980129 -*/
+    char*    q;                                                  /*- mm 980129 -*/
+    int      n, digits, sign;                                    /*- mm 990904 -*/
     int      int_digits, frac_digits;
 
     if (format.precision > conversion_max) /* might as well punt asap */
@@ -770,7 +770,7 @@ float2str(long double num, wchar_t* wbuff, print_format format) /*- mm 980129 -*
     form.style = FLOATDECIMAL;
     form.digits = MAX_SIG_DIG;                /*- mm 970609 -*/
 
-    __num2dec(&form, num, &dec);
+    __num2dec (&form, num, &dec);
 
     p = (char*)dec.sig.text + dec.sig.length;
     /* strip off trailing zeroes */           /*- mm 980129 -*/
@@ -795,27 +795,27 @@ float2str(long double num, wchar_t* wbuff, print_format format) /*- mm 980129 -*
             if (num < 0)           /*- mm 970213 -*/
             {                      /*- mm 970213 -*/
                 pw = wbuff - 5;
-                /*- mm 970213 -*/ /*- mm 980129 -*/        /* special cases */
-                if (iswupper(format.conversion_char))      /*- mm 990430 -*/
+                /*- mm 970213 -*/ /*- mm 980129 -*/         /* special cases */
+                if (iswupper (format.conversion_char))      /*- mm 990430 -*/
                 {
-                    wcscpy(pw, L"-INF");
+                    wcscpy (pw, L"-INF");
                 }
                 else
                 {
-                    wcscpy(pw, L"-inf"); /*- mm 970213 -*/ /*- mm 980129 -*/
+                    wcscpy (pw, L"-inf"); /*- mm 970213 -*/ /*- mm 980129 -*/
                 }
             } /*- mm 970213 -*/
-            else                                          /*- mm 970213 -*/
-            {                                             /*- mm 970213 -*/
+            else                                           /*- mm 970213 -*/
+            {                                              /*- mm 970213 -*/
                 pw = wbuff - 4;
-                /*- mm 970213 -*/ /*- mm 980129 -*/       /* special cases */
-                if (iswupper(format.conversion_char))     /*- mm 990430 -*/
+                /*- mm 970213 -*/ /*- mm 980129 -*/        /* special cases */
+                if (iswupper (format.conversion_char))     /*- mm 990430 -*/
                 {
-                    wcscpy(pw, L"INF");
+                    wcscpy (pw, L"INF");
                 }
                 else
                 {
-                    wcscpy(pw, L"inf"); /*- mm 970213 -*/ /*- mm 980129 -*/
+                    wcscpy (pw, L"inf"); /*- mm 970213 -*/ /*- mm 980129 -*/
                 }
             } /*- mm 970213 -*/
 
@@ -825,7 +825,7 @@ float2str(long double num, wchar_t* wbuff, print_format format) /*- mm 980129 -*
 
             pw = wbuff - 4;                           /*- mm 980129 -*/
 
-            wcscpy(pw, L"NaN");                       /*- mm 980129 -*/
+            wcscpy (pw, L"NaN");                      /*- mm 980129 -*/
 
             return (pw);                              /*- mm 980129 -*/
     }
@@ -843,7 +843,7 @@ float2str(long double num, wchar_t* wbuff, print_format format) /*- mm 980129 -*
 
             if (dec.sig.length > format.precision)
             {
-                round_decimal(&dec, format.precision);
+                round_decimal (&dec, format.precision);
             }
 
             if (dec.exp < -4 || dec.exp >= format.precision)
@@ -886,7 +886,7 @@ float2str(long double num, wchar_t* wbuff, print_format format) /*- mm 980129 -*
 
             if (dec.sig.length > format.precision + 1)
             {
-                round_decimal(&dec, format.precision + 1);
+                round_decimal (&dec, format.precision + 1);
             }
 
             n = dec.exp;
@@ -958,8 +958,8 @@ float2str(long double num, wchar_t* wbuff, print_format format) /*- mm 980129 -*
 
             if (frac_digits > format.precision)
             {
-                round_decimal(&dec,
-                              dec.sig.length - (frac_digits - format.precision));
+                round_decimal (&dec,
+                               dec.sig.length - (frac_digits - format.precision));
 
                 if ((frac_digits = -dec.exp + dec.sig.length - 1) < 0)
                 {
@@ -1033,8 +1033,8 @@ float2str(long double num, wchar_t* wbuff, print_format format) /*- mm 980129 -*
             break;
     }
     /*  Convert number string to wchars */            /*- mm 980129 -*/
-    pw = wbuff - strlen(p) - 1;                       /*- mm 980129 -*/
-    mbstowcs(pw, p, strlen(p));                       /*- mm 990904 -*/
+    pw = wbuff - strlen (p) - 1;                      /*- mm 980129 -*/
+    mbstowcs (pw, p, strlen (p));                     /*- mm 990904 -*/
 
     return (pw);
 }
@@ -1059,8 +1059,10 @@ float2str(long double num, wchar_t* wbuff, print_format format) /*- mm 980129 -*
 */
 
 static int
-__wpformatter(void* (*wWriteProc)(void*, const wchar_t*, size_t), void* WriteProcArg,
-              const wchar_t* format_str, va_list arg)              /*- mm 990325 -*/
+__wpformatter (void*          (*wWriteProc) (void*, const wchar_t*, size_t),
+               void*          WriteProcArg,
+               const wchar_t* format_str,
+               va_list        arg)                                        /*- mm 990325 -*/
 {
     int            num_chars, chars_written, field_width;
     const wchar_t* format_ptr;
@@ -1085,13 +1087,14 @@ __wpformatter(void* (*wWriteProc)(void*, const wchar_t*, size_t), void* WritePro
 
     while (*format_ptr)
     {
-        if (!(curr_format = wcschr(format_ptr, L'%')))
+        if (!(curr_format = wcschr (format_ptr, L'%')))
         {
-            num_chars = wcslen(format_ptr);
+            num_chars = wcslen (format_ptr);
             chars_written += num_chars;
 
-            if (num_chars && !(*wWriteProc)(WriteProcArg, format_ptr,
-                                            num_chars))            /*- mm 990325 -*/
+            if (num_chars && !(*wWriteProc) (WriteProcArg,
+                                             format_ptr,
+                                             num_chars))           /*- mm 990325 -*/
             {
                 return (-1);
             }
@@ -1103,7 +1106,7 @@ __wpformatter(void* (*wWriteProc)(void*, const wchar_t*, size_t), void* WritePro
         chars_written += num_chars;
 
         if (num_chars &&
-            !(*wWriteProc)(WriteProcArg, format_ptr, num_chars))   /*- mm 990325 -*/
+            !(*wWriteProc) (WriteProcArg, format_ptr, num_chars))  /*- mm 990325 -*/
         {
             return (-1);
         }
@@ -1111,7 +1114,7 @@ __wpformatter(void* (*wWriteProc)(void*, const wchar_t*, size_t), void* WritePro
         format_ptr = curr_format;
 
         format_ptr =
-            parse_format(format_ptr, (va_list*)&arg, &format);     /*- scm 970709 -*/
+            parse_format (format_ptr, (va_list*)&arg, &format);    /*- scm 970709 -*/
 
         switch (format.conversion_char)
         {
@@ -1120,18 +1123,18 @@ __wpformatter(void* (*wWriteProc)(void*, const wchar_t*, size_t), void* WritePro
 
                 if (format.argument_options == long_argument)
                 {
-                    long_num = va_arg(arg, long);
+                    long_num = va_arg (arg, long);
                 }
 #ifdef __MSL_LONGLONG_SUPPORT__                                    /*- mm 961219 -*/
                 else if (format.argument_options ==
                          long_long_argument)                       /*- mm 961219 -*/
                 {
-                    long_long_num = va_arg(arg, long long);        /*- mm 961219 -*/
+                    long_long_num = va_arg (arg, long long);       /*- mm 961219 -*/
                 }
 #endif                                                             /*- mm 961219 -*/
                 else
                 {
-                    long_num = va_arg(arg, int);
+                    long_num = va_arg (arg, int);
                 }
 
                 if (format.argument_options == short_argument)
@@ -1142,17 +1145,17 @@ __wpformatter(void* (*wWriteProc)(void*, const wchar_t*, size_t), void* WritePro
 #ifdef __MSL_LONGLONG_SUPPORT__                                    /*- mm 961219 -*/
                 if (format.argument_options == long_long_argument) /*- mm 961219 -*/
                 {                                                  /*- bb 971019 -*/
-                    if (!(buff_ptr = longlong2str(long_long_num,   /*- mm 961219 -*/
-                                                  buff + conversion_buff_size,
-                                                  format)))        /*- mm 961219 -*/
+                    if (!(buff_ptr = longlong2str (long_long_num,  /*- mm 961219 -*/
+                                                   buff + conversion_buff_size,
+                                                   format)))       /*- mm 961219 -*/
                     {
                         goto conversion_error;                     /*- mm 961219 -*/
                     }
                 } /*- bb 971019 -*/
                 else                                               /*- mm 961219 -*/
 #endif                                                             /*- mm 961219 -*/
-                    if (!(buff_ptr = long2str(long_num, buff + conversion_buff_size,
-                                              format)))
+                    if (!(buff_ptr = long2str (
+                              long_num, buff + conversion_buff_size, format)))
                     {
                         goto conversion_error;
                     }
@@ -1168,18 +1171,18 @@ __wpformatter(void* (*wWriteProc)(void*, const wchar_t*, size_t), void* WritePro
 
                 if (format.argument_options == long_argument)
                 {
-                    long_num = va_arg(arg, unsigned long);
+                    long_num = va_arg (arg, unsigned long);
                 }
 #ifdef __MSL_LONGLONG_SUPPORT__                                    /*- mm 961219 -*/
                 else if (format.argument_options ==
                          long_long_argument)                       /*- mm 961219 -*/
                 {
-                    long_long_num = va_arg(arg, long long);        /*- mm 961219 -*/
+                    long_long_num = va_arg (arg, long long);       /*- mm 961219 -*/
                 }
 #endif                                                             /*- mm 961219 -*/
                 else
                 {
-                    long_num = va_arg(arg, unsigned int);
+                    long_num = va_arg (arg, unsigned int);
                 }
 
                 if (format.argument_options == short_argument)
@@ -1190,17 +1193,17 @@ __wpformatter(void* (*wWriteProc)(void*, const wchar_t*, size_t), void* WritePro
 #ifdef __MSL_LONGLONG_SUPPORT__                                    /*- mm 961219 -*/
                 if (format.argument_options == long_long_argument) /*- mm 961219 -*/
                 {                                                  /*- mf 971020 -*/
-                    if (!(buff_ptr = longlong2str(long_long_num,   /*- mm 961219 -*/
-                                                  buff + conversion_buff_size,
-                                                  format)))        /*- mm 961219 -*/
+                    if (!(buff_ptr = longlong2str (long_long_num,  /*- mm 961219 -*/
+                                                   buff + conversion_buff_size,
+                                                   format)))       /*- mm 961219 -*/
                     {
                         goto conversion_error;                     /*- mm 961219 -*/
                     }
                 } /*- mf 971020 -*/
-                else                                               /*- mm 961219 -*/
-#endif                                                             /*- mm 961219 -*/
-                    if (!(buff_ptr = long2str(long_num, buff + conversion_buff_size,
-                                              format)))
+                else                                                /*- mm 961219 -*/
+#endif                                                              /*- mm 961219 -*/
+                    if (!(buff_ptr = long2str (
+                              long_num, buff + conversion_buff_size, format)))
                     {
                         goto conversion_error;
                     }
@@ -1220,15 +1223,15 @@ __wpformatter(void* (*wWriteProc)(void*, const wchar_t*, size_t), void* WritePro
 
                 if (format.argument_options == long_double_argument)
                 {
-                    long_double_num = va_arg(arg, long double);
+                    long_double_num = va_arg (arg, long double);
                 }
                 else
                 {
-                    long_double_num = va_arg(arg, double);
+                    long_double_num = va_arg (arg, double);
                 }
 
-                if (!(buff_ptr = float2str(long_double_num,
-                                           buff + conversion_buff_size, format)))
+                if (!(buff_ptr = float2str (
+                          long_double_num, buff + conversion_buff_size, format)))
                 {
                     goto conversion_error;
                 }
@@ -1238,12 +1241,12 @@ __wpformatter(void* (*wWriteProc)(void*, const wchar_t*, size_t), void* WritePro
 #endif
 
             case L's':
-                if (format.argument_options == wchar_argument)     /*- mm 990322 -*/
+                if (format.argument_options == wchar_argument)      /*- mm 990322 -*/
                 {
-                    buff_ptr = va_arg(arg, wchar_t*);
-                    if (buff_ptr == NULL)                          /*- mm 970708 -*/
+                    buff_ptr = va_arg (arg, wchar_t*);
+                    if (buff_ptr == NULL)                           /*- mm 970708 -*/
                     {
-                        buff_ptr = L"";                            /*- mm 970708 -*/
+                        buff_ptr = L"";                             /*- mm 970708 -*/
                     }
                     if (format.alternate_form)
                     {
@@ -1259,23 +1262,23 @@ __wpformatter(void* (*wWriteProc)(void*, const wchar_t*, size_t), void* WritePro
                     {
                         num_chars = format.precision;
 
-                        if ((wstring_end = (wchar_t*)wmemchr(
-                                 buff_ptr, 0, num_chars)) != 0)    /*- mm 990322 -*/
+                        if ((wstring_end = (wchar_t*)wmemchr (
+                                 buff_ptr, 0, num_chars)) != 0)     /*- mm 990322 -*/
                         {
                             num_chars = wstring_end - buff_ptr;
                         }
                     }
                     else
                     {
-                        num_chars = wcslen(buff_ptr);
+                        num_chars = wcslen (buff_ptr);
                     }
                 }
                 else
                 {
-                    strptr = va_arg(arg, char*);
-                    if (strptr == NULL)                            /*- mm 970708 -*/
+                    strptr = va_arg (arg, char*);
+                    if (strptr == NULL)                             /*- mm 970708 -*/
                     {
-                        strptr = "";                               /*- mm 970708 -*/
+                        strptr = "";                                /*- mm 970708 -*/
                     }
                     if (format.alternate_form)
                     {
@@ -1291,17 +1294,17 @@ __wpformatter(void* (*wWriteProc)(void*, const wchar_t*, size_t), void* WritePro
                     {
                         num_chars = format.precision;
 
-                        if ((cstring_end = (char*)memchr(strptr, 0, num_chars)) !=
-                            0)                                     /*- mm 990322 -*/
+                        if ((cstring_end = (char*)memchr (strptr, 0, num_chars)) !=
+                            0)                                      /*- mm 990322 -*/
                         {
                             num_chars = cstring_end - strptr;
                         }
                     }
                     else
                     {
-                        num_chars = strlen(strptr);
+                        num_chars = strlen (strptr);
                     }
-                    if ((num_chars = mbstowcs(buff, strptr, num_chars)) < 0)
+                    if ((num_chars = mbstowcs (buff, strptr, num_chars)) < 0)
                     {
                         goto conversion_error;
                     }
@@ -1312,7 +1315,7 @@ __wpformatter(void* (*wWriteProc)(void*, const wchar_t*, size_t), void* WritePro
 
             case L'n':
 
-                buff_ptr = va_arg(arg, wchar_t*);
+                buff_ptr = va_arg (arg, wchar_t*);
 
                 switch (format.argument_options)
                 {
@@ -1325,27 +1328,27 @@ __wpformatter(void* (*wWriteProc)(void*, const wchar_t*, size_t), void* WritePro
                     case long_argument:
                         *(long*)buff_ptr = chars_written;
                         break;
-#ifdef __MSL_LONGLONG_SUPPORT__                                    /*-mm 961219 -*/
+#ifdef __MSL_LONGLONG_SUPPORT__                                     /*-mm 961219 -*/
                     case long_long_argument:
                         *(long long*)buff_ptr = chars_written;
                         break;
-#endif                                                             /*-mm 961219 -*/
+#endif                                                              /*-mm 961219 -*/
                 }
 
                 continue;
 
             case L'c':
                 buff_ptr = buff;
-                if (format.argument_options == wchar_argument)     /*- mm 990322 -*/
+                if (format.argument_options == wchar_argument)      /*- mm 990322 -*/
                 {
-                    *buff_ptr = va_arg(arg, int);
+                    *buff_ptr = va_arg (arg, int);
 
                     num_chars = 1;
                 }
                 else
                 {
-                    char chint = va_arg(arg, int);
-                    num_chars = mbtowc(buff, &chint, 1);
+                    char chint = va_arg (arg, int);
+                    num_chars = mbtowc (buff, &chint, 1);
                 }
 
                 break;
@@ -1364,11 +1367,12 @@ __wpformatter(void* (*wWriteProc)(void*, const wchar_t*, size_t), void* WritePro
             conversion_error:
             default:
 
-                num_chars = wcslen(curr_format);
+                num_chars = wcslen (curr_format);
                 chars_written += num_chars;
 
-                if (num_chars && !(*wWriteProc)(WriteProcArg, curr_format,
-                                                num_chars))        /*- mm 990325 -*/
+                if (num_chars && !(*wWriteProc) (WriteProcArg,
+                                                 curr_format,
+                                                 num_chars))        /*- mm 990325 -*/
                 {
                     return (-1);
                 }
@@ -1379,25 +1383,25 @@ __wpformatter(void* (*wWriteProc)(void*, const wchar_t*, size_t), void* WritePro
         field_width = num_chars;
 
         if (format.justification_options != left_justification)
-        {                                                          /*- mm 960722 -*/
+        {                                                           /*- mm 960722 -*/
             fill_char = (format.justification_options == zero_fill)
                             ? L'0'
-                            : L' ';                                /*- mm 960722 -*/
+                            : L' ';                                 /*- mm 960722 -*/
             if (((*buff_ptr == L'+') || (*buff_ptr == L'-') ||
                  (*buff_ptr == L' ')) &&
-                (fill_char == L'0'))                               /*- mm 990905 -*/
-            {                                                      /*- mm 970206 -*/
-                if ((*wWriteProc)(WriteProcArg, buff_ptr, 1) == 0) /*- mm 990325 -*/
+                (fill_char == L'0'))                                /*- mm 990905 -*/
+            {                                                       /*- mm 970206 -*/
+                if ((*wWriteProc) (WriteProcArg, buff_ptr, 1) == 0) /*- mm 990325 -*/
                 {
-                    return (-1);                                   /*- mm 970206 -*/
+                    return (-1);                                    /*- mm 970206 -*/
                 }
-                ++buff_ptr;                                        /*- mm 970206 -*/
-                num_chars--;                                       /*- mm 970723 -*/
+                ++buff_ptr;                                         /*- mm 970206 -*/
+                num_chars--;                                        /*- mm 970723 -*/
             }
             while (field_width < format.field_width)
             {
-                if ((*wWriteProc)(WriteProcArg, &fill_char, 1) ==
-                    0)                                             /*- mm 990325 -*/
+                if ((*wWriteProc) (WriteProcArg, &fill_char, 1) ==
+                    0)                                              /*- mm 990325 -*/
                 {
                     return (-1);
                 }
@@ -1407,7 +1411,7 @@ __wpformatter(void* (*wWriteProc)(void*, const wchar_t*, size_t), void* WritePro
         } /*- mm 960722 -*/
 
         if (num_chars &&
-            !(*wWriteProc)(WriteProcArg, buff_ptr, num_chars))   /*- mm 990325 -*/
+            !(*wWriteProc) (WriteProcArg, buff_ptr, num_chars))   /*- mm 990325 -*/
         {
             return (-1);
         }
@@ -1417,7 +1421,7 @@ __wpformatter(void* (*wWriteProc)(void*, const wchar_t*, size_t), void* WritePro
             while (field_width < format.field_width)
             {
                 wchar_t blank = L' ';
-                if ((*wWriteProc)(WriteProcArg, &blank, 1) == 0) /*- mm 990311 -*/
+                if ((*wWriteProc) (WriteProcArg, &blank, 1) == 0) /*- mm 990311 -*/
                 {
                     return (-1);
                 }
@@ -1432,12 +1436,12 @@ __wpformatter(void* (*wWriteProc)(void*, const wchar_t*, size_t), void* WritePro
     return (chars_written);
 }
 void*
-__wFileWrite(void* File, const wchar_t* Buffer, size_t NumChars)
+__wFileWrite (void* File, const wchar_t* Buffer, size_t NumChars)
 {
-    return (fwrite(Buffer, 2, NumChars, (FILE*)File) == NumChars ? File : 0);
+    return (fwrite (Buffer, 2, NumChars, (FILE*)File) == NumChars ? File : 0);
 }
 void*
-__wStringWrite(void* wosc, const wchar_t* Buffer, size_t NumChars)
+__wStringWrite (void* wosc, const wchar_t* Buffer, size_t NumChars)
 {
     size_t         wCharsToBeWritten;
     void*          MemCpyResult;
@@ -1446,8 +1450,8 @@ __wStringWrite(void* wosc, const wchar_t* Buffer, size_t NumChars)
     wCharsToBeWritten = ((wOscp->CharsWritten + NumChars) <= wOscp->MaxCharCount)
                             ? NumChars
                             : wOscp->MaxCharCount - wOscp->CharsWritten;
-    MemCpyResult = (void*)wmemcpy(wOscp->wCharStr + wOscp->CharsWritten, Buffer,
-                                  wCharsToBeWritten);
+    MemCpyResult = (void*)wmemcpy (
+        wOscp->wCharStr + wOscp->CharsWritten, Buffer, wCharsToBeWritten);
     wOscp->CharsWritten += wCharsToBeWritten;
     return (MemCpyResult);
 }
@@ -1473,31 +1477,31 @@ __wStringWrite(void* wosc, const wchar_t* Buffer, size_t NumChars)
 */
 
 int
-wprintf(const wchar_t* format, ...)
+wprintf (const wchar_t* format, ...)
 {
-    int result;                            /*- mm 001018 -*/
+    int result;                             /*- mm 001018 -*/
 
-#if __PPC_EABI__ || __MIPS__               /* __dest_os == __mips_bare */
+#if __PPC_EABI__ || __MIPS__                /* __dest_os == __mips_bare */
     va_list args;
-    if (fwide(stdout, 1) <= 0)
+    if (fwide (stdout, 1) <= 0)
     {
         return (-1);
     }
-    va_start(args, format);
-    __begin_critical_region(files_access); /*- mm 001018 -*/
+    va_start (args, format);
+    __begin_critical_region (files_access); /*- mm 001018 -*/
     result =
-        __wpformatter(&__wFileWrite, (void*)stdout, format, args); /*- mm 001018 -*/
+        __wpformatter (&__wFileWrite, (void*)stdout, format, args); /*- mm 001018 -*/
 #else
-    if (fwide(stdout, 1) <= 0)
+    if (fwide (stdout, 1) <= 0)
     {
         return (-1);
     }
-    __begin_critical_region(files_access);          /*- mm 001024 -*/
-    result = __wpformatter(&__wFileWrite, (void*)stdout, format,
-                           __va_start(format));     /*- mm 001018 -*/
+    __begin_critical_region (files_access);                         /*- mm 001024 -*/
+    result = __wpformatter (
+        &__wFileWrite, (void*)stdout, format, __va_start (format)); /*- mm 001018 -*/
 #endif
-    __end_critical_region(files_access);                           /*- mm 001018 -*/
-    return (result);                                               /*- mm 001018 -*/
+    __end_critical_region (files_access);                           /*- mm 001018 -*/
+    return (result);                                                /*- mm 001018 -*/
 }
 /*
     fwprintf
@@ -1521,32 +1525,32 @@ wprintf(const wchar_t* format, ...)
 */
 
 int
-fwprintf(FILE* file, const wchar_t* format, ...)
+fwprintf (FILE* file, const wchar_t* format, ...)
 {
-    int result;                            /*- mm 001018 -*/
+    int result;                             /*- mm 001018 -*/
 
-#if __PPC_EABI__ || __MIPS__               /*  __dest_os == __mips_bare */
+#if __PPC_EABI__ || __MIPS__                /*  __dest_os == __mips_bare */
     va_list args;
 
-    if (fwide(file, 1) <= 0)
+    if (fwide (file, 1) <= 0)
     {
         return (-1);
     }
-    va_start(args, format);
-    __begin_critical_region(files_access); /*- mm 001018 -*/
+    va_start (args, format);
+    __begin_critical_region (files_access); /*- mm 001018 -*/
     result =
-        __wpformatter(&__wFileWrite, (void*)file, format, args); /*- mm 001018 -*/
+        __wpformatter (&__wFileWrite, (void*)file, format, args); /*- mm 001018 -*/
 #else
-    if (fwide(file, 1) <= 0)
+    if (fwide (file, 1) <= 0)
     {
         return (-1);
     }
-    __begin_critical_region(files_access);          /*- mm 001018 -*/
-    result = __wpformatter(&__wFileWrite, (void*)file, format,
-                           __va_start(format));     /*- mm 001018 -*/
+    __begin_critical_region (files_access);                         /*- mm 001018 -*/
+    result = __wpformatter (
+        &__wFileWrite, (void*)file, format, __va_start (format));   /*- mm 001018 -*/
 #endif
-    __end_critical_region(files_access);                         /*- mm 001018 -*/
-    return (result);                                             /*- mm 001018 -*/
+    __end_critical_region (files_access);                         /*- mm 001018 -*/
+    return (result);                                              /*- mm 001018 -*/
 }
 /*
     vwprintf
@@ -1569,18 +1573,18 @@ fwprintf(FILE* file, const wchar_t* format, ...)
 */
 
 int
-vwprintf(const wchar_t* format, va_list arg)
+vwprintf (const wchar_t* format, va_list arg)
 {
-    int retval;                                                   /*- mm 001018 -*/
-    if (fwide(stdout, 1) <= 0)
+    int retval;                                                    /*- mm 001018 -*/
+    if (fwide (stdout, 1) <= 0)
     {
         return (-1);
     }
-    __begin_critical_region(files_access);                        /*- mm 001018 -*/
+    __begin_critical_region (files_access);                        /*- mm 001018 -*/
     retval =
-        __wpformatter(&__wFileWrite, (void*)stdout, format, arg); /*- mm 001018 -*/
-    __end_critical_region(files_access);                          /*- mm 001018 -*/
-    return (retval);                                              /*- mm 001018 -*/
+        __wpformatter (&__wFileWrite, (void*)stdout, format, arg); /*- mm 001018 -*/
+    __end_critical_region (files_access);                          /*- mm 001018 -*/
+    return (retval);                                               /*- mm 001018 -*/
 }
 /*
     vfwprintf
@@ -1602,18 +1606,18 @@ vwprintf(const wchar_t* format, va_list arg)
 */
 
 int
-vfwprintf(FILE* file, const wchar_t* format, va_list arg)
+vfwprintf (FILE* file, const wchar_t* format, va_list arg)
 {
-    int retval;                                                 /*- mm 001018 -*/
-    if (fwide(file, 1) <= 0)
+    int retval;                                                  /*- mm 001018 -*/
+    if (fwide (file, 1) <= 0)
     {
         return (-1);
     }
-    __begin_critical_region(files_access);                      /*- mm 001018 -*/
+    __begin_critical_region (files_access);                      /*- mm 001018 -*/
     retval =
-        __wpformatter(&__wFileWrite, (void*)file, format, arg); /*- mm 001018 -*/
-    __end_critical_region(files_access);                        /*- mm 001018 -*/
-    return (retval);                                            /*- mm 001018 -*/
+        __wpformatter (&__wFileWrite, (void*)file, format, arg); /*- mm 001018 -*/
+    __end_critical_region (files_access);                        /*- mm 001018 -*/
+    return (retval);                                             /*- mm 001018 -*/
 }
 /*
     swprintf
@@ -1639,14 +1643,14 @@ vfwprintf(FILE* file, const wchar_t* format, va_list arg)
 */
 
 int
-swprintf(wchar_t* s, size_t n, const wchar_t* format, ...)
+swprintf (wchar_t* s, size_t n, const wchar_t* format, ...)
 {
 #if __PPC_EABI__ || __MIPS__ /* __dest_os == __mips_bare  */ /*- scm 970709 -*/
     va_list args;                                            /*- scm 970709 -*/
-    va_start(args, format);                                  /*- scm 970709 -*/
-    return (vswprintf(s, n, format, args));                  /*- scm 970709 -*/
+    va_start (args, format);                                 /*- scm 970709 -*/
+    return (vswprintf (s, n, format, args));                 /*- scm 970709 -*/
 #else                                                        /*- scm 970709 -*/
-    return (vswprintf(s, n, format, __va_start(format)));
+    return (vswprintf (s, n, format, __va_start (format)));
 #endif                                                       /*- scm 970709 -*/
 }
 /*
@@ -1671,7 +1675,7 @@ swprintf(wchar_t* s, size_t n, const wchar_t* format, ...)
 */
 
 int
-vswprintf(wchar_t* s, size_t n, const wchar_t* format, va_list arg)
+vswprintf (wchar_t* s, size_t n, const wchar_t* format, va_list arg)
 {
     int           count;
     __wOutStrCtrl wosc;
@@ -1680,7 +1684,7 @@ vswprintf(wchar_t* s, size_t n, const wchar_t* format, va_list arg)
     wosc.MaxCharCount = n;
     wosc.CharsWritten = 0;
 
-    count = __wpformatter(&__wStringWrite, &wosc, format, arg);
+    count = __wpformatter (&__wStringWrite, &wosc, format, arg);
 
     if (count >= 0)       /*- mm 990316 -*/
     {

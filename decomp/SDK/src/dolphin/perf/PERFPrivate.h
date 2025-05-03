@@ -6,7 +6,7 @@ extern "C"
 {
 #endif
 
-void __PERFDrawInit(void (*id)());
+void __PERFDrawInit (void (*id)());
 
 #ifdef __cplusplus
 }

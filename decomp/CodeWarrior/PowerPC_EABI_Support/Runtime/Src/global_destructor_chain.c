@@ -41,7 +41,7 @@ DestructorChain* __global_destructor_chain;
 /*	Return...:	pointer to global object (pass thru)					*/
 /************************************************************************/
 extern void*
-__register_global_object(void* object, void* destructor, void* regmem)
+__register_global_object (void* object, void* destructor, void* regmem)
 {
     ((DestructorChain*)regmem)->next = __global_destructor_chain;
     ((DestructorChain*)regmem)->destructor = destructor;
@@ -56,17 +56,17 @@ __register_global_object(void* object, void* destructor, void* regmem)
 /* Return...: ---														*/
 /************************************************************************/
 void
-__destroy_global_chain(void)
+__destroy_global_chain (void)
 {
     DestructorChain* gdc;
 
     while ((gdc = __global_destructor_chain) != 0L)
     {
         __global_destructor_chain = gdc->next;
-        DTORCALL_COMPLETE(gdc->destructor, gdc->object);
+        DTORCALL_COMPLETE (gdc->destructor, gdc->object);
     }
 }
 #if __MWERKS__ && __PPC_EABI__ && __dest_os != __eppc_vxworks
-__declspec(section ".dtors") static void* const __destroy_global_chain_reference =
+__declspec (section ".dtors") static void* const __destroy_global_chain_reference =
     __destroy_global_chain;
 #endif

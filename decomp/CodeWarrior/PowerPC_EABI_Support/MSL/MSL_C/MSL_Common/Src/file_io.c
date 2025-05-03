@@ -50,17 +50,17 @@ __file_modes __temp_file_mode =
     { __create_or_truncate, __read_write, _IOFBF, __disk_file, 1 };
 #endif /* not __NO_WIDE_CHAR */ /*- mm 980707 -*/
 int
-remove(const char* name)
+remove (const char* name)
 {
-    return ((__delete_file(name) == __no_io_error) ? 0 : -1);
+    return ((__delete_file (name) == __no_io_error) ? 0 : -1);
 }
 int
-rename(const char* old_name, const char* new_name)
+rename (const char* old_name, const char* new_name)
 {
-    return ((__rename_file(old_name, new_name) == __no_io_error) ? 0 : -1);
+    return ((__rename_file (old_name, new_name) == __no_io_error) ? 0 : -1);
 }
 char*
-tmpnam(char* name)
+tmpnam (char* name)
 {
     /*- BLC 991210 -*/
 #if !(_MWMT && (__dest_os == __win32_os || __dest_os == __wince_os))
@@ -69,49 +69,49 @@ tmpnam(char* name)
 
     if (name)
     {
-        __temp_file_name(name, NULL);
+        __temp_file_name (name, NULL);
         return (name);
     }
     else
     {
         /*- KO 961219 -*/
 #if _MWMT && (__dest_os == __win32_os || __dest_os == __wince_os)
-        __temp_file_name(_GetThreadLocalData(_MSL_TRUE)->tmpnam_temp_name,
-                         NULL);                                    /*- cc 010531 -*/
-        return (_GetThreadLocalData(_MSL_TRUE)->tmpnam_temp_name); /*- cc 010531 -*/
+        __temp_file_name (_GetThreadLocalData (_MSL_TRUE)->tmpnam_temp_name,
+                          NULL);                                    /*- cc 010531 -*/
+        return (_GetThreadLocalData (_MSL_TRUE)->tmpnam_temp_name); /*- cc 010531 -*/
 #else
-        __temp_file_name(temp_name, NULL);
+        __temp_file_name (temp_name, NULL);
         return (temp_name);
 #endif
     }
 }
 FILE*
-tmpfile(void)
+tmpfile (void)
 {
     FILE* file;
 
     __stdio_atexit();
 
-    __begin_critical_region(files_access);
+    __begin_critical_region (files_access);
 
     if ((file = __find_unopened_file()) != 0)
     {
-        __init_file(file, __temp_file_mode, 0, BUFSIZ);
+        __init_file (file, __temp_file_mode, 0, BUFSIZ);
 
-        if (__open_temp_file(&file->handle))
+        if (__open_temp_file (&file->handle))
         {
             file->mode.file_kind = __closed_file;
             file = NULL;
         }
     }
 
-    __end_critical_region(files_access);
+    __end_critical_region (files_access);
 
     return (file);
 }
 #endif                                    /* ndef _No_Disk_File_OS_Support */
 int
-fclose(FILE* file)
+fclose (FILE* file)
 {
     int flush_result, close_result;
 
@@ -124,16 +124,16 @@ fclose(FILE* file)
         return (0);
     }
 
-    flush_result = fflush(file);
+    flush_result = fflush (file);
 
-    close_result = (*file->close_proc)(file->handle);
+    close_result = (*file->close_proc) (file->handle);
 
     file->mode.file_kind = __closed_file;
     file->handle = 0;
 
     if (file->state.free_buffer)
 #ifndef _No_Disk_File_OS_Support
-        free(file->buffer);
+        free (file->buffer);
 #else
         return (-1);
 #endif
@@ -142,7 +142,7 @@ fclose(FILE* file)
 }
 #if !defined(_Old_DSP_IO_Interface)
 int
-fflush(FILE* file)
+fflush (FILE* file)
 {
     fpos_t position;                      /*- mm 970708 -*/
 
@@ -178,7 +178,7 @@ fflush(FILE* file)
     }
 
 #ifndef _No_Disk_File_OS_Support
-    if (file->mode.file_kind != __disk_file || (position = ftell(file)) < 0)
+    if (file->mode.file_kind != __disk_file || (position = ftell (file)) < 0)
     {
         position = 0;
     }
@@ -186,9 +186,9 @@ fflush(FILE* file)
     position = 0;
 #endif
 
-    if (__flush_buffer(file, NULL))
+    if (__flush_buffer (file, NULL))
     {
-        set_error(file);
+        set_error (file);
         return (EOF);
     }
 
@@ -202,20 +202,20 @@ fflush(FILE* file)
 
 #ifndef _No_Disk_File_OS_Support
 FILE*
-fopen(const char* name, const char* mode)
+fopen (const char* name, const char* mode)
 {
     FILE* file;
 
-    __begin_critical_region(files_access);
+    __begin_critical_region (files_access);
 
-    file = freopen(name, mode, __find_unopened_file());
+    file = freopen (name, mode, __find_unopened_file());
 
-    __end_critical_region(files_access);
+    __end_critical_region (files_access);
 
     return (file);
 }
 FILE*
-freopen(const char* name, const char* mode, FILE* file)
+freopen (const char* name, const char* mode, FILE* file)
 {
     __file_modes modes;
 
@@ -226,28 +226,28 @@ freopen(const char* name, const char* mode, FILE* file)
         return (NULL);
     }
 
-    fclose(file);
-    clearerr(file);
+    fclose (file);
+    clearerr (file);
 
-    if (!__get_file_modes(mode, &modes))
+    if (!__get_file_modes (mode, &modes))
     {
         return (NULL);
     }
 
-    __init_file(file, modes, 0, BUFSIZ);
+    __init_file (file, modes, 0, BUFSIZ);
 
-    if (__open_file(name, modes, &file->handle))
+    if (__open_file (name, modes, &file->handle))
     {
         file->mode.file_kind = __closed_file;
         if (file->state.free_buffer)      /*- mm 960719 -*/
         {
-            free(file->buffer);           /*- mm 960719 -*/
+            free (file->buffer);          /*- mm 960719 -*/
         }
         return (NULL);
     }
     if (modes.io_mode & __append)         /*- mm 990119 -*/
     {
-        fseek(file, 0, SEEK_END);         /*- mm 990119 -*/
+        fseek (file, 0, SEEK_END);        /*- mm 990119 -*/
     }
 
     return (file);
@@ -260,7 +260,7 @@ freopen(const char* name, const char* mode, FILE* file)
 */
 
 FILE*
-__reopen(FILE* file)
+__reopen (FILE* file)
 {
     if ((file == stdin) || (file == stdout) || (file == stderr))
     {
@@ -278,20 +278,20 @@ __reopen(FILE* file)
 /*- mm 990609 -*/
 
 FILE*
-__handle_open(__file_handle handle, const char* mode)
+__handle_open (__file_handle handle, const char* mode)
 {
     FILE* file;
 
-    __begin_critical_region(files_access);
+    __begin_critical_region (files_access);
 
-    file = __handle_reopen(handle, mode, __find_unopened_file());
+    file = __handle_reopen (handle, mode, __find_unopened_file());
 
-    __end_critical_region(files_access);
+    __end_critical_region (files_access);
 
     return (file);
 }
 FILE*
-__handle_reopen(__file_handle handle, const char* mode, FILE* file)
+__handle_reopen (__file_handle handle, const char* mode, FILE* file)
 {
     __file_modes modes;
 
@@ -302,22 +302,22 @@ __handle_reopen(__file_handle handle, const char* mode, FILE* file)
         return (NULL);
     }
 
-    fclose(file);
-    clearerr(file);
+    fclose (file);
+    clearerr (file);
 
-    if (!__get_file_modes(mode, &modes))
+    if (!__get_file_modes (mode, &modes))
     {
         return (NULL);
     }
 
-    __init_file(file, modes, 0, BUFSIZ);
+    __init_file (file, modes, 0, BUFSIZ);
 
     file->handle = handle;
 
     return (file);
 }
 int
-__get_file_modes(const char* mode, __file_modes* modes)
+__get_file_modes (const char* mode, __file_modes* modes)
 {
     const char*   mode_ptr = mode;
     unsigned long mode_str;
@@ -413,21 +413,21 @@ __get_file_modes(const char* mode, __file_modes* modes)
 }
 #endif /* ndef _No_Disk_File_OS_Support */
 void
-__set_idle_proc(FILE* file, __idle_proc idle_proc)
+__set_idle_proc (FILE* file, __idle_proc idle_proc)
 {
     file->idle_proc = idle_proc;
 }
 /* Compare lexigraphically two strings up to a max length */
 
 int
-__msl_strnicmp(const char* s1, const char* s2, int n) /*- cc 010605 -*/
+__msl_strnicmp (const char* s1, const char* s2, int n) /*- cc 010605 -*/
 {
     int  i;
     char c1, c2;
     for (i = 0; i < n; i++)
     {
-        c1 = tolower(*s1++);
-        c2 = tolower(*s2++);
+        c1 = tolower (*s1++);
+        c2 = tolower (*s2++);
         if (c1 < c2)
         {
             return -1;
@@ -446,10 +446,10 @@ __msl_strnicmp(const char* s1, const char* s2, int n) /*- cc 010605 -*/
 /* reverse a string in place */
 
 char*
-__msl_strrev(char* str)   /*- cc 010605 -*/
+__msl_strrev (char* str)  /*- cc 010605 -*/
 {
     int SmallIndex = 0;
-    int BigIndex = strlen(str) - 1;
+    int BigIndex = strlen (str) - 1;
 
     while (SmallIndex < BigIndex)
     {
@@ -465,7 +465,7 @@ __msl_strrev(char* str)   /*- cc 010605 -*/
     return str;
 }
 char*
-__msl_itoa(int val, char* str, int radix)
+__msl_itoa (int val, char* str, int radix)
 {
     char         IsNegative = 0;
     int          theNum = val;
@@ -503,18 +503,18 @@ __msl_itoa(int val, char* str, int radix)
     }
     str[StrIndex++] = 0;
     /* Now reverse the string.  */
-    __msl_strrev(str);        /*- cc 010605 -*/
+    __msl_strrev (str);        /*- cc 010605 -*/
 
     return str;
 }
 char*
-__msl_strdup(const char* str) /*- cc 010725 -*/
+__msl_strdup (const char* str) /*- cc 010725 -*/
 {
-    char* rval = (char*)__std(malloc)(__std(strlen)(str) + 1);
+    char* rval = (char*)__std (malloc) (__std (strlen) (str) + 1);
 
     if (rval)
     {
-        __std(strcpy)(rval, str);
+        __std (strcpy) (rval, str);
     }
     return rval;
 }
