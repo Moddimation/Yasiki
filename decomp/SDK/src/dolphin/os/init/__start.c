@@ -1,3 +1,4 @@
+#include <dolphin/db.h>
 #include <dolphin/os.h>
 
 // internal header
@@ -33,8 +34,8 @@ SEC_INIT extern __rom_copy_info _rom_copy_info[];
 
 typedef struct __bss_init_info
 {
-    char*        addr;
-    unsigned int size;
+    char* addr;
+    u32   size;
 } __bss_init_info;
 
 SEC_INIT extern __bss_init_info _bss_init_info[];
@@ -42,7 +43,7 @@ extern int                      main (int argc, char* argv[]);
 extern void                     exit (int);
 
 SEC_INIT extern void __init_hardware (void);
-SEC_INIT extern void __flush_cache (void* address, unsigned int size);
+SEC_INIT extern void __flush_cache (void* address, u32 size);
 
 void __init_registers (void);
 void __init_data (void);

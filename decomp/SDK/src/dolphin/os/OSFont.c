@@ -1,4 +1,5 @@
 #include <dolphin/os.h>
+#include <dolphin/vi.h>
 
 #include "OSPrivate.h"
 
