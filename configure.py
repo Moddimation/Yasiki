@@ -581,6 +581,10 @@ config.libs = [
 
     # SDK
 
+    DolphinLib("base", [
+        (Matching, "PPCArch.c"),
+    ]),
+
     DolphinLib("os", [
         (Matching, "OS.c"),
         (Matching, "OSAlarm.c"),
