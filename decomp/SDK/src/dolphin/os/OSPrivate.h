@@ -30,7 +30,7 @@ void __OSCacheInit (void);
 void __OSContextInit (void);
 
 // OSError.c
-void __OSUnhandledException (u16 exception, OSContext* context, u32 dsisr, u32 dar);
+void __OSUnhandledException (u8 exception, OSContext* context, u32 dsisr, u32 dar);
 
 // OSInterrupt.c
 extern void __RAS_OSDisableInterrupts_begin (void);

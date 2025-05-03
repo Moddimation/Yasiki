@@ -49,7 +49,7 @@ OSSetErrorHandler (OSError error, OSErrorHandler handler)
     return oldHandler;
 }
 void
-__OSUnhandledException (u16 exception, OSContext* context, u32 dsisr, u32 dar)
+__OSUnhandledException (u8 exception, OSContext* context, u32 dsisr, u32 dar)
 {
     if (!(context->srr1 & MSR_RI))
     {

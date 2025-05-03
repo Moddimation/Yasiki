@@ -1,7 +1,5 @@
 #include <dolphin/os.h>
 
-#include <dolphin.h>
-
 #include "OSPrivate.h"
 
 static u8 DSPInitCode[128] = {
@@ -18,6 +16,7 @@ static u8 DSPInitCode[128] = {
 };
 
 #define __DSPWorkBuffer (void*)0x81000000
+
 void
 __OSInitAudioSystem (void)
 {
@@ -92,6 +91,7 @@ __OSInitAudioSystem (void)
     __DSPRegs[5] |= 1;
     while (__DSPRegs[5] & 1);
 }
+
 void
 __OSStopAudioSystem (void)
 {
