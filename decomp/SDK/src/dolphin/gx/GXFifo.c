@@ -568,7 +568,7 @@ OSThread*
 GXSetCurrentGXThread (void)
 {
     BOOL             enabled;
-    struct OSThread* prev;
+    OSThread* prev;
 
     enabled = OSDisableInterrupts();
     prev = __GXCurrentThread;

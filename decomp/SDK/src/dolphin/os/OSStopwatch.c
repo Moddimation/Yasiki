@@ -1,6 +1,5 @@
 #include <dolphin/os.h>
 
-#include <dolphin.h>
 void
 OSInitStopwatch (struct OSStopwatch* sw, char* name)
 {
@@ -10,12 +9,14 @@ OSInitStopwatch (struct OSStopwatch* sw, char* name)
     sw->min = 0x00000000FFFFFFFF;
     sw->max = 0;
 }
+
 void
 OSStartStopwatch (struct OSStopwatch* sw)
 {
     sw->running = 1;
     sw->last = OSGetTime();
 }
+
 void
 OSStopStopwatch (struct OSStopwatch* sw)
 {
@@ -37,6 +38,7 @@ OSStopStopwatch (struct OSStopwatch* sw)
         }
     }
 }
+
 s64
 OSCheckStopwatch (struct OSStopwatch* sw)
 {
@@ -49,11 +51,13 @@ OSCheckStopwatch (struct OSStopwatch* sw)
     }
     return currTotal;
 }
+
 void
 OSResetStopwatch (struct OSStopwatch* sw)
 {
     OSInitStopwatch (sw, sw->name);
 }
+
 void
 OSDumpStopwatch (struct OSStopwatch* sw)
 {

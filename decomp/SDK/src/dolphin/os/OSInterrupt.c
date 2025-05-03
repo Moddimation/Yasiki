@@ -1,7 +1,5 @@
 #include <dolphin/os.h>
 
-#include <dolphin.h>
-
 #include "OSPrivate.h"
 
 static ASM void ExternalInterruptHandler (register __OSException exception,
@@ -32,13 +30,11 @@ static OSInterruptMask InterruptPrioTable[] = {
 
 #if DEBUG
 char* __OSInterruptNames[33] = {
-    "MEM_0",     "MEM_1",     "MEM_2",     "MEM_3",       "MEM_ADDRESS",
-    "DSP_AI",    "DSP_ARAM",  "DSP_DSP",   "AI_AI",       "EXI_0_EXI",
-    "EXI_0_TC",  "EXI_0_EXT", "EXI_1_EXI", "EXI_1_TC",    "EXI_1_EXT",
-    "EXI_2_EXI", "EXI_2_TC",  "PI_CP",     "PI_PE_TOKEN", "PI_PE_FINISH",
-    "PI_SI",     "PI_DI",     "PI_RSW",    "PI_ERROR",    "PI_VI",
-    "PI_DEBUG",  "PI_HSP",    "unknown",   "unknown",     "unknown",
-    "unknown",   "unknown",   "unknown"
+    "MEM_0",     "MEM_1",     "MEM_2",     "MEM_3",    "MEM_ADDRESS", "DSP_AI",       "DSP_ARAM",
+    "DSP_DSP",   "AI_AI",     "EXI_0_EXI", "EXI_0_TC", "EXI_0_EXT",   "EXI_1_EXI",    "EXI_1_TC",
+    "EXI_1_EXT", "EXI_2_EXI", "EXI_2_TC",  "PI_CP",    "PI_PE_TOKEN", "PI_PE_FINISH", "PI_SI",
+    "PI_DI",     "PI_RSW",    "PI_ERROR",  "PI_VI",    "PI_DEBUG",    "PI_HSP",       "unknown",
+    "unknown",   "unknown",   "unknown",   "unknown",  "unknown"
 };
 
 char* __OSPIErrors[8] = {
@@ -68,6 +64,7 @@ OSDisableInterrupts (void)
     return FALSE;
 #endif
 }
+
 asm BOOL
 OSEnableInterrupts (void)
 {
@@ -83,6 +80,7 @@ OSEnableInterrupts (void)
     return FALSE;
 #endif
 }
+
 asm BOOL
 OSRestoreInterrupts (register BOOL level)
 {
@@ -106,6 +104,7 @@ _restore:
     return FALSE;
 #endif
 }
+
 __OSInterruptHandler
 __OSSetInterruptHandler (__OSInterrupt interrupt, __OSInterruptHandler handler)
 {
@@ -114,40 +113,37 @@ __OSSetInterruptHandler (__OSInterrupt interrupt, __OSInterruptHandler handler)
     ASSERTMSGLINE (0x188,
                    InterruptHandlerTable,
                    "__OSSetInterruptHandler(): OSInit() must be called in advance.");
-    ASSERTMSGLINE (
-        0x18A, interrupt < 0x20, "__OSSetInterruptHandler(): unknown interrupt.");
+    ASSERTMSGLINE (0x18A, interrupt < 0x20, "__OSSetInterruptHandler(): unknown interrupt.");
 
     oldHandler = InterruptHandlerTable[interrupt];
     InterruptHandlerTable[interrupt] = handler;
     return oldHandler;
 }
+
 __OSInterruptHandler
 __OSGetInterruptHandler (__OSInterrupt interrupt)
 {
     ASSERTMSGLINE (0x19E,
                    InterruptHandlerTable,
                    "__OSGetInterruptHandler(): OSInit() must be called in advance.");
-    ASSERTMSGLINE (
-        0x1A0, interrupt < 0x20, "__OSGetInterruptHandler(): unknown interrupt.");
+    ASSERTMSGLINE (0x1A0, interrupt < 0x20, "__OSGetInterruptHandler(): unknown interrupt.");
     return InterruptHandlerTable[interrupt];
 }
+
 void
 __OSInterruptInit (void)
 {
     InterruptHandlerTable = (void*)OSPhysicalToCached (0x3040);
 
-    memset (InterruptHandlerTable,
-            0,
-            __OS_INTERRUPT_MAX * sizeof (__OSInterruptHandler));
+    memset (InterruptHandlerTable, 0, __OS_INTERRUPT_MAX * sizeof (__OSInterruptHandler));
 
     *(OSInterruptMask*)OSPhysicalToCached (0x00C4) = 0;
     *(OSInterruptMask*)OSPhysicalToCached (0x00C8) = 0;
 
     __PIRegs[1] = 0xf0;
 
-    __OSMaskInterrupts (OS_INTERRUPTMASK_MEM | OS_INTERRUPTMASK_DSP |
-                        OS_INTERRUPTMASK_AI | OS_INTERRUPTMASK_EXI |
-                        OS_INTERRUPTMASK_PI);
+    __OSMaskInterrupts (OS_INTERRUPTMASK_MEM | OS_INTERRUPTMASK_DSP | OS_INTERRUPTMASK_AI |
+                        OS_INTERRUPTMASK_EXI | OS_INTERRUPTMASK_PI);
 
     __OSSetExceptionHandler (4, ExternalInterruptHandler);
 #if DEBUG
@@ -155,6 +151,7 @@ __OSInterruptInit (void)
     __OSUnmaskInterrupts (0x100);
 #endif
 }
+
 static u32
 SetInterruptMask (OSInterruptMask mask, OSInterruptMask current)
 {
@@ -337,11 +334,13 @@ SetInterruptMask (OSInterruptMask mask, OSInterruptMask current)
     }
     return mask;
 }
+
 OSInterruptMask
 OSGetInterruptMask (void)
 {
     return *(OSInterruptMask*)OSPhysicalToCached (0x00C8);
 }
+
 OSInterruptMask
 OSSetInterruptMask (OSInterruptMask local)
 {
@@ -362,6 +361,7 @@ OSSetInterruptMask (OSInterruptMask local)
     OSRestoreInterrupts (enabled);
     return prev;
 }
+
 OSInterruptMask
 __OSMaskInterrupts (OSInterruptMask global)
 {
@@ -383,6 +383,7 @@ __OSMaskInterrupts (OSInterruptMask global)
     OSRestoreInterrupts (enabled);
     return prev;
 }
+
 OSInterruptMask
 __OSUnmaskInterrupts (OSInterruptMask global)
 {
@@ -404,6 +405,7 @@ __OSUnmaskInterrupts (OSInterruptMask global)
     OSRestoreInterrupts (enabled);
     return prev;
 }
+
 void
 __OSDispatchInterrupt (__OSException exception, OSContext* context)
 {
@@ -564,9 +566,7 @@ __OSDispatchInterrupt (__OSException exception, OSContext* context)
     {
         OSReport ("PI ERROR\n");
         OSDumpContext (context);
-        OSReport ("\nPIESR = 0x%08x                  PIEAR  = 0x%08x\n",
-                  __PIRegs[7],
-                  __PIRegs[8]);
+        OSReport ("\nPIESR = 0x%08x                  PIEAR  = 0x%08x\n", __PIRegs[7], __PIRegs[8]);
         __PIRegs[0] = 1;
         OSReport ("PI Error = %s\n", __OSPIErrors[__PIRegs[7]]);
         OSReport ("Offending address = 0x%x (from PIEAR)\n", __PIRegs[8]);
@@ -609,15 +609,15 @@ __OSDispatchInterrupt (__OSException exception, OSContext* context)
 
     OSLoadContext (context);
 }
+
 static ASM void
-ExternalInterruptHandler (register __OSException exception,
-                          register OSContext*    context)
+ExternalInterruptHandler (register __OSException exception, register OSContext* context)
 {
 #pragma unused(exception)
-    // clang-format off
-  nofralloc 
-  OS_EXCEPTION_SAVE_GPRS(context)
+#ifdef __MWERKS__
+    nofralloc;
+    OS_EXCEPTION_SAVE_GPRS (context);
 
-  b __OSDispatchInterrupt
-    // clang-format on
+    b __OSDispatchInterrupt;
+#endif
 }

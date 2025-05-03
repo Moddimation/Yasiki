@@ -1,8 +1,6 @@
 #ifndef _DOLPHIN_OSEXCEPTION_H_
 #define _DOLPHIN_OSEXCEPTION_H_
 
-#include <types.h>
-
 #include <dolphin/os/OSContext.h>
 
 #ifdef __cplusplus
@@ -34,25 +32,29 @@ __OSExceptionHandler __OSSetExceptionHandler (__OSException        exception,
                                               __OSExceptionHandler handler);
 __OSExceptionHandler __OSGetExceptionHandler (__OSException exception);
 
-#define OS_EXCEPTION_SAVE_GPRS(context)                                             \
-    stw   r0, OS_CONTEXT_R0 (context);                                              \
-    stw   r1, OS_CONTEXT_R1 (context);                                              \
-    stw   r2, OS_CONTEXT_R2 (context);                                              \
-    stmw  r6, OS_CONTEXT_R6 (context);                                              \
-    mfspr r0, GQR1;                                                                 \
-    stw   r0, OS_CONTEXT_GQR1 (context);                                            \
-    mfspr r0, GQR2;                                                                 \
-    stw   r0, OS_CONTEXT_GQR2 (context);                                            \
-    mfspr r0, GQR3;                                                                 \
-    stw   r0, OS_CONTEXT_GQR3 (context);                                            \
-    mfspr r0, GQR4;                                                                 \
-    stw   r0, OS_CONTEXT_GQR4 (context);                                            \
-    mfspr r0, GQR5;                                                                 \
-    stw   r0, OS_CONTEXT_GQR5 (context);                                            \
-    mfspr r0, GQR6;                                                                 \
-    stw   r0, OS_CONTEXT_GQR6 (context);                                            \
-    mfspr r0, GQR7;                                                                 \
+#ifdef __MWERKS__
+#define OS_EXCEPTION_SAVE_GPRS(context)                                                            \
+    stw   r0, OS_CONTEXT_R0 (context);                                                             \
+    stw   r1, OS_CONTEXT_R1 (context);                                                             \
+    stw   r2, OS_CONTEXT_R2 (context);                                                             \
+    stmw  r6, OS_CONTEXT_R6 (context);                                                             \
+    mfspr r0, GQR1;                                                                                \
+    stw   r0, OS_CONTEXT_GQR1 (context);                                                           \
+    mfspr r0, GQR2;                                                                                \
+    stw   r0, OS_CONTEXT_GQR2 (context);                                                           \
+    mfspr r0, GQR3;                                                                                \
+    stw   r0, OS_CONTEXT_GQR3 (context);                                                           \
+    mfspr r0, GQR4;                                                                                \
+    stw   r0, OS_CONTEXT_GQR4 (context);                                                           \
+    mfspr r0, GQR5;                                                                                \
+    stw   r0, OS_CONTEXT_GQR5 (context);                                                           \
+    mfspr r0, GQR6;                                                                                \
+    stw   r0, OS_CONTEXT_GQR6 (context);                                                           \
+    mfspr r0, GQR7;                                                                                \
     stw   r0, OS_CONTEXT_GQR7 (context);
+#else
+#define OS_EXCEPTION_SAVE_GPRS(x)
+#endif
 
 #ifdef __cplusplus
 }

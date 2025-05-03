@@ -1,12 +1,12 @@
 #include <dolphin/os.h>
 
-#include <dolphin.h>
 #include <stdio.h>
 
 // internal include
 #include "OSPrivate.h"
 
 static OSErrorHandler OSErrorTable[15];
+
 void
 OSReport (char* msg, ...)
 {
@@ -15,6 +15,7 @@ OSReport (char* msg, ...)
     vprintf (msg, marker);
     va_end (marker);
 }
+
 void
 OSPanic (char* file, int line, char* msg, ...)
 {
@@ -29,25 +30,25 @@ OSPanic (char* file, int line, char* msg, ...)
     OSReport (" in \"%s\" on line %d.\n", file, line);
 
     OSReport ("\nAddress:      Back Chain    LR Save\n");
-    for (i = 0, p = (u32*)OSGetStackPointer(); p && (u32)p != 0xffffffff && i++ < 16;
-         p = (u32*)*p)
+    for (i = 0, p = (u32*)OSGetStackPointer(); p && (u32)p != 0xffffffff && i++ < 16; p = (u32*)*p)
     {
         OSReport ("0x%08x:   0x%08x    0x%08x\n", p, p[0], p[1]);
     }
 
     PPCHalt();
 }
+
 OSErrorHandler
 OSSetErrorHandler (OSError error, OSErrorHandler handler)
 {
     OSErrorHandler oldHandler;
 
-    ASSERTMSGLINE (
-        0x8F, error < __OS_EXCEPTION_MAX, "OSSetErrorHandler(): unknown error.");
+    ASSERTMSGLINE (0x8F, error < __OS_EXCEPTION_MAX, "OSSetErrorHandler(): unknown error.");
     oldHandler = OSErrorTable[error];
     OSErrorTable[error] = handler;
     return oldHandler;
 }
+
 void
 __OSUnhandledException (u8 exception, OSContext* context, u32 dsisr, u32 dar)
 {

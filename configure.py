@@ -333,6 +333,7 @@ else:
 # SDK flags
 cflags_sdk = [
     *cflags_base,
+    "-DBUILD_REV=37",
     "-DBUILD_DATE=\"\\\"Jul 19 2001\\\"\"",
     "-DBUILD_TIME=\"\\\"05:43:42\\\"\"",
     "-i decomp/SDK/include",
@@ -581,10 +582,10 @@ config.libs = [
     # SDK
 
     DolphinLib("os", [
-        (NonMatching, "OS.c"),
-        (NonMatching, "OSAlarm.c"),
-        (NonMatching, "OSAlloc.c"),
-        (NonMatching, "OSArena.c"),
+        (Matching, "OS.c"),
+        (Matching, "OSAlarm.c"),
+        (Matching, "OSAlloc.c"),
+        (Matching, "OSArena.c"),
         (Matching, "OSAudioSystem.c"),
         (Matching, "OSCache.c"),
         (Matching, "OSContext.c"),

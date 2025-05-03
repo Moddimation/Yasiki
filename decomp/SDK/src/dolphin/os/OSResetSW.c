@@ -1,7 +1,5 @@
 #include <dolphin/os.h>
 
-#include <dolphin.h>
-
 #include "OSPrivate.h"
 
 static OSResetCallback ResetCallback;
@@ -12,6 +10,7 @@ static BOOL LastState;
 
 static OSTime HoldUp;
 static OSTime HoldDown;
+
 void
 __OSResetSWInterruptHandler (__OSInterrupt exception, OSContext* context)
 {
@@ -19,11 +18,11 @@ __OSResetSWInterruptHandler (__OSInterrupt exception, OSContext* context)
 
     HoldDown = __OSGetSystemTime();
     while (__OSGetSystemTime() - HoldDown < OSMicrosecondsToTicks (100) &&
-           !(__PIRegs[0] & 0x00010000))
+           !(__PIRegs[PI_INTSR] & 0x00010000))
     {
         ;
     }
-    if (!(__PIRegs[0] & 0x00010000))
+    if (!(__PIRegs[PI_INTSR] & 0x00010000))
     {
         LastState = Down = TRUE;
         __OSMaskInterrupts (OS_INTERRUPTMASK_PI_RSW);
@@ -34,8 +33,9 @@ __OSResetSWInterruptHandler (__OSInterrupt exception, OSContext* context)
             callback();
         }
     }
-    __PIRegs[0] = 2;
+    __PIRegs[PI_INTSR] = 2;
 }
+
 OSResetCallback
 OSSetResetCallback (OSResetCallback callback)
 {
@@ -48,7 +48,7 @@ OSSetResetCallback (OSResetCallback callback)
 
     if (callback)
     {
-        __PIRegs[0] = 2;
+        __PIRegs[PI_INTSR] = 2;
         __OSUnmaskInterrupts (0x200);
     }
     else
@@ -58,12 +58,13 @@ OSSetResetCallback (OSResetCallback callback)
     OSRestoreInterrupts (enabled);
     return prevCallback;
 }
+
 int
 OSGetResetSwitchState ()
 {
     BOOL enabled = OSDisableInterrupts();
     BOOL state;
-    u32  reg = __PIRegs[0];
+    u32  reg = __PIRegs[PI_INTSR];
 
     if (!(reg & 0x00010000))
     {
@@ -75,8 +76,7 @@ OSGetResetSwitchState ()
         }
         else
         {
-            state = (HoldUp ||
-                     (OSMicrosecondsToTicks (100) < __OSGetSystemTime() - HoldDown))
+            state = (HoldUp || (OSMicrosecondsToTicks (100) < __OSGetSystemTime() - HoldDown))
                         ? TRUE
                         : FALSE;
         }

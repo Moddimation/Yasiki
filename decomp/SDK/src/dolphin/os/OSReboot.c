@@ -14,6 +14,7 @@ extern u32 OS_HOT_RESET_CODE   AT_ADDRESS (0x817FFFFC);
 
 extern void* __OSSavedRegionStart;
 extern void* __OSSavedRegionEnd;
+
 // Struct for Apploader header (size 0x20).
 typedef struct _ApploaderHeader
 {
@@ -23,7 +24,9 @@ typedef struct _ApploaderHeader
     u32  rebootSize; ///< 0x18
     u32  reserved2;  ///< 0x1C
 } ApploaderHeader;
+
 static ApploaderHeader Header ATTRIBUTE_ALIGN (32);
+
 static ASM void
 Run (register u32 addr)
 {
@@ -39,6 +42,7 @@ Run (register u32 addr)
     blr;
 #endif
 }
+
 static void
 ReadApploader (DVDCommandBlock* dvdCmd, void* addr, u32 offset, u32 numBytes)
 {
@@ -73,11 +77,13 @@ ReadApploader (DVDCommandBlock* dvdCmd, void* addr, u32 offset, u32 numBytes)
         break;
     }
 }
+
 static void
 Callback (s32 result, DVDCommandBlock* block)
 {
     Prepared = TRUE;
 }
+
 void
 __OSReboot (u32 resetCode, BOOL forceMenu)
 {

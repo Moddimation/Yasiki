@@ -7,21 +7,23 @@
 extern "C"
 {
 #endif
-typedef struct OSMutex
+struct OSMutex
 {
     OSThreadQueue queue;  ///< 0x00
     OSThread*     thread; ///< 0x08
     s32           count;  ///< 0x0C
     OSMutexLink   link;   ///< 0x10
-} OSMutex;
+};
+
 struct OSCond
 {
     OSThreadQueue queue;
 };
-void OSInitMutex (struct OSMutex* mutex);
-void OSLockMutex (struct OSMutex* mutex);
-void OSUnlockMutex (struct OSMutex* mutex);
-BOOL OSTryLockMutex (struct OSMutex* mutex);
+
+void OSInitMutex (OSMutex* mutex);
+void OSLockMutex (OSMutex* mutex);
+void OSUnlockMutex (OSMutex* mutex);
+BOOL OSTryLockMutex (OSMutex* mutex);
 void OSInitCond (struct OSCond* cond);
 void OSWaitCond (struct OSCond* cond, struct OSMutex* mutex);
 void OSSignalCond (struct OSCond* cond);
