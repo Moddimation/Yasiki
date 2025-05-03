@@ -4,6 +4,6 @@
 #include <dolphin/os.h>
 
 // EXI callback function pointer type
-typedef void (*EXICallback)(s32 chan, OSContext* context);
+typedef void (*EXICallback) (s32 chan, OSContext* context);
 
 #endif

@@ -1,18 +1,16 @@
 #include <dolphin/os.h>
-
-#include <dolphin.h>
 void
-OSInitMessageQueue(struct OSMessageQueue* mq, void* msgArray, s32 msgCount)
+OSInitMessageQueue (OSMessageQueue* mq, void* msgArray, s32 msgCount)
 {
-    OSInitThreadQueue(&mq->queueSend);
-    OSInitThreadQueue(&mq->queueReceive);
+    OSInitThreadQueue (&mq->queueSend);
+    OSInitThreadQueue (&mq->queueReceive);
     mq->msgArray = msgArray;
     mq->msgCount = msgCount;
     mq->firstIndex = 0;
     mq->usedCount = 0;
 }
 int
-OSSendMessage(struct OSMessageQueue* mq, void* msg, s32 flags)
+OSSendMessage (OSMessageQueue* mq, void* msg, s32 flags)
 {
     int enabled;
     s32 lastIndex;
@@ -22,20 +20,20 @@ OSSendMessage(struct OSMessageQueue* mq, void* msg, s32 flags)
     {
         if (!(flags & 1))
         {
-            OSRestoreInterrupts(enabled);
+            OSRestoreInterrupts (enabled);
             return 0;
         }
-        OSSleepThread(&mq->queueSend);
+        OSSleepThread (&mq->queueSend);
     }
     lastIndex = (mq->firstIndex + mq->usedCount) % mq->msgCount;
     ((u32*)mq->msgArray)[lastIndex] = (u32)msg;
     mq->usedCount++;
-    OSWakeupThread(&mq->queueReceive);
-    OSRestoreInterrupts(enabled);
+    OSWakeupThread (&mq->queueReceive);
+    OSRestoreInterrupts (enabled);
     return 1;
 }
 int
-OSReceiveMessage(struct OSMessageQueue* mq, void* msg, s32 flags)
+OSReceiveMessage (OSMessageQueue* mq, void* msg, s32 flags)
 {
     int enabled = OSDisableInterrupts();
 
@@ -43,10 +41,10 @@ OSReceiveMessage(struct OSMessageQueue* mq, void* msg, s32 flags)
     {
         if (!(flags & 1))
         {
-            OSRestoreInterrupts(enabled);
+            OSRestoreInterrupts (enabled);
             return 0;
         }
-        OSSleepThread(&mq->queueReceive);
+        OSSleepThread (&mq->queueReceive);
     }
     if (msg != NULL)
     {
@@ -55,12 +53,12 @@ OSReceiveMessage(struct OSMessageQueue* mq, void* msg, s32 flags)
 
     mq->firstIndex = (mq->firstIndex + 1) % mq->msgCount;
     mq->usedCount--;
-    OSWakeupThread(&mq->queueSend);
-    OSRestoreInterrupts(enabled);
+    OSWakeupThread (&mq->queueSend);
+    OSRestoreInterrupts (enabled);
     return 1;
 }
 int
-OSJamMessage(struct OSMessageQueue* mq, void* msg, s32 flags)
+OSJamMessage (OSMessageQueue* mq, void* msg, s32 flags)
 {
     int enabled = OSDisableInterrupts();
 
@@ -68,15 +66,15 @@ OSJamMessage(struct OSMessageQueue* mq, void* msg, s32 flags)
     {
         if (!(flags & 1))
         {
-            OSRestoreInterrupts(enabled);
+            OSRestoreInterrupts (enabled);
             return 0;
         }
-        OSSleepThread(&mq->queueSend);
+        OSSleepThread (&mq->queueSend);
     }
     mq->firstIndex = (mq->firstIndex + mq->msgCount - 1) % mq->msgCount;
     ((u32*)mq->msgArray)[mq->firstIndex] = (u32)msg;
     mq->usedCount++;
-    OSWakeupThread(&mq->queueReceive);
-    OSRestoreInterrupts(enabled);
+    OSWakeupThread (&mq->queueReceive);
+    OSRestoreInterrupts (enabled);
     return 1;
 }

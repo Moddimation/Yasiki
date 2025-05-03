@@ -37,12 +37,12 @@ typedef struct OSSramEx
     u8  flashIDCheckSum[2]; ///< 0x26
     u8  _padding1[4];       ///< 0x28
 } OSSramEx;
-u32  OSGetSoundMode();
-void OSSetSoundMode(u32 mode);
-u32  OSGetVideoMode();
-void OSSetVideoMode(u32 mode);
-u16  OSGetLanguage();
-void OSSetLanguage(u16 language);
+u32  OSGetSoundMode ();
+void OSSetSoundMode (u32 mode);
+u32  OSGetVideoMode ();
+void OSSetVideoMode (u32 mode);
+u16  OSGetLanguage ();
+void OSSetLanguage (u16 language);
 
 #ifdef __cplusplus
 }

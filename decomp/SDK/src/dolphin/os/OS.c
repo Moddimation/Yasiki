@@ -6,7 +6,7 @@
 
 #include <dolphin.h>
 
-void EnableMetroTRKInterrupts(void);
+void EnableMetroTRKInterrupts (void);
 
 // internal headers
 #include "OSPrivate.h"
@@ -36,16 +36,16 @@ extern s8  _stack_addr[];
 extern u16 __ArenaHi[];
 
 // dummy entry points to the OS Exception vector
-void __OSEVStart(void);
-void __OSEVEnd(void);
-void __OSEVSetNumber(void);
-void __OSExceptionVector(void);
+void __OSEVStart (void);
+void __OSEVEnd (void);
+void __OSEVSetNumber (void);
+void __OSExceptionVector (void);
 
-void __DBVECTOR(void);
-void __OSDBINTSTART(void);
-void __OSDBINTEND(void);
-void __OSDBJUMPSTART(void);
-void __OSDBJUMPEND(void);
+void __DBVECTOR (void);
+void __OSDBINTSTART (void);
+void __OSDBINTEND (void);
+void __OSDBJUMPSTART (void);
+void __OSDBJUMPEND (void);
 
 #define NOP 0x60000000
 
@@ -53,17 +53,17 @@ static struct OSBootInfo_s* BootInfo;
 static u32*                 BI2DebugFlag;
 static double               ZeroF;
 static int                  AreWeInitialized;
-static void                 (**OSExceptionTable)(u16, struct OSContext*);
+static void                 (**OSExceptionTable) (u16, OSContext*);
 
 // functions
-static ASM void __OSInitFPRs(void);
-static void     OSExceptionInit(void);
-static void     OSDefaultExceptionHandler(u16               exception /* r3 */,
-                                          struct OSContext* context /* r4 */);
+static ASM void __OSInitFPRs (void);
+static void     OSExceptionInit (void);
+static void     OSDefaultExceptionHandler (u16        exception /* r3 */,
+                                           OSContext* context /* r4 */);
 u32
-__OSIsDebuggerPresent()
+__OSIsDebuggerPresent ()
 {
-    return *(u32*)OSPhysicalToCached(0x40);
+    return *(u32*)OSPhysicalToCached (0x40);
 }
 /* clang-format off */
 static ASM void __OSInitFPRs(void)
@@ -318,7 +318,7 @@ entry __OSDBINTEND
     /* clang-format on */
 }
 static ASM void
-__OSDBJump(void) {
+__OSDBJump (void) {
     /* clang-format off */
 
     nofralloc
@@ -330,26 +330,28 @@ entry __OSDBJUMPEND
 }
 
 __OSExceptionHandler
-    __OSSetExceptionHandler(__OSException exception, __OSExceptionHandler handler)
+    __OSSetExceptionHandler (__OSException exception, __OSExceptionHandler handler)
 {
     __OSExceptionHandler oldHandler;
 
-    ASSERTMSGLINE(0x37F, exception < __OS_EXCEPTION_MAX,
-                  "__OSSetExceptionHandler(): unknown exception.");
+    ASSERTMSGLINE (0x37F,
+                   exception < __OS_EXCEPTION_MAX,
+                   "__OSSetExceptionHandler(): unknown exception.");
 
     oldHandler = OSExceptionTable[exception];
     OSExceptionTable[exception] = handler;
     return oldHandler;
 }
 __OSExceptionHandler
-__OSGetExceptionHandler(__OSException exception)
+__OSGetExceptionHandler (__OSException exception)
 {
-    ASSERTMSGLINE(0x396, exception < __OS_EXCEPTION_MAX,
-                  "__OSGetExceptionHandler(): unknown exception.");
+    ASSERTMSGLINE (0x396,
+                   exception < __OS_EXCEPTION_MAX,
+                   "__OSGetExceptionHandler(): unknown exception.");
     return OSExceptionTable[exception];
 }
 static ASM void
-OSExceptionVector(void)
+OSExceptionVector (void)
 {
     /* clang-format off */
     nofralloc
@@ -433,11 +435,13 @@ entry __OSEVEnd
     nop
     /* clang-format on */
 }
-void __OSUnhandledException(__OSException exception, OSContext* context, u32 dsisr,
-                            u32 dar);
+void __OSUnhandledException (__OSException exception,
+                             OSContext*    context,
+                             u32           dsisr,
+                             u32           dar);
 asm void
-OSDefaultExceptionHandler(register __OSException exception,
-                          register OSContext*    context)
+OSDefaultExceptionHandler (register __OSException exception,
+                           register OSContext*    context)
 {
     /* clang-format off */
     nofralloc

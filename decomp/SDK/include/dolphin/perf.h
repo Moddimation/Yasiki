@@ -58,36 +58,39 @@ typedef struct PerfSample
     u32 rasBusy[2];                     ///< 0xA0
     u32 rasClocks[2];                   ///< 0xA8
 } PerfSample;
-typedef void* (*PERFAllocator)(u32 size);
-typedef void  (*PERFDeallocator)(void* block);
-typedef void  (*PERFDrawCallback)(void);
+typedef void* (*PERFAllocator) (u32 size);
+typedef void  (*PERFDeallocator) (void* block);
+typedef void  (*PERFDrawCallback) (void);
 
 extern void (*GameDrawInit)();          // size: 0x4, address: 0x14
 
-u32  PERFInit(u32 numSamples, u32 numFramesHistory, u32 numTypes,
-              PERFAllocator allocator, PERFDeallocator deallocator,
-              PERFDrawCallback initDraw);
-void PERFEventStart(PERFId id);
-void PERFEventEnd(PERFId id);
-void PERFSetEvent(PERFId id, char* name, PerfType type);
-void PERFStartFrame(void);
-void PERFEndFrame(void);
-void PERFStartAutoSampling(f32 msInterval);
-void PERFStopAutoSampling(void);
+u32  PERFInit (u32              numSamples,
+               u32              numFramesHistory,
+               u32              numTypes,
+               PERFAllocator    allocator,
+               PERFDeallocator  deallocator,
+               PERFDrawCallback initDraw);
+void PERFEventStart (PERFId id);
+void PERFEventEnd (PERFId id);
+void PERFSetEvent (PERFId id, char* name, PerfType type);
+void PERFStartFrame (void);
+void PERFEndFrame (void);
+void PERFStartAutoSampling (f32 msInterval);
+void PERFStopAutoSampling (void);
 
-void PERFPreDraw();
-void PERFDumpScreen();
-void PERFPostDraw();
-void PERFSetDrawBWBarKey(int tf);
-void PERFSetDrawBWBar(int tf);
-void PERFSetDrawCPUBar(int tf);
-void PERFSetDrawXFBars(int tf);
-void PERFSetDrawRASBar(int tf);
-void PERFToggleDrawBWBarKey();
-void PERFToggleDrawBWBar();
-void PERFToggleDrawCPUBar();
-void PERFToggleDrawXFBars();
-void PERFToggleDrawRASBar();
+void PERFPreDraw ();
+void PERFDumpScreen ();
+void PERFPostDraw ();
+void PERFSetDrawBWBarKey (int tf);
+void PERFSetDrawBWBar (int tf);
+void PERFSetDrawCPUBar (int tf);
+void PERFSetDrawXFBars (int tf);
+void PERFSetDrawRASBar (int tf);
+void PERFToggleDrawBWBarKey ();
+void PERFToggleDrawBWBar ();
+void PERFToggleDrawCPUBar ();
+void PERFToggleDrawXFBars ();
+void PERFToggleDrawRASBar ();
 
 extern struct Frame*     PERFFrames;    // size: 0x4, address: 0x0
 extern u32               PERFCurrFrame; // size: 0x4, address: 0x0

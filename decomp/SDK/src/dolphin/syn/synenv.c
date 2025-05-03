@@ -7,7 +7,7 @@
 #include "fake_tgmath.h"
 #include "SYNPrivate.h"
 s32
-__SYNGetEnvelopeTime(s32 scale, s32 mod, u8 key)
+__SYNGetEnvelopeTime (s32 scale, s32 mod, u8 key)
 {
     if (scale == 0x80000000)
     {
@@ -15,15 +15,15 @@ __SYNGetEnvelopeTime(s32 scale, s32 mod, u8 key)
     }
     if (mod == 0x80000000)
     {
-        return (1000.0f * powf(2.0f, (f32)scale / (65536 * 1200)));
+        return (1000.0f * powf (2.0f, (f32)scale / (65536 * 1200)));
     }
     return (1000.0f *
-            powf(2.0f, ((f32)scale + (mod * __SYNn128[key])) / (65535 * 1200)));
+            powf (2.0f, ((f32)scale + (mod * __SYNn128[key])) / (65535 * 1200)));
 }
 void
-__SYNSetupVolumeEnvelope(struct SYNVOICE* voice)
+__SYNSetupVolumeEnvelope (struct SYNVOICE* voice)
 {
-    ASSERTLINE(0x2B, voice);
+    ASSERTLINE (0x2B, voice);
 
     if (voice->art->eg1Attack + 0x80000000 == 0)
     {
@@ -37,8 +37,9 @@ __SYNSetupVolumeEnvelope(struct SYNVOICE* voice)
     }
     else
     {
-        s32 frames = __SYNGetEnvelopeTime(voice->art->eg1Attack,
-                                          voice->art->eg1Vel2Attack, voice->keyVel) /
+        s32 frames = __SYNGetEnvelopeTime (voice->art->eg1Attack,
+                                           voice->art->eg1Vel2Attack,
+                                           voice->keyVel) /
                      5;
         if (frames)
         {
@@ -57,8 +58,9 @@ __SYNSetupVolumeEnvelope(struct SYNVOICE* voice)
     }
     if (voice->veState < 2)
     {
-        s32 frames = __SYNGetEnvelopeTime(voice->art->eg1Decay,
-                                          voice->art->eg1Key2Decay, voice->keyNum) /
+        s32 frames = __SYNGetEnvelopeTime (voice->art->eg1Decay,
+                                           voice->art->eg1Key2Decay,
+                                           voice->keyNum) /
                      5;
         if (frames != 0)
         {
@@ -73,9 +75,9 @@ __SYNSetupVolumeEnvelope(struct SYNVOICE* voice)
     voice->veRelease = voice->art->eg1Release;
 }
 void
-__SYNSetupPitchEnvelope(struct SYNVOICE* voice)
+__SYNSetupPitchEnvelope (struct SYNVOICE* voice)
 {
-    ASSERTLINE(0x6B, voice);
+    ASSERTLINE (0x6B, voice);
 
     voice->peCents = 0;
     voice->pePitch = voice->art->eg2Pitch;
@@ -93,10 +95,10 @@ __SYNSetupPitchEnvelope(struct SYNVOICE* voice)
         }
         else
         {
-            s32 frames =
-                __SYNGetEnvelopeTime(voice->art->eg2Attack,
-                                     voice->art->eg2Vel2Attack, voice->keyVel) /
-                5;
+            s32 frames = __SYNGetEnvelopeTime (voice->art->eg2Attack,
+                                               voice->art->eg2Vel2Attack,
+                                               voice->keyVel) /
+                         5;
             if (frames)
             {
                 voice->peAttack = voice->pePitch / frames;
@@ -110,10 +112,10 @@ __SYNSetupPitchEnvelope(struct SYNVOICE* voice)
         }
         if (voice->peState < 2)
         {
-            s32 frames =
-                __SYNGetEnvelopeTime(voice->art->eg2Decay, voice->art->eg2Key2Decay,
-                                     voice->keyNum) /
-                5;
+            s32 frames = __SYNGetEnvelopeTime (voice->art->eg2Decay,
+                                               voice->art->eg2Key2Decay,
+                                               voice->keyNum) /
+                         5;
             if (frames != 0)
             {
                 voice->peDecay = voice->pePitch / frames;
@@ -129,9 +131,9 @@ __SYNSetupPitchEnvelope(struct SYNVOICE* voice)
     }
 }
 void
-__SYNRunVolumeEnvelope(struct SYNVOICE* voice)
+__SYNRunVolumeEnvelope (struct SYNVOICE* voice)
 {
-    ASSERTLINE(0xAF, voice);
+    ASSERTLINE (0xAF, voice);
 
     switch (voice->veState)
     {
@@ -174,9 +176,9 @@ __SYNRunVolumeEnvelope(struct SYNVOICE* voice)
     }
 }
 void
-__SYNRunPitchEnvelope(struct SYNVOICE* voice)
+__SYNRunPitchEnvelope (struct SYNVOICE* voice)
 {
-    ASSERTLINE(0xEB, voice);
+    ASSERTLINE (0xEB, voice);
 
     if (voice->pePitch != 0)
     {

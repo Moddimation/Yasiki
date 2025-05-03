@@ -19,7 +19,7 @@
 #define ODEMU_MAIL_MAGIC  0x1F000000
 #define ODEMU_MAIL_MASK   0x1fffffff
 
-typedef void (*DBGCallbackType)(u32, OSContext*);
+typedef void (*DBGCallbackType) (u32, OSContext*);
 
 u8              EXIInputFlag;
 u8*             pEXIInputFlag;
@@ -36,7 +36,7 @@ MTRCallbackType MTRCallback;
 #endif
 ONLY_GLMJ01
 void
-DBGEXIClearInterrupts(void)
+DBGEXIClearInterrupts (void)
 {
 #ifdef VERSION_GLMJ01
     __SIRegs[SI_EXILK] = 0;
@@ -44,15 +44,15 @@ DBGEXIClearInterrupts(void)
 }
 ONLY_GLMJ01
 void
-DBGEXIInit(void)
+DBGEXIInit (void)
 {
-    __OSMaskInterrupts(OS_INTERRUPTMASK_EXI_2);
+    __OSMaskInterrupts (OS_INTERRUPTMASK_EXI_2);
     DBGEXIClearInterrupts();
     __EXIRegs[EXI_C2_SR] = 0;
 }
 ONLY_GLMJ01
 BOOL
-DBGEXISelect(u32 v)
+DBGEXISelect (u32 v)
 {
     u32 regs = __EXIRegs[EXI_C2_SR];
     regs &= 0x405;
@@ -62,14 +62,14 @@ DBGEXISelect(u32 v)
 }
 ONLY_GLMJ01
 BOOL
-DBGEXIDeselect(void)
+DBGEXIDeselect (void)
 {
     __EXIRegs[EXI_C2_SR] = __EXIRegs[EXI_C2_SR] & 0x405;
     return ODEMU_NO_ERROR;
 }
 ONLY_GLMJ01
 BOOL
-DBGEXISync(void)
+DBGEXISync (void)
 {
     do {
     }
@@ -77,7 +77,7 @@ DBGEXISync(void)
     return ODEMU_NO_ERROR;
 }
 BOOL
-DBGEXIImm(const void* data, s32 size, u32 mode)
+DBGEXIImm (const void* data, s32 size, u32 mode)
 {
     u32 writeVal;
     u32 readVal;
@@ -111,38 +111,38 @@ DBGEXIImm(const void* data, s32 size, u32 mode)
 }
 ONLY_GLMJ01
 BOOL
-DBGWriteMailbox(u32 v)
+DBGWriteMailbox (u32 v)
 {
     BOOL err = FALSE;
     u32  value;
 
-    if (!DBGEXISelect(4))
+    if (!DBGEXISelect (4))
     {
         return ODEMU_ERROR;
     }
 
     value = 0xc0000000 | (v & 0x1fffffff);
-    err |= !DBGEXIImm(&value, 4, 1);
+    err |= !DBGEXIImm (&value, 4, 1);
     err |= !DBGEXISync();
     err |= !DBGEXIDeselect();
 
     return !err;
 }
 BOOL
-DBGReadMailbox(u32* v)
+DBGReadMailbox (u32* v)
 {
     BOOL err = FALSE;
     u32  value;
 
-    if (!DBGEXISelect(4))
+    if (!DBGEXISelect (4))
     {
         return ODEMU_ERROR;
     }
 
     value = 0x60000000;
-    err |= !DBGEXIImm(&value, 2, 1);
+    err |= !DBGEXIImm (&value, 2, 1);
     err |= !DBGEXISync();
-    err |= !DBGEXIImm(v, 4, 0);
+    err |= !DBGEXIImm (v, 4, 0);
     err |= !DBGEXISync();
     err |= !DBGEXIDeselect();
 
@@ -150,25 +150,25 @@ DBGReadMailbox(u32* v)
 }
 // NON_MATCHING
 BOOL
-DBGRead(u32 addr, const u32* data, s32 byte_size)
+DBGRead (u32 addr, const u32* data, s32 byte_size)
 {
     BOOL err = FALSE;
     u32* dataPtr = (u32*)data;
     u32  writeValue;
     u32  readValue;
 
-    if (!DBGEXISelect(4))
+    if (!DBGEXISelect (4))
     {
         return ODEMU_ERROR;
     }
 
     writeValue = 0x20000000 | ((addr << 8) & 0x01fffc00); // TODO: enum
-    err |= !DBGEXIImm(&writeValue, 4, 1);
+    err |= !DBGEXIImm (&writeValue, 4, 1);
     err |= !DBGEXISync();
 
     while (byte_size != 0)
     {
-        err |= !DBGEXIImm(&readValue, 4, 0);
+        err |= !DBGEXIImm (&readValue, 4, 0);
         err |= !DBGEXISync();
 
         *dataPtr++ = readValue;
@@ -187,27 +187,27 @@ DBGRead(u32 addr, const u32* data, s32 byte_size)
 
 // NON_MATCHING
 BOOL
-DBGWrite(u32 addr, const void* data, s32 size)
+DBGWrite (u32 addr, const void* data, s32 size)
 {
     BOOL err = FALSE;
     u32* dataPtr = (u32*)data;
     u32  value;
     u32  nextWord;
 
-    if (!DBGEXISelect(4))
+    if (!DBGEXISelect (4))
     {
         return ODEMU_ERROR;
     }
 
     value = 0xa0000000 | ((addr << 8) & 0x01fffc00);
-    err |= !DBGEXIImm((u8*)&value, sizeof(value), 1);
+    err |= !DBGEXIImm ((u8*)&value, sizeof (value), 1);
     err |= !DBGEXISync();
 
     while (size != 0)
     {
         nextWord = *dataPtr++;
 
-        err |= !DBGEXIImm((u8*)&nextWord, sizeof(nextWord), 1);
+        err |= !DBGEXIImm ((u8*)&nextWord, sizeof (nextWord), 1);
         err |= !DBGEXISync();
 
         size -= 4;
@@ -222,46 +222,46 @@ DBGWrite(u32 addr, const void* data, s32 size)
     return !err;
 }
 BOOL
-DBGReadStatus(u32* status)
+DBGReadStatus (u32* status)
 {
     BOOL err = FALSE;
     u32  cmd;
 
-    if (!DBGEXISelect(4))
+    if (!DBGEXISelect (4))
     {
         return ODEMU_ERROR;
     }
 
     cmd = 0x40000000;
-    err |= !DBGEXIImm(&cmd, 2, 1); // TODO: Enums: 1 = Write, 0 = Read
+    err |= !DBGEXIImm (&cmd, 2, 1); // TODO: Enums: 1 = Write, 0 = Read
     err |= !DBGEXISync();
-    err |= !DBGEXIImm(status, 4, 0);
+    err |= !DBGEXIImm (status, 4, 0);
     err |= !DBGEXISync();
     err |= !DBGEXIDeselect();
 
     return !err;
 }
 void
-MWCallback(u32 a, OSContext* b)
+MWCallback (u32 a, OSContext* b)
 {
     EXIInputFlag = TRUE;
     if (MTRCallback != nullptr)
     {
-        MTRCallback(0);
+        MTRCallback (0);
     }
 }
 void
-DBGHandler(s16 a, OSContext* b)
+DBGHandler (s16 a, OSContext* b)
 {
     __PIRegs[PI_INTSR] = 0x1000;
 
     if (DBGCallback != nullptr)
     {
-        DBGCallback(a, b);
+        DBGCallback (a, b);
     }
 }
 void
-DBInitComm(u8** a, MTRCallbackType b)
+DBInitComm (u8** a, MTRCallbackType b)
 {
     BOOL interr = OSDisableInterrupts();
     {
@@ -270,26 +270,26 @@ DBInitComm(u8** a, MTRCallbackType b)
         MTRCallback = b;
         DBGEXIInit();
     }
-    OSRestoreInterrupts(interr);
+    OSRestoreInterrupts (interr);
 }
 void
-DBInitInterrupts(void)
+DBInitInterrupts (void)
 {
-    __OSMaskInterrupts(OS_INTERRUPTMASK_EXI_2);
-    __OSMaskInterrupts(OS_INTERRUPTMASK_PI_DEBUG);
+    __OSMaskInterrupts (OS_INTERRUPTMASK_EXI_2);
+    __OSMaskInterrupts (OS_INTERRUPTMASK_PI_DEBUG);
     DBGCallback = &MWCallback;
-    __OSSetInterruptHandler(__OS_INTERRUPT_PI_DEBUG, DBGHandler);
-    __OSUnmaskInterrupts(OS_INTERRUPTMASK_PI_DEBUG);
+    __OSSetInterruptHandler (__OS_INTERRUPT_PI_DEBUG, DBGHandler);
+    __OSUnmaskInterrupts (OS_INTERRUPTMASK_PI_DEBUG);
 }
 ONLY_GLMJ01
 void
-CheckMailBox(void)
+CheckMailBox (void)
 {
     u32 v;
-    DBGReadStatus(&v);
+    DBGReadStatus (&v);
     if (v & 1)
     {
-        DBGReadMailbox(&v);
+        DBGReadMailbox (&v);
         v &= ODEMU_MAIL_MASK;
 
         if ((v & ODEMU_MAIL_MAGIC) == ODEMU_MAIL_MAGIC)
@@ -301,7 +301,7 @@ CheckMailBox(void)
     }
 }
 s32
-DBQueryData()
+DBQueryData ()
 {
     BOOL irq;
     EXIInputFlag = FALSE;
@@ -310,28 +310,28 @@ DBQueryData()
         irq = OSDisableInterrupts();
         CheckMailBox();
     }
-    OSRestoreInterrupts(irq);
+    OSRestoreInterrupts (irq);
     return RecvDataLeng;
 }
 BOOL
-DBRead(const u32* data, s32 size)
+DBRead (const u32* data, s32 size)
 {
     BOOL irq = OSDisableInterrupts();
     u32  v = SendMailData & 0x10000 ? ODEMU_OFFSET_RECV : 0;
     v += ODEMU_ADDR_RECV;
 
-    DBGRead(v, data, ALIGN_NEXT(size, 4));
+    DBGRead (v, data, ALIGN_NEXT (size, 4));
 
     RecvDataLeng = 0;
     EXIInputFlag = 0;
 
-    OSRestoreInterrupts(irq);
+    OSRestoreInterrupts (irq);
 
     return DB_NO_ERROR;
 }
 // NON_MATCHING
 int
-DBWrite(const s32* data, u32 size)
+DBWrite (const s32* data, u32 size)
 {
     u32       value;
     u32       busyFlag;
@@ -341,37 +341,37 @@ DBWrite(const s32* data, u32 size)
     irq = OSDisableInterrupts();
 
     do {
-        DBGReadStatus(&busyFlag);
+        DBGReadStatus (&busyFlag);
     }
     while (busyFlag & DB_STAT_RECIEVE);
 
     ++SendCount;
 
     value = ((SendCount & 1) ? 0x1000 : 0);
-    while (!DBGWrite(value | 0x1c000, data, ALIGN_NEXT(size, 4)));
+    while (!DBGWrite (value | 0x1c000, data, ALIGN_NEXT (size, 4)));
 
     do {
-        DBGReadStatus(&busyFlag);
+        DBGReadStatus (&busyFlag);
     }
     while (busyFlag & DB_STAT_RECIEVE);
 
     value = ODEMU_MAIL_MAGIC | SendCount << 0x10 | size;
-    while (!DBGWriteMailbox(value));
+    while (!DBGWriteMailbox (value));
 
     do {
-        while (!DBGReadStatus(&busyFlag));
+        while (!DBGReadStatus (&busyFlag));
     }
     while (busyFlag & DB_STAT_RECIEVE);
 
-    OSRestoreInterrupts(irq);
+    OSRestoreInterrupts (irq);
 
     return DB_NO_ERROR;
 }
 void
-DBOpen(void)
+DBOpen (void)
 {
 }
 void
-DBClose(void)
+DBClose (void)
 {
 }

@@ -4,10 +4,10 @@
 
 #include "AXPrivate.h"
 void
-AXInit(void)
+AXInit (void)
 {
 #ifdef DEBUG
-    OSReport("Initializing AX¥n");
+    OSReport ("Initializing AX¥n");
 #endif
     __AXAllocInit();
     __AXVPBInit();
@@ -17,10 +17,10 @@ AXInit(void)
     __AXOutInit();
 }
 void
-AXQuit(void)
+AXQuit (void)
 {
 #ifdef DEBUG
-    OSReport("Shutting down AX¥n");
+    OSReport ("Shutting down AX¥n");
 #endif
     __AXAllocQuit();
     __AXVPBQuit();

@@ -7,15 +7,15 @@ u8*                 DBStackEnd = DBStack + 4088;
 BOOL                DBVerbose;
 struct DBInterface* __DBInterface;
 void
-DBInit(void)
+DBInit (void)
 {
-    __DBInterface = OSPhysicalToCached(0x40);
+    __DBInterface = OSPhysicalToCached (0x40);
     __DBInterface->ExceptionDestination =
-        (void*)OSCachedToPhysical(__DBExceptionDestination);
+        (void*)OSCachedToPhysical (__DBExceptionDestination);
     DBVerbose = TRUE;
 }
 BOOL
-DBIsDebuggerPresent(void)
+DBIsDebuggerPresent (void)
 {
     if (__DBInterface == NULL)
     {
@@ -24,19 +24,19 @@ DBIsDebuggerPresent(void)
     return __DBInterface->bPresent;
 }
 void
-__DBExceptionDestinationAux(void)
+__DBExceptionDestinationAux (void)
 {
     u32*       contextAddr;
     OSContext* context;
 
     contextAddr = (void*)0xC0;
-    context = OSPhysicalToCached(*contextAddr);
-    OSReport("DBExceptionDestination¥n");
-    OSDumpContext(context);
+    context = OSPhysicalToCached (*contextAddr);
+    OSReport ("DBExceptionDestination¥n");
+    OSDumpContext (context);
     PPCHalt();
 }
 asm void
-__DBExceptionDestination(void)
+__DBExceptionDestination (void)
 {
 #ifdef __MWERKS__
     nofralloc;
@@ -47,13 +47,13 @@ __DBExceptionDestination(void)
 #endif
 }
 BOOL
-__DBIsExceptionMarked(__OSException exception)
+__DBIsExceptionMarked (__OSException exception)
 {
     u32 mask = (1 << exception);
     return __DBInterface->exceptionMask & mask;
 }
 void
-__DBMarkException(u8 exception, int value)
+__DBMarkException (u8 exception, int value)
 {
     u32 mask = (1 << exception);
 
@@ -67,11 +67,11 @@ __DBMarkException(u8 exception, int value)
     }
 }
 void
-__DBSetPresent(u32 value)
+__DBSetPresent (u32 value)
 {
     __DBInterface->bPresent = value;
 }
 void
-DBPrintf(char* str, ...)
+DBPrintf (char* str, ...)
 {
 }

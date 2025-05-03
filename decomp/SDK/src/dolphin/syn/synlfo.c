@@ -20,9 +20,9 @@ static f32 __SYNLfo[64] = {
     -0.382680f, -0.290280f, -0.195090f, -0.098020f,
 };
 void
-__SYNSetupLfo(struct SYNVOICE* voice)
+__SYNSetupLfo (struct SYNVOICE* voice)
 {
-    ASSERTLINE(0x2F, voice);
+    ASSERTLINE (0x2F, voice);
     voice->lfoState = voice->lfoAttn = voice->lfoCents = 0;
     voice->lfoFreq = voice->art->lfoFreq;
     voice->lfoDelay = voice->art->lfoDelay;
@@ -32,12 +32,12 @@ __SYNSetupLfo(struct SYNVOICE* voice)
     voice->lfoModCents = voice->art->lfoMod2Pitch;
 }
 void
-__SYNRunLfo(struct SYNVOICE* voice)
+__SYNRunLfo (struct SYNVOICE* voice)
 {
     f32 lfoAmplitude;
     f32 lfoModWheel;
 
-    ASSERTLINE(0x42, voice);
+    ASSERTLINE (0x42, voice);
     if (voice->lfoDelay != 0)
     {
         voice->lfoDelay--;

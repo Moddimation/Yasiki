@@ -15,19 +15,20 @@ struct Timer
 
 static struct Timer Timer; // .bss
 
-void        (*OSSetTimerCallback(void (*callback)()))();
-void        OSInitTimer(u32 time, u16 mode);
-void        OSStartTimer(void);
-void        OSStopTimer(void);
-static void DecrementerExceptionHandler(u16 exception, struct OSContext* context);
-void        (*OSSetTimerCallback(void (*callback)()))()
+void        (*OSSetTimerCallback (void (*callback)()))();
+void        OSInitTimer (u32 time, u16 mode);
+void        OSStartTimer (void);
+void        OSStopTimer (void);
+static void DecrementerExceptionHandler (u16 exception, OSContext* context);
+void        (*OSSetTimerCallback (void (*callback)()))()
 {
     void (*prevCallback)();
 
 #if DEBUG
     if (Timer.initialized == 0)
     {
-        OSPanic("OSTimer.c", 127, "OSSetTimerCallback(): timer is not initialized.");
+        OSPanic (
+            "OSTimer.c", 127, "OSSetTimerCallback(): timer is not initialized.");
     }
 #endif
 
@@ -37,13 +38,14 @@ void        (*OSSetTimerCallback(void (*callback)()))()
     return prevCallback;
 }
 void
-OSInitTimer(u32 time, u16 mode)
+OSInitTimer (u32 time, u16 mode)
 {
 #if DEBUG
     if (time >= 0x80000000)
     {
-        OSPanic("OSTimer.c", 0x97,
-                "OSInitTimer(): time param must be less than 0x80000000.");
+        OSPanic ("OSTimer.c",
+                 0x97,
+                 "OSInitTimer(): time param must be less than 0x80000000.");
     }
 #endif
 
@@ -53,39 +55,39 @@ OSInitTimer(u32 time, u16 mode)
     Timer.mode = mode;
     if (Timer.initialized == 0)
     {
-        __OSSetExceptionHandler(8, &DecrementerExceptionHandler);
+        __OSSetExceptionHandler (8, &DecrementerExceptionHandler);
         Timer.initialized = 1;
         Timer.callback = 0;
 #if DEBUG
-        OSReport("Timer initialized\n");
+        OSReport ("Timer initialized\n");
 #endif
     }
 }
 void
-OSStartTimer(void)
+OSStartTimer (void)
 {
     int enabled;
 
 #if DEBUG
     if (Timer.initialized == 0)
     {
-        OSPanic("OSTimer.c", 0xB8, "OSStartTimer(): timer is not initialized.");
+        OSPanic ("OSTimer.c", 0xB8, "OSStartTimer(): timer is not initialized.");
     }
 #endif
     enabled = OSDisableInterrupts();
-    PPCMtdec(Timer.currval);
+    PPCMtdec (Timer.currval);
     Timer.stopped = 0;
-    OSRestoreInterrupts(enabled);
+    OSRestoreInterrupts (enabled);
 }
 void
-OSStopTimer(void)
+OSStopTimer (void)
 {
     int enabled;
 
 #if DEBUG
     if (Timer.initialized == 0)
     {
-        OSPanic("OSTimer.c", 0xD0, "OSStopTimer(): timer is not initialized.");
+        OSPanic ("OSTimer.c", 0xD0, "OSStopTimer(): timer is not initialized.");
     }
 #endif
 
@@ -99,20 +101,20 @@ OSStopTimer(void)
             Timer.currval = 0;
         }
     }
-    OSRestoreInterrupts(enabled);
+    OSRestoreInterrupts (enabled);
 }
 static void
-DecrementerExceptionCallback(u16 exception, struct OSContext* context)
+DecrementerExceptionCallback (u16 exception, OSContext* context)
 {
-    struct OSContext exceptionContext;
+    OSContext exceptionContext;
 
-    OSClearContext(&exceptionContext);
-    OSSetCurrentContext(&exceptionContext);
+    OSClearContext (&exceptionContext);
+    OSSetCurrentContext (&exceptionContext);
     if (Timer.stopped == 0)
     {
         if (Timer.mode == 1)
         {
-            PPCMtdec(Timer.startval);
+            PPCMtdec (Timer.startval);
         }
         if (Timer.mode == 2)
         {
@@ -123,12 +125,12 @@ DecrementerExceptionCallback(u16 exception, struct OSContext* context)
             Timer.callback();
         }
     }
-    OSClearContext(&exceptionContext);
-    OSSetCurrentContext(context);
-    OSLoadContext(context);
+    OSClearContext (&exceptionContext);
+    OSSetCurrentContext (context);
+    OSLoadContext (context);
 }
 static ASM void
-DecrementerExceptionHandler(u16 exception, register struct OSContext* context)
+DecrementerExceptionHandler (u16 exception, register OSContext* context)
 {
     // clang-format off
     nofralloc

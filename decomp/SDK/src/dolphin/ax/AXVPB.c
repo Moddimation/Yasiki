@@ -4,8 +4,9 @@
 
 #include "AXPrivate.h"
 
-static u32 __AXSrcCycles[5] = { 0x00000DF8, 0x00000F78, 0x000014B8, 0x000019F8,
-                                0x000019F8 };
+static u32 __AXSrcCycles[5] = {
+    0x00000DF8, 0x00000F78, 0x000014B8, 0x000019F8, 0x000019F8
+};
 
 static u32 __AXMixCycles[32] = { 0x000005BE, 0x00000B7C, 0x00000B7C, 0x0000113A,
                                  0x000008B6, 0x00000E74, 0x00000E74, 0x00001432,
@@ -16,27 +17,27 @@ static u32 __AXMixCycles[32] = { 0x000005BE, 0x00000B7C, 0x00000B7C, 0x0000113A,
                                  0x0000134C, 0x000021E3, 0x0000134C, 0x000021E3,
                                  0x0000134C, 0x000021E3, 0x0000134C, 0x000021E3 };
 
-static AXPB          __AXPB[AX_MAX_VOICES] ATTRIBUTE_ALIGN(32);
-static AXPBITDBUFFER __AXITD[AX_MAX_VOICES] ATTRIBUTE_ALIGN(32);
-static AXPBU         __AXUpdates[AX_MAX_VOICES] ATTRIBUTE_ALIGN(32);
+static AXPB          __AXPB[AX_MAX_VOICES] ATTRIBUTE_ALIGN (32);
+static AXPBITDBUFFER __AXITD[AX_MAX_VOICES] ATTRIBUTE_ALIGN (32);
+static AXPBU         __AXUpdates[AX_MAX_VOICES] ATTRIBUTE_ALIGN (32);
 static AXVPB         __AXVPB[AX_MAX_VOICES];
 
 static u32 __AXMaxDspCycles;
 static u32 __AXRecDspCycles;
 static u32 __AXNumVoices;
 u32
-__AXGetNumVoices(void)
+__AXGetNumVoices (void)
 {
     return __AXNumVoices;
 }
 void
-__AXServiceVPB(AXVPB* pvpb)
+__AXServiceVPB (AXVPB* pvpb)
 {
     AXPB* ppbDsp;
     AXPB* ppbUser;
     u32   sync;
 
-    ASSERTLINE(0xA1, (pvpb->index >= 0) && (pvpb->index < AX_MAX_VOICES));
+    ASSERTLINE (0xA1, (pvpb->index >= 0) && (pvpb->index < AX_MAX_VOICES));
     __AXNumVoices += 1;
     ppbDsp = &__AXPB[pvpb->index];
     ppbUser = &pvpb->pb;
@@ -582,38 +583,38 @@ __AXServiceVPB(AXVPB* pvpb)
     }
 }
 void
-__AXDumpVPB(AXVPB* pvpb)
+__AXDumpVPB (AXVPB* pvpb)
 {
     AXPB* ppbDsp;
 
     ppbDsp = &__AXPB[pvpb->index];
     if (ppbDsp->state == 1)
     {
-        __AXDepopVoice(ppbDsp);
+        __AXDepopVoice (ppbDsp);
     }
     pvpb->pb.state = ppbDsp->state = ppbDsp->update.updNum[0] =
         ppbDsp->update.updNum[1] = ppbDsp->update.updNum[2] =
             ppbDsp->update.updNum[3] = ppbDsp->update.updNum[4] = 0;
-    __AXPushCallbackStack(pvpb);
+    __AXPushCallbackStack (pvpb);
 }
 void
-__AXSyncPBs(u32 lessDspCycles)
+__AXSyncPBs (u32 lessDspCycles)
 {
     u32    cycles;
     u32    i;
     AXVPB* pvpb;
 
     __AXNumVoices = 0;
-    DCInvalidateRange(__AXPB, sizeof(__AXPB));
-    DCInvalidateRange(__AXITD, sizeof(__AXITD));
+    DCInvalidateRange (__AXPB, sizeof (__AXPB));
+    DCInvalidateRange (__AXITD, sizeof (__AXITD));
     cycles = (__AXGetCommandListCycles() + 0x10000) - 0x55F0 + lessDspCycles;
     for (i = 31; i; i--)
     {
-        for (pvpb = __AXGetStackHead(i); pvpb; pvpb = pvpb->next)
+        for (pvpb = __AXGetStackHead (i); pvpb; pvpb = pvpb->next)
         {
             if (pvpb->depop != 0U)
             {
-                __AXDepopVoice(&__AXPB[pvpb->index]);
+                __AXDepopVoice (&__AXPB[pvpb->index]);
             }
             if ((pvpb->pb.state == 1) || (pvpb->updateCounter != 0U))
             {
@@ -621,16 +622,16 @@ __AXSyncPBs(u32 lessDspCycles)
                          __AXMixCycles[pvpb->pb.mixerCtrl] + 0x8C + cycles;
                 if (__AXMaxDspCycles > cycles)
                 {
-                    __AXServiceVPB(pvpb);
+                    __AXServiceVPB (pvpb);
                 }
                 else
                 {
-                    __AXDumpVPB(pvpb);
+                    __AXDumpVPB (pvpb);
                 }
             }
             else
             {
-                __AXServiceVPB(pvpb);
+                __AXServiceVPB (pvpb);
             }
             pvpb->sync = 0;
             pvpb->depop = 0;
@@ -639,11 +640,11 @@ __AXSyncPBs(u32 lessDspCycles)
         }
     }
     __AXRecDspCycles = cycles;
-    for (pvpb = __AXGetStackHead(0); pvpb; pvpb = pvpb->next)
+    for (pvpb = __AXGetStackHead (0); pvpb; pvpb = pvpb->next)
     {
         if (pvpb->depop != 0U)
         {
-            __AXDepopVoice(&__AXPB[pvpb->index]);
+            __AXDepopVoice (&__AXPB[pvpb->index]);
         }
         pvpb->depop = 0;
         __AXPB[pvpb->index].state = __AXPB[pvpb->index].update.updNum[0] =
@@ -652,17 +653,17 @@ __AXSyncPBs(u32 lessDspCycles)
                     __AXPB[pvpb->index].update.updNum[3] =
                         __AXPB[pvpb->index].update.updNum[4] = 0;
     }
-    DCFlushRange(__AXPB, sizeof(__AXPB));
-    DCFlushRange(__AXITD, sizeof(__AXITD));
-    DCFlushRange(__AXUpdates, sizeof(__AXUpdates));
+    DCFlushRange (__AXPB, sizeof (__AXPB));
+    DCFlushRange (__AXITD, sizeof (__AXITD));
+    DCFlushRange (__AXUpdates, sizeof (__AXUpdates));
 }
 AXPB*
-__AXGetPBs(void)
+__AXGetPBs (void)
 {
     return __AXPB;
 }
 void
-__AXSetPBDefault(AXVPB* p)
+__AXSetPBDefault (AXVPB* p)
 {
     p->pb.state = 0;
     p->pb.itd.flag = 0;
@@ -673,7 +674,7 @@ __AXSetPBDefault(AXVPB* p)
         p->pb.update.updNum[3] = p->pb.update.updNum[4] = 0;
 }
 void
-__AXVPBInit(void)
+__AXVPBInit (void)
 {
     u32            i;
     AXPB*          ppb;
@@ -682,26 +683,26 @@ __AXVPBInit(void)
     AXVPB*         pvpb;
 
 #ifdef DEBUG
-    OSReport("Initializing AXVPB code module¥n");
+    OSReport ("Initializing AXVPB code module¥n");
 #endif
     __AXMaxDspCycles = OS_BUS_CLOCK / 400;
     __AXRecDspCycles = 0U;
-    memset(__AXPB, 0, sizeof(__AXPB));
-    memset(__AXITD, 0, sizeof(__AXITD));
-    memset(__AXVPB, 0, sizeof(__AXVPB));
+    memset (__AXPB, 0, sizeof (__AXPB));
+    memset (__AXITD, 0, sizeof (__AXITD));
+    memset (__AXVPB, 0, sizeof (__AXVPB));
     for (i = 0; i < AX_MAX_VOICES; i++)
     {
         ppb = &__AXPB[i];
         ppbi = &__AXITD[i];
         ppbu = &__AXUpdates[i];
         pvpb = &__AXVPB[i];
-        ASSERTLINE(0x2F6, (u32)ppb ^ 0x1F);
-        ASSERTLINE(0x2F7, (u32)ppbi ^ 0x1F);
-        ASSERTLINE(0x2F8, (u32)ppbu ^ 0x1F);
+        ASSERTLINE (0x2F6, (u32)ppb ^ 0x1F);
+        ASSERTLINE (0x2F7, (u32)ppbi ^ 0x1F);
+        ASSERTLINE (0x2F8, (u32)ppbu ^ 0x1F);
         pvpb->index = i;
         pvpb->updateWrite = pvpb->updateData;
         pvpb->itdBuffer = ppbi;
-        __AXSetPBDefault(pvpb);
+        __AXSetPBDefault (pvpb);
         if (i == 0x3F)
         {
             pvpb->pb.nextHi = pvpb->pb.nextLo = ppb->nextHi = ppb->nextLo = 0;
@@ -725,25 +726,25 @@ __AXVPBInit(void)
         pvpb->pb.update.dataLo = (u16)((u32)ppbu);
         ppb->update.dataHi = (u16)(((u32)ppbu) >> 16);
         ppb->update.dataLo = (u16)((u32)ppbu);
-        __AXPushFreeStack(pvpb);
+        __AXPushFreeStack (pvpb);
     }
-    DCFlushRange(__AXPB, sizeof(__AXPB));
+    DCFlushRange (__AXPB, sizeof (__AXPB));
 }
 void
-__AXVPBQuit(void)
+__AXVPBQuit (void)
 {
 #ifdef DEBUG
-    OSReport("Shutting down AXVPB code module¥n");
+    OSReport ("Shutting down AXVPB code module¥n");
 #endif
 }
 void
-AXSetVoiceSrcType(AXVPB* p, u32 type)
+AXSetVoiceSrcType (AXVPB* p, u32 type)
 {
     int   old;
     AXPB* ppb;
 
-    ASSERTLINE(0x35E, p);
-    ASSERTLINE(0x35F, type <= AX_SRC_TYPE_4TAP_16K);
+    ASSERTLINE (0x35E, p);
+    ASSERTLINE (0x35F, type <= AX_SRC_TYPE_4TAP_16K);
     old = OSDisableInterrupts();
     ppb = &p->pb;
     switch (type)
@@ -768,10 +769,10 @@ AXSetVoiceSrcType(AXVPB* p, u32 type)
             break;
     }
     p->sync |= AX_SYNC_FLAG_COPYSELECT;
-    OSRestoreInterrupts(old);
+    OSRestoreInterrupts (old);
 }
 void
-AXSetVoiceState(AXVPB* p, u16 state)
+AXSetVoiceState (AXVPB* p, u16 state)
 {
     int old;
 
@@ -782,20 +783,20 @@ AXSetVoiceState(AXVPB* p, u16 state)
     {
         p->depop = 1;
     }
-    OSRestoreInterrupts(old);
+    OSRestoreInterrupts (old);
 }
 void
-AXSetVoiceType(AXVPB* p, u16 type)
+AXSetVoiceType (AXVPB* p, u16 type)
 {
     int old;
 
     old = OSDisableInterrupts();
     p->pb.type = type;
     p->sync |= AX_SYNC_FLAG_COPYTYPE;
-    OSRestoreInterrupts(old);
+    OSRestoreInterrupts (old);
 }
 void
-AXSetVoiceMix(AXVPB* p, AXPBMIX* mix)
+AXSetVoiceMix (AXVPB* p, AXPBMIX* mix)
 {
     int  old;
     u16  mixerCtrl;
@@ -906,10 +907,10 @@ AXSetVoiceMix(AXVPB* p, AXPBMIX* mix)
     }
     p->pb.mixerCtrl = mixerCtrl;
     p->sync |= (AX_SYNC_FLAG_COPYAXPBMIX | AX_SYNC_FLAG_COPYMXRCTRL);
-    OSRestoreInterrupts(old);
+    OSRestoreInterrupts (old);
 }
 void
-AXSetVoiceItdOn(AXVPB* p)
+AXSetVoiceItdOn (AXVPB* p)
 {
     int old;
 
@@ -919,10 +920,10 @@ AXSetVoiceItdOn(AXVPB* p)
         p->pb.itd.targetShiftR = 0;
     p->sync &= ~(AX_SYNC_FLAG_COPYTSHIFT);
     p->sync |= AX_SYNC_FLAG_COPYITD;
-    OSRestoreInterrupts(old);
+    OSRestoreInterrupts (old);
 }
 void
-AXSetVoiceItdTarget(AXVPB* p, u16 lShift, u16 rShift)
+AXSetVoiceItdTarget (AXVPB* p, u16 lShift, u16 rShift)
 {
     int old;
 
@@ -930,37 +931,37 @@ AXSetVoiceItdTarget(AXVPB* p, u16 lShift, u16 rShift)
     p->pb.itd.targetShiftL = lShift;
     p->pb.itd.targetShiftR = rShift;
     p->sync |= AX_SYNC_FLAG_COPYTSHIFT;
-    OSRestoreInterrupts(old);
+    OSRestoreInterrupts (old);
 }
 void
-AXSetVoiceUpdateIncrement(AXVPB* p)
+AXSetVoiceUpdateIncrement (AXVPB* p)
 {
     int old;
 
     old = OSDisableInterrupts();
     p->updateMS++;
     p->sync |= AX_SYNC_FLAG_COPYUPDATE;
-    ASSERTMSGLINE(0x431, p->updateMS <= 4, "PB updates cannot exceed 5ms¥n");
-    OSRestoreInterrupts(old);
+    ASSERTMSGLINE (0x431, p->updateMS <= 4, "PB updates cannot exceed 5ms¥n");
+    OSRestoreInterrupts (old);
 }
 void
-AXSetVoiceUpdateWrite(AXVPB* p, u16 param, u16 data)
+AXSetVoiceUpdateWrite (AXVPB* p, u16 param, u16 data)
 {
     int old;
 
     old = OSDisableInterrupts();
     p->updateCounter += 2;
-    ASSERTMSGLINE(0x43F, p->updateCounter <= 128,
-                  "PB update block exceeded 128 words¥n");
+    ASSERTMSGLINE (
+        0x43F, p->updateCounter <= 128, "PB update block exceeded 128 words¥n");
     *(p->updateWrite) = param;
     p->updateWrite += 1;
     *(p->updateWrite) = data;
     p->updateWrite += 1;
     p->sync |= AX_SYNC_FLAG_COPYUPDATE;
-    OSRestoreInterrupts(old);
+    OSRestoreInterrupts (old);
 }
 void
-AXSetVoiceDpop(AXVPB* p, AXPBDPOP* dpop)
+AXSetVoiceDpop (AXVPB* p, AXPBDPOP* dpop)
 {
     int  old;
     u16* dst;
@@ -1000,10 +1001,10 @@ AXSetVoiceDpop(AXVPB* p, AXPBDPOP* dpop)
         src += 1;
     }
     p->sync |= AX_SYNC_FLAG_COPYDPOP;
-    OSRestoreInterrupts(old);
+    OSRestoreInterrupts (old);
 }
 void
-AXSetVoiceVe(AXVPB* p, AXPBVE* ve)
+AXSetVoiceVe (AXVPB* p, AXPBVE* ve)
 {
     int old;
 
@@ -1011,20 +1012,20 @@ AXSetVoiceVe(AXVPB* p, AXPBVE* ve)
     p->pb.ve.currentVolume = ve->currentVolume;
     p->pb.ve.currentDelta = ve->currentDelta;
     p->sync |= AX_SYNC_FLAG_COPYVOL;
-    OSRestoreInterrupts(old);
+    OSRestoreInterrupts (old);
 }
 void
-AXSetVoiceVeDelta(AXVPB* p, s16 delta)
+AXSetVoiceVeDelta (AXVPB* p, s16 delta)
 {
     int old;
 
     old = OSDisableInterrupts();
     p->pb.ve.currentDelta = delta;
     p->sync |= AX_SYNC_FLAG_SWAPVOL;
-    OSRestoreInterrupts(old);
+    OSRestoreInterrupts (old);
 }
 void
-AXSetVoiceFir(AXVPB* p, AXPBFIR* fir)
+AXSetVoiceFir (AXVPB* p, AXPBFIR* fir)
 {
     int old;
 
@@ -1033,10 +1034,10 @@ AXSetVoiceFir(AXVPB* p, AXPBFIR* fir)
     p->pb.fir.coefsHi = fir->coefsHi;
     p->pb.fir.coefsLo = fir->coefsLo;
     p->sync |= AX_SYNC_FLAG_COPYFIR;
-    OSRestoreInterrupts(old);
+    OSRestoreInterrupts (old);
 }
 void
-AXSetVoiceAddr(AXVPB* p, AXPBADDR* addr)
+AXSetVoiceAddr (AXVPB* p, AXPBADDR* addr)
 {
     int  old;
     u32* dst;
@@ -1061,12 +1062,15 @@ AXSetVoiceAddr(AXVPB* p, AXPBADDR* addr)
     switch (addr->format)
     {
         case 0:
-            ASSERTMSGLINE(0x4BA, (addr->loopAddressLo & 0xF) > 1,
-                          "*** loop address on ADPCM frame header! ***¥n");
-            ASSERTMSGLINE(0x4BF, (addr->endAddressLo & 0xF) > 1,
-                          "*** end address on ADPCM frame header! ***¥n");
-            ASSERTMSGLINE(0x4C4, (addr->currentAddressLo & 0xF) > 1,
-                          "*** current address on ADPCM frame header! ***¥n");
+            ASSERTMSGLINE (0x4BA,
+                           (addr->loopAddressLo & 0xF) > 1,
+                           "*** loop address on ADPCM frame header! ***¥n");
+            ASSERTMSGLINE (0x4BF,
+                           (addr->endAddressLo & 0xF) > 1,
+                           "*** end address on ADPCM frame header! ***¥n");
+            ASSERTMSGLINE (0x4C4,
+                           (addr->currentAddressLo & 0xF) > 1,
+                           "*** current address on ADPCM frame header! ***¥n");
             break;
         case 10:
             dst += 1;
@@ -1115,26 +1119,26 @@ AXSetVoiceAddr(AXVPB* p, AXPBADDR* addr)
             dst += 1;
             break;
         default:
-            ASSERTMSGLINE(0x4F0, 0, "unknown addr->formaqt in PB¥n");
+            ASSERTMSGLINE (0x4F0, 0, "unknown addr->formaqt in PB¥n");
             break;
     }
     p->sync &= ~(AX_SYNC_FLAG_COPYLOOP | AX_SYNC_FLAG_COPYLOOPADDR |
                  AX_SYNC_FLAG_COPYENDADDR | AX_SYNC_FLAG_COPYCURADDR);
     p->sync |= (AX_SYNC_FLAG_COPYADDR | AX_SYNC_FLAG_COPYADPCM);
-    OSRestoreInterrupts(old);
+    OSRestoreInterrupts (old);
 }
 void
-AXSetVoiceLoop(AXVPB* p, u16 loop)
+AXSetVoiceLoop (AXVPB* p, u16 loop)
 {
     int old;
 
     old = OSDisableInterrupts();
     p->pb.addr.loopFlag = loop;
     p->sync |= AX_SYNC_FLAG_COPYLOOP;
-    OSRestoreInterrupts(old);
+    OSRestoreInterrupts (old);
 }
 void
-AXSetVoiceLoopAddr(AXVPB* p, u32 addr)
+AXSetVoiceLoopAddr (AXVPB* p, u32 addr)
 {
     int old;
 
@@ -1142,10 +1146,10 @@ AXSetVoiceLoopAddr(AXVPB* p, u32 addr)
     p->pb.addr.loopAddressHi = (addr >> 0x10U);
     p->pb.addr.loopAddressLo = (addr);
     p->sync |= AX_SYNC_FLAG_COPYLOOPADDR;
-    OSRestoreInterrupts(old);
+    OSRestoreInterrupts (old);
 }
 void
-AXSetVoiceEndAddr(AXVPB* p, u32 addr)
+AXSetVoiceEndAddr (AXVPB* p, u32 addr)
 {
     int old;
 
@@ -1153,10 +1157,10 @@ AXSetVoiceEndAddr(AXVPB* p, u32 addr)
     p->pb.addr.endAddressHi = (addr >> 0x10U);
     p->pb.addr.endAddressLo = (addr);
     p->sync |= AX_SYNC_FLAG_COPYENDADDR;
-    OSRestoreInterrupts(old);
+    OSRestoreInterrupts (old);
 }
 void
-AXSetVoiceCurrentAddr(AXVPB* p, u32 addr)
+AXSetVoiceCurrentAddr (AXVPB* p, u32 addr)
 {
     int old;
 
@@ -1164,10 +1168,10 @@ AXSetVoiceCurrentAddr(AXVPB* p, u32 addr)
     p->pb.addr.currentAddressHi = (addr >> 0x10U);
     p->pb.addr.currentAddressLo = (addr);
     p->sync |= AX_SYNC_FLAG_COPYCURADDR;
-    OSRestoreInterrupts(old);
+    OSRestoreInterrupts (old);
 }
 void
-AXSetVoiceAdpcm(AXVPB* p, AXPBADPCM* adpcm)
+AXSetVoiceAdpcm (AXVPB* p, AXPBADPCM* adpcm)
 {
     int  old;
     u32* dst;
@@ -1211,10 +1215,10 @@ AXSetVoiceAdpcm(AXVPB* p, AXPBADPCM* adpcm)
         src += 1;
     }
     p->sync |= AX_SYNC_FLAG_COPYADPCM;
-    OSRestoreInterrupts(old);
+    OSRestoreInterrupts (old);
 }
 void
-AXSetVoiceSrc(AXVPB* p, AXPBSRC* src_)
+AXSetVoiceSrc (AXVPB* p, AXPBSRC* src_)
 {
     int  old;
     u16* dst;
@@ -1249,10 +1253,10 @@ AXSetVoiceSrc(AXVPB* p, AXPBSRC* src_)
     }
     p->sync &= ~(AX_SYNC_FLAG_COPYRATIO);
     p->sync |= AX_SYNC_FLAG_COPYSRC;
-    OSRestoreInterrupts(old);
+    OSRestoreInterrupts (old);
 }
 void
-AXSetVoiceSrcRatio(AXVPB* p, float ratio)
+AXSetVoiceSrcRatio (AXVPB* p, float ratio)
 {
     u32 r;
     int old;
@@ -1266,10 +1270,10 @@ AXSetVoiceSrcRatio(AXVPB* p, float ratio)
     p->pb.src.ratioHi = ((u32)r >> 0x10);
     p->pb.src.ratioLo = ((u32)r);
     p->sync |= AX_SYNC_FLAG_COPYRATIO;
-    OSRestoreInterrupts(old);
+    OSRestoreInterrupts (old);
 }
 void
-AXSetVoiceAdpcmLoop(AXVPB* p, AXPBADPCMLOOP* adpcmloop)
+AXSetVoiceAdpcmLoop (AXVPB* p, AXPBADPCMLOOP* adpcmloop)
 {
     int  old;
     u16* dst;
@@ -1290,20 +1294,20 @@ AXSetVoiceAdpcmLoop(AXVPB* p, AXPBADPCMLOOP* adpcmloop)
         src += 1;
     }
     p->sync |= AX_SYNC_FLAG_COPYADPCMLOOP;
-    OSRestoreInterrupts(old);
+    OSRestoreInterrupts (old);
 }
 void
-AXSetMaxDspCycles(u32 cycles)
+AXSetMaxDspCycles (u32 cycles)
 {
     __AXMaxDspCycles = cycles;
 }
 u32
-AXGetMaxDspCycles(void)
+AXGetMaxDspCycles (void)
 {
     return __AXMaxDspCycles;
 }
 u32
-AXGetDspCycles(void)
+AXGetDspCycles (void)
 {
     return __AXRecDspCycles;
 }

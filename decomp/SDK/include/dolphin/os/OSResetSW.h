@@ -8,11 +8,11 @@ extern "C"
 {
 #endif
 
-typedef void (*OSResetCallback)(void);
+typedef void (*OSResetCallback) (void);
 
-OSResetCallback OSSetResetCallback(OSResetCallback callback);
-BOOL            OSGetResetSwitchState();
-BOOL            OSGetResetButtonState(void);
+OSResetCallback OSSetResetCallback (OSResetCallback callback);
+BOOL            OSGetResetSwitchState ();
+BOOL            OSGetResetButtonState (void);
 
 #ifdef __cplusplus
 }

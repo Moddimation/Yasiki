@@ -4,7 +4,7 @@
 
 static int lastError;
 static int
-wait4ClkHigh(void)
+wait4ClkHigh (void)
 {
     int n;
 
@@ -19,32 +19,32 @@ wait4ClkHigh(void)
     return 0;
 }
 static int
-sendSlaveAddr(u8 slaveAddr)
+sendSlaveAddr (u8 slaveAddr)
 {
     int i;
 
-    __VISetSDA(0);
-    __VISetSCL(0);
+    __VISetSDA (0);
+    __VISetSCL (0);
     for (i = 0; i < 8; i++)
     {
         if (slaveAddr & 0x80)
         {
-            __VISetSDA(1);
+            __VISetSDA (1);
         }
         else
         {
-            __VISetSDA(0);
+            __VISetSDA (0);
         }
-        __VISetSCL(1);
+        __VISetSCL (1);
         if (wait4ClkHigh() == 0)
         {
             return 0;
         }
-        __VISetSCL(0);
+        __VISetSCL (0);
         slaveAddr <<= 1;
     }
-    __VISetSDA(1);
-    __VISetSCL(1);
+    __VISetSDA (1);
+    __VISetSCL (1);
     if (wait4ClkHigh() == 0)
     {
         return 0;
@@ -54,16 +54,16 @@ sendSlaveAddr(u8 slaveAddr)
         lastError = 1;
         return 0;
     }
-    __VISetSCL(0);
+    __VISetSCL (0);
     return 1;
 }
 int
-__VISendI2CData(u8 slaveAddr, u8* pData, int nBytes)
+__VISendI2CData (u8 slaveAddr, u8* pData, int nBytes)
 {
     s32 i;
     u8  data;
 
-    if (sendSlaveAddr(slaveAddr) == 0)
+    if (sendSlaveAddr (slaveAddr) == 0)
     {
         return 0;
     }
@@ -74,22 +74,22 @@ __VISendI2CData(u8 slaveAddr, u8* pData, int nBytes)
         {
             if (data & 0x80)
             {
-                __VISetSDA(1);
+                __VISetSDA (1);
             }
             else
             {
-                __VISetSDA(0);
+                __VISetSDA (0);
             }
-            __VISetSCL(1);
+            __VISetSCL (1);
             if (wait4ClkHigh() == 0)
             {
                 return 0;
             }
-            __VISetSCL(0);
+            __VISetSCL (0);
             data <<= 1;
         }
-        __VISetSDA(1);
-        __VISetSCL(1);
+        __VISetSDA (1);
+        __VISetSCL (1);
         if (wait4ClkHigh() == 0)
         {
             return 0;
@@ -99,11 +99,11 @@ __VISendI2CData(u8 slaveAddr, u8* pData, int nBytes)
             lastError = 1;
             return 0;
         }
-        __VISetSCL(0);
+        __VISetSCL (0);
         nBytes--;
     }
-    __VISetSDA(0);
-    __VISetSCL(1);
-    __VISetSDA(1);
+    __VISetSDA (0);
+    __VISetSCL (1);
+    __VISetSDA (1);
     return 1;
 }

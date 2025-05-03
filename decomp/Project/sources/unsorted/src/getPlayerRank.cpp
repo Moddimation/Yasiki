@@ -1,6 +1,6 @@
 #include "Unsorted/Rank.h"
 int
-getPlayerRank(void)
+getPlayerRank (void)
 {
     return playerRank;
 }

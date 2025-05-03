@@ -15,10 +15,10 @@ typedef struct PADClampRegion
 static PADClampRegion ClampRegion = { 30, 180, 15, 72, 40, 15, 59, 31 };
 
 // functions
-static void ClampStick(s8* px, s8* py, s8 max, s8 xy, s8 min);
-static void ClampTrigger(u8* trigger);
+static void ClampStick (s8* px, s8* py, s8 max, s8 xy, s8 min);
+static void ClampTrigger (u8* trigger);
 static void
-ClampStick(s8* px, s8* py, s8 max, s8 xy, s8 min)
+ClampStick (s8* px, s8* py, s8 max, s8 xy, s8 min)
 {
     int x;
     int y;
@@ -94,7 +94,7 @@ ClampStick(s8* px, s8* py, s8 max, s8 xy, s8 min)
     *py = signY * y;
 }
 inline static void
-ClampTrigger(u8* trigger)
+ClampTrigger (u8* trigger)
 {
     if (*trigger <= ClampRegion.minTrigger)
     {
@@ -108,7 +108,7 @@ ClampTrigger(u8* trigger)
     *trigger -= ClampRegion.minTrigger;
 }
 void
-PADClamp(PADStatus* status)
+PADClamp (PADStatus* status)
 {
     int i;
 
@@ -116,13 +116,18 @@ PADClamp(PADStatus* status)
     {
         if (status->err == PAD_ERR_NONE)
         {
-            ClampStick(&status->stickX, &status->stickY, ClampRegion.maxStick,
-                       ClampRegion.xyStick, ClampRegion.minStick);
-            ClampStick(&status->substickX, &status->substickY,
-                       ClampRegion.maxSubstick, ClampRegion.xySubstick,
-                       ClampRegion.minSubstick);
-            ClampTrigger(&status->triggerLeft);
-            ClampTrigger(&status->triggerRight);
+            ClampStick (&status->stickX,
+                        &status->stickY,
+                        ClampRegion.maxStick,
+                        ClampRegion.xyStick,
+                        ClampRegion.minStick);
+            ClampStick (&status->substickX,
+                        &status->substickY,
+                        ClampRegion.maxSubstick,
+                        ClampRegion.xySubstick,
+                        ClampRegion.minSubstick);
+            ClampTrigger (&status->triggerLeft);
+            ClampTrigger (&status->triggerRight);
         }
     }
 }

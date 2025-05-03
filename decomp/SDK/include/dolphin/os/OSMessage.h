@@ -7,22 +7,22 @@
 extern "C"
 {
 #endif
-struct OSMessageQueue
+typedef struct OSMessageQueue
 {
-    struct OSThreadQueue queueSend;
-    struct OSThreadQueue queueReceive;
-    void*                msgArray;
-    s32                  msgCount;
-    s32                  firstIndex;
-    s32                  usedCount;
-};
-void OSInitMessageQueue(struct OSMessageQueue* mq, void* msgArray, s32 msgCount);
-int  OSSendMessage(struct OSMessageQueue* mq, void* msg, s32 flags);
-int  OSReceiveMessage(struct OSMessageQueue* mq, void* msg, s32 flags);
-int  OSJamMessage(struct OSMessageQueue* mq, void* msg, s32 flags);
+    OSThreadQueue queueSend;    ///< 0x00
+    OSThreadQueue queueReceive; ///< 0x08
+    void*         msgArray;     ///< 0x10
+    s32           msgCount;     ///< 0x14
+    s32           firstIndex;   ///< 0x18
+    s32           usedCount;    ///< 0x1C
+} OSMessageQueue;
+void OSInitMessageQueue (OSMessageQueue* mq, void* msgArray, s32 msgCount);
+int  OSSendMessage (OSMessageQueue* mq, void* msg, s32 flags);
+int  OSReceiveMessage (OSMessageQueue* mq, void* msg, s32 flags);
+int  OSJamMessage (OSMessageQueue* mq, void* msg, s32 flags);
 
 #ifdef __cplusplus
 }
 #endif
 
-#endif // _DOLPHIN_OSMESSAGE_H_
+#endif                          // _DOLPHIN_OSMESSAGE_H_

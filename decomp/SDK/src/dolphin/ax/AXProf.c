@@ -10,7 +10,7 @@ static u32        __AXMaxProfiles;
 static u32        __AXCurrentProfile;
 static u32        __AXProfileInitialized;
 AXPROFILE*
-__AXGetCurrentProfile(void)
+__AXGetCurrentProfile (void)
 {
     AXPROFILE* profile;
 
@@ -24,10 +24,10 @@ __AXGetCurrentProfile(void)
     return 0;
 }
 void
-AXInitProfile(AXPROFILE* profile, u32 maxProfiles)
+AXInitProfile (AXPROFILE* profile, u32 maxProfiles)
 {
-    ASSERTLINE(0x3A, profile);
-    ASSERTLINE(0x3B, maxProfiles);
+    ASSERTLINE (0x3A, profile);
+    ASSERTLINE (0x3B, maxProfiles);
 
     __AXProfile = profile;
     __AXMaxProfiles = maxProfiles;
@@ -35,7 +35,7 @@ AXInitProfile(AXPROFILE* profile, u32 maxProfiles)
     __AXProfileInitialized = 1;
 }
 u32
-AXGetProfile(void)
+AXGetProfile (void)
 {
     int old;
     u32 n;
@@ -47,6 +47,6 @@ AXGetProfile(void)
         n -= 1;
     }
     __AXCurrentProfile = 0;
-    OSRestoreInterrupts(old);
+    OSRestoreInterrupts (old);
     return n;
 }

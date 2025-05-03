@@ -137,20 +137,21 @@ static f32 rsmpTab12khz[512] = {
 const static double i2fMagic = 4503601774854144.0;
 
 // functions
-static void do_src1(struct AXFX_CHORUS_SRCINFO* src);
-static void do_src2(struct AXFX_CHORUS_SRCINFO* src);
+static void do_src1 (struct AXFX_CHORUS_SRCINFO* src);
+static void do_src2 (struct AXFX_CHORUS_SRCINFO* src);
 asm static void
-do_src1(register struct AXFX_CHORUS_SRCINFO* src)
+do_src1 (register struct AXFX_CHORUS_SRCINFO* src)
 {
     nofralloc stwu r1, -64(r1)stmw r26, 40(r1)lwz r4,
-        AXFX_CHORUS_SRCINFO.posLo(src) lwz r5, AXFX_CHORUS_SRCINFO.posHi(src) lwz r6,
-        AXFX_CHORUS_SRCINFO.pitchLo(src) lwz r8,
-        AXFX_CHORUS_SRCINFO.trigger(src) lwz r7,
-        AXFX_CHORUS_SRCINFO.target(src) lwz  r31,
-        AXFX_CHORUS_SRCINFO.smpBase(src) lwz r30,
-        AXFX_CHORUS_SRCINFO.dest(src) lwz r9, AXFX_CHORUS_SRCINFO.old(src) lis r10,
+        AXFX_CHORUS_SRCINFO.posLo (src) lwz   r5,
+        AXFX_CHORUS_SRCINFO.posHi (src) lwz   r6,
+        AXFX_CHORUS_SRCINFO.pitchLo (src) lwz r8,
+        AXFX_CHORUS_SRCINFO.trigger (src) lwz r7,
+        AXFX_CHORUS_SRCINFO.target (src) lwz  r31,
+        AXFX_CHORUS_SRCINFO.smpBase (src) lwz r30,
+        AXFX_CHORUS_SRCINFO.dest (src) lwz r9, AXFX_CHORUS_SRCINFO.old (src) lis r10,
         0x4330 stw r10, 8(r1)stw r10, 16(r1)stw r10, 24(r1)stw r10, 32(r1)lis r10,
-        i2fMagic @ha lfd f9, i2fMagic @l(r10) slwi r10, r5, 2 lwz r11, 0(r9)lwz r29,
+        i2fMagic @ha lfd f9, i2fMagic @l (r10) slwi r10, r5, 2 lwz r11, 0(r9)lwz r29,
         4(r9)lwz r28, 8(r9)lwzx r27, r31, r10 xoris r11, r11, 0x8000 xoris r29, r29,
         0x8000 stw r11, 12(r1)xoris r28, r28, 0x8000 stw r29, 20(r1)xoris r27, r27,
         0x8000 stw r28, 28(r1)lfd f1, 8(r1)stw r27, 36(r1)lfd f2, 16(r1)fsubs f1, f1,
@@ -227,7 +228,7 @@ do_src1(register struct AXFX_CHORUS_SRCINFO* src)
                                                      r26,
                                                      r30 L_00000160
       : lwz                                              r9,
-        AXFX_CHORUS_SRCINFO.old(src) fctiwz              f1,
+        AXFX_CHORUS_SRCINFO.old (src) fctiwz             f1,
         f1 fctiwz                                        f2,
         f2 fctiwz                                        f3,
         f3 stfiwx                                        f1,
@@ -240,25 +241,26 @@ do_src1(register struct AXFX_CHORUS_SRCINFO* src)
         r9,
         8 stfiwx f3,
         r0,
-        r10 stw                            r4,
-        AXFX_CHORUS_SRCINFO.posLo(src) stw r5,
-        AXFX_CHORUS_SRCINFO.posHi(src) lmw r26,
-        40(r1)addi                         r1,
+        r10 stw                             r4,
+        AXFX_CHORUS_SRCINFO.posLo (src) stw r5,
+        AXFX_CHORUS_SRCINFO.posHi (src) lmw r26,
+        40(r1)addi                          r1,
         r1,
         64 blr
 }
 asm static void
-do_src2(register struct AXFX_CHORUS_SRCINFO* src)
+do_src2 (register struct AXFX_CHORUS_SRCINFO* src)
 {
     nofralloc stwu r1, -64(r1)stmw r26, 40(r1)lwz r4,
-        AXFX_CHORUS_SRCINFO.posLo(src) lwz r5, AXFX_CHORUS_SRCINFO.posHi(src) lwz r6,
-        AXFX_CHORUS_SRCINFO.pitchLo(src) lwz r8,
-        AXFX_CHORUS_SRCINFO.trigger(src) lwz r7,
-        AXFX_CHORUS_SRCINFO.target(src) lwz  r31,
-        AXFX_CHORUS_SRCINFO.smpBase(src) lwz r30,
-        AXFX_CHORUS_SRCINFO.dest(src) lwz r9, AXFX_CHORUS_SRCINFO.old(src) lis r10,
+        AXFX_CHORUS_SRCINFO.posLo (src) lwz   r5,
+        AXFX_CHORUS_SRCINFO.posHi (src) lwz   r6,
+        AXFX_CHORUS_SRCINFO.pitchLo (src) lwz r8,
+        AXFX_CHORUS_SRCINFO.trigger (src) lwz r7,
+        AXFX_CHORUS_SRCINFO.target (src) lwz  r31,
+        AXFX_CHORUS_SRCINFO.smpBase (src) lwz r30,
+        AXFX_CHORUS_SRCINFO.dest (src) lwz r9, AXFX_CHORUS_SRCINFO.old (src) lis r10,
         0x4330 stw r10, 8(r1)stw r10, 16(r1)stw r10, 24(r1)stw r10, 32(r1)lis r10,
-        i2fMagic @ha lfd f9, i2fMagic @l(r10) slwi r10, r5, 2 lwz r11, 0(r9)lwz r29,
+        i2fMagic @ha lfd f9, i2fMagic @l (r10) slwi r10, r5, 2 lwz r11, 0(r9)lwz r29,
         4(r9)lwz r28, 8(r9)lwzx r27, r31, r10 xoris r11, r11, 0x8000 xoris r29, r29,
         0x8000 stw r11, 12(r1)xoris r28, r28, 0x8000 stw r29, 20(r1)xoris r27, r27,
         0x8000 stw r28, 28(r1)lfd f1, 8(r1)stw r27, 36(r1)lfd f2, 16(r1)fsubs f1, f1,
@@ -361,11 +363,11 @@ do_src2(register struct AXFX_CHORUS_SRCINFO* src)
         f9 b L_00000244 L_00000344 : fctiwz     f10,
                                      f10 stfiwx f10,
                                      r26,
-                                     r30 lwz                             r9,
-                                     AXFX_CHORUS_SRCINFO.old(src) fctiwz f1,
-                                     f1 fctiwz                           f2,
-                                     f2 fctiwz                           f3,
-                                     f3 stfiwx                           f1,
+                                     r30 lwz                              r9,
+                                     AXFX_CHORUS_SRCINFO.old (src) fctiwz f1,
+                                     f1 fctiwz                            f2,
+                                     f2 fctiwz                            f3,
+                                     f3 stfiwx                            f1,
                                      r0,
                                      r9 addi r10,
                                      r9,
@@ -375,15 +377,15 @@ do_src2(register struct AXFX_CHORUS_SRCINFO* src)
                                      r9,
                                      8 stfiwx f3,
                                      r0,
-                                     r10 stw                            r4,
-                                     AXFX_CHORUS_SRCINFO.posLo(src) stw r5,
-                                     AXFX_CHORUS_SRCINFO.posHi(src) lmw r26,
-                                     40(r1)addi                         r1,
+                                     r10 stw                             r4,
+                                     AXFX_CHORUS_SRCINFO.posLo (src) stw r5,
+                                     AXFX_CHORUS_SRCINFO.posHi (src) lmw r26,
+                                     40(r1)addi                          r1,
                                      r1,
                                      64 blr
 }
 int
-AXFXChorusInit(struct AXFX_CHORUS* c)
+AXFXChorusInit (struct AXFX_CHORUS* c)
 {
     s32* left;
     s32* right;
@@ -392,7 +394,7 @@ AXFXChorusInit(struct AXFX_CHORUS* c)
     int  old;
 
     old = OSDisableInterrupts();
-    c->work.lastLeft[0] = OSAllocFromHeap(__OSCurrHeap, 0x1680);
+    c->work.lastLeft[0] = OSAllocFromHeap (__OSCurrHeap, 0x1680);
     if (c->work.lastLeft[0] != NULL)
     {
         c->work.lastRight[0] = (void*)(c->work.lastLeft[0] + 0x1E0);
@@ -421,24 +423,24 @@ AXFXChorusInit(struct AXFX_CHORUS* c)
             c->work.oldSur[3] = 0;
         c->work.src.trigger = 0x1E0;
         c->work.src.target = 0;
-        OSRestoreInterrupts(old);
-        return AXFXChorusSettings(c);
+        OSRestoreInterrupts (old);
+        return AXFXChorusSettings (c);
     }
-    OSRestoreInterrupts(old);
+    OSRestoreInterrupts (old);
     return 0;
 }
 int
-AXFXChorusShutdown(struct AXFX_CHORUS* c)
+AXFXChorusShutdown (struct AXFX_CHORUS* c)
 {
     int old;
 
     old = OSDisableInterrupts();
-    OSFreeToHeap(__OSCurrHeap, c->work.lastLeft[0]);
-    OSRestoreInterrupts(old);
+    OSFreeToHeap (__OSCurrHeap, c->work.lastLeft[0]);
+    OSRestoreInterrupts (old);
     return 1;
 }
 int
-AXFXChorusSettings(struct AXFX_CHORUS* c)
+AXFXChorusSettings (struct AXFX_CHORUS* c)
 {
     int old;
 
@@ -450,12 +452,12 @@ AXFXChorusSettings(struct AXFX_CHORUS* c)
     c->work.pitchOffsetPeriod = ((c->period / 5) + 1) & ~(1);
     c->work.pitchOffsetPeriodCount = c->work.pitchOffsetPeriod >> 1;
     c->work.pitchOffset = (c->variation << 0x10) / (c->work.pitchOffsetPeriod * 5);
-    OSRestoreInterrupts(old);
+    OSRestoreInterrupts (old);
     return 1;
 }
 void
-AXFXChorusCallback(struct AXFX_BUFFERUPDATE* bufferUpdate,
-                   struct AXFX_CHORUS*       chorus)
+AXFXChorusCallback (struct AXFX_BUFFERUPDATE* bufferUpdate,
+                    struct AXFX_CHORUS*       chorus)
 {
     s32* leftD;
     s32* rightD;
@@ -511,10 +513,10 @@ AXFXChorusCallback(struct AXFX_BUFFERUPDATE* bufferUpdate,
         switch (chorus->work.src.pitchHi)
         {
             case 0:
-                do_src1(&chorus->work.src);
+                do_src1 (&chorus->work.src);
                 break;
             case 1:
-                do_src2(&chorus->work.src);
+                do_src2 (&chorus->work.src);
                 break;
         }
     }

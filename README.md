@@ -39,7 +39,7 @@ I heavily restructured the source layout of the original repo from [Sage-of-Mirr
 I did reset the splits and the symbol list, so the % were brought back to 0.
 ### Current State of Progress
 I was trying to fill out the symbols in the Ghidra repository (read further to learn how to connect to the server),
-but decided to start filling out libraries instead, as labelling the symbols also requires filling in struct data etc.
+but decided to start with matching libraries instead, as labelling the symbols sometimes requires context and struct data etc.
 ### Code Structure
 The code categories are put inside of the 'decomp' folder in root, as follows:  
  `/decomp/<category>/...`
@@ -61,13 +61,12 @@ I’ve also included some small private notes in `/docs/*.txt`, which may contai
 ### Misc
 - You can put personal stuff in /private/, it is ignored with github.
 - I prefer communication through [the Discord](https://discord.gg/hKx3FJJgrV) in the #luigis-mansion channel, but you can open issues as needed.
-### To-do
-Project Code:
-- once labelling is done, carry over these to the symbols and splits file.
-Project Misc:
-- Add workflow for building
-- Add progress indicator for displaying
-- Maybe a webpage? (why not)
+
+Contributing
+=======
+You are welcome to contribute, even pointing out small mistakes/issues counts as contributing!  
+
+The guidelines for contributing have yet to be written, but that hopefully won't stop you.
 
 Dependencies
 ============
@@ -114,20 +113,20 @@ Building
   ```
 
 - Copy your game's disc image to `orig/<VERSION>`.
-  - Supported formats: ISO (GCM), RVZ, WIA, WBFS, CISO, NFS, GCZ, TGC
-  - After the initial build, the disc image can be deleted to save space. It is recommended to keep `orig/<VERSION>/sys/main.dol`, though, which is the only file being actually needed. If deleted, you'll need to redownload it if you delete the build/ folder.
-
+    - Supported formats: ISO (GCM), RVZ, WIA, WBFS, CISO, NFS, GCZ and TGC.
+    - After initial build, you may remove the image.
+    - Also delete all files in `orig/<VERSION>` except `orig/<VERSION>/sys/main.dol` to save space, if you don't need the assets as reference.
 - Configure:
   ```
   python configure.py
   ```
-  To use a version other than `GLMJ01` (Japan), specify `--version <version`.
+  To use a version other than `GLMJ01` (Japan), specify `--version <version`. (See all possible versions at the top)
   Example usage (See its github for detailed usage):
   - `python configure.py --version GLME01` (US Release).
   - `python configure.py --version GLMP01_2` (EU Release Rev 1)
   - `python configure.py --debug` Build with debug
   - `python configure.py --map` Build and generate map (for comparison)
-  - `python configure.py progress` Show progress
+  - `python configure.py progress` Show progress, nothing else
 
 - Build:
   ```
@@ -178,10 +177,6 @@ Then wait for an admin to approve your request. Once you have access, you can se
 Now you have Ghidra set up and ready to use.
 
 For an introduction on how to use Ghidra, you can read [this section of the Twilight Princess decompilation's guide](https://zsrtp.link/contribute/decompiler-setup#using-ghidra).
-
-Contributing
-=======
-
 
 Credits
 =======

@@ -6,13 +6,13 @@ extern "C"
 {
 #endif
 
-void ICFlashInvalidate(void);
-void ICEnable(void);
-void ICDisable(void);
-void ICFreeze(void);
-void ICUnfreeze(void);
-void ICBlockInvalidate(void* addr);
-void ICSync(void);
+void ICFlashInvalidate (void);
+void ICEnable (void);
+void ICDisable (void);
+void ICFreeze (void);
+void ICUnfreeze (void);
+void ICBlockInvalidate (void* addr);
+void ICSync (void);
 
 #ifdef __cplusplus
 }

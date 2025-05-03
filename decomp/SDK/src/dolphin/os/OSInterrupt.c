@@ -4,11 +4,11 @@
 
 #include "OSPrivate.h"
 
-static ASM void ExternalInterruptHandler(register __OSException exception,
-                                         register OSContext*    context);
+static ASM void ExternalInterruptHandler (register __OSException exception,
+                                          register OSContext*    context);
 
-extern void __RAS_OSDisableInterrupts_begin(void);
-extern void __RAS_OSDisableInterrupts_end(void);
+extern void __RAS_OSDisableInterrupts_begin (void);
+extern void __RAS_OSDisableInterrupts_end (void);
 
 #if DEBUG
 u64 __OSSpuriousInterrupts = 0;
@@ -53,104 +53,114 @@ char* __OSPIErrors[8] = {
 };
 #endif
 asm BOOL
-OSDisableInterrupts(void)
+OSDisableInterrupts (void)
 {
-    // clang-format off
-    nofralloc
-entry    __RAS_OSDisableInterrupts_begin
-    mfmsr   r3
-    rlwinm  r4, r3, 0, 17, 15
-    mtmsr   r4
-    rlwinm  r3, r3, 17, 31, 31
-entry    __RAS_OSDisableInterrupts_end
-    blr
-    // clang-format on
+#ifdef __MWERKS__
+    nofralloc;
+    entry  __RAS_OSDisableInterrupts_begin;
+    mfmsr  r3;
+    rlwinm r4, r3, 0, 17, 15;
+    mtmsr  r4;
+    rlwinm r3, r3, 17, 31, 31;
+    entry  __RAS_OSDisableInterrupts_end;
+    blr;
+#else
+    return FALSE;
+#endif
 }
 asm BOOL
-OSEnableInterrupts(void)
+OSEnableInterrupts (void)
 {
-    // clang-format off
-    nofralloc
+#ifdef __MWERKS__
+    nofralloc;
 
-    mfmsr   r3
-    ori     r4, r3, 0x8000
-    mtmsr   r4
-    rlwinm  r3, r3, 17, 31, 31
-    blr
-    // clang-format on
+    mfmsr  r3;
+    ori    r4, r3, 0x8000;
+    mtmsr  r4;
+    rlwinm r3, r3, 17, 31, 31;
+    blr;
+#else
+    return FALSE;
+#endif
 }
 asm BOOL
-OSRestoreInterrupts(register BOOL level) {
-    // clang-format off
+OSRestoreInterrupts (register BOOL level)
+{
+#ifdef __MWERKS__
+    nofralloc;
 
-    nofralloc
+    cmpwi level, 0;
+    mfmsr r4;
+    beq   _disable;
+    ori   r5, r4, 0x8000;
+    b     _restore;
 
-    cmpwi   level, 0
-    mfmsr   r4
-    beq     _disable
-    ori     r5, r4, 0x8000
-    b       _restore
 _disable:
-    rlwinm  r5, r4, 0, 17, 15
-_restore:
-    mtmsr   r5
-    rlwinm  r4, r4, 17, 31, 31
-    blr
-    // clang-format on
-}
+    rlwinm r5, r4, 0, 17, 15;
 
+_restore:
+    mtmsr  r5;
+    rlwinm r4, r4, 17, 31, 31;
+    blr;
+#else
+    return FALSE;
+#endif
+}
 __OSInterruptHandler
-    __OSSetInterruptHandler(__OSInterrupt interrupt, __OSInterruptHandler handler)
+__OSSetInterruptHandler (__OSInterrupt interrupt, __OSInterruptHandler handler)
 {
     __OSInterruptHandler oldHandler;
 
-    ASSERTMSGLINE(0x188, InterruptHandlerTable,
-                  "__OSSetInterruptHandler(): OSInit() must be called in advance.");
-    ASSERTMSGLINE(0x18A, interrupt < 0x20,
-                  "__OSSetInterruptHandler(): unknown interrupt.");
+    ASSERTMSGLINE (0x188,
+                   InterruptHandlerTable,
+                   "__OSSetInterruptHandler(): OSInit() must be called in advance.");
+    ASSERTMSGLINE (
+        0x18A, interrupt < 0x20, "__OSSetInterruptHandler(): unknown interrupt.");
 
     oldHandler = InterruptHandlerTable[interrupt];
     InterruptHandlerTable[interrupt] = handler;
     return oldHandler;
 }
 __OSInterruptHandler
-__OSGetInterruptHandler(__OSInterrupt interrupt)
+__OSGetInterruptHandler (__OSInterrupt interrupt)
 {
-    ASSERTMSGLINE(0x19E, InterruptHandlerTable,
-                  "__OSGetInterruptHandler(): OSInit() must be called in advance.");
-    ASSERTMSGLINE(0x1A0, interrupt < 0x20,
-                  "__OSGetInterruptHandler(): unknown interrupt.");
+    ASSERTMSGLINE (0x19E,
+                   InterruptHandlerTable,
+                   "__OSGetInterruptHandler(): OSInit() must be called in advance.");
+    ASSERTMSGLINE (
+        0x1A0, interrupt < 0x20, "__OSGetInterruptHandler(): unknown interrupt.");
     return InterruptHandlerTable[interrupt];
 }
 void
-__OSInterruptInit(void)
+__OSInterruptInit (void)
 {
-    InterruptHandlerTable = (void*)OSPhysicalToCached(0x3040);
+    InterruptHandlerTable = (void*)OSPhysicalToCached (0x3040);
 
-    memset(InterruptHandlerTable, 0,
-           __OS_INTERRUPT_MAX * sizeof(__OSInterruptHandler));
+    memset (InterruptHandlerTable,
+            0,
+            __OS_INTERRUPT_MAX * sizeof (__OSInterruptHandler));
 
-    *(OSInterruptMask*)OSPhysicalToCached(0x00C4) = 0;
-    *(OSInterruptMask*)OSPhysicalToCached(0x00C8) = 0;
+    *(OSInterruptMask*)OSPhysicalToCached (0x00C4) = 0;
+    *(OSInterruptMask*)OSPhysicalToCached (0x00C8) = 0;
 
     __PIRegs[1] = 0xf0;
 
-    __OSMaskInterrupts(OS_INTERRUPTMASK_MEM | OS_INTERRUPTMASK_DSP |
-                       OS_INTERRUPTMASK_AI | OS_INTERRUPTMASK_EXI |
-                       OS_INTERRUPTMASK_PI);
+    __OSMaskInterrupts (OS_INTERRUPTMASK_MEM | OS_INTERRUPTMASK_DSP |
+                        OS_INTERRUPTMASK_AI | OS_INTERRUPTMASK_EXI |
+                        OS_INTERRUPTMASK_PI);
 
-    __OSSetExceptionHandler(4, ExternalInterruptHandler);
+    __OSSetExceptionHandler (4, ExternalInterruptHandler);
 #if DEBUG
     __PIRegs[0] = 1;
-    __OSUnmaskInterrupts(0x100);
+    __OSUnmaskInterrupts (0x100);
 #endif
 }
 static u32
-SetInterruptMask(OSInterruptMask mask, OSInterruptMask current)
+SetInterruptMask (OSInterruptMask mask, OSInterruptMask current)
 {
     u32 reg;
 
-    switch (__cntlzw(mask))
+    switch (__cntlzw (mask))
     {
         case __OS_INTERRUPT_MEM_0:
         case __OS_INTERRUPT_MEM_1:
@@ -328,12 +338,12 @@ SetInterruptMask(OSInterruptMask mask, OSInterruptMask current)
     return mask;
 }
 OSInterruptMask
-OSGetInterruptMask(void)
+OSGetInterruptMask (void)
 {
-    return *(OSInterruptMask*)OSPhysicalToCached(0x00C8);
+    return *(OSInterruptMask*)OSPhysicalToCached (0x00C8);
 }
 OSInterruptMask
-OSSetInterruptMask(OSInterruptMask local)
+OSSetInterruptMask (OSInterruptMask local)
 {
     BOOL            enabled;
     OSInterruptMask global;
@@ -341,19 +351,19 @@ OSSetInterruptMask(OSInterruptMask local)
     OSInterruptMask mask;
 
     enabled = OSDisableInterrupts();
-    global = *(OSInterruptMask*)OSPhysicalToCached(0x00C4);
-    prev = *(OSInterruptMask*)OSPhysicalToCached(0x00C8);
+    global = *(OSInterruptMask*)OSPhysicalToCached (0x00C4);
+    prev = *(OSInterruptMask*)OSPhysicalToCached (0x00C8);
     mask = (global | prev) ^ local;
-    *(OSInterruptMask*)OSPhysicalToCached(0x00C8) = local;
+    *(OSInterruptMask*)OSPhysicalToCached (0x00C8) = local;
     while (mask)
     {
-        mask = SetInterruptMask(mask, global | local);
+        mask = SetInterruptMask (mask, global | local);
     }
-    OSRestoreInterrupts(enabled);
+    OSRestoreInterrupts (enabled);
     return prev;
 }
 OSInterruptMask
-__OSMaskInterrupts(OSInterruptMask global)
+__OSMaskInterrupts (OSInterruptMask global)
 {
     BOOL            enabled;
     OSInterruptMask prev;
@@ -361,20 +371,20 @@ __OSMaskInterrupts(OSInterruptMask global)
     OSInterruptMask mask;
 
     enabled = OSDisableInterrupts();
-    prev = *(OSInterruptMask*)OSPhysicalToCached(0x00C4);
-    local = *(OSInterruptMask*)OSPhysicalToCached(0x00C8);
+    prev = *(OSInterruptMask*)OSPhysicalToCached (0x00C4);
+    local = *(OSInterruptMask*)OSPhysicalToCached (0x00C8);
     mask = ~(prev | local) & global;
     global |= prev;
-    *(OSInterruptMask*)OSPhysicalToCached(0x00C4) = global;
+    *(OSInterruptMask*)OSPhysicalToCached (0x00C4) = global;
     while (mask)
     {
-        mask = SetInterruptMask(mask, global | local);
+        mask = SetInterruptMask (mask, global | local);
     }
-    OSRestoreInterrupts(enabled);
+    OSRestoreInterrupts (enabled);
     return prev;
 }
 OSInterruptMask
-__OSUnmaskInterrupts(OSInterruptMask global)
+__OSUnmaskInterrupts (OSInterruptMask global)
 {
     BOOL            enabled;
     OSInterruptMask prev;
@@ -382,20 +392,20 @@ __OSUnmaskInterrupts(OSInterruptMask global)
     OSInterruptMask mask;
 
     enabled = OSDisableInterrupts();
-    prev = *(OSInterruptMask*)OSPhysicalToCached(0x00C4);
-    local = *(OSInterruptMask*)OSPhysicalToCached(0x00C8);
+    prev = *(OSInterruptMask*)OSPhysicalToCached (0x00C4);
+    local = *(OSInterruptMask*)OSPhysicalToCached (0x00C8);
     mask = (prev | local) & global;
     global = prev & ~global;
-    *(OSInterruptMask*)OSPhysicalToCached(0x00C4) = global;
+    *(OSInterruptMask*)OSPhysicalToCached (0x00C4) = global;
     while (mask)
     {
-        mask = SetInterruptMask(mask, global | local);
+        mask = SetInterruptMask (mask, global | local);
     }
-    OSRestoreInterrupts(enabled);
+    OSRestoreInterrupts (enabled);
     return prev;
 }
 void
-__OSDispatchInterrupt(__OSException exception, OSContext* context)
+__OSDispatchInterrupt (__OSException exception, OSContext* context)
 {
     u32                  intsr;
     u32                  reg;
@@ -413,7 +423,7 @@ __OSDispatchInterrupt(__OSException exception, OSContext* context)
 #if DEBUG
         __OSSpuriousInterrupts++;
 #endif
-        OSLoadContext(context);
+        OSLoadContext (context);
     }
 
     cause = 0;
@@ -552,55 +562,56 @@ __OSDispatchInterrupt(__OSException exception, OSContext* context)
 #if DEBUG
     if (cause & OS_INTERRUPTMASK_PI_ERROR)
     {
-        OSReport("PI ERROR\n");
-        OSDumpContext(context);
-        OSReport("\nPIESR = 0x%08x                  PIEAR  = 0x%08x\n", __PIRegs[7],
-                 __PIRegs[8]);
+        OSReport ("PI ERROR\n");
+        OSDumpContext (context);
+        OSReport ("\nPIESR = 0x%08x                  PIEAR  = 0x%08x\n",
+                  __PIRegs[7],
+                  __PIRegs[8]);
         __PIRegs[0] = 1;
-        OSReport("PI Error = %s\n", __OSPIErrors[__PIRegs[7]]);
-        OSReport("Offending address = 0x%x (from PIEAR)\n", __PIRegs[8]);
+        OSReport ("PI Error = %s\n", __OSPIErrors[__PIRegs[7]]);
+        OSReport ("Offending address = 0x%x (from PIEAR)\n", __PIRegs[8]);
     }
 #endif
 
-    unmasked = cause & ~(*(OSInterruptMask*)OSPhysicalToCached(0x00C4) |
-                         *(OSInterruptMask*)OSPhysicalToCached(0x00C8));
+    unmasked = cause & ~(*(OSInterruptMask*)OSPhysicalToCached (0x00C4) |
+                         *(OSInterruptMask*)OSPhysicalToCached (0x00C8));
     if (unmasked)
     {
         for (prio = InterruptPrioTable;; ++prio)
         {
             if (unmasked & *prio)
             {
-                interrupt = (__OSInterrupt)__cntlzw(unmasked & *prio);
+                interrupt = (__OSInterrupt)__cntlzw (unmasked & *prio);
                 break;
             }
         }
 
-        handler = __OSGetInterruptHandler(interrupt);
+        handler = __OSGetInterruptHandler (interrupt);
         if (handler)
         {
             OSDisableScheduler();
-            handler(interrupt, context);
+            handler (interrupt, context);
             OSEnableScheduler();
             __OSReschedule();
-            OSLoadContext(context);
+            OSLoadContext (context);
         }
     }
 
 #if DEBUG
-    OSReport("Unhandled Interrupt(s): cause %08x  intsr %08x\n", cause, intsr);
+    OSReport ("Unhandled Interrupt(s): cause %08x  intsr %08x\n", cause, intsr);
     while (cause)
     {
-        interrupt = __cntlzw(cause);
-        cause &= ~(1 << (0x1F - __cntlzw(cause)));
-        OSReport("    %s\n", __OSInterruptNames[interrupt]);
+        interrupt = __cntlzw (cause);
+        cause &= ~(1 << (0x1F - __cntlzw (cause)));
+        OSReport ("    %s\n", __OSInterruptNames[interrupt]);
     }
 #endif
 
-    OSLoadContext(context);
+    OSLoadContext (context);
 }
 static ASM void
-ExternalInterruptHandler(register __OSException exception,
-                         register OSContext*    context)
+ExternalInterruptHandler (register __OSException exception,
+                          register OSContext*    context)
 {
 #pragma unused(exception)
     // clang-format off

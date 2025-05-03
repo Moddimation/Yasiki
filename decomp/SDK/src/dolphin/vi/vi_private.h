@@ -68,8 +68,8 @@ static volatile u32         retraceCount;
 static u32                  changeMode;
 static volatile u32         flushFlag;
 static struct OSThreadQueue retraceQueue;
-static void                 (*PreCB)(u32);
-static void                 (*PostCB)(u32);
+static void                 (*PreCB) (u32);
+static void                 (*PostCB) (u32);
 static u32                  encoderType;
 static s16                  displayOffsetH;
 static s16                  displayOffsetV;
@@ -100,24 +100,24 @@ static u16 taps[25] = { 0x01F0, 0x01DC, 0x01AE, 0x0174, 0x0129, 0x00DB, 0x008E,
 static SomeVIStruct HorVer;
 static u32          FBSet;
 
-static u32 getCurrentFieldEvenOdd(void);
+static u32 getCurrentFieldEvenOdd (void);
 
-void __VIInitI2C(void);
-void __VISetSCL(int value);
-int  __VIGetSCL(void);
-void __VISetSDA(int value);
-int  __VIGetSDA(void);
+void __VIInitI2C (void);
+void __VISetSCL (int value);
+int  __VIGetSCL (void);
+void __VISetSDA (int value);
+int  __VIGetSDA (void);
 
 /* i2c.c */
 
-int __VISendI2CData(u8 slaveAddr, u8* pData, int nBytes);
+int __VISendI2CData (u8 slaveAddr, u8* pData, int nBytes);
 
 /* initphilips.c */
 
-void __VIInitPhilips(void);
+void __VIInitPhilips (void);
 
 /* vi.c */
 
-void __VIInit(VITVMode mode);
-void __VISetAdjustingValues(s16 x, s16 y);
-void __VIGetAdjustingValues(s16* x, s16* y);
+void __VIInit (VITVMode mode);
+void __VISetAdjustingValues (s16 x, s16 y);
+void __VIGetAdjustingValues (s16* x, s16* y);

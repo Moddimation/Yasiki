@@ -162,33 +162,33 @@ char* __gxvWarnings[113] = {
 
 char __gxvDummyStr[256];
 static void
-__GXVerifyGlobal(void)
+__GXVerifyGlobal (void)
 {
 }
 static void
-__GXVerifyCP(GXVtxFmt fmt)
+__GXVerifyCP (GXVtxFmt fmt)
 {
-    u32 nrmCnt = GET_REG_FIELD(__GXData->vatA[fmt], 1, 9);
+    u32 nrmCnt = GET_REG_FIELD (__GXData->vatA[fmt], 1, 9);
 
     if (__gxVerif->verifyLevel >= GX_WARN_SEVERE)
     {
         if (__GXData->hasNrms && nrmCnt != 0)
         {
-            __gxVerif->cb(1, 0, __gxvWarnings[0]);
+            __gxVerif->cb (1, 0, __gxvWarnings[0]);
         }
         else if (__GXData->hasBiNrms && nrmCnt != 1 && nrmCnt != 2)
         {
-            __gxVerif->cb(1, 0, __gxvWarnings[0]);
+            __gxVerif->cb (1, 0, __gxvWarnings[0]);
         }
     }
 }
 void
-__GXVerifyState(GXVtxFmt vtxfmt)
+__GXVerifyState (GXVtxFmt vtxfmt)
 {
     if (__gxVerif->verifyLevel != GX_WARN_NONE)
     {
         __GXVerifyGlobal();
-        __GXVerifyCP(vtxfmt);
+        __GXVerifyCP (vtxfmt);
         __GXVerifyXF();
         __GXVerifySU();
         __GXVerifyBUMP();
@@ -198,12 +198,12 @@ __GXVerifyState(GXVtxFmt vtxfmt)
     }
 }
 void
-GXSetVerifyLevel(GXWarningLevel level)
+GXSetVerifyLevel (GXWarningLevel level)
 {
     __gxVerif->verifyLevel = level;
 }
 GXVerifyCallback
-GXSetVerifyCallback(GXVerifyCallback cb)
+GXSetVerifyCallback (GXVerifyCallback cb)
 {
     GXVerifyCallback old_cb = __gxVerif->cb;
 

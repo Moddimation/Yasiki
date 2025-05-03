@@ -6,9 +6,9 @@
 #include "CARDPrivate.h"
 
 // functions
-static void UpdateIconOffsets(CARDDir* ent, CARDStat* stat);
+static void UpdateIconOffsets (CARDDir* ent, CARDStat* stat);
 static void
-UpdateIconOffsets(CARDDir* ent, CARDStat* stat)
+UpdateIconOffsets (CARDDir* ent, CARDStat* stat)
 {
     u32  offset;
     BOOL iconTlut;
@@ -24,7 +24,7 @@ UpdateIconOffsets(CARDDir* ent, CARDStat* stat)
     }
 
     iconTlut = FALSE;
-    switch (CARDGetBannerFormat(ent))
+    switch (CARDGetBannerFormat (ent))
     {
         case CARD_STAT_BANNER_C8:
             stat->offsetBanner = offset;
@@ -44,7 +44,7 @@ UpdateIconOffsets(CARDDir* ent, CARDStat* stat)
     }
     for (i = 0; i < CARD_ICON_MAX; ++i)
     {
-        switch (CARDGetIconFormat(ent, i))
+        switch (CARDGetIconFormat (ent, i))
         {
             case CARD_STAT_ICON_C8:
                 stat->offsetIcon[i] = offset;
@@ -72,41 +72,41 @@ UpdateIconOffsets(CARDDir* ent, CARDStat* stat)
     stat->offsetData = offset;
 }
 s32
-CARDGetStatus(s32 chan, s32 fileNo, CARDStat* stat)
+CARDGetStatus (s32 chan, s32 fileNo, CARDStat* stat)
 {
     CARDControl* card;
     CARDDir*     dir;
     CARDDir*     ent;
     s32          result;
 
-    ASSERTLINE(0x97, 0 <= chan && chan < 2);
-    ASSERTLINE(0x98, 0 <= fileNo && fileNo < CARD_MAX_FILE);
+    ASSERTLINE (0x97, 0 <= chan && chan < 2);
+    ASSERTLINE (0x98, 0 <= fileNo && fileNo < CARD_MAX_FILE);
 
     if (fileNo < 0 || CARD_MAX_FILE <= fileNo)
     {
         return CARD_RESULT_FATAL_ERROR;
     }
 
-    result = __CARDGetControlBlock(chan, &card);
+    result = __CARDGetControlBlock (chan, &card);
     if (result < 0)
     {
         return result;
     }
 
-    dir = __CARDGetDirBlock(card);
+    dir = __CARDGetDirBlock (card);
     ent = &dir[fileNo];
-    result = __CARDAccess(ent);
+    result = __CARDAccess (ent);
     if (result == CARD_RESULT_NOPERM)
     {
-        result = __CARDIsPublic(ent);
+        result = __CARDIsPublic (ent);
     }
 
     if (result >= 0)
     {
-        memcpy(stat->gameName, ent->gameName, sizeof(stat->gameName));
-        memcpy(stat->company, ent->company, sizeof(stat->company));
+        memcpy (stat->gameName, ent->gameName, sizeof (stat->gameName));
+        memcpy (stat->company, ent->company, sizeof (stat->company));
         stat->length = (u32)ent->length * card->sectorSize;
-        memcpy(stat->fileName, ent->fileName, CARD_FILENAME_MAX);
+        memcpy (stat->fileName, ent->fileName, CARD_FILENAME_MAX);
         stat->time = ent->time;
 
         stat->bannerFormat = ent->bannerFormat;
@@ -115,20 +115,20 @@ CARDGetStatus(s32 chan, s32 fileNo, CARDStat* stat)
         stat->iconSpeed = ent->iconSpeed;
         stat->commentAddr = ent->commentAddr;
 
-        UpdateIconOffsets(ent, stat);
+        UpdateIconOffsets (ent, stat);
     }
-    return __CARDPutControlBlock(card, result);
+    return __CARDPutControlBlock (card, result);
 }
 s32
-CARDSetStatusAsync(s32 chan, s32 fileNo, CARDStat* stat, CARDCallback callback)
+CARDSetStatusAsync (s32 chan, s32 fileNo, CARDStat* stat, CARDCallback callback)
 {
     CARDControl* card;
     CARDDir*     dir;
     CARDDir*     ent;
     s32          result;
 
-    ASSERTLINE(0xD5, 0 <= fileNo && fileNo < CARD_MAX_FILE);
-    ASSERTLINE(0xD6, 0 <= chan && chan < 2);
+    ASSERTLINE (0xD5, 0 <= fileNo && fileNo < CARD_MAX_FILE);
+    ASSERTLINE (0xD6, 0 <= chan && chan < 2);
 
     if (fileNo < 0 || CARD_MAX_FILE <= fileNo ||
         (stat->iconAddr != 0xffffffff && stat->iconAddr >= 0x200) ||
@@ -137,18 +137,18 @@ CARDSetStatusAsync(s32 chan, s32 fileNo, CARDStat* stat, CARDCallback callback)
         return CARD_RESULT_FATAL_ERROR;
     }
 
-    result = __CARDGetControlBlock(chan, &card);
+    result = __CARDGetControlBlock (chan, &card);
     if (result < 0)
     {
         return result;
     }
 
-    dir = __CARDGetDirBlock(card);
+    dir = __CARDGetDirBlock (card);
     ent = &dir[fileNo];
-    result = __CARDAccess(ent);
+    result = __CARDAccess (ent);
     if (result < 0)
     {
-        return __CARDPutControlBlock(card, result);
+        return __CARDPutControlBlock (card, result);
     }
 
     ent->bannerFormat = stat->bannerFormat;
@@ -156,29 +156,29 @@ CARDSetStatusAsync(s32 chan, s32 fileNo, CARDStat* stat, CARDCallback callback)
     ent->iconFormat = stat->iconFormat;
     ent->iconSpeed = stat->iconSpeed;
     ent->commentAddr = stat->commentAddr;
-    UpdateIconOffsets(ent, stat);
+    UpdateIconOffsets (ent, stat);
 
     if (ent->iconAddr == 0xffffffff)
     {
-        CARDSetIconSpeed(ent, 0, CARD_STAT_SPEED_FAST);
+        CARDSetIconSpeed (ent, 0, CARD_STAT_SPEED_FAST);
     }
 
-    ent->time = (u32)OSTicksToSeconds(OSGetTime());
-    result = __CARDUpdateDir(chan, callback);
+    ent->time = (u32)OSTicksToSeconds (OSGetTime());
+    result = __CARDUpdateDir (chan, callback);
     if (result < 0)
     {
-        __CARDPutControlBlock(card, result);
+        __CARDPutControlBlock (card, result);
     }
     return result;
 }
 s32
-CARDSetStatus(s32 chan, long fileNo, struct CARDStat* stat)
+CARDSetStatus (s32 chan, long fileNo, struct CARDStat* stat)
 {
-    s32 result = CARDSetStatusAsync(chan, fileNo, stat, __CARDSyncCallback);
+    s32 result = CARDSetStatusAsync (chan, fileNo, stat, __CARDSyncCallback);
 
     if (result < 0)
     {
         return result;
     }
-    return __CARDSync(chan);
+    return __CARDSync (chan);
 }

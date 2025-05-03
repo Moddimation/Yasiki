@@ -1,23 +1,23 @@
 #include "Unsorted/IncludeStrategy.h"
 
 #include "Sato/EnemyStrategy.h"
-IncludeStrategy::IncludeStrategy() : mpStrategy(NULL)
+IncludeStrategy::IncludeStrategy () : mpStrategy (NULL)
 {
     destroyStrategy();
 }
-IncludeStrategy::~IncludeStrategy()
+IncludeStrategy::~IncludeStrategy ()
 {
     destroyStrategy();
 }
 void
-IncludeStrategy::setStrategy(int i_entityIdx)
+IncludeStrategy::setStrategy (int i_entityIdx)
 {
     destroyStrategy();
-    mpStrategy = static_cast<EnemyStrategy*>(
-        (*getEnemyStrategyInitFunc(i_entityIdx))(getBuffer(), 0x800));
+    mpStrategy = static_cast<EnemyStrategy*> (
+        (*getEnemyStrategyInitFunc (i_entityIdx)) (getBuffer(), 0x800));
 }
 void
-IncludeStrategy::destroyStrategy()
+IncludeStrategy::destroyStrategy ()
 {
     EnemyStrategy* strategy = mpStrategy;
 

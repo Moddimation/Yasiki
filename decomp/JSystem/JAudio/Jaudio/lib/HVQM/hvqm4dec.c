@@ -4,7 +4,7 @@
  * Size:	000360
  */
 void
-init_global_constants(void)
+init_global_constants (void)
 {
     /*
     .loc_0x0:
@@ -276,7 +276,7 @@ init_global_constants(void)
  * Size:	000014
  */
 void
-set_border(void)
+set_border (void)
 {
     // UNUSED FUNCTION
 }
@@ -286,7 +286,7 @@ set_border(void)
  * Size:	00011C
  */
 void
-setHVQPlaneDesc(void)
+setHVQPlaneDesc (void)
 {
     /*
     .loc_0x0:
@@ -377,7 +377,7 @@ setHVQPlaneDesc(void)
  * Size:	000030
  */
 void
-setCode(void)
+setCode (void)
 {
     // UNUSED FUNCTION
 }
@@ -387,7 +387,7 @@ setCode(void)
  * Size:	0002CC
  */
 void
-_readTree(void)
+_readTree (void)
 {
     /*
     .loc_0x0:
@@ -614,7 +614,7 @@ _readTree(void)
  * Size:	000064
  */
 void
-getByte(void)
+getByte (void)
 {
     /*
     .loc_0x0:
@@ -655,7 +655,7 @@ getByte(void)
  * Size:	000140
  */
 void
-readTree(void)
+readTree (void)
 {
     // UNUSED FUNCTION
 }
@@ -665,7 +665,7 @@ readTree(void)
  * Size:	000084
  */
 void
-decodeUOvfSym(void)
+decodeUOvfSym (void)
 {
     // UNUSED FUNCTION
 }
@@ -675,7 +675,7 @@ decodeUOvfSym(void)
  * Size:	0002C4
  */
 void
-Ipic_BasisNumDec(void)
+Ipic_BasisNumDec (void)
 {
     /*
     .loc_0x0:
@@ -924,7 +924,7 @@ Ipic_BasisNumDec(void)
  * Size:	00013C
  */
 void
-IpicDcvDec(void)
+IpicDcvDec (void)
 {
     /*
     .loc_0x0:
@@ -1037,7 +1037,7 @@ IpicDcvDec(void)
  * Size:	000040
  */
 void
-getBit(void)
+getBit (void)
 {
     /*
     .loc_0x0:
@@ -1069,7 +1069,7 @@ getBit(void)
  * Size:	000070
  */
 void
-decodeHuff(void)
+decodeHuff (void)
 {
     /*
     .loc_0x0:
@@ -1117,7 +1117,7 @@ decodeHuff(void)
  * Size:	0003A4
  */
 void
-MakeNest(void)
+MakeNest (void)
 {
     /*
     .loc_0x0:
@@ -1426,7 +1426,7 @@ MakeNest(void)
  * Size:	000198
  */
 void
-WeightImBlock(void)
+WeightImBlock (void)
 {
     /*
     .loc_0x0:
@@ -1540,7 +1540,7 @@ WeightImBlock(void)
  * Size:	000048
  */
 void
-OrgBlock(void)
+OrgBlock (void)
 {
     /*
     .loc_0x0:
@@ -1570,7 +1570,7 @@ OrgBlock(void)
  * Size:	0003D0
  */
 void
-IntraAotBlock(void)
+IntraAotBlock (void)
 {
     /*
     .loc_0x0:
@@ -1836,7 +1836,7 @@ IntraAotBlock(void)
  * Size:	00047C
  */
 void
-GetAotBasis(void)
+GetAotBasis (void)
 {
     /*
     .loc_0x0:
@@ -2211,7 +2211,7 @@ GetAotBasis(void)
  * Size:	000144
  */
 void
-IpicBlockDec(void)
+IpicBlockDec (void)
 {
     /*
     .loc_0x0:
@@ -2322,7 +2322,7 @@ IpicBlockDec(void)
  * Size:	0000D4
  */
 void
-IpicLineDec(void)
+IpicLineDec (void)
 {
     /*
     .loc_0x0:
@@ -2391,7 +2391,7 @@ IpicLineDec(void)
  * Size:	0000DC
  */
 void
-IpicPlaneDec(void)
+IpicPlaneDec (void)
 {
     /*
     .loc_0x0:
@@ -2462,7 +2462,7 @@ IpicPlaneDec(void)
  * Size:	00008C
  */
 void
-initMCHandler(void)
+initMCHandler (void)
 {
     /*
     .loc_0x0:
@@ -2511,7 +2511,7 @@ initMCHandler(void)
  * Size:	00004C
  */
 void
-resetMCHandler(void)
+resetMCHandler (void)
 {
     // UNUSED FUNCTION
 }
@@ -2521,7 +2521,7 @@ resetMCHandler(void)
  * Size:	00009C
  */
 void
-_MotionComp_00(void)
+_MotionComp_00 (void)
 {
     /*
     .loc_0x0:
@@ -2572,7 +2572,7 @@ _MotionComp_00(void)
  * Size:	0001AC
  */
 void
-_MotionComp_01(void)
+_MotionComp_01 (void)
 {
     /*
     .loc_0x0:
@@ -2691,7 +2691,7 @@ _MotionComp_01(void)
  * Size:	00019C
  */
 void
-_MotionComp_10(void)
+_MotionComp_10 (void)
 {
     /*
     .loc_0x0:
@@ -2806,7 +2806,7 @@ _MotionComp_10(void)
  * Size:	0002AC
  */
 void
-_MotionComp_11(void)
+_MotionComp_11 (void)
 {
     /*
     .loc_0x0:
@@ -2989,7 +2989,7 @@ _MotionComp_11(void)
  * Size:	000A00
  */
 void
-MotionComp(void)
+MotionComp (void)
 {
     /*
     .loc_0x0:
@@ -3677,7 +3677,7 @@ MotionComp(void)
  * Size:	00041C
  */
 void
-decode_PB_cc(void)
+decode_PB_cc (void)
 {
     /*
     .loc_0x0:
@@ -4016,7 +4016,7 @@ decode_PB_cc(void)
  * Size:	00086C
  */
 void
-PrediAotBlock(void)
+PrediAotBlock (void)
 {
     /*
     .loc_0x0:
@@ -4649,7 +4649,7 @@ PrediAotBlock(void)
  * Size:	0004C4
  */
 void
-GetMCAotBasis(void)
+GetMCAotBasis (void)
 {
     /*
     .loc_0x0:
@@ -5042,7 +5042,7 @@ GetMCAotBasis(void)
  * Size:	000164
  */
 void
-MCBlockDecMCNest(void)
+MCBlockDecMCNest (void)
 {
     /*
     .loc_0x0:
@@ -5155,7 +5155,7 @@ MCBlockDecMCNest(void)
  * Size:	000158
  */
 void
-MCBlockDecDCNest(void)
+MCBlockDecDCNest (void)
 {
     /*
     .loc_0x0:
@@ -5279,7 +5279,7 @@ MCBlockDecDCNest(void)
  * Size:	0000C8
  */
 void
-initMCBproc(void)
+initMCBproc (void)
 {
     // UNUSED FUNCTION
 }
@@ -5289,7 +5289,7 @@ initMCBproc(void)
  * Size:	0000A4
  */
 void
-getMCBproc(void)
+getMCBproc (void)
 {
     // UNUSED FUNCTION
 }
@@ -5299,7 +5299,7 @@ getMCBproc(void)
  * Size:	000110
  */
 void
-initMCBtype(void)
+initMCBtype (void)
 {
     // UNUSED FUNCTION
 }
@@ -5309,7 +5309,7 @@ initMCBtype(void)
  * Size:	0000F8
  */
 void
-getMCBtype(void)
+getMCBtype (void)
 {
     // UNUSED FUNCTION
 }
@@ -5319,7 +5319,7 @@ getMCBtype(void)
  * Size:	000430
  */
 void
-spread_PB_descMap(void)
+spread_PB_descMap (void)
 {
     /*
     .loc_0x0:
@@ -5651,7 +5651,7 @@ spread_PB_descMap(void)
  * Size:	00043C
  */
 void
-BpicPlaneDec(void)
+BpicPlaneDec (void)
 {
     /*
     .loc_0x0:
@@ -5986,7 +5986,7 @@ BpicPlaneDec(void)
  * Size:	000020
  */
 void
-HVQM4InitDecoder(void)
+HVQM4InitDecoder (void)
 {
     /*
     .loc_0x0:
@@ -6006,7 +6006,7 @@ HVQM4InitDecoder(void)
  * Size:	000024
  */
 void
-HVQM4InitSeqObj(void)
+HVQM4InitSeqObj (void)
 {
     /*
     .loc_0x0:
@@ -6027,7 +6027,7 @@ HVQM4InitSeqObj(void)
  * Size:	000074
  */
 void
-HVQM4BuffSize(void)
+HVQM4BuffSize (void)
 {
     /*
     .loc_0x0:
@@ -6076,7 +6076,7 @@ HVQM4BuffSize(void)
  * Size:	000464
  */
 void
-HVQM4SetBuffer(void)
+HVQM4SetBuffer (void)
 {
     /*
     .loc_0x0:
@@ -6407,7 +6407,7 @@ HVQM4SetBuffer(void)
  * Size:	000510
  */
 void
-HVQM4DecodeIpic(void)
+HVQM4DecodeIpic (void)
 {
     /*
     .loc_0x0:
@@ -6825,7 +6825,7 @@ HVQM4DecodeIpic(void)
  * Size:	000024
  */
 void
-HVQM4DecodePpic(void)
+HVQM4DecodePpic (void)
 {
     /*
     .loc_0x0:
@@ -6848,7 +6848,7 @@ HVQM4DecodePpic(void)
  * Size:	0005A8
  */
 void
-HVQM4DecodeBpic(void)
+HVQM4DecodeBpic (void)
 {
     /*
     .loc_0x0:

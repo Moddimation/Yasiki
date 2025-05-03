@@ -7,51 +7,51 @@
 static u8 shadowGPIOOE;
 static u8 shadowGPIOData;
 
-static void initGpioExi(void);
-static void setVideoReset(int value);
-static void setI2CEnable(int value);
-static int  gpioOutput(u8 value);
-static int  gpioOE(u8 value);
-static int  gpioOut(u32 addr, u8 value);
-static int  gpioInput(u8* p);
+static void initGpioExi (void);
+static void setVideoReset (int value);
+static void setI2CEnable (int value);
+static int  gpioOutput (u8 value);
+static int  gpioOE (u8 value);
+static int  gpioOut (u32 addr, u8 value);
+static int  gpioInput (u8* p);
 void
-__VIInitI2C(void)
+__VIInitI2C (void)
 {
     OSTime time;
 
     initGpioExi();
-    setVideoReset(0);
+    setVideoReset (0);
     time = OSGetTime();
-    while (OSGetTime() - time < OS_USEC_TO_TICKS(100))
+    while (OSGetTime() - time < OS_USEC_TO_TICKS (100))
     {
     }
-    setVideoReset(1);
-    setI2CEnable(1);
+    setVideoReset (1);
+    setI2CEnable (1);
 }
 static void
-initGpioExi(void)
+initGpioExi (void)
 {
     shadowGPIOOE = 0;
     shadowGPIOData = 0;
-    gpioOutput(shadowGPIOData);
-    gpioOE(shadowGPIOOE);
+    gpioOutput (shadowGPIOData);
+    gpioOE (shadowGPIOOE);
 }
 void
-__VISetSCL(int value)
+__VISetSCL (int value)
 {
     shadowGPIOOE &= 0xFFFFFFFD;
     if (value == 0)
     {
         shadowGPIOOE |= 2;
     }
-    gpioOE(shadowGPIOOE);
+    gpioOE (shadowGPIOOE);
 }
 int
-__VIGetSCL(void)
+__VIGetSCL (void)
 {
     u8 value;
 
-    gpioInput(&value);
+    gpioInput (&value);
     if (value & 2)
     {
         return 1;
@@ -62,21 +62,21 @@ __VIGetSCL(void)
     }
 }
 void
-__VISetSDA(int value)
+__VISetSDA (int value)
 {
     shadowGPIOOE &= 0xFFFFFFFE;
     if (value == 0)
     {
         shadowGPIOOE |= 1;
     }
-    gpioOE(shadowGPIOOE);
+    gpioOE (shadowGPIOOE);
 }
 int
-__VIGetSDA(void)
+__VIGetSDA (void)
 {
     u8 value;
 
-    gpioInput(&value);
+    gpioInput (&value);
     if (value & 1)
     {
         return 1;
@@ -87,7 +87,7 @@ __VIGetSDA(void)
     }
 }
 static void
-setVideoReset(int value)
+setVideoReset (int value)
 {
     if (value != 0)
     {
@@ -98,11 +98,11 @@ setVideoReset(int value)
         shadowGPIOData &= 0xFFFFFFFB;
     }
     shadowGPIOOE |= 4;
-    gpioOutput(shadowGPIOData);
-    gpioOE(shadowGPIOOE);
+    gpioOutput (shadowGPIOData);
+    gpioOE (shadowGPIOOE);
 }
 static void
-setI2CEnable(int value)
+setI2CEnable (int value)
 {
     if (value != 0)
     {
@@ -113,64 +113,64 @@ setI2CEnable(int value)
         shadowGPIOData |= 0x10;
     }
     shadowGPIOOE |= 0x10;
-    gpioOutput(shadowGPIOData);
-    gpioOE(shadowGPIOOE);
+    gpioOutput (shadowGPIOData);
+    gpioOE (shadowGPIOOE);
 }
 static int
-gpioOutput(u8 value)
+gpioOutput (u8 value)
 {
-    return gpioOut(0x800404U, value);
+    return gpioOut (0x800404U, value);
 }
 static int
-gpioOE(u8 value)
+gpioOE (u8 value)
 {
-    return gpioOut(0x800408U, value);
+    return gpioOut (0x800408U, value);
 }
 static int
-gpioOut(u32 addr, u8 value)
+gpioOut (u32 addr, u8 value)
 {
     u32 cmd;
 
     cmd = (addr | 0x02000000) << 6;
-    if (EXILock(0, 1, 0) == 0)
+    if (EXILock (0, 1, 0) == 0)
     {
         return 0;
     }
-    if (EXISelect(0, 1, 4) == 0)
+    if (EXISelect (0, 1, 4) == 0)
     {
-        EXIUnlock(0);
+        EXIUnlock (0);
         return 0;
     }
-    EXIImm(0, &cmd, 4, 1, 0);
-    EXISync(0);
+    EXIImm (0, &cmd, 4, 1, 0);
+    EXISync (0);
     cmd = value << 24;
-    EXIImm(0, &cmd, 1, 1, 0);
-    EXISync(0);
-    EXIDeselect(0);
-    EXIUnlock(0);
+    EXIImm (0, &cmd, 1, 1, 0);
+    EXISync (0);
+    EXIDeselect (0);
+    EXIUnlock (0);
     return 1;
 }
 static int
-gpioInput(u8* p)
+gpioInput (u8* p)
 {
     u32 cmd;
 
-    if (EXILock(0, 1, 0) == 0)
+    if (EXILock (0, 1, 0) == 0)
     {
         return 0;
     }
-    if (EXISelect(0, 1, 4) == 0)
+    if (EXISelect (0, 1, 4) == 0)
     {
-        EXIUnlock(0);
+        EXIUnlock (0);
         return 0;
     }
     cmd = 0x20010100;
-    EXIImm(0, &cmd, 4, 1, 0);
-    EXISync(0);
-    EXIImm(0, &cmd, 1, 0, 0);
-    EXISync(0);
-    EXIDeselect(0);
-    EXIUnlock(0);
+    EXIImm (0, &cmd, 4, 1, 0);
+    EXISync (0);
+    EXIImm (0, &cmd, 1, 0, 0);
+    EXISync (0);
+    EXIDeselect (0);
+    EXIUnlock (0);
     *p = cmd >> 24;
     return 1;
 }

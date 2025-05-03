@@ -5,7 +5,7 @@
 #include <dolphin/os/OSTime.h>
 
 typedef struct OSAlarm OSAlarm;
-typedef void           (*OSAlarmHandler)(OSAlarm* alarm, OSContext* context);
+typedef void           (*OSAlarmHandler) (OSAlarm* alarm, OSContext* context);
 struct OSAlarm
 {
     OSAlarmHandler handler;
@@ -17,14 +17,16 @@ struct OSAlarm
     OSTime period;
     OSTime start;
 };
-void OSInitAlarm(void);
-void OSSetAlarm(OSAlarm* alarm, OSTime tick, OSAlarmHandler handler);
-void OSSetAbsAlarm(OSAlarm* alarm, OSTime time, OSAlarmHandler handler);
-void OSSetPeriodicAlarm(OSAlarm* alarm, OSTime start, OSTime period,
-                        OSAlarmHandler handler);
-void OSCreateAlarm(OSAlarm* alarm);
-void OSCancelAlarm(OSAlarm* alarm);
+void OSInitAlarm (void);
+void OSSetAlarm (OSAlarm* alarm, OSTime tick, OSAlarmHandler handler);
+void OSSetAbsAlarm (OSAlarm* alarm, OSTime time, OSAlarmHandler handler);
+void OSSetPeriodicAlarm (OSAlarm*       alarm,
+                         OSTime         start,
+                         OSTime         period,
+                         OSAlarmHandler handler);
+void OSCreateAlarm (OSAlarm* alarm);
+void OSCancelAlarm (OSAlarm* alarm);
 
-BOOL OSCheckAlarmQueue(void);
+BOOL OSCheckAlarmQueue (void);
 
 #endif // _DOLPHIN_OSALARM_H_

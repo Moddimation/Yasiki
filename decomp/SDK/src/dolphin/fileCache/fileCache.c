@@ -5,38 +5,38 @@
 DSCache DODisplayCache;
 u8      DOCacheInitialized;
 
-static u8   AllocCacheNode(DSCacheNodePtr* cacheNode, char* name);
-static void FreeCacheNode(DSCacheNodePtr* cacheNode);
+static u8   AllocCacheNode (DSCacheNodePtr* cacheNode, char* name);
+static void FreeCacheNode (DSCacheNodePtr* cacheNode);
 DSCacheNodePtr
-DSAddCacheNode(DSCachePtr cache, char* name, Ptr data, Ptr OSFreeFunc)
+DSAddCacheNode (DSCachePtr cache, char* name, Ptr data, Ptr OSFreeFunc)
 {
     DSCacheNodePtr cacheNode;
 
     cacheNode = NULL;
-    if (!AllocCacheNode(&cacheNode, name))
+    if (!AllocCacheNode (&cacheNode, name))
     {
         return NULL;
     }
-    Strcpy(cacheNode->Name, name);
+    Strcpy (cacheNode->Name, name);
     cacheNode->Data = data;
-    cacheNode->Free = (void (*)(Ptr*))OSFreeFunc;
+    cacheNode->Free = (void (*) (Ptr*))OSFreeFunc;
     cacheNode->ReferenceCount = 0;
-    DSInsertListObject(&cache->CacheNodeList, NULL, (Ptr)cacheNode);
+    DSInsertListObject (&cache->CacheNodeList, NULL, (Ptr)cacheNode);
     return cacheNode;
 }
 static u8
-AllocCacheNode(DSCacheNodePtr* cacheNode, char* name)
+AllocCacheNode (DSCacheNodePtr* cacheNode, char* name)
 {
     if (*cacheNode)
     {
-        FreeCacheNode(cacheNode);
+        FreeCacheNode (cacheNode);
     }
-    *cacheNode = OSAlloc(sizeof(DSCacheNode));
+    *cacheNode = OSAlloc (sizeof (DSCacheNode));
     if (!*cacheNode)
     {
         return FALSE;
     }
-    (*cacheNode)->Name = OSAlloc(Strlen(name) + 1);
+    (*cacheNode)->Name = OSAlloc (Strlen (name) + 1);
     if (!(*cacheNode)->Name)
     {
         return FALSE;
@@ -44,7 +44,7 @@ AllocCacheNode(DSCacheNodePtr* cacheNode, char* name)
     return TRUE;
 }
 void
-DSEmptyCache(DSCachePtr cache)
+DSEmptyCache (DSCachePtr cache)
 {
     DSCacheNodePtr cursor;
     DSCacheNodePtr cacheNode;
@@ -54,12 +54,12 @@ DSEmptyCache(DSCachePtr cache)
     {
         cacheNode = cursor;
         cursor = (DSCacheNodePtr)cursor->Link.Next;
-        DSRemoveListObject(&cache->CacheNodeList, (Ptr)cacheNode);
-        FreeCacheNode(&cacheNode);
+        DSRemoveListObject (&cache->CacheNodeList, (Ptr)cacheNode);
+        FreeCacheNode (&cacheNode);
     }
 }
 static DSCacheNodePtr
-FindCacheNode(DSCachePtr cache, char* name, Ptr data)
+FindCacheNode (DSCachePtr cache, char* name, Ptr data)
 {
     DSCacheNodePtr cacheNode;
 
@@ -79,7 +79,7 @@ FindCacheNode(DSCachePtr cache, char* name, Ptr data)
     {
         while (cacheNode)
         {
-            if (Strcmp(name, cacheNode->Name) == 0)
+            if (Strcmp (name, cacheNode->Name) == 0)
             {
                 return cacheNode;
             }
@@ -89,11 +89,11 @@ FindCacheNode(DSCachePtr cache, char* name, Ptr data)
     return NULL;
 }
 Ptr
-DSGetCacheObj(DSCachePtr cache, char* name)
+DSGetCacheObj (DSCachePtr cache, char* name)
 {
     DSCacheNodePtr cacheNode;
 
-    cacheNode = FindCacheNode(cache, name, NULL);
+    cacheNode = FindCacheNode (cache, name, NULL);
     if (cacheNode)
     {
         cacheNode->ReferenceCount++;
@@ -102,29 +102,29 @@ DSGetCacheObj(DSCachePtr cache, char* name)
     return NULL;
 }
 static void
-FreeCacheNode(DSCacheNodePtr* cacheNode)
+FreeCacheNode (DSCacheNodePtr* cacheNode)
 {
     if (*cacheNode)
     {
         if ((*cacheNode)->Free)
         {
-            (*cacheNode)->Free(&(*cacheNode)->Data);
+            (*cacheNode)->Free (&(*cacheNode)->Data);
         }
-        OSFree((*cacheNode)->Name);
-        OSFree(*cacheNode);
+        OSFree ((*cacheNode)->Name);
+        OSFree (*cacheNode);
         *cacheNode = NULL;
     }
 }
 void
-DSInitCache(DSCachePtr cache)
+DSInitCache (DSCachePtr cache)
 {
     DSCacheNode cacheNode;
 
     cache->PurgeFlag = DS_AUTO_PURGE;
-    DSInitList(&cache->CacheNodeList, (Ptr)&cacheNode, &cacheNode.Link);
+    DSInitList (&cache->CacheNodeList, (Ptr)&cacheNode, &cacheNode.Link);
 }
 void
-DSPurgeCache(DSCachePtr cache)
+DSPurgeCache (DSCachePtr cache)
 {
     DSCacheNodePtr cursor;
     DSCacheNodePtr cacheNode;
@@ -136,17 +136,17 @@ DSPurgeCache(DSCachePtr cache)
         cursor = (DSCacheNodePtr)cursor->Link.Next;
         if (cacheNode->ReferenceCount == 0)
         {
-            DSRemoveListObject(&cache->CacheNodeList, (Ptr)cacheNode);
-            FreeCacheNode(&cacheNode);
+            DSRemoveListObject (&cache->CacheNodeList, (Ptr)cacheNode);
+            FreeCacheNode (&cacheNode);
         }
     }
 }
 void
-DSReleaseCacheObj(DSCachePtr cache, Ptr data)
+DSReleaseCacheObj (DSCachePtr cache, Ptr data)
 {
     DSCacheNodePtr cacheNode;
 
-    cacheNode = FindCacheNode(cache, NULL, data);
+    cacheNode = FindCacheNode (cache, NULL, data);
     if (cacheNode)
     {
         if (cacheNode->ReferenceCount != 0)
@@ -155,19 +155,19 @@ DSReleaseCacheObj(DSCachePtr cache, Ptr data)
         }
         if (cacheNode->ReferenceCount == 0 && cache->PurgeFlag == DS_AUTO_PURGE)
         {
-            DSRemoveListObject(&cache->CacheNodeList, (Ptr)cacheNode);
-            FreeCacheNode(&cacheNode);
+            DSRemoveListObject (&cache->CacheNodeList, (Ptr)cacheNode);
+            FreeCacheNode (&cacheNode);
         }
     }
 }
 void
-DSSetCachePurgeFlag(DSCachePtr cache, u8 purgeFlag)
+DSSetCachePurgeFlag (DSCachePtr cache, u8 purgeFlag)
 {
     cache->PurgeFlag = purgeFlag;
 }
 void
-CSHInitDisplayCache(void)
+CSHInitDisplayCache (void)
 {
-    DSInitCache(&DODisplayCache);
+    DSInitCache (&DODisplayCache);
     DOCacheInitialized = TRUE;
 }

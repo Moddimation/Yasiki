@@ -16,7 +16,7 @@ struct OSResetFunctionQueue
     struct OSResetFunctionInfo* head;
     struct OSResetFunctionInfo* tail;
 };
-typedef BOOL (*OSResetFunction)(BOOL);
+typedef BOOL (*OSResetFunction) (BOOL);
 
 typedef struct OSResetFunctionInfo OSResetFunctionInfo;
 struct OSResetFunctionInfo
@@ -26,10 +26,10 @@ struct OSResetFunctionInfo
     OSResetFunctionInfo* next;
     OSResetFunctionInfo* prev;
 };
-void OSRegisterResetFunction(OSResetFunctionInfo* info);
-void OSUnregisterResetFunction(OSResetFunctionInfo* info);
-void OSResetSystem(int reset, u32 resetCode, BOOL forceMenu);
-u32  OSGetResetCode();
+void OSRegisterResetFunction (OSResetFunctionInfo* info);
+void OSUnregisterResetFunction (OSResetFunctionInfo* info);
+void OSResetSystem (int reset, u32 resetCode, BOOL forceMenu);
+u32  OSGetResetCode ();
 
 #ifdef __cplusplus
 }

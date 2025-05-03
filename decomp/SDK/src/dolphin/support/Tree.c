@@ -1,6 +1,6 @@
 #include <charPipeline/structures/Tree.h>
 void
-DSExtractBranch(DSTreePtr tree, Ptr obj)
+DSExtractBranch (DSTreePtr tree, Ptr obj)
 {
     DSBranchPtr branch = (DSBranchPtr)(obj + tree->Offset);
     Ptr         cursor = branch->Children;
@@ -9,19 +9,19 @@ DSExtractBranch(DSTreePtr tree, Ptr obj)
     while (cursor)
     {
         next = ((DSBranchPtr)(cursor + tree->Offset))->Next;
-        DSInsertBranchBelow(tree, branch->Parent, cursor);
+        DSInsertBranchBelow (tree, branch->Parent, cursor);
         cursor = next;
     }
-    DSRemoveBranch(tree, obj);
+    DSRemoveBranch (tree, obj);
 }
 void
-DSInitTree(DSTreePtr tree, Ptr obj, DSBranchPtr branch)
+DSInitTree (DSTreePtr tree, Ptr obj, DSBranchPtr branch)
 {
     tree->Root = NULL;
     tree->Offset = (Ptr)branch - obj;
 }
 void
-DSInsertBranchBelow(DSTreePtr tree, Ptr cursor, Ptr obj)
+DSInsertBranchBelow (DSTreePtr tree, Ptr cursor, Ptr obj)
 {
     DSBranchPtr branch;
     DSBranchPtr objBranch = (DSBranchPtr)(obj + tree->Offset);
@@ -64,7 +64,7 @@ DSInsertBranchBelow(DSTreePtr tree, Ptr cursor, Ptr obj)
     objBranch->Parent = cursor;
 }
 void
-DSInsertBranchBeside(DSTreePtr tree, Ptr cursor, Ptr obj)
+DSInsertBranchBeside (DSTreePtr tree, Ptr cursor, Ptr obj)
 {
     DSBranchPtr parent;
     DSBranchPtr branch;
@@ -94,7 +94,7 @@ DSInsertBranchBeside(DSTreePtr tree, Ptr cursor, Ptr obj)
     branch->Parent = parent->Parent;
 }
 void
-DSRemoveBranch(DSTreePtr tree, Ptr obj)
+DSRemoveBranch (DSTreePtr tree, Ptr obj)
 {
     DSBranchPtr branch;
     DSBranchPtr parent;

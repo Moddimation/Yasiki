@@ -32,19 +32,19 @@ typedef u8 VIBool;
 #define VI_ENABLE            ((VIBool)1)
 
 #define VI_3D                3
-#define VI_TVMODE_NTSC_3D    ((VITVMode)VI_TVMODE(VI_NTSC, VI_3D))
+#define VI_TVMODE_NTSC_3D    ((VITVMode)VI_TVMODE (VI_NTSC, VI_3D))
 #define VI_GCA               6
-#define VI_TVMODE_GCA_INT    (VITVMode) VI_TVMODE(VI_GCA, VI_INTERLACE)
-#define VI_TVMODE_GCA_PROG   (VITVMode) VI_TVMODE(VI_GCA, VI_PROGRESSIVE)
+#define VI_TVMODE_GCA_INT    (VITVMode) VI_TVMODE (VI_GCA, VI_INTERLACE)
+#define VI_TVMODE_GCA_PROG   (VITVMode) VI_TVMODE (VI_GCA, VI_PROGRESSIVE)
 #define VI_TVMODE_PAL_PROG   (VITVMode)6
 
 #define VI_EXTRA             7
-#define VI_TVMODE_EXTRA_INT  ((VITVMode)VI_TVMODE(VI_EXTRA, VI_INTERLACE))
-#define VI_TVMODE_EXTRA_DS   ((VITVMode)VI_TVMODE(VI_EXTRA, VI_NON_INTERLACE))
-#define VI_TVMODE_EXTRA_PROG ((VITVMode)VI_TVMODE(VI_EXTRA, VI_PROGRESSIVE))
+#define VI_TVMODE_EXTRA_INT  ((VITVMode)VI_TVMODE (VI_EXTRA, VI_INTERLACE))
+#define VI_TVMODE_EXTRA_DS   ((VITVMode)VI_TVMODE (VI_EXTRA, VI_NON_INTERLACE))
+#define VI_TVMODE_EXTRA_PROG ((VITVMode)VI_TVMODE (VI_EXTRA, VI_PROGRESSIVE))
 
 #define VI_HD720             8
-#define VI_TVMODE_HD720_PROG ((VITVMode)VI_TVMODE(VI_HD720, VI_PROGRESSIVE))
+#define VI_TVMODE_HD720_PROG ((VITVMode)VI_TVMODE (VI_HD720, VI_PROGRESSIVE))
 typedef enum
 {
     VI_TVMODE_NTSC_INT = 0,       // VI_TVMODE(VI_NTSC, VI_INTERLACE),
@@ -90,6 +90,6 @@ typedef enum VIXFBMode
     VI_XFB_MODE_SF,
     VI_XFB_MODE_DF,
 } VIXFBMode;
-typedef void (*VIRetraceCallback)(u32 retraceCount);
+typedef void (*VIRetraceCallback) (u32 retraceCount);
 
 #endif

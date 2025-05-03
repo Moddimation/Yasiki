@@ -36,16 +36,16 @@ typedef struct __bss_init_info
     unsigned int size;
 } __bss_init_info;
 SEC_INIT extern __bss_init_info _bss_init_info[];
-extern int                      main(int argc, char* argv[]);
-extern void                     exit(int);
+extern int                      main (int argc, char* argv[]);
+extern void                     exit (int);
 
-SEC_INIT extern void __init_hardware(void);
-SEC_INIT extern void __flush_cache(void* address, unsigned int size);
+SEC_INIT extern void __init_hardware (void);
+SEC_INIT extern void __flush_cache (void* address, unsigned int size);
 
-void __init_registers(void);
-void __init_data(void);
+void __init_registers (void);
+void __init_data (void);
 SEC_INIT WEAKFUNC asm void
-__start(void)
+__start (void)
 {
 #ifdef __MWERKS__
     nofralloc;
@@ -67,7 +67,7 @@ __start(void)
 _check_TRK:
     cmplwi r6, 0;
     beq    _goto_main;
-    lwz    r7, OS_BI2_DEBUGFLAG_OFFSET(r6);
+    lwz    r7, OS_BI2_DEBUGFLAG_OFFSET (r6);
 
 _check_debug_flag:
     li     r5, 0;
@@ -128,24 +128,24 @@ _goto_skip_init_bba:
 #endif
 }
 void
-__copy_rom_section(void* dst, const void* src, u32 size)
+__copy_rom_section (void* dst, const void* src, u32 size)
 {
     if (size && (dst != src))
     {
-        memcpy(dst, src, size);
-        __flush_cache(dst, size);
+        memcpy (dst, src, size);
+        __flush_cache (dst, size);
     }
 }
 void
-__init_bss_section(void* dst, u32 size)
+__init_bss_section (void* dst, u32 size)
 {
     if (size)
     {
-        memset(dst, 0, size);
+        memset (dst, 0, size);
     }
 }
 asm void
-__init_registers(void)
+__init_registers (void)
 {
 #ifdef __MWERKS__
     nofralloc;
@@ -160,7 +160,7 @@ __init_registers(void)
 #endif
 }
 void
-__init_data(void)
+__init_data (void)
 {
     __rom_copy_info* dci;
     __bss_init_info* bii;
@@ -172,7 +172,7 @@ __init_data(void)
         {
             break;
         }
-        __copy_rom_section(dci->addr, dci->rom, dci->size);
+        __copy_rom_section (dci->addr, dci->rom, dci->size);
         dci++;
     }
 
@@ -183,7 +183,7 @@ __init_data(void)
         {
             break;
         }
-        __init_bss_section(bii->addr, bii->size);
+        __init_bss_section (bii->addr, bii->size);
         bii++;
     }
 }

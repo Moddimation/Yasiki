@@ -8,7 +8,7 @@
 #define qr1 1
 #define qr6 6
 asm void
-PSMTXReorder(register Mtx src, register ROMtx dest)
+PSMTXReorder (register Mtx src, register ROMtx dest)
 {
     psq_l f0, 0(src), 0, qr0 psq_l f2, 16(src), 0, qr0 psq_l f4, 32(src), 0,
         qr0 psq_l f1, 8(src), 0, qr0 ps_merge00 f6, f0, f2 psq_l f3, 24(src), 0,
@@ -19,8 +19,10 @@ PSMTXReorder(register Mtx src, register ROMtx dest)
         40(dest), 0, qr0
 }
 asm void
-PSMTXROMultVecArray(register ROMtx* m, register Vec* srcBase, register Vec* dstBase,
-                    register u32 count)
+PSMTXROMultVecArray (register ROMtx* m,
+                     register Vec*   srcBase,
+                     register Vec*   dstBase,
+                     register u32    count)
 {
     nofralloc stwu r1, -64(r1)stfd f14, 8(r1)subi r7, count, 1 stfd f15,
         16(r1)srwi r7, r7, 1 stfd f16, 24(r1)stfd f17, 32(r1)stfd f18,
@@ -115,9 +117,12 @@ PSMTXROMultVecArray(register ROMtx* m, register Vec* srcBase, register Vec* dstB
                                                              64 blr
 }
 asm void
-PSMTXROSkin2VecArray(register ROMtx* m0, register ROMtx* m1, register f32* wtBase,
-                     register Vec* srcBase, register Vec* dstBase,
-                     register u32 count)
+PSMTXROSkin2VecArray (register ROMtx* m0,
+                      register ROMtx* m1,
+                      register f32*   wtBase,
+                      register Vec*   srcBase,
+                      register Vec*   dstBase,
+                      register u32    count)
 {
     nofralloc stwu r1, -160(r1)stfd f14, 8(r1)stfd f15, 16(r1)stfd f16,
         24(r1)stfd f17, 32(r1)stfd f18, 40(r1)stfd f19, 48(r1)stfd f20,
@@ -235,8 +240,10 @@ PSMTXROSkin2VecArray(register ROMtx* m0, register ROMtx* m1, register f32* wtBas
                                                     160 blr
 }
 asm void
-PSMTXROMultS16VecArray(register ROMtx* m, register S16Vec* srcBase,
-                       register Vec* dstBase, register u32 count)
+PSMTXROMultS16VecArray (register ROMtx*  m,
+                        register S16Vec* srcBase,
+                        register Vec*    dstBase,
+                        register u32     count)
 {
     nofralloc stwu r1, -64(r1)stfd f14, 8(r1)subi r7, count, 1 stfd f15,
         16(r1)srwi r7, r7, 1 stfd f16, 24(r1)lis r8, 7 stfd f17, 32(r1)mtspr GQR6,
@@ -332,8 +339,10 @@ PSMTXROMultS16VecArray(register ROMtx* m, register S16Vec* srcBase,
                               64 blr
 }
 asm void
-PSMTXMultS16VecArray(register Mtx44* m, register S16Vec* srcBase,
-                     register Vec* dstBase, register u32 count)
+PSMTXMultS16VecArray (register Mtx44*  m,
+                      register S16Vec* srcBase,
+                      register Vec*    dstBase,
+                      register u32     count)
 {
     psq_l f0, 0(m), 0, qr0 lis r7, 7 mtspr GQR6, r7 psq_l f6, 0(srcBase), 0,
         qr6 subi count, count, 1 psq_l f7, 4(srcBase), 1, qr6 mtctr count psq_l f1,

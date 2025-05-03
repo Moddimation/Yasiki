@@ -2,22 +2,22 @@
 
 #include "Sato/EnemyStrategy.h"
 
-extern int getTsuriTypeParameter(int i_tsuriType);
-extern int getAttackPattern1Parameter(int i_attackType);
+extern int getTsuriTypeParameter (int i_tsuriType);
+extern int getAttackPattern1Parameter (int i_attackType);
 
 // Required for .data to match.
 static float dummy[] = { 1.0f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f };
 /* EnStrategyContainer */
 
-EnStrategyContainer::EnStrategyContainer() : mpStrategy(NULL)
+EnStrategyContainer::EnStrategyContainer () : mpStrategy (NULL)
 {
 }
-EnStrategyContainer::~EnStrategyContainer()
+EnStrategyContainer::~EnStrategyContainer ()
 {
     destroyStrategy();
 }
 void
-EnStrategyContainer::destroyStrategy()
+EnStrategyContainer::destroyStrategy ()
 {
     EnemyStrategy* strategy = mpStrategy;
 
@@ -30,24 +30,24 @@ EnStrategyContainer::destroyStrategy()
     }
 }
 EnemyStrategy*
-EnStrategyContainer::createStrategy(int i_strategyType)
+EnStrategyContainer::createStrategy (int i_strategyType)
 {
     destroyStrategy();
 
     void* buf = getBuffer();
 
     enemyStrategyInitFunc* initFunc =
-        getEnemyStrategyInitFunc(getStrategyId(i_strategyType));
-    mpStrategy = static_cast<EnemyStrategy*>((*initFunc)(buf, 0x180));
+        getEnemyStrategyInitFunc (getStrategyId (i_strategyType));
+    mpStrategy = static_cast<EnemyStrategy*> ((*initFunc) (buf, 0x180));
 
     return mpStrategy;
 }
 /* EnTsuriStrategies */
 
 s32
-EnTsuriStrategies::getStrategyId(int i_entityIdx)
+EnTsuriStrategies::getStrategyId (int i_entityIdx)
 {
-    switch (getTsuriTypeParameter(i_entityIdx))
+    switch (getTsuriTypeParameter (i_entityIdx))
     {
         default:
             return 0x44;
@@ -65,9 +65,9 @@ EnTsuriStrategies::getStrategyId(int i_entityIdx)
 }
 /* EnAttackStrategies */
 s32
-EnAttackStrategies::getStrategyId(int i_entityIdx)
+EnAttackStrategies::getStrategyId (int i_entityIdx)
 {
-    switch (getAttackPattern1Parameter(i_entityIdx))
+    switch (getAttackPattern1Parameter (i_entityIdx))
     {
         default:
             return 0x06;
@@ -103,12 +103,12 @@ EnAttackStrategies::getStrategyId(int i_entityIdx)
 }
 /* EnCondStrategies */
 
-EnCondStrategies::~EnCondStrategies()
+EnCondStrategies::~EnCondStrategies ()
 {
     destroyCondStrategy();
 }
 void
-EnCondStrategies::destroyCondStrategy()
+EnCondStrategies::destroyCondStrategy ()
 {
     EnemyStrategy* strategy = mpCondStrategy;
 
@@ -121,20 +121,20 @@ EnCondStrategies::destroyCondStrategy()
     }
 }
 EnemyStrategy*
-EnCondStrategies::createCondStrategy(int i_condType)
+EnCondStrategies::createCondStrategy (int i_condType)
 {
     destroyCondStrategy();
 
     void* buf = getBuffer();
 
     enemyStrategyInitFunc* initFunc =
-        getEnemyStrategyInitFunc(getCondStrategyId(i_condType));
-    mpCondStrategy = static_cast<EnemyStrategy*>((*initFunc)(buf, 0x40));
+        getEnemyStrategyInitFunc (getCondStrategyId (i_condType));
+    mpCondStrategy = static_cast<EnemyStrategy*> ((*initFunc) (buf, 0x40));
 
     return mpCondStrategy;
 }
 s32
-EnCondStrategies::getCondStrategyId(int i_entityIdx)
+EnCondStrategies::getCondStrategyId (int i_entityIdx)
 {
     switch (i_entityIdx)
     {

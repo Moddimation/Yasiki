@@ -7,12 +7,12 @@
 #include "SYNPrivate.h"
 
 // functions
-static u32  __SYNGetNibbleAddress(u32 count);
-static void __SYNSetupAdpcm(struct SYNVOICE* voice);
-static void __SYNSetupPcm16(struct SYNVOICE* voice);
-static void __SYNSetupPcm8(struct SYNVOICE* voice);
+static u32  __SYNGetNibbleAddress (u32 count);
+static void __SYNSetupAdpcm (struct SYNVOICE* voice);
+static void __SYNSetupPcm16 (struct SYNVOICE* voice);
+static void __SYNSetupPcm8 (struct SYNVOICE* voice);
 static u32
-__SYNGetNibbleAddress(u32 count)
+__SYNGetNibbleAddress (u32 count)
 {
     u32 samples = count;
     u32 frames = (samples / 14);
@@ -21,7 +21,7 @@ __SYNGetNibbleAddress(u32 count)
     return (frames * 0x10) + 2 + samplesLeft;
 }
 static void
-__SYNSetupAdpcm(struct SYNVOICE* voice)
+__SYNSetupAdpcm (struct SYNVOICE* voice)
 {
     AXVPB* axvpb = voice->axvpb;
 
@@ -38,13 +38,13 @@ __SYNSetupAdpcm(struct SYNVOICE* voice)
         voice->type = 1;
         sampleStart = voice->synth->aramBaseNibble + voice->sample->offset;
         sampleLoop =
-            sampleStart + __SYNGetNibbleAddress(voice->region->loopStart - 1);
+            sampleStart + __SYNGetNibbleAddress (voice->region->loopStart - 1);
         sampleEnd =
-            sampleStart + __SYNGetNibbleAddress(voice->region->loopStart +
-                                                voice->region->loopLength - 2);
-        ASSERTLINE(0x48, (sampleStart & 0x000f) == 0);
-        ASSERTLINE(0x49, (sampleLoop & 0x000f) > 1);
-        ASSERTLINE(0x4A, (sampleEnd & 0x000f) > 1);
+            sampleStart + __SYNGetNibbleAddress (voice->region->loopStart +
+                                                 voice->region->loopLength - 2);
+        ASSERTLINE (0x48, (sampleStart & 0x000f) == 0);
+        ASSERTLINE (0x49, (sampleLoop & 0x000f) > 1);
+        ASSERTLINE (0x4A, (sampleEnd & 0x000f) > 1);
 
         // the hell? why not just write the struct members??? what is this doing???
         // why not just write to the members directly?
@@ -98,10 +98,10 @@ __SYNSetupAdpcm(struct SYNVOICE* voice)
         adpcm = (void*)&voice->adpcm->a;
         voice->type = 0;
         sampleStart = voice->synth->aramBaseNibble + voice->sample->offset;
-        sampleEnd = sampleStart + __SYNGetNibbleAddress(voice->sample->length - 1);
+        sampleEnd = sampleStart + __SYNGetNibbleAddress (voice->sample->length - 1);
 
-        ASSERTLINE(0x7E, (sampleStart & 0x000f) == 0);
-        ASSERTLINE(0x7F, (sampleEnd & 0x000f) > 1);
+        ASSERTLINE (0x7E, (sampleStart & 0x000f) == 0);
+        ASSERTLINE (0x7F, (sampleEnd & 0x000f) > 1);
 
         // same wtf writes here
         sampleStart = sampleStart + 2;
@@ -139,7 +139,7 @@ __SYNSetupAdpcm(struct SYNVOICE* voice)
     }
 }
 static void
-__SYNSetupPcm16(struct SYNVOICE* voice)
+__SYNSetupPcm16 (struct SYNVOICE* voice)
 {
     AXVPB* axvpb = voice->axvpb;
 
@@ -229,7 +229,7 @@ __SYNSetupPcm16(struct SYNVOICE* voice)
     axvpb->sync |= 0x21000;
 }
 static void
-__SYNSetupPcm8(struct SYNVOICE* voice)
+__SYNSetupPcm8 (struct SYNVOICE* voice)
 {
     AXVPB* axvpb = voice->axvpb;
 
@@ -317,22 +317,22 @@ __SYNSetupPcm8(struct SYNVOICE* voice)
     axvpb->sync |= 0x21000;
 }
 void
-__SYNSetupSample(struct SYNVOICE* voice)
+__SYNSetupSample (struct SYNVOICE* voice)
 {
-    ASSERTLINE(0x15C, voice);
+    ASSERTLINE (0x15C, voice);
     switch (voice->sample->format)
     {
         case SYN_SAMPLE_FORMAT_ADPCM:
-            __SYNSetupAdpcm(voice);
+            __SYNSetupAdpcm (voice);
             return;
         case SYN_SAMPLE_FORMAT_PCM16:
-            __SYNSetupPcm16(voice);
+            __SYNSetupPcm16 (voice);
             return;
         case SYN_SAMPLE_FORMAT_PCM8:
-            __SYNSetupPcm8(voice);
+            __SYNSetupPcm8 (voice);
             return;
         default:
-            ASSERTMSGLINE(0x174, FALSE, "unknown sample format¥n");
+            ASSERTMSGLINE (0x174, FALSE, "unknown sample format¥n");
             return;
     }
 }

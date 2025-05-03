@@ -156,14 +156,14 @@ static int __MIXDvdStreamAttenCurrent;
 static int __MIXDvdStreamAttenUser;
 
 // functions
-static u16  __MIXGetVolume(int db);
-static int  __MIXGetPanL(int pan);
-static int  __MIXGetPanR(int pan);
-static void __MIXResetChannel(struct MIXChannel* channel);
-static void __MIXSetPan(struct MIXChannel* channel);
-static int  __MIXClampPan(int pan);
+static u16  __MIXGetVolume (int db);
+static int  __MIXGetPanL (int pan);
+static int  __MIXGetPanR (int pan);
+static void __MIXResetChannel (struct MIXChannel* channel);
+static void __MIXSetPan (struct MIXChannel* channel);
+static int  __MIXClampPan (int pan);
 static u16
-__MIXGetVolume(int db)
+__MIXGetVolume (int db)
 {
     if (db <= -0x388)
     {
@@ -176,28 +176,28 @@ __MIXGetVolume(int db)
     return __MIXVolumeTable[db + 0x388];
 }
 static int
-__MIXGetPanL(int pan)
+__MIXGetPanL (int pan)
 {
-    ASSERTLINE(0xE8, (pan < 128) && (pan >= 0));
+    ASSERTLINE (0xE8, (pan < 128) && (pan >= 0));
     return __MIXPanTableL[pan];
 }
 static int
-__MIXGetPanR(int pan)
+__MIXGetPanR (int pan)
 {
-    ASSERTLINE(0xFC, (pan < 128) && (pan >= 0));
+    ASSERTLINE (0xFC, (pan < 128) && (pan >= 0));
     return __MIXPanTableR[pan];
 }
 static void
-__MIXResetChannel(struct MIXChannel* channel)
+__MIXResetChannel (struct MIXChannel* channel)
 {
     channel->mode = 0x50000000;
     channel->input = 0;
     channel->auxA = -0x3C0;
     channel->auxB = -0x3C0;
-    channel->l = __MIXGetPanL(0x40);
-    channel->r = __MIXGetPanR(0x40);
-    channel->f = __MIXGetPanR(0);
-    channel->b = __MIXGetPanL(0);
+    channel->l = __MIXGetPanL (0x40);
+    channel->r = __MIXGetPanR (0x40);
+    channel->f = __MIXGetPanR (0);
+    channel->b = __MIXGetPanL (0);
     channel->fader = 0;
     channel->pan = 0x40;
     channel->span = 0x7F;
@@ -205,15 +205,15 @@ __MIXResetChannel(struct MIXChannel* channel)
         channel->vAR = channel->vAS = channel->vBL = channel->vBR = channel->vBS = 0;
 }
 static void
-__MIXSetPan(struct MIXChannel* channel)
+__MIXSetPan (struct MIXChannel* channel)
 {
-    channel->l = __MIXGetPanL(channel->pan);
-    channel->r = __MIXGetPanR(channel->pan);
-    channel->f = __MIXGetPanR(channel->span);
-    channel->b = __MIXGetPanL(channel->span);
+    channel->l = __MIXGetPanL (channel->pan);
+    channel->r = __MIXGetPanR (channel->pan);
+    channel->f = __MIXGetPanR (channel->span);
+    channel->b = __MIXGetPanL (channel->span);
 }
 static int
-__MIXClampPan(int pan)
+__MIXClampPan (int pan)
 {
     if (pan < 0)
     {
@@ -226,31 +226,37 @@ __MIXClampPan(int pan)
     return pan;
 }
 void
-MIXInit(void)
+MIXInit (void)
 {
     int i;
 
     for (i = 0; i < 64; i++)
     {
-        __MIXResetChannel(&__MIXChannel[i]);
+        __MIXResetChannel (&__MIXChannel[i]);
     }
     __MIXDvdStreamAttenCurrent = 0;
     __MIXDvdStreamAttenUser = 0;
 }
 void
-MIXQuit(void)
+MIXQuit (void)
 {
 }
 void
-MIXInitChannel(AXVPB* axvpb, u32 mode, int input, int auxA, int auxB, int pan,
-               int span, int fader)
+MIXInitChannel (AXVPB* axvpb,
+                u32    mode,
+                int    input,
+                int    auxA,
+                int    auxB,
+                int    pan,
+                int    span,
+                int    fader)
 {
     int                old;
     struct MIXChannel* c;
     u16                mixerCtrl;
     u16*               p;
 
-    ASSERTLINE(0x199, axvpb);
+    ASSERTLINE (0x199, axvpb);
     c = &__MIXChannel[axvpb->index];
     c->axvpb = axvpb;
     c->mode = (mode & 7);
@@ -260,41 +266,41 @@ MIXInitChannel(AXVPB* axvpb, u32 mode, int input, int auxA, int auxB, int pan,
     c->pan = pan;
     c->span = span;
     c->fader = fader;
-    __MIXSetPan(c);
+    __MIXSetPan (c);
     if (c->mode & 4)
     {
         c->v = 0U;
     }
     else
     {
-        c->v = __MIXGetVolume(input);
+        c->v = __MIXGetVolume (input);
     }
-    c->vL = __MIXGetVolume(c->fader + c->l + c->f);
-    c->vR = __MIXGetVolume(c->fader + c->r + c->f);
-    c->vS = __MIXGetVolume(c->fader + c->b);
+    c->vL = __MIXGetVolume (c->fader + c->l + c->f);
+    c->vR = __MIXGetVolume (c->fader + c->r + c->f);
+    c->vS = __MIXGetVolume (c->fader + c->b);
     if (c->mode & 1)
     {
-        c->vAL = __MIXGetVolume(c->auxA + c->l + c->f);
-        c->vAR = __MIXGetVolume(c->auxA + c->r + c->f);
-        c->vAS = __MIXGetVolume(c->auxA + c->b - 0x3C);
+        c->vAL = __MIXGetVolume (c->auxA + c->l + c->f);
+        c->vAR = __MIXGetVolume (c->auxA + c->r + c->f);
+        c->vAS = __MIXGetVolume (c->auxA + c->b - 0x3C);
     }
     else
     {
-        c->vAL = __MIXGetVolume(c->fader + c->auxA + c->l + c->f);
-        c->vAR = __MIXGetVolume(c->fader + c->auxA + c->r + c->f);
-        c->vAS = __MIXGetVolume(c->fader + c->auxA + c->b - 0x3C);
+        c->vAL = __MIXGetVolume (c->fader + c->auxA + c->l + c->f);
+        c->vAR = __MIXGetVolume (c->fader + c->auxA + c->r + c->f);
+        c->vAS = __MIXGetVolume (c->fader + c->auxA + c->b - 0x3C);
     }
     if (c->mode & 2)
     {
-        c->vBL = __MIXGetVolume(c->auxB + c->l + c->f);
-        c->vBR = __MIXGetVolume(c->auxB + c->r + c->f);
-        c->vBS = __MIXGetVolume(c->auxB + c->b - 0x3C);
+        c->vBL = __MIXGetVolume (c->auxB + c->l + c->f);
+        c->vBR = __MIXGetVolume (c->auxB + c->r + c->f);
+        c->vBS = __MIXGetVolume (c->auxB + c->b - 0x3C);
     }
     else
     {
-        c->vBL = __MIXGetVolume(c->fader + c->auxB + c->l + c->f);
-        c->vBR = __MIXGetVolume(c->fader + c->auxB + c->r + c->f);
-        c->vBS = __MIXGetVolume(c->fader + c->auxB + c->b - 0x3C);
+        c->vBL = __MIXGetVolume (c->fader + c->auxB + c->l + c->f);
+        c->vBR = __MIXGetVolume (c->fader + c->auxB + c->r + c->f);
+        c->vBS = __MIXGetVolume (c->fader + c->auxB + c->b - 0x3C);
     }
     old = OSDisableInterrupts();
     axvpb->pb.ve.currentVolume = c->v;
@@ -357,21 +363,21 @@ MIXInitChannel(AXVPB* axvpb, u32 mode, int input, int auxA, int auxB, int pan,
     axvpb->pb.mixerCtrl = mixerCtrl;
     axvpb->sync |=
         (AX_SYNC_FLAG_COPYMXRCTRL | AX_SYNC_FLAG_COPYAXPBMIX | AX_SYNC_FLAG_COPYVOL);
-    OSRestoreInterrupts(old);
+    OSRestoreInterrupts (old);
 }
 void
-MIXReleaseChannel(AXVPB* axvpb)
+MIXReleaseChannel (AXVPB* axvpb)
 {
-    ASSERTLINE(0x20C, axvpb);
+    ASSERTLINE (0x20C, axvpb);
     __MIXChannel[axvpb->index].axvpb = 0;
 }
 void
-MIXResetControls(AXVPB* p)
+MIXResetControls (AXVPB* p)
 {
-    __MIXResetChannel(&__MIXChannel[p->index]);
+    __MIXResetChannel (&__MIXChannel[p->index]);
 }
 void
-MIXSetInput(AXVPB* p, int dB)
+MIXSetInput (AXVPB* p, int dB)
 {
     struct MIXChannel* channel;
 
@@ -380,7 +386,7 @@ MIXSetInput(AXVPB* p, int dB)
     channel->mode |= 0x10000000;
 }
 void
-MIXAdjustInput(AXVPB* p, int dB)
+MIXAdjustInput (AXVPB* p, int dB)
 {
     struct MIXChannel* channel;
 
@@ -389,7 +395,7 @@ MIXAdjustInput(AXVPB* p, int dB)
     channel->mode |= 0x10000000;
 }
 int
-MIXGetInput(AXVPB* p)
+MIXGetInput (AXVPB* p)
 {
     struct MIXChannel* channel;
 
@@ -397,7 +403,7 @@ MIXGetInput(AXVPB* p)
     return channel->input;
 }
 void
-MIXAuxAPostFader(AXVPB* p)
+MIXAuxAPostFader (AXVPB* p)
 {
     struct MIXChannel* channel;
 
@@ -406,7 +412,7 @@ MIXAuxAPostFader(AXVPB* p)
     channel->mode |= 0x40000000;
 }
 void
-MIXAuxAPreFader(AXVPB* p)
+MIXAuxAPreFader (AXVPB* p)
 {
     struct MIXChannel* channel;
 
@@ -414,7 +420,7 @@ MIXAuxAPreFader(AXVPB* p)
     channel->mode |= 0x40000001;
 }
 int
-MIXAuxAIsPostFader(AXVPB* p)
+MIXAuxAIsPostFader (AXVPB* p)
 {
     struct MIXChannel* channel;
 
@@ -426,7 +432,7 @@ MIXAuxAIsPostFader(AXVPB* p)
     return 1;
 }
 void
-MIXSetAuxA(AXVPB* p, int dB)
+MIXSetAuxA (AXVPB* p, int dB)
 {
     struct MIXChannel* channel;
 
@@ -435,7 +441,7 @@ MIXSetAuxA(AXVPB* p, int dB)
     channel->mode |= 0x40000000;
 }
 void
-MIXAdjustAuxA(AXVPB* p, int dB)
+MIXAdjustAuxA (AXVPB* p, int dB)
 {
     struct MIXChannel* channel;
 
@@ -444,7 +450,7 @@ MIXAdjustAuxA(AXVPB* p, int dB)
     channel->mode |= 0x40000000;
 }
 int
-MIXGetAuxA(AXVPB* p)
+MIXGetAuxA (AXVPB* p)
 {
     struct MIXChannel* channel;
 
@@ -452,7 +458,7 @@ MIXGetAuxA(AXVPB* p)
     return channel->auxA;
 }
 void
-MIXAuxBPostFader(AXVPB* p)
+MIXAuxBPostFader (AXVPB* p)
 {
     struct MIXChannel* channel;
 
@@ -461,7 +467,7 @@ MIXAuxBPostFader(AXVPB* p)
     channel->mode |= 0x40000000;
 }
 void
-MIXAuxBPreFader(AXVPB* p)
+MIXAuxBPreFader (AXVPB* p)
 {
     struct MIXChannel* channel;
 
@@ -469,7 +475,7 @@ MIXAuxBPreFader(AXVPB* p)
     channel->mode |= 0x40000002;
 }
 int
-MIXAuxBIsPostFader(AXVPB* p)
+MIXAuxBIsPostFader (AXVPB* p)
 {
     struct MIXChannel* channel;
 
@@ -481,7 +487,7 @@ MIXAuxBIsPostFader(AXVPB* p)
     return 1;
 }
 void
-MIXSetAuxB(AXVPB* p, int dB)
+MIXSetAuxB (AXVPB* p, int dB)
 {
     struct MIXChannel* channel;
 
@@ -490,7 +496,7 @@ MIXSetAuxB(AXVPB* p, int dB)
     channel->mode |= 0x40000000;
 }
 void
-MIXAdjustAuxB(AXVPB* p, int dB)
+MIXAdjustAuxB (AXVPB* p, int dB)
 {
     struct MIXChannel* channel;
 
@@ -499,7 +505,7 @@ MIXAdjustAuxB(AXVPB* p, int dB)
     channel->mode |= 0x40000000;
 }
 int
-MIXGetAuxB(AXVPB* p)
+MIXGetAuxB (AXVPB* p)
 {
     struct MIXChannel* channel;
 
@@ -507,27 +513,27 @@ MIXGetAuxB(AXVPB* p)
     return channel->auxB;
 }
 void
-MIXSetPan(AXVPB* p, int pan)
+MIXSetPan (AXVPB* p, int pan)
 {
     struct MIXChannel* channel;
 
     channel = &__MIXChannel[p->index];
-    channel->pan = __MIXClampPan(pan);
-    __MIXSetPan(channel);
+    channel->pan = __MIXClampPan (pan);
+    __MIXSetPan (channel);
     channel->mode |= 0x40000000;
 }
 void
-MIXAdjustPan(AXVPB* p, int pan)
+MIXAdjustPan (AXVPB* p, int pan)
 {
     struct MIXChannel* channel;
 
     channel = &__MIXChannel[p->index];
-    channel->pan = __MIXClampPan(channel->pan + pan);
-    __MIXSetPan(channel);
+    channel->pan = __MIXClampPan (channel->pan + pan);
+    __MIXSetPan (channel);
     channel->mode |= 0x40000000;
 }
 int
-MIXGetPan(AXVPB* p)
+MIXGetPan (AXVPB* p)
 {
     struct MIXChannel* channel;
 
@@ -535,27 +541,27 @@ MIXGetPan(AXVPB* p)
     return channel->pan;
 }
 void
-MIXSetSPan(AXVPB* p, int span)
+MIXSetSPan (AXVPB* p, int span)
 {
     struct MIXChannel* channel;
 
     channel = &__MIXChannel[p->index];
-    channel->span = __MIXClampPan(span);
-    __MIXSetPan(channel);
+    channel->span = __MIXClampPan (span);
+    __MIXSetPan (channel);
     channel->mode |= 0x40000000;
 }
 void
-MIXAdjustSPan(AXVPB* p, int span)
+MIXAdjustSPan (AXVPB* p, int span)
 {
     struct MIXChannel* channel;
 
     channel = &__MIXChannel[p->index];
-    channel->span = __MIXClampPan(channel->span + span);
-    __MIXSetPan(channel);
+    channel->span = __MIXClampPan (channel->span + span);
+    __MIXSetPan (channel);
     channel->mode |= 0x40000000;
 }
 int
-MIXGetSPan(AXVPB* p)
+MIXGetSPan (AXVPB* p)
 {
     struct MIXChannel* channel;
 
@@ -563,7 +569,7 @@ MIXGetSPan(AXVPB* p)
     return channel->span;
 }
 void
-MIXMute(AXVPB* p)
+MIXMute (AXVPB* p)
 {
     struct MIXChannel* channel;
 
@@ -571,7 +577,7 @@ MIXMute(AXVPB* p)
     channel->mode |= 0x10000004;
 }
 void
-MIXUnMute(AXVPB* p)
+MIXUnMute (AXVPB* p)
 {
     struct MIXChannel* channel;
 
@@ -580,7 +586,7 @@ MIXUnMute(AXVPB* p)
     channel->mode |= 0x10000000;
 }
 int
-MIXIsMute(AXVPB* p)
+MIXIsMute (AXVPB* p)
 {
     struct MIXChannel* channel;
 
@@ -592,7 +598,7 @@ MIXIsMute(AXVPB* p)
     return 0;
 }
 void
-MIXSetFader(AXVPB* p, int dB)
+MIXSetFader (AXVPB* p, int dB)
 {
     struct MIXChannel* channel;
 
@@ -601,7 +607,7 @@ MIXSetFader(AXVPB* p, int dB)
     channel->mode |= 0x40000000;
 }
 void
-MIXAdjustFader(AXVPB* p, int dB)
+MIXAdjustFader (AXVPB* p, int dB)
 {
     struct MIXChannel* channel;
 
@@ -610,7 +616,7 @@ MIXAdjustFader(AXVPB* p, int dB)
     channel->mode |= 0x40000000;
 }
 int
-MIXGetFader(AXVPB* p)
+MIXGetFader (AXVPB* p)
 {
     struct MIXChannel* channel;
 
@@ -618,7 +624,7 @@ MIXGetFader(AXVPB* p)
     return channel->fader;
 }
 void
-MIXSetDvdStreamFader(int dB)
+MIXSetDvdStreamFader (int dB)
 {
     int db;
 
@@ -634,12 +640,12 @@ MIXSetDvdStreamFader(int dB)
     __MIXDvdStreamAttenUser = db;
 }
 int
-MIXGetDvdStreamFader(void)
+MIXGetDvdStreamFader (void)
 {
     return __MIXDvdStreamAttenUser;
 }
 void
-MIXUpdateSettings(void)
+MIXUpdateSettings (void)
 {
     int                i;
     int                setNewMixLevel;
@@ -671,7 +677,7 @@ MIXUpdateSettings(void)
                 }
                 else
                 {
-                    c->v1 = __MIXGetVolume(c->input);
+                    c->v1 = __MIXGetVolume (c->input);
                 }
                 c->mode |= 0x20000000;
                 setNewInputLevel = 1;
@@ -692,32 +698,32 @@ MIXUpdateSettings(void)
             }
             if (c->mode & 0x40000000)
             {
-                c->vL1 = __MIXGetVolume(c->fader + c->l + c->f);
-                c->vR1 = __MIXGetVolume(c->fader + c->r + c->f);
-                c->vS1 = __MIXGetVolume(c->fader + c->b - 0x3C);
+                c->vL1 = __MIXGetVolume (c->fader + c->l + c->f);
+                c->vR1 = __MIXGetVolume (c->fader + c->r + c->f);
+                c->vS1 = __MIXGetVolume (c->fader + c->b - 0x3C);
                 if (c->mode & 1)
                 {
-                    c->vAL1 = __MIXGetVolume(c->auxA + c->l + c->f);
-                    c->vAR1 = __MIXGetVolume(c->auxA + c->r + c->f);
-                    c->vAS1 = __MIXGetVolume(c->auxA + c->b - 0x3C);
+                    c->vAL1 = __MIXGetVolume (c->auxA + c->l + c->f);
+                    c->vAR1 = __MIXGetVolume (c->auxA + c->r + c->f);
+                    c->vAS1 = __MIXGetVolume (c->auxA + c->b - 0x3C);
                 }
                 else
                 {
-                    c->vAL1 = __MIXGetVolume(c->fader + c->auxA + c->l + c->f);
-                    c->vAR1 = __MIXGetVolume(c->fader + c->auxA + c->r + c->f);
-                    c->vAS1 = __MIXGetVolume(c->fader + c->auxA + c->b - 0x3C);
+                    c->vAL1 = __MIXGetVolume (c->fader + c->auxA + c->l + c->f);
+                    c->vAR1 = __MIXGetVolume (c->fader + c->auxA + c->r + c->f);
+                    c->vAS1 = __MIXGetVolume (c->fader + c->auxA + c->b - 0x3C);
                 }
                 if (c->mode & 2)
                 {
-                    c->vBL1 = __MIXGetVolume(c->auxB + c->l + c->f);
-                    c->vBR1 = __MIXGetVolume(c->auxB + c->r + c->f);
-                    c->vBS1 = __MIXGetVolume(c->auxB + c->b - 0x3C);
+                    c->vBL1 = __MIXGetVolume (c->auxB + c->l + c->f);
+                    c->vBR1 = __MIXGetVolume (c->auxB + c->r + c->f);
+                    c->vBS1 = __MIXGetVolume (c->auxB + c->b - 0x3C);
                 }
                 else
                 {
-                    c->vBL1 = __MIXGetVolume(c->fader + c->auxB + c->l + c->f);
-                    c->vBR1 = __MIXGetVolume(c->fader + c->auxB + c->r + c->f);
-                    c->vBS1 = __MIXGetVolume(c->fader + c->auxB + c->b - 0x3C);
+                    c->vBL1 = __MIXGetVolume (c->fader + c->auxB + c->l + c->f);
+                    c->vBR1 = __MIXGetVolume (c->fader + c->auxB + c->r + c->f);
+                    c->vBS1 = __MIXGetVolume (c->fader + c->auxB + c->b - 0x3C);
                 }
                 c->mode &= 0xBFFFFFFF;
                 c->mode |= 0x80000000;
@@ -803,14 +809,14 @@ MIXUpdateSettings(void)
     if (__MIXDvdStreamAttenUser > __MIXDvdStreamAttenCurrent)
     {
         __MIXDvdStreamAttenCurrent += 1;
-        AISetStreamVolLeft(__MIXAIVolumeTable[__MIXDvdStreamAttenCurrent]);
-        AISetStreamVolRight(__MIXAIVolumeTable[__MIXDvdStreamAttenCurrent]);
+        AISetStreamVolLeft (__MIXAIVolumeTable[__MIXDvdStreamAttenCurrent]);
+        AISetStreamVolRight (__MIXAIVolumeTable[__MIXDvdStreamAttenCurrent]);
         return;
     }
     if (__MIXDvdStreamAttenUser < __MIXDvdStreamAttenCurrent)
     {
         __MIXDvdStreamAttenCurrent -= 1;
-        AISetStreamVolLeft(__MIXAIVolumeTable[__MIXDvdStreamAttenCurrent]);
-        AISetStreamVolRight(__MIXAIVolumeTable[__MIXDvdStreamAttenCurrent]);
+        AISetStreamVolLeft (__MIXAIVolumeTable[__MIXDvdStreamAttenCurrent]);
+        AISetStreamVolRight (__MIXAIVolumeTable[__MIXDvdStreamAttenCurrent]);
     }
 }
