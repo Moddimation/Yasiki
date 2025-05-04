@@ -283,6 +283,7 @@ cflags_jsys = [
     "-O4,p",
     "-inline auto",
     "-RTTI on",
+    "-fp_contract on",
     
 ]
 
@@ -575,9 +576,12 @@ config.libs = [
 #    }),
 #    JSystemLib("HVQM", "JAudio/Jaudio/lib/hvqm4dec/src", [
 #        (NonMatching, "hvqm4dec.c")
-#    ],{
-#        "src_dir": "lib/HVQM/src"
-#    }),
+#    ]),
+
+    JSystemLib("JKernel", "System/JKernel", [
+        (Equivalent, "JKRDisposer.cpp"),
+        (NonMatching, "JKRThread.cpp"),
+    ]),
 
     JSystemLib("JSupport", "System/JSupport", [
         (Matching, "JSUList.cpp"),

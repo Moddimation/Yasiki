@@ -1,9 +1,9 @@
 #ifndef _DOLPHIN_TYPES_H_
 #define _DOLPHIN_TYPES_H_
 
-#include <stdarg.h>
-#include <stddef.h>
-#include <string.h>
+// #include <stdarg.h>
+// #include <stddef.h>
+// #include <string.h>
 
 typedef signed char            s8;
 typedef unsigned char          u8;
@@ -39,6 +39,7 @@ typedef volatile f128 vf128;
 #ifndef __cplusplus
 typedef u16 wchar_t;
 #endif
+typedef int size_t;
 #endif
 
 #ifndef NULL
