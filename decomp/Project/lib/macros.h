@@ -36,8 +36,6 @@
 #define ASSERTMSGLINEV(line, cond, ...)             (void)0
 #endif
 
-#define ASSERT(cond)                    ASSERTLINE (__LINE__, cond)
-
 // clang-format off
 #define FORCE_DONT_INLINE \
 	(void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; \
@@ -119,8 +117,19 @@
 #pragma clang diagnostic ignored "-Wc++11-compat-deprecated-writable-strings"
 #endif
 
-#define __MSTRING(x) #x
-#define MSTRING(x)   __MSTRING (x)
+#define __MSTRING(x)           #x
+#define MSTRING(x)             __MSTRING (x)
+
+#define __MSTRING_CONCAT(a, b) a##b
+#define MSTRING_CONCAT(a, b)   __MSTRING_CONCAT (a, b)
+
+// TODO: make more unique
+#define SASSERT(expr)                                                                              \
+    enum                                                                                           \
+    {                                                                                              \
+        MSTRING_CONCAT (assert_fail_at_, __LINE__) = 1 / (expr)                                    \
+    }
+#define SASSERT_SIZE(type, size) SASSERT (sizeof (type) == size)
 
 #define IGNORE_GLMJ01
 #define IGNORE_GLME01

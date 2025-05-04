@@ -2,17 +2,17 @@
 
 JSUPtrLink::JSUPtrLink (void* data)
 {
-    pOwner = nullptr;
-    pData = data;
+    pSupervisor = nullptr;
+    pObject = data;
     pNext = nullptr;
-    pLast = nullptr;
+    pPrev = nullptr;
 }
 
 JSUPtrLink::~JSUPtrLink ()
 {
-    if (pOwner != nullptr)
+    if (pSupervisor != nullptr)
     {
-        pOwner->remove (this);
+        pSupervisor->remove (this);
     }
 }
 
@@ -28,10 +28,10 @@ JSUPtrList::~JSUPtrList ()
 {
     JSUPtrLink* link = pHead;
 
-    for (u32 i = 0; i < mCount; i++)
+    for (u32 i = 0; i < mNumLinks; i++)
     {
-        link->pOwner = nullptr;
-        link = link->pLast;
+        link->pSupervisor = nullptr;
+        link = link->pPrev;
     }
 }
 
@@ -40,32 +40,32 @@ JSUPtrList::initiate ()
 {
     pHead = nullptr;
     pTail = nullptr;
-    mCount = nullptr;
+    mNumLinks = nullptr;
 }
 
 void
 JSUPtrList::setFirst (JSUPtrLink* link)
 {
-    link->pOwner = this;
+    link->pSupervisor = this;
     link->pNext = nullptr;
-    link->pLast = nullptr;
+    link->pPrev = nullptr;
     pTail = link;
     pHead = link;
-    mCount = 1;
+    mNumLinks = 1;
 }
 
 bool
 JSUPtrList::append (JSUPtrLink* link)
 {
-    bool result = (link->pOwner == nullptr);
+    bool result = (link->pSupervisor == nullptr);
     if (!result)
     {
-        result = link->pOwner->remove (link);
+        result = link->pSupervisor->remove (link);
     }
 
     if (result)
     {
-        if (mCount == 0)
+        if (mNumLinks == 0)
         {
             setFirst (link);
         }
@@ -80,15 +80,15 @@ JSUPtrList::append (JSUPtrLink* link)
 bool
 JSUPtrList::prepend (JSUPtrLink* link)
 {
-    bool result = (link->pOwner == nullptr);
+    bool result = (link->pSupervisor == nullptr);
     if (!result)
     {
-        result = link->pOwner->remove (link);
+        result = link->pSupervisor->remove (link);
     }
 
     if (result)
     {
-        if (mCount == 0)
+        if (mNumLinks == 0)
         {
             setFirst (link);
         }
@@ -112,25 +112,25 @@ JSUPtrList::insert (JSUPtrLink* last, JSUPtrLink* next)
         return append (next);
     }
 
-    if (last->pOwner != this)
+    if (last->pSupervisor != this)
     {
         return false;
     }
 
-    bool result = next->pOwner == nullptr;
+    bool result = next->pSupervisor == nullptr;
     if (!result)
     {
-        result = next->pOwner->remove (next);
+        result = next->pSupervisor->remove (next);
     }
     if (result)
     {
         JSUPtrLink* old = last->pNext;
-        next->pOwner = this;
+        next->pSupervisor = this;
         next->pNext = old;
-        next->pLast = last;
-        old->pLast = next;
+        next->pPrev = last;
+        old->pPrev = next;
         last->pNext = next;
-        mCount++;
+        mNumLinks++;
     }
 
     return result;
@@ -139,32 +139,32 @@ JSUPtrList::insert (JSUPtrLink* last, JSUPtrLink* next)
 bool
 JSUPtrList::remove (JSUPtrLink* link)
 {
-    bool result = link->pOwner == this;
+    bool result = link->pSupervisor == this;
     if (result)
     {
-        if (mCount == 1)
+        if (mNumLinks == 1)
         {
             pHead = nullptr;
             pTail = nullptr;
         }
         else if (link == pHead)
         {
-            link->pLast->pNext = nullptr;
-            pHead = link->pLast;
+            link->pPrev->pNext = nullptr;
+            pHead = link->pPrev;
         }
         else if (link == pTail)
         {
-            link->pNext->pLast = nullptr;
+            link->pNext->pPrev = nullptr;
             pTail = link->pNext;
         }
         else
         {
-            link->pNext->pLast = link->pLast;
-            link->pLast->pNext = link->pNext;
+            link->pNext->pPrev = link->pPrev;
+            link->pPrev->pNext = link->pNext;
         }
 
-        link->pOwner = nullptr;
-        mCount--;
+        link->pSupervisor = nullptr;
+        mNumLinks--;
     }
     return result;
 }
