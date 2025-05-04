@@ -4,7 +4,7 @@
 #include <dolphin/pad.h>
 typedef struct
 {
-    struct PADStatus pst;            ///< 0x00
+    PADStatus pst;            ///< 0x00
     u16              buttonDown;     ///< 0x0C
     u16              buttonUp;       ///< 0x0E
     u16              dirs;           ///< 0x10

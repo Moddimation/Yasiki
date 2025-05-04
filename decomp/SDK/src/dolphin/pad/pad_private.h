@@ -32,7 +32,7 @@ int         PADReset (u32 mask);
 BOOL        PADRecalibrate (u32 mask);
 BOOL        PADInit ();
 static void PADReceiveCheckCallback (s32 chan, u32 error, OSContext* arg2);
-u32         PADRead (struct PADStatus* status);
+u32         PADRead (PADStatus* status);
 void        PADSetSamplingRate (u32 msec);
 void        __PADTestSamplingRate (u32 tvmode);
 void        PADControlAllMotors (const u32* commandArray);
@@ -55,7 +55,7 @@ static u32 AnalogMode = 0x00000300;                  // size: 0x4,
 static u32 Spec = 0x00000005;                        // size: 0x4,
 
 static void (*MakeStatus) (s32,
-                           struct PADStatus*,
+                           PADStatus*,
                            u32*) = SPEC2_MakeStatus; // size: 0x4, address: 0xC
 
 static int Initialized;                              // size: 0x4,
@@ -68,7 +68,7 @@ static u32 CheckingBits;                             // size: 0x4,
 
 static u32              PADType[4];                  // size: 0x10,
 static u32              Type[4];                     // size: 0x10,
-static struct PADStatus Origin[4];                   // size: 0x30,
+static PADStatus Origin[4];                   // size: 0x30,
 
 static u32 cmdReadOrigin = 0x41u << 24;
 static u32 cmdCalibrate = 0x42u << 24;

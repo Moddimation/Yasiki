@@ -29,7 +29,7 @@ struct STRUCT_MENU
 };
 typedef struct
 {
-    struct PADStatus pads[4];                                         ///< 0x00
+    PADStatus pads[4];                                         ///< 0x00
     u32              button[4];                                       ///< 0x30
     u32              old_button[4];                                   ///< 0x40
     u32              changed_button[4];                               ///< 0x50

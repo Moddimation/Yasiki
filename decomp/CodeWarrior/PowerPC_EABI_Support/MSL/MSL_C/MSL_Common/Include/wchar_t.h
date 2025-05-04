@@ -10,8 +10,10 @@
 
 #include <ansi_parms.h>
 
+#ifdef __MWERKS__
 #if (!__cplusplus || !__option(wchar_type))
 typedef unsigned short wchar_t;
+#endif
 #endif
 
 #ifdef __cplusplus
