@@ -579,6 +579,14 @@ config.libs = [
 #        "src_dir": "lib/HVQM/src"
 #    }),
 
+    JSystemLib("JSupport", "System/JSupport", [
+        (Matching, "JSUList.cpp"),
+    ]),
+
+    JSystemLib("JUtility", "System/JUtility", [
+        (NonMatching, "JUTDirectPrint.cpp"),
+    ]),
+
     # SDK
 
     DolphinLib("base", [

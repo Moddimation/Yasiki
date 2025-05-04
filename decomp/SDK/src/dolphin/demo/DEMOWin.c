@@ -902,7 +902,7 @@ DEMOWinPadInit (DEMOWinPadInfo* p)
 void
 DEMOWinPadRead (DEMOWinPadInfo* p)
 {
-    struct PADStatus* pad;
+    PADStatus* pad;
     u16               index;
     u32               curr;
     u32               old;
