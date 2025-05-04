@@ -381,7 +381,7 @@ def DolphinLib(lib_name: str, files: List[Tuple[bool, str]], conf:Dict[str,str]=
     return SDKLib(f"dolphin/{lib_name}", files)
 
 # Helper function for JSystem libraries
-def JSystemLib(lib_name: str, sub_dir: str, files: List[Tuple[bool, str]], conf: Dict[str, str]={"":""}) -> Dict[str, Any]:
+def JSystemLib(lib_name: str, sub_dir: str, files: List[Tuple[bool, str]], cflags: List[str]=cflags_jsys, conf: Dict[str, str]={"":""}) -> Dict[str, Any]:
     objects = []
     dirpath = f"JSystem/{sub_dir}/src"
     for matching, filename in files:
@@ -480,33 +480,30 @@ config.libs = [
 #        (NonMatching, "dvd.cpp"),
 #    ]),
 #    GameSource("Kawano", [
-#        (NonMatching, ""),
-#    ]),
-#    GameSource("sequence", [
 #        (NonMatching, "sequence.cpp"),
 #        (NonMatching, "rolling.cpp"),
 #    ]),
 #    GameSource("Iwamoto", [
 #        (NonMatching, ""),
 #    ]),
-    GameSource("Sotoike", [
-        (NonMatching, "AITurara.cpp"),
-    ]),
+#    GameSource("Sotoike", [
+#        (NonMatching, "AITurara.cpp"),
+#    ]),
 #    GameSource("Kawamoto", [
 #        (NonMatching, ""),
 #    ]),
-    GameSource("Koga", [
-        (Matching, "CharacterEventObserver.cpp"),
-        (Matching, "IncludeStrategy.cpp"),
-    ]),
+#    GameSource("Koga", [
+#        (Matching, "CharacterEventObserver.cpp"),
+#        (Matching, "IncludeStrategy.cpp"),
+#    ]),
 #    GameSource("Ajioka", [
 #        (NonMatching, ""),
 #    ]),
-    GameSource("Sato", [
-        (NonMatching, "EnStrategy.cpp"),
-        (NonMatching, "EnemyStrategy.cpp"),
-        (NonMatching, "EnemyTypicalStrategy.cpp"),
-    ]),
+#    GameSource("Sato", [
+#        (NonMatching, "EnStrategy.cpp"),
+#        (NonMatching, "EnemyStrategy.cpp"),
+#        (NonMatching, "EnemyTypicalStrategy.cpp"),
+#    ]),
 #    GameSource("Kohno", [
 #        (NonMatching, ""),
 #    ]),
@@ -524,62 +521,8 @@ config.libs = [
 
     # JSystem Libraries
 
-#    JSystemLib("JAudio", "JAudio/JAInterface", [
-#        (NonMatching, "JAIBasic.cpp"),
-#    ]),
-#    JSystemLib("JAudio", "JAudio/Jaudio", [
-#        (NonMatching, "aictrl.c"),
-#        (NonMatching, "aramcall.c"),
-#        (NonMatching, "audiomesg.c"),
-#        (NonMatching, "audiothread.c"),
-#        (NonMatching, "bankdrv.c"),
-#        (NonMatching, "bankread.c"),
-#        (NonMatching, "cmdqueue.c"),
-#        (NonMatching, "connect.c"),
-#        (NonMatching, "cpubuf.c"),
-#        (NonMatching, "driverinterface.c"),
-#        (NonMatching, "dsp_cardunlock.c"),
-#        (NonMatching, "dspboot.c"),
-#        (NonMatching, "dspbuf.c"),
-#        (NonMatching, "dspdriver.c"),
-#        (NonMatching, "dspinterface.c"),
-#        (NonMatching, "dspproc.c"),
-#        (NonMatching, "dummyprobe.c"),
-#        (NonMatching, "dummyrom.c"),
-#        (NonMatching, "dvdthread.c"),
-#        (NonMatching, "fat.c"),
-#        (NonMatching, "file_seq.c"),
-#        (NonMatching, "foilter3d.c"),
-#        (NonMatching, "fxinterface.c"),
-#        (NonMatching, "heapctrl.c"),
-#        (NonMatching, "hvqm_play.c"),
-#        (NonMatching, "interface.c"),
-#        (NonMatching, "ipldec.c"),
-#        (NonMatching, "ja_calc.c"),
-#        (NonMatching, "jammain_2.c"),
-#        (NonMatching, "jamosc.c"),
-#        (NonMatching, "memory.c"),
-#        (NonMatching, "noteon.c"),
-#        (NonMatching, "oneshot.c"),
-#        (NonMatching, "playercall.c"),
-#        (NonMatching, "random.c"),
-#        (NonMatching, "sample.c"),
-#        (NonMatching, "seqsetup.c"),
-#        (NonMatching, "stackchecker.c"),
-#        (NonMatching, "streamctrl.c"),
-#        (NonMatching, "syncstream.c"),
-#        (NonMatching, "verysimple.c"),
-#        (NonMatching, "virtload.c"),
-#        (NonMatching, "waveread.c"),
-#    ],{
-#        "cflags": cflags_jaudio
-#    }),
-#    JSystemLib("HVQM", "JAudio/Jaudio/lib/hvqm4dec/src", [
-#        (NonMatching, "hvqm4dec.c")
-#    ]),
-
     JSystemLib("JKernel", "System/JKernel", [
-        (Equivalent, "JKRDisposer.cpp"),
+        (Matching, "JKRDisposer.cpp"),
         (NonMatching, "JKRThread.cpp"),
     ]),
 
