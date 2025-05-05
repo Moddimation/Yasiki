@@ -7,6 +7,7 @@
 
 // functions
 static void UpdateIconOffsets (CARDDir* ent, CARDStat* stat);
+
 static void
 UpdateIconOffsets (CARDDir* ent, CARDStat* stat)
 {
@@ -71,6 +72,7 @@ UpdateIconOffsets (CARDDir* ent, CARDStat* stat)
     }
     stat->offsetData = offset;
 }
+
 s32
 CARDGetStatus (s32 chan, s32 fileNo, CARDStat* stat)
 {
@@ -119,6 +121,7 @@ CARDGetStatus (s32 chan, s32 fileNo, CARDStat* stat)
     }
     return __CARDPutControlBlock (card, result);
 }
+
 s32
 CARDSetStatusAsync (s32 chan, s32 fileNo, CARDStat* stat, CARDCallback callback)
 {
@@ -171,6 +174,7 @@ CARDSetStatusAsync (s32 chan, s32 fileNo, CARDStat* stat, CARDCallback callback)
     }
     return result;
 }
+
 s32
 CARDSetStatus (s32 chan, long fileNo, struct CARDStat* stat)
 {

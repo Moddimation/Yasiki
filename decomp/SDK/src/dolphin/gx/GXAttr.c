@@ -5,32 +5,31 @@
 
 #include "GXPrivate.h"
 
-#define CHECK_ATTRPTR(line, attrPtr)                                                \
+#define CHECK_ATTRPTR(line, attrPtr)                                                               \
     ASSERTMSGLINE (line, (attrPtr) != NULL, "GXSetVtxDescv: attrPtr is NULL")
-#define CHECK_ATTRNAME(line, attr)                                                  \
-    ASSERTMSGLINE (line,                                                            \
-                   (attr) >= GX_VA_PNMTXIDX && (attr) < GX_VA_MAX_ATTR,             \
+#define CHECK_ATTRNAME(line, attr)                                                                 \
+    ASSERTMSGLINE (line,                                                                           \
+                   (attr) >= GX_VA_PNMTXIDX && (attr) < GX_VA_MAX_ATTR,                            \
                    "GXSetVtxDesc: Invalid vertex attribute name")
-#define CHECK_ATTRNAME2(line, attr)                                                 \
-    ASSERTMSGLINE (line,                                                            \
-                   (attr) >= GX_VA_POS && (attr) <= GX_VA_MAX_ATTR,                 \
+#define CHECK_ATTRNAME2(line, attr)                                                                \
+    ASSERTMSGLINE (line,                                                                           \
+                   (attr) >= GX_VA_POS && (attr) <= GX_VA_MAX_ATTR,                                \
                    "GXSetVtxAttrFmt: Invalid vertex attribute name")
-#define CHECK_ATTRNAME3(line, attr)                                                 \
-    ASSERTMSGLINE (line,                                                            \
-                   (attr) >= GX_VA_POS && (attr) <= GX_LIGHT_ARRAY,                 \
+#define CHECK_ATTRNAME3(line, attr)                                                                \
+    ASSERTMSGLINE (line,                                                                           \
+                   (attr) >= GX_VA_POS && (attr) <= GX_LIGHT_ARRAY,                                \
                    "GXSetArray: Invalid vertex attribute name")
-#define CHECK_ATTRTYPE(line, type)                                                  \
-    ASSERTMSGLINE (line,                                                            \
-                   (type) >= GX_NONE && (type) <= GX_INDEX16,                       \
+#define CHECK_ATTRTYPE(line, type)                                                                 \
+    ASSERTMSGLINE (line,                                                                           \
+                   (type) >= GX_NONE && (type) <= GX_INDEX16,                                      \
                    "GXSetVtxDesc: Invalid vertex attribute type")
-#define CHECK_VTXFMT(line, vtxfmt)                                                  \
-    ASSERTMSGLINE (line,                                                            \
-                   (vtxfmt) < GX_MAX_VTXFMT,                                        \
-                   "GXSetVtxAttrFmt: Format Index is out of range")
-#define CHECK_FRAC(line, frac)                                                      \
+#define CHECK_VTXFMT(line, vtxfmt)                                                                 \
+    ASSERTMSGLINE (line, (vtxfmt) < GX_MAX_VTXFMT, "GXSetVtxAttrFmt: Format Index is out of range")
+#define CHECK_FRAC(line, frac)                                                                     \
     ASSERTMSGLINE (line, (frac) < 32, "GXSetVtxAttrFmt: Frac value is >= 32")
-#define CHECK_LISTPTR(line, list)                                                   \
+#define CHECK_LISTPTR(line, list)                                                                  \
     ASSERTMSGLINE (line, (list) != NULL, "GXSetVtxAttrFmt: list pointer is NULL")
+
 static void
 __GXXfVtxSpecs (void)
 {
@@ -55,6 +54,7 @@ __GXXfVtxSpecs (void)
     GX_WRITE_XF_REG (8, reg);
     __GXData->bpSent = 0;
 }
+
 static inline void
 SETVCDATTR (GXAttr Attr, GXAttrType Type)
 {
@@ -136,6 +136,7 @@ SETVCDATTR (GXAttr Attr, GXAttrType Type)
             break;
     }
 }
+
 void
 GXSetVtxDesc (GXAttr attr, GXAttrType type)
 {
@@ -154,6 +155,7 @@ GXSetVtxDesc (GXAttr attr, GXAttrType type)
     }
     __GXData->dirtyState |= 8;
 }
+
 void
 GXSetVtxDescv (const GXVtxDescList* attrPtr)
 {
@@ -176,6 +178,7 @@ GXSetVtxDescv (const GXVtxDescList* attrPtr)
     }
     __GXData->dirtyState |= 8;
 }
+
 void
 __GXSetVCD (void)
 {
@@ -219,6 +222,7 @@ __GXSetVCD (void)
         __GXData->vLim = vlm;
     }
 }
+
 void
 GXGetVtxDesc (GXAttr attr, GXAttrType* type)
 {
@@ -263,8 +267,7 @@ GXGetVtxDesc (GXAttr attr, GXAttrType* type)
             cpType = __GXData->hasNrms ? GET_REG_FIELD (__GXData->vcdLo, 2, 11) : 0;
             break;
         case GX_VA_NBT:
-            cpType =
-                __GXData->hasBiNrms ? GET_REG_FIELD (__GXData->vcdLo, 2, 11) : 0;
+            cpType = __GXData->hasBiNrms ? GET_REG_FIELD (__GXData->vcdLo, 2, 11) : 0;
             break;
         case GX_VA_CLR0:
             cpType = GET_REG_FIELD (__GXData->vcdLo, 2, 13);
@@ -302,6 +305,7 @@ GXGetVtxDesc (GXAttr attr, GXAttrType* type)
     }
     *type = cpType;
 }
+
 void
 GXGetVtxDescv (GXVtxDescList* vcd)
 {
@@ -316,6 +320,7 @@ GXGetVtxDescv (GXVtxDescList* vcd)
     }
     vcd[attr].attr = 0xFF;
 }
+
 void
 GXClearVtxDesc (void)
 {
@@ -327,9 +332,9 @@ GXClearVtxDesc (void)
     __GXData->hasBiNrms = 0;
     __GXData->dirtyState |= 8;
 }
+
 static inline void
-SETVAT (
-    u32* va, u32* vb, u32* vc, GXAttr attr, GXCompCnt cnt, GXCompType type, u8 shft)
+SETVAT (u32* va, u32* vb, u32* vc, GXAttr attr, GXCompCnt cnt, GXCompType type, u8 shft)
 {
     switch (attr)
     {
@@ -402,9 +407,9 @@ SETVAT (
             break;
     }
 }
+
 void
-GXSetVtxAttrFmt (
-    GXVtxFmt vtxfmt, GXAttr attr, GXCompCnt cnt, GXCompType type, u8 frac)
+GXSetVtxAttrFmt (GXVtxFmt vtxfmt, GXAttr attr, GXCompCnt cnt, GXCompType type, u8 frac)
 {
     u32* va;
     u32* vb;
@@ -421,6 +426,7 @@ GXSetVtxAttrFmt (
     __GXData->dirtyState |= 0x10;
     __GXData->dirtyVAT |= (u8)(1 << (u8)vtxfmt);
 }
+
 void
 GXSetVtxAttrFmtv (GXVtxFmt vtxfmt, const GXVtxAttrFmtList* list)
 {
@@ -444,6 +450,7 @@ GXSetVtxAttrFmtv (GXVtxFmt vtxfmt, const GXVtxAttrFmtList* list)
     __GXData->dirtyState |= 0x10;
     __GXData->dirtyVAT |= (u8)(1 << (u8)vtxfmt);
 }
+
 void
 __GXSetVAT (void)
 {
@@ -460,9 +467,9 @@ __GXSetVAT (void)
     }
     __GXData->dirtyVAT = 0;
 }
+
 void
-GXGetVtxAttrFmt (
-    GXVtxFmt fmt, GXAttr attr, GXCompCnt* cnt, GXCompType* type, u8* frac)
+GXGetVtxAttrFmt (GXVtxFmt fmt, GXAttr attr, GXCompCnt* cnt, GXCompType* type, u8* frac)
 {
     u32* va;
     u32* vb;
@@ -547,6 +554,7 @@ GXGetVtxAttrFmt (
             return;
     }
 }
+
 void
 GXGetVtxAttrFmtv (GXVtxFmt fmt, GXVtxAttrFmtList* vat)
 {
@@ -563,6 +571,7 @@ GXGetVtxAttrFmtv (GXVtxFmt fmt, GXVtxAttrFmtList* vat)
     }
     vat->attr = GX_VA_NULL;
 }
+
 void
 GXSetArray (GXAttr attr, const void* base_ptr, u8 stride)
 {
@@ -580,12 +589,14 @@ GXSetArray (GXAttr attr, const void* base_ptr, u8 stride)
     GX_WRITE_SOME_REG2 (8, cpAttr | 0xA0, phyAddr, cpAttr - 12);
     GX_WRITE_SOME_REG3 (8, cpAttr | 0xB0, stride, cpAttr - 12);
 }
+
 void
 GXInvalidateVtxCache (void)
 {
     CHECK_GXBEGIN (0x368, "GXInvalidateVtxCache");
     GX_WRITE_U8 (0x48);
 }
+
 void
 GXSetTexCoordGen2 (GXTexCoordID dst_coord,
                    GXTexGenType func,
@@ -702,10 +713,9 @@ GXSetTexCoordGen2 (GXTexCoordID dst_coord,
         case 7:
         case 8:
         case 9:
-            ASSERTMSGLINE (
-                0x3CF,
-                src_param >= 12 && src_param <= 18,
-                "GXSetTexCoordGen:  Bump source texture value is invalid");
+            ASSERTMSGLINE (0x3CF,
+                           src_param >= 12 && src_param <= 18,
+                           "GXSetTexCoordGen:  Bump source texture value is invalid");
             SET_REG_FIELD (0x3D0, reg, 1, 1, 0);
             SET_REG_FIELD (0x3D1, reg, 1, 2, form);
             SET_REG_FIELD (0x3D2, reg, 3, 4, 1);
@@ -765,6 +775,7 @@ GXSetTexCoordGen2 (GXTexCoordID dst_coord,
     mtxIdAttr = dst_coord + 1;
     __GXSetMatrixIndex (mtxIdAttr);
 }
+
 void
 GXSetNumTexGens (u8 nTexGens)
 {

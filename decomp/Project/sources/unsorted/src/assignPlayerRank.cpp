@@ -1,4 +1,5 @@
 #include "Unsorted/Rank.h"
+
 void
 assignPlayerRank (unsigned int playerMoney)
 {

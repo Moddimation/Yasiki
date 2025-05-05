@@ -5,6 +5,7 @@
 #include <string.h>
 
 void bzero (void* start, u32 len);
+
 void
 bzero (void* start, u32 len)
 {
@@ -16,6 +17,7 @@ bzero (void* start, u32 len)
         a[0] = 0; // BUG: this only zeros the first byte!
     }
 }
+
 void*
 DOLLoadImage (u8* buffer, BOOL verbose)
 {
@@ -99,6 +101,7 @@ DOLLoadImage (u8* buffer, BOOL verbose)
     ICSync();
     return (void*)ip->entry;
 }
+
 asm void
 DOLRunApp (register void* entryPoint)
 {

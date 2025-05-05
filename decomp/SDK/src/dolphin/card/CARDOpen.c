@@ -3,6 +3,7 @@
 #include <dolphin.h>
 
 #include "CARDPrivate.h"
+
 BOOL
 __CARDCompareFileName (CARDDir* ent, const char* fileName)
 {
@@ -29,6 +30,7 @@ __CARDCompareFileName (CARDDir* ent, const char* fileName)
     }
     return FALSE;
 }
+
 s32
 __CARDAccess (CARDDir* ent)
 {
@@ -38,8 +40,7 @@ __CARDAccess (CARDDir* ent)
     }
 
     if (__CARDDiskID == &__CARDDiskNone ||
-        (memcmp (ent->gameName, __CARDDiskID->gameName, sizeof (ent->gameName)) ==
-             0 &&
+        (memcmp (ent->gameName, __CARDDiskID->gameName, sizeof (ent->gameName)) == 0 &&
          memcmp (ent->company, __CARDDiskID->company, sizeof (ent->company)) == 0))
     {
         return CARD_RESULT_READY;
@@ -47,6 +48,7 @@ __CARDAccess (CARDDir* ent)
 
     return CARD_RESULT_NOPERM;
 }
+
 s32
 __CARDIsPublic (CARDDir* ent)
 {
@@ -60,6 +62,7 @@ __CARDIsPublic (CARDDir* ent)
     }
     return CARD_RESULT_NOPERM;
 }
+
 s32
 __CARDGetFileNo (CARDControl* card, const char* fileName, s32* pfileNo)
 {
@@ -89,6 +92,7 @@ __CARDGetFileNo (CARDControl* card, const char* fileName, s32* pfileNo)
     }
     return CARD_RESULT_NOFILE;
 }
+
 s32
 CARDFastOpen (s32 chan, s32 fileNo, CARDFileInfo* fileInfo)
 {
@@ -135,6 +139,7 @@ CARDFastOpen (s32 chan, s32 fileNo, CARDFileInfo* fileInfo)
     }
     return __CARDPutControlBlock (card, result);
 }
+
 s32
 CARDOpen (s32 chan, char* fileName, CARDFileInfo* fileInfo)
 {
@@ -172,6 +177,7 @@ CARDOpen (s32 chan, char* fileName, CARDFileInfo* fileInfo)
     }
     return __CARDPutControlBlock (card, result);
 }
+
 s32
 CARDClose (CARDFileInfo* fileInfo)
 {
@@ -190,6 +196,7 @@ CARDClose (CARDFileInfo* fileInfo)
     fileInfo->chan = -1;
     return __CARDPutControlBlock (card, CARD_RESULT_READY);
 }
+
 BOOL
 __CARDIsOpened (CARDControl* card, s32 fileNo)
 {

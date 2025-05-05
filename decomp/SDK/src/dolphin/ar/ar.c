@@ -18,6 +18,7 @@ static void __ARWaitForDMA (void);
 static void __ARWriteDMA (u32 mmem_addr, u32 aram_addr, u32 length);
 static void __ARReadDMA (u32 mmem_addr, u32 aram_addr, u32 length);
 static void __ARChecksize (void);
+
 ARQCallback
 ARRegisterDMACallback (ARQCallback callback)
 {
@@ -30,6 +31,7 @@ ARRegisterDMACallback (ARQCallback callback)
     OSRestoreInterrupts (old);
     return old_callback;
 }
+
 u32
 ARGetDMAStatus (void)
 {
@@ -41,6 +43,7 @@ ARGetDMAStatus (void)
     OSRestoreInterrupts (old);
     return val;
 }
+
 void
 ARStartDMA (u32 type, u32 mainmem_addr, u32 aram_addr, u32 length)
 {
@@ -63,6 +66,7 @@ ARStartDMA (u32 type, u32 mainmem_addr, u32 aram_addr, u32 length)
     __DSPRegs[21] = (__DSPRegs[21] & 0xFFFF001F) | (length & 0x0000FFFF);
     OSRestoreInterrupts (old);
 }
+
 u32
 ARAlloc (u32 length)
 {
@@ -70,10 +74,8 @@ ARAlloc (u32 length)
     int old;
 
     old = OSDisableInterrupts();
-    ASSERTMSGLINE (
-        0x17E, !(length & 0x1F), "ARAlloc(): length is not multiple of 32bytes!");
-    ASSERTMSGLINE (
-        0x182, length <= (__AR_Size - __AR_StackPointer), "ARAlloc(): Out of ARAM!");
+    ASSERTMSGLINE (0x17E, !(length & 0x1F), "ARAlloc(): length is not multiple of 32bytes!");
+    ASSERTMSGLINE (0x182, length <= (__AR_Size - __AR_StackPointer), "ARAlloc(): Out of ARAM!");
     ASSERTMSGLINE (0x183, __AR_FreeBlocks, "ARAlloc(): No more free blocks!");
     tmp = __AR_StackPointer;
     __AR_StackPointer += length;
@@ -83,6 +85,7 @@ ARAlloc (u32 length)
     OSRestoreInterrupts (old);
     return tmp;
 }
+
 u32
 ARFree (u32* length)
 {
@@ -99,11 +102,13 @@ ARFree (u32* length)
     OSRestoreInterrupts (old);
     return __AR_StackPointer;
 }
+
 int
 ARCheckInit (void)
 {
     return __AR_init_flag;
 }
+
 u32
 ARInit (u32* stack_index_addr, u32 num_entries)
 {
@@ -122,8 +127,7 @@ ARInit (u32* stack_index_addr, u32 num_entries)
     __AR_FreeBlocks = num_entries;
     __AR_BlockLength = stack_index_addr;
     refresh = 196.0f * (OS_BUS_CLOCK / 202500000.0f);
-    ASSERTMSGLINE (
-        0x227, (refresh <= 196.0f), "ARInit(): ILLEGAL SDRAM REFRESH VALUE¥n");
+    ASSERTMSGLINE (0x227, (refresh <= 196.0f), "ARInit(): ILLEGAL SDRAM REFRESH VALUE¥n");
     __DSPRegs[13] = (__DSPRegs[13] & 0xFF00) | ((u8)refresh & ~0xFF00);
     __ARChecksize();
     __AR_init_flag = 1;
@@ -135,11 +139,13 @@ ARInit (u32* stack_index_addr, u32 num_entries)
 #endif
     return __AR_StackPointer;
 }
+
 void
 ARReset (void)
 {
     __AR_init_flag = 0;
 }
+
 void
 ARSetSize (void)
 {
@@ -147,16 +153,19 @@ ARSetSize (void)
     OSReport ("ARSetSize(): I don't do anything anymore!¥n");
 #endif
 }
+
 u32
 ARGetBaseAddress (void)
 {
     return 0x4000;
 }
+
 u32
 ARGetSize (void)
 {
     return __AR_Size;
 }
+
 static void
 __ARHandler (s16 exception, OSContext* context)
 {
@@ -175,17 +184,18 @@ __ARHandler (s16 exception, OSContext* context)
     OSClearContext (&exceptionContext);
     OSSetCurrentContext (context);
 }
+
 static void
 __ARWaitForDMA (void)
 {
     while (__DSPRegs[5] & 0x200);
 }
+
 static void
 __ARWriteDMA (u32 mmem_addr, u32 aram_addr, u32 length)
 {
     // Main mem address
-    __DSPRegs[DSP_AR_DMA_MM] =
-        (u16)((__DSPRegs[DSP_AR_DMA_MM] & ~0x03ff) | (u16)(mmem_addr >> 16));
+    __DSPRegs[DSP_AR_DMA_MM] = (u16)((__DSPRegs[DSP_AR_DMA_MM] & ~0x03ff) | (u16)(mmem_addr >> 16));
     __DSPRegs[DSP_AR_DMA_MM_U] =
         (u16)((__DSPRegs[DSP_AR_DMA_MM_U] & ~0xffe0) | (u16)(mmem_addr & 0xffff));
 
@@ -205,12 +215,12 @@ __ARWriteDMA (u32 mmem_addr, u32 aram_addr, u32 length)
 
     __ARWaitForDMA();
 }
+
 static void
 __ARReadDMA (u32 mmem_addr, u32 aram_addr, u32 length)
 {
     // Main mem address
-    __DSPRegs[DSP_AR_DMA_MM] =
-        (u16)((__DSPRegs[DSP_AR_DMA_MM] & ~0x03ff) | (u16)(mmem_addr >> 16));
+    __DSPRegs[DSP_AR_DMA_MM] = (u16)((__DSPRegs[DSP_AR_DMA_MM] & ~0x03ff) | (u16)(mmem_addr >> 16));
     __DSPRegs[DSP_AR_DMA_MM_U] =
         (u16)((__DSPRegs[DSP_AR_DMA_MM_U] & ~0xffe0) | (u16)(mmem_addr & 0xffff));
 
@@ -230,6 +240,7 @@ __ARReadDMA (u32 mmem_addr, u32 aram_addr, u32 length)
 
     __ARWaitForDMA();
 }
+
 static void
 __ARChecksize (void)
 {

@@ -9,11 +9,13 @@ extern "C"
 #endif
 
 typedef __OSInterruptHandler AmcEXICallback;
+
 typedef enum
 {
     AMC_EXI_NO_ERROR = 0,
     AMC_EXI_UNSELECTED
 } AmcExiError;
+
 void EXI2_Init (volatile u8**, AmcEXICallback);
 void EXI2_EnableInterrupts (void);
 u32  EXI2_Poll (void);

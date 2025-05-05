@@ -5,9 +5,9 @@
 #include <dolphin/os.h>
 
 #include "GXPrivate.h"
+
 void
-GXProject (
-    f32 x, f32 y, f32 z, f32 mtx[3][4], f32* pm, f32* vp, f32* sx, f32* sy, f32* sz)
+GXProject (f32 x, f32 y, f32 z, f32 mtx[3][4], f32* pm, f32* vp, f32* sx, f32* sy, f32* sz)
 {
     Vec peye;
     f32 xc;
@@ -38,6 +38,7 @@ GXProject (
     *sy = (vp[3] / 2.0f) + (vp[1] + (wc * (-yc * vp[3] / 2.0f)));
     *sz = vp[5] + (wc * (zc * (vp[5] - vp[4])));
 }
+
 void
 GXSetProjection (f32 mtx[4][4], GXProjectionType type)
 {
@@ -73,6 +74,7 @@ GXSetProjection (f32 mtx[4][4], GXProjectionType type)
     GX_WRITE_XF_REG_2 (38, __GXData->projType);
     __GXData->bpSent = 0;
 }
+
 void
 GXSetProjectionv (f32* ptr)
 {
@@ -100,7 +102,9 @@ GXSetProjectionv (f32* ptr)
     GX_WRITE_XF_REG_2 (38, __GXData->projType);
     __GXData->bpSent = 0;
 }
+
 #define qr0 0
+
 void
 GXGetProjectionv (f32* ptr)
 {
@@ -114,6 +118,7 @@ GXGetProjectionv (f32* ptr)
     ptr[5] = __GXData->projMtx[4];
     ptr[6] = __GXData->projMtx[5];
 }
+
 static ASM void
 WriteMTXPS4x3 (register f32 mtx[3][4], register volatile f32* dest)
 {
@@ -133,6 +138,7 @@ WriteMTXPS4x3 (register f32 mtx[3][4], register volatile f32* dest)
     psq_st f5, 0x00(dest), 0, qr0;
 #endif
 }
+
 static ASM void
 WriteMTXPS3x3from3x4 (register f32 mtx[3][4], register volatile f32* dest)
 {
@@ -151,6 +157,7 @@ WriteMTXPS3x3from3x4 (register f32 mtx[3][4], register volatile f32* dest)
     stfs   f5, 0(dest)
 #endif
 }
+
 static ASM void
 WriteMTXPS3x3 (register f32 mtx[3][3], register volatile f32* dest)
 {
@@ -167,6 +174,7 @@ WriteMTXPS3x3 (register f32 mtx[3][3], register volatile f32* dest)
     stfs   f4, 0(dest)
 #endif
 }
+
 static ASM void
 WriteMTXPS4x2 (register f32 mtx[2][4], register volatile f32* dest)
 {
@@ -181,13 +189,15 @@ WriteMTXPS4x2 (register f32 mtx[2][4], register volatile f32* dest)
     psq_st f3, 0(dest), 0, qr0
 #endif
 }
-#define GX_WRITE_MTX_ELEM(addr, value)                                              \
-    do {                                                                            \
-        f32 xfData = (value);                                                       \
-        GX_WRITE_F32 (value);                                                       \
-        VERIF_MTXLIGHT ((addr), *(u32*)&xfData);                                    \
-    }                                                                               \
+
+#define GX_WRITE_MTX_ELEM(addr, value)                                                             \
+    do {                                                                                           \
+        f32 xfData = (value);                                                                      \
+        GX_WRITE_F32 (value);                                                                      \
+        VERIF_MTXLIGHT ((addr), *(u32*)&xfData);                                                   \
+    }                                                                                              \
     while (0)
+
 void
 GXLoadPosMtxImm (f32 mtx[3][4], u32 id)
 {
@@ -218,16 +228,17 @@ GXLoadPosMtxImm (f32 mtx[3][4], u32 id)
     WriteMTXPS4x3 (mtx, &GXWGFifo.f32);
 #endif
 }
+
 // this one uses cmpwi instead of cmplwi for some reason
-#define SET_REG_FIELD_(line, reg, size, shift, val)                                 \
-    do {                                                                            \
-        ASSERTMSGLINE (line,                                                        \
-                       ((s32)(val) & ~((1 << (size)) - 1)) == 0,                    \
-                       "GX Internal: Register field out of range");                 \
-        (reg) = ((u32)(reg) & ~(((1 << (size)) - 1) << (shift))) |                  \
-                ((u32)(val) << (shift));                                            \
-    }                                                                               \
+#define SET_REG_FIELD_(line, reg, size, shift, val)                                                \
+    do {                                                                                           \
+        ASSERTMSGLINE (line,                                                                       \
+                       ((s32)(val) & ~((1 << (size)) - 1)) == 0,                                   \
+                       "GX Internal: Register field out of range");                                \
+        (reg) = ((u32)(reg) & ~(((1 << (size)) - 1) << (shift))) | ((u32)(val) << (shift));        \
+    }                                                                                              \
     while (0)
+
 void
 GXLoadPosMtxIndx (u16 mtx_indx, u32 id)
 {
@@ -246,6 +257,7 @@ GXLoadPosMtxIndx (u16 mtx_indx, u32 id)
     __GXShadowIndexState (4, reg);
 #endif
 }
+
 void
 GXLoadNrmMtxImm (f32 mtx[3][4], u32 id)
 {
@@ -273,6 +285,7 @@ GXLoadNrmMtxImm (f32 mtx[3][4], u32 id)
     WriteMTXPS3x3from3x4 (mtx, &GXWGFifo.f32);
 #endif
 }
+
 void
 GXLoadNrmMtxImm3x3 (f32 mtx[3][3], u32 id)
 {
@@ -300,6 +313,7 @@ GXLoadNrmMtxImm3x3 (f32 mtx[3][3], u32 id)
     WriteMTXPS3x3 (mtx, &GXWGFifo.f32);
 #endif
 }
+
 void
 GXLoadNrmMtxIndx3x3 (u16 mtx_indx, u32 id)
 {
@@ -318,6 +332,7 @@ GXLoadNrmMtxIndx3x3 (u16 mtx_indx, u32 id)
     __GXShadowIndexState (5, reg);
 #endif
 }
+
 void
 GXSetCurrentMtx (u32 id)
 {
@@ -325,6 +340,7 @@ GXSetCurrentMtx (u32 id)
     SET_REG_FIELD (0x2A5, __GXData->matIdxA, 6, 0, id);
     __GXSetMatrixIndex (GX_VA_PNMTXIDX);
 }
+
 void
 GXLoadTexMtxImm (f32 mtx[][4], u32 id, GXTexMtxType type)
 {
@@ -337,8 +353,7 @@ GXLoadTexMtxImm (f32 mtx[][4], u32 id, GXTexMtxType type)
     if (id >= GX_PTTEXMTX0)
     {
         addr = (id - GX_PTTEXMTX0) * 4 + 0x500;
-        ASSERTMSGLINE (
-            0x2CC, type == GX_MTX3x4, "GXLoadTexMtx: Invalid matrix type");
+        ASSERTMSGLINE (0x2CC, type == GX_MTX3x4, "GXLoadTexMtx: Invalid matrix type");
     }
     else
     {
@@ -376,6 +391,7 @@ GXLoadTexMtxImm (f32 mtx[][4], u32 id, GXTexMtxType type)
     }
 #endif
 }
+
 void
 GXLoadTexMtxIndx (u16 mtx_indx, u32 id, GXTexMtxType type)
 {
@@ -388,8 +404,7 @@ GXLoadTexMtxIndx (u16 mtx_indx, u32 id, GXTexMtxType type)
     if (id >= GX_PTTEXMTX0)
     {
         offset = (id - GX_PTTEXMTX0) * 4 + 0x500;
-        ASSERTMSGLINE (
-            0x314, type == GX_MTX3x4, "GXLoadTexMtx: Invalid matrix type");
+        ASSERTMSGLINE (0x314, type == GX_MTX3x4, "GXLoadTexMtx: Invalid matrix type");
     }
     else
     {
@@ -407,9 +422,9 @@ GXLoadTexMtxIndx (u16 mtx_indx, u32 id, GXTexMtxType type)
     __GXShadowIndexState (6, reg);
 #endif
 }
+
 void
-GXSetViewportJitter (
-    f32 left, f32 top, f32 wd, f32 ht, f32 nearz, f32 farz, u32 field)
+GXSetViewportJitter (f32 left, f32 top, f32 wd, f32 ht, f32 nearz, f32 farz, u32 field)
 {
     f32 sx;
     f32 sy;
@@ -456,11 +471,13 @@ GXSetViewportJitter (
     GX_WRITE_XF_REG_F (31, oz);
     __GXData->bpSent = 0;
 }
+
 void
 GXSetViewport (f32 left, f32 top, f32 wd, f32 ht, f32 nearz, f32 farz)
 {
     GXSetViewportJitter (left, top, wd, ht, nearz, farz, 1U);
 }
+
 void
 GXGetViewportv (f32* vp)
 {
@@ -473,6 +490,7 @@ GXGetViewportv (f32* vp)
     vp[4] = __GXData->vpNearz;
     vp[5] = __GXData->vpFarz;
 }
+
 void
 GXSetScissor (u32 left, u32 top, u32 wd, u32 ht)
 {
@@ -502,6 +520,7 @@ GXSetScissor (u32 left, u32 top, u32 wd, u32 ht)
     GX_WRITE_RAS_REG (__GXData->suScis1);
     __GXData->bpSent = 1;
 }
+
 void
 GXGetScissor (u32* left, u32* top, u32* wd, u32* ht)
 {
@@ -522,6 +541,7 @@ GXGetScissor (u32* left, u32* top, u32* wd, u32* ht)
     *wd = rt - lf + 1;
     *ht = bm - tp + 1;
 }
+
 void
 GXSetScissorBoxOffset (s32 x_off, s32 y_off)
 {
@@ -531,10 +551,8 @@ GXSetScissorBoxOffset (s32 x_off, s32 y_off)
 
     CHECK_GXBEGIN (0x3FB, "GXSetScissorBoxOffset");
 
-    ASSERTMSGLINE (
-        0x3FE, (u32)(x_off + 340) < 2048, "GXSetScissorBoxOffset: x offset > 2048");
-    ASSERTMSGLINE (
-        0x400, (u32)(y_off + 340) < 2048, "GXSetScissorBoxOffset: y offset > 2048");
+    ASSERTMSGLINE (0x3FE, (u32)(x_off + 340) < 2048, "GXSetScissorBoxOffset: x offset > 2048");
+    ASSERTMSGLINE (0x400, (u32)(y_off + 340) < 2048, "GXSetScissorBoxOffset: y offset > 2048");
 
     hx = (u32)(x_off + 340) >> 1;
     hy = (u32)(y_off + 340) >> 1;
@@ -545,6 +563,7 @@ GXSetScissorBoxOffset (s32 x_off, s32 y_off)
     GX_WRITE_RAS_REG (reg);
     __GXData->bpSent = 1;
 }
+
 void
 GXSetClipMode (GXClipMode mode)
 {
@@ -552,6 +571,7 @@ GXSetClipMode (GXClipMode mode)
     GX_WRITE_XF_REG (5, mode);
     __GXData->bpSent = 0;
 }
+
 void
 __GXSetMatrixIndex (GXAttr matIdxAttr)
 {

@@ -2,6 +2,7 @@
 #define _DOLPHIN_SEQ_H_
 
 #include <dolphin/syn.h>
+
 typedef struct _SEQTRACK
 {
     void* sequence;                               ///< 0x00
@@ -15,6 +16,7 @@ typedef struct _SEQTRACK
     u32   delay;                                  ///< 0x20
     u32   state;                                  ///< 0x24
 } SEQTRACK;
+
 typedef struct _SEQSEQUENCE
 {
     void*           next;                         ///< 0x0000
@@ -27,6 +29,7 @@ typedef struct _SEQSEQUENCE
     void            (*callback[128]) (void*, u8); ///< 0x3148
     SEQTRACK        track[64];                    ///< 0x3348
 } SEQSEQUENCE;
+
 #define SEQ_ALL_TRACKS -1
 
 // seq.c

@@ -35,6 +35,7 @@ static void __DEMOInitForEmu ();
 static void __BypassRetraceCallback ();
 static void __BypassDoneRender ();
 static void LoadMemInfo ();
+
 void
 DEMOInit (struct _GXRenderModeObj* mode)
 {
@@ -50,6 +51,7 @@ DEMOInit (struct _GXRenderModeObj* mode)
     __DEMOInitGX();
     __DEMOInitVI();
 }
+
 static void
 __DEMOInitRenderMode (struct _GXRenderModeObj* mode)
 {
@@ -76,6 +78,7 @@ __DEMOInitRenderMode (struct _GXRenderModeObj* mode)
     GXAdjustForOverscan (rmode, &rmodeobj, 0, 0x10);
     rmode = &rmodeobj;
 }
+
 static void
 __DEMOInitMem ()
 {
@@ -104,6 +107,7 @@ __DEMOInitMem ()
     OSSetCurrentHeap (OSCreateHeap ((void*)(((u32)arenaLo)), arenaHi));
     OSSetArenaLo ((arenaLo = arenaHi));
 }
+
 static void
 __DEMOInitGX ()
 {
@@ -127,6 +131,7 @@ __DEMOInitGX ()
 #endif
     GXSetDispCopyGamma (0);
 }
+
 static void
 __DEMOInitVI ()
 {
@@ -142,10 +147,12 @@ __DEMOInitVI ()
         VIWaitForRetrace();
     }
 }
+
 static void
 __DEMOInitForEmu ()
 {
 }
+
 void
 DEMOBeforeRender ()
 {
@@ -170,6 +177,7 @@ DEMOBeforeRender ()
     GXInvalidateVtxCache();
     GXInvalidateTexAll();
 }
+
 void
 DEMODoneRender ()
 {
@@ -192,6 +200,7 @@ DEMODoneRender ()
     GXDrawDone();
     DEMOSwapBuffers();
 }
+
 void
 DEMOSwapBuffers ()
 {
@@ -210,6 +219,7 @@ DEMOSwapBuffers ()
     }
     DemoCurrentBuffer = DemoFrameBuffer1;
 }
+
 void
 DEMOSetTevColorIn (enum _GXTevStageID  stage,
                    enum _GXTevColorArg a,
@@ -262,6 +272,7 @@ DEMOSetTevColorIn (enum _GXTevStageID  stage,
         GXSetTevSwapMode (stage, 0, swap - 0xF);
     }
 }
+
 void
 DEMOSetTevOp (enum _GXTevStageID id, enum _GXTevMode mode)
 {
@@ -304,16 +315,19 @@ DEMOSetTevOp (enum _GXTevStageID id, enum _GXTevMode mode)
     GXSetTevColorOp (id, 0, 0, 0, 1, 0);
     GXSetTevAlphaOp (id, 0, 0, 0, 1, 0);
 }
+
 struct _GXRenderModeObj*
 DEMOGetRenderModeObj ()
 {
     return rmode;
 }
+
 u32
 DEMOGetCurrentBuffer (void)
 {
     return (u32)DemoCurrentBuffer;
 }
+
 void
 DEMOEnableBypassWorkaround (u32 timeoutFrames)
 {
@@ -321,11 +335,13 @@ DEMOEnableBypassWorkaround (u32 timeoutFrames)
     FrameMissThreshold = timeoutFrames;
     VISetPreRetraceCallback (__BypassRetraceCallback);
 }
+
 static void
 __BypassRetraceCallback ()
 {
     FrameCount += 1;
 }
+
 static void
 __BypassDoneRender ()
 {
@@ -346,6 +362,7 @@ __BypassDoneRender ()
     }
     DEMOSwapBuffers();
 }
+
 void
 DEMOReInit (struct _GXRenderModeObj* mode)
 {
@@ -370,6 +387,7 @@ DEMOReInit (struct _GXRenderModeObj* mode)
     __DEMOInitVI();
     OSFreeToHeap (__OSCurrHeap, tmpFifo);
 }
+
 static void
 LoadMemInfo ()
 {
@@ -384,11 +402,13 @@ LoadMemInfo ()
     u32                i;
     u32                indexMax;
     char*              buf[63];
+
     struct
     {
         void* start;
         void* end;
     }* memEntry;
+
     OSReport ("\nNow, try to find memory info file...\n\n");
     if (!DVDOpen ("/meminfo.bin", &fileInfo))
     {
@@ -426,21 +446,14 @@ LoadMemInfo ()
     {
         OSReport ("loop\n");
         transferLength = (length < 0x20) ? length : 0x20;
-        if (DVDReadPrio (&fileInfo,
-                         memEntry,
-                         (transferLength + 0x1F) & 0xFFFFFFE0,
-                         offset,
-                         2) < 0)
+        if (DVDReadPrio (&fileInfo, memEntry, (transferLength + 0x1F) & 0xFFFFFFE0, offset, 2) < 0)
         {
-            OSPanic (__FILE__,
-                     0x49F,
-                     "An error occurred when issuing read to /meminfo.bin\n");
+            OSPanic (__FILE__, 0x49F, "An error occurred when issuing read to /meminfo.bin\n");
         }
         indexMax = (transferLength / 8);
         for (i = 0; i < indexMax; i++)
         {
-            OSReport (
-                "start: 0x%08x, end: 0x%08x\n", memEntry[i].start, memEntry[i].end);
+            OSReport ("start: 0x%08x, end: 0x%08x\n", memEntry[i].start, memEntry[i].end);
             OSAllocFixed (&memEntry[i].start, &memEntry[i].end);
             OSReport ("Removed 0x%08x - 0x%08x from the current heap\n",
                       memEntry[i].start,

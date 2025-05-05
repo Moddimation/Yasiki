@@ -6,12 +6,14 @@
 
 static void WriteCallback (s32 chan, s32 result);
 static void EraseCallback (s32 chan, s32 result);
+
 CARDDir*
 __CARDGetDirBlock (CARDControl* card)
 {
     ASSERTLINE (0x36, card->currentDir);
     return card->currentDir;
 }
+
 static void
 WriteCallback (s32 chan, s32 result)
 {
@@ -49,6 +51,7 @@ WriteCallback (s32 chan, s32 result)
         callback (chan, result);
     }
 }
+
 static void
 EraseCallback (s32 chan, s32 result)
 {
@@ -79,6 +82,7 @@ EraseCallback (s32 chan, s32 result)
         callback (chan, result);
     }
 }
+
 s32
 __CARDUpdateDir (s32 chan, CARDCallback callback)
 {
@@ -98,8 +102,7 @@ __CARDUpdateDir (s32 chan, CARDCallback callback)
     dir = __CARDGetDirBlock (card);
     check = CARDGetDirCheck (dir);
     ++check->checkCode;
-    __CARDCheckSum (
-        dir, 0x2000 - sizeof (u32), &check->checkSum, &check->checkSumInv);
+    __CARDCheckSum (dir, 0x2000 - sizeof (u32), &check->checkSum, &check->checkSumInv);
     DCStoreRange (dir, 0x2000);
 
     card->eraseCallback = callback;

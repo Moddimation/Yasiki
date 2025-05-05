@@ -1,5 +1,5 @@
-#include <JKRDisposer.hpp>
-#include <JKRHeap.hpp>
+#include <JKRDisposer.h>
+#include <JKRHeap.h>
 
 JKRDisposer::JKRDisposer () : mPtr (this)
 {

@@ -4,6 +4,7 @@
 #include "dolphin/types.h"
 
 class EnemyStrategy;
+
 class IncludeStrategy
 {
     u8             mStrategyMemory[0x800];
@@ -17,6 +18,7 @@ public:
 
     void setStrategy (int i_entityIdx);
     void destroyStrategy ();
+
     void*
     getBuffer ()
     {

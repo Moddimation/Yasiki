@@ -27,6 +27,7 @@ static void ttyClearProperty (enum MCC_CHANNEL chID);
 static int  ttyWaiting (int timeout, volatile int* flag);
 static int  ttyWrite (u32 offset, void* data, s32 size);
 static int  ttyFlush (u32 msgID, int waitResult);
+
 static int
 ttyIsInitialized ()
 {
@@ -34,6 +35,7 @@ ttyIsInitialized ()
 
     return bResult;
 }
+
 static void
 ShowChannelInfo (enum MCC_CHANNEL chID)
 {
@@ -53,6 +55,7 @@ ShowChannelInfo (enum MCC_CHANNEL chID)
               : (info.isLocked == 1) ? "LOCKED"
                                      : "UNKNOWN");
 }
+
 static void
 ttyMccChannelEvent (enum MCC_CHANNEL chID, u32 event, u32 value)
 {
@@ -83,10 +86,8 @@ ttyMccChannelEvent (enum MCC_CHANNEL chID, u32 event, u32 value)
                     msgID = (value) & 0xFF;
                     if ((gBufTail - gBufHead) >= 0x2000)
                     {
-                        gBufHead =
-                            ((u32)gBufHead < 0x2000U) ? gBufHead : gBufHead - 0x2000;
-                        gBufTail =
-                            ((u32)gBufTail < 0x2000U) ? gBufTail : gBufTail - 0x2000;
+                        gBufHead = ((u32)gBufHead < 0x2000U) ? gBufHead : gBufHead - 0x2000;
+                        gBufTail = ((u32)gBufTail < 0x2000U) ? gBufTail : gBufTail - 0x2000;
                     }
                     if ((u32)gBufHead >= 0x2000U)
                     {
@@ -104,6 +105,7 @@ ttyMccChannelEvent (enum MCC_CHANNEL chID, u32 event, u32 value)
             }
     }
 }
+
 int
 TTYInit (enum MCC_EXI exiChannel, enum MCC_CHANNEL chID)
 {
@@ -119,6 +121,7 @@ TTYInit (enum MCC_EXI exiChannel, enum MCC_CHANNEL chID)
     }
     return 0;
 }
+
 void
 TTYExit (void)
 {
@@ -131,6 +134,7 @@ TTYExit (void)
         }
     }
 }
+
 int
 TTYQuery (void)
 {
@@ -150,6 +154,7 @@ TTYQuery (void)
     while (OSTicksToSeconds (OSGetTick() - tick) < 5);
     return 0;
 }
+
 int
 TTYPrintf (const char* format, ...)
 {
@@ -225,6 +230,7 @@ TTYPrintf (const char* format, ...)
     }
     return 0;
 }
+
 int
 TTYFlush (void)
 {
@@ -234,6 +240,7 @@ TTYFlush (void)
     }
     return ttyFlush (gPrintfID, 1);
 }
+
 static void
 ttyClearProperty (enum MCC_CHANNEL chID)
 {
@@ -244,6 +251,7 @@ ttyClearProperty (enum MCC_CHANNEL chID)
     gBufHead = 0;
     gBufTail = 0;
 }
+
 static int
 ttyWaiting (int timeout, volatile int* flag)
 {
@@ -255,8 +263,7 @@ ttyWaiting (int timeout, volatile int* flag)
     while (*flag == 0)
     {
         tickDist = OSGetTick() - tickStart;
-        tickDist = (tickDist & 0x80000000) ? (0x80000000 - tickStart) + OSGetTick()
-                                           : tickDist;
+        tickDist = (tickDist & 0x80000000) ? (0x80000000 - tickStart) + OSGetTick() : tickDist;
         if (OSTicksToSeconds (tickDist) >= timeout)
         {
             return 0;
@@ -264,6 +271,7 @@ ttyWaiting (int timeout, volatile int* flag)
     }
     return 1;
 }
+
 static int
 ttyWrite (u32 offset, void* data, s32 size)
 {
@@ -273,6 +281,7 @@ ttyWrite (u32 offset, void* data, s32 size)
     }
     return 0;
 }
+
 static int
 ttyFlush (u32 msgID, int waitResult)
 {

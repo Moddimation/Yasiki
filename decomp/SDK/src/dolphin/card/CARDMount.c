@@ -18,11 +18,13 @@ static u32 LatencyTable[8] = {
 // functions
 static s32  DoMount (s32 chan);
 static void DoUnmount (s32 chan, s32 v);
+
 int
 CARDProbe (s32 chan)
 {
     EXIProbe (chan);
 }
+
 s32
 CARDProbeEx (s32 chan, s32* memSize, s32* sectorSize)
 {
@@ -96,17 +98,18 @@ CARDProbeEx (s32 chan, s32* memSize, s32* sectorSize)
     OSRestoreInterrupts (enabled);
     return result;
 }
+
 static s32
 DoMount (s32 chan)
 {
-    CARDControl*     card;
-    u32              id;
-    u8               status;
-    s32              result;
-    OSSramEx* sram;
-    int              i;
-    u8               checkSum;
-    int              step;
+    CARDControl* card;
+    u32          id;
+    u8           status;
+    s32          result;
+    OSSramEx*    sram;
+    int          i;
+    u8           checkSum;
+    int          step;
 
     ASSERTLINE (0xFE, 0 <= chan && chan < 2);
 
@@ -217,6 +220,7 @@ error:
     DoUnmount (chan, result);
     return result;
 }
+
 void
 __CARDMountCallback (s32 chan, s32 result)
 {
@@ -261,11 +265,9 @@ __CARDMountCallback (s32 chan, s32 result)
     ASSERTLINE (0x1AB, callback);
     callback (chan, result);
 }
+
 s32
-CARDMountAsync (s32          chan,
-                void*        workArea,
-                CARDCallback detachCallback,
-                CARDCallback attachCallback)
+CARDMountAsync (s32 chan, void* workArea, CARDCallback detachCallback, CARDCallback attachCallback)
 {
     CARDControl* card;
     BOOL         enabled;
@@ -325,6 +327,7 @@ CARDMountAsync (s32          chan,
     card->unlockCallback = 0;
     return DoMount (chan);
 }
+
 s32
 CARDMount (s32 chan, void* workArea, CARDCallback detachCallback)
 {
@@ -336,6 +339,7 @@ CARDMount (s32 chan, void* workArea, CARDCallback detachCallback)
     }
     return __CARDSync (chan);
 }
+
 static void
 DoUnmount (s32 chan, s32 result)
 {
@@ -357,6 +361,7 @@ DoUnmount (s32 chan, s32 result)
     }
     OSRestoreInterrupts (enabled);
 }
+
 s32
 CARDUnmount (s32 chan)
 {

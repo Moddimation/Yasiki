@@ -6,6 +6,7 @@
 #include <math.h>
 
 #include "GXPrivate.h"
+
 void
 GXSetFog (GXFogType type, f32 startz, f32 endz, f32 nearz, f32 farz, GXColor color)
 {
@@ -28,10 +29,8 @@ GXSetFog (GXFogType type, f32 startz, f32 endz, f32 nearz, f32 farz, GXColor col
 
     CHECK_GXBEGIN (0x6E, "GXSetFog");
 
-    ASSERTMSGLINE (
-        0x70, farz >= 0.0f, "GXSetFog: The farz should be positive value");
-    ASSERTMSGLINE (
-        0x71, farz >= nearz, "GXSetFog: The farz should be larger than nearz");
+    ASSERTMSGLINE (0x70, farz >= 0.0f, "GXSetFog: The farz should be positive value");
+    ASSERTMSGLINE (0x71, farz >= nearz, "GXSetFog: The farz should be larger than nearz");
 
     if (farz == nearz || endz == startz)
     {
@@ -102,6 +101,7 @@ GXSetFog (GXFogType type, f32 startz, f32 endz, f32 nearz, f32 farz, GXColor col
     GX_WRITE_RAS_REG (fogclr);
     __GXData->bpSent = 1;
 }
+
 void
 GXInitFogAdjTable (GXFogAdjTable* table, u16 width, f32 projmtx[4][4])
 {
@@ -137,6 +137,7 @@ GXInitFogAdjTable (GXFogAdjTable* table, u16 width, f32 projmtx[4][4])
         table->r[i] = (u32)(256.0f * rangeVal) & 0xFFF;
     }
 }
+
 void
 GXSetFogRangeAdj (GXBool enable, u16 center, GXFogAdjTable* table)
 {
@@ -148,8 +149,7 @@ GXSetFogRangeAdj (GXBool enable, u16 center, GXFogAdjTable* table)
 
     if (enable)
     {
-        ASSERTMSGLINE (
-            0x109, table != NULL, "GXSetFogRangeAdj: table pointer is null");
+        ASSERTMSGLINE (0x109, table != NULL, "GXSetFogRangeAdj: table pointer is null");
         for (i = 0; i < 10; i += 2)
         {
             range_adj = 0;
@@ -166,19 +166,13 @@ GXSetFogRangeAdj (GXBool enable, u16 center, GXFogAdjTable* table)
     GX_WRITE_RAS_REG (range_c);
     __GXData->bpSent = 1;
 }
+
 void
-GXSetBlendMode (GXBlendMode   type,
-                GXBlendFactor src_factor,
-                GXBlendFactor dst_factor,
-                GXLogicOp     op)
+GXSetBlendMode (GXBlendMode type, GXBlendFactor src_factor, GXBlendFactor dst_factor, GXLogicOp op)
 {
     CHECK_GXBEGIN (0x12F, "GXSetBlendMode");
 
-    SET_REG_FIELD (0x135,
-                   __GXData->cmode0,
-                   1,
-                   0,
-                   (type == GX_BM_BLEND || type == GX_BM_SUBTRACT));
+    SET_REG_FIELD (0x135, __GXData->cmode0, 1, 0, (type == GX_BM_BLEND || type == GX_BM_SUBTRACT));
     SET_REG_FIELD (0x136, __GXData->cmode0, 1, 11, (type == GX_BM_SUBTRACT));
     SET_REG_FIELD (0x138, __GXData->cmode0, 1, 1, (type == GX_BM_LOGIC));
     SET_REG_FIELD (0x139, __GXData->cmode0, 4, 12, op);
@@ -188,6 +182,7 @@ GXSetBlendMode (GXBlendMode   type,
     GX_WRITE_RAS_REG (__GXData->cmode0);
     __GXData->bpSent = 1;
 }
+
 void
 GXSetColorUpdate (GXBool update_enable)
 {
@@ -196,6 +191,7 @@ GXSetColorUpdate (GXBool update_enable)
     GX_WRITE_RAS_REG (__GXData->cmode0);
     __GXData->bpSent = 1;
 }
+
 void
 GXSetAlphaUpdate (GXBool update_enable)
 {
@@ -204,6 +200,7 @@ GXSetAlphaUpdate (GXBool update_enable)
     GX_WRITE_RAS_REG (__GXData->cmode0);
     __GXData->bpSent = 1;
 }
+
 void
 GXSetZMode (GXBool compare_enable, GXCompare func, GXBool update_enable)
 {
@@ -214,6 +211,7 @@ GXSetZMode (GXBool compare_enable, GXCompare func, GXBool update_enable)
     GX_WRITE_RAS_REG (__GXData->zmode);
     __GXData->bpSent = 1;
 }
+
 void
 GXSetZCompLoc (GXBool before_tex)
 {
@@ -222,6 +220,7 @@ GXSetZCompLoc (GXBool before_tex)
     GX_WRITE_RAS_REG (__GXData->peCtrl);
     __GXData->bpSent = 1;
 }
+
 void
 GXSetPixelFmt (GXPixelFmt pix_fmt, GXZFmt16 z_fmt)
 {
@@ -256,6 +255,7 @@ GXSetPixelFmt (GXPixelFmt pix_fmt, GXZFmt16 z_fmt)
     }
     __GXData->bpSent = 1;
 }
+
 void
 GXSetDither (GXBool dither)
 {
@@ -264,6 +264,7 @@ GXSetDither (GXBool dither)
     GX_WRITE_RAS_REG (__GXData->cmode0);
     __GXData->bpSent = 1;
 }
+
 void
 GXSetDstAlpha (GXBool enable, u8 alpha)
 {
@@ -273,6 +274,7 @@ GXSetDstAlpha (GXBool enable, u8 alpha)
     GX_WRITE_RAS_REG (__GXData->cmode1);
     __GXData->bpSent = 1;
 }
+
 void
 GXSetFieldMask (GXBool odd_mask, GXBool even_mask)
 {
@@ -286,6 +288,7 @@ GXSetFieldMask (GXBool odd_mask, GXBool even_mask)
     GX_WRITE_RAS_REG (reg);
     __GXData->bpSent = 1;
 }
+
 void
 GXSetFieldMode (GXBool field_mode, GXBool half_aspect_ratio)
 {

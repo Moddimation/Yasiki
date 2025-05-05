@@ -1,5 +1,6 @@
 #include <charPipeline/structures/HTable.h>
 #include <charPipeline/structures/List.h>
+
 void
 DSInitHTable (DSHashTable* hTable,
               u16          size,
@@ -18,12 +19,14 @@ DSInitHTable (DSHashTable* hTable,
         DSInitList (&listArray[i], obj, link);
     }
 }
+
 void
 DSInsertHTableObj (DSHashTable* hTable, Ptr obj)
 {
     DSList* list = &hTable->table[hTable->hash (obj)];
     DSInsertListObject (list, 0, obj);
 }
+
 void
 DSHTableToList (DSHashTable* hTable, DSList* list)
 {
@@ -36,6 +39,7 @@ DSHTableToList (DSHashTable* hTable, DSList* list)
         DSAttachList (list, &hTable->table[i]);
     }
 }
+
 void*
 DSNextHTableObj (DSHashTable* hTable, Ptr obj)
 {
@@ -67,6 +71,7 @@ DSNextHTableObj (DSHashTable* hTable, Ptr obj)
     }
     return cursor;
 }
+
 s32
 DSHTableIndex (DSHashTable* hTable, Ptr obj)
 {
@@ -76,6 +81,7 @@ DSHTableIndex (DSHashTable* hTable, Ptr obj)
     }
     return hTable->hash (obj);
 }
+
 void*
 DSHTableHead (DSHashTable* hTable, s32 index)
 {

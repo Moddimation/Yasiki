@@ -17,8 +17,7 @@ static u32 numColorTextures;
 static s32 XFChannel = -1;
 
 static GXAttr TextureEnums[8] = {
-    GX_VA_TEX0, GX_VA_TEX1, GX_VA_TEX2, GX_VA_TEX3,
-    GX_VA_TEX4, GX_VA_TEX5, GX_VA_TEX6, GX_VA_TEX7,
+    GX_VA_TEX0, GX_VA_TEX1, GX_VA_TEX2, GX_VA_TEX3, GX_VA_TEX4, GX_VA_TEX5, GX_VA_TEX6, GX_VA_TEX7,
 };
 
 static u8 lightRegisterNames[13][256] = {
@@ -44,6 +43,7 @@ static u8 lightRegisterNames[13][256] = {
 #define BYTE1(var)  (((u8*)&(var))[1])
 #define BYTE2(var)  (((u8*)&(var))[2])
 #define BYTE3(var)  (((u8*)&(var))[3])
+
 static void
 CountTextureTypes (void)
 {
@@ -84,11 +84,13 @@ CountTextureTypes (void)
     }
     numColorTextures = numColor0Textures + numColor1Textures;
 }
+
 static void
 InitializeXFVerifyData (void)
 {
     CountTextureTypes();
 }
+
 static void
 CheckDirty (u32 index, const char* name)
 {
@@ -97,6 +99,7 @@ CheckDirty (u32 index, const char* name)
         __GX_WARNF (GXWARN_XF_CTRL_UNINIT, index, name);
     }
 }
+
 static void
 CheckClean (u32 index, const char* name)
 {
@@ -105,6 +108,7 @@ CheckClean (u32 index, const char* name)
         __GX_WARNF (GXWARN_XF_CTRL_INIT, index, name);
     }
 }
+
 static void
 CheckCTGColors (void)
 {
@@ -130,11 +134,11 @@ CheckCTGColors (void)
         }
         else
         {
-            __GX_WARNF (GXWARN_INV_NUM_COLORS,
-                        (u8)(BYTE3 (__gxVerif->xfRegs[9]) & 3));
+            __GX_WARNF (GXWARN_INV_NUM_COLORS, (u8)(BYTE3 (__gxVerif->xfRegs[9]) & 3));
         }
     }
 }
+
 static GXBool
 __GXVertexPacketHas (GXAttr attr)
 {
@@ -143,11 +147,9 @@ __GXVertexPacketHas (GXAttr attr)
         case GX_VA_POS:
             return GET_REG_FIELD (__GXData->vcdLo, 2, 9) != 0;
         case GX_VA_NRM:
-            return __GXData->hasNrms ? GET_REG_FIELD (__GXData->vcdLo, 2, 11) != 0
-                                     : GX_FALSE;
+            return __GXData->hasNrms ? GET_REG_FIELD (__GXData->vcdLo, 2, 11) != 0 : GX_FALSE;
         case GX_VA_NBT:
-            return __GXData->hasBiNrms ? GET_REG_FIELD (__GXData->vcdLo, 2, 11) != 0
-                                       : GX_FALSE;
+            return __GXData->hasBiNrms ? GET_REG_FIELD (__GXData->vcdLo, 2, 11) != 0 : GX_FALSE;
         case GX_VA_CLR0:
             return GET_REG_FIELD (__GXData->vcdLo, 2, 13) != 0;
         case GX_VA_CLR1:
@@ -190,6 +192,7 @@ __GXVertexPacketHas (GXAttr attr)
             return GX_FALSE;
     }
 }
+
 static void
 CheckVertexPacket (void)
 {
@@ -268,8 +271,7 @@ CheckVertexPacket (void)
     }
     else
     {
-        __GX_WARNF (GXWARN_INV_IVS_NRM,
-                    (u8)((BYTE3 (__gxVerif->xfRegs[8]) >> 2) & 3));
+        __GX_WARNF (GXWARN_INV_IVS_NRM, (u8)((BYTE3 (__gxVerif->xfRegs[8]) >> 2) & 3));
     }
     numHostTextures = 0;
     for (i = 0; i <= 7; i++)
@@ -286,6 +288,7 @@ CheckVertexPacket (void)
                     numHostTextures);
     }
 }
+
 static void
 CheckSourceRows (void)
 {
@@ -302,8 +305,7 @@ CheckSourceRows (void)
                 }
                 break;
             case 1:
-                if (!__GXVertexPacketHas (GX_VA_NRM) &&
-                    !__GXVertexPacketHas (GX_VA_NBT))
+                if (!__GXVertexPacketHas (GX_VA_NRM) && !__GXVertexPacketHas (GX_VA_NBT))
                 {
                     __GX_WARNF (GXWARN_TEX_SRC_NNRM, i);
                 }
@@ -334,14 +336,11 @@ CheckSourceRows (void)
             case 11:
             case 12:
                 if (!__GXVertexPacketHas (
-                        TextureEnums[((HIWORD (__gxVerif->xfRegs[i + 64]) >> 7) &
-                                      0x1F) -
-                                     5]))
+                        TextureEnums[((HIWORD (__gxVerif->xfRegs[i + 64]) >> 7) & 0x1F) - 5]))
                 {
                     __GX_WARNF (GXWARN_TEX_SRC_NTEX,
                                 i,
-                                ((HIWORD (__gxVerif->xfRegs[i + 64]) >> 7) & 0x1F) -
-                                    5);
+                                ((HIWORD (__gxVerif->xfRegs[i + 64]) >> 7) & 0x1F) - 5);
                 }
                 break;
             default:
@@ -352,6 +351,7 @@ CheckSourceRows (void)
         }
     }
 }
+
 static void
 CheckTextureOrder (void)
 {
@@ -360,8 +360,7 @@ CheckTextureOrder (void)
 
     while (!done)
     {
-        if (count == __gxVerif->xfRegs[0x3F] ||
-            ((BYTE3 (__gxVerif->xfRegs[count + 64]) >> 4) & 7))
+        if (count == __gxVerif->xfRegs[0x3F] || ((BYTE3 (__gxVerif->xfRegs[count + 64]) >> 4) & 7))
         {
             done = 1;
         }
@@ -411,6 +410,7 @@ CheckTextureOrder (void)
         }
     }
 }
+
 static void
 CheckRAM (u8 Normal, u32 StartingAddress, u32 Count, s32 WarnID, char* Str)
 {
@@ -441,6 +441,7 @@ CheckRAM (u8 Normal, u32 StartingAddress, u32 Count, s32 WarnID, char* Str)
         }
     }
 }
+
 static void
 CheckBumpmapTextures (void)
 {
@@ -456,14 +457,8 @@ CheckBumpmapTextures (void)
         {
             __GX_WARNF (0x50, (u8)(BYTE3 (__gxVerif->xfRegs[24]) & 0x3F));
         }
-        sprintf (Preamble,
-                 __gxvWarnings[0x6A],
-                 (u8)(BYTE3 (__gxVerif->xfRegs[24]) & 0x3F));
-        CheckRAM (1,
-                  ((BYTE3 (__gxVerif->xfRegs[24]) & 0x3F) * 3) + 0x400,
-                  9U,
-                  0x6A,
-                  Preamble);
+        sprintf (Preamble, __gxvWarnings[0x6A], (u8)(BYTE3 (__gxVerif->xfRegs[24]) & 0x3F));
+        CheckRAM (1, ((BYTE3 (__gxVerif->xfRegs[24]) & 0x3F) * 3) + 0x400, 9U, 0x6A, Preamble);
     }
 
     for (i = 0; i < numBumpmapTextures; i++)
@@ -498,6 +493,7 @@ CheckBumpmapTextures (void)
     lightRAMOffset;
     lightRAMOffset; // needed to match
 }
+
 static void
 CheckTextureTransformMatrices (void)
 {
@@ -514,8 +510,7 @@ CheckTextureTransformMatrices (void)
         switch (i)
         {
             case 0:
-                StartingAddress =
-                    (u8)((HIWORD (__gxVerif->xfRegs[0x18]) >> 4U) & 0xFC);
+                StartingAddress = (u8)((HIWORD (__gxVerif->xfRegs[0x18]) >> 4U) & 0xFC);
                 Val = HIWORD (__gxVerif->xfRegs[0x18]);
                 Val = (Val >> 6) & 0x3F;
                 MtxIndexInVertexPacket = __GXVertexPacketHas (GX_VA_TEX0MTXIDX);
@@ -545,8 +540,7 @@ CheckTextureTransformMatrices (void)
                 MtxIndexInVertexPacket = __GXVertexPacketHas (GX_VA_TEX4MTXIDX);
                 break;
             case 5:
-                StartingAddress =
-                    (u8)((HIWORD (__gxVerif->xfRegs[0x19]) >> 4) & 0xFC);
+                StartingAddress = (u8)((HIWORD (__gxVerif->xfRegs[0x19]) >> 4) & 0xFC);
                 Val = HIWORD (__gxVerif->xfRegs[0x19]);
                 Val = (Val >> 6) & 0x3F;
                 MtxIndexInVertexPacket = __GXVertexPacketHas (GX_VA_TEX5MTXIDX);
@@ -616,6 +610,7 @@ CheckTextureTransformMatrices (void)
     MtxIndexInVertexPacket;
     MtxIndexInVertexPacket;
 }
+
 static void
 CheckInputForms (void)
 {
@@ -636,14 +631,12 @@ CheckInputForms (void)
             case 12:
                 if ((BYTE3 (__gxVerif->xfRegs[i + 64]) >> 2) & 1)
                 {
-                    __GX_WARNF (
-                        0x55,
-                        i,
-                        (u8)((HIWORD (__gxVerif->xfRegs[i + 64]) >> 7) & 0x1F));
+                    __GX_WARNF (0x55, i, (u8)((HIWORD (__gxVerif->xfRegs[i + 64]) >> 7) & 0x1F));
                 }
         }
     }
 }
+
 static void
 CheckLight (u32 lightSource)
 {
@@ -666,6 +659,7 @@ CheckLight (u32 lightSource)
         }
     }
 }
+
 static void
 CheckColor0 (void)
 {
@@ -688,8 +682,7 @@ CheckColor0 (void)
         {
             __GX_WARNF (0x57, 0, 0, 0x100C);
         }
-        if (!((BYTE3 (__gxVerif->xfRegs[14]) >> 6) & 1) &&
-            !__gxVerif->xfRegsDirty[10])
+        if (!((BYTE3 (__gxVerif->xfRegs[14]) >> 6) & 1) && !__gxVerif->xfRegsDirty[10])
         {
             __GX_WARNF (0x58, 0, 0, 0x100A);
         }
@@ -793,16 +786,14 @@ CheckColor0 (void)
                     {
                         if ((u32)(BYTE3 (__gxVerif->xfRegs[24]) & 0x3F) > 30)
                         {
-                            __GX_WARNF (
-                                0x5B, 0, (u8)(BYTE3 (__gxVerif->xfRegs[24]) & 0x3F));
+                            __GX_WARNF (0x5B, 0, (u8)(BYTE3 (__gxVerif->xfRegs[24]) & 0x3F));
                         }
                         sprintf (Preamble,
                                  __gxvWarnings[0x6D],
                                  0,
                                  (u8)(BYTE3 (__gxVerif->xfRegs[24]) & 0x3F));
                         CheckRAM (1,
-                                  ((BYTE3 (__gxVerif->xfRegs[24]) & 0x3F) * 3) +
-                                      0x400,
+                                  ((BYTE3 (__gxVerif->xfRegs[24]) & 0x3F) * 3) + 0x400,
                                   9,
                                   0x6D,
                                   Preamble);
@@ -812,6 +803,7 @@ CheckColor0 (void)
         }
     }
 }
+
 static void
 CheckColor1 (void)
 {
@@ -822,9 +814,7 @@ CheckColor1 (void)
     u8  lightUsed;
 
     if (numColorTextures > 1 &&
-        ((u32)((BYTE3 (__gxVerif->xfRegs[numRegularTextures + numBumpmapTextures +
-                                         1 + 64]) >>
-                4) &
+        ((u32)((BYTE3 (__gxVerif->xfRegs[numRegularTextures + numBumpmapTextures + 1 + 64]) >> 4) &
                7) == 3))
     {
         usingColor1 = 1;
@@ -848,8 +838,7 @@ CheckColor1 (void)
         {
             __GX_WARNF (0x57, 1, 1, 0x100D);
         }
-        if (!((BYTE3 (__gxVerif->xfRegs[15]) >> 6) & 1) &&
-            !__gxVerif->xfRegsDirty[11])
+        if (!((BYTE3 (__gxVerif->xfRegs[15]) >> 6) & 1) && !__gxVerif->xfRegsDirty[11])
         {
             __GX_WARNF (0x58, 1, 1, 0x100B);
         }
@@ -953,16 +942,14 @@ CheckColor1 (void)
                     {
                         if ((u32)(BYTE3 (__gxVerif->xfRegs[24]) & 0x3F) > 30)
                         {
-                            __GX_WARNF (
-                                0x5B, 1, (u8)(BYTE3 (__gxVerif->xfRegs[24]) & 0x3F));
+                            __GX_WARNF (0x5B, 1, (u8)(BYTE3 (__gxVerif->xfRegs[24]) & 0x3F));
                         }
                         sprintf (Preamble,
                                  __gxvWarnings[0x6D],
                                  1,
                                  (u8)(BYTE3 (__gxVerif->xfRegs[24]) & 0x3F));
                         CheckRAM (1,
-                                  ((BYTE3 (__gxVerif->xfRegs[24]) & 0x3F) * 3) +
-                                      0x400,
+                                  ((BYTE3 (__gxVerif->xfRegs[24]) & 0x3F) * 3) + 0x400,
                                   9,
                                   0x6D,
                                   Preamble);
@@ -972,6 +959,7 @@ CheckColor1 (void)
         }
     }
 }
+
 static void
 ComputeSignExponentMantissa (f32 floatVal, u32* sign, u32* exponent, u32* mantissa)
 {
@@ -981,6 +969,7 @@ ComputeSignExponentMantissa (f32 floatVal, u32* sign, u32* exponent, u32* mantis
     *exponent = (intVal >> 23) & 0xFF;
     *mantissa = intVal & 0x7FFFFF;
 }
+
 static void
 CheckFloatingPointValue (u8 dirtyBit, u32 value, char* label)
 {
@@ -1036,6 +1025,7 @@ CheckFloatingPointValue (u8 dirtyBit, u32 value, char* label)
         }
     }
 }
+
 static void
 CheckMatrixRAMRanges (void)
 {
@@ -1045,10 +1035,10 @@ CheckMatrixRAMRanges (void)
     for (i = 0; i <= 255; i++)
     {
         sprintf (label, "Geometry/Texture Matrix ram address 0x%04x", i);
-        CheckFloatingPointValue (
-            __gxVerif->xfMtxDirty[i], __gxVerif->xfMtx[i], label);
+        CheckFloatingPointValue (__gxVerif->xfMtxDirty[i], __gxVerif->xfMtx[i], label);
     }
 }
+
 static void
 CheckNormalRAMRanges (void)
 {
@@ -1058,10 +1048,12 @@ CheckNormalRAMRanges (void)
     for (i = 1024; i <= 1119; i++)
     {
         sprintf (label, "Normal Matrix ram address 0x%04x", i);
-        CheckFloatingPointValue (
-            __gxVerif->xfNrmDirty[i - 1024], __gxVerif->xfNrm[i - 1024], label);
+        CheckFloatingPointValue (__gxVerif->xfNrmDirty[i - 1024],
+                                 __gxVerif->xfNrm[i - 1024],
+                                 label);
     }
 }
+
 static void
 CheckDMatrixRAMRanges (void)
 {
@@ -1071,10 +1063,12 @@ CheckDMatrixRAMRanges (void)
     for (i = 1280; i <= 1535; i++)
     {
         sprintf (label, "Dual Texture Matrix ram address 0x%04x", i);
-        CheckFloatingPointValue (
-            __gxVerif->xfDMtxDirty[i - 1280], __gxVerif->xfDMtx[i - 1280], label);
+        CheckFloatingPointValue (__gxVerif->xfDMtxDirty[i - 1280],
+                                 __gxVerif->xfDMtx[i - 1280],
+                                 label);
     }
 }
+
 static void
 CheckLightRAMRanges (void)
 {
@@ -1094,31 +1088,37 @@ CheckLightRAMRanges (void)
                      lightSource,
                      lightRegisterNames[i],
                      lightRAMOffset);
-            CheckFloatingPointValue (
-                __gxVerif->xfLightDirty[lightRAMOffset - 0x600],
-                __gxVerif->xfLight[(s32)(lightRAMOffset - 0x600)],
-                label);
+            CheckFloatingPointValue (__gxVerif->xfLightDirty[lightRAMOffset - 0x600],
+                                     __gxVerif->xfLight[(s32)(lightRAMOffset - 0x600)],
+                                     label);
         }
     }
 
     i;
     lightSource; // needed to match
 }
+
 static void
 CheckControlRAMRanges (void)
 {
-    CheckFloatingPointValue (
-        __gxVerif->xfRegsDirty[0x1A], __gxVerif->xfRegs[0x1A], "Viewport Scale X");
-    CheckFloatingPointValue (
-        __gxVerif->xfRegsDirty[0x1B], __gxVerif->xfRegs[0x1B], "Viewport Scale Y");
-    CheckFloatingPointValue (
-        __gxVerif->xfRegsDirty[0x1C], __gxVerif->xfRegs[0x1C], "Viewport Scale Z");
-    CheckFloatingPointValue (
-        __gxVerif->xfRegsDirty[0x1D], __gxVerif->xfRegs[0x1D], "Viewport Offset X");
-    CheckFloatingPointValue (
-        __gxVerif->xfRegsDirty[0x1E], __gxVerif->xfRegs[0x1E], "Viewport Offset Y");
-    CheckFloatingPointValue (
-        __gxVerif->xfRegsDirty[0x1F], __gxVerif->xfRegs[0x1F], "Viewport Offset Z");
+    CheckFloatingPointValue (__gxVerif->xfRegsDirty[0x1A],
+                             __gxVerif->xfRegs[0x1A],
+                             "Viewport Scale X");
+    CheckFloatingPointValue (__gxVerif->xfRegsDirty[0x1B],
+                             __gxVerif->xfRegs[0x1B],
+                             "Viewport Scale Y");
+    CheckFloatingPointValue (__gxVerif->xfRegsDirty[0x1C],
+                             __gxVerif->xfRegs[0x1C],
+                             "Viewport Scale Z");
+    CheckFloatingPointValue (__gxVerif->xfRegsDirty[0x1D],
+                             __gxVerif->xfRegs[0x1D],
+                             "Viewport Offset X");
+    CheckFloatingPointValue (__gxVerif->xfRegsDirty[0x1E],
+                             __gxVerif->xfRegs[0x1E],
+                             "Viewport Offset Y");
+    CheckFloatingPointValue (__gxVerif->xfRegsDirty[0x1F],
+                             __gxVerif->xfRegs[0x1F],
+                             "Viewport Offset Z");
     CheckFloatingPointValue (__gxVerif->xfRegsDirty[0x20],
                              __gxVerif->xfRegs[0x20],
                              "Projection Matrix A Value");
@@ -1138,6 +1138,7 @@ CheckControlRAMRanges (void)
                              __gxVerif->xfRegs[0x25],
                              "Projection Matrix F Value");
 }
+
 static void
 CheckFloatingPointRanges (void)
 {
@@ -1147,35 +1148,28 @@ CheckFloatingPointRanges (void)
     CheckLightRAMRanges();
     CheckControlRAMRanges();
 }
+
 static void
 CheckMatrixIndices (void)
 {
-    if (!__GXVertexPacketHas (GX_VA_PNMTXIDX) ||
-        !__GXVertexPacketHas (GX_VA_TEX0MTXIDX) ||
-        !__GXVertexPacketHas (GX_VA_TEX1MTXIDX) ||
-        !__GXVertexPacketHas (GX_VA_TEX2MTXIDX) ||
+    if (!__GXVertexPacketHas (GX_VA_PNMTXIDX) || !__GXVertexPacketHas (GX_VA_TEX0MTXIDX) ||
+        !__GXVertexPacketHas (GX_VA_TEX1MTXIDX) || !__GXVertexPacketHas (GX_VA_TEX2MTXIDX) ||
         !__GXVertexPacketHas (GX_VA_TEX3MTXIDX))
     {
         CheckDirty (0x1018U, "Geometry & Textures [0-3] transform matrix indices");
     }
     if (__gxVerif->verifyLevel >= 1 && !__GXVertexPacketHas (GX_VA_PNMTXIDX))
     {
-        CheckRAM (0U,
-                  (BYTE3 (__gxVerif->xfRegs[24]) * 4) & 0xFC,
-                  0xCU,
-                  0x6E,
-                  __gxvWarnings[0x6E]);
+        CheckRAM (0U, (BYTE3 (__gxVerif->xfRegs[24]) * 4) & 0xFC, 0xCU, 0x6E, __gxvWarnings[0x6E]);
     }
-    if ((!__GXVertexPacketHas (GX_VA_TEX4MTXIDX) ||
-         !__GXVertexPacketHas (GX_VA_TEX5MTXIDX) ||
-         !__GXVertexPacketHas (GX_VA_TEX6MTXIDX) ||
-         !__GXVertexPacketHas (GX_VA_TEX7MTXIDX)) &&
-        numRegularTextures > 4 && __gxVerif->verifyLevel >= 1 &&
-        !__gxVerif->xfRegsDirty[0x19])
+    if ((!__GXVertexPacketHas (GX_VA_TEX4MTXIDX) || !__GXVertexPacketHas (GX_VA_TEX5MTXIDX) ||
+         !__GXVertexPacketHas (GX_VA_TEX6MTXIDX) || !__GXVertexPacketHas (GX_VA_TEX7MTXIDX)) &&
+        numRegularTextures > 4 && __gxVerif->verifyLevel >= 1 && !__gxVerif->xfRegsDirty[0x19])
     {
         __GX_WARNF (0x60, numRegularTextures, 0x1019U);
     }
 }
+
 static void
 CheckErrors (void)
 {
@@ -1209,8 +1203,7 @@ CheckErrors (void)
         {
             __GX_WARN (0x62);
         }
-        if ((u32)(BYTE3 (__gxVerif->xfRegs[9]) & 3) !=
-            (u8)((__gxVerif->rasRegs[0] >> 4U) & 7))
+        if ((u32)(BYTE3 (__gxVerif->xfRegs[9]) & 3) != (u8)((__gxVerif->rasRegs[0] >> 4U) & 7))
         {
             __GX_WARN (0x63);
         }
@@ -1254,19 +1247,18 @@ CheckErrors (void)
         }
         CheckTextureTransformMatrices();
         if (numColorTextures != 0 &&
-            (u32)((BYTE3 (__gxVerif->xfRegs[numRegularTextures + numBumpmapTextures +
-                                            64]) >>
-                   4) &
+            (u32)((BYTE3 (__gxVerif->xfRegs[numRegularTextures + numBumpmapTextures + 64]) >> 4) &
                   7) != 2)
-        { //((u32) (((u8) *(__gxVerif + (((numRegularTextures + (numBumpmapTextures +
-          // 0x40)) * 4) + 0xB)) >> 4U) & 7) !=
-          // 2)) {
+        {        //((u32) (((u8) *(__gxVerif + (((numRegularTextures + (numBumpmapTextures +
+                 // 0x40)) * 4) + 0xB)) >> 4U) & 7) !=
+                 // 2)) {
             __GX_WARN (0x68U);
         }
         CheckColor0();
         CheckColor1();
     }
 }
+
 static void
 CheckWarnings (void)
 {
@@ -1284,11 +1276,13 @@ CheckWarnings (void)
         CheckFloatingPointRanges();
     }
 }
+
 static void
 DumpXFRegisters (void)
 {
     static u8 firstTime = 1;
 }
+
 void
 __GXVerifyXF (void)
 {

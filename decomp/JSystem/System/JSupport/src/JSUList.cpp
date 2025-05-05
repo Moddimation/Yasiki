@@ -1,4 +1,4 @@
-#include <JSUList.hpp>
+#include <JSUList.h>
 
 JSUPtrLink::JSUPtrLink (void* data)
 {

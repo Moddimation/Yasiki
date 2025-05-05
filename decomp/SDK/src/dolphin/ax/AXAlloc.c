@@ -8,12 +8,14 @@ static AXVPB* __AXStackHead[AX_PRIORITY_STACKS];
 static AXVPB* __AXStackTail[AX_PRIORITY_STACKS];
 
 static AXVPB* __AXCallbackStack;
+
 AXVPB*
 __AXGetStackHead (u32 priority)
 {
     ASSERTLINE (0x3D, priority < AX_PRIORITY_STACKS);
     return __AXStackHead[priority];
 }
+
 void
 __AXServiceCallbackStack (void)
 {
@@ -32,6 +34,7 @@ __AXServiceCallbackStack (void)
         OSRestoreInterrupts (old);
     }
 }
+
 void
 __AXInitVoiceStacks (void)
 {
@@ -43,6 +46,7 @@ __AXInitVoiceStacks (void)
         __AXStackHead[i] = __AXStackTail[i] = 0;
     }
 }
+
 void
 __AXAllocInit (void)
 {
@@ -51,6 +55,7 @@ __AXAllocInit (void)
 #endif
     __AXInitVoiceStacks();
 }
+
 void
 __AXAllocQuit (void)
 {
@@ -59,12 +64,14 @@ __AXAllocQuit (void)
 #endif
     __AXInitVoiceStacks();
 }
+
 void
 __AXPushFreeStack (AXVPB* p)
 {
     p->next = __AXStackHead[0];
     __AXStackHead[0] = p;
 }
+
 AXVPB*
 __AXPopFreeStack (void)
 {
@@ -77,12 +84,14 @@ __AXPopFreeStack (void)
     }
     return p;
 }
+
 void
 __AXPushCallbackStack (AXVPB* p)
 {
     p->next1 = __AXCallbackStack;
     __AXCallbackStack = p;
 }
+
 AXVPB*
 __AXPopCallbackStack (void)
 {
@@ -95,6 +104,7 @@ __AXPopCallbackStack (void)
     }
     return p;
 }
+
 void
 __AXRemoveFromStack (AXVPB* p)
 {
@@ -128,6 +138,7 @@ __AXRemoveFromStack (AXVPB* p)
     head->next = tail;
     tail->prev = head;
 }
+
 void
 __AXPushStackHead (AXVPB* p, u32 priority)
 {
@@ -147,6 +158,7 @@ __AXPushStackHead (AXVPB* p, u32 priority)
     }
     p->priority = priority;
 }
+
 AXVPB*
 __AXPopStackFromBottom (u32 priority)
 {
@@ -171,6 +183,7 @@ __AXPopStackFromBottom (u32 priority)
     }
     return p;
 }
+
 void
 AXFreeVoice (AXVPB* p)
 {
@@ -187,6 +200,7 @@ AXFreeVoice (AXVPB* p)
     __AXPushFreeStack (p);
     OSRestoreInterrupts (old);
 }
+
 AXVPB*
 AXAcquireVoice (u32 priority, void (*callback) (void*), u32 userContext)
 {
@@ -228,6 +242,7 @@ AXAcquireVoice (u32 priority, void (*callback) (void*), u32 userContext)
     OSRestoreInterrupts (old);
     return p;
 }
+
 void
 AXSetVoicePriority (AXVPB* p, u32 priority)
 {

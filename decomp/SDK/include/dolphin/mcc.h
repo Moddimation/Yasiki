@@ -1,5 +1,6 @@
 #ifndef _DOLPHIN_MCC_H_
 #define _DOLPHIN_MCC_H_
+
 enum MCC_CHANNEL
 {
     MCC_CHANNEL_SYSTEM = 0,
@@ -19,6 +20,7 @@ enum MCC_CHANNEL
     MCC_CHANNEL_14 = 14,
     MCC_CHANNEL_15 = 15,
 };
+
 typedef struct
 {
     u8 firstBlock;                       ///< 0x00
@@ -26,12 +28,14 @@ typedef struct
     u8 connect;                          ///< 0x02
     u8 isLocked;                         ///< 0x03
 } MCC_Info;
+
 enum MCC_EXI
 {
     MCC_EXI_0 = 0,
     MCC_EXI_1 = 1,
     MCC_EXI_2 = 2,
 };
+
 enum MCC_SYSEVENT
 {
     MCC_SYSEVENT_UNKNOWN = 0,
@@ -41,20 +45,24 @@ enum MCC_SYSEVENT
     MCC_SYSEVENT_PING_RESULT = 4,
     MCC_SYSEVENT_FLUSH = 5,
 };
+
 typedef void (*MCC_CBEvent) (enum MCC_CHANNEL channel, u32, u32);
 typedef void (*MCC_CBSysEvent) (enum MCC_SYSEVENT sysEvent);
 typedef int  (*MCC_CBEnumDevices) (s32);
+
 typedef struct
 {
     u32 length;                          ///< 0x00
     u16 rsvd;                            ///< 0x04
     u16 protocol;                        ///< 0x06
 } MCC_Hdr;
+
 typedef struct
 {
     u32 code;                            ///< 0x00
     u32 number;                          ///< 0x04
 } MCC_HdrFio;
+
 typedef struct
 {
     MCC_Info    info;                    ///< 0x00
@@ -63,12 +71,14 @@ typedef struct
     int         isStreamDone;            ///< 0x0C
     int         isStreamConnection;      ///< 0x10
 } MCC_ChannelInfo;
+
 enum MCC_MODE
 {
     MCC_MODE_MIN = 0,
     MCC_MODE_MAX = 1,
     MCC_MODE_ALL = 2,
 };
+
 enum MCC_CONNECT
 {
     MCC_CONNECT_DISCONNECT = 0,
@@ -76,23 +86,27 @@ enum MCC_CONNECT
     MCC_CONNECT_TARGET_OPEN = 2,
     MCC_CONNECT_CONNECTED = 3,
 };
+
 enum MCC_SYNC_STATE
 {
     MCC_SYNC = 0,
     MCC_ASYNC = 1,
 };
+
 enum FIO_ASYNC_STATE
 {
     FIO_ASYNC_STATE_IDOL = 0,
     FIO_ASYNC_STATE_BUSY = 1,
     FIO_ASYNC_STATE_DONE = 2,
 };
+
 struct FIO_Date
 {
     u16 year;                            ///< 0x00
     u8  month;                           ///< 0x02
     u8  day;                             ///< 0x03
 };
+
 struct FIO_Daytime
 {
     u8 hour;                             ///< 0x00
@@ -100,11 +114,13 @@ struct FIO_Daytime
     u8 second;                           ///< 0x02
     u8 reserved;                         ///< 0x03
 };
+
 struct FIO_Timestamp
 {
     struct FIO_Date    date;             ///< 0x00
     struct FIO_Daytime time;             ///< 0x04
 };
+
 struct FIO_Stat
 {
     u32                  fileAttributes; ///< 0x00
@@ -114,11 +130,13 @@ struct FIO_Stat
     u32                  fileSizeHigh;   ///< 0x1C
     u32                  fileSizeLow;    ///< 0x20
 };
+
 struct FIO_Finddata
 {
     struct FIO_Stat stat;                ///< 0x00
     s8              filename[256];       ///< 0x24
 };
+
 // fio.c
 int  FIOInit (enum MCC_EXI exiChannel, enum MCC_CHANNEL chID, u8 blockSize);
 void FIOExit (void);
@@ -159,16 +177,8 @@ int  MCCOpen (enum MCC_CHANNEL chID, u8 blockSize, MCC_CBEvent callbackEvent);
 int  MCCClose (enum MCC_CHANNEL chID);
 int  MCCLock (enum MCC_CHANNEL chID);
 int  MCCUnlock (enum MCC_CHANNEL chID);
-int  MCCRead (enum MCC_CHANNEL    chID,
-              u32                 offset,
-              void*               data,
-              s32                 size,
-              enum MCC_SYNC_STATE async);
-int  MCCWrite (enum MCC_CHANNEL    chID,
-               u32                 offset,
-               void*               data,
-               s32                 size,
-               enum MCC_SYNC_STATE async);
+int  MCCRead (enum MCC_CHANNEL chID, u32 offset, void* data, s32 size, enum MCC_SYNC_STATE async);
+int  MCCWrite (enum MCC_CHANNEL chID, u32 offset, void* data, s32 size, enum MCC_SYNC_STATE async);
 int  MCCCheckAsyncDone ();
 
 #endif // _DOLPHIN_MCC_H_

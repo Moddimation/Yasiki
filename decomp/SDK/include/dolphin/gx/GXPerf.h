@@ -35,10 +35,7 @@ void GXSetVCacheMetric (GXVCachePerf attr);
 void GXReadVCacheMetric (u32* check, u32* miss, u32* stall);
 void GXClearVCacheMetric (void);
 void GXInitXfRasMetric (void);
-void GXReadXfRasMetric (u32* xf_wait_in,
-                        u32* xf_wait_out,
-                        u32* ras_busy,
-                        u32* clocks);
+void GXReadXfRasMetric (u32* xf_wait_in, u32* xf_wait_out, u32* ras_busy, u32* clocks);
 u32  GXReadClksPerVtx (void);
 
 #ifdef __cplusplus

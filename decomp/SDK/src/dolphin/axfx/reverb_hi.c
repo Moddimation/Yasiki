@@ -24,11 +24,9 @@ static int  ReverbHIModify (struct AXFX_REVHI_WORK* rv,
                             float                   preDelay,
                             float                   crosstalk);
 static void HandleReverb (s32* sptr, struct AXFX_REVHI_WORK* rv, long k);
-static void ReverbHICallback (s32*                    left,
-                              long*                   right,
-                              long*                   surround,
-                              struct AXFX_REVHI_WORK* rv);
+static void ReverbHICallback (s32* left, long* right, long* surround, struct AXFX_REVHI_WORK* rv);
 static void ReverbHIFree (struct AXFX_REVHI_WORK* rv);
+
 static void
 DLsetdelay (struct AXFX_REVHI_DELAYLINE* dl, s32 lag)
 {
@@ -38,6 +36,7 @@ DLsetdelay (struct AXFX_REVHI_DELAYLINE* dl, s32 lag)
         dl->outPoint += dl->length;
     }
 }
+
 static void
 DLcreate (struct AXFX_REVHI_DELAYLINE* dl, s32 max_length)
 {
@@ -49,11 +48,13 @@ DLcreate (struct AXFX_REVHI_DELAYLINE* dl, s32 max_length)
     dl->inPoint = 0;
     dl->outPoint = 0;
 }
+
 static void
 DLdelete (struct AXFX_REVHI_DELAYLINE* dl)
 {
     OSFreeToHeap (__OSCurrHeap, dl->inputs);
 }
+
 static int
 ReverbHICreate (struct AXFX_REVHI_WORK* rv,
                 float                   coloration,
@@ -68,10 +69,9 @@ ReverbHICreate (struct AXFX_REVHI_WORK* rv,
     static s32 lens[8] = { 0x000006FD, 0x000007CF, 0x0000091D, 0x000001B1,
                            0x00000095, 0x0000002F, 0x00000049, 0x00000043 };
 
-    if ((coloration < 0.0f) || (coloration > 1.0f) || (time < 0.01f) ||
-        (time > 10.0f) || (mix < 0.0f) || (mix > 1.0f) || (crosstalk < 0.0f) ||
-        (crosstalk > 1.0f) || (damping < 0.0f) || (damping > 1.0f) ||
-        (preDelay < 0.0f) || (preDelay > 0.1f))
+    if ((coloration < 0.0f) || (coloration > 1.0f) || (time < 0.01f) || (time > 10.0f) ||
+        (mix < 0.0f) || (mix > 1.0f) || (crosstalk < 0.0f) || (crosstalk > 1.0f) ||
+        (damping < 0.0f) || (damping > 1.0f) || (preDelay < 0.0f) || (preDelay > 0.1f))
     {
         return 0;
     }
@@ -82,8 +82,7 @@ ReverbHICreate (struct AXFX_REVHI_WORK* rv,
         {
             DLcreate (&rv->C[i + (k * 3)], lens[i] + 2);
             DLsetdelay (&rv->C[i + (k * 3)], lens[i]);
-            rv->combCoef[i + (k * 3)] =
-                powf (10.0f, (lens[i] * -3) / (32000.0f * time));
+            rv->combCoef[i + (k * 3)] = powf (10.0f, (lens[i] * -3) / (32000.0f * time));
         }
         for (i = 0; i < 2; i++)
         {
@@ -108,8 +107,7 @@ ReverbHICreate (struct AXFX_REVHI_WORK* rv,
         rv->preDelayTime = (32000.0f * preDelay);
         for (i = 0; i < 3; i++)
         {
-            rv->preDelayLine[i] =
-                OSAllocFromHeap (__OSCurrHeap, rv->preDelayTime * 4);
+            rv->preDelayLine[i] = OSAllocFromHeap (__OSCurrHeap, rv->preDelayTime * 4);
             memset (rv->preDelayLine[i], 0, rv->preDelayTime * 4);
             rv->preDelayPtr[i] = rv->preDelayLine[i];
         }
@@ -125,6 +123,7 @@ ReverbHICreate (struct AXFX_REVHI_WORK* rv,
     }
     return 1;
 }
+
 static int
 ReverbHIModify (struct AXFX_REVHI_WORK* rv,
                 float                   coloration,
@@ -136,10 +135,9 @@ ReverbHIModify (struct AXFX_REVHI_WORK* rv,
 {
     u8 i;
 
-    if ((coloration < 0.0f) || (coloration > 1.0f) || (time < 0.01f) ||
-        (time > 10.0f) || (mix < 0.0f) || (mix > 1.0f) || (crosstalk < 0.0f) ||
-        (crosstalk > 1.0f) || (damping < 0.0f) || (damping > 1.0f) ||
-        (preDelay < 0.0f) || (preDelay > 100.0f))
+    if ((coloration < 0.0f) || (coloration > 1.0f) || (time < 0.01f) || (time > 10.0f) ||
+        (mix < 0.0f) || (mix > 1.0f) || (crosstalk < 0.0f) || (crosstalk > 1.0f) ||
+        (damping < 0.0f) || (damping > 1.0f) || (preDelay < 0.0f) || (preDelay > 100.0f))
     {
         return 0;
     }
@@ -170,158 +168,151 @@ ReverbHIModify (struct AXFX_REVHI_WORK* rv,
     }
     return ReverbHICreate (rv, coloration, time, mix, damping, preDelay, crosstalk);
 }
+
 const static double i2fMagic = 4503601774854144.0;
 const static float  value0_6 = 0.6f;
+
 asm static void
-DoCrossTalk (register s32*  l,
-             register long* r,
-             register float cross,
-             register float invcross)
+DoCrossTalk (register s32* l, register long* r, register float cross, register float invcross)
 {
-    nofralloc stwu r1, -48(r1)stfd f14, 40(r1)lis r5, i2fMagic @ha lfd f0,
-        i2fMagic @l (r5) lis r5,
+    nofralloc stwu r1, -48(r1)stfd f14, 40(r1)lis r5, i2fMagic @ha lfd f0, i2fMagic @l (r5) lis r5,
         0x4330                                      // 176.0f (0x43300000)
         stw      r5,
-        8(r1)stw r5, 16(r1)stw r5, 24(r1)stw r5, 32(r1)ps_merge00 f3, invcross,
-        cross ps_merge00 f4, cross, invcross lis r5, value0_6 @ha lfs f5,
-        value0_6 @l (r5) li r5, 79 mtctr r5 li r10, -8 li r11, -4 ps_muls0 f4, f4,
-        f5 lwz r6, 0(l)lwz r7, 0(r)xoris r6, r6, 0x8000 lwz r8, 4(l)xoris r7, r7,
-        0x8000 lwz r9, 4(r)xoris r8, r8, 0x8000 stw r6, 12(r1)xoris r9, r9,
-        0x8000 stw r7, 20(r1)stw r8, 28(r1)stw r9, 36(r1)lfd f5, 8(r1)lfd f6,
-        16(r1)fsubs f5, f5, f0 lfd f7, 24(r1)fsubs f6, f6, f0 lfd f8, 32(r1)fsubs f7,
-        f7, f0 fsubs f8, f8, f0 loop : ps_merge00 f9,
-                                       f5,
-                                       f6 lwzu        r6,
-                                       8(l)ps_merge00 f10,
-                                       f7,
-                                       f8 lwzu   r7,
-                                       8(r)xoris r6,
-                                       r6,
-                                       0x8000 lwz r8,
-                                       4(l)ps_mul f11,
-                                       f9,
-                                       f3 xoris r7,
-                                       r7,
-                                       0x8000 ps_mul f12,
-                                       f9,
-                                       f4 lwz     r9,
-                                       4(r)ps_mul f13,
-                                       f10,
-                                       f3 xoris r8,
-                                       r8,
-                                       0x8000 ps_mul f14,
-                                       f10,
-                                       f4 stw        r6,
-                                       12(r1)ps_sum0 f11,
-                                       f11,
-                                       f11,
-                                       f11 xoris r9,
-                                       r9,
-                                       0x8000 ps_sum0 f12,
-                                       f12,
-                                       f12,
-                                       f12 stw       r7,
-                                       20(r1)ps_sum0 f13,
-                                       f13,
-                                       f13,
-                                       f13 stw       r8,
-                                       28(r1)ps_sum0 f14,
-                                       f14,
-                                       f14,
-                                       f14 stw     r9,
-                                       36(r1)fctiw f11,
-                                       f11 lfd     f5,
-                                       8(r1)fctiw  f12,
-                                       f12 lfd     f6,
-                                       16(r1)fctiw f13,
-                                       f13 fsubs   f5,
-                                       f5,
-                                       f0 fctiw     f14,
-                                       f14 lfd      f7,
-                                       24(r1)stfiwx f11,
-                                       r10,
-                                       l fsubs f6,
-                                       f6,
-                                       f0 stfiwx f12,
-                                       r10,
-                                       r lfd        f8,
-                                       32(r1)stfiwx f13,
-                                       r11,
-                                       l fsubs f7,
-                                       f7,
-                                       f0 stfiwx f14,
-                                       r11,
-                                       r fsubs f8,
-                                       f8,
-                                       f0 bdnz loop ps_merge00 f9,
-                                       f5,
-                                       f6 addi l,
-                                       l,
-                                       8 ps_merge00 f10,
-                                       f7,
-                                       f8 addi r,
-                                       r,
-                                       8 ps_mul f11,
-                                       f9,
-                                       f3 ps_mul f12,
-                                       f9,
-                                       f4 ps_mul f13,
-                                       f10,
-                                       f3 ps_mul f14,
-                                       f10,
-                                       f4 ps_sum0 f11,
-                                       f11,
-                                       f11,
-                                       f11 ps_sum0 f12,
-                                       f12,
-                                       f12,
-                                       f12 ps_sum0 f13,
-                                       f13,
-                                       f13,
-                                       f13 ps_sum0 f14,
-                                       f14,
-                                       f14,
-                                       f14 fctiw  f11,
-                                       f11 fctiw  f12,
-                                       f12 fctiw  f13,
-                                       f13 fctiw  f14,
-                                       f14 stfiwx f11,
-                                       r10,
-                                       l stfiwx f12,
-                                       r10,
-                                       r stfiwx f13,
-                                       r11,
-                                       l stfiwx f14,
-                                       r11,
-                                       r lfd      f14,
-                                       40(r1)addi r1,
-                                       r1,
-                                       48 blr
+        8(r1)stw r5, 16(r1)stw r5, 24(r1)stw r5, 32(r1)ps_merge00 f3, invcross, cross ps_merge00 f4,
+        cross, invcross lis r5, value0_6 @ha lfs f5, value0_6 @l (r5) li r5, 79 mtctr r5 li r10,
+        -8 li r11, -4 ps_muls0 f4, f4, f5 lwz r6, 0(l)lwz r7, 0(r)xoris r6, r6, 0x8000 lwz r8,
+        4(l)xoris r7, r7, 0x8000 lwz r9, 4(r)xoris r8, r8, 0x8000 stw r6, 12(r1)xoris r9, r9,
+        0x8000 stw r7, 20(r1)stw r8, 28(r1)stw r9, 36(r1)lfd f5, 8(r1)lfd f6, 16(r1)fsubs f5, f5,
+        f0 lfd f7, 24(r1)fsubs f6, f6, f0 lfd f8, 32(r1)fsubs f7, f7, f0 fsubs f8, f8,
+        f0 loop : ps_merge00 f9,
+                  f5,
+                  f6 lwzu        r6,
+                  8(l)ps_merge00 f10,
+                  f7,
+                  f8 lwzu   r7,
+                  8(r)xoris r6,
+                  r6,
+                  0x8000 lwz r8,
+                  4(l)ps_mul f11,
+                  f9,
+                  f3 xoris r7,
+                  r7,
+                  0x8000 ps_mul f12,
+                  f9,
+                  f4 lwz     r9,
+                  4(r)ps_mul f13,
+                  f10,
+                  f3 xoris r8,
+                  r8,
+                  0x8000 ps_mul f14,
+                  f10,
+                  f4 stw        r6,
+                  12(r1)ps_sum0 f11,
+                  f11,
+                  f11,
+                  f11 xoris r9,
+                  r9,
+                  0x8000 ps_sum0 f12,
+                  f12,
+                  f12,
+                  f12 stw       r7,
+                  20(r1)ps_sum0 f13,
+                  f13,
+                  f13,
+                  f13 stw       r8,
+                  28(r1)ps_sum0 f14,
+                  f14,
+                  f14,
+                  f14 stw     r9,
+                  36(r1)fctiw f11,
+                  f11 lfd     f5,
+                  8(r1)fctiw  f12,
+                  f12 lfd     f6,
+                  16(r1)fctiw f13,
+                  f13 fsubs   f5,
+                  f5,
+                  f0 fctiw     f14,
+                  f14 lfd      f7,
+                  24(r1)stfiwx f11,
+                  r10,
+                  l fsubs f6,
+                  f6,
+                  f0 stfiwx f12,
+                  r10,
+                  r lfd        f8,
+                  32(r1)stfiwx f13,
+                  r11,
+                  l fsubs f7,
+                  f7,
+                  f0 stfiwx f14,
+                  r11,
+                  r fsubs f8,
+                  f8,
+                  f0 bdnz loop ps_merge00 f9,
+                  f5,
+                  f6 addi l,
+                  l,
+                  8 ps_merge00 f10,
+                  f7,
+                  f8 addi r,
+                  r,
+                  8 ps_mul f11,
+                  f9,
+                  f3 ps_mul f12,
+                  f9,
+                  f4 ps_mul f13,
+                  f10,
+                  f3 ps_mul f14,
+                  f10,
+                  f4 ps_sum0 f11,
+                  f11,
+                  f11,
+                  f11 ps_sum0 f12,
+                  f12,
+                  f12,
+                  f12 ps_sum0 f13,
+                  f13,
+                  f13,
+                  f13 ps_sum0 f14,
+                  f14,
+                  f14,
+                  f14 fctiw  f11,
+                  f11 fctiw  f12,
+                  f12 fctiw  f13,
+                  f13 fctiw  f14,
+                  f14 stfiwx f11,
+                  r10,
+                  l stfiwx f12,
+                  r10,
+                  r stfiwx f13,
+                  r11,
+                  l stfiwx f14,
+                  r11,
+                  r lfd      f14,
+                  40(r1)addi r1,
+                  r1,
+                  48 blr
 }
+
 const static float value0_3 = 0.3f;
+
 asm static void
-HandleReverb (register s32*                    sptr,
-              register struct AXFX_REVHI_WORK* rv,
-              register long                    k)
+HandleReverb (register s32* sptr, register struct AXFX_REVHI_WORK* rv, register long k)
 {
-    nofralloc stwu r1, -0xc0(r1)stmw r14, 0x8(r1)stfd f14, 0x60(r1)stfd f15,
-        0x68(r1)stfd f16, 0x70(r1)stfd f17, 0x78(r1)stfd f18, 0x80(r1)stfd f19,
-        0x88(r1)stfd f20, 0x90(r1)stfd f21, 0x98(r1)stfd f22, 0xa0(r1)stfd f23,
-        0xa8(r1)stfd f24, 0xb0(r1)stfd f25, 0xb8(r1)stw k, 0x50(r1)stw rv,
-        0x54(r1)lis r31, value0_3 @ha lfs f6, value0_3 @l (r31) lis r31,
+    nofralloc stwu r1, -0xc0(r1)stmw r14, 0x8(r1)stfd f14, 0x60(r1)stfd f15, 0x68(r1)stfd f16,
+        0x70(r1)stfd f17, 0x78(r1)stfd f18, 0x80(r1)stfd f19, 0x88(r1)stfd f20, 0x90(r1)stfd f21,
+        0x98(r1)stfd f22, 0xa0(r1)stfd f23, 0xa8(r1)stfd f24, 0xb0(r1)stfd f25, 0xb8(r1)stw k,
+        0x50(r1)stw rv, 0x54(r1)lis r31, value0_3 @ha lfs f6, value0_3 @l (r31) lis r31,
         value0_6 @ha lfs f9, value0_6 @l (r31) lis r31, i2fMagic @ha lfd f5,
         i2fMagic @l (r31) lfs f2, AXFX_REVHI_WORK.allPassCoeff (rv) lfs f15,
-        AXFX_REVHI_WORK.damping (rv) lfs f8, AXFX_REVHI_WORK.level (rv) fmuls f3, f8,
-        f9 fsubs f4, f9, f3 slwi r30, k, 1 add r30, r30, k mulli r31, r30,
-        0x14 addi r29, rv, AXFX_REVHI_WORK.C add r29, r29, r31 addi r27, rv,
-        AXFX_REVHI_WORK.AP add r27, r27, r31 slwi r31, r30, 2 add r31, r31,
-        rv lfs f22, AXFX_REVHI_WORK.combCoef[0](r31) lfs f23,
-        AXFX_REVHI_WORK.combCoef[1](r31) lfs  f24,
-        AXFX_REVHI_WORK.combCoef[2](r31) slwi r31, k, 2 add r31, r31, rv lfs f25,
-        AXFX_REVHI_WORK.lpLastout[0](r31) lwz r31,
-        AXFX_REVHI_WORK.preDelayTime (rv) lis r30, 0x4330 stw r30, 0x58(r1)subi r22,
-        r31, 1 slwi r22, r22, 2 slwi r28, k, 2 add r28, r28, rv cmpwi cr7, r31,
-        0 lwz r21,
+        AXFX_REVHI_WORK.damping (rv) lfs f8, AXFX_REVHI_WORK.level (rv) fmuls f3, f8, f9 fsubs f4,
+        f9, f3 slwi r30, k, 1 add r30, r30, k mulli r31, r30, 0x14 addi r29, rv,
+        AXFX_REVHI_WORK.C add r29, r29, r31 addi r27, rv, AXFX_REVHI_WORK.AP add r27, r27,
+        r31 slwi r31, r30, 2 add r31, r31, rv lfs f22, AXFX_REVHI_WORK.combCoef[0](r31) lfs f23,
+        AXFX_REVHI_WORK.combCoef[1](r31) lfs f24, AXFX_REVHI_WORK.combCoef[2](r31) slwi r31, k,
+        2 add r31, r31, rv lfs f25, AXFX_REVHI_WORK.lpLastout[0](r31) lwz r31,
+        AXFX_REVHI_WORK.preDelayTime (rv) lis r30, 0x4330 stw r30, 0x58(r1)subi r22, r31,
+        1 slwi r22, r22, 2 slwi r28, k, 2 add r28, r28, rv cmpwi cr7, r31, 0 lwz r21,
         AXFX_REVHI_DELAYLINE.inPoint + 0x00(r29)    // C[0]
             lwz r20,
         AXFX_REVHI_DELAYLINE.outPoint + 0x00(r29)   // C[0]
@@ -376,8 +367,7 @@ HandleReverb (register s32*                    sptr,
             0x14(r27)                               // AP[1]
                       //? missing load for length of AP[3]? Maybe intentional?
             lwz    r30,
-        0(r3)xoris r30, r30, 0x8000 stw r30, 0x5c(r1)lfd f12, 0x58(r1)fsubs f12, f12,
-        f5 li         r31,
+        0(r3)xoris r30, r30, 0x8000 stw r30, 0x5c(r1)lfd f12, 0x58(r1)fsubs f12, f12, f5 li r31,
         159 mtctr r31 L_00000964 : fmr                                    f13,
                                    f12 beq                                cr7,
                                    L_00000994 lwz                         r30,
@@ -697,79 +687,79 @@ HandleReverb (register s32*                    sptr,
                        f14           bne + cr5,
                        L_00000C74 li r8,
                        0 L_00000C74 : bne + cr6,
-                       L_00000C7C li r7,
-                       0 L_00000C7C
-      : slwi r30,
-        k,
-        1 add r30,
-        r30,
-        k mulli r31,
-        r30,
-        0x14                                        // sizeof AXFX_REVHI_DELAYLINE
-        stfiwx f14,
-        r0,
-        sptr addi r29,
-        rv,
-        AXFX_REVHI_WORK.C add r29,
-        r29,
-        r31 stw r21,
-        AXFX_REVHI_DELAYLINE.inPoint + 0x00(r29)    // C[0]
-            stw r20,
-        AXFX_REVHI_DELAYLINE.outPoint + 0x00(r29)   // C[0]
-            stw r19,
-        AXFX_REVHI_DELAYLINE.inPoint + 0x14(r29)    // C[1]
-            stw r18,
-        AXFX_REVHI_DELAYLINE.outPoint + 0x14(r29)   // C[1]
-            stw r17,
-        AXFX_REVHI_DELAYLINE.inPoint + 0x28(r29)    // C[2]
-            stw r16,
-        AXFX_REVHI_DELAYLINE.outPoint + 0x28(r29)   // C[2]
-            stfs f16,
-        AXFX_REVHI_DELAYLINE.lastOutput + 0x00(r29) // C[0]
-            stfs f17,
-        AXFX_REVHI_DELAYLINE.lastOutput + 0x14(r29) // C[1]
-            stfs f18,
-        AXFX_REVHI_DELAYLINE.lastOutput + 0x28(r29) // C[2]
-            stw r12,
-        AXFX_REVHI_DELAYLINE.inPoint + 0x00(r27)    // AP[0]
-            stw r11,
-        AXFX_REVHI_DELAYLINE.outPoint + 0x00(r27)   // AP[0]
-            stw r10,
-        AXFX_REVHI_DELAYLINE.inPoint + 0x14(r27)    // AP[1]
-            stw r9,
-        AXFX_REVHI_DELAYLINE.outPoint + 0x14(r27)   // AP[1]
-            stw r8,
-        AXFX_REVHI_DELAYLINE.inPoint + 0x28(r27)    // AP[2]
-            stw r7,
-        AXFX_REVHI_DELAYLINE.outPoint + 0x28(r27)   // AP[2]
-            stfs f19,
-        AXFX_REVHI_DELAYLINE.lastOutput + 0x00(r27) // AP[0]
-            stfs f20,
-        AXFX_REVHI_DELAYLINE.lastOutput + 0x14(r27) // AP[1]
-            stfs f21,
-        AXFX_REVHI_DELAYLINE.lastOutput + 0x28(r27) // AP[2]
-            slwi r31,
-        k,
-        2 add r31,
-        r31,
-        rv stfs                             f25,
-        AXFX_REVHI_WORK.lpLastout (r31) lfd f14,
-        0x60(r1)lfd                         f15,
-        0x68(r1)lfd                         f16,
-        0x70(r1)lfd                         f17,
-        0x78(r1)lfd                         f18,
-        0x80(r1)lfd                         f19,
-        0x88(r1)lfd                         f20,
-        0x90(r1)lfd                         f21,
-        0x98(r1)lfd                         f22,
-        0xa0(r1)lfd                         f23,
-        0xa8(r1)lfd                         f24,
-        0xb0(r1)lfd                         f25,
-        0xb8(r1)lmw                         r14,
-        0x8(r1)addi                         r1,
-        r1,
-        0xc0 blr
+                       L_00000C7C li       r7,
+                       0 L_00000C7C : slwi r30,
+                                      k,
+                                      1 add r30,
+                                      r30,
+                                      k mulli r31,
+                                      r30,
+                                      0x14 // sizeof AXFX_REVHI_DELAYLINE
+                                      stfiwx f14,
+                                      r0,
+                                      sptr addi r29,
+                                      rv,
+                                      AXFX_REVHI_WORK.C add r29,
+                                      r29,
+                                      r31 stw r21,
+                                      AXFX_REVHI_DELAYLINE.inPoint + 0x00(r29)    // C[0]
+                                          stw r20,
+                                      AXFX_REVHI_DELAYLINE.outPoint + 0x00(r29)   // C[0]
+                                          stw r19,
+                                      AXFX_REVHI_DELAYLINE.inPoint + 0x14(r29)    // C[1]
+                                          stw r18,
+                                      AXFX_REVHI_DELAYLINE.outPoint + 0x14(r29)   // C[1]
+                                          stw r17,
+                                      AXFX_REVHI_DELAYLINE.inPoint + 0x28(r29)    // C[2]
+                                          stw r16,
+                                      AXFX_REVHI_DELAYLINE.outPoint + 0x28(r29)   // C[2]
+                                          stfs f16,
+                                      AXFX_REVHI_DELAYLINE.lastOutput + 0x00(r29) // C[0]
+                                          stfs f17,
+                                      AXFX_REVHI_DELAYLINE.lastOutput + 0x14(r29) // C[1]
+                                          stfs f18,
+                                      AXFX_REVHI_DELAYLINE.lastOutput + 0x28(r29) // C[2]
+                                          stw r12,
+                                      AXFX_REVHI_DELAYLINE.inPoint + 0x00(r27)    // AP[0]
+                                          stw r11,
+                                      AXFX_REVHI_DELAYLINE.outPoint + 0x00(r27)   // AP[0]
+                                          stw r10,
+                                      AXFX_REVHI_DELAYLINE.inPoint + 0x14(r27)    // AP[1]
+                                          stw r9,
+                                      AXFX_REVHI_DELAYLINE.outPoint + 0x14(r27)   // AP[1]
+                                          stw r8,
+                                      AXFX_REVHI_DELAYLINE.inPoint + 0x28(r27)    // AP[2]
+                                          stw r7,
+                                      AXFX_REVHI_DELAYLINE.outPoint + 0x28(r27)   // AP[2]
+                                          stfs f19,
+                                      AXFX_REVHI_DELAYLINE.lastOutput + 0x00(r27) // AP[0]
+                                          stfs f20,
+                                      AXFX_REVHI_DELAYLINE.lastOutput + 0x14(r27) // AP[1]
+                                          stfs f21,
+                                      AXFX_REVHI_DELAYLINE.lastOutput + 0x28(r27) // AP[2]
+                                          slwi r31,
+                                      k,
+                                      2 add r31,
+                                      r31,
+                                      rv stfs                             f25,
+                                      AXFX_REVHI_WORK.lpLastout (r31) lfd f14,
+                                      0x60(r1)lfd                         f15,
+                                      0x68(r1)lfd                         f16,
+                                      0x70(r1)lfd                         f17,
+                                      0x78(r1)lfd                         f18,
+                                      0x80(r1)lfd                         f19,
+                                      0x88(r1)lfd                         f20,
+                                      0x90(r1)lfd                         f21,
+                                      0x98(r1)lfd                         f22,
+                                      0xa0(r1)lfd                         f23,
+                                      0xa8(r1)lfd                         f24,
+                                      0xb0(r1)lfd                         f25,
+                                      0xb8(r1)lmw                         r14,
+                                      0x8(r1)addi                         r1,
+                                      r1,
+                                      0xc0 blr
 }
+
 static void
 ReverbHICallback (s32* left, long* right, long* surround, struct AXFX_REVHI_WORK* rv)
 {
@@ -782,10 +772,7 @@ ReverbHICallback (s32* left, long* right, long* surround, struct AXFX_REVHI_WORK
             case 0:
                 if (0.0f != rv->crosstalk)
                 {
-                    DoCrossTalk (left,
-                                 right,
-                                 0.5f * rv->crosstalk,
-                                 1.0f - (0.5f * rv->crosstalk));
+                    DoCrossTalk (left, right, 0.5f * rv->crosstalk, 1.0f - (0.5f * rv->crosstalk));
                 }
                 HandleReverb (left, rv, 0);
                 break;
@@ -798,6 +785,7 @@ ReverbHICallback (s32* left, long* right, long* surround, struct AXFX_REVHI_WORK
         }
     }
 }
+
 static void
 ReverbHIFree (struct AXFX_REVHI_WORK* rv)
 {
@@ -819,6 +807,7 @@ ReverbHIFree (struct AXFX_REVHI_WORK* rv)
         }
     }
 }
+
 int
 AXFXReverbHiInit (struct AXFX_REVERBHI* rev)
 {
@@ -837,6 +826,7 @@ AXFXReverbHiInit (struct AXFX_REVERBHI* rev)
     OSRestoreInterrupts (old);
     return ret;
 }
+
 int
 AXFXReverbHiShutdown (struct AXFX_REVERBHI* rev)
 {
@@ -847,6 +837,7 @@ AXFXReverbHiShutdown (struct AXFX_REVERBHI* rev)
     OSRestoreInterrupts (old);
     return 1;
 }
+
 int
 AXFXReverbHiSettings (struct AXFX_REVERBHI* rev)
 {
@@ -865,9 +856,9 @@ AXFXReverbHiSettings (struct AXFX_REVERBHI* rev)
     OSRestoreInterrupts (old);
     return 1;
 }
+
 void
-AXFXReverbHiCallback (struct AXFX_BUFFERUPDATE* bufferUpdate,
-                      struct AXFX_REVERBHI*     reverb)
+AXFXReverbHiCallback (struct AXFX_BUFFERUPDATE* bufferUpdate, struct AXFX_REVERBHI* reverb)
 {
     if (reverb->tempDisableFX == 0)
     {

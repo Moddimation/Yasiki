@@ -10,10 +10,7 @@ extern struct SYNSYNTH* __SYNSynthList;
 extern float __SYNn128[128];
 
 void __SYNClearAllNotes (struct SYNSYNTH* synth);
-void __SYNSetController (struct SYNSYNTH* synth,
-                         u8               midiChannel,
-                         u8               function,
-                         u8               value);
+void __SYNSetController (struct SYNSYNTH* synth, u8 midiChannel, u8 function, u8 value);
 void __SYNResetController0 (struct SYNSYNTH* synth, u8 midiChannel);
 void __SYNResetController (struct SYNSYNTH* synth, u8 midiChannel);
 void __SYNResetAllControllers (struct SYNSYNTH* synth);

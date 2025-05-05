@@ -1,4 +1,5 @@
 #include "Unsorted/Timer.h"
+
 int
 checkTimeRange (int rangeLower, int rangeUpper)
 {

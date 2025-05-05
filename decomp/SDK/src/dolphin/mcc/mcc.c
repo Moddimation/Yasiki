@@ -54,10 +54,12 @@ static void MCCExiCallback (void);
 static void MCCTxCallback (void);
 static void MCCRxCallback (void);
 static int  mccInitializeCheck (u8 timeout);
+
 static void
 mccDebugPrint (char* str)
 {
 }
+
 static void
 callbackEventStream (enum MCC_CHANNEL chID, u32 event, u32 value)
 {
@@ -79,6 +81,7 @@ callbackEventStream (enum MCC_CHANNEL chID, u32 event, u32 value)
         gChannelInfo[chID].isStreamConnection = 1;
     }
 }
+
 int
 MCCStreamOpen (enum MCC_CHANNEL chID, u8 blockSize)
 {
@@ -93,11 +96,13 @@ MCCStreamOpen (enum MCC_CHANNEL chID, u8 blockSize)
     }
     return bResult;
 }
+
 int
 MCCStreamClose (enum MCC_CHANNEL chID)
 {
     MCCClose (chID);
 }
+
 int
 MCCStreamWrite (enum MCC_CHANNEL chID, void* data, u32 dataBlockSize)
 {
@@ -140,16 +145,11 @@ MCCStreamWrite (enum MCC_CHANNEL chID, void* data, u32 dataBlockSize)
                     gChannelInfo[chID].isStreamDone = 0;
                     while (lastBlocks)
                     {
-                        if (!MCCWrite (chID,
-                                       0,
-                                       dataAddress,
-                                       chanInfo.blockLength << 0xD,
-                                       0))
+                        if (!MCCWrite (chID, 0, dataAddress, chanInfo.blockLength << 0xD, 0))
                         {
                             break;
                         }
-                        if (WaitAMinute (5, &gChannelInfo[chID].isStreamDone, 1) ==
-                            0)
+                        if (WaitAMinute (5, &gChannelInfo[chID].isStreamDone, 1) == 0)
                         {
                             gLastError = 2;
                             break;
@@ -177,6 +177,7 @@ MCCStreamWrite (enum MCC_CHANNEL chID, void* data, u32 dataBlockSize)
 exit:;
     return 0;
 }
+
 u32
 MCCStreamRead (enum MCC_CHANNEL chID, void* data)
 {
@@ -219,8 +220,7 @@ MCCStreamRead (enum MCC_CHANNEL chID, void* data)
                     allBlocks = lastBlocks = *(u32*)&gStreamWork[0];
                     while (lastBlocks)
                     {
-                        if (WaitAMinute (5, &gChannelInfo[chID].isStreamDone, 1) ==
-                            0)
+                        if (WaitAMinute (5, &gChannelInfo[chID].isStreamDone, 1) == 0)
                         {
                             gLastError = 2;
                             break;
@@ -258,6 +258,7 @@ MCCStreamRead (enum MCC_CHANNEL chID, void* data)
 
     return 0;
 }
+
 static int
 SetUsbAdapterMode (u8 mode)
 {
@@ -275,6 +276,7 @@ SetUsbAdapterMode (u8 mode)
     }
     return result;
 }
+
 static u8
 GetUsbAdapterMode (void)
 {
@@ -285,6 +287,7 @@ GetUsbAdapterMode (void)
     }
     return 0;
 }
+
 static int
 InitializeCodeClear (void)
 {
@@ -292,6 +295,7 @@ InitializeCodeClear (void)
     DCFlushRange (m_szInitCode, 0x20);
     HIOWrite (0x600, m_szInitCode, 0x20);
 }
+
 static int
 InitializeCodeSet (void)
 {
@@ -299,6 +303,7 @@ InitializeCodeSet (void)
     DCFlushRange (m_szInitCode, 0x20);
     HIOWrite (0x600, m_szInitCode, 0x20);
 }
+
 static int
 InitializeCodeCheck (void)
 {
@@ -312,17 +317,20 @@ InitializeCodeCheck (void)
     }
     return result;
 }
+
 static void
 AsyncResourceClearState (void)
 {
     gAsyncResourceStatus = 0;
 }
+
 static void
 AsyncResourceSetState (u16 state)
 {
     gAsyncResourceStatus &= 0xFFFF0FFF;
     gAsyncResourceStatus |= state;
 }
+
 static void
 AsyncResourceStateBusy (u8 channel, u16 mode)
 {
@@ -331,31 +339,37 @@ AsyncResourceStateBusy (u8 channel, u16 mode)
     gAsyncResourceStatus |= channel;
     gAsyncResourceStatus |= mode;
 }
+
 static void
 AsyncResourceStateDone (void)
 {
     AsyncResourceSetState (0x2000);
 }
+
 static u16
 AsyncResourceGetStat (void)
 {
     return gAsyncResourceStatus & 0xF000;
 }
+
 static u16
 AsyncResourceGetMode (void)
 {
     return gAsyncResourceStatus & 0xF00;
 }
+
 static u8
 AsyncResourceGetChannel (void)
 {
     return gAsyncResourceStatus;
 }
+
 static int
 AsyncResourceIsBusy (void)
 {
     return AsyncResourceGetStat() & 0x1000;
 }
+
 static int
 LoadChannelInfo (MCC_ChannelInfo* info)
 {
@@ -394,6 +408,7 @@ LoadChannelInfo (MCC_ChannelInfo* info)
     }
     return result;
 }
+
 static int
 FlushChannelInfo (MCC_ChannelInfo* info)
 {
@@ -421,11 +436,13 @@ FlushChannelInfo (MCC_ChannelInfo* info)
     }
     return result;
 }
+
 static void
 SetChannelInfoDirty (int dirty)
 {
     gIsChannelinfoDirty = dirty;
 }
+
 static void
 ClearChannelInfo (int i)
 {
@@ -438,6 +455,7 @@ ClearChannelInfo (int i)
     gChannelInfo[i].isStreamDone = 0;
     //! isStreamConnection isnt cleared. Intentional?
 }
+
 static void
 MakeMemoryMap (u8* map)
 {
@@ -464,6 +482,7 @@ MakeMemoryMap (u8* map)
     }
     *map = 0xFF;
 }
+
 static int
 IsChannelOpened (enum MCC_CHANNEL chID)
 {
@@ -481,6 +500,7 @@ IsChannelOpened (enum MCC_CHANNEL chID)
 exit:;
     return 0;
 }
+
 static u8
 SearchFreeBlocks (enum MCC_MODE mode, u8* index)
 {
@@ -536,6 +556,7 @@ SearchFreeBlocks (enum MCC_MODE mode, u8* index)
     }
     return fSize;
 }
+
 static int
 NotifyCompulsorily (enum MCC_CHANNEL chID, u32 notify, u32 timeout)
 {
@@ -566,8 +587,7 @@ NotifyCompulsorily (enum MCC_CHANNEL chID, u32 notify, u32 timeout)
             break;
         }
         tickCur = OSGetTick();
-        tickSec =
-            (tickStart < tickCur) ? tickCur - tickStart : (-1 - tickStart) + tickCur;
+        tickSec = (tickStart < tickCur) ? tickCur - tickStart : (-1 - tickStart) + tickCur;
         tickSec = OSTicksToSeconds (tickSec);
         if (timeout == 0 || tickSec > timeout)
         {
@@ -583,16 +603,19 @@ NotifyCompulsorily (enum MCC_CHANNEL chID, u32 notify, u32 timeout)
 exit:;
     return 0;
 }
+
 static int
 NotifyInit (void)
 {
     return NotifyCompulsorily (0, 1, 0U);
 }
+
 static int
 NotifyInitDone (void)
 {
     return NotifyCompulsorily (0, 2, 0U);
 }
+
 static int
 NotifyChannelEvent (enum MCC_CHANNEL chID, u32 notify)
 {
@@ -616,6 +639,7 @@ NotifyChannelEvent (enum MCC_CHANNEL chID, u32 notify)
     }
     return 0;
 }
+
 static int
 WaitAMinute (int timeout, volatile int* flag, int value)
 {
@@ -626,8 +650,7 @@ WaitAMinute (int timeout, volatile int* flag, int value)
     while (*flag != value)
     {
         tickDist = OSGetTick() - tickStart;
-        tickDist = (tickDist & 0x80000000) ? (0x80000000 - tickStart) + OSGetTick()
-                                           : tickDist;
+        tickDist = (tickDist & 0x80000000) ? (0x80000000 - tickStart) + OSGetTick() : tickDist;
         if (OSTicksToSeconds (tickDist) >= timeout)
         {
             mccDebugPrint ("Error:Time is over.\n");
@@ -636,6 +659,7 @@ WaitAMinute (int timeout, volatile int* flag, int value)
     }
     return 1;
 }
+
 static void
 MailboxCheck (void)
 {
@@ -749,21 +773,25 @@ MailboxCheck (void)
         }
     }
 }
+
 static void
 MCCExiCallback (void)
 {
     MailboxCheck();
 }
+
 static void
 MCCTxCallback (void)
 {
     AsyncResourceStateDone();
 }
+
 static void
 MCCRxCallback (void)
 {
     AsyncResourceStateDone();
 }
+
 static int
 mccInitializeCheck (u8 timeout)
 {
@@ -800,8 +828,7 @@ mccInitializeCheck (u8 timeout)
             mccDebugPrint ("Error:Could not flush channelInfo.\n");
             gLastError = 0xA;
         }
-        else if ((timeout != 0) &&
-                 (WaitAMinute (timeout, &gOtherSideInitDone, 1) == 0))
+        else if ((timeout != 0) && (WaitAMinute (timeout, &gOtherSideInitDone, 1) == 0))
         {
             InitializeCodeClear();
             mccDebugPrint ("Error:Time is over.\n");
@@ -833,6 +860,7 @@ mccInitializeCheck (u8 timeout)
     }
     return 0;
 }
+
 int
 MCCInit (enum MCC_EXI exiChannel, u8 timeout, MCC_CBSysEvent callbackSysEvent)
 {
@@ -893,6 +921,7 @@ MCCInit (enum MCC_EXI exiChannel, u8 timeout, MCC_CBSysEvent callbackSysEvent)
     }
     return 0;
 }
+
 void
 MCCExit (void)
 {
@@ -917,6 +946,7 @@ MCCExit (void)
     gMccInitialized = 0;
     gMccSession = 0;
 }
+
 int
 MCCPing (void)
 {
@@ -933,6 +963,7 @@ MCCPing (void)
     }
     return 0;
 }
+
 int
 MCCEnumDevices (MCC_CBEnumDevices callbackEnumDevices)
 {
@@ -951,6 +982,7 @@ MCCEnumDevices (MCC_CBEnumDevices callbackEnumDevices)
     }
     return 0;
 }
+
 u8
 MCCGetFreeBlocks (enum MCC_MODE mode)
 {
@@ -982,12 +1014,14 @@ MCCGetFreeBlocks (enum MCC_MODE mode)
     }
     return 0;
 }
+
 u8
 MCCGetLastError (void)
 {
     mccDebugPrint ("MCCGetFreeBlocks\n"); //! wrong print?
     return gLastError;
 }
+
 int
 MCCGetChannelInfo (enum MCC_CHANNEL chID, MCC_Info* info)
 {
@@ -1025,6 +1059,7 @@ MCCGetChannelInfo (enum MCC_CHANNEL chID, MCC_Info* info)
     }
     return 0;
 }
+
 int
 MCCGetConnectionStatus (enum MCC_CHANNEL chID, enum MCC_CONNECT* connect)
 {
@@ -1065,6 +1100,7 @@ MCCGetConnectionStatus (enum MCC_CHANNEL chID, enum MCC_CONNECT* connect)
     }
     return 0;
 }
+
 int
 MCCNotify (enum MCC_CHANNEL chID, u32 notify)
 {
@@ -1107,6 +1143,7 @@ MCCNotify (enum MCC_CHANNEL chID, u32 notify)
     }
     return 0;
 }
+
 u32
 MCCSetChannelEventMask (enum MCC_CHANNEL chID, u32 event)
 {
@@ -1141,6 +1178,7 @@ MCCSetChannelEventMask (enum MCC_CHANNEL chID, u32 event)
     }
     return oldMask;
 }
+
 int
 MCCOpen (enum MCC_CHANNEL chID, u8 blockSize, MCC_CBEvent callbackEvent)
 {
@@ -1252,6 +1290,7 @@ MCCOpen (enum MCC_CHANNEL chID, u8 blockSize, MCC_CBEvent callbackEvent)
 exit:;
     return 0;
 }
+
 int
 MCCClose (enum MCC_CHANNEL chID)
 {
@@ -1316,6 +1355,7 @@ MCCClose (enum MCC_CHANNEL chID)
 exit:;
     return 0;
 }
+
 int
 MCCLock (enum MCC_CHANNEL chID)
 {
@@ -1374,6 +1414,7 @@ MCCLock (enum MCC_CHANNEL chID)
 exit:;
     return 0;
 }
+
 int
 MCCUnlock (enum MCC_CHANNEL chID)
 {
@@ -1432,12 +1473,9 @@ MCCUnlock (enum MCC_CHANNEL chID)
 exit:
     return 0;
 }
+
 int
-MCCRead (enum MCC_CHANNEL    chID,
-         u32                 offset,
-         void*               data,
-         s32                 size,
-         enum MCC_SYNC_STATE async)
+MCCRead (enum MCC_CHANNEL chID, u32 offset, void* data, s32 size, enum MCC_SYNC_STATE async)
 {
 #ifndef DEBUG
     int unused[11];                       // fake but blah
@@ -1515,8 +1553,7 @@ MCCRead (enum MCC_CHANNEL    chID,
         gLastError = 0;
         return 1;
     }
-    if (HIORead (offset + (gChannelInfo[chID].info.firstBlock << 0xD), data, size) ==
-        0)
+    if (HIORead (offset + (gChannelInfo[chID].info.firstBlock << 0xD), data, size) == 0)
     {
         mccDebugPrint ("Error:Read data error.");
         gLastError = 7;
@@ -1536,12 +1573,9 @@ MCCRead (enum MCC_CHANNEL    chID,
 exit:;
     return 0;
 }
+
 int
-MCCWrite (enum MCC_CHANNEL    chID,
-          u32                 offset,
-          void*               data,
-          s32                 size,
-          enum MCC_SYNC_STATE async)
+MCCWrite (enum MCC_CHANNEL chID, u32 offset, void* data, s32 size, enum MCC_SYNC_STATE async)
 {
 #ifndef DEBUG
     int unused[11];                       // fake but blah
@@ -1626,8 +1660,7 @@ MCCWrite (enum MCC_CHANNEL    chID,
         return 1;
     }
     DCFlushRange (data, size);
-    if (HIOWrite (
-            offset + (gChannelInfo[chID].info.firstBlock << 0xD), data, size) == 0)
+    if (HIOWrite (offset + (gChannelInfo[chID].info.firstBlock << 0xD), data, size) == 0)
     {
         mccDebugPrint ("Error:Write data error.");
         gLastError = 8;
@@ -1646,6 +1679,7 @@ MCCWrite (enum MCC_CHANNEL    chID,
 exit:
     return 0;
 }
+
 int
 MCCCheckAsyncDone ()
 {
@@ -1677,8 +1711,7 @@ MCCCheckAsyncDone ()
             {
                 NotifyChannelEvent (chID, 0x10);
             }
-            if (~(gChannelInfo[chID].eventMask) & 0x40 &&
-                gChannelInfo[chID].callbackEvent)
+            if (~(gChannelInfo[chID].eventMask) & 0x40 && gChannelInfo[chID].callbackEvent)
             {
                 gChannelInfo[chID].callbackEvent (chID, 0x40, 0);
             }
@@ -1689,8 +1722,7 @@ MCCCheckAsyncDone ()
             {
                 NotifyChannelEvent (chID, 0x20);
             }
-            if (~(gChannelInfo[chID].eventMask) & 0x80 &&
-                gChannelInfo[chID].callbackEvent)
+            if (~(gChannelInfo[chID].eventMask) & 0x80 && gChannelInfo[chID].callbackEvent)
             {
                 gChannelInfo[chID].callbackEvent (chID, 0x80, 0);
             }

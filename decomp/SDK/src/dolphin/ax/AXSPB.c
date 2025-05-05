@@ -17,11 +17,13 @@ static s32 __AXSpbAAS;
 static s32 __AXSpbABL;
 static s32 __AXSpbABR;
 static s32 __AXSpbABS;
+
 u32
 __AXGetStudio (void)
 {
     return (u32)&__AXStudio;
 }
+
 void
 __AXDepopFade (s32* hostSum, long* dspVolume, s16* dspDelta)
 {
@@ -50,35 +52,32 @@ __AXDepopFade (s32* hostSum, long* dspVolume, s16* dspDelta)
     *dspVolume = 0;
     *dspDelta = 0;
 }
+
 void
 __AXPrintStudio (void)
 {
     __AXDepopFade (&__AXSpbAL, (void*)&__AXStudio.dpopLHi, &__AXStudio.dpopLDelta);
     __AXDepopFade (&__AXSpbAR, (void*)&__AXStudio.dpopRHi, &__AXStudio.dpopRDelta);
     __AXDepopFade (&__AXSpbAS, (void*)&__AXStudio.dpopSHi, &__AXStudio.dpopSDelta);
-    __AXDepopFade (
-        &__AXSpbAAL, (void*)&__AXStudio.dpopALHi, &__AXStudio.dpopALDelta);
-    __AXDepopFade (
-        &__AXSpbAAR, (void*)&__AXStudio.dpopARHi, &__AXStudio.dpopARDelta);
-    __AXDepopFade (
-        &__AXSpbAAS, (void*)&__AXStudio.dpopASHi, &__AXStudio.dpopASDelta);
-    __AXDepopFade (
-        &__AXSpbABL, (void*)&__AXStudio.dpopBLHi, &__AXStudio.dpopBLDelta);
-    __AXDepopFade (
-        &__AXSpbABR, (void*)&__AXStudio.dpopBRHi, &__AXStudio.dpopBRDelta);
-    __AXDepopFade (
-        &__AXSpbABS, (void*)&__AXStudio.dpopBSHi, &__AXStudio.dpopBSDelta);
+    __AXDepopFade (&__AXSpbAAL, (void*)&__AXStudio.dpopALHi, &__AXStudio.dpopALDelta);
+    __AXDepopFade (&__AXSpbAAR, (void*)&__AXStudio.dpopARHi, &__AXStudio.dpopARDelta);
+    __AXDepopFade (&__AXSpbAAS, (void*)&__AXStudio.dpopASHi, &__AXStudio.dpopASDelta);
+    __AXDepopFade (&__AXSpbABL, (void*)&__AXStudio.dpopBLHi, &__AXStudio.dpopBLDelta);
+    __AXDepopFade (&__AXSpbABR, (void*)&__AXStudio.dpopBRHi, &__AXStudio.dpopBRDelta);
+    __AXDepopFade (&__AXSpbABS, (void*)&__AXStudio.dpopBSHi, &__AXStudio.dpopBSDelta);
     DCFlushRange (&__AXStudio, sizeof (__AXStudio));
 }
+
 void
 __AXSPBInit (void)
 {
 #ifdef DEBUG
     OSReport ("Initializing AXSPB code module¥n");
 #endif
-    __AXSpbAL = __AXSpbAR = __AXSpbAS = __AXSpbAAL = __AXSpbAAR = __AXSpbAAS =
-        __AXSpbABL = __AXSpbABR = __AXSpbABS = 0;
+    __AXSpbAL = __AXSpbAR = __AXSpbAS = __AXSpbAAL = __AXSpbAAR = __AXSpbAAS = __AXSpbABL =
+        __AXSpbABR = __AXSpbABS = 0;
 }
+
 void
 __AXSPBQuit (void)
 {
@@ -86,6 +85,7 @@ __AXSPBQuit (void)
     OSReport ("Shutting down AXSPB code module¥n");
 #endif
 }
+
 void
 __AXDepopVoice (AXPB* p)
 {

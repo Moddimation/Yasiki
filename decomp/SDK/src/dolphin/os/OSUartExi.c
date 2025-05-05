@@ -7,6 +7,7 @@ static u32 serEnabled;
 int InitializeUART ();
 int ReadUARTN ();
 int WriteUARTN (void* buf, u32 len);
+
 int
 InitializeUART ()
 {
@@ -18,11 +19,13 @@ InitializeUART ()
     serEnabled = 0xA5FF005A;
     return 0;
 }
+
 int
 ReadUARTN ()
 {
     return 4;
 }
+
 static int
 QueueLength (void)
 {
@@ -40,6 +43,7 @@ QueueLength (void)
     EXIDeselect (0);
     return 0x10 - (cmd >> 0x18);
 }
+
 int
 WriteUARTN (void* buf, u32 len)
 {

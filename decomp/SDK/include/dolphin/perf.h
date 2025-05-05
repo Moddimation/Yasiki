@@ -9,12 +9,14 @@ extern "C"
 #endif
 
 typedef u8 PERFId;
+
 typedef enum
 {
     PERF_CPU_EVENT,
     PERF_CPU_GP_EVENT,
     PERF_GP_EVENT,
 } PerfType;
+
 struct Frame
 {
     // total size: 0x10
@@ -23,6 +25,7 @@ struct Frame
     u32                end;             // offset 0x8, size 0x4
     u32                cachemisscycles; // offset 0xC, size 0x4
 };
+
 struct PerfEvent
 {
     // total size: 0x10
@@ -31,6 +34,7 @@ struct PerfEvent
     s32             currSample;         // offset 0x8, size 0x4
     struct _GXColor color;              // offset 0xC, size 0x4
 };
+
 typedef struct PerfSample
 {
     u8  id;                             ///< 0x00
@@ -58,6 +62,7 @@ typedef struct PerfSample
     u32 rasBusy[2];                     ///< 0xA0
     u32 rasClocks[2];                   ///< 0xA8
 } PerfSample;
+
 typedef void* (*PERFAllocator) (u32 size);
 typedef void  (*PERFDeallocator) (void* block);
 typedef void  (*PERFDrawCallback) (void);

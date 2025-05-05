@@ -5,10 +5,10 @@
 
 #define LATENCY 8
 
-#define PAD_ALL                                                                     \
-    (PAD_BUTTON_LEFT | PAD_BUTTON_RIGHT | PAD_BUTTON_DOWN | PAD_BUTTON_UP |         \
-     PAD_TRIGGER_Z | PAD_TRIGGER_R | PAD_TRIGGER_L | PAD_BUTTON_A | PAD_BUTTON_B |  \
-     PAD_BUTTON_X | PAD_BUTTON_Y | PAD_BUTTON_MENU | 0x2000 | 0x0080)
+#define PAD_ALL                                                                                    \
+    (PAD_BUTTON_LEFT | PAD_BUTTON_RIGHT | PAD_BUTTON_DOWN | PAD_BUTTON_UP | PAD_TRIGGER_Z |        \
+     PAD_TRIGGER_R | PAD_TRIGGER_L | PAD_BUTTON_A | PAD_BUTTON_B | PAD_BUTTON_X | PAD_BUTTON_Y |   \
+     PAD_BUTTON_MENU | 0x2000 | 0x0080)
 
 #ifndef __MWERKS__
 u16 __OSWirelessPadFixMode = 0;
@@ -54,8 +54,7 @@ static u32 XPatchBits = 0xF0000000;                  // size: 0x4
 static u32 AnalogMode = 0x00000300;                  // size: 0x4,
 static u32 Spec = 0x00000005;                        // size: 0x4,
 
-static void (*MakeStatus) (s32,
-                           PADStatus*,
+static void (*MakeStatus) (s32, PADStatus*,
                            u32*) = SPEC2_MakeStatus; // size: 0x4, address: 0xC
 
 static int Initialized;                              // size: 0x4,
@@ -66,9 +65,9 @@ static u32 RecalibrateBits;                          // size: 0x4,
 static u32 WaitingBits;                              // size: 0x4,
 static u32 CheckingBits;                             // size: 0x4,
 
-static u32              PADType[4];                  // size: 0x10,
-static u32              Type[4];                     // size: 0x10,
-static PADStatus Origin[4];                   // size: 0x30,
+static u32       PADType[4];                         // size: 0x10,
+static u32       Type[4];                            // size: 0x10,
+static PADStatus Origin[4];                          // size: 0x30,
 
 static u32 cmdReadOrigin = 0x41u << 24;
 static u32 cmdCalibrate = 0x42u << 24;

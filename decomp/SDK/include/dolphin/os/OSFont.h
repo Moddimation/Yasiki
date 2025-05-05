@@ -14,6 +14,7 @@ extern "C"
 #define OS_FONT_SIZE_SJIS     (3840 + 1179648) // 1 sheet
 #define OS_FONT_ROM_SIZE_ANSI 0x03000
 #define OS_FONT_ROM_SIZE_SJIS 0x4D000
+
 typedef struct OSFontHeader
 {
     u16 fontType;                              ///< 0x00
@@ -40,6 +41,7 @@ typedef struct OSFontHeader
     u8  c2;                                    ///< 0x2E
     u8  c3;                                    ///< 0x2F
 } OSFontHeader;
+
 u16   OSGetFontEncode (void);
 BOOL  OSInitFont (OSFontHeader* fontData);
 u32   OSLoadFont (OSFontHeader* fontData, void* temp);

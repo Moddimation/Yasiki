@@ -4,32 +4,38 @@
 #include <stddef.h>
 
 #include "dsp_private.h"
+
 u32
 DSPCheckMailToDSP (void)
 {
     return (__DSPRegs[0] & (1 << 15)) >> 15;
 }
+
 u32
 DSPCheckMailFromDSP (void)
 {
     return (__DSPRegs[2] & (1 << 15)) >> 15;
 }
+
 u32
 DSPReadCPUToDSPMbox (void)
 {
     return (__DSPRegs[0] << 16) | __DSPRegs[1];
 }
+
 u32
 DSPReadMailFromDSP (void)
 {
     return (__DSPRegs[2] << 16) | __DSPRegs[3];
 }
+
 void
 DSPSendMailToDSP (u32 mail)
 {
     __DSPRegs[0] = mail >> 16;
     __DSPRegs[1] = mail & 0xFFFF;
 }
+
 /*
 void
 DSPAssertInt(void)

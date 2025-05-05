@@ -14,6 +14,7 @@ struct SYNSYNTH* __SYNSynthList;
 // functions
 static void __SYNAddSynthToList (struct SYNSYNTH* synth);
 static void __SYNRemoveSynthFromList (struct SYNSYNTH* synth);
+
 static void
 __SYNAddSynthToList (struct SYNSYNTH* synth)
 {
@@ -30,6 +31,7 @@ __SYNAddSynthToList (struct SYNSYNTH* synth)
     __SYNSynthList = synth;
     OSRestoreInterrupts (old);
 }
+
 static void
 __SYNRemoveSynthFromList (struct SYNSYNTH* synth)
 {
@@ -58,6 +60,7 @@ __SYNRemoveSynthFromList (struct SYNSYNTH* synth)
     __SYNSynthList = tempList;
     OSRestoreInterrupts (old);
 }
+
 void
 SYNInit ()
 {
@@ -69,11 +72,13 @@ SYNInit ()
     }
     __SYNSynthList = NULL;
 }
+
 void
 SYNQuit ()
 {
     SYNInit();
 }
+
 void
 SYNRunAudioFrame ()
 {
@@ -89,6 +94,7 @@ SYNRunAudioFrame ()
         __SYNRunInputBufferEvents (synth);
     }
 }
+
 void
 SYNInitSynth (struct SYNSYNTH* synth,
               void*            wavetable,
@@ -144,6 +150,7 @@ SYNInitSynth (struct SYNSYNTH* synth,
     }
     __SYNAddSynthToList (synth);
 }
+
 void
 SYNQuitSynth (struct SYNSYNTH* synth)
 {
@@ -168,6 +175,7 @@ SYNQuitSynth (struct SYNSYNTH* synth)
     __SYNRemoveSynthFromList (synth);
     OSRestoreInterrupts (old);
 }
+
 void
 SYNMidiInput (struct SYNSYNTH* synth, u8* input)
 {
@@ -189,24 +197,24 @@ SYNMidiInput (struct SYNSYNTH* synth, u8* input)
 
     if (synth->inputCounter >= SYN_INPUT_BUFFER_SIZE)
     {
-        ASSERTMSGLINE (
-            0xE5,
-            FALSE,
-            "synth input buffer exceeded, increase SYN_INPUT_BUFFER_SIZE");
+        ASSERTMSGLINE (0xE5, FALSE, "synth input buffer exceeded, increase SYN_INPUT_BUFFER_SIZE");
     }
 }
+
 void
 SYNSetMasterVolume (struct SYNSYNTH* synth, s32 dB)
 {
     ASSERTLINE (0xEE, synth);
     synth->masterVolume = (dB << 0x10);
 }
+
 s32
 SYNGetMasterVolume (struct SYNSYNTH* synth)
 {
     ASSERTLINE (0xF9, synth);
     return synth->masterVolume << 0x10;
 }
+
 u32
 SYNGetActiveNotes (struct SYNSYNTH* synth)
 {

@@ -22,9 +22,7 @@ void GXSetIndTexMtx (GXIndTexMtxID mtx_id, f32 offset[2][3], s8 scale_exp);
 void GXSetIndTexCoordScale (GXIndTexStageID ind_state,
                             GXIndTexScale   scale_s,
                             GXIndTexScale   scale_t);
-void GXSetIndTexOrder (GXIndTexStageID ind_stage,
-                       GXTexCoordID    tex_coord,
-                       GXTexMapID      tex_map);
+void GXSetIndTexOrder (GXIndTexStageID ind_stage, GXTexCoordID tex_coord, GXTexMapID tex_map);
 void GXSetNumIndStages (u8 nIndStages);
 void GXSetTevDirect (GXTevStageID tev_stage);
 void GXSetTevIndWarp (GXTevStageID    tev_stage,

@@ -10,6 +10,7 @@ static u32 dlistSize;
 static u32 bytesRead;
 
 void __GXShadowIndexState (u32 idx_reg, u32 reg_data);
+
 static u8
 __ReadMem (void* ptr, u32 sz)
 {
@@ -32,11 +33,13 @@ __ReadMem (void* ptr, u32 sz)
     dlist += sz;
     return TRUE;
 }
+
 inline void
 DPF (...)
 {
     u8 unused[4];
 }
+
 static void
 __SaveCPRegs (u8 reg, u8 vatIdx, u32 data)
 {
@@ -81,13 +84,14 @@ __SaveCPRegs (u8 reg, u8 vatIdx, u32 data)
             }
             break;
         default:
-            OSReport ("GX DisplayList: Invalid CP Stream Register Address 0x%x\n",
-                      reg);
+            OSReport ("GX DisplayList: Invalid CP Stream Register Address 0x%x\n", reg);
             break;
     }
 }
+
 static u32 vtxCompSize[5] = { 1, 1, 2, 2, 4 };
 static int clrCompSize[6] = { 2, 3, 4, 2, 3, 4 };
+
 static u32
 GetAttrSize (u8 vatIdx, u32 attrIdx)
 {
@@ -304,6 +308,7 @@ GetAttrSize (u8 vatIdx, u32 attrIdx)
     }
     return 0;
 }
+
 static void
 __ParseVertexData (u8 vatIdx)
 {
@@ -326,6 +331,7 @@ __ParseVertexData (u8 vatIdx)
         bytesRead += vsize;
     }
 }
+
 void
 __GXShadowDispList (void* list, u32 nbytes)
 {
@@ -420,6 +426,7 @@ __GXShadowDispList (void* list, u32 nbytes)
         }
     }
 }
+
 void
 __GXShadowIndexState (u32 idx_reg, u32 reg_data)
 {
@@ -450,6 +457,7 @@ __GXShadowIndexState (u32 idx_reg, u32 reg_data)
 
     &data; // needed to match
 }
+
 void
 __GXPrintShadowState (void)
 {
@@ -507,8 +515,7 @@ __GXPrintShadowState (void)
             }
             for (j = 4; j < 16; j++)
             {
-                OSReport (
-                    "\t\tparam[%d] = %Lg\n", j, *(f32*)&__gxVerif->xfLight[i + j]);
+                OSReport ("\t\tparam[%d] = %Lg\n", j, *(f32*)&__gxVerif->xfLight[i + j]);
             }
         }
     }

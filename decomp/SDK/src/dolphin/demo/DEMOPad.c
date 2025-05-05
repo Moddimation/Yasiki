@@ -15,7 +15,7 @@ static u32 PadChanMask[4] = {
 
 // .bss
 static PADStatus Pad[4];
-DEMODMPad               DemoPad[4];
+DEMODMPad        DemoPad[4];
 
 // .sbss
 u32 DemoNumValidPads;
@@ -24,6 +24,7 @@ u32 DemoNumValidPads;
 static void DEMOPadCopy (PADStatus* pad, DEMODMPad* dmpad);
 void        DEMOPadRead ();
 void        DEMOPadInit ();
+
 static void
 DEMOPadCopy (PADStatus* pad, DEMODMPad* dmpad)
 {
@@ -73,6 +74,7 @@ DEMOPadCopy (PADStatus* pad, DEMODMPad* dmpad)
     dmpad->substickDeltaY = (pad->substickY - dmpad->pst.substickY);
     dmpad->pst = *pad;
 }
+
 void
 DEMOPadRead ()
 {
@@ -103,6 +105,7 @@ DEMOPadRead ()
         PADReset (ResetReq);
     }
 }
+
 void
 DEMOPadInit ()
 {

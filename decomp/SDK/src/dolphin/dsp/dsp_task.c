@@ -14,6 +14,7 @@ DSPTaskInfo* __DSP_tmp_task;
 
 DSPTaskInfo* __DSP_rude_task;
 int          __DSP_rude_task_pending;
+
 void
 __DSPHandler (__OSInterrupt intr, OSContext* context)
 {
@@ -175,20 +176,19 @@ __DSPHandler (__OSInterrupt intr, OSContext* context)
             }
             break;
         default:
-            ASSERTMSGLINEV (
-                0x202,
-                0,
-                "__DSPHandler(): Unknown msg from DSP 0x%08X - task sync failed!\n",
-                mail);
+            ASSERTMSGLINEV (0x202,
+                            0,
+                            "__DSPHandler(): Unknown msg from DSP 0x%08X - task sync failed!\n",
+                            mail);
     }
     OSClearContext (&exceptionContext);
     OSSetCurrentContext (context);
 }
+
 void
 __DSP_exec_task (DSPTaskInfo* curr, DSPTaskInfo* next)
 {
-    ASSERTMSGLINE (
-        0x223, next != NULL, "__DSP_exec_task(): NULL task. It is to weep.\n");
+    ASSERTMSGLINE (0x223, next != NULL, "__DSP_exec_task(): NULL task. It is to weep.\n");
     if (curr != NULL)
     {
         DSPSendMailToDSP ((u32)curr->dram_mmem_addr);
@@ -236,6 +236,7 @@ __DSP_exec_task (DSPTaskInfo* curr, DSPTaskInfo* next)
         while (DSPCheckMailToDSP() != 0);
     }
 }
+
 void
 __DSP_boot_task (DSPTaskInfo* task)
 {
@@ -269,17 +270,13 @@ __DSP_boot_task (DSPTaskInfo* task)
     DSPSendMailToDSP (task->dsp_init_vector);
     while (DSPCheckMailToDSP() != 0);
     __DSP_debug_printf ("DSP is booting task: 0x%08X\n", (u32)task);
-    __DSP_debug_printf ("__DSP_boot_task()  : IRAM MMEM ADDR: 0x%08X\n",
-                        (u32)task->iram_mmem_addr);
-    __DSP_debug_printf ("__DSP_boot_task()  : IRAM DSP ADDR : 0x%08X\n",
-                        task->iram_addr);
-    __DSP_debug_printf ("__DSP_boot_task()  : IRAM LENGTH   : 0x%08X\n",
-                        task->iram_length);
-    __DSP_debug_printf ("__DSP_boot_task()  : DRAM MMEM ADDR: 0x%08X\n",
-                        task->dram_length);
-    __DSP_debug_printf ("__DSP_boot_task()  : Start Vector  : 0x%08X\n",
-                        task->dsp_init_vector);
+    __DSP_debug_printf ("__DSP_boot_task()  : IRAM MMEM ADDR: 0x%08X\n", (u32)task->iram_mmem_addr);
+    __DSP_debug_printf ("__DSP_boot_task()  : IRAM DSP ADDR : 0x%08X\n", task->iram_addr);
+    __DSP_debug_printf ("__DSP_boot_task()  : IRAM LENGTH   : 0x%08X\n", task->iram_length);
+    __DSP_debug_printf ("__DSP_boot_task()  : DRAM MMEM ADDR: 0x%08X\n", task->dram_length);
+    __DSP_debug_printf ("__DSP_boot_task()  : Start Vector  : 0x%08X\n", task->dsp_init_vector);
 }
+
 void
 __DSP_insert_task (DSPTaskInfo* task)
 {
@@ -320,11 +317,11 @@ __DSP_insert_task (DSPTaskInfo* task)
         __DSP_last_task = task;
     }
 }
+
 void
 __DSP_add_task (DSPTaskInfo* task)
 {
-    ASSERTMSGLINE (
-        0x2FE, task != NULL, "__DSP_add_task(): Why are you adding a NULL task?\n");
+    ASSERTMSGLINE (0x2FE, task != NULL, "__DSP_add_task(): Why are you adding a NULL task?\n");
     if (__DSP_last_task == NULL)
     {
         __DSP_curr_task = task;
@@ -342,11 +339,11 @@ __DSP_add_task (DSPTaskInfo* task)
     task->state = 0;
     __DSP_debug_printf ("__DSP_add_task() : Added task    : 0x%08X\n", (u32)task);
 }
+
 void
 __DSP_remove_task (DSPTaskInfo* task)
 {
-    ASSERTMSGLINE (
-        0x328, task != NULL, "__DSP_remove_task(): NULL task! Why? WHY?!?!\n");
+    ASSERTMSGLINE (0x328, task != NULL, "__DSP_remove_task(): NULL task! Why? WHY?!?!\n");
     task->flags = 0;
     task->state = 3;
     if (__DSP_first_task == task)

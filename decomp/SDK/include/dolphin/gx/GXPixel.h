@@ -8,8 +8,7 @@ extern "C"
 {
 #endif
 
-void GXSetFog (
-    GXFogType type, f32 startz, f32 endz, f32 nearz, f32 farz, GXColor color);
+void GXSetFog (GXFogType type, f32 startz, f32 endz, f32 nearz, f32 farz, GXColor color);
 void GXInitFogAdjTable (GXFogAdjTable* table, u16 width, f32 projmtx[4][4]);
 void GXSetFogRangeAdj (GXBool enable, u16 center, GXFogAdjTable* table);
 void GXSetBlendMode (GXBlendMode   type,

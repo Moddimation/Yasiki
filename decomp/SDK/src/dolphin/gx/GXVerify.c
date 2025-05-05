@@ -161,10 +161,12 @@ char* __gxvWarnings[113] = {
 };
 
 char __gxvDummyStr[256];
+
 static void
 __GXVerifyGlobal (void)
 {
 }
+
 static void
 __GXVerifyCP (GXVtxFmt fmt)
 {
@@ -182,6 +184,7 @@ __GXVerifyCP (GXVtxFmt fmt)
         }
     }
 }
+
 void
 __GXVerifyState (GXVtxFmt vtxfmt)
 {
@@ -197,11 +200,13 @@ __GXVerifyState (GXVtxFmt vtxfmt)
         __GXVerifyPE();
     }
 }
+
 void
 GXSetVerifyLevel (GXWarningLevel level)
 {
     __gxVerif->verifyLevel = level;
 }
+
 GXVerifyCallback
 GXSetVerifyCallback (GXVerifyCallback cb)
 {

@@ -14,15 +14,16 @@
 #define SI_COMCSR_RDSTINT_MASK    (1 << 28)
 #define SI_COMCSR_RDSTINTMSK_MASK (1 << 27)
 // 4 bits of padding
-#define SI_COMCSR_OUTLNGTH_MASK                                                     \
+#define SI_COMCSR_OUTLNGTH_MASK                                                                    \
     (1 << 22) | (1 << 21) | (1 << 20) | (1 << 19) | (1 << 18) | (1 << 17) | (1 << 16)
 // 1 bit of padding
-#define SI_COMCSR_INLNGTH_MASK                                                      \
+#define SI_COMCSR_INLNGTH_MASK                                                                     \
     (1 << 14) | (1 << 13) | (1 << 12) | (1 << 11) | (1 << 10) | (1 << 9) | (1 << 8)
 // 5 bits of padding
 #define SI_COMCSR_CHANNEL_MASK (1 << 2) | (1 << 1)
 #define SI_COMCSR_TSTART_MASK  (1 << 0)
 #define ROUND(n, a)            (((u32)(n) + (a) - 1) & ~((a) - 1))
+
 typedef struct SIControl
 {
     s32   chan;                               ///< 0x00
@@ -31,6 +32,7 @@ typedef struct SIControl
     void* input;                              ///< 0x0C
     void  (*callback) (s32, u32, OSContext*); ///< 0x10
 } SIControl;
+
 typedef struct SIPacket
 {
     s32   chan;                               ///< 0x00
@@ -63,11 +65,13 @@ static int  __SITransfer (s32   chan,
                           u32   inputBytes,
                           void  (*callback) (s32, u32, OSContext*));
 static void AlarmHandler (struct OSAlarm* alarm, OSContext* context);
+
 int
 SIBusy ()
 {
     return (Si.chan != -1) ? 1 : 0;
 }
+
 static u32
 CompleteTransfer ()
 {
@@ -105,6 +109,7 @@ CompleteTransfer ()
 
     return sr;
 }
+
 static void
 SITransferNext (s32 chan)
 {
@@ -136,6 +141,7 @@ SITransferNext (s32 chan)
         }
     }
 }
+
 static void
 SIIntrruptHandler (s16 unused, OSContext* context)
 {
@@ -155,6 +161,7 @@ SIIntrruptHandler (s16 unused, OSContext* context)
         callback (chan, sr, context);
     }
 }
+
 void
 SIInit ()
 {
@@ -167,6 +174,7 @@ SIInit ()
     __OSSetInterruptHandler (0x14, SIIntrruptHandler);
     __OSUnmaskInterrupts (0x800);
 }
+
 static int
 __SITransfer (s32   chan,
               void* output,
@@ -179,9 +187,11 @@ __SITransfer (s32   chan,
     u32 rLen;
     u32 i;
     u32 sr;
+
     union
     {
         u32 val;
+
         struct
         {
             u32 tcint      : 1;
@@ -198,8 +208,8 @@ __SITransfer (s32   chan,
             u32 tstart     : 1;
         } f;
     } comcsr;
-    ASSERTMSGLINE (
-        0x12A, (chan >= 0) && (chan < 4), "SITransfer(): invalid channel.");
+
+    ASSERTMSGLINE (0x12A, (chan >= 0) && (chan < 4), "SITransfer(): invalid channel.");
     ASSERTMSGLINE (0x12C,
                    (outputBytes != 0) && (outputBytes <= 128),
                    "SITransfer(): output size is out of range (must be 1 to 128).");
@@ -214,8 +224,7 @@ __SITransfer (s32   chan,
         return 0;
     }
     ASSERTLINE (0x138,
-                (__SIRegs[SI_COMCSR_IDX] &
-                 (SI_COMCSR_TSTART_MASK | SI_COMCSR_TCINT_MASK)) == 0);
+                (__SIRegs[SI_COMCSR_IDX] & (SI_COMCSR_TSTART_MASK | SI_COMCSR_TCINT_MASK)) == 0);
     sr = __SIRegs[SI_STATUS_IDX];
     sr &= (0x0F000000 >> (chan * 8));
     __SIRegs[SI_STATUS_IDX] = sr;
@@ -243,6 +252,7 @@ __SITransfer (s32   chan,
     OSRestoreInterrupts (enabled);
     return 1;
 }
+
 u32
 SISync ()
 {
@@ -259,30 +269,33 @@ SISync ()
     OSRestoreInterrupts (enabled);
     return sr;
 }
+
 u32
 SIGetStatus ()
 {
     return __SIRegs[SI_STATUS_IDX];
 }
+
 void
 SISetCommand (s32 chan, u32 command)
 {
-    ASSERTMSGLINE (
-        0x197, (chan >= 0) && (chan < 4), "SISetCommand(): invalid channel.");
+    ASSERTMSGLINE (0x197, (chan >= 0) && (chan < 4), "SISetCommand(): invalid channel.");
     __SIRegs[chan * 3] = command;
 }
+
 u32
 SIGetCommand (s32 chan)
 {
-    ASSERTMSGLINE (
-        0x1A9, (chan >= 0) && (chan < 4), "SIGetCommand(): invalid channel.");
+    ASSERTMSGLINE (0x1A9, (chan >= 0) && (chan < 4), "SIGetCommand(): invalid channel.");
     return __SIRegs[chan * 3];
 }
+
 void
 SITransferCommands ()
 {
     __SIRegs[SI_STATUS_IDX] = SI_COMCSR_TCINT_MASK;
 }
+
 u32
 SISetXY (u32 x, u32 y)
 {
@@ -302,14 +315,14 @@ SISetXY (u32 x, u32 y)
     OSRestoreInterrupts (enabled);
     return poll;
 }
+
 u32
 SIEnablePolling (u32 poll)
 {
     int enabled;
     u32 en;
 
-    ASSERTMSGLINE (
-        0x1E8, !(poll & 0x0FFFFFFF), "SIEnablePolling(): invalid chan bit(s).");
+    ASSERTMSGLINE (0x1E8, !(poll & 0x0FFFFFFF), "SIEnablePolling(): invalid chan bit(s).");
     if (poll == 0)
     {
         return Si.poll;
@@ -330,13 +343,13 @@ SIEnablePolling (u32 poll)
     OSRestoreInterrupts (enabled);
     return poll;
 }
+
 u32
 SIDisablePolling (u32 poll)
 {
     int enabled;
 
-    ASSERTMSGLINE (
-        0x22D, !(poll & 0x0FFFFFFF), "SIDisablePolling(): invalid chan bit(s).");
+    ASSERTMSGLINE (0x22D, !(poll & 0x0FFFFFFF), "SIDisablePolling(): invalid chan bit(s).");
     if (poll == 0)
     {
         return Si.poll;
@@ -351,14 +364,15 @@ SIDisablePolling (u32 poll)
     OSRestoreInterrupts (enabled);
     return poll;
 }
+
 void
 SIGetResponse (s32 chan, void* data)
 {
-    ASSERTMSGLINE (
-        0x250, ((chan >= 0) && (chan < 4)), "SIGetResponse(): invalid channel.");
+    ASSERTMSGLINE (0x250, ((chan >= 0) && (chan < 4)), "SIGetResponse(): invalid channel.");
     ((u32*)data)[0] = __SIRegs[chan * 3 + 1];
     ((u32*)data)[1] = __SIRegs[chan * 3 + 2];
 }
+
 static void
 AlarmHandler (struct OSAlarm* alarm, OSContext* context)
 {
@@ -382,6 +396,7 @@ AlarmHandler (struct OSAlarm* alarm, OSContext* context)
         packet->chan = -1;
     }
 }
+
 int
 SITransfer (s32   chan,
             void* output,

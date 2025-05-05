@@ -22,6 +22,7 @@ static int          __AXDSPDoneFlag;
 static void __AXDSPInitCallback (void* task);
 static void __AXDSPResumeCallback (void* task);
 static void __AXDSPDoneCallback (void* task);
+
 void
 __AXOutNewFrame (u32 lessDspCycles)
 {
@@ -65,6 +66,7 @@ __AXOutNewFrame (u32 lessDspCycles)
     }
     OSRestoreInterrupts (old);
 }
+
 void
 __AXOutAiCallback (void)
 {
@@ -81,11 +83,13 @@ __AXOutAiCallback (void)
     __AXOutDspReady = 2;
     DSPAssertTask (&task);
 }
+
 static void
 __AXDSPInitCallback (void* task)
 {
     __AXDSPInitFlag = 1;
 }
+
 static void
 __AXDSPResumeCallback (void* task)
 {
@@ -97,11 +101,13 @@ __AXDSPResumeCallback (void* task)
     }
     __AXOutDspReady = 1U;
 }
+
 static void
 __AXDSPDoneCallback (void* task)
 {
     __AXDSPDoneFlag = 1;
 }
+
 void
 __AXOutInitDSP (void)
 {
@@ -129,6 +135,7 @@ __AXOutInitDSP (void)
     }
     while (__AXDSPInitFlag == 0);
 }
+
 void
 __AXOutInit (void)
 {
@@ -151,6 +158,7 @@ __AXOutInit (void)
     AIInitDMA ((u32)&__AXOutBuffer[__AXOutFrame][0], sizeof (__AXOutBuffer[0]));
     AIStartDMA();
 }
+
 void
 __AXOutQuit (void)
 {
@@ -169,6 +177,7 @@ __AXOutQuit (void)
     DSPReset();
     OSRestoreInterrupts (old);
 }
+
 void
 AXRegisterCallback (void (*callback)())
 {
