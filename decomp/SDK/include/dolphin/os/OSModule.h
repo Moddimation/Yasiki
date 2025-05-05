@@ -18,16 +18,19 @@ typedef struct OSModuleInfo  OSModuleInfo;
 typedef struct OSSectionInfo OSSectionInfo;
 typedef struct OSImportInfo  OSImportInfo;
 typedef struct OSRel         OSRel;
+
 struct OSModuleQueue
 {
     OSModuleInfo* head;
     OSModuleInfo* tail;
 };
+
 struct OSModuleLink
 {
     OSModuleInfo* next;
     OSModuleInfo* prev;
 };
+
 struct OSModuleInfo
 {
     OSModuleID   id;                // unique identifier for the module
@@ -38,6 +41,7 @@ struct OSModuleInfo
     u32          nameSize;          // size of module name
     u32          version;           // version number
 };
+
 struct OSModuleHeader
 {
     // CAUTION: info must be the 1st member
@@ -67,21 +71,25 @@ struct OSModuleHeader
     u32 fixSize;
 #endif
 };
-#define OSGetSectionInfo(module)                                                    \
-    ((OSSectionInfo*)(((OSModuleInfo*)(module))->sectionInfoOffset))
+
+#define OSGetSectionInfo(module) ((OSSectionInfo*)(((OSModuleInfo*)(module))->sectionInfoOffset))
+
 struct OSSectionInfo
 {
     u32 offset;
     u32 size;
 };
+
 // OSSectionInfo.offset bit
 #define OS_SECTIONINFO_EXEC           0x1
 #define OS_SECTIONINFO_OFFSET(offset) ((offset) & ~0x1)
+
 struct OSImportInfo
 {
     OSModuleID id;            // external module id
     u32        offset;        // offset to OSRel instructions
 };
+
 struct OSRel
 {
     u16 offset;               // byte offset from the previous entry
@@ -89,6 +97,7 @@ struct OSRel
     u8  section;
     u32 addend;
 };
+
 #define R_DOLPHIN_NOP     201 //  C9h current offset += OSRel.offset
 #define R_DOLPHIN_SECTION 202 //  CAh current section = OSRel.section
 #define R_DOLPHIN_END     203 //  CBh

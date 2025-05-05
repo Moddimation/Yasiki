@@ -20,6 +20,7 @@ DSError TRKGetFreeBuffer (int* msgID, TRKBuffer** outMsg);
 
 DSError TRKAppendBuffer (TRKBuffer* msg, const void* data, size_t length);
 DSError TRKAppendBuffer1_ui8 (TRKBuffer* buffer, const u8 data);
+
 inline DSError
 TRKAppendBuffer1_ui8 (TRKBuffer* buffer, const u8 data)
 {
@@ -32,6 +33,7 @@ TRKAppendBuffer1_ui8 (TRKBuffer* buffer, const u8 data)
     buffer->length++;
     return DS_NoError;
 }
+
 DSError TRKAppendBuffer1_ui16 (TRKBuffer* buffer, const u16 data);
 DSError TRKAppendBuffer1_ui32 (TRKBuffer* buffer, const u32 data);
 DSError TRKAppendBuffer1_ui64 (TRKBuffer* buffer, const u64 data);

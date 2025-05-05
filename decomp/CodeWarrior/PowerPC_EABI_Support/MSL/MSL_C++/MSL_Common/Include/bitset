@@ -68,6 +68,7 @@ __count4bits (unsigned char flag)
     }
     return 0;
 }
+
 inline size_t
 __count1long (unsigned long flag)
 {
@@ -79,7 +80,9 @@ __count1long (unsigned long flag)
     }
     return count;
 }
-template <size_t N> class __bitset_base
+
+template <size_t N>
+class __bitset_base
 {
 public:
     __bitset_base ();
@@ -113,15 +116,20 @@ private:
 
     unsigned long data_[N];
 };
-template <size_t N> __bitset_base<N>::__bitset_base()
+
+template <size_t N>
+__bitset_base<N>::__bitset_base()
 {
     fill (data_, data_ + nwords_, 0UL);
 }
-template <size_t N> __bitset_base<N>::__bitset_base (unsigned long val)
+
+template <size_t N>
+__bitset_base<N>::__bitset_base (unsigned long val)
 {
     data_[0] = val;
     fill (data_ + 1, data_ + nwords_, 0UL);
 }
+
 template <size_t N>
 __bitset_base<N>&
 __bitset_base<N>::operator&= (const __bitset_base& rhs)
@@ -132,6 +140,7 @@ __bitset_base<N>::operator&= (const __bitset_base& rhs)
     }
     return *this;
 }
+
 template <size_t N>
 __bitset_base<N>&
 __bitset_base<N>::operator|= (const __bitset_base& rhs)
@@ -142,6 +151,7 @@ __bitset_base<N>::operator|= (const __bitset_base& rhs)
     }
     return *this;
 }
+
 template <size_t N>
 __bitset_base<N>&
 __bitset_base<N>::operator^= (const __bitset_base& rhs)
@@ -152,6 +162,7 @@ __bitset_base<N>::operator^= (const __bitset_base& rhs)
     }
     return *this;
 }
+
 template <size_t N>
 __bitset_base<N>&
 __bitset_base<N>::left_shift (size_t pos, unsigned long mask)
@@ -183,6 +194,7 @@ __bitset_base<N>::left_shift (size_t pos, unsigned long mask)
     }
     return *this;
 }
+
 template <size_t N>
 __bitset_base<N>&
 __bitset_base<N>::right_shift (size_t pos)
@@ -210,6 +222,7 @@ __bitset_base<N>::right_shift (size_t pos)
     data_[nwords_ - 1] >>= rshift;
     return *this;
 }
+
 template <size_t N>
 __bitset_base<N>&
 __bitset_base<N>::set (unsigned long mask)
@@ -224,6 +237,7 @@ __bitset_base<N>::set (unsigned long mask)
     }
     return *this;
 }
+
 template <size_t N>
 __bitset_base<N>&
 __bitset_base<N>::set (size_t pos, bool val)
@@ -240,6 +254,7 @@ __bitset_base<N>::set (size_t pos, bool val)
     }
     return *this;
 }
+
 template <size_t N>
 __bitset_base<N>&
 __bitset_base<N>::reset ()
@@ -247,6 +262,7 @@ __bitset_base<N>::reset ()
     fill (data_, data_ + nwords_, 0UL);
     return *this;
 }
+
 template <size_t N>
 __bitset_base<N>&
 __bitset_base<N>::reset (size_t pos)
@@ -256,6 +272,7 @@ __bitset_base<N>::reset (size_t pos)
     data_[word] &= ÃÂ¢ÃÂÃÂ¾bitmask;
     return *this;
 }
+
 template <size_t N>
 __bitset_base<N>&
 __bitset_base<N>::flip_all (unsigned long mask)
@@ -270,6 +287,7 @@ __bitset_base<N>::flip_all (unsigned long mask)
     }
     return *this;
 }
+
 template <size_t N>
 __bitset_base<N>&
 __bitset_base<N>::flip (size_t pos)
@@ -334,6 +352,7 @@ __bitset_base<N>::to_ulong () const
 #endif
     return data_[0];
 }
+
 template <size_t N>
 size_t
 __bitset_base<N>::count () const
@@ -345,6 +364,7 @@ __bitset_base<N>::count () const
     }
     return count;
 }
+
 template <size_t N>
 bool
 __bitset_base<N>::operator== (const __bitset_base& rhs) const
@@ -358,6 +378,7 @@ __bitset_base<N>::operator== (const __bitset_base& rhs) const
     }
     return true;
 }
+
 template <size_t N>
 bool
 __bitset_base<N>::test (size_t pos) const
@@ -366,6 +387,7 @@ __bitset_base<N>::test (size_t pos) const
     unsigned long bitmask = (unsigned long)1 << pos % num_bits_word;
     return bool (data_[word] & bitmask);
 }
+
 template <size_t N>
 bool
 __bitset_base<N>::any () const
@@ -379,7 +401,9 @@ __bitset_base<N>::any () const
     }
     return false;
 }
-template <> class __bitset_base<1>
+
+template <>
+class __bitset_base<1>
 {
 public:
     __bitset_base ();
@@ -413,14 +437,19 @@ private:
     static const size_t nwords_ = 1;
     unsigned long       data_;
 };
-template <> inline __bitset_base<1>::__bitset_base()
+
+template <>
+inline __bitset_base<1>::__bitset_base()
 {
     data_ = 0;
 }
-template <> inline __bitset_base<1>::__bitset_base (unsigned long val)
+
+template <>
+inline __bitset_base<1>::__bitset_base (unsigned long val)
 {
     data_ = val;
 }
+
 template <>
 inline __bitset_base<1>&
 __bitset_base<1>::operator&= (const __bitset_base& rhs)
@@ -428,6 +457,7 @@ __bitset_base<1>::operator&= (const __bitset_base& rhs)
     data_ &= rhs.data_;
     return *this;
 }
+
 template <>
 inline __bitset_base<1>&
 __bitset_base<1>::operator|= (const __bitset_base& rhs)
@@ -435,6 +465,7 @@ __bitset_base<1>::operator|= (const __bitset_base& rhs)
     data_ |= rhs.data_;
     return *this;
 }
+
 template <>
 inline __bitset_base<1>&
 __bitset_base<1>::operator^= (const __bitset_base& rhs)
@@ -442,6 +473,7 @@ __bitset_base<1>::operator^= (const __bitset_base& rhs)
     data_ ^= rhs.data_;
     return *this;
 }
+
 template <>
 inline __bitset_base<1>&
 __bitset_base<1>::left_shift (size_t pos, unsigned long mask)
@@ -453,6 +485,7 @@ __bitset_base<1>::left_shift (size_t pos, unsigned long mask)
     }
     return *this;
 }
+
 template <>
 inline __bitset_base<1>&
 __bitset_base<1>::right_shift (size_t pos)
@@ -460,6 +493,7 @@ __bitset_base<1>::right_shift (size_t pos)
     data_ >>= pos;
     return *this;
 }
+
 template <>
 inline __bitset_base<1>&
 __bitset_base<1>::set (unsigned long mask)
@@ -467,6 +501,7 @@ __bitset_base<1>::set (unsigned long mask)
     data_ = mask;
     return *this;
 }
+
 template <>
 inline __bitset_base<1>&
 __bitset_base<1>::set (size_t pos, bool val)
@@ -482,6 +517,7 @@ __bitset_base<1>::set (size_t pos, bool val)
     }
     return *this;
 }
+
 template <>
 inline __bitset_base<1>&
 __bitset_base<1>::reset ()
@@ -489,6 +525,7 @@ __bitset_base<1>::reset ()
     data_ = 0;
     return *this;
 }
+
 template <>
 inline __bitset_base<1>&
 __bitset_base<1>::reset (size_t pos)
@@ -496,6 +533,7 @@ __bitset_base<1>::reset (size_t pos)
     data_ &= ÃÂ¢ÃÂÃÂ¾ ((unsigned long)1 << pos);
     return *this;
 }
+
 template <>
 inline __bitset_base<1>&
 __bitset_base<1>::flip_all (unsigned long mask)
@@ -504,6 +542,7 @@ __bitset_base<1>::flip_all (unsigned long mask)
     data_ &= mask;
     return *this;
 }
+
 template <>
 inline __bitset_base<1>&
 __bitset_base<1>::flip (size_t pos)
@@ -537,7 +576,8 @@ __bitset_base<1>::to_string (unsigned long n) const
 }
 #else
 
-    template <> inline string __bitset_base<1>::to_string (unsigned long n) const
+    template <>
+    inline string __bitset_base<1>::to_string (unsigned long n) const
     {
         string result (n, '0');
         for (size_t i = 0; i < n; ++i)
@@ -557,18 +597,21 @@ __bitset_base<1>::to_ulong () const
 {
     return data_;
 }
+
 template <>
 inline size_t
 __bitset_base<1>::count () const
 {
     return __count1long (data_);
 }
+
 template <>
 inline bool
 __bitset_base<1>::operator== (const __bitset_base& rhs) const
 {
     return data_ == rhs.data_;
 }
+
 template <>
 inline bool
 __bitset_base<1>::test (size_t pos) const
@@ -576,19 +619,19 @@ __bitset_base<1>::test (size_t pos) const
     unsigned long bitmask = (unsigned long)1 << pos;
     return bool (data_ & bitmask);
 }
+
 template <>
 inline bool
 __bitset_base<1>::any () const
 {
     return static_cast<bool> (data_);
 }
+
 template <size_t N>
 class bitset
-  : private __bitset_base<
-        N == 0 ? 1 : (N - 1) / (__char<>::bits * sizeof (unsigned long)) + 1>
+  : private __bitset_base<N == 0 ? 1 : (N - 1) / (__char<>::bits * sizeof (unsigned long)) + 1>
 {
-    typedef __bitset_base<
-        N == 0 ? 1 : (N - 1) / (__char<>::bits * sizeof (unsigned long)) + 1>
+    typedef __bitset_base<N == 0 ? 1 : (N - 1) / (__char<>::bits * sizeof (unsigned long)) + 1>
         base;
 
 public:
@@ -602,18 +645,22 @@ public:
             v_.set (pos_, x);
             return *this;
         }
+
         reference&
         operator= (const reference& rhs)
         {
             v_.set (pos_, rhs);
             return *this;
         }
+
         bool
         operatorÃÂ¢ÃÂÃÂ¾ () const
         {
             return !v_.test (pos_);
         }
+
         operator bool () const { return v_.test (pos_); }
+
         reference&
         flip ()
         {
@@ -624,10 +671,12 @@ public:
     private:
         bitset& v_;
         size_t  pos_;
+
         reference (bitset& v, size_t pos) : v_ (v), pos_ (pos) {}
 
         friend class bitset;
     };
+
     // _lib.bitset.cons_ constructors:
     bitset ();
     bitset (unsigned long val);
@@ -669,12 +718,14 @@ public:
 #if !defined(__MWERKS__) || (defined(__MWERKS__) && __MWERKS__ >= 0x2400)
     template <class charT, class traits, class Allocator>
     basic_string<charT, traits, Allocator> to_string () const;
+
     template <class charT, class traits>
     basic_string<charT, traits>
     to_string () const
     {
         return to_string<charT, traits, allocator<charT> >();
     }
+
     template <class charT>
     basic_string<charT>
     to_string () const
@@ -695,12 +746,12 @@ public:
     bitset<N> operator>> (size_t pos) const;
 
 private:
-    static const size_t num_bits_word = __char<>::bits * sizeof (unsigned long);
-    static const size_t nwords_ = N == 0 ? 1 : (N - 1) / num_bits_word + 1;
+    static const size_t        num_bits_word = __char<>::bits * sizeof (unsigned long);
+    static const size_t        nwords_ = N == 0 ? 1 : (N - 1) / num_bits_word + 1;
     static const unsigned long mask = (unsigned long)(-1) >>
-                                      (unsigned long)(num_bits_word -
-                                                      N % num_bits_word);
+                                      (unsigned long)(num_bits_word - N % num_bits_word);
 };
+
 // _lib.bitset.operators_ bitset operations:
 
 template <size_t N>
@@ -709,12 +760,14 @@ operator& (const bitset<N>& lhs, const bitset<N>& rhs)
 {
     return bitset<N> (lhs) &= rhs;
 }
+
 template <size_t N>
 inline bitset<N>
 operator| (const bitset<N>& lhs, const bitset<N>& rhs)
 {
     return bitset<N> (lhs) |= rhs;
 }
+
 template <size_t N>
 inline bitset<N>
 operator^ (const bitset<N>& lhs, const bitset<N>& rhs)
@@ -730,6 +783,7 @@ int __extract_bitset (InputIterator                               in,
                       typename basic_ios<charT, traits>::iostate& err,
                       string&                                     strng,
                       unsigned long                               N);
+
 template <class charT, class traits, size_t N>
 basic_istream<charT, traits>&
 operator>> (basic_istream<charT, traits>& is, bitset<N>& rhs)
@@ -760,6 +814,7 @@ operator>> (basic_istream<charT, traits>& is, bitset<N>& rhs)
     }
     return is;
 }
+
 template <class charT, class traits, size_t N>
 inline basic_ostream<charT, traits>&
 operator<< (basic_ostream<charT, traits>& os, const bitset<N>& rhs)
@@ -778,13 +833,14 @@ operator<< (basic_ostream<charT, traits>& os, const bitset<N>& rhs)
 #endif // _MSL_NO_IO
 // Implementation
 
-template <size_t N> inline bitset<N>::bitset()
+template <size_t N>
+inline bitset<N>::bitset()
 {
 }
+
 template <size_t N>
 inline bitset<N>::bitset (unsigned long val)
-  : __bitset_base<N == 0 ? 1
-                         : (N - 1) / (__char<>::bits * sizeof (unsigned long)) + 1> (
+  : __bitset_base<N == 0 ? 1 : (N - 1) / (__char<>::bits * sizeof (unsigned long)) + 1> (
         N < num_bits_word ? val & mask : val)
 {
 }
@@ -821,11 +877,9 @@ bitset<N>::bitset (const basic_string<charT, traits, Allocator>&              st
                 break;
             default:
 #ifndef _MSL_NO_EXCEPTIONS
-                throw invalid_argument (
-                    "str contains invalid characters in bitset constructor");
+                throw invalid_argument ("str contains invalid characters in bitset constructor");
 #else
-                __msl_error (
-                    "str contains invalid characters in bitset constructor");
+                __msl_error ("str contains invalid characters in bitset constructor");
 #endif
         }
     }
@@ -866,8 +920,7 @@ bitset<N>::bitset (const basic_string<charT, traits, Allocator>&              st
                     throw invalid_argument (
                         "str contains invalid characters in bitset constructor");
 #else
-                    __msl_error (
-                        "str contains invalid characters in bitset constructor");
+                    __msl_error ("str contains invalid characters in bitset constructor");
 #endif
             }
         }
@@ -879,36 +932,42 @@ bitset<N>::operator&= (const bitset& rhs)
 {
     return (bitset<N>&)base::operator&= ((const base&)rhs);
 }
+
 template <size_t N>
 inline bitset<N>&
 bitset<N>::operator|= (const bitset<N>& rhs)
 {
     return (bitset<N>&)base::operator|= ((const base&)rhs);
 }
+
 template <size_t N>
 inline bitset<N>&
 bitset<N>::operator^= (const bitset<N>& rhs)
 {
     return (bitset<N>&)base::operator^= ((const base&)rhs);
 }
+
 template <size_t N>
 inline bitset<N>&
 bitset<N>::operator<<= (size_t pos)
 {
     return (bitset<N>&)base::left_shift (pos, mask);
 }
+
 template <size_t N>
 inline bitset<N>&
 bitset<N>::operator>>= (size_t pos)
 {
     return (bitset<N>&)base::right_shift (pos);
 }
+
 template <size_t N>
 inline bitset<N>&
 bitset<N>::set ()
 {
     return (bitset<N>&)base::set (mask);
 }
+
 template <size_t N>
 inline bitset<N>&
 bitset<N>::set (size_t pos, bool val)
@@ -921,12 +980,14 @@ bitset<N>::set (size_t pos, bool val)
 #endif
     return (bitset<N>&)base::set (pos, val);
 }
+
 template <size_t N>
 inline bitset<N>&
 bitset<N>::reset ()
 {
     return (bitset<N>&)base::reset();
 }
+
 template <size_t N>
 inline bitset<N>&
 bitset<N>::reset (size_t pos)
@@ -939,18 +1000,21 @@ bitset<N>::reset (size_t pos)
 #endif
     return (bitset<N>&)base::reset (pos);
 }
+
 template <size_t N>
 inline bitset<N>
 bitset<N>::operatorÃÂ¢ÃÂÃÂ¾ () const
 {
     return bitset<N> (*this).flip();
 }
+
 template <size_t N>
 inline bitset<N>&
 bitset<N>::flip ()
 {
     return (bitset<N>&)base::flip_all (mask);
 }
+
 template <size_t N>
 inline bitset<N>&
 bitset<N>::flip (size_t pos)
@@ -963,12 +1027,14 @@ bitset<N>::flip (size_t pos)
 #endif
     return (bitset<N>&)base::flip (pos);
 }
+
 template <size_t N>
 inline bool
 bitset<N>::operator[] (size_t pos) const
 {
     return test (pos);
 }
+
 template <size_t N>
 inline typename bitset<N>::reference
 bitset<N>::operator[] (size_t pos)
@@ -985,7 +1051,8 @@ bitset<N>::to_string () const
 }
 #else
 
-    template <size_t N> inline string bitset<N>::to_string() const
+    template <size_t N>
+    inline string bitset<N>::to_string() const
     {
         return base::to_string (N);
     }
@@ -997,30 +1064,35 @@ bitset<N>::to_ulong () const
 {
     return base::to_ulong();
 }
+
 template <size_t N>
 inline size_t
 bitset<N>::count () const
 {
     return base::count();
 }
+
 template <size_t N>
 inline size_t
 bitset<N>::size () const
 {
     return N;
 }
+
 template <size_t N>
 inline bool
 bitset<N>::operator== (const bitset<N>& rhs) const
 {
     return base::operator== ((const base&)rhs);
 }
+
 template <size_t N>
 inline bool
 bitset<N>::operator!= (const bitset<N>& rhs) const
 {
     return !(*this == rhs);
 }
+
 template <size_t N>
 inline bool
 bitset<N>::test (size_t pos) const
@@ -1033,24 +1105,28 @@ bitset<N>::test (size_t pos) const
 #endif
     return base::test (pos);
 }
+
 template <size_t N>
 inline bool
 bitset<N>::any () const
 {
     return base::any();
 }
+
 template <size_t N>
 inline bool
 bitset<N>::none () const
 {
     return !any();
 }
+
 template <size_t N>
 inline bitset<N>
 bitset<N>::operator<< (size_t pos) const
 {
     return bitset<N> (*this) <<= pos;
 }
+
 template <size_t N>
 inline bitset<N>
 bitset<N>::operator>> (size_t pos) const

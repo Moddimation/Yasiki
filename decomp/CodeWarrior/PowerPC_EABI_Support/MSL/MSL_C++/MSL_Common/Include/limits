@@ -8,7 +8,7 @@
 
 // limits       // hh 971227 changed file name from mlimits.h to limits
 
-#ifndef _LIMITS    // hh 971227 made include guards standard
+#ifndef _LIMITS                               // hh 971227 made include guards standard
 #define _LIMITS
 
 #include <mslconfig>
@@ -19,13 +19,13 @@
 #endif
 #ifdef _MSL_CANT_DO_LIMITS
 #include <climits>
-#if !defined(_MSL_NO_WCHART_LANG_SUPPORT) &&                                        \
-    !defined(_MSL_NO_WCHART_CPP_SUPPORT) && !defined(_MSL_NO_WCHART_C_SUPPORT)
+#if !defined(_MSL_NO_WCHART_LANG_SUPPORT) && !defined(_MSL_NO_WCHART_CPP_SUPPORT) &&               \
+    !defined(_MSL_NO_WCHART_C_SUPPORT)
 #include <cwchar>
 #endif
 #endif
 
-#ifndef RC_INVOKED // hh 971230
+#ifndef RC_INVOKED                            // hh 971230
 
 #pragma options align = native
 
@@ -57,8 +57,9 @@ enum float_round_style
     round_toward_infinity = 2,
     round_toward_neg_infinity = 3
 };
+
 enum float_denorm_style
-{                  // hh 971227 added
+{                                             // hh 971227 added
     denorm_indeterminate = -1,
     denorm_absent = 0,
     denorm_present = 1
@@ -72,17 +73,23 @@ enum float_denorm_style
 #endif
 
 #ifndef _MSL_CANT_DO_LIMITS
-template <unsigned char b = (unsigned char)(ÃÂ¢ÃÂÃÂ¾0)> struct __char
+template <unsigned char b = (unsigned char)(ÃÂ¢ÃÂÃÂ¾0)>
+struct __char
 {
     static const int bits = 1 + __char<(unsigned char)(b >> 1)>::bits;
 };
-template <> struct __char<0>
+
+template <>
+struct __char<0>
 {
     static const int bits = 0;
 };
 
-template <class T, bool is_signed = T (-1) < T (0)> struct __two_complement;
-template <class T> struct __two_complement<T, false>
+template <class T, bool is_signed = T (-1) < T (0)>
+struct __two_complement;
+
+template <class T>
+struct __two_complement<T, false>
 {
     static const bool is_signed = false;
     static const int  digits = sizeof (T) * __char<>::bits;
@@ -90,7 +97,9 @@ template <class T> struct __two_complement<T, false>
     static const T    min = T (0);
     static const T    max = T (ÃÂ¢ÃÂÃÂ¾0);
 };
-template <class T> struct __two_complement<T, true>
+
+template <class T>
+struct __two_complement<T, true>
 {
     static const bool is_signed = true;
     static const int  digits = sizeof (T) * __char<>::bits - 1;
@@ -98,37 +107,44 @@ template <class T> struct __two_complement<T, true>
     static const T    min = T (T (1) << digits);
     static const T    max = T (T (ÃÂ¢ÃÂÃÂ¾0) ^ min);
 };
-#endif             // _MSL_CANT_DO_LIMITS
-template <class T> class numeric_limits
+#endif                                        // _MSL_CANT_DO_LIMITS
+template <class T>
+class numeric_limits
 {
 public:
     static const bool is_specialized = false; // hh 971227 completed class definition
+
     static T
     min () _MSL_THROW
     {
         return T();
     }
+
     static T
     max () _MSL_THROW
     {
         return T();
     }
+
     static const int  digits = 0;
     static const int  digits10 = 0;
     static const bool is_signed = false;
     static const bool is_integer = false;
     static const bool is_exact = false;
     static const int  radix = 0;
+
     static T
     epsilon () _MSL_THROW
     {
         return T();
     }
+
     static T
     round_error () _MSL_THROW
     {
         return T();
     }
+
     static const int min_exponent = 0;
     static const int min_exponent10 = 0;
     static const int max_exponent = 0;
@@ -139,26 +155,31 @@ public:
     static const bool               has_signaling_NaN = false;
     static const float_denorm_style has_denorm = denorm_absent;
     static const bool               has_denorm_loss = false;
+
     static T
     infinity () _MSL_THROW
     {
         return T();
     }
+
     static T
     quiet_NaN () _MSL_THROW
     {
         return T();
     }
+
     static T
     signaling_NaN () _MSL_THROW
     {
         return T();
     }
+
     static T
     denorm_min () _MSL_THROW
     {
         return T();
     }
+
     static const bool is_iec559 = false;
     static const bool is_bounded = false;
     static const bool is_modulo = false;
@@ -168,36 +189,43 @@ public:
     static const float_round_style round_style = round_toward_zero;
 };
 #ifndef _MSL_NO_BOOL
-template <> class numeric_limits<bool>
+template <>
+class numeric_limits<bool>
 {
 public:
     static const bool is_specialized = true;
+
     static bool
     min () _MSL_THROW
     {
         return false;
     }
+
     static bool
     max () _MSL_THROW
     {
         return true;
     }
+
     static const int  digits = 1;
     static const int  digits10 = 0;
     static const bool is_signed = false;
     static const bool is_integer = true;
     static const bool is_exact = true;
     static const int  radix = 2;
+
     static bool
     epsilon () _MSL_THROW
     {
         return false;
     }
+
     static bool
     round_error () _MSL_THROW
     {
         return false;
     }
+
     static const int min_exponent = 0;
     static const int min_exponent10 = 0;
     static const int max_exponent = 0;
@@ -208,26 +236,31 @@ public:
     static const bool               has_signaling_NaN = false;
     static const float_denorm_style has_denorm = denorm_absent;
     static const bool               has_denorm_loss = false;
+
     static bool
     infinity () _MSL_THROW
     {
         return false;
     }
+
     static bool
     quiet_NaN () _MSL_THROW
     {
         return false;
     }
+
     static bool
     signaling_NaN () _MSL_THROW
     {
         return false;
     }
+
     static bool
     denorm_min () _MSL_THROW
     {
         return false;
     }
+
     static const bool is_iec559 = false;
     static const bool is_bounded = true;
     static const bool is_modulo = false;
@@ -257,11 +290,13 @@ public:
     {
         return base::min;
     }
+
     static char
     max () _MSL_THROW
     {
         return base::max;
     }
+
     static const int  digits = base::digits;
     static const int  digits10 = base::digits10;
     static const bool is_signed = base::is_signed;
@@ -271,11 +306,13 @@ public:
     {
         return CHAR_MIN;
     }
+
     static char
     max () _MSL_THROW
     {
         return CHAR_MAX;
     }
+
     static const int  digits = 7;
     static const int  digits10 = 2;
     static const bool is_signed = true;
@@ -283,16 +320,19 @@ public:
     static const bool is_integer = true;
     static const bool is_exact = true;
     static const int  radix = 2;
+
     static char
     epsilon () _MSL_THROW
     {
         return 0;
     }
+
     static char
     round_error () _MSL_THROW
     {
         return 0;
     }
+
     static const int min_exponent = 0;
     static const int min_exponent10 = 0;
     static const int max_exponent = 0;
@@ -303,26 +343,31 @@ public:
     static const bool               has_signaling_NaN = false;
     static const float_denorm_style has_denorm = denorm_absent;
     static const bool               has_denorm_loss = false;
+
     static char
     infinity () _MSL_THROW
     {
         return 0;
     }
+
     static char
     quiet_NaN () _MSL_THROW
     {
         return 0;
     }
+
     static char
     signaling_NaN () _MSL_THROW
     {
         return 0;
     }
+
     static char
     denorm_min () _MSL_THROW
     {
         return 0;
     }
+
     static const bool is_iec559 = false;
     static const bool is_bounded = true;
     static const bool is_modulo = true;
@@ -351,11 +396,13 @@ public:
     {
         return base::min;
     }
+
     static signed char
     max () _MSL_THROW
     {
         return base::max;
     }
+
     static const int  digits = base::digits;
     static const int  digits10 = base::digits10;
     static const bool is_signed = base::is_signed;
@@ -365,11 +412,13 @@ public:
     {
         return SCHAR_MIN;
     }
+
     static signed char
     max () _MSL_THROW
     {
         return SCHAR_MAX;
     }
+
     static const int  digits = 7;
     static const int  digits10 = 2;
     static const bool is_signed = true;
@@ -377,16 +426,19 @@ public:
     static const bool is_integer = true;
     static const bool is_exact = true;
     static const int  radix = 2;
+
     static signed char
     epsilon () _MSL_THROW
     {
         return 0;
     }
+
     static signed char
     round_error () _MSL_THROW
     {
         return 0;
     }
+
     static const int min_exponent = 0;
     static const int min_exponent10 = 0;
     static const int max_exponent = 0;
@@ -397,26 +449,31 @@ public:
     static const bool               has_signaling_NaN = false;
     static const float_denorm_style has_denorm = denorm_absent;
     static const bool               has_denorm_loss = false;
+
     static signed char
     infinity () _MSL_THROW
     {
         return 0;
     }
+
     static signed char
     quiet_NaN () _MSL_THROW
     {
         return 0;
     }
+
     static signed char
     signaling_NaN () _MSL_THROW
     {
         return 0;
     }
+
     static signed char
     denorm_min () _MSL_THROW
     {
         return 0;
     }
+
     static const bool is_iec559 = false;
     static const bool is_bounded = true;
     static const bool is_modulo = true;
@@ -445,11 +502,13 @@ public:
     {
         return base::min;
     }
+
     static unsigned char
     max () _MSL_THROW
     {
         return base::max;
     }
+
     static const int  digits = base::digits;
     static const int  digits10 = base::digits10;
     static const bool is_signed = base::is_signed;
@@ -459,11 +518,13 @@ public:
     {
         return 0;
     }
+
     static unsigned char
     max () _MSL_THROW
     {
         return UCHAR_MAX;
     }
+
     static const int  digits = 8;
     static const int  digits10 = 2;
     static const bool is_signed = false;
@@ -471,16 +532,19 @@ public:
     static const bool is_integer = true;
     static const bool is_exact = true;
     static const int  radix = 2;
+
     static unsigned char
     epsilon () _MSL_THROW
     {
         return 0;
     }
+
     static unsigned char
     round_error () _MSL_THROW
     {
         return 0;
     }
+
     static const int min_exponent = 0;
     static const int min_exponent10 = 0;
     static const int max_exponent = 0;
@@ -491,26 +555,31 @@ public:
     static const bool               has_signaling_NaN = false;
     static const float_denorm_style has_denorm = denorm_absent;
     static const bool               has_denorm_loss = false;
+
     static unsigned char
     infinity () _MSL_THROW
     {
         return 0;
     }
+
     static unsigned char
     quiet_NaN () _MSL_THROW
     {
         return 0;
     }
+
     static unsigned char
     signaling_NaN () _MSL_THROW
     {
         return 0;
     }
+
     static unsigned char
     denorm_min () _MSL_THROW
     {
         return 0;
     }
+
     static const bool is_iec559 = false;
     static const bool is_bounded = true;
     static const bool is_modulo = true;
@@ -541,11 +610,13 @@ public:
     {
         return base::min;
     }
+
     static wchar_t
     max () _MSL_THROW
     {
         return base::max;
     }
+
     static const int  digits = base::digits;
     static const int  digits10 = base::digits10;
     static const bool is_signed = base::is_signed;
@@ -555,11 +626,13 @@ public:
     {
         return WCHAR_MIN;
     }
+
     static wchar_t
     max () _MSL_THROW
     {
         return WCHAR_MAX;
     }
+
     static const int  digits = 16;
     static const int  digits10 = 4;
     static const bool is_signed = false;
@@ -567,16 +640,19 @@ public:
     static const bool is_integer = true;
     static const bool is_exact = true;
     static const int  radix = 2;
+
     static wchar_t
     epsilon () _MSL_THROW
     {
         return 0;
     }
+
     static wchar_t
     round_error () _MSL_THROW
     {
         return 0;
     }
+
     static const int min_exponent = 0;
     static const int min_exponent10 = 0;
     static const int max_exponent = 0;
@@ -587,26 +663,31 @@ public:
     static const bool               has_signaling_NaN = false;
     static const float_denorm_style has_denorm = denorm_absent;
     static const bool               has_denorm_loss = false;
+
     static wchar_t
     infinity () _MSL_THROW
     {
         return 0;
     }
+
     static wchar_t
     quiet_NaN () _MSL_THROW
     {
         return 0;
     }
+
     static wchar_t
     signaling_NaN () _MSL_THROW
     {
         return 0;
     }
+
     static wchar_t
     denorm_min () _MSL_THROW
     {
         return 0;
     }
+
     static const bool is_iec559 = false;
     static const bool is_bounded = true;
     static const bool is_modulo = true;
@@ -637,11 +718,13 @@ public:
     {
         return base::min;
     }
+
     static short
     max () _MSL_THROW
     {
         return base::max;
     }
+
     static const int  digits = base::digits;
     static const int  digits10 = base::digits10;
     static const bool is_signed = base::is_signed;
@@ -651,11 +734,13 @@ public:
     {
         return SHRT_MIN;
     }
+
     static short
     max () _MSL_THROW
     {
         return SHRT_MAX;
     }
+
     static const int  digits = 15;
     static const int  digits10 = 4;
     static const bool is_signed = true;
@@ -663,16 +748,19 @@ public:
     static const bool is_integer = true;
     static const bool is_exact = true;
     static const int  radix = 2;
+
     static short
     epsilon () _MSL_THROW
     {
         return 0;
     }
+
     static short
     round_error () _MSL_THROW
     {
         return 0;
     }
+
     static const int min_exponent = 0;
     static const int min_exponent10 = 0;
     static const int max_exponent = 0;
@@ -683,26 +771,31 @@ public:
     static const bool               has_signaling_NaN = false;
     static const float_denorm_style has_denorm = denorm_absent;
     static const bool               has_denorm_loss = false;
+
     static short
     infinity () _MSL_THROW
     {
         return 0;
     }
+
     static short
     quiet_NaN () _MSL_THROW
     {
         return 0;
     }
+
     static short
     signaling_NaN () _MSL_THROW
     {
         return 0;
     }
+
     static short
     denorm_min () _MSL_THROW
     {
         return 0;
     }
+
     static const bool is_iec559 = false;
     static const bool is_bounded = true;
     static const bool is_modulo = true;
@@ -731,11 +824,13 @@ public:
     {
         return base::min;
     }
+
     static unsigned short
     max () _MSL_THROW
     {
         return base::max;
     }
+
     static const int  digits = base::digits;
     static const int  digits10 = base::digits10;
     static const bool is_signed = base::is_signed;
@@ -745,11 +840,13 @@ public:
     {
         return 0;
     }
+
     static unsigned short
     max () _MSL_THROW
     {
         return USHRT_MAX;
     }
+
     static const int  digits = 16;
     static const int  digits10 = 4;
     static const bool is_signed = false;
@@ -757,16 +854,19 @@ public:
     static const bool is_integer = true;
     static const bool is_exact = true;
     static const int  radix = 2;
+
     static unsigned short
     epsilon () _MSL_THROW
     {
         return 0;
     }
+
     static unsigned short
     round_error () _MSL_THROW
     {
         return 0;
     }
+
     static const int min_exponent = 0;
     static const int min_exponent10 = 0;
     static const int max_exponent = 0;
@@ -777,26 +877,31 @@ public:
     static const bool               has_signaling_NaN = false;
     static const float_denorm_style has_denorm = denorm_absent;
     static const bool               has_denorm_loss = false;
+
     static unsigned short
     infinity () _MSL_THROW
     {
         return 0;
     }
+
     static unsigned short
     quiet_NaN () _MSL_THROW
     {
         return 0;
     }
+
     static unsigned short
     signaling_NaN () _MSL_THROW
     {
         return 0;
     }
+
     static unsigned short
     denorm_min () _MSL_THROW
     {
         return 0;
     }
+
     static const bool is_iec559 = false;
     static const bool is_bounded = true;
     static const bool is_modulo = true;
@@ -825,11 +930,13 @@ public:
     {
         return base::min;
     }
+
     static int
     max () _MSL_THROW
     {
         return base::max;
     }
+
     static const int  digits = base::digits;
     static const int  digits10 = base::digits10;
     static const bool is_signed = base::is_signed;
@@ -839,11 +946,13 @@ public:
     {
         return INT_MIN;
     }
+
     static int
     max () _MSL_THROW
     {
         return INT_MAX;
     }
+
     static const int  digits = 31;
     static const int  digits10 = 9;
     static const bool is_signed = true;
@@ -851,16 +960,19 @@ public:
     static const bool is_integer = true;
     static const bool is_exact = true;
     static const int  radix = 2;
+
     static int
     epsilon () _MSL_THROW
     {
         return 0;
     }
+
     static int
     round_error () _MSL_THROW
     {
         return 0;
     }
+
     static const int min_exponent = 0;
     static const int min_exponent10 = 0;
     static const int max_exponent = 0;
@@ -871,26 +983,31 @@ public:
     static const bool               has_signaling_NaN = false;
     static const float_denorm_style has_denorm = denorm_absent;
     static const bool               has_denorm_loss = false;
+
     static int
     infinity () _MSL_THROW
     {
         return 0;
     }
+
     static int
     quiet_NaN () _MSL_THROW
     {
         return 0;
     }
+
     static int
     signaling_NaN () _MSL_THROW
     {
         return 0;
     }
+
     static int
     denorm_min () _MSL_THROW
     {
         return 0;
     }
+
     static const bool is_iec559 = false;
     static const bool is_bounded = true;
     static const bool is_modulo = true;
@@ -919,11 +1036,13 @@ public:
     {
         return base::min;
     }
+
     static unsigned int
     max () _MSL_THROW
     {
         return base::max;
     }
+
     static const int  digits = base::digits;
     static const int  digits10 = base::digits10;
     static const bool is_signed = base::is_signed;
@@ -933,11 +1052,13 @@ public:
     {
         return 0;
     }
+
     static unsigned int
     max () _MSL_THROW
     {
         return UINT_MAX;
     }
+
     static const int  digits = 32;
     static const int  digits10 = 9;
     static const bool is_signed = false;
@@ -945,16 +1066,19 @@ public:
     static const bool is_integer = true;
     static const bool is_exact = true;
     static const int  radix = 2;
+
     static unsigned int
     epsilon () _MSL_THROW
     {
         return 0;
     }
+
     static unsigned int
     round_error () _MSL_THROW
     {
         return 0;
     }
+
     static const int min_exponent = 0;
     static const int min_exponent10 = 0;
     static const int max_exponent = 0;
@@ -965,26 +1089,31 @@ public:
     static const bool               has_signaling_NaN = false;
     static const float_denorm_style has_denorm = denorm_absent;
     static const bool               has_denorm_loss = false;
+
     static unsigned int
     infinity () _MSL_THROW
     {
         return 0;
     }
+
     static unsigned int
     quiet_NaN () _MSL_THROW
     {
         return 0;
     }
+
     static unsigned int
     signaling_NaN () _MSL_THROW
     {
         return 0;
     }
+
     static unsigned int
     denorm_min () _MSL_THROW
     {
         return 0;
     }
+
     static const bool is_iec559 = false;
     static const bool is_bounded = true;
     static const bool is_modulo = true;
@@ -1013,11 +1142,13 @@ public:
     {
         return base::min;
     }
+
     static long
     max () _MSL_THROW
     {
         return base::max;
     }
+
     static const int  digits = base::digits;
     static const int  digits10 = base::digits10;
     static const bool is_signed = base::is_signed;
@@ -1027,11 +1158,13 @@ public:
     {
         return LONG_MIN;
     }
+
     static long
     max () _MSL_THROW
     {
         return LONG_MAX;
     }
+
     static const int  digits = 31;
     static const int  digits10 = 9;
     static const bool is_signed = true;
@@ -1039,16 +1172,19 @@ public:
     static const bool is_integer = true;
     static const bool is_exact = true;
     static const int  radix = 2;
+
     static long
     epsilon () _MSL_THROW
     {
         return 0;
     }
+
     static long
     round_error () _MSL_THROW
     {
         return 0;
     }
+
     static const int min_exponent = 0;
     static const int min_exponent10 = 0;
     static const int max_exponent = 0;
@@ -1059,26 +1195,31 @@ public:
     static const bool               has_signaling_NaN = false;
     static const float_denorm_style has_denorm = denorm_absent;
     static const bool               has_denorm_loss = false;
+
     static long
     infinity () _MSL_THROW
     {
         return 0;
     }
+
     static long
     quiet_NaN () _MSL_THROW
     {
         return 0;
     }
+
     static long
     signaling_NaN () _MSL_THROW
     {
         return 0;
     }
+
     static long
     denorm_min () _MSL_THROW
     {
         return 0;
     }
+
     static const bool is_iec559 = false;
     static const bool is_bounded = true;
     static const bool is_modulo = true;
@@ -1107,11 +1248,13 @@ public:
     {
         return base::min;
     }
+
     static unsigned long
     max () _MSL_THROW
     {
         return base::max;
     }
+
     static const int  digits = base::digits;
     static const int  digits10 = base::digits10;
     static const bool is_signed = base::is_signed;
@@ -1121,11 +1264,13 @@ public:
     {
         return 0;
     }
+
     static unsigned long
     max () _MSL_THROW
     {
         return ULONG_MAX;
     }
+
     static const int  digits = 32;
     static const int  digits10 = 9;
     static const bool is_signed = false;
@@ -1133,16 +1278,19 @@ public:
     static const bool is_integer = true;
     static const bool is_exact = true;
     static const int  radix = 2;
+
     static unsigned long
     epsilon () _MSL_THROW
     {
         return 0;
     }
+
     static unsigned long
     round_error () _MSL_THROW
     {
         return 0;
     }
+
     static const int min_exponent = 0;
     static const int min_exponent10 = 0;
     static const int max_exponent = 0;
@@ -1153,26 +1301,31 @@ public:
     static const bool               has_signaling_NaN = false;
     static const float_denorm_style has_denorm = denorm_absent;
     static const bool               has_denorm_loss = false;
+
     static unsigned long
     infinity () _MSL_THROW
     {
         return 0;
     }
+
     static unsigned long
     quiet_NaN () _MSL_THROW
     {
         return 0;
     }
+
     static unsigned long
     signaling_NaN () _MSL_THROW
     {
         return 0;
     }
+
     static unsigned long
     denorm_min () _MSL_THROW
     {
         return 0;
     }
+
     static const bool is_iec559 = false;
     static const bool is_bounded = true;
     static const bool is_modulo = true;
@@ -1203,11 +1356,13 @@ public:
     {
         return base::min;
     }
+
     static long long
     max () _MSL_THROW
     {
         return base::max;
     }
+
     static const int  digits = base::digits;
     static const int  digits10 = base::digits10;
     static const bool is_signed = base::is_signed;
@@ -1217,11 +1372,13 @@ public:
     {
         return LONGLONG_MIN;
     }
+
     static long long
     max () _MSL_THROW
     {
         return LONGLONG_MAX;
     }
+
     static const int  digits = 63;
     static const int  digits10 = 18;
     static const bool is_signed = true;
@@ -1229,16 +1386,19 @@ public:
     static const bool is_integer = true;
     static const bool is_exact = true;
     static const int  radix = 2;
+
     static long long
     epsilon () _MSL_THROW
     {
         return 0;
     }
+
     static long long
     round_error () _MSL_THROW
     {
         return 0;
     }
+
     static const int min_exponent = 0;
     static const int min_exponent10 = 0;
     static const int max_exponent = 0;
@@ -1249,26 +1409,31 @@ public:
     static const bool               has_signaling_NaN = false;
     static const float_denorm_style has_denorm = denorm_absent;
     static const bool               has_denorm_loss = false;
+
     static long long
     infinity () _MSL_THROW
     {
         return 0;
     }
+
     static long long
     quiet_NaN () _MSL_THROW
     {
         return 0;
     }
+
     static long long
     signaling_NaN () _MSL_THROW
     {
         return 0;
     }
+
     static long long
     denorm_min () _MSL_THROW
     {
         return 0;
     }
+
     static const bool is_iec559 = false;
     static const bool is_bounded = true;
     static const bool is_modulo = true;
@@ -1297,11 +1462,13 @@ public:
     {
         return base::min;
     }
+
     static unsigned long long
     max () _MSL_THROW
     {
         return base::max;
     }
+
     static const int  digits = base::digits;
     static const int  digits10 = base::digits10;
     static const bool is_signed = base::is_signed;
@@ -1311,11 +1478,13 @@ public:
     {
         return 0;
     }
+
     static unsigned long long
     max () _MSL_THROW
     {
         return ULONGLONG_MAX;
     }
+
     static const int  digits = 64;
     static const int  digits10 = 19;
     static const bool is_signed = false;
@@ -1323,16 +1492,19 @@ public:
     static const bool is_integer = true;
     static const bool is_exact = true;
     static const int  radix = 2;
+
     static unsigned long long
     epsilon () _MSL_THROW
     {
         return 0;
     }
+
     static unsigned long long
     round_error () _MSL_THROW
     {
         return 0;
     }
+
     static const int min_exponent = 0;
     static const int min_exponent10 = 0;
     static const int max_exponent = 0;
@@ -1343,26 +1515,31 @@ public:
     static const bool               has_signaling_NaN = false;
     static const float_denorm_style has_denorm = denorm_absent;
     static const bool               has_denorm_loss = false;
+
     static unsigned long long
     infinity () _MSL_THROW
     {
         return 0;
     }
+
     static unsigned long long
     quiet_NaN () _MSL_THROW
     {
         return 0;
     }
+
     static unsigned long long
     signaling_NaN () _MSL_THROW
     {
         return 0;
     }
+
     static unsigned long long
     denorm_min () _MSL_THROW
     {
         return 0;
     }
+
     static const bool is_iec559 = false;
     static const bool is_bounded = true;
     static const bool is_modulo = true;
@@ -1375,36 +1552,43 @@ public:
 #endif
 
 #ifndef _No_Floating_Point
-template <> class numeric_limits<float>
+template <>
+class numeric_limits<float>
 {
 public:
     static const bool is_specialized = true;
+
     static float
     min () _MSL_THROW
     {
         return FLT_MIN;
     }
+
     static float
     max () _MSL_THROW
     {
         return FLT_MAX;
     }
+
     static const int  digits = FLT_MANT_DIG;
     static const int  digits10 = FLT_DIG;
     static const bool is_signed = true;
     static const bool is_integer = false;
     static const bool is_exact = false;
     static const int  radix = FLT_RADIX;
+
     static float
     epsilon () _MSL_THROW
     {
         return FLT_EPSILON;
     }
+
     static float
     round_error () _MSL_THROW
     {
         return 0.5F;
     }
+
     static const int min_exponent = FLT_MIN_EXP;
     static const int min_exponent10 = FLT_MIN_10_EXP;
     static const int max_exponent = FLT_MAX_EXP;
@@ -1419,26 +1603,31 @@ public:
 #endif
     static const float_denorm_style has_denorm = denorm_absent;
     static const bool               has_denorm_loss = false;
+
     static float
     infinity () _MSL_THROW
     {
         return HUGE_VALF;
     }
+
     static float
     quiet_NaN () _MSL_THROW
     {
         return NAN;
     }
+
     static float
     signaling_NaN () _MSL_THROW
     {
         return NAN;
     }
+
     static float
     denorm_min () _MSL_THROW
     {
         return min();
     }
+
     static const bool is_iec559 = true;
     static const bool is_bounded = true;
     static const bool is_modulo = false;
@@ -1447,36 +1636,44 @@ public:
     static const bool              tinyness_before = true;
     static const float_round_style round_style = round_to_nearest;
 };
-template <> class numeric_limits<double>
+
+template <>
+class numeric_limits<double>
 {
 public:
     static const bool is_specialized = true;
+
     static double
     min () _MSL_THROW
     {
         return DBL_MIN;
     }
+
     static double
     max () _MSL_THROW
     {
         return DBL_MAX;
     }
+
     static const int  digits = DBL_MANT_DIG;
     static const int  digits10 = DBL_DIG;
     static const bool is_signed = true;
     static const bool is_integer = false;
     static const bool is_exact = false;
     static const int  radix = FLT_RADIX;
+
     static double
     epsilon () _MSL_THROW
     {
         return DBL_EPSILON;
     }
+
     static double
     round_error () _MSL_THROW
     {
         return 0.5;
     }
+
     static const int min_exponent = DBL_MIN_EXP;
     static const int min_exponent10 = DBL_MIN_10_EXP;
     static const int max_exponent = DBL_MAX_EXP;
@@ -1491,26 +1688,31 @@ public:
 #endif
     static const float_denorm_style has_denorm = denorm_absent;
     static const bool               has_denorm_loss = false;
+
     static double
     infinity () _MSL_THROW
     {
         return HUGE_VAL;
     }
+
     static double
     quiet_NaN () _MSL_THROW
     {
         return NAN;
     }
+
     static double
     signaling_NaN () _MSL_THROW
     {
         return NAN;
     }
+
     static double
     denorm_min () _MSL_THROW
     {
         return min();
     }
+
     static const bool is_iec559 = true;
     static const bool is_bounded = true;
     static const bool is_modulo = false;
@@ -1519,36 +1721,44 @@ public:
     static const bool              tinyness_before = true;
     static const float_round_style round_style = round_to_nearest;
 };
-template <> class numeric_limits<long double>
+
+template <>
+class numeric_limits<long double>
 {
 public:
     static const bool is_specialized = true;
+
     static long double
     min () _MSL_THROW
     {
         return LDBL_MIN;
     }
+
     static long double
     max () _MSL_THROW
     {
         return LDBL_MAX;
     }
+
     static const int  digits = LDBL_MANT_DIG;
     static const int  digits10 = LDBL_DIG;
     static const bool is_signed = true;
     static const bool is_integer = false;
     static const bool is_exact = false;
     static const int  radix = FLT_RADIX;
+
     static long double
     epsilon () _MSL_THROW
     {
         return LDBL_EPSILON;
     }
+
     static long double
     round_error () _MSL_THROW
     {
         return 0.5L;
     }
+
     static const int min_exponent = LDBL_MIN_EXP;
     static const int min_exponent10 = LDBL_MIN_10_EXP;
     static const int max_exponent = LDBL_MAX_EXP;
@@ -1563,26 +1773,31 @@ public:
 #endif
     static const float_denorm_style has_denorm = denorm_absent;
     static const bool               has_denorm_loss = false;
+
     static long double
     infinity () _MSL_THROW
     {
         return HUGE_VALL;
     }
+
     static long double
     quiet_NaN () _MSL_THROW
     {
         return NAN;
     }
+
     static long double
     signaling_NaN () _MSL_THROW
     {
         return NAN;
     }
+
     static long double
     denorm_min () _MSL_THROW
     {
         return min();
     }
+
     static const bool is_iec559 = true;
     static const bool is_bounded = true;
     static const bool is_modulo = false;

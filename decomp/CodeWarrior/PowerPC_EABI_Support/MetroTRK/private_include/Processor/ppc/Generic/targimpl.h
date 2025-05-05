@@ -52,6 +52,7 @@ DSError TRKTargetStepOutOfRange (u32 rangeStart, u32 rangeEnd, BOOL stepOver);
 u32     TRKTargetStop ();
 void    TRKInterruptHandler ();
 void    TRKPostInterruptEvent (void);
+
 typedef struct DSVersions
 {
     u8 kernelMajor;
@@ -59,8 +60,10 @@ typedef struct DSVersions
     u8 protocolMajor;
     u8 protocolMinor;
 } DSVersions;
+
 DSError TRKTargetVersions (DSVersions* versions);
 DSError TRKTargetSupportMask (u8 mask[32]);
+
 typedef struct DSCPUType
 {
     u8 cpuMajor;
@@ -71,7 +74,9 @@ typedef struct DSCPUType
     u8 extended1TypeSize;
     u8 extended2TypeSize;
 } DSCPUType;
+
 DSError TRKTargetCPUType (DSCPUType* cpuType);
+
 typedef struct Default_PPC
 {
     u32 GPR[32];
@@ -81,12 +86,14 @@ typedef struct Default_PPC
     u32 CTR;
     u32 XER;
 } Default_PPC;
+
 typedef struct Float_PPC
 {
     u64 FPR[32];
     u64 FPSCR;
     u64 FPECR;
 } Float_PPC;
+
 typedef struct Extended1_PPC_6xx_7xx
 {
     u32 SR[16];
@@ -165,10 +172,12 @@ typedef struct Extended1_PPC_6xx_7xx
     u32 DMA_U;
     u32 DMA_L;
 } Extended1_PPC_6xx_7xx;
+
 typedef struct Extended2_PPC_6xx_7xx
 {
     u32 PSR[32][2];
 } Extended2_PPC_6xx_7xx;
+
 typedef struct ProcessorState_PPC_6xx_7xx
 {
     Default_PPC           Default;
@@ -177,8 +186,10 @@ typedef struct ProcessorState_PPC_6xx_7xx
     Extended2_PPC_6xx_7xx Extended2;
     u32                   transport_handler_saved_ra;
 } ProcessorState_PPC_6xx_7xx;
+
 typedef ProcessorState_PPC_6xx_7xx ProcessorState_PPC;
 extern ProcessorState_PPC          gTRKCPUState;
+
 typedef struct TRKState
 {
     u32   gpr[32];         // _00
@@ -192,6 +203,7 @@ typedef struct TRKState
     BOOL  inputActivated;  // _9C
     void* inputPendingPtr; // _A0
 } TRKState;
+
 extern TRKState gTRKState;
 
 #ifdef __cplusplus

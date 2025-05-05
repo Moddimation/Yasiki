@@ -28,8 +28,7 @@
 #include "critical_regions.h" /*- mm 001013 -*/
 
 /*#ifdef _dsp_hostio */
-#if (__dest_os == __m56800_os || __dest_os == __m56800E_os) &&                      \
-    !defined(_Old_DSP_IO_Interface)
+#if (__dest_os == __m56800_os || __dest_os == __m56800E_os) && !defined(_Old_DSP_IO_Interface)
 
 extern int txtbinFlag;
 #endif
@@ -49,8 +48,7 @@ _ftell (FILE* file)
 
     /*- bkoz 970324 -*/
     unsigned char tmp_kind = file->mode.file_kind;
-    if (!(tmp_kind == __disk_file || tmp_kind == __console_file) ||
-        file->state.error)
+    if (!(tmp_kind == __disk_file || tmp_kind == __console_file) || file->state.error)
     {
         errno = EFPOS;
         return (-1L);
@@ -65,9 +63,8 @@ _ftell (FILE* file)
 
     if (file->state.io_state >= __rereading)
     {
-        charsInUndoBuffer =
-            file->state.io_state - __rereading + 1; /*- jz/ma 971105 -*/
-        position -= charsInUndoBuffer;              /*- jz/ma 971105 -*/
+        charsInUndoBuffer = file->state.io_state - __rereading + 1; /*- jz/ma 971105 -*/
+        position -= charsInUndoBuffer;                              /*- jz/ma 971105 -*/
     }
 
 #if (__dest_os == __win32_os || __dest_os == __wince_os)
@@ -96,6 +93,7 @@ _ftell (FILE* file)
 
     return (position);
 }
+
 long
 ftell (FILE* file)
 {
@@ -109,6 +107,7 @@ ftell (FILE* file)
 
     return (retval);                        /*- mm 001013 -*/
 }
+
 int
 fgetpos (FILE* file, fpos_t* pos)
 {
@@ -120,6 +119,7 @@ fgetpos (FILE* file, fpos_t* pos)
 
     return (*pos == -1);
 }
+
 int
 _fseek (FILE* file, fpos_t offset, int mode)
 {
@@ -159,15 +159,12 @@ _fseek (FILE* file, fpos_t offset, int mode)
     /* this block commented back in by BK 970530 after adding the line changing
        state to __reading.  this fixes the problems seen with ifstream */
 
-#if !(__dest_os == __win32_os ||                                                    \
-      __dest_os ==                                                                  \
-          __wince_os) /* this optimization breaks C++ ifstream */ /*- bk 970527     \
-                                                                     -*/
+#if !(__dest_os == __win32_os ||                                                                   \
+      __dest_os == __wince_os) /* this optimization breaks C++ ifstream */ /*- bk 970527           \
+                                                                              -*/
     /* 970507  mm begin */
-    if ((mode != SEEK_END) &&
-        (file->mode.io_mode != __read_write) && /*- mm 970623 -*/
-        ((file->state.io_state == __reading) ||
-         (file->state.io_state == __rereading)))
+    if ((mode != SEEK_END) && (file->mode.io_mode != __read_write) && /*- mm 970623 -*/
+        ((file->state.io_state == __reading) || (file->state.io_state == __rereading)))
     {     /* When in read mode, check for a position that is within the bounds of the
              current buffer */
         if ((offset >= file->position) || offset < file->buffer_pos)
@@ -187,8 +184,7 @@ _fseek (FILE* file, fpos_t offset, int mode)
     }
 
 /*#ifdef _dsp_hostio  */
-#if (__dest_os == __m56800_os || __dest_os == __m56800E_os) &&                      \
-    !defined(_Old_DSP_IO_Interface)
+#if (__dest_os == __m56800_os || __dest_os == __m56800E_os) && !defined(_Old_DSP_IO_Interface)
     txtbinFlag = file->mode.binary_io;
 #endif
 
@@ -224,6 +220,7 @@ _fseek (FILE* file, fpos_t offset, int mode)
 
     return (0);
 }
+
 int
 fseek (FILE* file, long offset, int mode)
 {
@@ -238,6 +235,7 @@ fseek (FILE* file, long offset, int mode)
 
     return (retval);                           /*- mm 001013 -*/
 }
+
 int
 fsetpos (FILE* file, const fpos_t* pos)
 {
@@ -251,6 +249,7 @@ fsetpos (FILE* file, const fpos_t* pos)
 
     return (retval);                           /*- mm 001013 -*/
 }
+
 /*- mm 970708 -*/
 
 void
@@ -265,6 +264,7 @@ rewind (FILE* file)
                             * admittedly not likely to
                             */
 }
+
 /* Change record:
  * JFH 950828 First code release.
  * JFH 960425 Modified ftell to account for multi-level 'ungetc'.

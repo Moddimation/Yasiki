@@ -3,17 +3,20 @@
 #include "Portable/msgbuf.h"
 #include "Portable/serpoll.h"
 #include "Processor/ppc/Generic/targimpl.h"
+
 void
 TRKHandleRequestEvent (TRKEvent* event)
 {
     TRKBuffer* buffer = TRKGetBuffer (event->msgBufID);
     TRKDispatchMessage (buffer);
 }
+
 void
 TRKHandleSupportEvent (TRKEvent* event)
 {
     TRKTargetSupportRequest();
 }
+
 void
 TRKIdle ()
 {
@@ -22,6 +25,7 @@ TRKIdle ()
         TRKTargetContinue();
     }
 }
+
 void
 TRKNubMainLoop (void)
 {

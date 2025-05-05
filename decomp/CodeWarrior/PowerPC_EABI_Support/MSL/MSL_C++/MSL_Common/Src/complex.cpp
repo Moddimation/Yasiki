@@ -44,6 +44,7 @@ complex<float>::operator*= (const complex& rhs)
     re_ = re;
     return *this;
 }
+
 template <>
 complex<float>&
 complex<float>::operator*= (const complex<double>& rhs)
@@ -53,6 +54,7 @@ complex<float>::operator*= (const complex<double>& rhs)
     im_ = re * (float)rhs.imag() + im_ * (float)rhs.real();
     return *this;
 }
+
 template <>
 complex<float>&
 complex<float>::operator*= (const complex<long double>& rhs)
@@ -62,6 +64,7 @@ complex<float>::operator*= (const complex<long double>& rhs)
     im_ = re * (float)rhs.imag() + im_ * (float)rhs.real();
     return *this;
 }
+
 template <>
 complex<double>&
 complex<double>::operator*= (const complex& rhs)
@@ -71,6 +74,7 @@ complex<double>::operator*= (const complex& rhs)
     re_ = re;
     return *this;
 }
+
 template <>
 complex<double>&
 complex<double>::operator*= (const complex<float>& rhs)
@@ -80,6 +84,7 @@ complex<double>::operator*= (const complex<float>& rhs)
     im_ = re * rhs.imag() + im_ * rhs.real();
     return *this;
 }
+
 template <>
 complex<double>&
 complex<double>::operator*= (const complex<long double>& rhs)
@@ -89,6 +94,7 @@ complex<double>::operator*= (const complex<long double>& rhs)
     im_ = re * (double)rhs.imag() + im_ * (double)rhs.real();
     return *this;
 }
+
 template <>
 complex<long double>&
 complex<long double>::operator*= (const complex& rhs)
@@ -98,6 +104,7 @@ complex<long double>::operator*= (const complex& rhs)
     re_ = re;
     return *this;
 }
+
 template <>
 complex<long double>&
 complex<long double>::operator*= (const complex<float>& rhs)
@@ -107,6 +114,7 @@ complex<long double>::operator*= (const complex<float>& rhs)
     im_ = re * rhs.imag() + im_ * rhs.real();
     return *this;
 }
+
 template <>
 complex<long double>&
 complex<long double>::operator*= (const complex<double>& rhs)
@@ -116,6 +124,7 @@ complex<long double>::operator*= (const complex<double>& rhs)
     im_ = re * rhs.imag() + im_ * rhs.real();
     return *this;
 }
+
 // -
 
 template <>
@@ -128,28 +137,29 @@ complex<float>::operator/= (const complex& rhs)
     re_ = re;
     return *this;
 }
+
 template <>
 complex<float>&
 complex<float>::operator/= (const complex<double>& rhs)
 {
-    float denom = (float)rhs.real() * (float)rhs.real() +
-                  (float)rhs.imag() * (float)rhs.imag();
+    float denom = (float)rhs.real() * (float)rhs.real() + (float)rhs.imag() * (float)rhs.imag();
     float re = re_;
     re_ = (re * (float)rhs.real() + im_ * (float)rhs.imag()) / denom;
     im_ = (im_ * (float)rhs.real() - re * (float)rhs.imag()) / denom;
     return *this;
 }
+
 template <>
 complex<float>&
 complex<float>::operator/= (const complex<long double>& rhs)
 {
-    float denom = (float)rhs.real() * (float)rhs.real() +
-                  (float)rhs.imag() * (float)rhs.imag();
+    float denom = (float)rhs.real() * (float)rhs.real() + (float)rhs.imag() * (float)rhs.imag();
     float re = re_;
     re_ = (re * (float)rhs.real() + im_ * (float)rhs.imag()) / denom;
     im_ = (im_ * (float)rhs.real() - re * (float)rhs.imag()) / denom;
     return *this;
 }
+
 template <>
 complex<double>&
 complex<double>::operator/= (const complex& rhs)
@@ -160,6 +170,7 @@ complex<double>::operator/= (const complex& rhs)
     re_ = re;
     return *this;
 }
+
 template <>
 complex<double>&
 complex<double>::operator/= (const complex<float>& rhs)
@@ -170,17 +181,19 @@ complex<double>::operator/= (const complex<float>& rhs)
     im_ = (im_ * rhs.real() - re * rhs.imag()) / denom;
     return *this;
 }
+
 template <>
 complex<double>&
 complex<double>::operator/= (const complex<long double>& rhs)
 {
-    double denom = (double)rhs.real() * (double)rhs.real() +
-                   (double)rhs.imag() * (double)rhs.imag();
+    double denom =
+        (double)rhs.real() * (double)rhs.real() + (double)rhs.imag() * (double)rhs.imag();
     double re = re_;
     re_ = (re * (double)rhs.real() + im_ * (double)rhs.imag()) / denom;
     im_ = (im_ * (double)rhs.real() - re * (double)rhs.imag()) / denom;
     return *this;
 }
+
 template <>
 complex<long double>&
 complex<long double>::operator/= (const complex& rhs)
@@ -191,6 +204,7 @@ complex<long double>::operator/= (const complex& rhs)
     re_ = re;
     return *this;
 }
+
 template <>
 complex<long double>&
 complex<long double>::operator/= (const complex<float>& rhs)
@@ -201,6 +215,7 @@ complex<long double>::operator/= (const complex<float>& rhs)
     im_ = (im_ * rhs.real() - re * rhs.imag()) / denom;
     return *this;
 }
+
 template <>
 complex<long double>&
 complex<long double>::operator/= (const complex<double>& rhs)
@@ -295,6 +310,7 @@ complex<float>::operator*= (const complex& rhs)
     }
     return *this;
 }
+
 template <>
 complex<float>&
 complex<float>::operator*= (const complex<double>& rhs)
@@ -378,6 +394,7 @@ complex<float>::operator*= (const complex<double>& rhs)
     }
     return *this;
 }
+
 template <>
 complex<float>&
 complex<float>::operator*= (const complex<long double>& rhs)
@@ -461,6 +478,7 @@ complex<float>::operator*= (const complex<long double>& rhs)
     }
     return *this;
 }
+
 template <>
 complex<double>&
 complex<double>::operator*= (const complex& rhs)
@@ -544,6 +562,7 @@ complex<double>::operator*= (const complex& rhs)
     }
     return *this;
 }
+
 template <>
 complex<double>&
 complex<double>::operator*= (const complex<float>& rhs)
@@ -627,6 +646,7 @@ complex<double>::operator*= (const complex<float>& rhs)
     }
     return *this;
 }
+
 template <>
 complex<double>&
 complex<double>::operator*= (const complex<long double>& rhs)
@@ -710,6 +730,7 @@ complex<double>::operator*= (const complex<long double>& rhs)
     }
     return *this;
 }
+
 template <>
 complex<long double>&
 complex<long double>::operator*= (const complex& rhs)
@@ -793,6 +814,7 @@ complex<long double>::operator*= (const complex& rhs)
     }
     return *this;
 }
+
 template <>
 complex<long double>&
 complex<long double>::operator*= (const complex<float>& rhs)
@@ -876,6 +898,7 @@ complex<long double>::operator*= (const complex<float>& rhs)
     }
     return *this;
 }
+
 template <>
 complex<long double>&
 complex<long double>::operator*= (const complex<double>& rhs)
@@ -959,6 +982,7 @@ complex<long double>::operator*= (const complex<double>& rhs)
     }
     return *this;
 }
+
 // -
 
 template <>
@@ -1009,6 +1033,7 @@ complex<float>::operator/= (const complex& rhs)
     }
     return *this;
 }
+
 template <>
 complex<float>&
 complex<float>::operator/= (const complex<double>& rhs)
@@ -1057,6 +1082,7 @@ complex<float>::operator/= (const complex<double>& rhs)
     }
     return *this;
 }
+
 template <>
 complex<float>&
 complex<float>::operator/= (const complex<long double>& rhs)
@@ -1105,6 +1131,7 @@ complex<float>::operator/= (const complex<long double>& rhs)
     }
     return *this;
 }
+
 template <>
 complex<double>&
 complex<double>::operator/= (const complex& rhs)
@@ -1153,6 +1180,7 @@ complex<double>::operator/= (const complex& rhs)
     }
     return *this;
 }
+
 template <>
 complex<double>&
 complex<double>::operator/= (const complex<float>& rhs)
@@ -1201,6 +1229,7 @@ complex<double>::operator/= (const complex<float>& rhs)
     }
     return *this;
 }
+
 template <>
 complex<double>&
 complex<double>::operator/= (const complex<long double>& rhs)
@@ -1249,6 +1278,7 @@ complex<double>::operator/= (const complex<long double>& rhs)
     }
     return *this;
 }
+
 template <>
 complex<long double>&
 complex<long double>::operator/= (const complex& rhs)
@@ -1297,6 +1327,7 @@ complex<long double>::operator/= (const complex& rhs)
     }
     return *this;
 }
+
 template <>
 complex<long double>&
 complex<long double>::operator/= (const complex<float>& rhs)
@@ -1345,6 +1376,7 @@ complex<long double>::operator/= (const complex<float>& rhs)
     }
     return *this;
 }
+
 template <>
 complex<long double>&
 complex<long double>::operator/= (const complex<double>& rhs)

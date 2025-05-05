@@ -16,6 +16,7 @@ typedef struct OSMessageQueue
     s32           firstIndex;   ///< 0x18
     s32           usedCount;    ///< 0x1C
 } OSMessageQueue;
+
 void OSInitMessageQueue (OSMessageQueue* mq, void* msgArray, s32 msgCount);
 int  OSSendMessage (OSMessageQueue* mq, void* msg, s32 flags);
 int  OSReceiveMessage (OSMessageQueue* mq, void* msg, s32 flags);

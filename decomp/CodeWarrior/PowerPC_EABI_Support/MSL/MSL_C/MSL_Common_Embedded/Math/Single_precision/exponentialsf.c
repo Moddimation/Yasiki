@@ -77,10 +77,10 @@ static const _INT32 _nan = 0x7fffffff;
 
 /* Maple 8th degree Chebyshev compaction polynomial for [-1,1] */
 
-static const float __two_to_x[] = {
-    .6931471767,    .2402265062,     .05550415684,   .009618134656, .001333182528,
-    .0001540197657, .00001548327328, .1339281766e-5, .1029999862e-6
-};
+static const float __two_to_x[] = { .6931471767,     .2402265062,    .05550415684,
+                                    .009618134656,   .001333182528,  .0001540197657,
+                                    .00001548327328, .1339281766e-5, .1029999862e-6 };
+
 /*
 static const float  __two_to_x[]={.6931471803f,.2402265069f,.05550410856f,
                                   .009618129100f,.001333356340f,.0001540353222f,
@@ -95,7 +95,7 @@ __2_to_x (float x)
     float  frac_part;
     // int_part= (signbit(x) )? (_INT32)(x-.5f) : (_INT32)(x+.5f);  //won't round to
     // even in half way cases(doesn't matter)
-    int_part = (_INT32)x; // won't round to even in half way cases(doesn't matter)
+    int_part = (_INT32)x;            // won't round to even in half way cases(doesn't matter)
     frac_part = x - (float)int_part; // this subtraction is exact
 
     if (int_part > 128)
@@ -109,7 +109,7 @@ __2_to_x (float x)
     else
     {
         int_part += 127;
-        int_part <<= 23; // int_part is now an integral power of 2 in IEEE format
+        int_part <<= 23;             // int_part is now an integral power of 2 in IEEE format
     }
 
     z = frac_part *
@@ -124,27 +124,26 @@ __2_to_x (float x)
                             (__two_to_x[4] +
                              frac_part *
                                  (__two_to_x[5] +
-                                  frac_part *
-                                      (__two_to_x[6] +
-                                       frac_part *
-                                           (__two_to_x[7] +
-                                            frac_part * __two_to_x[8]))))))));
+                                  frac_part * (__two_to_x[6] +
+                                               frac_part * (__two_to_x[7] +
+                                                            frac_part * __two_to_x[8]))))))));
 
-                         // calculate 2^^x -1 -> z in [-.2928932,.4142135624]
+                                     // calculate 2^^x -1 -> z in [-.2928932,.4142135624]
 
     // reassemble
 
     return (*(float*)&int_part) * (.75f + (z + .25f));
 }
+
 extern "C" const float __two_to_log2e_m1_tI[];
+
 extern "C" float
 expf (float x)
 {
     /* Maple 8th degree Chebyshev compaction polynomial for [-1,1] */
 
-    static const float __exp_to_x[] = { .9999999009,    .4999999723,
-                                        .1666679856,    .04166688600,
-                                        .008328596116,  .001388275963,
+    static const float __exp_to_x[] = { .9999999009,    .4999999723,    .1666679856,
+                                        .04166688600,   .008328596116,  .001388275963,
                                         .0002046999276, .00002549918424 };
     if (x > 88.7228394f)
     {
@@ -178,12 +177,10 @@ expf (float x)
                   (__exp_to_x[2] +
                    frac_part *
                        (__exp_to_x[3] +
-                        frac_part *
-                            (__exp_to_x[4] +
-                             frac_part *
-                                 (__exp_to_x[5] +
-                                  frac_part * (__exp_to_x[6] +
-                                               frac_part * __exp_to_x[7])))))));
+                        frac_part * (__exp_to_x[4] +
+                                     frac_part * (__exp_to_x[5] +
+                                                  frac_part * (__exp_to_x[6] +
+                                                               frac_part * __exp_to_x[7])))))));
 
     // the above poly is (e^frac_part) - 1
     // Note: due to the non-transitive nature of floating point arithmetic, the above
@@ -194,9 +191,9 @@ expf (float x)
     // note: z is in ~[(e^-1)-1,(e^1)-1]=[-.6321205588,1.718281828]
     //  reassemble
     // z=__two_to_log2e_m1_tI[int_index]*(power_of_two*(.75f + (.25f+ z)));
-    return __two_to_log2e_m1_tI[int_index] *
-           (power_of_two * (.9921875f + (.007812501f + z)));
+    return __two_to_log2e_m1_tI[int_index] * (power_of_two * (.9921875f + (.007812501f + z)));
 }
+
 extern "C" float
 powf (float x, float y)
 {
@@ -270,6 +267,7 @@ powf (float x, float y)
     }
     return 0.0f;
 }
+
 #pragma cplusplus reset
 /*
 

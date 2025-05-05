@@ -3,6 +3,7 @@
 #include "Processor/ppc/Generic/targimpl.h"
 
 extern u8 gTRKRestoreFlags[9 + 3 /* padding */];
+
 asm void
 TRKSaveExtended1Block ()
 {
@@ -124,6 +125,7 @@ end:
 	blr
 #endif // clang-format on
 }
+
 asm void
 TRKRestoreExtended1Block ()
 {
@@ -245,6 +247,7 @@ lbl_8037149C:
 	blr
 #endif // clang-format on
 }
+
 u32
 TRKTargetCPUMinorType (void)
 {

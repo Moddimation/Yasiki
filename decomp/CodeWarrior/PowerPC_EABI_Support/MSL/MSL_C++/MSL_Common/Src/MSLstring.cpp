@@ -29,8 +29,7 @@
 #pragma bool off
 #endif
 #endif
-_STD::_MSLstring::_MSLstring (const string& value)
-  : data_ (new char[value.size() + 1])
+_STD::_MSLstring::_MSLstring (const string& value) : data_ (new char[value.size() + 1])
 {
     strcpy (const_cast<char*> (static_cast<const char*> (data_)), value.c_str());
 }

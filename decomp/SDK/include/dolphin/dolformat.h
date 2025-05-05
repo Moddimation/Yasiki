@@ -11,6 +11,7 @@ extern "C"
 // Maximum number of segments allowed
 #define DOL_MAX_TEXT 7
 #define DOL_MAX_DATA 11
+
 typedef struct DolImage
 {
     u8* textData[DOL_MAX_TEXT];
@@ -24,6 +25,7 @@ typedef struct DolImage
     u32 entry;
     u8  padding[28];
 } DolImage;
+
 void* DOLLoadImage (u8* buffer, BOOL verbose);
 void  DOLRunApp (void* entryPoint);
 

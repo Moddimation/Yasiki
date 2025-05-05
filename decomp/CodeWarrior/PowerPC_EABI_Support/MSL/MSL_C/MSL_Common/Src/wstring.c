@@ -47,6 +47,7 @@
 #include <wchar.h>
 
 #pragma warn_possunwant off
+
 /*
     This routine returns the length of the wide character string str
 
@@ -75,6 +76,7 @@ size_t (wcslen) (const wchar_t* str)
 
     return (len);
 }
+
 wchar_t*(wcscpy)(wchar_t* dst, const wchar_t* src)
 {
 #if !__POWERPC__
@@ -95,6 +97,7 @@ wchar_t*(wcscpy)(wchar_t* dst, const wchar_t* src)
 
     return (dst);
 }
+
 wchar_t*
 wcsncpy (wchar_t* dst, const wchar_t* src, size_t n)
 {
@@ -141,6 +144,7 @@ wcsncpy (wchar_t* dst, const wchar_t* src, size_t n)
 
     return (dst);
 }
+
 wchar_t*
 wcscat (wchar_t* dst, const wchar_t* src)
 {
@@ -170,6 +174,7 @@ wcscat (wchar_t* dst, const wchar_t* src)
 
     return (dst);
 }
+
 wchar_t*
 wcsncat (wchar_t* dst, const wchar_t* src, size_t n)
 {
@@ -219,6 +224,7 @@ wcsncat (wchar_t* dst, const wchar_t* src, size_t n)
 
     return (dst);
 }
+
 int
 wcscmp (const wchar_t* str1, const wchar_t* str2)
 {
@@ -254,6 +260,7 @@ wcscmp (const wchar_t* str1, const wchar_t* str2)
 
     return (c1 - c2);
 }
+
 int
 wcsncmp (const wchar_t* str1, const wchar_t* str2, size_t n)
 {
@@ -301,6 +308,7 @@ wcsncmp (const wchar_t* str1, const wchar_t* str2, size_t n)
 
     return (0);
 }
+
 wchar_t*
 wcschr (const wchar_t* str, const wchar_t chr)
 {
@@ -338,11 +346,13 @@ wcschr (const wchar_t* str, const wchar_t chr)
 
 #endif
 }
+
 int
 wcscoll (const wchar_t* str1, const wchar_t* str2)
 {
     return (wcscmp (str1, str2));
 }
+
 size_t
 wcsxfrm (wchar_t* str1, const wchar_t* str2, size_t n)
 {
@@ -357,6 +367,7 @@ wcsxfrm (wchar_t* str1, const wchar_t* str2, size_t n)
     } /*- mm 990630 -*/
     return (len);
 }
+
 wchar_t*
 wcsrchr (const wchar_t* str, wchar_t chr)
 {
@@ -406,9 +417,11 @@ wcsrchr (const wchar_t* str, wchar_t chr)
 
 #endif
 }
+
 typedef char char_map[8192];                                  /*- mm 990914 -*/
 #define set_char_map(map, ch) map[ch >> 3] |= (1 << (ch & 7))
 #define tst_char_map(map, ch) (map[ch >> 3] & (1 << (ch & 7)))
+
 wchar_t*
 wcspbrk (const wchar_t* str, const wchar_t* set)
 {
@@ -461,6 +474,7 @@ wcspbrk (const wchar_t* str, const wchar_t* set)
 
 #endif
 }
+
 size_t
 wcsspn (const wchar_t* str, const wchar_t* set)
 {
@@ -513,6 +527,7 @@ wcsspn (const wchar_t* str, const wchar_t* set)
 
 #endif
 }
+
 size_t
 wcscspn (const wchar_t* str, const wchar_t* set)
 {
@@ -565,6 +580,7 @@ wcscspn (const wchar_t* str, const wchar_t* set)
 
 #endif
 }
+
 /* Code deleted here mm 010316  The version of wcstok for Windows made use of the
    thread-local data belonging to strtok, which breaks the requirement that strtok
    behave as if no other library function calls it.  Further, the Standards committe
@@ -709,6 +725,7 @@ wcstok (wchar_t* str, const wchar_t* set, wchar_t** ptr)      /*- mm 000422 -*/
 
 #endif                                                        /* __POWERPC__ */
 }
+
 wchar_t*
 wcsstr (const wchar_t* str, const wchar_t* pat)
 {
@@ -772,6 +789,7 @@ wcsstr (const wchar_t* str, const wchar_t* pat)
 
 #endif
 }
+
 #pragma warn_possunwant reset
 
 #endif /* #ifndef __NO_WIDE_CHAR */ /*- mm 981030 -*/

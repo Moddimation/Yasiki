@@ -4,12 +4,15 @@
 #include <dolphin.h>
 
 #include "dvd_private.h"
+
 static struct
 {
     DVDCommandBlock* next; ///< 0x00
     DVDCommandBlock* prev; ///< 0x04
 } WaitingQueue[4];
+
 static DVDCommandBlock* PopWaitingQueuePrio (s32 prio);
+
 void
 __DVDClearWaitingQueue (void)
 {
@@ -23,6 +26,7 @@ __DVDClearWaitingQueue (void)
         q->prev = q;
     }
 }
+
 int
 __DVDPushWaitingQueue (s32 prio, DVDCommandBlock* block)
 {
@@ -36,6 +40,7 @@ __DVDPushWaitingQueue (s32 prio, DVDCommandBlock* block)
     OSRestoreInterrupts (enabled);
     return 1;
 }
+
 static DVDCommandBlock*
 PopWaitingQueuePrio (s32 prio)
 {
@@ -54,6 +59,7 @@ PopWaitingQueuePrio (s32 prio)
     tmp->prev = 0;
     return tmp;
 }
+
 DVDCommandBlock*
 __DVDPopWaitingQueue (void)
 {
@@ -74,6 +80,7 @@ __DVDPopWaitingQueue (void)
     OSRestoreInterrupts (enabled);
     return NULL;
 }
+
 int
 __DVDCheckWaitingQueue (void)
 {
@@ -94,6 +101,7 @@ __DVDCheckWaitingQueue (void)
     OSRestoreInterrupts (enabled);
     return 0;
 }
+
 int
 __DVDDequeueWaitingQueue (DVDCommandBlock* block)
 {
@@ -114,6 +122,7 @@ __DVDDequeueWaitingQueue (DVDCommandBlock* block)
     OSRestoreInterrupts (enabled);
     return 1;
 }
+
 int
 __DVDIsBlockInWaitingQueue (DVDCommandBlock* block)
 {
@@ -138,6 +147,7 @@ __DVDIsBlockInWaitingQueue (DVDCommandBlock* block)
     }
     return 0;
 }
+
 static char* CommandNames[16] = {
     "",
     "READ",
@@ -156,6 +166,7 @@ static char* CommandNames[16] = {
     "INQUIRY",
     "BS_CHANGE_DISK",
 };
+
 void
 DVDDumpWaitingQueue (void)
 {

@@ -8,12 +8,12 @@
 void __DVDAudioBufferConfig (DVDCommandBlock* block,
                              u32              enable,
                              u32              size,
-                             void (*callback) (s32, struct DVDCommandBlock*));
+                             void             (*callback) (s32, struct DVDCommandBlock*));
 void __DVDInitWA ();
 
 // dvdfs.c
 extern OSThreadQueue __DVDThreadQueue;
-extern u32                  __DVDLongFileNameFlag;
+extern u32           __DVDLongFileNameFlag;
 
 void __DVDFSInit ();
 void __DVDLowSetWAType (u32 type, s32 seekLoc);
@@ -22,8 +22,8 @@ void __DVDLowSetWAType (u32 type, s32 seekLoc);
 void __DVDInterruptHandler (s16 unused, OSContext* context);
 
 // dvdqueue.c
-void __DVDClearWaitingQueue ();
-int  __DVDPushWaitingQueue (s32 prio, struct DVDCommandBlock* block);
+void                    __DVDClearWaitingQueue ();
+int                     __DVDPushWaitingQueue (s32 prio, struct DVDCommandBlock* block);
 struct DVDCommandBlock* __DVDPopWaitingQueue ();
 int                     __DVDCheckWaitingQueue ();
 int                     __DVDDequeueWaitingQueue (struct DVDCommandBlock* block);

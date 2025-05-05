@@ -14,6 +14,7 @@ static int  gpioOutput (u8 value);
 static int  gpioOE (u8 value);
 static int  gpioOut (u32 addr, u8 value);
 static int  gpioInput (u8* p);
+
 void
 __VIInitI2C (void)
 {
@@ -28,6 +29,7 @@ __VIInitI2C (void)
     setVideoReset (1);
     setI2CEnable (1);
 }
+
 static void
 initGpioExi (void)
 {
@@ -36,6 +38,7 @@ initGpioExi (void)
     gpioOutput (shadowGPIOData);
     gpioOE (shadowGPIOOE);
 }
+
 void
 __VISetSCL (int value)
 {
@@ -46,6 +49,7 @@ __VISetSCL (int value)
     }
     gpioOE (shadowGPIOOE);
 }
+
 int
 __VIGetSCL (void)
 {
@@ -61,6 +65,7 @@ __VIGetSCL (void)
         return 0;
     }
 }
+
 void
 __VISetSDA (int value)
 {
@@ -71,6 +76,7 @@ __VISetSDA (int value)
     }
     gpioOE (shadowGPIOOE);
 }
+
 int
 __VIGetSDA (void)
 {
@@ -86,6 +92,7 @@ __VIGetSDA (void)
         return 0;
     }
 }
+
 static void
 setVideoReset (int value)
 {
@@ -101,6 +108,7 @@ setVideoReset (int value)
     gpioOutput (shadowGPIOData);
     gpioOE (shadowGPIOOE);
 }
+
 static void
 setI2CEnable (int value)
 {
@@ -116,16 +124,19 @@ setI2CEnable (int value)
     gpioOutput (shadowGPIOData);
     gpioOE (shadowGPIOOE);
 }
+
 static int
 gpioOutput (u8 value)
 {
     return gpioOut (0x800404U, value);
 }
+
 static int
 gpioOE (u8 value)
 {
     return gpioOut (0x800408U, value);
 }
+
 static int
 gpioOut (u32 addr, u8 value)
 {
@@ -150,6 +161,7 @@ gpioOut (u32 addr, u8 value)
     EXIUnlock (0);
     return 1;
 }
+
 static int
 gpioInput (u8* p)
 {

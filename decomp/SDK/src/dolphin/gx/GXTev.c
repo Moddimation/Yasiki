@@ -4,6 +4,7 @@
 #include <dolphin/os.h>
 
 #include "GXPrivate.h"
+
 void
 GXSetTevOp (GXTevStageID id, GXTevMode mode)
 {
@@ -46,6 +47,7 @@ GXSetTevOp (GXTevStageID id, GXTevMode mode)
     GXSetTevColorOp (id, GX_TEV_ADD, GX_TB_ZERO, GX_CS_SCALE_1, GX_TRUE, GX_TEVPREV);
     GXSetTevAlphaOp (id, GX_TEV_ADD, GX_TB_ZERO, GX_CS_SCALE_1, GX_TRUE, GX_TEVPREV);
 }
+
 void
 GXSetTevColorIn (GXTevStageID  stage,
                  GXTevColorArg a,
@@ -71,6 +73,7 @@ GXSetTevColorIn (GXTevStageID  stage,
     GX_WRITE_RAS_REG (*pTevReg);
     __GXData->bpSent = 1;
 }
+
 void
 GXSetTevAlphaIn (GXTevStageID  stage,
                  GXTevAlphaArg a,
@@ -96,6 +99,7 @@ GXSetTevAlphaIn (GXTevStageID  stage,
     GX_WRITE_RAS_REG (*pTevReg);
     __GXData->bpSent = 1;
 }
+
 void
 GXSetTevColorOp (GXTevStageID stage,
                  GXTevOp      op,
@@ -127,6 +131,7 @@ GXSetTevColorOp (GXTevStageID stage,
     GX_WRITE_RAS_REG (*pTevReg);
     __GXData->bpSent = 1;
 }
+
 void
 GXSetTevAlphaOp (GXTevStageID stage,
                  GXTevOp      op,
@@ -158,6 +163,7 @@ GXSetTevAlphaOp (GXTevStageID stage,
     GX_WRITE_RAS_REG (*pTevReg);
     __GXData->bpSent = 1;
 }
+
 void
 GXSetTevColor (GXTevRegID id, GXColor color)
 {
@@ -182,6 +188,7 @@ GXSetTevColor (GXTevRegID id, GXColor color)
     GX_WRITE_RAS_REG (regBG);
     __GXData->bpSent = 1;
 }
+
 void
 GXSetTevColorS10 (GXTevRegID id, GXColorS10 color)
 {
@@ -219,6 +226,7 @@ GXSetTevColorS10 (GXTevRegID id, GXColorS10 color)
     GX_WRITE_RAS_REG (regBG);
     __GXData->bpSent = 1;
 }
+
 void
 GXSetTevKColor (GXTevKColorID id, GXColor color)
 {
@@ -243,6 +251,7 @@ GXSetTevKColor (GXTevKColorID id, GXColor color)
     GX_WRITE_RAS_REG (regBG);
     __GXData->bpSent = 1;
 }
+
 void
 GXSetTevKColorSel (GXTevStageID stage, GXTevKColorSel sel)
 {
@@ -264,6 +273,7 @@ GXSetTevKColorSel (GXTevStageID stage, GXTevKColorSel sel)
     GX_WRITE_RAS_REG (*Kreg);
     __GXData->bpSent = 1;
 }
+
 void
 GXSetTevKAlphaSel (GXTevStageID stage, GXTevKAlphaSel sel)
 {
@@ -285,6 +295,7 @@ GXSetTevKAlphaSel (GXTevStageID stage, GXTevKAlphaSel sel)
     GX_WRITE_RAS_REG (*Kreg);
     __GXData->bpSent = 1;
 }
+
 void
 GXSetTevSwapMode (GXTevStageID stage, GXTevSwapSel ras_sel, GXTevSwapSel tex_sel)
 {
@@ -300,6 +311,7 @@ GXSetTevSwapMode (GXTevStageID stage, GXTevSwapSel ras_sel, GXTevSwapSel tex_sel
     GX_WRITE_RAS_REG (*pTevReg);
     __GXData->bpSent = 1;
 }
+
 void
 GXSetTevSwapModeTable (GXTevSwapSel   table,
                        GXTevColorChan red,
@@ -310,8 +322,7 @@ GXSetTevSwapModeTable (GXTevSwapSel   table,
     u32* Kreg;
 
     CHECK_GXBEGIN (0x26E, "GXSetTevSwapModeTable");
-    ASSERTMSGLINE (
-        0x26F, table < 4, "GXSetTevSwapModeTable: Invalid Swap Selection Index");
+    ASSERTMSGLINE (0x26F, table < 4, "GXSetTevSwapModeTable: Invalid Swap Selection Index");
 
     Kreg = &__GXData->tevKsel[table << 1];
     SET_REG_FIELD (0x272, *Kreg, 2, 0, red);
@@ -326,11 +337,13 @@ GXSetTevSwapModeTable (GXTevSwapSel   table,
     GX_WRITE_RAS_REG (*Kreg);
     __GXData->bpSent = 1;
 }
+
 void
 GXSetTevClampMode (void)
 {
     ASSERTMSGLINE (0x290, 0, "GXSetTevClampMode: not available on this hardware");
 }
+
 void
 GXSetAlphaCompare (GXCompare comp0, u8 ref0, GXAlphaOp op, GXCompare comp1, u8 ref1)
 {
@@ -348,6 +361,7 @@ GXSetAlphaCompare (GXCompare comp0, u8 ref0, GXAlphaOp op, GXCompare comp1, u8 r
     GX_WRITE_RAS_REG (reg);
     __GXData->bpSent = 1;
 }
+
 void
 GXSetZTexture (GXZTexOp op, GXTexFmt fmt, u32 bias)
 {
@@ -386,11 +400,9 @@ GXSetZTexture (GXZTexOp op, GXTexFmt fmt, u32 bias)
     GX_WRITE_RAS_REG (zenv1);
     __GXData->bpSent = 1;
 }
+
 void
-GXSetTevOrder (GXTevStageID stage,
-               GXTexCoordID coord,
-               GXTexMapID   map,
-               GXChannelID  color)
+GXSetTevOrder (GXTevStageID stage, GXTexCoordID coord, GXTexMapID map, GXChannelID color)
 {
     u32*       ptref;
     u32        tmap;
@@ -411,25 +423,22 @@ GXSetTevOrder (GXTevStageID stage,
     {
         SET_REG_FIELD (0x314, *ptref, 3, 12, tmap);
         SET_REG_FIELD (0x315, *ptref, 3, 15, tcoord);
-        SET_REG_FIELD (
-            0x317, *ptref, 3, 19, (color == GX_COLOR_NULL) ? 7 : c2r[color]);
-        SET_REG_FIELD (
-            0x319, *ptref, 1, 18, (map != GX_TEXMAP_NULL && !(map & 0x100)));
+        SET_REG_FIELD (0x317, *ptref, 3, 19, (color == GX_COLOR_NULL) ? 7 : c2r[color]);
+        SET_REG_FIELD (0x319, *ptref, 1, 18, (map != GX_TEXMAP_NULL && !(map & 0x100)));
     }
     else
     {
         SET_REG_FIELD (0x31C, *ptref, 3, 0, tmap);
         SET_REG_FIELD (0x31D, *ptref, 3, 3, tcoord);
-        SET_REG_FIELD (
-            0x31F, *ptref, 3, 7, (color == GX_COLOR_NULL) ? 7 : c2r[color]);
-        SET_REG_FIELD (
-            0x321, *ptref, 1, 6, (map != GX_TEXMAP_NULL && !(map & 0x100)));
+        SET_REG_FIELD (0x31F, *ptref, 3, 7, (color == GX_COLOR_NULL) ? 7 : c2r[color]);
+        SET_REG_FIELD (0x321, *ptref, 1, 6, (map != GX_TEXMAP_NULL && !(map & 0x100)));
     }
 
     GX_WRITE_RAS_REG (*ptref);
     __GXData->bpSent = 1;
     __GXData->dirtyState |= 1;
 }
+
 void
 GXSetNumTevStages (u8 nStages)
 {

@@ -45,19 +45,25 @@ namespace std
 struct input_iterator_tag
 {
 };
+
 struct output_iterator_tag
 {
 };
+
 struct forward_iterator_tag : public input_iterator_tag
 {
 };
+
 struct bidirectional_iterator_tag : public forward_iterator_tag
 {
 };
+
 struct random_access_iterator_tag : public bidirectional_iterator_tag
 {
 };
-template <class Iterator> struct iterator_traits
+
+template <class Iterator>
+struct iterator_traits
 {
     typedef typename Iterator::difference_type   difference_type;
     typedef typename Iterator::value_type        value_type;
@@ -66,7 +72,8 @@ template <class Iterator> struct iterator_traits
     typedef typename Iterator::iterator_category iterator_category;
 };
 #ifndef _MSL_NO_PARTIAL_SPECIALIZATION
-template <class T> struct iterator_traits<T*>
+template <class T>
+struct iterator_traits<T*>
 {
     typedef ptrdiff_t                  difference_type;
     typedef T                          value_type;
@@ -74,7 +81,9 @@ template <class T> struct iterator_traits<T*>
     typedef T&                         reference;
     typedef random_access_iterator_tag iterator_category;
 };
-template <class T> struct iterator_traits<const T*>
+
+template <class T>
+struct iterator_traits<const T*>
 {
     typedef ptrdiff_t                  difference_type;
     typedef T                          value_type;
@@ -82,8 +91,10 @@ template <class T> struct iterator_traits<const T*>
     typedef const T&                   reference;
     typedef random_access_iterator_tag iterator_category;
 };
+
 // hh 990825
-template <class T> struct iterator_traits<const T**>
+template <class T>
+struct iterator_traits<const T**>
 {
     typedef ptrdiff_t                  difference_type;
     typedef const T*                   value_type;
@@ -91,12 +102,14 @@ template <class T> struct iterator_traits<const T**>
     typedef const T*&                  reference;
     typedef random_access_iterator_tag iterator_category;
 };
+
 #define __MSL_FIX_ITERATORS__(myType)
 
 #else  // _MSL_NO_PARTIAL_SPECIALIZATION
 
 #ifndef _MSL_NO_BOOL
-template <> struct iterator_traits<bool*>
+template <>
+struct iterator_traits<bool*>
 {
     typedef ptrdiff_t                  difference_type;
     typedef bool                       value_type;
@@ -104,7 +117,9 @@ template <> struct iterator_traits<bool*>
     typedef bool&                      reference;
     typedef random_access_iterator_tag iterator_category;
 };
-template <> struct iterator_traits<const bool*>
+
+template <>
+struct iterator_traits<const bool*>
 {
     typedef ptrdiff_t                  difference_type;
     typedef bool                       value_type;
@@ -113,7 +128,8 @@ template <> struct iterator_traits<const bool*>
     typedef random_access_iterator_tag iterator_category;
 };
 #endif
-template <> struct iterator_traits<char*>
+template <>
+struct iterator_traits<char*>
 {
     typedef ptrdiff_t                  difference_type;
     typedef char                       value_type;
@@ -121,7 +137,9 @@ template <> struct iterator_traits<char*>
     typedef char&                      reference;
     typedef random_access_iterator_tag iterator_category;
 };
-template <> struct iterator_traits<const char*>
+
+template <>
+struct iterator_traits<const char*>
 {
     typedef ptrdiff_t                  difference_type;
     typedef char                       value_type;
@@ -129,7 +147,9 @@ template <> struct iterator_traits<const char*>
     typedef const char&                reference;
     typedef random_access_iterator_tag iterator_category;
 };
-template <> struct iterator_traits<signed char*>
+
+template <>
+struct iterator_traits<signed char*>
 {
     typedef ptrdiff_t                  difference_type;
     typedef signed char                value_type;
@@ -137,7 +157,9 @@ template <> struct iterator_traits<signed char*>
     typedef signed char&               reference;
     typedef random_access_iterator_tag iterator_category;
 };
-template <> struct iterator_traits<const signed char*>
+
+template <>
+struct iterator_traits<const signed char*>
 {
     typedef ptrdiff_t                  difference_type;
     typedef signed char                value_type;
@@ -145,7 +167,9 @@ template <> struct iterator_traits<const signed char*>
     typedef const signed char&         reference;
     typedef random_access_iterator_tag iterator_category;
 };
-template <> struct iterator_traits<unsigned char*>
+
+template <>
+struct iterator_traits<unsigned char*>
 {
     typedef ptrdiff_t                  difference_type;
     typedef unsigned char              value_type;
@@ -153,7 +177,9 @@ template <> struct iterator_traits<unsigned char*>
     typedef unsigned char&             reference;
     typedef random_access_iterator_tag iterator_category;
 };
-template <> struct iterator_traits<const unsigned char*>
+
+template <>
+struct iterator_traits<const unsigned char*>
 {
     typedef ptrdiff_t                  difference_type;
     typedef unsigned char              value_type;
@@ -162,7 +188,8 @@ template <> struct iterator_traits<const unsigned char*>
     typedef random_access_iterator_tag iterator_category;
 };
 #if !defined(_MSL_NO_WCHART_LANG_SUPPORT) && !defined(_MSL_NO_WCHART_CPP_SUPPORT)
-template <> struct iterator_traits<wchar_t*>
+template <>
+struct iterator_traits<wchar_t*>
 {
     typedef ptrdiff_t                  difference_type;
     typedef wchar_t                    value_type;
@@ -170,7 +197,9 @@ template <> struct iterator_traits<wchar_t*>
     typedef wchar_t&                   reference;
     typedef random_access_iterator_tag iterator_category;
 };
-template <> struct iterator_traits<const wchar_t*>
+
+template <>
+struct iterator_traits<const wchar_t*>
 {
     typedef ptrdiff_t                  difference_type;
     typedef wchar_t                    value_type;
@@ -179,7 +208,8 @@ template <> struct iterator_traits<const wchar_t*>
     typedef random_access_iterator_tag iterator_category;
 };
 #endif
-template <> struct iterator_traits<short*>
+template <>
+struct iterator_traits<short*>
 {
     typedef ptrdiff_t                  difference_type;
     typedef short                      value_type;
@@ -187,7 +217,9 @@ template <> struct iterator_traits<short*>
     typedef short&                     reference;
     typedef random_access_iterator_tag iterator_category;
 };
-template <> struct iterator_traits<const short*>
+
+template <>
+struct iterator_traits<const short*>
 {
     typedef ptrdiff_t                  difference_type;
     typedef short                      value_type;
@@ -195,7 +227,9 @@ template <> struct iterator_traits<const short*>
     typedef const short&               reference;
     typedef random_access_iterator_tag iterator_category;
 };
-template <> struct iterator_traits<unsigned short*>
+
+template <>
+struct iterator_traits<unsigned short*>
 {
     typedef ptrdiff_t                  difference_type;
     typedef unsigned short             value_type;
@@ -203,7 +237,9 @@ template <> struct iterator_traits<unsigned short*>
     typedef unsigned short&            reference;
     typedef random_access_iterator_tag iterator_category;
 };
-template <> struct iterator_traits<const unsigned short*>
+
+template <>
+struct iterator_traits<const unsigned short*>
 {
     typedef ptrdiff_t                  difference_type;
     typedef unsigned short             value_type;
@@ -211,7 +247,9 @@ template <> struct iterator_traits<const unsigned short*>
     typedef const unsigned short&      reference;
     typedef random_access_iterator_tag iterator_category;
 };
-template <> struct iterator_traits<int*>
+
+template <>
+struct iterator_traits<int*>
 {
     typedef ptrdiff_t                  difference_type;
     typedef int                        value_type;
@@ -219,7 +257,9 @@ template <> struct iterator_traits<int*>
     typedef int&                       reference;
     typedef random_access_iterator_tag iterator_category;
 };
-template <> struct iterator_traits<const int*>
+
+template <>
+struct iterator_traits<const int*>
 {
     typedef ptrdiff_t                  difference_type;
     typedef int                        value_type;
@@ -227,7 +267,9 @@ template <> struct iterator_traits<const int*>
     typedef const int&                 reference;
     typedef random_access_iterator_tag iterator_category;
 };
-template <> struct iterator_traits<unsigned int*>
+
+template <>
+struct iterator_traits<unsigned int*>
 {
     typedef ptrdiff_t                  difference_type;
     typedef unsigned int               value_type;
@@ -235,7 +277,9 @@ template <> struct iterator_traits<unsigned int*>
     typedef unsigned int&              reference;
     typedef random_access_iterator_tag iterator_category;
 };
-template <> struct iterator_traits<const unsigned int*>
+
+template <>
+struct iterator_traits<const unsigned int*>
 {
     typedef ptrdiff_t                  difference_type;
     typedef unsigned int               value_type;
@@ -243,7 +287,9 @@ template <> struct iterator_traits<const unsigned int*>
     typedef const unsigned int&        reference;
     typedef random_access_iterator_tag iterator_category;
 };
-template <> struct iterator_traits<long*>
+
+template <>
+struct iterator_traits<long*>
 {
     typedef ptrdiff_t                  difference_type;
     typedef long                       value_type;
@@ -251,7 +297,9 @@ template <> struct iterator_traits<long*>
     typedef long&                      reference;
     typedef random_access_iterator_tag iterator_category;
 };
-template <> struct iterator_traits<const long*>
+
+template <>
+struct iterator_traits<const long*>
 {
     typedef ptrdiff_t                  difference_type;
     typedef long                       value_type;
@@ -259,7 +307,9 @@ template <> struct iterator_traits<const long*>
     typedef const long&                reference;
     typedef random_access_iterator_tag iterator_category;
 };
-template <> struct iterator_traits<unsigned long*>
+
+template <>
+struct iterator_traits<unsigned long*>
 {
     typedef ptrdiff_t                  difference_type;
     typedef unsigned long              value_type;
@@ -267,7 +317,9 @@ template <> struct iterator_traits<unsigned long*>
     typedef unsigned long&             reference;
     typedef random_access_iterator_tag iterator_category;
 };
-template <> struct iterator_traits<const unsigned long*>
+
+template <>
+struct iterator_traits<const unsigned long*>
 {
     typedef ptrdiff_t                  difference_type;
     typedef unsigned long              value_type;
@@ -276,7 +328,8 @@ template <> struct iterator_traits<const unsigned long*>
     typedef random_access_iterator_tag iterator_category;
 };
 #ifdef __MSL_LONGLONG_SUPPORT__
-template <> struct iterator_traits<long long*>
+template <>
+struct iterator_traits<long long*>
 {
     typedef ptrdiff_t                  difference_type;
     typedef long long                  value_type;
@@ -284,7 +337,9 @@ template <> struct iterator_traits<long long*>
     typedef long long&                 reference;
     typedef random_access_iterator_tag iterator_category;
 };
-template <> struct iterator_traits<const long long*>
+
+template <>
+struct iterator_traits<const long long*>
 {
     typedef ptrdiff_t                  difference_type;
     typedef long long                  value_type;
@@ -292,7 +347,9 @@ template <> struct iterator_traits<const long long*>
     typedef const long long&           reference;
     typedef random_access_iterator_tag iterator_category;
 };
-template <> struct iterator_traits<unsigned long long*>
+
+template <>
+struct iterator_traits<unsigned long long*>
 {
     typedef ptrdiff_t                  difference_type;
     typedef unsigned long long         value_type;
@@ -300,7 +357,9 @@ template <> struct iterator_traits<unsigned long long*>
     typedef unsigned long long&        reference;
     typedef random_access_iterator_tag iterator_category;
 };
-template <> struct iterator_traits<const unsigned long long*>
+
+template <>
+struct iterator_traits<const unsigned long long*>
 {
     typedef ptrdiff_t                  difference_type;
     typedef unsigned long long         value_type;
@@ -311,7 +370,8 @@ template <> struct iterator_traits<const unsigned long long*>
 #endif // __MSL_LONGLONG_SUPPORT__
 
 #ifndef _No_Floating_Point
-template <> struct iterator_traits<float*>
+template <>
+struct iterator_traits<float*>
 {
     typedef ptrdiff_t                  difference_type;
     typedef float                      value_type;
@@ -319,7 +379,9 @@ template <> struct iterator_traits<float*>
     typedef float&                     reference;
     typedef random_access_iterator_tag iterator_category;
 };
-template <> struct iterator_traits<const float*>
+
+template <>
+struct iterator_traits<const float*>
 {
     typedef ptrdiff_t                  difference_type;
     typedef float                      value_type;
@@ -327,7 +389,9 @@ template <> struct iterator_traits<const float*>
     typedef const float&               reference;
     typedef random_access_iterator_tag iterator_category;
 };
-template <> struct iterator_traits<double*>
+
+template <>
+struct iterator_traits<double*>
 {
     typedef ptrdiff_t                  difference_type;
     typedef double                     value_type;
@@ -335,7 +399,9 @@ template <> struct iterator_traits<double*>
     typedef double&                    reference;
     typedef random_access_iterator_tag iterator_category;
 };
-template <> struct iterator_traits<const double*>
+
+template <>
+struct iterator_traits<const double*>
 {
     typedef ptrdiff_t                  difference_type;
     typedef double                     value_type;
@@ -343,7 +409,9 @@ template <> struct iterator_traits<const double*>
     typedef const double&              reference;
     typedef random_access_iterator_tag iterator_category;
 };
-template <> struct iterator_traits<long double*>
+
+template <>
+struct iterator_traits<long double*>
 {
     typedef ptrdiff_t                  difference_type;
     typedef long double                value_type;
@@ -351,7 +419,9 @@ template <> struct iterator_traits<long double*>
     typedef long double&               reference;
     typedef random_access_iterator_tag iterator_category;
 };
-template <> struct iterator_traits<const long double*>
+
+template <>
+struct iterator_traits<const long double*>
 {
     typedef ptrdiff_t                  difference_type;
     typedef long double                value_type;
@@ -362,14 +432,15 @@ template <> struct iterator_traits<const long double*>
 #endif // _No_Floating_Point
 
 // 970415 bkoz via Dennis C. De Mars
-#define __MSL_FIX_ITERATORS__(myType)                                               \
-    template <> struct _STD::iterator_traits<myType*>                               \
-    {                                                                               \
-        typedef ptrdiff_t                  difference_type;                         \
-        typedef myType                     value_type;                              \
-        typedef myType*                    pointer;                                 \
-        typedef myType&                    reference;                               \
-        typedef random_access_iterator_tag iterator_category;                       \
+#define __MSL_FIX_ITERATORS__(myType)                                                              \
+    template <>                                                                                    \
+    struct _STD::iterator_traits<myType*>                                                          \
+    {                                                                                              \
+        typedef ptrdiff_t                  difference_type;                                        \
+        typedef myType                     value_type;                                             \
+        typedef myType*                    pointer;                                                \
+        typedef myType&                    reference;                                              \
+        typedef random_access_iterator_tag iterator_category;                                      \
     };
 
 #endif // _MSL_NO_PARTIAL_SPECIALIZATION
@@ -386,6 +457,7 @@ struct iterator
     typedef Reference reference;
     typedef Category  iterator_category;
 };
+
 //  lib.iterator.operations, iterator operations:
 
 // advance
@@ -399,6 +471,7 @@ __advance (InputIterator& i, Distance n, input_iterator_tag)
         ++i;
     }
 }
+
 template <class BidirectionalIterator, class Distance>
 inline void
 __advance (BidirectionalIterator& i, Distance n, bidirectional_iterator_tag)
@@ -418,18 +491,21 @@ __advance (BidirectionalIterator& i, Distance n, bidirectional_iterator_tag)
         }
     }
 }
+
 template <class RandomAccessIterator, class Distance>
 inline void
 __advance (RandomAccessIterator& i, Distance n, random_access_iterator_tag)
 {
     i += n;
 }
+
 template <class InputIterator, class Distance>
 inline void
 advance (InputIterator& i, Distance n)
 {
     __advance (i, n, typename iterator_traits<InputIterator>::iterator_category());
 }
+
 // distance
 
 template <class InputIterator>
@@ -443,32 +519,31 @@ __distance (InputIterator first, InputIterator last, input_iterator_tag)
     }
     return result;
 }
+
 template <class RandomAccessIterator>
 inline typename iterator_traits<RandomAccessIterator>::difference_type
-__distance (RandomAccessIterator first,
-            RandomAccessIterator last,
-            random_access_iterator_tag)
+__distance (RandomAccessIterator first, RandomAccessIterator last, random_access_iterator_tag)
 {
     return last - first;
 }
+
 template <class InputIterator>
 inline typename iterator_traits<InputIterator>::difference_type
 distance (InputIterator first, InputIterator last)
 {
-    return __distance (
-        first, last, typename iterator_traits<InputIterator>::iterator_category());
+    return __distance (first, last, typename iterator_traits<InputIterator>::iterator_category());
 }
+
 //  lib.predef.iterators, predefined iterators:
 
 // reverse_iterator
 
 template <class Iterator>
-class reverse_iterator
-  : public iterator<typename iterator_traits<Iterator>::iterator_category,
-                    typename iterator_traits<Iterator>::value_type,
-                    typename iterator_traits<Iterator>::difference_type,
-                    typename iterator_traits<Iterator>::pointer,
-                    typename iterator_traits<Iterator>::reference>
+class reverse_iterator : public iterator<typename iterator_traits<Iterator>::iterator_category,
+                                         typename iterator_traits<Iterator>::value_type,
+                                         typename iterator_traits<Iterator>::difference_type,
+                                         typename iterator_traits<Iterator>::pointer,
+                                         typename iterator_traits<Iterator>::reference>
 {
 protected:
     Iterator current;
@@ -483,7 +558,8 @@ public:
     explicit reverse_iterator (Iterator x);
 #ifndef _MSL_NO_MEMBER_TEMPLATE
 #ifndef _MSL_MUST_INLINE_MEMBER_TEMPLATE
-    template <class U> reverse_iterator (const reverse_iterator<U>& u);
+    template <class U>
+    reverse_iterator (const reverse_iterator<U>& u);
 #else
     template <class U>
     inline reverse_iterator (const reverse_iterator<U>& u) : current (u.base())
@@ -507,13 +583,14 @@ public:
     reverse_iterator& operator-= (difference_type n);
     reference         operator[] (difference_type n) const;
 };
+
 template <class BidirectionalIterator>
 inline reverse_iterator<BidirectionalIterator>::reverse_iterator()
 {
 }
+
 template <class BidirectionalIterator>
-inline reverse_iterator<BidirectionalIterator>::reverse_iterator (
-    BidirectionalIterator x)
+inline reverse_iterator<BidirectionalIterator>::reverse_iterator (BidirectionalIterator x)
   : current (x)
 {
 }
@@ -521,8 +598,7 @@ inline reverse_iterator<BidirectionalIterator>::reverse_iterator (
 #ifndef _MSL_MUST_INLINE_MEMBER_TEMPLATE
 template <class BidirectionalIterator>
 template <class U>
-inline reverse_iterator<BidirectionalIterator>::reverse_iterator (
-    const reverse_iterator<U>& u)
+inline reverse_iterator<BidirectionalIterator>::reverse_iterator (const reverse_iterator<U>& u)
   : current (u.base())
 {
 }
@@ -534,6 +610,7 @@ reverse_iterator<BidirectionalIterator>::base () const
 {
     return current;
 }
+
 template <class BidirectionalIterator>
 inline typename reverse_iterator<BidirectionalIterator>::reference
 reverse_iterator<BidirectionalIterator>::operator* () const
@@ -541,12 +618,14 @@ reverse_iterator<BidirectionalIterator>::operator* () const
     BidirectionalIterator tmp = current;
     return *--tmp;
 }
+
 template <class BidirectionalIterator>
 inline typename reverse_iterator<BidirectionalIterator>::pointer
 reverse_iterator<BidirectionalIterator>::operator->() const
 {
     return &(operator* ());
 }
+
 template <class BidirectionalIterator>
 inline reverse_iterator<BidirectionalIterator>&
 reverse_iterator<BidirectionalIterator>::operator++ ()
@@ -554,6 +633,7 @@ reverse_iterator<BidirectionalIterator>::operator++ ()
     --current;
     return *this;
 }
+
 template <class BidirectionalIterator>
 inline reverse_iterator<BidirectionalIterator>
 reverse_iterator<BidirectionalIterator>::operator++ (int)
@@ -562,6 +642,7 @@ reverse_iterator<BidirectionalIterator>::operator++ (int)
     --current;
     return tmp;
 }
+
 template <class BidirectionalIterator>
 inline reverse_iterator<BidirectionalIterator>&
 reverse_iterator<BidirectionalIterator>::operator-- ()
@@ -569,6 +650,7 @@ reverse_iterator<BidirectionalIterator>::operator-- ()
     ++current;
     return *this;
 }
+
 template <class BidirectionalIterator>
 inline reverse_iterator<BidirectionalIterator>
 reverse_iterator<BidirectionalIterator>::operator-- (int)
@@ -577,18 +659,21 @@ reverse_iterator<BidirectionalIterator>::operator-- (int)
     ++current;
     return tmp;
 }
+
 template <class RandomAccessIterator>
 inline reverse_iterator<RandomAccessIterator>
 reverse_iterator<RandomAccessIterator>::operator+ (difference_type n) const
 {
     return reverse_iterator (current - n);
 }
+
 template <class RandomAccessIterator>
 inline reverse_iterator<RandomAccessIterator>
 reverse_iterator<RandomAccessIterator>::operator- (difference_type n) const
 {
     return reverse_iterator (current + n);
 }
+
 template <class RandomAccessIterator>
 inline reverse_iterator<RandomAccessIterator>&
 reverse_iterator<RandomAccessIterator>::operator+= (difference_type n)
@@ -596,6 +681,7 @@ reverse_iterator<RandomAccessIterator>::operator+= (difference_type n)
     current -= n;
     return *this;
 }
+
 template <class RandomAccessIterator>
 inline reverse_iterator<RandomAccessIterator>&
 reverse_iterator<RandomAccessIterator>::operator-= (difference_type n)
@@ -603,12 +689,14 @@ reverse_iterator<RandomAccessIterator>::operator-= (difference_type n)
     current += n;
     return *this;
 }
+
 template <class RandomAccessIterator>
 inline typename reverse_iterator<RandomAccessIterator>::reference
 reverse_iterator<RandomAccessIterator>::operator[] (difference_type n) const
 {
     return current[-n - 1];
 }
+
 template <class BidirectionalIterator>
 inline bool
 operator== (const reverse_iterator<BidirectionalIterator>& x,
@@ -616,6 +704,7 @@ operator== (const reverse_iterator<BidirectionalIterator>& x,
 {
     return static_cast<bool> (x.base() == y.base());
 }
+
 template <class RandomAccessIterator>
 inline bool
 operator< (const reverse_iterator<RandomAccessIterator>& x,
@@ -623,6 +712,7 @@ operator< (const reverse_iterator<RandomAccessIterator>& x,
 {
     return static_cast<bool> (x.base() > y.base());
 }
+
 template <class BidirectionalIterator>
 inline bool
 operator!= (const reverse_iterator<BidirectionalIterator>& x,
@@ -630,6 +720,7 @@ operator!= (const reverse_iterator<BidirectionalIterator>& x,
 {
     return static_cast<bool> (x.base() != y.base());
 }
+
 template <class RandomAccessIterator>
 inline bool
 operator> (const reverse_iterator<RandomAccessIterator>& x,
@@ -637,6 +728,7 @@ operator> (const reverse_iterator<RandomAccessIterator>& x,
 {
     return static_cast<bool> (x.base() < y.base());
 }
+
 template <class RandomAccessIterator>
 inline bool
 operator>= (const reverse_iterator<RandomAccessIterator>& x,
@@ -644,6 +736,7 @@ operator>= (const reverse_iterator<RandomAccessIterator>& x,
 {
     return static_cast<bool> (x.base() <= y.base());
 }
+
 template <class RandomAccessIterator>
 bool
 operator<= (const reverse_iterator<RandomAccessIterator>& x,
@@ -651,6 +744,7 @@ operator<= (const reverse_iterator<RandomAccessIterator>& x,
 {
     return static_cast<bool> (x.base() >= y.base());
 }
+
 template <class RandomAccessIterator>
 inline typename reverse_iterator<RandomAccessIterator>::difference_type
 operator- (const reverse_iterator<RandomAccessIterator>& x,
@@ -658,6 +752,7 @@ operator- (const reverse_iterator<RandomAccessIterator>& x,
 {
     return y.base() - x.base();
 }
+
 template <class RandomAccessIterator>
 reverse_iterator<RandomAccessIterator>
 operator+ (typename reverse_iterator<RandomAccessIterator>::difference_type n,
@@ -665,11 +760,11 @@ operator+ (typename reverse_iterator<RandomAccessIterator>::difference_type n,
 {
     return reverse_iterator<RandomAccessIterator> (x.base() - n);
 }
+
 // back_insert_iterator
 
 template <class Container>
-class back_insert_iterator
-  : public iterator<output_iterator_tag, void, void, void, void>
+class back_insert_iterator : public iterator<output_iterator_tag, void, void, void, void>
 {
 protected:
     Container* container;
@@ -683,48 +778,52 @@ public:
     back_insert_iterator& operator++ ();
     back_insert_iterator& operator++ (int);
 };
+
 template <class Container>
-inline back_insert_iterator<Container>::back_insert_iterator (Container& x)
-  : container (&x)
+inline back_insert_iterator<Container>::back_insert_iterator (Container& x) : container (&x)
 {
 }
+
 template <class Container>
 inline back_insert_iterator<Container>&
-back_insert_iterator<Container>::operator= (
-    typename Container::const_reference value)
+back_insert_iterator<Container>::operator= (typename Container::const_reference value)
 {
     container->push_back (value);
     return *this;
 }
+
 template <class Container>
 inline back_insert_iterator<Container>&
 back_insert_iterator<Container>::operator* ()
 {
     return *this;
 }
+
 template <class Container>
 inline back_insert_iterator<Container>&
 back_insert_iterator<Container>::operator++ ()
 {
     return *this;
 }
+
 template <class Container>
 inline back_insert_iterator<Container>&
 back_insert_iterator<Container>::operator++ (int)
 {
     return *this;
 }
+
 template <class Container>
 inline back_insert_iterator<Container>
 back_inserter (Container& x)
 {
     return back_insert_iterator<Container> (x);
 }
+
 // front_insert_iterator
 
 template <class Container>
-class front_insert_iterator
-  : public iterator<output_iterator_tag, void, void, void, void>
+class front_insert_iterator : public iterator<output_iterator_tag, void, void, void, void>
 {
 protected:
     Container* container;
@@ -738,43 +837,48 @@ public:
     front_insert_iterator& operator++ ();
     front_insert_iterator& operator++ (int);
 };
+
 template <class Container>
-inline front_insert_iterator<Container>::front_insert_iterator (Container& x)
-  : container (&x)
+inline front_insert_iterator<Container>::front_insert_iterator (Container& x) : container (&x)
 {
 }
+
 template <class Container>
 inline front_insert_iterator<Container>&
-front_insert_iterator<Container>::operator= (
-    typename Container::const_reference value)
+front_insert_iterator<Container>::operator= (typename Container::const_reference value)
 {
     container->push_front (value);
     return *this;
 }
+
 template <class Container>
 inline front_insert_iterator<Container>&
 front_insert_iterator<Container>::operator* ()
 {
     return *this;
 }
+
 template <class Container>
 inline front_insert_iterator<Container>&
 front_insert_iterator<Container>::operator++ ()
 {
     return *this;
 }
+
 template <class Container>
 inline front_insert_iterator<Container>&
 front_insert_iterator<Container>::operator++ (int)
 {
     return *this;
 }
+
 template <class Container>
 inline front_insert_iterator<Container>
 front_inserter (Container& x)
 {
     return front_insert_iterator<Container> (x);
 }
+
 // insert_iterator
 
 template <class Container>
@@ -793,12 +897,13 @@ public:
     insert_iterator& operator++ ();
     insert_iterator& operator++ (int);
 };
+
 template <class Container>
-inline insert_iterator<Container>::insert_iterator (Container&                   x,
-                                                    typename Container::iterator i)
+inline insert_iterator<Container>::insert_iterator (Container& x, typename Container::iterator i)
   : container (&x), iter (i)
 {
 }
+
 template <class Container>
 inline insert_iterator<Container>&
 insert_iterator<Container>::operator= (typename Container::const_reference value)
@@ -807,18 +912,21 @@ insert_iterator<Container>::operator= (typename Container::const_reference value
     ++iter;
     return *this;
 }
+
 template <class Container>
 inline insert_iterator<Container>&
 insert_iterator<Container>::operator* ()
 {
     return *this;
 }
+
 template <class Container>
 inline insert_iterator<Container>&
 insert_iterator<Container>::operator++ ()
 {
     return *this;
 }
+
 template <class Container>
 inline insert_iterator<Container>&
 insert_iterator<Container>::operator++ (int)
@@ -850,8 +958,7 @@ template <class T,
           class charT = char,
           class traits = char_traits<charT>,
           class Distance = ptrdiff_t>
-class istream_iterator
-  : public iterator<input_iterator_tag, T, Distance, const T*, const T&>
+class istream_iterator : public iterator<input_iterator_tag, T, Distance, const T*, const T&>
 {
 public:
     typedef charT                        char_type;
@@ -869,19 +976,19 @@ private:
     basic_istream<charT, traits>* in_stream_;
     T                             value_;
 
-    friend bool operator== <T, charT, traits, Distance> (const istream_iterator& x,
-                                                         const istream_iterator& y);
-    friend bool operator!= <T, charT, traits, Distance> (const istream_iterator& x,
-                                                         const istream_iterator& y);
+    friend bool operator==
+        <T, charT, traits, Distance> (const istream_iterator& x, const istream_iterator& y);
+    friend bool operator!=
+        <T, charT, traits, Distance> (const istream_iterator& x, const istream_iterator& y);
 };
+
 template <class T, class charT, class traits, class Distance>
-inline istream_iterator<T, charT, traits, Distance>::istream_iterator()
-  : in_stream_ (0)
+inline istream_iterator<T, charT, traits, Distance>::istream_iterator() : in_stream_ (0)
 {
 }
+
 template <class T, class charT, class traits, class Distance>
-inline istream_iterator<T, charT, traits, Distance>::istream_iterator (
-    istream_type& s)
+inline istream_iterator<T, charT, traits, Distance>::istream_iterator (istream_type& s)
   : in_stream_ (&s)
 {
     if (!(*in_stream_ >> value_))
@@ -889,18 +996,21 @@ inline istream_iterator<T, charT, traits, Distance>::istream_iterator (
         in_stream_ = 0;
     }
 }
+
 template <class T, class charT, class traits, class Distance>
 inline const T&
 istream_iterator<T, charT, traits, Distance>::operator* () const
 {
     return value_;
 }
+
 template <class T, class charT, class traits, class Distance>
 inline const T*
 istream_iterator<T, charT, traits, Distance>::operator->() const
 {
     return &value_;
 }
+
 template <class T, class charT, class traits, class Distance>
 inline istream_iterator<T, charT, traits, Distance>&
 istream_iterator<T, charT, traits, Distance>::operator++ ()
@@ -911,6 +1021,7 @@ istream_iterator<T, charT, traits, Distance>::operator++ ()
     }
     return *this;
 }
+
 template <class T, class charT, class traits, class Distance>
 inline istream_iterator<T, charT, traits, Distance>
 istream_iterator<T, charT, traits, Distance>::operator++ (int)
@@ -919,6 +1030,7 @@ istream_iterator<T, charT, traits, Distance>::operator++ (int)
     operator++ ();
     return tmp;
 }
+
 template <class T, class charT, class traits, class Distance>
 inline bool
 operator== (const istream_iterator<T, charT, traits, Distance>& x,
@@ -926,6 +1038,7 @@ operator== (const istream_iterator<T, charT, traits, Distance>& x,
 {
     return static_cast<bool> (x.in_stream_ == y.in_stream_);
 }
+
 template <class T, class charT, class traits, class Distance>
 inline bool
 operator!= (const istream_iterator<T, charT, traits, Distance>& x,
@@ -933,6 +1046,7 @@ operator!= (const istream_iterator<T, charT, traits, Distance>& x,
 {
     return static_cast<bool> (x.in_stream_ != y.in_stream_);
 }
+
 // ostream_iterator
 
 template <class T, class charT = char, class traits = char_traits<charT> >
@@ -954,17 +1068,20 @@ private:
     basic_ostream<charT, traits>* out_stream_;
     const charT*                  delim_;
 };
+
 template <class T, class charT, class traits>
 inline ostream_iterator<T, charT, traits>::ostream_iterator (ostream_type& s)
   : out_stream_ (&s), delim_ (0)
 {
 }
+
 template <class T, class charT, class traits>
 inline ostream_iterator<T, charT, traits>::ostream_iterator (ostream_type& s,
                                                              const charT*  delimiter)
   : out_stream_ (&s), delim_ (delimiter)
 {
 }
+
 template <class T, class charT, class traits>
 inline ostream_iterator<T, charT, traits>&
 ostream_iterator<T, charT, traits>::operator= (const T& value)
@@ -976,32 +1093,33 @@ ostream_iterator<T, charT, traits>::operator= (const T& value)
     }
     return *this;
 }
+
 template <class T, class charT, class traits>
 inline ostream_iterator<T, charT, traits>&
 ostream_iterator<T, charT, traits>::operator* ()
 {
     return *this;
 }
+
 template <class T, class charT, class traits>
 inline ostream_iterator<T, charT, traits>&
 ostream_iterator<T, charT, traits>::operator++ ()
 {
     return *this;
 }
+
 template <class T, class charT, class traits>
 inline ostream_iterator<T, charT, traits>&
 ostream_iterator<T, charT, traits>::operator++ (int)
 {
     return *this;
 }
+
 // istreambuf_iterator
 
 template <class charT, class traits>
-class istreambuf_iterator : public iterator<input_iterator_tag,
-                                            charT,
-                                            typename traits::off_type,
-                                            charT*,
-                                            charT&>
+class istreambuf_iterator
+  : public iterator<input_iterator_tag, charT, typename traits::off_type, charT*, charT&>
 {
 public:
     typedef charT                          char_type;
@@ -1009,6 +1127,7 @@ public:
     typedef typename traits::int_type      int_type;
     typedef basic_streambuf<charT, traits> streambuf_type;
     typedef basic_istream<charT, traits>   istream_type;
+
     class proxy
     {
     public:
@@ -1021,13 +1140,12 @@ public:
     private:
         charT                           keep_;
         basic_streambuf<charT, traits>* sbuf_;
-        proxy (charT c, basic_streambuf<charT, traits>* sbuf)
-          : keep_ (c), sbuf_ (sbuf)
-        {
-        }
+
+        proxy (charT c, basic_streambuf<charT, traits>* sbuf) : keep_ (c), sbuf_ (sbuf) {}
 
         friend class istreambuf_iterator;
     };
+
     istreambuf_iterator () _MSL_THROW;
     istreambuf_iterator (istream_type& s) _MSL_THROW;
     istreambuf_iterator (streambuf_type* s) _MSL_THROW;
@@ -1040,44 +1158,49 @@ public:
 private:
     streambuf_type* sbuf_;
 };
+
 template <class charT, class traits>
-inline istreambuf_iterator<charT, traits>::istreambuf_iterator() _MSL_THROW
-  : sbuf_ (0)
+inline istreambuf_iterator<charT, traits>::istreambuf_iterator() _MSL_THROW : sbuf_ (0)
 {
 }
+
 template <class charT, class traits>
-inline istreambuf_iterator<charT, traits>::istreambuf_iterator (istream_type& s)
-    _MSL_THROW : sbuf_ (s.rdbuf())
-{
-    if (sbuf_ != 0 && traits::eq_int_type (sbuf_->sgetc(), traits::eof()))
-    {
-        sbuf_ = 0;
-    }
-}
-template <class charT, class traits>
-inline istreambuf_iterator<charT, traits>::istreambuf_iterator (streambuf_type* s)
-    _MSL_THROW : sbuf_ (s)
+inline istreambuf_iterator<charT, traits>::istreambuf_iterator (istream_type& s) _MSL_THROW
+  : sbuf_ (s.rdbuf())
 {
     if (sbuf_ != 0 && traits::eq_int_type (sbuf_->sgetc(), traits::eof()))
     {
         sbuf_ = 0;
     }
 }
+
 template <class charT, class traits>
-inline istreambuf_iterator<charT, traits>::istreambuf_iterator (const proxy& p)
-    _MSL_THROW : sbuf_ (p.sbuf_)
+inline istreambuf_iterator<charT, traits>::istreambuf_iterator (streambuf_type* s) _MSL_THROW
+  : sbuf_ (s)
 {
     if (sbuf_ != 0 && traits::eq_int_type (sbuf_->sgetc(), traits::eof()))
     {
         sbuf_ = 0;
     }
 }
+
+template <class charT, class traits>
+inline istreambuf_iterator<charT, traits>::istreambuf_iterator (const proxy& p) _MSL_THROW
+  : sbuf_ (p.sbuf_)
+{
+    if (sbuf_ != 0 && traits::eq_int_type (sbuf_->sgetc(), traits::eof()))
+    {
+        sbuf_ = 0;
+    }
+}
+
 template <class charT, class traits>
 inline charT
 istreambuf_iterator<charT, traits>::operator* () const
 {
     return traits::to_char_type (sbuf_->sgetc());
 }
+
 template <class charT, class traits>
 inline istreambuf_iterator<charT, traits>&
 istreambuf_iterator<charT, traits>::operator++ ()
@@ -1089,6 +1212,7 @@ istreambuf_iterator<charT, traits>::operator++ ()
     }
     return *this;
 }
+
 template <class charT, class traits>
 inline typename istreambuf_iterator<charT, traits>::proxy
 istreambuf_iterator<charT, traits>::operator++ (int)
@@ -1100,13 +1224,14 @@ istreambuf_iterator<charT, traits>::operator++ (int)
     }
     return result;
 }
+
 template <class charT, class traits>
 inline bool
 istreambuf_iterator<charT, traits>::equal (const istreambuf_iterator& b) const
 {
-    return static_cast<bool> (
-        !(static_cast<bool> (sbuf_ != 0) ^ static_cast<bool> (b.sbuf_ != 0)));
+    return static_cast<bool> (!(static_cast<bool> (sbuf_ != 0) ^ static_cast<bool> (b.sbuf_ != 0)));
 }
+
 template <class charT, class traits>
 inline bool
 operator== (const istreambuf_iterator<charT, traits>& a,
@@ -1114,6 +1239,7 @@ operator== (const istreambuf_iterator<charT, traits>& a,
 {
     return a.equal (b);
 }
+
 template <class charT, class traits>
 inline bool
 operator!= (const istreambuf_iterator<charT, traits>& a,
@@ -1121,9 +1247,9 @@ operator!= (const istreambuf_iterator<charT, traits>& a,
 {
     return static_cast<bool> (!a.equal (b));
 }
+
 template <class charT, class traits>
-class ostreambuf_iterator
-  : public iterator<output_iterator_tag, void, void, void, void>
+class ostreambuf_iterator : public iterator<output_iterator_tag, void, void, void, void>
 {
 public:
     typedef charT                          char_type;
@@ -1143,16 +1269,19 @@ public:
 private:
     streambuf_type* sbuf_;
 };
+
 template <class charT, class traits>
-inline ostreambuf_iterator<charT, traits>::ostreambuf_iterator (ostream_type& s)
-    _MSL_THROW : sbuf_ (s.rdbuf())
+inline ostreambuf_iterator<charT, traits>::ostreambuf_iterator (ostream_type& s) _MSL_THROW
+  : sbuf_ (s.rdbuf())
 {
 }
+
 template <class charT, class traits>
-inline ostreambuf_iterator<charT, traits>::ostreambuf_iterator (streambuf_type* s)
-    _MSL_THROW : sbuf_ (s)
+inline ostreambuf_iterator<charT, traits>::ostreambuf_iterator (streambuf_type* s) _MSL_THROW
+  : sbuf_ (s)
 {
 }
+
 template <class charT, class traits>
 inline ostreambuf_iterator<charT, traits>&
 ostreambuf_iterator<charT, traits>::operator= (charT c)
@@ -1163,24 +1292,28 @@ ostreambuf_iterator<charT, traits>::operator= (charT c)
     }
     return *this;
 }
+
 template <class charT, class traits>
 inline ostreambuf_iterator<charT, traits>&
 ostreambuf_iterator<charT, traits>::operator* ()
 {
     return *this;
 }
+
 template <class charT, class traits>
 inline ostreambuf_iterator<charT, traits>&
 ostreambuf_iterator<charT, traits>::operator++ ()
 {
     return *this;
 }
+
 template <class charT, class traits>
 inline ostreambuf_iterator<charT, traits>&
 ostreambuf_iterator<charT, traits>::operator++ (int)
 {
     return *this;
 }
+
 template <class charT, class traits>
 inline bool
 ostreambuf_iterator<charT, traits>::failed () const _MSL_THROW
@@ -1188,27 +1321,33 @@ ostreambuf_iterator<charT, traits>::failed () const _MSL_THROW
     return static_cast<bool> (sbuf_ == 0);
 }
 #endif // _MSL_NO_IO
-template <class To, class From> struct __implicit_convert
+template <class To, class From>
+struct __implicit_convert
 {
     typedef To                                       to;
     typedef From                                     from;
     typedef typename iterator_traits<to>::value_type value_type;
+
     value_type
     operator() (const from& f) const
     {
         return *f;
     }
 };
-template <class To, class From> class __reinterpret_convert
+
+template <class To, class From>
+class __reinterpret_convert
 {
 public:
     typedef To   to;
     typedef From from;
 
 private:
-    template <bool b> struct chooser
+    template <bool b>
+    struct chooser
     {
     };
+
     typedef typename iterator_traits<from>::reference  reference;
     typedef typename iterator_traits<from>::value_type fvalue_type;
     typedef typename iterator_traits<to>::value_type   tvalue_type;
@@ -1226,6 +1365,7 @@ private:
     {
         return *(tvalue_type*)(&*f);
     }
+
     tvalue_type
     cast (const from& f, chooser<false>) const
     {
@@ -1233,7 +1373,9 @@ private:
         return *(tvalue_type*)(&tmp);
     }
 };
-template <class Cast> class __convert_iterator
+
+template <class Cast>
+class __convert_iterator
 {
 public:
     typedef typename Cast::to                                 to;
@@ -1243,18 +1385,22 @@ public:
     typedef typename iterator_traits<from>::difference_type   difference_type;
     typedef void                                              pointer;
     typedef value_type                                        reference;
+
     explicit __convert_iterator (const from& i) : i_ (i) {}
+
     value_type
     operator* () const
     {
         return c_ (i_);
     }
+
     __convert_iterator&
     operator++ ()
     {
         ++i_;
         return *this;
     }
+
     __convert_iterator
     operator++ (int)
     {
@@ -1262,12 +1408,14 @@ public:
         operator++ ();
         return tmp;
     }
+
     __convert_iterator&
     operator-- ()
     {
         --i_;
         return *this;
     }
+
     __convert_iterator
     operator-- (int)
     {
@@ -1275,87 +1423,99 @@ public:
         operator-- ();
         return tmp;
     }
+
     __convert_iterator&
     operator+= (difference_type n)
     {
         i_ += n;
         return *this;
     }
+
     __convert_iterator
     operator+ (difference_type n) const
     {
         return __convert_iterator (*this) += n;
     }
+
     __convert_iterator&
     operator-= (difference_type n)
     {
         i_ -= n;
         return *this;
     }
+
     __convert_iterator
     operator- (difference_type n) const
     {
         return __convert_iterator (*this) -= n;
     }
+
     friend difference_type operator-
         <Cast> (const __convert_iterator& x, const __convert_iterator& y);
+
     value_type
     operator[] (difference_type n) const
     {
         return i_[n];
     }
-    friend bool operator==
-        <Cast> (const __convert_iterator& x, const __convert_iterator& y);
-    friend bool operator< <Cast> (const __convert_iterator& x,
-                                  const __convert_iterator& y);
+
+    friend bool operator== <Cast> (const __convert_iterator& x, const __convert_iterator& y);
+    friend bool operator< <Cast> (const __convert_iterator& x, const __convert_iterator& y);
 
 private:
     from i_;
     Cast c_;
 };
+
 template <class Cast>
 inline __convert_iterator<Cast>
-operator+ (typename __convert_iterator<Cast>::difference_type n,
-           const __convert_iterator<Cast>&                    x)
+operator+ (typename __convert_iterator<Cast>::difference_type n, const __convert_iterator<Cast>& x)
 {
     return x + n;
 }
+
 template <class Cast>
 inline typename __convert_iterator<Cast>::difference_type
 operator- (const __convert_iterator<Cast>& x, const __convert_iterator<Cast>& y)
 {
     return x.i_ - y.i_;
 }
+
 template <class Cast>
 inline bool
 operator== (const __convert_iterator<Cast>& x, const __convert_iterator<Cast>& y)
 {
     return x.i_ == y.i_;
 }
+
 template <class Cast>
 inline bool
 operator!= (const __convert_iterator<Cast>& x, const __convert_iterator<Cast>& y)
 {
     return !(x == y);
 }
+
 template <class Cast>
 inline bool
 operator< (const __convert_iterator<Cast>& x, const __convert_iterator<Cast>& y)
 {
     return x.i_ < y.i_;
 }
+
 template <class Cast>
 inline bool
 operator<= (const __convert_iterator<Cast>& x, const __convert_iterator<Cast>& y)
 {
     return !(y < x);
 }
+
 template <class Cast>
 inline bool
 operator> (const __convert_iterator<Cast>& x, const __convert_iterator<Cast>& y)
 {
     return y < x;
 }
+
 template <class Cast>
 inline bool
 operator>= (const __convert_iterator<Cast>& x, const __convert_iterator<Cast>& y)

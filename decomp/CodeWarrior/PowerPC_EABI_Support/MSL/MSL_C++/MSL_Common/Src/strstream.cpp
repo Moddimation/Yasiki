@@ -48,6 +48,7 @@ strstreambuf::~strstreambuf ()
         }
     }
 }
+
 void
 strstreambuf::freeze (bool freezefl)
 {
@@ -63,6 +64,7 @@ strstreambuf::freeze (bool freezefl)
         }
     }
 }
+
 strstreambuf::int_type
 strstreambuf::overflow (int_type c)
 {
@@ -132,6 +134,7 @@ strstreambuf::overflow (int_type c)
     pbump (1);
     return c;
 }
+
 strstreambuf::int_type
 strstreambuf::pbackfail (int_type c)
 {
@@ -156,6 +159,7 @@ strstreambuf::pbackfail (int_type c)
     gbump (1);
     return EOF;
 }
+
 strstreambuf::int_type
 strstreambuf::underflow ()
 {
@@ -170,6 +174,7 @@ strstreambuf::underflow ()
     }
     return EOF;
 }
+
 strstreambuf::pos_type
 strstreambuf::seekoff (off_type off, ios_base::seekdir way, ios_base::openmode which)
 {
@@ -228,6 +233,7 @@ strstreambuf::seekoff (off_type off, ios_base::seekdir way, ios_base::openmode w
     }
     return pos_type (newoff);
 }
+
 strstreambuf::pos_type
 strstreambuf::seekpos (pos_type sp, ios_base::openmode which)
 {
@@ -253,6 +259,7 @@ strstreambuf::seekpos (pos_type sp, ios_base::openmode which)
     }
     return pos_type (newoff);
 }
+
 streambuf*
 strstreambuf::setbuf (char* s, streamsize n)
 {                                                                // hh 990423
@@ -275,6 +282,7 @@ strstreambuf::setbuf (char* s, streamsize n)
     init (s, n, s);
     return this;
 }
+
 void
 strstreambuf::init (char* gnext_arg, streamsize n, char* pbeg_arg)
 {
@@ -297,6 +305,7 @@ strstreambuf::init (char* gnext_arg, streamsize n, char* pbeg_arg)
         setp (pbeg_arg, pbeg_arg + N);
     }
 }
+
 // istrstream
 
 // ostrstream

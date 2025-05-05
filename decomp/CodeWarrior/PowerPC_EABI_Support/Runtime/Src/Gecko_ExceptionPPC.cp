@@ -121,6 +121,7 @@ typedef union MWEVector128 MWEVector128;
 
 #if __PPCe500__
 #warning elf support enabled!
+
 union MWE_ElfVector64
 {
     unsigned long  l[2];
@@ -133,6 +134,7 @@ typedef union MWE_ElfVector64 MWE_ElfVector64;
 
 #if __PPCGEKKO__
 #warning gecko support enabled!
+
 union MWE_GeckoVector64
 {
     double d;
@@ -140,6 +142,7 @@ union MWE_GeckoVector64
 };
 
 typedef union MWE_GeckoVector64 MWE_GeckoVector64;
+
 struct GeckoFPRContext
 {
     double            d;
@@ -153,79 +156,81 @@ typedef struct GeckoFPRContext GeckoFPRContext;
 typedef struct ThrowContext
 {
 #if __VEC__
-    MWEVector128  VR[32];    //  VR0-VR31 (not all are saved/restored)
+    MWEVector128  VR[32];                  //  VR0-VR31 (not all are saved/restored)
     MWEVector128  vscr;
     unsigned long vrsave;
 #endif
 #ifndef _No_Floating_Point_Regs
 #if __PPCGEKKO__
-    GeckoFPRContext FPR[32]; // FPR0-FPR31 Gecko Paired Single Vectors
+    GeckoFPRContext FPR[32];               // FPR0-FPR31 Gecko Paired Single Vectors
 #else
     double FPR[32]; //	FPR0-FPR31	(not all are saved/restored)
 #endif
 #endif
 #if __PPCe500__
 #warning GPR throwcontext is a union, as vec64bit is not as functional as needed to work here
-    MWE_ElfVector64 GPR[32]; //	Vector GPR0-GPR31	(not all are saved/restored)
+    MWE_ElfVector64 GPR[32];               //	Vector GPR0-GPR31	(not all are saved/restored)
 #else
     long GPR[32]; //	GPR0-GPR31	(not all are saved/restored)
 #endif
-    long       CR;           //	CR0-CR7
-    char*      SP;           //	stack pointer during unwind (used for linkage)
-    char*      FP;           //	frame pointer during unwind (used for locals)
-    char*      throwSP;      //	stack pointer at throw
-    char*      returnaddr;   //	return address
-    char*      throwtype;    //	throw type argument (0L: rethrow: throw; )
-    void*      location;     //	location argument (0L: rethrow: throw; )
-    void*      dtor;         //	dtor argument
-    CatchInfo* catchinfo;    //	pointer to rethrow CatchInfo (or 0L)
+    long       CR;                         //	CR0-CR7
+    char*      SP;                         //	stack pointer during unwind (used for linkage)
+    char*      FP;                         //	frame pointer during unwind (used for locals)
+    char*      throwSP;                    //	stack pointer at throw
+    char*      returnaddr;                 //	return address
+    char*      throwtype;                  //	throw type argument (0L: rethrow: throw; )
+    void*      location;                   //	location argument (0L: rethrow: throw; )
+    void*      dtor;                       //	dtor argument
+    CatchInfo* catchinfo;                  //	pointer to rethrow CatchInfo (or 0L)
 } ThrowContext;
+
 typedef ThrowContext* ThrowContextPtr;
+
 typedef struct MWExceptionInfo
 {
-    ExceptionTableSmall*
-          exception_record;  //	pointer to exception table (small or large)
-    char* current_function;  //	pointer to current function
-    char* action_pointer;    //	pointer to action
-    char* code_section;      //	base of code section for fragment containing table
-    char* data_section;      //	base of data section for fragment containing table
-    char* TOC;               //	TOC pointer for fragment containing table
+    ExceptionTableSmall* exception_record; //	pointer to exception table (small or large)
+    char*                current_function; //	pointer to current function
+    char*                action_pointer;   //	pointer to action
+    char*                code_section;     //	base of code section for fragment containing table
+    char*                data_section;     //	base of data section for fragment containing table
+    char*                TOC;              //	TOC pointer for fragment containing table
 } MWExceptionInfo;
+
 typedef struct FragmentInfo
 {
-    ExceptionTableIndex*
-        exception_start;     //	start of exception table index for fragment
-    ExceptionTableIndex* exception_end; //	end of exception table index for fragment
-    char*                code_start;    //	start of code section for fragment
-    char*                code_end;      //	end of code section for fragment
-    char*                data_start;    //	start of data section for fragment
-    char*                data_end;      //	end of data section for fragment
-    char*                TOC;           //	TOC pointer for fragment
-    int                  active;        //	true: fragmentinfo element is registered
+    ExceptionTableIndex* exception_start;  //	start of exception table index for fragment
+    ExceptionTableIndex* exception_end;    //	end of exception table index for fragment
+    char*                code_start;       //	start of code section for fragment
+    char*                code_end;         //	end of code section for fragment
+    char*                data_start;       //	start of data section for fragment
+    char*                data_end;         //	end of data section for fragment
+    char*                TOC;              //	TOC pointer for fragment
+    int                  active;           //	true: fragmentinfo element is registered
 } FragmentInfo;
+
 typedef struct ProcessInfo
 {
-    __eti_init_info* exception_info; //	start of exception table index for fragment
-    char*            TOC;            //	TOC pointer for fragment
-    int              active;         //	true: fragmentinfo element is registered
+    __eti_init_info* exception_info;       //	start of exception table index for fragment
+    char*            TOC;                  //	TOC pointer for fragment
+    int              active;               //	true: fragmentinfo element is registered
 } ProcessInfo;
+
 typedef struct ActionIterator
 {
-    MWExceptionInfo info;            //	pointer to exception record
-    char*           current_SP;      //	current stack pointer
-    char*           current_FP;      //	current frame pointer (SP or R31)
-    long            current_R31;     //	current R31
+    MWExceptionInfo info;                  //	pointer to exception record
+    char*           current_SP;            //	current stack pointer
+    char*           current_FP;            //	current frame pointer (SP or R31)
+    long            current_R31;           //	current R31
 } ActionIterator;
 #if __VEC__
 #pragma options align = reset
 #endif
 
 #if __PPC_EABI__
-#define MAXFRAGMENTS                                                                \
-    __CW_MAX_PROCESSES__             //	maximum # of code fragments we can register
+#define MAXFRAGMENTS __CW_MAX_PROCESSES__  //	maximum # of code fragments we can register
 static ProcessInfo fragmentinfo[MAXFRAGMENTS];
 #else
-#define MAXFRAGMENTS 32              //	maximum # of code fragments we can register
+#define MAXFRAGMENTS 32                    //	maximum # of code fragments we can register
 static FragmentInfo fragmentinfo[MAXFRAGMENTS];
 #endif
 
@@ -370,8 +375,7 @@ ExPPC_FindExceptionFragment (char* returnaddr, FragmentInfo* frag)
                 if (returnaddr >= eti_info->code_start &&
                     returnaddr < (char*)eti_info->code_start + eti_info->code_size)
                 {
-                    frag->exception_start =
-                        (ExceptionTableIndex*)eti_info->eti_start;
+                    frag->exception_start = (ExceptionTableIndex*)eti_info->eti_start;
                     frag->exception_end = (ExceptionTableIndex*)eti_info->eti_end;
                     /* the starts and ends are only used to find the fragment  */
                     frag->code_start = 0;
@@ -463,8 +467,7 @@ ExPPC_FindExceptionRecord (char* returnaddr, MWExceptionInfo* info)
         {
             n = m - 1;
         }
-        else if (returnoffset >
-                 p->functionoffset + ETI_GetFunctionSize (p->eti_field))
+        else if (returnoffset > p->functionoffset + ETI_GetFunctionSize (p->eti_field))
         {
             i = m + 1;
         }
@@ -490,8 +493,7 @@ ExPPC_FindExceptionRecord (char* returnaddr, MWExceptionInfo* info)
         for (erl = etl->ranges; erl->start != 0; erl++)
         {
             unsigned long range_end =
-                erl->start +
-                (erl->size * 4); // large range is 256K (64K * 4) ... (+4?)
+                erl->start + (erl->size * 4); // large range is 256K (64K * 4) ... (+4?)
 
             if (erl->start <= returnoffset && range_end >= returnoffset)
             {
@@ -503,10 +505,9 @@ ExPPC_FindExceptionRecord (char* returnaddr, MWExceptionInfo* info)
     else
     {
 #if __VEC__
-        ExceptionTableSmall* ets = (ExceptionTableSmall*)info->exception_record;
-        ExceptionTableSmallVector* etsv =
-            (ExceptionTableSmallVector*)info->exception_record;
-        ExceptionRangeSmall* ers;
+        ExceptionTableSmall*       ets = (ExceptionTableSmall*)info->exception_record;
+        ExceptionTableSmallVector* etsv = (ExceptionTableSmallVector*)info->exception_record;
+        ExceptionRangeSmall*       ers;
 
         if (ET_HasVectorInfo (info->exception_record->et_field))
         {
@@ -545,6 +546,7 @@ ExPPC_FindExceptionRecord (char* returnaddr, MWExceptionInfo* info)
 #endif
     }
 }
+
 /************************************************************************/
 /* Purpose..: Find R31 saved in given stack frame						*/
 /* Input....: pointer to throw context									*/
@@ -584,14 +586,14 @@ ExPPC_PopR31 (char* SP, MWExceptionInfo* info)
 #if __PPCe500__
     if (ET_HasElfVector (info->exception_record->et_field))
     {
-        return (
-            GPR_save_area[-2]); //	R31 is last register saved, has highest address
-                                //  This is a 64 bit register so -2
+        return (GPR_save_area[-2]); //	R31 is last register saved, has highest address
+                                    //  This is a 64 bit register so -2
     }
 #endif
 
-    return (GPR_save_area[-1]); //	R31 is last register saved, has highest address
+    return (GPR_save_area[-1]);     //	R31 is last register saved, has highest address
 }
+
 /************************************************************************/
 /* Purpose..: Return current exception action type						*/
 /* Input....: pointer to ActionIterator									*/
@@ -606,6 +608,7 @@ ExPPC_CurrentAction (const ActionIterator* iter)
     }
     return ((ex_destroylocal*)iter->info.action_pointer)->action & EXACTION_MASK;
 }
+
 /************************************************************************/
 /* Purpose..: Move to next action in Exception Table					*/
 /* Input....: pointer to ActionIterator									*/
@@ -619,8 +622,8 @@ ExPPC_NextAction (ActionIterator* iter)
     for (;;)
     {
         if (iter->info.action_pointer == 0 ||
-            ((action = ((ex_destroylocal*)iter->info.action_pointer)->action) &
-             EXACTION_ENDBIT) != 0)
+            ((action = ((ex_destroylocal*)iter->info.action_pointer)->action) & EXACTION_ENDBIT) !=
+                0)
         { //	end of action list: find next exception record
             char *return_addr, *callers_SP;
 
@@ -638,10 +641,9 @@ ExPPC_NextAction (ActionIterator* iter)
             }
             //	pop down to caller's stack frame
             iter->current_SP = callers_SP;
-            iter->current_FP =
-                (ET_GetHasFramePtr (iter->info.exception_record->et_field))
-                    ? (char*)iter->current_R31
-                    : iter->current_SP;
+            iter->current_FP = (ET_GetHasFramePtr (iter->info.exception_record->et_field))
+                                   ? (char*)iter->current_R31
+                                   : iter->current_SP;
             if (iter->info.action_pointer == 0)
             {
                 continue;        //	no actions
@@ -691,26 +693,23 @@ ExPPC_NextAction (ActionIterator* iter)
                 case EXACTION_SPECIFICATION:
                     iter->info.action_pointer +=
                         sizeof (ex_specification) +
-                        ((ex_specification*)iter->info.action_pointer)->specs *
-                            sizeof (void*);
+                        ((ex_specification*)iter->info.action_pointer)->specs * sizeof (void*);
                     break;
                 default:
                     terminate(); //	error
             }
         }
-        action =
-            ((ex_destroylocal*)iter->info.action_pointer)->action & EXACTION_MASK;
+        action = ((ex_destroylocal*)iter->info.action_pointer)->action & EXACTION_MASK;
         if (action == EXACTION_BRANCH)
         { //	skip to target action--we never return EXACTION_BRANCH to caller!
-            iter->info.action_pointer =
-                ((char*)iter->info.exception_record) +
-                ((ex_branch*)iter->info.action_pointer)->target;
-            action = ((ex_destroylocal*)iter->info.action_pointer)->action &
-                     EXACTION_MASK;
+            iter->info.action_pointer = ((char*)iter->info.exception_record) +
+                                        ((ex_branch*)iter->info.action_pointer)->target;
+            action = ((ex_destroylocal*)iter->info.action_pointer)->action & EXACTION_MASK;
         }
         return action;
     }
 }
+
 /************************************************************************/
 /* Purpose..: Restore registers											*/
 /* Input....: pointer to throw context									*/
@@ -839,8 +838,7 @@ ExPPC_PopStackFrame (ThrowContext* context, MWExceptionInfo* info)
     //	restore saved VRs
     if (ET_HasVectorInfo (info->exception_record->et_field))
     {
-        ExceptionTableSmallVector* etsv =
-            (ExceptionTableSmallVector*)info->exception_record;
+        ExceptionTableSmallVector* etsv = (ExceptionTableSmallVector*)info->exception_record;
         int vrsavesize = ET_GetSavedVRSAVE (etsv->et_field) ? sizeof (long) : 0;
         saved_VRs = ET_GetSavedVRs (etsv->et_field);
 
@@ -848,8 +846,8 @@ ExPPC_PopStackFrame (ThrowContext* context, MWExceptionInfo* info)
         VR_save_area -= vrsavesize;
         VR_save_area -= saved_VRs;
 
-        VR_save_area = (MWEVector128*)((unsigned int)VR_save_area &
-                                       0xFFFFFFF0); // align to 16-byte boundary
+        VR_save_area =
+            (MWEVector128*)((unsigned int)VR_save_area & 0xFFFFFFF0); // align to 16-byte boundary
 
         for (i = 32 - saved_VRs, j = 0; i < 32; ++i, ++j)
         {
@@ -858,7 +856,7 @@ ExPPC_PopStackFrame (ThrowContext* context, MWExceptionInfo* info)
     }
 #endif
 
-                                                    //	restore saved CR
+                                                                      //	restore saved CR
 #if !__PPC_EABI__ // ignore for now (never saved)
     if (ET_GetSavedCR (info->exception_record->et_field))
     {
@@ -872,6 +870,7 @@ ExPPC_PopStackFrame (ThrowContext* context, MWExceptionInfo* info)
     //	return new return_addr
     return (*(char**)(callers_SP + RETURN_ADDRESS));
 }
+
 /************************************************************************/
 /* Purpose..: Unwind ex_destroylocal struct								*/
 /* Input....: pointer to topmost MWExceptionInfo struct					*/
@@ -884,6 +883,7 @@ ExPPC_DestroyLocal (ThrowContext* context, const ex_destroylocal* ex)
 {
     DTORCALL_COMPLETE (ex->dtor, context->FP + ex->local);
 }
+
 /************************************************************************/
 /* Purpose..: Unwind ex_destroylocalcond struct							*/
 /* Input....: pointer to topmost MWExceptionInfo struct					*/
@@ -915,6 +915,7 @@ ExPPC_DestroyLocalCond (ThrowContext* context, const ex_destroylocalcond* ex)
         DTORCALL_COMPLETE (ex->dtor, context->FP + ex->local);
     }
 }
+
 /************************************************************************/
 /* Purpose..: Unwind ex_destroylocalpointer struct						*/
 /* Input....: pointer to topmost MWExceptionInfo struct					*/
@@ -943,6 +944,7 @@ ExPPC_DestroyLocalPointer (ThrowContext* context, const ex_destroylocalpointer* 
 
     DTORCALL_COMPLETE (ex->dtor, pointer);
 }
+
 /************************************************************************/
 /* Purpose..: Unwind ex_destroylocalarray struct						*/
 /* Input....: pointer to topmost MWExceptionInfo struct					*/
@@ -963,6 +965,7 @@ ExPPC_DestroyLocalArray (ThrowContext* context, const ex_destroylocalarray* ex)
         DTORCALL_COMPLETE (ex->dtor, ptr);
     }
 }
+
 /************************************************************************/
 /* Purpose..: Unwind ex_destroymember struct							*/
 /* Input....: pointer to topmost MWExceptionInfo struct					*/
@@ -991,6 +994,7 @@ ExPPC_DestroyMember (ThrowContext* context, const ex_destroymember* ex)
 
     DTORCALL_COMPLETE (ex->dtor, objectptr + ex->offset);
 }
+
 /************************************************************************/
 /* Purpose..: Unwind ex_destroymember struct							*/
 /* Input....: pointer to topmost MWExceptionInfo struct					*/
@@ -1019,6 +1023,7 @@ ExPPC_DestroyBase (ThrowContext* context, const ex_destroymember* ex)
 
     DTORCALL_PARTIAL (ex->dtor, objectptr + ex->offset);
 }
+
 /************************************************************************/
 /* Purpose..: Unwind ex_destroymembercond struct						*/
 /* Input....: pointer to topmost MWExceptionInfo struct					*/
@@ -1059,6 +1064,7 @@ ExPPC_DestroyMemberCond (ThrowContext* context, const ex_destroymembercond* ex)
         DTORCALL_PARTIAL (ex->dtor, objectptr + ex->offset);
     }
 }
+
 /************************************************************************/
 /* Purpose..: Unwind ex_destroymemberarray struct						*/
 /* Input....: pointer to topmost MWExceptionInfo struct					*/
@@ -1097,6 +1103,7 @@ ExPPC_DestroyMemberArray (ThrowContext* context, const ex_destroymemberarray* ex
         DTORCALL_COMPLETE (ex->dtor, ptr);
     }
 }
+
 /************************************************************************/
 /* Purpose..: Unwind ex_deletepointer struct							*/
 /* Input....: pointer to topmost MWExceptionInfo struct					*/
@@ -1125,6 +1132,7 @@ ExPPC_DeletePointer (ThrowContext* context, const ex_deletepointer* ex)
 
     ((DeleteFunc)ex->deletefunc) (objectptr);
 }
+
 /************************************************************************/
 /* Purpose..: Unwind ex_deletepointercond struct						*/
 /* Input....: pointer to topmost MWExceptionInfo struct					*/
@@ -1165,6 +1173,7 @@ ExPPC_DeletePointerCond (ThrowContext* context, const ex_deletepointercond* ex)
         ((DeleteFunc)ex->deletefunc) (objectptr);
     }
 }
+
 /************************************************************************/
 /* Purpose..: Unwind stack												*/
 /* Input....: pointer to throw context									*/
@@ -1214,8 +1223,8 @@ ExPPC_UnwindStack (ThrowContext* context, MWExceptionInfo* info, void* catcher)
         switch (action & EXACTION_MASK)
         {
             case EXACTION_BRANCH:
-                info->action_pointer = ((char*)info->exception_record) +
-                                       ((ex_branch*)info->action_pointer)->target;
+                info->action_pointer =
+                    ((char*)info->exception_record) + ((ex_branch*)info->action_pointer)->target;
                 break;
 
             case EXACTION_DESTROYLOCAL:
@@ -1224,20 +1233,17 @@ ExPPC_UnwindStack (ThrowContext* context, MWExceptionInfo* info, void* catcher)
                 break;
 
             case EXACTION_DESTROYLOCALCOND:
-                ExPPC_DestroyLocalCond (context,
-                                        (ex_destroylocalcond*)info->action_pointer);
+                ExPPC_DestroyLocalCond (context, (ex_destroylocalcond*)info->action_pointer);
                 info->action_pointer += sizeof (ex_destroylocalcond);
                 break;
 
             case EXACTION_DESTROYLOCALPOINTER:
-                ExPPC_DestroyLocalPointer (
-                    context, (ex_destroylocalpointer*)info->action_pointer);
+                ExPPC_DestroyLocalPointer (context, (ex_destroylocalpointer*)info->action_pointer);
                 info->action_pointer += sizeof (ex_destroylocalpointer);
                 break;
 
             case EXACTION_DESTROYLOCALARRAY:
-                ExPPC_DestroyLocalArray (
-                    context, (ex_destroylocalarray*)info->action_pointer);
+                ExPPC_DestroyLocalArray (context, (ex_destroylocalarray*)info->action_pointer);
                 info->action_pointer += sizeof (ex_destroylocalarray);
                 break;
 
@@ -1247,32 +1253,27 @@ ExPPC_UnwindStack (ThrowContext* context, MWExceptionInfo* info, void* catcher)
                 break;
 
             case EXACTION_DESTROYMEMBER:
-                ExPPC_DestroyMember (context,
-                                     (ex_destroymember*)info->action_pointer);
+                ExPPC_DestroyMember (context, (ex_destroymember*)info->action_pointer);
                 info->action_pointer += sizeof (ex_destroymember);
                 break;
 
             case EXACTION_DESTROYMEMBERCOND:
-                ExPPC_DestroyMemberCond (
-                    context, (ex_destroymembercond*)info->action_pointer);
+                ExPPC_DestroyMemberCond (context, (ex_destroymembercond*)info->action_pointer);
                 info->action_pointer += sizeof (ex_destroymembercond);
                 break;
 
             case EXACTION_DESTROYMEMBERARRAY:
-                ExPPC_DestroyMemberArray (
-                    context, (ex_destroymemberarray*)info->action_pointer);
+                ExPPC_DestroyMemberArray (context, (ex_destroymemberarray*)info->action_pointer);
                 info->action_pointer += sizeof (ex_destroymemberarray);
                 break;
 
             case EXACTION_DELETEPOINTER:
-                ExPPC_DeletePointer (context,
-                                     (ex_deletepointer*)info->action_pointer);
+                ExPPC_DeletePointer (context, (ex_deletepointer*)info->action_pointer);
                 info->action_pointer += sizeof (ex_deletepointer);
                 break;
 
             case EXACTION_DELETEPOINTERCOND:
-                ExPPC_DeletePointerCond (
-                    context, (ex_deletepointercond*)info->action_pointer);
+                ExPPC_DeletePointerCond (context, (ex_deletepointercond*)info->action_pointer);
                 info->action_pointer += sizeof (ex_deletepointercond);
                 break;
 
@@ -1298,8 +1299,7 @@ ExPPC_UnwindStack (ThrowContext* context, MWExceptionInfo* info, void* catcher)
 
                     catchinfo =
                         (CatchInfo*)(context->FP +
-                                     ((ex_activecatchblock*)info->action_pointer)
-                                         ->cinfo_ref);
+                                     ((ex_activecatchblock*)info->action_pointer)->cinfo_ref);
                     if (catchinfo->dtor)
                     {
                         // re-throwing exception from this block
@@ -1324,8 +1324,7 @@ ExPPC_UnwindStack (ThrowContext* context, MWExceptionInfo* info, void* catcher)
                 }
                 info->action_pointer +=
                     sizeof (ex_specification) +
-                    ((ex_specification*)info->action_pointer)->specs *
-                        sizeof (void*);
+                    ((ex_specification*)info->action_pointer)->specs * sizeof (void*);
                 break;
 
             default:
@@ -1337,6 +1336,7 @@ ExPPC_UnwindStack (ThrowContext* context, MWExceptionInfo* info, void* catcher)
         }
     }
 }
+
 /************************************************************************/
 /* Purpose..: Check if an exception is in a specification list			*/
 /* Input....: pointer to exception type string							*/
@@ -1357,6 +1357,7 @@ ExPPC_IsInSpecification (char* extype, ex_specification* spec)
     }
     return 0;
 }
+
 /************************************************************************/
 /* Purpose..: Unexpected handler										*/
 /* Input....: pointer to throw context									*/
@@ -1376,8 +1377,7 @@ __unexpected (CatchInfo* catchinfo)
     catch (...)
     {     //	unexpected throws an exception => check if the exception matches the
           // specification
-        if (ExPPC_IsInSpecification (
-                (char*)((CatchInfo*)&__exception_magic)->typeinfo, unexp))
+        if (ExPPC_IsInSpecification ((char*)((CatchInfo*)&__exception_magic)->typeinfo, unexp))
         { //	new exception is in specification list => rethrow
             throw;
         }
@@ -1393,6 +1393,7 @@ __unexpected (CatchInfo* catchinfo)
     }
     terminate();
 }
+
 /************************************************************************/
 /* Purpose..: Restore registers and branch to catcher					*/
 /* Input....: pointer to throw context									*/
@@ -1401,9 +1402,7 @@ __unexpected (CatchInfo* catchinfo)
 /* Return...: ---														*/
 /************************************************************************/
 static ASM void
-ExPPC_LongJump (register ThrowContext* context,
-                register void*         newRTOC,
-                register void*         newPC)
+ExPPC_LongJump (register ThrowContext* context, register void* newRTOC, register void* newPC)
 {
 #if __ALTIVEC__ || __PPC_EABI__
     nofralloc
@@ -1411,13 +1410,13 @@ ExPPC_LongJump (register ThrowContext* context,
 
         mr       r8,
         newPC mr RTOC,
-        newRTOC     //	restore RTOC
+        newRTOC                    //	restore RTOC
             lwz r0,
-        context->CR //	restore CR
+        context->CR                //	restore CR
             mtcrf 255,
         r0
 
-#if !__PPC_EABI__   // vrsave may not have been updated or even used for embedded
+#if !__PPC_EABI__                  // vrsave may not have been updated or even used for embedded
 #if __VEC__
             lwz r5,
         context->vrsave bl __setLR // set LR to address of setLR
@@ -1711,15 +1710,12 @@ ExPPC_LongJump (register ThrowContext* context,
       context->FPR[31].d
 #else
         lfd                  fp14,
-        context->FPR[14] lfd fp15, context->FPR[15] lfd fp16,
-        context->FPR[16] lfd fp17, context->FPR[17] lfd fp18,
-        context->FPR[18] lfd fp19, context->FPR[19] lfd fp20,
-        context->FPR[20] lfd fp21, context->FPR[21] lfd fp22,
-        context->FPR[22] lfd fp23, context->FPR[23] lfd fp24,
-        context->FPR[24] lfd fp25, context->FPR[25] lfd fp26,
-        context->FPR[26] lfd fp27, context->FPR[27] lfd fp28,
-        context->FPR[28] lfd fp29, context->FPR[29] lfd fp30,
-        context->FPR[30] lfd fp31,
+        context->FPR[14] lfd fp15, context->FPR[15] lfd fp16, context->FPR[16] lfd fp17,
+        context->FPR[17] lfd fp18, context->FPR[18] lfd fp19, context->FPR[19] lfd fp20,
+        context->FPR[20] lfd fp21, context->FPR[21] lfd fp22, context->FPR[22] lfd fp23,
+        context->FPR[23] lfd fp24, context->FPR[24] lfd fp25, context->FPR[25] lfd fp26,
+        context->FPR[26] lfd fp27, context->FPR[27] lfd fp28, context->FPR[28] lfd fp29,
+        context->FPR[29] lfd fp30, context->FPR[30] lfd fp31,
         context->FPR[31]
 #endif                /* __PPCGEKKO__ */
 
@@ -1759,6 +1755,7 @@ ExPPC_LongJump (register ThrowContext* context,
       //	jump to exception handler
       blr
 }
+
 /************************************************************************/
 /* Purpose..: Handle unexpected exception								*/
 /* Input....: pointer to throw context									*/
@@ -1767,16 +1764,13 @@ ExPPC_LongJump (register ThrowContext* context,
 /* Return...: ---														*/
 /************************************************************************/
 static void
-ExPPC_HandleUnexpected (ThrowContext*     context,
-                        MWExceptionInfo*  info,
-                        ex_specification* unexp)
+ExPPC_HandleUnexpected (ThrowContext* context, MWExceptionInfo* info, ex_specification* unexp)
 {
     CatchInfo* catchinfo;
 
-#pragma exception_terminate    //	this will prevent exception exits during unwinding
+#pragma exception_terminate                   //	this will prevent exception exits during unwinding
 
-    ExPPC_UnwindStack (
-        context, info, unexp); //	unwind stack to failing specification
+    ExPPC_UnwindStack (context, info, unexp); //	unwind stack to failing specification
 
     //	initialize catch info struct
     catchinfo = (CatchInfo*)(context->FP + unexp->cinfo_ref);
@@ -1788,6 +1782,7 @@ ExPPC_HandleUnexpected (ThrowContext*     context,
     //	jump to exception handler
     ExPPC_LongJump (context, info->TOC, info->current_function + unexp->pcoffset);
 }
+
 /************************************************************************/
 /* Purpose..: Throw (rethrow) current exception							*/
 /* Input....: pointer to throw context									*/
@@ -1821,9 +1816,8 @@ ExPPC_ThrowHandler (ThrowContext* context)
                       : context->SP;
 #endif
 #else
-    context->FP = (ET_GetHasFramePtr (info.exception_record->et_field))
-                      ? (char*)context->GPR[31]
-                      : context->SP;
+    context->FP = (ET_GetHasFramePtr (info.exception_record->et_field)) ? (char*)context->GPR[31]
+                                                                        : context->SP;
 #endif
     if (context->throwtype == 0)
     {                            //	rethrow, find most recent exception
@@ -1839,8 +1833,7 @@ ExPPC_ThrowHandler (ThrowContext* context)
 #else
         iter.current_R31 = context->GPR[31];
 #endif
-        for (action = ExPPC_CurrentAction (&iter);;
-             action = ExPPC_NextAction (&iter))
+        for (action = ExPPC_CurrentAction (&iter);; action = ExPPC_NextAction (&iter))
         {
             switch (action)
             {
@@ -1870,8 +1863,7 @@ ExPPC_ThrowHandler (ThrowContext* context)
             break;
         }
         catchinfo = (CatchInfo*)(iter.current_FP +
-                                 ((ex_activecatchblock*)iter.info.action_pointer)
-                                     ->cinfo_ref);
+                                 ((ex_activecatchblock*)iter.info.action_pointer)->cinfo_ref);
         context->throwtype = (char*)catchinfo->typeinfo;
         context->location = catchinfo->location;
         context->dtor = 0;
@@ -1911,22 +1903,21 @@ ExPPC_ThrowHandler (ThrowContext* context)
                 }
                 continue;
             case EXACTION_CATCHBLOCK:
-                if (__throw_catch_compare (
-                        context->throwtype,
-                        ((ex_catchblock*)iter.info.action_pointer)->catch_type,
-                        &offset))
+                if (__throw_catch_compare (context->throwtype,
+                                           ((ex_catchblock*)iter.info.action_pointer)->catch_type,
+                                           &offset))
                 {
                     break;
                 }
                 continue;
 
             case EXACTION_SPECIFICATION:
-                if (!ExPPC_IsInSpecification (
-                        context->throwtype,
-                        (ex_specification*)iter.info.action_pointer))
+                if (!ExPPC_IsInSpecification (context->throwtype,
+                                              (ex_specification*)iter.info.action_pointer))
                 { //	unexpected specification
-                    ExPPC_HandleUnexpected (
-                        context, &info, (ex_specification*)iter.info.action_pointer);
+                    ExPPC_HandleUnexpected (context,
+                                            &info,
+                                            (ex_specification*)iter.info.action_pointer);
                     //	we will never return from this function call
                 }
                 continue;
@@ -1982,9 +1973,7 @@ ExPPC_ThrowHandler (ThrowContext* context)
         // instead
 
         //	jump to exception handler
-        ExPPC_LongJump (context,
-                        info.TOC,
-                        info.current_function + catchblock_32->catch_pcoffset);
+        ExPPC_LongJump (context, info.TOC, info.current_function + catchblock_32->catch_pcoffset);
     }
     else
     {
@@ -2013,12 +2002,12 @@ ExPPC_ThrowHandler (ThrowContext* context)
         // instead
 
         //	jump to exception handler
-        ExPPC_LongJump (
-            context, info.TOC, info.current_function + catchblock->catch_pcoffset);
+        ExPPC_LongJump (context, info.TOC, info.current_function + catchblock->catch_pcoffset);
     }
 }
 #if __VEC__
 #pragma altivec_vrsave off
+
 /************************************************************************/
 /* Purpose..: Throw (rethrow) current exception							*/
 /* Input....: pointer to throw type (0L: rethrow)						*/
@@ -2035,14 +2024,12 @@ __throw (char* throwtype, void* location, void* dtor)
 #if __PPC_EABI__
 #if !__option(use_lmw_stmw) || __option(little_endian)
     stw r13, throwcontext.GPR[13] stw r14, throwcontext.GPR[14] stw r15,
-        throwcontext.GPR[15] stw r16, throwcontext.GPR[16] stw r17,
-        throwcontext.GPR[17] stw r18, throwcontext.GPR[18] stw r19,
-        throwcontext.GPR[19] stw r20, throwcontext.GPR[20] stw r21,
-        throwcontext.GPR[21] stw r22, throwcontext.GPR[22] stw r23,
-        throwcontext.GPR[23] stw r24, throwcontext.GPR[24] stw r25,
-        throwcontext.GPR[25] stw r26, throwcontext.GPR[26] stw r27,
-        throwcontext.GPR[27] stw r28, throwcontext.GPR[28] stw r29,
-        throwcontext.GPR[29] stw r30, throwcontext.GPR[30] stw r31,
+        throwcontext.GPR[15] stw r16, throwcontext.GPR[16] stw r17, throwcontext.GPR[17] stw r18,
+        throwcontext.GPR[18] stw r19, throwcontext.GPR[19] stw r20, throwcontext.GPR[20] stw r21,
+        throwcontext.GPR[21] stw r22, throwcontext.GPR[22] stw r23, throwcontext.GPR[23] stw r24,
+        throwcontext.GPR[24] stw r25, throwcontext.GPR[25] stw r26, throwcontext.GPR[26] stw r27,
+        throwcontext.GPR[27] stw r28, throwcontext.GPR[28] stw r29, throwcontext.GPR[29] stw r30,
+        throwcontext.GPR[30] stw r31,
         throwcontext.GPR[31]
 #else
     stmw r13,
@@ -2090,7 +2077,7 @@ __throw (char* throwtype, void* location, void* dtor)
         dtor stw r3,
         throwcontext.dtor
 
-#if !__PPC_EABI__ // vrsave may not have been updated or even used for embedded
+#if !__PPC_EABI__          // vrsave may not have been updated or even used for embedded
             mfvrsave r5
 
                 bl __setLR // set LR to address of setLR
@@ -2157,17 +2144,16 @@ __throw (char* throwtype, void* location, void* dtor)
       0x8000               // indicate vr0 in-use
       mtvrsave r6
 
-          mfvscr
-              vr0 // mfvscr is context-synchronizing, so this will take many cycles
-                  la           r5,
+          mfvscr vr0       // mfvscr is context-synchronizing, so this will take many cycles
+              la               r5,
       throwcontext.vscr stvewx vr0,
       r0,
-      r5          // store 32 bits out of lo 32 bits of v0
+      r5                   // store 32 bits out of lo 32 bits of v0
 
           li r5,
-      0x0000      // indicate that no vector registers are being used now
-      mtvrsave r5 // This is OK because we just saved the non-volatile set and
-                  // exercised our right to trash all the volatile vector registers
+      0x0000               // indicate that no vector registers are being used now
+      mtvrsave r5          // This is OK because we just saved the non-volatile set and
+                           // exercised our right to trash all the volatile vector registers
 
           //	call __ex_throwhandler(&throwcontext);
           la r3,
@@ -2175,6 +2161,7 @@ __throw (char* throwtype, void* location, void* dtor)
           //	(will never get here)
           frfree blr
 }
+
 #pragma debug_listing off
 #pragma altivec_vrsave reset
 
@@ -2198,38 +2185,27 @@ __throw (char* throwtype, void* location, void* dtor)
 #if __PPC_EABI__
 #if __PPCe500__
         la                           r3,
-        throwcontext.GPR[13] evstddx r13, 0, r3 la r3,
-        throwcontext.GPR[14] evstddx r14, 0, r3 la r3,
-        throwcontext.GPR[15] evstddx r15, 0, r3 la r3,
-        throwcontext.GPR[16] evstddx r16, 0, r3 la r3,
-        throwcontext.GPR[17] evstddx r17, 0, r3 la r3,
-        throwcontext.GPR[18] evstddx r18, 0, r3 la r3,
-        throwcontext.GPR[19] evstddx r19, 0, r3 la r3,
-        throwcontext.GPR[20] evstddx r20, 0, r3 la r3,
-        throwcontext.GPR[21] evstddx r21, 0, r3 la r3,
-        throwcontext.GPR[22] evstddx r22, 0, r3 la r3,
-        throwcontext.GPR[23] evstddx r23, 0, r3 la r3,
-        throwcontext.GPR[24] evstddx r24, 0, r3 la r3,
-        throwcontext.GPR[25] evstddx r25, 0, r3 la r3,
-        throwcontext.GPR[26] evstddx r26, 0, r3 la r3,
-        throwcontext.GPR[27] evstddx r27, 0, r3 la r3,
-        throwcontext.GPR[28] evstddx r28, 0, r3 la r3,
-        throwcontext.GPR[29] evstddx r29, 0, r3 la r3,
-        throwcontext.GPR[30] evstddx r30, 0, r3 la r3,
-        throwcontext.GPR[31] evstddx r3, 0,
+        throwcontext.GPR[13] evstddx r13, 0, r3 la r3, throwcontext.GPR[14] evstddx r14, 0,
+        r3 la r3, throwcontext.GPR[15] evstddx r15, 0, r3 la r3, throwcontext.GPR[16] evstddx r16,
+        0, r3 la r3, throwcontext.GPR[17] evstddx r17, 0, r3 la r3,
+        throwcontext.GPR[18] evstddx r18, 0, r3 la r3, throwcontext.GPR[19] evstddx r19, 0,
+        r3 la r3, throwcontext.GPR[20] evstddx r20, 0, r3 la r3, throwcontext.GPR[21] evstddx r21,
+        0, r3 la r3, throwcontext.GPR[22] evstddx r22, 0, r3 la r3,
+        throwcontext.GPR[23] evstddx r23, 0, r3 la r3, throwcontext.GPR[24] evstddx r24, 0,
+        r3 la r3, throwcontext.GPR[25] evstddx r25, 0, r3 la r3, throwcontext.GPR[26] evstddx r26,
+        0, r3 la r3, throwcontext.GPR[27] evstddx r27, 0, r3 la r3,
+        throwcontext.GPR[28] evstddx r28, 0, r3 la r3, throwcontext.GPR[29] evstddx r29, 0,
+        r3 la r3, throwcontext.GPR[30] evstddx r30, 0, r3 la r3, throwcontext.GPR[31] evstddx r3, 0,
         r3
 #else  /* __PPCe500__ */
 #if !__option(use_lmw_stmw) || __option(little_endian)
         stw                      r13,
-        throwcontext.GPR[13] stw r14, throwcontext.GPR[14] stw r15,
-        throwcontext.GPR[15] stw r16, throwcontext.GPR[16] stw r17,
-        throwcontext.GPR[17] stw r18, throwcontext.GPR[18] stw r19,
-        throwcontext.GPR[19] stw r20, throwcontext.GPR[20] stw r21,
-        throwcontext.GPR[21] stw r22, throwcontext.GPR[22] stw r23,
-        throwcontext.GPR[23] stw r24, throwcontext.GPR[24] stw r25,
-        throwcontext.GPR[25] stw r26, throwcontext.GPR[26] stw r27,
-        throwcontext.GPR[27] stw r28, throwcontext.GPR[28] stw r29,
-        throwcontext.GPR[29] stw r30, throwcontext.GPR[30] stw r31,
+        throwcontext.GPR[13] stw r14, throwcontext.GPR[14] stw r15, throwcontext.GPR[15] stw r16,
+        throwcontext.GPR[16] stw r17, throwcontext.GPR[17] stw r18, throwcontext.GPR[18] stw r19,
+        throwcontext.GPR[19] stw r20, throwcontext.GPR[20] stw r21, throwcontext.GPR[21] stw r22,
+        throwcontext.GPR[22] stw r23, throwcontext.GPR[23] stw r24, throwcontext.GPR[24] stw r25,
+        throwcontext.GPR[25] stw r26, throwcontext.GPR[26] stw r27, throwcontext.GPR[27] stw r28,
+        throwcontext.GPR[28] stw r29, throwcontext.GPR[29] stw r30, throwcontext.GPR[30] stw r31,
         throwcontext.GPR[31]
 #else
         stmw r13,

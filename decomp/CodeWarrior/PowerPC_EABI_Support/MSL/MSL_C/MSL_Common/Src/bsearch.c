@@ -16,6 +16,7 @@
 #include <stdlib.h>
 
 #define table_ptr(i) (((char*)table_base) + (member_size * (i)))
+
 void*
 bsearch (const void*       key,
          const void*       table_base,
@@ -34,13 +35,13 @@ bsearch (const void*       key,
 
     mp = table_ptr (0);
 
-    c = compare_members (key, mp); /* We have to make sure 'key' doesn't compare   */
-                                   /* less than the first element in the table.    */
-    if (c == 0)                    /* As long as we're comparing, if it happens to */
+    c = compare_members (key, mp);          /* We have to make sure 'key' doesn't compare   */
+                                            /* less than the first element in the table.    */
+    if (c == 0)                             /* As long as we're comparing, if it happens to */
     {
-        return (mp);               /* come out equal we'll forego discovering that */
+        return (mp);                        /* come out equal we'll forego discovering that */
     }
-    else if (c < 0)                /* all over again via the binary search.        */
+    else if (c < 0)                         /* all over again via the binary search.        */
     {
         return (NULL);
     }
@@ -72,6 +73,7 @@ bsearch (const void*       key,
 
     return (NULL);
 }
+
 /* Change record:
  * JFH 950719 First code release.
  * JFH 960129 Fixed bug where the sense of the compare_members arguments was

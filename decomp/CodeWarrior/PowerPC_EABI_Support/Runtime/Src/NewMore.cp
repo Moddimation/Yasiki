@@ -33,6 +33,7 @@ namespace std
 
 char        __throws_bad_alloc = 1; //	default: throw bad_alloc exception
 new_handler __new_handler;
+
 /************************************************************************/
 /*	Purpose..: 	throw a bad_alloc excpetion								*/
 /*	Input....:	---														*/
@@ -51,6 +52,7 @@ __throw_bad_alloc ()
     }
 #endif
 }
+
 /************************************************************************/
 /*	Purpose..: 	Set new_handler function								*/
 /*	Input....:	new_handler function pointer (or NULL)					*/
@@ -93,6 +95,7 @@ __new_hdl (size_t size)
     }
     return ptr;
 }
+
 /************************************************************************/
 /*	Purpose..: 	Dispose memory (handle)									*/
 /*	Input....:	handle to memory or 0L (no action if 0L)				*/

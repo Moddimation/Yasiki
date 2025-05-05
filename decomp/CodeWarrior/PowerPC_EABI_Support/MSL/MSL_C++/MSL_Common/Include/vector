@@ -53,10 +53,13 @@ namespace std
 {
 #endif
 
-template <class T, class Allocator> class vector;
+template <class T, class Allocator>
+class vector;
+
 // Specialize for builtins to save on code bloat
 
-template <class T, class Allocator> class __vector_pod
+template <class T, class Allocator>
+class __vector_pod
 {
 protected:
     // types:
@@ -117,31 +120,37 @@ protected:
     Metrowerks::compressed_pair<allocator_type, size_type> capacity_;
     size_type                                              size_;
     pointer                                                data_;
+
     pointer&
     data ()
     {
         return data_;
     }
+
     const pointer&
     data () const
     {
         return data_;
     }
+
     allocator_type&
     alloc ()
     {
         return capacity_.first();
     }
+
     const allocator_type&
     alloc () const
     {
         return capacity_.first();
     }
+
     size_type&
     cap ()
     {
         return capacity_.second();
     }
+
     const size_type&
     cap () const
     {
@@ -158,15 +167,10 @@ protected:
     void do_assign (InputIterator first, InputIterator last, input_iterator_tag);
 
     template <class ForwardIterator>
-    void do_assign (ForwardIterator first,
-                    ForwardIterator last,
-                    forward_iterator_tag);
+    void do_assign (ForwardIterator first, ForwardIterator last, forward_iterator_tag);
 
     template <class InputIterator>
-    void do_insert (iterator      position,
-                    InputIterator first,
-                    InputIterator last,
-                    input_iterator_tag);
+    void do_insert (iterator position, InputIterator first, InputIterator last, input_iterator_tag);
 
     template <class ForwardIterator>
     void do_insert (iterator        position,
@@ -176,31 +180,33 @@ protected:
 
     void init (size_type n, const value_type& value);
 };
+
 // Implementation __vector_pod
 
 template <class T, class Allocator>
-inline __vector_pod<T, Allocator>::__vector_pod()
-  : capacity_ (0), size_ (0), data_ (0)
+inline __vector_pod<T, Allocator>::__vector_pod() : capacity_ (0), size_ (0), data_ (0)
 {
 }
+
 template <class T, class Allocator>
 inline __vector_pod<T, Allocator>::__vector_pod (const Allocator& a)
   : capacity_ (a, 0), size_ (0), data_ (0)
 {
 }
+
 template <class T, class Allocator>
-inline __vector_pod<T, Allocator>::__vector_pod (size_type n)
-  : capacity_ (0), size_ (0), data_ (0)
+inline __vector_pod<T, Allocator>::__vector_pod (size_type n) : capacity_ (0), size_ (0), data_ (0)
 {
     init (n, value_type());
 }
+
 template <class T, class Allocator>
-inline __vector_pod<T, Allocator>::__vector_pod (size_type         n,
-                                                 const value_type& value)
+inline __vector_pod<T, Allocator>::__vector_pod (size_type n, const value_type& value)
   : capacity_ (0), size_ (0), data_ (0)
 {
     init (n, value);
 }
+
 template <class T, class Allocator>
 inline __vector_pod<T, Allocator>::__vector_pod (size_type         n,
                                                  const value_type& value,
@@ -209,12 +215,14 @@ inline __vector_pod<T, Allocator>::__vector_pod (size_type         n,
 {
     init (n, value);
 }
+
 template <class T, class Allocator>
 __vector_pod<T, Allocator>::__vector_pod (const __vector_pod& x)
   : capacity_ (x.alloc(), 0), size_ (0), data_ (0)
 {
     init (x.begin(), x.end(), random_access_iterator_tag());
 }
+
 template <class T, class Allocator>
 void
 __vector_pod<T, Allocator>::init (size_type n, const value_type& value)
@@ -232,6 +240,7 @@ __vector_pod<T, Allocator>::init (size_type n, const value_type& value)
         _STD::fill_n (data(), n, value);
     }
 }
+
 template <class T, class Allocator>
 inline __vector_pod<T, Allocator>::ÃÂ¢ÃÂÃÂ¾__vector_pod()
 {
@@ -240,6 +249,7 @@ inline __vector_pod<T, Allocator>::ÃÂ¢ÃÂÃÂ¾__vector_pod()
         alloc().deallocate (data(), cap());
     }
 }
+
 template <class T, class Allocator>
 __vector_pod<T, Allocator>&
 __vector_pod<T, Allocator>::operator= (const __vector_pod& x)
@@ -250,6 +260,7 @@ __vector_pod<T, Allocator>::operator= (const __vector_pod& x)
     }
     return *this;
 }
+
 template <class T, class Allocator>
 void
 __vector_pod<T, Allocator>::assign (size_type n, const value_type& u)
@@ -275,54 +286,63 @@ __vector_pod<T, Allocator>::assign (size_type n, const value_type& u)
     _STD::fill_n (data(), n, u);
     size_ = n;
 }
+
 template <class T, class Allocator>
 inline typename __vector_pod<T, Allocator>::allocator_type
 __vector_pod<T, Allocator>::get_allocator () const
 {
     return alloc();
 }
+
 template <class T, class Allocator>
 inline typename __vector_pod<T, Allocator>::iterator
 __vector_pod<T, Allocator>::begin ()
 {
     return data();
 }
+
 template <class T, class Allocator>
 inline typename __vector_pod<T, Allocator>::const_iterator
 __vector_pod<T, Allocator>::begin () const
 {
     return data();
 }
+
 template <class T, class Allocator>
 inline typename __vector_pod<T, Allocator>::iterator
 __vector_pod<T, Allocator>::end ()
 {
     return data() + size_;
 }
+
 template <class T, class Allocator>
 inline typename __vector_pod<T, Allocator>::const_iterator
 __vector_pod<T, Allocator>::end () const
 {
     return data() + size_;
 }
+
 template <class T, class Allocator>
 inline typename __vector_pod<T, Allocator>::size_type
 __vector_pod<T, Allocator>::size () const
 {
     return size_;
 }
+
 template <class T, class Allocator>
 inline typename __vector_pod<T, Allocator>::size_type
 __vector_pod<T, Allocator>::max_size () const
 {
     return alloc().max_size();
 }
+
 template <class T, class Allocator>
 inline void
 __vector_pod<T, Allocator>::resize (size_type sz)
 {
     resize (sz, value_type());
 }
+
 template <class T, class Allocator>
 void
 __vector_pod<T, Allocator>::resize (size_type sz, const value_type& c)
@@ -336,18 +356,21 @@ __vector_pod<T, Allocator>::resize (size_type sz, const value_type& c)
         erase (begin() + sz, end());
     }
 }
+
 template <class T, class Allocator>
 inline typename __vector_pod<T, Allocator>::size_type
 __vector_pod<T, Allocator>::capacity () const
 {
     return cap();
 }
+
 template <class T, class Allocator>
 inline bool
 __vector_pod<T, Allocator>::empty () const
 {
     return size_ == 0;
 }
+
 template <class T, class Allocator>
 void
 __vector_pod<T, Allocator>::reserve (size_type n)
@@ -370,18 +393,21 @@ __vector_pod<T, Allocator>::reserve (size_type n)
         cap() = n;
     }
 }
+
 template <class T, class Allocator>
 inline typename __vector_pod<T, Allocator>::reference
 __vector_pod<T, Allocator>::operator[] (size_type n)
 {
     return *(data() + n);
 }
+
 template <class T, class Allocator>
 inline typename __vector_pod<T, Allocator>::const_reference
 __vector_pod<T, Allocator>::operator[] (size_type n) const
 {
     return *(data() + n);
 }
+
 template <class T, class Allocator>
 typename __vector_pod<T, Allocator>::const_reference
 __vector_pod<T, Allocator>::at (size_type n) const
@@ -394,6 +420,7 @@ __vector_pod<T, Allocator>::at (size_type n) const
 #endif
     return *(data() + n);
 }
+
 template <class T, class Allocator>
 typename __vector_pod<T, Allocator>::reference
 __vector_pod<T, Allocator>::at (size_type n)
@@ -406,42 +433,49 @@ __vector_pod<T, Allocator>::at (size_type n)
 #endif
     return *(data() + n);
 }
+
 template <class T, class Allocator>
 inline typename __vector_pod<T, Allocator>::reference
 __vector_pod<T, Allocator>::front ()
 {
     return *data();
 }
+
 template <class T, class Allocator>
 inline typename __vector_pod<T, Allocator>::const_reference
 __vector_pod<T, Allocator>::front () const
 {
     return *data();
 }
+
 template <class T, class Allocator>
 inline typename __vector_pod<T, Allocator>::reference
 __vector_pod<T, Allocator>::back ()
 {
     return *(data() + size_ - 1);
 }
+
 template <class T, class Allocator>
 inline typename __vector_pod<T, Allocator>::const_reference
 __vector_pod<T, Allocator>::back () const
 {
     return *(data() + size_ - 1);
 }
+
 template <class T, class Allocator>
 inline void
 __vector_pod<T, Allocator>::push_back (const value_type& x)
 {
     insert (end(), 1, x);
 }
+
 template <class T, class Allocator>
 inline void
 __vector_pod<T, Allocator>::pop_back ()
 {
     --size_;
 }
+
 template <class T, class Allocator>
 inline typename __vector_pod<T, Allocator>::iterator
 __vector_pod<T, Allocator>::insert (iterator position, const value_type& x)
@@ -450,11 +484,10 @@ __vector_pod<T, Allocator>::insert (iterator position, const value_type& x)
     insert (position, 1, x);
     return data() + pos;
 }
+
 template <class T, class Allocator>
 void
-__vector_pod<T, Allocator>::insert (iterator          position,
-                                    size_type         n,
-                                    const value_type& x)
+__vector_pod<T, Allocator>::insert (iterator position, size_type n, const value_type& x)
 {
     if (n == 0)
     {
@@ -512,6 +545,7 @@ __vector_pod<T, Allocator>::insert (iterator          position,
         cap() = newcap;
     }
 }
+
 template <class T, class Allocator>
 typename __vector_pod<T, Allocator>::iterator
 __vector_pod<T, Allocator>::erase (iterator position)
@@ -525,6 +559,7 @@ __vector_pod<T, Allocator>::erase (iterator position)
     --size_;
     return position;
 }
+
 template <class T, class Allocator>
 typename __vector_pod<T, Allocator>::iterator
 __vector_pod<T, Allocator>::erase (iterator first, iterator last)
@@ -542,6 +577,7 @@ __vector_pod<T, Allocator>::erase (iterator first, iterator last)
     size_ -= size_type (last - first);
     return first;
 }
+
 template <class T, class Allocator>
 inline void
 __vector_pod<T, Allocator>::swap (__vector_pod& y)
@@ -553,18 +589,18 @@ __vector_pod<T, Allocator>::swap (__vector_pod& y)
         _STD::swap (size_, y.size_);
     }
 }
+
 template <class T, class Allocator>
 inline void
 __vector_pod<T, Allocator>::clear ()
 {
     size_ = 0;
 }
+
 template <class T, class Allocator>
 template <class InputIterator>
 void
-__vector_pod<T, Allocator>::init (InputIterator first,
-                                  InputIterator last,
-                                  input_iterator_tag)
+__vector_pod<T, Allocator>::init (InputIterator first, InputIterator last, input_iterator_tag)
 {
 #ifndef _MSL_NO_EXCEPTIONS
     try
@@ -583,12 +619,11 @@ __vector_pod<T, Allocator>::init (InputIterator first,
     }
 #endif
 }
+
 template <class T, class Allocator>
 template <class ForwardIterator>
 void
-__vector_pod<T, Allocator>::init (ForwardIterator first,
-                                  ForwardIterator last,
-                                  forward_iterator_tag)
+__vector_pod<T, Allocator>::init (ForwardIterator first, ForwardIterator last, forward_iterator_tag)
 {
     size_ = cap() = (size_type)_STD::distance (first, last);
     if (size_ > max_size())
@@ -603,12 +638,11 @@ __vector_pod<T, Allocator>::init (ForwardIterator first,
         _STD::copy (first, last, data());
     }
 }
+
 template <class T, class Allocator>
 template <class InputIterator>
 void
-__vector_pod<T, Allocator>::do_assign (InputIterator first,
-                                       InputIterator last,
-                                       input_iterator_tag)
+__vector_pod<T, Allocator>::do_assign (InputIterator first, InputIterator last, input_iterator_tag)
 {
     clear();
     for (; first != last; ++first)
@@ -616,6 +650,7 @@ __vector_pod<T, Allocator>::do_assign (InputIterator first,
         push_back (*first);
     }
 }
+
 template <class T, class Allocator>
 template <class ForwardIterator>
 void
@@ -645,6 +680,7 @@ __vector_pod<T, Allocator>::do_assign (ForwardIterator first,
     _STD::copy (first, last, data());
     size_ = n;
 }
+
 template <class T, class Allocator>
 template <class InputIterator>
 void
@@ -657,6 +693,7 @@ __vector_pod<T, Allocator>::do_insert (iterator      position,
     const vector<T, Allocator>& tempr = temp;
     do_insert (position, tempr.begin(), tempr.end(), random_access_iterator_tag());
 }
+
 template <class T, class Allocator>
 template <class ForwardIterator>
 void
@@ -720,29 +757,31 @@ __vector_pod<T, Allocator>::do_insert (iterator        position,
 
 // __vector_imp for pods
 
-template <class T, class Allocator, bool IsPOD> class __vector_imp;
+template <class T, class Allocator, bool IsPOD>
+class __vector_imp;
+
 // Error   : illegal use of incomplete struct/union/class
 // 'Metrowerks::compile_assert<0>'
 //  This means that the store_as table in <msl_utility> is not set correctly.
 //  sizeof(T) == sizeof(typename Metrowerks::store_as<T>::type must be true.
 template <class T, class Allocator>
 class __vector_imp<T, Allocator, true>
-  : private __vector_pod<
-        typename Metrowerks::store_as<T>::type,
-        typename Allocator::rebind<typename Metrowerks::store_as<T>::type>::other>,
-    private Metrowerks::compile_assert<bool (
-        sizeof (T) == sizeof (typename Metrowerks::store_as<T>::type))>
+  : private __vector_pod<typename Metrowerks::store_as<T>::type,
+                         typename Allocator::rebind<typename Metrowerks::store_as<T>::type>::other>,
+    private Metrowerks::compile_assert<bool (sizeof (T) ==
+                                             sizeof (typename Metrowerks::store_as<T>::type))>
 {
-    typedef __vector_pod<
-        typename Metrowerks::store_as<T>::type,
-        typename Allocator::rebind<typename Metrowerks::store_as<T>::type>::other>
+    typedef __vector_pod<typename Metrowerks::store_as<T>::type,
+                         typename Allocator::rebind<typename Metrowerks::store_as<T>::type>::other>
                                           base;
     typedef typename base::allocator_type base_allocator;
 
 protected:
-    template <bool b> struct chooser
+    template <bool b>
+    struct chooser
     {
     };
+
     // types:
     typedef typename Allocator::reference       reference;
     typedef typename Allocator::const_reference const_reference;
@@ -754,338 +793,344 @@ protected:
     typedef Allocator                           allocator_type;
     typedef typename Allocator::pointer         pointer;
     typedef typename Allocator::const_pointer   const_pointer;
+
     // _lib.vector.cons_ construct/copy/destroy:
     __vector_imp () {}
+
     explicit __vector_imp (const Allocator& a) : base (a) {}
+
     explicit __vector_imp (size_type n) : base (n) {}
+
     __vector_imp (size_type n, const value_type& value)
       : base (n, (const typename base::value_type&)value)
     {
     }
+
     __vector_imp (size_type n, const value_type& value, const Allocator& a)
       : base (n, (const typename base::value_type&)value, a)
     {
     }
+
     void
     assign (size_type n, const value_type& u)
     {
         base::assign (n, (const typename base::value_type&)u);
     }
+
     allocator_type
     get_allocator () const
     {
         return base::get_allocator();
     }
+
     // iterators:
     iterator
     begin ()
     {
         return iterator (base::begin());
     }
+
     const_iterator
     begin () const
     {
         return const_iterator (base::begin());
     }
+
     iterator
     end ()
     {
         return iterator (base::end());
     }
+
     const_iterator
     end () const
     {
         return const_iterator (base::end());
     }
+
     // _lib.vector.capacity_ capacity:
     size_type
     size () const
     {
         return base::size();
     }
+
     size_type
     max_size () const
     {
         return base::max_size();
     }
+
     void
     resize (size_type sz)
     {
         base::resize (sz);
     }
+
     void
     resize (size_type sz, const value_type& c)
     {
         base::resize (sz, (const typename base::value_type&)c);
     }
+
     size_type
     capacity () const
     {
         return base::capacity();
     }
+
     bool
     empty () const
     {
         return base::empty();
     }
+
     void
     reserve (size_type n)
     {
         base::reserve (n);
     }
+
     // element access:
     reference
     operator[] (size_type n)
     {
         return reference (base::operator[] (n));
     }
+
     const_reference
     operator[] (size_type n) const
     {
         return const_reference (base::operator[] (n));
     }
+
     const_reference
     at (size_type n) const
     {
         return const_reference (base::at (n));
     }
+
     reference
     at (size_type n)
     {
         return reference (base::at (n));
     }
+
     reference
     front ()
     {
         return reference (base::front());
     }
+
     const_reference
     front () const
     {
         return const_reference (base::front());
     }
+
     reference
     back ()
     {
         return reference (base::back());
     }
+
     const_reference
     back () const
     {
         return const_reference (base::back());
     }
+
     // _lib.vector.modifiers_ modifiers:
     void
     push_back (const value_type& x)
     {
         base::push_back ((const typename base::value_type&)x);
     }
+
     void
     pop_back ()
     {
         base::pop_back();
     }
+
     iterator
     insert (iterator position, const value_type& x)
     {
-        return iterator (base::insert (base::iterator (position),
-                                       (const typename base::value_type&)x));
+        return iterator (
+            base::insert (base::iterator (position), (const typename base::value_type&)x));
     }
+
     void
     insert (iterator position, size_type n, const value_type& x)
     {
-        base::insert (
-            base::iterator (position), n, (const typename base::value_type&)x);
+        base::insert (base::iterator (position), n, (const typename base::value_type&)x);
     }
+
     iterator
     erase (iterator position)
     {
         return iterator (base::erase (base::iterator (position)));
     }
+
     iterator
     erase (iterator first, iterator last)
     {
-        return iterator (
-            base::erase (base::iterator (first), base::iterator (last)));
+        return iterator (base::erase (base::iterator (first), base::iterator (last)));
     }
+
     void
     swap (__vector_imp& y)
     {
         base::swap ((base&)y);
     }
+
     void
     clear ()
     {
         base::clear();
     }
+
     void
     init (size_type n, const value_type& u)
     {
         base::init (n, (const typename base::value_type&)u);
     }
+
     template <class InputIterator>
     void
     choose_init (InputIterator first, InputIterator last, chooser<true>)
     {
         init (static_cast<size_type> (first), (value_type)last);
     }
+
     template <class InputIterator>
     void
     choose_init (InputIterator first, InputIterator last, chooser<false>)
     {
         typedef iterator_traits<InputIterator>::value_type outside_value;
-        choose_init (
-            first,
-            last,
-            chooser<Metrowerks::is_same<outside_value, value_type>::value>(),
-            chooser<Metrowerks::is_same<value_type, base::value_type>::value>());
+        choose_init (first,
+                     last,
+                     chooser<Metrowerks::is_same<outside_value, value_type>::value>(),
+                     chooser<Metrowerks::is_same<value_type, base::value_type>::value>());
     }
+
     template <class InputIterator>
     void
-    choose_init (InputIterator first,
-                 InputIterator last,
-                 chooser<true>,
-                 chooser<true>)
+    choose_init (InputIterator first, InputIterator last, chooser<true>, chooser<true>)
     {
-        base::init (
-            first, last, iterator_traits<InputIterator>::iterator_category());
+        base::init (first, last, iterator_traits<InputIterator>::iterator_category());
     }
+
     template <class InputIterator>
     void
-    choose_init (InputIterator first,
-                 InputIterator last,
-                 chooser<false>,
-                 chooser<true>)
+    choose_init (InputIterator first, InputIterator last, chooser<false>, chooser<true>)
     {
-        typedef __convert_iterator<__implicit_convert<pointer, InputIterator> >
-            first_convert;
+        typedef __convert_iterator<__implicit_convert<pointer, InputIterator> > first_convert;
         base::init (first_convert (first),
                     first_convert (last),
                     iterator_traits<InputIterator>::iterator_category());
     }
+
     template <class InputIterator>
     void
-    choose_init (InputIterator first,
-                 InputIterator last,
-                 chooser<true>,
-                 chooser<false>)
+    choose_init (InputIterator first, InputIterator last, chooser<true>, chooser<false>)
     {
-        typedef __convert_iterator<
-            __reinterpret_convert<base::pointer, InputIterator> >
+        typedef __convert_iterator<__reinterpret_convert<base::pointer, InputIterator> >
             second_convert;
         base::init (second_convert (first),
                     second_convert (last),
                     iterator_traits<InputIterator>::iterator_category());
     }
+
     template <class InputIterator>
     void
-    choose_init (InputIterator first,
-                 InputIterator last,
-                 chooser<false>,
-                 chooser<false>)
+    choose_init (InputIterator first, InputIterator last, chooser<false>, chooser<false>)
     {
-        typedef __convert_iterator<__implicit_convert<pointer, InputIterator> >
-            first_convert;
-        typedef __convert_iterator<
-            __reinterpret_convert<base::pointer, first_convert> >
+        typedef __convert_iterator<__implicit_convert<pointer, InputIterator> > first_convert;
+        typedef __convert_iterator<__reinterpret_convert<base::pointer, first_convert> >
             second_convert;
         base::init (second_convert (first_convert (first)),
                     second_convert (first_convert (last)),
                     iterator_traits<InputIterator>::iterator_category());
     }
+
     template <class InputIterator>
     void
     choose_assign (InputIterator first, InputIterator last, chooser<true>)
     {
         assign (static_cast<size_type> (first), (value_type)last);
     }
+
     template <class InputIterator>
     void
     choose_assign (InputIterator first, InputIterator last, chooser<false>)
     {
         typedef iterator_traits<InputIterator>::value_type outside_value;
-        choose_assign (
-            first,
-            last,
-            chooser<Metrowerks::is_same<outside_value, value_type>::value>(),
-            chooser<Metrowerks::is_same<value_type, base::value_type>::value>());
+        choose_assign (first,
+                       last,
+                       chooser<Metrowerks::is_same<outside_value, value_type>::value>(),
+                       chooser<Metrowerks::is_same<value_type, base::value_type>::value>());
     }
+
     template <class InputIterator>
     void
-    choose_assign (InputIterator first,
-                   InputIterator last,
-                   chooser<true>,
-                   chooser<true>)
+    choose_assign (InputIterator first, InputIterator last, chooser<true>, chooser<true>)
     {
         do_assign (first, last, iterator_traits<InputIterator>::iterator_category());
     }
+
     template <class InputIterator>
     void
-    choose_assign (InputIterator first,
-                   InputIterator last,
-                   chooser<false>,
-                   chooser<true>)
+    choose_assign (InputIterator first, InputIterator last, chooser<false>, chooser<true>)
     {
-        typedef __convert_iterator<__implicit_convert<pointer, InputIterator> >
-            first_convert;
+        typedef __convert_iterator<__implicit_convert<pointer, InputIterator> > first_convert;
         do_assign (first_convert (first),
                    first_convert (last),
                    iterator_traits<InputIterator>::iterator_category());
     }
+
     template <class InputIterator>
     void
-    choose_assign (InputIterator first,
-                   InputIterator last,
-                   chooser<true>,
-                   chooser<false>)
+    choose_assign (InputIterator first, InputIterator last, chooser<true>, chooser<false>)
     {
-        typedef __convert_iterator<
-            __reinterpret_convert<base::pointer, InputIterator> >
+        typedef __convert_iterator<__reinterpret_convert<base::pointer, InputIterator> >
             second_convert;
         do_assign (second_convert (first),
                    second_convert (last),
                    iterator_traits<InputIterator>::iterator_category());
     }
+
     template <class InputIterator>
     void
-    choose_assign (InputIterator first,
-                   InputIterator last,
-                   chooser<false>,
-                   chooser<false>)
+    choose_assign (InputIterator first, InputIterator last, chooser<false>, chooser<false>)
     {
-        typedef __convert_iterator<__implicit_convert<pointer, InputIterator> >
-            first_convert;
-        typedef __convert_iterator<
-            __reinterpret_convert<base::pointer, first_convert> >
+        typedef __convert_iterator<__implicit_convert<pointer, InputIterator> > first_convert;
+        typedef __convert_iterator<__reinterpret_convert<base::pointer, first_convert> >
             second_convert;
         do_assign (second_convert (first_convert (first)),
                    second_convert (first_convert (last)),
                    iterator_traits<InputIterator>::iterator_category());
     }
+
     template <class InputIterator>
     void
-    choose_insert (iterator      position,
-                   InputIterator first,
-                   InputIterator last,
-                   chooser<true>)
+    choose_insert (iterator position, InputIterator first, InputIterator last, chooser<true>)
     {
         insert (position, static_cast<size_type> (first), (value_type)last);
     }
+
     template <class InputIterator>
     void
-    choose_insert (iterator      position,
-                   InputIterator first,
-                   InputIterator last,
-                   chooser<false>)
+    choose_insert (iterator position, InputIterator first, InputIterator last, chooser<false>)
     {
         typedef iterator_traits<InputIterator>::value_type outside_value;
-        choose_insert (
-            position,
-            first,
-            last,
-            chooser<Metrowerks::is_same<outside_value, value_type>::value>(),
-            chooser<Metrowerks::is_same<value_type, base::value_type>::value>());
+        choose_insert (position,
+                       first,
+                       last,
+                       chooser<Metrowerks::is_same<outside_value, value_type>::value>(),
+                       chooser<Metrowerks::is_same<value_type, base::value_type>::value>());
     }
+
     template <class InputIterator>
     void
     choose_insert (iterator      position,
@@ -1099,6 +1144,7 @@ protected:
                    last,
                    iterator_traits<InputIterator>::iterator_category());
     }
+
     template <class InputIterator>
     void
     choose_insert (iterator      position,
@@ -1107,13 +1153,13 @@ protected:
                    chooser<false>,
                    chooser<true>)
     {
-        typedef __convert_iterator<__implicit_convert<pointer, InputIterator> >
-            first_convert;
+        typedef __convert_iterator<__implicit_convert<pointer, InputIterator> > first_convert;
         do_insert (base::iterator (position),
                    first_convert (first),
                    first_convert (last),
                    iterator_traits<InputIterator>::iterator_category());
     }
+
     template <class InputIterator>
     void
     choose_insert (iterator      position,
@@ -1122,14 +1168,14 @@ protected:
                    chooser<true>,
                    chooser<false>)
     {
-        typedef __convert_iterator<
-            __reinterpret_convert<base::pointer, InputIterator> >
+        typedef __convert_iterator<__reinterpret_convert<base::pointer, InputIterator> >
             second_convert;
         do_insert (base::iterator (position),
                    second_convert (first),
                    second_convert (last),
                    iterator_traits<InputIterator>::iterator_category());
     }
+
     template <class InputIterator>
     void
     choose_insert (iterator      position,
@@ -1138,10 +1184,8 @@ protected:
                    chooser<false>,
                    chooser<false>)
     {
-        typedef __convert_iterator<__implicit_convert<pointer, InputIterator> >
-            first_convert;
-        typedef __convert_iterator<
-            __reinterpret_convert<base::pointer, first_convert> >
+        typedef __convert_iterator<__implicit_convert<pointer, InputIterator> > first_convert;
+        typedef __convert_iterator<__reinterpret_convert<base::pointer, first_convert> >
             second_convert;
         do_insert (base::iterator (position),
                    second_convert (first_convert (first)),
@@ -1149,7 +1193,9 @@ protected:
                    iterator_traits<InputIterator>::iterator_category());
     }
 };
-template <class T, class Allocator> class __vector_deleter
+
+template <class T, class Allocator>
+class __vector_deleter
 {
 public:
     // types:
@@ -1163,45 +1209,52 @@ public:
     typedef Allocator                           allocator_type;
     typedef typename Allocator::pointer         pointer;
     typedef typename Allocator::const_pointer   const_pointer;
+
     // _lib.vector.cons_ construct/copy/destroy:
     __vector_deleter () : capacity_ (0), size_ (0), data_ (0) {}
-    explicit __vector_deleter (const Allocator& a)
-      : capacity_ (a, 0), size_ (0), data_ (0)
-    {
-    }
+
+    explicit __vector_deleter (const Allocator& a) : capacity_ (a, 0), size_ (0), data_ (0) {}
+
     ÃÂ¢ÃÂÃÂ¾__vector_deleter ();
     void clear ();
     void swap (__vector_deleter& y);
+
     pointer&
     data ()
     {
         return data_;
     }
+
     const pointer&
     data () const
     {
         return data_;
     }
+
     allocator_type&
     alloc ()
     {
         return capacity_.first();
     }
+
     const allocator_type&
     alloc () const
     {
         return capacity_.first();
     }
+
     size_type&
     cap ()
     {
         return capacity_.second();
     }
+
     const size_type&
     cap () const
     {
         return capacity_.second();
     }
+
     Metrowerks::compressed_pair<allocator_type, size_type> capacity_;
     size_type                                              size_;
     pointer                                                data_;
@@ -1210,6 +1263,7 @@ private:
     __vector_deleter (const __vector_deleter&);            // not defined
     __vector_deleter& operator= (const __vector_deleter&); // not defined
 };
+
 template <class T, class Allocator>
 __vector_deleter<T, Allocator>::ÃÂ¢ÃÂÃÂ¾__vector_deleter()
 {
@@ -1219,6 +1273,7 @@ __vector_deleter<T, Allocator>::ÃÂ¢ÃÂÃÂ¾__vector_deleter()
         alloc().deallocate (data(), cap());
     }
 }
+
 template <class T, class Allocator>
 void
 __vector_deleter<T, Allocator>::clear ()
@@ -1231,6 +1286,7 @@ __vector_deleter<T, Allocator>::clear ()
     }
     size_ = 0;
 }
+
 template <class T, class Allocator>
 inline void
 swap (__vector_deleter<T, Allocator>& x, __vector_deleter<T, Allocator>& y)
@@ -1242,12 +1298,14 @@ swap (__vector_deleter<T, Allocator>& x, __vector_deleter<T, Allocator>& y)
         swap (x.size_, y.size_);
     }
 }
+
 template <class T, class Allocator>
 inline void
 __vector_deleter<T, Allocator>::swap (__vector_deleter& y)
 {
     _STD::swap (*this, y);
 }
+
 // __vector_imp for non-pods
 
 template <class T, class Allocator>
@@ -1256,9 +1314,11 @@ class __vector_imp<T, Allocator, false> : private __vector_deleter<T, Allocator>
     typedef __vector_deleter<T, Allocator> base;
 
 protected:
-    template <bool b> struct chooser
+    template <bool b>
+    struct chooser
     {
     };
+
     // types:
     typedef typename Allocator::reference       reference;
     typedef typename Allocator::const_reference const_reference;
@@ -1312,12 +1372,14 @@ protected:
     iterator        erase (iterator first, iterator last);
     void            swap (__vector_imp& y);
     void            clear ();
+
     template <class InputIterator>
     void
     choose_init (InputIterator first, InputIterator last, chooser<true>)
     {
         init (static_cast<size_type> (first), static_cast<value_type> (last));
     }
+
     template <class InputIterator>
     void
     choose_init (InputIterator first, InputIterator last, chooser<false>)
@@ -1330,12 +1392,14 @@ protected:
 
     template <class ForwardIterator>
     void init (ForwardIterator first, ForwardIterator last, forward_iterator_tag);
+
     template <class InputIterator>
     void
     choose_assign (InputIterator first, InputIterator last, chooser<true>)
     {
         assign (static_cast<size_type> (first), static_cast<value_type> (last));
     }
+
     template <class InputIterator>
     void
     choose_assign (InputIterator first, InputIterator last, chooser<false>)
@@ -1347,38 +1411,24 @@ protected:
     void do_assign (InputIterator first, InputIterator last, input_iterator_tag);
 
     template <class ForwardIterator>
-    void do_assign (ForwardIterator first,
-                    ForwardIterator last,
-                    forward_iterator_tag);
+    void do_assign (ForwardIterator first, ForwardIterator last, forward_iterator_tag);
+
     template <class InputIterator>
     void
-    choose_insert (iterator      position,
-                   InputIterator first,
-                   InputIterator last,
-                   chooser<true>)
+    choose_insert (iterator position, InputIterator first, InputIterator last, chooser<true>)
     {
-        insert (position,
-                static_cast<size_type> (first),
-                static_cast<value_type> (last));
-    }
-    template <class InputIterator>
-    void
-    choose_insert (iterator      position,
-                   InputIterator first,
-                   InputIterator last,
-                   chooser<false>)
-    {
-        do_insert (position,
-                   first,
-                   last,
-                   iterator_traits<InputIterator>::iterator_category());
+        insert (position, static_cast<size_type> (first), static_cast<value_type> (last));
     }
 
     template <class InputIterator>
-    void do_insert (iterator      position,
-                    InputIterator first,
-                    InputIterator last,
-                    input_iterator_tag);
+    void
+    choose_insert (iterator position, InputIterator first, InputIterator last, chooser<false>)
+    {
+        do_insert (position, first, last, iterator_traits<InputIterator>::iterator_category());
+    }
+
+    template <class InputIterator>
+    void do_insert (iterator position, InputIterator first, InputIterator last, input_iterator_tag);
 
     template <class ForwardIterator>
     void do_insert (iterator        position,
@@ -1388,28 +1438,31 @@ protected:
 
     void init (size_type n, const value_type& value);
 };
+
 // __vector_imp for non-pods Implementation
 
 template <class T, class Allocator>
 inline __vector_imp<T, Allocator, false>::__vector_imp()
 {
 }
+
 template <class T, class Allocator>
-inline __vector_imp<T, Allocator, false>::__vector_imp (const Allocator& a)
-  : base (a)
+inline __vector_imp<T, Allocator, false>::__vector_imp (const Allocator& a) : base (a)
 {
 }
+
 template <class T, class Allocator>
 inline __vector_imp<T, Allocator, false>::__vector_imp (size_type n)
 {
     init (n, value_type());
 }
+
 template <class T, class Allocator>
-inline __vector_imp<T, Allocator, false>::__vector_imp (size_type         n,
-                                                        const value_type& value)
+inline __vector_imp<T, Allocator, false>::__vector_imp (size_type n, const value_type& value)
 {
     init (n, value);
 }
+
 template <class T, class Allocator>
 inline __vector_imp<T, Allocator, false>::__vector_imp (size_type         n,
                                                         const value_type& value,
@@ -1418,12 +1471,13 @@ inline __vector_imp<T, Allocator, false>::__vector_imp (size_type         n,
 {
     init (n, value);
 }
+
 template <class T, class Allocator>
-inline __vector_imp<T, Allocator, false>::__vector_imp (const __vector_imp& x)
-  : base (x.alloc())
+inline __vector_imp<T, Allocator, false>::__vector_imp (const __vector_imp& x) : base (x.alloc())
 {
     init (x.begin(), x.end(), random_access_iterator_tag());
 }
+
 template <class T, class Allocator>
 void
 __vector_imp<T, Allocator, false>::init (size_type n, const value_type& value)
@@ -1445,6 +1499,7 @@ __vector_imp<T, Allocator, false>::init (size_type n, const value_type& value)
         }
     }
 }
+
 template <class T, class Allocator>
 inline __vector_imp<T, Allocator, false>&
 __vector_imp<T, Allocator, false>::operator= (const __vector_imp& x)
@@ -1455,6 +1510,7 @@ __vector_imp<T, Allocator, false>::operator= (const __vector_imp& x)
     }
     return *this;
 }
+
 template <class T, class Allocator>
 void
 __vector_imp<T, Allocator, false>::assign (size_type n, const value_type& u)
@@ -1509,48 +1565,56 @@ __vector_imp<T, Allocator, false>::assign (size_type n, const value_type& u)
         }
     }
 }
+
 template <class T, class Allocator>
 inline typename __vector_imp<T, Allocator, false>::allocator_type
 __vector_imp<T, Allocator, false>::get_allocator () const
 {
     return base::alloc();
 }
+
 template <class T, class Allocator>
 inline typename __vector_imp<T, Allocator, false>::iterator
 __vector_imp<T, Allocator, false>::begin ()
 {
     return base::data();
 }
+
 template <class T, class Allocator>
 inline typename __vector_imp<T, Allocator, false>::const_iterator
 __vector_imp<T, Allocator, false>::begin () const
 {
     return base::data();
 }
+
 template <class T, class Allocator>
 inline typename __vector_imp<T, Allocator, false>::iterator
 __vector_imp<T, Allocator, false>::end ()
 {
     return base::data() + base::size_;
 }
+
 template <class T, class Allocator>
 inline typename __vector_imp<T, Allocator, false>::const_iterator
 __vector_imp<T, Allocator, false>::end () const
 {
     return base::data() + base::size_;
 }
+
 template <class T, class Allocator>
 inline typename __vector_imp<T, Allocator, false>::size_type
 __vector_imp<T, Allocator, false>::size () const
 {
     return base::size_;
 }
+
 template <class T, class Allocator>
 inline typename __vector_imp<T, Allocator, false>::size_type
 __vector_imp<T, Allocator, false>::max_size () const
 {
     return base::alloc().max_size();
 }
+
 template <class T, class Allocator>
 void
 __vector_imp<T, Allocator, false>::resize (size_type sz)
@@ -1564,6 +1628,7 @@ __vector_imp<T, Allocator, false>::resize (size_type sz)
         erase (begin() + sz, end());
     }
 }
+
 template <class T, class Allocator>
 void
 __vector_imp<T, Allocator, false>::resize (size_type sz, const value_type& value)
@@ -1577,18 +1642,21 @@ __vector_imp<T, Allocator, false>::resize (size_type sz, const value_type& value
         erase (begin() + sz, end());
     }
 }
+
 template <class T, class Allocator>
 inline typename __vector_imp<T, Allocator, false>::size_type
 __vector_imp<T, Allocator, false>::capacity () const
 {
     return base::cap();
 }
+
 template <class T, class Allocator>
 inline bool
 __vector_imp<T, Allocator, false>::empty () const
 {
     return base::size_ == 0;
 }
+
 template <class T, class Allocator>
 void
 __vector_imp<T, Allocator, false>::reserve (size_type n)
@@ -1614,18 +1682,21 @@ __vector_imp<T, Allocator, false>::reserve (size_type n)
         tmp.swap (*this);
     }
 }
+
 template <class T, class Allocator>
 inline typename __vector_imp<T, Allocator, false>::reference
 __vector_imp<T, Allocator, false>::operator[] (size_type n)
 {
     return *(base::data() + n);
 }
+
 template <class T, class Allocator>
 inline typename __vector_imp<T, Allocator, false>::const_reference
 __vector_imp<T, Allocator, false>::operator[] (size_type n) const
 {
     return *(base::data() + n);
 }
+
 template <class T, class Allocator>
 typename __vector_imp<T, Allocator, false>::const_reference
 __vector_imp<T, Allocator, false>::at (size_type n) const
@@ -1638,6 +1709,7 @@ __vector_imp<T, Allocator, false>::at (size_type n) const
 #endif
     return *(base::data() + n);
 }
+
 template <class T, class Allocator>
 typename __vector_imp<T, Allocator, false>::reference
 __vector_imp<T, Allocator, false>::at (size_type n)
@@ -1650,42 +1722,49 @@ __vector_imp<T, Allocator, false>::at (size_type n)
 #endif
     return *(base::data() + n);
 }
+
 template <class T, class Allocator>
 inline typename __vector_imp<T, Allocator, false>::reference
 __vector_imp<T, Allocator, false>::front ()
 {
     return *base::data();
 }
+
 template <class T, class Allocator>
 inline typename __vector_imp<T, Allocator, false>::const_reference
 __vector_imp<T, Allocator, false>::front () const
 {
     return *base::data();
 }
+
 template <class T, class Allocator>
 inline typename __vector_imp<T, Allocator, false>::reference
 __vector_imp<T, Allocator, false>::back ()
 {
     return *(base::data() + base::size_ - 1);
 }
+
 template <class T, class Allocator>
 inline typename __vector_imp<T, Allocator, false>::const_reference
 __vector_imp<T, Allocator, false>::back () const
 {
     return *(base::data() + base::size_ - 1);
 }
+
 template <class T, class Allocator>
 inline void
 __vector_imp<T, Allocator, false>::push_back (const value_type& x)
 {
     insert (end(), 1, x);
 }
+
 template <class T, class Allocator>
 inline void
 __vector_imp<T, Allocator, false>::pop_back ()
 {
     base::alloc().destroy (base::data() + --base::size_);
 }
+
 template <class T, class Allocator>
 inline typename __vector_imp<T, Allocator, false>::iterator
 __vector_imp<T, Allocator, false>::insert (iterator position, const value_type& x)
@@ -1694,11 +1773,10 @@ __vector_imp<T, Allocator, false>::insert (iterator position, const value_type& 
     insert (position, 1, x);
     return base::data() + pos;
 }
+
 template <class T, class Allocator>
 void
-__vector_imp<T, Allocator, false>::insert (iterator          position,
-                                           size_type         n,
-                                           const value_type& x)
+__vector_imp<T, Allocator, false>::insert (iterator position, size_type n, const value_type& x)
 {
     if (n == 0)
     {
@@ -1747,7 +1825,7 @@ __vector_imp<T, Allocator, false>::insert (iterator          position,
     {
         __vector_deleter<value_type, allocator_type> tmp (base::alloc());
         size_type                                    newsize = base::size_ + n;
-        size_type newcap = base::cap() != 0 ? base::cap() : 1;
+        size_type                                    newcap = base::cap() != 0 ? base::cap() : 1;
         while (newsize > newcap)
         {
             if (newcap < m / 2)
@@ -1779,6 +1857,7 @@ __vector_imp<T, Allocator, false>::insert (iterator          position,
         tmp.swap (*this);
     }
 }
+
 template <class T, class Allocator>
 typename __vector_imp<T, Allocator, false>::iterator
 __vector_imp<T, Allocator, false>::erase (iterator position)
@@ -1792,6 +1871,7 @@ __vector_imp<T, Allocator, false>::erase (iterator position)
     base::alloc().destroy (base::data() + --base::size_);
     return position;
 }
+
 template <class T, class Allocator>
 typename __vector_imp<T, Allocator, false>::iterator
 __vector_imp<T, Allocator, false>::erase (iterator first, iterator last)
@@ -1813,18 +1893,21 @@ __vector_imp<T, Allocator, false>::erase (iterator first, iterator last)
     base::size_ -= size_type (last - first);
     return first;
 }
+
 template <class T, class Allocator>
 inline void
 __vector_imp<T, Allocator, false>::swap (__vector_imp& x)
 {
     base::swap (x);
 }
+
 template <class T, class Allocator>
 inline void
 __vector_imp<T, Allocator, false>::clear ()
 {
     base::clear();
 }
+
 template <class T, class Allocator>
 template <class InputIterator>
 inline void
@@ -1837,6 +1920,7 @@ __vector_imp<T, Allocator, false>::init (InputIterator first,
         push_back (*first);
     }
 }
+
 template <class T, class Allocator>
 template <class ForwardIterator>
 void
@@ -1861,6 +1945,7 @@ __vector_imp<T, Allocator, false>::init (ForwardIterator first,
         }
     }
 }
+
 template <class T, class Allocator>
 template <class InputIterator>
 void
@@ -1874,6 +1959,7 @@ __vector_imp<T, Allocator, false>::do_assign (InputIterator first,
         push_back (*first);
     }
 }
+
 template <class T, class Allocator>
 template <class ForwardIterator>
 void
@@ -1931,6 +2017,7 @@ __vector_imp<T, Allocator, false>::do_assign (ForwardIterator first,
         }
     }
 }
+
 template <class T, class Allocator>
 template <class InputIterator>
 void
@@ -1943,6 +2030,7 @@ __vector_imp<T, Allocator, false>::do_insert (iterator      position,
     const vector<T, Allocator>& tempr = temp;
     do_insert (position, tempr.begin(), tempr.end(), random_access_iterator_tag());
 }
+
 template <class T, class Allocator>
 template <class ForwardIterator>
 void
@@ -1997,7 +2085,7 @@ __vector_imp<T, Allocator, false>::do_insert (iterator        position,
     {
         __vector_deleter<value_type, allocator_type> tmp (base::alloc());
         size_type                                    newsize = base::size_ + n;
-        size_type newcap = base::cap() != 0 ? base::cap() : 1;
+        size_type                                    newcap = base::cap() != 0 ? base::cap() : 1;
         while (newsize > newcap)
         {
             if (newcap < m / 2)
@@ -2061,276 +2149,322 @@ public:
     typedef typename Allocator::const_pointer      const_pointer;
     typedef _STD::reverse_iterator<iterator>       reverse_iterator;
     typedef _STD::reverse_iterator<const_iterator> const_reverse_iterator;
+
     // _lib.vector.cons_ construct/copy/destroy:
     vector () {}
+
     explicit vector (const Allocator& a) : base (a) {}
+
     explicit vector (size_type n) : base (n) {}
+
     vector (size_type n, const value_type& value) : base (n, value) {}
-    vector (size_type n, const value_type& value, const Allocator& a)
-      : base (n, value, a)
+
+    vector (size_type n, const value_type& value, const Allocator& a) : base (n, value, a) {}
+
+    template <class InputIterator>
+    vector (InputIterator first, InputIterator last)
     {
+        choose_init (first,
+                     last,
+                     typename base::chooser<Metrowerks::is_integral<InputIterator>::value>());
     }
-    template <class InputIterator> vector (InputIterator first, InputIterator last)
-    {
-        choose_init (
-            first,
-            last,
-            typename base::chooser<Metrowerks::is_integral<InputIterator>::value>());
-    }
+
     template <class InputIterator>
     vector (InputIterator first, InputIterator last, const Allocator& a) : base (a)
     {
-        choose_init (
-            first,
-            last,
-            typename base::chooser<Metrowerks::is_integral<InputIterator>::value>());
+        choose_init (first,
+                     last,
+                     typename base::chooser<Metrowerks::is_integral<InputIterator>::value>());
     }
+
     template <class InputIterator>
     void
     assign (InputIterator first, InputIterator last)
     {
-        choose_assign (
-            first,
-            last,
-            typename base::chooser<Metrowerks::is_integral<InputIterator>::value>());
+        choose_assign (first,
+                       last,
+                       typename base::chooser<Metrowerks::is_integral<InputIterator>::value>());
     }
+
     void
     assign (size_type n, const value_type& u)
     {
         base::assign (n, u);
     }
+
     allocator_type
     get_allocator () const
     {
         return base::get_allocator();
     }
+
     // iterators:
     iterator
     begin ()
     {
         return base::begin();
     }
+
     const_iterator
     begin () const
     {
         return base::begin();
     }
+
     iterator
     end ()
     {
         return base::end();
     }
+
     const_iterator
     end () const
     {
         return base::end();
     }
+
     reverse_iterator
     rbegin ()
     {
         return reverse_iterator (end());
     }
+
     const_reverse_iterator
     rbegin () const
     {
         return const_reverse_iterator (end());
     }
+
     reverse_iterator
     rend ()
     {
         return reverse_iterator (begin());
     }
+
     const_reverse_iterator
     rend () const
     {
         return const_reverse_iterator (begin());
     }
+
     // _lib.vector.capacity_ capacity:
     size_type
     size () const
     {
         return base::size();
     }
+
     size_type
     max_size () const
     {
         return base::max_size();
     }
+
     void
     resize (size_type sz)
     {
         base::resize (sz);
     }
+
     void
     resize (size_type sz, const value_type& c)
     {
         base::resize (sz, c);
     }
+
     size_type
     capacity () const
     {
         return base::capacity();
     }
+
     bool
     empty () const
     {
         return base::empty();
     }
+
     void
     reserve (size_type n)
     {
         base::reserve (n);
     }
+
     // element access:
     reference
     operator[] (size_type n)
     {
         return base::operator[] (n);
     }
+
     const_reference
     operator[] (size_type n) const
     {
         return base::operator[] (n);
     }
+
     const_reference
     at (size_type n) const
     {
         return base::at (n);
     }
+
     reference
     at (size_type n)
     {
         return base::at (n);
     }
+
     reference
     front ()
     {
         return base::front();
     }
+
     const_reference
     front () const
     {
         return base::front();
     }
+
     reference
     back ()
     {
         return base::back();
     }
+
     const_reference
     back () const
     {
         return base::back();
     }
+
     // _lib.vector.modifiers_ modifiers:
     void
     push_back (const value_type& x)
     {
         base::push_back (x);
     }
+
     void
     pop_back ()
     {
         base::pop_back();
     }
+
     iterator
     insert (iterator position, const value_type& x)
     {
         return base::insert (position, x);
     }
+
     void
     insert (iterator position, size_type n, const value_type& x)
     {
         base::insert (position, n, x);
     }
+
     template <class InputIterator>
     void
     insert (iterator position, InputIterator first, InputIterator last)
     {
-        choose_insert (
-            position,
-            first,
-            last,
-            typename base::chooser<Metrowerks::is_integral<InputIterator>::value>());
+        choose_insert (position,
+                       first,
+                       last,
+                       typename base::chooser<Metrowerks::is_integral<InputIterator>::value>());
     }
+
     iterator
     erase (iterator position)
     {
         return base::erase (position);
     }
+
     iterator
     erase (iterator first, iterator last)
     {
         return base::erase (first, last);
     }
+
     void
     swap (vector& y)
     {
         base::swap ((base&)y);
     }
+
     void
     clear ()
     {
         base::clear();
     }
 };
+
 template <class T, class Allocator>
 inline bool
 operator== (const vector<T, Allocator>& x, const vector<T, Allocator>& y)
 {
     return x.size() == y.size() && _STD::equal (x.begin(), x.end(), y.begin());
 }
+
 template <class T, class Allocator>
 inline bool
 operator!= (const vector<T, Allocator>& x, const vector<T, Allocator>& y)
 {
     return !(x == y);
 }
+
 template <class T, class Allocator>
 inline bool
 operator< (const vector<T, Allocator>& x, const vector<T, Allocator>& y)
 {
     return _STD::lexicographical_compare (x.begin(), x.end(), y.begin(), y.end());
 }
+
 template <class T, class Allocator>
 inline bool
 operator> (const vector<T, Allocator>& x, const vector<T, Allocator>& y)
 {
     return y < x;
 }
+
 template <class T, class Allocator>
 inline bool
 operator>= (const vector<T, Allocator>& x, const vector<T, Allocator>& y)
 {
     return !(x < y);
 }
+
 template <class T, class Allocator>
 inline bool
 operator<= (const vector<T, Allocator>& x, const vector<T, Allocator>& y)
 {
     return !(y < x);
 }
+
 template <class T, class Allocator>
 inline void
 swap (vector<T, Allocator>& x, vector<T, Allocator>& y)
 {
     x.swap (y);
 }
-#if !defined(_MSL_NO_PARTIAL_SPECIALIZATION) && !defined(_MSL_NO_BOOL) &&           \
+#if !defined(_MSL_NO_PARTIAL_SPECIALIZATION) && !defined(_MSL_NO_BOOL) &&                          \
     !defined(_MSL_NO_VECTOR_BOOL)
 // vector<bool>
 
-template <class Allocator> class vector<bool, Allocator>;
-template <class Allocator> class vector<bool, Allocator>
+template <class Allocator>
+class vector<bool, Allocator>;
+
+template <class Allocator>
+class vector<bool, Allocator>
 {
 #ifndef _MSL_NO_MEMBER_TEMPLATE
-    template <bool b> struct chooser
+    template <bool b>
+    struct chooser
     {
     };
 #endif
-    typedef _MSL_REBIND (unsigned long) internal_allocator; // must be unsigned
-    typedef typename internal_allocator::value_type
-        ia_value_type; // -1 must set all bits on
+    typedef _MSL_REBIND (unsigned long) internal_allocator;        // must be unsigned
+    typedef typename internal_allocator::value_type ia_value_type; // -1 must set all bits on
 
 public:
     class reference;
@@ -2349,24 +2483,29 @@ public:
     typedef typename internal_allocator::const_pointer   const_pointer;
     typedef _STD::reverse_iterator<iterator>             reverse_iterator;
     typedef _STD::reverse_iterator<const_iterator>       const_reverse_iterator;
+
     // bit reference:
     class reference
     {
     public:
         typedef vector container_type;
+
         operator bool () const { return vec_.test_bit (pos_); }
+
         reference&
         operator= (const bool x)
         {
             vec_.set (pos_, x);
             return *this;
         }
+
         reference&
         operator= (const reference& x)
         {
             vec_.set (pos_, x);
             return *this;
         }
+
         void
         flip ()
         {
@@ -2376,35 +2515,39 @@ public:
     private:
         vector&   vec_;
         size_type pos_;
+
         reference (vector& vec, size_type pos) : vec_ (vec), pos_ (pos) {}
 #ifndef __GNUC__
         friend class vector;
 #else
-        template <class T, class A> friend class vector;
+        template <class T, class A>
+        friend class vector;
 #endif
         friend class iterator;
         friend class const_iterator;
     };
+
     // bit iterator:
-    class iterator : public _STD::iterator<random_access_iterator_tag,
-                                           bool,
-                                           difference_type,
-                                           bool*,
-                                           vector::reference>
+    class iterator
+      : public _STD::
+            iterator<random_access_iterator_tag, bool, difference_type, bool*, vector::reference>
     {
     public:
         iterator () {}
+
         vector::reference
         operator* () const
         {
             return vector::reference (*vec_, pos_);
         }
+
         iterator&
         operator++ ()
         {
             ++pos_;
             return *this;
         }
+
         iterator
         operator++ (int)
         {
@@ -2412,12 +2555,14 @@ public:
             ++pos_;
             return tmp;
         }
+
         iterator&
         operator-- ()
         {
             --pos_;
             return *this;
         }
+
         iterator
         operator-- (int)
         {
@@ -2425,68 +2570,81 @@ public:
             --pos_;
             return tmp;
         }
+
         iterator&
         operator+= (difference_type n)
         {
             pos_ += (size_type)n;
             return *this;
         }
+
         iterator
         operator+ (difference_type n) const
         {
             return iterator (*this) += n;
         }
+
         iterator&
         operator-= (difference_type n)
         {
             pos_ -= (size_type)n;
             return *this;
         }
+
         iterator
         operator- (difference_type n) const
         {
             return iterator (*this) -= n;
         }
+
         friend difference_type
         operator- (const iterator& x, const iterator& y)
         {
             return difference_type (x.pos_ - y.pos_);
         }
+
         vector::reference
         operator[] (size_type i) const
         {
             return vector::reference (*vec_, pos_ + i);
         }
+
         friend bool
         operator== (const iterator& x, const iterator& y)
         {
             return x.pos_ == y.pos_;
         }
+
         friend bool
         operator!= (const iterator& x, const iterator& y)
         {
             return x.pos_ != y.pos_;
         }
+
         friend bool
         operator< (const iterator& x, const iterator& y)
         {
             return x.pos_ < y.pos_;
         }
+
         friend bool
         operator<= (const iterator& x, const iterator& y)
         {
             return x.pos_ <= y.pos_;
         }
+
         friend bool
         operator> (const iterator& x, const iterator& y)
         {
             return x.pos_ > y.pos_;
         }
+
         friend bool
         operator>= (const iterator& x, const iterator& y)
         {
             return x.pos_ >= y.pos_;
         }
+
         friend iterator
         operator+ (difference_type n, const iterator& rhs)
         {
@@ -2496,38 +2654,39 @@ public:
     private:
         vector*   vec_;
         size_type pos_;
+
         iterator (vector* vec, size_type pos) : vec_ (vec), pos_ (pos) {}
 #ifndef __GNUC__
         friend class vector;
 #else
-        template <class T, class A> friend class vector;
+        template <class T, class A>
+        friend class vector;
 #endif
         friend class vector::const_iterator;
     };
+
     // bit iterator:
-    class const_iterator : public _STD::iterator<random_access_iterator_tag,
-                                                 bool,
-                                                 difference_type,
-                                                 const bool*,
-                                                 bool>
+    class const_iterator
+      : public _STD::iterator<random_access_iterator_tag, bool, difference_type, const bool*, bool>
     {
     public:
         const_iterator () {}
-        const_iterator (const vector::iterator& rhs)
-          : vec_ (rhs.vec_), pos_ (rhs.pos_)
-        {
-        }
+
+        const_iterator (const vector::iterator& rhs) : vec_ (rhs.vec_), pos_ (rhs.pos_) {}
+
         const_reference
         operator* () const
         {
             return vector::reference (*(vector*)vec_, pos_);
         }
+
         const_iterator&
         operator++ ()
         {
             ++pos_;
             return *this;
         }
+
         const_iterator
         operator++ (int)
         {
@@ -2535,12 +2694,14 @@ public:
             ++pos_;
             return tmp;
         }
+
         const_iterator&
         operator-- ()
         {
             --pos_;
             return *this;
         }
+
         const_iterator
         operator-- (int)
         {
@@ -2548,68 +2709,81 @@ public:
             --pos_;
             return tmp;
         }
+
         const_iterator&
         operator+= (difference_type n)
         {
             pos_ += (size_type)n;
             return *this;
         }
+
         const_iterator
         operator+ (difference_type n) const
         {
             return const_iterator (*this) += n;
         }
+
         const_iterator&
         operator-= (difference_type n)
         {
             pos_ -= (size_type)n;
             return *this;
         }
+
         const_iterator
         operator- (difference_type n) const
         {
             return const_iterator (*this) -= n;
         }
+
         friend difference_type
         operator- (const const_iterator& x, const const_iterator& y)
         {
             return difference_type (x.pos_ - y.pos_);
         }
+
         const_reference
         operator[] (size_type i) const
         {
             return vector::reference (*(vector*)vec_, pos_ + i);
         }
+
         friend bool
         operator== (const const_iterator& x, const const_iterator& y)
         {
             return x.pos_ == y.pos_;
         }
+
         friend bool
         operator!= (const const_iterator& x, const const_iterator& y)
         {
             return x.pos_ != y.pos_;
         }
+
         friend bool
         operator< (const const_iterator& x, const const_iterator& y)
         {
             return x.pos_ < y.pos_;
         }
+
         friend bool
         operator<= (const const_iterator& x, const const_iterator& y)
         {
             return x.pos_ <= y.pos_;
         }
+
         friend bool
         operator> (const const_iterator& x, const const_iterator& y)
         {
             return x.pos_ > y.pos_;
         }
+
         friend bool
         operator>= (const const_iterator& x, const const_iterator& y)
         {
             return x.pos_ >= y.pos_;
         }
+
         friend const_iterator
         operator+ (difference_type n, const const_iterator& rhs)
         {
@@ -2619,13 +2793,16 @@ public:
     private:
         const vector* vec_;
         size_type     pos_;
+
         const_iterator (const vector* vec, size_type pos) : vec_ (vec), pos_ (pos) {}
 #ifndef __GNUC__
         friend class vector;
 #else
-        template <class T, class A> friend class vector;
+        template <class T, class A>
+        friend class vector;
 #endif
     };
+
     // construct/copy/destroy:
     vector ();
     explicit vector (const Allocator& a);
@@ -2635,8 +2812,7 @@ public:
     template <class InputIterator>
     inline vector (InputIterator first, InputIterator last) : size_ (0), data_ (0)
     {
-        choose_init (
-            first, last, chooser<numeric_limits<InputIterator>::is_integer>());
+        choose_init (first, last, chooser<numeric_limits<InputIterator>::is_integer>());
     }
     template <class InputIterator>
     inline vector (InputIterator first, InputIterator last, const Allocator& a)
@@ -2647,8 +2823,7 @@ public:
 #endif
         size_ (0), data_ (0)
     {
-        choose_init (
-            first, last, chooser<numeric_limits<InputIterator>::is_integer>());
+        choose_init (first, last, chooser<numeric_limits<InputIterator>::is_integer>());
     }
 #else
     vector (const_iterator first, const_iterator last);
@@ -2661,8 +2836,7 @@ public:
     inline void
     assign (InputIterator first, InputIterator last)
     {
-        choose_assign (
-            first, last, chooser<numeric_limits<InputIterator>::is_integer>());
+        choose_assign (first, last, chooser<numeric_limits<InputIterator>::is_integer>());
     }
 #else
     void assign (const_iterator first, const_iterator last);
@@ -2704,10 +2878,7 @@ public:
     inline void
     insert (iterator position, InputIterator first, InputIterator last)
     {
-        choose_insert (position,
-                       first,
-                       last,
-                       chooser<numeric_limits<InputIterator>::is_integer>());
+        choose_insert (position, first, last, chooser<numeric_limits<InputIterator>::is_integer>());
     }
 #else
     void insert (iterator position, const_iterator first, const_iterator last);
@@ -2732,12 +2903,14 @@ private:
     {
         init (static_cast<size_type> (first), static_cast<value_type> (last));
     }
+
     template <class InputIterator>
     inline void
     choose_init (InputIterator first, InputIterator last, chooser<false>)
     {
         init (first, last, iterator_traits<InputIterator>::iterator_category());
     }
+
     template <class InputIterator>
     void
     init (InputIterator first, InputIterator last, input_iterator_tag)
@@ -2759,6 +2932,7 @@ private:
         }
 #endif
     }
+
     // hh 990222 Removed init(ForwardIterator, ForwardIterator, forward_iterator_tag)
 
     template <class InputIterator>
@@ -2767,12 +2941,14 @@ private:
     {
         assign (static_cast<size_type> (first), static_cast<value_type> (last));
     }
+
     template <class InputIterator>
     inline void
     choose_assign (InputIterator first, InputIterator last, chooser<false>)
     {
         do_assign (first, last, iterator_traits<InputIterator>::iterator_category());
     }
+
     template <class InputIterator>
     void
     do_assign (InputIterator first, InputIterator last, input_iterator_tag)
@@ -2781,6 +2957,7 @@ private:
         const vector& tempr = temp;
         do_assign (tempr.begin(), tempr.end(), random_access_iterator_tag());
     }
+
     template <class ForwardIterator>
     void
     do_assign (ForwardIterator first, ForwardIterator last, forward_iterator_tag)
@@ -2818,47 +2995,33 @@ private:
             }
         }
     }
+
     template <class InputIterator>
     inline void
-    choose_insert (iterator      position,
-                   InputIterator first,
-                   InputIterator last,
-                   chooser<true>)
+    choose_insert (iterator position, InputIterator first, InputIterator last, chooser<true>)
     {
-        insert (position,
-                static_cast<size_type> (first),
-                static_cast<value_type> (last));
+        insert (position, static_cast<size_type> (first), static_cast<value_type> (last));
     }
+
     template <class InputIterator>
     inline void
-    choose_insert (iterator      position,
-                   InputIterator first,
-                   InputIterator last,
-                   chooser<false>)
+    choose_insert (iterator position, InputIterator first, InputIterator last, chooser<false>)
     {
-        do_insert (position,
-                   first,
-                   last,
-                   iterator_traits<InputIterator>::iterator_category());
+        do_insert (position, first, last, iterator_traits<InputIterator>::iterator_category());
     }
+
     template <class InputIterator>
     void
-    do_insert (iterator      position,
-               InputIterator first,
-               InputIterator last,
-               input_iterator_tag)
+    do_insert (iterator position, InputIterator first, InputIterator last, input_iterator_tag)
     {
         vector        temp (first, last, get_allocator());
         const vector& tempr = temp;
-        do_insert (
-            position, tempr.begin(), tempr.end(), random_access_iterator_tag());
+        do_insert (position, tempr.begin(), tempr.end(), random_access_iterator_tag());
     }
+
     template <class ForwardIterator>
     void
-    do_insert (iterator        position,
-               ForwardIterator first,
-               ForwardIterator last,
-               forward_iterator_tag)
+    do_insert (iterator position, ForwardIterator first, ForwardIterator last, forward_iterator_tag)
     {
         size_type n = (size_type)_STD::distance (first, last);
         if (n == 0)
@@ -2913,18 +3076,11 @@ private:
 
     void init (size_type n, const bool& value);
     void init (iterator first, iterator last, random_access_iterator_tag);
-    void init (const_iterator first,
-               const_iterator last,
-               random_access_iterator_tag);
+    void init (const_iterator first, const_iterator last, random_access_iterator_tag);
     void tear_down ();
     void do_assign (iterator first, iterator last, random_access_iterator_tag);
-    void do_assign (const_iterator first,
-                    const_iterator last,
-                    random_access_iterator_tag);
-    void do_insert (iterator position,
-                    iterator first,
-                    iterator last,
-                    random_access_iterator_tag);
+    void do_assign (const_iterator first, const_iterator last, random_access_iterator_tag);
+    void do_insert (iterator position, iterator first, iterator last, random_access_iterator_tag);
     void do_insert (iterator       position,
                     const_iterator first,
                     const_iterator last,
@@ -2933,10 +3089,7 @@ private:
     void set (size_type pos, bool x);
     void set (size_type pos, size_type n, bool x);
     void flip (size_type pos);
-    void copy_bits (const_pointer frmdata,
-                    size_type     first,
-                    size_type     last,
-                    size_type     to);
+    void copy_bits (const_pointer frmdata, size_type first, size_type last, size_type to);
     void shift_out (iterator pos, size_type n);
     void shift_in (iterator pos, size_type n);
     void trim () const;
@@ -2967,6 +3120,7 @@ bool operator<= (const vector<bool, Allocator>& x, const vector<bool, Allocator>
 // specialized algorithms:
 template <class Allocator>
 void swap (vector<bool, Allocator>& x, vector<bool, Allocator>& y);
+
 // Implementation vector<bool>
 
 template <class Allocator>
@@ -2984,9 +3138,9 @@ inline vector<bool, Allocator>::vector (const Allocator& a)
     size_ (0), data_ (0)
 {
 }
+
 template <class Allocator>
-inline vector<bool, Allocator>::vector (size_type n, bool value)
-  : size_ (0), data_ (0)
+inline vector<bool, Allocator>::vector (size_type n, bool value) : size_ (0), data_ (0)
 {
     init (n, value);
 }
@@ -3006,8 +3160,7 @@ inline vector<bool, Allocator>::vector (size_type n, bool value, const Allocator
 #ifdef _MSL_NO_MEMBER_TEMPLATE
 template <class Allocator>
 inline vector<bool, Allocator>::vector (const_iterator first, const_iterator last)
-  : alloc_ (internal_allocator(), size_type (last - first)), size_ (alloc_.m_),
-    data_ (0)
+  : alloc_ (internal_allocator(), size_type (last - first)), size_ (alloc_.m_), data_ (0)
 {
     init (first, last, random_access_iterator_tag());
 }
@@ -3030,6 +3183,7 @@ vector<bool, Allocator>::vector (const vector& x)
         _STD::copy (x.data_, x.data_ + nw, data_);
     }
 }
+
 template <class Allocator>
 void
 vector<bool, Allocator>::init (size_type n, const bool& value)
@@ -3053,15 +3207,14 @@ vector<bool, Allocator>::init (size_type n, const bool& value)
         }
     }
 }
+
 template <class Allocator>
 inline void
-vector<bool, Allocator>::init (iterator first,
-                               iterator last,
-                               random_access_iterator_tag)
+vector<bool, Allocator>::init (iterator first, iterator last, random_access_iterator_tag)
 {
-    init (
-        const_iterator (first), const_iterator (last), random_access_iterator_tag());
+    init (const_iterator (first), const_iterator (last), random_access_iterator_tag());
 }
+
 template <class Allocator>
 void
 vector<bool, Allocator>::init (const_iterator first,
@@ -3083,11 +3236,13 @@ vector<bool, Allocator>::init (const_iterator first,
         size_ = n;
     }
 }
+
 template <class Allocator>
 inline vector<bool, Allocator>::ÃÂ¢ÃÂÃÂ¾vector()
 {
     tear_down();
 }
+
 template <class Allocator>
 inline void
 vector<bool, Allocator>::tear_down ()
@@ -3097,6 +3252,7 @@ vector<bool, Allocator>::tear_down ()
         alloc_.deallocate (data_, num_words (alloc_.m_));
     }
 }
+
 template <class Allocator>
 vector<bool, Allocator>&
 vector<bool, Allocator>::operator= (const vector& x)
@@ -3127,6 +3283,7 @@ vector<bool, Allocator>::operator= (const vector& x)
     }
     return *this;
 }
+
 template <class Allocator>
 void
 vector<bool, Allocator>::assign (size_type n, const value_type& u)
@@ -3170,13 +3327,11 @@ vector<bool, Allocator>::assign (const_iterator first, const_iterator last)
 #endif
 template <class Allocator>
 inline void
-vector<bool, Allocator>::do_assign (iterator first,
-                                    iterator last,
-                                    random_access_iterator_tag)
+vector<bool, Allocator>::do_assign (iterator first, iterator last, random_access_iterator_tag)
 {
-    do_assign (
-        const_iterator (first), const_iterator (last), random_access_iterator_tag());
+    do_assign (const_iterator (first), const_iterator (last), random_access_iterator_tag());
 }
+
 template <class Allocator>
 void
 vector<bool, Allocator>::do_assign (const_iterator first,
@@ -3208,6 +3363,7 @@ vector<bool, Allocator>::do_assign (const_iterator first,
         copy_bits (first.vec_->data_, first.pos_, last.pos_, 0);
     }
 }
+
 template <class Allocator>
 inline typename vector<bool, Allocator>::allocator_type
 vector<bool, Allocator>::get_allocator () const
@@ -3218,60 +3374,70 @@ vector<bool, Allocator>::get_allocator () const
     return allocator_type();
 #endif
 }
+
 template <class Allocator>
 inline typename vector<bool, Allocator>::iterator
 vector<bool, Allocator>::begin ()
 {
     return iterator (this, 0);
 }
+
 template <class Allocator>
 inline typename vector<bool, Allocator>::const_iterator
 vector<bool, Allocator>::begin () const
 {
     return const_iterator (this, 0);
 }
+
 template <class Allocator>
 inline typename vector<bool, Allocator>::iterator
 vector<bool, Allocator>::end ()
 {
     return iterator (this, size_);
 }
+
 template <class Allocator>
 inline typename vector<bool, Allocator>::const_iterator
 vector<bool, Allocator>::end () const
 {
     return const_iterator (this, size_);
 }
+
 template <class Allocator>
 inline typename vector<bool, Allocator>::reverse_iterator
 vector<bool, Allocator>::rbegin ()
 {
     return reverse_iterator (end());
 }
+
 template <class Allocator>
 inline typename vector<bool, Allocator>::const_reverse_iterator
 vector<bool, Allocator>::rbegin () const
 {
     return const_reverse_iterator (end());
 }
+
 template <class Allocator>
 inline typename vector<bool, Allocator>::reverse_iterator
 vector<bool, Allocator>::rend ()
 {
     return reverse_iterator (begin());
 }
+
 template <class Allocator>
 inline typename vector<bool, Allocator>::const_reverse_iterator
 vector<bool, Allocator>::rend () const
 {
     return const_reverse_iterator (begin());
 }
+
 template <class Allocator>
 inline typename vector<bool, Allocator>::size_type
 vector<bool, Allocator>::size () const
 {
     return size_;
 }
+
 template <class Allocator>
 typename vector<bool, Allocator>::size_type
 vector<bool, Allocator>::max_size () const
@@ -3284,6 +3450,7 @@ vector<bool, Allocator>::max_size () const
     }
     return ms * num_bits_word;
 }
+
 template <class Allocator>
 void
 vector<bool, Allocator>::resize (size_type sz, value_type c)
@@ -3297,18 +3464,21 @@ vector<bool, Allocator>::resize (size_type sz, value_type c)
         erase (begin() + difference_type (sz), end());
     }
 }
+
 template <class Allocator>
 inline typename vector<bool, Allocator>::size_type
 vector<bool, Allocator>::capacity () const
 {
     return alloc_.m_;
 }
+
 template <class Allocator>
 inline bool
 vector<bool, Allocator>::empty () const
 {
     return size_ == 0;
 }
+
 template <class Allocator>
 void
 vector<bool, Allocator>::reserve (size_type n)
@@ -3337,18 +3507,21 @@ vector<bool, Allocator>::reserve (size_type n)
         alloc_.m_ = newcap;
     }
 }
+
 template <class Allocator>
 inline typename vector<bool, Allocator>::reference
 vector<bool, Allocator>::operator[] (size_type n)
 {
     return reference (*this, n);
 }
+
 template <class Allocator>
 inline typename vector<bool, Allocator>::const_reference
 vector<bool, Allocator>::operator[] (size_type n) const
 {
     return reference (*(vector*)this, n);
 }
+
 template <class Allocator>
 typename vector<bool, Allocator>::const_reference
 vector<bool, Allocator>::at (size_type n) const
@@ -3361,6 +3534,7 @@ vector<bool, Allocator>::at (size_type n) const
 #endif
     return reference (*(vector*)this, n);
 }
+
 template <class Allocator>
 typename vector<bool, Allocator>::reference
 vector<bool, Allocator>::at (size_type n)
@@ -3373,42 +3547,49 @@ vector<bool, Allocator>::at (size_type n)
 #endif
     return reference (*this, n);
 }
+
 template <class Allocator>
 inline typename vector<bool, Allocator>::reference
 vector<bool, Allocator>::front ()
 {
     return reference (*this, 0);
 }
+
 template <class Allocator>
 inline typename vector<bool, Allocator>::const_reference
 vector<bool, Allocator>::front () const
 {
     return reference (*(vector*)this, 0);
 }
+
 template <class Allocator>
 inline typename vector<bool, Allocator>::reference
 vector<bool, Allocator>::back ()
 {
     return reference (*this, size_ - 1);
 }
+
 template <class Allocator>
 inline typename vector<bool, Allocator>::const_reference
 vector<bool, Allocator>::back () const
 {
     return reference (*(vector*)this, size_ - 1);
 }
+
 template <class Allocator>
 inline void
 vector<bool, Allocator>::push_back (const value_type& x)
 {
     insert (end(), x);
 }
+
 template <class Allocator>
 inline void
 vector<bool, Allocator>::pop_back ()
 {
     erase (end() - 1);
 }
+
 template <class Allocator>
 typename vector<bool, Allocator>::iterator
 vector<bool, Allocator>::insert (iterator position, const value_type& x)
@@ -3417,6 +3598,7 @@ vector<bool, Allocator>::insert (iterator position, const value_type& x)
     insert (position, 1, x);
     return begin() + pos;
 }
+
 template <class Allocator>
 void
 vector<bool, Allocator>::insert (iterator position, size_type n, const value_type& x)
@@ -3485,9 +3667,7 @@ vector<bool, Allocator>::insert (iterator position, size_type n, const value_typ
 #ifdef _MSL_NO_MEMBER_TEMPLATE
 template <class Allocator>
 inline void
-vector<bool, Allocator>::insert (iterator       position,
-                                 const_iterator first,
-                                 const_iterator last)
+vector<bool, Allocator>::insert (iterator position, const_iterator first, const_iterator last)
 {
     do_insert (position, first, last, random_access_iterator_tag());
 }
@@ -3504,6 +3684,7 @@ vector<bool, Allocator>::do_insert (iterator position,
                const_iterator (last),
                random_access_iterator_tag());
 }
+
 template <class Allocator>
 void
 vector<bool, Allocator>::do_insert (iterator       position,
@@ -3573,6 +3754,7 @@ vector<bool, Allocator>::do_insert (iterator       position,
         alloc_.m_ = newcap;
     }
 }
+
 template <class Allocator>
 typename vector<bool, Allocator>::iterator
 vector<bool, Allocator>::erase (iterator position)
@@ -3585,6 +3767,7 @@ vector<bool, Allocator>::erase (iterator position)
     --size_;
     return position;
 }
+
 template <class Allocator>
 typename vector<bool, Allocator>::iterator
 vector<bool, Allocator>::erase (iterator first, iterator last)
@@ -3602,6 +3785,7 @@ vector<bool, Allocator>::erase (iterator first, iterator last)
     size_ -= len;
     return first;
 }
+
 template <class Allocator>
 void
 vector<bool, Allocator>::swap (vector& x)
@@ -3613,6 +3797,7 @@ vector<bool, Allocator>::swap (vector& x)
         _STD::swap (data_, x.data_);
     }
 }
+
 template <class Allocator>
 void
 vector<bool, Allocator>::swap (reference x, reference y)
@@ -3637,6 +3822,7 @@ vector<bool, Allocator>::swap (reference x, reference y)
         }
     }
 }
+
 template <class Allocator>
 void
 vector<bool, Allocator>::flip ()
@@ -3647,12 +3833,14 @@ vector<bool, Allocator>::flip ()
         data_[i] = ÃÂ¢ÃÂÃÂ¾data_[i];
     }
 }
+
 template <class Allocator>
 inline void
 vector<bool, Allocator>::clear ()
 {
     size_ = 0;
 }
+
 template <class Allocator>
 bool
 vector<bool, Allocator>::test_bit (size_type pos)
@@ -3661,6 +3849,7 @@ vector<bool, Allocator>::test_bit (size_type pos)
     ia_value_type bitmask = (ia_value_type)1 << pos % num_bits_word;
     return bool (data_[word] & bitmask);
 }
+
 template <class Allocator>
 void
 vector<bool, Allocator>::set (size_type pos, bool x)
@@ -3676,6 +3865,7 @@ vector<bool, Allocator>::set (size_type pos, bool x)
         data_[word] &= ÃÂ¢ÃÂÃÂ¾bitmask;
     }
 }
+
 template <class Allocator>
 void
 vector<bool, Allocator>::set (size_type pos, size_type n, bool x)
@@ -3723,6 +3913,7 @@ vector<bool, Allocator>::set (size_type pos, size_type n, bool x)
         }
     }
 }
+
 template <class Allocator>
 void
 vector<bool, Allocator>::flip (size_type pos)
@@ -3739,6 +3930,7 @@ vector<bool, Allocator>::flip (size_type pos)
         bits |= bitmask;
     }
 }
+
 template <class Allocator>
 void
 vector<bool, Allocator>::copy_bits (const_pointer frmdata,
@@ -3787,6 +3979,7 @@ vector<bool, Allocator>::copy_bits (const_pointer frmdata,
         to += len;
     }
 }
+
 template <class Allocator>
 void
 vector<bool, Allocator>::shift_out (iterator pos, size_type n)
@@ -3822,6 +4015,7 @@ vector<bool, Allocator>::shift_out (iterator pos, size_type n)
         data_[e] |= ÃÂ¢ÃÂÃÂ¾floormask & tmp;
     }
 }
+
 template <class Allocator>
 void
 vector<bool, Allocator>::shift_in (iterator pos, size_type n)
@@ -3890,6 +4084,7 @@ vector<bool, Allocator>::shift_in (iterator pos, size_type n)
         }
     }
 }
+
 template <class Allocator>
 void
 vector<bool, Allocator>::trim () const
@@ -3900,18 +4095,21 @@ vector<bool, Allocator>::trim () const
         ((vector*)this)->set (size_, n, false);
     }
 }
+
 template <class Allocator>
 inline typename vector<bool, Allocator>::size_type
 vector<bool, Allocator>::num_words (size_type capacity)
 {
     return (capacity - 1) / num_bits_word + 1;
 }
+
 template <class Allocator>
 inline typename vector<bool, Allocator>::size_type
 vector<bool, Allocator>::recommend (size_type capacity)
 {
     return capacity + num_bits_word - ((capacity - 1) % num_bits_word + 1);
 }
+
 template <class Allocator>
 bool
 operator== (const vector<bool, Allocator>& x, const vector<bool, Allocator>& y)
@@ -3926,39 +4124,44 @@ operator== (const vector<bool, Allocator>& x, const vector<bool, Allocator>& y)
     }
     x.trim();
     y.trim();
-    return _STD::equal (
-        x.data_, x.data_ + vector<bool, Allocator>::num_words (x.size_), y.data_);
+    return _STD::equal (x.data_, x.data_ + vector<bool, Allocator>::num_words (x.size_), y.data_);
 }
+
 template <class Allocator>
 inline bool
 operator!= (const vector<bool, Allocator>& x, const vector<bool, Allocator>& y)
 {
     return !(x == y);
 }
+
 template <class Allocator>
 inline bool
 operator< (const vector<bool, Allocator>& x, const vector<bool, Allocator>& y)
 {
     return lexicographical_compare (x.begin(), x.end(), y.begin(), y.end());
 }
+
 template <class Allocator>
 inline bool
 operator> (const vector<bool, Allocator>& x, const vector<bool, Allocator>& y)
 {
     return y < x;
 }
+
 template <class Allocator>
 inline bool
 operator>= (const vector<bool, Allocator>& x, const vector<bool, Allocator>& y)
 {
     return !(x < y);
 }
+
 template <class Allocator>
 inline bool
 operator<= (const vector<bool, Allocator>& x, const vector<bool, Allocator>& y)
 {
     return !(y < x);
 }
+
 template <class Allocator>
 inline void
 swap (vector<bool, Allocator>& x, vector<bool, Allocator>& y)

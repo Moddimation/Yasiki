@@ -28,6 +28,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <wchar.h>
+
 int
 mblen (const char* s, size_t n)
 {
@@ -40,7 +41,9 @@ mblen (const char* s, size_t n)
         return (0);
     }
 }
+
 static int is_utf8_complete (const char* s, size_t n);
+
 static int
 is_utf8_complete (const char* s, size_t n)
 {
@@ -104,7 +107,9 @@ is_utf8_complete (const char* s, size_t n)
         return (-1);
     }
 }
+
 static int utf8_to_unicode (wchar_t* pwc, const char* s, size_t n);
+
 static int
 utf8_to_unicode (wchar_t* pwc, const char* s, size_t n)
 {
@@ -131,7 +136,7 @@ utf8_to_unicode (wchar_t* pwc, const char* s, size_t n)
 
     /* if we get this far, we have a valid UTF-8 encoding */
     source = (char*)s;
-    switch (number_of_bytes)          /* the cases are meant to drop through! */
+    switch (number_of_bytes)                 /* the cases are meant to drop through! */
     {
         case 3:
             result_chr |= (*source++ & 0x0f);
@@ -143,23 +148,23 @@ utf8_to_unicode (wchar_t* pwc, const char* s, size_t n)
             result_chr |= (*source++ & 0x7f);
     }
 
-    if (result_chr == 0x0000)         /*- mm 010607 -*/
+    if (result_chr == 0x0000)                /*- mm 010607 -*/
     {
-        check_byte_count = 0;         /*- mm 010607 -*/
+        check_byte_count = 0;                /*- mm 010607 -*/
     }
-    else                              /*- mm 010607 -*/
-        if (result_chr < 0x0080)      /*- mm 010607 -*/
+    else                                     /*- mm 010607 -*/
+        if (result_chr < 0x0080)             /*- mm 010607 -*/
         {
-            check_byte_count = 1;     /*- mm 010607 -*/
+            check_byte_count = 1;            /*- mm 010607 -*/
         }
-        else                          /*- mm 010607 -*/
-            if (result_chr < 0x0800)  /*- mm 010607 -*/
+        else                                 /*- mm 010607 -*/
+            if (result_chr < 0x0800)         /*- mm 010607 -*/
             {
-                check_byte_count = 2; /*- mm 010607 -*/
+                check_byte_count = 2;        /*- mm 010607 -*/
             }
-            else                      /*- mm 010607 -*/
+            else                             /*- mm 010607 -*/
             {
-                check_byte_count = 3; /*- mm 010607 -*/
+                check_byte_count = 3;        /*- mm 010607 -*/
             }
     if (check_byte_count != number_of_bytes) /*- mm 010607 -*/
     {
@@ -172,12 +177,15 @@ utf8_to_unicode (wchar_t* pwc, const char* s, size_t n)
 
     return (number_of_bytes);
 }
+
 int
 mbtowc (wchar_t* pwc, const char* s, size_t n)
 {
     return (utf8_to_unicode (pwc, s, n));
 }
+
 static int unicode_to_UTF8 (char* s, wchar_t wchar);
+
 static int
 unicode_to_UTF8 (char* s, wchar_t wchar)
 {
@@ -186,7 +194,7 @@ unicode_to_UTF8 (char* s, wchar_t wchar)
     char*   target_ptr;
     char    first_byte_mark[4] = { 0x00, 0x00, 0xc0, 0xe0 };
 
-    if (!s)                /* We are assuming UTF-8 encoding so return 0 */
+    if (!s)                                  /* We are assuming UTF-8 encoding so return 0 */
     {
         return (0);
     }
@@ -208,7 +216,7 @@ unicode_to_UTF8 (char* s, wchar_t wchar)
     target_ptr = s + number_of_bytes;
 
     switch (number_of_bytes)
-    {                      /* Note: the cases are meant to fall through! */
+    {                                        /* Note: the cases are meant to fall through! */
         case 3:
             *--target_ptr = (wide_char & 0x003f) | 0x80;
             wide_char >>= 6;
@@ -221,11 +229,13 @@ unicode_to_UTF8 (char* s, wchar_t wchar)
 
     return (number_of_bytes);
 }
+
 int
 wctomb (char* s, wchar_t wchar)
 {
     return (unicode_to_UTF8 (s, wchar));
 }
+
 size_t
 mbstowcs (wchar_t* pwcs, const char* s, size_t n)
 {
@@ -268,6 +278,7 @@ mbstowcs (wchar_t* pwcs, const char* s, size_t n)
 
     return (count);
 }
+
 size_t
 wcstombs (char* s, const wchar_t* pwcs, size_t n)
 {
@@ -306,6 +317,7 @@ wcstombs (char* s, const wchar_t* pwcs, size_t n)
 
     return (chars_written);
 }
+
 size_t
 mbrlen (const char* s, size_t n, mbstate_t* ps)
 {
@@ -316,6 +328,7 @@ mbrlen (const char* s, size_t n, mbstate_t* ps)
 
     return (mbrtowc (NULL, s, n, mbs != NULL ? mbs : &internal));
 }
+
 size_t
 mbrtowc (wchar_t* pwc, const char* s, size_t n, mbstate_t* ps)
 {
@@ -338,13 +351,14 @@ mbrtowc (wchar_t* pwc, const char* s, size_t n, mbstate_t* ps)
         }
         return (num_of_chars);
     }
-    else                   /*- mm 010607 -*/
-        if (pwc)           /*- mm 010607 -*/
+    else                                     /*- mm 010607 -*/
+        if (pwc)                             /*- mm 010607 -*/
         {
-            *pwc = 0x0000; /*- mm 010607 -*/
+            *pwc = 0x0000;                   /*- mm 010607 -*/
         }
     return (0);
 }
+
 size_t
 wcrtomb (char* s, wchar_t wc, mbstate_t* ps)
 {
@@ -357,6 +371,7 @@ wcrtomb (char* s, wchar_t wc, mbstate_t* ps)
 
     return (unicode_to_UTF8 (s, wc));
 }
+
 size_t
 mbsrtowcs (wchar_t* dst, const char** src, size_t len, mbstate_t* ps)
 {
@@ -373,8 +388,7 @@ mbsrtowcs (wchar_t* dst, const char** src, size_t len, mbstate_t* ps)
     {
         if (*source)
         {
-            result = mbrtowc (
-                (dst == NULL) ? &local_target : dst++, source, source_len, ps);
+            result = mbrtowc ((dst == NULL) ? &local_target : dst++, source, source_len, ps);
             if (result > 0)
             {
                 source += result;
@@ -394,6 +408,7 @@ mbsrtowcs (wchar_t* dst, const char** src, size_t len, mbstate_t* ps)
 
     return (count);
 }
+
 size_t
 wcsrtombs (char* dst, const wchar_t** src, size_t len, mbstate_t* ps)
 {
@@ -432,7 +447,7 @@ wcsrtombs (char* dst, const wchar_t** src, size_t len, mbstate_t* ps)
 
     return (chars_written);
 }
-#endif                     /*  __NO_WIDE_CHAR  */
+#endif                                       /*  __NO_WIDE_CHAR  */
 
 /* Change record:
  * JFH 950724 First code release.

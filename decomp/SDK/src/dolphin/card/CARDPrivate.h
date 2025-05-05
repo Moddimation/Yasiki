@@ -3,6 +3,7 @@
 
 #include <dolphin/card.h>
 #include <dolphin/exi.h>
+
 typedef struct CARDID
 {
     u8  serial[32];                 ///< 0x000
@@ -13,6 +14,7 @@ typedef struct CARDID
     u16 checkSum;                   ///< 0x1FC
     u16 checkSumInv;                ///< 0x1FE
 } CARDID;
+
 typedef struct CARDDir
 {
     u8  gameName[4];
@@ -34,6 +36,7 @@ typedef struct CARDDir
 
     u32 commentAddr;                // 0xffffffff if not used
 } CARDDir;                          // total size 64 bytes
+
 typedef struct CARDControl
 {
     BOOL          attached;         ///< 0x00
@@ -74,6 +77,7 @@ typedef struct CARDControl
     CARDCallback  unlockCallback;   ///< 0xDC
     OSAlarm       alarm;            ///< 0xE4
 } CARDControl;
+
 typedef struct CARDDecParam
 {
     u8* inputAddr;                  ///< 0x00
@@ -81,6 +85,7 @@ typedef struct CARDDecParam
     u32 aramAddr;                   ///< 0x08
     u8* outputAddr;                 ///< 0x0C
 } CARDDecParam;
+
 typedef struct CARDDirCheck
 {
     u8  padding0[64 - 2 * 4];
@@ -89,6 +94,7 @@ typedef struct CARDDirCheck
     u16 checkSum;
     u16 checkSumInv;
 } CARDDirCheck;                     // total 64 bytes
+
 #define CARD_PAGE_SIZE         128u
 #define CARD_SEG_SIZE          512u
 #define CARD_MAX_SIZE          (16u * 1024u * 1024u)
@@ -142,7 +148,7 @@ typedef struct CARDDirCheck
 
 #define CARD_VENDOR_SAMSUNG    0xEC // high byte
 
-#define CARDIsValidBlockNo(card, iBlock)                                            \
+#define CARDIsValidBlockNo(card, iBlock)                                                           \
     (CARD_NUM_SYSTEM_BLOCK <= (iBlock) && (iBlock) < (card)->cBlock)
 
 #define CARDGetDirCheck(dir) ((CARDDirCheck*)&(dir)[CARD_MAX_FILE])
@@ -162,14 +168,15 @@ s32 __CARDUnlock (s32 chan, u8 flashID[12]);
 s32 __CARDSeek (CARDFileInfo* fileInfo, s32 length, s32 offset, CARDControl** pcard);
 
 // CARDRdwr.c
-s32 __CARDRead (
-    long chan, u32 addr, long length, void* dst, void (*callback) (long, long));
-s32 __CARDWrite (
-    long chan, u32 addr, long length, void* dst, void (*callback) (long, long));
+s32 __CARDRead (long chan, u32 addr, long length, void* dst, void (*callback) (long, long));
+s32 __CARDWrite (long chan, u32 addr, long length, void* dst, void (*callback) (long, long));
 
 // CARDRaw.c
-s32 __CARDRawReadAsync (
-    long chan, void* buf, long length, long offset, void (*callback) (long, long));
+s32 __CARDRawReadAsync (long  chan,
+                        void* buf,
+                        long  length,
+                        long  offset,
+                        void  (*callback) (long, long));
 s32 __CARDRawRead (long chan, void* buf, long length, long offset);
 
 // CARDOpen.c

@@ -89,14 +89,14 @@ PERFResetAllMemMetrics ()
     ((u16*)__memReg)[44] = 0;
     ((u16*)__memReg)[43] = 0;
 }
+
 static void
 PERFGetAllMemMetrics (struct PerfSample* s, u32 i)
 {
     u32 ctrl;
     u32 ctrh;
 
-    GXReadXfRasMetric (
-        &s->xfWaitIn[i], &s->xfWaitOut[i], &s->rasBusy[i], &s->rasClocks[i]);
+    GXReadXfRasMetric (&s->xfWaitIn[i], &s->xfWaitOut[i], &s->rasBusy[i], &s->rasClocks[i]);
 
     ctrl = ((u16*)__memReg)[26];
     ctrh = ((u16*)__memReg)[25];
@@ -138,18 +138,19 @@ PERFGetAllMemMetrics (struct PerfSample* s, u32 i)
     ctrh = ((u16*)__memReg)[43];
     s->fiReq[i] = ((ctrh << 0x10) | ctrl);
 }
+
 void
 PERFSetDrawSyncCallback (void (*cb) (u16))
 {
     DSCB = cb;
 }
+
 static void
 PERFTokenCallback (u16 token)
 {
     s32 sample;
 
-    if ((token < 0xE000) || (((int)((u32)token >> 8) & 0xF) != magic) ||
-        (PERFCurrSample == 0))
+    if ((token < 0xE000) || (((int)((u32)token >> 8) & 0xF) != magic) || (PERFCurrSample == 0))
     {
         if (DSCB)
         {
@@ -209,6 +210,7 @@ PERFTokenCallback (u16 token)
         CurrToken = (u32)(u16)token;
     }
 }
+
 u32
 PERFInit (u32   numSamples,
           u32   numFramesHistory,
@@ -249,6 +251,7 @@ PERFInit (u32   numSamples,
     OSInitAlarm();
     return size;
 }
+
 void
 PERFSetEvent (u16 id, char* name, PerfType type)
 {
@@ -259,11 +262,13 @@ PERFSetEvent (u16 id, char* name, PerfType type)
     PERFEvents[id].currSample = -1;
     PERFEvents[id].color = def;
 }
+
 void
 PERFSetEventColor (u16 id, GXColor color)
 {
     PERFEvents[id].color = color;
 }
+
 void
 PERFStartFrame ()
 {
@@ -284,6 +289,7 @@ PERFStartFrame ()
     PERFStartAutoSample();
     OSRestoreInterrupts (enabled);
 }
+
 void
 PERFEndFrame ()
 {
@@ -310,6 +316,7 @@ PERFEndFrame ()
     }
     OSRestoreInterrupts (enabled);
 }
+
 void
 PERFEventStart (u16 id)
 {
@@ -333,33 +340,24 @@ PERFEventStart (u16 id)
                 PERFFrames[PERFCurrFrame].samples[sample].instructions[0] = 0;
                 PERFFrames[PERFCurrFrame].samples[sample].gpTimeStampStart = 0;
                 PERFFrames[PERFCurrFrame].samples[sample].gpTimeStampEnd = 0;
-                GXSetDrawSync (((u16)sample + 0x10000) +
-                               (((u16)magic << 8) & 0xFF00) - 0x2000);
+                GXSetDrawSync (((u16)sample + 0x10000) + (((u16)magic << 8) & 0xFF00) - 0x2000);
                 break;
             case PERF_CPU_GP_EVENT:
                 PERFFrames[PERFCurrFrame].samples[sample].gpTimeStampStart = 0;
                 PERFFrames[PERFCurrFrame].samples[sample].gpTimeStampEnd = 0;
-                PERFFrames[PERFCurrFrame].samples[sample].cacheMisses[0] =
-                    PPCMfpmc3();
-                PERFFrames[PERFCurrFrame].samples[sample].instructions[0] =
-                    PPCMfpmc1();
-                GXSetDrawSync (((u16)sample + 0x10000) +
-                               (((u16)magic << 8) & 0xFF00) - 0x2000);
+                PERFFrames[PERFCurrFrame].samples[sample].cacheMisses[0] = PPCMfpmc3();
+                PERFFrames[PERFCurrFrame].samples[sample].instructions[0] = PPCMfpmc1();
+                GXSetDrawSync (((u16)sample + 0x10000) + (((u16)magic << 8) & 0xFF00) - 0x2000);
                 // fallthrough
             case PERF_CPU_EVENT:
-                PERFFrames[PERFCurrFrame].samples[sample].cacheMisses[2] =
-                    PPCMfpmc3();
-                PERFFrames[PERFCurrFrame].samples[sample].instructions[2] =
-                    PPCMfpmc1();
+                PERFFrames[PERFCurrFrame].samples[sample].cacheMisses[2] = PPCMfpmc3();
+                PERFFrames[PERFCurrFrame].samples[sample].instructions[2] = PPCMfpmc1();
                 PERFFrames[PERFCurrFrame].samples[sample].origcpuStart =
-                    PERFFrames[PERFCurrFrame].samples[sample].cpuTimeStampStart =
-                        PPCMfpmc4();
+                    PERFFrames[PERFCurrFrame].samples[sample].cpuTimeStampStart = PPCMfpmc4();
                 PERFFrames[PERFCurrFrame].samples[sample].cpuTimeStampEnd = 0;
                 break;
             default:
-                OSReport (
-                    "PERF : Unknown event type for ID %d - possibly out of memory\n",
-                    id);
+                OSReport ("PERF : Unknown event type for ID %d - possibly out of memory\n", id);
                 break;
         }
     }
@@ -398,12 +396,10 @@ PERFEventEnd (u16 id)
     switch (PERFEvents[id].type)
     {
         case PERF_GP_EVENT:
-            GXSetDrawSync (((u16)sample + 0x10000) + (((u16)magic << 8) & 0xFF00) -
-                           0x1000);
+            GXSetDrawSync (((u16)sample + 0x10000) + (((u16)magic << 8) & 0xFF00) - 0x1000);
             break;
         case PERF_CPU_GP_EVENT:
-            GXSetDrawSync (((u16)sample + 0x10000) + (((u16)magic << 8) & 0xFF00) -
-                           0x1000);
+            GXSetDrawSync (((u16)sample + 0x10000) + (((u16)magic << 8) & 0xFF00) - 0x1000);
         case PERF_CPU_EVENT:
             PERFFrames[PERFCurrFrame].samples[sample].cpuTimeStampEnd = PPCMfpmc4();
             PERFFrames[PERFCurrFrame].samples[sample].cacheMisses[3] = PPCMfpmc3();
@@ -413,6 +409,7 @@ PERFEventEnd (u16 id)
     PERFEvents[id].currSample = -1;
     OSRestoreInterrupts (enabled);
 }
+
 static void
 PERFStartAutoSample ()
 {
@@ -425,21 +422,20 @@ PERFStartAutoSample ()
     PERFFrames[PERFCurrFrame].samples[CurrAutoSample].cacheMisses[0] = PPCMfpmc3();
     PERFFrames[PERFCurrFrame].samples[CurrAutoSample].instructions[0] = PPCMfpmc1();
 }
+
 static void
 PERFEndAutoSample ()
 {
     if (CurrAutoSample >= 0)
     {
-        PERFFrames[PERFCurrFrame].samples[CurrAutoSample].gpTimeStampEnd =
-            PPCMfpmc4();
+        PERFFrames[PERFCurrFrame].samples[CurrAutoSample].gpTimeStampEnd = PPCMfpmc4();
         PERFGetAllMemMetrics (&PERFFrames[PERFCurrFrame].samples[CurrAutoSample], 1);
-        PERFFrames[PERFCurrFrame].samples[CurrAutoSample].cacheMisses[1] =
-            PPCMfpmc3();
-        PERFFrames[PERFCurrFrame].samples[CurrAutoSample].instructions[1] =
-            PPCMfpmc1();
+        PERFFrames[PERFCurrFrame].samples[CurrAutoSample].cacheMisses[1] = PPCMfpmc3();
+        PERFFrames[PERFCurrFrame].samples[CurrAutoSample].instructions[1] = PPCMfpmc1();
     }
     CurrAutoSample = -1;
 }
+
 static void
 PERFTimerCallback (OSAlarm* alarm, OSContext* context)
 {
@@ -463,12 +459,9 @@ PERFTimerCallback (OSAlarm* alarm, OSContext* context)
             memcpy (&PERFFrames[PERFCurrFrame].samples[newsample],
                     &PERFFrames[PERFCurrFrame].samples[sample],
                     0xB0);
-            PERFFrames[PERFCurrFrame].samples[newsample].gpTimeStampEnd =
-                PPCMfpmc4();
-            PERFFrames[PERFCurrFrame].samples[newsample].cacheMisses[1] =
-                PPCMfpmc3();
-            PERFFrames[PERFCurrFrame].samples[newsample].instructions[1] =
-                PPCMfpmc1();
+            PERFFrames[PERFCurrFrame].samples[newsample].gpTimeStampEnd = PPCMfpmc4();
+            PERFFrames[PERFCurrFrame].samples[newsample].cacheMisses[1] = PPCMfpmc3();
+            PERFFrames[PERFCurrFrame].samples[newsample].instructions[1] = PPCMfpmc1();
             PERFGetAllMemMetrics (&PERFFrames[PERFCurrFrame].samples[newsample], 1);
             PERFFrames[PERFCurrFrame].samples[newsample].id = 0xFF;
             PERFFrames[PERFCurrFrame].samples[sample].gpTimeStampStart = PPCMfpmc4();
@@ -488,6 +481,7 @@ PERFTimerCallback (OSAlarm* alarm, OSContext* context)
         PERFStartAutoSample();
     }
 }
+
 void
 PERFStartAutoSampling (float msInterval)
 {
@@ -496,6 +490,7 @@ PERFStartAutoSampling (float msInterval)
                         (u32)OSMillisecondsToTicks (msInterval),
                         PERFTimerCallback);
 }
+
 void
 PERFStopAutoSampling ()
 {
@@ -503,8 +498,7 @@ PERFStopAutoSampling ()
 
     if (CurrAutoSample >= 0)
     {
-        PERFFrames[PERFCurrFrame].samples[CurrAutoSample].gpTimeStampEnd =
-            PPCMfpmc4();
+        PERFFrames[PERFCurrFrame].samples[CurrAutoSample].gpTimeStampEnd = PPCMfpmc4();
         PERFGetAllMemMetrics (&PERFFrames[PERFCurrFrame].samples[CurrAutoSample], 1);
     }
     OSCancelAlarm (&PERFAlarm);

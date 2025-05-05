@@ -24,12 +24,20 @@ include_pattern = re.compile(r'^#\s*include\s*[<"](.+?)[>"]')
 guard_pattern = re.compile(r"^#\s*ifndef\s+(.*)$")
 once_pattern = re.compile(r"^#\s*pragma\s+once$")
 
+seen_files = set()
 defines = set()
 deps = []
 
 
 def import_h_file(in_file: str, r_path: str) -> str:
     rel_path = os.path.join(root_dir, r_path, in_file)
+
+    # avoid possibly adding file twice
+    if rel_path in seen_files:
+        return ""
+
+    seen_files.add(in_file)
+
     if os.path.exists(rel_path):
         return import_c_file(rel_path)
     for include_dir in include_dirs:
@@ -43,8 +51,14 @@ def import_h_file(in_file: str, r_path: str) -> str:
 
 def import_c_file(in_file: str) -> str:
     in_file = os.path.relpath(in_file, root_dir)
-    deps.append(in_file)
     out_text = ""
+
+    # avoid possibly adding file twice
+    if in_file in seen_files:
+        return out_text
+
+    seen_files.add(in_file)
+    deps.append(in_file)
 
     try:
         with open(in_file, encoding="utf-8") as file:
@@ -72,6 +86,7 @@ def process_file(in_file: str, lines: List[str]) -> str:
                     defines.add(in_file)
             print("Processing file", in_file)
         include_match = include_pattern.match(line.strip())
+
         if include_match and not include_match[1].endswith(".s"):
             out_text += f'/* "{in_file}" line {idx} "{include_match[1]}" */\n'
             out_text += import_h_file(include_match[1], os.path.dirname(in_file))

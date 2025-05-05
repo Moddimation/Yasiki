@@ -4,30 +4,30 @@
 #include "Portable/msghndlr.h"
 
 u32 gTRKDispatchTableSize;
+
 struct DispatchEntry
 {
     int (*fn) (TRKBuffer*);
 };
 
 struct DispatchEntry gTRKDispatchTable[33] = {
-    { &TRKDoUnsupported },   { &TRKDoConnect },        { &TRKDoDisconnect },
-    { &TRKDoReset },         { &TRKDoVersions },       { &TRKDoSupportMask },
-    { &TRKDoCPUType },       { &TRKDoUnsupported },    { &TRKDoUnsupported },
-    { &TRKDoUnsupported },   { &TRKDoUnsupported },    { &TRKDoUnsupported },
-    { &TRKDoUnsupported },   { &TRKDoUnsupported },    { &TRKDoUnsupported },
-    { &TRKDoUnsupported },   { &TRKDoReadMemory },     { &TRKDoWriteMemory },
-    { &TRKDoReadRegisters }, { &TRKDoWriteRegisters }, { &TRKDoUnsupported },
-    { &TRKDoUnsupported },   { &TRKDoFlushCache },     { &TRKDoUnsupported },
-    { &TRKDoContinue },      { &TRKDoStep },           { &TRKDoStop },
-    { &TRKDoUnsupported },   { &TRKDoUnsupported },    { &TRKDoUnsupported },
-    { &TRKDoUnsupported },   { &TRKDoUnsupported },
+    { &TRKDoUnsupported }, { &TRKDoConnect },     { &TRKDoDisconnect },    { &TRKDoReset },
+    { &TRKDoVersions },    { &TRKDoSupportMask }, { &TRKDoCPUType },       { &TRKDoUnsupported },
+    { &TRKDoUnsupported }, { &TRKDoUnsupported }, { &TRKDoUnsupported },   { &TRKDoUnsupported },
+    { &TRKDoUnsupported }, { &TRKDoUnsupported }, { &TRKDoUnsupported },   { &TRKDoUnsupported },
+    { &TRKDoReadMemory },  { &TRKDoWriteMemory }, { &TRKDoReadRegisters }, { &TRKDoWriteRegisters },
+    { &TRKDoUnsupported }, { &TRKDoUnsupported }, { &TRKDoFlushCache },    { &TRKDoUnsupported },
+    { &TRKDoContinue },    { &TRKDoStep },        { &TRKDoStop },          { &TRKDoUnsupported },
+    { &TRKDoUnsupported }, { &TRKDoUnsupported }, { &TRKDoUnsupported },   { &TRKDoUnsupported },
 };
+
 DSError
 TRKInitializeDispatcher ()
 {
     gTRKDispatchTableSize = 32;
     return DS_NoError;
 }
+
 DSError
 TRKDispatchMessage (TRKBuffer* buffer)
 {

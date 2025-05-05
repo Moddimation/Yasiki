@@ -39,7 +39,7 @@
 #include <stdio.h>
 #include <string.h>
 
-#if (_MWMT && (__dest_os == __win32_os || __dest_os == __wince_os)) /*- mm 010521   \
+#if (_MWMT && (__dest_os == __win32_os || __dest_os == __wince_os)) /*- mm 010521                  \
                                                                      */
 #include <ThreadLocalData.h>
 #endif
@@ -77,12 +77,13 @@ size_t (strlen) (const char* str)
 
     return (len);
 }
-#endif                /* __dest_os != __n64_os */
+#endif                                                              /* __dest_os != __n64_os */
 
-#define K1 0x80808080 /*- pc 990802 -*/
-#define K2 0xfefefeff /*- pc 990802 -*/
+#define K1 0x80808080                                               /*- pc 990802 -*/
+#define K2 0xfefefeff                                               /*- pc 990802 -*/
 
 #pragma ANSI_strict off
+
 char*(strcpy)(char* dst, const char* src)
 {
 #if !__POWERPC__ && !__MIPS__
@@ -221,8 +222,9 @@ bytecopy:
 
     return (dst);
 }
+
 #pragma ANSI_strict reset
-#endif                /* !__MC68K__ || _No_String_Inlines || !defined(__cplusplus) */
+#endif                               /* !__MC68K__ || _No_String_Inlines || !defined(__cplusplus) */
 
 #if !defined(__INTEL__)
 char*
@@ -271,6 +273,7 @@ strncpy (char* dst, const char* src, size_t n)
 
     return (dst);
 }
+
 char*
 strcat (char* dst, const char* src)
 {
@@ -300,6 +303,7 @@ strcat (char* dst, const char* src)
 
     return (dst);
 }
+
 char*
 strncat (char* dst, const char* src, size_t n)
 {
@@ -349,7 +353,9 @@ strncat (char* dst, const char* src, size_t n)
 
     return (dst);
 }
+
 #pragma ANSI_strict off
+
 int
 strcmp (const char* str1, const char* str2)
 {
@@ -497,7 +503,9 @@ bytecopy:
     return (c1 - c2);
 #endif
 }
+
 #pragma ANSI_strict reset
+
 int
 strncmp (const char* str1, const char* str2, size_t n)
 {
@@ -590,6 +598,7 @@ strcoll (const char* str1, const char* str2)
 {
     return (strcmp (str1, str2));
 }
+
 size_t
 strxfrm (char* str1, const char* str2, size_t n)
 {
@@ -604,6 +613,7 @@ strxfrm (char* str1, const char* str2, size_t n)
     } /*- mm 990630 -*/
     return (len);
 }
+
 char*
 strrchr (const char* str, int chr)
 {
@@ -653,12 +663,12 @@ strrchr (const char* str, int chr)
 
 #endif
 }
+
 typedef unsigned char char_map[32];
 
-#define set_char_map(map, ch)                                                       \
-    map[(unsigned char)ch >> 3] |= (1 << (ch & 7))                  /*- mm 990913 -*/
-#define tst_char_map(map, ch)                                                       \
-    (map[(unsigned char)ch >> 3] & (1 << (ch & 7)))                 /*- mm 990913 -*/
+#define set_char_map(map, ch) map[(unsigned char)ch >> 3] |= (1 << (ch & 7))  /*- mm 990913 -*/
+#define tst_char_map(map, ch) (map[(unsigned char)ch >> 3] & (1 << (ch & 7))) /*- mm 990913 -*/
+
 char*
 strpbrk (const char* str, const char* set)
 {
@@ -710,6 +720,7 @@ strpbrk (const char* str, const char* set)
 
 #endif
 }
+
 size_t
 strspn (const char* str, const char* set)
 {
@@ -761,6 +772,7 @@ strspn (const char* str, const char* set)
 
 #endif
 }
+
 size_t
 strcspn (const char* str, const char* set)
 {
@@ -812,8 +824,8 @@ strcspn (const char* str, const char* set)
 
 #endif
 }
-#if (_MWMT && (__dest_os == __win32_os || __dest_os == __wince_os)) /*- mm 010521   \
-                                                                       -*/
+#if (_MWMT && (__dest_os == __win32_os || __dest_os == __wince_os))           /*- mm 010521        \
+                                                                                 -*/
 char*
 strtok (char* str, const char* set)
 {
@@ -823,8 +835,7 @@ strtok (char* str, const char* set)
 
     if (str)
     {
-        _GetThreadLocalData (_MSL_TRUE)->strtok_s =
-            (unsigned char*)str;                                    /*- cc 010531 -*/
+        _GetThreadLocalData (_MSL_TRUE)->strtok_s = (unsigned char*)str;      /*- cc 010531 -*/
     }
 
     p = (unsigned char*)set;
@@ -834,7 +845,7 @@ strtok (char* str, const char* set)
         set_char_map (map, c);
     }
 
-    p = _GetThreadLocalData (_MSL_TRUE)->strtok_s;                  /*- cc 010531 -*/
+    p = _GetThreadLocalData (_MSL_TRUE)->strtok_s;                            /*- cc 010531 -*/
 
     while (c = *p++)
     {
@@ -847,7 +858,7 @@ strtok (char* str, const char* set)
     if (!c)
     {
         _GetThreadLocalData (_MSL_TRUE)->strtok_s =
-            _GetThreadLocalData (_MSL_TRUE)->strtok_n;              /*- cc 010531 -*/
+            _GetThreadLocalData (_MSL_TRUE)->strtok_n;                        /*- cc 010531 -*/
         return (NULL);
     }
 
@@ -864,11 +875,11 @@ strtok (char* str, const char* set)
     if (!c)
     {
         _GetThreadLocalData (_MSL_TRUE)->strtok_s =
-            _GetThreadLocalData (_MSL_TRUE)->strtok_n;              /*- cc 010531 -*/
+            _GetThreadLocalData (_MSL_TRUE)->strtok_n;                        /*- cc 010531 -*/
     }
     else
     {
-        _GetThreadLocalData (_MSL_TRUE)->strtok_s = p;              /*- cc 010531 -*/
+        _GetThreadLocalData (_MSL_TRUE)->strtok_s = p;                        /*- cc 010531 -*/
         *--p = 0;
     }
 
@@ -1053,6 +1064,7 @@ strstr (const char* str, const char* pat)
 
 #endif
 }
+
 char*
 strerror (int errnum)
 {
@@ -1060,6 +1072,7 @@ strerror (int errnum)
 
     return (__strerror (errnum, errstr));
 }
+
 char*
 __strerror (int errnum, char* str)
 {
@@ -1205,6 +1218,7 @@ __strerror (int errnum, char* str)
 
     return (str);
 }
+
 #pragma warn_possunwant reset
 
                                       /* Change record:
@@ -1216,34 +1230,30 @@ __strerror (int errnum, char* str)
                                        * JFH 951208 Fixed bug in PPC version of strrchr (was copy of PPC version of
                                        *strchr).                                       JFH 960122 Bracketed strlen() and
                                        *strcpy() by #if <condition too complex                                       to put
-                                       *here>                                       (they are inlined in <string.h>                                       if this
-                                       *condition fails).                                       JFH 960429                                       Merged                                       Win32
-                                       *changes in.                                       KO  961219 Added some Win32
-                                       *ifdefs to use my thread local                                       data structure
-                                       *rather                                       than static local variables.                                       mm                                       970327
-                                       *Change to strchr to                                       allow chars beyond 128 to
-                                       *work with signed chars                                       bb                                       970530 Applied
-                                       *mm970327 change                                       to the strrchr routine.                                       beb
-                                       *971017 Fix string return                                       value, should be
-                                       *str, not s1                                       mm  980424 Modify strstr so                                       that
-                                       *if the pattern                                       pointer is NULL, a pointer to
-                                       *str                                       is                                       returned.  The Standard                                       leaves this
-                                       *undefined                                       so defined a consistent result.                                       mf
-                                       *980429                                       changed macro
-                                       *__dest_os_== win32_os to __INTEL__ so all intel oses pick                                       up                                       optimized string
-                                       *functions (eg. wince and                                       beos)                                       mf  980512
-                                       *wince changes                                       mm  980604                                       Removed part of
-                                       *mm970327 from strchr and strrchr as not needed to simplify code.                                       MW06890                                       vss 980804
-                                       *PPC must be pre-increment                                       vss 980807 Fix
+                                       *here>                                       (they are inlined in <string.h>                                       if this                                       condition
+                                       *fails).                                       JFH 960429                                       Merged                                       Win32                                       changes in.                                       KO  961219 Added
+                                       *some Win32                                       ifdefs to use my thread local                                       data structure
+                                       *rather                                       than static local variables.                                       mm                                       970327                                       Change to
+                                       *strchr to                                       allow chars beyond 128 to                                       work with signed chars
+                                       *bb                                       970530 Applied                                       mm970327 change                                       to the strrchr routine.
+                                       *beb                                       971017 Fix string return                                       value, should be                                       str, not s1                                       mm
+                                       *980424 Modify strstr so                                       that                                       if the pattern                                       pointer is NULL,
+                                       *a pointer to                                       str                                       is                                       returned.  The Standard                                       leaves this
+                                       *undefined                                       so defined a consistent result.                                       mf                                       980429                                       changed
+                                       *macro
+                                       *__dest_os_== win32_os to __INTEL__ so all intel oses pick                                       up
+                                       *optimized string                                       functions (eg. wince and                                       beos)                                       mf  980512
+                                       *wince changes                                       mm  980604                                       Removed part of                                       mm970327 from
+                                       *strchr and strrchr as not needed to simplify code.                                       MW06890
+                                       *vss 980804                                       PPC must be pre-increment                                       vss 980807 Fix
                                        *inadvertant mistype of increment operator                                       on
-                                       *pointer to pattern in                                       strstr                                       mf                                       981116                                       mips
-                                       *optimizations for                                       strcmp etc...                                       mf                                       990120
-                                       *changed intel                                       header                                       file name from
-                                       *string.win32.h to string.x86.h                                       mm  990630
-                                       *Corrections to                                       strxfrm                                       ad                                       990128 Added n64 to
-                                       *diff out strlen and strchr                                       pc  990802 Don't
-                                       *need 8                                       bytes of                                       storage for a const                                       cc                                       000326
-                                       *removed                                       dest_os to be_os                                       mm  010412 Rewrote
-                                       *error                                       codes                                       mm  010521 Added _MWMT wrappers
-                                       *cc                                       010531 Added _GetThreadLocalData's                                       flag
+                                       *pointer to pattern in                                       strstr                                       mf                                       981116                                       mips                                       optimizations
+                                       *for                                       strcmp etc...                                       mf
+                                       *990120                                       changed intel                                       header                                       file name from                                       string.win32.h to
+                                       *string.x86.h                                       mm  990630                                       Corrections to                                       strxfrm                                       ad                                       990128
+                                       *Added n64 to                                       diff out strlen and strchr                                       pc  990802 Don't
+                                       *need 8                                       bytes of                                       storage for a const                                       cc                                       000326                                       removed
+                                       *dest_os to be_os                                       mm  010412 Rewrote                                       error                                       codes                                       mm  010521
+                                       *Added _MWMT wrappers                                       cc                                       010531 Added _GetThreadLocalData's
+                                       *flag
                                        */

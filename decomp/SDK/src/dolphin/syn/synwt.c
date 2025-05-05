@@ -4,6 +4,7 @@
 
 #include "fake_tgmath.h"
 #include "SYNPrivate.h"
+
 int
 __SYNGetWavetableData (struct SYNVOICE* voice)
 {

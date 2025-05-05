@@ -4,6 +4,7 @@
 #include <dolphin.h>
 
 #define qr0 0
+
 void
 C_MTXMultVec (Mtx44 m, Vec* src, Vec* dst)
 {
@@ -13,16 +14,14 @@ C_MTXMultVec (Mtx44 m, Vec* src, Vec* dst)
     ASSERTMSGLINE (0x3A, src, "MTXMultVec():  NULL MtxPtr 'src' ");
     ASSERTMSGLINE (0x3B, dst, "MTXMultVec():  NULL MtxPtr 'dst' ");
 
-    vTmp.x =
-        m[0][3] + ((m[0][2] * src->z) + ((m[0][0] * src->x) + (m[0][1] * src->y)));
-    vTmp.y =
-        m[1][3] + ((m[1][2] * src->z) + ((m[1][0] * src->x) + (m[1][1] * src->y)));
-    vTmp.z =
-        m[2][3] + ((m[2][2] * src->z) + ((m[2][0] * src->x) + (m[2][1] * src->y)));
+    vTmp.x = m[0][3] + ((m[0][2] * src->z) + ((m[0][0] * src->x) + (m[0][1] * src->y)));
+    vTmp.y = m[1][3] + ((m[1][2] * src->z) + ((m[1][0] * src->x) + (m[1][1] * src->y)));
+    vTmp.z = m[2][3] + ((m[2][2] * src->z) + ((m[2][0] * src->x) + (m[2][1] * src->y)));
     dst->x = vTmp.x;
     dst->y = vTmp.y;
     dst->z = vTmp.z;
 }
+
 asm void
 PSMTXMultVec (register Mtx44 m, register Vec* src, register Vec* dst)
 {
@@ -51,6 +50,7 @@ PSMTXMultVec (register Mtx44 m, register Vec* src, register Vec* dst)
     blr;
 #endif
 }
+
 void
 C_MTXMultVecArray (Mtx m, Vec* srcBase, Vec* dstBase, u32 count)
 {
@@ -63,12 +63,12 @@ C_MTXMultVecArray (Mtx m, Vec* srcBase, Vec* dstBase, u32 count)
 
     for (i = 0; i < count; i++)
     {
-        vTmp.x = m[0][3] + ((m[0][2] * srcBase->z) +
-                            ((m[0][0] * srcBase->x) + (m[0][1] * srcBase->y)));
-        vTmp.y = m[1][3] + ((m[1][2] * srcBase->z) +
-                            ((m[1][0] * srcBase->x) + (m[1][1] * srcBase->y)));
-        vTmp.z = m[2][3] + ((m[2][2] * srcBase->z) +
-                            ((m[2][0] * srcBase->x) + (m[2][1] * srcBase->y)));
+        vTmp.x =
+            m[0][3] + ((m[0][2] * srcBase->z) + ((m[0][0] * srcBase->x) + (m[0][1] * srcBase->y)));
+        vTmp.y =
+            m[1][3] + ((m[1][2] * srcBase->z) + ((m[1][0] * srcBase->x) + (m[1][1] * srcBase->y)));
+        vTmp.z =
+            m[2][3] + ((m[2][2] * srcBase->z) + ((m[2][0] * srcBase->x) + (m[2][1] * srcBase->y)));
         dstBase->x = vTmp.x;
         dstBase->y = vTmp.y;
         dstBase->z = vTmp.z;
@@ -76,11 +76,9 @@ C_MTXMultVecArray (Mtx m, Vec* srcBase, Vec* dstBase, u32 count)
         dstBase++;
     }
 }
+
 asm void
-PSMTXMultVecArray (register Mtx  m,
-                   register Vec* srcBase,
-                   register Vec* dstBase,
-                   register u32  count)
+PSMTXMultVecArray (register Mtx m, register Vec* srcBase, register Vec* dstBase, register u32 count)
 {
 #ifdef __MWERKS__
     psq_l   f0, 0(m), 0, qr0;
@@ -128,6 +126,7 @@ loop:
     psq_stu f13, Vec.y (dstBase), 1, qr0;
 #endif
 }
+
 void
 MTXMultVecSR (Mtx44 m, Vec* src, Vec* dst)
 {
@@ -143,6 +142,7 @@ MTXMultVecSR (Mtx44 m, Vec* src, Vec* dst)
     dst->y = vTmp.y;
     dst->z = vTmp.z;
 }
+
 void
 MTXMultVecArraySR (Mtx44 m, Vec* srcBase, Vec* dstBase, u32 count)
 {
@@ -155,12 +155,9 @@ MTXMultVecArraySR (Mtx44 m, Vec* srcBase, Vec* dstBase, u32 count)
 
     for (i = 0; i < count; i++)
     {
-        vTmp.x = (m[0][2] * srcBase->z) +
-                 ((m[0][0] * srcBase->x) + (m[0][1] * srcBase->y));
-        vTmp.y = (m[1][2] * srcBase->z) +
-                 ((m[1][0] * srcBase->x) + (m[1][1] * srcBase->y));
-        vTmp.z = (m[2][2] * srcBase->z) +
-                 ((m[2][0] * srcBase->x) + (m[2][1] * srcBase->y));
+        vTmp.x = (m[0][2] * srcBase->z) + ((m[0][0] * srcBase->x) + (m[0][1] * srcBase->y));
+        vTmp.y = (m[1][2] * srcBase->z) + ((m[1][0] * srcBase->x) + (m[1][1] * srcBase->y));
+        vTmp.z = (m[2][2] * srcBase->z) + ((m[2][0] * srcBase->x) + (m[2][1] * srcBase->y));
         dstBase->x = vTmp.x;
         dstBase->y = vTmp.y;
         dstBase->z = vTmp.z;

@@ -32,6 +32,7 @@
 /****************************************************************************/
 
 typedef int UARTError;
+
 enum
 {
     kUARTNoError = 0,
@@ -40,6 +41,7 @@ enum
     kUARTBufferOverflow, /* specified buffer was too small */
     kUARTNoData          /* no data available from polling */
 };
+
 /****************************************************************************/
 
 typedef enum
@@ -61,6 +63,7 @@ typedef enum
     kBaud115200 = 115200,
     kBaud230400 = 230400
 } UARTBaudRate;
+
 /****************************************************************************/
 
 UARTError InitializeUART (UARTBaudRate baudRate);

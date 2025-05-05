@@ -8,6 +8,7 @@ static const _INT32 _nan = 0x7fffffff;
 const extern float __one_over_F[];
 extern const float __ln_F[];
 #define __ln2 .6931471806f
+
 float
 logf (float x)
 {
@@ -35,12 +36,11 @@ logf (float x)
 
                 if ((*(_UINT32*)&x) & 0x0000ffff)
                 {
-                    e = ((*(_UINT32*)&x) & 0x007f0000) |
-                        0x3f800000; // trailing bits are truncated
+                    e = ((*(_UINT32*)&x) & 0x007f0000) | 0x3f800000; // trailing bits are truncated
                     *(_UINT32*)&z = ((*(_UINT32*)&x) & 0x007fffff) | 0x3f800000;
                     if ((*(_UINT32*)&x) & 0x00008000)
                     {
-                        index++;    // scaled x is in right half of interval
+                        index++; // scaled x is in right half of interval
                         *(_UINT32*)&e += 0x00010000;
                     }
                     u = z - *(float*)&e;
@@ -68,7 +68,7 @@ logf (float x)
                     }
                 }
             }
-        case 0:                     // will fix for denormals later
+        case 0:                  // will fix for denormals later
             return -__INFINITY;
 
     } // end of switch

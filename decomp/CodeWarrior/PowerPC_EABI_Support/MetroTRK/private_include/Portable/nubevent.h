@@ -9,12 +9,14 @@ extern "C"
 #endif
 
 typedef u32 NubEventID;
+
 typedef struct TRKEvent
 {
     NubEventType    eventType;
     NubEventID      eventID;
     MessageBufferID msgBufID;
 } TRKEvent;
+
 typedef struct TRKEventQueue
 {
     int        _00;
@@ -23,6 +25,7 @@ typedef struct TRKEventQueue
     TRKEvent   events[2];
     NubEventID eventID;
 } TRKEventQueue;
+
 extern TRKEventQueue gTRKEventQueue;
 
 BOOL    TRKGetNextEvent (TRKEvent* event);

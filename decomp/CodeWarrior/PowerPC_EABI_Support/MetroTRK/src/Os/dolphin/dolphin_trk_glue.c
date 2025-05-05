@@ -8,6 +8,7 @@
 #include "trk.h"
 
 DBCommTable gDBCommTable = {};
+
 asm void
 TRKLoadContext (OSContext* ctx, u32)
 {
@@ -51,12 +52,14 @@ lbl_80371C20:
 	b TRKInterruptHandler
 #endif // clang-format on
 }
+
 void
 TRKEXICallBack (__OSInterrupt param_0, OSContext* ctx)
 {
     OSEnableScheduler();
     TRKLoadContext (ctx, 0x500);
 }
+
 int
 InitMetroTRKCommTable (int hwId)
 {
@@ -89,51 +92,57 @@ InitMetroTRKCommTable (int hwId)
 
     return result;
 }
+
 void
 TRKUARTInterruptHandler ()
 {
 }
+
 DSError
-TRKInitializeIntDrivenUART (u32           param_0,
-                            u32           param_1,
-                            u32           param_2,
-                            volatile u8** param_3)
+TRKInitializeIntDrivenUART (u32 param_0, u32 param_1, u32 param_2, volatile u8** param_3)
 {
     gDBCommTable.initialize_func (param_3, TRKEXICallBack);
     return DS_NoError;
 }
+
 void
 EnableEXI2Interrupts (void)
 {
     gDBCommTable.init_interrupts_func();
 }
+
 int
 TRKPollUART (void)
 {
     return gDBCommTable.peek_func();
 }
+
 UARTError
 TRKReadUARTN (void* bytes, u32 length)
 {
     int readErr = gDBCommTable.read_func (bytes, length);
     return readErr == 0 ? 0 : -1;
 }
+
 UARTError
 TRKWriteUARTN (const void* bytes, u32 length)
 {
     int writeErr = gDBCommTable.write_func (bytes, length);
     return writeErr == 0 ? 0 : -1;
 }
+
 void
 ReserveEXI2Port (void)
 {
     gDBCommTable.open_func();
 }
+
 void
 UnreserveEXI2Port (void)
 {
     gDBCommTable.close_func();
 }
+
 void
 TRK_board_display (char* str)
 {

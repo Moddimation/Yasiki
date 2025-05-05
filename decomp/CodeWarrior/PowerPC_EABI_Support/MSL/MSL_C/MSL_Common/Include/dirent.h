@@ -15,6 +15,7 @@
 #endif
 
 _MSL_BEGIN_EXTERN_C
+
 struct dirent
 {
     char d_name[NAME_MAX];

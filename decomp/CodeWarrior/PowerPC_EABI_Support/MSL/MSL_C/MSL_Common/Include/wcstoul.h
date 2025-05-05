@@ -21,9 +21,7 @@ _MSL_IMP_EXP_C long watol (const wchar_t*);
 
 extern unsigned long __wcstoul (int            base,
                                 int            max_width,
-                                __std (wint_t) (*ReadProc) (void*,
-                                                            __std (wint_t),
-                                                            int),
+                                __std (wint_t) (*ReadProc) (void*, __std (wint_t), int),
                                 /*- mm 990326 -*/                 /*- hh 990507 -*/
                                 void*          ReadProcArg,       /*- mm 990326 -*/
                                 int*           chars_scanned,
@@ -33,9 +31,7 @@ extern unsigned long __wcstoul (int            base,
 #ifdef __MSL_LONGLONG_SUPPORT__                                   /*- mm 970110 -*/
 extern unsigned long long __wcstoull (int            base,
                                       int            max_width,
-                                      __std (wint_t) (*ReadProc) (void*,
-                                                                  __std (wint_t),
-                                                                  int),
+                                      __std (wint_t) (*ReadProc) (void*, __std (wint_t), int),
                                       /*- mm 990326 -*/           /*- hh 990507 -*/
                                       void*          ReadProcArg, /*- mm 990326 -*/
                                       int*           chars_scanned,
@@ -61,8 +57,8 @@ _MSL_IMP_EXP_C long wcstol (const wchar_t*, wchar_t**, int);
 _MSL_END_EXTERN_C                                                 /*- cc 010409 -*/
     _MSL_END_NAMESPACE_STD                                        /*- cc 010409 -*/
 
-#endif /* __NO_WIDE_CHAR  */
-#endif /* #ifndef _MSL_WCSTOUL_H */
+#endif                                                            /* __NO_WIDE_CHAR  */
+#endif                                                            /* #ifndef _MSL_WCSTOUL_H */
 
     /* Change record:
      * mm  970110 Changed wrappers for long long support

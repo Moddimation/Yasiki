@@ -4,6 +4,7 @@
 #include "Portable/support.h"
 #include "Processor/ppc/Generic/targimpl.h"
 #include "trk.h"
+
 DSError
 TRKDoNotifyStopped (MessageCommandID cmd)
 {

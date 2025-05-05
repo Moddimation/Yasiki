@@ -60,6 +60,7 @@ public:
     typedef typename Allocator::difference_type difference_type;
     typedef typename Allocator::pointer         pointer;
     typedef typename Allocator::const_pointer   const_pointer;
+
     struct debug_view
     {
         debug_view* left_;
@@ -67,6 +68,7 @@ public:
         debug_view* parent_;
         value_type  data_;
     };
+
     class value_compare : public binary_function<value_type, value_type, bool>
     {
     public:
@@ -75,11 +77,13 @@ public:
         {
             return comp (x.first, y.first);
         }
+
         bool
         operator() (const key_type& x, const value_type& y) const
         {
             return comp (x, y.first);
         }
+
         bool
         operator() (const value_type& x, const key_type& y) const
         {
@@ -88,7 +92,9 @@ public:
 
     protected:
         Compare comp;
+
         value_compare () {}
+
         value_compare (Compare c) : comp (c) {}
 
         friend class map;
@@ -113,16 +119,15 @@ public:
       : tree_ (first, last, false, value_compare(), allocator_type())
     {
     }
+
     template <class InputIterator>
     inline map (InputIterator first, InputIterator last, const Compare& comp)
       : tree_ (first, last, false, value_compare (comp), allocator_type())
     {
     }
+
     template <class InputIterator>
-    inline map (InputIterator    first,
-                InputIterator    last,
-                const Compare&   comp,
-                const Allocator& a)
+    inline map (InputIterator first, InputIterator last, const Compare& comp, const Allocator& a)
       : tree_ (first, last, false, value_compare (comp), a)
     {
     }
@@ -204,16 +209,14 @@ bool operator== (const map<Key, T, Compare, Allocator>& x,
                  const map<Key, T, Compare, Allocator>& y);
 
 template <class Key, class T, class Compare, class Allocator>
-bool operator< (const map<Key, T, Compare, Allocator>& x,
-                const map<Key, T, Compare, Allocator>& y);
+bool operator< (const map<Key, T, Compare, Allocator>& x, const map<Key, T, Compare, Allocator>& y);
 
 template <class Key, class T, class Compare, class Allocator>
 bool operator!= (const map<Key, T, Compare, Allocator>& x,
                  const map<Key, T, Compare, Allocator>& y);
 
 template <class Key, class T, class Compare, class Allocator>
-bool operator> (const map<Key, T, Compare, Allocator>& x,
-                const map<Key, T, Compare, Allocator>& y);
+bool operator> (const map<Key, T, Compare, Allocator>& x, const map<Key, T, Compare, Allocator>& y);
 
 template <class Key, class T, class Compare, class Allocator>
 bool operator>= (const map<Key, T, Compare, Allocator>& x,
@@ -226,6 +229,7 @@ bool operator<= (const map<Key, T, Compare, Allocator>& x,
 //  specialized algorithms:
 template <class Key, class T, class Compare, class Allocator>
 void swap (map<Key, T, Compare, Allocator>& x, map<Key, T, Compare, Allocator>& y);
+
 // multimap
 
 template <class Key,
@@ -247,6 +251,7 @@ public:
     typedef typename Allocator::difference_type difference_type;
     typedef typename Allocator::pointer         pointer;
     typedef typename Allocator::const_pointer   const_pointer;
+
     struct debug_view
     {
         debug_view* left_;
@@ -254,6 +259,7 @@ public:
         debug_view* parent_;
         value_type  data_;
     };
+
     class value_compare : public binary_function<value_type, value_type, bool>
     {
     public:
@@ -262,11 +268,13 @@ public:
         {
             return comp (x.first, y.first);
         }
+
         bool
         operator() (const key_type& x, const value_type& y) const
         {
             return comp (x, y.first);
         }
+
         bool
         operator() (const value_type& x, const key_type& y) const
         {
@@ -275,7 +283,9 @@ public:
 
     protected:
         Compare comp;
+
         value_compare () {}
+
         value_compare (Compare c) : comp (c) {}
 
         friend class multimap;
@@ -300,11 +310,13 @@ public:
       : tree_ (first, last, true, value_compare(), allocator_type())
     {
     }
+
     template <class InputIterator>
     inline multimap (InputIterator first, InputIterator last, const Compare& comp)
       : tree_ (first, last, true, value_compare (comp), allocator_type())
     {
     }
+
     template <class InputIterator>
     inline multimap (InputIterator    first,
                      InputIterator    last,
@@ -408,20 +420,21 @@ bool operator<= (const multimap<Key, T, Compare, Allocator>& x,
 
 //  specialized algorithms:
 template <class Key, class T, class Compare, class Allocator>
-void swap (multimap<Key, T, Compare, Allocator>& x,
-           multimap<Key, T, Compare, Allocator>& y);
+void swap (multimap<Key, T, Compare, Allocator>& x, multimap<Key, T, Compare, Allocator>& y);
+
 // map implementation
 
 template <class Key, class T, class Compare, class Allocator>
-inline map<Key, T, Compare, Allocator>::map()
-  : tree_ (value_compare(), allocator_type())
+inline map<Key, T, Compare, Allocator>::map() : tree_ (value_compare(), allocator_type())
 {
 }
+
 template <class Key, class T, class Compare, class Allocator>
 inline map<Key, T, Compare, Allocator>::map (const Compare& comp)
   : tree_ (value_compare (comp), allocator_type())
 {
 }
+
 template <class Key, class T, class Compare, class Allocator>
 inline map<Key, T, Compare, Allocator>::map (const Compare& comp, const Allocator& a)
   : tree_ (value_compare (comp), a)
@@ -436,6 +449,7 @@ inline map<Key, T, Compare, Allocator>::map (const_iterator   first,
   : tree_ (first, last, false, value_compare (comp), a)
 {
 }
+
 template <class Key, class T, class Compare, class Allocator>
 inline map<Key, T, Compare, Allocator>::map (const value_type* first,
                                              const value_type* last,
@@ -451,72 +465,84 @@ map<Key, T, Compare, Allocator>::get_allocator () const
 {
     return tree_.get_allocator();
 }
+
 template <class Key, class T, class Compare, class Allocator>
 inline typename map<Key, T, Compare, Allocator>::iterator
 map<Key, T, Compare, Allocator>::begin ()
 {
     return tree_.begin();
 }
+
 template <class Key, class T, class Compare, class Allocator>
 inline typename map<Key, T, Compare, Allocator>::const_iterator
 map<Key, T, Compare, Allocator>::begin () const
 {
     return tree_.begin();
 }
+
 template <class Key, class T, class Compare, class Allocator>
 inline typename map<Key, T, Compare, Allocator>::iterator
 map<Key, T, Compare, Allocator>::end ()
 {
     return tree_.end();
 }
+
 template <class Key, class T, class Compare, class Allocator>
 inline typename map<Key, T, Compare, Allocator>::const_iterator
 map<Key, T, Compare, Allocator>::end () const
 {
     return tree_.end();
 }
+
 template <class Key, class T, class Compare, class Allocator>
 inline typename map<Key, T, Compare, Allocator>::reverse_iterator
 map<Key, T, Compare, Allocator>::rbegin ()
 {
     return reverse_iterator (end());
 }
+
 template <class Key, class T, class Compare, class Allocator>
 inline typename map<Key, T, Compare, Allocator>::const_reverse_iterator
 map<Key, T, Compare, Allocator>::rbegin () const
 {
     return const_reverse_iterator (end());
 }
+
 template <class Key, class T, class Compare, class Allocator>
 inline typename map<Key, T, Compare, Allocator>::reverse_iterator
 map<Key, T, Compare, Allocator>::rend ()
 {
     return reverse_iterator (begin());
 }
+
 template <class Key, class T, class Compare, class Allocator>
 inline typename map<Key, T, Compare, Allocator>::const_reverse_iterator
 map<Key, T, Compare, Allocator>::rend () const
 {
     return const_reverse_iterator (begin());
 }
+
 template <class Key, class T, class Compare, class Allocator>
 inline bool
 map<Key, T, Compare, Allocator>::empty () const
 {
     return tree_.empty();
 }
+
 template <class Key, class T, class Compare, class Allocator>
 inline typename map<Key, T, Compare, Allocator>::size_type
 map<Key, T, Compare, Allocator>::size () const
 {
     return tree_.size();
 }
+
 template <class Key, class T, class Compare, class Allocator>
 inline typename map<Key, T, Compare, Allocator>::size_type
 map<Key, T, Compare, Allocator>::max_size () const
 {
     return tree_.max_size();
 }
+
 // hh 990820
 template <class Key, class T, class Compare, class Allocator>
 inline T&
@@ -528,12 +554,14 @@ map<Key, T, Compare, Allocator>::operator[] (const key_type& x)
     return insert (value_type (x, T())).first->second;
 #endif
 }
+
 template <class Key, class T, class Compare, class Allocator>
 inline pair<typename map<Key, T, Compare, Allocator>::iterator, bool>
 map<Key, T, Compare, Allocator>::insert (const value_type& x)
 {
     return tree_.insert_one (x);
 }
+
 template <class Key, class T, class Compare, class Allocator>
 inline typename map<Key, T, Compare, Allocator>::iterator
 map<Key, T, Compare, Allocator>::insert (iterator position, const value_type& x)
@@ -547,10 +575,10 @@ map<Key, T, Compare, Allocator>::insert (const_iterator first, const_iterator la
 {
     tree_.insert_one (first, last);
 }
+
 template <class Key, class T, class Compare, class Allocator>
 inline void
-map<Key, T, Compare, Allocator>::insert (const value_type* first,
-                                         const value_type* last)
+map<Key, T, Compare, Allocator>::insert (const value_type* first, const value_type* last)
 {
     tree_.insert_one (first, last);
 }
@@ -561,6 +589,7 @@ map<Key, T, Compare, Allocator>::erase (iterator position)
 {
     tree_.erase (position);
 }
+
 template <class Key, class T, class Compare, class Allocator>
 inline typename map<Key, T, Compare, Allocator>::size_type
 map<Key, T, Compare, Allocator>::erase (const key_type& x)
@@ -571,36 +600,42 @@ map<Key, T, Compare, Allocator>::erase (const key_type& x)
     return tree_.erase_one ((const value_type&)pair<const Key, int> (x, 0));
 #endif
 }
+
 template <class Key, class T, class Compare, class Allocator>
 inline void
 map<Key, T, Compare, Allocator>::erase (iterator first, iterator last)
 {
     tree_.erase (first, last);
 }
+
 template <class Key, class T, class Compare, class Allocator>
 inline void
 map<Key, T, Compare, Allocator>::swap (map<Key, T, Compare, Allocator>& x)
 {
     tree_.swap (x.tree_);
 }
+
 template <class Key, class T, class Compare, class Allocator>
 inline void
 map<Key, T, Compare, Allocator>::clear ()
 {
     tree_.clear();
 }
+
 template <class Key, class T, class Compare, class Allocator>
 inline typename map<Key, T, Compare, Allocator>::key_compare
 map<Key, T, Compare, Allocator>::key_comp () const
 {
     return tree_.value_comp().comp;
 }
+
 template <class Key, class T, class Compare, class Allocator>
 inline typename map<Key, T, Compare, Allocator>::value_compare
 map<Key, T, Compare, Allocator>::value_comp () const
 {
     return tree_.value_comp();
 }
+
 template <class Key, class T, class Compare, class Allocator>
 inline typename map<Key, T, Compare, Allocator>::iterator
 map<Key, T, Compare, Allocator>::find (const key_type& x)
@@ -611,6 +646,7 @@ map<Key, T, Compare, Allocator>::find (const key_type& x)
     return tree_.find ((const value_type&)pair<const Key, int> (x, 0));
 #endif
 }
+
 template <class Key, class T, class Compare, class Allocator>
 inline typename map<Key, T, Compare, Allocator>::const_iterator
 map<Key, T, Compare, Allocator>::find (const key_type& x) const
@@ -621,6 +657,7 @@ map<Key, T, Compare, Allocator>::find (const key_type& x) const
     return tree_.find ((const value_type&)pair<const Key, int> (x, 0));
 #endif
 }
+
 template <class Key, class T, class Compare, class Allocator>
 inline typename map<Key, T, Compare, Allocator>::size_type
 map<Key, T, Compare, Allocator>::count (const key_type& x) const
@@ -631,6 +668,7 @@ map<Key, T, Compare, Allocator>::count (const key_type& x) const
     return tree_.count_one ((const value_type&)pair<const Key, int> (x, 0));
 #endif
 }
+
 template <class Key, class T, class Compare, class Allocator>
 inline typename map<Key, T, Compare, Allocator>::iterator
 map<Key, T, Compare, Allocator>::lower_bound (const key_type& x)
@@ -641,6 +679,7 @@ map<Key, T, Compare, Allocator>::lower_bound (const key_type& x)
     return tree_.lower_bound ((const value_type&)pair<const Key, int> (x, 0));
 #endif
 }
+
 template <class Key, class T, class Compare, class Allocator>
 inline typename map<Key, T, Compare, Allocator>::const_iterator
 map<Key, T, Compare, Allocator>::lower_bound (const key_type& x) const
@@ -651,6 +690,7 @@ map<Key, T, Compare, Allocator>::lower_bound (const key_type& x) const
     return tree_.lower_bound ((const value_type&)pair<const Key, int> (x, 0));
 #endif
 }
+
 template <class Key, class T, class Compare, class Allocator>
 inline typename map<Key, T, Compare, Allocator>::iterator
 map<Key, T, Compare, Allocator>::upper_bound (const key_type& x)
@@ -661,6 +701,7 @@ map<Key, T, Compare, Allocator>::upper_bound (const key_type& x)
     return tree_.upper_bound ((const value_type&)pair<const Key, int> (x, 0));
 #endif
 }
+
 template <class Key, class T, class Compare, class Allocator>
 inline typename map<Key, T, Compare, Allocator>::const_iterator
 map<Key, T, Compare, Allocator>::upper_bound (const key_type& x) const
@@ -671,6 +712,7 @@ map<Key, T, Compare, Allocator>::upper_bound (const key_type& x) const
     return tree_.upper_bound ((const value_type&)pair<const Key, int> (x, 0));
 #endif
 }
+
 template <class Key, class T, class Compare, class Allocator>
 inline pair<typename map<Key, T, Compare, Allocator>::iterator,
             typename map<Key, T, Compare, Allocator>::iterator>
@@ -682,6 +724,7 @@ map<Key, T, Compare, Allocator>::equal_range (const key_type& x)
     return tree_.equal_range ((const value_type&)pair<const Key, int> (x, 0));
 #endif
 }
+
 template <class Key, class T, class Compare, class Allocator>
 inline pair<typename map<Key, T, Compare, Allocator>::const_iterator,
             typename map<Key, T, Compare, Allocator>::const_iterator>
@@ -693,69 +736,71 @@ map<Key, T, Compare, Allocator>::equal_range (const key_type& x) const
     return tree_.equal_range ((const value_type&)pair<const Key, int> (x, 0));
 #endif
 }
+
 template <class Key, class T, class Compare, class Allocator>
 inline bool
-operator== (const map<Key, T, Compare, Allocator>& x,
-            const map<Key, T, Compare, Allocator>& y)
+operator== (const map<Key, T, Compare, Allocator>& x, const map<Key, T, Compare, Allocator>& y)
 {
     return x.size() == y.size() && equal (x.begin(), x.end(), y.begin());
 }
+
 template <class Key, class T, class Compare, class Allocator>
 inline bool
-operator!= (const map<Key, T, Compare, Allocator>& x,
-            const map<Key, T, Compare, Allocator>& y)
+operator!= (const map<Key, T, Compare, Allocator>& x, const map<Key, T, Compare, Allocator>& y)
 {
     return !(x == y);
 }
+
 template <class Key, class T, class Compare, class Allocator>
 inline bool
-operator< (const map<Key, T, Compare, Allocator>& x,
-           const map<Key, T, Compare, Allocator>& y)
+operator< (const map<Key, T, Compare, Allocator>& x, const map<Key, T, Compare, Allocator>& y)
 {
     return lexicographical_compare (x.begin(), x.end(), y.begin(), y.end());
 }
+
 template <class Key, class T, class Compare, class Allocator>
 inline bool
-operator> (const map<Key, T, Compare, Allocator>& x,
-           const map<Key, T, Compare, Allocator>& y)
+operator> (const map<Key, T, Compare, Allocator>& x, const map<Key, T, Compare, Allocator>& y)
 {
     return y < x;
 }
+
 template <class Key, class T, class Compare, class Allocator>
 inline bool
-operator>= (const map<Key, T, Compare, Allocator>& x,
-            const map<Key, T, Compare, Allocator>& y)
+operator>= (const map<Key, T, Compare, Allocator>& x, const map<Key, T, Compare, Allocator>& y)
 {
     return !(x < y);
 }
+
 template <class Key, class T, class Compare, class Allocator>
 inline bool
-operator<= (const map<Key, T, Compare, Allocator>& x,
-            const map<Key, T, Compare, Allocator>& y)
+operator<= (const map<Key, T, Compare, Allocator>& x, const map<Key, T, Compare, Allocator>& y)
 {
     return !(y < x);
 }
+
 template <class Key, class T, class Compare, class Allocator>
 inline void
 swap (map<Key, T, Compare, Allocator>& x, map<Key, T, Compare, Allocator>& y)
 {
     x.swap (y);
 }
+
 // multimap implementation
 
 template <class Key, class T, class Compare, class Allocator>
-inline multimap<Key, T, Compare, Allocator>::multimap()
-  : tree_ (value_compare(), allocator_type())
+inline multimap<Key, T, Compare, Allocator>::multimap() : tree_ (value_compare(), allocator_type())
 {
 }
+
 template <class Key, class T, class Compare, class Allocator>
 inline multimap<Key, T, Compare, Allocator>::multimap (const Compare& comp)
   : tree_ (value_compare (comp), allocator_type())
 {
 }
+
 template <class Key, class T, class Compare, class Allocator>
-inline multimap<Key, T, Compare, Allocator>::multimap (const Compare&   comp,
-                                                       const Allocator& a)
+inline multimap<Key, T, Compare, Allocator>::multimap (const Compare& comp, const Allocator& a)
   : tree_ (value_compare (comp), a)
 {
 }
@@ -768,6 +813,7 @@ inline multimap<Key, T, Compare, Allocator>::multimap (const_iterator   first,
   : tree_ (first, last, true, value_compare (comp), a)
 {
 }
+
 template <class Key, class T, class Compare, class Allocator>
 inline multimap<Key, T, Compare, Allocator>::multimap (const value_type* first,
                                                        const value_type* last,
@@ -783,78 +829,91 @@ multimap<Key, T, Compare, Allocator>::get_allocator () const
 {
     return tree_.get_allocator();
 }
+
 template <class Key, class T, class Compare, class Allocator>
 inline typename multimap<Key, T, Compare, Allocator>::iterator
 multimap<Key, T, Compare, Allocator>::begin ()
 {
     return tree_.begin();
 }
+
 template <class Key, class T, class Compare, class Allocator>
 inline typename multimap<Key, T, Compare, Allocator>::const_iterator
 multimap<Key, T, Compare, Allocator>::begin () const
 {
     return tree_.begin();
 }
+
 template <class Key, class T, class Compare, class Allocator>
 inline typename multimap<Key, T, Compare, Allocator>::iterator
 multimap<Key, T, Compare, Allocator>::end ()
 {
     return tree_.end();
 }
+
 template <class Key, class T, class Compare, class Allocator>
 inline typename multimap<Key, T, Compare, Allocator>::const_iterator
 multimap<Key, T, Compare, Allocator>::end () const
 {
     return tree_.end();
 }
+
 template <class Key, class T, class Compare, class Allocator>
 inline typename multimap<Key, T, Compare, Allocator>::reverse_iterator
 multimap<Key, T, Compare, Allocator>::rbegin ()
 {
     return reverse_iterator (end());
 }
+
 template <class Key, class T, class Compare, class Allocator>
 inline typename multimap<Key, T, Compare, Allocator>::const_reverse_iterator
 multimap<Key, T, Compare, Allocator>::rbegin () const
 {
     return const_reverse_iterator (end());
 }
+
 template <class Key, class T, class Compare, class Allocator>
 inline typename multimap<Key, T, Compare, Allocator>::reverse_iterator
 multimap<Key, T, Compare, Allocator>::rend ()
 {
     return reverse_iterator (begin());
 }
+
 template <class Key, class T, class Compare, class Allocator>
 inline typename multimap<Key, T, Compare, Allocator>::const_reverse_iterator
 multimap<Key, T, Compare, Allocator>::rend () const
 {
     return const_reverse_iterator (begin());
 }
+
 template <class Key, class T, class Compare, class Allocator>
 inline bool
 multimap<Key, T, Compare, Allocator>::empty () const
 {
     return tree_.empty();
 }
+
 template <class Key, class T, class Compare, class Allocator>
 inline typename multimap<Key, T, Compare, Allocator>::size_type
 multimap<Key, T, Compare, Allocator>::size () const
 {
     return tree_.size();
 }
+
 template <class Key, class T, class Compare, class Allocator>
 inline typename multimap<Key, T, Compare, Allocator>::size_type
 multimap<Key, T, Compare, Allocator>::max_size () const
 {
     return tree_.max_size();
 }
+
 template <class Key, class T, class Compare, class Allocator>
 inline typename multimap<Key, T, Compare, Allocator>::iterator
 multimap<Key, T, Compare, Allocator>::insert (const value_type& x)
 {
     return tree_.insert_multi (x);
 }
+
 template <class Key, class T, class Compare, class Allocator>
 inline typename multimap<Key, T, Compare, Allocator>::iterator
 multimap<Key, T, Compare, Allocator>::insert (iterator position, const value_type& x)
@@ -864,15 +923,14 @@ multimap<Key, T, Compare, Allocator>::insert (iterator position, const value_typ
 #ifdef _MSL_NO_MEMBER_TEMPLATE
 template <class Key, class T, class Compare, class Allocator>
 inline void
-multimap<Key, T, Compare, Allocator>::insert (const_iterator first,
-                                              const_iterator last)
+multimap<Key, T, Compare, Allocator>::insert (const_iterator first, const_iterator last)
 {
     tree_.insert_multi (first, last);
 }
+
 template <class Key, class T, class Compare, class Allocator>
 inline void
-multimap<Key, T, Compare, Allocator>::insert (const value_type* first,
-                                              const value_type* last)
+multimap<Key, T, Compare, Allocator>::insert (const value_type* first, const value_type* last)
 {
     tree_.insert_multi (first, last);
 }
@@ -883,6 +941,7 @@ multimap<Key, T, Compare, Allocator>::erase (iterator position)
 {
     tree_.erase (position);
 }
+
 template <class Key, class T, class Compare, class Allocator>
 inline typename multimap<Key, T, Compare, Allocator>::size_type
 multimap<Key, T, Compare, Allocator>::erase (const key_type& x)
@@ -893,36 +952,42 @@ multimap<Key, T, Compare, Allocator>::erase (const key_type& x)
     return tree_.erase_multi ((const value_type&)pair<const Key, int> (x, 0));
 #endif
 }
+
 template <class Key, class T, class Compare, class Allocator>
 inline void
 multimap<Key, T, Compare, Allocator>::erase (iterator first, iterator last)
 {
     tree_.erase (first, last);
 }
+
 template <class Key, class T, class Compare, class Allocator>
 inline void
 multimap<Key, T, Compare, Allocator>::swap (multimap<Key, T, Compare, Allocator>& x)
 {
     tree_.swap (x.tree_);
 }
+
 template <class Key, class T, class Compare, class Allocator>
 inline void
 multimap<Key, T, Compare, Allocator>::clear ()
 {
     tree_.clear();
 }
+
 template <class Key, class T, class Compare, class Allocator>
 inline typename multimap<Key, T, Compare, Allocator>::key_compare
 multimap<Key, T, Compare, Allocator>::key_comp () const
 {
     return tree_.value_comp().comp;
 }
+
 template <class Key, class T, class Compare, class Allocator>
 inline typename multimap<Key, T, Compare, Allocator>::value_compare
 multimap<Key, T, Compare, Allocator>::value_comp () const
 {
     return tree_.value_comp();
 }
+
 template <class Key, class T, class Compare, class Allocator>
 inline typename multimap<Key, T, Compare, Allocator>::iterator
 multimap<Key, T, Compare, Allocator>::find (const key_type& x)
@@ -933,6 +998,7 @@ multimap<Key, T, Compare, Allocator>::find (const key_type& x)
     return tree_.find ((const value_type&)pair<const Key, int> (x, 0));
 #endif
 }
+
 template <class Key, class T, class Compare, class Allocator>
 inline typename multimap<Key, T, Compare, Allocator>::const_iterator
 multimap<Key, T, Compare, Allocator>::find (const key_type& x) const
@@ -943,6 +1009,7 @@ multimap<Key, T, Compare, Allocator>::find (const key_type& x) const
     return tree_.find ((const value_type&)pair<const Key, int> (x, 0));
 #endif
 }
+
 template <class Key, class T, class Compare, class Allocator>
 inline typename multimap<Key, T, Compare, Allocator>::size_type
 multimap<Key, T, Compare, Allocator>::count (const key_type& x) const
@@ -953,6 +1020,7 @@ multimap<Key, T, Compare, Allocator>::count (const key_type& x) const
     return tree_.count_multi ((const value_type&)pair<const Key, int> (x, 0));
 #endif
 }
+
 template <class Key, class T, class Compare, class Allocator>
 inline typename multimap<Key, T, Compare, Allocator>::iterator
 multimap<Key, T, Compare, Allocator>::lower_bound (const key_type& x)
@@ -963,6 +1031,7 @@ multimap<Key, T, Compare, Allocator>::lower_bound (const key_type& x)
     return tree_.lower_bound ((const value_type&)pair<const Key, int> (x, 0));
 #endif
 }
+
 template <class Key, class T, class Compare, class Allocator>
 inline typename multimap<Key, T, Compare, Allocator>::const_iterator
 multimap<Key, T, Compare, Allocator>::lower_bound (const key_type& x) const
@@ -973,6 +1042,7 @@ multimap<Key, T, Compare, Allocator>::lower_bound (const key_type& x) const
     return tree_.lower_bound ((const value_type&)pair<const Key, int> (x, 0));
 #endif
 }
+
 template <class Key, class T, class Compare, class Allocator>
 inline typename multimap<Key, T, Compare, Allocator>::iterator
 multimap<Key, T, Compare, Allocator>::upper_bound (const key_type& x)
@@ -983,6 +1053,7 @@ multimap<Key, T, Compare, Allocator>::upper_bound (const key_type& x)
     return tree_.upper_bound ((const value_type&)pair<const Key, int> (x, 0));
 #endif
 }
+
 template <class Key, class T, class Compare, class Allocator>
 inline typename multimap<Key, T, Compare, Allocator>::const_iterator
 multimap<Key, T, Compare, Allocator>::upper_bound (const key_type& x) const
@@ -993,6 +1064,7 @@ multimap<Key, T, Compare, Allocator>::upper_bound (const key_type& x) const
     return tree_.upper_bound ((const value_type&)pair<const Key, int> (x, 0));
 #endif
 }
+
 template <class Key, class T, class Compare, class Allocator>
 inline pair<typename multimap<Key, T, Compare, Allocator>::iterator,
             typename multimap<Key, T, Compare, Allocator>::iterator>
@@ -1004,6 +1076,7 @@ multimap<Key, T, Compare, Allocator>::equal_range (const key_type& x)
     return tree_.equal_range ((const value_type&)pair<const Key, int> (x, 0));
 #endif
 }
+
 template <class Key, class T, class Compare, class Allocator>
 inline pair<typename multimap<Key, T, Compare, Allocator>::const_iterator,
             typename multimap<Key, T, Compare, Allocator>::const_iterator>
@@ -1015,6 +1088,7 @@ multimap<Key, T, Compare, Allocator>::equal_range (const key_type& x) const
     return tree_.equal_range ((const value_type&)pair<const Key, int> (x, 0));
 #endif
 }
+
 template <class Key, class T, class Compare, class Allocator>
 inline bool
 operator== (const multimap<Key, T, Compare, Allocator>& x,
@@ -1022,6 +1096,7 @@ operator== (const multimap<Key, T, Compare, Allocator>& x,
 {
     return x.size() == y.size() && equal (x.begin(), x.end(), y.begin());
 }
+
 template <class Key, class T, class Compare, class Allocator>
 inline bool
 operator!= (const multimap<Key, T, Compare, Allocator>& x,
@@ -1029,6 +1104,7 @@ operator!= (const multimap<Key, T, Compare, Allocator>& x,
 {
     return !(x == y);
 }
+
 template <class Key, class T, class Compare, class Allocator>
 inline bool
 operator< (const multimap<Key, T, Compare, Allocator>& x,
@@ -1036,6 +1112,7 @@ operator< (const multimap<Key, T, Compare, Allocator>& x,
 {
     return lexicographical_compare (x.begin(), x.end(), y.begin(), y.end());
 }
+
 template <class Key, class T, class Compare, class Allocator>
 inline bool
 operator> (const multimap<Key, T, Compare, Allocator>& x,
@@ -1043,6 +1120,7 @@ operator> (const multimap<Key, T, Compare, Allocator>& x,
 {
     return y < x;
 }
+
 template <class Key, class T, class Compare, class Allocator>
 inline bool
 operator>= (const multimap<Key, T, Compare, Allocator>& x,
@@ -1050,6 +1128,7 @@ operator>= (const multimap<Key, T, Compare, Allocator>& x,
 {
     return !(x < y);
 }
+
 template <class Key, class T, class Compare, class Allocator>
 inline bool
 operator<= (const multimap<Key, T, Compare, Allocator>& x,
@@ -1057,10 +1136,10 @@ operator<= (const multimap<Key, T, Compare, Allocator>& x,
 {
     return !(y < x);
 }
+
 template <class Key, class T, class Compare, class Allocator>
 inline void
-swap (multimap<Key, T, Compare, Allocator>& x,
-      multimap<Key, T, Compare, Allocator>& y)
+swap (multimap<Key, T, Compare, Allocator>& x, multimap<Key, T, Compare, Allocator>& y)
 {
     x.swap (y);
 }

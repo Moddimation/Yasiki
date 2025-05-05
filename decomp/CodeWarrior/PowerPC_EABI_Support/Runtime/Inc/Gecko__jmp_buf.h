@@ -3,6 +3,7 @@
 
 #if __PPCe500__
 #warning elf support enabled!
+
 union MWE_ElfVector64
 {
     unsigned long  l[2];
@@ -15,6 +16,7 @@ typedef union MWE_ElfVector64 MWE_ElfVector64;
 
 #if __PPCGEKKO__
 #warning gecko support enabled!
+
 /* This structure exists both here and in ExceptionPPC.c */
 union MWE_GeckoVector64
 {
@@ -23,6 +25,7 @@ union MWE_GeckoVector64
 };
 
 typedef union MWE_GeckoVector64 MWE_GeckoVector64;
+
 struct GeckoFPRContext
 {
     double            d;

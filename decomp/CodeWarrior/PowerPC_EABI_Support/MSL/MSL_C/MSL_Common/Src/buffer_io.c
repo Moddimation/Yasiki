@@ -87,8 +87,7 @@
 #include "critical_regions.h" /*- mm 001013 -*/
 
 /*#if _dsp_hostio*/
-#if (__dest_os == __m56800_os || __dest_os == __m56800E_os) &&                      \
-    !defined(_Old_DSP_IO_Interface)
+#if (__dest_os == __m56800_os || __dest_os == __m56800E_os) && !defined(_Old_DSP_IO_Interface)
 
 extern int txtbinFlag;
 #endif
@@ -97,8 +96,7 @@ extern int txtbinFlag;
 #error __dest_os undefined
 #endif
 
-#if (__dest_os == __mac_os || __dest_os == __mips_bare ||                           \
-     __dest_os == __emb_68k) &&                                                     \
+#if (__dest_os == __mac_os || __dest_os == __mips_bare || __dest_os == __emb_68k) &&               \
     !__option(mpwc_newline)                             /*- vss 980825 -*/
 void
 __convert_from_newlines (unsigned char* buf, size_t* n) /*- mm 970210 -*/
@@ -118,6 +116,7 @@ __convert_from_newlines (unsigned char* buf, size_t* n) /*- mm 970210 -*/
         p++;                                            /*- mm 970210 -*/
     } /*- mm 970210 -*/
 }
+
 void
 __convert_to_newlines (unsigned char* buf, size_t* n) /*- mm 970210 -*/
 {                                                     /*- mm 970210 -*/
@@ -142,6 +141,7 @@ __convert_from_newlines (unsigned char* p, size_t* n)
 {
 #pragma unused(p, n)
 }
+
 void
 __convert_to_newlines (unsigned char* p, size_t* n)
 {
@@ -156,6 +156,7 @@ __prep_buffer (FILE* file)
     file->buffer_len -= file->position & file->buffer_alignment;
     file->buffer_pos = file->position;
 }
+
 int
 __load_buffer (FILE* file, size_t* bytes_loaded, int alignment)
 {
@@ -169,15 +170,16 @@ __load_buffer (FILE* file, size_t* bytes_loaded, int alignment)
     }
 
     /*#if _dsp_hostio	*/
-#if (__dest_os == __m56800_os || __dest_os == __m56800E_os) &&                      \
-    !defined(_Old_DSP_IO_Interface)
+#if (__dest_os == __m56800_os || __dest_os == __m56800E_os) && !defined(_Old_DSP_IO_Interface)
 
     txtbinFlag = file->mode.binary_io;
 
 #endif
 
-    ioresult = (*file->read_proc) (
-        file->handle, file->buffer, (size_t*)&file->buffer_len, file->idle_proc);
+    ioresult = (*file->read_proc) (file->handle,
+                                   file->buffer,
+                                   (size_t*)&file->buffer_len,
+                                   file->idle_proc);
 
     if (ioresult == __io_EOF) /*- mm 961031 -*/
     {
@@ -225,6 +227,7 @@ __load_buffer (FILE* file, size_t* bytes_loaded, int alignment)
 
     return (__no_io_error);
 }
+
 int
 __flush_buffer (FILE* file, size_t* bytes_flushed)
 {
@@ -243,14 +246,15 @@ __flush_buffer (FILE* file, size_t* bytes_flushed)
         }
 
                     /*#if _dsp_hostio*/
-#if (__dest_os == __m56800_os || __dest_os == __m56800E_os) &&                      \
-    !defined(_Old_DSP_IO_Interface)
+#if (__dest_os == __m56800_os || __dest_os == __m56800E_os) && !defined(_Old_DSP_IO_Interface)
 
         txtbinFlag = file->mode.binary_io;
 #endif
 
-        ioresult = (*file->write_proc) (
-            file->handle, file->buffer, (size_t*)&file->buffer_len, file->idle_proc);
+        ioresult = (*file->write_proc) (file->handle,
+                                        file->buffer,
+                                        (size_t*)&file->buffer_len,
+                                        file->idle_proc);
 
         if (bytes_flushed)
         {
@@ -269,18 +273,18 @@ __flush_buffer (FILE* file, size_t* bytes_flushed)
 
     return (__no_io_error);
 }
+
 int
 setvbuf (FILE* file, char* buff, int mode, size_t size)
 {
     int kind = file->mode.file_kind;
 
-    if (mode == _IONBF) /*- mani 970101 -*/              /*- mm 970708 -*/
+    if (mode == _IONBF) /*- mani 970101 -*/                         /*- mm 970708 -*/
     {
-        fflush (file); /*- mani 970101 -*/               /*- mm 970708 -*/
+        fflush (file); /*- mani 970101 -*/                          /*- mm 970708 -*/
     }
 
-    if (file->state.io_state != __neutral ||
-        kind == __closed_file)                           /*- bkoz 970318 -*/
+    if (file->state.io_state != __neutral || kind == __closed_file) /*- bkoz 970318 -*/
     {
         return (-1);
     }
@@ -297,7 +301,7 @@ setvbuf (FILE* file, char* buff, int mode, size_t size)
         return (-1);
 #endif
 
-    __begin_critical_region (files_access);              /*- mm 001013 -*/
+    __begin_critical_region (files_access);                         /*- mm 001013 -*/
 
     file->mode.buffer_mode = mode;
     file->state.free_buffer = 0;
@@ -309,7 +313,7 @@ setvbuf (FILE* file, char* buff, int mode, size_t size)
 
     if (mode == _IONBF || size < 1)
     {
-        *(file->buffer_ptr) = '\0';                      /*- mm 970306 -*/
+        *(file->buffer_ptr) = '\0';                                 /*- mm 970306 -*/
         return (0);
     }
 
@@ -318,7 +322,7 @@ setvbuf (FILE* file, char* buff, int mode, size_t size)
 #ifndef _No_Disk_File_OS_Support
         if (!(buff = (char*)malloc (size)))
         {
-            __end_critical_region (files_access);        /*- mm 001013 -*/
+            __end_critical_region (files_access);                   /*- mm 001013 -*/
             return (-1);
         }
 
@@ -333,7 +337,7 @@ setvbuf (FILE* file, char* buff, int mode, size_t size)
     file->buffer_ptr = file->buffer;
     file->buffer_size = size;
 
-#if (__dest_os == __mac_os) /*|| __dest_os == __be_os */ /*- cc 010326 -*/
+#if (__dest_os == __mac_os) /*|| __dest_os == __be_os */            /*- cc 010326 -*/
 
 #define alignment_mask (512L - 1L)
 
@@ -341,8 +345,7 @@ setvbuf (FILE* file, char* buff, int mode, size_t size)
 
     if (file->mode.file_kind == __disk_file && !(size & alignment_mask))
     {
-        file->buffer_alignment =
-            alignment_mask; /* if buffer is a multiple of 512, take steps */
+        file->buffer_alignment = alignment_mask; /* if buffer is a multiple of 512, take steps */
     }
     /* to align buffers on block bounderies       */
     /*		(see __prep_buffer)                     */
@@ -355,6 +358,7 @@ setvbuf (FILE* file, char* buff, int mode, size_t size)
 
     return (0);
 }
+
 void
 setbuf (FILE* file, char* buff)
 {
@@ -367,6 +371,7 @@ setbuf (FILE* file, char* buff)
         setvbuf (file, 0, _IONBF, 0);
     }
 }
+
 /* Change record:
  * JFH 950824 First code release.
  * JFH 951108 Fixed a small problem in setvbuf where passing a size of 1 always

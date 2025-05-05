@@ -60,34 +60,38 @@ namespace std
 #endif
 
 #ifndef _MSL_NO_LOCALE
-template <class charT> class collate : public locale::facet
+template <class charT>
+class collate : public locale::facet
 {
 public:
     typedef charT               char_type;
     typedef basic_string<charT> string_type;
+
     explicit collate (size_t refs = 0) : locale::facet (refs) {}
+
     int
-    compare (const charT* low1,
-             const charT* high1,
-             const charT* low2,
-             const charT* high2) const
+    compare (const charT* low1, const charT* high1, const charT* low2, const charT* high2) const
     {
         return do_compare (low1, high1, low2, high2);
     }
+
     string_type
     transform (const charT* low, const charT* high) const
     {
         return do_transform (low, high);
     }
+
     long
     hash (const charT* low, const charT* high) const
     {
         return do_hash (low, high);
     }
+
     static locale::id id;
 
 protected:
     virtual ÃÂ¢ÃÂÃÂ¾collate () {}
+
     virtual int         do_compare (const charT* low1,
                                     const charT* high1,
                                     const charT* low2,
@@ -95,12 +99,16 @@ protected:
     virtual string_type do_transform (const charT* low, const charT* high) const;
     virtual long        do_hash (const charT* low, const charT* high) const;
 };
-template <class charT> struct __facet_traits<collate<charT> >
+
+template <class charT>
+struct __facet_traits<collate<charT> >
 {
     static const bool is_standard = true;
 };
 
-template <class charT> locale::id collate<charT>::id;
+template <class charT>
+locale::id collate<charT>::id;
+
 template <class charT>
 int
 collate<charT>::do_compare (const charT* low1,
@@ -129,12 +137,14 @@ collate<charT>::do_compare (const charT* low1,
     }
     return 1;
 }
+
 template <class charT>
 inline typename collate<charT>::string_type
 collate<charT>::do_transform (const charT* low, const charT* high) const
 {
     return string_type (low, high);
 }
+
 template <class charT>
 long
 collate<charT>::do_hash (const charT* low, const charT* high) const
@@ -147,7 +157,9 @@ collate<charT>::do_hash (const charT* low, const charT* high) const
     }
     return long (result);
 }
-template <class charT> class __collation_rule
+
+template <class charT>
+class __collation_rule
 {
     struct value
     {
@@ -161,18 +173,23 @@ public:
     {
         unsigned char length;
     };
+
     __collation_rule () : is_french_ (false) {}
+
     explicit __collation_rule (const basic_string<charT>& rule) : is_french_ (false)
     {
         set_rule (rule);
     }
+
     void  set_rule (const basic_string<charT>& rule);
     entry operator() (const charT* low, const charT* high, int& state) const;
+
     bool
     is_french () const
     {
         return is_french_;
     }
+
     bool
     empty () const
     {
@@ -187,6 +204,7 @@ private:
 
     void do_command (charT c, value& v, int& state);
 };
+
 template <class charT>
 void
 __collation_rule<charT>::do_command (charT c, value& v, int& state)
@@ -223,6 +241,7 @@ __collation_rule<charT>::do_command (charT c, value& v, int& state)
         }
     }
 }
+
 template <class charT>
 void
 __collation_rule<charT>::set_rule (const basic_string<charT>& rule)
@@ -278,21 +297,17 @@ __collation_rule<charT>::set_rule (const basic_string<charT>& rule)
                                     case charT (';'):
                                     case charT (','):
                                     case charT ('='):
-                                        table_.insert (
-                                            typename _Map::value_type (word, v));
+                                        table_.insert (typename _Map::value_type (word, v));
                                         word.clear();
                                         break;
                                     case charT ('&'):
                                         {
-                                            typename _Map::iterator i =
-                                                table_.find (word);
+                                            typename _Map::iterator i = table_.find (word);
                                             if (i == table_.end())
 #ifndef _MSL_NO_EXCEPTIONS
-                                                throw runtime_error (
-                                                    "invalid collation rule");
+                                                throw runtime_error ("invalid collation rule");
 #else
-                                                __msl_error (
-                                                    "invalid collation rule");
+                                                __msl_error ("invalid collation rule");
 #endif
                                             v = i->second;
                                             word.clear();
@@ -311,11 +326,10 @@ __collation_rule<charT>::set_rule (const basic_string<charT>& rule)
         }
     }
 }
+
 template <class charT>
 typename __collation_rule<charT>::entry
-__collation_rule<charT>::operator() (const charT* low,
-                                     const charT* high,
-                                     int&         state) const
+__collation_rule<charT>::operator() (const charT* low, const charT* high, int& state) const
 {
     entry                                 result;
     basic_string<charT>                   word (1, *low);
@@ -345,8 +359,7 @@ __collation_rule<charT>::operator() (const charT* low,
     }
     else
     {
-        typename iterator_traits<ci>::difference_type n =
-            _STD::distance (i.first, i.second);
+        typename iterator_traits<ci>::difference_type n = _STD::distance (i.first, i.second);
         if (n == 1)
         {
             state = 0;
@@ -374,7 +387,9 @@ __collation_rule<charT>::operator() (const charT* low,
     }
     return result;
 }
-template <class charT> class collate_byname : public collate<charT>
+
+template <class charT>
+class collate_byname : public collate<charT>
 {
     typedef collate<charT> base;
 
@@ -384,6 +399,7 @@ public:
 
 protected:
     virtual ÃÂ¢ÃÂÃÂ¾collate_byname () {}
+
     virtual int         do_compare (const charT* low1,
                                     const charT* high1,
                                     const charT* low2,
@@ -392,6 +408,7 @@ protected:
 
     __collation_rule<charT> rule_;
 };
+
 inline const string&
 __collate_marker (char)
 {
@@ -407,8 +424,7 @@ __collate_marker (wchar_t)
 }
 #endif                  // _MSL_NO_WCHART_CPP_SUPPORT
 template <class charT>
-collate_byname<charT>::collate_byname (const char* std_name, size_t refs)
-  : collate<charT> (refs)
+collate_byname<charT>::collate_byname (const char* std_name, size_t refs) : collate<charT> (refs)
 {
     if (std_name == 0)
 #ifndef _MSL_NO_EXCEPTIONS
@@ -426,9 +442,8 @@ collate_byname<charT>::collate_byname (const char* std_name, size_t refs)
         ifstream infile (std_name);
         if (!infile.is_open())
 #ifndef _MSL_NO_EXCEPTIONS
-            throw runtime_error (
-                string ("collate_byname constructed with unsupported name: ") +
-                std_name);
+            throw runtime_error (string ("collate_byname constructed with unsupported name: ") +
+                                 std_name);
 #else
             __msl_error ("collate_byname constructed with unsupported name");
 #endif
@@ -449,8 +464,7 @@ collate_byname<charT>::collate_byname (const char* std_name, size_t refs)
                 __read_formatted_string (infile, rule);
                 if (infile.fail())
 #ifndef _MSL_NO_EXCEPTIONS
-                    throw runtime_error (
-                        string ("collate_byname file input error: ") + std_name);
+                    throw runtime_error (string ("collate_byname file input error: ") + std_name);
 #else
                     __msl_error ("collate_byname file input error");
 #endif
@@ -461,22 +475,21 @@ collate_byname<charT>::collate_byname (const char* std_name, size_t refs)
         }
         if (!success)
 #ifndef _MSL_NO_EXCEPTIONS
-            throw runtime_error (string ("collate_byname file input error: ") +
-                                 std_name);
+            throw runtime_error (string ("collate_byname file input error: ") + std_name);
 #else
             __msl_error ("collate_byname file input error");
 #endif
 #else                   // _MSL_NO_FILE_IO
 #ifndef _MSL_NO_EXCEPTIONS
-        throw runtime_error (
-            string ("collate_byname constructed with unsupported name: ") +
-            std_name);
+        throw runtime_error (string ("collate_byname constructed with unsupported name: ") +
+                             std_name);
 #else
         __msl_error ("collate_byname constructed with unsupported name");
 #endif
 #endif                  // _MSL_NO_FILE_IO
     }
 }
+
 template <class charT>
 int
 collate_byname<charT>::do_compare (const charT* low1,
@@ -492,6 +505,7 @@ collate_byname<charT>::do_compare (const charT* low1,
     const string_type s2 (base::transform (low2, high2));
     return collate<charT>::do_compare (s1.begin(), s1.end(), s2.begin(), s2.end());
 }
+
 template <class charT>
 typename collate_byname<charT>::string_type
 collate_byname<charT>::do_transform (const charT* low, const charT* high) const

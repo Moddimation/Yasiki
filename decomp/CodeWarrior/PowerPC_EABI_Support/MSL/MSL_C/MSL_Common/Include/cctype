@@ -61,84 +61,98 @@ _MSL_END_EXTERN_C                                      /*- cc 010409 -*/
 {
     return __ctype_map[__zero_fill (c)] & __alphanumeric;
 }
+
 _INLINE
 int
 isalpha (int c)
 {
     return __ctype_map[__zero_fill (c)] & __letter;
 }
+
 _INLINE
 int
 iscntrl (int c)
 {
     return __ctype_map[__zero_fill (c)] & __control;
 }
+
 _INLINE
 int
 isdigit (int c)
 {
     return __ctype_map[__zero_fill (c)] & __digit;
 }
+
 _INLINE
 int
 isgraph (int c)
 {
     return __ctype_map[__zero_fill (c)] & __graphic;
 }
+
 _INLINE
 int
 islower (int c)
 {
     return __ctype_map[__zero_fill (c)] & __lower_case;
 }
+
 _INLINE
 int
 isprint (int c)
 {
     return __ctype_map[__zero_fill (c)] & __printable;
 }
+
 _INLINE
 int
 ispunct (int c)
 {
     return __ctype_map[__zero_fill (c)] & __punctuation;
 }
+
 _INLINE
 int
 isspace (int c)
 {
     return __ctype_map[__zero_fill (c)] & __whitespace;
 }
+
 _INLINE
 int
 isupper (int c)
 {
     return __ctype_map[__zero_fill (c)] & __upper_case;
 }
+
 _INLINE
 int
 isxdigit (int c)
 {
     return __ctype_map[__zero_fill (c)] & __hex_digit;
 }
+
 _INLINE
 int
 tolower (int c)
 {
     return ((c == EOF) ? EOF : ((int)__lower_map[__zero_fill (c)]));
 } /*- mm 970918 -*/
+
 _INLINE
 int
 toupper (int c)
 {
     return ((c == EOF) ? EOF : ((int)__upper_map[__zero_fill (c)]));
 } /*- mm 970918 -*/
+
 _INLINE
 int
 iswblank (int c)
 {
     return ((c == (int)L' ') || (c == (int)L'\t'));
 } /*- mm 980626 -*/
+
 _MSL_END_NAMESPACE_STD /*- cc 010409 -*/
 
 #endif             /* RC_INVOKED */

@@ -49,8 +49,7 @@ namespace std
 
 //  lib.ostream.inserters.character character inserters
 template <class charT, class traits>
-basic_ostream<charT, traits>& operator<< (basic_ostream<charT, traits>& out,
-                                          charT                         c);
+basic_ostream<charT, traits>& operator<< (basic_ostream<charT, traits>& out, charT c);
 
 template <class charT, class traits>
 basic_ostream<charT, traits>& operator<< (basic_ostream<charT, traits>& out, char c);
@@ -61,34 +60,27 @@ basic_ostream<char, traits>& operator<< (basic_ostream<char, traits>& out, char 
 
 //  signed and unsigned
 template <class traits>
-basic_ostream<char, traits>& operator<< (basic_ostream<char, traits>& out,
-                                         signed char                  c);
+basic_ostream<char, traits>& operator<< (basic_ostream<char, traits>& out, signed char c);
 
 template <class traits>
-basic_ostream<char, traits>& operator<< (basic_ostream<char, traits>& out,
-                                         unsigned char                c);
+basic_ostream<char, traits>& operator<< (basic_ostream<char, traits>& out, unsigned char c);
 
 template <class charT, class traits>
-basic_ostream<charT, traits>& operator<< (basic_ostream<charT, traits>& out,
-                                          const charT*                  s);
+basic_ostream<charT, traits>& operator<< (basic_ostream<charT, traits>& out, const charT* s);
 
 template <class charT, class traits>
-basic_ostream<charT, traits>& operator<< (basic_ostream<charT, traits>& out,
-                                          const char*                   s);
+basic_ostream<charT, traits>& operator<< (basic_ostream<charT, traits>& out, const char* s);
 
 //  partial specializationss
 template <class traits>
-basic_ostream<char, traits>& operator<< (basic_ostream<char, traits>& out,
-                                         const char*                  s);
+basic_ostream<char, traits>& operator<< (basic_ostream<char, traits>& out, const char* s);
 
 //   signed and unsigned
 template <class traits>
-basic_ostream<char, traits>& operator<< (basic_ostream<char, traits>& out,
-                                         const signed char*           s);
+basic_ostream<char, traits>& operator<< (basic_ostream<char, traits>& out, const signed char* s);
 
 template <class traits>
-basic_ostream<char, traits>& operator<< (basic_ostream<char, traits>& out,
-                                         const unsigned char*         s);
+basic_ostream<char, traits>& operator<< (basic_ostream<char, traits>& out, const unsigned char* s);
 
 template <class charT, class traits>
 basic_ostream<charT, traits>& endl (basic_ostream<charT, traits>& os);
@@ -98,6 +90,7 @@ basic_ostream<charT, traits>& ends (basic_ostream<charT, traits>& os);
 
 template <class charT, class traits>
 basic_ostream<charT, traits>& flush (basic_ostream<charT, traits>& os);
+
 template <class charT, class traits>
 class basic_ostream : virtual public basic_ios<charT, traits>
 {
@@ -114,6 +107,7 @@ public:
     //  lib.ostream.cons Constructor/destructor:
     basic_ostream (); // Non-standard
     explicit basic_ostream (basic_streambuf<char_type, traits>* sb);
+
     // virtual ÃÂ¢ÃÂÃÂ¾basic_ostream();  // Compiler generated
     // destructor used.
 
@@ -122,14 +116,16 @@ public:
     {
     public:
         explicit sentry (basic_ostream<charT, traits>& os);
+
         ÃÂ¢ÃÂÃÂ¾sentry ()
         {
             if (!os_.fail() && os_.flags() & ios_base::unitbuf &&
-                !uncaught_exception_) // uncaught_exception() not yet implemented
+                !uncaught_exception_)      // uncaught_exception() not yet implemented
             {
                 os_.flush();
             }
         }
+
         operator bool () const { return ok_; }
 
     private:
@@ -145,23 +141,19 @@ public:
 #endif
         basic_ostream<charT, traits>& os_;
 
-        sentry (const sentry&);       //   not defined
+        sentry (const sentry&);            //   not defined
         sentry& operator= (const sentry&); //   not defined
 
         friend class basic_ostream;
 #ifndef __GNUC__
-        friend basic_ostream& operator<< <charT, traits> (basic_ostream& out,
-                                                          charT          c);
-        friend basic_ostream& operator<< <charT, traits> (basic_ostream& out,
-                                                          char           c);
-        friend basic_ostream<char, traits>& operator<< <traits> (
-            basic_ostream<char, traits>& out, char c);
-        friend basic_ostream& operator<< <charT, traits> (basic_ostream& out,
-                                                          const charT*   s);
-        friend basic_ostream& operator<< <charT, traits> (basic_ostream& out,
-                                                          const char*    s);
-        friend basic_ostream<char, traits>& operator<< <traits> (
-            basic_ostream<char, traits>& out, const char* s);
+        friend basic_ostream& operator<< <charT, traits> (basic_ostream& out, charT c);
+        friend basic_ostream& operator<< <charT, traits> (basic_ostream& out, char c);
+        friend basic_ostream<char, traits>& operator<< <traits> (basic_ostream<char, traits>& out,
+                                                                 char                         c);
+        friend basic_ostream& operator<< <charT, traits> (basic_ostream& out, const charT* s);
+        friend basic_ostream& operator<< <charT, traits> (basic_ostream& out, const char* s);
+        friend basic_ostream<char, traits>& operator<< <traits> (basic_ostream<char, traits>& out,
+                                                                 const char*                  s);
 #else
 #endif
     };
@@ -169,8 +161,7 @@ public:
 
     //  lib.ostream.formatted Formatted output:
     basic_ostream& operator<< (basic_ostream& (*pf) (basic_ostream&));
-    basic_ostream& operator<< (
-        basic_ios<charT, traits>& (*pf) (basic_ios<charT, traits>&));
+    basic_ostream& operator<< (basic_ios<charT, traits>& (*pf) (basic_ios<charT, traits>&));
     basic_ostream& operator<< (ios_base& (*pf) (ios_base&));
 
 #ifndef _MSL_NO_BOOL
@@ -209,17 +200,16 @@ public:
 #ifndef __GNUC__
     friend basic_ostream& operator<< <charT, traits> (basic_ostream& out, charT c);
     friend basic_ostream& operator<< <charT, traits> (basic_ostream& out, char c);
-    friend basic_ostream<char, traits>& operator<< <traits> (
-        basic_ostream<char, traits>& out, char c);
-    friend basic_ostream& operator<< <charT, traits> (basic_ostream& out,
-                                                      const charT*   s);
-    friend basic_ostream& operator<< <charT, traits> (basic_ostream& out,
-                                                      const char*    s);
-    friend basic_ostream<char, traits>& operator<< <traits> (
-        basic_ostream<char, traits>& out, const char* s);
+    friend basic_ostream<char, traits>& operator<< <traits> (basic_ostream<char, traits>& out,
+                                                             char                         c);
+    friend basic_ostream& operator<< <charT, traits> (basic_ostream& out, const charT* s);
+    friend basic_ostream& operator<< <charT, traits> (basic_ostream& out, const char* s);
+    friend basic_ostream<char, traits>& operator<< <traits> (basic_ostream<char, traits>& out,
+                                                             const char*                  s);
 #else
 #endif
 };
+
 // basic_ostream Implementation
 
 template <class charT, class traits>
@@ -264,21 +254,25 @@ basic_ostream<charT, traits>::sentry::sentry (basic_ostream<charT, traits>& os)
     }
 #endif
 }
+
 template <class charT, class traits>
 inline basic_ostream<charT, traits>::basic_ostream()
 {
 }
+
 template <class charT, class traits>
 basic_ostream<charT, traits>::basic_ostream (basic_streambuf<char_type, traits>* sb)
 {
     base::init (sb);
 }
+
 template <class charT, class traits>
 inline basic_ostream<charT, traits>&
 basic_ostream<charT, traits>::operator<< (basic_ostream& (*pf) (basic_ostream&))
 {
     return pf (*this);
 }
+
 template <class charT, class traits>
 inline basic_ostream<charT, traits>&
 basic_ostream<charT, traits>::operator<< (
@@ -287,6 +281,7 @@ basic_ostream<charT, traits>::operator<< (
     pf (*this);
     return *this;
 }
+
 template <class charT, class traits>
 inline basic_ostream<charT, traits>&
 basic_ostream<charT, traits>::operator<< (ios_base& (*pf) (ios_base&))
@@ -312,15 +307,12 @@ basic_ostream<charT, traits>::operator<< (bool n)
             {
 #endif
 #ifndef _MSL_NO_LOCALE
-                typedef num_put<charT, ostreambuf_iterator<charT, traits> >
-                                    num_put_type;
+                typedef num_put<charT, ostreambuf_iterator<charT, traits> > num_put_type;
                 const num_put_type& np = _USE_FACET (num_put_type, base::getloc());
                 failed = np.put (*this, *this, base::fill(), n).failed();
 #else
         failed =
-            numput (
-                ostreambuf_iterator<charT, traits> (*this), *this, base::fill(), n)
-                .failed();
+            numput (ostreambuf_iterator<charT, traits> (*this), *this, base::fill(), n).failed();
 #endif
 #ifndef _MSL_NO_EXCEPTIONS
             }
@@ -366,16 +358,12 @@ basic_ostream<charT, traits>::operator<< (short n)
             {
 #endif
 #ifndef _MSL_NO_LOCALE
-                typedef num_put<charT, ostreambuf_iterator<charT, traits> >
-                                    num_put_type;
+                typedef num_put<charT, ostreambuf_iterator<charT, traits> > num_put_type;
                 const num_put_type& np = _USE_FACET (num_put_type, base::getloc());
                 ios_base::fmtflags  f = base::flags() & ios_base::basefield;
                 if (f == ios_base::oct || f == ios_base::hex)
                 {
-                    failed = np.put (*this,
-                                     *this,
-                                     base::fill(),
-                                     (unsigned long)(unsigned short)n)
+                    failed = np.put (*this, *this, base::fill(), (unsigned long)(unsigned short)n)
                                  .failed();
                 }
                 else
@@ -394,11 +382,9 @@ basic_ostream<charT, traits>::operator<< (short n)
         }
         else
         {
-            failed = numput (ostreambuf_iterator<charT, traits> (*this),
-                             *this,
-                             base::fill(),
-                             (long)n)
-                         .failed();
+            failed =
+                numput (ostreambuf_iterator<charT, traits> (*this), *this, base::fill(), (long)n)
+                    .failed();
         }
 #endif
 #ifndef _MSL_NO_EXCEPTIONS
@@ -427,6 +413,7 @@ basic_ostream<charT, traits>::operator<< (short n)
 #endif
     return *this;
 }
+
 template <class charT, class traits>
 basic_ostream<charT, traits>&
 basic_ostream<charT, traits>::operator<< (unsigned short n)
@@ -444,11 +431,9 @@ basic_ostream<charT, traits>::operator<< (unsigned short n)
             {
 #endif
 #ifndef _MSL_NO_LOCALE
-                typedef num_put<charT, ostreambuf_iterator<charT, traits> >
-                                    num_put_type;
+                typedef num_put<charT, ostreambuf_iterator<charT, traits> > num_put_type;
                 const num_put_type& np = _USE_FACET (num_put_type, base::getloc());
-                failed =
-                    np.put (*this, *this, base::fill(), (unsigned long)n).failed();
+                failed = np.put (*this, *this, base::fill(), (unsigned long)n).failed();
 #else
         failed = numput (ostreambuf_iterator<charT, traits> (*this),
                          *this,
@@ -482,6 +467,7 @@ basic_ostream<charT, traits>::operator<< (unsigned short n)
 #endif
     return *this;
 }
+
 template <class charT, class traits>
 basic_ostream<charT, traits>&
 basic_ostream<charT, traits>::operator<< (int n)
@@ -499,16 +485,12 @@ basic_ostream<charT, traits>::operator<< (int n)
             {
 #endif
 #ifndef _MSL_NO_LOCALE
-                typedef num_put<charT, ostreambuf_iterator<charT, traits> >
-                                    num_put_type;
+                typedef num_put<charT, ostreambuf_iterator<charT, traits> > num_put_type;
                 const num_put_type& np = _USE_FACET (num_put_type, base::getloc());
                 ios_base::fmtflags  f = base::flags() & ios_base::basefield;
                 if (f == ios_base::oct || f == ios_base::hex)
                 {
-                    failed = np.put (*this,
-                                     *this,
-                                     base::fill(),
-                                     (unsigned long)(unsigned int)n)
+                    failed = np.put (*this, *this, base::fill(), (unsigned long)(unsigned int)n)
                                  .failed();
                 }
                 else
@@ -527,11 +509,9 @@ basic_ostream<charT, traits>::operator<< (int n)
         }
         else
         {
-            failed = numput (ostreambuf_iterator<charT, traits> (*this),
-                             *this,
-                             base::fill(),
-                             (long)n)
-                         .failed();
+            failed =
+                numput (ostreambuf_iterator<charT, traits> (*this), *this, base::fill(), (long)n)
+                    .failed();
         }
 #endif
 #ifndef _MSL_NO_EXCEPTIONS
@@ -560,6 +540,7 @@ basic_ostream<charT, traits>::operator<< (int n)
 #endif
     return *this;
 }
+
 template <class charT, class traits>
 basic_ostream<charT, traits>&
 basic_ostream<charT, traits>::operator<< (unsigned int n)
@@ -577,11 +558,9 @@ basic_ostream<charT, traits>::operator<< (unsigned int n)
             {
 #endif
 #ifndef _MSL_NO_LOCALE
-                typedef num_put<charT, ostreambuf_iterator<charT, traits> >
-                                    num_put_type;
+                typedef num_put<charT, ostreambuf_iterator<charT, traits> > num_put_type;
                 const num_put_type& np = _USE_FACET (num_put_type, base::getloc());
-                failed =
-                    np.put (*this, *this, base::fill(), (unsigned long)n).failed();
+                failed = np.put (*this, *this, base::fill(), (unsigned long)n).failed();
 #else
         failed = numput (ostreambuf_iterator<charT, traits> (*this),
                          *this,
@@ -615,6 +594,7 @@ basic_ostream<charT, traits>::operator<< (unsigned int n)
 #endif
     return *this;
 }
+
 template <class charT, class traits>
 basic_ostream<charT, traits>&
 basic_ostream<charT, traits>::operator<< (long n)
@@ -632,15 +612,12 @@ basic_ostream<charT, traits>::operator<< (long n)
             {
 #endif
 #ifndef _MSL_NO_LOCALE
-                typedef num_put<charT, ostreambuf_iterator<charT, traits> >
-                                    num_put_type;
+                typedef num_put<charT, ostreambuf_iterator<charT, traits> > num_put_type;
                 const num_put_type& np = _USE_FACET (num_put_type, base::getloc());
                 failed = np.put (*this, *this, base::fill(), n).failed();
 #else
         failed =
-            numput (
-                ostreambuf_iterator<charT, traits> (*this), *this, base::fill(), n)
-                .failed();
+            numput (ostreambuf_iterator<charT, traits> (*this), *this, base::fill(), n).failed();
 #endif
 #ifndef _MSL_NO_EXCEPTIONS
             }
@@ -668,6 +645,7 @@ basic_ostream<charT, traits>::operator<< (long n)
 #endif
     return *this;
 }
+
 template <class charT, class traits>
 basic_ostream<charT, traits>&
 basic_ostream<charT, traits>::operator<< (unsigned long n)
@@ -685,15 +663,12 @@ basic_ostream<charT, traits>::operator<< (unsigned long n)
             {
 #endif
 #ifndef _MSL_NO_LOCALE
-                typedef num_put<charT, ostreambuf_iterator<charT, traits> >
-                                    num_put_type;
+                typedef num_put<charT, ostreambuf_iterator<charT, traits> > num_put_type;
                 const num_put_type& np = _USE_FACET (num_put_type, base::getloc());
                 failed = np.put (*this, *this, base::fill(), n).failed();
 #else
         failed =
-            numput (
-                ostreambuf_iterator<charT, traits> (*this), *this, base::fill(), n)
-                .failed();
+            numput (ostreambuf_iterator<charT, traits> (*this), *this, base::fill(), n).failed();
 #endif
 #ifndef _MSL_NO_EXCEPTIONS
             }
@@ -739,15 +714,12 @@ basic_ostream<charT, traits>::operator<< (long long n)
             {
 #endif
 #ifndef _MSL_NO_LOCALE
-                typedef num_put<charT, ostreambuf_iterator<charT, traits> >
-                                    num_put_type;
+                typedef num_put<charT, ostreambuf_iterator<charT, traits> > num_put_type;
                 const num_put_type& np = _USE_FACET (num_put_type, base::getloc());
                 failed = np.put (*this, *this, base::fill(), n).failed();
 #else
         failed =
-            numput (
-                ostreambuf_iterator<charT, traits> (*this), *this, base::fill(), n)
-                .failed();
+            numput (ostreambuf_iterator<charT, traits> (*this), *this, base::fill(), n).failed();
 #endif
 #ifndef _MSL_NO_EXCEPTIONS
             }
@@ -775,6 +747,7 @@ basic_ostream<charT, traits>::operator<< (long long n)
 #endif
     return *this;
 }
+
 template <class charT, class traits>
 basic_ostream<charT, traits>&
 basic_ostream<charT, traits>::operator<< (unsigned long long n)
@@ -792,15 +765,12 @@ basic_ostream<charT, traits>::operator<< (unsigned long long n)
             {
 #endif
 #ifndef _MSL_NO_LOCALE
-                typedef num_put<charT, ostreambuf_iterator<charT, traits> >
-                                    num_put_type;
+                typedef num_put<charT, ostreambuf_iterator<charT, traits> > num_put_type;
                 const num_put_type& np = _USE_FACET (num_put_type, base::getloc());
                 failed = np.put (*this, *this, base::fill(), n).failed();
 #else
         failed =
-            numput (
-                ostreambuf_iterator<charT, traits> (*this), *this, base::fill(), n)
-                .failed();
+            numput (ostreambuf_iterator<charT, traits> (*this), *this, base::fill(), n).failed();
 #endif
 #ifndef _MSL_NO_EXCEPTIONS
             }
@@ -848,15 +818,12 @@ basic_ostream<charT, traits>::operator<< (float n)
             {
 #endif
 #ifndef _MSL_NO_LOCALE
-                typedef num_put<charT, ostreambuf_iterator<charT, traits> >
-                                    num_put_type;
+                typedef num_put<charT, ostreambuf_iterator<charT, traits> > num_put_type;
                 const num_put_type& np = _USE_FACET (num_put_type, base::getloc());
                 failed = np.put (*this, *this, base::fill(), n).failed();
 #else
         failed =
-            numput (
-                ostreambuf_iterator<charT, traits> (*this), *this, base::fill(), n)
-                .failed();
+            numput (ostreambuf_iterator<charT, traits> (*this), *this, base::fill(), n).failed();
 #endif
 #ifndef _MSL_NO_EXCEPTIONS
             }
@@ -884,6 +851,7 @@ basic_ostream<charT, traits>::operator<< (float n)
 #endif
     return *this;
 }
+
 template <class charT, class traits>
 basic_ostream<charT, traits>&
 basic_ostream<charT, traits>::operator<< (double n)
@@ -901,15 +869,12 @@ basic_ostream<charT, traits>::operator<< (double n)
             {
 #endif
 #ifndef _MSL_NO_LOCALE
-                typedef num_put<charT, ostreambuf_iterator<charT, traits> >
-                                    num_put_type;
+                typedef num_put<charT, ostreambuf_iterator<charT, traits> > num_put_type;
                 const num_put_type& np = _USE_FACET (num_put_type, base::getloc());
                 failed = np.put (*this, *this, base::fill(), n).failed();
 #else
         failed =
-            numput (
-                ostreambuf_iterator<charT, traits> (*this), *this, base::fill(), n)
-                .failed();
+            numput (ostreambuf_iterator<charT, traits> (*this), *this, base::fill(), n).failed();
 #endif
 #ifndef _MSL_NO_EXCEPTIONS
             }
@@ -937,6 +902,7 @@ basic_ostream<charT, traits>::operator<< (double n)
 #endif
     return *this;
 }
+
 template <class charT, class traits>
 basic_ostream<charT, traits>&
 basic_ostream<charT, traits>::operator<< (long double n)
@@ -954,15 +920,12 @@ basic_ostream<charT, traits>::operator<< (long double n)
             {
 #endif
 #ifndef _MSL_NO_LOCALE
-                typedef num_put<charT, ostreambuf_iterator<charT, traits> >
-                                    num_put_type;
+                typedef num_put<charT, ostreambuf_iterator<charT, traits> > num_put_type;
                 const num_put_type& np = _USE_FACET (num_put_type, base::getloc());
                 failed = np.put (*this, *this, base::fill(), n).failed();
 #else
         failed =
-            numput (
-                ostreambuf_iterator<charT, traits> (*this), *this, base::fill(), n)
-                .failed();
+            numput (ostreambuf_iterator<charT, traits> (*this), *this, base::fill(), n).failed();
 #endif
 #ifndef _MSL_NO_EXCEPTIONS
             }
@@ -1008,16 +971,13 @@ basic_ostream<charT, traits>::operator<< (const void* p)
             {
 #endif
 #ifndef _MSL_NO_LOCALE
-                typedef num_put<charT, ostreambuf_iterator<charT, traits> >
-                                    num_put_type;
+                typedef num_put<charT, ostreambuf_iterator<charT, traits> > num_put_type;
                 const num_put_type& np = _USE_FACET (num_put_type, base::getloc());
                 const ctype<charT>& ct = _USE_FACET (ctype<charT>, base::getloc());
                 failed = np.put (*this, *this, base::fill(), p).failed();
 #else
         failed =
-            numput (
-                ostreambuf_iterator<charT, traits> (*this), *this, base::fill(), p)
-                .failed();
+            numput (ostreambuf_iterator<charT, traits> (*this), *this, base::fill(), p).failed();
 #endif
 #ifndef _MSL_NO_EXCEPTIONS
             }
@@ -1045,6 +1005,7 @@ basic_ostream<charT, traits>::operator<< (const void* p)
 #endif
     return *this;
 }
+
 template <class charT, class traits>
 basic_ostream<charT, traits>&
 basic_ostream<charT, traits>::operator<< (basic_streambuf<char_type, traits>* sb)
@@ -1072,9 +1033,8 @@ basic_ostream<charT, traits>::operator<< (basic_streambuf<char_type, traits>* sb
                     {
                         break;
                     }
-                    if (traits::eq_int_type (
-                            base::rdbuf()->sputc (traits::to_char_type (c)),
-                            traits::eof()))
+                    if (traits::eq_int_type (base::rdbuf()->sputc (traits::to_char_type (c)),
+                                             traits::eof()))
                     {
                         break;
                     }
@@ -1107,6 +1067,7 @@ basic_ostream<charT, traits>::operator<< (basic_streambuf<char_type, traits>* sb
 #endif
     return *this;
 }
+
 template <class charT, class traits>
 basic_ostream<charT, traits>&
 basic_ostream<charT, traits>::put (char_type c)
@@ -1123,8 +1084,7 @@ basic_ostream<charT, traits>::put (char_type c)
             try
             {
 #endif
-                failed =
-                    traits::eq_int_type (base::rdbuf()->sputc (c), traits::eof());
+                failed = traits::eq_int_type (base::rdbuf()->sputc (c), traits::eof());
 #ifndef _MSL_NO_EXCEPTIONS
             }
             catch (...)
@@ -1151,6 +1111,7 @@ basic_ostream<charT, traits>::put (char_type c)
 #endif
     return *this;
 }
+
 template <class charT, class traits>
 basic_ostream<charT, traits>&
 basic_ostream<charT, traits>::write (const char_type* s, streamsize n)
@@ -1194,6 +1155,7 @@ basic_ostream<charT, traits>::write (const char_type* s, streamsize n)
 #endif
     return *this;
 }
+
 template <class charT, class traits>
 basic_ostream<charT, traits>&
 basic_ostream<charT, traits>::flush ()
@@ -1230,6 +1192,7 @@ basic_ostream<charT, traits>::flush ()
     }
     return *this;
 }
+
 template <class charT, class traits>
 typename basic_ostream<charT, traits>::pos_type
 basic_ostream<charT, traits>::tellp ()
@@ -1257,6 +1220,7 @@ basic_ostream<charT, traits>::tellp ()
     }
     return pos_type (-1);
 }
+
 template <class charT, class traits>
 basic_ostream<charT, traits>&
 basic_ostream<charT, traits>::seekp (pos_type pos)
@@ -1292,6 +1256,7 @@ basic_ostream<charT, traits>::seekp (pos_type pos)
     }
     return *this;
 }
+
 template <class charT, class traits>
 basic_ostream<charT, traits>&
 basic_ostream<charT, traits>::seekp (off_type off, ios_base::seekdir dir)
@@ -1327,6 +1292,7 @@ basic_ostream<charT, traits>::seekp (off_type off, ios_base::seekdir dir)
     }
     return *this;
 }
+
 template <class charT, class traits>
 basic_ostream<charT, traits>&
 operator<< (basic_ostream<charT, traits>& out, charT c)
@@ -1377,6 +1343,7 @@ operator<< (basic_ostream<charT, traits>& out, charT c)
 #endif
     return out;
 }
+
 template <class charT, class traits>
 basic_ostream<charT, traits>&
 operator<< (basic_ostream<charT, traits>& out, char c)
@@ -1428,6 +1395,7 @@ operator<< (basic_ostream<charT, traits>& out, char c)
 #endif
     return out;
 }
+
 template <class traits>
 basic_ostream<char, traits>&
 operator<< (basic_ostream<char, traits>& out, char c)
@@ -1478,18 +1446,21 @@ operator<< (basic_ostream<char, traits>& out, char c)
 #endif
     return out;
 }
+
 template <class traits>
 inline basic_ostream<char, traits>&
 operator<< (basic_ostream<char, traits>& out, signed char c)
 {
     return out << (char)c;
 }
+
 template <class traits>
 inline basic_ostream<char, traits>&
 operator<< (basic_ostream<char, traits>& out, unsigned char c)
 {
     return out << (char)c;
 }
+
 template <class charT, class traits>
 basic_ostream<charT, traits>&
 operator<< (basic_ostream<charT, traits>& out, const charT* s)
@@ -1540,6 +1511,7 @@ operator<< (basic_ostream<charT, traits>& out, const charT* s)
 #endif
     return out;
 }
+
 template <class charT, class traits>
 basic_ostream<charT, traits>&
 operator<< (basic_ostream<charT, traits>& out, const char* s)
@@ -1557,8 +1529,8 @@ operator<< (basic_ostream<charT, traits>& out, const char* s)
             {
 #endif
 #ifndef _MSL_NO_LOCALE
-                typedef ctype<charT> ctype_type;
-                const ctype_type&    ct = _USE_FACET (ctype_type, out.getloc());
+                typedef ctype<charT>        ctype_type;
+                const ctype_type&           ct = _USE_FACET (ctype_type, out.getloc());
                 basic_string<charT, traits> w_string = ct.widen (string (s));
                 failed = __putnumber (ostreambuf_iterator<charT, traits> (out),
                                       out,
@@ -1605,6 +1577,7 @@ operator<< (basic_ostream<charT, traits>& out, const char* s)
 #endif
     return out;
 }
+
 template <class traits>
 basic_ostream<char, traits>&
 operator<< (basic_ostream<char, traits>& out, const char* s)
@@ -1655,43 +1628,48 @@ operator<< (basic_ostream<char, traits>& out, const char* s)
 #endif
     return out;
 }
+
 template <class traits>
 inline basic_ostream<char, traits>&
 operator<< (basic_ostream<char, traits>& out, const signed char* s)
 {
     return out << (const char*)s;
 }
+
 template <class traits>
 inline basic_ostream<char, traits>&
 operator<< (basic_ostream<char, traits>& out, const unsigned char* s)
 {
     return out << (const char*)s;
 }
+
 template <class charT, class traits>
 inline basic_ostream<charT, traits>&
 endl (basic_ostream<charT, traits>& os)
 {
     return os.put (os.widen ('\n')).flush();
 }
+
 template <class charT, class traits>
 inline basic_ostream<charT, traits>&
 ends (basic_ostream<charT, traits>& os)
 {
     return os.put (charT());
 }
+
 template <class charT, class traits>
 inline basic_ostream<charT, traits>&
 flush (basic_ostream<charT, traits>& os)
 {
     return os.flush();
 }
+
 // string inserters
 
 #ifndef __GNUC__
 template <class charT, class traits, class Allocator>
 basic_ostream<charT, traits>&
-operator<< (basic_ostream<charT, traits>&                 os,
-            const basic_string<charT, traits, Allocator>& str)
+operator<< (basic_ostream<charT, traits>& os, const basic_string<charT, traits, Allocator>& str)
 {
     typename basic_ostream<charT, traits>::sentry ok (os);
     if (ok)
@@ -1714,8 +1692,7 @@ operator<< (basic_ostream<charT, traits>&                 os,
 #else
 template <class charT, class traits, class Allocator>
 basic_ostream<charT, traits>&
-operator<< (basic_ostream<charT, traits>&                 os,
-            const basic_string<charT, traits, Allocator>& str)
+operator<< (basic_ostream<charT, traits>& os, const basic_string<charT, traits, Allocator>& str)
 {
     return os << str.c_str();
 }

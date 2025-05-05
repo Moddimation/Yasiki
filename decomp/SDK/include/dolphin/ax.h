@@ -1,5 +1,6 @@
 #ifndef _DOLPHIN_AX_H_
 #define _DOLPHIN_AX_H_
+
 typedef struct _AXPBMIX
 {
     u16 vL;                    ///< 0x00
@@ -21,6 +22,7 @@ typedef struct _AXPBMIX
     u16 vAuxAS;                ///< 0x20
     u16 vDeltaAuxAS;           ///< 0x22
 } AXPBMIX;
+
 typedef struct _AXPBITD
 {
     u16 flag;                  ///< 0x00
@@ -31,12 +33,14 @@ typedef struct _AXPBITD
     u16 targetShiftL;          ///< 0x0A
     u16 targetShiftR;          ///< 0x0C
 } AXPBITD;
+
 typedef struct _AXPBUPDATE
 {
     u16 updNum[5];             ///< 0x00
     u16 dataHi;                ///< 0x0A
     u16 dataLo;                ///< 0x0C
 } AXPBUPDATE;
+
 typedef struct _AXPBDPOP
 {
     s16 aL;                    ///< 0x00
@@ -49,17 +53,20 @@ typedef struct _AXPBDPOP
     s16 aAuxAS;                ///< 0x0E
     s16 aAuxBS;                ///< 0x10
 } AXPBDPOP;
+
 typedef struct _AXPBVE
 {
     u16 currentVolume;         ///< 0x00
     s16 currentDelta;          ///< 0x02
 } AXPBVE;
+
 typedef struct _AXPBFIR
 {
     u16 numCoefs;              ///< 0x00
     u16 coefsHi;               ///< 0x02
     u16 coefsLo;               ///< 0x04
 } AXPBFIR;
+
 typedef struct _AXPBADDR
 {
     u16 loopFlag;              ///< 0x00
@@ -71,6 +78,7 @@ typedef struct _AXPBADDR
     u16 currentAddressHi;      ///< 0x0C
     u16 currentAddressLo;      ///< 0x0E
 } AXPBADDR;
+
 typedef struct _AXPBADPCM
 {
     u16 a[8][2];               ///< 0x00
@@ -79,6 +87,7 @@ typedef struct _AXPBADPCM
     u16 yn1;                   ///< 0x24
     u16 yn2;                   ///< 0x26
 } AXPBADPCM;
+
 typedef struct _AXPBSRC
 {
     u16 ratioHi;               ///< 0x00
@@ -86,12 +95,14 @@ typedef struct _AXPBSRC
     u16 currentAddressFrac;    ///< 0x04
     u16 last_samples[4];       ///< 0x06
 } AXPBSRC;
+
 typedef struct _AXPBADPCMLOOP
 {
     u16 loop_pred_scale;       ///< 0x00
     u16 loop_yn1;              ///< 0x02
     u16 loop_yn2;              ///< 0x04
 } AXPBADPCMLOOP;
+
 typedef struct _AXPB
 {
     u16           nextHi;      ///< 0x00
@@ -115,6 +126,7 @@ typedef struct _AXPB
     AXPBADPCMLOOP adpcmLoop;   ///< 0xB4
     u16           pad[3];      ///< 0xBA
 } AXPB;
+
 typedef struct _AXVPB
 {
     void* next;                ///< 0x000
@@ -134,14 +146,17 @@ typedef struct _AXVPB
     void* itdBuffer;           ///< 0x134
     AXPB  pb;                  ///< 0x138
 } AXVPB;
+
 typedef struct _AXPBITDBUFFER
 {
     s16 data[32];              ///< 0x00
 } AXPBITDBUFFER;
+
 typedef struct _AXPBU
 {
     u16 data[128];             ///< 0x00
 } AXPBU;
+
 typedef struct _AXSPB
 {
     u16 dpopLHi;               ///< 0x00
@@ -172,6 +187,7 @@ typedef struct _AXSPB
     u16 dpopBSLo;              ///< 0x32
     s16 dpopBSDelta;           ///< 0x34
 } AXSPB;
+
 typedef struct _AXPROFILE
 {
     u64 axFrameStart;          ///< 0x00
@@ -182,12 +198,14 @@ typedef struct _AXPROFILE
     u64 axFrameEnd;            ///< 0x28
     u32 axNumVoices;           ///< 0x30
 } AXPROFILE;
+
 struct AX_AUX_DATA
 {
     s32* l;                    ///< 0x00
     s32* r;                    ///< 0x00
     s32* s;                    ///< 0x00
 };
+
 #define AX_DSP_SLAVE_LENGTH        3264
 #define AX_MAX_VOICES              64
 

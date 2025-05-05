@@ -2,6 +2,7 @@
 #define CHARACTER_EVENT_OBSERVER_H_
 
 #include "Koga/Observer.h"
+
 namespace Koga
 {
 class CharacterEvent
@@ -19,6 +20,7 @@ public:
 
     bool* mUnknownEntityBools;
 };
+
 class CharacterEventObserver : public Observer<CharacterEvent, bool>
 {
 public:

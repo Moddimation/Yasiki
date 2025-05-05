@@ -3,16 +3,14 @@
 #include <dolphin.h>
 
 static u8 __SEQMidiEventLength[128] = {
-    0x02, 0x02, 0x02, 0x02, 0x02, 0x02, 0x02, 0x02, 0x02, 0x02, 0x02, 0x02, 0x02,
-    0x02, 0x02, 0x02, 0x02, 0x02, 0x02, 0x02, 0x02, 0x02, 0x02, 0x02, 0x02, 0x02,
-    0x02, 0x02, 0x02, 0x02, 0x02, 0x02, 0x02, 0x02, 0x02, 0x02, 0x02, 0x02, 0x02,
-    0x02, 0x02, 0x02, 0x02, 0x02, 0x02, 0x02, 0x02, 0x02, 0x02, 0x02, 0x02, 0x02,
-    0x02, 0x02, 0x02, 0x02, 0x02, 0x02, 0x02, 0x02, 0x02, 0x02, 0x02, 0x02, 0x01,
-    0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01,
-    0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01,
-    0x01, 0x01, 0x01, 0x01, 0x01, 0x02, 0x02, 0x02, 0x02, 0x02, 0x02, 0x02, 0x02,
-    0x02, 0x02, 0x02, 0x02, 0x02, 0x02, 0x02, 0x02, 0x00, 0x00, 0x02, 0x01, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00
+    0x02, 0x02, 0x02, 0x02, 0x02, 0x02, 0x02, 0x02, 0x02, 0x02, 0x02, 0x02, 0x02, 0x02, 0x02, 0x02,
+    0x02, 0x02, 0x02, 0x02, 0x02, 0x02, 0x02, 0x02, 0x02, 0x02, 0x02, 0x02, 0x02, 0x02, 0x02, 0x02,
+    0x02, 0x02, 0x02, 0x02, 0x02, 0x02, 0x02, 0x02, 0x02, 0x02, 0x02, 0x02, 0x02, 0x02, 0x02, 0x02,
+    0x02, 0x02, 0x02, 0x02, 0x02, 0x02, 0x02, 0x02, 0x02, 0x02, 0x02, 0x02, 0x02, 0x02, 0x02, 0x02,
+    0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01,
+    0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01,
+    0x02, 0x02, 0x02, 0x02, 0x02, 0x02, 0x02, 0x02, 0x02, 0x02, 0x02, 0x02, 0x02, 0x02, 0x02, 0x02,
+    0x00, 0x00, 0x02, 0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00
 };
 
 static SEQSEQUENCE* __SEQSequenceList;
@@ -30,6 +28,7 @@ static void __SEQHandleSynthEvent (struct SYNSYNTH* synth, SEQTRACK* track);
 static void __SEQRunEvent (struct SYNSYNTH* synth, SEQTRACK* track);
 static void __SEQInitTracks (SEQSEQUENCE* sequence, u8* read, int tracks);
 static void __SEQReadHeader (SEQSEQUENCE* sequence, u8* midiStream);
+
 static void
 __SEQPushSequenceList (SEQSEQUENCE* sequence)
 {
@@ -47,6 +46,7 @@ __SEQPushSequenceList (SEQSEQUENCE* sequence)
     __SEQSequenceList = sequence;
     OSRestoreInterrupts (old);
 }
+
 static void
 __SEQRemoveSequenceFromList (SEQSEQUENCE* sequence)
 {
@@ -69,6 +69,7 @@ __SEQRemoveSequenceFromList (SEQSEQUENCE* sequence)
     }
     OSRestoreInterrupts (old);
 }
+
 static u32
 __SEQGetIntTrack (SEQTRACK* track)
 {
@@ -83,6 +84,7 @@ __SEQGetIntTrack (SEQTRACK* track)
     track->current += 1;
     return value;
 }
+
 static void
 __SEQHandleSysExEvent (SEQTRACK* track)
 {
@@ -92,6 +94,7 @@ __SEQHandleSysExEvent (SEQTRACK* track)
     length = __SEQGetIntTrack (track);
     track->current += length;
 }
+
 static void
 __SEQSetTicksPerFrame (SEQTRACK* track, float bps)
 {
@@ -100,9 +103,9 @@ __SEQSetTicksPerFrame (SEQTRACK* track, float bps)
     ASSERTLINE (0x94, track);
     sequence = track->sequence;
     track->beatsPerSec = bps;
-    track->ticksPerFrame =
-        (65536.0f * (160.0f / ((32000.0f / bps) / sequence->timeFormat)));
+    track->ticksPerFrame = (65536.0f * (160.0f / ((32000.0f / bps) / sequence->timeFormat)));
 }
+
 static void
 __SEQTempoMetaEvent (SEQTRACK* track)
 {
@@ -118,6 +121,7 @@ __SEQTempoMetaEvent (SEQTRACK* track)
     beatsPerSec = 1000000 / (f32)data;
     __SEQSetTicksPerFrame (track, beatsPerSec);
 }
+
 static void
 __SEQTrackEnd (SEQTRACK* track)
 {
@@ -132,6 +136,7 @@ __SEQTrackEnd (SEQTRACK* track)
         sequence->end = 1;
     }
 }
+
 static void
 __SEQHandleMetaEvent (SEQTRACK* track)
 {
@@ -158,6 +163,7 @@ __SEQHandleMetaEvent (SEQTRACK* track)
             return;
     }
 }
+
 static void
 __SEQHandleSynthEvent (struct SYNSYNTH* synth, SEQTRACK* track)
 {
@@ -192,6 +198,7 @@ __SEQHandleSynthEvent (struct SYNSYNTH* synth, SEQTRACK* track)
     }
     SYNMidiInput (synth, ch);
 }
+
 static void
 __SEQRunEvent (struct SYNSYNTH* synth, SEQTRACK* track)
 {
@@ -223,6 +230,7 @@ __SEQRunEvent (struct SYNSYNTH* synth, SEQTRACK* track)
         __SEQTrackEnd (track);
     }
 }
+
 static void
 __SEQInitTracks (SEQSEQUENCE* sequence, u8* read, int tracks)
 {
@@ -250,8 +258,7 @@ __SEQInitTracks (SEQSEQUENCE* sequence, u8* read, int tracks)
                 track->end = &p[bytes];
                 track->current = p;
                 track->defaultTicksPerFrame =
-                    (u32)(65536.0f *
-                          (160.0f / (16000.0f / (f32)sequence->timeFormat)));
+                    (u32)(65536.0f * (160.0f / (16000.0f / (f32)sequence->timeFormat)));
                 track->state = 0;
                 p += bytes;
                 break;
@@ -262,6 +269,7 @@ __SEQInitTracks (SEQSEQUENCE* sequence, u8* read, int tracks)
         i++;
     }
 }
+
 static void
 __SEQReadHeader (SEQSEQUENCE* sequence, u8* midiStream)
 {
@@ -270,8 +278,7 @@ __SEQReadHeader (SEQSEQUENCE* sequence, u8* midiStream)
     u32 fileType;
 
     read = midiStream;
-    ASSERTMSGLINE (
-        0x188, *(u32*)read == 'MThd', "!!!midiStream is not a valid MIDI file¥n!!!");
+    ASSERTMSGLINE (0x188, *(u32*)read == 'MThd', "!!!midiStream is not a valid MIDI file¥n!!!");
     read += 4;
     bytes = *(u32*)read;
     read += 4;
@@ -281,8 +288,7 @@ __SEQReadHeader (SEQSEQUENCE* sequence, u8* midiStream)
     read += 2;
     sequence->timeFormat = *(s16*)read;
     read += 2;
-    ASSERTMSGLINE (
-        0x197, sequence->timeFormat >= 0, "!!!SEQ does not support SMPTE time!!!¥n");
+    ASSERTMSGLINE (0x197, sequence->timeFormat >= 0, "!!!SEQ does not support SMPTE time!!!¥n");
     bytes -= 6;
     read += bytes;
     switch (fileType)
@@ -292,10 +298,9 @@ __SEQReadHeader (SEQSEQUENCE* sequence, u8* midiStream)
             __SEQInitTracks (sequence, read, 1);
             break;
         case 1:
-            ASSERTMSGLINE (
-                0x1AD,
-                sequence->nTracks < 0x40,
-                "exceeded SEQ_MAX_TRACKS, please increase SEQ_MAX_TRACKS¥n");
+            ASSERTMSGLINE (0x1AD,
+                           sequence->nTracks < 0x40,
+                           "exceeded SEQ_MAX_TRACKS, please increase SEQ_MAX_TRACKS¥n");
             __SEQInitTracks (sequence, read, sequence->nTracks);
             break;
         default:
@@ -304,16 +309,19 @@ __SEQReadHeader (SEQSEQUENCE* sequence, u8* midiStream)
     }
     sequence->tracksRunning = sequence->nTracks;
 }
+
 void
 SEQInit (void)
 {
     __SEQSequenceList = NULL;
 }
+
 void
 SEQQuit (void)
 {
     __SEQSequenceList = NULL;
 }
+
 void
 SEQRunAudioFrame (void)
 {
@@ -370,6 +378,7 @@ SEQRunAudioFrame (void)
         }
     }
 }
+
 void
 SEQAddSequence (SEQSEQUENCE* sequence,
                 u32*         midiStream,
@@ -402,6 +411,7 @@ SEQAddSequence (SEQSEQUENCE* sequence,
     __SEQReadHeader (sequence, (u8*)midiStream);
     __SEQPushSequenceList (sequence);
 }
+
 void
 SEQRemoveSequence (SEQSEQUENCE* sequence)
 {
@@ -409,16 +419,16 @@ SEQRemoveSequence (SEQSEQUENCE* sequence)
     __SEQRemoveSequenceFromList (sequence);
     SYNQuitSynth (&sequence->synth);
 }
+
 void
-SEQRegisterControllerCallback (SEQSEQUENCE* sequence,
-                               u8           controller,
-                               void         (*callback) (void*, u16))
+SEQRegisterControllerCallback (SEQSEQUENCE* sequence, u8 controller, void (*callback) (void*, u16))
 {
     ASSERTLINE (0x25E, sequence);
     ASSERTLINE (0x25F, controller < 128);
     ASSERTLINE (0x260, callback);
     sequence->callback[controller] = callback;
 }
+
 void
 SEQSetState (SEQSEQUENCE* sequence, u32 state)
 {
@@ -468,20 +478,21 @@ SEQSetState (SEQSEQUENCE* sequence, u32 state)
     }
     sequence->state = state;
 }
+
 u32
 SEQGetState (SEQSEQUENCE* sequence)
 {
     ASSERTLINE (0x2B1, sequence);
     return sequence->state;
 }
+
 void
 SEQSetTempo (SEQSEQUENCE* sequence, u32 trackIndex, float bpm)
 {
     int i;
 
     ASSERTLINE (0x2BC, sequence);
-    ASSERTLINE (0x2BD,
-                (trackIndex < sequence->nTracks) || (trackIndex == SEQ_ALL_TRACKS));
+    ASSERTLINE (0x2BD, (trackIndex < sequence->nTracks) || (trackIndex == SEQ_ALL_TRACKS));
     if (trackIndex == -1)
     {
         for (i = 0; i < sequence->nTracks; i++)
@@ -492,6 +503,7 @@ SEQSetTempo (SEQSEQUENCE* sequence, u32 trackIndex, float bpm)
     }
     __SEQSetTicksPerFrame (&sequence->track[trackIndex], bpm / 60.0f);
 }
+
 f32
 SEQGetTempo (SEQSEQUENCE* sequence, u32 trackIndex)
 {
@@ -499,12 +511,14 @@ SEQGetTempo (SEQSEQUENCE* sequence, u32 trackIndex)
     ASSERTLINE (0x2D3, trackIndex < sequence->nTracks);
     return 60.0f * sequence->track[trackIndex].beatsPerSec;
 }
+
 void
 SEQSetVolume (SEQSEQUENCE* sequence, s32 dB)
 {
     ASSERTLINE (0x2DE, sequence);
     SYNSetMasterVolume (&sequence->synth, dB);
 }
+
 s32
 SEQGetVolume (SEQSEQUENCE* sequence)
 {

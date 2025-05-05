@@ -22,16 +22,14 @@
 #
 #SIU registers:
 #SIUMCR |= 0x00032640->FRC = 1 | DLK = 1 | DPC = 1 | MLRC = 1 | GB5E = 1
-#SYPCR = 0xffffff88->SWTC =                                                         \
-    ffff | BMT = 08 | BME = 1 | SWF = 0 | SWE = 0 | SWRI = 0 | SWP = 0
+#SYPCR = 0xffffff88->SWTC = ffff | BMT = 08 | BME = 1 | SWF = 0 | SWE = 0 | SWRI = 0 | SWP = 0
 #TBSCR = 0x00c2->REFA = 1 | REFB = 1 | TBF = 1 | TBE = 0
 #RTCSC = 0x01c2
 #PISCR = 0x0082
 #
 #UPM and Memory Controllers are set only after a hard reset.
 #Memory Controller:
-#OR0 = 0xffe00954->AM = FFE0 | ARM =                                                \
-                            0 | CSNT = 0 | ACS = 0 | BI = 0 | SCY = 5 | SETA = 0 |
+#OR0 = 0xffe00954->AM = FFE0 | ARM = 0 | CSNT = 0 | ACS = 0 | BI = 0 | SCY = 5 | SETA = 0 |
 #TRLX = 1
 #OR1 = 0xffff8110
 #OR2 = 0xfe000800->allows 32MB DRAM space

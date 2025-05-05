@@ -261,12 +261,14 @@ void __msl_error (const char*);
 // Example 1 - bail
 #include <cstdio>
 #include <cstdlib>
+
 inline void
 _STD::__msl_error (const char* str)
 {
     fprintf (stderr, str);
     abort();
 }
+
 /*
     // Example 2 - ignore
     inline

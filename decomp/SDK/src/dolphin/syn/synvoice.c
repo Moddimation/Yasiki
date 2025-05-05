@@ -10,6 +10,7 @@
 #define AX_MAX_VOICES 64
 
 struct SYNVOICE __SYNVoice[64];
+
 void
 __SYNClearVoiceReferences (void* p)
 {
@@ -35,6 +36,7 @@ __SYNClearVoiceReferences (void* p)
     voice->synth = 0;
     synth->notes--;
 }
+
 void
 __SYNSetVoiceToRelease (struct SYNVOICE* voice, u32 priority)
 {
@@ -43,6 +45,7 @@ __SYNSetVoiceToRelease (struct SYNVOICE* voice, u32 priority)
     voice->peState = 3;
     AXSetVoicePriority (voice->axvpb, priority);
 }
+
 void
 __SYNServiceVoice (int i)
 {

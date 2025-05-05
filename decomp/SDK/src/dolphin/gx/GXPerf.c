@@ -4,6 +4,7 @@
 #include <dolphin/os.h>
 
 #include "GXPrivate.h"
+
 void
 GXSetGPMetric (GXPerf0 perf0, GXPerf1 perf1)
 {
@@ -354,14 +355,14 @@ GXSetGPMetric (GXPerf0 perf0, GXPerf1 perf1)
 
     __GXData->bpSent = 1;
 }
+
 void
 GXReadGPMetric (u32* cnt0, u32* cnt1)
 {
     u32 ctrl, ctrh;
     u32 cpCtr0, cpCtr1, cpCtr2, cpCtr3;
 
-    ASSERTMSGLINE (
-        0x286, !__GXData->inDispList, "GXReadGPMetric: don't use in a display list");
+    ASSERTMSGLINE (0x286, !__GXData->inDispList, "GXReadGPMetric: don't use in a display list");
 
     ctrl = GX_GET_CP_REG (32);
     ctrh = GX_GET_CP_REG (33);
@@ -477,17 +478,17 @@ GXReadGPMetric (u32* cnt0, u32* cnt1)
             break;
     }
 }
+
 void
 GXClearGPMetric (void)
 {
     u32 reg;
 
-    ASSERTMSGLINE (0x322,
-                   !__GXData->inDispList,
-                   "GXClearGPMetric: don't use in a display list");
+    ASSERTMSGLINE (0x322, !__GXData->inDispList, "GXClearGPMetric: don't use in a display list");
     reg = 4;
     GX_SET_CP_REG (2, reg);
 }
+
 u32
 GXReadGP0Metric (void)
 {
@@ -496,6 +497,7 @@ GXReadGP0Metric (void)
     GXReadGPMetric (&cnt0, &cnt1);
     return cnt0;
 }
+
 u32
 GXReadGP1Metric (void)
 {
@@ -504,6 +506,7 @@ GXReadGP1Metric (void)
     GXReadGPMetric (&cnt0, &cnt1);
     return cnt1;
 }
+
 void
 GXReadMemMetric (u32* cp_req,
                  u32* tc_req,
@@ -518,9 +521,7 @@ GXReadMemMetric (u32* cp_req,
 {
     u32 ctrl, ctrh;
 
-    ASSERTMSGLINE (0x380,
-                   !__GXData->inDispList,
-                   "GXReadMemMetric: don't use in a display list");
+    ASSERTMSGLINE (0x380, !__GXData->inDispList, "GXReadMemMetric: don't use in a display list");
 
     ctrl = GX_GET_MEM_REG (26);
     ctrh = GX_GET_MEM_REG (25);
@@ -562,12 +563,11 @@ GXReadMemMetric (u32* cp_req,
     ctrh = GX_GET_MEM_REG (43);
     *fi_req = (ctrh << 16) | ctrl;
 }
+
 void
 GXClearMemMetric (void)
 {
-    ASSERTMSGLINE (0x3B9,
-                   !__GXData->inDispList,
-                   "GXClearMemMetric: don't use in a display list");
+    ASSERTMSGLINE (0x3B9, !__GXData->inDispList, "GXClearMemMetric: don't use in a display list");
 
     GX_SET_MEM_REG (25, 0);
     GX_SET_MEM_REG (26, 0);
@@ -590,6 +590,7 @@ GXClearMemMetric (void)
     GX_SET_MEM_REG (44, 0);
     GX_SET_MEM_REG (43, 0);
 }
+
 void
 GXReadPixMetric (u32* top_pixels_in,
                  u32* top_pixels_out,
@@ -600,9 +601,7 @@ GXReadPixMetric (u32* top_pixels_in,
 {
     u32 ctrl, ctrh;
 
-    ASSERTMSGLINE (0x3F1,
-                   !__GXData->inDispList,
-                   "GXReadPixMetric: don't use in a display list");
+    ASSERTMSGLINE (0x3F1, !__GXData->inDispList, "GXReadPixMetric: don't use in a display list");
 
     ctrl = GX_GET_PE_REG (12);
     ctrh = GX_GET_PE_REG (13);
@@ -628,6 +627,7 @@ GXReadPixMetric (u32* top_pixels_in,
     ctrh = GX_GET_PE_REG (23);
     *copy_clks = (ctrh << 16) | ctrl;
 }
+
 void
 GXClearPixMetric (void)
 {
@@ -641,6 +641,7 @@ GXClearPixMetric (void)
     GX_WRITE_RAS_REG (reg);
     __GXData->bpSent = 1;
 }
+
 void
 GXSetVCacheMetric (GXVCachePerf attr)
 {
@@ -651,6 +652,7 @@ GXSetVCacheMetric (GXVCachePerf attr)
     reg = 1;
     GX_WRITE_SOME_REG4 (8, 0x10, reg, -12);
 }
+
 void
 GXReadVCacheMetric (u32* check, u32* miss, u32* stall)
 {
@@ -668,11 +670,13 @@ GXReadVCacheMetric (u32* check, u32* miss, u32* stall)
     lo = GX_GET_CP_REG (44);
     *stall = (hi << 16) | lo;
 }
+
 void
 GXClearVCacheMetric (void)
 {
     GX_WRITE_SOME_REG4 (8, 0, 0, -12);
 }
+
 void
 GXInitXfRasMetric (void)
 {
@@ -686,6 +690,7 @@ GXInitXfRasMetric (void)
     GX_WRITE_XF_REG (6, reg);
     __GXData->bpSent = 0;
 }
+
 void
 GXReadXfRasMetric (u32* xf_wait_in, u32* xf_wait_out, u32* ras_busy, u32* clocks)
 {
@@ -707,6 +712,7 @@ GXReadXfRasMetric (u32* xf_wait_in, u32* xf_wait_out, u32* ras_busy, u32* clocks
     ctrh = GX_GET_CP_REG (39);
     *xf_wait_out = (ctrh << 16) | ctrl;
 }
+
 u32
 GXReadClksPerVtx (void)
 {

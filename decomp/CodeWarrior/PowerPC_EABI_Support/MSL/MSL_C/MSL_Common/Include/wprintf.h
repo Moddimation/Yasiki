@@ -26,7 +26,7 @@ _MSL_IMP_EXP_C int vwprintf (const wchar_t*, va_list);
 _MSL_END_EXTERN_C                                              /*- cc 010409 -*/
     _MSL_END_NAMESPACE_STD                                     /*- cc 010409 -*/
 
-#endif /* ifndef _MSL_WPRINTF_H */
+#endif                                                         /* ifndef _MSL_WPRINTF_H */
 
     /* Change record:
      * mf  990715 remove arg names in prototypes

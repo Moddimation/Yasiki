@@ -31,11 +31,13 @@ __sys_alloc (mem_size size, mem_pool_obj* poolObj) /* missing from 6-0 */
 #warning "replace 0 with a call to your OS'es allocator"
     return 0;
 }
+
 void
 __sys_free (void* ptr, mem_pool_obj* poolObj)      /* missing from 6-0 */
 {
 #warning "replace with a call to your OS'es deallocator"
 }
+
 /*  Change Record
  *	20-Jul-97 MEA  First code release.
  */

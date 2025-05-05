@@ -28,11 +28,13 @@ static u32 TRK_ISR_OFFSETS[15] = { PPC_SystemReset,
                                    PPC_InstructionAddressBreakpoint,
                                    PPC_SystemManagementInterrupt,
                                    PPC_ThermalManagementInterrupt };
+
 __declspec (section ".init") void
 __TRK_reset (void)
 {
     __TRK_copy_vectors();
 }
+
 asm void
 InitMetroTRK ()
 {
@@ -95,18 +97,19 @@ initCommTableSuccess:
 	b TRK_main //Jump to TRK_main
 #endif // clang-format on
 }
+
 void
 EnableMetroTRKInterrupts (void)
 {
     EnableEXI2Interrupts();
 }
+
 u32
 TRKTargetTranslate (u32 param_0)
 {
     if (param_0 >= lc_base)
     {
-        if ((param_0 < lc_base + 0x4000) &&
-            ((gTRKCPUState.Extended1.DBAT3U & 3) != 0))
+        if ((param_0 < lc_base + 0x4000) && ((gTRKCPUState.Extended1.DBAT3U & 3) != 0))
         {
             return param_0;
         }
@@ -114,7 +117,9 @@ TRKTargetTranslate (u32 param_0)
 
     return param_0 & 0x3FFFFFFF | 0x80000000;
 }
+
 extern u8 gTRKInterruptVectorTable[];
+
 void
 TRK_copy_vector (u32 offset)
 {
@@ -122,6 +127,7 @@ TRK_copy_vector (u32 offset)
     TRK_memcpy (destPtr, gTRKInterruptVectorTable + offset, 0x100);
     TRK_flush_cache (destPtr, 0x100);
 }
+
 void
 __TRK_copy_vectors (void)
 {
@@ -138,6 +144,7 @@ __TRK_copy_vectors (void)
         }
     }
 }
+
 DSError
 TRKInitializeTarget ()
 {

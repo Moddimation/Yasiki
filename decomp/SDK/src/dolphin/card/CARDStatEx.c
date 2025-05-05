@@ -3,6 +3,7 @@
 #include <dolphin.h>
 
 #include "CARDPrivate.h"
+
 s32
 __CARDGetStatusEx (s32 chan, long fileNo, struct CARDDir* dirent)
 {
@@ -39,6 +40,7 @@ __CARDGetStatusEx (s32 chan, long fileNo, struct CARDDir* dirent)
         return __CARDPutControlBlock (card, result);
     }
 }
+
 s32
 __CARDSetStatusExAsync (s32             chan,
                         long            fileNo,
@@ -56,8 +58,8 @@ __CARDSetStatusExAsync (s32             chan,
     ASSERTLINE (0x82, 0 <= chan && chan < 2);
     ASSERTLINE (0x83, *dirent->fileName != 0xff && *dirent->fileName != 0x00);
 
-    if ((fileNo < 0) || (fileNo >= CARD_MAX_FILE) ||
-        ((u8)dirent->fileName[0] == 0xFF) || ((u8)dirent->fileName[0] == 0))
+    if ((fileNo < 0) || (fileNo >= CARD_MAX_FILE) || ((u8)dirent->fileName[0] == 0xFF) ||
+        ((u8)dirent->fileName[0] == 0))
     {
         return CARD_RESULT_FATAL_ERROR;
     }
@@ -123,6 +125,7 @@ __CARDSetStatusExAsync (s32             chan,
     }
     return result;
 }
+
 s32
 __CARDSetStatusEx (s32 chan, long fileNo, struct CARDDir* dirent)
 {

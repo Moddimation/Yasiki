@@ -1,5 +1,6 @@
 #ifndef _DOLPHIN_OSSTOPWATCH_H_
 #define _DOLPHIN_OSSTOPWATCH_H_
+
 struct OSStopwatch
 {
     char* name;
@@ -10,6 +11,7 @@ struct OSStopwatch
     s64   last;
     int   running;
 };
+
 void OSInitStopwatch (struct OSStopwatch* sw, char* name);
 void OSStartStopwatch (struct OSStopwatch* sw);
 void OSStopStopwatch (struct OSStopwatch* sw);

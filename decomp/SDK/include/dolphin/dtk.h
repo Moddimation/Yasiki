@@ -5,6 +5,7 @@
 
 typedef void (*DTKCallback) (u32 eventMask);
 typedef void (*DTKFlushCallback) (void);
+
 typedef struct DTKTrack
 {
     struct DTKTrack* prev;        ///< 0x00
@@ -14,6 +15,7 @@ typedef struct DTKTrack
     DTKCallback      callback;    ///< 0x10
     DVDFileInfo      dvdFileInfo; ///< 0x14
 } DTKTrack;
+
 #define DTK_STATE_STOP     0
 #define DTK_STATE_RUN      1
 #define DTK_STATE_PAUSE    2
@@ -26,10 +28,7 @@ typedef struct DTKTrack
 
 void      DTKInit (void);
 void      DTKShutdown (void);
-u32       DTKQueueTrack (char*       fileName,
-                         DTKTrack*   track,
-                         u32         eventMask,
-                         DTKCallback callback);
+u32       DTKQueueTrack (char* fileName, DTKTrack* track, u32 eventMask, DTKCallback callback);
 u32       DTKRemoveTrack (struct DTKTrack* track);
 void      DTKFlushTracks (DTKFlushCallback callback);
 void      DTKSetSampleRate (u32 samplerate);

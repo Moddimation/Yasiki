@@ -1,7 +1,7 @@
 #ifndef __JSU_LIST_HPP__
 #define __JSU_LIST_HPP__
 
-#include <types.h>
+#include <JUTTypes.h>
 
 typedef void* JSUListPtr;
 

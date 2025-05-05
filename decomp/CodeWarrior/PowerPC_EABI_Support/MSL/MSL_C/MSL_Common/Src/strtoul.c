@@ -80,6 +80,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+
 enum scan_states
 {
     start = 0x01,
@@ -90,14 +91,16 @@ enum scan_states
     finished = 0x20,
     failure = 0x40
 };
+
 #define final_state(scan_state) (scan_state & (finished | failure))
 
 #define success(scan_state)     (scan_state & (leading_zero | digit_loop | finished))
 
-#define fetch()                                                                     \
-    (count++, (*ReadProc) (ReadProcArg, 0, __GetAChar))       /*- mm 990325         \
+#define fetch()                                                                                    \
+    (count++, (*ReadProc) (ReadProcArg, 0, __GetAChar))       /*- mm 990325                        \
                                                                  -*/
 #define unfetch(c) (*ReadProc) (ReadProcArg, c, __UngetAChar) /*- mm 990325 -*/
+
 unsigned long
 __strtoul (int   base,
            int   max_width,
@@ -261,7 +264,7 @@ __strtoul (int   base,
 
                 value += c;
 
-                scan_state = digit_loop; /* In case we entered in state need_digit */
+                scan_state = digit_loop;    /* In case we entered in state need_digit */
 
                 c = fetch();
 
@@ -449,7 +452,7 @@ __strtoull (int   base,
 
                 value += c;
 
-                scan_state = digit_loop; /* In case we entered in state need_digit */
+                scan_state = digit_loop;    /* In case we entered in state need_digit */
 
                 c = fetch();
 
@@ -482,8 +485,7 @@ strtoul (const char* str, char** end, int base)
     isc.NextChar = (char*)str;
     isc.NullCharDetected = 0;
 
-    value = __strtoul (
-        base, INT_MAX, &__StringRead, (void*)&isc, &count, &negative, &overflow);
+    value = __strtoul (base, INT_MAX, &__StringRead, (void*)&isc, &count, &negative, &overflow);
 
     if (end)
     {
@@ -513,8 +515,7 @@ strtoull (const char* str, char** end, int base)
     isc.NextChar = (char*)str;
     isc.NullCharDetected = 0;
 
-    value = __strtoull (
-        base, INT_MAX, &__StringRead, (void*)&isc, &count, &negative, &overflow);
+    value = __strtoull (base, INT_MAX, &__StringRead, (void*)&isc, &count, &negative, &overflow);
 
     if (end)
     {
@@ -545,16 +546,14 @@ strtol (const char* str, char** end, int base)
     isc.NextChar = (char*)str;
     isc.NullCharDetected = 0;
 
-    uvalue = __strtoul (
-        base, INT_MAX, &__StringRead, (void*)&isc, &count, &negative, &overflow);
+    uvalue = __strtoul (base, INT_MAX, &__StringRead, (void*)&isc, &count, &negative, &overflow);
 
     if (end)
     {
         *end = (char*)str + count;
     }
 
-    if (overflow || (!negative && uvalue > LONG_MAX) ||
-        (negative && uvalue > -LONG_MIN))
+    if (overflow || (!negative && uvalue > LONG_MAX) || (negative && uvalue > -LONG_MIN))
     {
         svalue = (negative ? -LONG_MIN : LONG_MAX);
         errno = ERANGE;
@@ -578,8 +577,7 @@ strtoll (const char* str, char** end, int base)
     isc.NextChar = (char*)str;
     isc.NullCharDetected = 0;
 
-    uvalue = __strtoull (
-        base, INT_MAX, &__StringRead, (void*)&isc, &count, &negative, &overflow);
+    uvalue = __strtoull (base, INT_MAX, &__StringRead, (void*)&isc, &count, &negative, &overflow);
 
     if (end)
     {
@@ -607,11 +605,13 @@ atoi (const char* str)
 {
     return (strtol (str, NULL, 10));
 }
+
 long
 atol (const char* str)
 {
     return (strtol (str, NULL, 10));
 }
+
 /* Change record:
  * JFH 950616 First code release.
  * JFH 950727 Added code to ensure that *digits* as well as letters are within the

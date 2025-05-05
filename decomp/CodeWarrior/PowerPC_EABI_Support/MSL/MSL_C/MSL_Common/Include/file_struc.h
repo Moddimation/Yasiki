@@ -21,6 +21,7 @@
 #ifndef RC_INVOKED
 
 #pragma options align = native
+
 _MSL_BEGIN_NAMESPACE_STD                            /*- cc 010409 -*/
     _MSL_BEGIN_EXTERN_C                             /*- cc 010409 -*/
 
@@ -31,6 +32,7 @@ _MSL_BEGIN_NAMESPACE_STD                            /*- cc 010409 -*/
     __console_file,
     __unavailable_file
 };
+
 enum __open_modes
 {
     __must_exist,
@@ -52,6 +54,7 @@ enum __io_modes
     __read_write = 3,
     __append = 4
 };
+
 typedef struct
 {
     unsigned int open_mode   : 2;
@@ -65,6 +68,7 @@ typedef struct
 
     unsigned int binary_io : 1;
 } __file_modes;
+
 enum __io_states
 {
     __neutral,
@@ -72,6 +76,7 @@ enum __io_states
     __reading,
     __rereading
 };
+
 typedef struct
 {
     unsigned int  io_state    : 3;
@@ -79,17 +84,20 @@ typedef struct
     unsigned char eof;
     unsigned char error;
 } __file_state;
+
 typedef unsigned long __file_handle;
 
 typedef unsigned long fpos_t;
 
 typedef struct _FILE FILE;
+
 enum __io_results
 {
     __no_io_error,
     __io_error,
     __io_EOF                                        /*- mm 961031 -*/
 };
+
 typedef void (*__idle_proc) (void);
 typedef int  (*__pos_proc) (__file_handle file,
                            fpos_t*       position,
@@ -102,6 +110,7 @@ typedef int  (*__io_proc) (__file_handle  file,
 typedef int  (*__close_proc) (__file_handle file);
 
 #define __ungetc_buffer_size 2
+
 struct _FILE
 {
     __file_handle handle;
@@ -138,11 +147,10 @@ struct _FILE
     struct _FILE* next_file_struct;                 /*- mm 981007 -*/
 #endif /* not _No_Disk_File_OS_Support */           /*- mm 981007 -*/
 };
-#if defined(_No_Disk_File_OS_Support) &&                                            \
-    (defined(_No_Console) || defined(_Unbuffered_Console))
+#if defined(_No_Disk_File_OS_Support) && (defined(_No_Console) || defined(_Unbuffered_Console))
 #define _Unbuffered_IO
-#endif /* defined(_No_Disk_File_OS_Support) && (defined(_No_Console) ||             \
-          defined(_Unbuffered_Console)) */
+#endif                  /* defined(_No_Disk_File_OS_Support) && (defined(_No_Console) ||           \
+                           defined(_Unbuffered_Console)) */
 
 #define _IONBF 0
 #define _IOLBF 1
@@ -180,23 +188,20 @@ struct _FILE
 #define SEEK_CUR 1
 #define SEEK_END 2
 
-#define stdin                                                                       \
-    (&__std (__files[0])) /*- mm 961031 -*/ /*- mm 961203 -*/ /*- mm 000201 -*/
-#define stdout                                                                      \
-    (&__std (__files[1])) /*- mm 961031 -*/ /*- mm 961203 -*/ /*- mm 000201 -*/
-#define stderr                                                                      \
-    (&__std (__files[2])) /*- mm 961031 -*/ /*- mm 961203 -*/ /*- mm 000201 -*/
+#define stdin    (&__std (__files[0])) /*- mm 961031 -*/ /*- mm 961203 -*/ /*- mm 000201 -*/
+#define stdout   (&__std (__files[1])) /*- mm 961031 -*/ /*- mm 961203 -*/ /*- mm 000201 -*/
+#define stderr   (&__std (__files[2])) /*- mm 961031 -*/ /*- mm 961203 -*/ /*- mm 000201 -*/
 
-extern _MSL_IMP_EXP_C FILE __files[]; /*- mm 961031 -*/       /*- mm 961203 -*/
+extern _MSL_IMP_EXP_C FILE __files[]; /*- mm 961031 -*/                    /*- mm 961203 -*/
 
-_MSL_END_EXTERN_C                                             /*- cc 010409 -*/
-    _MSL_END_NAMESPACE_STD                                    /*- cc 010409 -*/
+_MSL_END_EXTERN_C                                                          /*- cc 010409 -*/
+    _MSL_END_NAMESPACE_STD                                                 /*- cc 010409 -*/
 
 #pragma options align = reset
 
-#endif                                                        /* RC_INVOKED */
+#endif                                                                     /* RC_INVOKED */
 
-#endif                                                        /* _MSL_FILE_STRUC_H */
+#endif                                                                     /* _MSL_FILE_STRUC_H */
 
     /* Change record:
      * mm  961031 Changes for Pascal

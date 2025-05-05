@@ -53,6 +53,7 @@
 
 #include <limits.h>
 #include <stdlib.h>
+
 int (abs) (int n)
 {
     if (n < 0)
@@ -64,6 +65,7 @@ int (abs) (int n)
         return (n);
     }
 }
+
 long (labs) (long n)
 {
     if (n < 0)
@@ -75,6 +77,7 @@ long (labs) (long n)
         return (n);
     }
 }
+
 /* hh 980122 added long long support */
 #ifdef __MSL_LONGLONG_SUPPORT__                /*- mm 981023 -*/
 long long (llabs) (long long n)
@@ -115,6 +118,7 @@ div (int numerator, int denominator)
 
     return (value);
 }
+
 ldiv_t
 ldiv (long numerator, long denominator)
 {
@@ -141,6 +145,7 @@ ldiv (long numerator, long denominator)
 
     return (value);
 }
+
 /*- hh 980122 -*/
 #ifdef __MSL_LONGLONG_SUPPORT__                /*- mm 981023 -*/
 lldiv_t
@@ -191,6 +196,7 @@ __msl_add (int* x, int y)                      /*- cc 010510 -*/
 
     return (1);
 }
+
 int
 __msl_ladd (long* x, long y)                   /*- cc 010510 -*/
 {
@@ -212,6 +218,7 @@ __msl_ladd (long* x, long y)                   /*- cc 010510 -*/
 
     return (1);
 }
+
 /* hh 980122 added long long support */
 #ifdef __MSL_LONGLONG_SUPPORT__                /*- mm 981023 -*/
 int
@@ -262,6 +269,7 @@ __msl_mul (int* x, int y)                      /*- cc 010510 -*/
 
     return (1);
 }
+
 int
 __msl_lmul (long* x, long y)                   /*- cc 010510 -*/
 {
@@ -288,6 +296,7 @@ __msl_lmul (long* x, long y)                   /*- cc 010510 -*/
 
     return (1);
 }
+
 /*- hh 980122 -*/
 #ifdef __MSL_LONGLONG_SUPPORT__                /*- mm 981023 -*/
 int
@@ -360,6 +369,7 @@ __msl_div (int x, int y) /*- cc 010510 -*/
 
     return (result);
 }
+
 ldiv_t
 __msl_ldiv (long x, long y)                    /*- cc 010510 -*/
 {
@@ -397,6 +407,7 @@ __msl_ldiv (long x, long y)                    /*- cc 010510 -*/
 
     return (result);
 }
+
 /*- hh 980122 -*/
 #ifdef __MSL_LONGLONG_SUPPORT__                /*- mm 981023 -*/
 lldiv_t
@@ -470,6 +481,7 @@ __msl_mod (int x, int y)                       /*- cc 010510 -*/
 
     return (r);
 }
+
 long
 __msl_lmod (long x, long y)                    /*- cc 010510 -*/
 {
@@ -503,6 +515,7 @@ __msl_lmod (long x, long y)                    /*- cc 010510 -*/
 
     return (r);
 }
+
 /* hh 980122 added long long support */
 #ifdef __MSL_LONGLONG_SUPPORT__                /*- mm 981023 -*/
 long long

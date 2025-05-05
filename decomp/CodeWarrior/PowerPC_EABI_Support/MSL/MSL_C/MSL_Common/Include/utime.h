@@ -22,12 +22,14 @@
 #endif
 
 #pragma options align = native
+
 /* struct for utime */
 struct utimbuf
 {
     __std (time_t) actime;    /* access time  */
     __std (time_t) modtime;   /* modification time */
 };
+
 _MSL_BEGIN_EXTERN_C           /*- cc 010409 -*/
 
 #if (__dest_os == __win32_os) /*- cc 000209 -*/

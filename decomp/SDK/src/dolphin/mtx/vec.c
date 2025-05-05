@@ -5,6 +5,7 @@
 
 // defines to make ASM work
 #define qr0 0
+
 void
 C_VECAdd (Vec* a, Vec* b, Vec* c)
 {
@@ -15,6 +16,7 @@ C_VECAdd (Vec* a, Vec* b, Vec* c)
     c->y = a->y + b->y;
     c->z = a->z + b->z;
 }
+
 asm void
 PSVECAdd (register Vec* a, register Vec* b, register Vec* c)
 {
@@ -29,6 +31,7 @@ PSVECAdd (register Vec* a, register Vec* b, register Vec* c)
     psq_st f7, Vec.z (c), 1, qr0
 #endif
 }
+
 void
 C_VECSubtract (Vec* a, Vec* b, Vec* c)
 {
@@ -39,6 +42,7 @@ C_VECSubtract (Vec* a, Vec* b, Vec* c)
     c->y = a->y - b->y;
     c->z = a->z - b->z;
 }
+
 asm void
 PSVECSubtract (register Vec* a, register Vec* b, register Vec* c)
 {
@@ -53,6 +57,7 @@ PSVECSubtract (register Vec* a, register Vec* b, register Vec* c)
     psq_st f7, Vec.z (c), 1, qr0
 #endif
 }
+
 void
 C_VECScale (Vec* src, Vec* dst, f32 scale)
 {
@@ -62,6 +67,7 @@ C_VECScale (Vec* src, Vec* dst, f32 scale)
     dst->y = (src->y * scale);
     dst->z = (src->z * scale);
 }
+
 asm void
 PSVECScale (register Vec* src, register Vec* dst, register f32 mult)
 {
@@ -75,6 +81,7 @@ PSVECScale (register Vec* src, register Vec* dst, register f32 mult)
     psq_st     f7, Vec.z (dst), 1, qr0;
 #endif
 }
+
 void
 C_VECNormalize (Vec* src, Vec* unit)
 {
@@ -89,6 +96,7 @@ C_VECNormalize (Vec* src, Vec* unit)
     unit->y = src->y * mag;
     unit->z = src->z * mag;
 }
+
 void
 PSVECNormalize (register Vec* vec1, register Vec* dst)
 {
@@ -124,6 +132,7 @@ PSVECNormalize (register Vec* vec1, register Vec* dst)
     }
 #endif
 }
+
 f32
 C_VECSquareMag (Vec* v)
 {
@@ -132,6 +141,7 @@ C_VECSquareMag (Vec* v)
     sqmag = v->z * v->z + ((v->x * v->x) + (v->y * v->y));
     return sqmag;
 }
+
 asm f32
 PSVECSquareMag (register Vec* vec1)
 {
@@ -141,16 +151,18 @@ PSVECSquareMag (register Vec* vec1)
     lfs     f4, Vec.z (vec1);
     ps_madd f5, f4, f4, f3;
     ps_sum0 f1, f5, f3, f3; // return square mag in f1
-    blr; //! whoops! an extra blr is added by the compiler since 1 is added
-         //! automatically.
+    blr;                    //! whoops! an extra blr is added by the compiler since 1 is added
+                            //! automatically.
 #endif
 }
+
 f32
 VECMag (Vec* v)
 {
     ASSERTMSGLINE (0x182, v, "VECMag():  NULL VecPtr 'v' ");
     return sqrtf (VECSquareMag (v));
 }
+
 f32
 C_VECDotProduct (Vec* a, Vec* b)
 {
@@ -161,6 +173,7 @@ C_VECDotProduct (Vec* a, Vec* b)
     dot = (a->z * b->z) + ((a->x * b->x) + (a->y * b->y));
     return dot;
 }
+
 asm f32
 PSVECDotProduct (register Vec* vec1, register Vec* vec2)
 {
@@ -174,6 +187,7 @@ PSVECDotProduct (register Vec* vec1, register Vec* vec2)
     ps_sum0 f1, f3, f2, f2
 #endif
 }
+
 void
 C_VECCrossProduct (Vec* a, Vec* b, Vec* axb)
 {
@@ -190,6 +204,7 @@ C_VECCrossProduct (Vec* a, Vec* b, Vec* axb)
     axb->y = vTmp.y;
     axb->z = vTmp.z;
 }
+
 asm void
 PSVECCrossProduct (register Vec* vec1, register Vec* vec2, register Vec* dst)
 {
@@ -210,6 +225,7 @@ PSVECCrossProduct (register Vec* vec1, register Vec* vec2, register Vec* dst)
     psq_st     f10, Vec.y (dst), 0, qr0
 #endif
 }
+
 void
 VECHalfAngle (Vec* a, Vec* b, Vec* half)
 {
@@ -236,6 +252,7 @@ VECHalfAngle (Vec* a, Vec* b, Vec* half)
     }
     *half = hTmp;
 }
+
 void
 VECReflect (Vec* src, Vec* normal, Vec* dst)
 {
@@ -258,6 +275,7 @@ VECReflect (Vec* src, Vec* normal, Vec* dst)
     dst->z = (2.0f * uN.z * cosA) - uI.z;
     VECNormalize (dst, dst);
 }
+
 f32
 C_VECSquareDistance (Vec* a, Vec* b)
 {
@@ -268,6 +286,7 @@ C_VECSquareDistance (Vec* a, Vec* b)
     diff.z = a->z - b->z;
     return (diff.z * diff.z) + ((diff.x * diff.x) + (diff.y * diff.y));
 }
+
 asm f32
 PSVECSquareDistance (register Vec* vec1, register Vec* vec2)
 {
@@ -283,6 +302,7 @@ PSVECSquareDistance (register Vec* vec1, register Vec* vec2)
     ps_sum0 f1, f5, f4, f4;
 #endif
 }
+
 f32
 VECDistance (Vec* a, Vec* b)
 {

@@ -93,6 +93,7 @@ void __vec_longjmp (__jmp_buf* env, int val);
 //
 
 #pragma altivec_vrsave off // so we don't save every vector register
+
 asm int
 __vec_setjmp (register __jmp_buf* env)
 {
@@ -157,12 +158,11 @@ __vec_setjmp (register __jmp_buf* env)
         mffs fp0 stfd fp14,
         env->fp14          //	save FP14-FP31
             stfd       fp15,
-        env->fp15 stfd fp16, env->fp16 stfd fp17, env->fp17 stfd fp18,
-        env->fp18 stfd fp19, env->fp19 stfd fp20, env->fp20 stfd fp21,
-        env->fp21 stfd fp22, env->fp22 stfd fp23, env->fp23 stfd fp24,
-        env->fp24 stfd fp25, env->fp25 stfd fp26, env->fp26 stfd fp27,
-        env->fp27 stfd fp28, env->fp28 stfd fp29, env->fp29 stfd fp30,
-        env->fp30 stfd fp31, env->fp31 stfd fp0,
+        env->fp15 stfd fp16, env->fp16 stfd fp17, env->fp17 stfd fp18, env->fp18 stfd fp19,
+        env->fp19 stfd fp20, env->fp20 stfd fp21, env->fp21 stfd fp22, env->fp22 stfd fp23,
+        env->fp23 stfd fp24, env->fp24 stfd fp25, env->fp25 stfd fp26, env->fp26 stfd fp27,
+        env->fp27 stfd fp28, env->fp28 stfd fp29, env->fp29 stfd fp30, env->fp30 stfd fp31,
+        env->fp31 stfd fp0,
         env->fpscr         //	save FPSCR
 #endif                     /* ndef _No_Floating_Point_Regs */
 
@@ -191,12 +191,11 @@ __setjmpv20:
             la r5,
         env->vr20          // 	save VR20-VR31
             stvx vr20,
-        r0, r5 la r5, env->vr21 stvx vr21, r0, r5 la r5, env->vr22 stvx vr22, r0,
-        r5 la r5, env->vr23 stvx vr23, r0, r5 la r5, env->vr24 stvx vr24, r0,
-        r5 la r5, env->vr25 stvx vr25, r0, r5 la r5, env->vr26 stvx vr26, r0,
-        r5 la r5, env->vr27 stvx vr27, r0, r5 la r5, env->vr28 stvx vr28, r0,
-        r5 la r5, env->vr29 stvx vr29, r0, r5 la r5, env->vr30 stvx vr30, r0,
-        r5 la r5, env->vr31 stvx vr31, r0,
+        r0, r5 la r5, env->vr21 stvx vr21, r0, r5 la r5, env->vr22 stvx vr22, r0, r5 la r5,
+        env->vr23 stvx vr23, r0, r5 la r5, env->vr24 stvx vr24, r0, r5 la r5, env->vr25 stvx vr25,
+        r0, r5 la r5, env->vr26 stvx vr26, r0, r5 la r5, env->vr27 stvx vr27, r0, r5 la r5,
+        env->vr28 stvx vr28, r0, r5 la r5, env->vr29 stvx vr29, r0, r5 la r5, env->vr30 stvx vr30,
+        r0, r5 la r5, env->vr31 stvx vr31, r0,
         r5
 
             mfvrsave r6 oris r6,
@@ -213,12 +212,13 @@ __setjmpv20:
 
             li r5,
         0x0000             // indicate that no vector registers are being used now
-        mtvrsave r5 // This is OK because we just saved the non-volatile set and
-                    // exercised our right to trash all the volatile vector registers
+        mtvrsave r5        // This is OK because we just saved the non-volatile set and
+                           // exercised our right to trash all the volatile vector registers
 
             li r3,
         0 blr
 }
+
 #pragma altivec_vrsave reset
 
 //	__vec_longjmp		-	C longjmp() routine
@@ -235,6 +235,7 @@ __setjmpv20:
 //		  with the nonvolatile vector register save dispatcher.
 
 #pragma altivec_vrsave off
+
 asm void
 __vec_longjmp (register __jmp_buf* env, register int val)
 {
@@ -298,12 +299,11 @@ __vec_longjmp (register __jmp_buf* env, register int val)
         lfd fp14,
         env->fp14       //	restore FP14-FP31
             lfd       fp15,
-        env->fp15 lfd fp16, env->fp16 lfd fp17, env->fp17 lfd fp18,
-        env->fp18 lfd fp19, env->fp19 lfd fp20, env->fp20 lfd fp21,
-        env->fp21 lfd fp22, env->fp22 lfd fp23, env->fp23 lfd fp24,
-        env->fp24 lfd fp25, env->fp25 lfd fp26, env->fp26 lfd fp27,
-        env->fp27 lfd fp28, env->fp28 lfd fp29, env->fp29 lfd fp30,
-        env->fp30 lfd fp0, env->fpscr lfd fp31,
+        env->fp15 lfd fp16, env->fp16 lfd fp17, env->fp17 lfd fp18, env->fp18 lfd fp19,
+        env->fp19 lfd fp20, env->fp20 lfd fp21, env->fp21 lfd fp22, env->fp22 lfd fp23,
+        env->fp23 lfd fp24, env->fp24 lfd fp25, env->fp25 lfd fp26, env->fp26 lfd fp27,
+        env->fp27 lfd fp28, env->fp28 lfd fp29, env->fp29 lfd fp30, env->fp30 lfd fp0,
+        env->fpscr lfd fp31,
         env->fp31
 #endif                  /* ndef _No_Floating_Point_Regs */
 
@@ -334,11 +334,10 @@ __setLR:
 __longjmpv20:
 #endif
             la        r5,
-        env->vr20 lvx vr20, r0, r5 la r5, env->vr21 lvx vr21, r0, r5 la r5,
-        env->vr22 lvx vr22, r0, r5 la r5, env->vr23 lvx vr23, r0, r5 la r5,
-        env->vr24 lvx vr24, r0, r5 la r5, env->vr25 lvx vr25, r0, r5 la r5,
-        env->vr26 lvx vr26, r0, r5 la r5, env->vr27 lvx vr27, r0, r5 la r5,
-        env->vr28 lvx vr28, r0, r5 la r5, env->vr29 lvx vr29, r0, r5 la r5,
+        env->vr20 lvx vr20, r0, r5 la r5, env->vr21 lvx vr21, r0, r5 la r5, env->vr22 lvx vr22, r0,
+        r5 la r5, env->vr23 lvx vr23, r0, r5 la r5, env->vr24 lvx vr24, r0, r5 la r5,
+        env->vr25 lvx vr25, r0, r5 la r5, env->vr26 lvx vr26, r0, r5 la r5, env->vr27 lvx vr27, r0,
+        r5 la r5, env->vr28 lvx vr28, r0, r5 la r5, env->vr29 lvx vr29, r0, r5 la r5,
         env->vr30 lvx vr30, r0, r5 la r5, env->vr31 lvx vr31, r0,
         r5
 
@@ -367,6 +366,7 @@ __longjmpv20:
         1               //	return 1
         blr
 }
+
 #pragma altivec_vrsave reset
 
 #endif                  /* __ALTIVEC__ */

@@ -3,6 +3,7 @@
 #include "Portable/nubinit.h"
 
 static DSError TRK_mainError;
+
 DSError
 TRK_main (void)
 {

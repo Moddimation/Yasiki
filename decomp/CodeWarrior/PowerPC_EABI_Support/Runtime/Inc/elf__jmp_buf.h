@@ -3,6 +3,7 @@
 
 #if ELF_PROCESSOR
 #warning elf support enabled!
+
 union MWE_ElfVector64
 {
     unsigned long  l[2];

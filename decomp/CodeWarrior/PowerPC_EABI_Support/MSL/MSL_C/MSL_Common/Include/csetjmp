@@ -148,7 +148,7 @@ _MSL_END_EXTERN_C            /*- cc  010410 -*/
 
             _MSL_IMP_EXP_C void
             longjmp (jmp_buf, int);
-#endif /* !defined(__MIPS__) && !defined(__SH__) */
+#endif                                                 /* !defined(__MIPS__) && !defined(__SH__) */
 
 #endif
 
@@ -159,27 +159,27 @@ _MSL_END_EXTERN_C          /*- cc  010410 -*/
 
 #pragma options align = reset
 
-#endif /* RC_INVOKED */
+#endif                                                 /* RC_INVOKED */
 
-#endif /* __MACH__ */
+#endif                                                 /* __MACH__ */
 
-#endif /* _MSL_CSETJMP */
+#endif                                                 /* _MSL_CSETJMP */
 
-       /* Change record:
-        * bkos960829 added l.you's changes for powerTV
-        * KO  960917 Moved the __extern_c block up here so it now encloses
-        *             the Intel function declaration.
-        * mm  970708 Inserted Be changes
-        * hh  971206 Changed filename from setjmp.h to csetjmp and added namespace support.
-        * hh  971230 added RC_INVOKED wrapper
-        * vss 980807 remove pragma  - no longer supported by compiler
-        * vss 990115 removed powerTV wrappers
-        * bdd 000203 Add AltiVec changes (contributed)
-        * hh  990521 added __std() qualifier to setjmp macro, 4 places
-        * as  990824 added SH specific sections
-        * hh  006012 Removed setjmp from namespace std where it is a function.
-        * hh  000712 Wrapped jmp_buf in __std() in the two places where setjmp was moved to
-        * global namespace        as  001030 *happy halloween* added MCORE specific sections
-        * JWW        001208 Added case for targeting Mach-O        cc  000326 removed
-        * dest_os to        be_os        cc        010410 updated to new namespace macros
-        */
+                                                       /* Change record:
+                                                        * bkos960829 added l.you's changes for powerTV
+                                                        * KO  960917 Moved the __extern_c block up here so it now encloses
+                                                        *             the Intel function declaration.
+                                                        * mm  970708 Inserted Be changes
+                                                        * hh  971206 Changed filename from setjmp.h to csetjmp and added namespace support.
+                                                        * hh  971230 added RC_INVOKED wrapper
+                                                        * vss 980807 remove pragma  - no longer supported by compiler
+                                                        * vss 990115 removed powerTV wrappers
+                                                        * bdd 000203 Add AltiVec changes (contributed)
+                                                        * hh  990521 added __std() qualifier to setjmp macro, 4 places
+                                                        * as  990824 added SH specific sections
+                                                        * hh  006012 Removed setjmp from namespace std where it is a function.
+                                                        * hh  000712 Wrapped jmp_buf in __std() in the two places where setjmp was moved to
+                                                        * global namespace        as  001030 *happy halloween* added MCORE specific sections
+                                                        * JWW        001208 Added case for targeting Mach-O        cc  000326 removed
+                                                        * dest_os to        be_os        cc        010410 updated to new namespace macros
+                                                        */

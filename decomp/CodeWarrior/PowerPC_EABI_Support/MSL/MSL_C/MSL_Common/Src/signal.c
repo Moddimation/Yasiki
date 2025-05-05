@@ -21,6 +21,7 @@
 #include "critical_regions.h"
 
 static __signal_func_ptr signal_funcs[__signal_max];
+
 __signal_func_ptr
 signal (int signal, __signal_func_ptr signal_func)
 {
@@ -42,6 +43,7 @@ signal (int signal, __signal_func_ptr signal_func)
 
     return (old_signal_func);
 }
+
 int
 raise (int signal)
 {
@@ -77,6 +79,7 @@ raise (int signal)
 
     return (0);
 }
+
 /* Change record:
  * JFH 950914 First code release.
  * JFH 951012 Moved __myraise back to unix.c

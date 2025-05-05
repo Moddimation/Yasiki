@@ -38,8 +38,8 @@ _MSL_END_EXTERN_C       /*- cc 010409 -*/
                          *            by one of wchar_t.h
                          * cc  000413 Added _MSL_IMP_EXP_C
                          * mm  010327 Commented wasctime and wctime out since they are not defined in C99
-                         *and wasctime tampered with                     gmtime's                     threadlocal data                     cc
-                         *010405 removed pragma options align native                     and reset                     cc
-                         *010409 updated defines to                      JWW new namespace macros                     JWW
-                         *010618 Use cname headers exclusively to prevent namespace pollution in C++
+                         *and wasctime tampered with                     gmtime's                     threadlocal data
+                         *cc                     010405 removed pragma options align native                     and reset                     cc                     010409 updated
+                         *defines to                      JWW new namespace macros                     JWW                     010618 Use
+                         *cname headers exclusively to prevent namespace pollution in C++
                          */

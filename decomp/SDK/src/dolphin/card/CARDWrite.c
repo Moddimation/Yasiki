@@ -10,6 +10,7 @@
 // functions
 static void WriteCallback (s32 chan, long result);
 static void EraseCallback (s32 chan, long result);
+
 static void
 WriteCallback (s32 chan, long result)
 {
@@ -50,8 +51,7 @@ WriteCallback (s32 chan, long result)
                 result = CARD_RESULT_BROKEN;
                 goto after;
             }
-            result = __CARDEraseSector (
-                chan, card->sectorSize * fileInfo->iBlock, EraseCallback);
+            result = __CARDEraseSector (chan, card->sectorSize * fileInfo->iBlock, EraseCallback);
         check:;
             if (result < 0)
             {
@@ -69,6 +69,7 @@ WriteCallback (s32 chan, long result)
         callback (chan, result);
     }
 }
+
 static void
 EraseCallback (s32 chan, long result)
 {
@@ -101,6 +102,7 @@ EraseCallback (s32 chan, long result)
         callback (chan, result);
     }
 }
+
 s32
 CARDWriteAsync (struct CARDFileInfo* fileInfo,
                 void*                buf,
@@ -123,8 +125,7 @@ CARDWriteAsync (struct CARDFileInfo* fileInfo,
     ASSERTLINE (0xD0, OFFSET (offset, card->sectorSize) == 0);
     ASSERTLINE (0xD1, OFFSET (length, card->sectorSize) == 0);
 
-    if (OFFSET (offset, card->sectorSize) != 0 ||
-        OFFSET (length, card->sectorSize) != 0)
+    if (OFFSET (offset, card->sectorSize) != 0 || OFFSET (length, card->sectorSize) != 0)
     {
         return __CARDPutControlBlock (card, CARD_RESULT_FATAL_ERROR);
     }
@@ -140,14 +141,15 @@ CARDWriteAsync (struct CARDFileInfo* fileInfo,
     DCStoreRange ((void*)buf, (u32)length);
     card->apiCallback = callback ? callback : __CARDDefaultApiCallback;
     card->buffer = (void*)buf;
-    result = __CARDEraseSector (
-        fileInfo->chan, card->sectorSize * (u32)fileInfo->iBlock, EraseCallback);
+    result =
+        __CARDEraseSector (fileInfo->chan, card->sectorSize * (u32)fileInfo->iBlock, EraseCallback);
     if (result < 0)
     {
         __CARDPutControlBlock (card, result);
     }
     return result;
 }
+
 s32
 CARDWrite (struct CARDFileInfo* fileInfo, void* buf, s32 length, long offset)
 {

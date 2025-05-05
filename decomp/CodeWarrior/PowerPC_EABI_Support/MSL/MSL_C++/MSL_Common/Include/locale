@@ -89,10 +89,9 @@ __locale_imp<b>::init (const char* std_name)
     std_name;
 #endif
 }
+
 template <bool b>
-__locale_imp<b>::__locale_imp (const locale&    other,
-                               const locale&    one,
-                               locale::category cat)
+__locale_imp<b>::__locale_imp (const locale& other, const locale& one, locale::category cat)
 {
     *this = *other.imp_;
     if (cat & locale::collate)
@@ -178,6 +177,7 @@ __locale_imp<b>::__locale_imp (const locale&    other,
         name() = "*";
     }
 }
+
 // locale Implementation
 
 // _lib.locale.convenience_, convenience interfaces:
@@ -188,72 +188,84 @@ isspace (charT c, const locale& loc)
 {
     return _USE_FACET (ctype<charT>, loc).is (ctype_base::space, c);
 }
+
 template <class charT>
 inline bool
 isprint (charT c, const locale& loc)
 {
     return _USE_FACET (ctype<charT>, loc).is (ctype_base::print, c);
 }
+
 template <class charT>
 inline bool
 iscntrl (charT c, const locale& loc)
 {
     return _USE_FACET (ctype<charT>, loc).is (ctype_base::cntrl, c);
 }
+
 template <class charT>
 inline bool
 isupper (charT c, const locale& loc)
 {
     return _USE_FACET (ctype<charT>, loc).is (ctype_base::upper, c);
 }
+
 template <class charT>
 inline bool
 islower (charT c, const locale& loc)
 {
     return _USE_FACET (ctype<charT>, loc).is (ctype_base::lower, c);
 }
+
 template <class charT>
 inline bool
 isalpha (charT c, const locale& loc)
 {
     return _USE_FACET (ctype<charT>, loc).is (ctype_base::alpha, c);
 }
+
 template <class charT>
 inline bool
 isdigit (charT c, const locale& loc)
 {
     return _USE_FACET (ctype<charT>, loc).is (ctype_base::digit, c);
 }
+
 template <class charT>
 inline bool
 ispunct (charT c, const locale& loc)
 {
     return _USE_FACET (ctype<charT>, loc).is (ctype_base::punct, c);
 }
+
 template <class charT>
 inline bool
 isxdigit (charT c, const locale& loc)
 {
     return _USE_FACET (ctype<charT>, loc).is (ctype_base::xdigit, c);
 }
+
 template <class charT>
 inline bool
 isalnum (charT c, const locale& loc)
 {
     return _USE_FACET (ctype<charT>, loc).is (ctype_base::alnum, c);
 }
+
 template <class charT>
 inline bool
 isgraph (charT c, const locale& loc)
 {
     return _USE_FACET (ctype<charT>, loc).is (ctype_base::graph, c);
 }
+
 template <class charT>
 inline charT
 toupper (charT c, const locale& loc)
 {
     return _USE_FACET (ctype<charT>, loc).toupper (c);
 }
+
 template <class charT>
 inline charT
 tolower (charT c, const locale& loc)

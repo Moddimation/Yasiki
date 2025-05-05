@@ -28,20 +28,24 @@
 #include "ansi_files.h"
 #include "critical_regions.h"
 #include "file_io.h"
+
 void
 clearerr (FILE* file)
 {
     file->state.eof = 0;
     file->state.error = 0;
 }
+
 int (feof) (FILE* file)
 {
     return (feof (file));
 }
+
 int (ferror) (FILE* file)
 {
     return (ferror (file));
 }
+
 void
 perror (const char* s)
 {
@@ -56,6 +60,7 @@ perror (const char* s)
     fprintf (stderr, "%s\n", __strerror (errno, errstr));
 #endif
 }
+
 void
 __stdio_atexit (void)
 {
@@ -63,6 +68,7 @@ __stdio_atexit (void)
     __stdio_exit = __close_all;
 #endif
 }
+
 /* Change record:
  * JFH 950904 First code release.
  * JFH 951215 Changed stdio_atexit to new abort/exit handling architecture.

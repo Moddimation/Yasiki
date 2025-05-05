@@ -25,6 +25,7 @@
 #include <string.h>                 /*- mm 990806 -*/
 #include <wctrans.h>
 #include <wctype.h>                 /*- mm 990806 -*/
+
 static const struct wctable
 {
     const char* string;
@@ -36,11 +37,13 @@ wtable[] = {
     {      "toupper", 1 },
     { (const char*)0, 0 }
 };
+
 wint_t
 towctrans (wint_t c, wctrans_t value)
 {
     return (value == 1 ? towupper (c) : towlower (c));
 }
+
 wctrans_t
 wctrans (const char* name)
 {

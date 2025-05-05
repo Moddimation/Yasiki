@@ -37,13 +37,18 @@
 #include <WINDEF.H>
 
 #pragma ANSI_strict reset
+
 namespace
 {
 
-template <bool b> class __compile_assert;
-template <> class __compile_assert<true>
+template <bool b>
+class __compile_assert;
+
+template <>
+class __compile_assert<true>
 {
 };
+
 __compile_assert<sizeof (CRITICAL_SECTION) == 24> check_CRITICAL_SECTION;
 
 // If you get an error with this object, that means that

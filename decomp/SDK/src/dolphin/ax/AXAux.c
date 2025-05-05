@@ -18,6 +18,7 @@ static s32*  __AXAuxBDspRead;
 static u32   __AXAuxDspWritePosition;
 static u32   __AXAuxDspReadPosition;
 static u32   __AXAuxCpuReadWritePosition;
+
 void
 __AXAuxInit (void)
 {
@@ -45,6 +46,7 @@ __AXAuxInit (void)
         pB += 1;
     }
 }
+
 void
 __AXAuxQuit (void)
 {
@@ -54,26 +56,31 @@ __AXAuxQuit (void)
     __AXCallbackAuxA = NULL;
     __AXCallbackAuxB = NULL;
 }
+
 void
 __AXGetAuxAInput (u32* p)
 {
     *p = (u32)&__AXBufferAuxA[__AXAuxDspWritePosition][0];
 }
+
 void
 __AXGetAuxAOutput (u32* p)
 {
     *p = (u32)&__AXBufferAuxA[__AXAuxDspReadPosition][0];
 }
+
 void
 __AXGetAuxBInput (u32* p)
 {
     *p = (u32)&__AXBufferAuxB[__AXAuxDspWritePosition][0];
 }
+
 void
 __AXGetAuxBOutput (u32* p)
 {
     *p = (u32)&__AXBufferAuxB[__AXAuxDspReadPosition][0];
 }
+
 void
 __AXProcessAux (void)
 {
@@ -108,12 +115,14 @@ __AXProcessAux (void)
     __AXAuxCpuReadWritePosition += 1;
     __AXAuxCpuReadWritePosition %= 3;
 }
+
 void
 AXRegisterAuxACallback (void (*callback) (void*, void*), void* context)
 {
     __AXCallbackAuxA = callback;
     __AXContextAuxA = context;
 }
+
 void
 AXRegisterAuxBCallback (void (*callback) (void*, void*), void* context)
 {

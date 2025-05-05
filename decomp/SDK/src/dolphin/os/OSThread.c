@@ -285,7 +285,7 @@ UnsetRun (OSThread* thread)
 s32
 __OSGetEffectivePriority (OSThread* thread)
 {
-    s32             priority = thread->base;
+    s32      priority = thread->base;
     OSMutex* mutex;
 
     for (mutex = thread->queueMutex.head; mutex; mutex = mutex->link.next)

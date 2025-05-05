@@ -54,7 +54,8 @@ namespace std
 #endif
 
 #ifndef _MSL_NO_LOCALE
-template <class charT> class numpunct_byname : public numpunct<charT>
+template <class charT>
+class numpunct_byname : public numpunct<charT>
 {
 public:
     typedef charT               char_type;
@@ -65,6 +66,7 @@ public:
 protected:
     virtual ÃÂ¢ÃÂÃÂ¾numpunct_byname () {}
 };
+
 inline const string&
 __numeric_marker (char)
 {
@@ -80,8 +82,7 @@ __numeric_marker (wchar_t)
 }
 #endif                          // _MSL_NO_WCHART_CPP_SUPPORT
 template <class charT>
-numpunct_byname<charT>::numpunct_byname (const char* std_name, size_t refs)
-  : numpunct<charT> (refs)
+numpunct_byname<charT>::numpunct_byname (const char* std_name, size_t refs) : numpunct<charT> (refs)
 {
     typedef numpunct<charT> base;
     if (std_name == 0)
@@ -100,9 +101,8 @@ numpunct_byname<charT>::numpunct_byname (const char* std_name, size_t refs)
         ifstream infile (std_name);
         if (!infile.is_open())
 #ifndef _MSL_NO_EXCEPTIONS
-            throw runtime_error (
-                string ("numpunct_byname constructed with unsupported name: ") +
-                std_name);
+            throw runtime_error (string ("numpunct_byname constructed with unsupported name: ") +
+                                 std_name);
 #else
             __msl_error ("numpunct_byname constructed with unsupported name");
 #endif
@@ -127,14 +127,14 @@ numpunct_byname<charT>::numpunct_byname (const char* std_name, size_t refs)
                 numpunct_names[3] = "false_name";
                 numpunct_names[4] = "true_name";
                 const string (&cnumpunct_names)[5] = numpunct_names;
-                const ctype<char>& ct = _USE_FACET (ctype<char>, infile.getloc());
-                ios_base::iostate  err = ios_base::goodbit;
+                const ctype<char>&        ct = _USE_FACET (ctype<char>, infile.getloc());
+                ios_base::iostate         err = ios_base::goodbit;
                 istreambuf_iterator<char> in (infile), end;
                 while (true)
                 {
                     ws (infile);
-                    const string* i = __parse_a_word (
-                        in, end, numpunct_names, numpunct_names + 5, ct, err);
+                    const string* i =
+                        __parse_a_word (in, end, numpunct_names, numpunct_names + 5, ct, err);
                     if (err)
                     {
                         infile.setstate (err);
@@ -155,12 +155,10 @@ numpunct_byname<charT>::numpunct_byname (const char* std_name, size_t refs)
                     switch (i - numpunct_names)
                     {
                         case 0: // decimal_point
-                            __read_formatted_char (
-                                infile, base::__decimal_point_, was_quoted);
+                            __read_formatted_char (infile, base::__decimal_point_, was_quoted);
                             break;
                         case 1: // thousands_sep
-                            __read_formatted_char (
-                                infile, base::__thousands_sep_, was_quoted);
+                            __read_formatted_char (infile, base::__thousands_sep_, was_quoted);
                             break;
                         case 2: // grouping
                             {
@@ -187,16 +185,14 @@ numpunct_byname<charT>::numpunct_byname (const char* std_name, size_t refs)
         }
         if (!success)
 #ifndef _MSL_NO_EXCEPTIONS
-            throw runtime_error (string ("numpunct_byname file input error: ") +
-                                 std_name);
+            throw runtime_error (string ("numpunct_byname file input error: ") + std_name);
 #else
             __msl_error ("numpunct_byname file input error");
 #endif
 #else                           // _MSL_NO_FILE_IO
 #ifndef _MSL_NO_EXCEPTIONS
-        throw runtime_error (
-            string ("numpunct_byname constructed with unsupported name: ") +
-            std_name);
+        throw runtime_error (string ("numpunct_byname constructed with unsupported name: ") +
+                             std_name);
 #else
         __msl_error ("numpunct_byname constructed with unsupported name");
 #endif

@@ -7,15 +7,16 @@ extern int getAttackPattern1Parameter (int i_attackType);
 
 // Required for .data to match.
 static float dummy[] = { 1.0f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f };
+
 /* EnStrategyContainer */
 
-EnStrategyContainer::EnStrategyContainer () : mpStrategy (NULL)
-{
-}
+EnStrategyContainer::EnStrategyContainer () : mpStrategy (NULL) {}
+
 EnStrategyContainer::~EnStrategyContainer ()
 {
     destroyStrategy();
 }
+
 void
 EnStrategyContainer::destroyStrategy ()
 {
@@ -29,6 +30,7 @@ EnStrategyContainer::destroyStrategy ()
         mpStrategy = NULL;
     }
 }
+
 EnemyStrategy*
 EnStrategyContainer::createStrategy (int i_strategyType)
 {
@@ -36,12 +38,12 @@ EnStrategyContainer::createStrategy (int i_strategyType)
 
     void* buf = getBuffer();
 
-    enemyStrategyInitFunc* initFunc =
-        getEnemyStrategyInitFunc (getStrategyId (i_strategyType));
+    enemyStrategyInitFunc* initFunc = getEnemyStrategyInitFunc (getStrategyId (i_strategyType));
     mpStrategy = static_cast<EnemyStrategy*> ((*initFunc) (buf, 0x180));
 
     return mpStrategy;
 }
+
 /* EnTsuriStrategies */
 
 s32
@@ -63,6 +65,7 @@ EnTsuriStrategies::getStrategyId (int i_entityIdx)
             return 0x0D;
     }
 }
+
 /* EnAttackStrategies */
 s32
 EnAttackStrategies::getStrategyId (int i_entityIdx)
@@ -101,12 +104,14 @@ EnAttackStrategies::getStrategyId (int i_entityIdx)
             return 0xB0;
     }
 }
+
 /* EnCondStrategies */
 
 EnCondStrategies::~EnCondStrategies ()
 {
     destroyCondStrategy();
 }
+
 void
 EnCondStrategies::destroyCondStrategy ()
 {
@@ -120,6 +125,7 @@ EnCondStrategies::destroyCondStrategy ()
         mpCondStrategy = NULL;
     }
 }
+
 EnemyStrategy*
 EnCondStrategies::createCondStrategy (int i_condType)
 {
@@ -127,12 +133,12 @@ EnCondStrategies::createCondStrategy (int i_condType)
 
     void* buf = getBuffer();
 
-    enemyStrategyInitFunc* initFunc =
-        getEnemyStrategyInitFunc (getCondStrategyId (i_condType));
+    enemyStrategyInitFunc* initFunc = getEnemyStrategyInitFunc (getCondStrategyId (i_condType));
     mpCondStrategy = static_cast<EnemyStrategy*> ((*initFunc) (buf, 0x40));
 
     return mpCondStrategy;
 }
+
 s32
 EnCondStrategies::getCondStrategyId (int i_entityIdx)
 {

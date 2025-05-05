@@ -33,6 +33,7 @@
 /*	public data		*/
 
 DestructorChain* __global_destructor_chain;
+
 /************************************************************************/
 /*	Purpose..: 	Register a global object for later destruction			*/
 /*	Input....:	pointer to global object								*/
@@ -50,6 +51,7 @@ __register_global_object (void* object, void* destructor, void* regmem)
 
     return object;
 }
+
 /************************************************************************/
 /* Purpose..: Destroy all constructed global objects					*/
 /* Input....: ---														*/

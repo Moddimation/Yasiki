@@ -5,7 +5,7 @@
  * $Revision: 1.37 $
  */
 
-#include <ansi_parms.h>           /* mm 970904 */
+#include <ansi_parms.h>                     /* mm 970904 */
 
 #ifdef _MSL_OS_DIRECT_MALLOC
 #pragma mark -
@@ -15,6 +15,7 @@
 #include <pool_alloc.h>
 #include <stdlib.h>
 #include <string.h>
+
 void*
 malloc (size_t size)
 {
@@ -26,6 +27,7 @@ malloc (size_t size)
 #endif
     return __sys_alloc (size);
 }
+
 void
 free (void* ptr)
 {
@@ -34,6 +36,7 @@ free (void* ptr)
         __sys_free (ptr);
     }
 }
+
 void*
 realloc (void* ptr, size_t size)
 {
@@ -53,6 +56,7 @@ realloc (void* ptr, size_t size)
     }
     return p;
 }
+
 void*
 calloc (size_t nmemb, size_t size)
 {
@@ -87,7 +91,7 @@ calloc (size_t nmemb, size_t size)
  *
  */
 
-#include <ansi_parms.h>           /*- mm 970904 -*/
+#include <ansi_parms.h>                     /*- mm 970904 -*/
 #include <stdlib.h>
 
 #include "critical_regions.h"
@@ -100,12 +104,13 @@ static int   vec_initialized = 0;
 mem_pool_obj __malloc_pool;
 static int   initialized = 0;
 
-#ifdef _No_Alloc_OS_Support       /*- mm 981015 -*/
+#ifdef _No_Alloc_OS_Support                 /*- mm 981015 -*/
 mem_pool_obj* __malloc_pool_ptr = &__malloc_pool;
 
 static int defaultheapinitialized = 0;
 
 int init_alloc (void* pool_ptr, mem_size size);
+
 /***************************************************************************
  *	init_alloc
  *		Initializes the memory pool that malloc uses. This call is designed to
@@ -155,8 +160,7 @@ init_alloc (void* pool_ptr, mem_size size)
         __init_pool_obj (__malloc_pool_ptr);
 
         /* Assign the rest of the space (size - pool_overhead) to a memory block  */
-        __pool_preassign (
-            __malloc_pool_ptr, (void*)((size_t)pool_ptr + pool_overhead), size);
+        __pool_preassign (__malloc_pool_ptr, (void*)((size_t)pool_ptr + pool_overhead), size);
 
         /* Mark memory as initialized */
         initialized = 1;
@@ -177,13 +181,11 @@ init_alloc (void* pool_ptr, mem_size size)
 }
 #if __dest_os == __ppc_eabi || __dest_os == __dolphin_os
 
-__declspec (section
-            ".init") extern char _heap_addr[]; /* starting address for heap */
-__declspec (section
-            ".init") extern char _heap_end[];  /* address after end byte of heap */
+__declspec (section ".init") extern char _heap_addr[]; /* starting address for heap */
+__declspec (section ".init") extern char _heap_end[];  /* address after end byte of heap */
 
-#elif __dest_os == __nec_eabi_bare || __dest_os == __emb_68k ||                     \
-    __dest_os == __mcore_bare || __dest_os == __sh_bare
+#elif __dest_os == __nec_eabi_bare || __dest_os == __emb_68k || __dest_os == __mcore_bare ||       \
+    __dest_os == __sh_bare
 
 extern char __heap_size[]; /* size of the stack (Linker pref panel) */
 extern char __heap_addr[]; /* starting address for heap */
@@ -203,15 +205,16 @@ extern unsigned int _heap_end[];  /* starting address for heap */
 extern char _heap_addr[]; /* starting address for heap */
 extern char _heap_end[];  /* address after end byte of heap */
 
-#elif __dest_os == __n64_os       /* ad 01.28.99, added nintendo support */
+#elif __dest_os == __n64_os                 /* ad 01.28.99, added nintendo support */
 extern char _heap_addr[];
 extern char _heap_end[];
 
 #else
 #error
-#endif                            /* __dest_os	== __ppc_eabi */
+#endif                                      /* __dest_os	== __ppc_eabi */
 
 void init_default_heap (void);
+
 void
 init_default_heap (void)
 {
@@ -229,7 +232,7 @@ init_default_heap (void)
     }
 #endif
 }
-#endif /* _No_Alloc_OS_Support */ /*- mm 981015 -*/
+#endif /* _No_Alloc_OS_Support */           /*- mm 981015 -*/
 void*
 malloc (size_t size)
 {
@@ -237,13 +240,13 @@ malloc (size_t size)
 
     __begin_critical_region (malloc_pool_access);
 
-#ifdef _No_Alloc_OS_Support       /*- mm 981015 -*/
+#ifdef _No_Alloc_OS_Support                 /*- mm 981015 -*/
 
-    if (!defaultheapinitialized)               /*- mm 981015 -*/
-    {                                          /*- mm 981015 -*/
-        init_default_heap();                   /*- mm 981015 -*/
+    if (!defaultheapinitialized)                       /*- mm 981015 -*/
+    {                                                  /*- mm 981015 -*/
+        init_default_heap();                           /*- mm 981015 -*/
     }
-    if (!initialized)                          /*- vss 990121 -*/
+    if (!initialized)                                  /*- vss 990121 -*/
     {
         return (0);
     }
@@ -256,12 +259,13 @@ malloc (size_t size)
         initialized = 1;
     }
     block = __pool_alloc (&__malloc_pool, size);
-#endif                            /* _No_Alloc_OS_Support */
+#endif                                      /* _No_Alloc_OS_Support */
 
     __end_critical_region (malloc_pool_access);
 
     return (block);
 }
+
 void*
 calloc (size_t nmemb, size_t size)
 {
@@ -269,7 +273,7 @@ calloc (size_t nmemb, size_t size)
 
     __begin_critical_region (malloc_pool_access);
 
-#ifndef _No_Alloc_OS_Support      /*- mm 981015 -*/
+#ifndef _No_Alloc_OS_Support                /*- mm 981015 -*/
     if (!initialized)
     {
         __init_pool_obj (&__malloc_pool);
@@ -277,7 +281,7 @@ calloc (size_t nmemb, size_t size)
     }
     block = __pool_alloc_clear (&__malloc_pool, nmemb * size);
 
-#else                             /*- mm 981015 -*/
+#else                                       /*- mm 981015 -*/
     if (!defaultheapinitialized) /*- mm 981015 -*/
     {                            /*- mm 981015 -*/
         init_default_heap();     /*- mm 981015 -*/
@@ -287,12 +291,13 @@ calloc (size_t nmemb, size_t size)
         return (0);   /*- mm 981015 -*/
     } /*- mm 981015 -*/
     block = __pool_alloc_clear (__malloc_pool_ptr, nmemb * size); /*- mm 981015 -*/
-#endif /* _No_Alloc_OS_Support */ /*- mm 981015 -*/
+#endif /* _No_Alloc_OS_Support */           /*- mm 981015 -*/
 
     __end_critical_region (malloc_pool_access);
 
     return (block);
 }
+
 void*
 realloc (void* ptr, size_t size)
 {
@@ -300,7 +305,7 @@ realloc (void* ptr, size_t size)
 
     __begin_critical_region (malloc_pool_access);
 
-#ifndef _No_Alloc_OS_Support      /*- mm 981015 -*/
+#ifndef _No_Alloc_OS_Support                /*- mm 981015 -*/
     if (!initialized)
     {
         __init_pool_obj (&__malloc_pool);
@@ -308,7 +313,7 @@ realloc (void* ptr, size_t size)
     }
 
     block = __pool_realloc (&__malloc_pool, ptr, size);
-#else                             /*- mm 981015 -*/
+#else                                       /*- mm 981015 -*/
     if (!defaultheapinitialized)                                  /*- mm 981015 -*/
     {                                                             /*- mm 981015 -*/
         init_default_heap();                                      /*- mm 981015 -*/
@@ -318,12 +323,13 @@ realloc (void* ptr, size_t size)
         return (0);   /*- mm 981015 -*/
     } /*- mm 981015 -*/
     block = __pool_realloc (__malloc_pool_ptr, ptr, size); /*- mm 981015 -*/
-#endif /* _No_Alloc_OS_Support */ /*- mm 981015 -*/
+#endif /* _No_Alloc_OS_Support */           /*- mm 981015 -*/
 
     __end_critical_region (malloc_pool_access);
 
     return (block);
 }
+
 void
 free (void* ptr)
 {
@@ -334,13 +340,14 @@ free (void* ptr)
 
     __begin_critical_region (malloc_pool_access);
 
-#ifndef _No_Alloc_OS_Support      /*- mm 981015 -*/
+#ifndef _No_Alloc_OS_Support                /*- mm 981015 -*/
     __pool_free (&__malloc_pool, ptr);
-#else                             /*- mm 981015 -*/
+#else                                       /*- mm 981015 -*/
     __pool_free (__malloc_pool_ptr, ptr);                  /*- mm 981015 -*/
-#endif /* _No_Alloc_OS_Support */ /*- mm 981015 -*/
+#endif /* _No_Alloc_OS_Support */           /*- mm 981015 -*/
     __end_critical_region (malloc_pool_access);
 }
+
 size_t
 __msize (void* ptr)
 {
@@ -357,6 +364,7 @@ void* vec_malloc (size_t size);
 void* vec_calloc (size_t nmemb, size_t size);
 void* vec_realloc (void* ptr, size_t size);
 void  vec_free (void* ptr);
+
 void*
 vec_malloc (size_t size)
 {
@@ -376,6 +384,7 @@ vec_malloc (size_t size)
 
     return (block);
 }
+
 void*
 vec_calloc (size_t nmemb, size_t size)
 {
@@ -395,6 +404,7 @@ vec_calloc (size_t nmemb, size_t size)
 
     return (block);
 }
+
 void*
 vec_realloc (void* ptr, size_t size)
 {
@@ -414,6 +424,7 @@ vec_realloc (void* ptr, size_t size)
 
     return (block);
 }
+
 void
 vec_free (void* ptr)
 {
@@ -428,7 +439,7 @@ vec_free (void* ptr)
 
     __end_critical_region (malloc_pool_access);
 }
-#endif                            /* __ALTIVEC__ */
+#endif                                      /* __ALTIVEC__ */
 
 /*#endif*/ /* __dest_os != __be_os */ /*- mm 970708 -*/ /*- cc 010326 -*/
 
@@ -499,7 +510,7 @@ typedef uintptr_t mem_size; /* must be same size as void* */
 #define MAX_MEM_SIZE ULONG_MAX
 #endif
 
-#define WORD_SIZE 4               /* hack!  Must manually set to sizeof(mem_size) */
+#define WORD_SIZE 4                         /* hack!  Must manually set to sizeof(mem_size) */
 
 /*	These two consts describe how malloc goes to the OS for memory.  The shipping
 //	configuration is that malloc will ask for at least 64Kb at a time from the OS
@@ -510,11 +521,11 @@ static const mem_size sys_alloc_size = 65536; /* 64Kb */
 /*	All returned memory will be aligned as indicated. */
 
 #if __ALTIVEC__
-#define alignment 16              /* valid = {4, 8, 16}, must be >= sizeof(void*) */
+#define alignment 16                        /* valid = {4, 8, 16}, must be >= sizeof(void*) */
 #elif __MIPS__
 #define alignment __ALIGNMENT__
 #else
-#define alignment 8               /* valid = {4, 8, 16}, must be >= sizeof(void*) */
+#define alignment 8                         /* valid = {4, 8, 16}, must be >= sizeof(void*) */
 #endif
 
 #define align_ratio (alignment / WORD_SIZE) /* Not configurable */
@@ -589,6 +600,7 @@ typedef struct Block
     //	SubBlock* start_;
     */
 } Block;
+
 typedef struct SubBlock
 {
     mem_size         size_;
@@ -603,6 +615,7 @@ typedef struct SubBlock
 #ifdef _MSL_USE_FIX_MALLOC_POOLS
 
 struct FixSubBlock;
+
 typedef struct FixBlock
 {
     struct FixBlock*    prev_;
@@ -615,11 +628,13 @@ typedef struct FixBlock
     mem_size reserve2_;
 #endif
 } FixBlock;
+
 typedef struct FixSubBlock
 {
     FixBlock*           block_;
     struct FixSubBlock* next_; /* Client space starts here */
 } FixSubBlock;
+
 typedef struct FixStart
 {
     FixBlock* tail_;
@@ -633,6 +648,7 @@ typedef struct __mem_pool_obj
     FixStart fix_start[num_fix_pools];
 #endif
 } __mem_pool_obj;
+
 static const mem_size Block_min_size = sys_alloc_size;
 #if align_ratio == 4
 static const mem_size Block_overhead = 8 * sizeof (mem_size);
@@ -661,8 +677,11 @@ static const mem_size SubBlock_min_size =
 #endif
 static const mem_size SubBlock_header_size = SubBlock_overhead;
 
-static void SubBlock_construct (
-    SubBlock* ths, mem_size size, Block* bp, int prev_alloc, int this_alloc);
+static void      SubBlock_construct (SubBlock* ths,
+                                     mem_size  size,
+                                     Block*    bp,
+                                     int       prev_alloc,
+                                     int       this_alloc);
 static SubBlock* SubBlock_split (SubBlock* ths, mem_size size);
 static SubBlock* SubBlock_merge_prev (SubBlock* ths, SubBlock** start);
 static void      SubBlock_merge_next (SubBlock* ths, SubBlock** start);
@@ -724,23 +743,23 @@ static void SubBlock_report (SubBlock* ths, int verbose);
 
 #define SubBlock_client_space(ths) ((char*)(ths) + SubBlock_header_size)
 
-#define SubBlock_set_free(ths)                                                      \
-    mem_size this_size = SubBlock_size ((ths));                                     \
-    (ths)->size_ &= ~this_alloc_flag;                                               \
-    *(mem_size*)((char*)(ths) + this_size) &= ~prev_alloc_flag;                     \
+#define SubBlock_set_free(ths)                                                                     \
+    mem_size this_size = SubBlock_size ((ths));                                                    \
+    (ths)->size_ &= ~this_alloc_flag;                                                              \
+    *(mem_size*)((char*)(ths) + this_size) &= ~prev_alloc_flag;                                    \
     *(mem_size*)((char*)(ths) + this_size - sizeof (mem_size)) = this_size
 
-#define SubBlock_set_not_free(ths)                                                  \
-    mem_size this_size = SubBlock_size ((ths));                                     \
-    (ths)->size_ |= this_alloc_flag;                                                \
+#define SubBlock_set_not_free(ths)                                                                 \
+    mem_size this_size = SubBlock_size ((ths));                                                    \
+    (ths)->size_ |= this_alloc_flag;                                                               \
     *(mem_size*)((char*)(ths) + this_size) |= prev_alloc_flag
 
 #define SubBlock_is_free(ths) !((ths)->size_ & this_alloc_flag)
 
-#define SubBlock_set_size(ths, sz)                                                  \
-    (ths)->size_ &= ~size_flag;                                                     \
-    (ths)->size_ |= (sz) & size_flag;                                               \
-    if (SubBlock_is_free ((ths)))                                                   \
+#define SubBlock_set_size(ths, sz)                                                                 \
+    (ths)->size_ &= ~size_flag;                                                                    \
+    (ths)->size_ |= (sz) & size_flag;                                                              \
+    if (SubBlock_is_free ((ths)))                                                                  \
     *(mem_size*)((char*)(ths) + (sz) - sizeof (mem_size)) = (sz)
 
 #define SubBlock_from_pointer(ptr)   ((SubBlock*)((char*)(ptr) - SubBlock_header_size))
@@ -751,13 +770,12 @@ static void SubBlock_report (SubBlock* ths, int verbose);
 
 #define Block_size(ths)              ((ths)->size_ & size_flag)
 
-#define Block_start(ths)                                                            \
-    (*(SubBlock**)((char*)(ths) + Block_size ((ths)) - sizeof (mem_size)))
+#define Block_start(ths)             (*(SubBlock**)((char*)(ths) + Block_size ((ths)) - sizeof (mem_size)))
 
-#define Block_empty(ths)                                                            \
-    (_sb = (SubBlock*)((char*)(ths) + Block_header_size)),                          \
-        SubBlock_is_free (_sb) &&                                                   \
-            SubBlock_size (_sb) == Block_size ((ths)) - Block_overhead
+#define Block_empty(ths)                                                                           \
+    (_sb = (SubBlock*)((char*)(ths) + Block_header_size)),                                         \
+        SubBlock_is_free (_sb) && SubBlock_size (_sb) == Block_size ((ths)) - Block_overhead
+
 /* Block Implementation */
 
 static void
@@ -773,6 +791,7 @@ Block_construct (Block* ths, mem_size size)
     Block_start (ths) = 0;
     Block_link (ths, sb);
 }
+
 static SubBlock*
 Block_subBlock (Block* ths, mem_size size)
 {
@@ -811,6 +830,7 @@ Block_subBlock (Block* ths, mem_size size)
     Block_unlink (ths, sb);
     return sb;
 }
+
 static void
 Block_link (Block* ths, SubBlock* sb)
 {
@@ -839,6 +859,7 @@ Block_link (Block* ths, SubBlock* sb)
         ths->max_size_ = SubBlock_size (*st);
     }
 }
+
 static void
 Block_unlink (Block* ths, SubBlock* sb)
 {
@@ -876,9 +897,7 @@ Block_report (Block* ths, int verbose)
     i = 1;
     if (verbose)
     {
-        printf ("\tsize_ = %d, max_size = %d\n",
-                Block_size (ths),
-                Block_max_possible_size (ths));
+        printf ("\tsize_ = %d, max_size = %d\n", Block_size (ths), Block_max_possible_size (ths));
     }
     if (Block_size (ths) > 1042 * 1024)
     {
@@ -916,8 +935,7 @@ Block_report (Block* ths, int verbose)
         do {
             if (SubBlock_size (sb) > 1042 * 1024)
             {
-                printf ("\t**ERROR** SubBlock size suspiciously large %d\n",
-                        SubBlock_size (sb));
+                printf ("\t**ERROR** SubBlock size suspiciously large %d\n", SubBlock_size (sb));
                 exit (1);
             }
             sb = sb->next_;
@@ -927,8 +945,7 @@ Block_report (Block* ths, int verbose)
         do {
             if (SubBlock_size (sb) > 1042 * 1024)
             {
-                printf ("\t**ERROR** SubBlock size suspiciously large %d\n",
-                        SubBlock_size (sb));
+                printf ("\t**ERROR** SubBlock size suspiciously large %d\n", SubBlock_size (sb));
                 exit (1);
             }
             sb = sb->prev_;
@@ -940,8 +957,7 @@ Block_report (Block* ths, int verbose)
 /* SubBlock Implementation */
 
 static void
-SubBlock_construct (
-    SubBlock* ths, mem_size size, Block* bp, int prev_alloc, int this_alloc)
+SubBlock_construct (SubBlock* ths, mem_size size, Block* bp, int prev_alloc, int this_alloc)
 {
     ths->bp_ = (Block*)((mem_size)bp | fix_var_flag);
     ths->size_ = size;
@@ -959,6 +975,7 @@ SubBlock_construct (
         *(mem_size*)((char*)ths + size - sizeof (mem_size)) = size;
     }
 }
+
 static SubBlock*
 SubBlock_split (SubBlock* ths, mem_size sz)
 {
@@ -985,6 +1002,7 @@ SubBlock_split (SubBlock* ths, mem_size sz)
     }
     return np;
 }
+
 static SubBlock*
 SubBlock_merge_prev (SubBlock* ths, SubBlock** start)
 {
@@ -1011,6 +1029,7 @@ SubBlock_merge_prev (SubBlock* ths, SubBlock** start)
     }
     return ths;
 }
+
 static void
 SubBlock_merge_next (SubBlock* ths, SubBlock** start)
 {
@@ -1049,13 +1068,11 @@ SubBlock_report (SubBlock* ths, int verbose)
 {
     if (verbose)
     {
-        printf (
-            "\t\tsize_ = %d, bp_ = %p\n", SubBlock_size (ths), SubBlock_block (ths));
+        printf ("\t\tsize_ = %d, bp_ = %p\n", SubBlock_size (ths), SubBlock_block (ths));
     }
     if (SubBlock_size (ths) > 1042 * 1024)
     {
-        printf ("\t**ERROR** SubBlock size suspiciously large %d\n",
-                SubBlock_size (ths));
+        printf ("\t**ERROR** SubBlock size suspiciously large %d\n", SubBlock_size (ths));
         exit (1);
     }
 }
@@ -1078,6 +1095,7 @@ link (__mem_pool_obj* pool_obj, Block* bp)
         bp->next_ = bp;
     }
 }
+
 static Block*
 __unlink (__mem_pool_obj* pool_obj, Block* bp)
 {
@@ -1099,6 +1117,7 @@ __unlink (__mem_pool_obj* pool_obj, Block* bp)
     bp->prev_ = 0;
     return result;
 }
+
 static Block*
 link_new_block (__mem_pool_obj* pool_obj, mem_size size)
 {
@@ -1119,6 +1138,7 @@ link_new_block (__mem_pool_obj* pool_obj, mem_size size)
     link (pool_obj, bp);
     return bp;
 }
+
 static void*
 allocate_from_var_pools (__mem_pool_obj* pool_obj, mem_size size)
 {
@@ -1161,10 +1181,9 @@ allocate_from_var_pools (__mem_pool_obj* pool_obj, mem_size size)
     while (1);
     return SubBlock_client_space (ptr);
 }
+
 static void*
-soft_allocate_from_var_pools (__mem_pool_obj* pool_obj,
-                              mem_size        size,
-                              mem_size*       max_size)
+soft_allocate_from_var_pools (__mem_pool_obj* pool_obj, mem_size size, mem_size* max_size)
 {
     Block*    bp;
     SubBlock* ptr;
@@ -1205,6 +1224,7 @@ soft_allocate_from_var_pools (__mem_pool_obj* pool_obj,
     while (1);
     return SubBlock_client_space (ptr);
 }
+
 static void
 deallocate_from_var_pools (__mem_pool_obj* pool_obj, void* ptr)
 {
@@ -1245,15 +1265,15 @@ static const mem_size FixSubBlock_header_size = FixSubBlock_overhead;
 
 /* FixSubBlock Implementation */
 
-#define FixSubBlock_construct(ths, block, next)                                     \
+#define FixSubBlock_construct(ths, block, next)                                                    \
     (((FixSubBlock*)(ths))->block_ = block, ((FixSubBlock*)(ths))->next_ = next)
 
 #define FixSubBlock_client_space(ths) ((char*)(ths) + FixSubBlock_header_size)
 
 #define FixSubBlock_size(ths)         (FixBlock_client_size ((ths)->block_))
 
-#define FixSubBlock_from_pointer(ptr)                                               \
-    ((FixSubBlock*)((char*)(ptr) - FixSubBlock_header_size))
+#define FixSubBlock_from_pointer(ptr) ((FixSubBlock*)((char*)(ptr) - FixSubBlock_header_size))
+
 /* FixBlock Implementation */
 
 static void
@@ -1295,6 +1315,7 @@ __init_pool_obj (__mem_pool* pool_obj)
     assert (sizeof (__mem_pool) >= sizeof (__mem_pool_obj));
     memset (pool_obj, 0, sizeof (__mem_pool_obj));
 }
+
 static __mem_pool*
 get_malloc_pool ()
 {
@@ -1308,18 +1329,17 @@ get_malloc_pool ()
     return &protopool;
 }
 #ifdef _MSL_USE_FIX_MALLOC_POOLS
-#define __msize_inline(ptr)                                                         \
-    (!classify (ptr)                                                                \
-         ? FixSubBlock_size (FixSubBlock_from_pointer (ptr))                        \
-         : SubBlock_size (SubBlock_from_pointer (ptr)) - SubBlock_overhead)
+#define __msize_inline(ptr)                                                                        \
+    (!classify (ptr) ? FixSubBlock_size (FixSubBlock_from_pointer (ptr))                           \
+                     : SubBlock_size (SubBlock_from_pointer (ptr)) - SubBlock_overhead)
 #else
-#define __msize_inline(ptr)                                                         \
-    (SubBlock_size (SubBlock_from_pointer (ptr)) - SubBlock_overhead)
+#define __msize_inline(ptr) (SubBlock_size (SubBlock_from_pointer (ptr)) - SubBlock_overhead)
 #endif
 
 #ifdef _MSL_USE_FIX_MALLOC_POOLS
 
 void* allocate_from_fixed_pools (__mem_pool_obj*, mem_size);
+
 void*
 allocate_from_fixed_pools (__mem_pool_obj* pool_obj, mem_size size)
 {
@@ -1339,8 +1359,7 @@ allocate_from_fixed_pools (__mem_pool_obj* pool_obj, mem_size size)
         mem_size size_received;
         mem_size n, nsave, size_has;
 
-        n = (size_requested - FixBlock_overhead) /
-            (fix_pool_sizes[i] + FixSubBlock_overhead);
+        n = (size_requested - FixBlock_overhead) / (fix_pool_sizes[i] + FixSubBlock_overhead);
         if (n > 256)
         {
             n = 256;
@@ -1348,18 +1367,15 @@ allocate_from_fixed_pools (__mem_pool_obj* pool_obj, mem_size size)
         nsave = n;
         while (n >= 10)
         {
-            size_requested =
-                n * (fix_pool_sizes[i] + FixSubBlock_overhead) + FixBlock_overhead;
-            newblock = (char*)soft_allocate_from_var_pools (
-                pool_obj, size_requested, &size_has);
+            size_requested = n * (fix_pool_sizes[i] + FixSubBlock_overhead) + FixBlock_overhead;
+            newblock = (char*)soft_allocate_from_var_pools (pool_obj, size_requested, &size_has);
             if (newblock != 0)
             {
                 break;
             }
             if (size_has > FixBlock_overhead)
             {
-                n = (size_has - FixBlock_overhead) /
-                    (fix_pool_sizes[i] + FixSubBlock_overhead);
+                n = (size_has - FixBlock_overhead) / (fix_pool_sizes[i] + FixSubBlock_overhead);
             }
             else
             {
@@ -1369,8 +1385,7 @@ allocate_from_fixed_pools (__mem_pool_obj* pool_obj, mem_size size)
         if (newblock == 0 && n < nsave)
         {
             n = nsave;
-            size_requested =
-                n * (fix_pool_sizes[i] + FixSubBlock_overhead) + FixBlock_overhead;
+            size_requested = n * (fix_pool_sizes[i] + FixSubBlock_overhead) + FixBlock_overhead;
             newblock = (char*)allocate_from_var_pools (pool_obj, size_requested);
             if (newblock == 0)
             {
@@ -1401,7 +1416,9 @@ allocate_from_fixed_pools (__mem_pool_obj* pool_obj, mem_size size)
     }
     return FixSubBlock_client_space (p);
 }
+
 void deallocate_from_fixed_pools (__mem_pool_obj*, void*, mem_size);
+
 void
 deallocate_from_fixed_pools (__mem_pool_obj* pool_obj, void* ptr, mem_size size)
 {
@@ -1465,6 +1482,7 @@ deallocate_from_fixed_pools (__mem_pool_obj* pool_obj, void* ptr, mem_size size)
 #ifndef NDEBUG
 
 void __report_on_pool_heap (__mem_pool_obj* pool_obj, int verbose);
+
 void
 __report_on_pool_heap (__mem_pool_obj* pool_obj, int verbose)
 {
@@ -1496,7 +1514,9 @@ __report_on_pool_heap (__mem_pool_obj* pool_obj, int verbose)
     }
     while (bp != pool_obj->start_);
 }
+
 void __report_on_heap (int verbose);
+
 void
 __report_on_heap (int verbose)
 {
@@ -1550,8 +1570,7 @@ __pool_alloc (__mem_pool* pool, size_t size)
 #else
         return 0;
 #endif
-    if (size >
-        MAX_MEM_SIZE - (alignment + SubBlock_overhead + Block_overhead + alignment))
+    if (size > MAX_MEM_SIZE - (alignment + SubBlock_overhead + Block_overhead + alignment))
     {
         return 0;
     }
@@ -1572,6 +1591,7 @@ __pool_alloc (__mem_pool* pool, size_t size)
         result = allocate_from_var_pools (pool_obj, size);
     return result;
 }
+
 void
 __pool_free (__mem_pool* pool, void* ptr)
 {
@@ -1595,6 +1615,7 @@ __pool_free (__mem_pool* pool, void* ptr)
 #endif
         deallocate_from_var_pools (pool_obj, ptr);
 }
+
 void*
 __pool_realloc (__mem_pool* pool, void* ptr, size_t size)
 {
@@ -1621,8 +1642,7 @@ __pool_realloc (__mem_pool* pool, void* ptr, size_t size)
         if (classify (ptr)) /* is var_block */
         {
 #endif
-            if (size > MAX_MEM_SIZE - (alignment + SubBlock_overhead +
-                                       Block_overhead + alignment))
+            if (size > MAX_MEM_SIZE - (alignment + SubBlock_overhead + Block_overhead + alignment))
             {
                 return 0;
             }
@@ -1674,6 +1694,7 @@ __pool_realloc (__mem_pool* pool, void* ptr, size_t size)
 #endif
     return ptr;
 }
+
 void*
 __pool_alloc_clear (__mem_pool* pool, size_t size)
 {
@@ -1684,6 +1705,7 @@ __pool_alloc_clear (__mem_pool* pool, size_t size)
     }
     return result;
 }
+
 void*
 __MALLOC (size_t size)
 {
@@ -1693,6 +1715,7 @@ __MALLOC (size_t size)
     __end_critical_region (malloc_pool_access);
     return result;
 }
+
 void
 __FREE (void* ptr)
 {
@@ -1700,6 +1723,7 @@ __FREE (void* ptr)
     __pool_free (get_malloc_pool(), ptr);
     __end_critical_region (malloc_pool_access);
 }
+
 void*
 __REALLOC (void* ptr, size_t size)
 {
@@ -1709,6 +1733,7 @@ __REALLOC (void* ptr, size_t size)
     __end_critical_region (malloc_pool_access);
     return result;
 }
+
 void*
 __CALLOC (size_t nmemb, size_t size)
 {
@@ -1738,6 +1763,7 @@ __pool_free_all (__mem_pool* pool)
     while (bp != pool_obj->start_);
     __init_pool_obj (pool);
 }
+
 void
 __malloc_free_all ()
 {
@@ -1807,13 +1833,11 @@ init_alloc (void* heap_ptr, size_t heap_size)
 }
 #if __dest_os == __ppc_eabi || __dest_os == __dolphin_os
 
-__declspec (section
-            ".init") extern char _heap_addr[]; /* starting address for heap */
-__declspec (section
-            ".init") extern char _heap_end[];  /* address after end byte of heap */
+__declspec (section ".init") extern char _heap_addr[]; /* starting address for heap */
+__declspec (section ".init") extern char _heap_end[];  /* address after end byte of heap */
 
-#elif __dest_os == __nec_eabi_bare || __dest_os == __emb_68k ||                     \
-    __dest_os == __mcore_bare || __dest_os == __sh_bare
+#elif __dest_os == __nec_eabi_bare || __dest_os == __emb_68k || __dest_os == __mcore_bare ||       \
+    __dest_os == __sh_bare
 
 extern char __heap_size[]; /* size of the stack (Linker pref panel) */
 extern char __heap_addr[]; /* starting address for heap */
@@ -1841,8 +1865,8 @@ void
 init_default_heap (void)
 {
     defaultheapinitialized = 1;
-#if (__dest_os == __mcore_bare) || (__dest_os == __nec_eabi_bare) ||                \
-    (__dest_os == __emb_68k) || (__dest_os == __sh_bare)
+#if (__dest_os == __mcore_bare) || (__dest_os == __nec_eabi_bare) || (__dest_os == __emb_68k) ||   \
+    (__dest_os == __sh_bare)
     if (__heap_size != 0)
     {
         init_alloc ((void*)__heap_addr, (size_t)__heap_size);
@@ -1854,6 +1878,7 @@ init_default_heap (void)
     }
 #endif
 }
+
 void*
 __sys_alloc (size_t x)
 {
@@ -1868,21 +1893,25 @@ void* vec_malloc (size_t size);
 void* vec_calloc (size_t nmemb, size_t size);
 void* vec_realloc (void* ptr, size_t size);
 void  vec_free (void* ptr);
+
 void*
 vec_malloc (size_t size)
 {
     return malloc (size);
 }
+
 void*
 vec_calloc (size_t nmemb, size_t size)
 {
     return calloc (nmemb, size);
 }
+
 void*
 vec_realloc (void* ptr, size_t size)
 {
     return realloc (ptr, size);
 }
+
 void
 vec_free (void* ptr)
 {

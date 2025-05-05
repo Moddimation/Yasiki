@@ -71,8 +71,7 @@ ios_base::iword (int index)
 {
     if (++index > isize_)
     {
-        long* newarray =
-            static_cast<long*> (realloc (iarray_, index * sizeof (long)));
+        long* newarray = static_cast<long*> (realloc (iarray_, index * sizeof (long)));
         if (newarray == 0)
         {
             setstate (failbit);
@@ -86,13 +85,13 @@ ios_base::iword (int index)
     }
     return iarray_[--index];
 }
+
 void*&
 ios_base::pword (int index)
 {
     if (++index > psize_)
     {
-        void** newarray =
-            static_cast<void**> (realloc (parray_, index * sizeof (void*)));
+        void** newarray = static_cast<void**> (realloc (parray_, index * sizeof (void*)));
         if (newarray == 0)
         {
             setstate (failbit);
@@ -106,6 +105,7 @@ ios_base::pword (int index)
     }
     return parray_[--index];
 }
+
 ios_base::~ios_base ()
 {
     do_callbacks (erase_event);
@@ -116,6 +116,7 @@ ios_base::~ios_base ()
     free (iarray_);
     free (cb_vec_);
 }
+
 void
 ios_base::register_callback (event_callback fn, int index)
 {
@@ -130,8 +131,8 @@ ios_base::register_callback (event_callback fn, int index)
         {
             new_cap *= 2;
         }
-        event_data* newevents = static_cast<event_data*> (
-            realloc (cb_vec_, new_cap * sizeof (event_data)));
+        event_data* newevents =
+            static_cast<event_data*> (realloc (cb_vec_, new_cap * sizeof (event_data)));
         if (newevents == 0)
         {
             setstate (badbit);
@@ -142,6 +143,7 @@ ios_base::register_callback (event_callback fn, int index)
     }
     cb_vec_[cb_siz_++] = event_data (fn, index);
 }
+
 extern istream cin;
 extern ostream cout;
 extern ostream clog;
@@ -174,6 +176,7 @@ ios_base::sync_with_stdio (bool sync)
 #endif
     return result;
 }
+
 void
 ios_base::init (void* sb)
 {
@@ -210,6 +213,7 @@ ios_base::init (void* sb)
     parray_ = 0;
     psize_ = 0;
 }
+
 void
 ios_base::copy_ios_base (const ios_base& rhs)
 {
@@ -219,8 +223,8 @@ ios_base::copy_ios_base (const ios_base& rhs)
 #endif
         if (cb_cap_ < rhs.cb_siz_)
         {
-            event_data* newevents = static_cast<event_data*> (
-                realloc (cb_vec_, rhs.cb_siz_ * sizeof (event_data)));
+            event_data* newevents =
+                static_cast<event_data*> (realloc (cb_vec_, rhs.cb_siz_ * sizeof (event_data)));
             if (newevents == 0)
             {
                 setstate (badbit);
@@ -234,8 +238,7 @@ ios_base::copy_ios_base (const ios_base& rhs)
 
         if (isize_ < rhs.isize_)
         {
-            long* newarray =
-                static_cast<long*> (realloc (iarray_, rhs.isize_ * sizeof (long)));
+            long* newarray = static_cast<long*> (realloc (iarray_, rhs.isize_ * sizeof (long)));
             if (newarray == 0)
             {
                 setstate (badbit);
@@ -247,8 +250,7 @@ ios_base::copy_ios_base (const ios_base& rhs)
 
         if (psize_ < rhs.psize_)
         {
-            void** newarray =
-                static_cast<void**> (realloc (parray_, rhs.psize_ * sizeof (void*)));
+            void** newarray = static_cast<void**> (realloc (parray_, rhs.psize_ * sizeof (void*)));
             if (newarray == 0)
             {
                 setstate (badbit);

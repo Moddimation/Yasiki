@@ -32,6 +32,7 @@
 #define conversion_buff_size 512
 #define conversion_max       509
 #define bad_conversion       0xFF
+
 enum argument_options
 {
     normal_argument,
@@ -43,7 +44,9 @@ enum argument_options
     long_double_argument,
     wchar_argument            /*- mm 990407 -*/
 };
+
 typedef unsigned char char_map[32];
+
 typedef struct
 {
     unsigned char suppress_assignment;
@@ -62,7 +65,7 @@ typedef struct
 } scan_format;
 #if __ALTIVEC__
 #if !__VEC__
-#define vec_va_arg(ap)                                                              \
+#define vec_va_arg(ap)                                                                             \
     (*(((MWVector128*)(ap = (char*)((((unsigned long)ap + 15) & ~(15)) + 16))) - 1))
 #define va_arg_replacement2(ap, vec_val) (*va_arg (ap, MWVector128*) = vec_val)
 #endif
@@ -90,10 +93,8 @@ union MWVector128
 typedef union MWVector128 MWVector128;
 #endif
 
-#define set_char_map(map, ch)                                                       \
-    map[(unsigned char)ch >> 3] |= (1 << (ch & 7))  /*- mm 990716 -*/
-#define tst_char_map(map, ch)                                                       \
-    (map[(unsigned char)ch >> 3] & (1 << (ch & 7))) /*- mm 990716 -*/
+#define set_char_map(map, ch) map[(unsigned char)ch >> 3] |= (1 << (ch & 7))  /*- mm 990716 -*/
+#define tst_char_map(map, ch) (map[(unsigned char)ch >> 3] & (1 << (ch & 7))) /*- mm 990716 -*/
 
 #if __ALTIVEC__
 static const char*
@@ -249,8 +250,7 @@ GetWidth:                 /* goto here when we see we had a vec sep char flag */
         case 'g':
         case 'G':
 
-            if (f.argument_options == char_argument ||
-                f.argument_options == short_argument
+            if (f.argument_options == char_argument || f.argument_options == short_argument
 #ifdef __MSL_LONGLONG_SUPPORT__
                 || f.argument_options == long_long_argument
 #endif
@@ -324,8 +324,7 @@ GetWidth:                 /* goto here when we see we had a vec sep char flag */
                     *p++ = 0xFF;
                 }
 
-                f.char_set[1] =
-                    0xC1; /* sets bits for HT, LF, VT, FF, and CR chars to zero */
+                f.char_set[1] = 0xC1; /* sets bits for HT, LF, VT, FF, and CR chars to zero */
                 f.char_set[4] = 0xFE; /* set bit for Sp char to zero */
             }
 
@@ -467,6 +466,7 @@ GetWidth:                 /* goto here when we see we had a vec sep char flag */
 
     return ((const char*)s + 1);
 }
+
 static int
 __sformatter (int         (*ReadProc) (void*, int, int),
               void*       ReadProcArg,
@@ -495,44 +495,43 @@ __sformatter (int         (*ReadProc) (void*, int, int),
     int         vecIndex;                            /* counts vector elements */
     MWVector128 vec_val;
 
-#define GOTO_GET_REMAINING_VEC_FIELDS(lbl)                                          \
-    {                                                                               \
-        if ((c = (*ReadProc) (ReadProcArg, 0, __GetAChar)) != EOF &&                \
-            ++vecIndex < format.vecCount)                                           \
-        {                                                                           \
-            int sepSeen = (format.vecSepLen == 0);                                  \
-            if (!sepSeen)                                                           \
-            {                                                                       \
-                int i = 0;                                                          \
-                while (isspace (c))                                                 \
-                {                                                                   \
-                    c = (*ReadProc) (ReadProcArg, 0, 1);                            \
-                    ++chars_read;                                                   \
-                }                                                                   \
-                while (c != EOF)                                                    \
-                {                                                                   \
-                    sepSeen = (c == format.vecSeperator[i]);                        \
-                    if (!sepSeen)                                                   \
-                        break;                                                      \
-                    c = (*ReadProc) (ReadProcArg, 0, __GetAChar);                   \
-                    ++chars_read;                                                   \
-                    if (++i >= format.vecSepLen)                                    \
-                        break;                                                      \
-                }                                                                   \
-            }                                                                       \
-            if (sepSeen && c != EOF)                                                \
-            {                                                                       \
-                while (isspace (c))                                                 \
-                {                                                                   \
-                    c = (*ReadProc) (ReadProcArg, 0, __GetAChar);                   \
-                    ++chars_read;                                                   \
-                }                                                                   \
-                (*ReadProc) (ReadProcArg, c, __UngetAChar);                         \
-                goto lbl;                                                           \
-            }                                                                       \
-        }                                                                           \
-        else                                                                        \
-            (*ReadProc) (ReadProcArg, c, __UngetAChar);                             \
+#define GOTO_GET_REMAINING_VEC_FIELDS(lbl)                                                         \
+    {                                                                                              \
+        if ((c = (*ReadProc) (ReadProcArg, 0, __GetAChar)) != EOF && ++vecIndex < format.vecCount) \
+        {                                                                                          \
+            int sepSeen = (format.vecSepLen == 0);                                                 \
+            if (!sepSeen)                                                                          \
+            {                                                                                      \
+                int i = 0;                                                                         \
+                while (isspace (c))                                                                \
+                {                                                                                  \
+                    c = (*ReadProc) (ReadProcArg, 0, 1);                                           \
+                    ++chars_read;                                                                  \
+                }                                                                                  \
+                while (c != EOF)                                                                   \
+                {                                                                                  \
+                    sepSeen = (c == format.vecSeperator[i]);                                       \
+                    if (!sepSeen)                                                                  \
+                        break;                                                                     \
+                    c = (*ReadProc) (ReadProcArg, 0, __GetAChar);                                  \
+                    ++chars_read;                                                                  \
+                    if (++i >= format.vecSepLen)                                                   \
+                        break;                                                                     \
+                }                                                                                  \
+            }                                                                                      \
+            if (sepSeen && c != EOF)                                                               \
+            {                                                                                      \
+                while (isspace (c))                                                                \
+                {                                                                                  \
+                    c = (*ReadProc) (ReadProcArg, 0, __GetAChar);                                  \
+                    ++chars_read;                                                                  \
+                }                                                                                  \
+                (*ReadProc) (ReadProcArg, c, __UngetAChar);                                        \
+                goto lbl;                                                                          \
+            }                                                                                      \
+        }                                                                                          \
+        else                                                                                       \
+            (*ReadProc) (ReadProcArg, c, __UngetAChar);                                            \
     }
 #endif
 
@@ -541,8 +540,7 @@ __sformatter (int         (*ReadProc) (void*, int, int),
     items_assigned = 0;
     conversions = 0;
 
-    while (!terminate &&
-           (format_char = *format_ptr) != 0) /*- mm 990311 -*/ /*- mm 990608 -*/
+    while (!terminate && (format_char = *format_ptr) != 0) /*- mm 990311 -*/ /*- mm 990608 -*/
     {
         if (isspace (format_char))
         {
@@ -551,13 +549,12 @@ __sformatter (int         (*ReadProc) (void*, int, int),
             }
             while (isspace (format_char));
 
-            while (isspace (
-                c = (*ReadProc) (ReadProcArg, 0, __GetAChar))) /*- mm 990325 -*/
+            while (isspace (c = (*ReadProc) (ReadProcArg, 0, __GetAChar)))   /*- mm 990325 -*/
             {
                 ++chars_read;
             }
 
-            (*ReadProc) (ReadProcArg, c, __UngetAChar);        /*- mm 990325 -*/
+            (*ReadProc) (ReadProcArg, c, __UngetAChar);                      /*- mm 990325 -*/
 
             continue;
         }
@@ -565,9 +562,9 @@ __sformatter (int         (*ReadProc) (void*, int, int),
         if (format_char != '%')
         {
             if ((c = (*ReadProc) (ReadProcArg, 0, __GetAChar)) !=
-                (unsigned char)format_char) /*- mm 980331 -*/  /*- mm 990325 -*/
+                (unsigned char)format_char) /*- mm 980331 -*/                /*- mm 990325 -*/
             {
-                (*ReadProc) (ReadProcArg, c, __UngetAChar);    /*- mm 990325 -*/
+                (*ReadProc) (ReadProcArg, c, __UngetAChar);                  /*- mm 990325 -*/
                 goto exit;
             }
 
@@ -591,12 +588,11 @@ __sformatter (int         (*ReadProc) (void*, int, int),
 
             /* Why aren't leading input blanks skipped in non-vector cases ? */
 
-            while (isspace (
-                c = (*ReadProc) (ReadProcArg, 0, __GetAChar)))   /*- mm 990325 -*/
+            while (isspace (c = (*ReadProc) (ReadProcArg, 0, __GetAChar)))         /*- mm 990325 -*/
             {
                 ++chars_read;
             }
-            (*ReadProc) (ReadProcArg, c, __UngetAChar);          /*- mm 990325 -*/
+            (*ReadProc) (ReadProcArg, c, __UngetAChar);                            /*- mm 990325 -*/
         }
         else
 #endif
@@ -629,10 +625,10 @@ __sformatter (int         (*ReadProc) (void*, int, int),
 
             signed_int:
 
-#ifdef __MSL_LONGLONG_SUPPORT__                                    /*- mm 961219 -*/
-                if (format.argument_options == long_long_argument) /*- mm 961219 -*/
+#ifdef __MSL_LONGLONG_SUPPORT__                                          /*- mm 961219 -*/
+                if (format.argument_options == long_long_argument)       /*- mm 961219 -*/
                 {
-                    u_long_long_num =                              /*- mm 961219 -*/
+                    u_long_long_num =                                    /*- mm 961219 -*/
                         __strtoull (base,
                                     format.field_width,
                                     ReadProc,
@@ -641,8 +637,8 @@ __sformatter (int         (*ReadProc) (void*, int, int),
                                     &negative,
                                     &overflow);
                 }
-                else                                               /*- mm 961219 -*/
-#endif                                                             /*- mm 961219 -*/
+                else                                                     /*- mm 961219 -*/
+#endif                                                                   /*- mm 961219 -*/
                     u_long_num = __strtoul (base,
                                             format.field_width,
                                             ReadProc,
@@ -658,14 +654,14 @@ __sformatter (int         (*ReadProc) (void*, int, int),
 
                 chars_read += num_chars;
 
-#ifdef __MSL_LONGLONG_SUPPORT__                                    /*- mm 961219 -*/
-                if (format.argument_options == long_long_argument) /*- mm 961219 -*/
+#ifdef __MSL_LONGLONG_SUPPORT__                                          /*- mm 961219 -*/
+                if (format.argument_options == long_long_argument)       /*- mm 961219 -*/
                 {
-                    long_long_num = (negative ? -u_long_long_num
-                                              : u_long_long_num);  /*- mm 961219 -*/
+                    long_long_num =
+                        (negative ? -u_long_long_num : u_long_long_num); /*- mm 961219 -*/
                 }
-                else                                               /*- mm 961219 -*/
-#endif                                                             /*- mm 961219 -*/
+                else                                                     /*- mm 961219 -*/
+#endif                                                                   /*- mm 961219 -*/
                     long_num = (negative ? -u_long_num : u_long_num);
 
 #if __ALTIVEC__
@@ -740,18 +736,18 @@ __sformatter (int         (*ReadProc) (void*, int, int),
                                 (*((signed char*)arg_ptr)) = long_num;
                             }
                             break;
-#ifdef __MSL_LONGLONG_SUPPORT__                                    /*- mm 961219 -*/
+#ifdef __MSL_LONGLONG_SUPPORT__                                          /*- mm 961219 -*/
                         case long_long_argument:
                             if (arg_iptr)
                             {
                                 (*((long long*)arg_iptr)) = long_long_num;
                             }
                             break;
-#endif                                                             /*- mm 961219 -*/
+#endif                                                                   /*- mm 961219 -*/
                     }
                     ++items_assigned;
                 }
-#else                                                              /* !__m56800E__ */
+#else                                                                    /* !__m56800E__ */
 
                 if (arg_ptr)
                 {
@@ -769,15 +765,15 @@ __sformatter (int         (*ReadProc) (void*, int, int),
                         case long_argument:
                             *(long*)arg_ptr = long_num;
                             break;
-#ifdef __MSL_LONGLONG_SUPPORT__                                    /*- mm 961219 -*/
+#ifdef __MSL_LONGLONG_SUPPORT__                                          /*- mm 961219 -*/
                         case long_long_argument:
                             *(long long*)arg_ptr = long_long_num;
                             break;
-#endif                                                             /*- mm 961219 -*/
+#endif                                                                   /*- mm 961219 -*/
                     }
                     ++items_assigned;
                 }
-#endif                                                             /* __m56800E__*/
+#endif                                                                   /* __m56800E__*/
                 ++conversions;
 
                 break;
@@ -796,10 +792,10 @@ __sformatter (int         (*ReadProc) (void*, int, int),
 
             unsigned_int:
 
-#ifdef __MSL_LONGLONG_SUPPORT__                                    /*- mm 961219 -*/
-                if (format.argument_options == long_long_argument) /*- mm 961219 -*/
+#ifdef __MSL_LONGLONG_SUPPORT__                                          /*- mm 961219 -*/
+                if (format.argument_options == long_long_argument)       /*- mm 961219 -*/
                 {
-                    u_long_long_num =                              /*- mm 961219 -*/
+                    u_long_long_num =                                    /*- mm 961219 -*/
                         __strtoull (base,
                                     format.field_width,
                                     ReadProc,
@@ -808,8 +804,8 @@ __sformatter (int         (*ReadProc) (void*, int, int),
                                     &negative,
                                     &overflow);
                 }
-                else                                               /*- mm 961219 -*/
-#endif                                                             /*- mm 961219 -*/
+                else                                                     /*- mm 961219 -*/
+#endif                                                                   /*- mm 961219 -*/
                     u_long_num = __strtoul (base,
                                             format.field_width,
                                             ReadProc,
@@ -826,14 +822,13 @@ __sformatter (int         (*ReadProc) (void*, int, int),
                 chars_read += num_chars;
 
                 if (negative)
-#ifdef __MSL_LONGLONG_SUPPORT__                                    /*- mm 961219 -*/
-                    if (format.argument_options ==
-                        long_long_argument)                        /*- mm 961219 -*/
+#ifdef __MSL_LONGLONG_SUPPORT__                                          /*- mm 961219 -*/
+                    if (format.argument_options == long_long_argument)   /*- mm 961219 -*/
                     {
-                        u_long_long_num = -u_long_long_num;        /*- mm 961219 -*/
+                        u_long_long_num = -u_long_long_num;              /*- mm 961219 -*/
                     }
-                    else                                           /*- mm 961219 -*/
-#endif                                                             /*- mm 961219 -*/
+                    else                                                 /*- mm 961219 -*/
+#endif                                                                   /*- mm 961219 -*/
                         u_long_num = -u_long_num;
 #if __ALTIVEC__
                 if (format.vec)
@@ -906,18 +901,18 @@ __sformatter (int         (*ReadProc) (void*, int, int),
                                 (*((unsigned char*)arg_ptr)) = u_long_num;
                             }
                             break;
-#ifdef __MSL_LONGLONG_SUPPORT__                                    /*- mm 961219 -*/
+#ifdef __MSL_LONGLONG_SUPPORT__                                          /*- mm 961219 -*/
                         case long_long_argument:
                             if (arg_iptr)
                             {
                                 (*((unsigned long long*)arg_iptr)) = u_long_long_num;
                             }
                             break;
-#endif                                                             /*- mm 961219 -*/
+#endif                                                                   /*- mm 961219 -*/
                     }
                     ++items_assigned;
                 }
-#else                                                              /* !__m56800E__ */
+#else                                                                    /* !__m56800E__ */
                 if (arg_ptr)
                 {
                     switch (format.argument_options)
@@ -934,16 +929,16 @@ __sformatter (int         (*ReadProc) (void*, int, int),
                         case long_argument:
                             *(unsigned long*)arg_ptr = u_long_num;
                             break;
-#ifdef __MSL_LONGLONG_SUPPORT__                                    /*- mm 961219 -*/
+#ifdef __MSL_LONGLONG_SUPPORT__                                          /*- mm 961219 -*/
                         case long_long_argument:
                             *(unsigned long long*)arg_ptr = u_long_long_num;
                             break;
-#endif                                                             /*- mm 961219 -*/
+#endif                                                                   /*- mm 961219 -*/
                     }
 
                     ++items_assigned;
                 }
-#endif                                                             /* __m56800E__ */
+#endif                                                                   /* __m56800E__ */
 
                 ++conversions;
 
@@ -951,18 +946,15 @@ __sformatter (int         (*ReadProc) (void*, int, int),
 
 #ifndef _No_Floating_Point
 
-            case 'a':                                              /*- BLC 980317 -*/
+            case 'a':                                                    /*- BLC 980317 -*/
             case 'f':
             case 'e':
             case 'E':
             case 'g':
             case 'G':
             flt:
-                long_double_num = __strtold (format.field_width,
-                                             ReadProc,
-                                             ReadProcArg,
-                                             &num_chars,
-                                             &overflow);
+                long_double_num =
+                    __strtold (format.field_width, ReadProc, ReadProcArg, &num_chars, &overflow);
 
                 if (!num_chars)
                 {
@@ -1058,16 +1050,14 @@ __sformatter (int         (*ReadProc) (void*, int, int),
                                 {
                                     goto exit;
                                 }
-                                ptr = (char*)&vec_val
-                                          .u8[4 * vecIndex + 4 - format.field_width];
+                                ptr = (char*)&vec_val.u8[4 * vecIndex + 4 - format.field_width];
                                 break;
                             case short_argument:
                                 if (format.field_width > 2)
                                 {
                                     goto exit;
                                 }
-                                ptr = (char*)&vec_val
-                                          .u8[2 * vecIndex + 2 - format.field_width];
+                                ptr = (char*)&vec_val.u8[2 * vecIndex + 2 - format.field_width];
                                 break;
                             case normal_argument:
                                 if (format.field_width > 1)
@@ -1080,9 +1070,8 @@ __sformatter (int         (*ReadProc) (void*, int, int),
 
                         num_chars = 0;
                         width = format.field_width;
-                        while (width-- &&
-                               (c = (*ReadProc) (ReadProcArg, 0, __GetAChar)) !=
-                                   EOF)                            /*- mm 990325 -*/
+                        while (width-- && (c = (*ReadProc) (ReadProcArg, 0, __GetAChar)) !=
+                                              EOF)                       /*- mm 990325 -*/
                         {
                             /*if  (c == 0)
                              * /*- mm 971202 -*/
@@ -1114,7 +1103,7 @@ __sformatter (int         (*ReadProc) (void*, int, int),
                         width = format.field_width;
                         while (format.field_width-- &&
                                (c = (*ReadProc) (ReadProcArg, 0, __GetAChar)) !=
-                                   EOF)                            /*- mm 990325 -*/
+                                   EOF)                                           /*- mm 990325 -*/
                         {
                             ++num_chars;
                         }
@@ -1134,23 +1123,22 @@ __sformatter (int         (*ReadProc) (void*, int, int),
 #endif
                 if (arg_ptr)
                 {
-                    int rval;                                      /*- mm 010426 -*/
+                    int rval;                                                     /*- mm 010426 -*/
                     num_chars = 0;
 
                     while (format.field_width-- &&
                            (rval = (*ReadProc) (ReadProcArg, 0, __GetAChar)) !=
-                               EOF) /*- mm 990325 -*/              /*- mm 010426 -*/
+                               EOF) /*- mm 990325 -*/                             /*- mm 010426 -*/
                     {
-                        c = rval;                                  /*- mm 010426 -*/
+                        c = rval;                                                 /*- mm 010426 -*/
 #ifndef __NO_WIDE_CHAR
-                        if (format.argument_options ==
-                            wchar_argument)                        /*- mm 990407 -*/
+                        if (format.argument_options == wchar_argument)            /*- mm 990407 -*/
                         {
                             mbtowc (((wchar_t*)arg_ptr), (char*)&c, 1);
                             (wchar_t*)arg_ptr++;
                         }
                         else
-#endif                                                             /*- mm 990407 -*/
+#endif                                                                            /*- mm 990407 -*/
                             *arg_ptr++ = c;
                         ++num_chars;
                     }
@@ -1169,8 +1157,7 @@ __sformatter (int         (*ReadProc) (void*, int, int),
                     num_chars = 0;
 
                     while (format.field_width-- &&
-                           (c = (*ReadProc) (ReadProcArg, 0, __GetAChar)) !=
-                               EOF)                                /*- mm 990325 -*/
+                           (c = (*ReadProc) (ReadProcArg, 0, __GetAChar)) != EOF) /*- mm 990325 -*/
                     {
                         ++num_chars;
                     }
@@ -1192,15 +1179,14 @@ __sformatter (int         (*ReadProc) (void*, int, int),
                     goto exit;
                 }
 #endif
-                while (isspace (
-                    c = (*ReadProc) (ReadProcArg, 0, __GetAChar))) /*- mm 990325 -*/
+                while (isspace (c = (*ReadProc) (ReadProcArg, 0, __GetAChar)))    /*- mm 990325 -*/
                 {
                     ++chars_read;
                 }
 
                 if (c != '%')
                 {
-                    (*ReadProc) (ReadProcArg, c, __UngetAChar);    /*- mm 990325 -*/
+                    (*ReadProc) (ReadProcArg, c, __UngetAChar);                   /*- mm 990325 -*/
                     goto exit;
                 }
 
@@ -1216,15 +1202,15 @@ __sformatter (int         (*ReadProc) (void*, int, int),
                 }
 #endif
                 c = (*ReadProc) (ReadProcArg, 0, __GetAChar);
-                /*- mm 990325 -*/                                  /*- mm 990413 -*/
-                while (isspace (c))                                /*- mm 970218 -*/
-                {                                                  /*- mm 970218 -*/
-                    ++chars_read;                                  /*- mm 970218 -*/
+                /*- mm 990325 -*/                                                 /*- mm 990413 -*/
+                while (isspace (c))                                               /*- mm 970218 -*/
+                {                                                                 /*- mm 970218 -*/
+                    ++chars_read;                                                 /*- mm 970218 -*/
                     c = (*ReadProc) (ReadProcArg, 0, __GetAChar);
-                    /*- mm 970218 -*/                              /*- mm 990325 -*/
+                    /*- mm 970218 -*/                                             /*- mm 990325 -*/
                 } /*- mm 970218 -*/
 
-                (*ReadProc) (ReadProcArg, c, __UngetAChar);         /*- mm 990325 -*/
+                (*ReadProc) (ReadProcArg, c, __UngetAChar);             /*- mm 990325 -*/
 
             case '[':
 #if __ALTIVEC__
@@ -1242,19 +1228,16 @@ __sformatter (int         (*ReadProc) (void*, int, int),
 
                     while (format.field_width-- &&
                            (c = (*ReadProc) (ReadProcArg, 0, __GetAChar)) != EOF &&
-                           tst_char_map (format.char_set, c))       /* mm 990325 */
+                           tst_char_map (format.char_set, c))           /* mm 990325 */
                     {
 #ifndef __NO_WIDE_CHAR
-                        if (format.argument_options ==
-                            wchar_argument)                         /*- mm 990420 -*/
-                        {                                           /*- mm 990420 -*/
-                            mbtowc (
-                                ((wchar_t*)arg_ptr), (char*)&c, 1); /*- mm 990420 -*/
-                            arg_ptr =
-                                (char*)((wchar_t*)arg_ptr + 1);     /*- mm 990420 -*/
+                        if (format.argument_options == wchar_argument)  /*- mm 990420 -*/
+                        {                                               /*- mm 990420 -*/
+                            mbtowc (((wchar_t*)arg_ptr), (char*)&c, 1); /*- mm 990420 -*/
+                            arg_ptr = (char*)((wchar_t*)arg_ptr + 1);   /*- mm 990420 -*/
                         } /*- mm 990420 -*/
                         else
-#endif                                                             /*- mm 990420 -*/
+#endif                                                                    /*- mm 990420 -*/
                             *arg_ptr++ = c;
                         ++num_chars;
                         ;
@@ -1263,17 +1246,17 @@ __sformatter (int         (*ReadProc) (void*, int, int),
                     if (!num_chars)
                     {
                         (*ReadProc) (ReadProcArg, c, __UngetAChar);
-                        /*- mm 961114 -*/                          /*- mm 990325 -*/
+                        /*- mm 961114 -*/                                 /*- mm 990325 -*/
                         goto exit;
                     }
 
                     chars_read += num_chars;
 
-                    if (format.argument_options == wchar_argument) /*- mm 990420 -*/
+                    if (format.argument_options == wchar_argument)        /*- mm 990420 -*/
                     {
-                        *(wchar_t*)arg_ptr = L'\0';                /*- mm 990420 -*/
+                        *(wchar_t*)arg_ptr = L'\0';                       /*- mm 990420 -*/
                     }
-                    else                                           /*- mm 990420 -*/
+                    else                                                  /*- mm 990420 -*/
                     {
                         *arg_ptr = 0;
                     }
@@ -1286,7 +1269,7 @@ __sformatter (int         (*ReadProc) (void*, int, int),
 
                     while (format.field_width-- &&
                            (c = (*ReadProc) (ReadProcArg, 0, __GetAChar)) != EOF &&
-                           tst_char_map (format.char_set, c))      /* mm 990325 */
+                           tst_char_map (format.char_set, c))             /* mm 990325 */
                     {
                         ++num_chars;
                     }
@@ -1294,15 +1277,15 @@ __sformatter (int         (*ReadProc) (void*, int, int),
                     if (!num_chars)
                     {
                         (*ReadProc) (ReadProcArg, c, __UngetAChar);
-                        /*- mm 970513 -*/                          /*- mm 990325 -*/
+                        /*- mm 970513 -*/                                 /*- mm 990325 -*/
                         goto exit;
                     }
-                    chars_read += num_chars;                       /*- mm 970501 -*/
+                    chars_read += num_chars;                              /*- mm 970501 -*/
                 }
 
                 if (format.field_width >= 0)
                 {
-                    (*ReadProc) (ReadProcArg, c, __UngetAChar);    /*- mm 990325 -*/
+                    (*ReadProc) (ReadProcArg, c, __UngetAChar);           /*- mm 990325 -*/
                 }
 
                 ++conversions;
@@ -1349,17 +1332,17 @@ __sformatter (int         (*ReadProc) (void*, int, int),
                                 (*((char*)arg_ptr)) = chars_read;
                             }
                             break;
-#ifdef __MSL_LONGLONG_SUPPORT__                                    /*- mm 961219 -*/
+#ifdef __MSL_LONGLONG_SUPPORT__                                           /*- mm 961219 -*/
                         case long_long_argument:
                             if (arg_iptr)
                             {
                                 (*((long long*)arg_iptr)) = chars_read;
                             }
                             break;
-#endif                                                             /*- mm 961219 -*/
+#endif                                                                    /*- mm 961219 -*/
                     }
                 }
-#else                                                              /* !__m56800E__ */
+#else                                                                     /* !__m56800E__ */
                 if (arg_ptr)
                 {
                     switch (format.argument_options)
@@ -1375,15 +1358,15 @@ __sformatter (int         (*ReadProc) (void*, int, int),
                             break;
                         case char_argument:
                             *(char*)arg_ptr = chars_read;
-                            break;                               /*- mm 990414 -*/
-#ifdef __MSL_LONGLONG_SUPPORT__                                    /*- mm 961219 -*/
+                            break;                                                 /*- mm 990414 -*/
+#ifdef __MSL_LONGLONG_SUPPORT__                                           /*- mm 961219 -*/
                         case long_long_argument:
                             *(long long*)arg_ptr = chars_read;
                             break;
-#endif                                                             /*- mm 961219 -*/
+#endif                                                                    /*- mm 961219 -*/
                     }
                 }
-#endif                                                             /* __m56800E__ */
+#endif                                                                    /* __m56800E__ */
                 continue;
 
             case bad_conversion:
@@ -1394,14 +1377,14 @@ __sformatter (int         (*ReadProc) (void*, int, int),
 
 exit:
 
-    if ((*ReadProc) (ReadProcArg, 0, __TestForError) &&
-        conversions == 0)                                          /*- mm 990325 -*/
+    if ((*ReadProc) (ReadProcArg, 0, __TestForError) && conversions == 0) /*- mm 990325 -*/
     {
         return (EOF);
     }
 
     return (items_assigned);
 }
+
 /*- mm 990325 -*/
 int
 __FileRead (void* File, int ch, int Action)
@@ -1415,8 +1398,9 @@ __FileRead (void* File, int ch, int Action)
         case __TestForError:
             return (ferror ((FILE*)File) || feof ((FILE*)File));
     }
-    return 0;                                    /* to satisfy compiler */
+    return 0;                                                       /* to satisfy compiler */
 }
+
 int
 __StringRead (void* isc, int ch, int Action)
 {
@@ -1434,128 +1418,131 @@ __StringRead (void* isc, int ch, int Action)
             else
             {
                 Iscp->NextChar++;
-                return ((unsigned char)RetVal);  /*- mm 010426 -*/
+                return ((unsigned char)RetVal);                     /*- mm 010426 -*/
             }
         case __UngetAChar:
-            if (!Iscp->NullCharDetected)         /*- mm 990413 -*/
+            if (!Iscp->NullCharDetected)                            /*- mm 990413 -*/
             {
-                Iscp->NextChar--;                /*- mm 990413 -*/
+                Iscp->NextChar--;                                   /*- mm 990413 -*/
             }
-            else                                 /*- mm 990413 -*/
+            else                                                    /*- mm 990413 -*/
             {
-                Iscp->NullCharDetected = 0;      /*- mm 990413 -*/
+                Iscp->NullCharDetected = 0;                         /*- mm 990413 -*/
             }
             return (ch);
         case __TestForError:
             return (Iscp->NullCharDetected);
     }
-    return 0;                                    /* to satisfy compiler */
+    return 0;                                                       /* to satisfy compiler */
 }
+
 int
 fscanf (FILE* file, const char* format, ...)
 {
-    int retval;                                  /*- mm 001013 -*/
-#if __PPC_EABI__ || __MIPS__                     /*__dest_os == __mips_bare  */
+    int retval;                                                     /*- mm 001013 -*/
+#if __PPC_EABI__ || __MIPS__                                        /*__dest_os == __mips_bare  */
     va_list args;
-    if (file == NULL)                            /*- mm 000404 -*/
+    if (file == NULL)                                               /*- mm 000404 -*/
     {
-        return (EOF);                            /*- mm 000404 -*/
-    }
-#ifndef __NO_WIDE_CHAR                           /*- mm 980205 -*/
-    if (fwide (file, -1) >= 0) /*- mm 990618 -*/ /*- mm 000404 -*/
-    {
-        return (EOF);
-    }
-#endif /* __NO_WIDE_CHAR */                      /*- mm 980205 -*/
-    va_start (args, format);
-    __begin_critical_region (files_access);      /*- mm 001013 -*/
-    retval = __sformatter (&__FileRead, (void*)file, format, args); /*- mm 001013 -*/
-#else
-    if (file == NULL)                                            /*- mm 000404 -*/
-    {
-        return (EOF);                                            /*- mm 000404 -*/
+        return (EOF);                                               /*- mm 000404 -*/
     }
 #ifndef __NO_WIDE_CHAR                                              /*- mm 980205 -*/
-    if (fwide (file, -1) >= 0) /*- mm 990618 -*/                 /*- mm 000404 -*/
+    if (fwide (file, -1) >= 0) /*- mm 990618 -*/                    /*- mm 000404 -*/
     {
         return (EOF);
     }
 #endif /* __NO_WIDE_CHAR */                                         /*- mm 980205 -*/
-    __begin_critical_region (files_access);                      /*- mm 001013 -*/
-    retval = __sformatter (
-        &__FileRead, (void*)file, format, __va_start (format));  /*- mm 001013 -*/
+    va_start (args, format);
+    __begin_critical_region (files_access);                         /*- mm 001013 -*/
+    retval = __sformatter (&__FileRead, (void*)file, format, args); /*- mm 001013 -*/
+#else
+    if (file == NULL)                                                              /*- mm 000404 -*/
+    {
+        return (EOF);                                                              /*- mm 000404 -*/
+    }
+#ifndef __NO_WIDE_CHAR                                              /*- mm 980205 -*/
+    if (fwide (file, -1) >= 0) /*- mm 990618 -*/                                   /*- mm 000404 -*/
+    {
+        return (EOF);
+    }
+#endif /* __NO_WIDE_CHAR */                                         /*- mm 980205 -*/
+    __begin_critical_region (files_access);                                        /*- mm 001013 -*/
+    retval = __sformatter (&__FileRead, (void*)file, format, __va_start (format)); /*- mm 001013 -*/
 #endif
     __end_critical_region (files_access);                           /*- mm 001013 -*/
     return (retval);                                                /*- mm 001013 -*/
 }
+
 /*- mm 000831 -*/
 int
 vscanf (const char* format, va_list arg)
 {
-    int retval;                             /*- mm 001013 -*/
+    int retval;                                                     /*- mm 001013 -*/
 #ifndef __NO_WIDE_CHAR
     if (fwide (stdout, -1) >= 0)
     {
         return (EOF);
     }
-#endif                                      /* __NO_WIDE_CHAR */
-    __begin_critical_region (files_access); /*- mm 001013 -*/
+#endif                                                              /* __NO_WIDE_CHAR */
+    __begin_critical_region (files_access);                         /*- mm 001013 -*/
     retval = __sformatter (&__FileRead, (void*)stdin, format, arg); /*- mm 001013 -*/
     __end_critical_region (files_access);                           /*- mm 001013 -*/
     return (retval);                                                /*- mm 001013 -*/
 }
+
 /*- mm 000831 -*/
 
 int
 scanf (const char* format, ...)
 {
-    int retval;                             /*- mm 001013 -*/
-#if __PPC_EABI__ || __MIPS__                /*__dest_os == __mips_bare */
+    int retval;                                                      /*- mm 001013 -*/
+#if __PPC_EABI__ || __MIPS__                                         /*__dest_os == __mips_bare */
     va_list args;
-#ifndef __NO_WIDE_CHAR                      /*- mm 980205 -*/
+#ifndef __NO_WIDE_CHAR                                               /*- mm 980205 -*/
     if (fwide (stdin, -1) >= 0)
     {
         return (EOF);
     }
-#endif /* __NO_WIDE_CHAR */                 /*- mm 980205 -*/
+#endif /* __NO_WIDE_CHAR */                                          /*- mm 980205 -*/
 
     va_start (args, format);
-    __begin_critical_region (files_access); /*- mm 001013 -*/
-    retval =
-        __sformatter (&__FileRead, (void*)stdin, format, args);    /*- mm 001013 -*/
+    __begin_critical_region (files_access);                          /*- mm 001013 -*/
+    retval = __sformatter (&__FileRead, (void*)stdin, format, args); /*- mm 001013 -*/
 #else
-#ifndef __NO_WIDE_CHAR                                             /*- mm 980205 -*/
+#ifndef __NO_WIDE_CHAR                                               /*- mm 980205 -*/
     if (fwide (stdin, -1) >= 0)
     {
         return (EOF);
     }
-#endif /* __NO_WIDE_CHAR */                                        /*- mm 980205 -*/
-    __begin_critical_region (files_access);                      /*- mm 001013 -*/
-    retval = __sformatter (
-        &__FileRead, (void*)stdin, format, __va_start (format)); /*- mm 001013 -*/
+#endif /* __NO_WIDE_CHAR */                                          /*- mm 980205 -*/
+    __begin_critical_region (files_access);                                        /*- mm 001013 -*/
+    retval =
+        __sformatter (&__FileRead, (void*)stdin, format, __va_start (format));     /*- mm 001013 -*/
 #endif
-    __end_critical_region (files_access);                          /*- mm 001013 -*/
-    return (retval);                                               /*- mm 001013 -*/
+    __end_critical_region (files_access);                            /*- mm 001013 -*/
+    return (retval);                                                 /*- mm 001013 -*/
 }
+
 int
-vfscanf (FILE* file, const char* format, va_list arg)              /*- mm 990828 -*/
+vfscanf (FILE* file, const char* format, va_list arg)                /*- mm 990828 -*/
 {
-    int retval;                                                    /*- mm 001013 -*/
-    if (file == NULL)                                              /*- mm 000404 -*/
+    int retval;                                                      /*- mm 001013 -*/
+    if (file == NULL)                                                /*- mm 000404 -*/
     {
-        return (EOF); /*- mm 000404 -*/                            /* mm 990828 */
+        return (EOF); /*- mm 000404 -*/                              /* mm 990828 */
     }
-#ifndef __NO_WIDE_CHAR                                             /*- mm 990828 -*/
-    if (fwide (file, -1) >= 0)                                     /*- mm 990828 -*/
+#ifndef __NO_WIDE_CHAR                                               /*- mm 990828 -*/
+    if (fwide (file, -1) >= 0)                                       /*- mm 990828 -*/
     {
-        return (EOF);                                              /*- mm 990828 -*/
+        return (EOF);                                                /*- mm 990828 -*/
     }
-#endif /* __NO_WIDE_CHAR */                                        /*- mm 990828 -*/
-    __begin_critical_region (files_access);                        /*- mm 001013 -*/
-    retval = __sformatter (&__FileRead, (void*)file, format, arg); /*- mm 001013 -*/
-    __end_critical_region (files_access);                          /*- mm 001013 -*/
-    return (retval);                                               /*- mm 001013 -*/
+#endif /* __NO_WIDE_CHAR */                                          /*- mm 990828 -*/
+    __begin_critical_region (files_access);                          /*- mm 001013 -*/
+    retval = __sformatter (&__FileRead, (void*)file, format, arg);   /*- mm 001013 -*/
+    __end_critical_region (files_access);                            /*- mm 001013 -*/
+    return (retval);                                                 /*- mm 001013 -*/
 } /*- mm 990828 -*/
+
 int
 vsscanf (const char* s, const char* format, va_list arg) /*- mm 990828 -*/
 {
@@ -1569,18 +1556,20 @@ vsscanf (const char* s, const char* format, va_list arg) /*- mm 990828 -*/
 
     return (__sformatter (&__StringRead, (void*)&isc, format, arg));
 }
+
 int
 sscanf (const char* s, const char* format, ...)
 {
-#if __PPC_EABI__ || __MIPS__            /*   __dest_os == __mips_bare */
+#if __PPC_EABI__ || __MIPS__                             /*   __dest_os == __mips_bare */
     va_list args;
 
     va_start (args, format);
-    return (vsscanf (s, format, args)); /*- mm 990828 -*/
+    return (vsscanf (s, format, args));                  /*- mm 990828 -*/
 #else
-    return (vsscanf (s, format, __va_start (format)));           /*- mm 990828 -*/
+    return (vsscanf (s, format, __va_start (format)));                             /*- mm 990828 -*/
 #endif
 }
+
 /* Change record:
  * JFH 950926 First code release.
  * JFH 950929 Fixed misinterpretation of Standard concerning what to do when EOF

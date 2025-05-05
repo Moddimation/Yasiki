@@ -49,6 +49,7 @@
 #define conversion_buff_size 512
 #define conversion_max       509
 #define bad_conversion       0xFF
+
 /* JUSTIFICATION_OPTIONS: formats output to left justified, right justified and zero
  * fill (no justification) */
 enum justification_options
@@ -57,6 +58,7 @@ enum justification_options
     right_justification,
     zero_fill
 };
+
 /* SIGN OPTIONS: Sign of what? */
 enum sign_options
 {
@@ -64,6 +66,7 @@ enum sign_options
     sign_always,
     space_holder
 };
+
 /* ARGUMENT_OPTIONS: Determines what type will be defined */
 enum argument_options
 {
@@ -87,7 +90,7 @@ enum argument_options
 #if __ALTIVEC__
 /* depends on the implementation of va_arg */
 #if !__VEC__
-#define vec_va_arg(ap)                                                              \
+#define vec_va_arg(ap)                                                                             \
     (*(((MWVector128*)(ap = (char*)((((unsigned long)ap + 15) & ~(15)) + 16))) - 1))
 #define va_arg_replacement1(ap, vec_val) (vec_val = vec_va_arg (ap))
 #endif /* !__VEC__ */
@@ -116,6 +119,7 @@ union MWVector128      /* used to get at the vec field values 				*/
 typedef union MWVector128 MWVector128;
 #endif                 /* __ALTIVEC__ */
 #define MAX_SIG_DIG 32 /*- mm 970609 -*/
+
 /* PRINT_FORMAT: Define a new type called Print_Format, this type is of the form
  * struct and will be used ... where */
 typedef struct
@@ -129,29 +133,32 @@ typedef struct
     int           field_width;
     int           precision;
 #if __ALTIVEC__
-    int   vecCount;       /* number of vector fields to convert (4, 8, 16) 		*/
-    char* vecSeperator;   /* separator string to insert between vector fields 	*/
-    char* c_vecSeperator; /* separator string to use for %c vector conversion    */
-    int   vecSepLen;      /* length of *vecSeperator or *c_vecSeperator string	*/
-    int   useSepString;   /* @ -- asking for a separator string instead of char	*/
-    int   fbad;           /* used to control standard flags parsing				*/
+    int   vecCount;          /* number of vector fields to convert (4, 8, 16) 		*/
+    char* vecSeperator;      /* separator string to insert between vector fields 	*/
+    char* c_vecSeperator;    /* separator string to use for %c vector conversion    */
+    int   vecSepLen;         /* length of *vecSeperator or *c_vecSeperator string	*/
+    int   useSepString;      /* @ -- asking for a separator string instead of char	*/
+    int   fbad;              /* used to control standard flags parsing				*/
     int   vecwidth, vecprec; /* width and prec value before each conversion */
-    int   useVecDefault;  /* default to "appropriate" vec access if none specified*/
-    int   flagAllowed;    /* true means a flag is still possible					*/
-    enum                  /* state of vector formatting parse... 					*/
+    int   useVecDefault;     /* default to "appropriate" vec access if none specified*/
+    int   flagAllowed;       /* true means a flag is still possible					*/
+
+    enum                     /* state of vector formatting parse... 					*/
     {
-        FLAG_OR_Vcode_OK, /*   initial state: sep flag or 'v' code allowed */
-        Vcode_REQUIRED,   /*   set to this state when sep flag seen  reqiring 'v'	*/
+        FLAG_OR_Vcode_OK,    /*   initial state: sep flag or 'v' code allowed */
+        Vcode_REQUIRED,      /*   set to this state when sep flag seen  reqiring 'v'	*/
         FLAG_OR_Vcode_NOT_OK /*   set this state when 'v' code qualifier seen */
     } vec_state;
-    enum /* how to access vector fields (as chars,shorts,longs)	*/
+
+    enum                     /* how to access vector fields (as chars,shorts,longs)	*/
     {
         U8,
         U16,
         U32
     } vec_access;
-#endif   /* __ALTIVEC__ */
+#endif                       /* __ALTIVEC__ */
 } print_format;
+
 /* PARSE_FORMAT: Big function, need to parse the format so appropriate types,
  * precision, and formatting are used */
 static const char*
@@ -500,11 +507,11 @@ getFlags:
         case 'E':
 #if __ALTIVEC__
             if (f.argument_options != vector_argument)
-#endif /* __ALTIVEC__ */
+#endif                                                      /* __ALTIVEC__ */
                 if (f.argument_options == short_argument
 #ifdef __MSL_LONGLONG_SUPPORT__
                     || f.argument_options == long_long_argument
-#endif /* __MSL_LONGLONG_SUPPORT__ */
+#endif                                                      /* __MSL_LONGLONG_SUPPORT__ */
                     || f.argument_options == char_argument) /*- mm 990208 -*/
                 {
                     f.conversion_char = bad_conversion;
@@ -565,8 +572,7 @@ getFlags:
                 }
                 else                                       /*- mm 990325 -*/
 #endif /* __NO_WIDE_CHAR */                                /*- mm 990325 -*/
-                    if (f.precision_specified ||
-                        f.argument_options != normal_argument)
+                    if (f.precision_specified || f.argument_options != normal_argument)
                     {
                         f.conversion_char = bad_conversion;
                     }
@@ -628,6 +634,7 @@ getFlags:
 
     return ((const char*)s + 1);
 }
+
 /* LONG2STRING: */
 static char*
 long2str (long num, char* buff, print_format format)
@@ -646,8 +653,7 @@ long2str (long num, char* buff, print_format format)
 
     digits = 0;
 
-    if (!num && !format.precision &&
-        !(format.alternate_form && format.conversion_char == 'o'))
+    if (!num && !format.precision && !(format.alternate_form && format.conversion_char == 'o'))
     {
         return (p);
     }
@@ -775,6 +781,7 @@ long2str (long num, char* buff, print_format format)
 
     return (p);
 }
+
 /* LONGLONG2STRING: */
 #ifdef __MSL_LONGLONG_SUPPORT__ /*- mm 961219 -*/
 static char*
@@ -794,8 +801,7 @@ longlong2str (long long num, char* buff, print_format format)
 
     digits = 0;
 
-    if (!num && !format.precision &&
-        !(format.alternate_form && format.conversion_char == 'o'))
+    if (!num && !format.precision && !(format.alternate_form && format.conversion_char == 'o'))
     {
         return (p);
     }
@@ -932,45 +938,41 @@ static char*
 double2hex (long double num, char* buff, print_format format)
 { /* num = fp#, buff = ascii representation of fp#, format = formating of the number,
      i.e. %a */
-#if __option(little_endian) &&                                                      \
-    __dest_os == __win32_os      /*- variables, X-86 specific -*/
-    int offset, what_nibble = 0; /* offset=max precision possible, what_nibble refers
-                                    to high and low order nibble of working_byte */
-    char* wrk_byte_ptr;          /* pointer to portion of fp# to be manipulated */
-#endif                           /* __option (little_endian) */
-                                 /*- variables, Common-*/
-    char *p, *q; /* p points to char array that will be the ascii representation of
-                    fp #, q points to fp# */
-    char  working_byte; /* temporary space to manipulate the fp# as a character */
-    long double
-        ld; /* ld is an internal variable, set equal to the floating point number */
-    short* sptr; /* sptr will point to the high order bits of the fp #, later it is
-                    masked to extract the exponent from the fp # */
-    short  snum; /* snum is an intermediate value used to calculate the exponent */
-    long   exp;  /* is the exponent of the fp # */
+#if __option(little_endian) && __dest_os == __win32_os /*- variables, X-86 specific -*/
+    int   offset, what_nibble = 0; /* offset=max precision possible, what_nibble refers
+                                      to high and low order nibble of working_byte */
+    char* wrk_byte_ptr;            /* pointer to portion of fp# to be manipulated */
+#endif                             /* __option (little_endian) */
+                                   /*- variables, Common-*/
+    char *       p, *q;        /* p points to char array that will be the ascii representation of
+                                  fp #, q points to fp# */
+    char         working_byte; /* temporary space to manipulate the fp# as a character */
+    long double  ld;   /* ld is an internal variable, set equal to the floating point number */
+    short*       sptr; /* sptr will point to the high order bits of the fp #, later it is
+                          masked to extract the exponent from the fp # */
+    short        snum; /* snum is an intermediate value used to calculate the exponent */
+    long         exp;  /* is the exponent of the fp # */
     print_format exp_format;
-    int hex_precision;  /* hex_precision is used as a limit for the loop that writes
-                           the ascii fp# */
-    decform form;
-    decimal dec;
+    int          hex_precision; /* hex_precision is used as a limit for the loop that writes
+                                   the ascii fp# */
+    decform      form;
+    decimal      dec;
 
-    p = buff;           /* p will be the ascii representation of the fp # */
+    p = buff;                   /* p will be the ascii representation of the fp # */
     ld = num;
     sptr = (short*)&ld;
 
-    if (format.precision >
-        conversion_max) /*- STEP#1: Check if conversion is even going to work -*/
+    if (format.precision > conversion_max) /*- STEP#1: Check if conversion is even going to work -*/
     {
-        return (NULL);  /* might as well punt asap */
+        return (NULL);                     /* might as well punt asap */
     }
     form.style = FLOATDECIMAL;
     form.digits = MAX_SIG_DIG;
     __num2dec (&form, num, &dec);
 
-#if __option(little_endian) &&                                                      \
-    __dest_os == __win32_os   /*- STEP#2: check for INFINITY or NAN -*/
-    if (*dec.sig.text == 'I') /*- LITTLE ENDIAN VERSION (X-86) -*/
-    {                         /*INFINITY*/
+#if __option(little_endian) && __dest_os == __win32_os /*- STEP#2: check for INFINITY or NAN -*/
+    if (*dec.sig.text == 'I')                          /*- LITTLE ENDIAN VERSION (X-86) -*/
+    {                                                  /*INFINITY*/
         if (*(long long*)sptr & 0x8000000000000000)
         {
             p = buff - 5;
@@ -1026,7 +1028,7 @@ double2hex (long double num, char* buff, print_format format)
         }
         return (p);
     }
-#else  /*- BIG ENDIAN VERSION (MAC) -*/
+#else                                                       /*- BIG ENDIAN VERSION (MAC) -*/
     if (*dec.sig.text == 'I')
     {
         if (*sptr & 0x8000)
@@ -1084,7 +1086,7 @@ double2hex (long double num, char* buff, print_format format)
         }
         return (p);
     }
-#endif /*  __option (little_endian)	*/
+#endif                                                      /*  __option (little_endian)	*/
 
     exp_format.justification_options = right_justification; /*- STEP4: format -*/
     exp_format.sign_options = sign_always;
@@ -1095,13 +1097,11 @@ double2hex (long double num, char* buff, print_format format)
     exp_format.precision = 1;
     exp_format.conversion_char = 'd';
     /* STEP5: isolate exponent */
-#if __option(little_endian) &&                                                      \
-    __dest_os == __win32_os       /* LITTLE ENDIAN VERSION (X-86) */
-    sptr = (((short*)&ld) + 3);   /* point sptr to exponent information */
-    snum = (*sptr & 0x7ff0) >> 4; /* mask fp # to extract just the exponent values */
-    exp = snum - 1023;            /* remove the bias */
-    p = long2str (
-        exp, buff, exp_format);   /* start filling p with exponent characters */
+#if __option(little_endian) && __dest_os == __win32_os /* LITTLE ENDIAN VERSION (X-86) */
+    sptr = (((short*)&ld) + 3);                        /* point sptr to exponent information */
+    snum = (*sptr & 0x7ff0) >> 4;         /* mask fp # to extract just the exponent values */
+    exp = snum - 1023;                    /* remove the bias */
+    p = long2str (exp, buff, exp_format); /* start filling p with exponent characters */
     if (format.conversion_char == 'a')
     {
         *--p = 'p';
@@ -1112,8 +1112,8 @@ double2hex (long double num, char* buff, print_format format)
     }
     /*- STEP6: convert FP# to ASCII char, REMEMBER you are not converting to decimal,
      * # remains in hex form! -*/
-    q = (char*)&num; /* q is pointing to the address of num, which is cast to char
-                        ptr */
+    q = (char*)&num;           /* q is pointing to the address of num, which is cast to char
+                                  ptr */
     offset = 13;
     wrk_byte_ptr = (q + ((offset - format.precision) / 2));
     hex_precision = 0;
@@ -1245,9 +1245,9 @@ double2hex (long double num, char* buff, print_format format)
     {
         *--p = ' ';
     }
-    return (p);                            /*- STEP#7: return the fp# as ascii -*/
+    return (p);                                    /*- STEP#7: return the fp# as ascii -*/
 }
-#endif /* !__MC68K__  */ /*- mm 000414 -*/ /*- mm 990722 -*/
+#endif /* !__MC68K__  */ /*- mm 000414 -*/         /*- mm 990722 -*/
 /*- ROUND_DECIMAL -*/
 static void
 round_decimal (decimal* dec, int new_length)
@@ -1323,6 +1323,7 @@ round_decimal (decimal* dec, int new_length)
 
     dec->sig.length = new_length;
 }
+
 /*- FLOAT2STRING -*/
 #ifndef _No_Floating_Point                 /*- scm 970709 -*/
 static char*
@@ -1343,16 +1344,16 @@ float2str (long double num, char* buff, print_format format)
                                            /*
                                             *	Note: If you look at <ansi_fp.h> you'll see that __num2dec only supports
                                             *double.                                        If you look at <float.h> you'll
-                                            *see that long double == double. Ergo,                                        the                                        difference is moot *until* a truly
-                                            *long double type is supported.
+                                            *see that long double == double. Ergo,                                        the                                        difference is
+                                            *moot *until* a truly                                        long double type is supported.
                                             */
 
     form.style = FLOATDECIMAL;
-    form.digits = MAX_SIG_DIG;                /*- mm 970609 -*/
+    form.digits = MAX_SIG_DIG;                        /*- mm 970609 -*/
 
     __num2dec (&form, num, &dec);
 
-    p = (char*)dec.sig.text + dec.sig.length; /* strip off trailing zeroes */
+    p = (char*)dec.sig.text + dec.sig.length;         /* strip off trailing zeroes */
 
     while (dec.sig.length > 1 && *--p == '0')
     {
@@ -1364,21 +1365,21 @@ float2str (long double num, char* buff, print_format format)
     {
         case '0':
 
-            /* dec.sgn = 0;		*/ /* print correctly signed zero --mf 060298 */
-            dec.exp = 0;           /* __num2dec doesn't guarantee */
-                                   /* this for zeroes             */
+            /* dec.sgn = 0;		*/                    /* print correctly signed zero --mf 060298 */
+            dec.exp = 0;                              /* __num2dec doesn't guarantee */
+                                                      /* this for zeroes             */
             break;
 
         case 'I':
 
-            if (num < 0)           /*- mm 970213 -*/
-            {                      /*- mm 970213 -*/
-                p = buff - 5; /*- mm 970213 -*/           /* special cases */
-                if (isupper (format.conversion_char))     /*- mm 990430 -*/
+            if (num < 0)                              /*- mm 970213 -*/
+            {                                         /*- mm 970213 -*/
+                p = buff - 5; /*- mm 970213 -*/       /* special cases */
+                if (isupper (format.conversion_char)) /*- mm 990430 -*/
                 {
-                    strcpy (p, "-INF");                   /*- mm 990430 -*/
+                    strcpy (p, "-INF");               /*- mm 990430 -*/
                 }
-                else                                      /*- mm 990430 -*/
+                else                                  /*- mm 990430 -*/
                 {
                     strcpy (p, "-inf"); /*- mm 970213 -*/ /*- mm 990430 -*/
                 }
@@ -1556,8 +1557,7 @@ float2str (long double num, char* buff, print_format format)
 
             if (frac_digits > format.precision)
             {
-                round_decimal (&dec,
-                               dec.sig.length - (frac_digits - format.precision));
+                round_decimal (&dec, dec.sig.length - (frac_digits - format.precision));
 
                 if ((frac_digits = -dec.exp + dec.sig.length - 1) < 0)
                 {
@@ -1582,8 +1582,7 @@ float2str (long double num, char* buff, print_format format)
                 *--p = '0';
             }
 
-            for (digits = 0; digits < frac_digits && digits < dec.sig.length;
-                 ++digits)
+            for (digits = 0; digits < frac_digits && digits < dec.sig.length; ++digits)
             {
                 *--p = *--q;
             }
@@ -1678,9 +1677,7 @@ __pformatter (void*       (*WriteProc) (void*, const char*, size_t),
             num_chars = strlen (format_ptr);
             chars_written += num_chars;
 
-            if (num_chars && !(*WriteProc) (WriteProcArg,
-                                            format_ptr,
-                                            num_chars))          /*- mm 990325 -*/
+            if (num_chars && !(*WriteProc) (WriteProcArg, format_ptr, num_chars)) /*- mm 990325 -*/
             {
                 return (-1);
             }
@@ -1691,8 +1688,7 @@ __pformatter (void*       (*WriteProc) (void*, const char*, size_t),
         num_chars = curr_format - format_ptr;
         chars_written += num_chars;
 
-        if (num_chars &&
-            !(*WriteProc) (WriteProcArg, format_ptr, num_chars)) /*- mm 990325 -*/
+        if (num_chars && !(*WriteProc) (WriteProcArg, format_ptr, num_chars))     /*- mm 990325 -*/
         {
             return (-1);
         }
@@ -1706,7 +1702,7 @@ __pformatter (void*       (*WriteProc) (void*, const char*, size_t),
 #if __ALTIVEC__
         vecIndex = 0;
         do { /* can be done repeatedly for each vector field */
-#endif                                                           /* __ALTIVEC__ */
+#endif                                                                            /* __ALTIVEC__ */
 #endif
         switch (format.conversion_char)
         {
@@ -1748,12 +1744,11 @@ __pformatter (void*       (*WriteProc) (void*, const char*, size_t),
                         long_num = va_arg (arg, long);
                     }
 #ifdef __MSL_LONGLONG_SUPPORT__                   /*- mm 961219 -*/
-                    else if (format.argument_options ==
-                             long_long_argument)  /*- mm 961219 -*/
+                    else if (format.argument_options == long_long_argument) /*- mm 961219 -*/
                     {
-                        long_long_num = va_arg (arg, long long);   /*- mm 961219 -*/
+                        long_long_num = va_arg (arg, long long);            /*- mm 961219 -*/
                     }
-#endif /* __MSL_LONGLONG_SUPPORT__ */                              /*- mm 961219 -*/
+#endif /* __MSL_LONGLONG_SUPPORT__ */                                       /*- mm 961219 -*/
                     else
                     {
                         long_num = va_arg (arg, int);
@@ -1768,20 +1763,19 @@ __pformatter (void*       (*WriteProc) (void*, const char*, size_t),
                     long_num = (char)long_num;
                 }
 
-#ifdef __MSL_LONGLONG_SUPPORT__                                    /*- mm 961219 -*/
-                if (format.argument_options == long_long_argument) /*- mm 961219 -*/
-                {                                                  /*- bb 971019 -*/
-                    if (!(buff_ptr = longlong2str (long_long_num,  /*- mm 961219 -*/
+#ifdef __MSL_LONGLONG_SUPPORT__                                             /*- mm 961219 -*/
+                if (format.argument_options == long_long_argument)          /*- mm 961219 -*/
+                {                                                           /*- bb 971019 -*/
+                    if (!(buff_ptr = longlong2str (long_long_num,           /*- mm 961219 -*/
                                                    buff + conversion_buff_size,
-                                                   format)))       /*- mm 961219 -*/
+                                                   format)))                /*- mm 961219 -*/
                     {
-                        goto conversion_error;                     /*- mm 961219 -*/
+                        goto conversion_error;                              /*- mm 961219 -*/
                     }
                 } /*- bb 971019 -*/
                 else                              /*- mm 961219 -*/
 #endif /* __MSL_LONGLONG_SUPPORT__ */             /*- mm 961219 -*/
-                    if (!(buff_ptr = long2str (
-                              long_num, buff + conversion_buff_size, format)))
+                    if (!(buff_ptr = long2str (long_num, buff + conversion_buff_size, format)))
                     {
                         goto conversion_error;
                     }
@@ -1830,12 +1824,11 @@ __pformatter (void*       (*WriteProc) (void*, const char*, size_t),
                         long_num = va_arg (arg, unsigned long);
                     }
 #ifdef __MSL_LONGLONG_SUPPORT__                   /*- mm 961219 -*/
-                    else if (format.argument_options ==
-                             long_long_argument)  /*- mm 961219 -*/
+                    else if (format.argument_options == long_long_argument) /*- mm 961219 -*/
                     {
-                        long_long_num = va_arg (arg, long long);   /*- mm 961219 -*/
+                        long_long_num = va_arg (arg, long long);            /*- mm 961219 -*/
                     }
-#endif /* __MSL_LONGLONG_SUPPORT__ */                              /*- mm 961219 -*/
+#endif /* __MSL_LONGLONG_SUPPORT__ */                                       /*- mm 961219 -*/
                     else
                     {
                         long_num = va_arg (arg, unsigned int);
@@ -1850,20 +1843,19 @@ __pformatter (void*       (*WriteProc) (void*, const char*, size_t),
                     long_num = (unsigned char)long_num;
                 }
 
-#ifdef __MSL_LONGLONG_SUPPORT__                                    /*- mm 961219 -*/
-                if (format.argument_options == long_long_argument) /*- mm 961219 -*/
-                {                                                  /*- mf 971020 -*/
-                    if (!(buff_ptr = longlong2str (long_long_num,  /*- mm 961219 -*/
+#ifdef __MSL_LONGLONG_SUPPORT__                                             /*- mm 961219 -*/
+                if (format.argument_options == long_long_argument)          /*- mm 961219 -*/
+                {                                                           /*- mf 971020 -*/
+                    if (!(buff_ptr = longlong2str (long_long_num,           /*- mm 961219 -*/
                                                    buff + conversion_buff_size,
-                                                   format)))       /*- mm 961219 -*/
+                                                   format)))                /*- mm 961219 -*/
                     {
-                        goto conversion_error;                     /*- mm 961219 -*/
+                        goto conversion_error;                              /*- mm 961219 -*/
                     }
                 } /*- mf 971020 -*/
                 else                              /*- mm 961219 -*/
 #endif /* __MSL_LONGLONG_SUPPORT__ */             /*- mm 961219 -*/
-                    if (!(buff_ptr = long2str (
-                              long_num, buff + conversion_buff_size, format)))
+                    if (!(buff_ptr = long2str (long_num, buff + conversion_buff_size, format)))
                     {
                         goto conversion_error;
                     }
@@ -1920,8 +1912,7 @@ __pformatter (void*       (*WriteProc) (void*, const char*, size_t),
                         long_double_num = va_arg (arg, double);
                     }
 
-                if (!(buff_ptr = float2str (
-                          long_double_num, buff + conversion_buff_size, format)))
+                if (!(buff_ptr = float2str (long_double_num, buff + conversion_buff_size, format)))
                 {
                     goto conversion_error;
                 }
@@ -1943,8 +1934,7 @@ __pformatter (void*       (*WriteProc) (void*, const char*, size_t),
                     long_double_num = va_arg (arg, double);
                 }
 
-                if (!(buff_ptr = double2hex (
-                          long_double_num, buff + conversion_buff_size, format)))
+                if (!(buff_ptr = double2hex (long_double_num, buff + conversion_buff_size, format)))
                 {
                     goto conversion_error;
                 }
@@ -2093,9 +2083,8 @@ __pformatter (void*       (*WriteProc) (void*, const char*, size_t),
                 num_chars = strlen (curr_format);
                 chars_written += num_chars;
 
-                if (num_chars && !(*WriteProc) (WriteProcArg,
-                                                curr_format,
-                                                num_chars))        /*- mm 990325 -*/
+                if (num_chars &&
+                    !(*WriteProc) (WriteProcArg, curr_format, num_chars))        /*- mm 990325 -*/
                 {
                     return (-1);
                 }
@@ -2106,24 +2095,21 @@ __pformatter (void*       (*WriteProc) (void*, const char*, size_t),
         field_width = num_chars;
 
         if (format.justification_options != left_justification)
-        {                                                          /*- mm 960722 -*/
-            fill_char = (format.justification_options == zero_fill)
-                            ? '0'
-                            : ' ';                                 /*- mm 960722 -*/
+        {                                                                        /*- mm 960722 -*/
+            fill_char = (format.justification_options == zero_fill) ? '0' : ' '; /*- mm 960722 -*/
             if (((*buff_ptr == '+') || (*buff_ptr == '-') || (*buff_ptr == ' ')) &&
-                (fill_char == '0')) /*- mm 970206 -*/              /*- mm 990831 -*/
-            {                                                      /*- mm 970206 -*/
-                if ((*WriteProc) (WriteProcArg, buff_ptr, 1) == 0) /*- mm 990325 -*/
+                (fill_char == '0')) /*- mm 970206 -*/                            /*- mm 990831 -*/
+            {                                                                    /*- mm 970206 -*/
+                if ((*WriteProc) (WriteProcArg, buff_ptr, 1) == 0)               /*- mm 990325 -*/
                 {
-                    return (-1);                                   /*- mm 970206 -*/
+                    return (-1);                                                 /*- mm 970206 -*/
                 }
-                ++buff_ptr;                                        /*- mm 970206 -*/
-                num_chars--;                                       /*- mm 970723 -*/
+                ++buff_ptr;                                                      /*- mm 970206 -*/
+                num_chars--;                                                     /*- mm 970723 -*/
             }
             while (field_width < format.field_width)
             {
-                if ((*WriteProc) (WriteProcArg, &fill_char, 1) ==
-                    0)                                             /*- mm 990325 -*/
+                if ((*WriteProc) (WriteProcArg, &fill_char, 1) == 0)             /*- mm 990325 -*/
                 {
                     return (-1);
                 }
@@ -2131,8 +2117,7 @@ __pformatter (void*       (*WriteProc) (void*, const char*, size_t),
                 ++field_width;
             }
         } /*- mm 960722 -*/
-        if (num_chars &&
-            !(*WriteProc) (WriteProcArg, buff_ptr, num_chars))   /*- mm 990325 -*/
+        if (num_chars && !(*WriteProc) (WriteProcArg, buff_ptr, num_chars)) /*- mm 990325 -*/
         {
             return (-1);
         }
@@ -2142,7 +2127,7 @@ __pformatter (void*       (*WriteProc) (void*, const char*, size_t),
             while (field_width < format.field_width)
             {
                 char blank = ' ';
-                if ((*WriteProc) (WriteProcArg, &blank, 1) == 0) /*- mm 990325 -*/
+                if ((*WriteProc) (WriteProcArg, &blank, 1) == 0)            /*- mm 990325 -*/
                 {
                     return (-1);
                 }
@@ -2155,22 +2140,20 @@ __pformatter (void*       (*WriteProc) (void*, const char*, size_t),
 #if __ALTIVEC__
         /* Process vec types specially... */
 
-        if (format.argument_options == vector_argument &&
-            ++vecIndex < format.vecCount)
+        if (format.argument_options == vector_argument && ++vecIndex < format.vecCount)
         {
             if (format.vecSeperator && format.vecSepLen > 0)
             {
                 if (format.vecSepLen == 1)
                 {
-                    if ((*WriteProc) (WriteProcArg, format.vecSeperator, 1) ==
-                        0)                                 /*- mm 990325 -*/
+                    if ((*WriteProc) (WriteProcArg, format.vecSeperator, 1) == 0) /*- mm 990325 -*/
                     {
                         return (-1);
                     }
                 }
                 else if (!(*WriteProc) (WriteProcArg,
                                         format.vecSeperator,
-                                        format.vecSepLen)) /*- mm 990325 -*/
+                                        format.vecSepLen))                        /*- mm 990325 -*/
                 {
                     return (-1);
                 }
@@ -2182,16 +2165,19 @@ __pformatter (void*       (*WriteProc) (void*, const char*, size_t),
         }
     }
     while (format.argument_options == vector_argument && vecIndex < format.vecCount);
-#endif                                                     /* __ALTIVEC__ */
+#endif                                                                            /* __ALTIVEC__ */
 }
+
 return (chars_written);
 }
-/*- __FILEWRITE -*/                                        /*- mm 990325 -*/
+
+/*- __FILEWRITE -*/                                                               /*- mm 990325 -*/
 void*
 __FileWrite (void* File, const char* Buffer, size_t NumChars)
 {
     return (fwrite (Buffer, 1, NumChars, (FILE*)File) == NumChars ? File : 0);
 }
+
 /*- __STRINGWRITE -*/
 void*
 __StringWrite (void* osc, const char* Buffer, size_t NumChars)
@@ -2203,21 +2189,21 @@ __StringWrite (void* osc, const char* Buffer, size_t NumChars)
     CharsToBeWritten = ((Oscp->CharsWritten + NumChars) <= Oscp->MaxCharCount)
                            ? NumChars
                            : Oscp->MaxCharCount - Oscp->CharsWritten;
-    MemCpyResult =
-        (void*)memcpy (Oscp->CharStr + Oscp->CharsWritten, Buffer, CharsToBeWritten);
+    MemCpyResult = (void*)memcpy (Oscp->CharStr + Oscp->CharsWritten, Buffer, CharsToBeWritten);
     Oscp->CharsWritten += CharsToBeWritten;
     /*return(MemCpyResult);*/ /*- mm 000404 -*/
     return ((void*)1);        /*- mm 000404 -*/
 }
+
 /*- PRINTF -*/
-#if __dest_os != __n64_os                   /*- ard 990128  -*/
+#if __dest_os != __n64_os                                              /*- ard 990128  -*/
 #ifndef _No_Console
 int
 printf (const char* format, ...)
 {
-    int result;                             /*- mm 001013 -*/
+    int result;                                                        /*- mm 001013 -*/
 #ifndef __NO_WIDE_CHAR
-#endif                                      /* __NO_WIDE_CHAR */
+#endif                                                                 /* __NO_WIDE_CHAR */
 
 #if __PPC_EABI__ || __MIPS__
     va_list args;
@@ -2226,33 +2212,32 @@ printf (const char* format, ...)
     {
         return (-1);
     }
-#endif                                      /* __NO_WIDE_CHAR */
+#endif                                                                 /* __NO_WIDE_CHAR */
     va_start (args, format);
-    __begin_critical_region (files_access); /*- mm 001013 -*/
-    result =
-        __pformatter (&__FileWrite, (void*)stdout, format, args); /*- mm 001013 -*/
+    __begin_critical_region (files_access);                            /*- mm 001013 -*/
+    result = __pformatter (&__FileWrite, (void*)stdout, format, args); /*- mm 001013 -*/
 #else
 #ifndef __NO_WIDE_CHAR
     if (fwide (stdout, -1) >= 0)
     {
         return (-1);
     }
-#endif                                      /* __NO_WIDE_CHAR */
-    __begin_critical_region (files_access);                        /*- mm 001013 -*/
-    result = __pformatter (
-        &__FileWrite, (void*)stdout, format, __va_start (format)); /*- mm 001013 -*/
-#endif                                      /* __PPC_EABI__||__MIPS__  */
-    __end_critical_region (files_access);   /*- mm 001013 -*/
-    return (result);                        /*- mm 001013 -*/
+#endif                                                                 /* __NO_WIDE_CHAR */
+    __begin_critical_region (files_access);                                      /*- mm 001013 -*/
+    result =
+        __pformatter (&__FileWrite, (void*)stdout, format, __va_start (format)); /*- mm 001013 -*/
+#endif                                                                 /* __PPC_EABI__||__MIPS__  */
+    __end_critical_region (files_access);                              /*- mm 001013 -*/
+    return (result);                                                   /*- mm 001013 -*/
 }
-#endif                                      /* _No_Console */
-#endif                                      /* __dest_os != __n64_os */
+#endif                                                                 /* _No_Console */
+#endif                                                                 /* __dest_os != __n64_os */
 
 #ifndef _No_Disk_File_OS_Support
 int
 fprintf (FILE* file, const char* format, ...)
 {
-    int result;                             /*- mm 001013 -*/
+    int result;                                                        /*- mm 001013 -*/
 #if __PPC_EABI__ || __MIPS__
     va_list args;
 #ifndef __NO_WIDE_CHAR
@@ -2260,58 +2245,58 @@ fprintf (FILE* file, const char* format, ...)
     {
         return (-1);
     }
-#endif                                      /* __NO_WIDE_CHAR */
+#endif                                                                 /* __NO_WIDE_CHAR */
     va_start (args, format);
-    __begin_critical_region (files_access); /*- mm 001013 -*/
-    result =
-        __pformatter (&__FileWrite, (void*)file, format, args); /*- mm 001013 -*/
+    __begin_critical_region (files_access);                            /*- mm 001013 -*/
+    result = __pformatter (&__FileWrite, (void*)file, format, args);   /*- mm 001013 -*/
 #else
 #ifndef __NO_WIDE_CHAR
     if (fwide (file, -1) >= 0)
     {
         return (-1);
     }
-#endif                                                          /* __NO_WIDE_CHAR */
-    __begin_critical_region (files_access);                      /*- mm 001013 -*/
-    result = __pformatter (
-        &__FileWrite, (void*)file, format, __va_start (format)); /*- mm 001013 -*/
-#endif                                      /* __PPC_EABI__||__MIPS__ */
-    __end_critical_region (files_access);   /*- mm 001013 -*/
-    return (result);                        /* -mm 001013 -*/
+#endif                                                                 /* __NO_WIDE_CHAR */
+    __begin_critical_region (files_access);                                    /*- mm 001013 -*/
+    result =
+        __pformatter (&__FileWrite, (void*)file, format, __va_start (format)); /*- mm 001013 -*/
+#endif                                                                 /* __PPC_EABI__||__MIPS__ */
+    __end_critical_region (files_access);                              /*- mm 001013 -*/
+    return (result);                                                   /* -mm 001013 -*/
 }
-#endif                                      /* _No_Disk_File_OS_Support */
+#endif                                                                /* _No_Disk_File_OS_Support */
 int
 vprintf (const char* format, va_list arg)
 {
-    int retval;                             /*- mm 001013 -*/
+    int retval;                                                       /*- mm 001013 -*/
 #ifndef __NO_WIDE_CHAR
     if (fwide (stdout, -1) >= 0)
     {
         return (-1);
     }
-#endif                                      /* __NO_WIDE_CHAR */
-    __begin_critical_region (files_access); /*- mm 001013 -*/
-    retval =
-        __pformatter (&__FileWrite, (void*)stdout, format, arg); /*- mm 001013 -*/
-    __end_critical_region (files_access);                        /*- mm 001013 -*/
-    return (retval);                                             /*- mm 001013 -*/
+#endif                                                                /* __NO_WIDE_CHAR */
+    __begin_critical_region (files_access);                           /*- mm 001013 -*/
+    retval = __pformatter (&__FileWrite, (void*)stdout, format, arg); /*- mm 001013 -*/
+    __end_critical_region (files_access);                             /*- mm 001013 -*/
+    return (retval);                                                  /*- mm 001013 -*/
 }
+
 int
 vfprintf (FILE* file, const char* format, va_list arg)
 {
-    int retval;                                                  /*- mm 001013 -*/
+    int retval;                                                       /*- mm 001013 -*/
 #ifndef __NO_WIDE_CHAR
     if (fwide (file, -1) >= 0)
     {
         return (-1);
     }
-#endif                                                           /* __NO_WIDE_CHAR */
+#endif                                                                /* __NO_WIDE_CHAR */
 
-    __begin_critical_region (files_access);                      /*- mm 001013 -*/
-    retval = __pformatter (&__FileWrite, (void*)file, format, arg); /*- mm 001013 -*/
-    __end_critical_region (files_access);                           /*- mm 001013 -*/
-    return (retval);                                                /*- mm 001013 -*/
+    __begin_critical_region (files_access);                           /*- mm 001013 -*/
+    retval = __pformatter (&__FileWrite, (void*)file, format, arg);   /*- mm 001013 -*/
+    __end_critical_region (files_access);                             /*- mm 001013 -*/
+    return (retval);                                                  /*- mm 001013 -*/
 }
+
 int
 vsnprintf (char* s, size_t n, const char* format, va_list arg)
 {
@@ -2324,18 +2309,20 @@ vsnprintf (char* s, size_t n, const char* format, va_list arg)
 
     end = __pformatter (&__StringWrite, &osc, format, arg);
 
-    if (s)                                                          /*- mm 000404 -*/
+    if (s)                                                            /*- mm 000404 -*/
     {
         s[(end < n) ? end : n - 1] = '\0';
     }
 
     return (end);
 }
+
 int
 vsprintf (char* s, const char* format, va_list arg)
 {
     return (vsnprintf (s, ULONG_MAX, format, arg));
 }
+
 int
 snprintf (char* s, size_t n, const char* format, ...)
 {
@@ -2346,9 +2333,9 @@ snprintf (char* s, size_t n, const char* format, ...)
     return (vsnprintf (s, n, format, args));
 #else
         return (vsnprintf (s, n, format, __va_start (format)));
-#endif                    /* __PPC_EABI__ || __MIPS__ */
+#endif                                                                /* __PPC_EABI__ || __MIPS__ */
 }
-#if __dest_os != __n64_os /*- ard 990126 -*/
+#if __dest_os != __n64_os                                             /*- ard 990126 -*/
 int
 sprintf (char* s, const char* format, ...)
 {
@@ -2359,9 +2346,9 @@ sprintf (char* s, const char* format, ...)
     return (vsnprintf (s, ULONG_MAX, format, args));
 #else
     return (vsnprintf (s, ULONG_MAX, format, __va_start (format)));
-#endif                    /* __PPC_EABI__ || __MIPS__ */
+#endif                                                                /* __PPC_EABI__ || __MIPS__ */
 }
-#endif                    /* __dest_os != __n64_os */
+#endif                                                                /* __dest_os != __n64_os */
 
 /* Change record:
  * JFH 950918 First code release.

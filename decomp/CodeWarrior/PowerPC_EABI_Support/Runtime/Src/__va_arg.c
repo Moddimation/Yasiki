@@ -15,40 +15,41 @@ typedef struct
     char* input_arg_area;
     char* reg_save_area;
 } va_list[1];
+
 typedef enum
 {
-    arg_ARGPOINTER,       /* a pointer to the real 'parameter						*/
-    arg_WORD,             /* a 4 byte fixed point number or pointer				*/
-    arg_DOUBLEWORD,       /* long long and SW doubles								*/
-    arg_REAL,             /* 8 byte floating point								*/
-    arg_VECTOR            /* AltiVec vector										*/
+    arg_ARGPOINTER,              /* a pointer to the real 'parameter						*/
+    arg_WORD,                    /* a 4 byte fixed point number or pointer				*/
+    arg_DOUBLEWORD,              /* long long and SW doubles								*/
+    arg_REAL,                    /* 8 byte floating point								*/
+    arg_VECTOR                   /* AltiVec vector										*/
 #if __option(incompatible_sfpe_double_params)
         ,
-    arg_SFPEDOUBLE = 10   /* not treated like a arg_DOUBLEWORD 					*/
+    arg_SFPEDOUBLE = 10          /* not treated like a arg_DOUBLEWORD 					*/
 #endif
 } _va_arg_type;
-#define MAX_SAVED_REGS 8
-#define SIZEOF_GPR     4
-#define SIZEOF_FPR     8
-#define SIZEOF_DWRD    8
-#define SIZEOF_VECTOR  16
-#define ALIGN(addr, amount)                                                         \
-    (((unsigned int)(addr) + ((amount) - 1)) & ~((amount) - 1))
+
+#define MAX_SAVED_REGS      8
+#define SIZEOF_GPR          4
+#define SIZEOF_FPR          8
+#define SIZEOF_DWRD         8
+#define SIZEOF_VECTOR       16
+#define ALIGN(addr, amount) (((unsigned int)(addr) + ((amount) - 1)) & ~((amount) - 1))
 
 void* __va_arg (va_list ap, _va_arg_type type);
+
 void*
 __va_arg (va_list ap, _va_arg_type type)
 {
-    char* addr;           /* return value - the address of the next 'parameter'	*/
-    char* r = &(ap->gpr); /* address of current register number					*/
-    int   rr = ap->gpr;   /* current register										*/
-    int   max = MAX_SAVED_REGS; /* maximum number of registers saved */
-    int   size = SIZEOF_GPR;    /* size of 'type'    */
-    int   inc = 1;              /* num of registers to increment per type				*/
-    int   even = 0;             /* do we have a type that takes 2 registers?			*/
-    int   fpr_offset = 0;       /* where do the floating point registers live			*/
-    int   size_reg =
-        SIZEOF_GPR;             /* what is the size of this type's register				*/
+    char* addr;                  /* return value - the address of the next 'parameter'	*/
+    char* r = &(ap->gpr);        /* address of current register number					*/
+    int   rr = ap->gpr;          /* current register										*/
+    int   max = MAX_SAVED_REGS;  /* maximum number of registers saved */
+    int   size = SIZEOF_GPR;     /* size of 'type'    */
+    int   inc = 1;               /* num of registers to increment per type				*/
+    int   even = 0;              /* do we have a type that takes 2 registers?			*/
+    int   fpr_offset = 0;        /* where do the floating point registers live			*/
+    int   size_reg = SIZEOF_GPR; /* what is the size of this type's register				*/
 
 #if __ALTIVEC__
     if (type == arg_VECTOR)
@@ -94,8 +95,8 @@ __va_arg (va_list ap, _va_arg_type type)
     }
     else
     {
-        *r = MAX_SAVED_REGS; /* if arg_DOUBLEWORD, make sure that gprs won't be used
-                                again */
+        *r = MAX_SAVED_REGS;     /* if arg_DOUBLEWORD, make sure that gprs won't be used
+                                    again */
         addr = ap->input_arg_area;
         addr = (char*)ALIGN (addr, size);
         ap->input_arg_area = addr + size;

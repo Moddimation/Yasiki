@@ -11,19 +11,19 @@
 #include <ansi_parms.h>            /*- hh 971206 -*/
 #include <cstdio>                  /*- hh 971206 -*/
 
-#define set_eof(file)                                                               \
-    do {                                                                            \
-        (file)->state.io_state = __neutral;                                         \
-        (file)->state.eof = 1;                                                      \
-        (file)->buffer_len = 0;                                                     \
-    }                                                                               \
+#define set_eof(file)                                                                              \
+    do {                                                                                           \
+        (file)->state.io_state = __neutral;                                                        \
+        (file)->state.eof = 1;                                                                     \
+        (file)->buffer_len = 0;                                                                    \
+    }                                                                                              \
     while (0)
 
-#define set_error(file)                                                             \
-    do {                                                                            \
-        (file)->state.error = 1;                                                    \
-        (file)->buffer_len = 0;                                                     \
-    }                                                                               \
+#define set_error(file)                                                                            \
+    do {                                                                                           \
+        (file)->state.error = 1;                                                                   \
+        (file)->buffer_len = 0;                                                                    \
+    }                                                                                              \
     while (0)
 
 _MSL_BEGIN_EXTERN_C                /*- cc 010409 -*/
@@ -46,10 +46,10 @@ _MSL_END_EXTERN_C                  /*- cc 010409 -*/
                                     * hh  971206 namespace support
                                     * mm  981015 Commented out __file_to_num and __num_to_file while investigating
                                     * whether they are really needed.                              mm  990121 fixed
-                                    * __std 6 places                              blc 990308                                fixed tabbing on macro
-                                    * definitions                              mf  990715 Take arg names out of
+                                    * __std 6 places                              blc 990308                                fixed
+                                    * tabbing on macro                                definitions                              mf  990715 Take arg names out of
                                     * prototype                              cc  010405 removed pragma options align
-                                    * native and reset                              cc  010409                                updated to JWW new
-                                    * namespace macros                              JWW 010618 Use cname headers
-                                    * exclusively                              to prevent namespace pollution in C++
+                                    * native and reset                              cc  010409                                updated to JWW new                                namespace macros
+                                    * JWW 010618 Use cname headers                                exclusively                              to prevent namespace
+                                    * pollution in C++
                                     */

@@ -4,6 +4,7 @@
 // #define _INLINE WEAKFUNC
 
 #include <math.h>
+
 /*
  Author:  Matthew D. Fassiotto
  Date:    first written 4/15/99
@@ -34,6 +35,7 @@ ceilf (float x)
     }
     return (float)++i;
 }
+
 extern float
 floorf (float x)
 {

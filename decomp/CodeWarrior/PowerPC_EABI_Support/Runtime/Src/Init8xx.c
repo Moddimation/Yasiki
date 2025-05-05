@@ -433,6 +433,7 @@ unsigned long UpmATable[] = {
 
 extern const char gInterruptVectorTable[];
 extern const char gInterruptVectorTableEnd[];
+
 static void
 __copy_vectors (void* dst, const void* src, unsigned long size)
 {
@@ -442,6 +443,7 @@ __copy_vectors (void* dst, const void* src, unsigned long size)
         __flush_cache (dst, size);
     }
 }
+
 asm void
 usr_init ()
 {
@@ -531,62 +533,61 @@ usr_init ()
           ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
           UPMAInit : lis r5,
-                     UpmATable @h // point R5 to paramenter table
+                     UpmATable @h                  // point R5 to paramenter table
                          ori r5,
                      r5,
                      UpmATable @l li r7,
-                     0x0100       // table size is 0x100
+                     0x0100                        // table size is 0x100
                      add r7,
                      r7,
                      r5 lis r6,
-                     0x0000       // Command: OP=Write, UPMA, MAD=0
+                     0x0000                        // Command: OP=Write, UPMA, MAD=0
 
-                     UpmWriteLoop
-      : lwz r3,
-        0(r5)                     // get data from table
-        stw r3,
-        MDR (r4)                  // store the data to MD register
-        stw r6,
-        MCR (r4)                  // issue command to MCR register
-        addi r5,
-        r5,
-        4                         // next entry in the table
-        addi r6,
-        r6,
-        1                         // next MAD address
-        cmpw cr0,
-        r5,
-        r7                        // done yet ?
-            blt UpmWriteLoop
+                     UpmWriteLoop : lwz r3,
+                                    0(r5)          // get data from table
+                                    stw r3,
+                                    MDR (r4)       // store the data to MD register
+                                    stw r6,
+                                    MCR (r4)       // issue command to MCR register
+                                    addi r5,
+                                    r5,
+                                    4              // next entry in the table
+                                    addi r6,
+                                    r6,
+                                    1              // next MAD address
+                                    cmpw cr0,
+                                    r5,
+                                    r7             // done yet ?
+                                        blt UpmWriteLoop
 
 #if __MOT_ADS__
-                UPMBInit : andis.r6,
-        r6,
-        0x0080                    // have we already done UPMB?
-        bne UMPInitEnd            // If so, UPM initializion is complete
+                                            UPMBInit : andis.r6,
+                                    r6,
+                                    0x0080         // have we already done UPMB?
+                                    bne UMPInitEnd // If so, UPM initializion is complete
 
-            lis r5,
-        UpmBTable @h              // point R5 to paramenter table
-            ori r5,
-        r5,
-        UpmBTable @l li r7,
-        0x0100 add      r7,
-        r7,
-        r5 lis r6,
-        0x0080                    // Command: OP=Write, UPMB, MAD=0
-        b UpmWriteLoop
+                                        lis r5,
+                                    UpmBTable @h   // point R5 to paramenter table
+                                        ori r5,
+                                    r5,
+                                    UpmBTable @l li r7,
+                                    0x0100 add      r7,
+                                    r7,
+                                    r5 lis r6,
+                                    0x0080         // Command: OP=Write, UPMB, MAD=0
+                                    b UpmWriteLoop
 #endif
 
-            UMPInitEnd :
+                                        UMPInitEnd :
 
 #if __MOT_ADS__ && TARGET_SYSTEM_FREQUENCY <= 25
       li r3,
-      0x0800                      // MPTPR = 0x0800 (16bit register)
+      0x0800                                       // MPTPR = 0x0800 (16bit register)
       sth r3,
       MPTPR (r4)
 
           lis r3,
-      0xc0a2                      // MAMR = 0xc0a21114
+      0xc0a2                                       // MAMR = 0xc0a21114
       ori r3,
       r3,
       0x1114 stw r3,
@@ -602,7 +603,7 @@ usr_init ()
       MBMR (r4)
 #endif
 
-#if (__MOT_MBX__ && TARGET_SYSTEM_FREQUENCY == 40) ||                               \
+#if (__MOT_MBX__ && TARGET_SYSTEM_FREQUENCY == 40) ||                                              \
     (__MOT_MBX_A__ && TARGET_SYSTEM_FREQUENCY == 50)
           li r3,
       0x0200 // MPTPR = 0x0200 (16bit register)
@@ -1275,6 +1276,7 @@ usr_init ()
 
             frfree blr
 }
+
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Cache Initialization
 //
@@ -1296,6 +1298,7 @@ usr_init ()
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 #pragma section code_type ".init"
+
 asm void
 CacheInit ()
 {
@@ -1303,75 +1306,75 @@ CacheInit ()
 
         // If Instruction cache was enabled, disable and invalidate all
         ICacheInit : mfspr r3,
-                     IC_CST                          // read I-cache CSR
+                     IC_CST                                             // read I-cache CSR
                          andis.r3,
                      r3,
-                     CacheEnableBit beq ICacheUnlock // no, Icache was disabled
+                     CacheEnableBit beq ICacheUnlock                    // no, Icache was disabled
 
                          lis               r3,
                      CacheDisableCmd mtspr IC_CST,
-                     r3                              // disable Icache
+                     r3                                                 // disable Icache
                          isync
 
                              ICacheUnlock : lis                     r3,
                                             CacheUnlockAllCmd mtspr IC_CST,
-                                            r3       // Unlock Icache
+                                            r3                          // Unlock Icache
                                                 isync
 
-                                                    ICacheInv
+                                                    ICacheInv : lis                  r3,
+                                                                CacheInvAllCmd mtspr IC_CST,
+                                                                r3      // Invalidate Icache
+                                                                    isync
+
+                                                                        // ICacheEnable:
+                                                                        //    lis r3,CacheEnableCmd
+                                                                        //    mtspr   r3,IC_CST //
+                                                                        //    Enable Icache isync
+
+                                                                            DCacheInit
+      : DCacheUnlock : lis                                                  r3,
+                       CacheUnlockAllCmd sync mtspr                         DC_CST,
+                       r3                             // Unlock Dcache
+
+                           andis.r8,
+                       r8,
+                       CacheEnableBit                 // Was DCache enabled ?
+                           beq DCacheInv              // no, Dcache was disabled
+
+                               DCacheFlushAll : li r3,
+                                                0     // Read 1 word per cache line
+                                                      // for 800 lines
+                                                li r4,
+                                                256   // 2 ways, 128 sets per way
+                                                DCacheFlushLoop : addic.r4,
+                                                r4,
+                                                -1    // decrementer, set cc bit
+                                                lwz r5,
+                                                0(r3) // access memory
+                                                dcbf 0,
+                                                r3    // flush the line
+                                                    addi r3,
+                                                r3,
+                                                16    // next line
+                                                bgt DCacheFlushLoop
+
+                                                    DCacheDisable
       : lis                                         r3,
-        CacheInvAllCmd mtspr                        IC_CST,
-        r3                                           // Invalidate Icache
-            isync
-
-                                                     // ICacheEnable:
-                //    lis     r3,CacheEnableCmd
-                //    mtspr   r3,IC_CST       // Enable Icache
-                //    isync
-
-                                     DCacheInit : DCacheUnlock
-      : lis                          r3,
-        CacheUnlockAllCmd sync mtspr DC_CST,
-        r3                             // Unlock Dcache
-
-            andis.r8,
-        r8,
-        CacheEnableBit                 // Was DCache enabled ?
-            beq DCacheInv              // no, Dcache was disabled
-
-                DCacheFlushAll : li r3,
-                                 0     // Read 1 word per cache line
-                                       // for 800 lines
-                                 li r4,
-                                 256   // 2 ways, 128 sets per way
-                                 DCacheFlushLoop : addic.r4,
-                                 r4,
-                                 -1    // decrementer, set cc bit
-                                 lwz r5,
-                                 0(r3) // access memory
-                                 dcbf 0,
-                                 r3    // flush the line
-                                     addi r3,
-                                 r3,
-                                 16    // next line
-                                 bgt DCacheFlushLoop
-
-                                     DCacheDisable
-      : lis                          r3,
-        CacheDisableCmd sync mtspr   DC_CST,
-        r3                             // disable Dcache
+        CacheDisableCmd sync mtspr                  DC_CST,
+        r3                                            // disable Dcache
 
             DCacheInv : lis                       r3,
                         CacheInvAllCmd sync mtspr DC_CST,
-                        r3             // Invalidate Dcache
+                        r3                            // Invalidate Dcache
 
-                                       // DCacheEnable:
+                                                      // DCacheEnable:
                         //    lis     r3,CacheEnableCmd
                         //    sync
                         //    mtspr   DC_CST,r3       // Enable Icache
 
                         blr
 }
+
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //
 // soft_reset

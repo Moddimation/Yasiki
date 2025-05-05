@@ -1,5 +1,6 @@
 #ifndef _DOLPHIN_DEMOWIN_H_
 #define _DOLPHIN_DEMOWIN_H_
+
 enum DEMOWinItem
 {
     DEMOWIN_ITEM_CAP,
@@ -7,9 +8,11 @@ enum DEMOWinItem
     DEMOWIN_ITEM_BORDER,
     DEMOWIN_ITEM_DEFAULT
 };
+
 // flags
 #define DEMOWIN_FLAGS_INIT   (1 << 0)
 #define DEMOWIN_FLAGS_OPENED (1 << 1)
+
 struct STRUCT_DEMOWIN
 {
     s32                    x1;                                  ///< 0x00
@@ -40,35 +43,42 @@ struct STRUCT_DEMOWIN
     struct STRUCT_DEMOWIN* prev;                                ///< 0x4C
     void*                  parent;                              ///< 0x50
 };
+
 // functions
 void                   DEMOWinInit ();
-struct STRUCT_DEMOWIN* DEMOWinCreateWindow (
-    s32 x1, s32 y1, s32 x2, s32 y2, char* caption, u16 scroll, void* func);
-void DEMOWinDestroyWindow (struct STRUCT_DEMOWIN* handle);
-void DEMOWinOpenWindow (struct STRUCT_DEMOWIN* handle);
-void DEMOWinCloseWindow (struct STRUCT_DEMOWIN* handle);
-void DEMOWinSetWindowColor (
-    struct STRUCT_DEMOWIN* handle, enum DEMOWinItem item, u8 r, u8 g, u8 b, u8 a);
-void DEMOWinLogPrintf (struct STRUCT_DEMOWIN* handle, char* fmt, ...);
-void DEMOWinPrintfXY (
-    struct STRUCT_DEMOWIN* handle, u16 col, u16 row, char* fmt, ...);
-void                DEMOWinScrollWindow (struct STRUCT_DEMOWIN* handle, u32 dir);
-void                DEMOWinBringToFront (struct STRUCT_DEMOWIN* handle);
-void                DEMOWinSendToBack (struct STRUCT_DEMOWIN* handle);
-void                DEMOWinClearRow (struct STRUCT_DEMOWIN* handle, u16 row);
-void                DEMOWinClearWindow (struct STRUCT_DEMOWIN* handle);
-void                DEMOWinClearBuffer (struct STRUCT_DEMOWIN* handle);
-void                DEMOWinRefresh ();
-struct STRUCT_MENU* DEMOWinCreateMenuWindow (struct STRUCT_MENU* menu, u16 x, u16 y);
-void                DEMOWinDestroyMenuWindow (struct STRUCT_MENU* menu);
-u32                 DEMOWinMenuChild (struct STRUCT_MENU* menu, int child_flag);
-void                DEMOWinPadInit (DEMOWinPadInfo* p);
-void                DEMOWinPadRead (DEMOWinPadInfo* p);
-void                DEMOWinSetRepeat (u32 threshold, u32 rate);
-void                DEMOWinResetRepeat ();
-struct STRUCT_LISTBOX* DEMOWinCreateListWindow (struct STRUCT_LISTBOX* list,
-                                                u16                    x,
-                                                u16                    y);
+struct STRUCT_DEMOWIN* DEMOWinCreateWindow (s32   x1,
+                                            s32   y1,
+                                            s32   x2,
+                                            s32   y2,
+                                            char* caption,
+                                            u16   scroll,
+                                            void* func);
+void                   DEMOWinDestroyWindow (struct STRUCT_DEMOWIN* handle);
+void                   DEMOWinOpenWindow (struct STRUCT_DEMOWIN* handle);
+void                   DEMOWinCloseWindow (struct STRUCT_DEMOWIN* handle);
+void                   DEMOWinSetWindowColor (struct STRUCT_DEMOWIN* handle,
+                                              enum DEMOWinItem       item,
+                                              u8                     r,
+                                              u8                     g,
+                                              u8                     b,
+                                              u8                     a);
+void                   DEMOWinLogPrintf (struct STRUCT_DEMOWIN* handle, char* fmt, ...);
+void DEMOWinPrintfXY (struct STRUCT_DEMOWIN* handle, u16 col, u16 row, char* fmt, ...);
+void DEMOWinScrollWindow (struct STRUCT_DEMOWIN* handle, u32 dir);
+void DEMOWinBringToFront (struct STRUCT_DEMOWIN* handle);
+void DEMOWinSendToBack (struct STRUCT_DEMOWIN* handle);
+void DEMOWinClearRow (struct STRUCT_DEMOWIN* handle, u16 row);
+void DEMOWinClearWindow (struct STRUCT_DEMOWIN* handle);
+void DEMOWinClearBuffer (struct STRUCT_DEMOWIN* handle);
+void DEMOWinRefresh ();
+struct STRUCT_MENU*    DEMOWinCreateMenuWindow (struct STRUCT_MENU* menu, u16 x, u16 y);
+void                   DEMOWinDestroyMenuWindow (struct STRUCT_MENU* menu);
+u32                    DEMOWinMenuChild (struct STRUCT_MENU* menu, int child_flag);
+void                   DEMOWinPadInit (DEMOWinPadInfo* p);
+void                   DEMOWinPadRead (DEMOWinPadInfo* p);
+void                   DEMOWinSetRepeat (u32 threshold, u32 rate);
+void                   DEMOWinResetRepeat ();
+struct STRUCT_LISTBOX* DEMOWinCreateListWindow (struct STRUCT_LISTBOX* list, u16 x, u16 y);
 void                   DEMOWinDestroyListWindow (struct STRUCT_LISTBOX* list);
 void                   DEMOWinListSetCursor (struct STRUCT_LISTBOX* list, int x);
 s32                    DEMOWinListScrollList (struct STRUCT_LISTBOX* list, u32 dir);

@@ -29,11 +29,12 @@ DBGCallbackType DBGCallback;
 MTRCallbackType MTRCallback;
 
 #ifdef VERSION_GLMJ01
-#pragma peephole off
-#pragma optimization_level 4
+#pragma peephole off // they likely had assembly somewhere, and that caused the peephole=off bug.
+#pragma optimization_level 4 // only this way this matches.
 #undef ODEMU_ERROR
 #define ODEMU_ERROR 0
 #endif
+
 ONLY_GLMJ01
 void
 DBGEXIClearInterrupts (void)
@@ -42,6 +43,7 @@ DBGEXIClearInterrupts (void)
     __SIRegs[SI_EXILK] = 0;
 #endif
 }
+
 ONLY_GLMJ01
 void
 DBGEXIInit (void)
@@ -50,6 +52,7 @@ DBGEXIInit (void)
     DBGEXIClearInterrupts();
     __EXIRegs[EXI_C2_SR] = 0;
 }
+
 ONLY_GLMJ01
 BOOL
 DBGEXISelect (u32 v)
@@ -60,6 +63,7 @@ DBGEXISelect (u32 v)
     __EXIRegs[EXI_C2_SR] = regs;
     return ODEMU_NO_ERROR;
 }
+
 ONLY_GLMJ01
 BOOL
 DBGEXIDeselect (void)
@@ -67,6 +71,7 @@ DBGEXIDeselect (void)
     __EXIRegs[EXI_C2_SR] = __EXIRegs[EXI_C2_SR] & 0x405;
     return ODEMU_NO_ERROR;
 }
+
 ONLY_GLMJ01
 BOOL
 DBGEXISync (void)
@@ -76,6 +81,7 @@ DBGEXISync (void)
     while ((__EXIRegs[EXI_C2_CR] & 1) != 0);
     return ODEMU_NO_ERROR;
 }
+
 BOOL
 DBGEXIImm (const void* data, s32 size, u32 mode)
 {
@@ -109,6 +115,7 @@ DBGEXIImm (const void* data, s32 size, u32 mode)
 
     return ODEMU_NO_ERROR;
 }
+
 ONLY_GLMJ01
 BOOL
 DBGWriteMailbox (u32 v)
@@ -128,6 +135,7 @@ DBGWriteMailbox (u32 v)
 
     return !err;
 }
+
 BOOL
 DBGReadMailbox (u32* v)
 {
@@ -148,7 +156,7 @@ DBGReadMailbox (u32* v)
 
     return !err;
 }
-// NON_MATCHING
+
 BOOL
 DBGRead (u32 addr, const u32* data, s32 byte_size)
 {
@@ -162,7 +170,7 @@ DBGRead (u32 addr, const u32* data, s32 byte_size)
         return ODEMU_ERROR;
     }
 
-    writeValue = 0x20000000 | ((addr << 8) & 0x01fffc00); // TODO: enum
+    writeValue = 0x20000000 | ((addr << 8) & 0x01fffc00);
     err |= !DBGEXIImm (&writeValue, 4, 1);
     err |= !DBGEXISync();
 
@@ -183,9 +191,9 @@ DBGRead (u32 addr, const u32* data, s32 byte_size)
 
     return !err;
 }
+
 // void DBGCheckID(void) { }
 
-// NON_MATCHING
 BOOL
 DBGWrite (u32 addr, const void* data, s32 size)
 {
@@ -221,6 +229,7 @@ DBGWrite (u32 addr, const void* data, s32 size)
 
     return !err;
 }
+
 BOOL
 DBGReadStatus (u32* status)
 {
@@ -241,6 +250,7 @@ DBGReadStatus (u32* status)
 
     return !err;
 }
+
 void
 MWCallback (u32 a, OSContext* b)
 {
@@ -250,6 +260,7 @@ MWCallback (u32 a, OSContext* b)
         MTRCallback (0);
     }
 }
+
 void
 DBGHandler (s16 a, OSContext* b)
 {
@@ -260,6 +271,7 @@ DBGHandler (s16 a, OSContext* b)
         DBGCallback (a, b);
     }
 }
+
 void
 DBInitComm (u8** a, MTRCallbackType b)
 {
@@ -272,6 +284,7 @@ DBInitComm (u8** a, MTRCallbackType b)
     }
     OSRestoreInterrupts (interr);
 }
+
 void
 DBInitInterrupts (void)
 {
@@ -281,6 +294,7 @@ DBInitInterrupts (void)
     __OSSetInterruptHandler (__OS_INTERRUPT_PI_DEBUG, DBGHandler);
     __OSUnmaskInterrupts (OS_INTERRUPTMASK_PI_DEBUG);
 }
+
 ONLY_GLMJ01
 void
 CheckMailBox (void)
@@ -300,6 +314,7 @@ CheckMailBox (void)
         }
     }
 }
+
 s32
 DBQueryData ()
 {
@@ -313,6 +328,7 @@ DBQueryData ()
     OSRestoreInterrupts (irq);
     return RecvDataLeng;
 }
+
 BOOL
 DBRead (const u32* data, s32 size)
 {
@@ -329,7 +345,7 @@ DBRead (const u32* data, s32 size)
 
     return DB_NO_ERROR;
 }
-// NON_MATCHING
+
 int
 DBWrite (const s32* data, u32 size)
 {
@@ -367,10 +383,12 @@ DBWrite (const s32* data, u32 size)
 
     return DB_NO_ERROR;
 }
+
 void
 DBOpen (void)
 {
 }
+
 void
 DBClose (void)
 {

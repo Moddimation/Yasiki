@@ -21,67 +21,66 @@ extern "C"
 // REG VERIF
 
 #if DEBUG
-#define VERIF_XF_REG(addr, value)                                                   \
-    do {                                                                            \
-        s32 regAddr = (addr);                                                       \
-        if (regAddr >= 0 && regAddr < 0x50)                                         \
-        {                                                                           \
-            __gxVerif->xfRegs[regAddr] = (value);                                   \
-            __gxVerif->xfRegsDirty[regAddr] = 1;                                    \
-        }                                                                           \
-    }                                                                               \
+#define VERIF_XF_REG(addr, value)                                                                  \
+    do {                                                                                           \
+        s32 regAddr = (addr);                                                                      \
+        if (regAddr >= 0 && regAddr < 0x50)                                                        \
+        {                                                                                          \
+            __gxVerif->xfRegs[regAddr] = (value);                                                  \
+            __gxVerif->xfRegsDirty[regAddr] = 1;                                                   \
+        }                                                                                          \
+    }                                                                                              \
     while (0)
 
-#define VERIF_XF_REG_alt(addr, value)                                               \
-    do {                                                                            \
-        s32 xfAddr = (addr);                                                        \
-        if (xfAddr >= 0 && xfAddr < 0x50)                                           \
-        {                                                                           \
-            __gxVerif->xfRegs[xfAddr] = (value);                                    \
-            __gxVerif->xfRegsDirty[xfAddr] = 1;                                     \
-        }                                                                           \
-    }                                                                               \
+#define VERIF_XF_REG_alt(addr, value)                                                              \
+    do {                                                                                           \
+        s32 xfAddr = (addr);                                                                       \
+        if (xfAddr >= 0 && xfAddr < 0x50)                                                          \
+        {                                                                                          \
+            __gxVerif->xfRegs[xfAddr] = (value);                                                   \
+            __gxVerif->xfRegsDirty[xfAddr] = 1;                                                    \
+        }                                                                                          \
+    }                                                                                              \
     while (0)
 
-#define VERIF_RAS_REG(value)                                                        \
-    (__gxVerif->rasRegs[((value) & 0xFF000000) >> 24] = value)
+#define VERIF_RAS_REG(value) (__gxVerif->rasRegs[((value) & 0xFF000000) >> 24] = value)
 
-#define VERIF_MTXLIGHT(addr, data)                                                  \
-    do {                                                                            \
-        s32 xfAddr;                                                                 \
-        if (addr < 0x400U)                                                          \
-        {                                                                           \
-            __gxVerif->xfMtx[addr] = data;                                          \
-            __gxVerif->xfMtxDirty[addr] = 1;                                        \
-        }                                                                           \
-        else if (addr < 0x500U)                                                     \
-        {                                                                           \
-            xfAddr = addr - 0x400;                                                  \
-            __gxVerif->xfNrm[xfAddr] = data;                                        \
-            __gxVerif->xfNrmDirty[xfAddr] = 1;                                      \
-        }                                                                           \
-        else if (addr < 0x600U)                                                     \
-        {                                                                           \
-            xfAddr = addr - 0x500;                                                  \
-            __gxVerif->xfDMtx[xfAddr] = data;                                       \
-            __gxVerif->xfDMtxDirty[xfAddr] = 1;                                     \
-        }                                                                           \
-        else if (addr < 0x680U)                                                     \
-        {                                                                           \
-            xfAddr = addr - 0x600;                                                  \
-            __gxVerif->xfLight[xfAddr] = data;                                      \
-            __gxVerif->xfLightDirty[xfAddr] = 1;                                    \
-        }                                                                           \
-        else                                                                        \
-        {                                                                           \
-            xfAddr = addr - 0x1000;                                                 \
-            if ((xfAddr >= 0) && (xfAddr < 0x50))                                   \
-            {                                                                       \
-                __gxVerif->xfRegs[xfAddr] = data;                                   \
-                __gxVerif->xfRegsDirty[xfAddr] = 1;                                 \
-            }                                                                       \
-        }                                                                           \
-    }                                                                               \
+#define VERIF_MTXLIGHT(addr, data)                                                                 \
+    do {                                                                                           \
+        s32 xfAddr;                                                                                \
+        if (addr < 0x400U)                                                                         \
+        {                                                                                          \
+            __gxVerif->xfMtx[addr] = data;                                                         \
+            __gxVerif->xfMtxDirty[addr] = 1;                                                       \
+        }                                                                                          \
+        else if (addr < 0x500U)                                                                    \
+        {                                                                                          \
+            xfAddr = addr - 0x400;                                                                 \
+            __gxVerif->xfNrm[xfAddr] = data;                                                       \
+            __gxVerif->xfNrmDirty[xfAddr] = 1;                                                     \
+        }                                                                                          \
+        else if (addr < 0x600U)                                                                    \
+        {                                                                                          \
+            xfAddr = addr - 0x500;                                                                 \
+            __gxVerif->xfDMtx[xfAddr] = data;                                                      \
+            __gxVerif->xfDMtxDirty[xfAddr] = 1;                                                    \
+        }                                                                                          \
+        else if (addr < 0x680U)                                                                    \
+        {                                                                                          \
+            xfAddr = addr - 0x600;                                                                 \
+            __gxVerif->xfLight[xfAddr] = data;                                                     \
+            __gxVerif->xfLightDirty[xfAddr] = 1;                                                   \
+        }                                                                                          \
+        else                                                                                       \
+        {                                                                                          \
+            xfAddr = addr - 0x1000;                                                                \
+            if ((xfAddr >= 0) && (xfAddr < 0x50))                                                  \
+            {                                                                                      \
+                __gxVerif->xfRegs[xfAddr] = data;                                                  \
+                __gxVerif->xfRegsDirty[xfAddr] = 1;                                                \
+            }                                                                                      \
+        }                                                                                          \
+    }                                                                                              \
     while (0)
 #else
 #define VERIF_XF_REG(addr, value)     ((void)0)
@@ -89,107 +88,103 @@ extern "C"
 #define VERIF_RAS_REG(value)          ((void)0)
 #endif
 
-#define GX_WRITE_XF_REG(addr, value)                                                \
-    do {                                                                            \
-        GX_WRITE_U8 (0x10);                                                         \
-        GX_WRITE_U32 (0x1000 + (addr));                                             \
-        GX_WRITE_U32 (value);                                                       \
-        VERIF_XF_REG (addr, value);                                                 \
-    }                                                                               \
+#define GX_WRITE_XF_REG(addr, value)                                                               \
+    do {                                                                                           \
+        GX_WRITE_U8 (0x10);                                                                        \
+        GX_WRITE_U32 (0x1000 + (addr));                                                            \
+        GX_WRITE_U32 (value);                                                                      \
+        VERIF_XF_REG (addr, value);                                                                \
+    }                                                                                              \
     while (0)
 
 #if DEBUG
-#define GX_WRITE_XF_REG_2(addr, value)                                              \
-    do {                                                                            \
-        u32 xfData = (value);                                                       \
-        &xfData;                                                                    \
-        GX_WRITE_U32 (value);                                                       \
-        VERIF_XF_REG_alt (addr, xfData);                                            \
-    }                                                                               \
+#define GX_WRITE_XF_REG_2(addr, value)                                                             \
+    do {                                                                                           \
+        u32 xfData = (value);                                                                      \
+        &xfData;                                                                                   \
+        GX_WRITE_U32 (value);                                                                      \
+        VERIF_XF_REG_alt (addr, xfData);                                                           \
+    }                                                                                              \
     while (0)
-#define GX_WRITE_XF_REG_F(addr, value)                                              \
-    do {                                                                            \
-        f32 xfData = (value);                                                       \
-        GX_WRITE_F32 (value);                                                       \
-        VERIF_XF_REG_alt (addr, *(u32*)&xfData);                                    \
-    }                                                                               \
+#define GX_WRITE_XF_REG_F(addr, value)                                                             \
+    do {                                                                                           \
+        f32 xfData = (value);                                                                      \
+        GX_WRITE_F32 (value);                                                                      \
+        VERIF_XF_REG_alt (addr, *(u32*)&xfData);                                                   \
+    }                                                                                              \
     while (0)
 #else
-#define GX_WRITE_XF_REG_2(addr, value)                                              \
-    do {                                                                            \
-        GX_WRITE_U32 (value);                                                       \
-    }                                                                               \
+#define GX_WRITE_XF_REG_2(addr, value)                                                             \
+    do {                                                                                           \
+        GX_WRITE_U32 (value);                                                                      \
+    }                                                                                              \
     while (0)
-#define GX_WRITE_XF_REG_F(addr, value)                                              \
-    do {                                                                            \
-        GX_WRITE_F32 (value);                                                       \
-    }                                                                               \
+#define GX_WRITE_XF_REG_F(addr, value)                                                             \
+    do {                                                                                           \
+        GX_WRITE_F32 (value);                                                                      \
+    }                                                                                              \
     while (0)
 #endif
 
-#define GX_WRITE_RAS_REG(value)                                                     \
-    do {                                                                            \
-        GX_WRITE_U8 (0x61);                                                         \
-        GX_WRITE_U32 (value);                                                       \
-        VERIF_RAS_REG (value);                                                      \
-    }                                                                               \
+#define GX_WRITE_RAS_REG(value)                                                                    \
+    do {                                                                                           \
+        GX_WRITE_U8 (0x61);                                                                        \
+        GX_WRITE_U32 (value);                                                                      \
+        VERIF_RAS_REG (value);                                                                     \
+    }                                                                                              \
     while (0)
 
-#define GX_WRITE_SOME_REG2(a, b, c, addr)                                           \
-    do {                                                                            \
-        s32 regAddr;                                                                \
-        GX_WRITE_U8 (a);                                                            \
-        GX_WRITE_U8 (b);                                                            \
-        GX_WRITE_U32 (c);                                                           \
-        regAddr = addr;                                                             \
-        if (regAddr >= 0 && regAddr < 4)                                            \
-        {                                                                           \
-            __GXData->indexBase[regAddr] = c;                                       \
-        }                                                                           \
-    }                                                                               \
+#define GX_WRITE_SOME_REG2(a, b, c, addr)                                                          \
+    do {                                                                                           \
+        s32 regAddr;                                                                               \
+        GX_WRITE_U8 (a);                                                                           \
+        GX_WRITE_U8 (b);                                                                           \
+        GX_WRITE_U32 (c);                                                                          \
+        regAddr = addr;                                                                            \
+        if (regAddr >= 0 && regAddr < 4)                                                           \
+        {                                                                                          \
+            __GXData->indexBase[regAddr] = c;                                                      \
+        }                                                                                          \
+    }                                                                                              \
     while (0)
-#define GX_WRITE_SOME_REG3(a, b, c, addr)                                           \
-    do {                                                                            \
-        s32 regAddr;                                                                \
-        GX_WRITE_U8 (a);                                                            \
-        GX_WRITE_U8 (b);                                                            \
-        GX_WRITE_U32 (c);                                                           \
-        regAddr = addr;                                                             \
-        if (regAddr >= 0 && regAddr < 4)                                            \
-        {                                                                           \
-            __GXData->indexStride[regAddr] = c;                                     \
-        }                                                                           \
-    }                                                                               \
+#define GX_WRITE_SOME_REG3(a, b, c, addr)                                                          \
+    do {                                                                                           \
+        s32 regAddr;                                                                               \
+        GX_WRITE_U8 (a);                                                                           \
+        GX_WRITE_U8 (b);                                                                           \
+        GX_WRITE_U32 (c);                                                                          \
+        regAddr = addr;                                                                            \
+        if (regAddr >= 0 && regAddr < 4)                                                           \
+        {                                                                                          \
+            __GXData->indexStride[regAddr] = c;                                                    \
+        }                                                                                          \
+    }                                                                                              \
     while (0)
-#define GX_WRITE_SOME_REG4(a, b, c, addr)                                           \
-    do {                                                                            \
-        s32 regAddr;                                                                \
-        GX_WRITE_U8 (a);                                                            \
-        GX_WRITE_U8 (b);                                                            \
-        GX_WRITE_U32 (c);                                                           \
-        regAddr = addr;                                                             \
-    }                                                                               \
-    while (0)
-
-#define GET_REG_FIELD(reg, size, shift)                                             \
-    ((int)((reg) >> (shift)) & ((1 << (size)) - 1))
-
-#define SET_REG_FIELD(line, reg, size, shift, val)                                  \
-    do {                                                                            \
-        ASSERTMSGLINE (line,                                                        \
-                       ((u32)(val) & ~((1 << (size)) - 1)) == 0,                    \
-                       "GX Internal: Register field out of range");                 \
-        (reg) = ((u32)(reg) & ~(((1 << (size)) - 1) << (shift))) |                  \
-                ((u32)(val) << (shift));                                            \
-    }                                                                               \
+#define GX_WRITE_SOME_REG4(a, b, c, addr)                                                          \
+    do {                                                                                           \
+        s32 regAddr;                                                                               \
+        GX_WRITE_U8 (a);                                                                           \
+        GX_WRITE_U8 (b);                                                                           \
+        GX_WRITE_U32 (c);                                                                          \
+        regAddr = addr;                                                                            \
+    }                                                                                              \
     while (0)
 
-#define CHECK_GXBEGIN(line, name)                                                   \
-    ASSERTMSGLINE (                                                                 \
-        line, !__GXinBegin, "'" name "' is not allowed between GXBegin/GXEnd")
-#define CHECK_IN_BEGIN(line, f)                                                     \
-    ASSERTMSGLINE (                                                                 \
-        line, !__GXinBegin, "'" #f "' is not allowed between GXBegin/GXEnd")
+#define GET_REG_FIELD(reg, size, shift) ((int)((reg) >> (shift)) & ((1 << (size)) - 1))
+
+#define SET_REG_FIELD(line, reg, size, shift, val)                                                 \
+    do {                                                                                           \
+        ASSERTMSGLINE (line,                                                                       \
+                       ((u32)(val) & ~((1 << (size)) - 1)) == 0,                                   \
+                       "GX Internal: Register field out of range");                                \
+        (reg) = ((u32)(reg) & ~(((1 << (size)) - 1) << (shift))) | ((u32)(val) << (shift));        \
+    }                                                                                              \
+    while (0)
+
+#define CHECK_GXBEGIN(line, name)                                                                  \
+    ASSERTMSGLINE (line, !__GXinBegin, "'" name "' is not allowed between GXBegin/GXEnd")
+#define CHECK_IN_BEGIN(line, f)                                                                    \
+    ASSERTMSGLINE (line, !__GXinBegin, "'" #f "' is not allowed between GXBegin/GXEnd")
 
 /* GXAttr */
 void __GXSetVCD (void);
@@ -198,6 +193,7 @@ void __GXSetVAT (void);
 /* GXBump */
 void __GXUpdateBPMask (void);
 void __GXFlushTextureState (void);
+
 /* GXFifo */
 // GXFifoObj private data
 typedef struct __GXFifoObj
@@ -213,6 +209,7 @@ typedef struct __GXFifoObj
     u8    bind_cpu;
     u8    bind_gp;
 } __GXFifoObj;
+
 void __GXSaveCPUFifoAux (__GXFifoObj* realFifo);
 void __GXFifoInit (void);
 void __GXInsaneWatermark (void);
@@ -222,6 +219,7 @@ void __GXCleanGPFifo (void);
 void __GXSetDirtyState (void);
 void __GXSendFlushPrim (void);
 void __GXSetGenMode (void);
+
 typedef struct __GXData_struct
 {
     u16           vNum;                              // offset 0x0, size 0x2
@@ -301,6 +299,7 @@ typedef struct __GXData_struct
     u8            dirtyVAT;                          // offset 0x4EE, size 0x1
     u32           dirtyState;                        // offset 0x4F0, size 0x4
 } GXData;
+
 extern GXData* __GXData;
 extern void*   __memReg;
 extern void*   __peReg;
@@ -311,20 +310,15 @@ extern void*   __piReg;
 extern GXBool __GXinBegin;
 #endif
 
-#define GX_GET_MEM_REG(offset)                                                      \
-    (*(volatile u16*)((volatile u16*)(__memReg) + (offset)))
-#define GX_GET_CP_REG(offset) (*(volatile u16*)((volatile u16*)(__cpReg) + (offset)))
-#define GX_GET_PE_REG(offset) (*(volatile u16*)((volatile u16*)(__peReg) + (offset)))
-#define GX_GET_PI_REG(offset) (*(volatile u32*)((volatile u32*)(__piReg) + (offset)))
+#define GX_GET_MEM_REG(offset)      (*(volatile u16*)((volatile u16*)(__memReg) + (offset)))
+#define GX_GET_CP_REG(offset)       (*(volatile u16*)((volatile u16*)(__cpReg) + (offset)))
+#define GX_GET_PE_REG(offset)       (*(volatile u16*)((volatile u16*)(__peReg) + (offset)))
+#define GX_GET_PI_REG(offset)       (*(volatile u32*)((volatile u32*)(__piReg) + (offset)))
 
-#define GX_SET_MEM_REG(offset, val)                                                 \
-    (*(volatile u16*)((volatile u16*)(__memReg) + (offset)) = val)
-#define GX_SET_CP_REG(offset, val)                                                  \
-    (*(volatile u16*)((volatile u16*)(__cpReg) + (offset)) = val)
-#define GX_SET_PE_REG(offset, val)                                                  \
-    (*(volatile u16*)((volatile u16*)(__peReg) + (offset)) = val)
-#define GX_SET_PI_REG(offset, val)                                                  \
-    (*(volatile u32*)((volatile u32*)(__piReg) + (offset)) = val)
+#define GX_SET_MEM_REG(offset, val) (*(volatile u16*)((volatile u16*)(__memReg) + (offset)) = val)
+#define GX_SET_CP_REG(offset, val)  (*(volatile u16*)((volatile u16*)(__cpReg) + (offset)) = val)
+#define GX_SET_PE_REG(offset, val)  (*(volatile u16*)((volatile u16*)(__peReg) + (offset)) = val)
+#define GX_SET_PI_REG(offset, val)  (*(volatile u32*)((volatile u32*)(__piReg) + (offset)) = val)
 
 /* GXMisc */
 void __GXBypass (u32 reg);
@@ -333,8 +327,8 @@ void __GXPEInit (void);
 void __GXAbort ();
 
 /* GXPerf */
-void __GXSetBWDials (
-    u16 cpDial, u16 tcDial, u16 peDial, u16 cpuRdDial, u16 cpuWrDial);
+void __GXSetBWDials (u16 cpDial, u16 tcDial, u16 peDial, u16 cpuRdDial, u16 cpuWrDial);
+
 static inline u32
 __GXReadCPCounterU32 (u32 regAddrL, u32 regAddrH)
 {
@@ -353,6 +347,7 @@ __GXReadCPCounterU32 (u32 regAddrL, u32 regAddrH)
 
     return (ctrH0 << 0x10) | ctrL;
 }
+
 static inline u32
 __GXReadMEMCounterU32 (u32 regAddrL, u32 regAddrH)
 {
@@ -371,6 +366,7 @@ __GXReadMEMCounterU32 (u32 regAddrL, u32 regAddrH)
 
     return (ctrH0 << 0x10) | ctrL;
 }
+
 static inline u32
 __GXReadPECounterU32 (u32 regAddrL, u32 regAddrH)
 {
@@ -389,6 +385,7 @@ __GXReadPECounterU32 (u32 regAddrL, u32 regAddrH)
 
     return (ctrH0 << 0x10) | ctrL;
 }
+
 /* GXSave */
 void __GXShadowDispList (void* list, u32 nbytes);
 void __GXShadowIndexState (u32 idx_reg, u32 reg_data);
@@ -398,8 +395,12 @@ void __GXPrintShadowState (void);
 void __GXSetRange (f32 nearz, f32 fgSideX);
 
 /* GXTexture */
-void __GetImageTileCount (
-    GXTexFmt fmt, u16 wd, u16 ht, u32* rowTiles, u32* colTiles, u32* cmpTiles);
+void __GetImageTileCount (GXTexFmt fmt,
+                          u16      wd,
+                          u16      ht,
+                          u32*     rowTiles,
+                          u32*     colTiles,
+                          u32*     cmpTiles);
 void __GXSetSUTexRegs (void);
 void __GXGetSUTexSize (GXTexCoordID coord, u16* width, u16* height);
 void __GXSetTmemConfig (u32 config);
@@ -415,6 +416,7 @@ void __GXVerifyBUMP (void);
 void __GXVerifyTEX (void);
 void __GXVerifyTEV (void);
 void __GXVerifyPE (void);
+
 /* GXVerif */
 typedef enum
 {
@@ -533,21 +535,23 @@ typedef enum
     GXWARN_REG_UNINIT = 112,
     GXWARN_MAX = 113,
 } GXWarnID;
+
 #define __GX_WARN(id) (__gxVerif->cb (__gxvWarnLev[(id)], (id), __gxvWarnings[(id)]))
-#define __GX_WARNF(id, ...)                                                         \
-    do {                                                                            \
-        sprintf (__gxvDummyStr, __gxvWarnings[(id)], __VA_ARGS__);                  \
-        __gxVerif->cb (__gxvWarnLev[(id)], (id), __gxvDummyStr);                    \
-    }                                                                               \
+#define __GX_WARNF(id, ...)                                                                        \
+    do {                                                                                           \
+        sprintf (__gxvDummyStr, __gxvWarnings[(id)], __VA_ARGS__);                                 \
+        __gxVerif->cb (__gxvWarnLev[(id)], (id), __gxvDummyStr);                                   \
+    }                                                                                              \
     while (0)
 
 #define __GX_WARN2(level, id) (__gxVerif->cb (level, (id), __gxvWarnings[(id)]))
-#define __GX_WARN2F(level, id, ...)                                                 \
-    do {                                                                            \
-        sprintf (__gxvDummyStr, __gxvWarnings[(id)], __VA_ARGS__);                  \
-        __gxVerif->cb (level, (id), __gxvDummyStr);                                 \
-    }                                                                               \
+#define __GX_WARN2F(level, id, ...)                                                                \
+    do {                                                                                           \
+        sprintf (__gxvDummyStr, __gxvWarnings[(id)], __VA_ARGS__);                                 \
+        __gxVerif->cb (level, (id), __gxvDummyStr);                                                \
+    }                                                                                              \
     while (0)
+
 typedef struct __GXVerifyData
 {
     GXVerifyCallback cb;
@@ -564,6 +568,7 @@ typedef struct __GXVerifyData
     u8               xfDMtxDirty[256];
     u8               xfLightDirty[128];
 } __GXVerifyData;
+
 extern __GXVerifyData* __gxVerif;
 extern char*           __gxvWarnings[125];
 extern s8              __gxvDummyStr[256];

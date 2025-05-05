@@ -8,26 +8,20 @@
 #ifndef _MSL_WMEM_H
 #define _MSL_WMEM_H
 
-#include <ansi_parms.h>                                            /*- mm 970905 -*/
+#include <ansi_parms.h>                                                     /*- mm 970905 -*/
 #include <cstddef>
 #include <mem_funcs.h>
 
-_MSL_BEGIN_NAMESPACE_STD                                           /*- cc 010409 -*/
-    _MSL_BEGIN_EXTERN_C                                            /*- cc 010409 -*/
+_MSL_BEGIN_NAMESPACE_STD                                                    /*- cc 010409 -*/
+    _MSL_BEGIN_EXTERN_C                                                     /*- cc 010409 -*/
 
-        _MSL_IMP_EXP_C wchar_t*(wmemcpy)(wchar_t*,
-                                         const wchar_t*,
-                                         size_t);                  /*- mm 980909 -*/
-_MSL_IMP_EXP_C wchar_t*(wmemmove)(wchar_t*,
-                                  const wchar_t*,
-                                  size_t);                         /*- mm 980909 -*/
-_MSL_IMP_EXP_C wchar_t*(wmemset)(wchar_t*, wchar_t, size_t);       /*- mm 980909 -*/
-_MSL_IMP_EXP_C wchar_t*(wmemchr)(const wchar_t*, wchar_t, size_t); /*- mm 980909 -*/
-_MSL_IMP_EXP_C int (wmemcmp) (const wchar_t*,
-                              const wchar_t*,
-                              size_t);                             /*- mm 980909 -*/
+        _MSL_IMP_EXP_C wchar_t*(wmemcpy)(wchar_t*, const wchar_t*, size_t); /*- mm 980909 -*/
+_MSL_IMP_EXP_C wchar_t*(wmemmove)(wchar_t*, const wchar_t*, size_t);        /*- mm 980909 -*/
+_MSL_IMP_EXP_C wchar_t*(wmemset)(wchar_t*, wchar_t, size_t);                /*- mm 980909 -*/
+_MSL_IMP_EXP_C wchar_t*(wmemchr)(const wchar_t*, wchar_t, size_t);          /*- mm 980909 -*/
+_MSL_IMP_EXP_C int (wmemcmp) (const wchar_t*, const wchar_t*, size_t);      /*- mm 980909 -*/
 
-_MSL_END_EXTERN_C                                                  /*- cc 010409 -*/
+_MSL_END_EXTERN_C                                                           /*- cc 010409 -*/
 
 #if defined(__cplusplus) && __embedded_cplusplus == 0
 
@@ -39,7 +33,7 @@ _MSL_END_EXTERN_C                                                  /*- cc 010409
 
 #endif
 
-_MSL_END_NAMESPACE_STD                                             /*- cc 010409 -*/
+_MSL_END_NAMESPACE_STD                                                      /*- cc 010409 -*/
 
 #endif /* #ifndef _MSL_WMEM_H */
 

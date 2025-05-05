@@ -21,6 +21,7 @@ static s16                  FontSpace; // size: 0x2, address: 0xE
 // functions
 static void DrawFontChar (int x, int y, int z, int xChar, int yChar);
 static void LoadSheet (void* image, enum _GXTexMapID texMapID);
+
 void
 DEMOSetFontType (DMFontType attr)
 {
@@ -38,6 +39,7 @@ DEMOSetFontType (DMFontType attr)
             break;
     }
 }
+
 void
 DEMOLoadFont (enum _GXTexMapID texMap, enum _GXTexMtx texMtx, DMTexFlt texFlt)
 {
@@ -47,8 +49,7 @@ DEMOLoadFont (enum _GXTexMapID texMap, enum _GXTexMtx texMtx, DMTexFlt texFlt)
 
     width = 64;
     height = 0x1800 / width;
-    GXInitTexObj (
-        &fontTexObj, (void*)DEMOFontBitmap, width, (u16)height, 0, 0, 0, 0);
+    GXInitTexObj (&fontTexObj, (void*)DEMOFontBitmap, width, (u16)height, 0, 0, 0, 0);
     fontShift = 1;
     if (texFlt == 0)
     {
@@ -56,14 +57,12 @@ DEMOLoadFont (enum _GXTexMapID texMap, enum _GXTexMtx texMtx, DMTexFlt texFlt)
         fontShift = 0;
     }
     GXLoadTexObj (&fontTexObj, texMap);
-    MTXScale (fontTMtx,
-              1.0f / (width - !fontShift),
-              1.0f / ((u16)height - !fontShift),
-              1.0f);
+    MTXScale (fontTMtx, 1.0f / (width - !fontShift), 1.0f / ((u16)height - !fontShift), 1.0f);
     GXLoadTexMtxImm (fontTMtx, texMtx, 1);
     GXSetNumTexGens (1);
     GXSetTexCoordGen (0, 1, 4, texMtx);
 }
+
 void
 DEMOSetupScrnSpc (s32 width, long height, float depth)
 {
@@ -76,6 +75,7 @@ DEMOSetupScrnSpc (s32 width, long height, float depth)
     GXLoadPosMtxImm (mMtx, 0);
     GXSetCurrentMtx (0);
 }
+
 void
 DEMOInitCaption (s32 font_type, long width, long height)
 {
@@ -88,6 +88,7 @@ DEMOInitCaption (s32 font_type, long width, long height)
     DEMOLoadFont (0, 0x1E, 0);
     DEMOSetFontType (font_type);
 }
+
 void
 DEMOPuts (s16 x, s16 y, s16 z, char* string)
 {
@@ -149,6 +150,7 @@ DEMOPuts (s16 x, s16 y, s16 z, char* string)
         }
     }
 }
+
 void
 DEMOPrintf (s16 x, s16 y, s16 z, char* fmt, ...)
 {
@@ -160,6 +162,7 @@ DEMOPrintf (s16 x, s16 y, s16 z, char* fmt, ...)
     DEMOPuts (x, y, z, buf);
     va_end (vlist);
 }
+
 struct OSFontHeader*
 DEMOInitROMFont ()
 {
@@ -177,29 +180,29 @@ DEMOInitROMFont ()
     }
     if (OSInitFont (FontData) == 0)
     {
-        OSPanic (
-            __FILE__, 0x1A1, "ROM font is available in boot ROM ver 0.8 or later.");
+        OSPanic (__FILE__, 0x1A1, "ROM font is available in boot ROM ver 0.8 or later.");
     }
     FontSize = FontData->cellWidth * 0x10;
     FontSpace = -0x10;
     return FontData;
 }
+
 void
 DEMOSetROMFontSize (s16 size, s16 space)
 {
     FontSize = size * 0x10;
     FontSpace = space * 0x10;
 }
+
 static void
 DrawFontChar (int x, int y, int z, int xChar, int yChar)
 {
     s16 posLeft = x;
-    s16 posRight =
-        posLeft + ((FontSize * FontData->cellWidth) / FontData->cellWidth);
+    s16 posRight = posLeft + ((FontSize * FontData->cellWidth) / FontData->cellWidth);
     s16 posBottom = y;
-    s16 posTop = y - ((FontData->cellHeight *
-                       ((FontData->cellHeight * FontSize) / FontData->cellWidth)) /
-                      FontData->cellHeight);
+    s16 posTop =
+        y - ((FontData->cellHeight * ((FontData->cellHeight * FontSize) / FontData->cellWidth)) /
+             FontData->cellHeight);
     s16 texLeft = xChar;
     s16 texTop = yChar;
     s16 texRight = (xChar + FontData->cellWidth);
@@ -216,6 +219,7 @@ DrawFontChar (int x, int y, int z, int xChar, int yChar)
     GXTexCoord2s16 (texLeft, texBottom);
     GXEnd();
 }
+
 static void
 LoadSheet (void* image, enum _GXTexMapID texMapID)
 {
@@ -235,13 +239,13 @@ LoadSheet (void* image, enum _GXTexMapID texMapID)
                       0);
         GXInitTexObjLOD (&texObj, 1, 1, 0, 0, 0, 0.0f, 0.0f, 0.0f);
         GXLoadTexObj (&texObj, texMapID);
-        MTXScale (
-            mtx, 1.0f / FontData->sheetWidth, 1.0f / FontData->sheetHeight, 1.0f);
+        MTXScale (mtx, 1.0f / FontData->sheetWidth, 1.0f / FontData->sheetHeight, 1.0f);
         GXLoadTexMtxImm (mtx, 0x1E, 1);
         GXSetNumTexGens (1);
         GXSetTexCoordGen (0, 1, 4, 0x1E);
     }
 }
+
 int
 DEMORFPuts (s16 x, s16 y, s16 z, char* string)
 {
@@ -282,6 +286,7 @@ DEMORFPuts (s16 x, s16 y, s16 z, char* string)
     }
     return (width + 0xF) / 16;
 }
+
 int
 DEMORFPutsEx (s16 x, s16 y, s16 z, char* string, s16 maxWidth, int length)
 {
@@ -330,6 +335,7 @@ DEMORFPutsEx (s16 x, s16 y, s16 z, char* string, s16 maxWidth, int length)
     }
     return (width + 0xF) / 16;
 }
+
 int
 DEMORFPrintf (s16 x, s16 y, s16 z, char* fmt, ...)
 {
@@ -340,6 +346,7 @@ DEMORFPrintf (s16 x, s16 y, s16 z, char* fmt, ...)
     vsprintf (buf, fmt, vlist);
     DEMORFPuts (x, y, z, buf);
 }
+
 char*
 DEMODumpROMFont (char* string)
 {
@@ -377,6 +384,7 @@ DEMODumpROMFont (char* string)
     OSInitFont (FontData);
     return string;
 }
+
 int
 DEMOGetRFTextWidth (char* string)
 {

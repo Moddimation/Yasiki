@@ -12,6 +12,7 @@ extern "C"
 
 #define OS_BOOTINFO_MAGIC      0x0D15EA5E
 #define OS_BOOTINFO_MAGIC_JTAG 0xE5207C22
+
 typedef struct OSBootInfo_s
 {
     // total size: 0x40
@@ -39,6 +40,7 @@ typedef struct BI2Debug
     u32 dvdLongFileNameFlag; ///< 0x20
     u32 padSpec;             ///< 0x24
 } BI2Debug;
+
 // Magic number defines.
 #define OS_BOOTINFO_MAGIC      0x0D15EA5E
 #define OS_BOOTINFO_MAGIC_JTAG 0xE5207C22

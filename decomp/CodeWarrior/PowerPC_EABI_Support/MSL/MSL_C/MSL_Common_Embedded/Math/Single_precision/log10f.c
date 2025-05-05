@@ -6,9 +6,8 @@
 #define __log10_2  0.301029995664f
 #define __sqrt2_m1 .41421356237f
 
-static const float _log10_poly[] = {
-    0.868588961f, 0.289530878375f, 0.173569242f, 0.1307240643f
-};
+static const float _log10_poly[] = { 0.868588961f, 0.289530878375f, 0.173569242f, 0.1307240643f };
+
 float
 log10f (float x)
 {
@@ -45,9 +44,7 @@ log10f (float x)
 
                 x = 1.0f - (2.0f / (x + 1.0f));
                 zsq = x * x;
-                y = (((_log10_poly[3] * zsq + _log10_poly[2]) * zsq +
-                      _log10_poly[1]) *
-                         zsq +
+                y = (((_log10_poly[3] * zsq + _log10_poly[2]) * zsq + _log10_poly[1]) * zsq +
                      _log10_poly[0]) *
                     x;
                 tmp = y; // truncated toward zero

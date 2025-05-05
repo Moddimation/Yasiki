@@ -36,22 +36,16 @@ void GXSetTevColorS10 (GXTevRegID id, GXColorS10 color);
 void GXSetTevKColor (GXTevKColorID id, GXColor color);
 void GXSetTevKColorSel (GXTevStageID stage, GXTevKColorSel sel);
 void GXSetTevKAlphaSel (GXTevStageID stage, GXTevKAlphaSel sel);
-void GXSetTevSwapMode (GXTevStageID stage,
-                       GXTevSwapSel ras_sel,
-                       GXTevSwapSel tex_sel);
+void GXSetTevSwapMode (GXTevStageID stage, GXTevSwapSel ras_sel, GXTevSwapSel tex_sel);
 void GXSetTevSwapModeTable (GXTevSwapSel   table,
                             GXTevColorChan red,
                             GXTevColorChan green,
                             GXTevColorChan blue,
                             GXTevColorChan alpha);
 void GXSetTevClampMode (void);
-void GXSetAlphaCompare (
-    GXCompare comp0, u8 ref0, GXAlphaOp op, GXCompare comp1, u8 ref1);
+void GXSetAlphaCompare (GXCompare comp0, u8 ref0, GXAlphaOp op, GXCompare comp1, u8 ref1);
 void GXSetZTexture (GXZTexOp op, GXTexFmt fmt, u32 bias);
-void GXSetTevOrder (GXTevStageID stage,
-                    GXTexCoordID coord,
-                    GXTexMapID   map,
-                    GXChannelID  color);
+void GXSetTevOrder (GXTevStageID stage, GXTexCoordID coord, GXTexMapID map, GXChannelID color);
 void GXSetNumTevStages (u8 nStages);
 
 #ifdef __cplusplus

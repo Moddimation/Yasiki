@@ -6,6 +6,7 @@
 #include <stddef.h>
 
 #include "GXPrivate.h"
+
 void
 __GXSetDirtyState (void)
 {
@@ -31,12 +32,12 @@ __GXSetDirtyState (void)
     }
     __GXData->dirtyState = 0;
 }
+
 void
 GXBegin (GXPrimitive type, GXVtxFmt vtxfmt, u16 nverts)
 {
     ASSERTMSGLINE (0x157, vtxfmt < 8, "GXBegin: Format Index is out of range");
-    ASSERTMSGLINE (
-        0x158, !__GXinBegin, "GXBegin: called inside another GXBegin/GXEnd");
+    ASSERTMSGLINE (0x158, !__GXinBegin, "GXBegin: called inside another GXBegin/GXEnd");
 
     if (__GXData->dirtyState != 0)
     {
@@ -56,6 +57,7 @@ GXBegin (GXPrimitive type, GXVtxFmt vtxfmt, u16 nverts)
     GX_WRITE_U8 (vtxfmt | type);
     GX_WRITE_U16 (nverts);
 }
+
 void
 __GXSendFlushPrim (void)
 {
@@ -70,6 +72,7 @@ __GXSendFlushPrim (void)
     }
     __GXData->bpSent = 0;
 }
+
 void
 GXSetLineWidth (u8 width, GXTexOffset texOffsets)
 {
@@ -79,15 +82,16 @@ GXSetLineWidth (u8 width, GXTexOffset texOffsets)
     GX_WRITE_RAS_REG (__GXData->lpSize);
     __GXData->bpSent = 1;
 }
+
 void
 GXGetLineWidth (u8* width, GXTexOffset* texOffsets)
 {
-    ASSERTMSGLINE (
-        0x1BF, width != NULL && texOffsets != NULL, "GXGet*: invalid null pointer");
+    ASSERTMSGLINE (0x1BF, width != NULL && texOffsets != NULL, "GXGet*: invalid null pointer");
 
     *width = GET_REG_FIELD (__GXData->lpSize, 8, 0);
     *texOffsets = GET_REG_FIELD (__GXData->lpSize, 3, 16);
 }
+
 void
 GXSetPointSize (u8 pointSize, GXTexOffset texOffsets)
 {
@@ -97,16 +101,16 @@ GXSetPointSize (u8 pointSize, GXTexOffset texOffsets)
     GX_WRITE_RAS_REG (__GXData->lpSize);
     __GXData->bpSent = 1;
 }
+
 void
 GXGetPointSize (u8* pointSize, GXTexOffset* texOffsets)
 {
-    ASSERTMSGLINE (0x1EB,
-                   pointSize != NULL && texOffsets != NULL,
-                   "GXGet*: invalid null pointer");
+    ASSERTMSGLINE (0x1EB, pointSize != NULL && texOffsets != NULL, "GXGet*: invalid null pointer");
 
     *pointSize = (int)GET_REG_FIELD (__GXData->lpSize, 8, 8);
     *texOffsets = GET_REG_FIELD (__GXData->lpSize, 3, 19);
 }
+
 void
 GXEnableTexOffsets (GXTexCoordID coord, u8 line_enable, u8 point_enable)
 {
@@ -119,6 +123,7 @@ GXEnableTexOffsets (GXTexCoordID coord, u8 line_enable, u8 point_enable)
     GX_WRITE_RAS_REG (__GXData->suTs0[coord]);
     __GXData->bpSent = 1;
 }
+
 void
 GXSetCullMode (GXCullMode mode)
 {
@@ -140,6 +145,7 @@ GXSetCullMode (GXCullMode mode)
     SET_REG_FIELD (0x225, __GXData->genMode, 2, 14, hwMode);
     __GXData->dirtyState |= 4;
 }
+
 void
 GXGetCullMode (GXCullMode* mode)
 {
@@ -158,6 +164,7 @@ GXGetCullMode (GXCullMode* mode)
             break;
     }
 }
+
 void
 GXSetCoPlanar (GXBool enable)
 {
@@ -170,6 +177,7 @@ GXSetCoPlanar (GXBool enable)
     GX_WRITE_RAS_REG (reg);
     GX_WRITE_RAS_REG (__GXData->genMode);
 }
+
 void
 __GXSetGenMode (void)
 {

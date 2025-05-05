@@ -1,11 +1,7 @@
-#ifndef __JKR_DISPOSER_HPP__
-#define __JKR_DISPOSER_HPP__
+#ifndef __JKR_DISPOSER_H__
+#define __JKR_DISPOSER_H__
 
-#include <JSUList.hpp>
-
-// find where to put these
-#define constructor explicit
-#define destructor  virtual
+#include <JSUList.h>
 
 class JKRHeap;
 

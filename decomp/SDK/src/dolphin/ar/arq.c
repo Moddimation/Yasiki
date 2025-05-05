@@ -16,6 +16,7 @@ static ARQCallback        __ARQCallbackHi;
 static ARQCallback        __ARQCallbackLo;
 static u32                __ARQChunkSize;
 static int                __ARQ_init_flag;
+
 void
 __ARQPopTaskQueueHi (void)
 {
@@ -40,6 +41,7 @@ __ARQPopTaskQueueHi (void)
         __ARQRequestQueueHi = __ARQRequestQueueHi->next;
     }
 }
+
 void
 __ARQServiceQueueLo (void)
 {
@@ -87,10 +89,12 @@ __ARQServiceQueueLo (void)
         __ARQRequestPendingLo->dest += __ARQChunkSize;
     }
 }
+
 void
 __ARQCallbackHack (u32 unused)
 {
 }
+
 void
 __ARQInterruptServiceRoutine ()
 {
@@ -112,12 +116,14 @@ __ARQInterruptServiceRoutine ()
         __ARQServiceQueueLo();
     }
 }
+
 void
 __ARQInitTempQueue (void)
 {
     __ARQRequestQueueTemp = NULL;
     __ARQRequestTailTemp = NULL;
 }
+
 void
 __ARQPushTempQueue (struct ARQRequest* task)
 {
@@ -130,6 +136,7 @@ __ARQPushTempQueue (struct ARQRequest* task)
     __ARQRequestTailTemp->next = task;
     __ARQRequestTailTemp = task;
 }
+
 void
 ARQInit (void)
 {
@@ -145,11 +152,13 @@ ARQInit (void)
         __ARQ_init_flag = 1;
     }
 }
+
 void
 ARQReset (void)
 {
     __ARQ_init_flag = 0;
 }
+
 void
 ARQPostRequest (struct ARQRequest* request,
                 u32                owner,
@@ -163,10 +172,8 @@ ARQPostRequest (struct ARQRequest* request,
     int level;
 
     ASSERTLINE (0x1A9, request);
-    ASSERTLINE (0x1AA,
-                (type == ARQ_TYPE_MRAM_TO_ARAM) || (type == ARQ_TYPE_ARAM_TO_MRAM));
-    ASSERTLINE (0x1AB,
-                (priority == ARQ_PRIORITY_LOW) || (priority == ARQ_PRIORITY_HIGH));
+    ASSERTLINE (0x1AA, (type == ARQ_TYPE_MRAM_TO_ARAM) || (type == ARQ_TYPE_ARAM_TO_MRAM));
+    ASSERTLINE (0x1AB, (priority == ARQ_PRIORITY_LOW) || (priority == ARQ_PRIORITY_HIGH));
     ASSERTLINE (0x1AE, (length % ARQ_DMA_ALIGNMENT) == 0);
     request->next = NULL;
     request->owner = owner;
@@ -218,6 +225,7 @@ ARQPostRequest (struct ARQRequest* request,
     }
     OSRestoreInterrupts (level);
 }
+
 void
 ARQRemoveRequest (struct ARQRequest* request)
 {
@@ -226,8 +234,7 @@ ARQRemoveRequest (struct ARQRequest* request)
 
     level = OSDisableInterrupts();
     __ARQInitTempQueue();
-    for (thisRequest = __ARQRequestQueueHi; thisRequest;
-         thisRequest = thisRequest->next)
+    for (thisRequest = __ARQRequestQueueHi; thisRequest; thisRequest = thisRequest->next)
     {
         if (thisRequest != request)
         {
@@ -237,8 +244,7 @@ ARQRemoveRequest (struct ARQRequest* request)
     __ARQRequestQueueHi = __ARQRequestQueueTemp;
     __ARQRequestTailHi = __ARQRequestTailTemp;
     __ARQInitTempQueue();
-    for (thisRequest = __ARQRequestQueueLo; thisRequest;
-         thisRequest = thisRequest->next)
+    for (thisRequest = __ARQRequestQueueLo; thisRequest; thisRequest = thisRequest->next)
     {
         if (thisRequest != request)
         {
@@ -247,13 +253,13 @@ ARQRemoveRequest (struct ARQRequest* request)
     }
     __ARQRequestQueueLo = __ARQRequestQueueTemp;
     __ARQRequestTailLo = __ARQRequestTailTemp;
-    if ((__ARQRequestPendingLo) && (__ARQRequestPendingLo == request) &&
-        (__ARQCallbackLo == 0))
+    if ((__ARQRequestPendingLo) && (__ARQRequestPendingLo == request) && (__ARQCallbackLo == 0))
     {
         __ARQRequestPendingLo = NULL;
     }
     OSRestoreInterrupts (level);
 }
+
 void
 ARQRemoveOwnerRequest (u32 owner)
 {
@@ -262,8 +268,7 @@ ARQRemoveOwnerRequest (u32 owner)
 
     level = OSDisableInterrupts();
     __ARQInitTempQueue();
-    for (thisRequest = __ARQRequestQueueHi; thisRequest;
-         thisRequest = thisRequest->next)
+    for (thisRequest = __ARQRequestQueueHi; thisRequest; thisRequest = thisRequest->next)
     {
         if (thisRequest->owner != owner)
         {
@@ -273,8 +278,7 @@ ARQRemoveOwnerRequest (u32 owner)
     __ARQRequestQueueHi = __ARQRequestQueueTemp;
     __ARQRequestTailHi = __ARQRequestTailTemp;
     __ARQInitTempQueue();
-    for (thisRequest = __ARQRequestQueueLo; thisRequest;
-         thisRequest = thisRequest->next)
+    for (thisRequest = __ARQRequestQueueLo; thisRequest; thisRequest = thisRequest->next)
     {
         if (thisRequest->owner != owner)
         {
@@ -290,6 +294,7 @@ ARQRemoveOwnerRequest (u32 owner)
     }
     OSRestoreInterrupts (level);
 }
+
 void
 ARQFlushQueue (void)
 {
@@ -306,6 +311,7 @@ ARQFlushQueue (void)
     }
     OSRestoreInterrupts (level);
 }
+
 void
 ARQSetChunkSize (u32 size)
 {
@@ -319,6 +325,7 @@ ARQSetChunkSize (u32 size)
     }
     __ARQChunkSize = size;
 }
+
 u32
 ARQGetChunkSize (void)
 {

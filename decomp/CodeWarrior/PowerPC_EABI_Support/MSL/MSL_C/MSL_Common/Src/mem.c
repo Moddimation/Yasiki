@@ -41,7 +41,7 @@ void*(memcpy)(register void* dst, register const void* src, register size_t n)
 {
 #if __dest_os == __mac_os && !defined(_No_BlockMove)
 
-#if __POWERPC__ /*  PowerPC && mac_os optimization  */
+#if __POWERPC__                                    /*  PowerPC && mac_os optimization  */
 
     /*Assumptions:		990129 BLC
      *
@@ -142,19 +142,19 @@ void*(memcpy)(register void* dst, register const void* src, register size_t n)
 
     return dst;
 
-#else           /*  do BlockMoveData on non-PPC MacOS architectures */
+#else                         /*  do BlockMoveData on non-PPC MacOS architectures */
 
     BlockMoveData (src, dst, n);
 
-#endif          /*  __POWERPC  */
+#endif                        /*  __POWERPC  */
 
-#else           /* __dest_os != __mac_os || _No_BlockMove */
+#else                         /* __dest_os != __mac_os || _No_BlockMove */
 
     const char* p = (char*)src;
     char*       q = (char*)dst;
 
-#if !defined(__MIPS__) && !defined(__SH__) && !defined(__MCORE__) &&                \
-    !defined(__m56800__) && !defined(__m56800E__) /*- ah 010129 -*/
+#if !defined(__MIPS__) && !defined(__SH__) && !defined(__MCORE__) && !defined(__m56800__) &&       \
+    !defined(__m56800E__)     /*- ah 010129 -*/
 
     if (n >= __min_bytes_for_long_copy)
     {
@@ -289,13 +289,13 @@ void*(memmove)(void* dst, const void* src, size_t n)
 
     return dst;
 
-#else  /* end optimization __POWERPC__ && MacOS architectures */
+#else                         /* end optimization __POWERPC__ && MacOS architectures */
 
     BlockMoveData (src, dst, n);
 
-#endif /* __POWERPC__  */
+#endif                        /* __POWERPC__  */
 
-#else  /* __dest_os != __mac_os || _No_BlockMove */
+#else                         /* __dest_os != __mac_os || _No_BlockMove */
 
     const char* p;
     char*       q;
@@ -357,11 +357,11 @@ void*(memmove)(void* dst, const void* src, size_t n)
         }
     }
 
-#endif /* __dest_os == __mac_os && !_No_BlockMove */
+#endif                        /* __dest_os == __mac_os && !_No_BlockMove */
 
     return (dst);
 }
-#endif /* !(__MC68K__ && !defined(_No_BlockMove)) */
+#endif                        /* !(__MC68K__ && !defined(_No_BlockMove)) */
 
 #if !__PPC_EABI__
 void*
@@ -440,6 +440,7 @@ __memrchr (const void* src, int val, size_t n)
 
     return (NULL);
 }
+
 int
 memcmp (const void* src1, const void* src2, size_t n)
 {
@@ -458,10 +459,7 @@ memcmp (const void* src1, const void* src2, size_t n)
 
 #else
 
-    for (p1 = (const unsigned char*)src1 - 1,
-        p2 = (const unsigned char*)src2 - 1,
-        n++;
-         --n;)
+    for (p1 = (const unsigned char*)src1 - 1, p2 = (const unsigned char*)src2 - 1, n++; --n;)
     {
         if (*++p1 != *++p2)
         {
@@ -473,7 +471,7 @@ memcmp (const void* src1, const void* src2, size_t n)
 
     return (0);
 }
-#endif /* __INTEL__ */
+#endif                        /* __INTEL__ */
 
 /* Change record:
  * JFH 950524 First code release.

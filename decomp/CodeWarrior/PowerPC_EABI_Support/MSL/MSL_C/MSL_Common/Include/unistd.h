@@ -16,14 +16,14 @@
 #define SEEK_CUR 1
 #define SEEK_END 2
 
-_MSL_BEGIN_EXTERN_C                                            /*- cc 010409 -*/
+_MSL_BEGIN_EXTERN_C                                                   /*- cc 010409 -*/
 
-/* The following are symbolic constants for access() */        /*- mm 991216 -*/
-/* See Posix 2.9.1 */                                          /*- mm 991216 -*/
-#define F_OK 0 /* Test for existence of file */                /*- mm 991216 -*/
-#define W_OK 2 /* Test for write permission  */                /*- mm 991216 -*/
-#define R_OK 4 /* Test for read permission   */                /*- mm 991216 -*/
-#define X_OK                                                                        \
+/* The following are symbolic constants for access() */               /*- mm 991216 -*/
+/* See Posix 2.9.1 */                                                 /*- mm 991216 -*/
+#define F_OK 0 /* Test for existence of file */                       /*- mm 991216 -*/
+#define W_OK 2 /* Test for write permission  */                       /*- mm 991216 -*/
+#define R_OK 4 /* Test for read permission   */                       /*- mm 991216 -*/
+#define X_OK                                                                                       \
     1		/* Test for execute permission--temporary--don't know what
 	                           value this should have --m.f. 000403   */	/*- mm 010626 -*/
 
@@ -36,13 +36,13 @@ _MSL_IMP_EXP_C char*        getcwd (char*, int);
 _MSL_IMP_EXP_C char*        getlogin (void);
 _MSL_IMP_EXP_C long         lseek (int, long, int);
 _MSL_IMP_EXP_C int          isatty (int);
-_MSL_IMP_EXP_C int          read (int, void*, __std (size_t)); /*- mm 000607 -*/
+_MSL_IMP_EXP_C int          read (int, void*, __std (size_t));        /*- mm 000607 -*/
 _MSL_IMP_EXP_C int          rmdir (const char*);
 _MSL_IMP_EXP_C unsigned int sleep (unsigned int);
 _MSL_IMP_EXP_C char*        ttyname (int);
 _MSL_IMP_EXP_C int          unlink (const char*);
-_MSL_IMP_EXP_C int write (int, const void*, __std (size_t));   /*- mm 000607 -*/
-_MSL_IMP_EXP_C int access (const char*, int);
+_MSL_IMP_EXP_C int          write (int, const void*, __std (size_t)); /*- mm 000607 -*/
+_MSL_IMP_EXP_C int          access (const char*, int);
 
 #if (__dest_os == __win32_os)
 _MSL_IMP_EXP_C int getpid (void);
@@ -58,62 +58,74 @@ __inline int
 getppid (void)
 {
     return 8000;
-} /*- mm 990106 -*/                                            /*- cc 010517 -*/
+} /*- mm 990106 -*/                                                   /*- cc 010517 -*/
+
 __inline int
 getuid (void)
 {
     return 200;
-} /*- mm 990106 -*/                                            /*- cc 010517 -*/
+} /*- mm 990106 -*/                                                   /*- cc 010517 -*/
+
 __inline int
 geteuid (void)
 {
     return 200;
-} /*- mm 990106 -*/                                            /*- cc 010517 -*/
+} /*- mm 990106 -*/                                                   /*- cc 010517 -*/
+
 __inline int
 getgid (void)
 {
     return 100;
-} /*- mm 990106 -*/                                            /*- cc 010517 -*/
+} /*- mm 990106 -*/                                                   /*- cc 010517 -*/
+
 __inline int
 getegid (void)
 {
     return 100;
-} /*- mm 990106 -*/                                            /*- cc 010517 -*/
+} /*- mm 990106 -*/                                                   /*- cc 010517 -*/
+
 __inline int
 getpgrp (void)
 {
     return 9000;
-} /*- mm 990106 -*/                                            /*- cc 010517 -*/
+} /*- mm 990106 -*/                                                   /*- cc 010517 -*/
+
 __inline int
 execl (const char* _a, ...)
 {
     return exec (_a);
 } /*- cc 010427 -*/
+
 __inline int
 execv (const char* _a, ...)
 {
     return exec (_a);
 } /*- cc 010427 -*/
+
 __inline int
 execle (const char* _a, ...)
 {
     return exec (_a);
 } /*- cc 010427 -*/
+
 __inline int
 execve (const char* _a, ...)
 {
     return exec (_a);
 } /*- cc 010427 -*/
+
 __inline int
 execlp (const char* _a, ...)
 {
     return exec (_a);
 } /*- cc 010427 -*/
+
 __inline int
 execvp (const char* _a, ...)
 {
     return exec (_a);
 } /*- cc 010427 -*/
+
 _MSL_END_EXTERN_C /*- cc 010409 -*/
 
 #endif            /* _MSL_UNISTD_H */

@@ -2,6 +2,7 @@
 
 #include "Os/dolphin/dolphin_trk_glue.h"
 #include "Processor/ppc/Generic/targimpl.h"
+
 DSError
 TRKTargetContinue (void)
 {

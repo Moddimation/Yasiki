@@ -97,12 +97,11 @@ __setjmp (register __jmp_buf* env)
         env->gprs[4] evstddx r17, 0, r4 la r4, env->gprs[5] evstddx r18, 0, r4 la r4,
         env->gprs[6] evstddx r19, 0, r4 la r4, env->gprs[7] evstddx r20, 0, r4 la r4,
         env->gprs[8] evstddx r21, 0, r4 la r4, env->gprs[9] evstddx r22, 0, r4 la r4,
-        env->gprs[10] evstddx r23, 0, r4 la r4, env->gprs[11] evstddx r24, 0,
-        r4 la r4, env->gprs[12] evstddx r25, 0, r4 la r4, env->gprs[13] evstddx r26,
-        0, r4 la r4, env->gprs[14] evstddx r27, 0, r4 la r4,
-        env->gprs[15] evstddx r28, 0, r4 la r4, env->gprs[16] evstddx r29, 0,
-        r4 la r4, env->gprs[17] evstddx r30, 0, r4 la r4, env->gprs[18] evstddx r31,
-        0,
+        env->gprs[10] evstddx r23, 0, r4 la r4, env->gprs[11] evstddx r24, 0, r4 la r4,
+        env->gprs[12] evstddx r25, 0, r4 la r4, env->gprs[13] evstddx r26, 0, r4 la r4,
+        env->gprs[14] evstddx r27, 0, r4 la r4, env->gprs[15] evstddx r28, 0, r4 la r4,
+        env->gprs[16] evstddx r29, 0, r4 la r4, env->gprs[17] evstddx r30, 0, r4 la r4,
+        env->gprs[18] evstddx r31, 0,
         r4
 #else                  /* __PPCe500__ */
 #if !__option(use_lmw_stmw) || __option(little_endian)
@@ -235,12 +234,10 @@ __setjmp (register __jmp_buf* env)
             stfd fp14,
         env->fp14     //	save FP14-FP31
             stfd       fp15,
-        env->fp15 stfd fp16, env->fp16 stfd fp17, env->fp17 stfd fp18,
-        env->fp18 stfd fp19, env->fp19 stfd fp20, env->fp20 stfd fp21,
-        env->fp21 stfd fp22, env->fp22 stfd fp23, env->fp23 stfd fp24,
-        env->fp24 stfd fp25, env->fp25 stfd fp26, env->fp26 stfd fp27,
-        env->fp27 stfd fp28, env->fp28 stfd fp29, env->fp29 stfd fp30,
-        env->fp30 stfd fp31,
+        env->fp15 stfd fp16, env->fp16 stfd fp17, env->fp17 stfd fp18, env->fp18 stfd fp19,
+        env->fp19 stfd fp20, env->fp20 stfd fp21, env->fp21 stfd fp22, env->fp22 stfd fp23,
+        env->fp23 stfd fp24, env->fp24 stfd fp25, env->fp25 stfd fp26, env->fp26 stfd fp27,
+        env->fp27 stfd fp28, env->fp28 stfd fp29, env->fp29 stfd fp30, env->fp30 stfd fp31,
         env->fp31
 #endif                 /* __PPCGEKKO__ */
         stfd fp0,
@@ -249,6 +246,7 @@ __setjmp (register __jmp_buf* env)
             li r3,
         0 blr
 }
+
 //	longjmp		-	C longjmp() routine
 //
 //	On entry R3 points to a jmp_buf struct and R4 contains the return value.
@@ -414,12 +412,10 @@ longjmp (register __jmp_buf* env, register int val)
         lfd fp14,
         env->fp14     //	restore FP14-FP31
             lfd       fp15,
-        env->fp15 lfd fp16, env->fp16 lfd fp17, env->fp17 lfd fp18,
-        env->fp18 lfd fp19, env->fp19 lfd fp20, env->fp20 lfd fp21,
-        env->fp21 lfd fp22, env->fp22 lfd fp23, env->fp23 lfd fp24,
-        env->fp24 lfd fp25, env->fp25 lfd fp26, env->fp26 lfd fp27,
-        env->fp27 lfd fp28, env->fp28 lfd fp29, env->fp29 lfd fp30,
-        env->fp30 lfd fp31,
+        env->fp15 lfd fp16, env->fp16 lfd fp17, env->fp17 lfd fp18, env->fp18 lfd fp19,
+        env->fp19 lfd fp20, env->fp20 lfd fp21, env->fp21 lfd fp22, env->fp22 lfd fp23,
+        env->fp23 lfd fp24, env->fp24 lfd fp25, env->fp25 lfd fp26, env->fp26 lfd fp27,
+        env->fp27 lfd fp28, env->fp28 lfd fp29, env->fp29 lfd fp30, env->fp30 lfd fp31,
         env->fp31
 #endif                  /* __PPCGEKKO__ */
         lfd fp0,
@@ -437,6 +433,7 @@ longjmp (register __jmp_buf* env, register int val)
         1               //	return 1
         blr
 }
+
 /*
     Change Record
  * hh  971207 Added <ansi_parms.h> header

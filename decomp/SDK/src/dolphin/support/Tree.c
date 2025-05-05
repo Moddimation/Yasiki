@@ -1,4 +1,5 @@
 #include <charPipeline/structures/Tree.h>
+
 void
 DSExtractBranch (DSTreePtr tree, Ptr obj)
 {
@@ -14,12 +15,14 @@ DSExtractBranch (DSTreePtr tree, Ptr obj)
     }
     DSRemoveBranch (tree, obj);
 }
+
 void
 DSInitTree (DSTreePtr tree, Ptr obj, DSBranchPtr branch)
 {
     tree->Root = NULL;
     tree->Offset = (Ptr)branch - obj;
 }
+
 void
 DSInsertBranchBelow (DSTreePtr tree, Ptr cursor, Ptr obj)
 {
@@ -63,6 +66,7 @@ DSInsertBranchBelow (DSTreePtr tree, Ptr cursor, Ptr obj)
     objBranch->Next = NULL;
     objBranch->Parent = cursor;
 }
+
 void
 DSInsertBranchBeside (DSTreePtr tree, Ptr cursor, Ptr obj)
 {
@@ -93,6 +97,7 @@ DSInsertBranchBeside (DSTreePtr tree, Ptr cursor, Ptr obj)
     branch->Next = NULL;
     branch->Parent = parent->Parent;
 }
+
 void
 DSRemoveBranch (DSTreePtr tree, Ptr obj)
 {

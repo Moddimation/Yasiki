@@ -59,6 +59,7 @@ for_each (InputIterator first, InputIterator last, Function f)
     }
     return f;
 }
+
 // find
 
 template <class InputIterator, class T>
@@ -71,6 +72,7 @@ find (InputIterator first, InputIterator last, const T& value)
     }
     return first;
 }
+
 template <class InputIterator, class Predicate>
 inline InputIterator
 find_if (InputIterator first, InputIterator last, Predicate pred)
@@ -81,6 +83,7 @@ find_if (InputIterator first, InputIterator last, Predicate pred)
     }
     return first;
 }
+
 // equal
 
 template <class InputIterator1, class InputIterator2>
@@ -96,12 +99,10 @@ equal (InputIterator1 first1, InputIterator1 last1, InputIterator2 first2)
     }
     return true;
 }
+
 template <class InputIterator1, class InputIterator2, class BinaryPredicate>
 inline bool
-equal (InputIterator1  first1,
-       InputIterator1  last1,
-       InputIterator2  first2,
-       BinaryPredicate pred)
+equal (InputIterator1 first1, InputIterator1 last1, InputIterator2 first2, BinaryPredicate pred)
 {
     for (; first1 != last1; ++first1, ++first2)
     {
@@ -112,6 +113,7 @@ equal (InputIterator1  first1,
     }
     return true;
 }
+
 // search
 
 template <class ForwardIterator1, class ForwardIterator2>
@@ -121,14 +123,12 @@ search (ForwardIterator1 first1,
         ForwardIterator2 first2,
         ForwardIterator2 last2)
 {
-    typename iterator_traits<ForwardIterator2>::difference_type d2 =
-        _STD::distance (first2, last2);
+    typename iterator_traits<ForwardIterator2>::difference_type d2 = _STD::distance (first2, last2);
     if (d2 == 0)
     {
         return first1;
     }
-    typename iterator_traits<ForwardIterator1>::difference_type d1 =
-        _STD::distance (first1, last1);
+    typename iterator_traits<ForwardIterator1>::difference_type d1 = _STD::distance (first1, last1);
     if (d1 < d2)
     {
         return last1;
@@ -144,6 +144,7 @@ search (ForwardIterator1 first1,
     }
     return last1;
 }
+
 template <class ForwardIterator1, class ForwardIterator2, class BinaryPredicate>
 ForwardIterator1
 search (ForwardIterator1 first1,
@@ -152,14 +153,12 @@ search (ForwardIterator1 first1,
         ForwardIterator2 last2,
         BinaryPredicate  pred)
 {
-    typename iterator_traits<ForwardIterator2>::difference_type d2 =
-        _STD::distance (first2, last2);
+    typename iterator_traits<ForwardIterator2>::difference_type d2 = _STD::distance (first2, last2);
     if (d2 == 0)
     {
         return first1;
     }
-    typename iterator_traits<ForwardIterator1>::difference_type d1 =
-        _STD::distance (first1, last1);
+    typename iterator_traits<ForwardIterator1>::difference_type d1 = _STD::distance (first1, last1);
     if (d1 < d2)
     {
         return last1;
@@ -170,14 +169,17 @@ search (ForwardIterator1 first1,
     {
         if (_STD::equal<ForwardIterator1,
                         ForwardIterator2,
-                        typename Metrowerks::add_reference<BinaryPredicate>::type> (
-                first1, m, first2, pred))
+                        typename Metrowerks::add_reference<BinaryPredicate>::type> (first1,
+                                                                                    m,
+                                                                                    first2,
+                                                                                    pred))
         {
             return first1;
         }
     }
     return last1;
 }
+
 // find_end
 
 template <class ForwardIterator1, class ForwardIterator2>
@@ -188,16 +190,15 @@ __find_end (ForwardIterator1 first1,
             ForwardIterator2 last2,
             forward_iterator_tag)
 {
-    first1 = _STD::search<ForwardIterator1, ForwardIterator2> (
-        first1, last1, first2, last2);
+    first1 = _STD::search<ForwardIterator1, ForwardIterator2> (first1, last1, first2, last2);
     ForwardIterator1 result = first1;
     if (first1 != last1)
     {
         while (true)
         {
             ++first1;
-            first1 = _STD::search<ForwardIterator1, ForwardIterator2> (
-                first1, last1, first2, last2);
+            first1 =
+                _STD::search<ForwardIterator1, ForwardIterator2> (first1, last1, first2, last2);
             if (first1 == last1)
             {
                 break;
@@ -207,6 +208,7 @@ __find_end (ForwardIterator1 first1,
     }
     return result;
 }
+
 template <class BidirectionalIterator1, class ForwardIterator2>
 BidirectionalIterator1
 __find_end (BidirectionalIterator1 first1,
@@ -217,8 +219,7 @@ __find_end (BidirectionalIterator1 first1,
 {
     typename iterator_traits<BidirectionalIterator1>::difference_type d1 =
         _STD::distance (first1, last1);
-    typename iterator_traits<ForwardIterator2>::difference_type d2 =
-        _STD::distance (first2, last2);
+    typename iterator_traits<ForwardIterator2>::difference_type d2 = _STD::distance (first2, last2);
     if (d1 < d2 || d2 == 0)
     {
         return last1;
@@ -237,6 +238,7 @@ __find_end (BidirectionalIterator1 first1,
     }
     return last1;
 }
+
 template <class ForwardIterator1, class ForwardIterator2>
 inline ForwardIterator1
 find_end (ForwardIterator1 first1,
@@ -247,6 +249,7 @@ find_end (ForwardIterator1 first1,
     typedef typename iterator_traits<ForwardIterator1>::iterator_category Category;
     return __find_end (first1, last1, first2, last2, Category());
 }
+
 template <class ForwardIterator1, class ForwardIterator2, class BinaryPredicate>
 ForwardIterator1
 __find_end (ForwardIterator1 first1,
@@ -256,22 +259,27 @@ __find_end (ForwardIterator1 first1,
             BinaryPredicate  pred,
             forward_iterator_tag)
 {
-    first1 =
-        _STD::search<ForwardIterator1,
-                     ForwardIterator2,
-                     typename Metrowerks::add_reference<BinaryPredicate>::type> (
-            first1, last1, first2, last2, pred);
+    first1 = _STD::search<ForwardIterator1,
+                          ForwardIterator2,
+                          typename Metrowerks::add_reference<BinaryPredicate>::type> (first1,
+                                                                                      last1,
+                                                                                      first2,
+                                                                                      last2,
+                                                                                      pred);
     ForwardIterator1 result = first1;
     if (first1 != last1)
     {
         while (true)
         {
             ++first1;
-            first1 = _STD::search<
-                ForwardIterator1,
-                ForwardIterator2,
-                typename Metrowerks::add_reference<BinaryPredicate>::type> (
-                first1, last1, first2, last2, pred);
+            first1 =
+                _STD::search<ForwardIterator1,
+                             ForwardIterator2,
+                             typename Metrowerks::add_reference<BinaryPredicate>::type> (first1,
+                                                                                         last1,
+                                                                                         first2,
+                                                                                         last2,
+                                                                                         pred);
             if (first1 == last1)
             {
                 break;
@@ -281,9 +289,8 @@ __find_end (ForwardIterator1 first1,
     }
     return result;
 }
-template <class BidirectionalIterator1,
-          class ForwardIterator2,
-          class BinaryPredicate>
+
+template <class BidirectionalIterator1, class ForwardIterator2, class BinaryPredicate>
 BidirectionalIterator1
 __find_end (BidirectionalIterator1 first1,
             BidirectionalIterator1 last1,
@@ -294,8 +301,7 @@ __find_end (BidirectionalIterator1 first1,
 {
     typename iterator_traits<BidirectionalIterator1>::difference_type d1 =
         _STD::distance (first1, last1);
-    typename iterator_traits<ForwardIterator2>::difference_type d2 =
-        _STD::distance (first2, last2);
+    typename iterator_traits<ForwardIterator2>::difference_type d2 = _STD::distance (first2, last2);
     if (d1 < d2 || d2 == 0)
     {
         return last1;
@@ -305,21 +311,26 @@ __find_end (BidirectionalIterator1 first1,
     {
         if (_STD::equal<ForwardIterator2,
                         BidirectionalIterator1,
-                        typename Metrowerks::add_reference<BinaryPredicate>::type> (
-                first2, last2, result, pred))
+                        typename Metrowerks::add_reference<BinaryPredicate>::type> (first2,
+                                                                                    last2,
+                                                                                    result,
+                                                                                    pred))
         {
             return result;
         }
     }
     if (_STD::equal<ForwardIterator2,
                     BidirectionalIterator1,
-                    typename Metrowerks::add_reference<BinaryPredicate>::type> (
-            first2, last2, first1, pred))
+                    typename Metrowerks::add_reference<BinaryPredicate>::type> (first2,
+                                                                                last2,
+                                                                                first1,
+                                                                                pred))
     {
         return first1;
     }
     return last1;
 }
+
 template <class ForwardIterator1, class ForwardIterator2, class BinaryPredicate>
 inline ForwardIterator1
 find_end (ForwardIterator1 first1,
@@ -329,9 +340,14 @@ find_end (ForwardIterator1 first1,
           BinaryPredicate  pred)
 {
     typedef typename iterator_traits<ForwardIterator1>::iterator_category Category;
-    return __find_end<ForwardIterator1, ForwardIterator2, BinaryPredicate> (
-        first1, last1, first2, last2, pred, Category());
+    return __find_end<ForwardIterator1, ForwardIterator2, BinaryPredicate> (first1,
+                                                                            last1,
+                                                                            first2,
+                                                                            last2,
+                                                                            pred,
+                                                                            Category());
 }
+
 // find_first_of
 
 template <class ForwardIterator1, class ForwardIterator2>
@@ -353,6 +369,7 @@ find_first_of (ForwardIterator1 first1,
     }
     return last1;
 }
+
 template <class ForwardIterator1, class ForwardIterator2, class BinaryPredicate>
 ForwardIterator1
 find_first_of (ForwardIterator1 first1,
@@ -373,6 +390,7 @@ find_first_of (ForwardIterator1 first1,
     }
     return last1;
 }
+
 // adjacent_find
 
 template <class ForwardIterator>
@@ -393,6 +411,7 @@ adjacent_find (ForwardIterator first, ForwardIterator last)
     }
     return last;
 }
+
 template <class ForwardIterator, class BinaryPredicate>
 inline ForwardIterator
 adjacent_find (ForwardIterator first, ForwardIterator last, BinaryPredicate pred)
@@ -411,6 +430,7 @@ adjacent_find (ForwardIterator first, ForwardIterator last, BinaryPredicate pred
     }
     return last;
 }
+
 // count
 
 template <class InputIterator, class T>
@@ -427,6 +447,7 @@ count (InputIterator first, InputIterator last, const T& value)
     }
     return result;
 }
+
 template <class InputIterator, class Predicate>
 inline typename iterator_traits<InputIterator>::difference_type
 count_if (InputIterator first, InputIterator last, Predicate pred)
@@ -441,6 +462,7 @@ count_if (InputIterator first, InputIterator last, Predicate pred)
     }
     return result;
 }
+
 // mismatch
 
 template <class InputIterator1, class InputIterator2>
@@ -456,12 +478,10 @@ mismatch (InputIterator1 first1, InputIterator1 last1, InputIterator2 first2)
     }
     return pair<InputIterator1, InputIterator2> (first1, first2);
 }
+
 template <class InputIterator1, class InputIterator2, class BinaryPredicate>
 inline pair<InputIterator1, InputIterator2>
-mismatch (InputIterator1  first1,
-          InputIterator1  last1,
-          InputIterator2  first2,
-          BinaryPredicate pred)
+mismatch (InputIterator1 first1, InputIterator1 last1, InputIterator2 first2, BinaryPredicate pred)
 {
     for (; first1 != last1; ++first1, ++first2)
     {
@@ -472,6 +492,7 @@ mismatch (InputIterator1  first1,
     }
     return pair<InputIterator1, InputIterator2> (first1, first2);
 }
+
 // search_n
 
 template <class ForwardIterator, class Size, class T>
@@ -499,6 +520,7 @@ search_n (ForwardIterator first, ForwardIterator last, Size count, const T& valu
     }
     return last;
 }
+
 template <class ForwardIterator, class Size, class T, class BinaryPredicate>
 ForwardIterator
 search_n (ForwardIterator first,
@@ -528,6 +550,7 @@ search_n (ForwardIterator first,
     }
     return last;
 }
+
 //  lib.alg.min.max, minimum and maximum:
 
 #ifdef min
@@ -539,6 +562,7 @@ min (const T& a, const T& b)
 {
     return b < a ? b : a;
 }
+
 template <class T, class Compare>
 inline const T&
 min (const T& a, const T& b, Compare comp)
@@ -554,12 +578,14 @@ max (const T& a, const T& b)
 {
     return a < b ? b : a;
 }
+
 template <class T, class Compare>
 inline const T&
 max (const T& a, const T& b, Compare comp)
 {
     return comp (a, b) ? b : a;
 }
+
 template <class ForwardIterator>
 inline ForwardIterator
 min_element (ForwardIterator first, ForwardIterator last)
@@ -577,6 +603,7 @@ min_element (ForwardIterator first, ForwardIterator last)
     }
     return i;
 }
+
 template <class ForwardIterator, class Compare>
 inline ForwardIterator
 min_element (ForwardIterator first, ForwardIterator last, Compare comp)
@@ -594,6 +621,7 @@ min_element (ForwardIterator first, ForwardIterator last, Compare comp)
     }
     return i;
 }
+
 template <class ForwardIterator>
 inline ForwardIterator
 max_element (ForwardIterator first, ForwardIterator last)
@@ -611,6 +639,7 @@ max_element (ForwardIterator first, ForwardIterator last)
     }
     return i;
 }
+
 template <class ForwardIterator, class Compare>
 inline ForwardIterator
 max_element (ForwardIterator first, ForwardIterator last, Compare comp)
@@ -628,6 +657,7 @@ max_element (ForwardIterator first, ForwardIterator last, Compare comp)
     }
     return i;
 }
+
 template <class InputIterator1, class InputIterator2>
 inline bool
 lexicographical_compare (InputIterator1 first1,
@@ -648,6 +678,7 @@ lexicographical_compare (InputIterator1 first1,
     }
     return static_cast<bool> (first2 != last2);
 }
+
 template <class InputIterator1, class InputIterator2, class Compare>
 bool
 lexicographical_compare (InputIterator1 first1,
@@ -669,6 +700,7 @@ lexicographical_compare (InputIterator1 first1,
     }
     return static_cast<bool> (first2 != last2);
 }
+
 //  lib.alg.modifying.operations, modifying sequence operations:
 
 //  lib.alg.copy, copy:
@@ -699,7 +731,9 @@ struct __copy
         return result;
     }
 };
-template <class T> struct __copy<T, true, true>
+
+template <class T>
+struct __copy<T, true, true>
 {
     static T*
     copy (T* first, T* last, T* result)
@@ -709,12 +743,14 @@ template <class T> struct __copy<T, true, true>
         return result + n;
     }
 };
+
 template <class T>
 inline T*
 copy (T* first, T* last, T* result)
 {
     return __copy<T>::copy (first, last, result);
 }
+
 template <class T>
 inline T*
 copy (const T* first, const T* last, T* result)
@@ -752,7 +788,9 @@ struct __copy_backward
         return result;
     }
 };
-template <class T> struct __copy_backward<T, true, true>
+
+template <class T>
+struct __copy_backward<T, true, true>
 {
     static T*
     copy_backward (T* first, T* last, T* result)
@@ -763,18 +801,21 @@ template <class T> struct __copy_backward<T, true, true>
         return result;
     }
 };
+
 template <class T>
 inline T*
 copy_backward (T* first, T* last, T* result)
 {
     return __copy_backward<T>::copy_backward (first, last, result);
 }
+
 template <class T>
 inline T*
 copy_backward (const T* first, const T* last, T* result)
 {
-    return __copy_backward<T>::copy_backward (
-        const_cast<T*> (first), const_cast<T*> (last), result);
+    return __copy_backward<T>::copy_backward (const_cast<T*> (first),
+                                              const_cast<T*> (last),
+                                              result);
 }
 #endif
 //  lib.alg.swap, swap:
@@ -787,12 +828,14 @@ swap (T& a, T& b)
     a = b;
     b = tmp;
 }
+
 template <class T>
 inline void
 swap (T x, T y)
 {
     T::container_type::swap (x, y);
 }
+
 // iter_swap
 
 // hh 990817
@@ -802,13 +845,12 @@ iter_swap (ForwardIterator1 a, ForwardIterator2 b)
 {
     swap (*a, *b);
 }
+
 // swap_ranges
 
 template <class ForwardIterator1, class ForwardIterator2>
 inline ForwardIterator2
-swap_ranges (ForwardIterator1 first1,
-             ForwardIterator1 last1,
-             ForwardIterator2 first2)
+swap_ranges (ForwardIterator1 first1, ForwardIterator1 last1, ForwardIterator2 first2)
 {
     for (; first1 != last1; ++first1, ++first2)
     {
@@ -816,14 +858,12 @@ swap_ranges (ForwardIterator1 first1,
     }
     return first2;
 }
+
 // transform
 
 template <class InputIterator, class OutputIterator, class UnaryOperation>
 inline OutputIterator
-transform (InputIterator  first,
-           InputIterator  last,
-           OutputIterator result,
-           UnaryOperation op)
+transform (InputIterator first, InputIterator last, OutputIterator result, UnaryOperation op)
 {
     for (; first != last; ++first, ++result)
     {
@@ -831,10 +871,8 @@ transform (InputIterator  first,
     }
     return result;
 }
-template <class InputIterator1,
-          class InputIterator2,
-          class OutputIterator,
-          class BinaryOperation>
+
+template <class InputIterator1, class InputIterator2, class OutputIterator, class BinaryOperation>
 inline OutputIterator
 transform (InputIterator1  first1,
            InputIterator1  last1,
@@ -848,14 +886,12 @@ transform (InputIterator1  first1,
     }
     return result;
 }
+
 // replace
 
 template <class ForwardIterator, class T>
 inline void
-replace (ForwardIterator first,
-         ForwardIterator last,
-         const T&        old_value,
-         const T&        new_value)
+replace (ForwardIterator first, ForwardIterator last, const T& old_value, const T& new_value)
 {
     for (; first != last; ++first)
     {
@@ -865,12 +901,10 @@ replace (ForwardIterator first,
         }
     }
 }
+
 template <class ForwardIterator, class Predicate, class T>
 inline void
-replace_if (ForwardIterator first,
-            ForwardIterator last,
-            Predicate       pred,
-            const T&        new_value)
+replace_if (ForwardIterator first, ForwardIterator last, Predicate pred, const T& new_value)
 {
     for (; first != last; ++first)
     {
@@ -880,6 +914,7 @@ replace_if (ForwardIterator first,
         }
     }
 }
+
 // replace_copy
 
 template <class InputIterator, class OutputIterator, class T>
@@ -896,6 +931,7 @@ replace_copy (InputIterator  first,
     }
     return result;
 }
+
 template <class InputIterator, class OutputIterator, class Predicate, class T>
 inline OutputIterator
 replace_copy_if (InputIterator  first,
@@ -910,6 +946,7 @@ replace_copy_if (InputIterator  first,
     }
     return result;
 }
+
 // fill
 
 template <class ForwardIterator, class T>
@@ -921,6 +958,7 @@ fill (ForwardIterator first, ForwardIterator last, const T& value)
         *first = value;
     }
 }
+
 template <class OutputIterator, class Size, class T>
 inline void
 fill_n (OutputIterator first, Size n, const T& value)
@@ -930,6 +968,7 @@ fill_n (OutputIterator first, Size n, const T& value)
         *first = value;
     }
 }
+
 // generate
 
 template <class ForwardIterator, class Generator>
@@ -941,6 +980,7 @@ generate (ForwardIterator first, ForwardIterator last, Generator gen)
         *first = gen();
     }
 }
+
 template <class OutputIterator, class Size, class Generator>
 inline void
 generate_n (OutputIterator first, Size n, Generator gen)
@@ -950,14 +990,12 @@ generate_n (OutputIterator first, Size n, Generator gen)
         *first = gen();
     }
 }
+
 // remove_copy
 
 template <class InputIterator, class OutputIterator, class T>
 OutputIterator
-remove_copy (InputIterator  first,
-             InputIterator  last,
-             OutputIterator result,
-             const T&       value)
+remove_copy (InputIterator first, InputIterator last, OutputIterator result, const T& value)
 {
     for (; first != last; ++first)
     {
@@ -969,12 +1007,10 @@ remove_copy (InputIterator  first,
     }
     return result;
 }
+
 template <class InputIterator, class OutputIterator, class Predicate>
 OutputIterator
-remove_copy_if (InputIterator  first,
-                InputIterator  last,
-                OutputIterator result,
-                Predicate      pred)
+remove_copy_if (InputIterator first, InputIterator last, OutputIterator result, Predicate pred)
 {
     for (; first != last; ++first)
     {
@@ -986,6 +1022,7 @@ remove_copy_if (InputIterator  first,
     }
     return result;
 }
+
 // remove
 
 template <class ForwardIterator, class T>
@@ -995,27 +1032,27 @@ remove (ForwardIterator first, ForwardIterator last, const T& value)
     ForwardIterator i = first = _STD::find (first, last, value);
     return first == last ? first : _STD::remove_copy (++i, last, first, value);
 }
+
 template <class ForwardIterator, class Predicate>
 ForwardIterator
 remove_if (ForwardIterator first, ForwardIterator last, Predicate pred)
 {
     ForwardIterator i = first =
-        _STD::find_if<ForwardIterator,
-                      typename Metrowerks::add_reference<Predicate>::type> (
-            first, last, pred);
-    return first == last
-               ? first
-               : _STD::remove_copy_if<ForwardIterator, ForwardIterator, Predicate> (
-                     ++i, last, first, pred);
+        _STD::find_if<ForwardIterator, typename Metrowerks::add_reference<Predicate>::type> (first,
+                                                                                             last,
+                                                                                             pred);
+    return first == last ? first
+                         : _STD::remove_copy_if<ForwardIterator, ForwardIterator, Predicate> (++i,
+                                                                                              last,
+                                                                                              first,
+                                                                                              pred);
 }
+
 // unique_copy
 
 template <class InputIterator, class OutputIterator>
 OutputIterator
-__unique_copy (InputIterator  first,
-               InputIterator  last,
-               OutputIterator result,
-               output_iterator_tag)
+__unique_copy (InputIterator first, InputIterator last, OutputIterator result, output_iterator_tag)
 {
     if (first != last)
     {
@@ -1034,6 +1071,7 @@ __unique_copy (InputIterator  first,
     }
     return result;
 }
+
 template <class InputIterator, class ForwardIterator>
 ForwardIterator
 __unique_copy (InputIterator   first,
@@ -1055,6 +1093,7 @@ __unique_copy (InputIterator   first,
     }
     return result;
 }
+
 template <class InputIterator, class OutputIterator>
 inline OutputIterator
 unique_copy (InputIterator first, InputIterator last, OutputIterator result)
@@ -1062,6 +1101,7 @@ unique_copy (InputIterator first, InputIterator last, OutputIterator result)
     typedef typename iterator_traits<OutputIterator>::iterator_category Category;
     return __unique_copy (first, last, result, Category());
 }
+
 template <class InputIterator, class OutputIterator, class BinaryPredicate>
 OutputIterator
 __unique_copy (InputIterator   first,
@@ -1087,6 +1127,7 @@ __unique_copy (InputIterator   first,
     }
     return result;
 }
+
 template <class InputIterator, class ForwardIterator, class BinaryPredicate>
 ForwardIterator
 __unique_copy (InputIterator   first,
@@ -1109,17 +1150,19 @@ __unique_copy (InputIterator   first,
     }
     return result;
 }
+
 template <class InputIterator, class OutputIterator, class BinaryPredicate>
 inline OutputIterator
-unique_copy (InputIterator   first,
-             InputIterator   last,
-             OutputIterator  result,
-             BinaryPredicate pred)
+unique_copy (InputIterator first, InputIterator last, OutputIterator result, BinaryPredicate pred)
 {
     typedef typename iterator_traits<OutputIterator>::iterator_category Category;
-    return __unique_copy<InputIterator, OutputIterator, BinaryPredicate> (
-        first, last, result, pred, Category());
+    return __unique_copy<InputIterator, OutputIterator, BinaryPredicate> (first,
+                                                                          last,
+                                                                          result,
+                                                                          pred,
+                                                                          Category());
 }
+
 // unique
 
 template <class ForwardIterator>
@@ -1129,6 +1172,7 @@ unique (ForwardIterator first, ForwardIterator last)
     typedef typename iterator_traits<ForwardIterator>::value_type value_type;
     return _STD::unique (first, last, equal_to<value_type>());
 }
+
 template <class ForwardIterator, class BinaryPredicate>
 ForwardIterator
 unique (ForwardIterator first, ForwardIterator last, BinaryPredicate pred)
@@ -1147,16 +1191,17 @@ unique (ForwardIterator first, ForwardIterator last, BinaryPredicate pred)
     {
         ++next;
     }
-    return _STD::unique_copy<ForwardIterator, ForwardIterator, BinaryPredicate> (
-        next, last, ++first, pred);
+    return _STD::unique_copy<ForwardIterator, ForwardIterator, BinaryPredicate> (next,
+                                                                                 last,
+                                                                                 ++first,
+                                                                                 pred);
 }
+
 // reverse
 
 template <class BidirectionalIterator>
 inline void
-__reverse (BidirectionalIterator first,
-           BidirectionalIterator last,
-           bidirectional_iterator_tag)
+__reverse (BidirectionalIterator first, BidirectionalIterator last, bidirectional_iterator_tag)
 {
     while (first != last)
     {
@@ -1169,11 +1214,10 @@ __reverse (BidirectionalIterator first,
         ++first;
     }
 }
+
 template <class RandomAccessIterator>
 inline void
-__reverse (RandomAccessIterator first,
-           RandomAccessIterator last,
-           random_access_iterator_tag)
+__reverse (RandomAccessIterator first, RandomAccessIterator last, random_access_iterator_tag)
 {
     if (first != last)
     {
@@ -1183,19 +1227,18 @@ __reverse (RandomAccessIterator first,
         }
     }
 }
+
 template <class BidirectionalIterator>
 inline void
 reverse (BidirectionalIterator first, BidirectionalIterator last)
 {
-    typedef
-        typename iterator_traits<BidirectionalIterator>::iterator_category Category;
+    typedef typename iterator_traits<BidirectionalIterator>::iterator_category Category;
     __reverse (first, last, Category());
 }
+
 template <class BidirectionalIterator, class OutputIterator>
 inline OutputIterator
-reverse_copy (BidirectionalIterator first,
-              BidirectionalIterator last,
-              OutputIterator        result)
+reverse_copy (BidirectionalIterator first, BidirectionalIterator last, OutputIterator result)
 {
     for (; first != last; ++result)
     {
@@ -1203,14 +1246,12 @@ reverse_copy (BidirectionalIterator first,
     }
     return result;
 }
+
 // rotate
 
 template <class ForwardIterator>
 void
-__rotate (ForwardIterator first,
-          ForwardIterator middle,
-          ForwardIterator last,
-          forward_iterator_tag)
+__rotate (ForwardIterator first, ForwardIterator middle, ForwardIterator last, forward_iterator_tag)
 {
     ForwardIterator i = middle;
     while (true)
@@ -1230,6 +1271,7 @@ __rotate (ForwardIterator first,
         }
     }
 }
+
 template <class BidirectionalIterator, class Distance, class RandomAccessIterator>
 BidirectionalIterator
 __rotate (BidirectionalIterator first,
@@ -1257,6 +1299,7 @@ __rotate (BidirectionalIterator first,
     _STD::advance (first, len2);
     return first;
 }
+
 template <class BidirectionalIterator>
 void
 __rotate (BidirectionalIterator first,
@@ -1271,6 +1314,7 @@ __rotate (BidirectionalIterator first,
     _TempVec<T> temp_buf (_STD::min (len1, len2));
     __rotate (first, middle, last, len1, len2, temp_buf.begin(), temp_buf.end());
 }
+
 template <class ForwardIterator>
 inline void
 rotate (ForwardIterator first, ForwardIterator middle, ForwardIterator last)
@@ -1282,6 +1326,7 @@ rotate (ForwardIterator first, ForwardIterator middle, ForwardIterator last)
     typedef typename iterator_traits<ForwardIterator>::iterator_category Category;
     __rotate (first, middle, last, Category());
 }
+
 template <class ForwardIterator, class OutputIterator>
 inline OutputIterator
 rotate_copy (ForwardIterator first,
@@ -1291,34 +1336,41 @@ rotate_copy (ForwardIterator first,
 {
     return _STD::copy (first, middle, _STD::copy (middle, last, result));
 }
+
 // random_shuffle
 
 #if !defined(_MSL_NO_PARTIAL_SPECIALIZATION) && !defined(__GNUC__)
-template <unsigned int _Bits> struct __num_bits
+template <unsigned int _Bits>
+struct __num_bits
 {
     static const int __value = 1 + __num_bits < _Bits >> 1 > ::__value;
 };
-template <> struct __num_bits<0>
+
+template <>
+struct __num_bits<0>
 {
     static const int __value = 0;
 };
+
 const int __rbits = __num_bits<RAND_MAX>::__value;
 const int __lbits = sizeof (unsigned long) * __char<>::bits;
+
 template <int _NBits>
 inline unsigned long
 __random_bits ()
 {
-    return _NBits <= __rbits
-               ? static_cast<unsigned long> (rand()) >> (__rbits - _NBits)
-               : (static_cast<unsigned long> (rand()) << (_NBits - __rbits)) |
-                     __random_bits<_NBits - __rbits>();
+    return _NBits <= __rbits ? static_cast<unsigned long> (rand()) >> (__rbits - _NBits)
+                             : (static_cast<unsigned long> (rand()) << (_NBits - __rbits)) |
+                                   __random_bits<_NBits - __rbits>();
 }
+
 template <int _NBits>
 inline unsigned long
 __slab_size (unsigned long __n)
 {
     return (1UL << _NBits) / __n;
 }
+
 template <>
 inline unsigned long
 __slab_size<__lbits> (unsigned long __n)
@@ -1329,6 +1381,7 @@ __slab_size<__lbits> (unsigned long __n)
     }
     return (1UL << (__lbits - 1)) / (__n >> 1);
 }
+
 template <int _NBits>
 inline unsigned long
 __scaled_random_number (unsigned long __n)
@@ -1342,6 +1395,7 @@ __scaled_random_number (unsigned long __n)
     while (__usable != 0 && __raw >= __usable);
     return __raw / __slab;
 }
+
 template <bool __b>
 unsigned long
 __rs_default (unsigned long __n = 0)
@@ -1436,25 +1490,24 @@ inline void
 random_shuffle (RandomAccessIterator first, RandomAccessIterator last)
 {
     typedef typename iterator_traits<RandomAccessIterator>::difference_type D;
-    D d = last - first;
+    D                                                                       d = last - first;
     if (d > 1)
     {
         for (--last; first < last; ++first, --d)
         {
-            _STD::iter_swap (first,
-                             first + static_cast<D> (__rs_default<true> (
-                                         static_cast<unsigned long> (d))));
+            _STD::iter_swap (
+                first,
+                first + static_cast<D> (__rs_default<true> (static_cast<unsigned long> (d))));
         }
     }
 }
+
 template <class RandomAccessIterator, class RandomNumberGenerator>
 inline void
-random_shuffle (RandomAccessIterator   first,
-                RandomAccessIterator   last,
-                RandomNumberGenerator& rand)
+random_shuffle (RandomAccessIterator first, RandomAccessIterator last, RandomNumberGenerator& rand)
 {
     typedef typename iterator_traits<RandomAccessIterator>::difference_type D;
-    D d = last - first;
+    D                                                                       d = last - first;
     if (d > 1)
     {
         for (--last; first < last; ++first, --d)
@@ -1463,6 +1516,7 @@ random_shuffle (RandomAccessIterator   first,
         }
     }
 }
+
 //  lib.alg.partitions
 
 // partition
@@ -1497,6 +1551,7 @@ __partition (BidirectionalIterator first,
     }
     return first;
 }
+
 // hh 990817
 template <class RandomAccessIterator, class Predicate>
 inline RandomAccessIterator
@@ -1523,12 +1578,12 @@ __partition (RandomAccessIterator first,
     }
     return first;
 }
+
 template <class BidirectionalIterator, class Predicate>
 BidirectionalIterator
 partition (BidirectionalIterator first, BidirectionalIterator last, Predicate pred)
 {
-    typedef
-        typename iterator_traits<BidirectionalIterator>::iterator_category Category;
+    typedef typename iterator_traits<BidirectionalIterator>::iterator_category Category;
     if (first == last)
     {
         return first;
@@ -1539,8 +1594,10 @@ partition (BidirectionalIterator first, BidirectionalIterator last, Predicate pr
     {
         // *first == true, *last == false
         return __partition<BidirectionalIterator,
-                           typename Metrowerks::add_reference<Predicate>::type> (
-            ++first, last, pred, Category());
+                           typename Metrowerks::add_reference<Predicate>::type> (++first,
+                                                                                 last,
+                                                                                 pred,
+                                                                                 Category());
     }
     if (guard_back)
     {
@@ -1574,10 +1631,13 @@ partition (BidirectionalIterator first, BidirectionalIterator last, Predicate pr
     }
     // *first == false, *last == true
     _STD::iter_swap (first, last);
-    return __partition<BidirectionalIterator,
-                       typename Metrowerks::add_reference<Predicate>::type> (
-        ++first, last, pred, Category());
+    return __partition<BidirectionalIterator, typename Metrowerks::add_reference<Predicate>::type> (
+        ++first,
+        last,
+        pred,
+        Category());
 }
+
 // __partition_const_ref
 
 template <class BidirectionalIterator, class Predicate>
@@ -1586,8 +1646,7 @@ __partition_const_ref (BidirectionalIterator first,
                        BidirectionalIterator last,
                        const Predicate&      pred)
 {
-    typedef
-        typename iterator_traits<BidirectionalIterator>::iterator_category Category;
+    typedef typename iterator_traits<BidirectionalIterator>::iterator_category Category;
     if (first == last)
     {
         return first;
@@ -1597,8 +1656,10 @@ __partition_const_ref (BidirectionalIterator first,
     if (guard_front && guard_back)
     {
         // *first == true, *last == false
-        return __partition<BidirectionalIterator, const Predicate&> (
-            ++first, last, pred, Category());
+        return __partition<BidirectionalIterator, const Predicate&> (++first,
+                                                                     last,
+                                                                     pred,
+                                                                     Category());
     }
     if (guard_back)
     {
@@ -1632,15 +1693,12 @@ __partition_const_ref (BidirectionalIterator first,
     }
     // *first == false, *last == true
     _STD::iter_swap (first, last);
-    return __partition<BidirectionalIterator, const Predicate&> (
-        ++first, last, pred, Category());
+    return __partition<BidirectionalIterator, const Predicate&> (++first, last, pred, Category());
 }
+
 // stable_partition
 
-template <class BidirectionalIterator,
-          class Predicate,
-          class Distance,
-          class RandomAccessIterator>
+template <class BidirectionalIterator, class Predicate, class Distance, class RandomAccessIterator>
 BidirectionalIterator
 __stable_partition (BidirectionalIterator first,
                     BidirectionalIterator last,
@@ -1688,8 +1746,7 @@ __stable_partition (BidirectionalIterator first,
         BidirectionalIterator i = first;
         // Find next true
         i = _STD::find_if<BidirectionalIterator,
-                          typename Metrowerks::add_reference<Predicate>::type> (
-            ++i, last, pred);
+                          typename Metrowerks::add_reference<Predicate>::type> (++i, last, pred);
         if (i == last) // if already partitioned
         {
             return first;
@@ -1722,14 +1779,12 @@ __stable_partition (BidirectionalIterator first,
         __stable_partition<BidirectionalIterator,
                            typename Metrowerks::add_reference<Predicate>::type,
                            Distance,
-                           RandomAccessIterator> (
-            first, mid, pred, l2, buf_begin, buf_end);
+                           RandomAccessIterator> (first, mid, pred, l2, buf_begin, buf_end);
     BidirectionalIterator second_false =
         __stable_partition<BidirectionalIterator,
                            typename Metrowerks::add_reference<Predicate>::type,
                            Distance,
-                           RandomAccessIterator> (
-            mid, last, pred, len - l2, buf_begin, buf_end);
+                           RandomAccessIterator> (mid, last, pred, len - l2, buf_begin, buf_end);
     l2 = _STD::distance (mid, second_false);
     if (l2 == 0)
     {
@@ -1738,8 +1793,7 @@ __stable_partition (BidirectionalIterator first,
     len = _STD::distance (first_false, mid);
     if (len > 0)
     {
-        first_false =
-            __rotate (first_false, mid, second_false, len, l2, buf_begin, buf_end);
+        first_false = __rotate (first_false, mid, second_false, len, l2, buf_begin, buf_end);
     }
     else
     {
@@ -1747,11 +1801,10 @@ __stable_partition (BidirectionalIterator first,
     }
     return first_false;
 }
+
 template <class BidirectionalIterator, class Predicate>
 BidirectionalIterator
-stable_partition (BidirectionalIterator first,
-                  BidirectionalIterator last,
-                  Predicate             pred)
+stable_partition (BidirectionalIterator first, BidirectionalIterator last, Predicate pred)
 {
     // Attempt to shrink problem size
     while (first != last && pred (*first))
@@ -1776,12 +1829,15 @@ stable_partition (BidirectionalIterator first,
             return first;
     }
     _TempVec<T> temp_buf (len);
-    return __stable_partition<BidirectionalIterator,
-                              Predicate,
-                              D,
-                              _TempVec<T>::iterator> (
-        first, last, pred, len, temp_buf.begin(), temp_buf.end());
+    return __stable_partition<BidirectionalIterator, Predicate, D, _TempVec<T>::iterator> (
+        first,
+        last,
+        pred,
+        len,
+        temp_buf.begin(),
+        temp_buf.end());
 }
+
 //  lib.alg.binary.search, binary search:
 
 // lower_bound
@@ -1809,12 +1865,10 @@ lower_bound (ForwardIterator first, ForwardIterator last, const T& value)
     }
     return first;
 }
+
 template <class ForwardIterator, class T, class Compare>
 ForwardIterator
-lower_bound (ForwardIterator first,
-             ForwardIterator last,
-             const T&        value,
-             Compare         comp)
+lower_bound (ForwardIterator first, ForwardIterator last, const T& value, Compare comp)
 {
     typedef typename iterator_traits<ForwardIterator>::difference_type D;
     D len = _STD::distance (first, last);
@@ -1835,6 +1889,7 @@ lower_bound (ForwardIterator first,
     }
     return first;
 }
+
 // upper_bound
 
 template <class ForwardIterator, class T>
@@ -1860,12 +1915,10 @@ upper_bound (ForwardIterator first, ForwardIterator last, const T& value)
     }
     return first;
 }
+
 template <class ForwardIterator, class T, class Compare>
 ForwardIterator
-upper_bound (ForwardIterator first,
-             ForwardIterator last,
-             const T&        value,
-             Compare         comp)
+upper_bound (ForwardIterator first, ForwardIterator last, const T& value, Compare comp)
 {
     typedef typename iterator_traits<ForwardIterator>::difference_type D;
     D len = _STD::distance (first, last);
@@ -1886,6 +1939,7 @@ upper_bound (ForwardIterator first,
     }
     return first;
 }
+
 // equal_range
 
 template <class ForwardIterator, class T>
@@ -1919,12 +1973,10 @@ equal_range (ForwardIterator first, ForwardIterator last, const T& value)
     }
     return Result (first, first);
 }
+
 template <class ForwardIterator, class T, class Compare>
 pair<ForwardIterator, ForwardIterator>
-equal_range (ForwardIterator first,
-             ForwardIterator last,
-             const T&        value,
-             Compare         comp)
+equal_range (ForwardIterator first, ForwardIterator last, const T& value, Compare comp)
 {
     typedef pair<ForwardIterator, ForwardIterator>                     Result;
     typedef typename iterator_traits<ForwardIterator>::difference_type D;
@@ -1953,6 +2005,7 @@ equal_range (ForwardIterator first,
     }
     return Result (first, first);
 }
+
 template <class ForwardIterator, class T>
 inline bool
 binary_search (ForwardIterator first, ForwardIterator last, const T& value)
@@ -1960,16 +2013,15 @@ binary_search (ForwardIterator first, ForwardIterator last, const T& value)
     ForwardIterator i = _STD::lower_bound (first, last, value);
     return static_cast<bool> (i != last && !(value < *i));
 }
+
 template <class ForwardIterator, class T, class Compare>
 inline bool
-binary_search (ForwardIterator first,
-               ForwardIterator last,
-               const T&        value,
-               Compare         comp)
+binary_search (ForwardIterator first, ForwardIterator last, const T& value, Compare comp)
 {
     ForwardIterator i = _STD::lower_bound (first, last, value, comp);
     return static_cast<bool> (i != last && !comp (value, *i));
 }
+
 // merge
 
 template <class InputIterator1, class InputIterator2, class OutputIterator>
@@ -2000,10 +2052,8 @@ merge (InputIterator1 first1,
     }
     return _STD::copy (first1, last1, result);
 }
-template <class InputIterator1,
-          class InputIterator2,
-          class OutputIterator,
-          class Compare>
+
+template <class InputIterator1, class InputIterator2, class OutputIterator, class Compare>
 OutputIterator
 merge (InputIterator1 first1,
        InputIterator1 last1,
@@ -2031,11 +2081,10 @@ merge (InputIterator1 first1,
     }
     return _STD::copy (first1, last1, result);
 }
+
 // __merge_backward
 
-template <class BidirectionalIterator1,
-          class BidirectionalIterator2,
-          class BidirectionalIterator3>
+template <class BidirectionalIterator1, class BidirectionalIterator2, class BidirectionalIterator3>
 BidirectionalIterator3
 __merge_backward (BidirectionalIterator1 first1,
                   BidirectionalIterator1 last1,
@@ -2076,6 +2125,7 @@ __merge_backward (BidirectionalIterator1 first1,
         }
     }
 }
+
 template <class BidirectionalIterator1,
           class BidirectionalIterator2,
           class BidirectionalIterator3,
@@ -2120,6 +2170,7 @@ __merge_backward (BidirectionalIterator1 first1,
         }
     }
 }
+
 // inplace_merge
 
 template <class BidirectionalIterator, class Distance, class RandomAccessIterator>
@@ -2147,13 +2198,11 @@ __inplace_merge (BidirectionalIterator first,
     Distance buffer_size = static_cast<Distance> (buf_end - buf_beg);
     if (len1 <= len2 && len1 <= buffer_size)
     {
-        _STD::merge (
-            buf_beg, _STD::copy (first, middle, buf_beg), middle, last, first);
+        _STD::merge (buf_beg, _STD::copy (first, middle, buf_beg), middle, last, first);
     }
     else if (len2 <= buffer_size)
     {
-        __merge_backward (
-            first, middle, buf_beg, _STD::copy (middle, last, buf_beg), last);
+        __merge_backward (first, middle, buf_beg, _STD::copy (middle, last, buf_beg), last);
     }
     else
     {
@@ -2175,13 +2224,12 @@ __inplace_merge (BidirectionalIterator first,
             mid2 = _STD::lower_bound (middle, last, *mid1);
             len22 = _STD::distance (middle, mid2);
         }
-        middle =
-            __rotate (mid1, middle, mid2, len1 - len12, len22, buf_beg, buf_end);
+        middle = __rotate (mid1, middle, mid2, len1 - len12, len22, buf_beg, buf_end);
         __inplace_merge (first, mid1, middle, len12, len22, buf_beg, buf_end);
-        __inplace_merge (
-            middle, mid2, last, len1 - len12, len2 - len22, buf_beg, buf_end);
+        __inplace_merge (middle, mid2, last, len1 - len12, len2 - len22, buf_beg, buf_end);
     }
 }
+
 template <class BidirectionalIterator>
 void
 inplace_merge (BidirectionalIterator first,
@@ -2201,13 +2249,10 @@ inplace_merge (BidirectionalIterator first,
         return;
     }
     _TempVec<T> temp_buf (_STD::min (len1, len2));
-    __inplace_merge (
-        first, middle, last, len1, len2, temp_buf.begin(), temp_buf.end());
+    __inplace_merge (first, middle, last, len1, len2, temp_buf.begin(), temp_buf.end());
 }
-template <class BidirectionalIterator,
-          class Compare,
-          class Distance,
-          class RandomAccessIterator>
+
+template <class BidirectionalIterator, class Compare, class Distance, class RandomAccessIterator>
 void
 __inplace_merge (BidirectionalIterator first,
                  BidirectionalIterator middle,
@@ -2233,13 +2278,11 @@ __inplace_merge (BidirectionalIterator first,
     Distance buffer_size = static_cast<Distance> (buf_end - buf_beg);
     if (len1 <= len2 && len1 <= buffer_size)
     {
-        _STD::merge (
-            buf_beg, _STD::copy (first, middle, buf_beg), middle, last, first, comp);
+        _STD::merge (buf_beg, _STD::copy (first, middle, buf_beg), middle, last, first, comp);
     }
     else if (len2 <= buffer_size)
     {
-        __merge_backward (
-            first, middle, buf_beg, _STD::copy (middle, last, buf_beg), last, comp);
+        __merge_backward (first, middle, buf_beg, _STD::copy (middle, last, buf_beg), last, comp);
     }
     else
     {
@@ -2261,13 +2304,12 @@ __inplace_merge (BidirectionalIterator first,
             mid2 = _STD::lower_bound (middle, last, *mid1, comp);
             len22 = _STD::distance (middle, mid2);
         }
-        middle =
-            __rotate (mid1, middle, mid2, len1 - len12, len22, buf_beg, buf_end);
+        middle = __rotate (mid1, middle, mid2, len1 - len12, len22, buf_beg, buf_end);
         __inplace_merge (first, mid1, middle, comp, len12, len22, buf_beg, buf_end);
-        __inplace_merge (
-            middle, mid2, last, comp, len1 - len12, len2 - len22, buf_beg, buf_end);
+        __inplace_merge (middle, mid2, last, comp, len1 - len12, len2 - len22, buf_beg, buf_end);
     }
 }
+
 template <class BidirectionalIterator, class Compare>
 void
 inplace_merge (BidirectionalIterator first,
@@ -2288,9 +2330,9 @@ inplace_merge (BidirectionalIterator first,
         return;
     }
     _TempVec<T> temp_buf (_STD::min (len1, len2));
-    __inplace_merge (
-        first, middle, last, comp, len1, len2, temp_buf.begin(), temp_buf.end());
+    __inplace_merge (first, middle, last, comp, len1, len2, temp_buf.begin(), temp_buf.end());
 }
+
 //  lib.alg.heap.operations, heap operations:
 
 // push_heap
@@ -2301,7 +2343,7 @@ push_heap (RandomAccessIterator first, RandomAccessIterator last)
 {
     typedef typename iterator_traits<RandomAccessIterator>::difference_type D;
     typedef typename iterator_traits<RandomAccessIterator>::value_type      T;
-    D hole = last - first;
+    D                                                                       hole = last - first;
     if (hole < 2)
     {
         return;
@@ -2328,13 +2370,14 @@ push_heap (RandomAccessIterator first, RandomAccessIterator last)
         *hole_ptr = tmp;
     }
 }
+
 template <class RandomAccessIterator, class Compare>
 void
 push_heap (RandomAccessIterator first, RandomAccessIterator last, Compare comp)
 {
     typedef typename iterator_traits<RandomAccessIterator>::difference_type D;
     typedef typename iterator_traits<RandomAccessIterator>::value_type      T;
-    D hole = last - first;
+    D                                                                       hole = last - first;
     if (hole < 2)
     {
         return;
@@ -2361,14 +2404,12 @@ push_heap (RandomAccessIterator first, RandomAccessIterator last, Compare comp)
         *hole_ptr = tmp;
     }
 }
+
 // __insert_heap_down
 
 template <class RandomAccessIterator, class Distance, class T>
 void
-__insert_heap_down (RandomAccessIterator first,
-                    Distance             len,
-                    Distance             hole,
-                    const T&             temp)
+__insert_heap_down (RandomAccessIterator first, Distance len, Distance hole, const T& temp)
 {
     RandomAccessIterator hole_ptr = first + hole;
     Distance             child = (hole + 1) * 2;
@@ -2391,6 +2432,7 @@ __insert_heap_down (RandomAccessIterator first,
     }
     *hole_ptr = temp;
 }
+
 template <class RandomAccessIterator, class Distance, class T, class Compare>
 void
 __insert_heap_down (RandomAccessIterator first,
@@ -2420,6 +2462,7 @@ __insert_heap_down (RandomAccessIterator first,
     }
     *hole_ptr = temp;
 }
+
 // pop_heap
 
 template <class RandomAccessIterator>
@@ -2428,7 +2471,7 @@ pop_heap (RandomAccessIterator first, RandomAccessIterator last)
 {
     typedef typename iterator_traits<RandomAccessIterator>::difference_type D;
     typedef typename iterator_traits<RandomAccessIterator>::value_type      T;
-    D len = last - first;
+    D                                                                       len = last - first;
     if (len < 2)
     {
         return;
@@ -2444,13 +2487,14 @@ pop_heap (RandomAccessIterator first, RandomAccessIterator last)
     *last = *first;
     __insert_heap_down (first, len, D (0), temp);
 }
+
 template <class RandomAccessIterator, class Compare>
 void
 pop_heap (RandomAccessIterator first, RandomAccessIterator last, Compare comp)
 {
     typedef typename iterator_traits<RandomAccessIterator>::difference_type D;
     typedef typename iterator_traits<RandomAccessIterator>::value_type      T;
-    D len = last - first;
+    D                                                                       len = last - first;
     if (len < 2)
     {
         return;
@@ -2466,6 +2510,7 @@ pop_heap (RandomAccessIterator first, RandomAccessIterator last, Compare comp)
     *last = *first;
     __insert_heap_down (first, len, D (0), temp, comp);
 }
+
 // make_heap
 
 template <class RandomAccessIterator>
@@ -2474,7 +2519,7 @@ make_heap (RandomAccessIterator first, RandomAccessIterator last)
 {
     typedef typename iterator_traits<RandomAccessIterator>::difference_type D;
     typedef typename iterator_traits<RandomAccessIterator>::value_type      T;
-    D len = last - first;
+    D                                                                       len = last - first;
     if (len < 2)
     {
         return;
@@ -2516,13 +2561,14 @@ make_heap (RandomAccessIterator first, RandomAccessIterator last)
         }
     }
 }
+
 template <class RandomAccessIterator, class Compare>
 void
 make_heap (RandomAccessIterator first, RandomAccessIterator last, Compare comp)
 {
     typedef typename iterator_traits<RandomAccessIterator>::difference_type D;
     typedef typename iterator_traits<RandomAccessIterator>::value_type      T;
-    D len = last - first;
+    D                                                                       len = last - first;
     if (len < 2)
     {
         return;
@@ -2564,6 +2610,7 @@ make_heap (RandomAccessIterator first, RandomAccessIterator last, Compare comp)
         }
     }
 }
+
 //  sort_heap
 
 template <class RandomAccessIterator>
@@ -2575,6 +2622,7 @@ sort_heap (RandomAccessIterator first, RandomAccessIterator last)
         _STD::pop_heap (first, last);
     }
 }
+
 template <class RandomAccessIterator, class Compare>
 inline void
 sort_heap (RandomAccessIterator first, RandomAccessIterator last, Compare comp)
@@ -2584,6 +2632,7 @@ sort_heap (RandomAccessIterator first, RandomAccessIterator last, Compare comp)
         _STD::pop_heap (first, last, comp);
     }
 }
+
 //  sort
 
 // hh 990106, 990817
@@ -2620,6 +2669,7 @@ __sort3 (ForwardIterator a1, ForwardIterator a2, ForwardIterator a3)
         }
     }
 }
+
 // hh 990106, 990817
 template <class ForwardIterator, class Compare>
 void
@@ -2654,6 +2704,7 @@ __sort3 (ForwardIterator a1, ForwardIterator a2, ForwardIterator a3, Compare com
         }
     }
 }
+
 template <class ForwardIterator>
 void
 __sort132 (ForwardIterator a1, ForwardIterator a2, ForwardIterator a3)
@@ -2682,6 +2733,7 @@ __sort132 (ForwardIterator a1, ForwardIterator a2, ForwardIterator a3)
         _STD::iter_swap (a1, a3);
     }
 }
+
 template <class ForwardIterator, class Compare>
 void
 __sort132 (ForwardIterator a1, ForwardIterator a2, ForwardIterator a3, Compare comp)
@@ -2710,6 +2762,7 @@ __sort132 (ForwardIterator a1, ForwardIterator a2, ForwardIterator a3, Compare c
         _STD::iter_swap (a1, a3);
     }
 }
+
 // hh 990817
 template <class RandomAccessIterator>
 void
@@ -2728,12 +2781,11 @@ __selection_sort (RandomAccessIterator first, RandomAccessIterator last)
         }
     }
 }
+
 // hh 990817
 template <class RandomAccessIterator, class Compare>
 void
-__selection_sort (RandomAccessIterator first,
-                  RandomAccessIterator last,
-                  Compare              comp)
+__selection_sort (RandomAccessIterator first, RandomAccessIterator last, Compare comp)
 {
     if (first != last)
     {
@@ -2748,6 +2800,7 @@ __selection_sort (RandomAccessIterator first,
         }
     }
 }
+
 template <class RandomAccessIterator>
 void
 __insertion_sort (RandomAccessIterator first, RandomAccessIterator last)
@@ -2770,11 +2823,10 @@ __insertion_sort (RandomAccessIterator first, RandomAccessIterator last)
         }
     }
 }
+
 template <class RandomAccessIterator, class Compare>
 void
-__insertion_sort (RandomAccessIterator first,
-                  RandomAccessIterator last,
-                  Compare              comp)
+__insertion_sort (RandomAccessIterator first, RandomAccessIterator last, Compare comp)
 {
     typedef typename iterator_traits<RandomAccessIterator>::value_type Value;
     if (first != last)
@@ -2794,16 +2846,17 @@ __insertion_sort (RandomAccessIterator first,
         }
     }
 }
+
 // hh 990817
 const int __sort_switch = 20;
+
 // hh 990817
 template <class RandomAccessIterator>
 void
 sort (RandomAccessIterator first, RandomAccessIterator last)
 {
-    typedef
-        typename iterator_traits<RandomAccessIterator>::difference_type Difference;
-    typedef typename iterator_traits<RandomAccessIterator>::value_type  T;
+    typedef typename iterator_traits<RandomAccessIterator>::difference_type Difference;
+    typedef typename iterator_traits<RandomAccessIterator>::value_type      T;
     while (true)
     {
         Difference len = last - first;
@@ -2830,14 +2883,14 @@ sort (RandomAccessIterator first, RandomAccessIterator last)
         }
         RandomAccessIterator j = last - 1;
         __sort132 (m, i1, j);
-        m = __partition_const_ref (
-            first, j, __binder2nd_const_ref<less<T> > (less<T>(), *j));
+        m = __partition_const_ref (first, j, __binder2nd_const_ref<less<T> > (less<T>(), *j));
         if (m == first)
         {
             _STD::iter_swap (m, j);
             ++m;
-            m = __partition_const_ref (
-                m, last, not1 (__binder1st_const_ref<less<T> > (less<T>(), *first)));
+            m = __partition_const_ref (m,
+                                       last,
+                                       not1 (__binder1st_const_ref<less<T> > (less<T>(), *first)));
             //			sort(m, last);
             first = m;
         }
@@ -2858,13 +2911,13 @@ sort (RandomAccessIterator first, RandomAccessIterator last)
         }
     }
 }
+
 // hh 990817
 template <class RandomAccessIterator, class Compare>
 void
 sort (RandomAccessIterator first, RandomAccessIterator last, Compare comp)
 {
-    typedef
-        typename iterator_traits<RandomAccessIterator>::difference_type Difference;
+    typedef typename iterator_traits<RandomAccessIterator>::difference_type Difference;
     while (true)
     {
         Difference len = last - first;
@@ -2980,6 +3033,7 @@ sort (RandomAccessIterator first, RandomAccessIterator last, Compare comp)
         }
     }
 }
+
 // stable_sort
 
 template <class RandomAccessIterator1, class RandomAccessIterator2>
@@ -2988,9 +3042,8 @@ __stable_sort_copy (RandomAccessIterator1 first1,
                     RandomAccessIterator1 last1,
                     RandomAccessIterator2 first2)
 {
-    typedef
-        typename iterator_traits<RandomAccessIterator1>::difference_type Difference;
-    Difference len = last1 - first1;
+    typedef typename iterator_traits<RandomAccessIterator1>::difference_type Difference;
+    Difference                                                               len = last1 - first1;
     if (len <= 0)
     {
         return;
@@ -3024,6 +3077,7 @@ __stable_sort_copy (RandomAccessIterator1 first1,
     __stable_sort (middle, last1, first2 + len2, first2 + len);
     _STD::merge (first1, first1 + len2, first1 + len2, first1 + len, first2);
 }
+
 template <class RandomAccessIterator1, class RandomAccessIterator2, class Compare>
 void
 __stable_sort_copy (RandomAccessIterator1 first1,
@@ -3031,9 +3085,8 @@ __stable_sort_copy (RandomAccessIterator1 first1,
                     RandomAccessIterator2 first2,
                     Compare               comp)
 {
-    typedef
-        typename iterator_traits<RandomAccessIterator1>::difference_type Difference;
-    Difference len = last1 - first1;
+    typedef typename iterator_traits<RandomAccessIterator1>::difference_type Difference;
+    Difference                                                               len = last1 - first1;
     if (len <= 0)
     {
         return;
@@ -3067,6 +3120,7 @@ __stable_sort_copy (RandomAccessIterator1 first1,
     __stable_sort (middle, last1, first2 + len2, first2 + len, comp);
     _STD::merge (first1, first1 + len2, first1 + len2, first1 + len, first2, comp);
 }
+
 template <class RandomAccessIterator1, class RandomAccessIterator2>
 void
 __stable_sort (RandomAccessIterator1 first,
@@ -3074,9 +3128,8 @@ __stable_sort (RandomAccessIterator1 first,
                RandomAccessIterator2 buf_beg,
                RandomAccessIterator2 buf_end)
 {
-    typedef
-        typename iterator_traits<RandomAccessIterator1>::difference_type Difference;
-    Difference len = last - first;
+    typedef typename iterator_traits<RandomAccessIterator1>::difference_type Difference;
+    Difference                                                               len = last - first;
     if (len <= 1)
     {
         return;
@@ -3100,15 +3153,14 @@ __stable_sort (RandomAccessIterator1 first,
     {
         __stable_sort_copy (first, middle, buf_beg);
         __stable_sort_copy (middle, last, buf_beg + len / 2);
-        _STD::merge (
-            buf_beg, buf_beg + len / 2, buf_beg + len / 2, buf_beg + len, first);
+        _STD::merge (buf_beg, buf_beg + len / 2, buf_beg + len / 2, buf_beg + len, first);
         return;
     }
     __stable_sort (first, middle, buf_beg, buf_end);
     __stable_sort (middle, last, buf_beg, buf_end);
-    __inplace_merge (
-        first, middle, last, middle - first, last - middle, buf_beg, buf_end);
+    __inplace_merge (first, middle, last, middle - first, last - middle, buf_beg, buf_end);
 }
+
 template <class RandomAccessIterator1, class RandomAccessIterator2, class Compare>
 void
 __stable_sort (RandomAccessIterator1 first,
@@ -3117,9 +3169,8 @@ __stable_sort (RandomAccessIterator1 first,
                RandomAccessIterator2 buf_end,
                Compare               comp)
 {
-    typedef
-        typename iterator_traits<RandomAccessIterator1>::difference_type Difference;
-    Difference len = last - first;
+    typedef typename iterator_traits<RandomAccessIterator1>::difference_type Difference;
+    Difference                                                               len = last - first;
     if (len <= 1)
     {
         return;
@@ -3143,26 +3194,20 @@ __stable_sort (RandomAccessIterator1 first,
     {
         __stable_sort_copy (first, middle, buf_beg, comp);
         __stable_sort_copy (middle, last, buf_beg + len / 2, comp);
-        _STD::merge (buf_beg,
-                     buf_beg + len / 2,
-                     buf_beg + len / 2,
-                     buf_beg + len,
-                     first,
-                     comp);
+        _STD::merge (buf_beg, buf_beg + len / 2, buf_beg + len / 2, buf_beg + len, first, comp);
         return;
     }
     __stable_sort (first, middle, buf_beg, buf_end, comp);
     __stable_sort (middle, last, buf_beg, buf_end, comp);
-    __inplace_merge (
-        first, middle, last, comp, middle - first, last - middle, buf_beg, buf_end);
+    __inplace_merge (first, middle, last, comp, middle - first, last - middle, buf_beg, buf_end);
 }
+
 template <class RandomAccessIterator>
 void
 stable_sort (RandomAccessIterator first, RandomAccessIterator last)
 {
-    typedef
-        typename iterator_traits<RandomAccessIterator>::difference_type Difference;
-    Difference len = last - first;
+    typedef typename iterator_traits<RandomAccessIterator>::difference_type Difference;
+    Difference                                                              len = last - first;
     if (len <= 1)
     {
         return;
@@ -3185,13 +3230,13 @@ stable_sort (RandomAccessIterator first, RandomAccessIterator last)
     _TempVec<Value>                                                    buf (len);
     __stable_sort (first, last, buf.begin(), buf.end());
 }
+
 template <class RandomAccessIterator, class Compare>
 void
 stable_sort (RandomAccessIterator first, RandomAccessIterator last, Compare comp)
 {
-    typedef
-        typename iterator_traits<RandomAccessIterator>::difference_type Difference;
-    Difference len = last - first;
+    typedef typename iterator_traits<RandomAccessIterator>::difference_type Difference;
+    Difference                                                              len = last - first;
     if (len <= 1)
     {
         return;
@@ -3214,17 +3259,16 @@ stable_sort (RandomAccessIterator first, RandomAccessIterator last, Compare comp
     _TempVec<Value>                                                    buf (len);
     __stable_sort (first, last, buf.begin(), buf.end(), comp);
 }
+
 // partial_sort
 
 template <class RandomAccessIterator>
 void
-partial_sort (RandomAccessIterator first,
-              RandomAccessIterator middle,
-              RandomAccessIterator last)
+partial_sort (RandomAccessIterator first, RandomAccessIterator middle, RandomAccessIterator last)
 {
     typedef typename iterator_traits<RandomAccessIterator>::value_type      T;
     typedef typename iterator_traits<RandomAccessIterator>::difference_type D;
-    D midlen = middle - first;
+    D                                                                       midlen = middle - first;
     switch (midlen)
     {
         case 0:
@@ -3245,6 +3289,7 @@ partial_sort (RandomAccessIterator first,
     }
     _STD::sort_heap (first, middle);
 }
+
 template <class RandomAccessIterator, class Compare>
 void
 partial_sort (RandomAccessIterator first,
@@ -3254,7 +3299,7 @@ partial_sort (RandomAccessIterator first,
 {
     typedef typename iterator_traits<RandomAccessIterator>::value_type      T;
     typedef typename iterator_traits<RandomAccessIterator>::difference_type D;
-    D midlen = middle - first;
+    D                                                                       midlen = middle - first;
     switch (midlen)
     {
         case 0:
@@ -3275,6 +3320,7 @@ partial_sort (RandomAccessIterator first,
     }
     _STD::sort_heap (first, middle, comp);
 }
+
 template <class InputIterator, class RandomAccessIterator>
 RandomAccessIterator
 partial_sort_copy (InputIterator        first,
@@ -3283,7 +3329,7 @@ partial_sort_copy (InputIterator        first,
                    RandomAccessIterator result_last)
 {
     typedef typename iterator_traits<RandomAccessIterator>::difference_type D;
-    RandomAccessIterator result = result_first;
+    RandomAccessIterator                                                    result = result_first;
     for (; first != last && result != result_last; ++first, ++result)
     {
         *result = *first;
@@ -3304,6 +3350,7 @@ partial_sort_copy (InputIterator        first,
     _STD::sort_heap (result_first, result);
     return result;
 }
+
 template <class InputIterator, class RandomAccessIterator, class Compare>
 RandomAccessIterator
 partial_sort_copy (InputIterator        first,
@@ -3313,7 +3360,7 @@ partial_sort_copy (InputIterator        first,
                    Compare              comp)
 {
     typedef typename iterator_traits<RandomAccessIterator>::difference_type D;
-    RandomAccessIterator result = result_first;
+    RandomAccessIterator                                                    result = result_first;
     for (; first != last && result != result_last; ++first, ++result)
     {
         *result = *first;
@@ -3334,15 +3381,14 @@ partial_sort_copy (InputIterator        first,
     _STD::sort_heap (result_first, result, comp);
     return result;
 }
+
 template <class RandomAccessIterator>
 void
-nth_element (RandomAccessIterator first,
-             RandomAccessIterator nth,
-             RandomAccessIterator last)
+nth_element (RandomAccessIterator first, RandomAccessIterator nth, RandomAccessIterator last)
 {
     typedef typename iterator_traits<RandomAccessIterator>::difference_type D;
     typedef typename iterator_traits<RandomAccessIterator>::value_type      T;
-    D len = last - first;
+    D                                                                       len = last - first;
     while (len > 3)
     {
         if (nth == first)
@@ -3372,6 +3418,7 @@ nth_element (RandomAccessIterator first,
     }
     __insertion_sort (first, last);
 }
+
 template <class RandomAccessIterator, class Compare>
 void
 nth_element (RandomAccessIterator first,
@@ -3381,7 +3428,7 @@ nth_element (RandomAccessIterator first,
 {
     typedef typename iterator_traits<RandomAccessIterator>::difference_type D;
     typedef typename iterator_traits<RandomAccessIterator>::value_type      T;
-    D len = last - first;
+    D                                                                       len = last - first;
     while (len > 3)
     {
         if (nth == first)
@@ -3446,14 +3493,12 @@ nth_element (RandomAccessIterator first,
             break;
     }
 }
+
 //  lib.alg.set.operations, set operations:
 
 template <class InputIterator1, class InputIterator2>
 inline bool
-includes (InputIterator1 first1,
-          InputIterator1 last1,
-          InputIterator2 first2,
-          InputIterator2 last2)
+includes (InputIterator1 first1, InputIterator1 last1, InputIterator2 first2, InputIterator2 last2)
 {
     for (; first1 != last1 && first2 != last2; ++first1)
     {
@@ -3468,6 +3513,7 @@ includes (InputIterator1 first1,
     }
     return static_cast<bool> (first2 == last2);
 }
+
 template <class InputIterator1, class InputIterator2, class Compare>
 inline bool
 includes (InputIterator1 first1,
@@ -3489,6 +3535,7 @@ includes (InputIterator1 first1,
     }
     return static_cast<bool> (first2 == last2);
 }
+
 template <class InputIterator1, class InputIterator2, class OutputIterator>
 OutputIterator
 set_union (InputIterator1 first1,
@@ -3522,10 +3569,8 @@ set_union (InputIterator1 first1,
     }
     return _STD::copy (first2, last2, result);
 }
-template <class InputIterator1,
-          class InputIterator2,
-          class OutputIterator,
-          class Compare>
+
+template <class InputIterator1, class InputIterator2, class OutputIterator, class Compare>
 OutputIterator
 set_union (InputIterator1 first1,
            InputIterator1 last1,
@@ -3559,6 +3604,7 @@ set_union (InputIterator1 first1,
     }
     return _STD::copy (first2, last2, result);
 }
+
 template <class InputIterator1, class InputIterator2, class OutputIterator>
 OutputIterator
 set_intersection (InputIterator1 first1,
@@ -3587,10 +3633,8 @@ set_intersection (InputIterator1 first1,
     }
     return result;
 }
-template <class InputIterator1,
-          class InputIterator2,
-          class OutputIterator,
-          class Compare>
+
+template <class InputIterator1, class InputIterator2, class OutputIterator, class Compare>
 OutputIterator
 set_intersection (InputIterator1 first1,
                   InputIterator1 last1,
@@ -3619,6 +3663,7 @@ set_intersection (InputIterator1 first1,
     }
     return result;
 }
+
 template <class InputIterator1, class InputIterator2, class OutputIterator>
 OutputIterator
 set_difference (InputIterator1 first1,
@@ -3647,10 +3692,8 @@ set_difference (InputIterator1 first1,
     }
     return _STD::copy (first1, last1, result);
 }
-template <class InputIterator1,
-          class InputIterator2,
-          class OutputIterator,
-          class Compare>
+
+template <class InputIterator1, class InputIterator2, class OutputIterator, class Compare>
 OutputIterator
 set_difference (InputIterator1 first1,
                 InputIterator1 last1,
@@ -3679,6 +3722,7 @@ set_difference (InputIterator1 first1,
     }
     return _STD::copy (first1, last1, result);
 }
+
 template <class InputIterator1, class InputIterator2, class OutputIterator>
 OutputIterator
 set_symmetric_difference (InputIterator1 first1,
@@ -3713,10 +3757,8 @@ set_symmetric_difference (InputIterator1 first1,
     }
     return _STD::copy (first2, last2, result);
 }
-template <class InputIterator1,
-          class InputIterator2,
-          class OutputIterator,
-          class Compare>
+
+template <class InputIterator1, class InputIterator2, class OutputIterator, class Compare>
 OutputIterator
 set_symmetric_difference (InputIterator1 first1,
                           InputIterator1 last1,
@@ -3751,6 +3793,7 @@ set_symmetric_difference (InputIterator1 first1,
     }
     return _STD::copy (first2, last2, result);
 }
+
 //  lib.alg.permutation.generators, permutations
 
 template <class BidirectionalIterator>
@@ -3785,11 +3828,10 @@ next_permutation (BidirectionalIterator first, BidirectionalIterator last)
         }
     }
 }
+
 template <class BidirectionalIterator, class Compare>
 bool
-next_permutation (BidirectionalIterator first,
-                  BidirectionalIterator last,
-                  Compare               comp)
+next_permutation (BidirectionalIterator first, BidirectionalIterator last, Compare comp)
 {
     BidirectionalIterator i = last;
     if (first == last || first == --i)
@@ -3819,6 +3861,7 @@ next_permutation (BidirectionalIterator first,
         }
     }
 }
+
 template <class BidirectionalIterator>
 bool
 prev_permutation (BidirectionalIterator first, BidirectionalIterator last)
@@ -3851,11 +3894,10 @@ prev_permutation (BidirectionalIterator first, BidirectionalIterator last)
         }
     }
 }
+
 template <class BidirectionalIterator, class Compare>
 bool
-prev_permutation (BidirectionalIterator first,
-                  BidirectionalIterator last,
-                  Compare               comp)
+prev_permutation (BidirectionalIterator first, BidirectionalIterator last, Compare comp)
 {
     BidirectionalIterator i = last;
     if (first == last || first == --i)

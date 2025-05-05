@@ -48,12 +48,10 @@ accumulate (InputIterator first, InputIterator last, T init)
     }
     return init;
 }
+
 template <class InputIterator, class T, class BinaryOperation>
 inline T
-accumulate (InputIterator   first,
-            InputIterator   last,
-            T               init,
-            BinaryOperation binary_op)
+accumulate (InputIterator first, InputIterator last, T init, BinaryOperation binary_op)
 {
     for (; first != last; ++first)
     {
@@ -61,12 +59,10 @@ accumulate (InputIterator   first,
     }
     return init;
 }
+
 template <class InputIterator1, class InputIterator2, class T>
 inline T
-inner_product (InputIterator1 first1,
-               InputIterator1 last1,
-               InputIterator2 first2,
-               T              init)
+inner_product (InputIterator1 first1, InputIterator1 last1, InputIterator2 first2, T init)
 {
     for (; first1 != last1; ++first1, ++first2)
     {
@@ -74,6 +70,7 @@ inner_product (InputIterator1 first1,
     }
     return init;
 }
+
 template <class InputIterator1,
           class InputIterator2,
           class T,
@@ -93,6 +90,7 @@ inner_product (InputIterator1   first1,
     }
     return init;
 }
+
 template <class InputIterator, class OutputIterator>
 inline OutputIterator
 partial_sum (InputIterator first, InputIterator last, OutputIterator result)
@@ -109,6 +107,7 @@ partial_sum (InputIterator first, InputIterator last, OutputIterator result)
     }
     return result;
 }
+
 template <class InputIterator, class OutputIterator, class BinaryOperation>
 inline OutputIterator
 partial_sum (InputIterator   first,
@@ -128,6 +127,7 @@ partial_sum (InputIterator   first,
     }
     return result;
 }
+
 template <class InputIterator, class OutputIterator>
 inline OutputIterator
 adjacent_difference (InputIterator first, InputIterator last, OutputIterator result)
@@ -147,6 +147,7 @@ adjacent_difference (InputIterator first, InputIterator last, OutputIterator res
     }
     return result;
 }
+
 template <class InputIterator, class OutputIterator, class BinaryOperation>
 OutputIterator
 adjacent_difference (InputIterator   first,

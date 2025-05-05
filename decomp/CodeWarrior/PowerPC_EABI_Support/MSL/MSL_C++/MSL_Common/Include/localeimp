@@ -54,7 +54,9 @@ __isspace_imp (int x)
 {
     return isspace (x);
 }
+
 #undef isspace
+
 inline int
 isspace (int x)
 {
@@ -68,7 +70,9 @@ __isprint_imp (int x)
 {
     return isprint (x);
 }
+
 #undef isprint
+
 inline int
 isprint (int x)
 {
@@ -82,7 +86,9 @@ __iscntrl_imp (int x)
 {
     return iscntrl (x);
 }
+
 #undef iscntrl
+
 inline int
 iscntrl (int x)
 {
@@ -96,7 +102,9 @@ __isupper_imp (int x)
 {
     return isupper (x);
 }
+
 #undef isupper
+
 inline int
 isupper (int x)
 {
@@ -110,7 +118,9 @@ __islower_imp (int x)
 {
     return islower (x);
 }
+
 #undef islower
+
 inline int
 islower (int x)
 {
@@ -124,7 +134,9 @@ __isalpha_imp (int x)
 {
     return isalpha (x);
 }
+
 #undef isalpha
+
 inline int
 isalpha (int x)
 {
@@ -138,7 +150,9 @@ __isdigit_imp (int x)
 {
     return isdigit (x);
 }
+
 #undef isdigit
+
 inline int
 isdigit (int x)
 {
@@ -152,7 +166,9 @@ __ispunct_imp (int x)
 {
     return ispunct (x);
 }
+
 #undef ispunct
+
 inline int
 ispunct (int x)
 {
@@ -166,7 +182,9 @@ __isxdigit_imp (int x)
 {
     return isxdigit (x);
 }
+
 #undef isxdigit
+
 inline int
 isxdigit (int x)
 {
@@ -180,7 +198,9 @@ __isalnum_imp (int x)
 {
     return isalnum (x);
 }
+
 #undef isalnum
+
 inline int
 isalnum (int x)
 {
@@ -194,7 +214,9 @@ __isgraph_imp (int x)
 {
     return isgraph (x);
 }
+
 #undef isgraph
+
 inline int
 isgraph (int x)
 {
@@ -208,7 +230,9 @@ __toupper_imp (int x)
 {
     return toupper (x);
 }
+
 #undef toupper
+
 inline int
 toupper (int x)
 {
@@ -222,7 +246,9 @@ __tolower_imp (int x)
 {
     return tolower (x);
 }
+
 #undef tolower
+
 inline int
 tolower (int x)
 {
@@ -237,52 +263,80 @@ namespace std
 
 #ifndef _MSL_NO_LOCALE
 
-template <class charT> class collate;
-template <class charT> class collate_byname;
+template <class charT>
+class collate;
+template <class charT>
+class collate_byname;
 
-template <class charT> class ctype;
-template <class charT> class ctype_byname;
+template <class charT>
+class ctype;
+template <class charT>
+class ctype_byname;
 
-template <class internT, class externT, class stateT> class codecvt;
-template <class internT, class externT, class stateT> class codecvt_byname;
+template <class internT, class externT, class stateT>
+class codecvt;
+template <class internT, class externT, class stateT>
+class codecvt_byname;
 
-template <class charT, bool International> class moneypunct;
-template <class charT, bool Intl> class moneypunct_byname;
-template <class charT, class InputIterator> class money_get;
-template <class charT, class OutputIterator> class money_put;
+template <class charT, bool International>
+class moneypunct;
+template <class charT, bool Intl>
+class moneypunct_byname;
+template <class charT, class InputIterator>
+class money_get;
+template <class charT, class OutputIterator>
+class money_put;
 
-template <class charT> class numpunct;
-template <class charT> class numpunct_byname;
-template <class charT, class InputIterator> class num_get;
-template <class charT, class OutputIterator> class num_put;
+template <class charT>
+class numpunct;
+template <class charT>
+class numpunct_byname;
+template <class charT, class InputIterator>
+class num_get;
+template <class charT, class OutputIterator>
+class num_put;
 
-template <class charT> class timepunct;
-template <class charT> class timepunct_byname;
-template <class charT, class InputIterator> class time_get;
-template <class charT, class InputIterator> class time_get_byname;
-template <class charT, class OutputIterator> class time_put;
-template <class charT, class OutputIterator> class time_put_byname;
+template <class charT>
+class timepunct;
+template <class charT>
+class timepunct_byname;
+template <class charT, class InputIterator>
+class time_get;
+template <class charT, class InputIterator>
+class time_get_byname;
+template <class charT, class OutputIterator>
+class time_put;
+template <class charT, class OutputIterator>
+class time_put_byname;
 
-template <class charT> class messages;
-template <class charT> class messages_byname;
+template <class charT>
+class messages;
+template <class charT>
+class messages_byname;
 
 class locale;
 
 // hh 980915 added support for compilers only supporting
 // _MSL_NO_EXPLICIT_FUNC_TEMPLATE_ARG
 #ifndef _MSL_NO_EXPLICIT_FUNC_TEMPLATE_ARG
-template <class Facet> const Facet& use_facet (const locale& loc);
-template <class Facet> bool         has_facet (const locale& loc) _MSL_THROW;
+template <class Facet>
+const Facet& use_facet (const locale& loc);
+template <class Facet>
+bool has_facet (const locale& loc) _MSL_THROW;
 #define _USE_FACET(FACET, LOCALE) use_facet<FACET> (LOCALE)
 #define _HAS_FACET(FACET, LOCALE) has_facet<FACET> (LOCALE)
 #else
-template <class Facet> const Facet& use_facet (const locale& loc, Facet*);
-template <class Facet> bool         has_facet (const locale& loc, Facet*) _MSL_THROW;
+template <class Facet>
+const Facet& use_facet (const locale& loc, Facet*);
+template <class Facet>
+bool has_facet (const locale& loc, Facet*) _MSL_THROW;
 #define _USE_FACET(FACET, LOCALE) use_facet (LOCALE, (FACET*)0)
 #define _HAS_FACET(FACET, LOCALE) has_facet (LOCALE, (FACET*)0)
 #endif
 
-template <bool b> class __locale_imp;
+template <bool b>
+class __locale_imp;
+
 // _lib.locale_, locale:
 class locale
 {
@@ -293,31 +347,34 @@ public:
     typedef int           category;
     static const category none = 0, collate = 0x010, ctype = 0x020, monetary = 0x040,
                           numeric = 0x080, time = 0x100, messages = 0x200,
-                          all =
-                              collate | ctype | monetary | numeric | time | messages;
+                          all = collate | ctype | monetary | numeric | time | messages;
     // construct/copy/destroy:
     locale () _MSL_THROW;
     explicit locale (const char* std_name);
     locale (const locale& other, const char* std_name, category cat);
     locale (const locale& other, const locale& one, category cat);
-    template <class Facet> locale (const locale& other, Facet* f);
-    template <class Facet> locale combine (const locale& other) const;
+    template <class Facet>
+    locale (const locale& other, Facet* f);
+    template <class Facet>
+    locale combine (const locale& other) const;
     // locale operations:
-    string                        name () const;
-    bool                          operator== (const locale& other) const;
-    bool                          operator!= (const locale& other) const;
+    string name () const;
+    bool   operator== (const locale& other) const;
+    bool   operator!= (const locale& other) const;
 
     template <class charT, class Traits, class Allocator>
-    bool          operator() (const basic_string<charT, Traits, Allocator>& s1,
+    bool                 operator() (const basic_string<charT, Traits, Allocator>& s1,
                      const basic_string<charT, Traits, Allocator>& s2) const;
     // global locale objects:
-    static locale global (const locale&);
+    static locale        global (const locale&);
     static const locale& classic () _MSL_THROW;
 
 private:
 #ifndef _MSL_NO_TEMPLATE_FRIENDS
-    template <class Facet> friend const Facet& use_facet (const locale& loc);
-    template <class Facet> friend bool has_facet (const locale& loc) _MSL_THROW;
+    template <class Facet>
+    friend const Facet& use_facet (const locale& loc);
+    template <class Facet>
+    friend bool has_facet (const locale& loc) _MSL_THROW;
 #endif
 
     typedef _RefCountedPtr<__locale_imp<true> > imp_type;
@@ -337,6 +394,7 @@ private:
     static locale& global () _MSL_THROW;
     explicit locale (const imp_type& i) _MSL_THROW;
 };
+
 // locale::facet
 
 class locale::facet
@@ -357,27 +415,29 @@ private:
 #if defined(__MWERKS__) && __MWERKS__ < 0x2500
     friend class __locale_imp<true>;
 #else
-    template <bool> friend class __locale_imp;
+    template <bool>
+    friend class __locale_imp;
 #endif
 };
+
 // locale::facet Implementation
 
-inline locale::facet::facet (size_t refs) : ref_ (refs)
-{
-}
-inline locale::facet::ÃÂ¢ÃÂÃÂ¾facet()
-{
-}
+inline locale::facet::facet (size_t refs) : ref_ (refs) {}
+
+inline locale::facet::ÃÂ¢ÃÂÃÂ¾facet() {}
+
 inline void
 locale::facet::add_ref () const
 {
     ++ref_;
 }
+
 inline locale::facet*
 locale::facet::rem_ref () const
 {
     return --ref_ == 0 ? const_cast<facet*> (this) : 0;
 }
+
 // locale::id
 
 class locale::id
@@ -394,20 +454,22 @@ private:
 
     friend class __locale_imp<true>;
 #ifndef _MSL_NO_TEMPLATE_FRIENDS
-    size_t                                     get ();
-    template <class Facet> friend const Facet& use_facet (const locale& loc);
-    template <class Facet> friend bool has_facet (const locale& loc) _MSL_THROW;
+    size_t get ();
+    template <class Facet>
+    friend const Facet& use_facet (const locale& loc);
+    template <class Facet>
+    friend bool has_facet (const locale& loc) _MSL_THROW;
 #else
 
 public:
     size_t get ();
 #endif
 };
+
 // locale::id Implementation
 
-inline locale::id::id ()
-{
-}
+inline locale::id::id () {}
+
 inline size_t
 locale::id::get ()
 {
@@ -417,9 +479,11 @@ locale::id::get ()
     }
     return id_;
 }
+
 // __locale_imp
 
-template <bool b> class __locale_imp
+template <bool b>
+class __locale_imp
 {
 public:
     __locale_imp ();
@@ -427,14 +491,15 @@ public:
     __locale_imp (const __locale_imp& rhs);
     __locale_imp (const locale& other, const locale& one, locale::category cat);
     ÃÂ¢ÃÂÃÂ¾__locale_imp () _MSL_THROW;
-    __locale_imp&               operator= (const __locale_imp& rhs);
-    void                        init (const char* std_name);
-    size_t                      size () const;
-    locale::facet*&             operator[] (size_t i);
-    locale::facet* const &      operator[] (size_t i) const;
-    string&                     name ();
-    const string&               name () const;
-    template <class Facet> void replace (const Facet& f);
+    __locale_imp&          operator= (const __locale_imp& rhs);
+    void                   init (const char* std_name);
+    size_t                 size () const;
+    locale::facet*&        operator[] (size_t i);
+    locale::facet* const & operator[] (size_t i) const;
+    string&                name ();
+    const string&          name () const;
+    template <class Facet>
+    void replace (const Facet& f);
 
 private:
     vector<locale::facet*> facets_;
@@ -443,23 +508,24 @@ private:
 
     void replace (const locale::facet& f, size_t id);
 
-    static string combine_names (const string&    other,
-                                 const string&    one,
-                                 locale::category cat);
+    static string combine_names (const string& other, const string& one, locale::category cat);
     static string get_facet_name (const string& name, int cat);
 };
+
 // __locale_imp Implementation
 
-template <bool b> inline __locale_imp<b>::__locale_imp() : name_ ("*")
+template <bool b>
+inline __locale_imp<b>::__locale_imp() : name_ ("*")
 {
 }
+
 template <bool b>
 inline __locale_imp<b>::__locale_imp (const char* std_name) : name_ (std_name)
 {
 }
+
 template <bool b>
-__locale_imp<b>::__locale_imp (const __locale_imp& rhs)
-  : facets_ (rhs.facets_), name_ (rhs.name_)
+__locale_imp<b>::__locale_imp (const __locale_imp& rhs) : facets_ (rhs.facets_), name_ (rhs.name_)
 {
     size_t end = facets_.size();
     for (size_t i = 0; i < end; ++i)
@@ -471,7 +537,9 @@ __locale_imp<b>::__locale_imp (const __locale_imp& rhs)
         }
     }
 }
-template <bool b> __locale_imp<b>::ÃÂ¢ÃÂÃÂ¾__locale_imp() _MSL_THROW
+
+template <bool b>
+__locale_imp<b>::ÃÂ¢ÃÂÃÂ¾__locale_imp() _MSL_THROW
 {
     size_t end = facets_.size();
     for (size_t i = 0; i < end; ++i)
@@ -483,6 +551,7 @@ template <bool b> __locale_imp<b>::ÃÂ¢ÃÂÃÂ¾__locale_imp() _MSL_T
         }
     }
 }
+
 template <bool b>
 __locale_imp<b>&
 __locale_imp<b>::operator= (const __locale_imp& rhs)
@@ -514,36 +583,42 @@ __locale_imp<b>::operator= (const __locale_imp& rhs)
     }
     return *this;
 }
+
 template <bool b>
 inline size_t
 __locale_imp<b>::size () const
 {
     return facets_.size();
 }
+
 template <bool b>
 inline locale::facet*&
 __locale_imp<b>::operator[] (size_t i)
 {
     return facets_[i];
 }
+
 template <bool b>
 inline locale::facet* const &
 __locale_imp<b>::operator[] (size_t i) const
 {
     return facets_[i];
 }
+
 template <bool b>
 inline string&
 __locale_imp<b>::name ()
 {
     return name_;
 }
+
 template <bool b>
 inline const string&
 __locale_imp<b>::name () const
 {
     return name_;
 }
+
 template <bool b>
 template <class Facet>
 inline void
@@ -551,6 +626,7 @@ __locale_imp<b>::replace (const Facet& f)
 {
     replace (f, f.id.get());
 }
+
 template <bool b>
 void
 __locale_imp<b>::replace (const locale::facet& f, size_t id)
@@ -579,6 +655,7 @@ __locale_imp<b>::replace (const locale::facet& f, size_t id)
     }
     p = const_cast<locale::facet*> (&f);
 }
+
 template <bool b>
 string
 __locale_imp<b>::get_facet_name (const string& name, int cat)
@@ -595,40 +672,33 @@ __locale_imp<b>::get_facet_name (const string& name, int cat)
     }
     return name.substr (pos, name.find (separator_, pos) - pos);
 }
+
 template <bool b>
 string
-__locale_imp<b>::combine_names (const string&    other,
-                                const string&    one,
-                                locale::category cat)
+__locale_imp<b>::combine_names (const string& other, const string& one, locale::category cat)
 {
     if (other == one)
     {
         return one;
     }
-    string result (cat & locale::collate ? get_facet_name (one, 0)
-                                         : get_facet_name (other, 0));
+    string result (cat & locale::collate ? get_facet_name (one, 0) : get_facet_name (other, 0));
     result += separator_;
-    result +=
-        cat & locale::ctype ? get_facet_name (one, 1) : get_facet_name (other, 1);
+    result += cat & locale::ctype ? get_facet_name (one, 1) : get_facet_name (other, 1);
     result += separator_;
-    result +=
-        cat & locale::monetary ? get_facet_name (one, 2) : get_facet_name (other, 2);
+    result += cat & locale::monetary ? get_facet_name (one, 2) : get_facet_name (other, 2);
     result += separator_;
-    result +=
-        cat & locale::numeric ? get_facet_name (one, 3) : get_facet_name (other, 3);
+    result += cat & locale::numeric ? get_facet_name (one, 3) : get_facet_name (other, 3);
     result += separator_;
-    result +=
-        cat & locale::time ? get_facet_name (one, 4) : get_facet_name (other, 4);
+    result += cat & locale::time ? get_facet_name (one, 4) : get_facet_name (other, 4);
     result += separator_;
-    result +=
-        cat & locale::messages ? get_facet_name (one, 5) : get_facet_name (other, 5);
+    result += cat & locale::messages ? get_facet_name (one, 5) : get_facet_name (other, 5);
     return result;
 }
+
 // locale Implementation
 
-inline locale::locale () _MSL_THROW : imp_ (global().imp_)
-{
-}
+inline locale::locale () _MSL_THROW : imp_ (global().imp_) {}
+
 inline locale::locale (const char* std_name)
 {
     if (std_name == 0)
@@ -640,17 +710,19 @@ inline locale::locale (const char* std_name)
     imp_ = new __locale_imp<true> (std_name);
     imp_->init (std_name);
 }
+
 inline locale::locale (const locale& other, const char* std_name, category cat)
   : imp_ (locale (other, locale (std_name), cat).imp_)
 {
 }
+
 inline locale::locale (const locale& other, const locale& one, category cat)
   : imp_ (new __locale_imp<true> (other, one, cat))
 {
 }
-inline locale::locale (const imp_type& i) _MSL_THROW : imp_ (i)
-{
-}
+
+inline locale::locale (const imp_type& i) _MSL_THROW : imp_ (i) {}
+
 inline string
 locale::name () const
 {
@@ -672,6 +744,7 @@ locale::locale (const locale& other, Facet* f)
     }
     imp_->name() = "*";
 }
+
 template <class Facet>
 locale
 locale::combine (const locale& other) const
@@ -687,35 +760,38 @@ locale::combine (const locale& other) const
     result.imp_->name() = "*";
     return result;
 }
+
 inline bool
 locale::operator== (const locale& other) const
 {
     return static_cast<bool> (imp_ == other.imp_ ||
-                              imp_->name() != "*" &&
-                                  imp_->name() == other.imp_->name());
+                              imp_->name() != "*" && imp_->name() == other.imp_->name());
 }
+
 inline bool
 locale::operator!= (const locale& other) const
 {
     return !(*this == other);
 }
+
 template <class charT, class Traits, class Allocator>
 bool
 locale::operator() (const basic_string<charT, Traits, Allocator>& s1,
                     const basic_string<charT, Traits, Allocator>& s2) const
 {
     return _USE_FACET (_STD::collate<charT>, *this)
-               .compare (s1.data(),
-                         s1.data() + s1.size(),
-                         s2.data(),
-                         s2.data() + s2.size()) < 0;
+               .compare (s1.data(), s1.data() + s1.size(), s2.data(), s2.data() + s2.size()) < 0;
 }
+
 // use_facet
 
-template <bool __b> struct __chooser
+template <bool __b>
+struct __chooser
 {
 };
-template <class Facet> struct __facet_traits
+
+template <class Facet>
+struct __facet_traits
 {
     static const bool is_standard = false;
 };
@@ -844,21 +920,25 @@ namespace Metrowerks
 #endif
 
 #endif
-template <class T, class U> class range_map
+template <class T, class U>
+class range_map
 {
 public:
     U    operator[] (const T& x) const;
     void insert (const T& x1, const T& x2, const U& y1, const U& y2);
+
     void
     insert (const T& x1, const T& x2, const U& y1)
     {
         insert (x1, x2, y1, y1);
     }
+
     void
     insert (const T& x1, const U& y1)
     {
         insert (x1, x1, y1, y1);
     }
+
     void
     clear ()
     {
@@ -873,43 +953,52 @@ private:
         U m_;
         U b_;
     };
+
     friend bool
     operator< (const entry& e, const T& x)
     {
         return e.x2_ < x;
     }
+
     friend bool
     operator< (const T& x, const entry& e)
     {
         return x < e.x1_;
     }
+
     friend bool
     operator< (const entry& x, const entry& y)
     {
         return x.x2_ < y.x1_;
     }
+
     friend bool
     operator== (const entry& x, const T& y)
     {
         return !(y < x.x1_) && !(x.x2_ < y);
     }
+
     friend bool
     operator== (const T& y, const entry& x)
     {
         return x == y;
     }
+
     friend bool
     operator!= (const entry& x, const T& y)
     {
         return !(x == y);
     }
+
     friend bool
     operator!= (const T& y, const entry& x)
     {
         return !(x == y);
     }
+
     _STD::vector<entry> table_;
 };
+
 template <class T, class U>
 U
 range_map<T, U>::operator[] (const T& x) const
@@ -922,6 +1011,7 @@ range_map<T, U>::operator[] (const T& x) const
     }
     return U (i->m_ * x + i->b_);
 }
+
 template <class T, class U>
 void
 range_map<T, U>::insert (const T& x1, const T& x2, const U& y1, const U& y2)
@@ -931,8 +1021,7 @@ range_map<T, U>::insert (const T& x1, const T& x2, const U& y1, const U& y2)
     e.x2_ = x2;
     e.m_ = x1 != x2 ? U ((y2 - y1) / (x2 - x1)) : U();
     e.b_ = U (y1 - e.m_ * x1);
-    typename _STD::vector<entry>::iterator i =
-        _STD::lower_bound (table_.begin(), table_.end(), e);
+    typename _STD::vector<entry>::iterator i = _STD::lower_bound (table_.begin(), table_.end(), e);
     if (i == table_.end() || e < *i)
     {
         table_.insert (i, e);

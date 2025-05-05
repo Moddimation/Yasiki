@@ -47,23 +47,23 @@ const short __month_to_days[2][13] = {
 static const char* day_name[] = { "Sunday",   "Monday", "Tuesday", "Wednesday",
                                   "Thursday", "Friday", "Saturday" };
 
-static const char* month_name[] = {
-    "January", "February", "March",     "April",   "May",      "June",
-    "July",    "August",   "September", "October", "November", "December"
-};
+static const char* month_name[] = { "January",   "February", "March",    "April",
+                                    "May",       "June",     "July",     "August",
+                                    "September", "October",  "November", "December" };
 
 /*
  *	leap_year - return nonzero if year is a leap year, zero otherwise (year 0 = 1900)
  */
 
-int __leap_year (int year);                  /* hh 980205 added prototype */
+int __leap_year (int year); /* hh 980205 added prototype */
+
 int
 __leap_year (int year)
 {
     return (__msl_mod (year, 4) == 0 &&
-            (__msl_mod (year, 100) != 0 ||
-             __msl_mod (year, 400) == 100)); /*- cc 010510 -*/
+            (__msl_mod (year, 100) != 0 || __msl_mod (year, 400) == 100)); /*- cc 010510 -*/
 }
+
 /*
  *	leap_days - return the number of leap days between 1900 (year 0)
  *	and the given year and month. year can be negative,
@@ -91,7 +91,7 @@ leap_days (int year, int mon)
 #if defined(__m56800__) || defined(__m56800E__)
         q = __div__ (year + 899, 1000);
 #else
-        q = __msl_div (year + 899, 1000);                        /*- cc 010510 -*/
+        q = __msl_div (year + 899, 1000);                                          /*- cc 010510 -*/
 #endif
 
         n += q.quot;
@@ -101,7 +101,7 @@ leap_days (int year, int mon)
 #if defined(__m56800__) || defined(__m56800E__)
         q = __div__ (year - 100, 1000);
 #else
-        q = __msl_div (year - 100, 1000);                        /*- cc 010510 -*/
+        q = __msl_div (year - 100, 1000);                                          /*- cc 010510 -*/
 #endif
 
         n += q.quot + 1;
@@ -124,6 +124,7 @@ leap_days (int year, int mon)
 
     return (n);
 }
+
 /*
  *	adjust - force x to be a modulo y number, add overflow to z
  */
@@ -136,13 +137,14 @@ adjust (int* x, int y, int* z)
 #if defined(__m56800__) || defined(__m56800E__)
     q = __div__ (*x, y);
 #else
-    q = __msl_div (*x, y);                                       /*- cc 010510 -*/
+    q = __msl_div (*x, y);                                                         /*- cc 010510 -*/
 #endif
 
     *x = q.rem;
 
     return (__msl_add (z, q.quot)); /*- cc 010510 -*/
 }
+
 /*
  *	__time2tm - convert seconds since midnight, 1/1/1900 (or 1970 on Win32),
  *	to broken-down time
@@ -194,8 +196,7 @@ __time2tm (time_t inTime, struct tm* tm) /*- mm 000127 -*/
 
     for (;;)
     {
-        unsigned long days_thru_this_month =
-            __month_to_days[is_leap_year][months + 1];
+        unsigned long days_thru_this_month = __month_to_days[is_leap_year][months + 1];
 
         if (days < days_thru_this_month)
         {
@@ -216,6 +217,7 @@ __time2tm (time_t inTime, struct tm* tm) /*- mm 000127 -*/
     tm->tm_min = seconds / seconds_per_minute;
     tm->tm_sec = seconds % seconds_per_minute;
 }
+
 /*
  *	__tm2time - convert broken-down time to seconds since midnight,
  *	1/1/1900 (or 1970 on Win32). return zero if broken-down time can't be
@@ -274,9 +276,9 @@ __tm2time (struct tm* tm, time_t* time)
 
     days = tm->tm_year;
 
-    if (!__msl_lmul (&days, 365)) /*- cc 010510 -*/
+    if (!__msl_lmul (&days, 365))                                 /*- cc 010510 -*/
     {
-        goto no_exit;             /* convert year to days */
+        goto no_exit;                                             /* convert year to days */
     }
     if (!__msl_ladd (&days, leap_days (tm->tm_year, tm->tm_mon))) /*- cc 010510 -*/
     {
@@ -284,11 +286,11 @@ __tm2time (struct tm* tm, time_t* time)
     }
     if (!__msl_ladd (&days, __month_to_days[0][tm->tm_mon]))      /*- cc 010510 -*/
     {
-        goto no_exit;                     /* add days to month */
+        goto no_exit;                                             /* add days to month */
     }
-    if (!__msl_ladd (&days, tm->tm_mday)) /*- cc 010510 -*/
+    if (!__msl_ladd (&days, tm->tm_mday))                         /*- cc 010510 -*/
     {
-        goto no_exit;                     /* add days in month */
+        goto no_exit;                                             /* add days in month */
     }
     if (days < 0 || days > (ULONG_MAX / seconds_per_day))
     {
@@ -325,6 +327,7 @@ no_exit:
 
     return (0);
 }
+
 /*
  *	asciitime - similar to asctime, but requires a pointer to result string as input
  */
@@ -355,6 +358,7 @@ asciitime (struct tm tm, char* str)
 
              tm.tm_year + 1900);
 }
+
 /*
  *	clear_tm - sets a broken-down time to the equivalent of 1900/1/1 00:00:00
  */
@@ -372,19 +376,20 @@ clear_tm (struct tm* tm)
     tm->tm_yday = 0;
     tm->tm_isdst = -1;
 }
+
 /*
  *	ANSI Routines
  */
 
-#ifndef _No_Time_OS_Support                                        /*- mea 970720 -*/
+#ifndef _No_Time_OS_Support                                                  /*- mea 970720 -*/
 clock_t
 clock (void)
 {
     return (__get_clock());
 }
-#endif /* ndef _No_Time_OS_Support */                              /*- mea 970720 -*/
+#endif /* ndef _No_Time_OS_Support */                                        /*- mea 970720 -*/
 
-#ifndef _No_Floating_Point                                         /*- scm 970715 -*/
+#ifndef _No_Floating_Point                                                   /*- scm 970715 -*/
 double
 difftime (time_t time1, time_t time0)
 {
@@ -399,7 +404,7 @@ difftime (time_t time1, time_t time0)
 
     return (-(double)diff);
 }
-#endif /* ndef _No_Floating_Point */                               /*- scm 970715 -*/
+#endif /* ndef _No_Floating_Point */                                         /*- scm 970715 -*/
 time_t
 mktime (struct tm* timeptr)
 {
@@ -415,7 +420,7 @@ mktime (struct tm* timeptr)
 
     return (time);
 }
-#ifndef _No_Time_OS_Support                                        /*- mea 970720 -*/
+#ifndef _No_Time_OS_Support                                                  /*- mea 970720 -*/
 time_t
 time (time_t* timer)
 {
@@ -428,7 +433,7 @@ time (time_t* timer)
 
     return (time);
 }
-#endif /* ndef _No_Time_OS_Support */                              /*- mea 970720 -*/
+#endif /* ndef _No_Time_OS_Support */                                        /*- mea 970720 -*/
 char*
 asctime (const struct tm* tm)
 {
@@ -437,17 +442,14 @@ asctime (const struct tm* tm)
 #if (__dest_os == __win32_os || __dest_os == __wince_os)
     if (tm)
     {
-        asciitime (
-            *tm, _GetThreadLocalData (_MSL_TRUE)->asctime_result); /*- cc 010531 -*/
+        asciitime (*tm, _GetThreadLocalData (_MSL_TRUE)->asctime_result);    /*- cc 010531 -*/
     }
     else
     {
-        asciitime (
-            err_tm,
-            _GetThreadLocalData (_MSL_TRUE)->asctime_result);      /*- cc 010531 -*/
+        asciitime (err_tm, _GetThreadLocalData (_MSL_TRUE)->asctime_result); /*- cc 010531 -*/
     }
 
-    return (_GetThreadLocalData (_MSL_TRUE)->asctime_result);      /*- cc 010531 -*/
+    return (_GetThreadLocalData (_MSL_TRUE)->asctime_result);                /*- cc 010531 -*/
 #else
     __tls static char result[26];
 
@@ -463,12 +465,13 @@ asctime (const struct tm* tm)
     return (result);
 #endif
 }
+
 char*
 ctime (const time_t* timer)
 {
     return (asctime (localtime (timer)));
 }
-#ifndef _No_Time_OS_Support                                        /*- mea 970720 -*/
+#ifndef _No_Time_OS_Support                                                  /*- mea 970720 -*/
 struct tm*
 gmtime (const time_t* timer)
 {
@@ -481,8 +484,8 @@ gmtime (const time_t* timer)
     if (!timer)
     {
 #if (__dest_os == __win32_os || __dest_os == __wince_os)
-        clear_tm (&_GetThreadLocalData (_MSL_TRUE)->gmtime_tm);    /*- cc 010531 -*/
-        return (&_GetThreadLocalData (_MSL_TRUE)->gmtime_tm);      /*- cc 010531 -*/
+        clear_tm (&_GetThreadLocalData (_MSL_TRUE)->gmtime_tm);              /*- cc 010531 -*/
+        return (&_GetThreadLocalData (_MSL_TRUE)->gmtime_tm);                /*- cc 010531 -*/
 #else
         clear_tm (&tm);
         return (&tm);
@@ -497,11 +500,11 @@ gmtime (const time_t* timer)
     }
 
 #if (__dest_os == __win32_os || __dest_os == __wince_os)
-    __time2tm (time, &_GetThreadLocalData (_MSL_TRUE)->gmtime_tm); /*- cc 010531 -*/
+    __time2tm (time, &_GetThreadLocalData (_MSL_TRUE)->gmtime_tm);           /*- cc 010531 -*/
     _GetThreadLocalData (_MSL_TRUE)->gmtime_tm.tm_isdst = 0;
-    /*- mm 010425 -*/                                              /*- cc 010531 -*/
+    /*- mm 010425 -*/                                                        /*- cc 010531 -*/
 
-    return (&_GetThreadLocalData (_MSL_TRUE)->gmtime_tm);          /*- cc 010531 -*/
+    return (&_GetThreadLocalData (_MSL_TRUE)->gmtime_tm);                    /*- cc 010531 -*/
 #else
     __time2tm (time, &tm);
 
@@ -510,28 +513,28 @@ gmtime (const time_t* timer)
     return (&tm);
 #endif
 }
-#endif /* ndef _No_Time_OS_Support */                              /*- mea 970720 -*/
+#endif /* ndef _No_Time_OS_Support */                                        /*- mea 970720 -*/
 struct tm*
 localtime (const time_t* timer)
 {
-#if (__dest_os == __win32_os || __dest_os == __wince_os)           /*- mm 010516 -*/
+#if (__dest_os == __win32_os || __dest_os == __wince_os)                     /*- mm 010516 -*/
     if (!timer)
     {
         clear_tm (&_GetThreadLocalData (_MSL_TRUE)->localtime_tm);
-        /*- mm 010516 -*/                                          /*- cc 010531 -*/
+        /*- mm 010516 -*/                                                    /*- cc 010531 -*/
     }
     else
     {
         __time2tm (*timer, &_GetThreadLocalData (_MSL_TRUE)->localtime_tm);
-        /*- mm 010516 -*/                                          /*- cc 010531 -*/
+        /*- mm 010516 -*/                                                    /*- cc 010531 -*/
     }
 
     _GetThreadLocalData (_MSL_TRUE)->localtime_tm.tm_isdst = __isdst();
-    /*- mm 010425 -*/                                              /*- cc 010531 -*/
+    /*- mm 010425 -*/                                                        /*- cc 010531 -*/
 
     return (&_GetThreadLocalData (_MSL_TRUE)->localtime_tm);
-    /*- mm 010516 -*/                                              /*- cc 010531 -*/
-#else                                                              /*- mm 010516 -*/
+    /*- mm 010516 -*/                                                        /*- cc 010531 -*/
+#else                                                                        /*- mm 010516 -*/
     __tls static struct tm tm;
 
     if (!timer)
@@ -543,18 +546,19 @@ localtime (const time_t* timer)
         __time2tm (*timer, &tm);
     }
 
-    tm.tm_isdst = __isdst();                                     /*- mm 010425 -*/
+    tm.tm_isdst = __isdst();                                                       /*- mm 010425 -*/
 
     return (&tm);
-#endif                                                             /*- mm 010516 -*/
+#endif                                                                       /*- mm 010516 -*/
 }
+
 static int
 emit (char* str, size_t size, size_t* max_size, const char* format_str, ...)
 {
-#if __PPC_EABI__ || __MIPS__                                       /*- scm 970709 -*/
-    va_list args;                                                  /*- scm 970709 -*/
-    va_start (args, format_str);                                   /*- scm 970709 -*/
-#endif                                                             /*- scm 970709 -*/
+#if __PPC_EABI__ || __MIPS__                                                 /*- scm 970709 -*/
+    va_list args;                                                            /*- scm 970709 -*/
+    va_start (args, format_str);                                             /*- scm 970709 -*/
+#endif                                                                       /*- scm 970709 -*/
 
     if (size > *max_size)
     {
@@ -563,18 +567,19 @@ emit (char* str, size_t size, size_t* max_size, const char* format_str, ...)
 
     *max_size -= size;
 
-#if __PPC_EABI__ || __MIPS__ /*__dest_os == __mips_bare */         /*- scm 970709 -*/
-    return (vsprintf (str, format_str, args));                     /*- scm 970709 -*/
-#else                                                              /*- scm 970709 -*/
+#if __PPC_EABI__ || __MIPS__ /*__dest_os == __mips_bare */                   /*- scm 970709 -*/
+    return (vsprintf (str, format_str, args));                               /*- scm 970709 -*/
+#else                                                                        /*- scm 970709 -*/
     return (vsprintf (str, format_str, __va_start (format_str)));
-#endif                                                             /*- scm 970709 -*/
+#endif                                                                       /*- scm 970709 -*/
 }
+
 static int
 week_num (const struct tm* tm, int starting_day)
 {
     int days = tm->tm_yday;
 
-    days -= __msl_mod (tm->tm_wday - starting_day, 7);             /*- cc 010510 -*/
+    days -= __msl_mod (tm->tm_wday - starting_day, 7);                       /*- cc 010510 -*/
 
     if (days < 0)
     {
@@ -583,7 +588,7 @@ week_num (const struct tm* tm, int starting_day)
 
     return ((days / 7) + 1);
 }
-#ifdef _MSL_C9X_                                                   /*- vss 990811 -*/
+#ifdef _MSL_C9X_                                                             /*- vss 990811 -*/
 /*- mm 990709 -*/
 /*
        [#3] %g, %G, and %V give values according to  the  ISO  8601
@@ -609,6 +614,7 @@ week_num (const struct tm* tm, int starting_day)
 */
 
 static time_t ISO8601NewYear (int year);
+
 static time_t
 ISO8601NewYear (int year)
 {
@@ -636,7 +642,9 @@ ISO8601NewYear (int year)
     }
     return (mktime (&ts0));
 }
+
 static int ISO8601Week (const struct tm* tmptr, int* WYear);
+
 static int
 ISO8601Week (const struct tm* tmptr, int* WYear)
 {
@@ -677,22 +685,20 @@ ISO8601Week (const struct tm* tmptr, int* WYear)
     WeekNo = (int)(Days / 7) + 1;
     return (WeekNo);
 }
+
 /*- mm 990709 -*/
-#endif                                                             /*  _MSL_C9X_  */
+#endif                                                                             /*  _MSL_C9X_  */
 size_t
-strftime (char*            str,
-          size_t           max_size,
-          const char*      format_str,
-          const struct tm* timeptr)
+strftime (char* str, size_t max_size, const char* format_str, const struct tm* timeptr)
 {
     struct tm              tm;
     static const struct tm default_tm = { 0, 0, 0, 1, 0, 0, 1, 0, -1 };
-    size_t      num_chars, chars_written, space_remaining;         /*- mm 980501 -*/
-    const char* format_ptr;
-    const char* curr_format;
-    int         n, ISO8601Year, ISO8601WeekNo;                     /*- mm 990709 -*/
+    size_t                 num_chars, chars_written, space_remaining;              /*- mm 980501 -*/
+    const char*            format_ptr;
+    const char*            curr_format;
+    int                    n, ISO8601Year, ISO8601WeekNo;                          /*- mm 990709 -*/
 
-    if ((space_remaining = --max_size) <= 0)                       /*- mm 980501 -*/
+    if ((space_remaining = --max_size) <= 0)                                       /*- mm 980501 -*/
     {
         return (0);
     }
@@ -718,17 +724,17 @@ strftime (char*            str,
         {
             if ((num_chars = strlen (format_ptr)) != 0)
             {
-                if (num_chars <= space_remaining)                  /*- mm 980501 -*/
+                if (num_chars <= space_remaining)                                  /*- mm 980501 -*/
                 {
                     memcpy (str, format_ptr, num_chars);
 
                     chars_written += num_chars;
                     str += num_chars;
-                    space_remaining -= num_chars;                  /*- mm 980501 -*/
+                    space_remaining -= num_chars;                                  /*- mm 980501 -*/
                 }
-                else                                               /*- mm 980501 -*/
+                else                                                               /*- mm 980501 -*/
                 {
-                    return (0);                                    /*- mm 980501 -*/
+                    return (0);                                                    /*- mm 980501 -*/
                 }
             }
 
@@ -737,36 +743,32 @@ strftime (char*            str,
 
         if ((num_chars = curr_format - format_ptr) != 0)
         {
-            if (num_chars <= space_remaining)                      /*- mm 980501 -*/
+            if (num_chars <= space_remaining)                                      /*- mm 980501 -*/
             {
                 memcpy (str, format_ptr, num_chars);
 
                 chars_written += num_chars;
                 str += num_chars;
-                space_remaining -= num_chars;                      /*- mm 980501 -*/
+                space_remaining -= num_chars;                                      /*- mm 980501 -*/
             }
-            else                                                   /*- mm 980501 -*/
+            else                                                                   /*- mm 980501 -*/
             {
-                return (0);                                        /*- mm 980501 -*/
+                return (0);                                                        /*- mm 980501 -*/
             }
         }
 
         format_ptr = curr_format;
-        if ((*(format_ptr + 1) == 'E') ||
-            (*(format_ptr + 1) == 'O'))                            /*- mm 000830 -*/
+        if ((*(format_ptr + 1) == 'E') || (*(format_ptr + 1) == 'O'))              /*- mm 000830 -*/
         {
-            ++format_ptr;                                          /*- mm 000830 -*/
+            ++format_ptr;                                                          /*- mm 000830 -*/
         }
 
         switch (*++format_ptr)
         {
             case 'a':
 
-                num_chars = emit (str,
-                                  3,
-                                  &space_remaining,
-                                  "%.3s",
-                                  day_name[tm.tm_wday]);           /*- mm 980501 -*/
+                num_chars =
+                    emit (str, 3, &space_remaining, "%.3s", day_name[tm.tm_wday]); /*- mm 980501 -*/
                 break;
 
             case 'A':
@@ -775,17 +777,17 @@ strftime (char*            str,
                                   strlen (day_name[tm.tm_wday]),
                                   &space_remaining,
                                   "%s",
-                                  day_name[tm.tm_wday]);           /*- mm 980501 -*/
+                                  day_name[tm.tm_wday]);                           /*- mm 980501 -*/
                 break;
 
             case 'b':
-            case 'h':                                              /*- mm 000404 -*/
+            case 'h':                                                              /*- mm 000404 -*/
 
                 num_chars = emit (str,
                                   3,
                                   &space_remaining,
                                   "%.3s",
-                                  month_name[tm.tm_mon]);          /*- mm 980501 -*/
+                                  month_name[tm.tm_mon]);                          /*- mm 980501 -*/
                 break;
 
             case 'B':
@@ -794,45 +796,40 @@ strftime (char*            str,
                                   strlen (month_name[tm.tm_mon]),
                                   &space_remaining,
                                   "%s",
-                                  month_name[tm.tm_mon]);          /*- mm 980501 -*/
+                                  month_name[tm.tm_mon]);                          /*- mm 980501 -*/
                 break;
 
             case 'c':
 
-#ifdef _MSL_C9X_                                                   /*- mm 990811 -*/
-                num_chars = strftime (str,
-                                      space_remaining + 1,
-                                      "%A %B %d %T %Y",
-                                      &tm);                        /*- mm 990707 -*/
+#ifdef _MSL_C9X_                                                                   /*- mm 990811 -*/
+                num_chars =
+                    strftime (str, space_remaining + 1, "%A %B %d %T %Y", &tm);    /*- mm 990707 -*/
 #else
                 num_chars = strftime (str,
                                       space_remaining + 1,
                                       "%A, %d %B, %Y  %I:%M:%S %p",
-                                      &tm);                      /*- mm 980501 -*/
+                                      &tm);                                        /*- mm 980501 -*/
 #endif
-                space_remaining -= num_chars;                      /*- mm 980501 -*/
+                space_remaining -= num_chars;                                      /*- mm 980501 -*/
                 break;
 
             case 'd':
 
-                num_chars = emit (
-                    str, 2, &space_remaining, "%.2d", tm.tm_mday); /*- mm 980501 -*/
+                num_chars = emit (str, 2, &space_remaining, "%.2d", tm.tm_mday);   /*- mm 980501 -*/
                 break;
 
             case 'D':
-                num_chars = strftime (
-                    str, space_remaining + 1, "%m/%d/%y", &tm);    /*- mm 000830 -*/
+                num_chars = strftime (str, space_remaining + 1, "%m/%d/%y", &tm);  /*- mm 000830 -*/
                 break;
 
-            case 'e':                                              /*- mm 000404 -*/
+            case 'e':                                                              /*- mm 000404 -*/
 
-                num_chars = emit (
-                    str, 2, &space_remaining, "%2d", tm.tm_mday);  /*- mm 000404 -*/
-                break;                                             /*- mm 000404 -*/
+                num_chars = emit (str, 2, &space_remaining, "%2d", tm.tm_mday);    /*- mm 000404 -*/
+                break;                                                             /*- mm 000404 -*/
 
-#ifdef _MSL_C9X_                                                   /*- vss 990811 -*/
+#ifdef _MSL_C9X_                                                                 /*- vss 990811 -*/
 
-            case 'F':                                              /*- mm 990705 -*/
+            case 'F':                                                            /*- mm 990705 -*/
 
                 num_chars = emit (str,
                                   10,
@@ -840,33 +837,25 @@ strftime (char*            str,
                                   "%.4d-%.2d-%.2d",
                                   tm.tm_year + 1900,
                                   tm.tm_mon + 1,
-                                  tm.tm_mday);                     /*- mm 990705 -*/
-                break;                                             /*- mm 990705 -*/
+                                  tm.tm_mday);                                   /*- mm 990705 -*/
+                break;                                                           /*- mm 990705 -*/
 
-            case 'g':                                              /*- mm 990709 -*/
-                ISO8601WeekNo =
-                    ISO8601Week (timeptr, &ISO8601Year);           /*- mm 990709 -*/
-                num_chars = emit (str,
-                                  2,
-                                  &space_remaining,
-                                  "%.2d",
-                                  ISO8601Year % 100);              /*- mm 990709 -*/
-                break;                                             /*- mm 990709 -*/
+            case 'g':                                                            /*- mm 990709 -*/
+                ISO8601WeekNo = ISO8601Week (timeptr, &ISO8601Year);             /*- mm 990709 -*/
+                num_chars =
+                    emit (str, 2, &space_remaining, "%.2d", ISO8601Year % 100);  /*- mm 990709 -*/
+                break;                                                           /*- mm 990709 -*/
 
-            case 'G':                                              /* mm 990709 -*/
-                ISO8601WeekNo = ISO8601Week (timeptr, &ISO8601Year); /* mm 990709 -*/
-                num_chars = emit (str,
-                                  4,
-                                  &space_remaining,
-                                  "%.4d",
-                                  ISO8601Year + 1900);               /* mm 990709 -*/
-                break;                                               /* mm 990709 -*/
+            case 'G':                                                            /* mm 990709 -*/
+                ISO8601WeekNo = ISO8601Week (timeptr, &ISO8601Year);             /* mm 990709 -*/
+                num_chars =
+                    emit (str, 4, &space_remaining, "%.4d", ISO8601Year + 1900); /* mm 990709 -*/
+                break;                                                           /* mm 990709 -*/
 #endif
 
             case 'H':
 
-                num_chars = emit (
-                    str, 2, &space_remaining, "%.2d", tm.tm_hour); /*- mm 980501 -*/
+                num_chars = emit (str, 2, &space_remaining, "%.2d", tm.tm_hour); /*- mm 980501 -*/
                 break;
 
             case 'I':
@@ -874,51 +863,42 @@ strftime (char*            str,
                                   2,
                                   &space_remaining,
                                   "%.2d",
-                                  (n = tm.tm_hour % 12) ? n : 12); /*- mm 980501 -*/
+                                  (n = tm.tm_hour % 12) ? n : 12);               /*- mm 980501 -*/
                 break;
 
             case 'j':
 
-                num_chars = emit (str,
-                                  3,
-                                  &space_remaining,
-                                  "%.3d",
-                                  tm.tm_yday + 1);                 /*- mm 980501 -*/
+                num_chars =
+                    emit (str, 3, &space_remaining, "%.3d", tm.tm_yday + 1);     /*- mm 980501 -*/
                 break;
 
             case 'm':
 
-                num_chars = emit (str,
-                                  2,
-                                  &space_remaining,
-                                  "%.2d",
-                                  tm.tm_mon + 1);                  /*- mm 980501 -*/
+                num_chars =
+                    emit (str, 2, &space_remaining, "%.2d", tm.tm_mon + 1);      /*- mm 980501 -*/
                 break;
 
             case 'M':
 
-                num_chars = emit (
-                    str, 2, &space_remaining, "%.2d", tm.tm_min);  /*- mm 980501 -*/
+                num_chars = emit (str, 2, &space_remaining, "%.2d", tm.tm_min);  /*- mm 980501 -*/
                 break;
 
             case 'n':
 
-                num_chars = emit (str, 2, &space_remaining, "\n"); /*- mm 000404 -*/
+                num_chars = emit (str, 2, &space_remaining, "\n");               /*- mm 000404 -*/
                 break;
 
             case 'p':
 
-#ifdef _MSL_C9X_                                                   /*- vss 990811 -*/
-                num_chars = emit (
-                    str, 2, &space_remaining, "%.2s", tm.tm_hour < 12 ? "am" : "pm");
+#ifdef _MSL_C9X_                                                                 /*- vss 990811 -*/
+                num_chars = emit (str, 2, &space_remaining, "%.2s", tm.tm_hour < 12 ? "am" : "pm");
 #else
-                num_chars = emit (
-                    str, 2, &space_remaining, "%.2s", tm.tm_hour < 12 ? "AM" : "PM");
-                /*- mm 980501 -*/                                /*- mm 990707 -*/
+                num_chars = emit (str, 2, &space_remaining, "%.2s", tm.tm_hour < 12 ? "AM" : "PM");
+                /*- mm 980501 -*/                                                  /*- mm 990707 -*/
 #endif
                 break;
 
-#ifdef _MSL_C9X_                                                   /*- vss 990811 -*/
+#ifdef _MSL_C9X_                                                                 /*- vss 990811 -*/
             case 'r':
 
                 num_chars = strftime (str, space_remaining + 1, "%I:%M:%S %p", &tm);
@@ -935,122 +915,100 @@ strftime (char*            str,
 
             case 'S':
 
-                num_chars = emit (
-                    str, 2, &space_remaining, "%.2d", tm.tm_sec);  /*- mm 980501 -*/
+                num_chars = emit (str, 2, &space_remaining, "%.2d", tm.tm_sec);  /*- mm 980501 -*/
                 break;
 
             case 't':
 
-                num_chars = emit (str, 2, &space_remaining, "\t"); /*- mm 000404 -*/
+                num_chars = emit (str, 2, &space_remaining, "\t");               /*- mm 000404 -*/
                 break;
 
-#ifdef _MSL_C9X_                                                   /*- vss 990811 -*/
+#ifdef _MSL_C9X_                                                                 /*- vss 990811 -*/
             case 'u':
                 /*- mm 990705 -*/
-                if (tm.tm_wday == 0)                          /*- mm 990705 -*/
+                if (tm.tm_wday == 0)                                            /*- mm 990705 -*/
+                {
+                    num_chars = emit (str, 1, &space_remaining, "7");           /*- mm 990705 -*/
+                }
+                else                                                            /*- mm 990705 -*/
                 {
                     num_chars =
-                        emit (str, 1, &space_remaining, "7"); /*- mm 990705 -*/
+                        emit (str, 1, &space_remaining, "%.1d", tm.tm_wday);    /*- mm 990705 -*/
                 }
-                else                                          /*- mm 990705 -*/
-                {
-                    num_chars = emit (str,
-                                      1,
-                                      &space_remaining,
-                                      "%.1d",
-                                      tm.tm_wday);            /*- mm 990705 -*/
-                }
-                break;                                        /*- mm 990705 -*/
+                break;                                                          /*- mm 990705 -*/
 #endif
 
             case 'U':
 
-                num_chars = emit (str,
-                                  2,
-                                  &space_remaining,
-                                  "%.2d",
-                                  week_num (&tm, 0));         /*- mm 980501 -*/
+                num_chars =
+                    emit (str, 2, &space_remaining, "%.2d", week_num (&tm, 0)); /*- mm 980501 -*/
                 break;
 
-#ifdef _MSL_C9X_                                              /*-  vss 990811  -*/
-            case 'V':                                         /*- mm 990709 -*/
+#ifdef _MSL_C9X_                                                                /*-  vss 990811  -*/
+            case 'V':                                                           /*- mm 990709 -*/
 
-                ISO8601WeekNo =
-                    ISO8601Week (timeptr, &ISO8601Year);      /*- mm 990709 -*/
-                num_chars = emit (str,
-                                  2,
-                                  &space_remaining,
-                                  "%.2d",
-                                  ISO8601WeekNo);             /*- mm 990709 -*/
-                break;                                        /*- mm 990709 -*/
+                ISO8601WeekNo = ISO8601Week (timeptr, &ISO8601Year);            /*- mm 990709 -*/
+                num_chars =
+                    emit (str, 2, &space_remaining, "%.2d", ISO8601WeekNo);     /*- mm 990709 -*/
+                break;                                                          /*- mm 990709 -*/
 #endif
 
             case 'w':
 
-                num_chars = emit (
-                    str, 1, &space_remaining, "%.1d", tm.tm_wday); /*- mm 980501 -*/
+                num_chars = emit (str, 1, &space_remaining, "%.1d", tm.tm_wday);  /*- mm 980501 -*/
                 break;
 
             case 'W':
 
-                num_chars = emit (str,
-                                  2,
-                                  &space_remaining,
-                                  "%.2d",
-                                  week_num (&tm, 1));              /*- mm 980501 -*/
+                num_chars =
+                    emit (str, 2, &space_remaining, "%.2d", week_num (&tm, 1));   /*- mm 980501 -*/
                 break;
 
             case 'x':
 
-#ifdef _MSL_C9X_                                                   /*- vss 990811 -*/
+#ifdef _MSL_C9X_                                                                  /*- vss 990811 -*/
                 num_chars = strftime (str, space_remaining + 1, "%A %B %d %Y", &tm);
 #else
-                num_chars = strftime (
-                    str, space_remaining + 1, "%d %B, %Y", &tm); /*- mm 980501 -*/
+                num_chars = strftime (str, space_remaining + 1, "%d %B, %Y", &tm); /*- mm 980501 -*/
 #endif
-                space_remaining -= num_chars;                      /*- mm 980501 -*/
+                space_remaining -= num_chars;                                     /*- mm 980501 -*/
                 break;
 
-#ifdef _MSL_C9X_                                                   /*- vss 990811 -*/
+#ifdef _MSL_C9X_                                                                  /*- vss 990811 -*/
             case 'T':
 #endif
             case 'X':
 
-                num_chars = strftime (
-                    str, space_remaining + 1, "%H:%M:%S", &tm);    /*- mm 990705 -*/
-                space_remaining -= num_chars;                      /*- mm 980501 -*/
+                num_chars = strftime (str, space_remaining + 1, "%H:%M:%S", &tm); /*- mm 990705 -*/
+                space_remaining -= num_chars;                                     /*- mm 980501 -*/
                 break;
 
             case 'y':
-            case 'C':                                              /*- mm 000830 -*/
+            case 'C':                                                             /*- mm 000830 -*/
 
-                num_chars =
-                    emit (str, 2, &space_remaining, "%.2d", tm.tm_year % 100);
-                /*- mm 970728 -*/                                  /*- mm 980501 -*/
+                num_chars = emit (str, 2, &space_remaining, "%.2d", tm.tm_year % 100);
+                /*- mm 970728 -*/                                                 /*- mm 980501 -*/
                 break;
 
             case 'Y':
 
-                num_chars = emit (str,
-                                  4,
-                                  &space_remaining,
-                                  "%.4d",
-                                  tm.tm_year + 1900);              /*- mm 980501 */
+                num_chars =
+                    emit (str, 4, &space_remaining, "%.4d", tm.tm_year + 1900);   /*- mm 980501 */
                 break;
 
-#ifdef _MSL_C9X_                                                  /*- vss 990811  -*/
+#ifdef _MSL_C9X_                                                                /*- vss 990811  -*/
             case 'z':
                 {
                     time_t    local, utc, now;
                     struct tm localtm, *utctmptr;
                     double    diff, diffmins, diffhours;
-#ifndef _No_Time_OS_Support                                       /*- mm 990910 -*/
+#ifndef _No_Time_OS_Support                                                     /*- mm 990910 -*/
                     now = time (NULL);
                     utctmptr = gmtime (&now);
-#else                                                             /*- mm 990910 -*/
+#else                                                                           /*- mm 990910 -*/
                     now = NULL;      /*- as 000823 -*/
                     utctmptr = NULL; /*- mm 990910 -*/
-#endif /*	#ifndef _No_Time_OS_Support */                        /*- mm 990910 -*/
+#endif /*	#ifndef _No_Time_OS_Support */                                      /*- mm 990910 -*/
                     if (utctmptr == NULL)
                     {
                         num_chars = emit (str, 4, &space_remaining, "0000");
@@ -1063,12 +1021,8 @@ strftime (char*            str,
                         diff = difftime (local, utc);
                         diffhours = (int)diff / 3600;
                         diffmins = abs (diff / 60 - diffhours * 60);
-                        num_chars = emit (str,
-                                          5,
-                                          &space_remaining,
-                                          "%+03.0f%02.0f",
-                                          diffhours,
-                                          diffmins);
+                        num_chars =
+                            emit (str, 5, &space_remaining, "%+03.0f%02.0f", diffhours, diffmins);
                     }
                     break;
                 }
@@ -1078,16 +1032,14 @@ strftime (char*            str,
                 ++format_ptr;
                 continue;
 
-            case '%':                                             /*- mf 092497 -*/
+            case '%':                                                           /*- mf 092497 -*/
 
-                num_chars = emit (
-                    str, 2, &space_remaining, "%%", *format_ptr); /*- mm 980501 -*/
+                num_chars = emit (str, 2, &space_remaining, "%%", *format_ptr); /*- mm 980501 -*/
                 break;
 
             default:
 
-                num_chars = emit (
-                    str, 2, &space_remaining, "%%%c", *format_ptr); /*- mm 980501 -*/
+                num_chars = emit (str, 2, &space_remaining, "%%%c", *format_ptr); /*- mm 980501 -*/
                 break;
         }
 
@@ -1112,6 +1064,7 @@ strftime (char*            str,
         return (chars_written);
     }
 }
+
 /* Change record:
  * JFH 951003 First code release.
  * JFH 951218 Fixed bug in strftime where '%j' was returning 0-365 instead of 1-366.

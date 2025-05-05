@@ -7,6 +7,7 @@
  */
 
 #include <MWCPlusLib.h>
+
 /*
  *	__copy		-	copy 'size' bytes data from 'from' to 'to'
  *
@@ -33,6 +34,7 @@ __copy (char* to, char* from, size_t size)
 
     return (to);
 }
+
 /*
  *	__init_arr	-	initialize an array of objects
  *
@@ -43,10 +45,7 @@ __copy (char* to, char* from, size_t size)
  */
 
 void*
-__init_arr (void*                 memptr,
-            ConstructorDestructor constructor,
-            size_t                objectsize,
-            size_t                nobjects)
+__init_arr (void* memptr, ConstructorDestructor constructor, size_t objectsize, size_t nobjects)
 {
     char* p;
 
@@ -66,6 +65,7 @@ __init_arr (void*                 memptr,
 
     return (memptr);
 }
+
 /*
  *	__new_arr	-	allocate and construct an array of objects
  *
@@ -80,8 +80,7 @@ __new_arr (ConstructorDestructor constructor, size_t objectsize, size_t nobjects
 {
     char *memptr, *p;
 
-    if ((memptr = (char*)::operator new (2 * sizeof (size_t) +
-                                         nobjects * objectsize)) != 0)
+    if ((memptr = (char*)::operator new (2 * sizeof (size_t) + nobjects * objectsize)) != 0)
     {
         memptr += 2 * sizeof (size_t);
         ((size_t*)memptr)[-2] = objectsize;
@@ -97,6 +96,7 @@ __new_arr (ConstructorDestructor constructor, size_t objectsize, size_t nobjects
 
     return (memptr);
 }
+
 /*
  *	__del_arr	-	destroy and deallocate an array of objects
  *
@@ -127,6 +127,7 @@ __del_arr (void* memptr, ConstructorDestructor destructor)
         ::delete (&((size_t*)memptr)[-2]);
     }
 }
+
 /*
  *	__dc_arr	-	construct or destroy a statically allocated array of objects
  *

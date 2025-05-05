@@ -75,7 +75,7 @@ abort (void)
 {
 #if (__dest_os == __win32_os) && (_WINSIOUX == 1)                  /*- mm 981227 -*/
     WinSIOUXAbort();                                               /*- mm 981227 -*/
-#elif (__dest_os == __win32_os) && (STOP_PROGRAM_BEFORE_EXIT == 1) /*- mm 981227    \
+#elif (__dest_os == __win32_os) && (STOP_PROGRAM_BEFORE_EXIT == 1) /*- mm 981227                   \
                                                                       -*/
     __StopProgramBeforeExit(); /*- mm 981227 -*/
 #endif                                                             /*- mm 981227 -*/
@@ -85,7 +85,9 @@ abort (void)
 
     exit (EXIT_FAILURE);
 }
+
 int __register_atexit (void (*func) (void));
+
 int
 atexit (void (*func) (void))
 {
@@ -153,6 +155,7 @@ __StopProgramBeforeExit ()
 #if defined(__m56800__)
 
 void exit_dsp568 ();
+
 void
 exit (int status)
 {
@@ -160,6 +163,7 @@ exit (int status)
 }
 #elif defined(__m56800E__)
 void exit_halt ();
+
 void
 exit (int status)
 {
@@ -175,14 +179,14 @@ exit (int status)        /*- cc 010326 -*/
 
 #if (__dest_os == __win32_os) && (_WINSIOUX == 1)                  /*- mm 990122 -*/
         WinSIOUXAbort(); /*- mm 990122 -*/
-#elif (__dest_os == __win32_os) && (STOP_PROGRAM_BEFORE_EXIT == 1) /*- mm 990122    \
+#elif (__dest_os == __win32_os) && (STOP_PROGRAM_BEFORE_EXIT == 1) /*- mm 990122                   \
                                                                       -*/
         __StopProgramBeforeExit(); /*- mm 981227 -*/
 #endif                                                             /*- mm 981227 -*/
         __end_critical_region (atexit_funcs_access);
 
-        /* 970218 bkoz need to move destroy global chain above __stdio_exit as
-               some static objects may have destructors that flush streams	 */
+                         /* 970218 bkoz need to move destroy global chain above __stdio_exit as
+                                some static objects may have destructors that flush streams	 */
 
 #if __INTEL__ || __POWERPC__ || (__MC68K__ && __A5__)
         __destroy_global_chain();
@@ -190,8 +194,7 @@ exit (int status)        /*- cc 010326 -*/
 
 #if __PPC_EABI__
         {
-            typedef void (*voidfunctionptr) (
-                void); /* ptr to function returning void */
+            typedef void           (*voidfunctionptr) (void); /* ptr to function returning void */
             extern voidfunctionptr _dtors[];
             voidfunctionptr*       destructor;
             /*
@@ -250,12 +253,12 @@ __exit (int status)
     ExitProcess (status);
 #elif __dest_os == __wince_os
     TerminateProcess (GetCurrentProcess(), status); /*CE doesn't have ExitProcess */
-#elif __dest_os == __ppc_eabi || __dest_os == __nec_eabi ||                         \
-    __dest_os == __emb_68k || __dest_os == __mcore_bare ||                          \
-    __dest_os == __dolphin_os                                      /*- beb 990727 -*/
+#elif __dest_os == __ppc_eabi || __dest_os == __nec_eabi || __dest_os == __emb_68k ||              \
+    __dest_os == __mcore_bare || __dest_os == __dolphin_os         /*- beb 990727 -*/
     _ExitProcess();
 #endif
 }
+
 /* Change record:
  * JFH 950914 First code release.
  * JFH 951012 Added #include of <SegLoad.h> for ExitToShell() (in case

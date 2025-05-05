@@ -1,5 +1,5 @@
-## #This is the board initialization file.It initializes all the registers and sets
-        up the                       controllers## #971215 -
+## #This is the board initialization file.It initializes all the registers and sets up the
+                                     controllers## #971215 -
     Khurram Qureshi## #R5 and R4 are used as scratch registers
         .## #
 
@@ -17,8 +17,7 @@ Core Register Initialization;
 ;
 -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --lis
                                                                                                           r4,
-    0x8007 ori r4, r4, 0xfc00 lis r5, 0x9200 stw r5, 0(r4)lis r5, 0x80c0 ori r5, r5,
-    0x4080 stw r5,
+    0x8007 ori r4, r4, 0xfc00 lis r5, 0x9200 stw r5, 0(r4)lis r5, 0x80c0 ori r5, r5, 0x4080 stw r5,
     0x20(r4)
 
         lis r4,
@@ -64,8 +63,7 @@ clear the DER
 -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --;
 ICTRL (Instruction Support Control Register); 0x00000003 = no show cycles will be performed for fetched instructions, serialized
 ;
-0x00000007 = no show cycles performed and
-             not serialized... error in tech.notes bit 29 not reserved;
+0x00000007 = no show cycles performed and not serialized... error in tech.notes bit 29 not reserved;
 bug in chip if !serialized and icache enabled then whacky, due to cache bug...;
 -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --li
                                                                                                           r5,
@@ -94,8 +92,8 @@ CSBTOR BSIZE = 1000(512kb), ACKEN = 1,
 
        li r5,
        0 stw r5, 0xe0(r4);
-CSBAR1 SRAM Base Address = 0x00000000 - 0x0003FFFF lis r5, 0x7007 ori r5, r5,
-                 0xC005 stw r5, 0xe4(r4);
+CSBAR1 SRAM Base Address = 0x00000000 - 0x0003FFFF lis r5, 0x7007 ori r5, r5, 0xC005 stw r5,
+                 0xe4(r4);
 CSOR1 BSIZE = 0111(256kbytes), ACKEN = 1, TADLY = 000, PS = 10,
       PCON = 00(~CE)ITYPE = 0101(Type1)
 

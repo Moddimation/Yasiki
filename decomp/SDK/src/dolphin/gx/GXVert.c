@@ -3,46 +3,46 @@
 
 #include "GXPrivate.h"
 
-#define FUNC_1PARAM(name, T)                                                        \
-    void name##1##T (T x)                                                           \
-    {                                                                               \
-        GXWGFifo.T = x;                                                             \
+#define FUNC_1PARAM(name, T)                                                                       \
+    void name##1##T (T x)                                                                          \
+    {                                                                                              \
+        GXWGFifo.T = x;                                                                            \
     }
 
-#define FUNC_2PARAM(name, T)                                                        \
-    void name##2##T (T x, T y)                                                      \
-    {                                                                               \
-        GXWGFifo.T = x;                                                             \
-        GXWGFifo.T = y;                                                             \
+#define FUNC_2PARAM(name, T)                                                                       \
+    void name##2##T (T x, T y)                                                                     \
+    {                                                                                              \
+        GXWGFifo.T = x;                                                                            \
+        GXWGFifo.T = y;                                                                            \
     }
 
-#define FUNC_3PARAM(name, T)                                                        \
-    void name##3##T (T x, T y, T z)                                                 \
-    {                                                                               \
-        GXWGFifo.T = x;                                                             \
-        GXWGFifo.T = y;                                                             \
-        GXWGFifo.T = z;                                                             \
+#define FUNC_3PARAM(name, T)                                                                       \
+    void name##3##T (T x, T y, T z)                                                                \
+    {                                                                                              \
+        GXWGFifo.T = x;                                                                            \
+        GXWGFifo.T = y;                                                                            \
+        GXWGFifo.T = z;                                                                            \
     }
 
-#define FUNC_4PARAM(name, T)                                                        \
-    void name##4##T (T x, T y, T z, T w)                                            \
-    {                                                                               \
-        GXWGFifo.T = x;                                                             \
-        GXWGFifo.T = y;                                                             \
-        GXWGFifo.T = z;                                                             \
-        GXWGFifo.T = w;                                                             \
+#define FUNC_4PARAM(name, T)                                                                       \
+    void name##4##T (T x, T y, T z, T w)                                                           \
+    {                                                                                              \
+        GXWGFifo.T = x;                                                                            \
+        GXWGFifo.T = y;                                                                            \
+        GXWGFifo.T = z;                                                                            \
+        GXWGFifo.T = w;                                                                            \
     }
 
-#define FUNC_INDEX8(name)                                                           \
-    void name##1x8(u8 x)                                                            \
-    {                                                                               \
-        GXWGFifo.u8 = x;                                                            \
+#define FUNC_INDEX8(name)                                                                          \
+    void name##1x8(u8 x)                                                                           \
+    {                                                                                              \
+        GXWGFifo.u8 = x;                                                                           \
     }
 
-#define FUNC_INDEX16(name)                                                          \
-    void name##1x16(u16 x)                                                          \
-    {                                                                               \
-        GXWGFifo.u16 = x;                                                           \
+#define FUNC_INDEX16(name)                                                                         \
+    void name##1x16(u16 x)                                                                         \
+    {                                                                                              \
+        GXWGFifo.u16 = x;                                                                          \
     }
 
 // GXCmd

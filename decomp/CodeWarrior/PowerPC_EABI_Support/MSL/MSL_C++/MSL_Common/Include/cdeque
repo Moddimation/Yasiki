@@ -79,10 +79,12 @@ namespace Metrowerks
 #define Metrowerks
 #endif
 #endif
-template <class T, class Allocator = _STD::allocator<T> > class cdeque
+template <class T, class Allocator = _STD::allocator<T> >
+class cdeque
 {
 #ifndef _MSL_NO_MEMBER_TEMPLATE
-    template <bool b> struct chooser
+    template <bool b>
+    struct chooser
     {
     };
 #endif
@@ -103,6 +105,7 @@ public:
     typedef _STD::reverse_iterator<const_iterator> const_reverse_iterator;
 
     friend class iterator;
+
     class iterator : public _STD::iterator<_STD::random_access_iterator_tag,
                                            value_type,
                                            difference_type,
@@ -111,16 +114,19 @@ public:
     {
     public:
         iterator () {}
+
         reference
         operator* () const
         {
             return *ptr_;
         }
+
         pointer
         operator->() const
         {
             return ptr_;
         }
+
         iterator&
         operator++ ()
         {
@@ -131,6 +137,7 @@ public:
             }
             return *this;
         }
+
         iterator
         operator++ (int)
         {
@@ -138,6 +145,7 @@ public:
             ++(*this);
             return tmp;
         }
+
         iterator&
         operator-- ()
         {
@@ -149,6 +157,7 @@ public:
             --ptr_;
             return *this;
         }
+
         iterator
         operator-- (int)
         {
@@ -156,6 +165,7 @@ public:
             --(*this);
             return tmp;
         }
+
         iterator&
         operator+= (difference_type n)
         {
@@ -169,26 +179,31 @@ public:
             ptr_ = cdeq_->data_ + off;
             return *this;
         }
+
         iterator
         operator+ (difference_type n) const
         {
             return iterator (*this) += n;
         }
+
         iterator&
         operator-= (difference_type n)
         {
             return *this += -n;
         }
+
         iterator
         operator- (difference_type n) const
         {
             return iterator (*this) -= n;
         }
+
         friend difference_type
         operator- (const iterator& x, const iterator& y)
         {
             return difference_type (x.pos_ - y.pos_);
         }
+
         reference
         operator[] (difference_type i) const
         {
@@ -196,36 +211,43 @@ public:
             tmp += i;
             return *tmp;
         }
+
         friend bool
         operator== (const iterator& x, const iterator& y)
         {
             return x.pos_ == y.pos_;
         } // hh 990720
+
         friend bool
         operator!= (const iterator& x, const iterator& y)
         {
             return x.pos_ != y.pos_;
         }
+
         friend bool
         operator< (const iterator& x, const iterator& y)
         {
             return x.pos_ < y.pos_;
         }
+
         friend bool
         operator<= (const iterator& x, const iterator& y)
         {
             return x.pos_ <= y.pos_;
         }
+
         friend bool
         operator> (const iterator& x, const iterator& y)
         {
             return x.pos_ > y.pos_;
         }
+
         friend bool
         operator>= (const iterator& x, const iterator& y)
         {
             return x.pos_ >= y.pos_;
         }
+
         friend iterator
         operator+ (difference_type n, const iterator& rhs)
         {
@@ -236,8 +258,8 @@ public:
         cdeque*   cdeq_;
         size_type pos_;
         pointer   ptr_;
-        iterator (cdeque* cdeq, size_type pos, pointer ptr)
-          : cdeq_ (cdeq), pos_ (pos), ptr_ (ptr)
+
+        iterator (cdeque* cdeq, size_type pos, pointer ptr) : cdeq_ (cdeq), pos_ (pos), ptr_ (ptr)
         {
         }
 
@@ -246,6 +268,7 @@ public:
     };
 
     friend class const_iterator;
+
     class const_iterator : public _STD::iterator<_STD::random_access_iterator_tag,
                                                  value_type,
                                                  difference_type,
@@ -254,20 +277,24 @@ public:
     {
     public:
         const_iterator () {}
+
         const_iterator (const cdeque::iterator& rhs)
           : cdeq_ (rhs.cdeq_), pos_ (rhs.pos_), ptr_ (rhs.ptr_)
         {
         }
+
         const_reference
         operator* () const
         {
             return *ptr_;
         }
+
         const_pointer
         operator->() const
         {
             return ptr_;
         }
+
         const_iterator&
         operator++ ()
         {
@@ -278,6 +305,7 @@ public:
             }
             return *this;
         }
+
         const_iterator
         operator++ (int)
         {
@@ -285,6 +313,7 @@ public:
             ++(*this);
             return tmp;
         }
+
         const_iterator&
         operator-- ()
         {
@@ -296,6 +325,7 @@ public:
             --ptr_;
             return *this;
         }
+
         const_iterator
         operator-- (int)
         {
@@ -303,6 +333,7 @@ public:
             --(*this);
             return tmp;
         }
+
         const_iterator&
         operator+= (difference_type n)
         {
@@ -316,26 +347,31 @@ public:
             ptr_ = cdeq_->data_ + off;
             return *this;
         }
+
         const_iterator
         operator+ (difference_type n) const
         {
             return const_iterator (*this) += n;
         }
+
         const_iterator&
         operator-= (difference_type n)
         {
             return *this += -n;
         }
+
         const_iterator
         operator- (difference_type n) const
         {
             return const_iterator (*this) -= n;
         }
+
         friend difference_type
         operator- (const const_iterator& x, const const_iterator& y)
         {
             return difference_type (x.pos_ - y.pos_);
         }
+
         const_reference
         operator[] (difference_type i) const
         {
@@ -343,36 +379,43 @@ public:
             tmp += i;
             return *tmp;
         }
+
         friend bool
         operator== (const const_iterator& x, const const_iterator& y)
         {
             return x.pos_ == y.pos_;
         } // hh 990720
+
         friend bool
         operator!= (const const_iterator& x, const const_iterator& y)
         {
             return x.pos_ != y.pos_;
         }
+
         friend bool
         operator< (const const_iterator& x, const const_iterator& y)
         {
             return x.pos_ < y.pos_;
         }
+
         friend bool
         operator<= (const const_iterator& x, const const_iterator& y)
         {
             return x.pos_ <= y.pos_;
         }
+
         friend bool
         operator> (const const_iterator& x, const const_iterator& y)
         {
             return x.pos_ > y.pos_;
         }
+
         friend bool
         operator>= (const const_iterator& x, const const_iterator& y)
         {
             return x.pos_ >= y.pos_;
         }
+
         friend const_iterator
         operator+ (difference_type n, const const_iterator& rhs)
         {
@@ -383,6 +426,7 @@ public:
         const cdeque* cdeq_;
         size_type     pos_;
         const_pointer ptr_;
+
         const_iterator (const cdeque* cdeq, size_type pos, const_pointer ptr)
           : cdeq_ (cdeq), pos_ (pos), ptr_ (ptr)
         {
@@ -390,6 +434,7 @@ public:
 
         friend class cdeque;
     };
+
     // cdeque.cons_ construct/copy/destroy:
     explicit cdeque (const Allocator& = Allocator());
     explicit cdeque (size_type n); // hh 990826
@@ -397,24 +442,17 @@ public:
 #ifndef _MSL_NO_MEMBER_TEMPLATE
 #ifndef _MSL_MUST_INLINE_MEMBER_TEMPLATE
     template <class InputIterator>
-    cdeque (InputIterator    first,
-            InputIterator    last,
-            const Allocator& a = Allocator());
+    cdeque (InputIterator first, InputIterator last, const Allocator& a = Allocator());
 #else
     template <class InputIterator>
-    inline cdeque (InputIterator    first,
-                   InputIterator    last,
-                   const Allocator& a = Allocator())
+    inline cdeque (InputIterator first, InputIterator last, const Allocator& a = Allocator())
       : alloc_ (a), size_ (0), start_ (0), data_ (0)
     {
-        choose_init (
-            first, last, chooser<_STD::numeric_limits<InputIterator>::is_integer>());
+        choose_init (first, last, chooser<_STD::numeric_limits<InputIterator>::is_integer>());
     }
 #endif
 #else
-    cdeque (const_iterator first,
-            const_iterator last,
-            const Allocator& = Allocator());
+    cdeque (const_iterator first, const_iterator last, const Allocator& = Allocator());
 #endif
     cdeque (const cdeque<T, Allocator>& x);
     ÃÂ¢ÃÂÃÂ¾cdeque ();
@@ -428,8 +466,7 @@ public:
     inline void
     assign (InputIterator first, InputIterator last)
     {
-        choose_assign (
-            first, last, chooser<_STD::numeric_limits<InputIterator>::is_integer>());
+        choose_assign (first, last, chooser<_STD::numeric_limits<InputIterator>::is_integer>());
     }
 #endif
 #else
@@ -509,31 +546,19 @@ private:
     template <class InputIterator>
     void init (InputIterator first, InputIterator last, _STD::input_iterator_tag);
     template <class ForwardIterator>
-    void init (ForwardIterator first,
-               ForwardIterator last,
-               _STD::forward_iterator_tag);
+    void init (ForwardIterator first, ForwardIterator last, _STD::forward_iterator_tag);
     template <class InputIterator>
     void choose_assign (InputIterator first, InputIterator last, chooser<true>);
     template <class InputIterator>
     void choose_assign (InputIterator first, InputIterator last, chooser<false>);
     template <class InputIterator>
-    void do_assign (InputIterator first,
-                    InputIterator last,
-                    _STD::input_iterator_tag);
+    void do_assign (InputIterator first, InputIterator last, _STD::input_iterator_tag);
     template <class ForwardIterator>
-    void do_assign (ForwardIterator first,
-                    ForwardIterator last,
-                    _STD::forward_iterator_tag);
+    void do_assign (ForwardIterator first, ForwardIterator last, _STD::forward_iterator_tag);
     template <class InputIterator>
-    void choose_insert (iterator      position,
-                        InputIterator first,
-                        InputIterator last,
-                        chooser<true>);
+    void choose_insert (iterator position, InputIterator first, InputIterator last, chooser<true>);
     template <class InputIterator>
-    void choose_insert (iterator      position,
-                        InputIterator first,
-                        InputIterator last,
-                        chooser<false>);
+    void choose_insert (iterator position, InputIterator first, InputIterator last, chooser<false>);
     template <class InputIterator>
     void do_insert (iterator      position,
                     InputIterator first,
@@ -551,13 +576,14 @@ private:
     {
         init (static_cast<size_type> (first), static_cast<value_type> (last));
     }
+
     template <class InputIterator>
     inline void
     choose_init (InputIterator first, InputIterator last, chooser<false>)
     {
-        init (
-            first, last, _STD::iterator_traits<InputIterator>::iterator_category());
+        init (first, last, _STD::iterator_traits<InputIterator>::iterator_category());
     }
+
     template <class InputIterator>
     void
     init (InputIterator first, InputIterator last, _STD::input_iterator_tag)
@@ -579,6 +605,7 @@ private:
         }
 #endif
     }
+
     template <class ForwardIterator>
     void
     init (ForwardIterator first, ForwardIterator last, _STD::forward_iterator_tag)
@@ -608,19 +635,21 @@ private:
 #endif
         }
     }
+
     template <class InputIterator>
     inline void
     choose_assign (InputIterator first, InputIterator last, chooser<true>)
     {
         assign (static_cast<size_type> (first), static_cast<value_type> (last));
     }
+
     template <class InputIterator>
     inline void
     choose_assign (InputIterator first, InputIterator last, chooser<false>)
     {
-        do_assign (
-            first, last, _STD::iterator_traits<InputIterator>::iterator_category());
+        do_assign (first, last, _STD::iterator_traits<InputIterator>::iterator_category());
     }
+
     template <class InputIterator>
     void
     do_assign (InputIterator first, InputIterator last, _STD::input_iterator_tag)
@@ -629,11 +658,10 @@ private:
         const cdeque& tempr = temp;
         do_assign (tempr.begin(), tempr.end(), _STD::random_access_iterator_tag());
     }
+
     template <class ForwardIterator>
     void
-    do_assign (ForwardIterator first,
-               ForwardIterator last,
-               _STD::forward_iterator_tag)
+    do_assign (ForwardIterator first, ForwardIterator last, _STD::forward_iterator_tag)
     {
         size_type n = (size_type)_STD::distance (first, last);
         if (n > max_size())
@@ -683,43 +711,33 @@ private:
 #endif
         }
     }
+
     template <class InputIterator>
     inline void
-    choose_insert (iterator      position,
-                   InputIterator first,
-                   InputIterator last,
-                   chooser<true>)
+    choose_insert (iterator position, InputIterator first, InputIterator last, chooser<true>)
     {
-        insert (position,
-                static_cast<size_type> (first),
-                static_cast<value_type> (last));
+        insert (position, static_cast<size_type> (first), static_cast<value_type> (last));
     }
+
     template <class InputIterator>
     inline void
-    choose_insert (iterator      position,
-                   InputIterator first,
-                   InputIterator last,
-                   chooser<false>)
+    choose_insert (iterator position, InputIterator first, InputIterator last, chooser<false>)
     {
         do_insert (position,
                    first,
                    last,
                    _STD::iterator_traits<InputIterator>::iterator_category());
     }
+
     template <class InputIterator>
     void
-    do_insert (iterator      position,
-               InputIterator first,
-               InputIterator last,
-               _STD::input_iterator_tag)
+    do_insert (iterator position, InputIterator first, InputIterator last, _STD::input_iterator_tag)
     {
         cdeque        temp (first, last, get_allocator());
         const cdeque& tempr = temp;
-        do_insert (position,
-                   tempr.begin(),
-                   tempr.end(),
-                   _STD::random_access_iterator_tag());
+        do_insert (position, tempr.begin(), tempr.end(), _STD::random_access_iterator_tag());
     }
+
     template <class ForwardIterator>
     void
     do_insert (iterator        position,
@@ -945,27 +963,23 @@ void swap (cdeque<T, Allocator>& x, cdeque<T, Allocator>& y);
 template <class T, class Allocator>
 template <class InputIterator>
 inline void
-cdeque<T, Allocator>::choose_init (InputIterator first,
-                                   InputIterator last,
-                                   chooser<true>)
+cdeque<T, Allocator>::choose_init (InputIterator first, InputIterator last, chooser<true>)
 {
     init (static_cast<size_type> (first), static_cast<value_type> (last));
 }
+
 template <class T, class Allocator>
 template <class InputIterator>
 inline void
-cdeque<T, Allocator>::choose_init (InputIterator first,
-                                   InputIterator last,
-                                   chooser<false>)
+cdeque<T, Allocator>::choose_init (InputIterator first, InputIterator last, chooser<false>)
 {
     init (first, last, _STD::iterator_traits<InputIterator>::iterator_category());
 }
+
 template <class T, class Allocator>
 template <class InputIterator>
 void
-cdeque<T, Allocator>::init (InputIterator first,
-                            InputIterator last,
-                            _STD::input_iterator_tag)
+cdeque<T, Allocator>::init (InputIterator first, InputIterator last, _STD::input_iterator_tag)
 {
 #ifndef _MSL_NO_EXCEPTIONS
     try
@@ -984,12 +998,11 @@ cdeque<T, Allocator>::init (InputIterator first,
     }
 #endif
 }
+
 template <class T, class Allocator>
 template <class ForwardIterator>
 void
-cdeque<T, Allocator>::init (ForwardIterator first,
-                            ForwardIterator last,
-                            _STD::forward_iterator_tag)
+cdeque<T, Allocator>::init (ForwardIterator first, ForwardIterator last, _STD::forward_iterator_tag)
 {
     size_ = alloc_.m_ = (size_type)_STD::distance (first, last);
     if (size_ > max_size())
@@ -1016,36 +1029,33 @@ cdeque<T, Allocator>::init (ForwardIterator first,
 #endif
     }
 }
+
 template <class T, class Allocator>
 template <class InputIterator>
 inline void
-cdeque<T, Allocator>::choose_assign (InputIterator first,
-                                     InputIterator last,
-                                     chooser<true>)
+cdeque<T, Allocator>::choose_assign (InputIterator first, InputIterator last, chooser<true>)
 {
     assign (static_cast<size_type> (first), static_cast<value_type> (last));
 }
+
 template <class T, class Allocator>
 template <class InputIterator>
 inline void
-cdeque<T, Allocator>::choose_assign (InputIterator first,
-                                     InputIterator last,
-                                     chooser<false>)
+cdeque<T, Allocator>::choose_assign (InputIterator first, InputIterator last, chooser<false>)
 {
-    do_assign (
-        first, last, _STD::iterator_traits<InputIterator>::iterator_category());
+    do_assign (first, last, _STD::iterator_traits<InputIterator>::iterator_category());
 }
+
 template <class T, class Allocator>
 template <class InputIterator>
 void
-cdeque<T, Allocator>::do_assign (InputIterator first,
-                                 InputIterator last,
-                                 _STD::input_iterator_tag)
+cdeque<T, Allocator>::do_assign (InputIterator first, InputIterator last, _STD::input_iterator_tag)
 {
     cdeque        temp (first, last, get_allocator());
     const cdeque& tempr = temp;
     do_assign (tempr.begin(), tempr.end(), _STD::random_access_iterator_tag());
 }
+
 template <class T, class Allocator>
 template <class ForwardIterator>
 void
@@ -1101,6 +1111,7 @@ cdeque<T, Allocator>::do_assign (ForwardIterator first,
 #endif
     }
 }
+
 template <class T, class Allocator>
 template <class InputIterator>
 inline void
@@ -1109,9 +1120,9 @@ cdeque<T, Allocator>::choose_insert (iterator      position,
                                      InputIterator last,
                                      chooser<true>)
 {
-    insert (
-        position, static_cast<size_type> (first), static_cast<value_type> (last));
+    insert (position, static_cast<size_type> (first), static_cast<value_type> (last));
 }
+
 template <class T, class Allocator>
 template <class InputIterator>
 inline void
@@ -1120,11 +1131,9 @@ cdeque<T, Allocator>::choose_insert (iterator      position,
                                      InputIterator last,
                                      chooser<false>)
 {
-    do_insert (position,
-               first,
-               last,
-               _STD::iterator_traits<InputIterator>::iterator_category());
+    do_insert (position, first, last, _STD::iterator_traits<InputIterator>::iterator_category());
 }
+
 template <class T, class Allocator>
 template <class InputIterator>
 void
@@ -1135,9 +1144,9 @@ cdeque<T, Allocator>::do_insert (iterator      position,
 {
     cdeque        temp (first, last, get_allocator());
     const cdeque& tempr = temp;
-    do_insert (
-        position, tempr.begin(), tempr.end(), _STD::random_access_iterator_tag());
+    do_insert (position, tempr.begin(), tempr.end(), _STD::random_access_iterator_tag());
 }
+
 template <class T, class Allocator>
 template <class ForwardIterator>
 void
@@ -1334,12 +1343,14 @@ inline cdeque<T, Allocator>::cdeque (const Allocator& a)
   : alloc_ (a), size_ (0), start_ (0), data_ (0)
 {
 }
+
 template <class T, class Allocator>
 inline cdeque<T, Allocator>::cdeque (size_type n)
   : alloc_ (Allocator()), size_ (0), start_ (0), data_ (0)
 {
     init (n, T());
 }
+
 template <class T, class Allocator>
 inline cdeque<T, Allocator>::cdeque (size_type n, const T& value, const Allocator& a)
   : alloc_ (a), size_ (0), start_ (0), data_ (0)
@@ -1350,20 +1361,15 @@ inline cdeque<T, Allocator>::cdeque (size_type n, const T& value, const Allocato
 #ifndef _MSL_MUST_INLINE_MEMBER_TEMPLATE
 template <class T, class Allocator>
 template <class InputIterator>
-inline cdeque<T, Allocator>::cdeque (InputIterator    first,
-                                     InputIterator    last,
-                                     const Allocator& a)
+inline cdeque<T, Allocator>::cdeque (InputIterator first, InputIterator last, const Allocator& a)
   : alloc_ (a), size_ (0), start_ (0), data_ (0)
 {
-    choose_init (
-        first, last, chooser<_STD::numeric_limits<InputIterator>::is_integer>());
+    choose_init (first, last, chooser<_STD::numeric_limits<InputIterator>::is_integer>());
 }
 #endif
 #else
 template <class T, class Allocator>
-cdeque<T, Allocator>::cdeque (const_iterator   first,
-                              const_iterator   last,
-                              const Allocator& a)
+cdeque<T, Allocator>::cdeque (const_iterator first, const_iterator last, const Allocator& a)
   : alloc_ (a, size_type (last - first)), size_ (alloc_.m_), start_ (0), data_ (0)
 {
     if (alloc_.m_ > max_size())
@@ -1413,6 +1419,7 @@ cdeque<T, Allocator>::cdeque (const cdeque<T, Allocator>& x)
 #endif
     }
 }
+
 template <class T, class Allocator>
 void
 cdeque<T, Allocator>::init (size_type n, const T& value)
@@ -1442,11 +1449,13 @@ cdeque<T, Allocator>::init (size_type n, const T& value)
 #endif
     }
 }
+
 template <class T, class Allocator>
 inline cdeque<T, Allocator>::ÃÂ¢ÃÂÃÂ¾cdeque()
 {
     tear_down();
 }
+
 template <class T, class Allocator>
 void
 cdeque<T, Allocator>::tear_down ()
@@ -1457,6 +1466,7 @@ cdeque<T, Allocator>::tear_down ()
         alloc_.deallocate (data_, alloc_.m_);
     }
 }
+
 template <class T, class Allocator>
 void
 cdeque<T, Allocator>::destroy (iterator first, iterator last)
@@ -1478,6 +1488,7 @@ cdeque<T, Allocator>::destroy (iterator first, iterator last)
         }
     }
 }
+
 template <class T, class Allocator>
 cdeque<T, Allocator>&
 cdeque<T, Allocator>::operator= (const cdeque<T, Allocator>& x)
@@ -1495,8 +1506,7 @@ template <class InputIterator>
 inline void
 cdeque<T, Allocator>::assign (InputIterator first, InputIterator last)
 {
-    choose_assign (
-        first, last, chooser<_STD::numeric_limits<InputIterator>::is_integer>());
+    choose_assign (first, last, chooser<_STD::numeric_limits<InputIterator>::is_integer>());
 }
 #endif
 #else
@@ -1604,24 +1614,28 @@ cdeque<T, Allocator>::assign (size_type n, const T& u)
 #endif
     }
 }
+
 template <class T, class Allocator>
 inline typename cdeque<T, Allocator>::allocator_type
 cdeque<T, Allocator>::get_allocator () const
 {
     return alloc_;
 }
+
 template <class T, class Allocator>
 inline typename cdeque<T, Allocator>::iterator
 cdeque<T, Allocator>::begin ()
 {
     return iterator (this, 0, data_ + start_);
 }
+
 template <class T, class Allocator>
 inline typename cdeque<T, Allocator>::const_iterator
 cdeque<T, Allocator>::begin () const
 {
     return const_iterator (this, 0, data_ + start_);
 }
+
 template <class T, class Allocator>
 inline typename cdeque<T, Allocator>::iterator
 cdeque<T, Allocator>::end ()
@@ -1633,6 +1647,7 @@ cdeque<T, Allocator>::end ()
     }
     return iterator (this, size_, data_ + (off - alloc_.m_));
 }
+
 template <class T, class Allocator>
 inline typename cdeque<T, Allocator>::const_iterator
 cdeque<T, Allocator>::end () const
@@ -1644,36 +1659,42 @@ cdeque<T, Allocator>::end () const
     }
     return const_iterator (this, size_, data_ + (off - alloc_.m_));
 }
+
 template <class T, class Allocator>
 inline typename cdeque<T, Allocator>::reverse_iterator
 cdeque<T, Allocator>::rbegin ()
 {
     return reverse_iterator (end());
 }
+
 template <class T, class Allocator>
 inline typename cdeque<T, Allocator>::const_reverse_iterator
 cdeque<T, Allocator>::rbegin () const
 {
     return const_reverse_iterator (end());
 }
+
 template <class T, class Allocator>
 inline typename cdeque<T, Allocator>::reverse_iterator
 cdeque<T, Allocator>::rend ()
 {
     return reverse_iterator (begin());
 }
+
 template <class T, class Allocator>
 inline typename cdeque<T, Allocator>::const_reverse_iterator
 cdeque<T, Allocator>::rend () const
 {
     return const_reverse_iterator (begin());
 }
+
 template <class T, class Allocator>
 inline typename cdeque<T, Allocator>::size_type
 cdeque<T, Allocator>::size () const
 {
     return size_;
 }
+
 template <class T, class Allocator>
 typename cdeque<T, Allocator>::size_type
 cdeque<T, Allocator>::max_size () const
@@ -1682,6 +1703,7 @@ cdeque<T, Allocator>::max_size () const
     size_type mx = _STD::numeric_limits<size_type>::max() / 2;
     return _STD::min (ma, mx);
 }
+
 template <class T, class Allocator>
 void
 cdeque<T, Allocator>::resize (size_type sz)
@@ -1695,6 +1717,7 @@ cdeque<T, Allocator>::resize (size_type sz)
         erase (begin() + difference_type (sz), end());
     }
 }
+
 template <class T, class Allocator>
 void
 cdeque<T, Allocator>::resize (size_type sz, const T& value)
@@ -1708,18 +1731,21 @@ cdeque<T, Allocator>::resize (size_type sz, const T& value)
         erase (begin() + difference_type (sz), end());
     }
 }
+
 template <class T, class Allocator>
 inline typename cdeque<T, Allocator>::size_type
 cdeque<T, Allocator>::capacity () const
 {
     return alloc_.m_;
 }
+
 template <class T, class Allocator>
 inline bool
 cdeque<T, Allocator>::empty () const
 {
     return size_ == 0;
 }
+
 template <class T, class Allocator>
 void
 cdeque<T, Allocator>::reserve (size_type n)
@@ -1755,6 +1781,7 @@ cdeque<T, Allocator>::reserve (size_type n)
 #endif
     }
 }
+
 template <class T, class Allocator>
 typename cdeque<T, Allocator>::reference
 cdeque<T, Allocator>::operator[] (size_type n)
@@ -1766,6 +1793,7 @@ cdeque<T, Allocator>::operator[] (size_type n)
     }
     return *(data_ + n);
 }
+
 template <class T, class Allocator>
 typename cdeque<T, Allocator>::const_reference
 cdeque<T, Allocator>::operator[] (size_type n) const
@@ -1777,6 +1805,7 @@ cdeque<T, Allocator>::operator[] (size_type n) const
     }
     return *(data_ + n);
 }
+
 template <class T, class Allocator>
 typename cdeque<T, Allocator>::const_reference
 cdeque<T, Allocator>::at (size_type n) const
@@ -1794,6 +1823,7 @@ cdeque<T, Allocator>::at (size_type n) const
     }
     return *(data_ + n);
 }
+
 template <class T, class Allocator>
 typename cdeque<T, Allocator>::reference
 cdeque<T, Allocator>::at (size_type n)
@@ -1811,30 +1841,35 @@ cdeque<T, Allocator>::at (size_type n)
     }
     return *(data_ + n);
 }
+
 template <class T, class Allocator>
 inline typename cdeque<T, Allocator>::reference
 cdeque<T, Allocator>::front ()
 {
     return *(data_ + start_);
 }
+
 template <class T, class Allocator>
 inline typename cdeque<T, Allocator>::const_reference
 cdeque<T, Allocator>::front () const
 {
     return *(data_ + start_);
 }
+
 template <class T, class Allocator>
 inline typename cdeque<T, Allocator>::reference
 cdeque<T, Allocator>::back ()
 {
     return (*this)[size_ - 1];
 }
+
 template <class T, class Allocator>
 inline typename cdeque<T, Allocator>::const_reference
 cdeque<T, Allocator>::back () const
 {
     return (*this)[size_ - 1];
 }
+
 template <class T, class Allocator>
 void
 cdeque<T, Allocator>::push_front (const T& x)
@@ -1910,6 +1945,7 @@ cdeque<T, Allocator>::push_front (const T& x)
 #endif
     }
 }
+
 template <class T, class Allocator>
 void
 cdeque<T, Allocator>::push_back (const T& x)
@@ -1965,6 +2001,7 @@ cdeque<T, Allocator>::push_back (const T& x)
 #endif
     }
 }
+
 template <class T, class Allocator>
 void
 cdeque<T, Allocator>::pop_front ()
@@ -1977,6 +2014,7 @@ cdeque<T, Allocator>::pop_front ()
         start_ -= alloc_.m_;
     }
 }
+
 template <class T, class Allocator>
 void
 cdeque<T, Allocator>::pop_back ()
@@ -1984,6 +2022,7 @@ cdeque<T, Allocator>::pop_back ()
     alloc_.destroy (&*(end() - 1));
     --size_;
 }
+
 template <class T, class Allocator>
 inline typename cdeque<T, Allocator>::iterator
 cdeque<T, Allocator>::insert (iterator position, const T& x)
@@ -1992,6 +2031,7 @@ cdeque<T, Allocator>::insert (iterator position, const T& x)
     insert (position, 1, x);
     return begin() + pos;
 }
+
 template <class T, class Allocator>
 void
 cdeque<T, Allocator>::insert (iterator position, size_type n, const T& x)
@@ -2178,9 +2218,7 @@ cdeque<T, Allocator>::insert (iterator position, size_type n, const T& x)
 template <class T, class Allocator>
 template <class InputIterator>
 inline void
-cdeque<T, Allocator>::insert (iterator      position,
-                              InputIterator first,
-                              InputIterator last)
+cdeque<T, Allocator>::insert (iterator position, InputIterator first, InputIterator last)
 {
     choose_insert (position,
                    first,
@@ -2191,9 +2229,7 @@ cdeque<T, Allocator>::insert (iterator      position,
 #else
 template <class T, class Allocator>
 void
-cdeque<T, Allocator>::insert (iterator       position,
-                              const_iterator first,
-                              const_iterator last)
+cdeque<T, Allocator>::insert (iterator position, const_iterator first, const_iterator last)
 {
     size_type n = (size_type)_STD::distance (first, last);
     if (n == 0)
@@ -2380,6 +2416,7 @@ cdeque<T, Allocator>::erase (iterator position)
 {
     return erase (position, position + 1);
 }
+
 template <class T, class Allocator>
 typename cdeque<T, Allocator>::iterator
 cdeque<T, Allocator>::erase (iterator first, iterator last)
@@ -2423,6 +2460,7 @@ cdeque<T, Allocator>::erase (iterator first, iterator last)
     size_ -= diff;
     return first;
 }
+
 template <class T, class Allocator>
 void
 cdeque<T, Allocator>::swap (cdeque<T, Allocator>& x)
@@ -2435,6 +2473,7 @@ cdeque<T, Allocator>::swap (cdeque<T, Allocator>& x)
         _STD::swap (data_, x.data_);
     }
 }
+
 template <class T, class Allocator>
 void
 cdeque<T, Allocator>::clear ()
@@ -2442,58 +2481,67 @@ cdeque<T, Allocator>::clear ()
     destroy (begin(), end());
     size_ = start_ = 0;
 }
+
 template <class T, class Allocator>
 inline bool
 operator== (const cdeque<T, Allocator>& x, const cdeque<T, Allocator>& y)
 {
     return x.size() == y.size() && _STD::equal (x.begin(), x.end(), y.begin());
 }
+
 template <class T, class Allocator>
 inline bool
 operator!= (const cdeque<T, Allocator>& x, const cdeque<T, Allocator>& y)
 {
     return !(x == y);
 }
+
 template <class T, class Allocator>
 inline bool
 operator< (const cdeque<T, Allocator>& x, const cdeque<T, Allocator>& y)
 {
     return _STD::lexicographical_compare (x.begin(), x.end(), y.begin(), y.end());
 }
+
 template <class T, class Allocator>
 inline bool
 operator> (const cdeque<T, Allocator>& x, const cdeque<T, Allocator>& y)
 {
     return y < x;
 }
+
 template <class T, class Allocator>
 inline bool
 operator>= (const cdeque<T, Allocator>& x, const cdeque<T, Allocator>& y)
 {
     return !(x < y);
 }
+
 template <class T, class Allocator>
 inline bool
 operator<= (const cdeque<T, Allocator>& x, const cdeque<T, Allocator>& y)
 {
     return !(y < x);
 }
+
 template <class T, class Allocator>
 inline void
 swap (cdeque<T, Allocator>& x, cdeque<T, Allocator>& y)
 {
     x.swap (y);
 }
-#if !defined(_MSL_NO_PARTIAL_SPECIALIZATION) &&                                     \
-    !defined(_MSL_NO_MEMBER_TEMPLATE) && !defined(_Inhibit_Container_Optimization)
+#if !defined(_MSL_NO_PARTIAL_SPECIALIZATION) && !defined(_MSL_NO_MEMBER_TEMPLATE) &&               \
+    !defined(_Inhibit_Container_Optimization)
 // Specialize for T* to save on code bloat
 
 // hh 990825 changed void* to const void*
 // const void*
 
-template <class Allocator> class cdeque<const void*, Allocator>
+template <class Allocator>
+class cdeque<const void*, Allocator>
 {
-    template <bool b> struct chooser
+    template <bool b>
+    struct chooser
     {
     };
 
@@ -2513,6 +2561,7 @@ public:
     typedef _STD::reverse_iterator<const_iterator> const_reverse_iterator;
 
     friend class iterator;
+
     class iterator : public _STD::iterator<_STD::random_access_iterator_tag,
                                            value_type,
                                            difference_type,
@@ -2521,16 +2570,19 @@ public:
     {
     public:
         iterator () {}
+
         reference
         operator* () const
         {
             return *ptr_;
         }
+
         pointer
         operator->() const
         {
             return ptr_;
         }
+
         iterator&
         operator++ ()
         {
@@ -2541,6 +2593,7 @@ public:
             }
             return *this;
         }
+
         iterator
         operator++ (int)
         {
@@ -2548,6 +2601,7 @@ public:
             ++(*this);
             return tmp;
         }
+
         iterator&
         operator-- ()
         {
@@ -2559,6 +2613,7 @@ public:
             --ptr_;
             return *this;
         }
+
         iterator
         operator-- (int)
         {
@@ -2566,6 +2621,7 @@ public:
             --(*this);
             return tmp;
         }
+
         iterator&
         operator+= (difference_type n)
         {
@@ -2579,26 +2635,31 @@ public:
             ptr_ = cdeq_->data_ + off;
             return *this;
         }
+
         iterator
         operator+ (difference_type n) const
         {
             return iterator (*this) += n;
         }
+
         iterator&
         operator-= (difference_type n)
         {
             return *this += -n;
         }
+
         iterator
         operator- (difference_type n) const
         {
             return iterator (*this) -= n;
         }
+
         friend difference_type
         operator- (const iterator& x, const iterator& y)
         {
             return difference_type (x.pos_ - y.pos_);
         }
+
         reference
         operator[] (difference_type i) const
         {
@@ -2606,36 +2667,43 @@ public:
             tmp += i;
             return *tmp;
         }
+
         friend bool
         operator== (const iterator& x, const iterator& y)
         {
             return x.pos_ == y.pos_;
         } // hh 990720
+
         friend bool
         operator!= (const iterator& x, const iterator& y)
         {
             return x.pos_ != y.pos_;
         }
+
         friend bool
         operator< (const iterator& x, const iterator& y)
         {
             return x.pos_ < y.pos_;
         }
+
         friend bool
         operator<= (const iterator& x, const iterator& y)
         {
             return x.pos_ <= y.pos_;
         }
+
         friend bool
         operator> (const iterator& x, const iterator& y)
         {
             return x.pos_ > y.pos_;
         }
+
         friend bool
         operator>= (const iterator& x, const iterator& y)
         {
             return x.pos_ >= y.pos_;
         }
+
         friend iterator
         operator+ (difference_type n, const iterator& rhs)
         {
@@ -2648,8 +2716,8 @@ public:
         cdeque*   cdeq_;
         size_type pos_;
         pointer   ptr_;
-        iterator (cdeque* cdeq, size_type pos, pointer ptr)
-          : cdeq_ (cdeq), pos_ (pos), ptr_ (ptr)
+
+        iterator (cdeque* cdeq, size_type pos, pointer ptr) : cdeq_ (cdeq), pos_ (pos), ptr_ (ptr)
         {
         }
 #ifndef __GNUC__
@@ -2659,6 +2727,7 @@ public:
     };
 
     friend class const_iterator;
+
     class const_iterator : public _STD::iterator<_STD::random_access_iterator_tag,
                                                  value_type,
                                                  difference_type,
@@ -2667,20 +2736,24 @@ public:
     {
     public:
         const_iterator () {}
+
         const_iterator (const cdeque::iterator& rhs)
           : cdeq_ (rhs.cdeq_), pos_ (rhs.pos_), ptr_ (rhs.ptr_)
         {
         }
+
         const_reference
         operator* () const
         {
             return *ptr_;
         }
+
         const_pointer
         operator->() const
         {
             return ptr_;
         }
+
         const_iterator&
         operator++ ()
         {
@@ -2691,6 +2764,7 @@ public:
             }
             return *this;
         }
+
         const_iterator
         operator++ (int)
         {
@@ -2698,6 +2772,7 @@ public:
             ++(*this);
             return tmp;
         }
+
         const_iterator&
         operator-- ()
         {
@@ -2709,6 +2784,7 @@ public:
             --ptr_;
             return *this;
         }
+
         const_iterator
         operator-- (int)
         {
@@ -2716,6 +2792,7 @@ public:
             --(*this);
             return tmp;
         }
+
         const_iterator&
         operator+= (difference_type n)
         {
@@ -2729,26 +2806,31 @@ public:
             ptr_ = cdeq_->data_ + off;
             return *this;
         }
+
         const_iterator
         operator+ (difference_type n) const
         {
             return const_iterator (*this) += n;
         }
+
         const_iterator&
         operator-= (difference_type n)
         {
             return *this += -n;
         }
+
         const_iterator
         operator- (difference_type n) const
         {
             return const_iterator (*this) -= n;
         }
+
         friend difference_type
         operator- (const const_iterator& x, const const_iterator& y)
         {
             return difference_type (x.pos_ - y.pos_);
         }
+
         const_reference
         operator[] (difference_type i) const
         {
@@ -2756,36 +2838,43 @@ public:
             tmp += i;
             return *tmp;
         }
+
         friend bool
         operator== (const const_iterator& x, const const_iterator& y)
         {
             return x.pos_ == y.pos_;
         } // hh 990720
+
         friend bool
         operator!= (const const_iterator& x, const const_iterator& y)
         {
             return x.pos_ != y.pos_;
         }
+
         friend bool
         operator< (const const_iterator& x, const const_iterator& y)
         {
             return x.pos_ < y.pos_;
         }
+
         friend bool
         operator<= (const const_iterator& x, const const_iterator& y)
         {
             return x.pos_ <= y.pos_;
         }
+
         friend bool
         operator> (const const_iterator& x, const const_iterator& y)
         {
             return x.pos_ > y.pos_;
         }
+
         friend bool
         operator>= (const const_iterator& x, const const_iterator& y)
         {
             return x.pos_ >= y.pos_;
         }
+
         friend const_iterator
         operator+ (difference_type n, const const_iterator& rhs)
         {
@@ -2798,6 +2887,7 @@ public:
         const cdeque* cdeq_;
         size_type     pos_;
         const_pointer ptr_;
+
         const_iterator (const cdeque* cdeq, size_type pos, const_pointer ptr)
           : cdeq_ (cdeq), pos_ (pos), ptr_ (ptr)
         {
@@ -2806,25 +2896,19 @@ public:
         friend class cdeque;
 #endif
     };
+
     // cdeque.cons_ construct/copy/destroy:
     explicit cdeque (const Allocator& = Allocator());
-    explicit cdeque (size_type         n,
-                     const value_type& value = 0,
-                     const Allocator& = Allocator());
+    explicit cdeque (size_type n, const value_type& value = 0, const Allocator& = Allocator());
 #ifndef _MSL_MUST_INLINE_MEMBER_TEMPLATE
     template <class InputIterator>
-    cdeque (InputIterator    first,
-            InputIterator    last,
-            const Allocator& a = Allocator());
+    cdeque (InputIterator first, InputIterator last, const Allocator& a = Allocator());
 #else
     template <class InputIterator>
-    inline cdeque (InputIterator    first,
-                   InputIterator    last,
-                   const Allocator& a = Allocator())
+    inline cdeque (InputIterator first, InputIterator last, const Allocator& a = Allocator())
       : alloc_ (a), size_ (0), start_ (0), data_ (0)
     {
-        choose_init (
-            first, last, chooser<_STD::numeric_limits<InputIterator>::is_integer>());
+        choose_init (first, last, chooser<_STD::numeric_limits<InputIterator>::is_integer>());
     }
 #endif
     cdeque (const cdeque& x);
@@ -2838,8 +2922,7 @@ public:
     inline void
     assign (InputIterator first, InputIterator last)
     {
-        choose_assign (
-            first, last, chooser<_STD::numeric_limits<InputIterator>::is_integer>());
+        choose_assign (first, last, chooser<_STD::numeric_limits<InputIterator>::is_integer>());
     }
 #endif
     void                   assign (size_type n, const value_type& u);
@@ -2910,31 +2993,19 @@ private:
     template <class InputIterator>
     void init (InputIterator first, InputIterator last, _STD::input_iterator_tag);
     template <class ForwardIterator>
-    void init (ForwardIterator first,
-               ForwardIterator last,
-               _STD::forward_iterator_tag);
+    void init (ForwardIterator first, ForwardIterator last, _STD::forward_iterator_tag);
     template <class InputIterator>
     void choose_assign (InputIterator first, InputIterator last, chooser<true>);
     template <class InputIterator>
     void choose_assign (InputIterator first, InputIterator last, chooser<false>);
     template <class InputIterator>
-    void do_assign (InputIterator first,
-                    InputIterator last,
-                    _STD::input_iterator_tag);
+    void do_assign (InputIterator first, InputIterator last, _STD::input_iterator_tag);
     template <class ForwardIterator>
-    void do_assign (ForwardIterator first,
-                    ForwardIterator last,
-                    _STD::forward_iterator_tag);
+    void do_assign (ForwardIterator first, ForwardIterator last, _STD::forward_iterator_tag);
     template <class InputIterator>
-    void choose_insert (iterator      position,
-                        InputIterator first,
-                        InputIterator last,
-                        chooser<true>);
+    void choose_insert (iterator position, InputIterator first, InputIterator last, chooser<true>);
     template <class InputIterator>
-    void choose_insert (iterator      position,
-                        InputIterator first,
-                        InputIterator last,
-                        chooser<false>);
+    void choose_insert (iterator position, InputIterator first, InputIterator last, chooser<false>);
     template <class InputIterator>
     void do_insert (iterator      position,
                     InputIterator first,
@@ -2953,13 +3024,14 @@ private:
         init (static_cast<size_type> (first),
               reinterpret_cast<value_type> (last)); // hh 981208
     }
+
     template <class InputIterator>
     inline void
     choose_init (InputIterator first, InputIterator last, chooser<false>)
     {
-        init (
-            first, last, _STD::iterator_traits<InputIterator>::iterator_category());
+        init (first, last, _STD::iterator_traits<InputIterator>::iterator_category());
     }
+
     template <class InputIterator>
     void
     init (InputIterator first, InputIterator last, _STD::input_iterator_tag)
@@ -2981,6 +3053,7 @@ private:
         }
 #endif
     }
+
     template <class ForwardIterator>
     void
     init (ForwardIterator first, ForwardIterator last, _STD::forward_iterator_tag)
@@ -2998,19 +3071,21 @@ private:
             _STD::copy (first, last, data_);
         }
     }
+
     template <class InputIterator>
     inline void
     choose_assign (InputIterator first, InputIterator last, chooser<true>)
     {
         assign (static_cast<size_type> (first), static_cast<value_type> (last));
     }
+
     template <class InputIterator>
     inline void
     choose_assign (InputIterator first, InputIterator last, chooser<false>)
     {
-        do_assign (
-            first, last, _STD::iterator_traits<InputIterator>::iterator_category());
+        do_assign (first, last, _STD::iterator_traits<InputIterator>::iterator_category());
     }
+
     template <class InputIterator>
     void
     do_assign (InputIterator first, InputIterator last, _STD::input_iterator_tag)
@@ -3019,11 +3094,10 @@ private:
         const cdeque& tempr = temp;
         do_assign (tempr.begin(), tempr.end(), _STD::random_access_iterator_tag());
     }
+
     template <class ForwardIterator>
     void
-    do_assign (ForwardIterator first,
-               ForwardIterator last,
-               _STD::forward_iterator_tag)
+    do_assign (ForwardIterator first, ForwardIterator last, _STD::forward_iterator_tag)
     {
         size_type n = (size_type)_STD::distance (first, last);
         if (n > max_size())
@@ -3051,43 +3125,33 @@ private:
             start_ = 0;
         }
     }
+
     template <class InputIterator>
     inline void
-    choose_insert (iterator      position,
-                   InputIterator first,
-                   InputIterator last,
-                   chooser<true>)
+    choose_insert (iterator position, InputIterator first, InputIterator last, chooser<true>)
     {
-        insert (position,
-                static_cast<size_type> (first),
-                static_cast<value_type> (last));
+        insert (position, static_cast<size_type> (first), static_cast<value_type> (last));
     }
+
     template <class InputIterator>
     inline void
-    choose_insert (iterator      position,
-                   InputIterator first,
-                   InputIterator last,
-                   chooser<false>)
+    choose_insert (iterator position, InputIterator first, InputIterator last, chooser<false>)
     {
         do_insert (position,
                    first,
                    last,
                    _STD::iterator_traits<InputIterator>::iterator_category());
     }
+
     template <class InputIterator>
     void
-    do_insert (iterator      position,
-               InputIterator first,
-               InputIterator last,
-               _STD::input_iterator_tag)
+    do_insert (iterator position, InputIterator first, InputIterator last, _STD::input_iterator_tag)
     {
         cdeque        temp (first, last, get_allocator());
         const cdeque& tempr = temp;
-        do_insert (position,
-                   tempr.begin(),
-                   tempr.end(),
-                   _STD::random_access_iterator_tag());
+        do_insert (position, tempr.begin(), tempr.end(), _STD::random_access_iterator_tag());
     }
+
     template <class ForwardIterator>
     void
     do_insert (iterator        position,
@@ -3128,9 +3192,7 @@ private:
                 else                                // pos in [1, size_ / 2)
                 {
                     iterator beg = begin();
-                    _STD::copy (beg + difference_type (n),
-                                beg + difference_type (n + pb),
-                                beg);
+                    _STD::copy (beg + difference_type (n), beg + difference_type (n + pb), beg);
                     _STD::copy (first, last, beg + difference_type (pb));
                 }
             }
@@ -3181,19 +3243,19 @@ private:
     void init (size_type n, const value_type& value);
     void tear_down ();
 };
+
 // Implementation cdeque<const void*>
 
 #ifndef _MSL_MUST_INLINE_MEMBER_TEMPLATE
 template <class Allocator>
 template <class InputIterator>
 inline void
-cdeque<const void*, Allocator>::choose_init (InputIterator first,
-                                             InputIterator last,
-                                             chooser<true>)
+cdeque<const void*, Allocator>::choose_init (InputIterator first, InputIterator last, chooser<true>)
 {
     init (static_cast<size_type> (first),
           reinterpret_cast<value_type> (last)); // hh 981208
 }
+
 template <class Allocator>
 template <class InputIterator>
 inline void
@@ -3203,6 +3265,7 @@ cdeque<const void*, Allocator>::choose_init (InputIterator first,
 {
     init (first, last, _STD::iterator_traits<InputIterator>::iterator_category());
 }
+
 template <class Allocator>
 template <class InputIterator>
 void
@@ -3227,6 +3290,7 @@ cdeque<const void*, Allocator>::init (InputIterator first,
     }
 #endif
 }
+
 template <class Allocator>
 template <class ForwardIterator>
 void
@@ -3247,6 +3311,7 @@ cdeque<const void*, Allocator>::init (ForwardIterator first,
         _STD::copy (first, last, data_);
     }
 }
+
 template <class Allocator>
 template <class InputIterator>
 inline void
@@ -3256,6 +3321,7 @@ cdeque<const void*, Allocator>::choose_assign (InputIterator first,
 {
     assign (static_cast<size_type> (first), static_cast<value_type> (last));
 }
+
 template <class Allocator>
 template <class InputIterator>
 inline void
@@ -3263,9 +3329,9 @@ cdeque<const void*, Allocator>::choose_assign (InputIterator first,
                                                InputIterator last,
                                                chooser<false>)
 {
-    do_assign (
-        first, last, _STD::iterator_traits<InputIterator>::iterator_category());
+    do_assign (first, last, _STD::iterator_traits<InputIterator>::iterator_category());
 }
+
 template <class Allocator>
 template <class InputIterator>
 void
@@ -3277,6 +3343,7 @@ cdeque<const void*, Allocator>::do_assign (InputIterator first,
     const cdeque& tempr = temp;
     do_assign (tempr.begin(), tempr.end(), _STD::random_access_iterator_tag());
 }
+
 template <class Allocator>
 template <class ForwardIterator>
 void
@@ -3310,6 +3377,7 @@ cdeque<const void*, Allocator>::do_assign (ForwardIterator first,
         start_ = 0;
     }
 }
+
 template <class Allocator>
 template <class InputIterator>
 inline void
@@ -3318,9 +3386,9 @@ cdeque<const void*, Allocator>::choose_insert (iterator      position,
                                                InputIterator last,
                                                chooser<true>)
 {
-    insert (
-        position, static_cast<size_type> (first), static_cast<value_type> (last));
+    insert (position, static_cast<size_type> (first), static_cast<value_type> (last));
 }
+
 template <class Allocator>
 template <class InputIterator>
 inline void
@@ -3329,11 +3397,9 @@ cdeque<const void*, Allocator>::choose_insert (iterator      position,
                                                InputIterator last,
                                                chooser<false>)
 {
-    do_insert (position,
-               first,
-               last,
-               _STD::iterator_traits<InputIterator>::iterator_category());
+    do_insert (position, first, last, _STD::iterator_traits<InputIterator>::iterator_category());
 }
+
 template <class Allocator>
 template <class InputIterator>
 void
@@ -3344,9 +3410,9 @@ cdeque<const void*, Allocator>::do_insert (iterator      position,
 {
     cdeque        temp (first, last, get_allocator());
     const cdeque& tempr = temp;
-    do_insert (
-        position, tempr.begin(), tempr.end(), _STD::random_access_iterator_tag());
+    do_insert (position, tempr.begin(), tempr.end(), _STD::random_access_iterator_tag());
 }
+
 template <class Allocator>
 template <class ForwardIterator>
 void
@@ -3388,8 +3454,7 @@ cdeque<const void*, Allocator>::do_insert (iterator        position,
             else                                // pos in [1, size_ / 2)
             {
                 iterator beg = begin();
-                _STD::copy (
-                    beg + difference_type (n), beg + difference_type (n + pb), beg);
+                _STD::copy (beg + difference_type (n), beg + difference_type (n + pb), beg);
                 _STD::copy (first, last, beg + difference_type (pb));
             }
         }
@@ -3441,6 +3506,7 @@ inline cdeque<const void*, Allocator>::cdeque (const Allocator& a)
   : alloc_ (a), size_ (0), start_ (0), data_ (0)
 {
 }
+
 template <class Allocator>
 inline cdeque<const void*, Allocator>::cdeque (size_type         n,
                                                const value_type& value,
@@ -3457,8 +3523,7 @@ inline cdeque<const void*, Allocator>::cdeque (InputIterator    first,
                                                const Allocator& a)
   : alloc_ (a), size_ (0), start_ (0), data_ (0)
 {
-    choose_init (
-        first, last, chooser<_STD::numeric_limits<InputIterator>::is_integer>());
+    choose_init (first, last, chooser<_STD::numeric_limits<InputIterator>::is_integer>());
 }
 #endif
 template <class Allocator>
@@ -3471,6 +3536,7 @@ cdeque<const void*, Allocator>::cdeque (const cdeque& x)
         _STD::copy (x.begin(), x.end(), data_);
     }
 }
+
 template <class Allocator>
 void
 cdeque<const void*, Allocator>::init (size_type n, const value_type& value)
@@ -3488,11 +3554,13 @@ cdeque<const void*, Allocator>::init (size_type n, const value_type& value)
         _STD::fill_n (data_, n, value);
     }
 }
+
 template <class Allocator>
 inline cdeque<const void*, Allocator>::ÃÂ¢ÃÂÃÂ¾cdeque()
 {
     tear_down();
 }
+
 template <class Allocator>
 inline void
 cdeque<const void*, Allocator>::tear_down ()
@@ -3502,6 +3570,7 @@ cdeque<const void*, Allocator>::tear_down ()
         alloc_.deallocate (data_, alloc_.m_);
     }
 }
+
 template <class Allocator>
 cdeque<const void*, Allocator>&
 cdeque<const void*, Allocator>::operator= (const cdeque& x)
@@ -3518,8 +3587,7 @@ template <class InputIterator>
 inline void
 cdeque<const void*, Allocator>::assign (InputIterator first, InputIterator last)
 {
-    choose_assign (
-        first, last, chooser<_STD::numeric_limits<InputIterator>::is_integer>());
+    choose_assign (first, last, chooser<_STD::numeric_limits<InputIterator>::is_integer>());
 }
 #endif
 template <class Allocator>
@@ -3551,24 +3619,28 @@ cdeque<const void*, Allocator>::assign (size_type n, const value_type& u)
         start_ = 0;
     }
 }
+
 template <class Allocator>
 inline typename cdeque<const void*, Allocator>::allocator_type
 cdeque<const void*, Allocator>::get_allocator () const
 {
     return alloc_;
 }
+
 template <class Allocator>
 inline typename cdeque<const void*, Allocator>::iterator
 cdeque<const void*, Allocator>::begin ()
 {
     return iterator (this, 0, data_ + start_);
 }
+
 template <class Allocator>
 inline typename cdeque<const void*, Allocator>::const_iterator
 cdeque<const void*, Allocator>::begin () const
 {
     return const_iterator (this, 0, data_ + start_);
 }
+
 template <class Allocator>
 inline typename cdeque<const void*, Allocator>::iterator
 cdeque<const void*, Allocator>::end ()
@@ -3580,6 +3652,7 @@ cdeque<const void*, Allocator>::end ()
     }
     return iterator (this, size_, data_ + (off - alloc_.m_));
 }
+
 template <class Allocator>
 inline typename cdeque<const void*, Allocator>::const_iterator
 cdeque<const void*, Allocator>::end () const
@@ -3591,36 +3664,42 @@ cdeque<const void*, Allocator>::end () const
     }
     return const_iterator (this, size_, data_ + (off - alloc_.m_));
 }
+
 template <class Allocator>
 inline typename cdeque<const void*, Allocator>::reverse_iterator
 cdeque<const void*, Allocator>::rbegin ()
 {
     return reverse_iterator (end());
 }
+
 template <class Allocator>
 inline typename cdeque<const void*, Allocator>::const_reverse_iterator
 cdeque<const void*, Allocator>::rbegin () const
 {
     return const_reverse_iterator (end());
 }
+
 template <class Allocator>
 inline typename cdeque<const void*, Allocator>::reverse_iterator
 cdeque<const void*, Allocator>::rend ()
 {
     return reverse_iterator (begin());
 }
+
 template <class Allocator>
 inline typename cdeque<const void*, Allocator>::const_reverse_iterator
 cdeque<const void*, Allocator>::rend () const
 {
     return const_reverse_iterator (begin());
 }
+
 template <class Allocator>
 inline typename cdeque<const void*, Allocator>::size_type
 cdeque<const void*, Allocator>::size () const
 {
     return size_;
 }
+
 template <class Allocator>
 typename cdeque<const void*, Allocator>::size_type
 cdeque<const void*, Allocator>::max_size () const
@@ -3629,6 +3708,7 @@ cdeque<const void*, Allocator>::max_size () const
     size_type mx = _STD::numeric_limits<size_type>::max() / 2;
     return _STD::min (ma, mx);
 }
+
 template <class Allocator>
 void
 cdeque<const void*, Allocator>::resize (size_type sz, value_type c)
@@ -3642,18 +3722,21 @@ cdeque<const void*, Allocator>::resize (size_type sz, value_type c)
         erase (begin() + difference_type (sz), end());
     }
 }
+
 template <class Allocator>
 inline typename cdeque<const void*, Allocator>::size_type
 cdeque<const void*, Allocator>::capacity () const
 {
     return alloc_.m_;
 }
+
 template <class Allocator>
 inline bool
 cdeque<const void*, Allocator>::empty () const
 {
     return size_ == 0;
 }
+
 template <class Allocator>
 void
 cdeque<const void*, Allocator>::reserve (size_type n)
@@ -3677,6 +3760,7 @@ cdeque<const void*, Allocator>::reserve (size_type n)
         start_ = 0;
     }
 }
+
 template <class Allocator>
 typename cdeque<const void*, Allocator>::reference
 cdeque<const void*, Allocator>::operator[] (size_type n)
@@ -3688,6 +3772,7 @@ cdeque<const void*, Allocator>::operator[] (size_type n)
     }
     return *(data_ + n);
 }
+
 template <class Allocator>
 typename cdeque<const void*, Allocator>::const_reference
 cdeque<const void*, Allocator>::operator[] (size_type n) const
@@ -3699,6 +3784,7 @@ cdeque<const void*, Allocator>::operator[] (size_type n) const
     }
     return *(data_ + n);
 }
+
 template <class Allocator>
 typename cdeque<const void*, Allocator>::const_reference
 cdeque<const void*, Allocator>::at (size_type n) const
@@ -3716,6 +3802,7 @@ cdeque<const void*, Allocator>::at (size_type n) const
     }
     return *(data_ + n);
 }
+
 template <class Allocator>
 typename cdeque<const void*, Allocator>::reference
 cdeque<const void*, Allocator>::at (size_type n)
@@ -3733,30 +3820,35 @@ cdeque<const void*, Allocator>::at (size_type n)
     }
     return *(data_ + n);
 }
+
 template <class Allocator>
 inline typename cdeque<const void*, Allocator>::reference
 cdeque<const void*, Allocator>::front ()
 {
     return *(data_ + start_);
 }
+
 template <class Allocator>
 inline typename cdeque<const void*, Allocator>::const_reference
 cdeque<const void*, Allocator>::front () const
 {
     return *(data_ + start_);
 }
+
 template <class Allocator>
 inline typename cdeque<const void*, Allocator>::reference
 cdeque<const void*, Allocator>::back ()
 {
     return (*this)[size_ - 1];
 }
+
 template <class Allocator>
 inline typename cdeque<const void*, Allocator>::const_reference
 cdeque<const void*, Allocator>::back () const
 {
     return (*this)[size_ - 1];
 }
+
 template <class Allocator>
 void
 cdeque<const void*, Allocator>::push_front (const value_type& x)
@@ -3804,6 +3896,7 @@ cdeque<const void*, Allocator>::push_front (const value_type& x)
         start_ = 0;
     }
 }
+
 template <class Allocator>
 void
 cdeque<const void*, Allocator>::push_back (const value_type& x)
@@ -3841,6 +3934,7 @@ cdeque<const void*, Allocator>::push_back (const value_type& x)
         start_ = 0;
     }
 }
+
 template <class Allocator>
 void
 cdeque<const void*, Allocator>::pop_front ()
@@ -3852,12 +3946,14 @@ cdeque<const void*, Allocator>::pop_front ()
         start_ -= alloc_.m_;
     }
 }
+
 template <class Allocator>
 inline void
 cdeque<const void*, Allocator>::pop_back ()
 {
     --size_;
 }
+
 template <class Allocator>
 inline typename cdeque<const void*, Allocator>::iterator
 cdeque<const void*, Allocator>::insert (iterator position, const value_type& x)
@@ -3866,11 +3962,10 @@ cdeque<const void*, Allocator>::insert (iterator position, const value_type& x)
     insert (position, 1, x);
     return begin() + difference_type (pos);
 }
+
 template <class Allocator>
 void
-cdeque<const void*, Allocator>::insert (iterator          position,
-                                        size_type         n,
-                                        const value_type& x)
+cdeque<const void*, Allocator>::insert (iterator position, size_type n, const value_type& x)
 {
     if (n == 0)
     {
@@ -3904,8 +3999,7 @@ cdeque<const void*, Allocator>::insert (iterator          position,
             else                                // pos in [1, size_ / 2)
             {
                 iterator beg = begin();
-                _STD::copy (
-                    beg + difference_type (n), beg + difference_type (n + pb), beg);
+                _STD::copy (beg + difference_type (n), beg + difference_type (n + pb), beg);
                 _STD::fill_n (beg + difference_type (pb), n, x);
             }
         }
@@ -3953,9 +4047,7 @@ cdeque<const void*, Allocator>::insert (iterator          position,
 template <class Allocator>
 template <class InputIterator>
 inline void
-cdeque<const void*, Allocator>::insert (iterator      position,
-                                        InputIterator first,
-                                        InputIterator last)
+cdeque<const void*, Allocator>::insert (iterator position, InputIterator first, InputIterator last)
 {
     choose_insert (position,
                    first,
@@ -3969,6 +4061,7 @@ cdeque<const void*, Allocator>::erase (iterator position)
 {
     return erase (position, position + 1);
 }
+
 template <class Allocator>
 typename cdeque<const void*, Allocator>::iterator
 cdeque<const void*, Allocator>::erase (iterator first, iterator last)
@@ -3982,7 +4075,7 @@ cdeque<const void*, Allocator>::erase (iterator first, iterator last)
     size_type diff = size_type (last - first);
     if (pb < pe)
     {
-        if (pb != 0)  // erase from beginning, needs copying
+        if (pb != 0)                            // erase from beginning, needs copying
         {
             _STD::copy_backward (begin(), first, last);
         }
@@ -3992,13 +4085,14 @@ cdeque<const void*, Allocator>::erase (iterator first, iterator last)
             start_ -= alloc_.m_;
         }
     }
-    else if (pe != 0) // erase from end, needs copying
+    else if (pe != 0)                           // erase from end, needs copying
     {
         _STD::copy (last, end(), first);
     }
     size_ -= diff;
     return first;
 }
+
 template <class Allocator>
 void
 cdeque<const void*, Allocator>::swap (cdeque& x)
@@ -4011,60 +4105,63 @@ cdeque<const void*, Allocator>::swap (cdeque& x)
         _STD::swap (data_, x.data_);
     }
 }
+
 template <class Allocator>
 inline void
 cdeque<const void*, Allocator>::clear ()
 {
     size_ = start_ = 0;
 }
+
 template <class Allocator>
 inline bool
-operator== (const cdeque<const void*, Allocator>& x,
-            const cdeque<const void*, Allocator>& y)
+operator== (const cdeque<const void*, Allocator>& x, const cdeque<const void*, Allocator>& y)
 {
     return x.size() == y.size() && _STD::equal (x.begin(), x.end(), y.begin());
 }
+
 template <class Allocator>
 inline bool
-operator!= (const cdeque<const void*, Allocator>& x,
-            const cdeque<const void*, Allocator>& y)
+operator!= (const cdeque<const void*, Allocator>& x, const cdeque<const void*, Allocator>& y)
 {
     return !(x == y);
 }
+
 template <class Allocator>
 inline bool
-operator< (const cdeque<const void*, Allocator>& x,
-           const cdeque<const void*, Allocator>& y)
+operator< (const cdeque<const void*, Allocator>& x, const cdeque<const void*, Allocator>& y)
 {
     return _STD::lexicographical_compare (x.begin(), x.end(), y.begin(), y.end());
 }
+
 template <class Allocator>
 inline bool
-operator> (const cdeque<const void*, Allocator>& x,
-           const cdeque<const void*, Allocator>& y)
+operator> (const cdeque<const void*, Allocator>& x, const cdeque<const void*, Allocator>& y)
 {
     return y < x;
 }
+
 template <class Allocator>
 inline bool
-operator>= (const cdeque<const void*, Allocator>& x,
-            const cdeque<const void*, Allocator>& y)
+operator>= (const cdeque<const void*, Allocator>& x, const cdeque<const void*, Allocator>& y)
 {
     return !(x < y);
 }
+
 template <class Allocator>
 inline bool
-operator<= (const cdeque<const void*, Allocator>& x,
-            const cdeque<const void*, Allocator>& y)
+operator<= (const cdeque<const void*, Allocator>& x, const cdeque<const void*, Allocator>& y)
 {
     return !(y < x);
 }
+
 template <class Allocator>
 inline void
 swap (cdeque<const void*, Allocator>& x, cdeque<const void*, Allocator>& y)
 {
     x.swap (y);
 }
+
 // T*
 
 template <class T, class Allocator>
@@ -4072,7 +4169,7 @@ class cdeque<T*, Allocator>
   : private cdeque<const void*, typename Allocator::rebind<const void*>::other>
 {
     typedef cdeque<const void*, typename Allocator::rebind<const void*>::other> base;
-    typedef typename base::allocator_type base_allocator;
+    typedef typename base::allocator_type                                       base_allocator;
 
 public:
     // types:
@@ -4088,6 +4185,7 @@ public:
     typedef typename Allocator::const_pointer      const_pointer;
     typedef _STD::reverse_iterator<iterator>       reverse_iterator;
     typedef _STD::reverse_iterator<const_iterator> const_reverse_iterator;
+
     class iterator : public _STD::iterator<_STD::random_access_iterator_tag,
                                            value_type,
                                            difference_type,
@@ -4096,24 +4194,30 @@ public:
     {
     public:
         iterator () {}
+
         explicit iterator (const typename base::iterator& i) : i_ (i) {}
+
         operator typename base::iterator () const { return i_; }
+
         reference
         operator* () const
         {
             return reference (*i_);
         }
+
         pointer
         operator->() const
         {
             return pointer (i_.operator->());
         }
+
         iterator&
         operator++ ()
         {
             ++i_;
             return *this;
         }
+
         iterator
         operator++ (int)
         {
@@ -4121,12 +4225,14 @@ public:
             ++i_;
             return tmp;
         }
+
         iterator&
         operator-- ()
         {
             --i_;
             return *this;
         }
+
         iterator
         operator-- (int)
         {
@@ -4134,68 +4240,81 @@ public:
             --i_;
             return tmp;
         }
+
         iterator&
         operator+= (difference_type n)
         {
             i_ += n;
             return *this;
         }
+
         iterator
         operator+ (difference_type n) const
         {
             return iterator (*this) += n;
         }
+
         iterator&
         operator-= (difference_type n)
         {
             i_ -= n;
             return *this;
         }
+
         iterator
         operator- (difference_type n) const
         {
             return iterator (*this) -= n;
         }
+
         friend difference_type
         operator- (const iterator& x, const iterator& y)
         {
             return x.i_ - y.i_;
         }
+
         reference
         operator[] (difference_type i) const
         {
             return reference (i_[i]);
         }
+
         friend bool
         operator== (const iterator& x, const iterator& y)
         {
             return x.i_ == y.i_;
         } // hh 990720
+
         friend bool
         operator!= (const iterator& x, const iterator& y)
         {
             return x.i_ != y.i_;
         }
+
         friend bool
         operator< (const iterator& x, const iterator& y)
         {
             return x.i_ < y.i_;
         }
+
         friend bool
         operator<= (const iterator& x, const iterator& y)
         {
             return x.i_ <= y.i_;
         }
+
         friend bool
         operator> (const iterator& x, const iterator& y)
         {
             return x.i_ > y.i_;
         }
+
         friend bool
         operator>= (const iterator& x, const iterator& y)
         {
             return x.i_ >= y.i_;
         }
+
         friend iterator
         operator+ (difference_type n, const iterator& rhs)
         {
@@ -4207,6 +4326,7 @@ public:
 
         friend class cdeque::const_iterator;
     };
+
     class const_iterator : public _STD::iterator<_STD::random_access_iterator_tag,
                                                  value_type,
                                                  difference_type,
@@ -4215,25 +4335,32 @@ public:
     {
     public:
         const_iterator () {}
+
         const_iterator (const cdeque::iterator& rhs) : i_ (rhs.i_) {}
+
         explicit const_iterator (const typename base::const_iterator& i) : i_ (i) {}
+
         operator typename base::const_iterator () const { return i_; }
+
         const_reference
         operator* () const
         {
             return const_reference (*i_);
         }
+
         const_pointer
         operator->() const
         {
             return const_pointer (i_.operator->());
         }
+
         const_iterator&
         operator++ ()
         {
             ++i_;
             return *this;
         }
+
         const_iterator
         operator++ (int)
         {
@@ -4241,12 +4368,14 @@ public:
             ++i_;
             return tmp;
         }
+
         const_iterator&
         operator-- ()
         {
             --i_;
             return *this;
         }
+
         const_iterator
         operator-- (int)
         {
@@ -4254,68 +4383,81 @@ public:
             --i_;
             return tmp;
         }
+
         const_iterator&
         operator+= (difference_type n)
         {
             i_ += n;
             return *this;
         }
+
         const_iterator
         operator+ (difference_type n) const
         {
             return const_iterator (*this) += n;
         }
+
         const_iterator&
         operator-= (difference_type n)
         {
             i_ -= n;
             return *this;
         }
+
         const_iterator
         operator- (difference_type n) const
         {
             return const_iterator (*this) -= n;
         }
+
         friend difference_type
         operator- (const const_iterator& x, const const_iterator& y)
         {
             return x.i_ - y.i_;
         }
+
         const_reference
         operator[] (difference_type i) const
         {
             return const_reference (i_[i]);
         }
+
         friend bool
         operator== (const const_iterator& x, const const_iterator& y)
         {
             return x.i_ == y.i_;
         } // hh 990720
+
         friend bool
         operator!= (const const_iterator& x, const const_iterator& y)
         {
             return x.i_ != y.i_;
         }
+
         friend bool
         operator< (const const_iterator& x, const const_iterator& y)
         {
             return x.i_ < y.i_;
         }
+
         friend bool
         operator<= (const const_iterator& x, const const_iterator& y)
         {
             return x.i_ <= y.i_;
         }
+
         friend bool
         operator> (const const_iterator& x, const const_iterator& y)
         {
             return x.i_ > y.i_;
         }
+
         friend bool
         operator>= (const const_iterator& x, const const_iterator& y)
         {
             return x.i_ >= y.i_;
         }
+
         friend const_iterator
         operator+ (difference_type n, const const_iterator& rhs)
         {
@@ -4325,38 +4467,31 @@ public:
     private:
         typename base::const_iterator i_;
     };
+
     // cdeque.cons_ construct/copy/destroy:
     explicit cdeque (const Allocator& = Allocator());
-    explicit cdeque (size_type         n,
-                     const value_type& value = 0,
-                     const Allocator& = Allocator());
+    explicit cdeque (size_type n, const value_type& value = 0, const Allocator& = Allocator());
 #ifndef _MSL_MUST_INLINE_MEMBER_TEMPLATE
     template <class InputIterator>
-    cdeque (InputIterator    first,
-            InputIterator    last,
-            const Allocator& a = Allocator());
+    cdeque (InputIterator first, InputIterator last, const Allocator& a = Allocator());
     template <class InputIterator>
     void assign (InputIterator first, InputIterator last);
 #else
     template <class InputIterator>
-    inline cdeque (InputIterator    first,
-                   InputIterator    last,
-                   const Allocator& a = Allocator())
-      : base (_STD::__convert_iterator<
-                  _STD::__implicit_convert<pointer, InputIterator> > (first),
-              _STD::__convert_iterator<
-                  _STD::__implicit_convert<pointer, InputIterator> > (last),
+    inline cdeque (InputIterator first, InputIterator last, const Allocator& a = Allocator())
+      : base (_STD::__convert_iterator<_STD::__implicit_convert<pointer, InputIterator> > (first),
+              _STD::__convert_iterator<_STD::__implicit_convert<pointer, InputIterator> > (last),
               base_allocator (a))
     {
     }
+
     template <class InputIterator>
     inline void
     assign (InputIterator first, InputIterator last)
     {
-        base::assign (_STD::__convert_iterator<
-                          _STD::__implicit_convert<pointer, InputIterator> > (first),
-                      _STD::__convert_iterator<
-                          _STD::__implicit_convert<pointer, InputIterator> > (last));
+        base::assign (
+            _STD::__convert_iterator<_STD::__implicit_convert<pointer, InputIterator> > (first),
+            _STD::__convert_iterator<_STD::__implicit_convert<pointer, InputIterator> > (last));
     }
 #endif
     void                   assign (size_type n, const value_type& u);
@@ -4402,11 +4537,10 @@ public:
     inline void
     insert (iterator position, InputIterator first, InputIterator last)
     {
-        base::insert (position,
-                      _STD::__convert_iterator<
-                          _STD::__implicit_convert<pointer, InputIterator> > (first),
-                      _STD::__convert_iterator<
-                          _STD::__implicit_convert<pointer, InputIterator> > (last));
+        base::insert (
+            position,
+            _STD::__convert_iterator<_STD::__implicit_convert<pointer, InputIterator> > (first),
+            _STD::__convert_iterator<_STD::__implicit_convert<pointer, InputIterator> > (last));
     }
 #endif
     iterator erase (iterator position);
@@ -4414,43 +4548,37 @@ public:
     void     swap (cdeque&);
     void     clear ();
 };
+
 // Implementation cdeque<T*>
 
 template <class T, class Allocator>
 inline cdeque<T*, Allocator>::cdeque (const Allocator& a) : base (base_allocator (a))
 {
 }
+
 template <class T, class Allocator>
-inline cdeque<T*, Allocator>::cdeque (size_type         n,
-                                      const value_type& value,
-                                      const Allocator&  a)
+inline cdeque<T*, Allocator>::cdeque (size_type n, const value_type& value, const Allocator& a)
   : base (n, value, base_allocator (a))
 {
 }
 #ifndef _MSL_MUST_INLINE_MEMBER_TEMPLATE
 template <class T, class Allocator>
 template <class InputIterator>
-inline cdeque<T*, Allocator>::cdeque (InputIterator    first,
-                                      InputIterator    last,
-                                      const Allocator& a)
-  : base (
-        _STD::__convert_iterator<_STD::__implicit_convert<pointer, InputIterator> > (
-            first),
-        _STD::__convert_iterator<_STD::__implicit_convert<pointer, InputIterator> > (
-            last),
-        base_allocator (a))
+inline cdeque<T*, Allocator>::cdeque (InputIterator first, InputIterator last, const Allocator& a)
+  : base (_STD::__convert_iterator<_STD::__implicit_convert<pointer, InputIterator> > (first),
+          _STD::__convert_iterator<_STD::__implicit_convert<pointer, InputIterator> > (last),
+          base_allocator (a))
 {
 }
+
 template <class T, class Allocator>
 template <class InputIterator>
 inline void
 cdeque<T*, Allocator>::assign (InputIterator first, InputIterator last)
 {
     base::assign (
-        _STD::__convert_iterator<_STD::__implicit_convert<pointer, InputIterator> > (
-            first),
-        _STD::__convert_iterator<_STD::__implicit_convert<pointer, InputIterator> > (
-            last));
+        _STD::__convert_iterator<_STD::__implicit_convert<pointer, InputIterator> > (first),
+        _STD::__convert_iterator<_STD::__implicit_convert<pointer, InputIterator> > (last));
 }
 #endif
 template <class T, class Allocator>
@@ -4459,174 +4587,203 @@ cdeque<T*, Allocator>::assign (size_type n, const value_type& u)
 {
     base::assign (n, u);
 }
+
 template <class T, class Allocator>
 inline typename cdeque<T*, Allocator>::allocator_type
 cdeque<T*, Allocator>::get_allocator () const
 {
     return base::get_allocator();
 }
+
 template <class T, class Allocator>
 inline typename cdeque<T*, Allocator>::iterator
 cdeque<T*, Allocator>::begin ()
 {
     return iterator (base::begin());
 }
+
 template <class T, class Allocator>
 inline typename cdeque<T*, Allocator>::const_iterator
 cdeque<T*, Allocator>::begin () const
 {
     return const_iterator (base::begin());
 }
+
 template <class T, class Allocator>
 inline typename cdeque<T*, Allocator>::iterator
 cdeque<T*, Allocator>::end ()
 {
     return iterator (base::end());
 }
+
 template <class T, class Allocator>
 inline typename cdeque<T*, Allocator>::const_iterator
 cdeque<T*, Allocator>::end () const
 {
     return const_iterator (base::end());
 }
+
 template <class T, class Allocator>
 inline typename cdeque<T*, Allocator>::reverse_iterator
 cdeque<T*, Allocator>::rbegin ()
 {
     return reverse_iterator (end());
 }
+
 template <class T, class Allocator>
 inline typename cdeque<T*, Allocator>::const_reverse_iterator
 cdeque<T*, Allocator>::rbegin () const
 {
     return const_reverse_iterator (end());
 }
+
 template <class T, class Allocator>
 inline typename cdeque<T*, Allocator>::reverse_iterator
 cdeque<T*, Allocator>::rend ()
 {
     return reverse_iterator (begin());
 }
+
 template <class T, class Allocator>
 inline typename cdeque<T*, Allocator>::const_reverse_iterator
 cdeque<T*, Allocator>::rend () const
 {
     return const_reverse_iterator (begin());
 }
+
 template <class T, class Allocator>
 inline typename cdeque<T*, Allocator>::size_type
 cdeque<T*, Allocator>::size () const
 {
     return base::size();
 }
+
 template <class T, class Allocator>
 inline typename cdeque<T*, Allocator>::size_type
 cdeque<T*, Allocator>::max_size () const
 {
     return base::max_size();
 }
+
 template <class T, class Allocator>
 inline void
 cdeque<T*, Allocator>::resize (size_type sz, value_type c)
 {
     base::resize (sz, c);
 }
+
 template <class T, class Allocator>
 inline typename cdeque<T*, Allocator>::size_type
 cdeque<T*, Allocator>::capacity () const
 {
     return base::capacity();
 }
+
 template <class T, class Allocator>
 inline bool
 cdeque<T*, Allocator>::empty () const
 {
     return base::empty();
 }
+
 template <class T, class Allocator>
 inline void
 cdeque<T*, Allocator>::reserve (size_type n)
 {
     base::reserve (n);
 }
+
 template <class T, class Allocator>
 inline typename cdeque<T*, Allocator>::reference
 cdeque<T*, Allocator>::operator[] (size_type n)
 {
     return reference (base::operator[] (n));
 }
+
 template <class T, class Allocator>
 inline typename cdeque<T*, Allocator>::const_reference
 cdeque<T*, Allocator>::operator[] (size_type n) const
 {
     return const_reference (base::operator[] (n));
 }
+
 template <class T, class Allocator>
 inline typename cdeque<T*, Allocator>::const_reference
 cdeque<T*, Allocator>::at (size_type n) const
 {
     return const_reference (base::at (n));
 }
+
 template <class T, class Allocator>
 inline typename cdeque<T*, Allocator>::reference
 cdeque<T*, Allocator>::at (size_type n)
 {
     return reference (base::at (n));
 }
+
 template <class T, class Allocator>
 inline typename cdeque<T*, Allocator>::reference
 cdeque<T*, Allocator>::front ()
 {
     return reference (base::front());
 }
+
 template <class T, class Allocator>
 inline typename cdeque<T*, Allocator>::const_reference
 cdeque<T*, Allocator>::front () const
 {
     return const_reference (base::front());
 }
+
 template <class T, class Allocator>
 inline typename cdeque<T*, Allocator>::reference
 cdeque<T*, Allocator>::back ()
 {
     return reference (base::back());
 }
+
 template <class T, class Allocator>
 inline typename cdeque<T*, Allocator>::const_reference
 cdeque<T*, Allocator>::back () const
 {
     return const_reference (base::back());
 }
+
 template <class T, class Allocator>
 inline void
 cdeque<T*, Allocator>::push_front (const value_type& x)
 {
     base::push_front (x);
 }
+
 template <class T, class Allocator>
 inline void
 cdeque<T*, Allocator>::push_back (const value_type& x)
 {
     base::push_back (x);
 }
+
 template <class T, class Allocator>
 inline void
 cdeque<T*, Allocator>::pop_front ()
 {
     base::pop_front();
 }
+
 template <class T, class Allocator>
 inline void
 cdeque<T*, Allocator>::pop_back ()
 {
     base::pop_back();
 }
+
 template <class T, class Allocator>
 inline typename cdeque<T*, Allocator>::iterator
 cdeque<T*, Allocator>::insert (iterator position, const value_type& x)
 {
     return iterator (base::insert (position, x));
 }
+
 template <class T, class Allocator>
 inline void
 cdeque<T*, Allocator>::insert (iterator position, size_type n, const value_type& x)
@@ -4637,16 +4794,12 @@ cdeque<T*, Allocator>::insert (iterator position, size_type n, const value_type&
 template <class T, class Allocator>
 template <class InputIterator>
 inline void
-cdeque<T*, Allocator>::insert (iterator      position,
-                               InputIterator first,
-                               InputIterator last)
+cdeque<T*, Allocator>::insert (iterator position, InputIterator first, InputIterator last)
 {
     base::insert (
         position,
-        _STD::__convert_iterator<_STD::__implicit_convert<pointer, InputIterator> > (
-            first),
-        _STD::__convert_iterator<_STD::__implicit_convert<pointer, InputIterator> > (
-            last));
+        _STD::__convert_iterator<_STD::__implicit_convert<pointer, InputIterator> > (first),
+        _STD::__convert_iterator<_STD::__implicit_convert<pointer, InputIterator> > (last));
 }
 #endif
 template <class T, class Allocator>
@@ -4655,60 +4808,70 @@ cdeque<T*, Allocator>::erase (iterator position)
 {
     return iterator (base::erase (position));
 }
+
 template <class T, class Allocator>
 inline typename cdeque<T*, Allocator>::iterator
 cdeque<T*, Allocator>::erase (iterator first, iterator last)
 {
     return iterator (base::erase (first, last));
 }
+
 template <class T, class Allocator>
 inline void
 cdeque<T*, Allocator>::swap (cdeque& rhs)
 {
     base::swap ((base&)rhs);
 }
+
 template <class T, class Allocator>
 inline void
 cdeque<T*, Allocator>::clear ()
 {
     base::clear();
 }
+
 template <class T, class Allocator>
 inline bool
 operator== (const cdeque<T*, Allocator>& x, const cdeque<T*, Allocator>& y)
 {
     return x.size() == y.size() && _STD::equal (x.begin(), x.end(), y.begin());
 }
+
 template <class T, class Allocator>
 inline bool
 operator!= (const cdeque<T*, Allocator>& x, const cdeque<T*, Allocator>& y)
 {
     return !(x == y);
 }
+
 template <class T, class Allocator>
 inline bool
 operator< (const cdeque<T*, Allocator>& x, const cdeque<T*, Allocator>& y)
 {
     return _STD::lexicographical_compare (x.begin(), x.end(), y.begin(), y.end());
 }
+
 template <class T, class Allocator>
 inline bool
 operator> (const cdeque<T*, Allocator>& x, const cdeque<T*, Allocator>& y)
 {
     return y < x;
 }
+
 template <class T, class Allocator>
 inline bool
 operator>= (const cdeque<T*, Allocator>& x, const cdeque<T*, Allocator>& y)
 {
     return !(x < y);
 }
+
 template <class T, class Allocator>
 inline bool
 operator<= (const cdeque<T*, Allocator>& x, const cdeque<T*, Allocator>& y)
 {
     return !(y < x);
 }
+
 template <class T, class Allocator>
 inline void
 swap (cdeque<T*, Allocator>& x, cdeque<T*, Allocator>& y)

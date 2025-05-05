@@ -62,40 +62,40 @@
 
 #if !__POWERPC__
 
-#define swap(dst, src, cnt)                                                         \
-    do {                                                                            \
-        char*  p;                                                                   \
-        char*  q;                                                                   \
-        size_t n = cnt;                                                             \
-                                                                                    \
-        unsigned char tmp;                                                          \
-                                                                                    \
-        for (p = src, q = dst, n++; --n;)                                           \
-        {                                                                           \
-            tmp = *q;                                                               \
-            *q++ = *p;                                                              \
-            *p++ = tmp;                                                             \
-        }                                                                           \
-    }                                                                               \
+#define swap(dst, src, cnt)                                                                        \
+    do {                                                                                           \
+        char*  p;                                                                                  \
+        char*  q;                                                                                  \
+        size_t n = cnt;                                                                            \
+                                                                                                   \
+        unsigned char tmp;                                                                         \
+                                                                                                   \
+        for (p = src, q = dst, n++; --n;)                                                          \
+        {                                                                                          \
+            tmp = *q;                                                                              \
+            *q++ = *p;                                                                             \
+            *p++ = tmp;                                                                            \
+        }                                                                                          \
+    }                                                                                              \
     while (0)
 
 #else
 
-#define swap(dst, src, cnt)                                                         \
-    do {                                                                            \
-        char*  p;                                                                   \
-        char*  q;                                                                   \
-        size_t n = cnt;                                                             \
-                                                                                    \
-        unsigned long tmp;                                                          \
-                                                                                    \
-        for (p = (char*)src - 1, q = (char*)dst - 1, n++; --n;)                     \
-        {                                                                           \
-            tmp = *++q;                                                             \
-            *q = *++p;                                                              \
-            *p = tmp;                                                               \
-        }                                                                           \
-    }                                                                               \
+#define swap(dst, src, cnt)                                                                        \
+    do {                                                                                           \
+        char*  p;                                                                                  \
+        char*  q;                                                                                  \
+        size_t n = cnt;                                                                            \
+                                                                                                   \
+        unsigned long tmp;                                                                         \
+                                                                                                   \
+        for (p = (char*)src - 1, q = (char*)dst - 1, n++; --n;)                                    \
+        {                                                                                          \
+            tmp = *++q;                                                                            \
+            *q = *++p;                                                                             \
+            *p = tmp;                                                                              \
+        }                                                                                          \
+    }                                                                                              \
     while (0)
 
 #endif
@@ -176,6 +176,7 @@ qsort (void*             table_base,
         }
     }
 }
+
 /* Change record:
  *	JFH 950718 First code release.
  *	JFH 951204 Fixed small (!) bug in PPC version of swap. Was

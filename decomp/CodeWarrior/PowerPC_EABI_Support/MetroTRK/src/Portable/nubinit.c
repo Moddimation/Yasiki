@@ -12,6 +12,7 @@
 BOOL gTRKBigEndian;
 
 BOOL TRKInitializeEndian (void);
+
 DSError
 TRKInitializeNub (void)
 {
@@ -31,8 +32,7 @@ TRKInitializeNub (void)
 
     if (ret == DS_NoError)
     {
-        uartErr =
-            TRKInitializeIntDrivenUART (0x0000e100, 1, 0, &gTRKInputPendingPtr);
+        uartErr = TRKInitializeIntDrivenUART (0x0000e100, 1, 0, &gTRKInputPendingPtr);
         TRKTargetSetInputPendingPtr (gTRKInputPendingPtr);
         if (uartErr != DS_NoError)
         {
@@ -47,18 +47,21 @@ TRKInitializeNub (void)
 
     return ret;
 }
+
 DSError
 TRKTerminateNub (void)
 {
     TRKTerminateSerialHandler();
     return DS_NoError;
 }
+
 void
 TRKNubWelcome (void)
 {
     TRK_board_display ("MetroTRK for GAMECUBE v2.6");
     return;
 }
+
 BOOL
 TRKInitializeEndian (void)
 {

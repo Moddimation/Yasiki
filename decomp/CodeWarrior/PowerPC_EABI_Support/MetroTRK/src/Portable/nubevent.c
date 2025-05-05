@@ -5,6 +5,7 @@
 #include "Portable/mutex_TRK.h"
 
 TRKEventQueue gTRKEventQueue;
+
 DSError
 TRKInitializeEventQueue ()
 {
@@ -16,11 +17,13 @@ TRKInitializeEventQueue ()
     TRKReleaseMutex (&gTRKEventQueue);
     return DS_NoError;
 }
+
 void
 TRKCopyEvent (TRKEvent* dstEvent, const TRKEvent* srcEvent)
 {
     TRK_memcpy (dstEvent, srcEvent, sizeof (TRKEvent));
 }
+
 BOOL
 TRKGetNextEvent (TRKEvent* event)
 {
@@ -39,6 +42,7 @@ TRKGetNextEvent (TRKEvent* event)
     TRKReleaseMutex (&gTRKEventQueue);
     return status;
 }
+
 DSError
 TRKPostEvent (TRKEvent* event)
 {
@@ -66,6 +70,7 @@ TRKPostEvent (TRKEvent* event)
     TRKReleaseMutex (&gTRKEventQueue);
     return ret;
 }
+
 void
 TRKConstructEvent (TRKEvent* event, NubEventType eventType)
 {
@@ -73,6 +78,7 @@ TRKConstructEvent (TRKEvent* event, NubEventType eventType)
     event->eventID = 0;
     event->msgBufID = -1;
 }
+
 void
 TRKDestructEvent (TRKEvent* event)
 {

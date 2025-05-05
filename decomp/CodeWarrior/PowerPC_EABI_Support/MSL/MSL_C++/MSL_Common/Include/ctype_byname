@@ -107,8 +107,7 @@ __read_ctype_entry (basic_istream<charT, traits>& infile,
     while (true)
     {
         ws (infile);
-        const string* i =
-            __parse_a_word (in, end, code_names, code_names + 8, ct, err);
+        const string* i = __parse_a_word (in, end, code_names, code_names + 8, ct, err);
         if (err)
         {
             infile.setstate (err);
@@ -129,10 +128,10 @@ __read_ctype_entry (basic_istream<charT, traits>& infile,
     }
     ctype_table.insert (x1, x2, y);
 }
+
 template <class charT, class traits, class T, class U>
 void
-__read_case_entry (basic_istream<charT, traits>& infile,
-                   Metrowerks::range_map<T, U>&  case_table)
+__read_case_entry (basic_istream<charT, traits>& infile, Metrowerks::range_map<T, U>& case_table)
 {
     charT syntax;
     infile >> syntax;
@@ -200,6 +199,7 @@ __read_case_entry (basic_istream<charT, traits>& infile,
     }
     case_table.insert (x1, x2, y1, y2);
 }
+
 template <class charT>
 void
 __ctype_byname_init (const char*                                     std_name,
@@ -224,9 +224,8 @@ __ctype_byname_init (const char*                                     std_name,
         ifstream infile (std_name);
         if (!infile.is_open())
 #ifndef _MSL_NO_EXCEPTIONS
-            throw runtime_error (
-                string ("ctype_byname constructed with unsupported name: ") +
-                std_name);
+            throw runtime_error (string ("ctype_byname constructed with unsupported name: ") +
+                                 std_name);
 #else
             __msl_error ("ctype_byname constructed with unsupported name");
 #endif
@@ -260,14 +259,14 @@ __ctype_byname_init (const char*                                     std_name,
                 code_names[5] = "xdigit";
                 code_names[6] = "lower";
                 code_names[7] = "upper";
-                const ctype<char>& ct = _USE_FACET (ctype<char>, infile.getloc());
-                ios_base::iostate  err = ios_base::goodbit;
+                const ctype<char>&        ct = _USE_FACET (ctype<char>, infile.getloc());
+                ios_base::iostate         err = ios_base::goodbit;
                 istreambuf_iterator<char> in (infile), end;
                 while (true)
                 {
                     ws (infile);
-                    const string* i = __parse_a_word (
-                        in, end, ctable_names, ctable_names + 3, ct, err);
+                    const string* i =
+                        __parse_a_word (in, end, ctable_names, ctable_names + 3, ct, err);
                     if (err)
                     {
                         infile.setstate (err);
@@ -295,15 +294,14 @@ __ctype_byname_init (const char*                                     std_name,
         }
         if (!success)
 #ifndef _MSL_NO_EXCEPTIONS
-            throw runtime_error (string ("ctype_byname file input error: ") +
-                                 std_name);
+            throw runtime_error (string ("ctype_byname file input error: ") + std_name);
 #else
             __msl_error ("ctype_byname file input error");
 #endif
 #else                           // _MSL_NO_FILE_IO
 #ifndef _MSL_NO_EXCEPTIONS
-        throw runtime_error (
-            string ("ctype_byname constructed with unsupported name: ") + std_name);
+        throw runtime_error (string ("ctype_byname constructed with unsupported name: ") +
+                             std_name);
 #else
         __msl_error ("ctype_byname constructed with unsupported name");
 #endif
@@ -314,7 +312,9 @@ __ctype_byname_init (const char*                                     std_name,
 #endif                          // _MSL_NO_FILE_IO
     }
 }
-template <class charT> class ctype_byname : public ctype<charT>
+
+template <class charT>
+class ctype_byname : public ctype<charT>
 {
 public:
     typedef typename ctype<charT>::mask mask;
@@ -323,9 +323,9 @@ public:
 protected:
     virtual ÃÂ¢ÃÂÃÂ¾ctype_byname () {}
 };
+
 template <class charT>
-inline ctype_byname<charT>::ctype_byname (const char* std_name, size_t refs)
-  : ctype<charT> (refs)
+inline ctype_byname<charT>::ctype_byname (const char* std_name, size_t refs) : ctype<charT> (refs)
 {
     typedef ctype<charT> base;
     __ctype_byname_init (std_name,
@@ -334,7 +334,9 @@ inline ctype_byname<charT>::ctype_byname (const char* std_name, size_t refs)
                          base::__lower_map_,
                          base::__upper_map_);
 }
-template <> class ctype_byname<char> : public ctype<char>
+
+template <>
+class ctype_byname<char> : public ctype<char>
 {
 public:
     typedef ctype<char>::mask mask;
@@ -343,6 +345,7 @@ public:
 protected:
     virtual ÃÂ¢ÃÂÃÂ¾ctype_byname ();
 };
+
 template <>
 inline ctype_byname<char>::ctype_byname (const char* std_name, size_t refs)
   : ctype<char> (0, false, refs)
@@ -350,10 +353,8 @@ inline ctype_byname<char>::ctype_byname (const char* std_name, size_t refs)
     Metrowerks::range_map<unsigned char, unsigned char> ctype_table;
     Metrowerks::range_map<unsigned char, unsigned char> lower_table;
     Metrowerks::range_map<unsigned char, unsigned char> upper_table;
-    __ctype_byname_init (
-        std_name, "ctype_narrow", ctype_table, lower_table, upper_table);
-    typedef Metrowerks::alloc_ptr<unsigned char,
-                                  Metrowerks::array_deleter<unsigned char> >
+    __ctype_byname_init (std_name, "ctype_narrow", ctype_table, lower_table, upper_table);
+    typedef Metrowerks::alloc_ptr<unsigned char, Metrowerks::array_deleter<unsigned char> >
              auto_ptr;
     auto_ptr p1 (new unsigned char[256]);
     auto_ptr p2 (new unsigned char[256]);
@@ -365,26 +366,25 @@ inline ctype_byname<char>::ctype_byname (const char* std_name, size_t refs)
     {
         for (int i = 0; i < 256; ++i)
         {
-            const_cast<ctype_base::mask&> (__table_[i]) =
-                ctype_table[(unsigned char)i];
+            const_cast<ctype_base::mask&> (__table_[i]) = ctype_table[(unsigned char)i];
         }
     }
     {
         for (int i = 0; i < 256; ++i)
         {
-            const_cast<unsigned char&> (__lower_map_[i]) =
-                lower_table[(unsigned char)i];
+            const_cast<unsigned char&> (__lower_map_[i]) = lower_table[(unsigned char)i];
         }
     }
     {
         for (int i = 0; i < 256; ++i)
         {
-            const_cast<unsigned char&> (__upper_map_[i]) =
-                upper_table[(unsigned char)i];
+            const_cast<unsigned char&> (__upper_map_[i]) = upper_table[(unsigned char)i];
         }
     }
 }
-template <> inline ctype_byname<char>::ÃÂ¢ÃÂÃÂ¾ctype_byname()
+
+template <>
+inline ctype_byname<char>::ÃÂ¢ÃÂÃÂ¾ctype_byname()
 {
     if (__owns_)
     {

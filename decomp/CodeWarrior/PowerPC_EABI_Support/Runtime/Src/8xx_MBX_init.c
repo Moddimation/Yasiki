@@ -116,8 +116,8 @@ TARGET_SYSTEM_FREQUENCY.equ 40 #Target System Frequency
 #define CacheEnableCmd    0x0200 // DCache_Enable Command
 #define CacheEnableBit    0x8000 // Cache Enable bit in I/DC_CST
 
-#pragma section all_types                                                           \
-    ".init"                                                                         \
+#pragma section all_types                                                                          \
+    ".init"                                                                                        \
     ".init"
 
 #ifdef __cplusplus
@@ -189,6 +189,7 @@ asm void __reset_ROM()
             tlbsync // wait for tlbia to complete
                 b __start
 }
+
 asm void
 __reset (void)
 {
@@ -209,6 +210,7 @@ __reset (void)
             ori r3,
         r3, __reset_ROM @l mtlr r3 blr // effectively falls through...
 }
+
 asm void
 usr_init ()
 {
@@ -739,6 +741,7 @@ MBXInit:
 
           blr
 }
+
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Cache Initialization
 //
@@ -760,6 +763,7 @@ MBXInit:
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 #pragma section code_type ".init"
+
 asm void
 CacheInit ()
 {
@@ -767,69 +771,68 @@ CacheInit ()
 
         // If Instruction cache was enabled, disable and invalidate all
         ICacheInit : mfspr r3,
-                     IC_CST                          // read I-cache CSR
+                     IC_CST                                             // read I-cache CSR
                          andis.r3,
                      r3,
-                     CacheEnableBit beq ICacheUnlock // no, Icache was disabled
+                     CacheEnableBit beq ICacheUnlock                    // no, Icache was disabled
 
                          lis               r3,
                      CacheDisableCmd mtspr IC_CST,
-                     r3                              // disable Icache
+                     r3                                                 // disable Icache
                          isync
 
                              ICacheUnlock : lis                     r3,
                                             CacheUnlockAllCmd mtspr IC_CST,
-                                            r3       // Unlock Icache
+                                            r3                          // Unlock Icache
                                                 isync
 
-                                                    ICacheInv
+                                                    ICacheInv : lis                  r3,
+                                                                CacheInvAllCmd mtspr IC_CST,
+                                                                r3      // Invalidate Icache
+                                                                    isync
+
+                                                                        // ICacheEnable:
+                                                                        //    lis r3,CacheEnableCmd
+                                                                        //    mtspr   r3,IC_CST //
+                                                                        //    Enable Icache isync
+
+                                                                            DCacheInit
+      : DCacheUnlock : lis                                                  r3,
+                       CacheUnlockAllCmd sync mtspr                         DC_CST,
+                       r3                             // Unlock Dcache
+
+                           andis.r8,
+                       r8,
+                       CacheEnableBit                 // Was DCache enabled ?
+                           beq DCacheInv              // no, Dcache was disabled
+
+                               DCacheFlushAll : li r3,
+                                                0     // Read 1 word per cache line
+                                                      // for 800 lines
+                                                li r4,
+                                                256   // 2 ways, 128 sets per way
+                                                DCacheFlushLoop : addic.r4,
+                                                r4,
+                                                -1    // decrementer, set cc bit
+                                                lwz r5,
+                                                0(r3) // access memory
+                                                dcbf 0,
+                                                r3    // flush the line
+                                                    addi r3,
+                                                r3,
+                                                16    // next line
+                                                bgt DCacheFlushLoop
+
+                                                    DCacheDisable
       : lis                                         r3,
-        CacheInvAllCmd mtspr                        IC_CST,
-        r3                                           // Invalidate Icache
-            isync
-
-                                                     // ICacheEnable:
-                //    lis     r3,CacheEnableCmd
-                //    mtspr   r3,IC_CST       // Enable Icache
-                //    isync
-
-                                     DCacheInit : DCacheUnlock
-      : lis                          r3,
-        CacheUnlockAllCmd sync mtspr DC_CST,
-        r3                             // Unlock Dcache
-
-            andis.r8,
-        r8,
-        CacheEnableBit                 // Was DCache enabled ?
-            beq DCacheInv              // no, Dcache was disabled
-
-                DCacheFlushAll : li r3,
-                                 0     // Read 1 word per cache line
-                                       // for 800 lines
-                                 li r4,
-                                 256   // 2 ways, 128 sets per way
-                                 DCacheFlushLoop : addic.r4,
-                                 r4,
-                                 -1    // decrementer, set cc bit
-                                 lwz r5,
-                                 0(r3) // access memory
-                                 dcbf 0,
-                                 r3    // flush the line
-                                     addi r3,
-                                 r3,
-                                 16    // next line
-                                 bgt DCacheFlushLoop
-
-                                     DCacheDisable
-      : lis                          r3,
-        CacheDisableCmd sync mtspr   DC_CST,
-        r3                             // disable Dcache
+        CacheDisableCmd sync mtspr                  DC_CST,
+        r3                                            // disable Dcache
 
             DCacheInv : lis                       r3,
                         CacheInvAllCmd sync mtspr DC_CST,
-                        r3             // Invalidate Dcache
+                        r3                            // Invalidate Dcache
 
-                                       // DCacheEnable:
+                                                      // DCacheEnable:
                         //    lis     r3,CacheEnableCmd
                         //    sync
                         //    mtspr   DC_CST,r3       // Enable Icache

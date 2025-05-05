@@ -14,12 +14,13 @@
 
 typedef short vbase_ctor_arg_type;
 typedef char  local_cond_type;
+
 typedef struct CatchInfo
 {
-    void* location; /*	pointer to complete exception object	*/
-    void* typeinfo; /*	pointer to complete exception object's typeinfo	*/
-    void* dtor; /*	pointer to complete exception object's destructor function (0: no
-                   destructor)	*/
+    void* location;    /*	pointer to complete exception object	*/
+    void* typeinfo;    /*	pointer to complete exception object's typeinfo	*/
+    void* dtor;        /*	pointer to complete exception object's destructor function (0: no
+                          destructor)	*/
     void* sublocation; /*	pointer to handlers subobject in complete exception
                           object	*/
     long  pointercopy; /*	adjusted pointer copy for pointer matches (sublocation
@@ -27,6 +28,7 @@ typedef struct CatchInfo
     void* stacktop;    /*	pointer to handlers stack top (reused for exception
                           specification in specification handler)	*/
 } CatchInfo;
+
 /*	[this section needs to be copied from CException.h] */
 
 typedef struct DestructorChain
@@ -34,7 +36,7 @@ typedef struct DestructorChain
     struct DestructorChain* next;       /*	pointer to next destructor chain element
                                          */
     void*                   destructor; /*	pointer to destructor function	*/
-    void* object; /*	pointer to memory location (0L: element is marker)	*/
+    void*                   object;     /*	pointer to memory location (0L: element is marker)	*/
 } DestructorChain;
 #ifdef __cplusplus
 extern "C"
@@ -53,19 +55,15 @@ _MSL_IMP_EXP_RUNTIME extern void             __destroy_global_chain (void);
 
 extern void                      __init__catch (CatchInfo* catchinfo);
 _MSL_IMP_EXP_RUNTIME extern void __end__catch (CatchInfo* catchinfo);
-_MSL_IMP_EXP_RUNTIME extern void __throw (char* throwtype,
-                                          void* location,
-                                          void* dtor);
+_MSL_IMP_EXP_RUNTIME extern void __throw (char* throwtype, void* location, void* dtor);
 _MSL_IMP_EXP_RUNTIME extern void __rethrow (void);
 _MSL_IMP_EXP_RUNTIME extern char __throw_catch_compare (const char* throwtype,
                                                         const char* catchtype,
                                                         long*       offset_result);
 _MSL_IMP_EXP_RUNTIME extern void __unexpected (CatchInfo* catchinfo);
-void                             __call_static_initializers (
-                                void); /* hh 971215 added per John McEnerney's instructions */
+void __call_static_initializers (void); /* hh 971215 added per John McEnerney's instructions */
 #if defined(__PPC_EABI__)
-_MSL_IMP_EXP_RUNTIME extern int  __register_fragment (struct __eti_init_info* info,
-                                                      char*                   TOC);
+_MSL_IMP_EXP_RUNTIME extern int  __register_fragment (struct __eti_init_info* info, char* TOC);
 _MSL_IMP_EXP_RUNTIME extern void __unregister_fragment (int fragmentID);
 #elif defined(__POWERPC__)
 _MSL_IMP_EXP_RUNTIME extern int  __register_fragment (char* code_start,

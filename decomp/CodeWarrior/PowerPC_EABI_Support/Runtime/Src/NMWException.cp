@@ -40,28 +40,30 @@ dthandler ()
 {
     abort();
 } //	default terminate handler function
-static terminate_handler thandler =
-    dthandler; //	pointer to terminate handler function
+
+static terminate_handler thandler = dthandler; //	pointer to terminate handler function
+
 static void
 duhandler ()
 {
     terminate();
 } //	default unexpected handler function
-static unexpected_handler uhandler =
-    duhandler; //	pointer to unexpected handler function
+
+static unexpected_handler uhandler = duhandler; //	pointer to unexpected handler function
+
 /************************************************************************/
 /*	Purpose..: 	Set a terminate handler function						*/
 /*	Input....:	pointer to terminate handler function					*/
 /*	Return...:	---														*/
 /************************************************************************/
 extern terminate_handler
-set_terminate (
-    terminate_handler handler) throw() // hh 980102 added exception specific
+set_terminate (terminate_handler handler) throw() // hh 980102 added exception specific
 {
     terminate_handler old = thandler;
     thandler = handler;
     return old;
 }
+
 /************************************************************************/
 /*	Purpose..: 	Terminate exception handling							*/
 /*	Input....:	---														*/
@@ -72,19 +74,20 @@ terminate ()
 {
     thandler();
 }
+
 /************************************************************************/
 /*	Purpose..: 	Set an unexpected handler function						*/
 /*	Input....:	pointer to unexpected handler function					*/
 /*	Return...:	---														*/
 /************************************************************************/
 extern unexpected_handler
-set_unexpected (
-    unexpected_handler handler) throw() // hh 980102 added exception specific
+set_unexpected (unexpected_handler handler) throw() // hh 980102 added exception specific
 {
     unexpected_handler old = uhandler;
     uhandler = handler;
     return old;
 }
+
 /************************************************************************/
 /*	Purpose..: 	Handle unexpected exception								*/
 /*	Input....:	---														*/
@@ -128,9 +131,7 @@ __register_global_object (void* object, void* destructor, void* regmem)
 /* Return...: true: can catch; false: cannot catch						*/
 /************************************************************************/
 extern char
-__throw_catch_compare (const char* throwtype,
-                       const char* catchtype,
-                       long*       offset_result)
+__throw_catch_compare (const char* throwtype, const char* catchtype, long* offset_result)
 {
     const char *cptr1, *cptr2;
 
@@ -201,11 +202,11 @@ __throw_catch_compare (const char* throwtype,
     }
 
     while ((*cptr1 == 'P' || *cptr1 == 'R') && *cptr1 == *cptr2)
-    {                     //	pointer/reference catch => match cv-qualifiers
+    {                                        //	pointer/reference catch => match cv-qualifiers
         cptr1++;
         cptr2++;
         if (*cptr2 == 'C')
-        {                 //	ignore 'const' in throw type
+        {                                    //	ignore 'const' in throw type
             if (*cptr1 == 'C')
             {
                 cptr1++;
@@ -214,11 +215,11 @@ __throw_catch_compare (const char* throwtype,
         }
         if (*cptr1 == 'C')
         {
-            return false; //	throw type is more cv-qualified
+            return false;                    //	throw type is more cv-qualified
         }
 
         if (*cptr2 == 'V')
-        {                 //	ignore 'volatile' in throw type
+        {                                    //	ignore 'volatile' in throw type
             if (*cptr1 == 'V')
             {
                 cptr1++;
@@ -227,7 +228,7 @@ __throw_catch_compare (const char* throwtype,
         }
         if (*cptr1 == 'V')
         {
-            return false; //	throw type is more cv-qualified
+            return false;                    //	throw type is more cv-qualified
         }
     }
 
@@ -270,11 +271,10 @@ __construct_new_array (void*                 block,
         ptr += ARRAY_HEADER_SIZE;
 
         if (ctor)
-        {                 //	call constructor to initialize array
-            volatile ConstructorDestructor dtor =
-                dtor_arg; //	force reference to dtor
-            char*  p;
-            size_t i;
+        {                                                   //	call constructor to initialize array
+            volatile ConstructorDestructor dtor = dtor_arg; //	force reference to dtor
+            char*                          p;
+            size_t                         i;
 
 #pragma exception_arrayinit
             //	this #pragma adds partial array construction exception action
@@ -288,6 +288,7 @@ __construct_new_array (void*                 block,
     }
     return ptr; //	return pointer to first object;
 }
+
 /************************************************************************/
 /*	Purpose..: 	Construct an array of objects							*/
 /*	Input....:	pointer to array memory									*/
@@ -338,6 +339,7 @@ private:
 
 public:
     size_t i;                   //	current element being constructed
+
     __partial_array_destructor (void*                 array,
                                 size_t                elementsize,
                                 size_t                nelements,
@@ -349,6 +351,7 @@ public:
         dtor = destructor;
         i = n;
     }
+
     _MSL_IMP_EXP_RUNTIME ~__partial_array_destructor()
     {
         char* ptr;
@@ -363,6 +366,7 @@ public:
         }
     }
 };
+
 /************************************************************************/
 /*	Purpose..: 	Initialize a new allocated array of objects				*/
 /*	Input....:	pointer to allocated memory (+8 bytes) (0L: error)		*/
@@ -403,6 +407,7 @@ __construct_new_array (void*                 block,
     }
     return ptr; //	return pointer to first object;
 }
+
 /************************************************************************/
 /*	Purpose..: 	Construct an array of objects							*/
 /*	Input....:	pointer to array memory									*/
@@ -447,6 +452,7 @@ __destroy_arr (void* block, ConstructorDestructor dtor, size_t size, size_t n)
         DTORCALL_COMPLETE (dtor, p);
     }
 }
+
 /************************************************************************/
 /*	Purpose..: 	Delete an array of objects								*/
 /*	Input....:	pointer to first object	(can be NULL)					*/
@@ -479,6 +485,7 @@ __destroy_new_array (void* block, ConstructorDestructor dtor)
 #endif
     }
 }
+
 /************************************************************************/
 /*	Purpose..: 	Destroy a new allocated array of objects				*/
 /*	Input....:	pointer to first object	(can be NULL)					*/
@@ -511,6 +518,7 @@ __destroy_new_array2 (void* block, ConstructorDestructor dtor)
     //	return pointer to complete array block
     return (char*)block - ARRAY_HEADER_SIZE;
 }
+
 /************************************************************************/
 /*	Purpose..: 	Destroy/delete a new allocated array of objects			*/
 /*	Input....:	pointer to first object	(or NULL)						*/
@@ -548,8 +556,8 @@ __destroy_new_array3 (void*                 block,
             p = (char*)block - ARRAY_HEADER_SIZE;
             if (has_size_t_param)
             {
-                ((void (*) (void*, size_t))dealloc_func) (
-                    p, elements * elementsize + ARRAY_HEADER_SIZE);
+                ((void (*) (void*,
+                            size_t))dealloc_func) (p, elements * elementsize + ARRAY_HEADER_SIZE);
             }
             else
             {
@@ -558,6 +566,7 @@ __destroy_new_array3 (void*                 block,
         }
     }
 }
+
 //  hh 971207 Added namespace support
 //  hh 971215 commented out <Types.h> per John McEnerney's instructions
 //  hh 980102 added exception specific to set_terminate and set_unexpected

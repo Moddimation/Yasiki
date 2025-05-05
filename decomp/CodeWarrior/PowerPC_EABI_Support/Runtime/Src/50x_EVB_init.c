@@ -11,9 +11,10 @@
 //
 //////////////////////////////////////////////////////////////////////////////////////////////////
 
-#pragma section all_types                                                           \
-    ".init"                                                                         \
+#pragma section all_types                                                                          \
+    ".init"                                                                                        \
     ".init"
+
 asm void
 usr_init ()
 {
@@ -27,8 +28,8 @@ usr_init ()
         // SIU, MEMMAP and PCUMCR  are at fixed addresses for the 505evb
         //----------------------------------------------------------------------
         lis        r4,
-        0x8007 ori r4, r4, 0xfc00 lis r5, 0x9200 stw r5, 0(r4)lis r5, 0x80c0 ori r5,
-        r5, 0x4080 stw r5,
+        0x8007 ori r4, r4, 0xfc00 lis r5, 0x9200 stw r5, 0(r4)lis r5, 0x80c0 ori r5, r5,
+        0x4080 stw r5,
         0x20(r4)
 
             lis    r4,

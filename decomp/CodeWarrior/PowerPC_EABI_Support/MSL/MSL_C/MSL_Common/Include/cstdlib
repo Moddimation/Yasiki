@@ -28,8 +28,8 @@
 
 #ifndef RC_INVOKED                             /*- hh 971230 -*/
 
-_MSL_BEGIN_NAMESPACE_STD                                     /*- cc  010410 -*/
-    _MSL_BEGIN_EXTERN_C                                      /*- cc  010410 -*/
+_MSL_BEGIN_NAMESPACE_STD                                               /*- cc  010410 -*/
+    _MSL_BEGIN_EXTERN_C                                                /*- cc  010410 -*/
 
 #define RAND_MAX     32767
 #define MB_CUR_MAX   3                         /*- mm 010523 -*/
@@ -45,7 +45,7 @@ _MSL_BEGIN_NAMESPACE_STD                                     /*- cc  010410 -*/
         _MSL_IMP_EXP_C double
                            atof (const char*);
 _MSL_IMP_EXP_C double      strtod (const char*, char**);
-_MSL_IMP_EXP_C long double strtold (const char*, char**);    /*- mm 990930 -*/
+_MSL_IMP_EXP_C long double strtold (const char*, char**);              /*- mm 990930 -*/
 #endif
 
 _MSL_IMP_EXP_C int           atoi (const char*);
@@ -54,28 +54,26 @@ _MSL_IMP_EXP_C long          strtol (const char*, char**, int);
 _MSL_IMP_EXP_C unsigned long strtoul (const char*, char**, int);
 
 #ifdef __MSL_LONGLONG_SUPPORT__                /*- mm 961219 -*/
-_MSL_IMP_EXP_C long long strtoll (const char*, char**, int); /*- mm 961219 -*/
-_MSL_IMP_EXP_C unsigned long long strtoull (const char*,
-                                            char**,
-                                            int);            /*- mm 961219 -*/
+_MSL_IMP_EXP_C long long          strtoll (const char*, char**, int);  /*- mm 961219 -*/
+_MSL_IMP_EXP_C unsigned long long strtoull (const char*, char**, int); /*- mm 961219 -*/
 #endif /*__MSL_LONGLONG_SUPPORT__*/            /*- mm 961220 -*/
 
 _MSL_IMP_EXP_C int    rand (void);
 _MSL_IMP_EXP_C void   srand (unsigned int);
-_MSL_IMP_EXP_C void*  calloc (size_t, size_t);               /*- mf 990715 -*/
-_MSL_IMP_EXP_C void   free (void*);                          /*- mf 990715 -*/
-_MSL_IMP_EXP_C void*  malloc (size_t);                       /*- mf 990715 -*/
-_MSL_IMP_EXP_C void*  realloc (void*, size_t);               /*- mf 990715 -*/
-_MSL_IMP_EXP_C size_t __msize (void*);                       /*- mf 990715 -*/
+_MSL_IMP_EXP_C void*  calloc (size_t, size_t);                         /*- mf 990715 -*/
+_MSL_IMP_EXP_C void   free (void*);                                    /*- mf 990715 -*/
+_MSL_IMP_EXP_C void*  malloc (size_t);                                 /*- mf 990715 -*/
+_MSL_IMP_EXP_C void*  realloc (void*, size_t);                         /*- mf 990715 -*/
+_MSL_IMP_EXP_C size_t __msize (void*);                                 /*- mf 990715 -*/
 
 #if __VEC__
 /*
  * AltiVec memory-related routines which 16-byte align the blocks.
  */
-_MSL_IMP_EXP_C void* vec_calloc (size_t, size_t);                 /*- mf 990715 -*/
-_MSL_IMP_EXP_C void  vec_free (void*);                            /*- mf 990715 -*/
-_MSL_IMP_EXP_C void* vec_malloc (size_t);                         /*- mf 990715 -*/
-_MSL_IMP_EXP_C void* vec_realloc (void*, size_t);                 /*- mf 990715 -*/
+_MSL_IMP_EXP_C void* vec_calloc (size_t, size_t);                     /*- mf 990715 -*/
+_MSL_IMP_EXP_C void  vec_free (void*);                                /*- mf 990715 -*/
+_MSL_IMP_EXP_C void* vec_malloc (size_t);                             /*- mf 990715 -*/
+_MSL_IMP_EXP_C void* vec_realloc (void*, size_t);                     /*- mf 990715 -*/
 #endif                                         /* VEC */
 
 #if (__dest_os == __win32_os)
@@ -92,15 +90,15 @@ _MSL_IMP_EXP_C char* getenv (const char*);
 _MSL_IMP_EXP_C int   system (const char*);
 
 typedef int (*_compare_function) (const void*, const void*);
-/*- mm 961031 -*/                                                 /*- cc 042400 -*/
+/*- mm 961031 -*/                                                     /*- cc 042400 -*/
 
-_MSL_IMP_EXP_C void* bsearch (
-    const void*, const void*, size_t, size_t, _compare_function); /*- mm 961031 -*/
+_MSL_IMP_EXP_C void* bsearch (const void*,
+                              const void*,
+                              size_t,
+                              size_t,
+                              _compare_function);                     /*- mm 961031 -*/
 
-_MSL_IMP_EXP_C void qsort (void*,
-                           size_t,
-                           size_t,
-                           _compare_function);                    /*- mm 961031 -*/
+_MSL_IMP_EXP_C void qsort (void*, size_t, size_t, _compare_function); /*- mm 961031 -*/
 
 #if __POWERPC__
 
@@ -108,7 +106,7 @@ _MSL_IMP_EXP_C int  abs (int);
 _MSL_IMP_EXP_C long labs (long);
 
 #ifdef __MSL_LONGLONG_SUPPORT__                /*- mm 990520 -*/
-_MSL_IMP_EXP_C long long llabs (long long);                       /*- hh 980122 -*/
+_MSL_IMP_EXP_C long long llabs (long long);                           /*- hh 980122 -*/
 #endif /*__MSL_LONGLONG_SUPPORT__*/            /*- mm 990520 -*/
 
 #ifndef __cplusplus                            /*- hh 980206 -*/
@@ -133,7 +131,7 @@ _MSL_IMP_EXP_C div_t  div (int, int);
 _MSL_IMP_EXP_C ldiv_t ldiv (long, long);
 
 #ifdef __MSL_LONGLONG_SUPPORT__                /*- mm 981023 -*/
-_MSL_IMP_EXP_C lldiv_t lldiv (long long, long long);              /*- hh 980122 -*/
+_MSL_IMP_EXP_C lldiv_t lldiv (long long, long long);                  /*- hh 980122 -*/
 #endif /* #ifdef __MSL_LONGLONG_SUPPORT__	*/ /*- mm 981023 -*/
 /*- hh 980122 -*/
 #ifdef __cplusplus
@@ -144,6 +142,7 @@ _MSL_END_EXTERN_C          /*- cc  010410 -*/
 {
     return labs (n);
 }
+
 inline ldiv_t
 div (long numerator, long denominator)
 {
@@ -155,6 +154,7 @@ abs (long long n)
 {
     return llabs (n);
 }
+
 inline lldiv_t
 div (long long numerator, long long denominator)
 {
@@ -176,8 +176,12 @@ _MSL_IMP_EXP_C size_t wcstombs (char*, const wchar_t*, size_t);
 #endif
 
 #if (__dest_os == __wince_os)
-unsigned long __cdecl _beginthreadex (
-    void*, unsigned, unsigned (__stdcall*) (void*), void*, unsigned, unsigned*);
+unsigned long __cdecl _beginthreadex (void*,
+                                      unsigned,
+                                      unsigned (__stdcall*) (void*),
+                                      void*,
+                                      unsigned,
+                                      unsigned*);
 void __cdecl _endthreadex (unsigned);
 #endif                                         /*  __dest_os == __wince_os  */
 
@@ -220,10 +224,10 @@ _MSL_END_EXTERN_C          /*- cc  010410 -*/
                                                 * cc  000515 Added #include of extras.h for win only
                                                 * cc  000515 Moved _gcvt, _itoa, _itow, _ultoa, _strlwr, _splitpath,  _itoa to
                                                 * extras.h                                                cc  000515 Moved
-                                                * _fullpath, _ltow, _doserrno, _putenv, and _ultow to                                                extras.win32.h                                                cc  000515
-                                                * Moved _MAX_DRIVE, _MAX_DIR, _MAX_EXT, _MAX_FNAME, __max,                                                and __min to extras.h                                                JWW
-                                                * 001208 Added case for targeting Mach-O                                                cc  000326                                                removed dest_os to be_os                                                cc
-                                                * 010405 removed pragma options align native and reset                                                cc  010410 updated to new
-                                                * namespace macros                                                mm  010523 UTF-8
-                                                * implementation
+                                                * _fullpath, _ltow, _doserrno, _putenv, and _ultow to                                                extras.win32.h                                                cc  000515                                                Moved _MAX_DRIVE,
+                                                * _MAX_DIR, _MAX_EXT, _MAX_FNAME, __max,                                                and __min
+                                                * to extras.h                                                JWW                                                001208 Added case for targeting
+                                                * Mach-O                                                cc  000326                                                removed dest_os to be_os                                                cc
+                                                * 010405 removed pragma options align native and reset                                                cc  010410 updated to new                                                namespace macros
+                                                * mm  010523 UTF-8                                                implementation
                                                 */

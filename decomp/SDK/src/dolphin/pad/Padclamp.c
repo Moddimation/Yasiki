@@ -1,6 +1,7 @@
 #include <types.h>
 
 #include <dolphin/pad.h>
+
 typedef struct PADClampRegion
 {
     u8 minTrigger;
@@ -12,11 +13,13 @@ typedef struct PADClampRegion
     s8 maxSubstick;
     s8 xySubstick;
 } PADClampRegion;
+
 static PADClampRegion ClampRegion = { 30, 180, 15, 72, 40, 15, 59, 31 };
 
 // functions
 static void ClampStick (s8* px, s8* py, s8 max, s8 xy, s8 min);
 static void ClampTrigger (u8* trigger);
+
 static void
 ClampStick (s8* px, s8* py, s8 max, s8 xy, s8 min)
 {
@@ -93,6 +96,7 @@ ClampStick (s8* px, s8* py, s8 max, s8 xy, s8 min)
     *px = signX * x;
     *py = signY * y;
 }
+
 inline static void
 ClampTrigger (u8* trigger)
 {
@@ -107,6 +111,7 @@ ClampTrigger (u8* trigger)
     }
     *trigger -= ClampRegion.minTrigger;
 }
+
 void
 PADClamp (PADStatus* status)
 {

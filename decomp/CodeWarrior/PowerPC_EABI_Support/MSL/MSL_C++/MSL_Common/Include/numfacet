@@ -61,12 +61,14 @@ __false_name (basic_string<charT>* names)
 {
     *names = __literal ("false", charT());
 }
+
 template <class charT>
 inline void
 __true_name (basic_string<charT>* names)
 {
     *names = __literal ("true", charT());
 }
+
 template <class charT>
 inline void
 __bool_names (basic_string<charT>* names)
@@ -75,73 +77,87 @@ __bool_names (basic_string<charT>* names)
     __true_name (names + 1);
 }
 #ifndef _MSL_NO_LOCALE
-template <class charT> class numpunct : public locale::facet
+template <class charT>
+class numpunct : public locale::facet
 {
 public:
     typedef charT               char_type;
     typedef basic_string<charT> string_type;
 
     explicit numpunct (size_t refs = 0);
+
     char_type
     decimal_point () const
     {
         return do_decimal_point();
     }
+
     char_type
     thousands_sep () const
     {
         return do_thousands_sep();
     }
+
     string
     grouping () const
     {
         return do_grouping();
     }
+
     string_type
     truename () const
     {
         return do_truename();
     }
+
     string_type
     falsename () const
     {
         return do_falsename();
     }
+
     static locale::id id;
 
 protected:
     virtual ÃÂ¢ÃÂÃÂ¾numpunct () {}
+
     virtual char_type
     do_decimal_point () const
     {
         return __decimal_point_;
     }
+
     virtual char_type
     do_thousands_sep () const
     {
         return __thousands_sep_;
     }
+
     virtual string
     do_grouping () const
     {
         return __grouping_;
     }
+
     virtual string_type
     do_truename () const
     {
         return __truename_;
     }
+
     virtual string_type
     do_falsename () const
     {
         return __falsename_;
     }
+
     char_type   __decimal_point_;
     char_type   __thousands_sep_;
     string      __grouping_;
     string_type __truename_;
     string_type __falsename_;
 };
+
 template <class charT>
 numpunct<charT>::numpunct (size_t refs)
   : locale::facet (refs), __decimal_point_ ('.'), __thousands_sep_ (',')
@@ -150,73 +166,63 @@ numpunct<charT>::numpunct (size_t refs)
     __false_name (&__falsename_);
 }
 
-template <class charT> locale::id numpunct<charT>::id;
-template <class charT> struct __facet_traits<numpunct<charT> >
+template <class charT>
+locale::id numpunct<charT>::id;
+
+template <class charT>
+struct __facet_traits<numpunct<charT> >
 {
     static const bool is_standard = true;
 };
+
 template <class charT, class InputIterator = istreambuf_iterator<charT> >
 class num_get : public locale::facet
 {
 public:
     typedef charT         char_type;
     typedef InputIterator iter_type;
+
     explicit num_get (size_t refs = 0) : locale::facet (refs) {}
+
     iter_type
-    get (iter_type          in,
-         iter_type          end,
-         ios_base&          str,
-         ios_base::iostate& err,
-         bool&              val) const
+    get (iter_type in, iter_type end, ios_base& str, ios_base::iostate& err, bool& val) const
     {
         return do_get (in, end, str, err, val);
     }
+
     iter_type
-    get (iter_type          in,
-         iter_type          end,
-         ios_base&          str,
-         ios_base::iostate& err,
-         long&              val) const
+    get (iter_type in, iter_type end, ios_base& str, ios_base::iostate& err, long& val) const
     {
         return do_get (in, end, str, err, val);
     }
+
     iter_type
-    get (iter_type          in,
-         iter_type          end,
-         ios_base&          str,
-         ios_base::iostate& err,
-         unsigned short&    val) const
+    get (iter_type in, iter_type end, ios_base& str, ios_base::iostate& err, unsigned short& val)
+        const
     {
         return do_get (in, end, str, err, val);
     }
+
     iter_type
-    get (iter_type          in,
-         iter_type          end,
-         ios_base&          str,
-         ios_base::iostate& err,
-         unsigned int&      val) const
+    get (iter_type in, iter_type end, ios_base& str, ios_base::iostate& err, unsigned int& val)
+        const
     {
         return do_get (in, end, str, err, val);
     }
+
     iter_type
-    get (iter_type          in,
-         iter_type          end,
-         ios_base&          str,
-         ios_base::iostate& err,
-         unsigned long&     val) const
+    get (iter_type in, iter_type end, ios_base& str, ios_base::iostate& err, unsigned long& val)
+        const
     {
         return do_get (in, end, str, err, val);
     }
 #ifdef __MSL_LONGLONG_SUPPORT__
     iter_type
-    get (iter_type          in,
-         iter_type          end,
-         ios_base&          str,
-         ios_base::iostate& err,
-         long long&         val) const
+    get (iter_type in, iter_type end, ios_base& str, ios_base::iostate& err, long long& val) const
     {
         return do_get (in, end, str, err, val);
     }
+
     iter_type
     get (iter_type           in,
          iter_type           end,
@@ -229,46 +235,34 @@ public:
 #endif
 #ifndef _No_Floating_Point
     iter_type
-    get (iter_type          in,
-         iter_type          end,
-         ios_base&          str,
-         ios_base::iostate& err,
-         float&             val) const
+    get (iter_type in, iter_type end, ios_base& str, ios_base::iostate& err, float& val) const
     {
         return do_get (in, end, str, err, val);
     }
+
     iter_type
-    get (iter_type          in,
-         iter_type          end,
-         ios_base&          str,
-         ios_base::iostate& err,
-         double&            val) const
+    get (iter_type in, iter_type end, ios_base& str, ios_base::iostate& err, double& val) const
     {
         return do_get (in, end, str, err, val);
     }
+
     iter_type
-    get (iter_type          in,
-         iter_type          end,
-         ios_base&          str,
-         ios_base::iostate& err,
-         long double&       val) const
+    get (iter_type in, iter_type end, ios_base& str, ios_base::iostate& err, long double& val) const
     {
         return do_get (in, end, str, err, val);
     }
 #endif
     iter_type
-    get (iter_type          in,
-         iter_type          end,
-         ios_base&          str,
-         ios_base::iostate& err,
-         void*&             val) const
+    get (iter_type in, iter_type end, ios_base& str, ios_base::iostate& err, void*& val) const
     {
         return do_get (in, end, str, err, val);
     }
+
     static locale::id id;
 
 protected:
     virtual ÃÂ¢ÃÂÃÂ¾num_get () {}
+
     virtual iter_type do_get (iter_type          in,
                               iter_type          end,
                               ios_base&          str,
@@ -329,6 +323,7 @@ protected:
                               ios_base::iostate& err,
                               void*&             val) const;
 };
+
 template <class charT, class InputIterator>
 struct __facet_traits<num_get<charT, InputIterator> >
 {
@@ -354,11 +349,7 @@ num_get<charT, InputIterator>::do_get (iter_type          in,
 
 template <class InputIterator>
 InputIterator
-numget (InputIterator      in,
-        InputIterator      end,
-        ios_base&          str,
-        ios_base::iostate& err,
-        bool&              val)
+numget (InputIterator in, InputIterator end, ios_base& str, ios_base::iostate& err, bool& val)
 
 #endif // _MSL_NO_LOCALE
 {
@@ -381,12 +372,10 @@ numget (InputIterator      in,
             const ctype<charT>&    ct = _USE_FACET (ctype<charT>, loc);
             names[0] = np.falsename();
             names[1] = np.truename();
-            const string_type* i =
-                __parse_a_word (in, end, const_names, const_names + 2, ct, err);
+            const string_type* i = __parse_a_word (in, end, const_names, const_names + 2, ct, err);
 #else
             __bool_names (names);
-            const string_type* i =
-                __parse_a_word (in, end, const_names, const_names + 2, err);
+            const string_type* i = __parse_a_word (in, end, const_names, const_names + 2, err);
 #endif
             switch (i - const_names)
             {
@@ -466,10 +455,7 @@ __ws (InputIterator& in, InputIterator end, ios_base::iostate& err)
 #ifndef _MSL_NO_LOCALE
 template <class InputIterator, class Ctype>
 bool
-__parsesign (InputIterator&     in,
-             InputIterator      end,
-             ios_base::iostate& err,
-             const Ctype&       ct)
+__parsesign (InputIterator& in, InputIterator end, ios_base::iostate& err, const Ctype& ct)
 #else
 template <class InputIterator>
 bool
@@ -520,13 +506,11 @@ __parsesign (InputIterator& in, InputIterator end, ios_base::iostate& err)
 // return true if in error
 template <class String>
 bool
-__check_grouping (const String&                allowed_grouping,
-                  const vector<unsigned char>& actual_grouping)
+__check_grouping (const String& allowed_grouping, const vector<unsigned char>& actual_grouping)
 {
     size_t        all = 0;
     unsigned char ng = (unsigned char)numeric_limits<char>::max();
-    for (vector<unsigned char>::size_type act = actual_grouping.size(); act > 0;
-         ++all)
+    for (vector<unsigned char>::size_type act = actual_grouping.size(); act > 0; ++all)
     {
         if (all < allowed_grouping.size())
         {
@@ -808,6 +792,7 @@ __parseDigits (InputIterator&     in,
 #endif
     return count;
 }
+
 template <class InputIterator, class T>
 InputIterator
 __get_integral (InputIterator      in,
@@ -876,11 +861,7 @@ num_get<charT, InputIterator>::do_get (iter_type          in,
 
 template <class InputIterator>
 inline InputIterator
-numget (InputIterator      in,
-        InputIterator      end,
-        ios_base&          str,
-        ios_base::iostate& err,
-        long&              val)
+numget (InputIterator in, InputIterator end, ios_base& str, ios_base::iostate& err, long& val)
 
 #endif
 {
@@ -975,11 +956,7 @@ num_get<charT, InputIterator>::do_get (iter_type          in,
 #else
 template <class InputIterator>
 inline InputIterator
-numget (InputIterator      in,
-        InputIterator      end,
-        ios_base&          str,
-        ios_base::iostate& err,
-        long long&         val)
+numget (InputIterator in, InputIterator end, ios_base& str, ios_base::iostate& err, long long& val)
 #endif
 {
     return __get_integral (in, end, str, err, val);
@@ -1020,27 +997,33 @@ public:
     _MSL_IMP_EXP_CPP string      to_string (int precision, int& exponent) const;
     _MSL_IMP_EXP_CPP long double to_long_double () const;
     int                          exponent () const;
+
     string&
     mantissa ()
     {
         return mantissa_;
     }
+
     short&
     exponent ()
     {
         return exp_;
     }
+
     _MSL_IMP_EXP_CPP int must_round (size_t pos = 0) const;
+
     bool
     is_nan () const
     {
         return classification_ == 1;
     }
+
     bool
     is_inf () const
     {
         return classification_ == 2;
     }
+
     bool
     is_finite () const
     {
@@ -1052,11 +1035,13 @@ public:
     _MSL_IMP_EXP_CPP _BCD& operator+= (_BCD rhs);
     _MSL_IMP_EXP_CPP _BCD& operator-= (_BCD rhs);
     _MSL_IMP_EXP_CPP _BCD& operator*= (_BCD rhs);
+
     friend bool
     operator== (const _BCD& x, const _BCD& y)
     {
         return x.exp_ == y.exp_ && x.mantissa_ == y.mantissa_;
     }
+
     friend bool operator< (const _BCD& x, const _BCD& y);
 #endif
 
@@ -1074,45 +1059,50 @@ private:
 _MSL_IMP_EXP_CPP _BCD __two_exp (short x);
 
 _MSL_IMP_EXP_CPP bool operator< (const _BCD& x, const _BCD& y);
+
 inline bool
 operator!= (const _BCD& x, const _BCD& y)
 {
     return !(x == y);
 }
+
 inline bool
 operator<= (const _BCD& x, const _BCD& y)
 {
     return !(y < x);
 }
+
 inline bool
 operator> (const _BCD& x, const _BCD& y)
 {
     return y < x;
 }
+
 inline bool
 operator>= (const _BCD& x, const _BCD& y)
 {
     return !(x < y);
 }
+
 inline _BCD
 operator+ (const _BCD& x, const _BCD& y)
 {
     return _BCD (x) += y;
 }
+
 inline _BCD
 operator- (const _BCD& x, const _BCD& y)
 {
     return _BCD (x) -= y;
 }
+
 inline _BCD
 operator* (const _BCD& x, const _BCD& y)
 {
     return _BCD (x) *= y;
 }
 #endif
-inline _BCD::_BCD () : exp_ (0), classification_ (0)
-{
-}
+inline _BCD::_BCD () : exp_ (0), classification_ (0) {}
 #ifdef _MSL_EXTENDED_PRECISION_OUTP
 inline void
 _BCD::trim ()
@@ -1136,24 +1126,28 @@ _BCD::exponent () const
 {
     return exp_;
 }
+
 template <class charT>
 inline void
 __inf_name (basic_string<charT>* names)
 {
     *names = __literal ("inf", charT());
 }
+
 template <class charT>
 inline void
 __infinity_name (basic_string<charT>* names)
 {
     *names = __literal ("infinity", charT());
 }
+
 template <class charT>
 inline void
 __nan_name (basic_string<charT>* names)
 {
     *names = __literal ("nan", charT());
 }
+
 template <class charT>
 inline void
 __float_names (basic_string<charT>* names)
@@ -1173,10 +1167,7 @@ __parse_nan_inf (InputIterator&     in,
 #else
 template <class InputIterator>
 void
-__parse_nan_inf (InputIterator&     in,
-                 InputIterator      end,
-                 ios_base::iostate& err,
-                 _BCD&              bcd)
+__parse_nan_inf (InputIterator& in, InputIterator end, ios_base::iostate& err, _BCD& bcd)
 #endif
 {
     typedef typename iterator_traits<InputIterator>::value_type charT;
@@ -1189,8 +1180,7 @@ __parse_nan_inf (InputIterator&     in,
     const string_type* i =
         __parse_a_word (in, end, const_names, const_names + 3, ct, err, force_lower);
 #else
-    const string_type* i =
-        __parse_a_word (in, end, const_names, const_names + 3, err, force_lower);
+    const string_type* i = __parse_a_word (in, end, const_names, const_names + 3, err, force_lower);
 #endif
     switch (i - const_names)
     {
@@ -1219,10 +1209,7 @@ __parseFloatDigits (InputIterator&     in,
 #else
 template <class InputIterator>
 int
-__parseFloatDigits (InputIterator&     in,
-                    InputIterator      end,
-                    ios_base::iostate& err,
-                    _BCD&              bcd)
+__parseFloatDigits (InputIterator& in, InputIterator end, ios_base::iostate& err, _BCD& bcd)
 #endif
 {
     if (in == end)
@@ -1325,10 +1312,7 @@ __parseFraction (InputIterator&     in,
 #else
 template <class InputIterator>
 bool
-__parseFraction (InputIterator&     in,
-                 InputIterator      end,
-                 ios_base::iostate& err,
-                 _BCD&              bcd)
+__parseFraction (InputIterator& in, InputIterator end, ios_base::iostate& err, _BCD& bcd)
 #endif
 {
     if (in == end)
@@ -1390,10 +1374,7 @@ __parseExponent (InputIterator&     in,
 #else
 template <class InputIterator>
 bool
-__parseExponent (InputIterator&     in,
-                 InputIterator      end,
-                 ios_base::iostate& err,
-                 _BCD&              bcd)
+__parseExponent (InputIterator& in, InputIterator end, ios_base::iostate& err, _BCD& bcd)
 #endif
 {
     typedef typename iterator_traits<InputIterator>::value_type charT;
@@ -1476,11 +1457,7 @@ num_get<charT, InputIterator>::do_get (iter_type          in,
 #else
 template <class InputIterator>
 InputIterator
-numget (InputIterator      in,
-        InputIterator      end,
-        ios_base&          str,
-        ios_base::iostate& err,
-        float&             val)
+numget (InputIterator in, InputIterator end, ios_base& str, ios_base::iostate& err, float& val)
 #endif
 {
     long double f;
@@ -1507,11 +1484,7 @@ num_get<charT, InputIterator>::do_get (iter_type          in,
 #else
 template <class InputIterator>
 InputIterator
-numget (InputIterator      in,
-        InputIterator      end,
-        ios_base&          str,
-        ios_base::iostate& err,
-        double&            val)
+numget (InputIterator in, InputIterator end, ios_base& str, ios_base::iostate& err, double& val)
 #endif
 {
     long double f;
@@ -1538,11 +1511,7 @@ num_get<charT, InputIterator>::do_get (iter_type          in,
 #else
 template <class InputIterator>
 InputIterator
-numget (InputIterator in,
-        InputIterator end,
-        ios_base&,
-        ios_base::iostate& err,
-        long double&       val)
+numget (InputIterator in, InputIterator end, ios_base&, ios_base::iostate& err, long double& val)
 #endif
 {
     if (in == end)
@@ -1615,11 +1584,7 @@ num_get<charT, InputIterator>::do_get (iter_type          in,
 
 template <class InputIterator>
 InputIterator
-numget (InputIterator      in,
-        InputIterator      end,
-        ios_base&          str,
-        ios_base::iostate& err,
-        void*&             val)
+numget (InputIterator in, InputIterator end, ios_base& str, ios_base::iostate& err, void*& val)
 
 #endif
 {
@@ -1645,17 +1610,21 @@ class num_put : public locale::facet
 public:
     typedef charT          char_type;
     typedef OutputIterator iter_type;
+
     explicit num_put (size_t refs = 0) : locale::facet (refs) {}
+
     iter_type
     put (iter_type out, ios_base& str, char_type fill, bool val) const
     {
         return do_put (out, str, fill, val);
     }
+
     iter_type
     put (iter_type out, ios_base& str, char_type fill, long val) const
     {
         return do_put (out, str, fill, val);
     }
+
     iter_type
     put (iter_type out, ios_base& str, char_type fill, unsigned long val) const
     {
@@ -1667,6 +1636,7 @@ public:
     {
         return do_put (out, str, fill, val);
     }
+
     iter_type
     put (iter_type out, ios_base& str, char_type fill, unsigned long long val) const
     {
@@ -1679,6 +1649,7 @@ public:
     {
         return do_put (out, str, fill, val);
     }
+
     iter_type
     put (iter_type out, ios_base& str, char_type fill, long double val) const
     {
@@ -1690,47 +1661,29 @@ public:
     {
         return do_put (out, str, fill, val);
     }
+
     static locale::id id;
 
 protected:
     virtual ÃÂ¢ÃÂÃÂ¾num_put () {}
-    virtual iter_type do_put (iter_type out,
-                              ios_base& str,
-                              char_type fill,
-                              bool      val) const;
-    virtual iter_type do_put (iter_type out,
-                              ios_base& str,
-                              char_type fill,
-                              long      val) const;
-    virtual iter_type do_put (iter_type out,
-                              ios_base& str,
-                              char_type fill,
-                              unsigned long) const;
+
+    virtual iter_type do_put (iter_type out, ios_base& str, char_type fill, bool val) const;
+    virtual iter_type do_put (iter_type out, ios_base& str, char_type fill, long val) const;
+    virtual iter_type do_put (iter_type out, ios_base& str, char_type fill, unsigned long) const;
 #ifdef __MSL_LONGLONG_SUPPORT__
-    virtual iter_type do_put (iter_type out,
-                              ios_base& str,
-                              char_type fill,
-                              long long val) const;
+    virtual iter_type do_put (iter_type out, ios_base& str, char_type fill, long long val) const;
     virtual iter_type do_put (iter_type          out,
                               ios_base&          str,
                               char_type          fill,
                               unsigned long long val) const;
 #endif
 #ifndef _No_Floating_Point
-    virtual iter_type do_put (iter_type out,
-                              ios_base& str,
-                              char_type fill,
-                              double    val) const;
-    virtual iter_type do_put (iter_type   out,
-                              ios_base&   str,
-                              char_type   fill,
-                              long double val) const;
+    virtual iter_type do_put (iter_type out, ios_base& str, char_type fill, double val) const;
+    virtual iter_type do_put (iter_type out, ios_base& str, char_type fill, long double val) const;
 #endif
-    virtual iter_type do_put (iter_type   out,
-                              ios_base&   str,
-                              char_type   fill,
-                              const void* val) const;
+    virtual iter_type do_put (iter_type out, ios_base& str, char_type fill, const void* val) const;
 };
+
 template <class charT, class OutputIterator>
 struct __facet_traits<num_put<charT, OutputIterator> >
 {
@@ -1777,11 +1730,7 @@ __hextoa (bool uppercase, charT, T c)
 template <class charT, class T>
 int
 #ifndef _MSL_NO_LOCALE
-__putdigits (ios_base&           str,
-             T                   val,
-             charT*              digits,
-             const ctype<charT>& ct,
-             bool                no_grouping = false)
+__putdigits (ios_base& str, T val, charT* digits, const ctype<charT>& ct, bool no_grouping = false)
 #else
 __putdigits (ios_base& str, T val, charT* digits)
 #endif
@@ -1866,10 +1815,10 @@ __putdigits (ios_base& str, T val, charT* digits)
     _STD::reverse (digits, d);
     return int (d - digits);
 }
+
 template <class charT, class OutputIterator, class T>
 OutputIterator
-__putoct (
-    OutputIterator out, ios_base& str, charT fill, T val, bool no_grouping = false)
+__putoct (OutputIterator out, ios_base& str, charT fill, T val, bool no_grouping = false)
 {
 #ifndef _MSL_NO_LOCALE
     const ctype<charT>& ct = _USE_FACET (ctype<charT>, str.getloc());
@@ -1897,10 +1846,10 @@ __putoct (
 #endif
     return __putnumber (out, str, fill, &prefix, plen, digits, count);
 }
+
 template <class charT, class OutputIterator, class T>
 OutputIterator
-__putdec (
-    OutputIterator out, ios_base& str, charT fill, T val, bool no_grouping = false)
+__putdec (OutputIterator out, ios_base& str, charT fill, T val, bool no_grouping = false)
 {
 #ifndef _MSL_NO_LOCALE
     const ctype<charT>& ct = _USE_FACET (ctype<charT>, str.getloc());
@@ -1931,22 +1880,18 @@ __putdec (
     }
     charT digits[39];
 #ifndef _MSL_NO_LOCALE
-    int count = __putdigits (str,
-                             (typename Metrowerks::to_unsigned<T>::type)val,
-                             digits,
-                             ct,
-                             no_grouping);
-#else
     int count =
-        __putdigits (str, (typename Metrowerks::to_unsigned<T>::type)val, digits);
+        __putdigits (str, (typename Metrowerks::to_unsigned<T>::type)val, digits, ct, no_grouping);
+#else
+    int count = __putdigits (str, (typename Metrowerks::to_unsigned<T>::type)val, digits);
     no_grouping;
 #endif
     return __putnumber (out, str, fill, &prefix, plen, digits, count);
 }
+
 template <class charT, class OutputIterator, class T>
 OutputIterator
-__puthex (
-    OutputIterator out, ios_base& str, charT fill, T val, bool no_grouping = false)
+__puthex (OutputIterator out, ios_base& str, charT fill, T val, bool no_grouping = false)
 {
     int    plen = 0;
     charT  prefix[3];
@@ -2010,7 +1955,7 @@ numput (OutputIterator out, ios_base& str, charT fill, bool val) const
 #ifndef _MSL_NO_LOCALE
         const numpunct<charT>& np = _USE_FACET (numpunct<charT>, str.getloc());
         typedef typename numpunct<charT>::string_type string_type;
-        string_type s = val ? np.truename() : np.falsename();
+        string_type                                   s = val ? np.truename() : np.falsename();
 #else
         typedef basic_string<charT> string_type;
         string_type                 s;
@@ -2023,8 +1968,7 @@ numput (OutputIterator out, ios_base& str, charT fill, bool val) const
             __false_name (&s);
         }
 #endif
-        return __putnumber (
-            out, str, fill, (const charT*)0, 0, s.c_str(), int (s.size()));
+        return __putnumber (out, str, fill, (const charT*)0, 0, s.c_str(), int (s.size()));
     }
 #ifndef _MSL_NO_LOCALE
     return do_put (out, str, fill, long (val));
@@ -2184,6 +2128,7 @@ __put_f_zero (ios_base& str, charT zero, charT decimal_point, String& digits)
     }
     digits.append ((size_t)precision, zero);
 }
+
 template <class T, class String>
 void
 __put_f_digits (ios_base& str, T val, String& digits)
@@ -2218,8 +2163,8 @@ __put_f_digits (ios_base& str, T val, String& digits)
     }
     else if (significant_digits == 0)
     {
-        if (exponent == -1) // precision == 0, result is either 0 or 1, optionally
-                            // followed by '.'
+        if (exponent == -1)            // precision == 0, result is either 0 or 1, optionally
+                                       // followed by '.'
         {
             if (bcd.must_round() == 1) // round to even
             {
@@ -2255,8 +2200,8 @@ __put_f_digits (ios_base& str, T val, String& digits)
     }
     // significant_digits > 0
 #ifndef _MSL_NO_LOCALE
-    digits = ct.widen (bcd.to_string (
-        significant_digits, exponent)); // exponent may increase by 1 due to rounding
+    digits = ct.widen (
+        bcd.to_string (significant_digits, exponent)); // exponent may increase by 1 due to rounding
 #else
     string tmp = bcd.to_string (significant_digits, exponent);
     digits.assign (tmp.begin(), tmp.end());
@@ -2290,6 +2235,7 @@ __put_f_digits (ios_base& str, T val, String& digits)
     __put_grouping_float (decimal_point, np.thousands_sep(), np.grouping(), digits);
 #endif
 }
+
 template <class T, class String>
 int
 __put_e_digits (ios_base& str, T val, String& digits)
@@ -2395,6 +2341,7 @@ __put_e_digits (ios_base& str, T val, String& digits)
     }
     return result;
 }
+
 template <class T, class String>
 void
 __put_g_digits (ios_base& str, T val, String& digits)
@@ -2479,8 +2426,7 @@ __put_g_digits (ios_base& str, T val, String& digits)
         }
 #ifndef _MSL_NO_LOCALE
         // grouping for floating point currently under debate (12/7/00)
-        __put_grouping_float (
-            decimal_point, np.thousands_sep(), np.grouping(), digits);
+        __put_grouping_float (decimal_point, np.thousands_sep(), np.grouping(), digits);
 #endif
         return;
     }
@@ -2491,11 +2437,9 @@ __put_g_digits (ios_base& str, T val, String& digits)
         if (digits[1] == decimal_point)
         {
 #ifndef _MSL_NO_LOCALE
-            charT exp =
-                str.flags() & ios_base::uppercase ? ct.widen ('E') : ct.widen ('e');
+            charT exp = str.flags() & ios_base::uppercase ? ct.widen ('E') : ct.widen ('e');
 #else
-            charT exp =
-                str.flags() & ios_base::uppercase ? charT ('E') : charT ('e');
+            charT exp = str.flags() & ios_base::uppercase ? charT ('E') : charT ('e');
 #endif
             size_t                    e = digits.find (exp);
             typename String::iterator i = digits.begin() + e;
@@ -2515,6 +2459,7 @@ __put_g_digits (ios_base& str, T val, String& digits)
         }
     }
 }
+
 template <class T, class String>
 void
 __put_nan_digits (ios_base& str, T val, String& digits)
@@ -2625,8 +2570,7 @@ numput (OutputIterator out, ios_base& str, charT fill, long double val)
     {
         __put_nan_digits (str, val, digits);
     }
-    return __putnumber (
-        out, str, fill, &prefix, plen, digits.c_str(), (int)digits.size());
+    return __putnumber (out, str, fill, &prefix, plen, digits.c_str(), (int)digits.size());
 }
 
 #endif // _No_Floating_Point
@@ -2662,8 +2606,7 @@ numput (OutputIterator out, ios_base& str, charT fill, const void* val)
         __puthex (tmp, str, charT ('0'), (unsigned long)val);
 #endif
     }
-    return __putnumber (
-        out, str, fill, (const charT*)0, 0, tmp, sizeof (tmp) / sizeof (charT));
+    return __putnumber (out, str, fill, (const charT*)0, 0, tmp, sizeof (tmp) / sizeof (charT));
 }
 
 #ifndef _MSL_NO_CPP_NAMESPACE

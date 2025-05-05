@@ -6,11 +6,13 @@
 #include "stddef.h"
 
 TRKBuffer gTRKMsgBufs[3];
+
 void
 TRKSetBufferUsed (TRKBuffer* msg, BOOL state)
 {
     msg->isInUse = state;
 }
+
 DSError
 TRKInitializeMessageBuffers (void)
 {
@@ -25,6 +27,7 @@ TRKInitializeMessageBuffers (void)
 
     return DS_NoError;
 }
+
 DSError
 TRKGetFreeBuffer (int* msgID, TRKBuffer** outMsg)
 {
@@ -53,6 +56,7 @@ TRKGetFreeBuffer (int* msgID, TRKBuffer** outMsg)
 
     return error;
 }
+
 void*
 TRKGetBuffer (int idx)
 {
@@ -64,6 +68,7 @@ TRKGetBuffer (int idx)
 
     return buf;
 }
+
 void
 TRKReleaseBuffer (int idx)
 {
@@ -76,6 +81,7 @@ TRKReleaseBuffer (int idx)
         TRKReleaseMutex (msg);
     }
 }
+
 void
 TRKResetBuffer (TRKBuffer* msg, BOOL keepData)
 {
@@ -87,6 +93,7 @@ TRKResetBuffer (TRKBuffer* msg, BOOL keepData)
         TRK_memset (msg->data, 0, TRKMSGBUF_SIZE);
     }
 }
+
 DSError
 TRKSetBufferPosition (TRKBuffer* msg, u32 pos)
 {
@@ -109,6 +116,7 @@ TRKSetBufferPosition (TRKBuffer* msg, u32 pos)
 
     return error;
 }
+
 DSError
 TRKAppendBuffer (TRKBuffer* msg, const void* data, size_t length)
 {
@@ -148,6 +156,7 @@ TRKAppendBuffer (TRKBuffer* msg, const void* data, size_t length)
 
     return error;
 }
+
 DSError
 TRKReadBuffer (TRKBuffer* msg, void* data, size_t length)
 {
@@ -174,6 +183,7 @@ TRKReadBuffer (TRKBuffer* msg, void* data, size_t length)
     msg->position += length;
     return error;
 }
+
 DSError
 TRKAppendBuffer1_ui16 (TRKBuffer* buffer, const u16 data)
 {
@@ -196,6 +206,7 @@ TRKAppendBuffer1_ui16 (TRKBuffer* buffer, const u16 data)
 
     return TRKAppendBuffer (buffer, (const void*)bigEndianData, sizeof (data));
 }
+
 DSError
 TRKAppendBuffer1_ui32 (TRKBuffer* buffer, const u32 data)
 {
@@ -220,6 +231,7 @@ TRKAppendBuffer1_ui32 (TRKBuffer* buffer, const u32 data)
 
     return TRKAppendBuffer (buffer, (const void*)bigEndianData, sizeof (data));
 }
+
 DSError
 TRKAppendBuffer1_ui64 (TRKBuffer* buffer, const u64 data)
 {
@@ -247,6 +259,7 @@ TRKAppendBuffer1_ui64 (TRKBuffer* buffer, const u64 data)
 
     return TRKAppendBuffer (buffer, (const void*)bigEndianData, sizeof (data));
 }
+
 DSError
 TRKAppendBuffer_ui8 (TRKBuffer* buffer, const u8* data, int count)
 {
@@ -260,6 +273,7 @@ TRKAppendBuffer_ui8 (TRKBuffer* buffer, const u8* data, int count)
 
     return err;
 }
+
 DSError
 TRKAppendBuffer_ui32 (TRKBuffer* buffer, const u32* data, int count)
 {
@@ -273,11 +287,13 @@ TRKAppendBuffer_ui32 (TRKBuffer* buffer, const u32* data, int count)
 
     return err;
 }
+
 DSError
 TRKReadBuffer1_ui8 (TRKBuffer* buffer, u8* data)
 {
     return TRKReadBuffer (buffer, (void*)data, 1);
 }
+
 DSError
 TRKReadBuffer1_ui16 (TRKBuffer* buffer, u16* data)
 {
@@ -308,6 +324,7 @@ TRKReadBuffer1_ui16 (TRKBuffer* buffer, u16* data)
 
     return err;
 }
+
 DSError
 TRKReadBuffer1_ui32 (TRKBuffer* buffer, u32* data)
 {
@@ -340,6 +357,7 @@ TRKReadBuffer1_ui32 (TRKBuffer* buffer, u32* data)
 
     return err;
 }
+
 DSError
 TRKReadBuffer1_ui64 (TRKBuffer* buffer, u64* data)
 {
@@ -376,6 +394,7 @@ TRKReadBuffer1_ui64 (TRKBuffer* buffer, u64* data)
 
     return err;
 }
+
 DSError
 TRKReadBuffer_ui8 (TRKBuffer* buffer, u8* data, int count)
 {
@@ -389,6 +408,7 @@ TRKReadBuffer_ui8 (TRKBuffer* buffer, u8* data, int count)
 
     return err;
 }
+
 DSError
 TRKReadBuffer_ui32 (TRKBuffer* buffer, u32* data, int count)
 {

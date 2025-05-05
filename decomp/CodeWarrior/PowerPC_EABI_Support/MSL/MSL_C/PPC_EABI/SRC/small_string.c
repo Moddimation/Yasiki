@@ -21,6 +21,7 @@
 #endif
 
 #pragma warn_possunwant off
+
 char*(strcpy)(char* dst, const char* src)
 {
     const unsigned char* p = (unsigned char*)src - 1;
@@ -30,6 +31,7 @@ char*(strcpy)(char* dst, const char* src)
 
     return (dst);
 }
+
 int
 strcmp (const char* str1, const char* str2)
 {
@@ -47,6 +49,7 @@ strcmp (const char* str1, const char* str2)
 
     return (c1 - c2);
 }
+
 #pragma warn_possunwant reset
 
 /*  Change Record

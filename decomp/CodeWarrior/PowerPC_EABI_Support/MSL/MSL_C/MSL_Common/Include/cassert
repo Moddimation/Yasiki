@@ -38,11 +38,10 @@ _MSL_END_EXTERN_C                                                  /*- cc 010409
 #endif         /* _MSL_CASSERT */
 
 #ifdef UNICODE /*- mm 980724 -*/
-#define assert(condition)                                                           \
-    ((condition) ? ((void)0)                                                        \
-                 : __wchar_assertion_failed (L#condition, __FILE__, __LINE__))
+#define assert(condition)                                                                          \
+    ((condition) ? ((void)0) : __wchar_assertion_failed (L#condition, __FILE__, __LINE__))
 #else
-#define assert(condition)                                                           \
+#define assert(condition)                                                                          \
     ((condition) ? ((void)0) : __assertion_failed (#condition, __FILE__, __LINE__))
 #endif
 

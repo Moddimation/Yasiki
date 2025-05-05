@@ -51,6 +51,7 @@ _MSL_BEGIN_EXTERN_C                  /*- cc 010409 -*/
     char  sgn;
     char  unused;
     short exp;
+
     struct
     {
         unsigned char length;
@@ -58,6 +59,7 @@ _MSL_BEGIN_EXTERN_C                  /*- cc 010409 -*/
         unsigned char unused;
     } sig;
 } decimal;
+
 typedef struct decform
 {
     char  style;
@@ -89,6 +91,6 @@ _MSL_END_EXTERN_C                    /*- cc 010409 -*/
                                       * mm  981028 Change __DSP568 to __m56800__
                                       * mm  990921 Commented out #define _MSL_C9X__ 1 since it is also defined in
                                       *ansi_parms.h                                  cc  010409 updated to JWW new
-                                      *namespace macros                                  JWW 010618 Use                                  cname headers
-                                      *exclusively to prevent namespace pollution in C++
+                                      *namespace macros                                  JWW 010618 Use                                  cname headers                                  exclusively to
+                                      *prevent namespace pollution in C++
                                       */

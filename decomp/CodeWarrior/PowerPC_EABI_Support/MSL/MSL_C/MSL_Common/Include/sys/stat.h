@@ -38,21 +38,21 @@
 #define S_IXUSR     0x0200 /* exec permission file owner class */   /*- mm 990107 -*/
 #define S_IRWXG     0x01C0 /* permissions for file group class */   /*- mm 990107 -*/
 #define S_IRGRP     0x0100 /* Read permission file group class */   /*- mm 990107 -*/
-#define S_IWGRP                                                                     \
-    0x0080 /* writ permission file group class */ /*- mm 990107 -*/ /*- mm 010612   \
+#define S_IWGRP                                                                                    \
+    0x0080 /* writ permission file group class */ /*- mm 990107 -*/ /*- mm 010612                  \
                                                                        -*/
-#define S_IXGRP                                                                     \
-    0x0040 /* exec permission file group class */ /*- mm 990107 -*/ /*- mm 010612   \
+#define S_IXGRP                                                                                    \
+    0x0040 /* exec permission file group class */ /*- mm 990107 -*/ /*- mm 010612                  \
                                                                        -*/
 #define S_IRWXO 0x0038 /* permissions for file other class */       /*- mm 990107 -*/
-#define S_IROTH                                                                     \
-    0x0020 /* Read permission file other class */ /*- mm 990107 -*/ /*- mm 010612   \
+#define S_IROTH                                                                                    \
+    0x0020 /* Read permission file other class */ /*- mm 990107 -*/ /*- mm 010612                  \
                                                                        -*/
-#define S_IWOTH                                                                     \
-    0x0010 /* writ permission file other class */ /*- mm 990107 -*/ /*- mm 010612   \
+#define S_IWOTH                                                                                    \
+    0x0010 /* writ permission file other class */ /*- mm 990107 -*/ /*- mm 010612                  \
                                                                        -*/
-#define S_IXOTH                                                                     \
-    0x0008 /* exec permission file other class */ /*- mm 990107 -*/ /*- mm 010612   \
+#define S_IXOTH                                                                                    \
+    0x0008 /* exec permission file other class */ /*- mm 990107 -*/ /*- mm 010612                  \
                                                                        -*/
 #define S_ISUID 0x0004 /* set user ID on execution         */       /*- mm 990107 -*/
 #define S_ISGID 0x0002 /* set group ID on execution        */       /*- mm 990107 -*/

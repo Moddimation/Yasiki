@@ -15,6 +15,7 @@ typedef enum
     HARDWARE_GDEV = 1,
     HARDWARE_BBA = 2,
 } HardwareType;
+
 // DS Error returns.
 enum
 {
@@ -40,7 +41,9 @@ enum
 
     DS_Error800 = 0x800,
 };
+
 typedef int DSError;
+
 // Where to read/write.
 typedef enum
 {
@@ -48,6 +51,7 @@ typedef enum
     DS_Stdout = 1,
     DS_Stderr = 2,
 } DSFileHandle;
+
 // IO returns.
 typedef enum
 {
@@ -55,6 +59,7 @@ typedef enum
     DS_IOError = 1,
     DS_IOEOF = 2,
 } DSIOResult;
+
 // Message command IDs
 typedef enum
 {
@@ -88,6 +93,7 @@ typedef enum
 
     DSMSG_ReplyNAK = 0xFF,
 } MessageCommandID;
+
 // Register commands.
 typedef enum
 {
@@ -96,6 +102,7 @@ typedef enum
     DSREG_Extended1 = 2,
     DSREG_Extended2 = 3,
 } DSMessageRegisterOptions;
+
 // Step commands.
 typedef enum
 {
@@ -104,6 +111,7 @@ typedef enum
     DSSTEP_OverCount = 0x10,
     DSSTEP_OverRange = 0x11,
 } DSMessageStepOptions;
+
 typedef enum
 {
     DSREPLY_NoError = 0x0,
@@ -130,6 +138,7 @@ typedef enum
     DSREPLY_InvalidThreadID = 0x22,
     DSREPLY_DebugSecurityError = 0x23,
 } DSReplyError;
+
 typedef enum
 {
     DSRECV_Wait = 0,
@@ -137,6 +146,7 @@ typedef enum
     DSRECV_InFrame = 2,
     DSRECV_FrameOverflow = 3,
 } ReceiverState;
+
 typedef enum
 {
     DSMSGMEMORY_Segmented = 0x01, /* non-flat addr space */
@@ -147,6 +157,7 @@ typedef enum
     DSMSGMEMORY_Space_data = 0x40,
     DSMSGMEMORY_Space_io = 0x80
 };
+
 typedef enum
 {
     NUBEVENT_Null = 0,
@@ -156,17 +167,21 @@ typedef enum
     NUBEVENT_Exception = 4,
     NUBEVENT_Support = 5,
 } NubEventType;
+
 typedef enum
 {
     VALIDMEM_Readable = 0,
     VALIDMEM_Writeable = 1,
 } ValidMemoryOptions;
+
 typedef enum
 {
     MEMACCESS_UserMemory = 0,
     MEMACCESS_DebuggerMemory = 1,
 } MemoryAccessOptions;
+
 typedef int UARTError;
+
 typedef enum
 {
     UART_NoError = 0,
@@ -175,6 +190,7 @@ typedef enum
     UART_BufferOverflow = 3,      // specified buffer was too small
     UART_NoData = 4,              // no data available from polling
 } UARTErrorOptions;
+
 typedef enum
 {
     kBaudHWSet = -1,              // use HW settings such as DIP switches
@@ -194,11 +210,13 @@ typedef enum
     kBaud115200 = 115200,
     kBaud230400 = 230400
 } UARTBaudRate;
+
 ////////////////////////////////////
 
 typedef int MessageBufferID;
 
 #define TRKMSGBUF_SIZE (0x800 + 0x80)
+
 typedef struct TRKBuffer
 {
     u32  mutex;                   ///< 0x00
@@ -207,6 +225,7 @@ typedef struct TRKBuffer
     u32  position;                ///< 0x0C
     u8   data[TRKMSGBUF_SIZE];    ///< 0x10
 } TRKBuffer;
+
 typedef struct TRKFramingState
 {
     MessageBufferID msgBufID;     // _00
@@ -215,6 +234,7 @@ typedef struct TRKFramingState
     BOOL            isEscape;     // _0C
     u8              fcsType;      // _10
 } TRKFramingState;
+
 typedef struct TRKState_PPC
 {
     u32  GPR[32];                 // 0x0
@@ -228,29 +248,35 @@ typedef struct TRKState_PPC
     BOOL inputActivated;          // 0x9c
     u8*  inputPendingPtr;         // 0xA0
 } TRKState_PPC;
+
 typedef struct CommandReply
 {
     u32 _00;                      // _00
+
     union
     {
         u8               b;
         MessageCommandID m;
     } commandID;                  // _04, use MessageCommandID enum
+
     union
     {
         u8           b;
         DSReplyError r;
-    } replyError;  // _08, use DSReplyError enum - should be enum type? check
-                   // size.
-    u32 _0C;       // _0C
-    u8  _10[0x30]; // _10, unknown
+    } replyError;                 // _08, use DSReplyError enum - should be enum type? check
+                                  // size.
+
+    u32 _0C;                      // _0C
+    u8  _10[0x30];                // _10, unknown
 } CommandReply;
+
 typedef struct ProcessorRestoreFlags_PPC
 {
     u8 TBR;
     u8 DEC;
     u8 linker_padding[0x9 - 0x2];
 } ProcessorRestoreFlags_PPC;
+
 void TRKSaveExtended1Block ();
 
 #define SPR_XER                          1

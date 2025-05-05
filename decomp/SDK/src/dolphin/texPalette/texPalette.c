@@ -10,6 +10,7 @@
 static void LoadTexPalette (TEXPalettePtr* pal, char* name);
 static void UnpackTexPalette (TEXPalettePtr pal);
 static void TexFreeFunc (TEXPalettePtr pal);
+
 void
 TEXGetPalette (TEXPalettePtr* pal, char* name)
 {
@@ -29,6 +30,7 @@ TEXGetPalette (TEXPalettePtr* pal, char* name)
         }
     }
 }
+
 static void
 LoadTexPalette (TEXPalettePtr* pal, char* name)
 {
@@ -40,7 +42,9 @@ LoadTexPalette (TEXPalettePtr* pal, char* name)
     DVDClose (&dfi);
     UnpackTexPalette (*pal);
 }
+
 #define PALETTE_VERSION 0x20AF30
+
 static void
 UnpackTexPalette (TEXPalettePtr pal)
 {
@@ -57,8 +61,7 @@ UnpackTexPalette (TEXPalettePtr pal)
         if (pal->descriptorArray[i].textureHeader)
         {
             pal->descriptorArray[i].textureHeader =
-                (TEXHeaderPtr)((Ptr)pal +
-                               (u32)pal->descriptorArray[i].textureHeader);
+                (TEXHeaderPtr)((Ptr)pal + (u32)pal->descriptorArray[i].textureHeader);
             if (!pal->descriptorArray[i].textureHeader->unpacked)
             {
                 pal->descriptorArray[i].textureHeader->data =
@@ -79,18 +82,20 @@ UnpackTexPalette (TEXPalettePtr pal)
         }
     }
 }
+
 TEXDescriptorPtr
 TEXGet (TEXPalettePtr pal, u32 id)
 {
-    ASSERTMSGLINE (
-        0x90, id < pal->numDescriptors, "GetTexture():  Texture Not Found ");
+    ASSERTMSGLINE (0x90, id < pal->numDescriptors, "GetTexture():  Texture Not Found ");
     return &pal->descriptorArray[id];
 }
+
 static void
 TexFreeFunc (TEXPalettePtr pal)
 {
     OSFree (pal);
 }
+
 void
 TEXReleasePalette (TEXPalettePtr* pal)
 {
@@ -104,6 +109,7 @@ TEXReleasePalette (TEXPalettePtr* pal)
         *pal = NULL;
     }
 }
+
 void
 TEXGetGXTexObjFromPalette (TEXPalettePtr pal, GXTexObj* to, u32 id)
 {
@@ -137,9 +143,9 @@ TEXGetGXTexObjFromPalette (TEXPalettePtr pal, GXTexObj* to, u32 id)
                      tdp->textureHeader->edgeLODEnable,
                      GX_ANISO_1);
 }
+
 void
-TEXGetGXTexObjFromPaletteCI (
-    TEXPalettePtr pal, GXTexObj* to, GXTlutObj* tlo, GXTlut tluts, u32 id)
+TEXGetGXTexObjFromPaletteCI (TEXPalettePtr pal, GXTexObj* to, GXTlutObj* tlo, GXTlut tluts, u32 id)
 {
     GXBool           mipMap;
     TEXDescriptorPtr tdp;

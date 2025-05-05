@@ -81,21 +81,25 @@ _MSL_IMP_EXP_C int   _heapmin (void);
 _MSL_IMP_EXP_C char* _itoa (int, char*, int);
 _MSL_IMP_EXP_C int   _filelength (int fileno);
 _MSL_IMP_EXP_C char* _ultoa (unsigned long, char*, int);
+
 __inline char*
 ltoa (int x, char* y, int z)
 {
     return (itoa (x, y, z));
 }
+
 __inline long
 tell (int fildes)
 {
     return (lseek (fildes, 0L, SEEK_CUR));
 }
+
 __inline char*
 _ltoa (int x, char* y, int z)
 {
     return (itoa (x, y, z));
 }
+
 __inline long
 _tell (int fildes)
 {
@@ -118,7 +122,7 @@ _MSL_IMP_EXP_C char* _gcvt (double, int, char*);
 _MSL_IMP_EXP_C wchar_t* itow (int, wchar_t*, int);
 _MSL_IMP_EXP_C int      wtoi (const wchar_t* _a);
 _MSL_IMP_EXP_C int      wcsicmp (const wchar_t* s1, const wchar_t* s2);
-_MSL_IMP_EXP_C int wcsnicmp (const wchar_t* s1, const wchar_t* s2, __std (size_t) n);
+_MSL_IMP_EXP_C int      wcsnicmp (const wchar_t* s1, const wchar_t* s2, __std (size_t) n);
 _MSL_IMP_EXP_C wchar_t* wstrrev (wchar_t* str);
 _MSL_IMP_EXP_C wchar_t* wcsrev (wchar_t* str);
 _MSL_IMP_EXP_C wchar_t* wcsupr (wchar_t* str);
@@ -131,9 +135,7 @@ _MSL_IMP_EXP_C wchar_t* wcsdup (const wchar_t* str);
 _MSL_IMP_EXP_C wchar_t* _itow (int, wchar_t*, int);
 _MSL_IMP_EXP_C int      _wtoi (const wchar_t* _a);
 _MSL_IMP_EXP_C int      _wcsicmp (const wchar_t* s1, const wchar_t* s2);
-_MSL_IMP_EXP_C int      _wcsnicmp (const wchar_t* s1,
-                                   const wchar_t* s2,
-                                   __std (size_t) n);
+_MSL_IMP_EXP_C int      _wcsnicmp (const wchar_t* s1, const wchar_t* s2, __std (size_t) n);
 _MSL_IMP_EXP_C wchar_t* _wstrrev (wchar_t* str);
 _MSL_IMP_EXP_C wchar_t* _wcsrev (wchar_t* str);
 _MSL_IMP_EXP_C wchar_t* _wcsupr (wchar_t* str);

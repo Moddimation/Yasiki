@@ -10,11 +10,13 @@ typedef u8 GXBool;
 
 #define GX_ENABLE  ((GXBool)1)
 #define GX_DISABLE ((GXBool)0)
+
 typedef enum _GXProjectionType
 {
     GX_PERSPECTIVE,
     GX_ORTHOGRAPHIC,
 } GXProjectionType;
+
 typedef enum _GXCompare
 {
     GX_NEVER,
@@ -26,6 +28,7 @@ typedef enum _GXCompare
     GX_GEQUAL,
     GX_ALWAYS,
 } GXCompare;
+
 typedef enum _GXAlphaOp
 {
     GX_AOP_AND,
@@ -34,6 +37,7 @@ typedef enum _GXAlphaOp
     GX_AOP_XNOR,
     GX_MAX_ALPHAOP,
 } GXAlphaOp;
+
 typedef enum _GXZFmt16
 {
     GX_ZC_LINEAR,
@@ -41,12 +45,14 @@ typedef enum _GXZFmt16
     GX_ZC_MID,
     GX_ZC_FAR,
 } GXZFmt16;
+
 typedef enum _GXGamma
 {
     GX_GM_1_0,
     GX_GM_1_7,
     GX_GM_2_2,
 } GXGamma;
+
 typedef enum _GXPixelFmt
 {
     GX_PF_RGB8_Z24,
@@ -58,6 +64,7 @@ typedef enum _GXPixelFmt
     GX_PF_V8,
     GX_PF_YUV420,
 } GXPixelFmt;
+
 typedef enum _GXPrimitive
 {
     GX_QUADS = 0x80,
@@ -68,6 +75,7 @@ typedef enum _GXPrimitive
     GX_LINESTRIP = 0xB0,
     GX_POINTS = 0xB8,
 } GXPrimitive;
+
 typedef enum _GXVtxFmt
 {
     GX_VTXFMT0,
@@ -80,6 +88,7 @@ typedef enum _GXVtxFmt
     GX_VTXFMT7,
     GX_MAX_VTXFMT,
 } GXVtxFmt;
+
 typedef enum _GXAttr
 {
     GX_VA_PNMTXIDX,
@@ -111,6 +120,7 @@ typedef enum _GXAttr
     GX_VA_MAX_ATTR,
     GX_VA_NULL = 0xFF,
 } GXAttr;
+
 typedef enum _GXAttrType
 {
     GX_NONE,
@@ -118,8 +128,10 @@ typedef enum _GXAttrType
     GX_INDEX8,
     GX_INDEX16,
 } GXAttrType;
+
 #define _GX_TF_CTF 0x20
 #define _GX_TF_ZTF 0x10
+
 typedef enum _GXTexFmt
 {
     GX_TF_I4 = 0x0,
@@ -153,12 +165,14 @@ typedef enum _GXTexFmt
 
     GX_TF_A8 = GX_CTF_A8,
 } GXTexFmt;
+
 typedef enum _GXCITexFmt
 {
     GX_TF_C4 = 0x8,
     GX_TF_C8 = 0x9,
     GX_TF_C14X2 = 0xA,
 } GXCITexFmt;
+
 typedef enum _GXTexWrapMode
 {
     GX_CLAMP,
@@ -166,6 +180,7 @@ typedef enum _GXTexWrapMode
     GX_MIRROR,
     GX_MAX_TEXWRAPMODE,
 } GXTexWrapMode;
+
 typedef enum _GXTexFilter
 {
     GX_NEAR,
@@ -175,6 +190,7 @@ typedef enum _GXTexFilter
     GX_NEAR_MIP_LIN,
     GX_LIN_MIP_LIN,
 } GXTexFilter;
+
 typedef enum _GXAnisotropy
 {
     GX_ANISO_1,
@@ -182,6 +198,7 @@ typedef enum _GXAnisotropy
     GX_ANISO_4,
     GX_MAX_ANISOTROPY,
 } GXAnisotropy;
+
 typedef enum _GXTexMapID
 {
     GX_TEXMAP0,
@@ -196,6 +213,7 @@ typedef enum _GXTexMapID
     GX_TEXMAP_NULL = 0xFF,
     GX_TEX_DISABLE = 0x100,
 } GXTexMapID;
+
 typedef enum _GXTexCoordID
 {
     GX_TEXCOORD0,
@@ -209,6 +227,7 @@ typedef enum _GXTexCoordID
     GX_MAX_TEXCOORD,
     GX_TEXCOORD_NULL = 0xFF,
 } GXTexCoordID;
+
 typedef enum _GXTevStageID
 {
     GX_TEVSTAGE0,
@@ -229,6 +248,7 @@ typedef enum _GXTevStageID
     GX_TEVSTAGE15,
     GX_MAX_TEVSTAGE,
 } GXTevStageID;
+
 typedef enum _GXTevMode
 {
     GX_MODULATE,
@@ -237,11 +257,13 @@ typedef enum _GXTevMode
     GX_REPLACE,
     GX_PASSCLR,
 } GXTevMode;
+
 typedef enum _GXTexMtxType
 {
     GX_MTX3x4,
     GX_MTX2x4,
 } GXTexMtxType;
+
 typedef enum _GXTexGenType
 {
     GX_TG_MTX3x4,
@@ -256,6 +278,7 @@ typedef enum _GXTexGenType
     GX_TG_BUMP7,
     GX_TG_SRTG,
 } GXTexGenType;
+
 typedef enum _GXPosNrmMtx
 {
     GX_PNMTX0 = 0,
@@ -269,6 +292,7 @@ typedef enum _GXPosNrmMtx
     GX_PNMTX8 = 24,
     GX_PNMTX9 = 27,
 } GXPosNrmMtx;
+
 typedef enum _GXTexMtx
 {
     GX_TEXMTX0 = 30,
@@ -283,6 +307,7 @@ typedef enum _GXTexMtx
     GX_TEXMTX9 = 57,
     GX_IDENTITY = 60,
 } GXTexMtx;
+
 typedef enum _GXChannelID
 {
     GX_COLOR0,
@@ -296,6 +321,7 @@ typedef enum _GXChannelID
     GX_ALPHA_BUMPN,
     GX_COLOR_NULL = 0xFF,
 } GXChannelID;
+
 typedef enum _GXTexGenSrc
 {
     GX_TG_POS,
@@ -320,6 +346,7 @@ typedef enum _GXTexGenSrc
     GX_TG_COLOR0,
     GX_TG_COLOR1,
 } GXTexGenSrc;
+
 typedef enum _GXBlendMode
 {
     GX_BM_NONE,
@@ -328,6 +355,7 @@ typedef enum _GXBlendMode
     GX_BM_SUBTRACT,
     GX_MAX_BLENDMODE,
 } GXBlendMode;
+
 typedef enum _GXBlendFactor
 {
     GX_BL_ZERO,
@@ -341,6 +369,7 @@ typedef enum _GXBlendFactor
     GX_BL_DSTCLR = GX_BL_SRCCLR,
     GX_BL_INVDSTCLR = GX_BL_INVSRCCLR,
 } GXBlendFactor;
+
 typedef enum _GXLogicOp
 {
     GX_LO_CLEAR,
@@ -360,6 +389,7 @@ typedef enum _GXLogicOp
     GX_LO_NAND,
     GX_LO_SET,
 } GXLogicOp;
+
 typedef enum _GXCompCnt
 {
     GX_POS_XY = 0,
@@ -372,6 +402,7 @@ typedef enum _GXCompCnt
     GX_TEX_S = 0,
     GX_TEX_ST = 1,
 } GXCompCnt;
+
 typedef enum _GXCompType
 {
     GX_U8 = 0,
@@ -386,6 +417,7 @@ typedef enum _GXCompType
     GX_RGBA6 = 4,
     GX_RGBA8 = 5,
 } GXCompType;
+
 typedef enum _GXPTTexMtx
 {
     GX_PTTEXMTX0 = 64,
@@ -410,6 +442,7 @@ typedef enum _GXPTTexMtx
     GX_PTTEXMTX19 = 121,
     GX_PTIDENTITY = 125,
 } GXPTTexMtx;
+
 typedef enum _GXTevRegID
 {
     GX_TEVPREV,
@@ -418,23 +451,27 @@ typedef enum _GXTevRegID
     GX_TEVREG2,
     GX_MAX_TEVREG,
 } GXTevRegID;
+
 typedef enum _GXDiffuseFn
 {
     GX_DF_NONE,
     GX_DF_SIGN,
     GX_DF_CLAMP,
 } GXDiffuseFn;
+
 typedef enum _GXColorSrc
 {
     GX_SRC_REG,
     GX_SRC_VTX,
 } GXColorSrc;
+
 typedef enum _GXAttnFn
 {
     GX_AF_SPEC,
     GX_AF_SPOT,
     GX_AF_NONE,
 } GXAttnFn;
+
 typedef enum _GXLightID
 {
     GX_LIGHT0 = 0x001,
@@ -448,6 +485,7 @@ typedef enum _GXLightID
     GX_MAX_LIGHT = 0x100,
     GX_LIGHT_NULL = 0,
 } GXLightID;
+
 typedef enum _GXTexOffset
 {
     GX_TO_ZERO,
@@ -458,6 +496,7 @@ typedef enum _GXTexOffset
     GX_TO_ONE,
     GX_MAX_TEXOFFSET,
 } GXTexOffset;
+
 typedef enum _GXSpotFn
 {
     GX_SP_OFF,
@@ -468,6 +507,7 @@ typedef enum _GXSpotFn
     GX_SP_RING1,
     GX_SP_RING2,
 } GXSpotFn;
+
 typedef enum _GXDistAttnFn
 {
     GX_DA_OFF,
@@ -475,6 +515,7 @@ typedef enum _GXDistAttnFn
     GX_DA_MEDIUM,
     GX_DA_STEEP,
 } GXDistAttnFn;
+
 typedef enum _GXCullMode
 {
     GX_CULL_NONE,
@@ -483,6 +524,7 @@ typedef enum _GXCullMode
     GX_CULL_ALL
 
 } GXCullMode;
+
 typedef enum _GXTevSwapSel
 {
     GX_TEV_SWAP0 = 0,
@@ -491,6 +533,7 @@ typedef enum _GXTevSwapSel
     GX_TEV_SWAP3,
     GX_MAX_TEVSWAP
 } GXTevSwapSel;
+
 typedef enum _GXTevColorChan
 {
     GX_CH_RED = 0,
@@ -498,6 +541,7 @@ typedef enum _GXTevColorChan
     GX_CH_BLUE,
     GX_CH_ALPHA
 } GXTevColorChan;
+
 typedef enum _GXFogType
 {
     GX_FOG_NONE = 0,
@@ -507,6 +551,7 @@ typedef enum _GXFogType
     GX_FOG_REVEXP = 6,
     GX_FOG_REVEXP2 = 7
 } GXFogType;
+
 typedef enum _GXTevColorArg
 {
     GX_CC_CPREV,
@@ -530,6 +575,7 @@ typedef enum _GXTevColorArg
     GX_CC_TEXBBB,
     GX_CC_QUARTER = GX_CC_KONST
 } GXTevColorArg;
+
 typedef enum _GXTevAlphaArg
 {
     GX_CA_APREV,
@@ -542,6 +588,7 @@ typedef enum _GXTevAlphaArg
     GX_CA_ZERO,
     GX_CA_ONE = GX_CA_KONST
 } GXTevAlphaArg;
+
 typedef enum _GXTevOp
 {
     GX_TEV_ADD = 0,
@@ -557,6 +604,7 @@ typedef enum _GXTevOp
     GX_TEV_COMP_A8_GT = GX_TEV_COMP_RGB8_GT,
     GX_TEV_COMP_A8_EQ = GX_TEV_COMP_RGB8_EQ
 } GXTevOp;
+
 typedef enum _GXTevBias
 {
     GX_TB_ZERO,
@@ -564,6 +612,7 @@ typedef enum _GXTevBias
     GX_TB_SUBHALF,
     GX_MAX_TEVBIAS
 } GXTevBias;
+
 typedef enum _GXTevClampMode
 {
     GX_TC_LINEAR,
@@ -572,6 +621,7 @@ typedef enum _GXTevClampMode
     GX_TC_LE,
     GX_MAX_TEVCLAMPMODE
 } GXTevClampMode;
+
 typedef enum _GXTevScale
 {
     GX_CS_SCALE_1,
@@ -580,6 +630,7 @@ typedef enum _GXTevScale
     GX_CS_DIVIDE_2,
     GX_MAX_TEVSCALE
 } GXTevScale;
+
 typedef enum _GXTevKColorSel
 {
     GX_TEV_KCSEL_1 = 0x00,
@@ -611,6 +662,7 @@ typedef enum _GXTevKColorSel
     GX_TEV_KCSEL_K2_A = 0x1E,
     GX_TEV_KCSEL_K3_A = 0x1F
 } GXTevKColorSel;
+
 typedef enum _GXTevKAlphaSel
 {
     GX_TEV_KASEL_1 = 0x00,
@@ -638,6 +690,7 @@ typedef enum _GXTevKAlphaSel
     GX_TEV_KASEL_K2_A = 0x1E,
     GX_TEV_KASEL_K3_A = 0x1F
 } GXTevKAlphaSel;
+
 typedef enum _GXTevKColorID
 {
     GX_KCOLOR0 = 0,
@@ -646,6 +699,7 @@ typedef enum _GXTevKColorID
     GX_KCOLOR3,
     GX_MAX_KCOLOR
 } GXTevKColorID;
+
 typedef enum _GXZTexOp
 {
     GX_ZT_DISABLE,
@@ -653,6 +707,7 @@ typedef enum _GXZTexOp
     GX_ZT_REPLACE,
     GX_MAX_ZTEXOP,
 } GXZTexOp;
+
 typedef enum _GXIndTexFormat
 {
     GX_ITF_8,
@@ -661,6 +716,7 @@ typedef enum _GXIndTexFormat
     GX_ITF_3,
     GX_MAX_ITFORMAT,
 } GXIndTexFormat;
+
 typedef enum _GXIndTexBiasSel
 {
     GX_ITB_NONE,
@@ -673,6 +729,7 @@ typedef enum _GXIndTexBiasSel
     GX_ITB_STU,
     GX_MAX_ITBIAS,
 } GXIndTexBiasSel;
+
 typedef enum _GXIndTexAlphaSel
 {
     GX_ITBA_OFF,
@@ -681,6 +738,7 @@ typedef enum _GXIndTexAlphaSel
     GX_ITBA_U,
     GX_MAX_ITBALPHA,
 } GXIndTexAlphaSel;
+
 typedef enum _GXIndTexMtxID
 {
     GX_ITM_OFF,
@@ -694,6 +752,7 @@ typedef enum _GXIndTexMtxID
     GX_ITM_T1,
     GX_ITM_T2,
 } GXIndTexMtxID;
+
 typedef enum _GXIndTexWrap
 {
     GX_ITW_OFF,
@@ -705,6 +764,7 @@ typedef enum _GXIndTexWrap
     GX_ITW_0,
     GX_MAX_ITWRAP,
 } GXIndTexWrap;
+
 typedef enum _GXIndTexStageID
 {
     GX_INDTEXSTAGE0,
@@ -713,6 +773,7 @@ typedef enum _GXIndTexStageID
     GX_INDTEXSTAGE3,
     GX_MAX_INDTEXSTAGE,
 } GXIndTexStageID;
+
 typedef enum _GXIndTexScale
 {
     GX_ITS_1,
@@ -726,6 +787,7 @@ typedef enum _GXIndTexScale
     GX_ITS_256,
     GX_MAX_ITSCALE,
 } GXIndTexScale;
+
 typedef enum _GXPerf0
 {
     GX_PERF0_VERTICES,
@@ -768,6 +830,7 @@ typedef enum _GXPerf0
     GX_PERF0_CLOCKS,
     GX_PERF0_NONE,
 } GXPerf0;
+
 typedef enum _GXPerf1
 {
     GX_PERF1_TEXELS,
@@ -797,6 +860,7 @@ typedef enum _GXPerf1
     GX_PERF1_CLOCKS,
     GX_PERF1_NONE,
 } GXPerf1;
+
 typedef enum _GXVCachePerf
 {
     GX_VC_POS = 0,
@@ -813,29 +877,34 @@ typedef enum _GXVCachePerf
     GX_VC_TEX7 = 11,
     GX_VC_ALL = 15,
 } GXVCachePerf;
+
 typedef enum _GXClipMode
 {
     GX_CLIP_ENABLE = 0,
     GX_CLIP_DISABLE = 1,
 } GXClipMode;
+
 typedef enum _GXFBClamp
 {
     GX_CLAMP_NONE = 0,
     GX_CLAMP_TOP = 1,
     GX_CLAMP_BOTTOM = 2,
 } GXFBClamp;
+
 typedef enum _GXCopyMode
 {
     GX_COPY_PROGRESSIVE = 0,
     GX_COPY_INTLC_EVEN = 2,
     GX_COPY_INTLC_ODD = 3,
 } GXCopyMode;
+
 typedef enum _GXAlphaReadMode
 {
     GX_READ_00,
     GX_READ_FF,
     GX_READ_NONE,
 } GXAlphaReadMode;
+
 typedef enum _GXTexCacheSize
 {
     GX_TEXCACHE_32K,
@@ -843,6 +912,7 @@ typedef enum _GXTexCacheSize
     GX_TEXCACHE_512K,
     GX_TEXCACHE_NONE,
 } GXTexCacheSize;
+
 typedef enum _GXTlut
 {
     GX_TLUT0,
@@ -866,6 +936,7 @@ typedef enum _GXTlut
     GX_BIGTLUT2,
     GX_BIGTLUT3,
 } GXTlut;
+
 typedef enum _GXTlutFmt
 {
     GX_TL_IA8,
@@ -873,6 +944,7 @@ typedef enum _GXTlutFmt
     GX_TL_RGB5A3,
     GX_MAX_TLUTFMT,
 } GXTlutFmt;
+
 typedef enum _GXTlutSize
 {
     GX_TLUT_16 = 1,
@@ -887,6 +959,7 @@ typedef enum _GXTlutSize
     GX_TLUT_8K = 512,
     GX_TLUT_16K = 1024,
 } GXTlutSize;
+
 typedef enum _GXMiscToken
 {
     GX_MT_XF_FLUSH = 1,

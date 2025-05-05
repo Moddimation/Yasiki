@@ -11,6 +11,7 @@
 #include <ansi_parms.h>                        /*- mm 970905 -*/
 
 #pragma options align = native
+
 _MSL_BEGIN_NAMESPACE_STD                       /*- cc 010409 -*/
     _MSL_BEGIN_EXTERN_C                        /*- cc 010409 -*/
 
@@ -19,6 +20,7 @@ _MSL_BEGIN_NAMESPACE_STD                       /*- cc 010409 -*/
     int quot;
     int rem;
 } div_t;
+
 typedef struct
 {
     long quot;

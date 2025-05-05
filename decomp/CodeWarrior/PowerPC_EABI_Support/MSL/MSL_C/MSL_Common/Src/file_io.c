@@ -54,11 +54,13 @@ remove (const char* name)
 {
     return ((__delete_file (name) == __no_io_error) ? 0 : -1);
 }
+
 int
 rename (const char* old_name, const char* new_name)
 {
     return ((__rename_file (old_name, new_name) == __no_io_error) ? 0 : -1);
 }
+
 char*
 tmpnam (char* name)
 {
@@ -85,6 +87,7 @@ tmpnam (char* name)
 #endif
     }
 }
+
 FILE*
 tmpfile (void)
 {
@@ -214,6 +217,7 @@ fopen (const char* name, const char* mode)
 
     return (file);
 }
+
 FILE*
 freopen (const char* name, const char* mode, FILE* file)
 {
@@ -252,6 +256,7 @@ freopen (const char* name, const char* mode, FILE* file)
 
     return (file);
 }
+
 /*- mm 990609 -*/
 /* The function __reopen(FILE* file) is a non-standard function that will change the
    mode of one of the three standard files, stdin, stdout, stderr to binary mode from
@@ -275,6 +280,7 @@ __reopen (FILE* file)
         return NULL;
     }
 }
+
 /*- mm 990609 -*/
 
 FILE*
@@ -290,6 +296,7 @@ __handle_open (__file_handle handle, const char* mode)
 
     return (file);
 }
+
 FILE*
 __handle_reopen (__file_handle handle, const char* mode, FILE* file)
 {
@@ -316,6 +323,7 @@ __handle_reopen (__file_handle handle, const char* mode, FILE* file)
 
     return (file);
 }
+
 int
 __get_file_modes (const char* mode, __file_modes* modes)
 {
@@ -417,6 +425,7 @@ __set_idle_proc (FILE* file, __idle_proc idle_proc)
 {
     file->idle_proc = idle_proc;
 }
+
 /* Compare lexigraphically two strings up to a max length */
 
 int
@@ -443,6 +452,7 @@ __msl_strnicmp (const char* s1, const char* s2, int n) /*- cc 010605 -*/
     }
     return 0;
 }
+
 /* reverse a string in place */
 
 char*
@@ -464,6 +474,7 @@ __msl_strrev (char* str)  /*- cc 010605 -*/
 
     return str;
 }
+
 char*
 __msl_itoa (int val, char* str, int radix)
 {
@@ -507,6 +518,7 @@ __msl_itoa (int val, char* str, int radix)
 
     return str;
 }
+
 char*
 __msl_strdup (const char* str) /*- cc 010725 -*/
 {
@@ -518,6 +530,7 @@ __msl_strdup (const char* str) /*- cc 010725 -*/
     }
     return rval;
 }
+
 /* Change record:
  * JFH 950814 First code release.
  * JFH 951016 Modified fflush to flush read buffers for SIOUX

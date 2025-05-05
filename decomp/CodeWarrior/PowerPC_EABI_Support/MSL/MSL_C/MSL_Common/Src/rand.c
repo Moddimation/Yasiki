@@ -41,6 +41,7 @@ rand (void)
     return ((next >> 16) & 0x7FFF);
 #endif
 }
+
 void
 srand (unsigned int seed)
 {
@@ -50,6 +51,7 @@ srand (unsigned int seed)
     next = seed;
 #endif
 }
+
 /* Change record:
  * JFH 950607 First code release.
  * JFH 960429 Merged Win32 changes in.

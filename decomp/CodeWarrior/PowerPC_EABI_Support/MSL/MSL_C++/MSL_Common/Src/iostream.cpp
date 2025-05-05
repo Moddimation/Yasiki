@@ -118,6 +118,7 @@ __nInit::__nInit ()
         ferr.pubsetbuf (0, 0);
     }
 }
+
 __nInit::~__nInit ()
 {
     _MSL_LOCK_MUTEX (lock, get_Init_lock())
@@ -134,6 +135,7 @@ __nInit::~__nInit ()
 #endif
     }
 }
+
 __wInit::__wInit ()
 {
 #ifndef _MSL_NO_WCHART_CPP_SUPPORT
@@ -160,6 +162,7 @@ __wInit::__wInit ()
     }
 #endif
 }
+
 __wInit::~__wInit ()
 {
 #ifndef _MSL_NO_WCHART_CPP_SUPPORT
@@ -178,6 +181,7 @@ __wInit::~__wInit ()
     }
 #endif
 }
+
 ios_base::Init::Init ()
 {
     static __nInit n;

@@ -24,6 +24,7 @@
  *      files will be created to the mode specified by __pmode
  */
 _MSL_POSIX_PARAMS __new_umask = 0; /*- cc 000517 -*/ /*- cc 010622 -*/
+
 _MSL_POSIX_PARAMS
 umask (_MSL_POSIX_PARAMS __pmode)                    /*- cc 010622 -*/
 {
@@ -33,6 +34,7 @@ umask (_MSL_POSIX_PARAMS __pmode)                    /*- cc 010622 -*/
 
     return __oldmask;
 } /*- cc 000517 -*/
+
 /*
  *	int fileno(FILE *stream)
  *
@@ -44,6 +46,7 @@ fileno (FILE* stream)
 {
     return (stream->handle);
 }
+
 /* Change record:
  * cc  000404 Removed io.h and added stdio.h and unix.h
  * cc  000517 Cleanup of umask return type

@@ -34,6 +34,7 @@ COPYRIGHT
 
 #include <__mem.h>
 #include <string.h>
+
 void*
 memcpy (void* dst, const void* src, size_t n)
 {
@@ -57,6 +58,7 @@ memcpy (void* dst, const void* src, size_t n)
     }
     return (dst);
 }
+
 /*
     mem_funcs.c
 */
@@ -66,6 +68,7 @@ memcpy (void* dst, const void* src, size_t n)
 #define lps               ((unsigned long*)src)
 #define lpd               ((unsigned long*)dst)
 #define deref_auto_inc(p) *++(p)
+
 void
 __fill_mem (void* dst, int val, unsigned long n)
 {
@@ -137,6 +140,7 @@ __fill_mem (void* dst, int val, unsigned long n)
 
     return;
 }
+
 void*
 memset (void* dst, int val, size_t n)
 {
@@ -147,6 +151,7 @@ memset (void* dst, int val, size_t n)
 #if !__MC68K__ || _No_String_Inlines || !defined(__cplusplus)
 
 #pragma overload size_t(strlen)(const char* str);
+
 size_t (strlen) (const char* str)
 {
     size_t len = -1;

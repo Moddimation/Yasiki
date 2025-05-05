@@ -11,14 +11,17 @@ typedef struct
 {
     f32 x, y, z;
 } Vec, *VecPtr, Point3d, *Point3dPtr;
+
 typedef struct
 {
     s16 x, y, z;
 } S16Vec, *S16VecPtr;
+
 typedef struct
 {
     f32 x, y, z, w;
 } Quaternion, *QuaternionPtr, Qtrn, *QtrnPtr;
+
 typedef f32 Mtx[3][4];
 typedef f32 Mtx44[4][4];
 
@@ -94,8 +97,13 @@ void MTXLightFrustum (Mtx m,
                       f32 scaleT,
                       f32 transS,
                       f32 transT);
-void MTXLightPerspective (
-    Mtx m, f32 fovY, f32 aspect, f32 scaleS, f32 scaleT, f32 transS, f32 transT);
+void MTXLightPerspective (Mtx m,
+                          f32 fovY,
+                          f32 aspect,
+                          f32 scaleS,
+                          f32 scaleT,
+                          f32 transS,
+                          f32 transT);
 void MTXLightOrtho (Mtx m,
                     f32 t,
                     f32 b,
@@ -121,6 +129,7 @@ void PSMTXConcat (Mtx mA, Mtx mB, Mtx mAB);
 void PSMTXTranspose (Mtx src, Mtx xPose);
 u32  PSMTXInverse (Mtx src, Mtx inv);
 u32  PSMTXInvXpose (Mtx src, Mtx invX);
+
 // mtxstack.c
 typedef struct
 {
@@ -128,6 +137,7 @@ typedef struct
     Mtx* stackBase;
     Mtx* stackPtr;
 } MTXStack;
+
 void MTXInitStack (MTXStack* sPtr, u32 numMtx);
 Mtx* MTXPush (MTXStack* sPtr, Mtx m);
 Mtx* MTXPushFwd (MTXStack* sPtr, Mtx m);
@@ -151,8 +161,12 @@ void PSMTXMultVecArray (Mtx m, Vec* srcBase, Vec* dstBase, u32 count);
 // psmtx.c
 void PSMTXReorder (Mtx src, ROMtx dest);
 void PSMTXROMultVecArray (ROMtx* m, Vec* srcBase, Vec* dstBase, u32 count);
-void PSMTXROSkin2VecArray (
-    ROMtx* m0, ROMtx* m1, f32* wtBase, Vec* srcBase, Vec* dstBase, u32 count);
+void PSMTXROSkin2VecArray (ROMtx* m0,
+                           ROMtx* m1,
+                           f32*   wtBase,
+                           Vec*   srcBase,
+                           Vec*   dstBase,
+                           u32    count);
 void PSMTXROMultS16VecArray (ROMtx* m, S16Vec* srcBase, Vec* dstBase, u32 count);
 void PSMTXMultS16VecArray (Mtx44* m, S16Vec* srcBase, Vec* dstBase, u32 count);
 

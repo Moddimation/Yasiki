@@ -1,13 +1,7 @@
 #ifndef __JSU_IOSBASE_HPP__
 #define __JSU_IOSBASE_HPP__
 
-#include <types.h>
-
-#include "macros.h"
-
-// find where to put these
-#define constructor explicit
-#define destructor  virtual
+#include <JUTTypes.h>
 
 class JSUIosBase
 {

@@ -9,6 +9,7 @@
 
 // functions
 static void FormatCallback (s32 chan, s32 result);
+
 static void
 FormatCallback (s32 chan, s32 result)
 {
@@ -24,8 +25,7 @@ FormatCallback (s32 chan, s32 result)
     ++card->formatStep;
     if (card->formatStep < CARD_NUM_SYSTEM_BLOCK)
     {
-        result = __CARDEraseSector (
-            chan, (u32)card->sectorSize * card->formatStep, FormatCallback);
+        result = __CARDEraseSector (chan, (u32)card->sectorSize * card->formatStep, FormatCallback);
         if (result >= 0)
         {
             return;
@@ -46,13 +46,11 @@ FormatCallback (s32 chan, s32 result)
     }
     else
     {
-        card->currentDir =
-            (CARDDir*)((u8*)card->workArea + (1 + 0) * CARD_SYSTEM_BLOCK_SIZE);
+        card->currentDir = (CARDDir*)((u8*)card->workArea + (1 + 0) * CARD_SYSTEM_BLOCK_SIZE);
         memcpy (card->currentDir,
                 (u8*)card->workArea + (1 + 1) * CARD_SYSTEM_BLOCK_SIZE,
                 CARD_SYSTEM_BLOCK_SIZE);
-        card->currentFat =
-            (u16*)((u8*)card->workArea + (3 + 0) * CARD_SYSTEM_BLOCK_SIZE);
+        card->currentFat = (u16*)((u8*)card->workArea + (3 + 0) * CARD_SYSTEM_BLOCK_SIZE);
         memcpy (card->currentFat,
                 (u8*)card->workArea + (3 + 1) * CARD_SYSTEM_BLOCK_SIZE,
                 CARD_SYSTEM_BLOCK_SIZE);
@@ -65,6 +63,7 @@ error:
     ASSERTLINE (0x79, callback);
     callback (chan, result);
 }
+
 s32
 CARDFormatAsync (s32 chan, CARDCallback callback)
 {
@@ -115,8 +114,7 @@ CARDFormatAsync (s32 chan, CARDCallback callback)
 
     id->deviceID = 0;
     id->size = card->size;
-    __CARDCheckSum (
-        id, sizeof (CARDID) - sizeof (u32), &id->checkSum, &id->checkSumInv);
+    __CARDCheckSum (id, sizeof (CARDID) - sizeof (u32), &id->checkSum, &id->checkSumInv);
 
     for (i = 0; i < 2; i++)
     {
@@ -148,14 +146,14 @@ CARDFormatAsync (s32 chan, CARDCallback callback)
     DCStoreRange (card->workArea, CARD_WORKAREA_SIZE);
 
     card->formatStep = 0;
-    result = __CARDEraseSector (
-        chan, (u32)card->sectorSize * card->formatStep, FormatCallback);
+    result = __CARDEraseSector (chan, (u32)card->sectorSize * card->formatStep, FormatCallback);
     if (result < 0)
     {
         __CARDPutControlBlock (card, result);
     }
     return result;
 }
+
 s32
 CARDFormat (s32 chan)
 {

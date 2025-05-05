@@ -18,9 +18,10 @@ extern void init_board (void);
 
 #define _7XX_VERSION 0x0008 // bits 0..15 of PVR on 7xx
 
-#pragma section all_types                                                           \
-    ".init"                                                                         \
+#pragma section all_types                                                                          \
+    ".init"                                                                                        \
     ".init"
+
 //////////////////////////////////////////////////////////////////////
 //
 //	usr_init
@@ -208,7 +209,7 @@ usr_init ()
                       // Call any board-specific initialization required.
                       //
 
-                      mflr r30 // save link register in a NV register //
+                      mflr r30                   // save link register in a NV register //
                           bl init_board mtlr r30 // restore saved link register //
 
               blr

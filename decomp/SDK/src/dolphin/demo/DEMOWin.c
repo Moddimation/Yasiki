@@ -21,6 +21,7 @@ static void __DEMOWin_puts_n (s16 x, s16 y, s16 z, u16 n, char* string);
 static void __DEMOWinMenu_refesh_menu (struct STRUCT_DEMOWIN* w);
 static u16  __DEMOWinMenu_get_user_input (DEMOWinPadInfo* p);
 static void __DEMOWinList_refresh_list (struct STRUCT_DEMOWIN* w);
+
 void
 DEMOWinInit ()
 {
@@ -30,9 +31,9 @@ DEMOWinInit ()
     __rmp = DEMOGetRenderModeObj();
     GXSetCopyClear ((GXColor) { 0, 0, 0, 0 }, 0xFFFFFF);
 }
+
 struct STRUCT_DEMOWIN*
-DEMOWinCreateWindow (
-    s32 x1, s32 y1, s32 x2, s32 y2, char* caption, u16 scroll, void* func)
+DEMOWinCreateWindow (s32 x1, s32 y1, s32 x2, s32 y2, char* caption, u16 scroll, void* func)
 {
     struct STRUCT_DEMOWIN* handle;
 
@@ -59,11 +60,9 @@ DEMOWinCreateWindow (
     handle->refresh = func;
     handle->flags = 0;
     handle->priority = 0;
-    handle->buffer = (void*)OSAllocFromHeap (
-        __OSCurrHeap, handle->total_lines * handle->char_width);
-    ASSERTMSGLINE (0xEE,
-                   handle->buffer,
-                   "DEMOWinCreateWindow(): Unable to allocation buffer!\n");
+    handle->buffer =
+        (void*)OSAllocFromHeap (__OSCurrHeap, handle->total_lines * handle->char_width);
+    ASSERTMSGLINE (0xEE, handle->buffer, "DEMOWinCreateWindow(): Unable to allocation buffer!\n");
     memset (handle->buffer,
             ' ',
             handle->total_lines * handle->char_width); // set to all empty spaces
@@ -73,6 +72,7 @@ DEMOWinCreateWindow (
     __DEMOWin_add_node (handle);
     return handle;
 }
+
 void
 DEMOWinDestroyWindow (struct STRUCT_DEMOWIN* handle)
 {
@@ -85,21 +85,23 @@ DEMOWinDestroyWindow (struct STRUCT_DEMOWIN* handle)
     OSFreeToHeap (__OSCurrHeap, handle);
     OSRestoreInterrupts (old);
 }
+
 void
 DEMOWinOpenWindow (struct STRUCT_DEMOWIN* handle)
 {
     ASSERTMSGLINE (0x136, handle, "DEMOWinOpenWindow(): NULL handle!\n");
     handle->flags |= DEMOWIN_FLAGS_OPENED;
 }
+
 void
 DEMOWinCloseWindow (struct STRUCT_DEMOWIN* handle)
 {
     ASSERTMSGLINE (0x146, handle, "DEMOWinCloseWindow(): NULL handle!\n");
     handle->flags &= ~(DEMOWIN_FLAGS_OPENED);
 }
+
 void
-DEMOWinSetWindowColor (
-    struct STRUCT_DEMOWIN* handle, enum DEMOWinItem item, u8 r, u8 g, u8 b, u8 a)
+DEMOWinSetWindowColor (struct STRUCT_DEMOWIN* handle, enum DEMOWinItem item, u8 r, u8 g, u8 b, u8 a)
 {
     ASSERTMSGLINE (0x158, handle, "DEMOWinSetWinColor(): NULL window handle\n");
     switch (item)
@@ -144,6 +146,7 @@ DEMOWinSetWindowColor (
             return;
     }
 }
+
 void
 DEMOWinLogPrintf (struct STRUCT_DEMOWIN* handle, char* fmt, ...)
 {
@@ -163,37 +166,31 @@ DEMOWinLogPrintf (struct STRUCT_DEMOWIN* handle, char* fmt, ...)
     {
         if (buffer[i] == 0xA)
         {
-            handle->curr_output_line =
-                (handle->curr_output_line + 1) % handle->total_lines;
-            handle->curr_view_line =
-                (handle->curr_view_line + 1) % handle->total_lines;
+            handle->curr_output_line = (handle->curr_output_line + 1) % handle->total_lines;
+            handle->curr_view_line = (handle->curr_view_line + 1) % handle->total_lines;
             handle->curr_output_col = 0;
-            index = handle->curr_output_col +
-                    (handle->curr_output_line * handle->char_width);
+            index = handle->curr_output_col + (handle->curr_output_line * handle->char_width);
             memset (&handle->buffer[index], ' ', handle->char_width);
         }
         else
         {
-            index = handle->curr_output_col +
-                    (handle->curr_output_line * handle->char_width);
+            index = handle->curr_output_col + (handle->curr_output_line * handle->char_width);
             handle->buffer[index] = buffer[i];
             handle->curr_output_col++;
         }
         if (handle->curr_output_col >= handle->char_width)
         {
             handle->curr_output_col = 0;
-            handle->curr_output_line =
-                (handle->curr_output_line + 1) % handle->total_lines;
-            handle->curr_view_line =
-                (handle->curr_view_line + 1) % handle->total_lines;
-            index = handle->curr_output_col +
-                    (handle->curr_output_line * handle->char_width);
+            handle->curr_output_line = (handle->curr_output_line + 1) % handle->total_lines;
+            handle->curr_view_line = (handle->curr_view_line + 1) % handle->total_lines;
+            index = handle->curr_output_col + (handle->curr_output_line * handle->char_width);
             memset (&handle->buffer[index], ' ', handle->char_width);
         }
     }
     OSRestoreInterrupts (old);
     va_end (vlist);
 }
+
 void
 DEMOWinPrintfXY (struct STRUCT_DEMOWIN* handle, u16 col, u16 row, char* fmt, ...)
 {
@@ -211,8 +208,7 @@ DEMOWinPrintfXY (struct STRUCT_DEMOWIN* handle, u16 col, u16 row, char* fmt, ...
     old = OSDisableInterrupts();
     va_start (vlist, fmt);
     vsprintf (string, fmt, vlist);
-    buffer_row = ((handle->curr_view_line + handle->total_lines) -
-                  (handle->char_height - 1)) %
+    buffer_row = ((handle->curr_view_line + handle->total_lines) - (handle->char_height - 1)) %
                  handle->total_lines;
     buffer_row = (((buffer_row) + row) % handle->total_lines);
     string[handle->char_width - col] = 0;
@@ -223,6 +219,7 @@ DEMOWinPrintfXY (struct STRUCT_DEMOWIN* handle, u16 col, u16 row, char* fmt, ...
     }
     OSRestoreInterrupts (old);
 }
+
 void
 DEMOWinScrollWindow (struct STRUCT_DEMOWIN* handle, u32 dir)
 {
@@ -239,10 +236,8 @@ DEMOWinScrollWindow (struct STRUCT_DEMOWIN* handle, u32 dir)
     {
         case 1:
             old = OSDisableInterrupts();
-            n = (handle->curr_view_line + handle->total_lines - 1) %
-                handle->total_lines;
-            v_start = ((n + handle->total_lines) - handle->char_height + 1) %
-                      handle->total_lines;
+            n = (handle->curr_view_line + handle->total_lines - 1) % handle->total_lines;
+            v_start = ((n + handle->total_lines) - handle->char_height + 1) % handle->total_lines;
             if (v_start != handle->curr_output_line)
             {
                 handle->curr_view_line = n;
@@ -253,8 +248,7 @@ DEMOWinScrollWindow (struct STRUCT_DEMOWIN* handle, u32 dir)
             old = OSDisableInterrupts();
             if (handle->curr_view_line != handle->curr_output_line)
             {
-                handle->curr_view_line =
-                    (handle->curr_view_line + 1) % handle->total_lines;
+                handle->curr_view_line = (handle->curr_view_line + 1) % handle->total_lines;
             }
             OSRestoreInterrupts (old);
             return;
@@ -268,13 +262,13 @@ DEMOWinScrollWindow (struct STRUCT_DEMOWIN* handle, u32 dir)
             return;
     }
 }
+
 void
 DEMOWinBringToFront (struct STRUCT_DEMOWIN* handle)
 {
     struct STRUCT_DEMOWIN* ptr;
 
-    ASSERTMSGLINE (
-        0x256, __first_node, "DEMOWinBringToFront(): Window list is empty!\n");
+    ASSERTMSGLINE (0x256, __first_node, "DEMOWinBringToFront(): Window list is empty!\n");
     ASSERTMSGLINE (0x257, handle, "DEMOWinBringToFront(): NULL handle!\n");
     if (handle->priority)
     {
@@ -285,12 +279,14 @@ DEMOWinBringToFront (struct STRUCT_DEMOWIN* handle)
         handle->priority = 0;
     }
 }
+
 void
 DEMOWinSendToBack (struct STRUCT_DEMOWIN* handle)
 {
     ASSERTMSGLINE (0x27A, handle, "DEMOWinSendToBack(): NULL handle!\n");
     handle->priority = 1;
 }
+
 void
 DEMOWinClearRow (struct STRUCT_DEMOWIN* handle, u16 row)
 {
@@ -303,8 +299,7 @@ DEMOWinClearRow (struct STRUCT_DEMOWIN* handle, u16 row)
     if (row < handle->char_height)
     {
         old = OSDisableInterrupts();
-        buffer_row = (((handle->curr_view_line + handle->total_lines) -
-                       (handle->char_height - 1)) %
+        buffer_row = (((handle->curr_view_line + handle->total_lines) - (handle->char_height - 1)) %
                       handle->total_lines);
         buffer_row = (((buffer_row + row) % handle->total_lines));
         index = (buffer_row * handle->char_width);
@@ -315,6 +310,7 @@ DEMOWinClearRow (struct STRUCT_DEMOWIN* handle, u16 row)
         OSRestoreInterrupts (old);
     }
 }
+
 void
 DEMOWinClearWindow (struct STRUCT_DEMOWIN* handle)
 {
@@ -326,8 +322,7 @@ DEMOWinClearWindow (struct STRUCT_DEMOWIN* handle)
     ASSERTMSGLINE (0x2C3, handle, "DEMOWinClearWindow(): NULL handle!\n");
 
     old = OSDisableInterrupts();
-    buffer_row = ((handle->curr_view_line + handle->total_lines) -
-                  (handle->char_height - 1)) %
+    buffer_row = ((handle->curr_view_line + handle->total_lines) - (handle->char_height - 1)) %
                  handle->total_lines;
     for (i = 0; i < handle->char_height; i++)
     {
@@ -337,6 +332,7 @@ DEMOWinClearWindow (struct STRUCT_DEMOWIN* handle)
     }
     OSRestoreInterrupts (old);
 }
+
 void
 DEMOWinClearBuffer (struct STRUCT_DEMOWIN* handle)
 {
@@ -347,6 +343,7 @@ DEMOWinClearBuffer (struct STRUCT_DEMOWIN* handle)
     memset (handle->buffer, ' ', handle->total_lines * handle->char_width);
     OSRestoreInterrupts (old);
 }
+
 void
 DEMOWinRefresh ()
 {
@@ -511,6 +508,7 @@ DEMOWinRefresh ()
         }
     }
 }
+
 static void
 __DEMOWin_add_node (struct STRUCT_DEMOWIN* handle)
 {
@@ -535,6 +533,7 @@ __DEMOWin_add_node (struct STRUCT_DEMOWIN* handle)
     }
     handle->flags |= DEMOWIN_FLAGS_INIT;
 }
+
 static void
 __DEMOWin_delete_node (struct STRUCT_DEMOWIN* handle)
 {
@@ -572,6 +571,7 @@ __DEMOWin_delete_node (struct STRUCT_DEMOWIN* handle)
     }
     handle->flags &= ~(DEMOWIN_FLAGS_INIT);
 }
+
 static void
 __DEMOWin_puts_n (s16 x, signed s16 y, signed short z, u16 n, char* string)
 {
@@ -607,6 +607,7 @@ __DEMOWin_puts_n (s16 x, signed s16 y, signed short z, u16 n, char* string)
         GXEnd();
     }
 }
+
 struct STRUCT_MENU*
 DEMOWinCreateMenuWindow (struct STRUCT_MENU* menu, u16 x, u16 y)
 {
@@ -632,14 +633,13 @@ DEMOWinCreateMenuWindow (struct STRUCT_MENU* menu, u16 x, u16 y)
     {
         menu->num_display_items = menu->num_items;
     }
-    menu->handle =
-        DEMOWinCreateWindow ((s16)x,
-                             (s16)y,
-                             (s16)(((menu->max_str_len + 7) * 8) + 4 + x),
-                             (s16)(((menu->num_display_items + 2) * 8) + 4 + y),
-                             menu->title,
-                             0,
-                             __DEMOWinMenu_refesh_menu);
+    menu->handle = DEMOWinCreateWindow ((s16)x,
+                                        (s16)y,
+                                        (s16)(((menu->max_str_len + 7) * 8) + 4 + x),
+                                        (s16)(((menu->num_display_items + 2) * 8) + 4 + y),
+                                        menu->title,
+                                        0,
+                                        __DEMOWinMenu_refesh_menu);
     menu->handle->parent = menu;
     if (menu->num_items)
     {
@@ -647,6 +647,7 @@ DEMOWinCreateMenuWindow (struct STRUCT_MENU* menu, u16 x, u16 y)
     }
     return NULL;
 }
+
 void
 DEMOWinDestroyMenuWindow (struct STRUCT_MENU* menu)
 {
@@ -656,6 +657,7 @@ DEMOWinDestroyMenuWindow (struct STRUCT_MENU* menu)
         DEMOWinDestroyWindow (menu->handle);
     }
 }
+
 u32
 DEMOWinMenuChild (struct STRUCT_MENU* menu, int child_flag)
 {
@@ -691,13 +693,11 @@ DEMOWinMenuChild (struct STRUCT_MENU* menu, int child_flag)
         {
             case 1:
                 menu->curr_pos =
-                    ((menu->curr_pos - 1 + menu->num_items) % menu->num_items) &
-                    0xFFFF;
+                    ((menu->curr_pos - 1 + menu->num_items) % menu->num_items) & 0xFFFF;
                 while (menu->items[menu->curr_pos].flags & 9)
                 {
                     menu->curr_pos =
-                        ((menu->curr_pos - 1 + menu->num_items) % menu->num_items) &
-                        0xFFFF;
+                        ((menu->curr_pos - 1 + menu->num_items) % menu->num_items) & 0xFFFF;
                 }
                 if (menu->cb_move)
                 {
@@ -708,8 +708,7 @@ DEMOWinMenuChild (struct STRUCT_MENU* menu, int child_flag)
                 menu->curr_pos = ((menu->curr_pos + 1) % menu->num_items) & 0xFFFF;
                 while (menu->items[menu->curr_pos].flags & 9)
                 {
-                    menu->curr_pos =
-                        ((menu->curr_pos + 1) % menu->num_items) & 0xFFFF;
+                    menu->curr_pos = ((menu->curr_pos + 1) % menu->num_items) & 0xFFFF;
                 }
                 if (menu->cb_move)
                 {
@@ -735,12 +734,9 @@ DEMOWinMenuChild (struct STRUCT_MENU* menu, int child_flag)
                 {
                     if (menu->items[menu->curr_pos].link->handle)
                     {
-                        menu->items[menu->curr_pos].link->handle->x1 =
-                            (handle->x1 + 0x14) & 0xFFFF;
-                        menu->items[menu->curr_pos].link->handle->y1 =
-                            (handle->y1 + 0x14) & 0xFFFF;
-                        result =
-                            DEMOWinMenuChild (menu->items[menu->curr_pos].link, 1);
+                        menu->items[menu->curr_pos].link->handle->x1 = (handle->x1 + 0x14) & 0xFFFF;
+                        menu->items[menu->curr_pos].link->handle->y1 = (handle->y1 + 0x14) & 0xFFFF;
+                        result = DEMOWinMenuChild (menu->items[menu->curr_pos].link, 1);
                         if (menu->items[menu->curr_pos].link->flags & 1)
                         {
                             exit_flag = 1;
@@ -751,8 +747,7 @@ DEMOWinMenuChild (struct STRUCT_MENU* menu, int child_flag)
                         DEMOWinCreateMenuWindow (menu->items[menu->curr_pos].link,
                                                  (handle->x1 + 0x14),
                                                  (handle->y1 + 0x14));
-                        result =
-                            DEMOWinMenuChild (menu->items[menu->curr_pos].link, 1);
+                        result = DEMOWinMenuChild (menu->items[menu->curr_pos].link, 1);
                         if (menu->items[menu->curr_pos].link->flags & 1)
                         {
                             exit_flag = 1;
@@ -772,12 +767,9 @@ DEMOWinMenuChild (struct STRUCT_MENU* menu, int child_flag)
                 {
                     if (menu->items[menu->curr_pos].link->handle)
                     {
-                        menu->items[menu->curr_pos].link->handle->x1 =
-                            (handle->x1 + 0x14) & 0xFFFF;
-                        menu->items[menu->curr_pos].link->handle->y1 =
-                            (handle->y1 + 0x14) & 0xFFFF;
-                        result =
-                            DEMOWinMenuChild (menu->items[menu->curr_pos].link, 1);
+                        menu->items[menu->curr_pos].link->handle->x1 = (handle->x1 + 0x14) & 0xFFFF;
+                        menu->items[menu->curr_pos].link->handle->y1 = (handle->y1 + 0x14) & 0xFFFF;
+                        result = DEMOWinMenuChild (menu->items[menu->curr_pos].link, 1);
                         if (menu->items[menu->curr_pos].link->flags & 1)
                         {
                             exit_flag = 1;
@@ -788,8 +780,7 @@ DEMOWinMenuChild (struct STRUCT_MENU* menu, int child_flag)
                         DEMOWinCreateMenuWindow (menu->items[menu->curr_pos].link,
                                                  (handle->x1 + 0x14),
                                                  (handle->y1 + 0x14));
-                        result =
-                            DEMOWinMenuChild (menu->items[menu->curr_pos].link, 1);
+                        result = DEMOWinMenuChild (menu->items[menu->curr_pos].link, 1);
                         if (menu->items[menu->curr_pos].link->flags & 1)
                         {
                             exit_flag = 1;
@@ -801,8 +792,7 @@ DEMOWinMenuChild (struct STRUCT_MENU* menu, int child_flag)
                 }
                 else if (menu->items[menu->curr_pos].function)
                 {
-                    menu->items[menu->curr_pos].function (
-                        menu, menu->curr_pos, &result);
+                    menu->items[menu->curr_pos].function (menu, menu->curr_pos, &result);
                     if (menu->items[menu->curr_pos].flags & 0x10)
                     {
                         exit_flag = 1;
@@ -845,6 +835,7 @@ DEMOWinMenuChild (struct STRUCT_MENU* menu, int child_flag)
     DEMODoneRender();
     return result;
 }
+
 static void
 __DEMOWinMenu_refesh_menu (struct STRUCT_DEMOWIN* w)
 {
@@ -886,6 +877,7 @@ __DEMOWinMenu_refesh_menu (struct STRUCT_DEMOWIN* w)
         }
     }
 }
+
 void
 DEMOWinPadInit (DEMOWinPadInfo* p)
 {
@@ -899,14 +891,15 @@ DEMOWinPadInit (DEMOWinPadInfo* p)
         p->repeat_ctr[i] = 0;
     }
 }
+
 void
 DEMOWinPadRead (DEMOWinPadInfo* p)
 {
     PADStatus* pad;
-    u16               index;
-    u32               curr;
-    u32               old;
-    u32               repeat;
+    u16        index;
+    u32        curr;
+    u32        old;
+    u32        repeat;
 
     PADRead (p->pads);
 
@@ -915,16 +908,13 @@ DEMOWinPadRead (DEMOWinPadInfo* p)
         old = p->old_button[index];
         pad = &p->pads[index];
 
-        curr = ((pad->stickX > 0x40 ? 0x00040000 : 0) |
-                (pad->stickX < -0x40 ? 0x00080000 : 0) |
-                (pad->stickY > 0x40 ? 0x00010000 : 0) |
-                (pad->stickY < -0x40 ? 0x00020000 : 0) |
-                (pad->substickX > +0x40 ? 0x00400000 : 0) |
-                (pad->substickX < -0x40 ? 0x00800000 : 0) |
-                (pad->substickY > +0x40 ? 0x00100000 : 0) |
-                (pad->substickY < -0x40 ? 0x00200000 : 0) |
-                (pad->triggerLeft > +0x80 ? 0x02000000 : 0) |
-                (pad->triggerRight > +0x80 ? 0x01000000 : 0) | pad->button);
+        curr =
+            ((pad->stickX > 0x40 ? 0x00040000 : 0) | (pad->stickX < -0x40 ? 0x00080000 : 0) |
+             (pad->stickY > 0x40 ? 0x00010000 : 0) | (pad->stickY < -0x40 ? 0x00020000 : 0) |
+             (pad->substickX > +0x40 ? 0x00400000 : 0) | (pad->substickX < -0x40 ? 0x00800000 : 0) |
+             (pad->substickY > +0x40 ? 0x00100000 : 0) | (pad->substickY < -0x40 ? 0x00200000 : 0) |
+             (pad->triggerLeft > +0x80 ? 0x02000000 : 0) |
+             (pad->triggerRight > +0x80 ? 0x01000000 : 0) | pad->button);
 
         p->changed_button[index] = (curr & (old ^ curr));
         if (curr)
@@ -949,8 +939,7 @@ DEMOWinPadRead (DEMOWinPadInfo* p)
         }
         else if (repeat > __DEMOWIN_PAD_repeat_threshold)
         {
-            if (((repeat - __DEMOWIN_PAD_repeat_threshold) %
-                 __DEMOWIN_PAD_repeat_rate) == 0)
+            if (((repeat - __DEMOWIN_PAD_repeat_threshold) % __DEMOWIN_PAD_repeat_rate) == 0)
             {
                 p->repeat_button[index] = curr;
             }
@@ -966,6 +955,7 @@ DEMOWinPadRead (DEMOWinPadInfo* p)
         p->old_button[index] = curr;
     }
 }
+
 static u16
 __DEMOWinMenu_get_user_input (DEMOWinPadInfo* p)
 {
@@ -1002,18 +992,21 @@ __DEMOWinMenu_get_user_input (DEMOWinPadInfo* p)
     }
     return user_input;
 }
+
 void
 DEMOWinSetRepeat (u32 threshold, u32 rate)
 {
     __DEMOWIN_PAD_repeat_rate = rate;
     __DEMOWIN_PAD_repeat_threshold = threshold;
 }
+
 void
 DEMOWinResetRepeat ()
 {
     __DEMOWIN_PAD_repeat_threshold = 0xF;
     __DEMOWIN_PAD_repeat_rate = 2;
 }
+
 struct STRUCT_LISTBOX*
 DEMOWinCreateListWindow (struct STRUCT_LISTBOX* list, u16 x, u16 y)
 {
@@ -1040,14 +1033,13 @@ DEMOWinCreateListWindow (struct STRUCT_LISTBOX* list, u16 x, u16 y)
     {
         list->num_display_items = list->num_items;
     }
-    list->handle =
-        DEMOWinCreateWindow ((s16)x,
-                             (s16)y,
-                             (s16)((list->max_str_len + 7) * 8 + 4 + x),
-                             (s16)((list->num_display_items + 2) * 8 + 4 + y),
-                             list->title,
-                             0,
-                             __DEMOWinList_refresh_list);
+    list->handle = DEMOWinCreateWindow ((s16)x,
+                                        (s16)y,
+                                        (s16)((list->max_str_len + 7) * 8 + 4 + x),
+                                        (s16)((list->num_display_items + 2) * 8 + 4 + y),
+                                        list->title,
+                                        0,
+                                        __DEMOWinList_refresh_list);
     list->handle->parent = list;
     if (list->num_items)
     {
@@ -1055,6 +1047,7 @@ DEMOWinCreateListWindow (struct STRUCT_LISTBOX* list, u16 x, u16 y)
     }
     return NULL;
 }
+
 void
 DEMOWinDestroyListWindow (struct STRUCT_LISTBOX* list)
 {
@@ -1064,6 +1057,7 @@ DEMOWinDestroyListWindow (struct STRUCT_LISTBOX* list)
         DEMOWinDestroyWindow (list->handle);
     }
 }
+
 static void
 __DEMOWinList_refresh_list (struct STRUCT_DEMOWIN* w)
 {
@@ -1107,11 +1101,13 @@ __DEMOWinList_refresh_list (struct STRUCT_DEMOWIN* w)
         j++;
     }
 }
+
 void
 DEMOWinListSetCursor (struct STRUCT_LISTBOX* list, int x)
 {
     list->cursor_state = x;
 }
+
 s32
 DEMOWinListScrollList (struct STRUCT_LISTBOX* list, u32 dir)
 {
@@ -1121,8 +1117,8 @@ DEMOWinListScrollList (struct STRUCT_LISTBOX* list, u32 dir)
         case 1:
             if (list->display_pos)
             {
-                list->display_pos = (u16)((list->display_pos - 1 + list->num_items) %
-                                          list->num_items);
+                list->display_pos =
+                    (u16)((list->display_pos - 1 + list->num_items) % list->num_items);
             }
             break;
         case 2:
@@ -1135,8 +1131,7 @@ DEMOWinListScrollList (struct STRUCT_LISTBOX* list, u32 dir)
             list->display_pos = 0;
             break;
         default:
-            ASSERTMSGLINE (
-                0x7FB, FALSE, "DEMOWinListScrollList(): Invalid dimension!\n");
+            ASSERTMSGLINE (0x7FB, FALSE, "DEMOWinListScrollList(): Invalid dimension!\n");
             break;
     }
     if (list->curr_pos > (list->display_pos + list->num_display_items - 1))
@@ -1149,6 +1144,7 @@ DEMOWinListScrollList (struct STRUCT_LISTBOX* list, u32 dir)
     }
     return list->display_pos;
 }
+
 s32
 DEMOWinListMoveCursor (struct STRUCT_LISTBOX* list, u32 dir)
 {
@@ -1156,15 +1152,13 @@ DEMOWinListMoveCursor (struct STRUCT_LISTBOX* list, u32 dir)
     switch (dir)
     {
         case 1:
-            list->curr_pos =
-                (list->curr_pos + list->num_items - 1) % list->num_items;
+            list->curr_pos = (list->curr_pos + list->num_items - 1) % list->num_items;
             break;
         case 2:
             list->curr_pos = (list->curr_pos + 1) % list->num_items;
             break;
         default:
-            ASSERTMSGLINE (
-                0x82B, FALSE, "DEMOWinListMoveCursor(): Invalid dimension!\n");
+            ASSERTMSGLINE (0x82B, FALSE, "DEMOWinListMoveCursor(): Invalid dimension!\n");
             break;
     }
     return list->curr_pos;

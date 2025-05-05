@@ -58,6 +58,7 @@ namespace std
 
 template <class charT, class traits>
 basic_istream<charT, traits>& ws (basic_istream<charT, traits>& is);
+
 template <class charT, class traits>
 class basic_istream : virtual public basic_ios<charT, traits>
 {
@@ -74,6 +75,7 @@ public:
     //  lib.istream.cons Constructor/destructor:
     basic_istream (); // Non-standard
     explicit basic_istream (basic_streambuf<charT, traits>* sb);
+
     // virtual ÃÂ¢ÃÂÃÂ¾basic_istream();  // Compiler generated
     // destructor used.
 
@@ -82,7 +84,9 @@ public:
     {
     public:
         explicit sentry (basic_istream<charT, traits>& is, bool noskipws = false);
+
         ÃÂ¢ÃÂÃÂ¾sentry () {}
+
         operator bool () const { return ok_; }
 
     private:
@@ -95,8 +99,7 @@ public:
 
     //  lib.istream.formatted Formatted input:
     basic_istream& operator>> (basic_istream& (*pf) (basic_istream&));
-    basic_istream& operator>> (
-        basic_ios<charT, traits>& (*pf) (basic_ios<charT, traits>&));
+    basic_istream& operator>> (basic_ios<charT, traits>& (*pf) (basic_ios<charT, traits>&));
     basic_istream& operator>> (ios_base& (*pf) (ios_base&));
 
 #ifndef _MSL_NO_BOOL
@@ -163,27 +166,22 @@ private:
 // operator>> (basic_istream<charT,traits>& in, charT& c);
 
 template <class traits>
-basic_istream<char, traits>& operator>> (basic_istream<char, traits>& in,
-                                         unsigned char&               c);
+basic_istream<char, traits>& operator>> (basic_istream<char, traits>& in, unsigned char& c);
 
 template <class traits>
-basic_istream<char, traits>& operator>> (basic_istream<char, traits>& in,
-                                         signed char&                 c);
+basic_istream<char, traits>& operator>> (basic_istream<char, traits>& in, signed char& c);
 
 template <class charT, class traits>
-basic_istream<charT, traits>& operator>> (basic_istream<charT, traits>& in,
-                                          charT*                        s);
+basic_istream<charT, traits>& operator>> (basic_istream<charT, traits>& in, charT* s);
 
 template <class traits>
-basic_istream<char, traits>& operator>> (basic_istream<char, traits>& in,
-                                         unsigned char*               s);
+basic_istream<char, traits>& operator>> (basic_istream<char, traits>& in, unsigned char* s);
 
 template <class traits>
-basic_istream<char, traits>& operator>> (basic_istream<char, traits>& in,
-                                         signed char*                 s);
+basic_istream<char, traits>& operator>> (basic_istream<char, traits>& in, signed char* s);
+
 template <class charT, class traits>
-class basic_iostream : public basic_istream<charT, traits>,
-                       public basic_ostream<charT, traits>
+class basic_iostream : public basic_istream<charT, traits>, public basic_ostream<charT, traits>
 {
 public:
     typedef charT                     char_type;
@@ -197,11 +195,11 @@ public:
     // virtual ÃÂ¢ÃÂÃÂ¾basic_iostream();  // Compiler generated
     // destructor used.
 };
+
 // basic_istream Implementation
 
 template <class charT, class traits>
-basic_istream<charT, traits>::sentry::sentry (basic_istream<charT, traits>& is,
-                                              bool                          noskipws)
+basic_istream<charT, traits>::sentry::sentry (basic_istream<charT, traits>& is, bool noskipws)
   : ok_ (false)
 {
 #ifndef _MSL_NO_EXCEPTIONS
@@ -224,8 +222,7 @@ basic_istream<charT, traits>::sentry::sentry (basic_istream<charT, traits>& is,
                 typedef ctype<charT> ctype_type;
                 const ctype_type&    ct = _USE_FACET (ctype_type, is.getloc());
                 int_type             c;
-                for (c = is.rdbuf()->sgetc();
-                     ct.is (ct.space, traits::to_char_type (c));
+                for (c = is.rdbuf()->sgetc(); ct.is (ct.space, traits::to_char_type (c));
                      c = is.rdbuf()->snextc())
                 {
                 }
@@ -269,22 +266,25 @@ basic_istream<charT, traits>::sentry::sentry (basic_istream<charT, traits>& is,
     }
 #endif
 }
+
 template <class charT, class traits>
 inline basic_istream<charT, traits>::basic_istream()
 {
 }
+
 template <class charT, class traits>
-basic_istream<charT, traits>::basic_istream (basic_streambuf<charT, traits>* sb)
-  : gcount_ (0)
+basic_istream<charT, traits>::basic_istream (basic_streambuf<charT, traits>* sb) : gcount_ (0)
 {
     base::init (sb);
 }
+
 template <class charT, class traits>
 inline basic_istream<charT, traits>&
 basic_istream<charT, traits>::operator>> (basic_istream& (*pf) (basic_istream&))
 {
     return pf (*this);
 }
+
 template <class charT, class traits>
 inline basic_istream<charT, traits>&
 basic_istream<charT, traits>::operator>> (
@@ -293,6 +293,7 @@ basic_istream<charT, traits>::operator>> (
     pf (*this);
     return *this;
 }
+
 template <class charT, class traits>
 inline basic_istream<charT, traits>&
 basic_istream<charT, traits>::operator>> (ios_base& (*pf) (ios_base&))
@@ -394,6 +395,7 @@ basic_istream<charT, traits>::operator>> (short& n)
     }
     return *this;
 }
+
 template <class charT, class traits>
 basic_istream<charT, traits>&
 basic_istream<charT, traits>::operator>> (unsigned short& n)
@@ -431,6 +433,7 @@ basic_istream<charT, traits>::operator>> (unsigned short& n)
     }
     return *this;
 }
+
 template <class charT, class traits>
 basic_istream<charT, traits>&
 basic_istream<charT, traits>::operator>> (int& n)
@@ -486,6 +489,7 @@ basic_istream<charT, traits>::operator>> (int& n)
     }
     return *this;
 }
+
 template <class charT, class traits>
 basic_istream<charT, traits>&
 basic_istream<charT, traits>::operator>> (unsigned int& n)
@@ -523,6 +527,7 @@ basic_istream<charT, traits>::operator>> (unsigned int& n)
     }
     return *this;
 }
+
 template <class charT, class traits>
 basic_istream<charT, traits>&
 basic_istream<charT, traits>::operator>> (long& n)
@@ -560,6 +565,7 @@ basic_istream<charT, traits>::operator>> (long& n)
     }
     return *this;
 }
+
 template <class charT, class traits>
 basic_istream<charT, traits>&
 basic_istream<charT, traits>::operator>> (unsigned long& n)
@@ -635,6 +641,7 @@ basic_istream<charT, traits>::operator>> (long long& n)
     }
     return *this;
 }
+
 template <class charT, class traits>
 basic_istream<charT, traits>&
 basic_istream<charT, traits>::operator>> (unsigned long long& n)
@@ -712,6 +719,7 @@ basic_istream<charT, traits>::operator>> (float& f)
     }
     return *this;
 }
+
 template <class charT, class traits>
 basic_istream<charT, traits>&
 basic_istream<charT, traits>::operator>> (double& f)
@@ -749,6 +757,7 @@ basic_istream<charT, traits>::operator>> (double& f)
     }
     return *this;
 }
+
 template <class charT, class traits>
 basic_istream<charT, traits>&
 basic_istream<charT, traits>::operator>> (long double& f)
@@ -824,6 +833,7 @@ basic_istream<charT, traits>::operator>> (void*& p)
     }
     return *this;
 }
+
 template <class charT, class traits>
 basic_istream<charT, traits>&
 basic_istream<charT, traits>::operator>> (basic_streambuf<char_type, traits>* sb)
@@ -845,8 +855,7 @@ basic_istream<charT, traits>::operator>> (basic_streambuf<char_type, traits>* sb
                     err |= ios_base::eofbit;
                     break;
                 }
-                if (traits::eq_int_type (sb->sputc (traits::to_char_type (c)),
-                                         traits::eof()))
+                if (traits::eq_int_type (sb->sputc (traits::to_char_type (c)), traits::eof()))
                 {
                     break;
                 }
@@ -872,12 +881,14 @@ basic_istream<charT, traits>::operator>> (basic_streambuf<char_type, traits>* sb
     base::setstate (err);
     return *this;
 }
+
 template <class charT, class traits>
 inline streamsize
 basic_istream<charT, traits>::gcount () const
 {
     return gcount_;
 }
+
 template <class charT, class traits>
 typename basic_istream<charT, traits>::int_type
 basic_istream<charT, traits>::get ()
@@ -915,6 +926,7 @@ basic_istream<charT, traits>::get ()
     }
     return c;
 }
+
 template <class charT, class traits>
 inline basic_istream<charT, traits>&
 basic_istream<charT, traits>::get (char_type& c)
@@ -926,12 +938,14 @@ basic_istream<charT, traits>::get (char_type& c)
     }
     return *this;
 }
+
 template <class charT, class traits>
 inline basic_istream<charT, traits>&
 basic_istream<charT, traits>::get (char_type* s, streamsize n)
 {
     return get (s, n, base::widen ('\n'));
 }
+
 template <class charT, class traits>
 basic_istream<charT, traits>&
 basic_istream<charT, traits>::get (char_type* s, streamsize n, char_type delim)
@@ -991,16 +1005,17 @@ basic_istream<charT, traits>::get (char_type* s, streamsize n, char_type delim)
     }
     return *this;
 }
+
 template <class charT, class traits>
 inline basic_istream<charT, traits>&
 basic_istream<charT, traits>::get (basic_streambuf<char_type, traits>& sb)
 {
     return get (sb, base::widen ('\n'));
 }
+
 template <class charT, class traits>
 basic_istream<charT, traits>&
-basic_istream<charT, traits>::get (basic_streambuf<char_type, traits>& sb,
-                                   char_type                           delim)
+basic_istream<charT, traits>::get (basic_streambuf<char_type, traits>& sb, char_type delim)
 {
     sentry ok (*this, true);
     if (ok)
@@ -1044,12 +1059,14 @@ basic_istream<charT, traits>::get (basic_streambuf<char_type, traits>& sb,
     }
     return *this;
 }
+
 template <class charT, class traits>
 inline basic_istream<charT, traits>&
 basic_istream<charT, traits>::getline (char_type* s, streamsize n)
 {
     return getline (s, n, base::widen ('\n'));
 }
+
 template <class charT, class traits>
 basic_istream<charT, traits>&
 basic_istream<charT, traits>::getline (char_type* s, streamsize n, char_type delim)
@@ -1115,6 +1132,7 @@ basic_istream<charT, traits>::getline (char_type* s, streamsize n, char_type del
     }
     return *this;
 }
+
 template <class charT, class traits>
 basic_istream<charT, traits>&
 basic_istream<charT, traits>::ignore (streamsize n, int_type delim)
@@ -1162,6 +1180,7 @@ basic_istream<charT, traits>::ignore (streamsize n, int_type delim)
     }
     return *this;
 }
+
 template <class charT, class traits>
 inline typename basic_istream<charT, traits>::int_type
 basic_istream<charT, traits>::peek ()
@@ -1172,6 +1191,7 @@ basic_istream<charT, traits>::peek ()
     }
     return traits::eof();
 }
+
 template <class charT, class traits>
 basic_istream<charT, traits>&
 basic_istream<charT, traits>::read (char_type* s, streamsize n)
@@ -1211,6 +1231,7 @@ basic_istream<charT, traits>::read (char_type* s, streamsize n)
     }
     return *this;
 }
+
 template <class charT, class traits>
 streamsize
 basic_istream<charT, traits>::readsome (char_type* s, streamsize n)
@@ -1231,6 +1252,7 @@ basic_istream<charT, traits>::readsome (char_type* s, streamsize n)
     }
     return gcount_;
 }
+
 template <class charT, class traits>
 basic_istream<charT, traits>&
 basic_istream<charT, traits>::putback (char_type c)
@@ -1262,6 +1284,7 @@ basic_istream<charT, traits>::putback (char_type c)
     }
     return *this;
 }
+
 template <class charT, class traits>
 basic_istream<charT, traits>&
 basic_istream<charT, traits>::unget ()
@@ -1293,6 +1316,7 @@ basic_istream<charT, traits>::unget ()
     }
     return *this;
 }
+
 template <class charT, class traits>
 int
 basic_istream<charT, traits>::sync ()
@@ -1327,6 +1351,7 @@ basic_istream<charT, traits>::sync ()
     }
     return -1;
 }
+
 template <class charT, class traits>
 typename basic_istream<charT, traits>::pos_type
 basic_istream<charT, traits>::tellg ()
@@ -1353,6 +1378,7 @@ basic_istream<charT, traits>::tellg ()
     }
     return pos_type (-1);
 }
+
 template <class charT, class traits>
 basic_istream<charT, traits>&
 basic_istream<charT, traits>::seekg (pos_type pos)
@@ -1387,6 +1413,7 @@ basic_istream<charT, traits>::seekg (pos_type pos)
     }
     return *this;
 }
+
 template <class charT, class traits>
 basic_istream<charT, traits>&
 basic_istream<charT, traits>::seekg (off_type off, ios_base::seekdir dir)
@@ -1421,6 +1448,7 @@ basic_istream<charT, traits>::seekg (off_type off, ios_base::seekdir dir)
     }
     return *this;
 }
+
 template <class charT, class traits>
 basic_istream<charT, traits>&
 operator>> (basic_istream<charT, traits>& in, charT& c)
@@ -1433,8 +1461,7 @@ operator>> (basic_istream<charT, traits>& in, charT& c)
         try
         {
 #endif
-            typename basic_istream<charT, traits>::int_type ci =
-                in.rdbuf()->sbumpc();
+            typename basic_istream<charT, traits>::int_type ci = in.rdbuf()->sbumpc();
             if (!traits::eq_int_type (ci, traits::eof()))
             {
                 c = traits::to_char_type (ci);
@@ -1458,6 +1485,7 @@ operator>> (basic_istream<charT, traits>& in, charT& c)
     }
     return in;
 }
+
 template <class traits>
 basic_istream<char, traits>&
 operator>> (basic_istream<char, traits>& in, unsigned char& c)
@@ -1470,6 +1498,7 @@ operator>> (basic_istream<char, traits>& in, unsigned char& c)
     }
     return in;
 }
+
 template <class traits>
 basic_istream<char, traits>&
 operator>> (basic_istream<char, traits>& in, signed char& c)
@@ -1482,6 +1511,7 @@ operator>> (basic_istream<char, traits>& in, signed char& c)
     }
     return in;
 }
+
 template <class charT, class traits>
 basic_istream<charT, traits>&
 operator>> (basic_istream<charT, traits>& in, charT* s)
@@ -1512,15 +1542,13 @@ operator>> (basic_istream<charT, traits>& in, charT* s)
             bool didnt_read_one = true;
             while (n > 0)
             {
-                typename basic_istream<charT, traits>::int_type ci =
-                    in.rdbuf()->sgetc();
+                typename basic_istream<charT, traits>::int_type ci = in.rdbuf()->sgetc();
                 if (traits::eq_int_type (ci, traits::eof()))
                 {
                     err |= ios_base::eofbit;
                     break;
                 }
-                typename basic_istream<charT, traits>::char_type c =
-                    traits::to_char_type (ci);
+                typename basic_istream<charT, traits>::char_type c = traits::to_char_type (ci);
 #ifndef _MSL_NO_LOCALE
                 if (ct.is (ct.space, c) || traits::eq (c, charT()))
 #else
@@ -1553,6 +1581,7 @@ operator>> (basic_istream<charT, traits>& in, charT* s)
     }
     return in;
 }
+
 template <class traits>
 inline basic_istream<char, traits>&
 operator>> (basic_istream<char, traits>& in, unsigned char* s)
@@ -1560,6 +1589,7 @@ operator>> (basic_istream<char, traits>& in, unsigned char* s)
     in >> reinterpret_cast<char*> (s);
     return in;
 }
+
 template <class traits>
 inline basic_istream<char, traits>&
 operator>> (basic_istream<char, traits>& in, signed char* s)
@@ -1567,6 +1597,7 @@ operator>> (basic_istream<char, traits>& in, signed char* s)
     in >> reinterpret_cast<char*> (s);
     return in;
 }
+
 template <class charT, class traits>
 basic_istream<charT, traits>&
 ws (basic_istream<charT, traits>& is)
@@ -1588,8 +1619,7 @@ ws (basic_istream<charT, traits>& is)
             {
             }
 #else
-        for (c = is.rdbuf()->sgetc(); isspace (traits::to_char_type (c));
-             c = is.rdbuf()->snextc())
+        for (c = is.rdbuf()->sgetc(); isspace (traits::to_char_type (c)); c = is.rdbuf()->snextc())
         {
         }
 #endif
@@ -1612,6 +1642,7 @@ ws (basic_istream<charT, traits>& is)
     }
     return is;
 }
+
 // some utilities...
 
 template <class InputIterator, class charT>
@@ -1666,8 +1697,7 @@ __read_escaped_char (InputIterator& first, InputIterator last, charT& c)
                         c = charT (0);
                         if (++first != last)
                         {
-                            for (int i = 0; i < sizeof (charT) * __char<>::bits / 4;
-                                 ++i)
+                            for (int i = 0; i < sizeof (charT) * __char<>::bits / 4; ++i)
                             {
                                 char d = char (*first);
                                 if (!_CSTD::isxdigit (d))
@@ -1731,11 +1761,10 @@ __read_escaped_char (InputIterator& first, InputIterator last, charT& c)
     ++first;
     return escaped;
 }
+
 template <class charT1, class traits, class charT2>
 basic_istream<charT1, traits>&
-__read_formatted_char (basic_istream<charT1, traits>& is,
-                       charT2&                        c,
-                       bool&                          was_quoted)
+__read_formatted_char (basic_istream<charT1, traits>& is, charT2& c, bool& was_quoted)
 {
     typename basic_istream<charT1, traits>::sentry ok (is);
     if (ok)
@@ -1778,6 +1807,7 @@ __read_formatted_char (basic_istream<charT1, traits>& is,
     }
     return is;
 }
+
 template <class charT1, class traits1, class charT2, class traits2, class Allocator>
 basic_istream<charT1, traits1>&
 __read_formatted_string (basic_istream<charT1, traits1>&           is,
@@ -1786,7 +1816,7 @@ __read_formatted_string (basic_istream<charT1, traits1>&           is,
     typedef typename basic_string<charT2, traits2, Allocator>::size_type size_type;
     typename basic_istream<charT1, traits1>::sentry                      ok (is);
     size_type                                                            count = 0;
-    bool within_quotes = false;
+    bool                                                                 within_quotes = false;
     if (ok)
     {
 #ifndef _MSL_NO_LOCALE
@@ -1853,6 +1883,7 @@ __read_formatted_string (basic_istream<charT1, traits1>&           is,
     is.width (0);
     return is;
 }
+
 // basic_iostream Implementation
 
 template <class charT, class traits>
@@ -1860,12 +1891,12 @@ basic_iostream<charT, traits>::basic_iostream (basic_streambuf<charT, traits>* s
   : basic_istream<charT, traits> (sb)
 {
 }
+
 // string extraction
 
 template <class charT, class traits, class Allocator>
 basic_istream<charT, traits>&
-operator>> (basic_istream<charT, traits>&           is,
-            basic_string<charT, traits, Allocator>& str)
+operator>> (basic_istream<charT, traits>& is, basic_string<charT, traits, Allocator>& str)
 {
     typedef typename basic_string<charT, traits, Allocator>::size_type size_type;
     typename basic_istream<charT, traits>::sentry                      ok (is);
@@ -1916,11 +1947,10 @@ operator>> (basic_istream<charT, traits>&           is,
     }
     return is;
 }
+
 template <class charT, class traits, class Allocator>
 basic_istream<charT, traits>&
-getline (basic_istream<charT, traits>&           is,
-         basic_string<charT, traits, Allocator>& str,
-         charT                                   delim)
+getline (basic_istream<charT, traits>& is, basic_string<charT, traits, Allocator>& str, charT delim)
 {
     typedef typename basic_string<charT, traits, Allocator>::size_type size_type;
     typename basic_istream<charT, traits>::sentry                      ok (is, true);
@@ -1956,13 +1986,14 @@ getline (basic_istream<charT, traits>&           is,
     }
     return is;
 }
+
 template <class charT, class traits, class Allocator>
 inline basic_istream<charT, traits>&
-getline (basic_istream<charT, traits>&           is,
-         basic_string<charT, traits, Allocator>& str)
+getline (basic_istream<charT, traits>& is, basic_string<charT, traits, Allocator>& str)
 {
     return getline (is, str, is.widen ('\n'));
 }
+
 // bitset extraction
 
 template <class InputIterator, class charT, class traits>

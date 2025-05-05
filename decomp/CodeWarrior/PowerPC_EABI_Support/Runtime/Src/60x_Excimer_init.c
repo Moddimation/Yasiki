@@ -38,6 +38,7 @@ AUTHORS
 #pragma section code_type ".init"
 
 asm void init_board ();
+
 asm void
 init_board ()
 {
@@ -64,8 +65,7 @@ init_board ()
         0x007a // dbat0l in r3
 
         isync mtspr    SPR_IBAT0L,
-        r5 isync mtspr SPR_IBAT0U, r4 isync mtspr SPR_DBAT0L,
-        r3 isync mtspr SPR_DBAT0U,
+        r5 isync mtspr SPR_IBAT0U, r4 isync mtspr SPR_DBAT0L, r3 isync mtspr SPR_DBAT0U,
         r4 isync sync
 
             // Static RAM mapping
@@ -84,8 +84,7 @@ init_board ()
         0x0012 // dbat1l, ibat1l in r3
 
         isync mtspr    SPR_IBAT1L,
-        r3 isync mtspr SPR_IBAT1U, r4 isync mtspr SPR_DBAT1L,
-        r3 isync mtspr SPR_DBAT1U,
+        r3 isync mtspr SPR_IBAT1U, r4 isync mtspr SPR_DBAT1L, r3 isync mtspr SPR_DBAT1U,
         r4 isync sync
 
             // IO mapping
@@ -107,14 +106,12 @@ init_board ()
         0x003a // dbat2l in r3
 
         isync mtspr    SPR_IBAT2L,
-        r5 isync mtspr SPR_IBAT2U, r4 isync mtspr SPR_DBAT2L,
-        r3 isync mtspr SPR_DBAT2U,
+        r5 isync mtspr SPR_IBAT2U, r4 isync mtspr SPR_DBAT2L, r3 isync mtspr SPR_DBAT2U,
         r4 isync sync
 
             // BAT3 is unused
             mtspr      SPR_IBAT3L,
-        r0 isync mtspr SPR_IBAT3U, r0 isync mtspr SPR_DBAT3L,
-        r0 isync mtspr SPR_DBAT3U,
+        r0 isync mtspr SPR_IBAT3U, r0 isync mtspr SPR_DBAT3L, r0 isync mtspr SPR_DBAT3U,
         r0 isync sync
 
             // enable instruction and data address translation

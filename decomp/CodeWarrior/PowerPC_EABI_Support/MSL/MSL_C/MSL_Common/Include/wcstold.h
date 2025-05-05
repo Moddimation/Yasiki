@@ -42,8 +42,7 @@ _MSL_END_EXTERN_C                          /*- cc 010409 -*/
                                             * hh  990121 Fixed __std
                                             * mm  990326 Changes to prototype to allow split of string functions from file
                                             * i/o                                 hh  990507 Wrapped wint_t up in __std(), 2
-                                            * places                                 cc  010405 removed                                        pragma options align
-                                            * native and reset                                 cc  010409 updated defines to
-                                            * JWW new                                 namespace macros                                        JWW 010618 Use cname
-                                            * headers exclusively to prevent namespace                                        pollution in C++
+                                            * places                                 cc  010405 removed                                        pragma options align                                        native and
+                                            * reset                                 cc  010409 updated defines to                                        JWW new                                        namespace macros
+                                            * JWW 010618 Use cname                                        headers exclusively to prevent namespace                                        pollution in C++
                                             */

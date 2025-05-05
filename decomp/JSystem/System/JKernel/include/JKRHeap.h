@@ -1,12 +1,8 @@
-#ifndef __JKR_HEAP_HPP__
-#define __JKR_HEAP_HPP__
+#ifndef __JKR_HEAP_H__
+#define __JKR_HEAP_H__
 
-#include <JKRDisposer.hpp>
-#include <JSUList.hpp>
-
-// find where to put these
-#define constructor explicit
-#define destructor  virtual
+#include <JKRDisposer.h>
+#include <JSUList.h>
 
 typedef void* JKRHeapObj;
 
@@ -16,8 +12,8 @@ public:
     constructor JKRHeap (JKRHeapObj, u32, JKRHeap*, bool);
     destructor ~JKRHeap();
 
-    static JKRHeap* initArena (char**, u32*, size_t size);
-    static void     alloc (u32, size_t, JKRHeap* heap);
+    static JKRHeap* initArena (char**, u32*, int size);
+    static void     alloc (u32, int, JKRHeap* heap);
     static JKRHeap* findFromRoot (JKRHeapObj);
     static void     copyMemory (JKRHeapObj, JKRHeapObj, u32);
 
@@ -29,11 +25,11 @@ public:
     void dispose (JKRHeapObj, JKRHeapObj);
     void dispose ();
 
-    virtual void alloc (u32, size_t);
+    virtual void alloc (u32, int);
     virtual void free (JKRHeapObj);
     virtual void freeAll ();
     virtual void freeTail ();
-    virtual void resize (JKRHeapObj size_t);
+    virtual void resize (JKRHeapObj, int);
     virtual u32  getSize (JKRHeapObj);
     virtual u32  getFreeSize ();
     virtual u32  getTotalFreeSize ();

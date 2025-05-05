@@ -6,6 +6,7 @@
 #include "Portable/serpoll.h"
 #include "stddef.h"
 #include "string.h"
+
 DSError
 TRKSuppAccessFile (u32         file_handle,
                    u8*         data,
@@ -48,8 +49,7 @@ TRKSuppAccessFile (u32         file_handle,
         error = TRKGetFreeBuffer (&bufferId, &buffer);
 
         if (error == DS_NoError)
-            error = TRKAppendBuffer1_ui8 (buffer,
-                                          read ? DSMSG_ReadFile : DSMSG_WriteFile);
+            error = TRKAppendBuffer1_ui8 (buffer, read ? DSMSG_ReadFile : DSMSG_WriteFile);
 
         if (error == DS_NoError)
             error = TRKAppendBuffer1_ui32 (buffer, file_handle);
@@ -94,8 +94,7 @@ TRKSuppAccessFile (u32         file_handle,
                     }
 
                     if (replyLength <= length)
-                        error = TRKReadBuffer_ui8 (
-                            replyBuffer, data + done, replyLength);
+                        error = TRKReadBuffer_ui8 (replyBuffer, data + done, replyLength);
                 }
 
                 if (replyLength != length)
@@ -122,6 +121,7 @@ TRKSuppAccessFile (u32         file_handle,
     *count = done;
     return error;
 }
+
 DSError
 TRKRequestSend (TRKBuffer* msgBuf, int* bufferId, u32 p1, u32 p2, int p3)
 {
@@ -135,8 +135,7 @@ TRKRequestSend (TRKBuffer* msgBuf, int* bufferId, u32 p1, u32 p2, int p3)
 
     *bufferId = -1;
 
-    for (tries = p2 + 1; tries != 0 && *bufferId == -1 && error == DS_NoError;
-         tries--)
+    for (tries = p2 + 1; tries != 0 && *bufferId == -1 && error == DS_NoError; tries--)
     {
         error = TRKMessageSend ((TRK_Msg*)msgBuf);
         if (error == DS_NoError)
@@ -163,8 +162,7 @@ TRKRequestSend (TRKBuffer* msgBuf, int* bufferId, u32 p1, u32 p2, int p3)
                 buffer = TRKGetBuffer (*bufferId);
                 TRKSetBufferPosition (buffer, 0);
 
-                if ((error = TRKReadBuffer1_ui8 (buffer, &msg_command)) !=
-                    DS_NoError)
+                if ((error = TRKReadBuffer1_ui8 (buffer, &msg_command)) != DS_NoError)
                     break;
 
                 if (msg_command >= DSMSG_ReplyACK)
@@ -186,8 +184,7 @@ TRKRequestSend (TRKBuffer* msgBuf, int* bufferId, u32 p1, u32 p2, int p3)
                 }
                 if (error == DS_NoError && !badReply)
                 {
-                    if (msg_command != DSMSG_ReplyACK ||
-                        msg_error != DSREPLY_NoError)
+                    if (msg_command != DSMSG_ReplyACK || msg_error != DSREPLY_NoError)
                     {
                         badReply = TRUE;
                     }

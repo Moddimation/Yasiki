@@ -42,6 +42,7 @@ extern void suspend (void);
 #endif
 
 static int fragmentID = -2;    /* ID given to fragment by exception-handling		*/
+
                                /* valid numbers are 0 - MAX_INT; if -1 then		*/
 /* too many fragments were loaded					*/
 
@@ -53,6 +54,7 @@ GetR2 (void)
      */
     nofralloc mr r3, r2 blr
 }
+
 extern void
 __init_cpp_exceptions (void)
 {
@@ -73,6 +75,7 @@ __init_cpp_exceptions (void)
         fragmentID = __register_fragment (_eti_init_info, R2);
     }
 }
+
 extern void
 __fini_cpp_exceptions (void)
 {

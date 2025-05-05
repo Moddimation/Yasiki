@@ -57,11 +57,12 @@ protected:
 private:
     _RefCountedPtr<char, _Array<char> > data_;
 };
-inline _MSLstring::_MSLstring (const char* value)
-  : data_ (new char[strlen (value) + 1])
+
+inline _MSLstring::_MSLstring (const char* value) : data_ (new char[strlen (value) + 1])
 {
     strcpy (const_cast<char*> (static_cast<const char*> (data_)), value);
 }
+
 inline const char*
 _MSLstring::c_str () const
 {

@@ -46,16 +46,19 @@ namespace std
 class __smanip1;
 class __smanip2;
 class __smanip3;
-template <class charT> class __smanip4;
+template <class charT>
+class __smanip4;
 class __smanip5;
 class __smanip6;
 
-__smanip1                               resetiosflags (ios_base::fmtflags mask);
-__smanip2                               setiosflags (ios_base::fmtflags mask);
-__smanip3                               setbase (int base);
-template <class charT> __smanip4<charT> setfill (charT c);
-__smanip5                               setprecision (int n);
-__smanip6                               setw (int n);
+__smanip1 resetiosflags (ios_base::fmtflags mask);
+__smanip2 setiosflags (ios_base::fmtflags mask);
+__smanip3 setbase (int base);
+template <class charT>
+__smanip4<charT> setfill (charT c);
+__smanip5        setprecision (int n);
+__smanip6        setw (int n);
+
 // resetiosflags Implementation
 
 class __smanip1
@@ -67,15 +70,16 @@ public:
 private:
     ios_base::fmtflags mask_;
 };
-inline __smanip1::__smanip1 (ios_base::fmtflags mask) : mask_ (mask)
-{
-}
+
+inline __smanip1::__smanip1 (ios_base::fmtflags mask) : mask_ (mask) {}
+
 inline ios_base&
 __smanip1::resetiosflags (ios_base& str) const
 {
     str.setf (ios_base::fmtflags (0), mask_);
     return str;
 }
+
 template <class charT, class traits>
 basic_ostream<charT, traits>&
 operator<< (basic_ostream<charT, traits>& out, const __smanip1& s)
@@ -83,6 +87,7 @@ operator<< (basic_ostream<charT, traits>& out, const __smanip1& s)
     s.resetiosflags (out);
     return out;
 }
+
 template <class charT, class traits>
 basic_istream<charT, traits>&
 operator>> (basic_istream<charT, traits>& in, const __smanip1& s)
@@ -90,11 +95,13 @@ operator>> (basic_istream<charT, traits>& in, const __smanip1& s)
     s.resetiosflags (in);
     return in;
 }
+
 inline __smanip1
 resetiosflags (ios_base::fmtflags mask)
 {
     return __smanip1 (mask);
 }
+
 // setiosflags Implementation
 
 class __smanip2
@@ -106,15 +113,16 @@ public:
 private:
     ios_base::fmtflags mask_;
 };
-inline __smanip2::__smanip2 (ios_base::fmtflags mask) : mask_ (mask)
-{
-}
+
+inline __smanip2::__smanip2 (ios_base::fmtflags mask) : mask_ (mask) {}
+
 inline ios_base&
 __smanip2::setiosflags (ios_base& str) const
 {
     str.setf (mask_);
     return str;
 }
+
 template <class charT, class traits>
 basic_ostream<charT, traits>&
 operator<< (basic_ostream<charT, traits>& out, const __smanip2& s)
@@ -122,6 +130,7 @@ operator<< (basic_ostream<charT, traits>& out, const __smanip2& s)
     s.setiosflags (out);
     return out;
 }
+
 template <class charT, class traits>
 basic_istream<charT, traits>&
 operator>> (basic_istream<charT, traits>& in, const __smanip2& s)
@@ -129,11 +138,13 @@ operator>> (basic_istream<charT, traits>& in, const __smanip2& s)
     s.setiosflags (in);
     return in;
 }
+
 inline __smanip2
 setiosflags (ios_base::fmtflags mask)
 {
     return __smanip2 (mask);
 }
+
 // setiosflags Implementation
 
 class __smanip3
@@ -145,9 +156,9 @@ public:
 private:
     int base_;
 };
-inline __smanip3::__smanip3 (int base) : base_ (base)
-{
-}
+
+inline __smanip3::__smanip3 (int base) : base_ (base) {}
+
 inline ios_base&
 __smanip3::setbase (ios_base& str) const
 {
@@ -158,6 +169,7 @@ __smanip3::setbase (ios_base& str) const
               ios_base::basefield);
     return str;
 }
+
 template <class charT, class traits>
 basic_ostream<charT, traits>&
 operator<< (basic_ostream<charT, traits>& out, const __smanip3& s)
@@ -165,6 +177,7 @@ operator<< (basic_ostream<charT, traits>& out, const __smanip3& s)
     s.setbase (out);
     return out;
 }
+
 template <class charT, class traits>
 basic_istream<charT, traits>&
 operator>> (basic_istream<charT, traits>& in, const __smanip3& s)
@@ -172,14 +185,17 @@ operator>> (basic_istream<charT, traits>& in, const __smanip3& s)
     s.setbase (in);
     return in;
 }
+
 inline __smanip3
 setbase (int base)
 {
     return __smanip3 (base);
 }
+
 // setfill Implementation
 
-template <class charT> class __smanip4
+template <class charT>
+class __smanip4
 {
 public:
     __smanip4 (charT c);
@@ -203,9 +219,12 @@ public:
 private:
     charT c_;
 };
-template <class charT> inline __smanip4<charT>::__smanip4 (charT c) : c_ (c)
+
+template <class charT>
+inline __smanip4<charT>::__smanip4 (charT c) : c_ (c)
 {
 }
+
 template <class charT, class traits>
 basic_ostream<charT, traits>&
 operator<< (basic_ostream<charT, traits>& out, const __smanip4<charT>& s)
@@ -213,12 +232,14 @@ operator<< (basic_ostream<charT, traits>& out, const __smanip4<charT>& s)
     s.setfill (out);
     return out;
 }
+
 template <class charT>
 inline __smanip4<charT>
 setfill (charT c)
 {
     return __smanip4<charT> (c);
 }
+
 // setprecision Implementation
 
 class __smanip5
@@ -230,15 +251,16 @@ public:
 private:
     int n_;
 };
-inline __smanip5::__smanip5 (int n) : n_ (n)
-{
-}
+
+inline __smanip5::__smanip5 (int n) : n_ (n) {}
+
 inline ios_base&
 __smanip5::setprecision (ios_base& str) const
 {
     str.precision (n_);
     return str;
 }
+
 template <class charT, class traits>
 basic_ostream<charT, traits>&
 operator<< (basic_ostream<charT, traits>& out, const __smanip5& s)
@@ -246,6 +268,7 @@ operator<< (basic_ostream<charT, traits>& out, const __smanip5& s)
     s.setprecision (out);
     return out;
 }
+
 template <class charT, class traits>
 basic_istream<charT, traits>&
 operator>> (basic_istream<charT, traits>& in, const __smanip5& s)
@@ -253,11 +276,13 @@ operator>> (basic_istream<charT, traits>& in, const __smanip5& s)
     s.setprecision (in);
     return in;
 }
+
 inline __smanip5
 setprecision (int n)
 {
     return __smanip5 (n);
 }
+
 // setw Implementation
 
 class __smanip6
@@ -269,15 +294,16 @@ public:
 private:
     int n_;
 };
-inline __smanip6::__smanip6 (int n) : n_ (n)
-{
-}
+
+inline __smanip6::__smanip6 (int n) : n_ (n) {}
+
 inline ios_base&
 __smanip6::setw (ios_base& str) const
 {
     str.width (n_);
     return str;
 }
+
 template <class charT, class traits>
 basic_ostream<charT, traits>&
 operator<< (basic_ostream<charT, traits>& out, const __smanip6& s)
@@ -285,6 +311,7 @@ operator<< (basic_ostream<charT, traits>& out, const __smanip6& s)
     s.setw (out);
     return out;
 }
+
 template <class charT, class traits>
 basic_istream<charT, traits>&
 operator>> (basic_istream<charT, traits>& in, const __smanip6& s)
@@ -292,6 +319,7 @@ operator>> (basic_istream<charT, traits>& in, const __smanip6& s)
     s.setw (in);
     return in;
 }
+
 inline __smanip6
 setw (int n)
 {

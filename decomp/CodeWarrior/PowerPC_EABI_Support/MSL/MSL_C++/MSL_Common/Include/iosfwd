@@ -44,53 +44,58 @@ namespace std
 {
 #endif
 
-template <class charT> struct char_traits;
+template <class charT>
+struct char_traits;
 
-template <class T> class allocator;
+template <class T>
+class allocator;
 
 #ifndef _MSL_NO_IO
 
-template <class charT, class traits = char_traits<charT> > class basic_ios;
+template <class charT, class traits = char_traits<charT> >
+class basic_ios;
 
-template <class charT, class traits = char_traits<charT> > class basic_streambuf;
+template <class charT, class traits = char_traits<charT> >
+class basic_streambuf;
 
-template <class charT, class traits = char_traits<charT> > class basic_istream;
+template <class charT, class traits = char_traits<charT> >
+class basic_istream;
 
-template <class charT, class traits = char_traits<charT> > class basic_ostream;
+template <class charT, class traits = char_traits<charT> >
+class basic_ostream;
 
-template <class charT, class traits = char_traits<charT> > class basic_iostream;
+template <class charT, class traits = char_traits<charT> >
+class basic_iostream;
 
-template <class charT,
-          class traits = char_traits<charT>,
-          class Allocator = allocator<charT> >
+template <class charT, class traits = char_traits<charT>, class Allocator = allocator<charT> >
 class basic_stringbuf;
 
-template <class charT,
-          class traits = char_traits<charT>,
-          class Allocator = allocator<charT> >
+template <class charT, class traits = char_traits<charT>, class Allocator = allocator<charT> >
 class basic_istringstream;
 
-template <class charT,
-          class traits = char_traits<charT>,
-          class Allocator = allocator<charT> >
+template <class charT, class traits = char_traits<charT>, class Allocator = allocator<charT> >
 class basic_ostringstream;
 
-template <class charT,
-          class traits = char_traits<charT>,
-          class Allocator = allocator<charT> >
+template <class charT, class traits = char_traits<charT>, class Allocator = allocator<charT> >
 class basic_stringstream;
 
-template <class charT, class traits = char_traits<charT> > class basic_filebuf;
+template <class charT, class traits = char_traits<charT> >
+class basic_filebuf;
 
-template <class charT, class traits = char_traits<charT> > class basic_ifstream;
+template <class charT, class traits = char_traits<charT> >
+class basic_ifstream;
 
-template <class charT, class traits = char_traits<charT> > class basic_ofstream;
+template <class charT, class traits = char_traits<charT> >
+class basic_ofstream;
 
-template <class charT, class traits = char_traits<charT> > class basic_fstream;
+template <class charT, class traits = char_traits<charT> >
+class basic_fstream;
 
-template <class charT, class traits = char_traits<charT> > class istreambuf_iterator;
+template <class charT, class traits = char_traits<charT> >
+class istreambuf_iterator;
 
-template <class charT, class traits = char_traits<charT> > class ostreambuf_iterator;
+template <class charT, class traits = char_traits<charT> >
+class ostreambuf_iterator;
 
 // template <> struct char_traits<char>;
 
@@ -122,14 +127,10 @@ typedef basic_istream<wchar_t, char_traits<wchar_t> >   wistream;
 typedef basic_ostream<wchar_t, char_traits<wchar_t> >   wostream;
 typedef basic_iostream<wchar_t, char_traits<wchar_t> >  wiostream;
 
-typedef basic_stringbuf<wchar_t, char_traits<wchar_t>, allocator<wchar_t> >
-    wstringbuf;
-typedef basic_istringstream<wchar_t, char_traits<wchar_t>, allocator<wchar_t> >
-    wistringstream;
-typedef basic_ostringstream<wchar_t, char_traits<wchar_t>, allocator<wchar_t> >
-    wostringstream;
-typedef basic_stringstream<wchar_t, char_traits<wchar_t>, allocator<wchar_t> >
-    wstringstream;
+typedef basic_stringbuf<wchar_t, char_traits<wchar_t>, allocator<wchar_t> >     wstringbuf;
+typedef basic_istringstream<wchar_t, char_traits<wchar_t>, allocator<wchar_t> > wistringstream;
+typedef basic_ostringstream<wchar_t, char_traits<wchar_t>, allocator<wchar_t> > wostringstream;
+typedef basic_stringstream<wchar_t, char_traits<wchar_t>, allocator<wchar_t> >  wstringstream;
 
 typedef basic_filebuf<wchar_t, char_traits<wchar_t> >  wfilebuf;
 typedef basic_ifstream<wchar_t, char_traits<wchar_t> > wifstream;
@@ -140,7 +141,8 @@ typedef basic_fstream<wchar_t, char_traits<wchar_t> >  wfstream;
 
 #endif // _MSL_NO_IO
 
-template <class state> class fpos;
+template <class state>
+class fpos;
 // hh 980908 added
 typedef fpos<mbstate_t> streampos;
 typedef fpos<mbstate_t> wstreampos;

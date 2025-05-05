@@ -44,9 +44,12 @@ namespace std
 {
 #endif
 
-template <class T> class allocator;
-template <class charT> struct char_traits;
-template <class charT, class traits, class Allocator> class basic_string;
+template <class T>
+class allocator;
+template <class charT>
+struct char_traits;
+template <class charT, class traits, class Allocator>
+class basic_string;
 typedef basic_string<char, char_traits<char>, allocator<char> > string;
 #ifndef _MSL_NO_WCHART_CPP_SUPPORT
 typedef basic_string<wchar_t, char_traits<wchar_t>, allocator<wchar_t> > wstring;

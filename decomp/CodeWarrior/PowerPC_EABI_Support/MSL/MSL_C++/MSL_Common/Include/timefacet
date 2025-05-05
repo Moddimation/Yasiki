@@ -59,77 +59,92 @@ namespace std
 #endif
 
 #ifndef _MSL_NO_LOCALE
-template <class charT> class timepunct : public locale::facet
+template <class charT>
+class timepunct : public locale::facet
 {
 public:
     typedef charT               char_type;
     typedef basic_string<charT> string_type;
 
     explicit timepunct (size_t refs = 0);
+
     const string_type&
     abrev_weekday (int wday) const
     {
         return __weekday_names_[7 + wday];
     }
+
     const string_type&
     weekday (int wday) const
     {
         return __weekday_names_[wday];
     }
+
     const string_type&
     abrev_monthname (int mon) const
     {
         return __month_names_[12 + mon];
     }
+
     const string_type&
     monthname (int mon) const
     {
         return __month_names_[mon];
     }
+
     const string_type&
     date_time () const
     {
         return __date_time_;
     }
+
     const string_type&
     am_pm (int hour) const
     {
         return __am_pm_[hour / 12];
     }
+
     const string_type&
     time_12hour () const
     {
         return __12hr_time_;
     }
+
     const string_type&
     date () const
     {
         return __date_;
     }
+
     const string_type&
     time () const
     {
         return __time_;
     }
+
     const string_type&
     time_zone (int isdst) const
     {
         return __time_zone_[isdst];
     }
+
     const string_type&
     utc_offset (int isdst) const
     {
         return __utc_offset_[bool (isdst)];
     }
+
     int
     default_century () const
     {
         return __default_century_;
     }
+
     static locale::id id;
 
 protected:
     virtual ÃÂ¢ÃÂÃÂ¾timepunct () {}
+
     string_type __weekday_names_[14];
     string_type __month_names_[24];
     string_type __am_pm_[2];
@@ -142,11 +157,15 @@ protected:
     int         __default_century_;
 };
 
-template <class charT> locale::id timepunct<charT>::id;
-template <class charT> struct __facet_traits<timepunct<charT> >
+template <class charT>
+locale::id timepunct<charT>::id;
+
+template <class charT>
+struct __facet_traits<timepunct<charT> >
 {
     static const bool is_standard = true;
 };
+
 template <class charT>
 void
 __weekday_names (basic_string<charT>* v)
@@ -163,6 +182,7 @@ __weekday_names (basic_string<charT>* v)
         v[i + 7] = v[i].substr (0, 3);
     }
 }
+
 template <class charT>
 void
 __month_names (basic_string<charT>* v)
@@ -184,6 +204,7 @@ __month_names (basic_string<charT>* v)
         v[i + 12] = v[i].substr (0, 3);
     }
 }
+
 template <class charT>
 void
 __am_pm (basic_string<charT>* s)
@@ -191,33 +212,37 @@ __am_pm (basic_string<charT>* s)
     s[0] = __literal ("am", charT());
     s[1] = __literal ("pm", charT());
 }
+
 template <class charT>
 inline void
 __date_time (basic_string<charT>& s)
 {
     s = __literal ("%A %B %d %T %Y", charT());
 }
+
 template <class charT>
 inline void
 __date (basic_string<charT>& s)
 {
     s = __literal ("%A %B %d %Y", charT());
 }
+
 template <class charT>
 inline void
 __time (basic_string<charT>& s)
 {
     s = __literal ("%H:%M:%S", charT());
 }
+
 template <class charT>
 inline void
 __12hr_time (basic_string<charT>& s)
 {
     s = __literal ("%I:%M:%S %p", charT());
 }
+
 template <class charT>
-timepunct<charT>::timepunct (size_t refs)
-  : locale::facet (refs), __default_century_ (20)
+timepunct<charT>::timepunct (size_t refs) : locale::facet (refs), __default_century_ (20)
 {
     __weekday_names (__weekday_names_);
     __month_names (__month_names_);
@@ -227,6 +252,7 @@ timepunct<charT>::timepunct (size_t refs)
     __time (__time_);
     __12hr_time (__12hr_time_);
 }
+
 class time_base
 {
 public:
@@ -239,70 +265,57 @@ public:
         ydm
     };
 };
+
 template <class charT, class InputIterator = istreambuf_iterator<charT> >
 class time_get : public locale::facet, public time_base
 {
 public:
     typedef charT         char_type;
     typedef InputIterator iter_type;
-    explicit time_get (size_t refs = 0)
-      : locale::facet (refs), __date_order_ (no_order)
-    {
-    }
+
+    explicit time_get (size_t refs = 0) : locale::facet (refs), __date_order_ (no_order) {}
+
     dateorder
     date_order () const
     {
         return do_date_order();
     }
+
     iter_type
-    get_time (iter_type          in,
-              iter_type          end,
-              ios_base&          str,
-              ios_base::iostate& err,
-              tm*                t) const
+    get_time (iter_type in, iter_type end, ios_base& str, ios_base::iostate& err, tm* t) const
     {
         return do_get_time (in, end, str, err, t);
     }
+
     iter_type
-    get_date (iter_type          in,
-              iter_type          end,
-              ios_base&          str,
-              ios_base::iostate& err,
-              tm*                t) const
+    get_date (iter_type in, iter_type end, ios_base& str, ios_base::iostate& err, tm* t) const
     {
         return do_get_date (in, end, str, err, t);
     }
+
     iter_type
-    get_weekday (iter_type          in,
-                 iter_type          end,
-                 ios_base&          str,
-                 ios_base::iostate& err,
-                 tm*                t) const
+    get_weekday (iter_type in, iter_type end, ios_base& str, ios_base::iostate& err, tm* t) const
     {
         return do_get_weekday (in, end, str, err, t);
     }
+
     iter_type
-    get_monthname (iter_type          in,
-                   iter_type          end,
-                   ios_base&          str,
-                   ios_base::iostate& err,
-                   tm*                t) const
+    get_monthname (iter_type in, iter_type end, ios_base& str, ios_base::iostate& err, tm* t) const
     {
         return do_get_monthname (in, end, str, err, t);
     }
+
     iter_type
-    get_year (iter_type          in,
-              iter_type          end,
-              ios_base&          str,
-              ios_base::iostate& err,
-              tm*                t) const
+    get_year (iter_type in, iter_type end, ios_base& str, ios_base::iostate& err, tm* t) const
     {
         return do_get_year (in, end, str, err, t);
     }
+
     static locale::id id;
 
 protected:
     virtual ÃÂ¢ÃÂÃÂ¾time_get () {}
+
     virtual dateorder do_date_order () const;
     virtual iter_type do_get_time (iter_type          in,
                                    iter_type          end,
@@ -340,6 +353,7 @@ protected:
 
 private:
 };
+
 template <class charT, class InputIterator>
 struct __facet_traits<time_get<charT, InputIterator> >
 {
@@ -348,12 +362,14 @@ struct __facet_traits<time_get<charT, InputIterator> >
 
 template <class charT, class InputIterator>
 locale::id time_get<charT, InputIterator>::id;
+
 template <class charT, class InputIterator>
 inline time_base::dateorder
 time_get<charT, InputIterator>::do_date_order () const
 {
     return __date_order_;
 }
+
 template <class charT, class InputIterator>
 typename time_get<charT, InputIterator>::iter_type
 time_get<charT, InputIterator>::__do_parse (iter_type                  in,
@@ -376,20 +392,20 @@ time_get<charT, InputIterator>::__do_parse (iter_type                  in,
     dec (str);
     typedef typename timepunct<charT>::string_type string_type;
     string_type                                    patternc (pattern);
-    const long                     ignore = numeric_limits<long>::min();
-    long                           second = ignore;
-    long                           minute = ignore;
-    long                           hour = ignore;
-    long                           day = ignore;
-    long                           month = ignore;
-    long                           year = ignore;
-    long                           weekday = ignore;
-    long                           isdst = ignore;
-    bool                           hour12 = false;
-    bool                           is_pm = false;
-    bool                           increment = true;
-    typename string_type::iterator i = patternc.begin();
-    typename string_type::iterator e = patternc.end();
+    const long                                     ignore = numeric_limits<long>::min();
+    long                                           second = ignore;
+    long                                           minute = ignore;
+    long                                           hour = ignore;
+    long                                           day = ignore;
+    long                                           month = ignore;
+    long                                           year = ignore;
+    long                                           weekday = ignore;
+    long                                           isdst = ignore;
+    bool                                           hour12 = false;
+    bool                                           is_pm = false;
+    bool                                           increment = true;
+    typename string_type::iterator                 i = patternc.begin();
+    typename string_type::iterator                 e = patternc.end();
     while (i < e && err == ios_base::goodbit)
     {
         charT formatw = *i;
@@ -415,8 +431,7 @@ time_get<charT, InputIterator>::__do_parse (iter_type                  in,
                 case 'A':
                     {
                         const string_type* p1 = &tp.weekday (0);
-                        const string_type* p2 =
-                            __parse_a_word (in, end, p1, p1 + 14, ct, err);
+                        const string_type* p2 = __parse_a_word (in, end, p1, p1 + 14, ct, err);
                         if (p2 == p1 + 14)
                         {
                             err |= ios_base::failbit;
@@ -432,8 +447,7 @@ time_get<charT, InputIterator>::__do_parse (iter_type                  in,
                 case 'B':
                     {
                         const string_type* p1 = &tp.monthname (0);
-                        const string_type* p2 =
-                            __parse_a_word (in, end, p1, p1 + 24, ct, err);
+                        const string_type* p2 = __parse_a_word (in, end, p1, p1 + 24, ct, err);
                         if (p2 == p1 + 24)
                         {
                             err |= ios_base::failbit;
@@ -483,8 +497,7 @@ time_get<charT, InputIterator>::__do_parse (iter_type                  in,
                 case 'I':
                     in = __get_integral (in, end, str, err, hour, true);
                     hour12 = format == 'I';
-                    if (!hour12 && (hour < 0 || 23 < hour) ||
-                        hour12 && (hour < 1 || 12 < hour))
+                    if (!hour12 && (hour < 0 || 23 < hour) || hour12 && (hour < 1 || 12 < hour))
                     {
                         err |= ios_base::failbit;
                     }
@@ -517,8 +530,7 @@ time_get<charT, InputIterator>::__do_parse (iter_type                  in,
                 case 'p':
                     {
                         const string_type* p1 = &tp.am_pm (0);
-                        const string_type* p2 =
-                            __parse_a_word (in, end, p1, p1 + 2, ct, err);
+                        const string_type* p2 = __parse_a_word (in, end, p1, p1 + 2, ct, err);
                         if (p2 == p1 + 2)
                         {
                             err |= ios_base::failbit;
@@ -627,8 +639,7 @@ time_get<charT, InputIterator>::__do_parse (iter_type                  in,
                         }
                         else
                         {
-                            const string_type* p2 =
-                                __parse_a_word (in, end, p1, p1 + 2, ct, err);
+                            const string_type* p2 = __parse_a_word (in, end, p1, p1 + 2, ct, err);
                             if (p2 == p1 + 2)
                             {
                                 err |= ios_base::failbit;
@@ -649,8 +660,7 @@ time_get<charT, InputIterator>::__do_parse (iter_type                  in,
                         }
                         else
                         {
-                            const string_type* p2 =
-                                __parse_a_word (in, end, p1, p1 + 2, ct, err);
+                            const string_type* p2 = __parse_a_word (in, end, p1, p1 + 2, ct, err);
                             if (p2 == p1 + 2)
                             {
                                 err |= ios_base::failbit;
@@ -770,59 +780,83 @@ time_get<charT, InputIterator>::__do_parse (iter_type                  in,
     }
     return in;
 }
+
 template <class charT, class InputIterator>
 inline typename time_get<charT, InputIterator>::iter_type
-time_get<charT, InputIterator>::do_get_time (
-    iter_type in, iter_type end, ios_base& str, ios_base::iostate& err, tm* t) const
+time_get<charT, InputIterator>::do_get_time (iter_type          in,
+                                             iter_type          end,
+                                             ios_base&          str,
+                                             ios_base::iostate& err,
+                                             tm*                t) const
 {
     const timepunct<charT>& tp = _USE_FACET (timepunct<charT>, str.getloc());
     return __do_parse (in, end, str, err, tp.time(), t);
 }
+
 template <class charT, class InputIterator>
 inline typename time_get<charT, InputIterator>::iter_type
-time_get<charT, InputIterator>::do_get_date (
-    iter_type in, iter_type end, ios_base& str, ios_base::iostate& err, tm* t) const
+time_get<charT, InputIterator>::do_get_date (iter_type          in,
+                                             iter_type          end,
+                                             ios_base&          str,
+                                             ios_base::iostate& err,
+                                             tm*                t) const
 {
     const timepunct<charT>& tp = _USE_FACET (timepunct<charT>, str.getloc());
     return __do_parse (in, end, str, err, tp.date(), t);
 }
+
 template <class charT, class InputIterator>
 inline typename time_get<charT, InputIterator>::iter_type
-time_get<charT, InputIterator>::do_get_weekday (
-    iter_type in, iter_type end, ios_base& str, ios_base::iostate& err, tm* t) const
+time_get<charT, InputIterator>::do_get_weekday (iter_type          in,
+                                                iter_type          end,
+                                                ios_base&          str,
+                                                ios_base::iostate& err,
+                                                tm*                t) const
 {
     const ctype<charT>& ct = _USE_FACET (ctype<charT>, str.getloc());
     return __do_parse (in, end, str, err, ct.widen ("%A"), t);
 }
+
 template <class charT, class InputIterator>
 inline typename time_get<charT, InputIterator>::iter_type
-time_get<charT, InputIterator>::do_get_monthname (
-    iter_type in, iter_type end, ios_base& str, ios_base::iostate& err, tm* t) const
+time_get<charT, InputIterator>::do_get_monthname (iter_type          in,
+                                                  iter_type          end,
+                                                  ios_base&          str,
+                                                  ios_base::iostate& err,
+                                                  tm*                t) const
 {
     const ctype<charT>& ct = _USE_FACET (ctype<charT>, str.getloc());
     return __do_parse (in, end, str, err, ct.widen ("%B"), t);
 }
+
 template <class charT, class InputIterator>
 inline typename time_get<charT, InputIterator>::iter_type
-time_get<charT, InputIterator>::do_get_year (
-    iter_type in, iter_type end, ios_base& str, ios_base::iostate& err, tm* t) const
+time_get<charT, InputIterator>::do_get_year (iter_type          in,
+                                             iter_type          end,
+                                             ios_base&          str,
+                                             ios_base::iostate& err,
+                                             tm*                t) const
 {
     const ctype<charT>& ct = _USE_FACET (ctype<charT>, str.getloc());
     return __do_parse (in, end, str, err, ct.widen ("%Y"), t);
 }
+
 template <class charT, class OutputIterator = ostreambuf_iterator<charT> >
 class time_put : public locale::facet
 {
 public:
     typedef charT          char_type;
     typedef OutputIterator iter_type;
+
     explicit time_put (size_t refs = 0) : locale::facet (refs) {}
+
     iter_type put (iter_type    out,
                    ios_base&    str,
                    char_type    fill,
                    const tm*    tmb,
                    const charT* pattern,
                    const charT* pat_end) const;
+
     iter_type
     put (iter_type out,
          ios_base& str,
@@ -833,10 +867,12 @@ public:
     {
         return do_put (out, str, fill, tmb, format, modifier);
     }
+
     static locale::id id;
 
 protected:
     virtual ÃÂ¢ÃÂÃÂ¾time_put () {}
+
     virtual iter_type do_put (iter_type out,
                               ios_base& str,
                               char_type fill,
@@ -861,6 +897,7 @@ private:
                            const timepunct<charT>& tp,
                            const ctype<charT>&     ct) const;
 };
+
 template <class charT, class OutputIterator>
 struct __facet_traits<time_put<charT, OutputIterator> >
 {
@@ -869,6 +906,7 @@ struct __facet_traits<time_put<charT, OutputIterator> >
 
 template <class charT, class OutputIterator>
 locale::id time_put<charT, OutputIterator>::id;
+
 template <class charT, class OutputIterator>
 typename time_put<charT, OutputIterator>::iter_type
 time_put<charT, OutputIterator>::put (iter_type    out,
@@ -914,6 +952,7 @@ time_put<charT, OutputIterator>::put (iter_type    out,
     }
     return out;
 }
+
 template <class charT, class OutputIterator>
 inline OutputIterator
 __put_2digits (OutputIterator out, int num, char modifier)
@@ -925,6 +964,7 @@ __put_2digits (OutputIterator out, int num, char modifier)
     *out++ = charT (num % 10 + '0');
     return out;
 }
+
 template <bool>
 inline bool
 __is_leap (int year)
@@ -943,6 +983,7 @@ __is_leap (int year)
     }
     return true;
 }
+
 template <bool b>
 int
 __iso_week (int yday, int wday, int& year)
@@ -965,6 +1006,7 @@ __iso_week (int yday, int wday, int& year)
     yday += 3 - (yday - wday + 3) % 7;
     return yday / 7 + 1;
 }
+
 template <class charT, class OutputIterator>
 typename time_put<charT, OutputIterator>::iter_type
 time_put<charT, OutputIterator>::__put_lower (iter_type               out,
@@ -1082,6 +1124,7 @@ time_put<charT, OutputIterator>::__put_lower (iter_type               out,
     }
     return out;
 }
+
 template <class charT, class OutputIterator>
 typename time_put<charT, OutputIterator>::iter_type
 time_put<charT, OutputIterator>::__put_upper (iter_type               out,
@@ -1113,15 +1156,15 @@ time_put<charT, OutputIterator>::__put_upper (iter_type               out,
             break;
         case 'D':
             {
-                const string_type s = modifier == 'O' ? ct.widen ("%Om/%Od/%y")
-                                                      : ct.widen ("%m/%d/%y");
+                const string_type s =
+                    modifier == 'O' ? ct.widen ("%Om/%Od/%y") : ct.widen ("%m/%d/%y");
                 out = put (out, str, fill, tmb, s.begin(), s.end());
             }
             break;
         case 'F':
             {
-                const string_type s = modifier == 'O' ? ct.widen ("%Y-%Om-%Od")
-                                                      : ct.widen ("%Y-%m-%d");
+                const string_type s =
+                    modifier == 'O' ? ct.widen ("%Y-%Om-%Od") : ct.widen ("%Y-%m-%d");
                 out = put (out, str, fill, tmb, s.begin(), s.end());
             }
             break;
@@ -1150,8 +1193,7 @@ time_put<charT, OutputIterator>::__put_upper (iter_type               out,
             break;
         case 'R':
             {
-                const string_type s =
-                    modifier == 'O' ? ct.widen ("%OH:%M") : ct.widen ("%H:%M");
+                const string_type s = modifier == 'O' ? ct.widen ("%OH:%M") : ct.widen ("%H:%M");
                 out = put (out, str, fill, tmb, s.begin(), s.end());
             }
             break;
@@ -1188,8 +1230,9 @@ time_put<charT, OutputIterator>::__put_upper (iter_type               out,
         case 'V':
             {
                 int y = tmb->tm_year + 1900;
-                out = __put_2digits<charT> (
-                    out, __iso_week<true> (tmb->tm_yday, tmb->tm_wday, y), modifier);
+                out = __put_2digits<charT> (out,
+                                            __iso_week<true> (tmb->tm_yday, tmb->tm_wday, y),
+                                            modifier);
             }
             break;
         case 'W':
@@ -1231,6 +1274,7 @@ time_put<charT, OutputIterator>::__put_upper (iter_type               out,
     }
     return out;
 }
+
 template <class charT, class OutputIterator>
 typename time_put<charT, OutputIterator>::iter_type
 time_put<charT, OutputIterator>::do_put (iter_type out,
@@ -1253,7 +1297,9 @@ time_put<charT, OutputIterator>::do_put (iter_type out,
     const ctype<charT>& ct = _USE_FACET (ctype<charT>, str.getloc());
     return __put_upper (out, str, fill, tmb, format, modifier, tp, ct);
 }
-template <class charT> class timepunct_byname : public timepunct<charT>
+
+template <class charT>
+class timepunct_byname : public timepunct<charT>
 {
 public:
     typedef charT               char_type;
@@ -1264,6 +1310,7 @@ public:
 protected:
     virtual ÃÂ¢ÃÂÃÂ¾timepunct_byname () {}
 };
+
 inline const string&
 __time_marker (char)
 {
@@ -1299,9 +1346,8 @@ timepunct_byname<charT>::timepunct_byname (const char* std_name, size_t refs)
         ifstream infile (std_name);
         if (!infile.is_open())
 #ifndef _MSL_NO_EXCEPTIONS
-            throw runtime_error (
-                string ("timepunct_byname constructed with unsupported name: ") +
-                std_name);
+            throw runtime_error (string ("timepunct_byname constructed with unsupported name: ") +
+                                 std_name);
 #else
             __msl_error ("timepunct_byname constructed with unsupported name");
 #endif
@@ -1333,14 +1379,14 @@ timepunct_byname<charT>::timepunct_byname (const char* std_name, size_t refs)
                 time_names[10] = "utc_offset";
                 time_names[11] = "default_century";
                 const string (&ctime_names)[12] = time_names;
-                const ctype<char>& ct = _USE_FACET (ctype<char>, infile.getloc());
-                ios_base::iostate  err = ios_base::goodbit;
+                const ctype<char>&        ct = _USE_FACET (ctype<char>, infile.getloc());
+                ios_base::iostate         err = ios_base::goodbit;
                 istreambuf_iterator<char> in (infile), end;
                 while (true)
                 {
                     ws (infile);
-                    const string* i = __parse_a_word (
-                        in, end, ctime_names, ctime_names + 12, ct, err);
+                    const string* i =
+                        __parse_a_word (in, end, ctime_names, ctime_names + 12, ct, err);
                     if (err)
                     {
                         infile.setstate (err);
@@ -1363,8 +1409,7 @@ timepunct_byname<charT>::timepunct_byname (const char* std_name, size_t refs)
                             {
                                 for (int j = 0; j < 7; ++j)
                                 {
-                                    __read_formatted_string (
-                                        infile, base::__weekday_names_[j + 7]);
+                                    __read_formatted_string (infile, base::__weekday_names_[j + 7]);
                                 }
                             }
                             break;
@@ -1372,8 +1417,7 @@ timepunct_byname<charT>::timepunct_byname (const char* std_name, size_t refs)
                             {
                                 for (int j = 0; j < 7; ++j)
                                 {
-                                    __read_formatted_string (
-                                        infile, base::__weekday_names_[j]);
+                                    __read_formatted_string (infile, base::__weekday_names_[j]);
                                 }
                             }
                             break;
@@ -1381,8 +1425,7 @@ timepunct_byname<charT>::timepunct_byname (const char* std_name, size_t refs)
                             {
                                 for (int j = 0; j < 12; ++j)
                                 {
-                                    __read_formatted_string (
-                                        infile, base::__month_names_[j + 12]);
+                                    __read_formatted_string (infile, base::__month_names_[j + 12]);
                                 }
                             }
                             break;
@@ -1390,8 +1433,7 @@ timepunct_byname<charT>::timepunct_byname (const char* std_name, size_t refs)
                             {
                                 for (int j = 0; j < 12; ++j)
                                 {
-                                    __read_formatted_string (
-                                        infile, base::__month_names_[j]);
+                                    __read_formatted_string (infile, base::__month_names_[j]);
                                 }
                             }
                             break;
@@ -1430,22 +1472,21 @@ timepunct_byname<charT>::timepunct_byname (const char* std_name, size_t refs)
         }
         if (!success)
 #ifndef _MSL_NO_EXCEPTIONS
-            throw runtime_error (string ("timepunct_byname file input error: ") +
-                                 std_name);
+            throw runtime_error (string ("timepunct_byname file input error: ") + std_name);
 #else
             __msl_error ("timepunct_byname file input error");
 #endif
 #else                            // _MSL_NO_FILE_IO
 #ifndef _MSL_NO_EXCEPTIONS
-        throw runtime_error (
-            string ("timepunct_byname constructed with unsupported name: ") +
-            std_name);
+        throw runtime_error (string ("timepunct_byname constructed with unsupported name: ") +
+                             std_name);
 #else
         __msl_error ("timepunct_byname constructed with unsupported name");
 #endif
 #endif                           // _MSL_NO_FILE_IO
     }
 }
+
 template <class charT, class InputIterator = istreambuf_iterator<charT> >
 class time_get_byname : public time_get<charT, InputIterator>
 {
@@ -1458,11 +1499,13 @@ public:
 protected:
     virtual ÃÂ¢ÃÂÃÂ¾time_get_byname () {}
 };
+
 template <class charT, class InputIterator>
 time_get_byname<charT, InputIterator>::time_get_byname (const char*, size_t refs)
   : time_get<charT, InputIterator> (refs)
 {
 }
+
 template <class charT, class OutputIterator = ostreambuf_iterator<charT> >
 class time_put_byname : public time_put<charT, OutputIterator>
 {
@@ -1475,6 +1518,7 @@ public:
 protected:
     virtual ÃÂ¢ÃÂÃÂ¾time_put_byname () {}
 };
+
 template <class charT, class OutputIterator>
 time_put_byname<charT, OutputIterator>::time_put_byname (const char*, size_t refs)
   : time_put<charT, OutputIterator> (refs)

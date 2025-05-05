@@ -89,15 +89,13 @@ int		__read_console	  (__file_handle handle, unsigned char * buffer,
 #endif
 
 /************************************************************************/
-#pragma overload int __write_console(__file_handle  handle,                         \
-                                     unsigned char* buffer,                         \
-                                     size_t*        count,                          \
+#pragma overload int __write_console(__file_handle  handle,                                        \
+                                     unsigned char* buffer,                                        \
+                                     size_t*        count,                                         \
                                      __idle_proc    idle_proc);
+
 int
-__write_console (__file_handle  handle,
-                 unsigned char* buffer,
-                 size_t*        count,
-                 __idle_proc    idle_proc)
+__write_console (__file_handle handle, unsigned char* buffer, size_t* count, __idle_proc idle_proc)
 {
 #pragma unused(handle, idle_proc)
 
@@ -129,6 +127,7 @@ __write_console (__file_handle  handle,
 
     return (__no_io_error);
 }
+
 /************************************************************************/
 int
 __close_console (__file_handle handle)
@@ -137,6 +136,7 @@ __close_console (__file_handle handle)
 
     return (__no_io_error);
 }
+
 /************************************************************************/
 // #pragma overload UARTError __init_uart_console(void);
 
@@ -168,6 +168,7 @@ __delete_file (const char* name)
 {
     return kUARTNoError;
 }
+
 /*
  * Unimplemented for GCN  - Host IO does not support this
  */
@@ -177,6 +178,7 @@ __rename_file (const char* old_name, const char* new_name)
 {
     return kUARTNoError;
 }
+
 /*
  * Unimplemented for GCN  - Host IO does not support this
  */
@@ -188,6 +190,7 @@ __temp_file_name (char* name_str, void* ptr)
         name_str[0] = 0;
     }
 }
+
 /*	Change Record
  *	09-Jul-97 SCM	Created
  *	20-Aug-99 SCM	Enhanced __read_console() to return when it receives an EOL.

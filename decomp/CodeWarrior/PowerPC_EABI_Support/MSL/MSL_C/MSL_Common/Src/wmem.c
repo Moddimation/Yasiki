@@ -27,14 +27,17 @@
 
 #include <string.h>
 #include <wchar.h>
+
 wchar_t*(wmemcpy)(wchar_t* dst, const wchar_t* src, size_t n)
 {
     return memcpy (dst, src, n * 2);
 }
+
 wchar_t*(wmemmove)(wchar_t* dst, const wchar_t* src, size_t n)
 {
     return memmove (dst, src, n * 2);
 }
+
 wchar_t*(wmemset)(wchar_t* dst, wchar_t val, size_t n)
 {
     wchar_t* save = dst;
@@ -47,6 +50,7 @@ wchar_t*(wmemset)(wchar_t* dst, wchar_t val, size_t n)
 
     return (save);                                                 /*- mm 990712 -*/
 }
+
 wchar_t*(wmemchr)(const wchar_t* src, wchar_t val, size_t n)
 {
     while (n)
@@ -61,6 +65,7 @@ wchar_t*(wmemchr)(const wchar_t* src, wchar_t val, size_t n)
 
     return (NULL);
 }
+
 int (wmemcmp) (const wchar_t* src1, const wchar_t* src2, size_t n) /*- mm 990629 -*/
 {
     int diff = 0;                                                  /*- mm 990629 -*/

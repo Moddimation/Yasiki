@@ -45,12 +45,14 @@ namespace std
 #ifndef _MSL_NO_LOCALE
 
 size_t locale::id::id_count_s = 0;
+
 locale&
 locale::global () _MSL_THROW
 {
     static locale G (classic());
     return G;
 }
+
 locale
 locale::global (const locale& loc)
 {
@@ -63,12 +65,14 @@ locale::global (const locale& loc)
     }
     return result;
 }
+
 const locale&
 locale::classic () _MSL_THROW
 {
     static locale C (imp_type (new __locale_imp<true> ("C")));
     return C;
 }
+
 // ctype<char>
 
 // hh 990109
@@ -185,8 +189,8 @@ unsigned char __upper_map[ctype<char>::table_size] = {
 template <>
 #endif
 ctype<char>::ctype (const mask* tab, bool del, size_t refs)
-  : locale::facet (refs), __table_ (tab), __lower_map_ (__lower_map),
-    __upper_map_ (__upper_map), __owns_ (del)
+  : locale::facet (refs), __table_ (tab), __lower_map_ (__lower_map), __upper_map_ (__upper_map),
+    __owns_ (del)
 {
     if (__table_ == 0)
     {
@@ -327,6 +331,7 @@ ctype<char>::do_narrow (const char* low, const char* high, char, char* to) const
     memcpy (to, low, size_t (high - low));
     return high;
 }
+
 // codecvt<char, char, mbstate_t>
 
 #ifndef __GNUC__
@@ -336,9 +341,9 @@ locale::id codecvt<char, char, mbstate_t>::id;
 
 // codecvt<wchar_t, char, mbstate_t>
 
-#if defined(__MWERKS__) && __MWERKS__ < 0x2500 &&                                   \
-    !defined(_MSL_NO_WCHART_CPP_SUPPORT)
-template <> locale::id codecvt<wchar_t, char, mbstate_t>::id;
+#if defined(__MWERKS__) && __MWERKS__ < 0x2500 && !defined(_MSL_NO_WCHART_CPP_SUPPORT)
+template <>
+locale::id codecvt<wchar_t, char, mbstate_t>::id;
 #endif
 
 #endif // _MSL_NO_LOCALE
@@ -434,6 +439,7 @@ _BCD::_BCD (long double x) : exp_ (0), classification_ (0)
     }
 #endif // _MSL_EXTENDED_PRECISION_OUTP
 }
+
 // return 1 if mantissa_[pos]... > 5
 //       -1 if mantissa_[pos]... < 5
 //        0 if mantissa_[pos] == 5 and all following are 0
@@ -460,6 +466,7 @@ _BCD::must_round (size_t pos) const
     }
     return 1;
 }
+
 string
 _BCD::to_string (int precision, int& exponent) const
 {
@@ -509,6 +516,7 @@ _BCD::to_string (int precision, int& exponent) const
     }
     return result;
 }
+
 long double
 _BCD::to_long_double () const
 {
@@ -527,10 +535,12 @@ _BCD::to_long_double () const
 #if 1
 #ifdef _MSL_USING_MSL_C
     decimal d = {
-        0, 0, 0, { 0, "" }
+        0,
+        0,
+        0,
+        { 0, "" }
     };
-    d.sig.length =
-        min<unsigned char> (decform_digits_, (unsigned char)mantissa_.size());
+    d.sig.length = min<unsigned char> (decform_digits_, (unsigned char)mantissa_.size());
     for (unsigned char i = 0; i < d.sig.length; ++i)
     {
         d.sig.text[i] = (unsigned char)(mantissa_[i] + '0');
@@ -599,8 +609,7 @@ _BCD::to_long_double () const
     }
     if (feedback1 < *this)
     {
-        long double next_guess =
-            nextafter (first_guess, static_cast<long double> (INFINITY));
+        long double next_guess = nextafter (first_guess, static_cast<long double> (INFINITY));
         if (isinf (next_guess))
         {
             return next_guess;
@@ -625,9 +634,8 @@ _BCD::to_long_double () const
         }
         return next_guess;
     }
-    long double next_guess =
-        nextafter (first_guess, static_cast<long double> (-INFINITY));
-    _BCD feedback2 (next_guess);
+    long double next_guess = nextafter (first_guess, static_cast<long double> (-INFINITY));
+    _BCD        feedback2 (next_guess);
     while (feedback2 > *this)
     {
         feedback1 = feedback2;
@@ -645,8 +653,7 @@ _BCD::to_long_double () const
 #endif
 }
 #ifdef _MSL_EXTENDED_PRECISION_OUTP
-_BCD::_BCD (const char* mantissa, int exponent)
-  : mantissa_ (mantissa), exp_ ((short)exponent)
+_BCD::_BCD (const char* mantissa, int exponent) : mantissa_ (mantissa), exp_ ((short)exponent)
 {
     string::iterator i = mantissa_.begin();
     string::iterator e = mantissa_.end();
@@ -656,6 +663,7 @@ _BCD::_BCD (const char* mantissa, int exponent)
     }
     trim();
 }
+
 _BCD&
 _BCD::operator+= (_BCD rhs)
 {
@@ -670,8 +678,7 @@ _BCD::operator+= (_BCD rhs)
     }
     if (exp_ > rhs.exp_)
     {
-        rhs.mantissa_.insert (
-            rhs.mantissa_.begin(), size_t (exp_ - rhs.exp_), char());
+        rhs.mantissa_.insert (rhs.mantissa_.begin(), size_t (exp_ - rhs.exp_), char());
         rhs.exp_ = exp_;
     }
     else if (exp_ < rhs.exp_)
@@ -715,6 +722,7 @@ _BCD::operator+= (_BCD rhs)
     trim();
     return *this;
 }
+
 _BCD&
 _BCD::operator-= (_BCD rhs)
 {
@@ -724,8 +732,7 @@ _BCD::operator-= (_BCD rhs)
     }
     if (exp_ > rhs.exp_)
     {
-        rhs.mantissa_.insert (
-            rhs.mantissa_.begin(), size_t (exp_ - rhs.exp_), char());
+        rhs.mantissa_.insert (rhs.mantissa_.begin(), size_t (exp_ - rhs.exp_), char());
         rhs.exp_ = exp_;
     }
     if (rhs.mantissa_.size() > mantissa_.size())
@@ -768,6 +775,7 @@ _BCD::operator-= (_BCD rhs)
     trim();
     return *this;
 }
+
 _BCD&
 _BCD::operator*= (_BCD rhs)
 {      // hh 990401
@@ -817,6 +825,7 @@ _BCD::operator*= (_BCD rhs)
     trim();
     return *this;
 }
+
 _BCD
 __two_exp (short x)
 {
@@ -827,25 +836,26 @@ __two_exp (short x)
         case -64:
             {
                 static const _BCD one_two_to_the_negative_sixtyfourth (
-                    "542101086242752217003726400434970855712890625", -20);
+                    "542101086242752217003726400434970855712890625",
+                    -20);
                 return one_two_to_the_negative_sixtyfourth;
             }
         case -53:
             {
                 static const _BCD one_two_to_the_negative_fiftythird (
-                    "11102230246251565404236316680908203125", -16);
+                    "11102230246251565404236316680908203125",
+                    -16);
                 return one_two_to_the_negative_fiftythird;
             }
         case -32:
             {
-                static const _BCD one_two_to_the_negative_thirtysecond (
-                    "23283064365386962890625", -10);
+                static const _BCD one_two_to_the_negative_thirtysecond ("23283064365386962890625",
+                                                                        -10);
                 return one_two_to_the_negative_thirtysecond;
             }
         case -16:
             {
-                static const _BCD one_two_to_the_negative_sixteenth ("152587890625",
-                                                                     -5);
+                static const _BCD one_two_to_the_negative_sixteenth ("152587890625", -5);
                 return one_two_to_the_negative_sixteenth;
             }
         case -8:
@@ -943,6 +953,7 @@ __two_exp (short x)
     }
     return temp;
 }
+
 bool
 operator< (const _BCD& x, const _BCD& y)
 {

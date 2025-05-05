@@ -27,6 +27,7 @@
 #define _MSL_CRITICAL_REGIONS_H
 
 #include <ansi_parms.h>
+
 _MSL_BEGIN_EXTERN_C /*- cc 010409 -*/
 
     enum critical_regions
@@ -49,7 +50,7 @@ _MSL_BEGIN_EXTERN_C /*- cc 010409 -*/
 
 #else
 
-#if __dest_os == __mac_os || __dest_os == __win32_os || __dest_os == __emb_68k ||   \
+#if __dest_os == __mac_os || __dest_os == __win32_os || __dest_os == __emb_68k ||                  \
     __dest_os == __dolphin_os
 #define __init_critical_regions()
 #define __kill_critical_regions()

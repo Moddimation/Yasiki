@@ -39,7 +39,9 @@ typedef struct
     short refnum;
     void* spec;
 } temp_file_info;
+
 static temp_file_info temp_info[FOPEN_MAX];
+
 static temp_file_info*
 find_temp_info (short refnum)
 {
@@ -56,12 +58,14 @@ find_temp_info (short refnum)
 
     return (0);
 }
+
 int
 __open_file (const char* name, __file_modes mode, __file_handle* handle)
 {
 #warning "replace return with an OS call that opens the file"
     return (__no_io_error);
 }
+
 int
 __open_temp_file (__file_handle* handle)
 {
@@ -87,57 +91,56 @@ __open_temp_file (__file_handle* handle)
 
     return (ioresult);
 }
+
 int
-__read_file (__file_handle  handle,
-             unsigned char* buffer,
-             size_t*        count,
-             __idle_proc    idle_proc)
+__read_file (__file_handle handle, unsigned char* buffer, size_t* count, __idle_proc idle_proc)
 {
 #warning "replace return with an OS call that reads from the file"
     return (__no_io_error);
 }
+
 int
-__write_file (__file_handle  handle,
-              unsigned char* buffer,
-              size_t*        count,
-              __idle_proc    idle_proc)
+__write_file (__file_handle handle, unsigned char* buffer, size_t* count, __idle_proc idle_proc)
 {
 #warning "replace return with an OS call that writes to the file"
     return (__no_io_error);
 }
+
 int
-__position_file (__file_handle handle,
-                 fpos_t*       position,
-                 int           mode,
-                 __idle_proc   idle_proc)
+__position_file (__file_handle handle, fpos_t* position, int mode, __idle_proc idle_proc)
 {
 #warning "replace return with an OS call that sets the current position in the file"
     return (__no_io_error);
 }
+
 int
 __close_file (__file_handle handle)
 {
 #warning "replace return with an OS call that closes the file"
     return (__no_io_error);
 }
+
 void
 __temp_file_name (char* name_str, void* filespec)
 {
-#warning                                                                            \
+#warning                                                                                           \
     "copy the temp file's name into name_str and the file specification structure into filespec"
 }
+
 int
 __delete_file (const char* name)
 {
 #warning "replace return with an OS call that deletes the file"
     return (__no_io_error);
 }
+
 int
 __rename_file (const char* old_name, const char* new_name)
 {
 #warning "replace return with an OS call that renames the file"
     return (__no_io_error);
 }
+
 /* Change record
  *	20-Jul-97 MEA  First code release.
  */

@@ -11,6 +11,7 @@ extern f32 cosf (f32);
 
 // .sbss
 static float Unit01[2] = { 0.0f, 1.0f };
+
 void
 C_MTXIdentity (Mtx m)
 {
@@ -28,6 +29,7 @@ C_MTXIdentity (Mtx m)
     m[2][2] = 1;
     m[2][3] = 0;
 }
+
 void
 PSMTXIdentity (register Mtx m)
 {
@@ -50,6 +52,7 @@ PSMTXIdentity (register Mtx m)
     }
 #endif
 }
+
 void
 C_MTXCopy (Mtx src, Mtx dst)
 {
@@ -71,6 +74,7 @@ C_MTXCopy (Mtx src, Mtx dst)
         dst[2][3] = src[2][3];
     }
 }
+
 asm void
 PSMTXCopy (register Mtx src, register Mtx dst)
 {
@@ -89,6 +93,7 @@ PSMTXCopy (register Mtx src, register Mtx dst)
     psq_st f5, 40(dst), 0, qr0;
 #endif
 }
+
 void
 C_MTXConcat (Mtx a, Mtx b, Mtx ab)
 {
@@ -111,26 +116,24 @@ C_MTXConcat (Mtx a, Mtx b, Mtx ab)
     m[0][0] = 0 + a[0][2] * b[2][0] + ((a[0][0] * b[0][0]) + (a[0][1] * b[1][0]));
     m[0][1] = 0 + a[0][2] * b[2][1] + ((a[0][0] * b[0][1]) + (a[0][1] * b[1][1]));
     m[0][2] = 0 + a[0][2] * b[2][2] + ((a[0][0] * b[0][2]) + (a[0][1] * b[1][2]));
-    m[0][3] =
-        a[0][3] + (a[0][2] * b[2][3] + (a[0][0] * b[0][3] + (a[0][1] * b[1][3])));
+    m[0][3] = a[0][3] + (a[0][2] * b[2][3] + (a[0][0] * b[0][3] + (a[0][1] * b[1][3])));
 
     m[1][0] = 0 + a[1][2] * b[2][0] + ((a[1][0] * b[0][0]) + (a[1][1] * b[1][0]));
     m[1][1] = 0 + a[1][2] * b[2][1] + ((a[1][0] * b[0][1]) + (a[1][1] * b[1][1]));
     m[1][2] = 0 + a[1][2] * b[2][2] + ((a[1][0] * b[0][2]) + (a[1][1] * b[1][2]));
-    m[1][3] =
-        a[1][3] + (a[1][2] * b[2][3] + (a[1][0] * b[0][3] + (a[1][1] * b[1][3])));
+    m[1][3] = a[1][3] + (a[1][2] * b[2][3] + (a[1][0] * b[0][3] + (a[1][1] * b[1][3])));
 
     m[2][0] = 0 + a[2][2] * b[2][0] + ((a[2][0] * b[0][0]) + (a[2][1] * b[1][0]));
     m[2][1] = 0 + a[2][2] * b[2][1] + ((a[2][0] * b[0][1]) + (a[2][1] * b[1][1]));
     m[2][2] = 0 + a[2][2] * b[2][2] + ((a[2][0] * b[0][2]) + (a[2][1] * b[1][2]));
-    m[2][3] =
-        a[2][3] + (a[2][2] * b[2][3] + (a[2][0] * b[0][3] + (a[2][1] * b[1][3])));
+    m[2][3] = a[2][3] + (a[2][2] * b[2][3] + (a[2][0] * b[0][3] + (a[2][1] * b[1][3])));
 
     if (m == mTmp)
     {
         C_MTXCopy (mTmp, ab);
     }
 }
+
 asm void
 PSMTXConcat (register Mtx mA, register Mtx mB, register Mtx mAB)
 {
@@ -189,6 +192,7 @@ PSMTXConcat (register Mtx mA, register Mtx mB, register Mtx mAB)
     blr;
 #endif
 }
+
 void
 C_MTXTranspose (Mtx src, Mtx xPose)
 {
@@ -224,6 +228,7 @@ C_MTXTranspose (Mtx src, Mtx xPose)
         C_MTXCopy (mTmp, xPose);
     }
 }
+
 void
 PSMTXTranspose (register Mtx src, register Mtx xPose)
 {
@@ -272,6 +277,7 @@ PSMTXTranspose (register Mtx src, register Mtx xPose)
 #endif
     xPose[2][2] = row0b;
 }
+
 u32
 C_MTXInverse (Mtx src, Mtx inv)
 {
@@ -291,8 +297,7 @@ C_MTXInverse (Mtx src, Mtx inv)
         m = inv;
     }
     det = ((((src[2][1] * (src[0][2] * src[1][0])) +
-             ((src[2][2] * (src[0][0] * src[1][1])) +
-              (src[2][0] * (src[0][1] * src[1][2])))) -
+             ((src[2][2] * (src[0][0] * src[1][1])) + (src[2][0] * (src[0][1] * src[1][2])))) -
             (src[0][2] * (src[2][0] * src[1][1]))) -
            (src[2][2] * (src[1][0] * src[0][1]))) -
           (src[1][2] * (src[0][0] * src[2][1]));
@@ -313,12 +318,9 @@ C_MTXInverse (Mtx src, Mtx inv)
     m[2][1] = (det * -((src[0][0] * src[2][1]) - (src[2][0] * src[0][1])));
     m[2][2] = (det * +((src[0][0] * src[1][1]) - (src[1][0] * src[0][1])));
 
-    m[0][3] =
-        ((-m[0][0] * src[0][3]) - (m[0][1] * src[1][3])) - (m[0][2] * src[2][3]);
-    m[1][3] =
-        ((-m[1][0] * src[0][3]) - (m[1][1] * src[1][3])) - (m[1][2] * src[2][3]);
-    m[2][3] =
-        ((-m[2][0] * src[0][3]) - (m[2][1] * src[1][3])) - (m[2][2] * src[2][3]);
+    m[0][3] = ((-m[0][0] * src[0][3]) - (m[0][1] * src[1][3])) - (m[0][2] * src[2][3]);
+    m[1][3] = ((-m[1][0] * src[0][3]) - (m[1][1] * src[1][3])) - (m[1][2] * src[2][3]);
+    m[2][3] = ((-m[2][0] * src[0][3]) - (m[2][1] * src[1][3])) - (m[2][2] * src[2][3]);
 
     if (m == mTmp)
     {
@@ -326,6 +328,7 @@ C_MTXInverse (Mtx src, Mtx inv)
     }
     return 1;
 }
+
 asm u32
 PSMTXInverse (register Mtx src, register Mtx inv)
 {
@@ -398,6 +401,7 @@ skip_return:
     psq_st     f7, 44(inv), 1, qr0;
 #endif
 }
+
 u32
 C_MTXInvXpose (Mtx src, Mtx invX)
 {
@@ -417,8 +421,7 @@ C_MTXInvXpose (Mtx src, Mtx invX)
         m = invX;
     }
     det = ((((src[2][1] * (src[0][2] * src[1][0])) +
-             ((src[2][2] * (src[0][0] * src[1][1])) +
-              (src[2][0] * (src[0][1] * src[1][2])))) -
+             ((src[2][2] * (src[0][0] * src[1][1])) + (src[2][0] * (src[0][1] * src[1][2])))) -
             (src[0][2] * (src[2][0] * src[1][1]))) -
            (src[2][2] * (src[1][0] * src[0][1]))) -
           (src[1][2] * (src[0][0] * src[2][1]));
@@ -449,6 +452,7 @@ C_MTXInvXpose (Mtx src, Mtx invX)
     }
     return 1;
 }
+
 asm u32
 PSMTXInvXpose (register Mtx src, register Mtx invX)
 {
@@ -508,6 +512,7 @@ skip_return:
     psq_st   f8, 40(invX), 1, qr0;
 #endif
 }
+
 void
 MTXRotRad (Mtx m, s8 axis, f32 rad)
 {
@@ -519,6 +524,7 @@ MTXRotRad (Mtx m, s8 axis, f32 rad)
     cosA = cosf (rad);
     MTXRotTrig (m, axis, sinA, cosA);
 }
+
 void
 MTXRotTrig (Mtx m, s8 axis, f32 sinA, f32 cosA)
 {
@@ -575,6 +581,7 @@ MTXRotTrig (Mtx m, s8 axis, f32 sinA, f32 cosA)
             break;
     }
 }
+
 void
 MTXRotAxisRad (Mtx m, Vec* axis, f32 rad)
 {
@@ -615,6 +622,7 @@ MTXRotAxisRad (Mtx m, Vec* axis, f32 rad)
     m[2][2] = (c + (t * zSq));
     m[2][3] = 0;
 }
+
 void
 MTXTrans (Mtx m, f32 xT, f32 yT, f32 zT)
 {
@@ -632,12 +640,12 @@ MTXTrans (Mtx m, f32 xT, f32 yT, f32 zT)
     m[2][2] = 1;
     m[2][3] = zT;
 }
+
 void
 MTXTransApply (Mtx src, Mtx dst, f32 xT, f32 yT, f32 zT)
 {
     ASSERTMSGLINE (0x567, src, "MTXTransApply(): NULL MtxPtr 'src' ");
-    ASSERTMSGLINE (0x568,
-                   dst,
+    ASSERTMSGLINE (0x568, dst,
                    "MTXTransApply(): NULL MtxPtr 'src' "); //! wrong assert string
 
     if (src != dst)
@@ -656,6 +664,7 @@ MTXTransApply (Mtx src, Mtx dst, f32 xT, f32 yT, f32 zT)
     dst[1][3] = (src[1][3] + yT);
     dst[2][3] = (src[2][3] + zT);
 }
+
 void
 MTXScale (Mtx m, f32 xS, f32 yS, f32 zS)
 {
@@ -673,6 +682,7 @@ MTXScale (Mtx m, f32 xS, f32 yS, f32 zS)
     m[2][2] = zS;
     m[2][3] = 0;
 }
+
 void
 MTXScaleApply (Mtx src, Mtx dst, f32 xS, f32 yS, f32 zS)
 {
@@ -691,6 +701,7 @@ MTXScaleApply (Mtx src, Mtx dst, f32 xS, f32 yS, f32 zS)
     dst[2][2] = (src[2][2] * zS);
     dst[2][3] = (src[2][3] * zS);
 }
+
 void
 MTXQuat (Mtx m, QuaternionPtr q)
 {
@@ -710,8 +721,7 @@ MTXQuat (Mtx m, QuaternionPtr q)
 
     ASSERTMSGLINE (0x5C9, m, "MTXQuat():  NULL MtxPtr 'm' ");
     ASSERTMSGLINE (0x5CA, q, "MTXQuat():  NULL QuaternionPtr 'q' ");
-    ASSERTMSGLINE (
-        0x5CB, q->x || q->y || q->z || q->w, "MTXQuat():  zero-value quaternion ");
+    ASSERTMSGLINE (0x5CB, q->x || q->y || q->z || q->w, "MTXQuat():  zero-value quaternion ");
     s = 2 / ((q->w * q->w) + ((q->z * q->z) + ((q->x * q->x) + (q->y * q->y))));
     xs = q->x * s;
     ys = q->y * s;
@@ -738,6 +748,7 @@ MTXQuat (Mtx m, QuaternionPtr q)
     m[2][2] = (1 - (xx + yy));
     m[2][3] = 0;
 }
+
 void
 MTXReflect (Mtx m, Vec* p, Vec* n)
 {
@@ -763,6 +774,7 @@ MTXReflect (Mtx m, Vec* p, Vec* n)
     m[2][2] = (1 - (2 * n->z * n->z));
     m[2][3] = (pdotn * n->z);
 }
+
 void
 MTXLookAt (Mtx m, Vec* camPos, Vec* camUp, Vec* target)
 {
@@ -785,8 +797,7 @@ MTXLookAt (Mtx m, Vec* camPos, Vec* camUp, Vec* target)
     m[0][0] = vRight.x;
     m[0][1] = vRight.y;
     m[0][2] = vRight.z;
-    m[0][3] = -((camPos->z * vRight.z) +
-                ((camPos->x * vRight.x) + (camPos->y * vRight.y)));
+    m[0][3] = -((camPos->z * vRight.z) + ((camPos->x * vRight.x) + (camPos->y * vRight.y)));
     m[1][0] = vUp.x;
     m[1][1] = vUp.y;
     m[1][2] = vUp.z;
@@ -794,9 +805,9 @@ MTXLookAt (Mtx m, Vec* camPos, Vec* camUp, Vec* target)
     m[2][0] = vLook.x;
     m[2][1] = vLook.y;
     m[2][2] = vLook.z;
-    m[2][3] =
-        -((camPos->z * vLook.z) + ((camPos->x * vLook.x) + (camPos->y * vLook.y)));
+    m[2][3] = -((camPos->z * vLook.z) + ((camPos->x * vLook.x) + (camPos->y * vLook.y)));
 }
+
 void
 MTXLightFrustum (Mtx m,
                  f32 t,
@@ -812,12 +823,8 @@ MTXLightFrustum (Mtx m,
     f32 tmp;
 
     ASSERTMSGLINE (0x6A2, m, "MTXLightFrustum():  NULL MtxPtr 'm' ");
-    ASSERTMSGLINE (0x6A3,
-                   (t != b),
-                   "MTXLightFrustum():  't' and 'b' clipping planes are equal ");
-    ASSERTMSGLINE (0x6A4,
-                   (l != r),
-                   "MTXLightFrustum():  'l' and 'r' clipping planes are equal ");
+    ASSERTMSGLINE (0x6A3, (t != b), "MTXLightFrustum():  't' and 'b' clipping planes are equal ");
+    ASSERTMSGLINE (0x6A4, (l != r), "MTXLightFrustum():  'l' and 'r' clipping planes are equal ");
 
     tmp = 1 / (r - l);
     m[0][0] = (scaleS * (2 * n * tmp));
@@ -834,9 +841,9 @@ MTXLightFrustum (Mtx m,
     m[2][2] = -1;
     m[2][3] = 0;
 }
+
 void
-MTXLightPerspective (
-    Mtx m, f32 fovY, f32 aspect, f32 scaleS, f32 scaleT, f32 transS, f32 transT)
+MTXLightPerspective (Mtx m, f32 fovY, f32 aspect, f32 scaleS, f32 scaleT, f32 transS, f32 transT)
 {
     f32 angle;
     f32 cot;
@@ -863,24 +870,15 @@ MTXLightPerspective (
     m[2][2] = -1;
     m[2][3] = 0;
 }
+
 void
-MTXLightOrtho (Mtx m,
-               f32 t,
-               f32 b,
-               f32 l,
-               f32 r,
-               f32 scaleS,
-               f32 scaleT,
-               f32 transS,
-               f32 transT)
+MTXLightOrtho (Mtx m, f32 t, f32 b, f32 l, f32 r, f32 scaleS, f32 scaleT, f32 transS, f32 transT)
 {
     f32 tmp;
 
     ASSERTMSGLINE (0x720, m, "MTXLightOrtho():  NULL MtxPtr 'm' ");
-    ASSERTMSGLINE (
-        0x721, (t != b), "MTXLightOrtho():  't' and 'b' clipping planes are equal ");
-    ASSERTMSGLINE (
-        0x722, (l != r), "MTXLightOrtho():  'l' and 'r' clipping planes are equal ");
+    ASSERTMSGLINE (0x721, (t != b), "MTXLightOrtho():  't' and 'b' clipping planes are equal ");
+    ASSERTMSGLINE (0x722, (l != r), "MTXLightOrtho():  'l' and 'r' clipping planes are equal ");
     tmp = 1 / (r - l);
     m[0][0] = (2 * tmp * scaleS);
     m[0][1] = 0;

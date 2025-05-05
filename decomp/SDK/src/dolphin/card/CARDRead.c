@@ -10,6 +10,7 @@
 
 // functions
 static void ReadCallback (s32 chan, s32 result);
+
 s32
 __CARDSeek (CARDFileInfo* fileInfo, s32 length, s32 offset, CARDControl** pcard)
 {
@@ -75,6 +76,7 @@ __CARDSeek (CARDFileInfo* fileInfo, s32 length, s32 offset, CARDControl** pcard)
     *pcard = card;
     return CARD_RESULT_READY;
 }
+
 static void
 ReadCallback (s32 chan, s32 result)
 {
@@ -97,8 +99,7 @@ ReadCallback (s32 chan, s32 result)
         goto error;
     }
 
-    length = TRUNC (fileInfo->offset + card->sectorSize, card->sectorSize) -
-             fileInfo->offset;
+    length = TRUNC (fileInfo->offset + card->sectorSize, card->sectorSize) - fileInfo->offset;
     fileInfo->length -= length;
     if (fileInfo->length <= 0)
     {
@@ -117,12 +118,12 @@ ReadCallback (s32 chan, s32 result)
     ASSERTLINE (0xBC, OFFSET (fileInfo->length, CARD_SEG_SIZE) == 0);
     ASSERTLINE (0xBD, OFFSET (fileInfo->offset, card->sectorSize) == 0);
 
-    result = __CARDRead (chan,
-                         card->sectorSize * (u32)fileInfo->iBlock,
-                         (fileInfo->length < card->sectorSize) ? fileInfo->length
-                                                               : card->sectorSize,
-                         card->buffer,
-                         ReadCallback);
+    result =
+        __CARDRead (chan,
+                    card->sectorSize * (u32)fileInfo->iBlock,
+                    (fileInfo->length < card->sectorSize) ? fileInfo->length : card->sectorSize,
+                    card->buffer,
+                    ReadCallback);
     if (result < 0)
     {
         goto error;
@@ -137,9 +138,9 @@ error:
     ASSERTLINE (0xCE, callback);
     callback (chan, result);
 }
+
 s32
-CARDReadAsync (
-    CARDFileInfo* fileInfo, void* buf, s32 length, s32 offset, CARDCallback callback)
+CARDReadAsync (CARDFileInfo* fileInfo, void* buf, s32 length, s32 offset, CARDCallback callback)
 {
     CARDControl* card;
     s32          result;
@@ -176,8 +177,7 @@ CARDReadAsync (
     card->apiCallback = callback ? callback : __CARDDefaultApiCallback;
 
     offset = (s32)OFFSET (fileInfo->offset, card->sectorSize);
-    length =
-        (length < card->sectorSize - offset) ? length : card->sectorSize - offset;
+    length = (length < card->sectorSize - offset) ? length : card->sectorSize - offset;
     result = __CARDRead (fileInfo->chan,
                          card->sectorSize * (u32)fileInfo->iBlock + offset,
                          length,
@@ -189,6 +189,7 @@ CARDReadAsync (
     }
     return result;
 }
+
 s32
 CARDRead (struct CARDFileInfo* fileInfo, void* buf, s32 length, long offset)
 {
@@ -200,6 +201,7 @@ CARDRead (struct CARDFileInfo* fileInfo, void* buf, s32 length, long offset)
     }
     return __CARDSync (fileInfo->chan);
 }
+
 s32
 CARDCancel (CARDFileInfo* fileInfo)
 {

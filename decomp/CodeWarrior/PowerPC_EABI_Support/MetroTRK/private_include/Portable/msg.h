@@ -4,6 +4,7 @@
 #include "dolphin/types.h"
 
 #include "trk.h"
+
 typedef struct _TRK_Msg
 {
     u8  _00[8];

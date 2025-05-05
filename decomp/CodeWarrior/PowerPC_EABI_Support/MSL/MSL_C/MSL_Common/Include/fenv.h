@@ -55,18 +55,20 @@ typedef long int fexcept_t;
 #define FE_UPWARD     0x00000002
 #define FE_DOWNWARD   0x00000003
 
-#endif                          /* __POWERPC__	*/
+#endif                             /* __POWERPC__	*/
 
 #if __MC68K__
 
 #if __MC68881__
 
 typedef long fexcept_t;
+
 typedef struct
 {
     long FPCR;
     long FPSR;
 } fenv_t;
+
 #define FE_INEXACT   ((long)(8))
 #define FE_DIVBYZERO ((long)(16))
 #define FE_UNDERFLOW ((long)(32))
@@ -84,7 +86,7 @@ typedef short fenv_t;
 #define FE_DIVBYZERO ((short)(8))
 #define FE_INEXACT   ((short)(16))
 
-#endif                          /* __MC68881__	*/
+#endif                             /* __MC68881__	*/
 
 #define FE_TONEAREST  ((short)(0))
 #define FE_UPWARD     ((short)(1))
@@ -97,7 +99,7 @@ typedef short fenv_t;
 #define FE_DBLPREC    ((short)(1))
 #define FE_FLTPREC    ((short)(2))
 
-#endif                          /* __MC68K__	*/
+#endif                             /* __MC68K__	*/
 
 #if __INTEL__
 typedef short fexcept_t;
@@ -118,17 +120,16 @@ typedef long  fenv_t; /* control word/status word  */
 #define FE_DBLPREC    0x00000200
 #define FE_FLTPREC    0x00000000
 
-#endif                          /*  __INTEL__    */
+#endif                             /*  __INTEL__    */
 
 /*    The bitwise OR of all exception macros                                  */
-#define FE_ALL_EXCEPT                                                               \
-    (FE_INEXACT | FE_DIVBYZERO | FE_UNDERFLOW | FE_OVERFLOW | FE_INVALID)
+#define FE_ALL_EXCEPT (FE_INEXACT | FE_DIVBYZERO | FE_UNDERFLOW | FE_OVERFLOW | FE_INVALID)
 /*    Definition of pointer to IEEE default environment object                */
 
 _MSL_BEGIN_EXTERN_C /*- cc 010409 -*/
 
     extern fenv_t _FE_DFL_ENV;
-#define FE_DFL_ENV &_FE_DFL_ENV /* pointer to default environment    */
+#define FE_DFL_ENV    &_FE_DFL_ENV /* pointer to default environment    */
 /*******************************************************************************
  *     The following functions provide access to the exception flags.  The      *
  *     "int" input argument can be constructed by bitwise ORs of the exception  *
@@ -268,33 +269,30 @@ _MSL_IMP_EXP_C void feupdateenv (const fenv_t*);
 _MSL_IMP_EXP_C int fegetprec (void);
 _MSL_IMP_EXP_C int fesetprec (int);
 
-#endif                          /* __MC68K__ */
+#endif                             /* __MC68K__ */
 
 _MSL_END_EXTERN_C /*- cc 010409 -*/
 
-#endif                          /* __MACH__ */
+#endif                             /* __MACH__ */
 
-#endif                          /* _MSL_FENV_H */
+#endif                             /* _MSL_FENV_H */
 
-                                /* Change record:
-                                 * mf  971216 intel impementation complete(including precision functions
-                                 * feset/getprec                                 mf  970715 added support for X86
-                                 * moved header to common\Public                                 Includes                                 ngk 950117
-                                 * Use ConditionalMacros for processor info                                 PAF
-                                 * 940513 Added                                 fegetprec and fesetprec and
-                                 * corresponding macros for 68K                                 PAF 940222                                 Modified
-                                 * for                                 68K compatability                                 ali 920823 included                                 C++
-                                 * extern "C" wrappers to make them C++                                 friendly.                                 ali
-                                 * 930408 changed "enums" to                                 "macros" to be more
-                                 * compatible with the                                 FPCE of NCEG                                 JPO                                 930205
-                                 * Changed function                                 types of
-                                 * feclearexcept,fegetexcept,                                 feraiseexcept, and
-                                 * fesetexcept                                 from int to                                 void to reflect changes in
-                                 * NCEG                                 specification.  Changed definition of
-                                 * FE_DFL_ENV                                 from typedef to #define.                                 Modified
-                                 * comments                                 describing functionality.                                 JWW 001208
-                                 * Added case                                 for targeting Mach-O                                 cc                                 010409 updated
-                                 * defines to                                 JWW new namespace macros                                 JWW 010729
-                                 * Updated Mach-O                                 section to get the system fenv.h
-                                 * from the CoreServices framework
-                                 */
+                                   /* Change record:
+                                    * mf  971216 intel impementation complete(including precision functions
+                                    * feset/getprec                                 mf  970715 added support for X86
+                                    * moved header to common\Public                                 Includes                                    ngk 950117                                    Use
+                                    * ConditionalMacros for processor info                                 PAF                                    940513 Added                                    fegetprec
+                                    * and fesetprec and                                    corresponding macros for 68K                                 PAF 940222
+                                    * Modified                                    for                                 68K compatability                                    ali 920823 included                                    C++                                    extern "C"
+                                    * wrappers to make them C++                                 friendly.                                    ali                                    930408 changed "enums" to
+                                    * "macros" to be more                                    compatible with the                                 FPCE of NCEG                                    JPO                                    930205
+                                    * Changed function                                 types of
+                                    * feclearexcept,fegetexcept,                                 feraiseexcept, and
+                                    * fesetexcept                                 from int to                                 void to
+                                    * reflect changes in                                    NCEG                                 specification.  Changed definition of
+                                    * FE_DFL_ENV                                 from typedef to #define.                                    Modified                                    comments                                    describing
+                                    * functionality.                                 JWW 001208                                    Added case                                    for targeting Mach-O                                    cc
+                                    * 010409 updated                                    defines to                                 JWW new namespace macros                                    JWW 010729
+                                    * Updated Mach-O                                 section to get the system fenv.h
+                                    * from the CoreServices framework
+                                    */

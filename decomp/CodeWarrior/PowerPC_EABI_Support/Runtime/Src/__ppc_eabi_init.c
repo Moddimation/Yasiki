@@ -227,6 +227,7 @@ __init_cpp (void)
         (*constructor)();
     }
 }
+
 static void
 __fini_cpp (void)
 {
@@ -243,12 +244,15 @@ __fini_cpp (void)
 #endif
 
 #pragma overload void abort(void);
+
 void
 abort (void)
 {
     _ExitProcess();
 }
+
 #pragma overload void exit(int status);
+
 void
 exit (int status)
 {
@@ -259,6 +263,7 @@ exit (int status)
 #endif
     _ExitProcess();
 }
+
 /*
  *	_ExitProcess
  *

@@ -116,8 +116,8 @@
 #include "ansi_fp.h"
 #include "lconv.h"
 
-#if (_MWMT && (__dest_os == __win32_os || __dest_os == __wince_os)) /*- mm 010521   \
-                                                                       -*/
+#if (_MWMT && (__dest_os == __win32_os || __dest_os == __wince_os))  /*- mm 010521                 \
+                                                                        -*/
 #include <ThreadLocalData.h>
 #endif
 enum scan_states
@@ -135,10 +135,11 @@ enum scan_states
     exp_digit_loop = 0x0400,
     finished = 0x0800,
     failure = 0x1000,
-    nan_state = 0x2000,                                             /*- mm 990921 -*/
-    infin_state = 0x4000,                                           /*- mm 990921 -*/
-    hex_state = 0x8000                                              /*- mm 990921 -*/
+    nan_state = 0x2000,                                              /*- mm 990921 -*/
+    infin_state = 0x4000,                                            /*- mm 990921 -*/
+    hex_state = 0x8000                                               /*- mm 990921 -*/
 };
+
 enum hex_scan_states
 {
     not_hex = 0x0000,
@@ -152,39 +153,44 @@ enum hex_scan_states
     hex_leading_exp_zeroes = 0x0080,
     hex_exp_digit_loop = 0x0100
 };
-#define MAX_SIG_DIG             20                            /*- mm 970609  -*/
+
+#define MAX_SIG_DIG             20                                   /*- mm 970609  -*/
 
 #define final_state(scan_state) (scan_state & (finished | failure))
 
-#define success(scan_state)                                                         \
-    (scan_state & (leading_sig_zeroes | int_digit_loop | frac_digit_loop |          \
-                   leading_exp_zeroes | exp_digit_loop | finished))
+#define success(scan_state)                                                                        \
+    (scan_state & (leading_sig_zeroes | int_digit_loop | frac_digit_loop | leading_exp_zeroes |    \
+                   exp_digit_loop | finished))
 
-#define fetch()                                                                     \
-    (count++, (*ReadProc) (ReadProcArg, 0, __GetAChar))       /*- mm 990325         \
-                                                                 -*/
-#define unfetch(c) (*ReadProc) (ReadProcArg, c, __UngetAChar) /*- mm 990325 -*/
+#define fetch()                                                                                    \
+    (count++, (*ReadProc) (ReadProcArg, 0, __GetAChar))              /*- mm 990325                 \
+                                                                        -*/
+#define unfetch(c) (*ReadProc) (ReadProcArg, c, __UngetAChar)        /*- mm 990325 -*/
+
 long double
 __strtold (int   max_width,
-           int   (*ReadProc) (void*, int, int),               /*- mm 990325 -*/
-           void* ReadProcArg,                                 /*- mm 990325 -*/
+           int   (*ReadProc) (void*, int, int),                      /*- mm 990325 -*/
+           void* ReadProcArg,                                        /*- mm 990325 -*/
            int*  chars_scanned,
            int*  overflow)
 {
     int     scan_state = start;
     int     hex_scan_state = not_hex;
     int     count = 0;
-    int     spaces = 0;                                       /*- mm 970708 -*/
+    int     spaces = 0;                                              /*- mm 970708 -*/
     int     c;
     decimal d = {
-        0, 0, 0, { 0, "" }
+        0,
+        0,
+        0,
+        { 0, "" }
     };
     int         sig_negative = 0;
     int         exp_negative = 0;
     long        exp_value = 0;
     int         exp_adjust = 0;
     long double result;
-    int         sign_detected = 0;                            /*- mm 990921 -*/
+    int         sign_detected = 0;                                   /*- mm 990921 -*/
 
     unsigned char* chptr = (unsigned char*)&result;
     unsigned char  uch, uch1;
@@ -197,14 +203,13 @@ __strtold (int   max_width,
     int            RadixPointFound = 0;
     short          exponent = 0;
     int            dot;
-#if !((__dest_os == __win32_os || __dest_os == __wince_os) &&                       \
-      _MWMT)                                                  /*- mm 010521 -*/
+#if !((__dest_os == __win32_os || __dest_os == __wince_os) && _MWMT) /*- mm 010521 -*/
     dot = *(unsigned char*)__lconv.decimal_point;
-#else                                                         /*- mm 010503 -*/
+#else                                                                /*- mm 010503 -*/
     struct lconv* lconvptr = _GetThreadLocalData (_MSL_TRUE)->tls_lconv;
     /*- mm 010503 -*/                               /*- cc 010531 -*/
     dot = *(unsigned char*)lconvptr->decimal_point; /*- mm 010503 -*/
-#endif                                                        /*- mm 010503 -*/
+#endif                                                               /*- mm 010503 -*/
     *overflow = 0;
     c = fetch();
 
@@ -216,8 +221,8 @@ __strtold (int   max_width,
                 if (isspace (c))
                 {
                     c = fetch();
-                    count--;                                  /*- mani 970101 -*/
-                    spaces++;                                 /*- mani 970101 -*/
+                    count--;                                         /*- mani 970101 -*/
+                    spaces++;                                        /*- mani 970101 -*/
                     break;
                 }
 
@@ -383,7 +388,7 @@ __strtold (int   max_width,
                     }
                     break;
                 }
-                if (d.sig.length < MAX_SIG_DIG) /*- mm 970609 -*/
+                if (d.sig.length < MAX_SIG_DIG)   /*- mm 970609 -*/
                 {
                     d.sig.text[d.sig.length++] = c;
                 }
@@ -409,10 +414,9 @@ __strtold (int   max_width,
                     scan_state = sig_end;
                     break;
                 }
-                if (d.sig.length < MAX_SIG_DIG) /*- mm 970609 -*/
+                if (d.sig.length < MAX_SIG_DIG)   /*- mm 970609 -*/
                 {
-                    if (c != '0' ||
-                        d.sig.length) /* __dec2num doesn't like leading zeroes*/
+                    if (c != '0' || d.sig.length) /* __dec2num doesn't like leading zeroes*/
                     {
                         d.sig.text[d.sig.length++] = c;
                     }
@@ -788,6 +792,7 @@ __strtold (int   max_width,
         return (result);
     }
 }
+
 /*- mm 990930 -*/
 long double
 strtold (const char* nptr, char** endptr)
@@ -815,6 +820,7 @@ strtold (const char* nptr, char** endptr)
 
     return (value);
 }
+
 /*- mm 990930 -*/
 
 double
@@ -843,6 +849,7 @@ strtod (const char* str, char** end)
 
     return (value);
 }
+
 double
 atof (const char* str)
 {

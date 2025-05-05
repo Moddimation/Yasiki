@@ -74,6 +74,7 @@ asm void error_dram_init (void);
 //;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 asm void init_board ();
+
 asm void
 init_board ()
 {
@@ -777,6 +778,7 @@ init_board ()
                                                   0 // do one no-op.
                                                   b error_dram_init
 }
+
 // Processor specific mmu setups are in this section.
 
 asm void
@@ -791,9 +793,8 @@ mmu_setup (void)
         r0, 0xfff0 ori r4, r4,
         0x0022 // we will make the ROM writeable so that we can test errors
         addis r3,
-        r0, 0xfff0 ori r3, r3, 0x01ff isync mtspr SPR_IBAT0L,
-        r4 isync mtspr SPR_IBAT0U, r3 isync mtspr SPR_DBAT0L,
-        r4 isync mtspr SPR_DBAT0U,
+        r0, 0xfff0 ori r3, r3, 0x01ff isync mtspr SPR_IBAT0L, r4 isync mtspr SPR_IBAT0U,
+        r3 isync mtspr SPR_DBAT0L, r4 isync mtspr SPR_DBAT0U,
         r3 isync sync
 
                // this is the local memory mapping
@@ -813,8 +814,7 @@ mmu_setup (void)
         0x0fff // later, in reg_spr.c(well, for the
         isync  // 603 at least)
             mtspr      SPR_IBAT1L,
-        r4 isync mtspr SPR_IBAT1U, r3 isync mtspr SPR_DBAT1L,
-        r5 isync mtspr SPR_DBAT1U,
+        r4 isync mtspr SPR_IBAT1U, r3 isync mtspr SPR_DBAT1L, r5 isync mtspr SPR_DBAT1U,
         r3 isync sync
 
                // this is the 105/106, UMC/Winbond, and SIO mapping
@@ -830,15 +830,13 @@ mmu_setup (void)
         0x01ff isync
 
             mtspr      SPR_IBAT2L,
-        r4 isync mtspr SPR_IBAT2U, r3 isync mtspr SPR_DBAT2L,
-        r4 isync mtspr SPR_DBAT2U,
+        r4 isync mtspr SPR_IBAT2U, r3 isync mtspr SPR_DBAT2L, r4 isync mtspr SPR_DBAT2U,
         r3 isync sync
 
             // bat3 is our Floating BAT
 
             isync mtspr SPR_IBAT3L,
-        r0 isync mtspr SPR_IBAT3U, r0 isync mtspr SPR_DBAT3L,
-        r0 isync mtspr SPR_DBAT3U,
+        r0 isync mtspr SPR_IBAT3U, r0 isync mtspr SPR_DBAT3L, r0 isync mtspr SPR_DBAT3U,
         r0 isync
 
             addis r3,
@@ -882,6 +880,7 @@ mmu_setup (void)
 
                                      blr
 }
+
 asm void
 cache_inhibit (void)
 {
@@ -893,6 +892,7 @@ cache_inhibit (void)
         SPR_HID0 andi.r0, r0, 0 addis r4, r0, 0xffff addi r4, r4, 0x3fff and r3, r3,
         r4 mtspr SPR_HID0, r3 isync blr
 }
+
 asm void
 invalidate_and_enable_L1_dcache (void)
 {
@@ -909,6 +909,7 @@ invalidate_and_enable_L1_dcache (void)
         mtspr               SPR_HID0,
         r5 isync sync mtspr SPR_HID0, r6 isync sync blr
 }
+
 asm void
 disable_L1_dcache (void)
 {
@@ -917,6 +918,7 @@ disable_L1_dcache (void)
         mfspr    r5,
         SPR_HID0 andi.r5, r5, 0xBFFF mtspr SPR_HID0, r5 isync sync blr
 }
+
 asm void
 invalidate_and_enable_L1_icache (void)
 {
@@ -933,6 +935,7 @@ invalidate_and_enable_L1_icache (void)
         mtspr               SPR_HID0,
         r5 isync sync mtspr SPR_HID0, r6 isync sync blr
 }
+
 asm void
 disable_L1_icache (void)
 {

@@ -22,6 +22,7 @@
 #include "critical_regions.h"                          /*- mm 001013 -*/
 #include "file_io.h"                                   /*- mm 970708 -*/
 #include "misc_io.h"
+
 size_t
 fread (void* ptr, size_t memb_size, size_t num_memb, FILE* file)
 {
@@ -31,6 +32,7 @@ fread (void* ptr, size_t memb_size, size_t num_memb, FILE* file)
     __end_critical_region (files_access);              /*- mm 001013 -*/
     return (retval);
 }
+
 /* This does all the work of fread but is not threadsafe it exists so that other
    library functions can do freads in a loop from within a critical region mm
    001018*/
@@ -93,16 +95,14 @@ __fread (void* ptr, size_t memb_size, size_t num_memb, FILE* file)
 #ifndef __NO_WIDE_CHAR                                  /*- mm 980205 -*/
             if (fwide (file, 0) == 1)
             {
-                *(wchar_t*)read_ptr =
-                    file->ungetwc_buffer[file->state.io_state - __rereading];
+                *(wchar_t*)read_ptr = file->ungetwc_buffer[file->state.io_state - __rereading];
                 read_ptr += sizeof (wchar_t);
                 bytes_read += sizeof (wchar_t);
                 bytes_to_go -= sizeof (wchar_t);
             }
             else
             {
-                *read_ptr++ =
-                    file->ungetc_buffer[file->state.io_state - __rereading];
+                *read_ptr++ = file->ungetc_buffer[file->state.io_state - __rereading];
                 bytes_read++;
                 bytes_to_go--;
             }
@@ -197,6 +197,7 @@ __fread (void* ptr, size_t memb_size, size_t num_memb, FILE* file)
 
     return (bytes_read / memb_size);                    /*- mm 980203 -*/
 }
+
 size_t
 fwrite (const void* ptr, size_t memb_size, size_t num_memb, FILE* file)
 {
@@ -206,6 +207,7 @@ fwrite (const void* ptr, size_t memb_size, size_t num_memb, FILE* file)
     __end_critical_region (files_access);               /*- mm 001013 -*/
     return (retval);
 }
+
 /* This does all the work of fwrite but is not threadsafe it exists so that other
    library functions can do fwrites in a loop from within a critical region mm
    001018*/
@@ -216,12 +218,12 @@ __fwrite (const void* ptr, size_t memb_size, size_t num_memb, FILE* file)
     size_t         num_bytes, bytes_to_go, bytes_written;
     int            ioresult, always_buffer;
 
-#ifndef __NO_WIDE_CHAR                                         /*- mm 980205 -*/
+#ifndef __NO_WIDE_CHAR                                                           /*- mm 980205 -*/
     if (fwide (file, 0) == 0)
     {
         fwide (file, -1);
     }
-#endif /* __NO_WIDE_CHAR */                                    /*- mm 980205 -*/
+#endif /* __NO_WIDE_CHAR */                                                      /*- mm 980205 -*/
 
     bytes_to_go = memb_size * num_memb;
 
@@ -235,17 +237,15 @@ __fwrite (const void* ptr, size_t memb_size, size_t num_memb, FILE* file)
         __stdio_atexit();
     }
 
-    always_buffer = !file->mode.binary_io ||
-                    file->mode.buffer_mode == _IOFBF ||        /*- mm 961107 -*/
+    always_buffer = !file->mode.binary_io || file->mode.buffer_mode == _IOFBF || /*- mm 961107 -*/
                     file->mode.buffer_mode == _IOLBF;
 
     if (file->state.io_state == __neutral)
     {
         if (file->mode.io_mode & __write)
         {
-#if !defined(__BEOS__) &&                                                           \
-    !defined(                                                                       \
-        _No_Disk_File_OS_Support) /* we do O_APPEND on open */ /*- mm 970708 -*/
+#if !defined(__BEOS__) &&                                                                          \
+    !defined(_No_Disk_File_OS_Support) /* we do O_APPEND on open */              /*- mm 970708 -*/
             if (file->mode.io_mode & __append)
             {
                 if (fseek (file, 0, SEEK_END))
@@ -253,7 +253,7 @@ __fwrite (const void* ptr, size_t memb_size, size_t num_memb, FILE* file)
                     return (0);
                 }
             }
-#endif                                                         /*- mm 970708 -*/
+#endif                                                                           /*- mm 970708 -*/
 
             file->state.io_state = __writing;
 
@@ -288,8 +288,7 @@ __fwrite (const void* ptr, size_t memb_size, size_t num_memb, FILE* file)
 
             if (file->mode.buffer_mode == _IOLBF && num_bytes)
             {
-                if ((newline = (unsigned char*)__memrchr (
-                         write_ptr, '\n', num_bytes)) != NULL)
+                if ((newline = (unsigned char*)__memrchr (write_ptr, '\n', num_bytes)) != NULL)
                 {
                     num_bytes = newline + 1 - write_ptr;
                 }
@@ -309,7 +308,7 @@ __fwrite (const void* ptr, size_t memb_size, size_t num_memb, FILE* file)
                 file->buffer_len -= num_bytes;
             }
             if (!file->buffer_len || newline != NULL ||
-                (file->mode.buffer_mode == _IONBF))            /*- mm 970716 -*/
+                (file->mode.buffer_mode == _IONBF))                              /*- mm 970716 -*/
             {
                 ioresult = __flush_buffer (file, NULL);
 
@@ -355,6 +354,7 @@ __fwrite (const void* ptr, size_t memb_size, size_t num_memb, FILE* file)
 
     return ((bytes_written + memb_size - 1) / memb_size);
 }
+
 /* Change record:
  * JFH 950825 First code release.
  * JFH 960109 At the behest of Be, I put in real output line buffering.

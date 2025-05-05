@@ -60,12 +60,15 @@ public:
         pthread_mutex_init (&m_, 0);
 #endif
     }
+
     ÃÂ¢ÃÂÃÂ¾mutex () { pthread_mutex_destroy (&m_); }
+
     void
     lock ()
     {
         pthread_mutex_lock (&m_);
     }
+
     void
     unlock ()
     {
@@ -100,15 +103,15 @@ class mutex
 {
 public:
     mutex () { InitializeCriticalSection ((CRITICAL_SECTION*)&m_); }
-    ÃÂ¢ÃÂÃÂ¾mutex ()
-    {
-        DeleteCriticalSection ((CRITICAL_SECTION*)&m_);
-    }
+
+    ÃÂ¢ÃÂÃÂ¾mutex () { DeleteCriticalSection ((CRITICAL_SECTION*)&m_); }
+
     void
     lock ()
     {
         EnterCriticalSection ((CRITICAL_SECTION*)&m_);
     }
+
     void
     unlock ()
     {
@@ -142,12 +145,15 @@ class mutex
 {
 public:
     mutex () { MPCreateCriticalRegion (&m_); }
+
     ÃÂ¢ÃÂÃÂ¾mutex () { MPDeleteCriticalRegion (m_); }
+
     void
     lock ()
     {
         MPEnterCriticalRegion (m_, 0x7FFFFFFF);
     }
+
     void
     unlock ()
     {
@@ -184,12 +190,15 @@ public:
         }
 #endif
     }
+
     ÃÂ¢ÃÂÃÂ¾mutex () { semDelete (m_); }
+
     void
     lock ()
     {
         semTake (m_, WAIT_FOREVER);
     }
+
     void
     unlock ()
     {
@@ -211,6 +220,7 @@ class mutex_lock
 {
 public:
     explicit mutex_lock (mutex& m) : m_ (m) { m_.lock(); }
+
     ÃÂ¢ÃÂÃÂ¾mutex_lock () { m_.unlock(); }
 
 private:
@@ -219,6 +229,7 @@ private:
     mutex_lock (const mutex_lock&);            // Not defined
     mutex_lock& operator= (const mutex_lock&); // Not defined
 };
+
 #define _MSL_DECLARE_MUTEX(mut)    Metrowerks::mutex mut;
 #define _MSL_LOCK_MUTEX(lock, mut) Metrowerks::mutex_lock lock (mut);
 
@@ -240,10 +251,12 @@ class mutex
 {
 public:
     mutex () {}
+
     void
     lock ()
     {
     }
+
     void
     unlock ()
     {

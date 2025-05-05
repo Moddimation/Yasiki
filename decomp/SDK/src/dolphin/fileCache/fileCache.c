@@ -7,6 +7,7 @@ u8      DOCacheInitialized;
 
 static u8   AllocCacheNode (DSCacheNodePtr* cacheNode, char* name);
 static void FreeCacheNode (DSCacheNodePtr* cacheNode);
+
 DSCacheNodePtr
 DSAddCacheNode (DSCachePtr cache, char* name, Ptr data, Ptr OSFreeFunc)
 {
@@ -24,6 +25,7 @@ DSAddCacheNode (DSCachePtr cache, char* name, Ptr data, Ptr OSFreeFunc)
     DSInsertListObject (&cache->CacheNodeList, NULL, (Ptr)cacheNode);
     return cacheNode;
 }
+
 static u8
 AllocCacheNode (DSCacheNodePtr* cacheNode, char* name)
 {
@@ -43,6 +45,7 @@ AllocCacheNode (DSCacheNodePtr* cacheNode, char* name)
     }
     return TRUE;
 }
+
 void
 DSEmptyCache (DSCachePtr cache)
 {
@@ -58,6 +61,7 @@ DSEmptyCache (DSCachePtr cache)
         FreeCacheNode (&cacheNode);
     }
 }
+
 static DSCacheNodePtr
 FindCacheNode (DSCachePtr cache, char* name, Ptr data)
 {
@@ -88,6 +92,7 @@ FindCacheNode (DSCachePtr cache, char* name, Ptr data)
     }
     return NULL;
 }
+
 Ptr
 DSGetCacheObj (DSCachePtr cache, char* name)
 {
@@ -101,6 +106,7 @@ DSGetCacheObj (DSCachePtr cache, char* name)
     }
     return NULL;
 }
+
 static void
 FreeCacheNode (DSCacheNodePtr* cacheNode)
 {
@@ -115,6 +121,7 @@ FreeCacheNode (DSCacheNodePtr* cacheNode)
         *cacheNode = NULL;
     }
 }
+
 void
 DSInitCache (DSCachePtr cache)
 {
@@ -123,6 +130,7 @@ DSInitCache (DSCachePtr cache)
     cache->PurgeFlag = DS_AUTO_PURGE;
     DSInitList (&cache->CacheNodeList, (Ptr)&cacheNode, &cacheNode.Link);
 }
+
 void
 DSPurgeCache (DSCachePtr cache)
 {
@@ -141,6 +149,7 @@ DSPurgeCache (DSCachePtr cache)
         }
     }
 }
+
 void
 DSReleaseCacheObj (DSCachePtr cache, Ptr data)
 {
@@ -160,11 +169,13 @@ DSReleaseCacheObj (DSCachePtr cache, Ptr data)
         }
     }
 }
+
 void
 DSSetCachePurgeFlag (DSCachePtr cache, u8 purgeFlag)
 {
     cache->PurgeFlag = purgeFlag;
 }
+
 void
 CSHInitDisplayCache (void)
 {

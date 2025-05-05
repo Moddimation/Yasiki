@@ -9,6 +9,7 @@
 static TRKFramingState gTRKFramingState;
 
 void* gTRKInputPendingPtr;
+
 MessageBufferID
 TRKTestForPacket ()
 {
@@ -47,6 +48,7 @@ TRKTestForPacket ()
     }
     return -1;
 }
+
 void
 TRKGetInput (void)
 {
@@ -70,6 +72,7 @@ TRKGetInput (void)
         TRKReleaseBuffer (id);
     }
 }
+
 void
 TRKProcessInput (int bufferIdx)
 {
@@ -80,6 +83,7 @@ TRKProcessInput (int bufferIdx)
     event.msgBufID = bufferIdx;
     TRKPostEvent (&event);
 }
+
 DSError
 TRKInitializeSerialHandler (void)
 {
@@ -89,6 +93,7 @@ TRKInitializeSerialHandler (void)
 
     return DS_NoError;
 }
+
 DSError
 TRKTerminateSerialHandler (void)
 {

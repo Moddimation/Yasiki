@@ -16,6 +16,7 @@ typedef u32  (*DBPollFunc) (void);
 typedef void (*DBCommInitFunc) (volatile u8**, __OSInterruptHandler);
 typedef int  (*DBCommReadFunc) (void*, size_t);
 typedef int  (*DBCommWriteFunc) (const void*, size_t);
+
 typedef struct DBCommTable
 {
     DBCommInitFunc  initialize_func;
@@ -26,10 +27,8 @@ typedef struct DBCommTable
     DBCommFunc      open_func;
     DBCommFunc      close_func;
 } DBCommTable;
-DSError TRKInitializeIntDrivenUART (u32           param_0,
-                                    u32           param_1,
-                                    u32           param_2,
-                                    volatile u8** param_3);
+
+DSError TRKInitializeIntDrivenUART (u32 param_0, u32 param_1, u32 param_2, volatile u8** param_3);
 
 void      UnreserveEXI2Port (void);
 void      ReserveEXI2Port (void);

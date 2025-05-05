@@ -8,6 +8,7 @@
 static s32 VerifyID (CARDControl* card);
 static s32 VerifyDir (CARDControl* card, int* outCurrent);
 static s32 VerifyFAT (CARDControl* card, int* outCurrent);
+
 void
 __CARDCheckSum (void* ptr, int length, u16* checksum, u16* checksumInv)
 {
@@ -32,6 +33,7 @@ __CARDCheckSum (void* ptr, int length, u16* checksum, u16* checksumInv)
         *checksumInv = 0;
     }
 }
+
 static s32
 VerifyID (CARDControl* card)
 {
@@ -77,6 +79,7 @@ VerifyID (CARDControl* card)
 
     return CARD_RESULT_READY;
 }
+
 static s32
 VerifyDir (CARDControl* card, int* outCurrent)
 {
@@ -93,8 +96,7 @@ VerifyDir (CARDControl* card, int* outCurrent)
     {
         dir[i] = (CARDDir*)((u8*)card->workArea + (1 + i) * CARD_SYSTEM_BLOCK_SIZE);
         check[i] = CARDGetDirCheck (dir[i]);
-        __CARDCheckSum (
-            dir[i], CARD_SYSTEM_BLOCK_SIZE - sizeof (u32), &checkSum, &checkSumInv);
+        __CARDCheckSum (dir[i], CARD_SYSTEM_BLOCK_SIZE - sizeof (u32), &checkSum, &checkSumInv);
         if (check[i]->checkSum != checkSum || check[i]->checkSumInv != checkSumInv)
         {
             ++errors;
@@ -129,6 +131,7 @@ VerifyDir (CARDControl* card, int* outCurrent)
     }
     return errors;
 }
+
 static s32
 VerifyFAT (CARDControl* card, int* outCurrent)
 {
@@ -145,15 +148,13 @@ VerifyFAT (CARDControl* card, int* outCurrent)
     current = errors = 0;
     for (i = 0; i < 2; i++)
     {
-        fatp = fat[i] =
-            (u16*)((u8*)card->workArea + (3 + i) * CARD_SYSTEM_BLOCK_SIZE);
+        fatp = fat[i] = (u16*)((u8*)card->workArea + (3 + i) * CARD_SYSTEM_BLOCK_SIZE);
 
         __CARDCheckSum (&fatp[CARD_FAT_CHECKCODE],
                         CARD_SYSTEM_BLOCK_SIZE - sizeof (u32),
                         &checkSum,
                         &checkSumInv);
-        if (fatp[CARD_FAT_CHECKSUM] != checkSum ||
-            fatp[CARD_FAT_CHECKSUMINV] != checkSumInv)
+        if (fatp[CARD_FAT_CHECKSUM] != checkSum || fatp[CARD_FAT_CHECKSUMINV] != checkSumInv)
         {
             ++errors;
             current = i;
@@ -182,8 +183,7 @@ VerifyFAT (CARDControl* card, int* outCurrent)
     {
         if (card->currentFat == 0)
         {
-            if (((s16)fat[0][CARD_FAT_CHECKCODE] - (s16)fat[1][CARD_FAT_CHECKCODE]) <
-                0)
+            if (((s16)fat[0][CARD_FAT_CHECKCODE] - (s16)fat[1][CARD_FAT_CHECKCODE]) < 0)
             {
                 current = 0;
             }
@@ -205,6 +205,7 @@ VerifyFAT (CARDControl* card, int* outCurrent)
     }
     return errors;
 }
+
 s32
 __CARDVerify (CARDControl* card)
 {
@@ -231,6 +232,7 @@ __CARDVerify (CARDControl* card)
             return CARD_RESULT_BROKEN;
     }
 }
+
 s32
 CARDCheckExAsync (s32 chan, s32* xferBytes, CARDCallback callback)
 {
@@ -294,16 +296,14 @@ CARDCheckExAsync (s32 chan, s32* xferBytes, CARDCallback callback)
             {
                 ASSERTLINE (0x16D, card->currentFat);
                 card->currentDir = dir[currentDir];
-                memcpy (
-                    dir[currentDir], dir[currentDir ^ 1], CARD_SYSTEM_BLOCK_SIZE);
+                memcpy (dir[currentDir], dir[currentDir ^ 1], CARD_SYSTEM_BLOCK_SIZE);
                 updateDir = TRUE;
             }
             else
             {
                 ASSERTLINE (0x174, !card->currentFat);
                 card->currentFat = fat[currentFat];
-                memcpy (
-                    fat[currentFat], fat[currentFat ^ 1], CARD_SYSTEM_BLOCK_SIZE);
+                memcpy (fat[currentFat], fat[currentFat ^ 1], CARD_SYSTEM_BLOCK_SIZE);
                 updateFat = TRUE;
             }
             break;
@@ -322,8 +322,7 @@ CARDCheckExAsync (s32 chan, s32* xferBytes, CARDCallback callback)
             continue;
         }
 
-        for (iBlock = ent->startBlock, cBlock = 0;
-             iBlock != 0xFFFF && cBlock < ent->length;
+        for (iBlock = ent->startBlock, cBlock = 0; iBlock != 0xFFFF && cBlock < ent->length;
              iBlock = card->currentFat[iBlock], ++cBlock)
         {
             if (!CARDIsValidBlockNo (card, iBlock) || 1 < ++map[iBlock])
@@ -398,6 +397,7 @@ CARDCheckExAsync (s32 chan, s32* xferBytes, CARDCallback callback)
     }
     return CARD_RESULT_READY;
 }
+
 s32
 CARDCheckAsync (s32 chan, CARDCallback callback)
 {
@@ -405,6 +405,7 @@ CARDCheckAsync (s32 chan, CARDCallback callback)
 
     return CARDCheckExAsync (chan, &xferBytes, callback);
 }
+
 s32
 CARDCheckEx (s32 chan, s32* xferBytes)
 {
@@ -416,6 +417,7 @@ CARDCheckEx (s32 chan, s32* xferBytes)
 
     return __CARDSync (chan);
 }
+
 s32
 CARDCheck (s32 chan)
 {

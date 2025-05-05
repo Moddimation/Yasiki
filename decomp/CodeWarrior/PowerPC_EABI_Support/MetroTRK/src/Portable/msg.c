@@ -2,6 +2,7 @@
 
 #include "Os/dolphin/dolphin_trk_glue.h"
 #include "trk.h"
+
 DSError
 TRKMessageSend (TRK_Msg* msg)
 {

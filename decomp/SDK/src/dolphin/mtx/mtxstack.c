@@ -3,6 +3,7 @@
 #include <dolphin.h>
 
 #include "fake_tgmath.h"
+
 // TODO: A bunch of pointless void casts because of Mtx type-ness.
 // Dunno how to resolve this at the moment.
 
@@ -17,6 +18,7 @@ MTXInitStack (MTXStack* sPtr, u32 numMtx)
     sPtr->numMtx = numMtx;
     sPtr->stackPtr = 0;
 }
+
 Mtx*
 MTXPush (MTXStack* sPtr, Mtx m)
 {
@@ -41,6 +43,7 @@ MTXPush (MTXStack* sPtr, Mtx m)
     }
     return sPtr->stackPtr;
 }
+
 Mtx*
 MTXPushFwd (MTXStack* sPtr, Mtx m)
 {
@@ -66,6 +69,7 @@ MTXPushFwd (MTXStack* sPtr, Mtx m)
     }
     return sPtr->stackPtr;
 }
+
 Mtx*
 MTXPushInv (MTXStack* sPtr, Mtx m)
 {
@@ -93,16 +97,16 @@ MTXPushInv (MTXStack* sPtr, Mtx m)
     }
     return sPtr->stackPtr;
 }
+
 Mtx*
 MTXPushInvXpose (MTXStack* sPtr, Mtx m)
 {
     Mtx mIT;
 
     ASSERTMSGLINE (0x114, sPtr, "MTXPushInvXpose():  NULL MtxStackPtr 'sPtr' ");
-    ASSERTMSGLINE (
-        0x115,
-        sPtr->stackBase,
-        "MTXPushInvXpose():  'sPtr' contains a NULL ptr to stack memory ");
+    ASSERTMSGLINE (0x115,
+                   sPtr->stackBase,
+                   "MTXPushInvXpose():  'sPtr' contains a NULL ptr to stack memory ");
     ASSERTMSGLINE (0x116, m, "MTXPushInvXpose():  NULL MtxPtr 'm' ");
     MTXInverse ((void*)m, (void*)&mIT);
     MTXTranspose ((void*)&mIT, (void*)&mIT);
@@ -122,6 +126,7 @@ MTXPushInvXpose (MTXStack* sPtr, Mtx m)
     }
     return sPtr->stackPtr;
 }
+
 Mtx*
 MTXPop (MTXStack* sPtr)
 {
@@ -141,6 +146,7 @@ MTXPop (MTXStack* sPtr)
     sPtr->stackPtr--;
     return sPtr->stackPtr;
 }
+
 Mtx*
 MTXGetStackPtr (MTXStack* sPtr)
 {

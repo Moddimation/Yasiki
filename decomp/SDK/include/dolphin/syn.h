@@ -4,10 +4,12 @@
 #include <dolphin/ax.h>
 
 #define SYN_INPUT_BUFFER_SIZE 0x100
+
 struct WTINST
 {
     u16 keyRegion[128];                               ///< 0x00
 };
+
 struct WTREGION
 {
     u8  unityNote;                                    ///< 0x00
@@ -19,6 +21,7 @@ struct WTREGION
     u32 articulationIndex;                            ///< 0x10
     u32 sampleIndex;                                  ///< 0x14
 };
+
 struct WTART
 {
     s32 lfoFreq;                                      ///< 0x00
@@ -42,6 +45,7 @@ struct WTART
     s32 eg2Pitch;                                     ///< 0x48
     s32 pan;                                          ///< 0x4C
 };
+
 struct WTSAMPLE
 {
     u16 format;                                       ///< 0x00
@@ -50,6 +54,7 @@ struct WTSAMPLE
     u32 length;                                       ///< 0x08
     u16 adpcmIndex;                                   ///< 0x0C
 };
+
 struct WTADPCM
 {
     u16 a[8][2];                                      ///< 0x00
@@ -61,6 +66,7 @@ struct WTADPCM
     u16 loop_yn1;                                     ///< 0x2A
     u16 loop_yn2;                                     ///< 0x2C
 };
+
 struct SYNSYNTH
 {
     void*            next;                            ///< 0x0000
@@ -94,6 +100,7 @@ struct SYNSYNTH
     void*            keyGroup[16][16];                ///< 0x0D34
     void*            voice[16][128];                  ///< 0x1134
 };
+
 struct SYNVOICE
 {
     void*            next;                            ///< 0x00
@@ -137,6 +144,7 @@ struct SYNVOICE
     s32              peRelease;                       ///< 0x8C
     s32              pePitch;                         ///< 0x90
 };
+
 // sample formats
 #define SYN_SAMPLE_FORMAT_ADPCM 0
 #define SYN_SAMPLE_FORMAT_PCM16 1

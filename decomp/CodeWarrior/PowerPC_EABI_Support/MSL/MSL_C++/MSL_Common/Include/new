@@ -43,22 +43,28 @@ class bad_alloc : public exception
 {                             // hh 971226 rewrite
 public:
     bad_alloc () _MSL_THROW {}
+
     bad_alloc (const bad_alloc&) _MSL_THROW {}
+
     bad_alloc&
     operator= (const bad_alloc&) _MSL_THROW
     {
         return *this;
     }
+
     virtual ÃÂ¢ÃÂÃÂ¾bad_alloc () _MSL_THROW {}
+
     virtual const char*
     what () const _MSL_THROW
     {
         return "bad_alloc";
     }
 };
+
 struct nothrow_t
 {
 }; // 970415 bkoz
+
 extern _MSL_IMP_EXP_RUNTIME nothrow_t nothrow; // 990405 blc
 
 typedef void (*new_handler)();
@@ -74,40 +80,41 @@ _MSL_IMP_EXP_RUNTIME void* operator new (_CSTD::size_t size) throw (_STD::bad_al
 #else
 _MSL_IMP_EXP_RUNTIME void* operator new (_CSTD::size_t size);
 #endif
-_MSL_IMP_EXP_RUNTIME void* operator new (_CSTD::size_t size,
-                                         const _STD::nothrow_t&) _MSL_THROW;
+_MSL_IMP_EXP_RUNTIME void* operator new (_CSTD::size_t size, const _STD::nothrow_t&) _MSL_THROW;
+
 inline void*
 operator new (_CSTD::size_t, void* ptr) _MSL_THROW
 {
     return ptr;
 }
+
 _MSL_IMP_EXP_RUNTIME void operator delete (void* ptr) _MSL_THROW;
 #if __MWERKS__ >= 0x2020 || defined(__GNUC__)
 #if __MWERKS__ >= 0x2400
-_MSL_IMP_EXP_RUNTIME void operator delete (void* ptr,
-                                           const _STD::nothrow_t&) _MSL_THROW;
+_MSL_IMP_EXP_RUNTIME void operator delete (void* ptr, const _STD::nothrow_t&) _MSL_THROW;
+
 inline void
 operator delete (void*, void*) _MSL_THROW
 {
 }
 #endif
 #ifndef _MSL_NO_THROW_SPECS
-_MSL_IMP_EXP_RUNTIME void* operator new[] (_CSTD::size_t size) throw (
-    _STD::bad_alloc);
+_MSL_IMP_EXP_RUNTIME void* operator new[] (_CSTD::size_t size) throw (_STD::bad_alloc);
 #else
 _MSL_IMP_EXP_RUNTIME void* operator new[] (_CSTD::size_t size);
 #endif
-_MSL_IMP_EXP_RUNTIME void* operator new[] (_CSTD::size_t size,
-                                           const _STD::nothrow_t&) _MSL_THROW;
+_MSL_IMP_EXP_RUNTIME void* operator new[] (_CSTD::size_t size, const _STD::nothrow_t&) _MSL_THROW;
+
 inline void*
 operator new[] (_CSTD::size_t, void* ptr) _MSL_THROW
 {
     return ptr;
 }
+
 _MSL_IMP_EXP_RUNTIME void operator delete[] (void* ptr) _MSL_THROW;
 #if __MWERKS__ >= 0x2400
-_MSL_IMP_EXP_RUNTIME void operator delete[] (void* ptr,
-                                             const _STD::nothrow_t&) _MSL_THROW;
+_MSL_IMP_EXP_RUNTIME void operator delete[] (void* ptr, const _STD::nothrow_t&) _MSL_THROW;
+
 inline void
 operator delete[] (void*, void*) _MSL_THROW
 {

@@ -38,11 +38,13 @@ _MSL_BEGIN_NAMESPACE_STD  /*- cc 010410 -*/
 {
     return ((c & 0xFF00) ? EOF : (int)c);
 } /*- mm 980625 -*/
+
 inline wint_t
 btowc (char c)
 {
     return ((c & 0x8000) ? WEOF : (wint_t)c);
 } /*- mm 010529 -*/
+
 _MSL_BEGIN_EXTERN_C                                                 /*- cc 010410 -*/
 #else                                  /* !__cplusplus */
         _MSL_IMP_EXP_C int wctob (wint_t); /*- mm 980625 -*/
@@ -101,11 +103,9 @@ _MSL_END_EXTERN_C                                                   /*- cc 01041
                                         * wchar_t.h                                        mm  000201 Inserted definitions
                                         * of wctob, moved from cwtype to accord                                        with
                                         * C Standard                                        cc  000511 moved funtions
-                                        * dest_os to win to common header                                        JWW                                        001208
-                                        * Added case for targeting Mach-O                                        cc  010405
-                                        * removed pragma options align                                        native and
-                                        * reset                                        cc  010410 updated to new namespace
-                                        * macros                                        mm  010417 Moved                                        definition of
-                                        * EILSEQ to cerrno                                        mm  010529 Added missing
-                                        * multibyte functions.
+                                        * dest_os to win to common header                                        JWW                                        001208                                        Added case for
+                                        * targeting Mach-O                                        cc  010405                                        removed pragma options align
+                                        * native and                                        reset                                        cc  010410 updated to new namespace
+                                        * macros                                        mm  010417 Moved                                        definition of                                        EILSEQ to cerrno                                        mm
+                                        * 010529 Added missing                                        multibyte functions.
                                         */

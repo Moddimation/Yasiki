@@ -27,6 +27,7 @@ static const float __four_over_pi_m1[] = { *(float*)&tmp_float[0],
                                            *(float*)&tmp_float[1],
                                            *(float*)&tmp_float[2],
                                            *(float*)&tmp_float[3] };
+
 extern "C" float
 sinf (float x)
 {
@@ -52,11 +53,11 @@ sinf (float x)
     //  note: since n is signed n<<1 may pad rightmost bit w/a one.
     _INT32 n = (__HI (x) & 0x80000000) ? (_INT32)(z - .5f) : (_INT32)(z + .5f);
 
-    const float frac_part = ((((x - (float)(n * 2)) + __four_over_pi_m1[0] * x) +
-                              __four_over_pi_m1[1] * x) +
-                             __four_over_pi_m1[2] * x) +
-                            __four_over_pi_m1[3] * x /*) +
-                __four_over_pi_m1[4]*x  */
+    const float frac_part =
+        ((((x - (float)(n * 2)) + __four_over_pi_m1[0] * x) + __four_over_pi_m1[1] * x) +
+         __four_over_pi_m1[2] * x) +
+        __four_over_pi_m1[3] * x /*) +
+__four_over_pi_m1[4]*x  */
         ;
 #endif
 
@@ -67,34 +68,31 @@ sinf (float x)
 
     if (fabs (frac_part) < __SQRT_FLT_EPSILON__)
     {
-        n <<= 1;        // index into __sincos_on_quadrant array
+        n <<= 1;                            // index into __sincos_on_quadrant array
         return __sincos_on_quadrant[n] +
                (__sincos_on_quadrant[n + 1] * frac_part * __sincos_poly[9]);
     }
 
     xsq = frac_part * frac_part;
-    if (n & 0x00000001) // we are at a multiple of pi/2 thus cos(n*pi/4)= 0
+    if (n & 0x00000001)                     // we are at a multiple of pi/2 thus cos(n*pi/4)= 0
     {
-        n <<= 1;        // index into __sincos_on_quadrant array
-        z = (((__sincos_poly[0] * xsq + __sincos_poly[2]) * xsq + __sincos_poly[4]) *
-                 xsq +
+        n <<= 1;                            // index into __sincos_on_quadrant array
+        z = (((__sincos_poly[0] * xsq + __sincos_poly[2]) * xsq + __sincos_poly[4]) * xsq +
              __sincos_poly[6]) *
                 xsq +
             __sincos_poly[8];
 
-        return z *
-               __sincos_on_quadrant[n]; // sin(frac_part)*cos(n*pi/4); note:
-                                        // n*pi/4 is a multiple of pi/2(not
-                                        // pi)
-                                        // return z;// sin(frac_part)*cos(n*pi/4);
-                                        // note: n*pi/4 is a multiple of pi/2(not pi)
+        return z * __sincos_on_quadrant[n]; // sin(frac_part)*cos(n*pi/4); note:
+                                            // n*pi/4 is a multiple of pi/2(not
+                                            // pi)
+                                            // return z;// sin(frac_part)*cos(n*pi/4);
+                                            // note: n*pi/4 is a multiple of pi/2(not pi)
     }
 
     // if here we are near a multiple of pi so sin(n*pi/4) =0
     n <<= 1; // index into __sincos_on_quadrant array
 
-    z = ((((__sincos_poly[1] * xsq + __sincos_poly[3]) * xsq + __sincos_poly[5]) *
-              xsq +
+    z = ((((__sincos_poly[1] * xsq + __sincos_poly[3]) * xsq + __sincos_poly[5]) * xsq +
           __sincos_poly[7]) *
              xsq +
          __sincos_poly[9]) *
@@ -105,6 +103,7 @@ sinf (float x)
     return z * __sincos_on_quadrant[n + 1]; // sin(frac_part)*cos(n*pi/4);  note:
                                             // n*pi/4 is a multiple of pi/2(not pi)
 }
+
 extern "C" float
 cosf (float x)
 {
@@ -125,11 +124,11 @@ cosf (float x)
     //  note: since n is signed n<<1 may pad rightmost bit w/a one.
     _INT32 n = (__HI (x) & 0x80000000) ? (_INT32)(z - .5f) : (_INT32)(z + .5f);
 
-    const float frac_part = ((((x - (float)(n * 2)) + __four_over_pi_m1[0] * x) +
-                              __four_over_pi_m1[1] * x) +
-                             __four_over_pi_m1[2] * x) +
-                            __four_over_pi_m1[3] * x /*) +
-                __four_over_pi_m1[4]*x  */
+    const float frac_part =
+        ((((x - (float)(n * 2)) + __four_over_pi_m1[0] * x) + __four_over_pi_m1[1] * x) +
+         __four_over_pi_m1[2] * x) +
+        __four_over_pi_m1[3] * x /*) +
+__four_over_pi_m1[4]*x  */
         ;
 #endif
 
@@ -148,9 +147,7 @@ cosf (float x)
     if (n & 0x00000001) // we are at a multiple of pi/2 thus cos(n*pi/4)= 0
     {
         n <<= 1;        // index into __sincos_on_quadrant array
-        z = -((((__sincos_poly[1] * xsq + __sincos_poly[3]) * xsq +
-                __sincos_poly[5]) *
-                   xsq +
+        z = -((((__sincos_poly[1] * xsq + __sincos_poly[3]) * xsq + __sincos_poly[5]) * xsq +
                __sincos_poly[7]) *
                   xsq +
               __sincos_poly[9]) *
@@ -161,27 +158,30 @@ cosf (float x)
     n <<= 1;            // index into __sincos_on_quadrant array
     // if here we are near a multiple of pi so sin(n*pi/4) =0
 
-    z = (((__sincos_poly[0] * xsq + __sincos_poly[2]) * xsq + __sincos_poly[4]) *
-             xsq +
+    z = (((__sincos_poly[0] * xsq + __sincos_poly[2]) * xsq + __sincos_poly[4]) * xsq +
          __sincos_poly[6]) *
             xsq +
         __sincos_poly[8];
     return z * __sincos_on_quadrant[n + 1]; // sin(frac_part)*cos(n*pi/4);  note:
                                             // n*pi/4 is a multiple of pi/2(not pi)
 }
+
 double
 sin (double x)
 {
     return sinf (x);
 }
+
 double
 cos (double x)
 {
     return cosf ((float)x);
 }
+
 extern "C" float
 tanf (float x)
 {
     return sin (x) / cos (x);
 }
+
 #pragma cplusplus reset
