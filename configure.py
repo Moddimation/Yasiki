@@ -523,6 +523,7 @@ config.libs = [
     # JSystem Libraries
 
     JSystemLib("JKernel", "System/JKernel", [
+        (NonMatching, "JKRHeap.cpp"),
         (Matching, "JKRDisposer.cpp"),
         (NonMatching, "JKRThread.cpp"),
     ]),

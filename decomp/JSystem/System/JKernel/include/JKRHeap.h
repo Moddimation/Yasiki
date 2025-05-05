@@ -1,18 +1,20 @@
 #ifndef __JKR_HEAP_H__
 #define __JKR_HEAP_H__
 
+#include <dolphin/os.h>
+
 #include <JKRDisposer.h>
 #include <JSUList.h>
 
 typedef void* JKRHeapObj;
 
-class JKRHeap
+class JKRHeap : JKRDisposer
 {
 public:
-    constructor JKRHeap (JKRHeapObj, u32, JKRHeap*, bool);
+    constructor JKRHeap (JKRHeapObj obj, u32, JKRHeap*, bool handleError);
     destructor ~JKRHeap();
 
-    static JKRHeap* initArena (char**, u32*, int size);
+    static JKRHeap* initArena (char**, u32*, int);
     static void     alloc (u32, int, JKRHeap* heap);
     static JKRHeap* findFromRoot (JKRHeapObj);
     static void     copyMemory (JKRHeapObj, JKRHeapObj, u32);
@@ -42,19 +44,29 @@ public:
     void
     appendDisposer (JKRDisposer* disposer)
     {
-        mPtrList.append (&disposer->mPtr);
+        mDisposerList.append (&disposer->mPtr);
     }
 
     void
     removeDisposer (JKRDisposer* disposer)
     {
-        mPtrList.remove (&disposer->mPtr);
+        mDisposerList.remove (&disposer->mPtr);
     }
 
 private:
-    u8         pad[84];
-    JSUPtrList mPtrList;
-    bool       someBool;
+    OSMutex*             mMutex;
+    u8                   _10[20];
+    void*                _30;
+    int                  _34;
+    u32*                 _38;
+    JSUTree<JKRHeap>     _3C;
+    JSUList<JKRDisposer> mDisposerList;
+    bool                 isError;
 };
 
+extern JKRHeap* sSystemHeap;
+extern JKRHeap* sCurrentHeap;
+extern JKRHeap* sRootHeap;
+extern void*    sErrorHandler;
+SASSERT_SIZE (JKRHeap, 0x68);
 #endif

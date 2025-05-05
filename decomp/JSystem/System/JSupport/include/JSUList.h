@@ -110,6 +110,9 @@ SASSERT_SIZE (JSUPtrLink, 0x10);
 template <class T>
 class JSUList : public JSUPtrList
 {
+public:
+    JSUList () : JSUPtrList (true) {}
+
     JSUList (bool init) : JSUPtrList (init) {}
 
     void
