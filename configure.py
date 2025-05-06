@@ -496,14 +496,15 @@ config.libs = [
 #    GameSource("Koga", [
 #        (Matching, "CharacterEventObserver.cpp"),
 #        (Matching, "IncludeStrategy.cpp"),
+#        (NonMatching, "EnStrategy.cpp"),
+#        (NonMatching, "EnemyStrategy.cpp"),
+#        (NonMatching, "EnemyTypicalStrategy.cpp"),
 #    ]),
 #    GameSource("Ajioka", [
 #        (NonMatching, ""),
 #    ]),
 #    GameSource("Sato", [
-#        (NonMatching, "EnStrategy.cpp"),
-#        (NonMatching, "EnemyStrategy.cpp"),
-#        (NonMatching, "EnemyTypicalStrategy.cpp"),
+#        (NonMatching, ""),
 #    ]),
 #    GameSource("Kohno", [
 #        (NonMatching, ""),

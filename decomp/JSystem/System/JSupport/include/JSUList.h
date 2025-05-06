@@ -55,10 +55,14 @@ struct JSULink : public JSUPtrLink
 class JSUPtrList
 {
 public:
+    void initiate ();
+
+    JSUPtrList () { initiate(); }
+
     JSUPtrList (bool init);
+
     ~JSUPtrList ();
 
-    void initiate ();
     void setFirst (JSUPtrLink* link);
 
     inline void
@@ -111,7 +115,7 @@ template <class T>
 class JSUList : public JSUPtrList
 {
 public:
-    JSUList () : JSUPtrList (true) {}
+    JSUList () : JSUPtrList() {}
 
     JSUList (bool init) : JSUPtrList (init) {}
 

@@ -6,5 +6,6 @@
 
 #define constructor explicit
 #define destructor  virtual
+#define SELF        this
 
 #endif
