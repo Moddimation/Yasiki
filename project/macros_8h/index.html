@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Project Yasiki: Decompilation of Luigi's Mansion.">
+    <link rel="stylesheet" href="https://moddimation.github.io/Yasiki/assets/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Reggae+One&disp=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito&disp=swap" rel="stylesheet">
+    <link rel="icon" href="https://moddimation.github.io/Yasiki/assets/favicon.ico" type="image/x-icon">
+    <title>File macros.h - Project Yasiki</title>
+  </head>
+  <body>
+    <div class="container">
+      <nav>
+        <ul>
+        </ul>
+      </nav>
+
+      <!--Upper bar-->
+      <div id="bar">
+
+          <!--Project text / logo-->
+          <a id="barTitle" href="https://moddimation.github.io/Yasiki/"><b>Project Yasiki</b></a>
+          <div style="display: flex; flex-direction: column; align-items: start;">
+            
+            <!--Both progress badges-->
+            <a href="https://github.com/Moddimation/Yasiki">
+              <img style="padding-top:10px; width: 90px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=code&label=Code" alt="Go to github repo">
+            </a>
+            <a href="https://decomp.dev/Moddimation/Yasiki">
+              <img style="padding-bottom:0px; width: 123px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=functions&label=Progress" alt="Go to progress page">
+            </a>
+          </div>
+          
+          <p> </p>
+          
+          <!--Add each nav head here-->
+            <li>
+              <button onclick="window.location.href='https://moddimation.github.io/Yasiki/files/'">Files</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddimation.github.io/Yasiki/classes/'">Classes</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddimation.github.io/Yasiki/wiki/'">Full Wiki</button>
+            </li>
+      </div>
+      
+      <h1 id="file-macrosh">File macros.h</h1>
+<p><a href="../files/"><strong>FileList</strong></a> <strong>&gt;</strong> <a href="../dir_e36959481960b875b4393beac6de38d5/"><strong>lib</strong></a> <strong>&gt;</strong> <a href="./"><strong>macros.h</strong></a></p>
+<p><a href="../macros_8h_source/">Go to the source code of this file</a></p>
+<h2 id="macros">Macros</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Type</th>
+<th style="text-align: left;">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-align_next"><strong>ALIGN_NEXT</strong></a> (u, align) <code>((u + (align - 1)) &amp; (~(align - 1)))</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-align_prev"><strong>ALIGN_PREV</strong></a> (u, align) <code>(u &amp; (~(align - 1)))</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-array_count"><strong>ARRAY_COUNT</strong></a> (arr) <code>(int)(sizeof (arr) / sizeof (arr[0]))</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-array_size"><strong>ARRAY_SIZE</strong></a> (o) <code>(sizeof ((o)) / sizeof (\*(o)))</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-asm"><strong>ASM</strong></a>  <code>asm</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-assertline"><strong>ASSERTLINE</strong></a> (line, cond) <code>(void)0</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-assertmsg1line"><strong>ASSERTMSG1LINE</strong></a> (line, cond, msg, arg1) <code>(void)0</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-assertmsg2line"><strong>ASSERTMSG2LINE</strong></a> (line, cond, msg, arg1, arg2) <code>(void)0</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-assertmsgline"><strong>ASSERTMSGLINE</strong></a> (line, cond, msg) <code>(void)0</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-assertmsglinev"><strong>ASSERTMSGLINEV</strong></a> (line, cond, ...) <code>(void)0</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-assert_hang"><strong>ASSERT_HANG</strong></a> (cond) <code>/* multi line expression */</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-attribute_align"><strong>ATTRIBUTE_ALIGN</strong></a> (num) <code>\_\_attribute\_\_ ((aligned (num)))</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-bump_register"><strong>BUMP_REGISTER</strong></a> (reg) <code>/* multi line expression */</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-decl_sect"><strong>DECL_SECT</strong></a> (name) <code>\_\_declspec (section name)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-flag_off"><strong>FLAG_OFF</strong></a> (V, F) <code>(((V) &amp; (F)) != 0)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-flag_on"><strong>FLAG_ON</strong></a> (V, F) <code>(((V) &amp; (F)) == 0)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-force_dont_inline"><strong>FORCE_DONT_INLINE</strong></a>  <code>/* multi line expression */</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-ignore_all"><strong>IGNORE_ALL</strong></a>  <code>inline</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-ignore_glme01"><strong>IGNORE_GLME01</strong></a>  <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-ignore_glme01_1"><strong>IGNORE_GLME01_1</strong></a>  <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-ignore_glmj01"><strong>IGNORE_GLMJ01</strong></a>  <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-ignore_glmj01"><strong>IGNORE_GLMJ01</strong></a>  <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-ignore_glmp01"><strong>IGNORE_GLMP01</strong></a>  <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-ignore_glmp01_1"><strong>IGNORE_GLMP01_1</strong></a>  <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-ignore_glmp01_2"><strong>IGNORE_GLMP01_2</strong></a>  <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-is_aligned"><strong>IS_ALIGNED</strong></a> (X, N) <code>(((X) &amp; ((N) - 1)) == 0)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-is_flag"><strong>IS_FLAG</strong></a> (x, val) <code>(x &amp; val)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-is_flag_set"><strong>IS_FLAG_SET</strong></a> (flags, bitsFromLSB) <code>(((flags) &amp;gt;&amp;gt; (bitsFromLSB) &amp; 1))</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-is_not_aligned"><strong>IS_NOT_ALIGNED</strong></a> (X, N) <code>(((X) &amp; ((N) - 1)) != 0)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-kilobyte_bytecount"><strong>KILOBYTE_BYTECOUNT</strong></a>  <code>1024</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-max"><strong>MAX</strong></a> (a, b) <code>(((a) &amp;gt; (b)) ? (a) : (b))</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-min"><strong>MIN</strong></a> (a, b) <code>(((a) &amp;lt; (b)) ? (a) : (b))</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-mstring"><strong>MSTRING</strong></a> (x) <code>[**\_\_MSTRING**](macros_8h.md#define-__mstring) (x)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-mstring_concat"><strong>MSTRING_CONCAT</strong></a> (a, b) <code>[**\_\_MSTRING\_CONCAT**](macros_8h.md#define-__mstring_concat) (a, b)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-only_glme01"><strong>ONLY_GLME01</strong></a>  <code>inline</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-only_glmj01"><strong>ONLY_GLMJ01</strong></a>  <code>inline</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-only_glmj01"><strong>ONLY_GLMJ01</strong></a>  <code>inline</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-path_max"><strong>PATH_MAX</strong></a>  <code>(256)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-readu32_be"><strong>READU32_BE</strong></a> (ptr, offset) <code>/* multi line expression */</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-reset_flag"><strong>RESET_FLAG</strong></a> (x, val) <code>(x &amp;= ~(val))</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-round_f32_to_u8"><strong>ROUND_F32_TO_U8</strong></a> (a) <code>a &amp;gt;= 0.0f ? a + 0.5f : a - 0.5f</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-set_flag"><strong>SET_FLAG</strong></a> (x, val) <code>(x \|= (val))</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-weakfunc"><strong>WEAKFUNC</strong></a>  <code>\_\_declspec (weak)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-__mstring"><strong>__MSTRING</strong></a> (x) <code>#x</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-__mstring_concat"><strong>__MSTRING_CONCAT</strong></a> (a, b) <code>a##b</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-__ppcgekko__"><strong>__PPCGEKKO__</strong></a>  <br></td>
+</tr>
+</tbody>
+</table>
+<h2 id="macro-definition-documentation">Macro Definition Documentation</h2>
+<h3 id="define-align_next">define ALIGN_NEXT</h3>
+<pre><code class="language-C++">#define ALIGN_NEXT (
+    u,
+    align
+) `((u + (align - 1)) &amp; (~(align - 1)))`
+</code></pre>
+<hr>
+
+<h3 id="define-align_prev">define ALIGN_PREV</h3>
+<pre><code class="language-C++">#define ALIGN_PREV (
+    u,
+    align
+) `(u &amp; (~(align - 1)))`
+</code></pre>
+<hr>
+
+<h3 id="define-array_count">define ARRAY_COUNT</h3>
+<pre><code class="language-C++">#define ARRAY_COUNT (
+    arr
+) `(int)(sizeof (arr) / sizeof (arr[0]))`
+</code></pre>
+<hr>
+
+<h3 id="define-array_size">define ARRAY_SIZE</h3>
+<pre><code class="language-C++">#define ARRAY_SIZE (
+    o
+) `(sizeof ((o)) / sizeof (*(o)))`
+</code></pre>
+<hr>
+
+<h3 id="define-asm">define ASM</h3>
+<pre><code class="language-C++">#define ASM `asm`
+</code></pre>
+<hr>
+
+<h3 id="define-assertline">define ASSERTLINE</h3>
+<pre><code class="language-C++">#define ASSERTLINE (
+    line,
+    cond
+) `(void)0`
+</code></pre>
+<hr>
+
+<h3 id="define-assertmsg1line">define ASSERTMSG1LINE</h3>
+<pre><code class="language-C++">#define ASSERTMSG1LINE (
+    line,
+    cond,
+    msg,
+    arg1
+) `(void)0`
+</code></pre>
+<hr>
+
+<h3 id="define-assertmsg2line">define ASSERTMSG2LINE</h3>
+<pre><code class="language-C++">#define ASSERTMSG2LINE (
+    line,
+    cond,
+    msg,
+    arg1,
+    arg2
+) `(void)0`
+</code></pre>
+<hr>
+
+<h3 id="define-assertmsgline">define ASSERTMSGLINE</h3>
+<pre><code class="language-C++">#define ASSERTMSGLINE (
+    line,
+    cond,
+    msg
+) `(void)0`
+</code></pre>
+<hr>
+
+<h3 id="define-assertmsglinev">define ASSERTMSGLINEV</h3>
+<pre><code class="language-C++">#define ASSERTMSGLINEV (
+    line,
+    cond,
+    ...
+) `(void)0`
+</code></pre>
+<hr>
+
+<h3 id="define-assert_hang">define ASSERT_HANG</h3>
+<pre><code class="language-C++">#define ASSERT_HANG (
+    cond
+) `/* multi line expression */`
+</code></pre>
+<hr>
+
+<h3 id="define-attribute_align">define ATTRIBUTE_ALIGN</h3>
+<pre><code class="language-C++">#define ATTRIBUTE_ALIGN (
+    num
+) `__attribute__ ((aligned (num)))`
+</code></pre>
+<hr>
+
+<h3 id="define-bump_register">define BUMP_REGISTER</h3>
+<pre><code class="language-C++">#define BUMP_REGISTER (
+    reg
+) `/* multi line expression */`
+</code></pre>
+<hr>
+
+<h3 id="define-decl_sect">define DECL_SECT</h3>
+<pre><code class="language-C++">#define DECL_SECT (
+    name
+) `__declspec (section name)`
+</code></pre>
+<hr>
+
+<h3 id="define-flag_off">define FLAG_OFF</h3>
+<pre><code class="language-C++">#define FLAG_OFF (
+    V,
+    F
+) `(((V) &amp; (F)) != 0)`
+</code></pre>
+<hr>
+
+<h3 id="define-flag_on">define FLAG_ON</h3>
+<pre><code class="language-C++">#define FLAG_ON (
+    V,
+    F
+) `(((V) &amp; (F)) == 0)`
+</code></pre>
+<hr>
+
+<h3 id="define-force_dont_inline">define FORCE_DONT_INLINE</h3>
+<pre><code class="language-C++">#define FORCE_DONT_INLINE `/* multi line expression */`
+</code></pre>
+<hr>
+
+<h3 id="define-ignore_all">define IGNORE_ALL</h3>
+<pre><code class="language-C++">#define IGNORE_ALL `inline`
+</code></pre>
+<hr>
+
+<h3 id="define-ignore_glme01">define IGNORE_GLME01</h3>
+<pre><code class="language-C++">#define IGNORE_GLME01 
+</code></pre>
+<hr>
+
+<h3 id="define-ignore_glme01_1">define IGNORE_GLME01_1</h3>
+<pre><code class="language-C++">#define IGNORE_GLME01_1 
+</code></pre>
+<hr>
+
+<h3 id="define-ignore_glmj01">define IGNORE_GLMJ01</h3>
+<pre><code class="language-C++">#define IGNORE_GLMJ01 
+</code></pre>
+<hr>
+
+<h3 id="define-ignore_glmj01_1">define IGNORE_GLMJ01</h3>
+<pre><code class="language-C++">#define IGNORE_GLMJ01 
+</code></pre>
+<hr>
+
+<h3 id="define-ignore_glmp01">define IGNORE_GLMP01</h3>
+<pre><code class="language-C++">#define IGNORE_GLMP01 
+</code></pre>
+<hr>
+
+<h3 id="define-ignore_glmp01_1">define IGNORE_GLMP01_1</h3>
+<pre><code class="language-C++">#define IGNORE_GLMP01_1 
+</code></pre>
+<hr>
+
+<h3 id="define-ignore_glmp01_2">define IGNORE_GLMP01_2</h3>
+<pre><code class="language-C++">#define IGNORE_GLMP01_2 
+</code></pre>
+<hr>
+
+<h3 id="define-is_aligned">define IS_ALIGNED</h3>
+<pre><code class="language-C++">#define IS_ALIGNED (
+    X,
+    N
+) `(((X) &amp; ((N) - 1)) == 0)`
+</code></pre>
+<hr>
+
+<h3 id="define-is_flag">define IS_FLAG</h3>
+<pre><code class="language-C++">#define IS_FLAG (
+    x,
+    val
+) `(x &amp; val)`
+</code></pre>
+<hr>
+
+<h3 id="define-is_flag_set">define IS_FLAG_SET</h3>
+<pre><code class="language-C++">#define IS_FLAG_SET (
+    flags,
+    bitsFromLSB
+) `(((flags) &gt;&gt; (bitsFromLSB) &amp; 1))`
+</code></pre>
+<hr>
+
+<h3 id="define-is_not_aligned">define IS_NOT_ALIGNED</h3>
+<pre><code class="language-C++">#define IS_NOT_ALIGNED (
+    X,
+    N
+) `(((X) &amp; ((N) - 1)) != 0)`
+</code></pre>
+<hr>
+
+<h3 id="define-kilobyte_bytecount">define KILOBYTE_BYTECOUNT</h3>
+<pre><code class="language-C++">#define KILOBYTE_BYTECOUNT `1024`
+</code></pre>
+<hr>
+
+<h3 id="define-max">define MAX</h3>
+<pre><code class="language-C++">#define MAX (
+    a,
+    b
+) `(((a) &gt; (b)) ? (a) : (b))`
+</code></pre>
+<hr>
+
+<h3 id="define-min">define MIN</h3>
+<pre><code class="language-C++">#define MIN (
+    a,
+    b
+) `(((a) &lt; (b)) ? (a) : (b))`
+</code></pre>
+<hr>
+
+<h3 id="define-mstring">define MSTRING</h3>
+<pre><code class="language-C++">#define MSTRING (
+    x
+) `__MSTRING (x)`
+</code></pre>
+<hr>
+
+<h3 id="define-mstring_concat">define MSTRING_CONCAT</h3>
+<pre><code class="language-C++">#define MSTRING_CONCAT (
+    a,
+    b
+) `__MSTRING_CONCAT (a, b)`
+</code></pre>
+<hr>
+
+<h3 id="define-only_glme01">define ONLY_GLME01</h3>
+<pre><code class="language-C++">#define ONLY_GLME01 `inline`
+</code></pre>
+<hr>
+
+<h3 id="define-only_glmj01">define ONLY_GLMJ01</h3>
+<pre><code class="language-C++">#define ONLY_GLMJ01 `inline`
+</code></pre>
+<hr>
+
+<h3 id="define-only_glmj01_1">define ONLY_GLMJ01</h3>
+<pre><code class="language-C++">#define ONLY_GLMJ01 `inline`
+</code></pre>
+<hr>
+
+<h3 id="define-path_max">define PATH_MAX</h3>
+<pre><code class="language-C++">#define PATH_MAX `(256)`
+</code></pre>
+<hr>
+
+<h3 id="define-readu32_be">define READU32_BE</h3>
+<pre><code class="language-C++">#define READU32_BE (
+    ptr,
+    offset
+) `/* multi line expression */`
+</code></pre>
+<hr>
+
+<h3 id="define-reset_flag">define RESET_FLAG</h3>
+<pre><code class="language-C++">#define RESET_FLAG (
+    x,
+    val
+) `(x &amp;= ~(val))`
+</code></pre>
+<hr>
+
+<h3 id="define-round_f32_to_u8">define ROUND_F32_TO_U8</h3>
+<pre><code class="language-C++">#define ROUND_F32_TO_U8 (
+    a
+) `a &gt;= 0.0f ? a + 0.5f : a - 0.5f`
+</code></pre>
+<hr>
+
+<h3 id="define-set_flag">define SET_FLAG</h3>
+<pre><code class="language-C++">#define SET_FLAG (
+    x,
+    val
+) `(x |= (val))`
+</code></pre>
+<hr>
+
+<h3 id="define-weakfunc">define WEAKFUNC</h3>
+<pre><code class="language-C++">#define WEAKFUNC `__declspec (weak)`
+</code></pre>
+<hr>
+
+<h3 id="define-__mstring">define __MSTRING</h3>
+<pre><code class="language-C++">#define __MSTRING (
+    x
+) `#x`
+</code></pre>
+<hr>
+
+<h3 id="define-__mstring_concat">define __MSTRING_CONCAT</h3>
+<pre><code class="language-C++">#define __MSTRING_CONCAT (
+    a,
+    b
+) `a##b`
+</code></pre>
+<hr>
+
+<h3 id="define-__ppcgekko__">define __PPCGEKKO__</h3>
+<pre><code class="language-C++">#define __PPCGEKKO__ 
+</code></pre>
+<hr>
+
+<hr />
+<p>The documentation for this class was generated from the following file <code>Project/lib/macros.h</code></p>
+        <script src="../../search/main.js"></script>
+    </div>
+  </body>
+</html>

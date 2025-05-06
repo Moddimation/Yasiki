@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Project Yasiki: Decompilation of Luigi's Mansion.">
+    <link rel="stylesheet" href="https://moddimation.github.io/Yasiki/assets/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Reggae+One&disp=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito&disp=swap" rel="stylesheet">
+    <link rel="icon" href="https://moddimation.github.io/Yasiki/assets/favicon.ico" type="image/x-icon">
+    <title>File JKRHeap.h - Project Yasiki</title>
+  </head>
+  <body>
+    <div class="container">
+      <nav>
+        <ul>
+        </ul>
+      </nav>
+
+      <!--Upper bar-->
+      <div id="bar">
+
+          <!--Project text / logo-->
+          <a id="barTitle" href="https://moddimation.github.io/Yasiki/"><b>Project Yasiki</b></a>
+          <div style="display: flex; flex-direction: column; align-items: start;">
+            
+            <!--Both progress badges-->
+            <a href="https://github.com/Moddimation/Yasiki">
+              <img style="padding-top:10px; width: 90px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=code&label=Code" alt="Go to github repo">
+            </a>
+            <a href="https://decomp.dev/Moddimation/Yasiki">
+              <img style="padding-bottom:0px; width: 123px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=functions&label=Progress" alt="Go to progress page">
+            </a>
+          </div>
+          
+          <p> </p>
+          
+          <!--Add each nav head here-->
+            <li>
+              <button onclick="window.location.href='https://moddimation.github.io/Yasiki/files/'">Files</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddimation.github.io/Yasiki/classes/'">Classes</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddimation.github.io/Yasiki/wiki/'">Full Wiki</button>
+            </li>
+      </div>
+      
+      <h1 id="file-jkrheaph">File JKRHeap.h</h1>
+<p><a href="../files/"><strong>File List</strong></a> <strong>&gt;</strong> <a href="../dir_aa4045410c0ff4a0352c8e4463772829/"><strong>include</strong></a> <strong>&gt;</strong> <a href="../_j_k_r_heap_8h/"><strong>JKRHeap.h</strong></a></p>
+<p><a href="../_j_k_r_heap_8h/">Go to the documentation of this file</a></p>
+<pre><code class="language-C++">#ifndef __JKR_HEAP_H__
+#define __JKR_HEAP_H__
+
+#include &lt;JKRDisposer.h&gt;
+#include &lt;JSUList.h&gt;
+
+typedef void* JKRHeapObj;
+
+class JKRHeap
+{
+public:
+    constructor JKRHeap (JKRHeapObj, u32, JKRHeap*, bool);
+    destructor ~JKRHeap();
+
+    static JKRHeap* initArena (char**, u32*, int size);
+    static void     alloc (u32, int, JKRHeap* heap);
+    static JKRHeap* findFromRoot (JKRHeapObj);
+    static void     copyMemory (JKRHeapObj, JKRHeapObj, u32);
+
+    void becomeSystemHeap ();
+    void becomeCurrentHeap ();
+    void find (JKRHeapObj) const;
+    void dispose_subroutine (u32, u32);
+    void dispose (JKRHeapObj, u32);
+    void dispose (JKRHeapObj, JKRHeapObj);
+    void dispose ();
+
+    virtual void alloc (u32, int);
+    virtual void free (JKRHeapObj);
+    virtual void freeAll ();
+    virtual void freeTail ();
+    virtual void resize (JKRHeapObj, int);
+    virtual u32  getSize (JKRHeapObj);
+    virtual u32  getFreeSize ();
+    virtual u32  getTotalFreeSize ();
+    virtual u32  getHeapType ();
+    virtual void check ();
+    virtual void dump ();
+    virtual void dump_sort ();
+    virtual u32  getCurrentGroupId ();
+
+    void
+    appendDisposer (JKRDisposer* disposer)
+    {
+        mPtrList.append (&amp;disposer-&gt;mPtr);
+    }
+
+    void
+    removeDisposer (JKRDisposer* disposer)
+    {
+        mPtrList.remove (&amp;disposer-&gt;mPtr);
+    }
+
+private:
+    u8         pad[84];
+    JSUPtrList mPtrList;
+    bool       someBool;
+};
+
+#endif
+</code></pre>
+        <script src="../../search/main.js"></script>
+    </div>
+  </body>
+</html>

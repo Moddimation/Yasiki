@@ -1,0 +1,140 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="_j_k_r_heap_8h" kind="file" language="C++">
+    <compoundname>JKRHeap.h</compoundname>
+    <includes refid="_j_k_r_disposer_8h" local="no">JKRDisposer.h</includes>
+    <includes refid="_j_s_u_list_8h" local="no">JSUList.h</includes>
+    <includedby refid="_j_k_r_disposer_8cpp" local="no">JKRDisposer.cpp</includedby>
+    <incdepgraph>
+      <node id="2">
+        <label>JKRDisposer.h</label>
+        <link refid="_j_k_r_disposer_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>JKRHeap.h</label>
+        <link refid="_j_k_r_heap_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>JSUList.h</label>
+        <link refid="_j_s_u_list_8h"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>JUTTypes.h</label>
+        <link refid="_j_u_t_types_8h"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>macros.h</label>
+      </node>
+      <node id="6">
+        <label>types.h</label>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="1">
+        <label>JKRHeap.h</label>
+        <link refid="_j_k_r_heap_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>JKRDisposer.cpp</label>
+        <link refid="_j_k_r_disposer_8cpp"/>
+      </node>
+    </invincdepgraph>
+    <innerclass refid="class_j_k_r_heap" prot="public">JKRHeap</innerclass>
+    <sectiondef kind="typedef">
+      <memberdef kind="typedef" id="_j_k_r_heap_8h_1a1ef87555cf60e68d4b9c0c1d449aea9b" prot="public" static="no">
+        <type>void *</type>
+        <definition>typedef void* JKRHeapObj</definition>
+        <argsstring></argsstring>
+        <name>JKRHeapObj</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="JSystem/System/JKernel/include/JKRHeap.h" line="7" column="14" bodyfile="JSystem/System/JKernel/include/JKRHeap.h" bodystart="7" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#ifndef<sp/>__JKR_HEAP_H__</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>__JKR_HEAP_H__</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;<ref refid="_j_k_r_disposer_8h" kindref="compound">JKRDisposer.h</ref>&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;<ref refid="_j_s_u_list_8h" kindref="compound">JSUList.h</ref>&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight></codeline>
+<codeline lineno="7" refid="_j_k_r_heap_8h_1a1ef87555cf60e68d4b9c0c1d449aea9b" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal">*<sp/><ref refid="_j_k_r_heap_8h_1a1ef87555cf60e68d4b9c0c1d449aea9b" kindref="member">JKRHeapObj</ref>;</highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight></codeline>
+<codeline lineno="9" refid="class_j_k_r_heap" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="class_j_k_r_heap" kindref="compound">JKRHeap</ref></highlight></codeline>
+<codeline lineno="10"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="12" refid="class_j_k_r_heap_1ab828cfbbb993c19b82e19e9c1b4d5b9a" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_j_u_t_types_8h_1a29d583e02d7d25852fb356110c1a0bf7" kindref="member">constructor</ref><sp/><ref refid="class_j_k_r_heap_1ab828cfbbb993c19b82e19e9c1b4d5b9a" kindref="member">JKRHeap</ref><sp/>(<ref refid="_j_k_r_heap_8h_1a1ef87555cf60e68d4b9c0c1d449aea9b" kindref="member">JKRHeapObj</ref>,<sp/>u32,<sp/><ref refid="class_j_k_r_heap" kindref="compound">JKRHeap</ref>*,<sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="13" refid="class_j_k_r_heap_1ac9cb6cfdde6ac0e83643c15943441235" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_j_u_t_types_8h_1a9e47057ec8b35a4c28c50454143074d3" kindref="member">destructor</ref><sp/><ref refid="class_j_k_r_heap_1ac9cb6cfdde6ac0e83643c15943441235" kindref="member">~JKRHeap</ref>();</highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight></codeline>
+<codeline lineno="15" refid="class_j_k_r_heap_1a99bccb675c969ab90f414971371ed2ad" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/><ref refid="class_j_k_r_heap" kindref="compound">JKRHeap</ref>*<sp/><ref refid="class_j_k_r_heap_1a99bccb675c969ab90f414971371ed2ad" kindref="member">initArena</ref><sp/>(</highlight><highlight class="keywordtype">char</highlight><highlight class="normal">**,<sp/>u32*,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>size);</highlight></codeline>
+<codeline lineno="16" refid="class_j_k_r_heap_1af6f3dd58ff809021cf540a44cb0bc826" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><ref refid="class_j_k_r_heap_1af6f3dd58ff809021cf540a44cb0bc826" kindref="member">alloc</ref><sp/>(u32,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal">,<sp/><ref refid="class_j_k_r_heap" kindref="compound">JKRHeap</ref>*<sp/>heap);</highlight></codeline>
+<codeline lineno="17" refid="class_j_k_r_heap_1a21dec56308312d86b0839baaea7081d9" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/><ref refid="class_j_k_r_heap" kindref="compound">JKRHeap</ref>*<sp/><ref refid="class_j_k_r_heap_1a21dec56308312d86b0839baaea7081d9" kindref="member">findFromRoot</ref><sp/>(<ref refid="_j_k_r_heap_8h_1a1ef87555cf60e68d4b9c0c1d449aea9b" kindref="member">JKRHeapObj</ref>);</highlight></codeline>
+<codeline lineno="18" refid="class_j_k_r_heap_1a0c390cb804467f265c13d1e2ce7a3029" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><ref refid="class_j_k_r_heap_1a0c390cb804467f265c13d1e2ce7a3029" kindref="member">copyMemory</ref><sp/>(<ref refid="_j_k_r_heap_8h_1a1ef87555cf60e68d4b9c0c1d449aea9b" kindref="member">JKRHeapObj</ref>,<sp/><ref refid="_j_k_r_heap_8h_1a1ef87555cf60e68d4b9c0c1d449aea9b" kindref="member">JKRHeapObj</ref>,<sp/>u32);</highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight></codeline>
+<codeline lineno="20" refid="class_j_k_r_heap_1a0257aaf08410acc8af50b2cf1819766d" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_j_k_r_heap_1a0257aaf08410acc8af50b2cf1819766d" kindref="member">becomeSystemHeap</ref><sp/>();</highlight></codeline>
+<codeline lineno="21" refid="class_j_k_r_heap_1ade26fc25230287ba548cbe10f60b05f5" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_j_k_r_heap_1ade26fc25230287ba548cbe10f60b05f5" kindref="member">becomeCurrentHeap</ref><sp/>();</highlight></codeline>
+<codeline lineno="22" refid="class_j_k_r_heap_1ab9290af440642bbbfd1eb9178e85d760" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_j_k_r_heap_1ab9290af440642bbbfd1eb9178e85d760" kindref="member">find</ref><sp/>(<ref refid="_j_k_r_heap_8h_1a1ef87555cf60e68d4b9c0c1d449aea9b" kindref="member">JKRHeapObj</ref>)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="23" refid="class_j_k_r_heap_1ae659d024976ef0ca81f535aa668d0c3c" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_j_k_r_heap_1ae659d024976ef0ca81f535aa668d0c3c" kindref="member">dispose_subroutine</ref><sp/>(u32,<sp/>u32);</highlight></codeline>
+<codeline lineno="24" refid="class_j_k_r_heap_1a2cfb6b03cb8211b6a555c7fae28e8976" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_j_k_r_heap_1a2cfb6b03cb8211b6a555c7fae28e8976" kindref="member">dispose</ref><sp/>(<ref refid="_j_k_r_heap_8h_1a1ef87555cf60e68d4b9c0c1d449aea9b" kindref="member">JKRHeapObj</ref>,<sp/>u32);</highlight></codeline>
+<codeline lineno="25" refid="class_j_k_r_heap_1a5e3a0e1d618f3af066c3fd30485e0ed7" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_j_k_r_heap_1a5e3a0e1d618f3af066c3fd30485e0ed7" kindref="member">dispose</ref><sp/>(<ref refid="_j_k_r_heap_8h_1a1ef87555cf60e68d4b9c0c1d449aea9b" kindref="member">JKRHeapObj</ref>,<sp/><ref refid="_j_k_r_heap_8h_1a1ef87555cf60e68d4b9c0c1d449aea9b" kindref="member">JKRHeapObj</ref>);</highlight></codeline>
+<codeline lineno="26" refid="class_j_k_r_heap_1a30fbd674db88414379cbfd6c28fbb4e7" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_j_k_r_heap_1a30fbd674db88414379cbfd6c28fbb4e7" kindref="member">dispose</ref><sp/>();</highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight></codeline>
+<codeline lineno="28" refid="class_j_k_r_heap_1a40bdde9bbb54d33a84718f4c30214730" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_j_k_r_heap_1a40bdde9bbb54d33a84718f4c30214730" kindref="member">alloc</ref><sp/>(u32,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="29" refid="class_j_k_r_heap_1a75c7674aac5dbfc761f8b83a37431a8b" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_j_k_r_heap_1a75c7674aac5dbfc761f8b83a37431a8b" kindref="member">free</ref><sp/>(<ref refid="_j_k_r_heap_8h_1a1ef87555cf60e68d4b9c0c1d449aea9b" kindref="member">JKRHeapObj</ref>);</highlight></codeline>
+<codeline lineno="30" refid="class_j_k_r_heap_1a0ac43c493de36e02f3ce87d798e4037a" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_j_k_r_heap_1a0ac43c493de36e02f3ce87d798e4037a" kindref="member">freeAll</ref><sp/>();</highlight></codeline>
+<codeline lineno="31" refid="class_j_k_r_heap_1aab8d75d81853b5115c7b7594c34e6b77" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_j_k_r_heap_1aab8d75d81853b5115c7b7594c34e6b77" kindref="member">freeTail</ref><sp/>();</highlight></codeline>
+<codeline lineno="32" refid="class_j_k_r_heap_1a31c7b6743babbddf9dc05370336f68d2" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_j_k_r_heap_1a31c7b6743babbddf9dc05370336f68d2" kindref="member">resize</ref><sp/>(<ref refid="_j_k_r_heap_8h_1a1ef87555cf60e68d4b9c0c1d449aea9b" kindref="member">JKRHeapObj</ref>,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="33" refid="class_j_k_r_heap_1ab210c7e3bb046849a0629de435074d37" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/>u32<sp/><sp/><ref refid="class_j_k_r_heap_1ab210c7e3bb046849a0629de435074d37" kindref="member">getSize</ref><sp/>(<ref refid="_j_k_r_heap_8h_1a1ef87555cf60e68d4b9c0c1d449aea9b" kindref="member">JKRHeapObj</ref>);</highlight></codeline>
+<codeline lineno="34" refid="class_j_k_r_heap_1ae892606b0fc903f5c51c2e404bddd3fd" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/>u32<sp/><sp/><ref refid="class_j_k_r_heap_1ae892606b0fc903f5c51c2e404bddd3fd" kindref="member">getFreeSize</ref><sp/>();</highlight></codeline>
+<codeline lineno="35" refid="class_j_k_r_heap_1a150dc5155283d41fb6be8f2504d724e2" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/>u32<sp/><sp/><ref refid="class_j_k_r_heap_1a150dc5155283d41fb6be8f2504d724e2" kindref="member">getTotalFreeSize</ref><sp/>();</highlight></codeline>
+<codeline lineno="36" refid="class_j_k_r_heap_1ad61af4fee2046ddd33a0b536f015cacd" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/>u32<sp/><sp/><ref refid="class_j_k_r_heap_1ad61af4fee2046ddd33a0b536f015cacd" kindref="member">getHeapType</ref><sp/>();</highlight></codeline>
+<codeline lineno="37" refid="class_j_k_r_heap_1a4e98cc80d61b314d434bc625049cbca4" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_j_k_r_heap_1a4e98cc80d61b314d434bc625049cbca4" kindref="member">check</ref><sp/>();</highlight></codeline>
+<codeline lineno="38" refid="class_j_k_r_heap_1ae64160bd60393bef95b0bb10d2cd60da" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_j_k_r_heap_1ae64160bd60393bef95b0bb10d2cd60da" kindref="member">dump</ref><sp/>();</highlight></codeline>
+<codeline lineno="39" refid="class_j_k_r_heap_1afd10c25cf81aea9373b83712ee786f7d" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_j_k_r_heap_1afd10c25cf81aea9373b83712ee786f7d" kindref="member">dump_sort</ref><sp/>();</highlight></codeline>
+<codeline lineno="40" refid="class_j_k_r_heap_1a63e0736cf99cd525a9894a1b5e5ba8db" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/>u32<sp/><sp/><ref refid="class_j_k_r_heap_1a63e0736cf99cd525a9894a1b5e5ba8db" kindref="member">getCurrentGroupId</ref><sp/>();</highlight></codeline>
+<codeline lineno="41"><highlight class="normal"></highlight></codeline>
+<codeline lineno="42"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="43" refid="class_j_k_r_heap_1aacd984b702e5fc47861c7f903f941826" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_j_k_r_heap_1aacd984b702e5fc47861c7f903f941826" kindref="member">appendDisposer</ref><sp/>(<ref refid="struct_j_k_r_disposer" kindref="compound">JKRDisposer</ref>*<sp/>disposer)</highlight></codeline>
+<codeline lineno="44"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="45"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_j_k_r_heap_1a77b84533037a7f0f5099502ddbdfdef8" kindref="member">mPtrList</ref>.<ref refid="class_j_s_u_ptr_list_1ab3be3baba86a0a49e5113cb41a8741fb" kindref="member">append</ref><sp/>(&amp;disposer-&gt;<ref refid="struct_j_k_r_disposer_1ad6d8aab25563d82cdbb5fc53755d3afa" kindref="member">mPtr</ref>);</highlight></codeline>
+<codeline lineno="46"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="47"><highlight class="normal"></highlight></codeline>
+<codeline lineno="48"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="49" refid="class_j_k_r_heap_1a8172bbbcfd4cd8b47f0ce975a6ee499b" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_j_k_r_heap_1a8172bbbcfd4cd8b47f0ce975a6ee499b" kindref="member">removeDisposer</ref><sp/>(<ref refid="struct_j_k_r_disposer" kindref="compound">JKRDisposer</ref>*<sp/>disposer)</highlight></codeline>
+<codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="51"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_j_k_r_heap_1a77b84533037a7f0f5099502ddbdfdef8" kindref="member">mPtrList</ref>.<ref refid="class_j_s_u_ptr_list_1a9d98a1510397a44388a5a4ad2a3feaaa" kindref="member">remove</ref><sp/>(&amp;disposer-&gt;<ref refid="struct_j_k_r_disposer_1ad6d8aab25563d82cdbb5fc53755d3afa" kindref="member">mPtr</ref>);</highlight></codeline>
+<codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="53"><highlight class="normal"></highlight></codeline>
+<codeline lineno="54"><highlight class="normal"></highlight><highlight class="keyword">private</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="55" refid="class_j_k_r_heap_1a34d0aee8804c26e85c1cb03a2e74bf04" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>u8<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_j_k_r_heap_1a34d0aee8804c26e85c1cb03a2e74bf04" kindref="member">pad</ref>[84];</highlight></codeline>
+<codeline lineno="56" refid="class_j_k_r_heap_1a77b84533037a7f0f5099502ddbdfdef8" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_j_s_u_ptr_list" kindref="compound">JSUPtrList</ref><sp/><ref refid="class_j_k_r_heap_1a77b84533037a7f0f5099502ddbdfdef8" kindref="member">mPtrList</ref>;</highlight></codeline>
+<codeline lineno="57" refid="class_j_k_r_heap_1a01ac10e209255c88a56b8958c74da423" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_j_k_r_heap_1a01ac10e209255c88a56b8958c74da423" kindref="member">someBool</ref>;</highlight></codeline>
+<codeline lineno="58"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="59"><highlight class="normal"></highlight></codeline>
+<codeline lineno="60"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight></codeline>
+    </programlisting>
+    <location file="JSystem/System/JKernel/include/JKRHeap.h"/>
+  </compounddef>
+</doxygen>

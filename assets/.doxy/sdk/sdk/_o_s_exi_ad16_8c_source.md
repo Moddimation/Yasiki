@@ -1,0 +1,117 @@
+
+
+# File OSExiAd16.c
+
+[**File List**](files.md) **>** [**dolphin**](dir_8daa6a5f7f30f79e111d6992c13d512c.md) **>** [**os**](dir_8207759a5d5564400a58f6bb524771f0.md) **>** [**OSExiAd16.c**](_o_s_exi_ad16_8c.md)
+
+[Go to the documentation of this file](_o_s_exi_ad16_8c.md)
+
+
+```C++
+#include <dolphin/exi.h>
+#include <dolphin/os.h>
+
+static int Initialized;
+
+int AD16Init (void);
+int AD16WriteReg (u32 word);
+int AD16ReadReg (u32* word);
+
+int
+AD16Init (void)
+{
+    int err;
+    u32 cmd;
+    u32 id;
+
+    if (Initialized != 0)
+    {
+        return 1;
+    }
+    if (EXILock (2, 0, 0) == 0)
+    {
+        return 0;
+    }
+    if (EXISelect (2, 0, 0) == 0)
+    {
+        EXIUnlock (2);
+        return 0;
+    }
+    cmd = 0;
+    err = 0;
+    err |= !EXIImm (2, &cmd, 2, 1, 0);
+    err |= !EXISync (2);
+    err |= !EXIImm (2, &id, 4, 0, 0);
+    err |= !EXISync (2);
+    err |= !EXIDeselect (2);
+    EXIUnlock (2);
+    if (err != 0 || id != 0x4120000)
+    {
+        return 0;
+    }
+    Initialized = 1;
+    return 1;
+}
+
+int
+AD16WriteReg (u32 word)
+{
+    int err;
+    u32 cmd;
+
+    if (Initialized == 0 || EXILock (2, 0, 0) == 0)
+    {
+        return 0;
+    }
+    if (EXISelect (2, 0, 3) == 0)
+    {
+        EXIUnlock (2);
+        return 0;
+    }
+    cmd = 0xA0000000;
+    err = 0;
+    err |= !EXIImm (2, &cmd, 1, 1, 0);
+    err |= !EXISync (2);
+    err |= !EXIImm (2, &word, 4, 1, 0);
+    err |= !EXISync (2);
+    err |= !EXIDeselect (2);
+    EXIUnlock (2);
+    if (err)
+    {
+        return 0;
+    }
+    return 1;
+}
+
+int
+AD16ReadReg (u32* word)
+{
+    int err;
+    u32 cmd;
+
+    if (Initialized == 0 || EXILock (2, 0, 0) == 0)
+    {
+        return 0;
+    }
+    if (EXISelect (2, 0, 3) == 0)
+    {
+        EXIUnlock (2);
+        return 0;
+    }
+    cmd = 0xA2000000;
+    err = 0;
+    err |= !EXIImm (2, &cmd, 1, 1, 0);
+    err |= !EXISync (2);
+    err |= !EXIImm (2, word, 4, 0, 0);
+    err |= !EXISync (2);
+    err |= !EXIDeselect (2);
+    EXIUnlock (2);
+    if (err)
+    {
+        return 0;
+    }
+    return 1;
+}
+```
+
+

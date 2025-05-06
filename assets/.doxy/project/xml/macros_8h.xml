@@ -1,0 +1,780 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="macros_8h" kind="file" language="C++">
+    <compoundname>macros.h</compoundname>
+    <includedby refid="types_8h" local="no">types.h</includedby>
+    <invincdepgraph>
+      <node id="1">
+        <label>macros.h</label>
+        <link refid="macros_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>types.h</label>
+        <link refid="types_8h"/>
+      </node>
+    </invincdepgraph>
+    <sectiondef kind="define">
+      <memberdef kind="define" id="macros_8h_1a4bf0a01781df461ad257e5391ac09ae7" prot="public" static="no">
+        <name>ARRAY_COUNT</name>
+        <param><defname>arr</defname></param>
+        <initializer>(int)(sizeof (arr) / sizeof (arr[0]))</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Project/lib/macros.h" line="4" column="9" bodyfile="Project/lib/macros.h" bodystart="4" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="macros_8h_1af574046c9cd01c3b55b79b8cdd6eda73" prot="public" static="no">
+        <name>FLAG_ON</name>
+        <param><defname>V</defname></param>
+        <param><defname>F</defname></param>
+        <initializer>(((V) &amp; (F)) == 0)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Project/lib/macros.h" line="5" column="9" bodyfile="Project/lib/macros.h" bodystart="5" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="macros_8h_1a732052c8e274b2d483fd10049f8ecf72" prot="public" static="no">
+        <name>FLAG_OFF</name>
+        <param><defname>V</defname></param>
+        <param><defname>F</defname></param>
+        <initializer>(((V) &amp; (F)) != 0)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Project/lib/macros.h" line="6" column="9" bodyfile="Project/lib/macros.h" bodystart="6" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="macros_8h_1a66417e0890ee5d3bd63392cf5700f2ae" prot="public" static="no">
+        <name>ALIGN_PREV</name>
+        <param><defname>u</defname></param>
+        <param><defname>align</defname></param>
+        <initializer>(u &amp; (~(align - 1)))</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Project/lib/macros.h" line="8" column="9" bodyfile="Project/lib/macros.h" bodystart="8" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="macros_8h_1a856ed1620b56e53eeaf00fb3b133b8a7" prot="public" static="no">
+        <name>ALIGN_NEXT</name>
+        <param><defname>u</defname></param>
+        <param><defname>align</defname></param>
+        <initializer>((u + (align - 1)) &amp; (~(align - 1)))</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Project/lib/macros.h" line="9" column="9" bodyfile="Project/lib/macros.h" bodystart="9" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="macros_8h_1a2d51ef0022d849e6e19f3f1c0716417b" prot="public" static="no">
+        <name>IS_ALIGNED</name>
+        <param><defname>X</defname></param>
+        <param><defname>N</defname></param>
+        <initializer>(((X) &amp; ((N) - 1)) == 0)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Project/lib/macros.h" line="10" column="9" bodyfile="Project/lib/macros.h" bodystart="10" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="macros_8h_1a485a2f3a314685f8a6e72278b7746935" prot="public" static="no">
+        <name>IS_NOT_ALIGNED</name>
+        <param><defname>X</defname></param>
+        <param><defname>N</defname></param>
+        <initializer>(((X) &amp; ((N) - 1)) != 0)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Project/lib/macros.h" line="11" column="9" bodyfile="Project/lib/macros.h" bodystart="11" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="macros_8h_1ab593dd96bf8f92aee5fba9d85f29a902" prot="public" static="no">
+        <name>READU32_BE</name>
+        <param><defname>ptr</defname></param>
+        <param><defname>offset</defname></param>
+        <initializer>    (((u32)ptr[offset] &lt;&lt; 24) | ((u32)ptr[offset + 1] &lt;&lt; 16) | ((u32)ptr[offset + 2] &lt;&lt; 8) |       \
+     (u32)ptr[offset + 3]);</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Project/lib/macros.h" line="13" column="9" bodyfile="Project/lib/macros.h" bodystart="13" bodyend="15"/>
+      </memberdef>
+      <memberdef kind="define" id="macros_8h_1a33d4c5b1a214eeefb2ffd5c708c18152" prot="public" static="no">
+        <name>ASSERTLINE</name>
+        <param><defname>line</defname></param>
+        <param><defname>cond</defname></param>
+        <initializer>(void)0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Project/lib/macros.h" line="32" column="10" bodyfile="Project/lib/macros.h" bodystart="32" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="macros_8h_1ab70de2c23f5efbc0ca9123b1277a29b8" prot="public" static="no">
+        <name>ASSERTMSGLINE</name>
+        <param><defname>line</defname></param>
+        <param><defname>cond</defname></param>
+        <param><defname>msg</defname></param>
+        <initializer>(void)0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Project/lib/macros.h" line="33" column="9" bodyfile="Project/lib/macros.h" bodystart="33" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="macros_8h_1a42266dd4ea490ca9bf7fe4180e095429" prot="public" static="no">
+        <name>ASSERTMSG1LINE</name>
+        <param><defname>line</defname></param>
+        <param><defname>cond</defname></param>
+        <param><defname>msg</defname></param>
+        <param><defname>arg1</defname></param>
+        <initializer>(void)0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Project/lib/macros.h" line="34" column="9" bodyfile="Project/lib/macros.h" bodystart="34" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="macros_8h_1a22dae53a24805b354096bc7a1d348242" prot="public" static="no">
+        <name>ASSERTMSG2LINE</name>
+        <param><defname>line</defname></param>
+        <param><defname>cond</defname></param>
+        <param><defname>msg</defname></param>
+        <param><defname>arg1</defname></param>
+        <param><defname>arg2</defname></param>
+        <initializer>(void)0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Project/lib/macros.h" line="35" column="9" bodyfile="Project/lib/macros.h" bodystart="35" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="macros_8h_1ab21d1465952b48e6e00ba78565d3ff17" prot="public" static="no">
+        <name>ASSERTMSGLINEV</name>
+        <param><defname>line</defname></param>
+        <param><defname>cond</defname></param>
+        <param><defname>...</defname></param>
+        <initializer>(void)0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Project/lib/macros.h" line="36" column="9" bodyfile="Project/lib/macros.h" bodystart="36" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="macros_8h_1ad82fd02be65f19fd10e7342f8feceb79" prot="public" static="no">
+        <name>FORCE_DONT_INLINE</name>
+        <initializer>	(void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; \
+	(void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; \
+	(void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; \
+	(void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; \
+	(void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; \
+	(void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; \
+	(void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; \
+	(void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; \
+	(void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; \
+	(void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; \
+	(void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; \
+	(void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; \
+	(void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; \
+	(void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; \
+	(void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; \
+	(void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Project/lib/macros.h" line="40" column="9" bodyfile="Project/lib/macros.h" bodystart="40" bodyend="56"/>
+      </memberdef>
+      <memberdef kind="define" id="macros_8h_1ae688d728e1acdfe5988c7db45d6f0166" prot="public" static="no">
+        <name>PATH_MAX</name>
+        <initializer>(256)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Project/lib/macros.h" line="59" column="9" bodyfile="Project/lib/macros.h" bodystart="59" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="macros_8h_1a795357f4b22ee1863fc9e5abe3c5b559" prot="public" static="no">
+        <name>SET_FLAG</name>
+        <param><defname>x</defname></param>
+        <param><defname>val</defname></param>
+        <initializer>(x |= (val))</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Project/lib/macros.h" line="62" column="9" bodyfile="Project/lib/macros.h" bodystart="62" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="macros_8h_1afd90aa60c8d6bfb54aefee95fb0ec625" prot="public" static="no">
+        <name>RESET_FLAG</name>
+        <param><defname>x</defname></param>
+        <param><defname>val</defname></param>
+        <initializer>(x &amp;= ~(val))</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Project/lib/macros.h" line="65" column="9" bodyfile="Project/lib/macros.h" bodystart="65" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="macros_8h_1aa4bc77607490ad3d124a5d77722c3f88" prot="public" static="no">
+        <name>IS_FLAG</name>
+        <param><defname>x</defname></param>
+        <param><defname>val</defname></param>
+        <initializer>(x &amp; val)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Project/lib/macros.h" line="68" column="9" bodyfile="Project/lib/macros.h" bodystart="68" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="macros_8h_1a949a254e1e990fb6ad81ab2ad1a5111c" prot="public" static="no">
+        <name>ARRAY_SIZE</name>
+        <param><defname>o</defname></param>
+        <initializer>(sizeof ((o)) / sizeof (*(o)))</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Project/lib/macros.h" line="71" column="9" bodyfile="Project/lib/macros.h" bodystart="71" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="macros_8h_1a05147c28171e9f085e1007c4f5d7878d" prot="public" static="no">
+        <name>ATTRIBUTE_ALIGN</name>
+        <param><defname>num</defname></param>
+        <initializer>__attribute__ ((aligned (num)))</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Project/lib/macros.h" line="74" column="9" bodyfile="Project/lib/macros.h" bodystart="74" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="macros_8h_1a0756f9fec486f081e95426ccbbed84fc" prot="public" static="no">
+        <name>IS_FLAG_SET</name>
+        <param><defname>flags</defname></param>
+        <param><defname>bitsFromLSB</defname></param>
+        <initializer>(((flags) &gt;&gt; (bitsFromLSB) &amp; 1))</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Project/lib/macros.h" line="77" column="9" bodyfile="Project/lib/macros.h" bodystart="77" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="macros_8h_1a5e3abacabd8869b235b7fadc4218c2d2" prot="public" static="no">
+        <name>ASSERT_HANG</name>
+        <param><defname>cond</defname></param>
+        <initializer>    if (!(cond))                                                                                   \
+    {                                                                                              \
+        while (true)                                                                               \
+        {                                                                                          \
+        }                                                                                          \
+    }</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Project/lib/macros.h" line="79" column="9" bodyfile="Project/lib/macros.h" bodystart="79" bodyend="85"/>
+      </memberdef>
+      <memberdef kind="define" id="macros_8h_1afa99ec4acc4ecb2dc3c2d05da15d0e3f" prot="public" static="no">
+        <name>MAX</name>
+        <param><defname>a</defname></param>
+        <param><defname>b</defname></param>
+        <initializer>(((a) &gt; (b)) ? (a) : (b))</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Project/lib/macros.h" line="88" column="9" bodyfile="Project/lib/macros.h" bodystart="88" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="macros_8h_1a3acffbd305ee72dcd4593c0d8af64a4f" prot="public" static="no">
+        <name>MIN</name>
+        <param><defname>a</defname></param>
+        <param><defname>b</defname></param>
+        <initializer>(((a) &lt; (b)) ? (a) : (b))</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Project/lib/macros.h" line="91" column="9" bodyfile="Project/lib/macros.h" bodystart="91" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="macros_8h_1aec354e237c10024b47a40872232925f8" prot="public" static="no">
+        <name>ROUND_F32_TO_U8</name>
+        <param><defname>a</defname></param>
+        <initializer>a &gt;= 0.0f ? a + 0.5f : a - 0.5f</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Project/lib/macros.h" line="94" column="9" bodyfile="Project/lib/macros.h" bodystart="94" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="macros_8h_1a8b569312a2f8e0d2d38a0a3a0bc22f2d" prot="public" static="no">
+        <name>KILOBYTE_BYTECOUNT</name>
+        <initializer>1024</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Project/lib/macros.h" line="97" column="9" bodyfile="Project/lib/macros.h" bodystart="97" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="macros_8h_1aff14d6b65bdc4455792b1be5b31cd991" prot="public" static="no">
+        <name>BUMP_REGISTER</name>
+        <param><defname>reg</defname></param>
+        <initializer>    {                                                                                              \
+        asm { mr reg, reg }                                                                           \
+    }</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Project/lib/macros.h" line="99" column="9" bodyfile="Project/lib/macros.h" bodystart="99" bodyend="102"/>
+      </memberdef>
+      <memberdef kind="define" id="macros_8h_1a25a8fdb10ae7e6dd58321422c441ba29" prot="public" static="no">
+        <name>WEAKFUNC</name>
+        <initializer>__declspec (weak)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Project/lib/macros.h" line="105" column="9" bodyfile="Project/lib/macros.h" bodystart="105" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="macros_8h_1a4c85f314c2d16966f071e54c6c604367" prot="public" static="no">
+        <name>DECL_SECT</name>
+        <param><defname>name</defname></param>
+        <initializer>__declspec (section name)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Project/lib/macros.h" line="106" column="9" bodyfile="Project/lib/macros.h" bodystart="106" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="macros_8h_1aa4490105d639938ba5c00b4e9e647e27" prot="public" static="no">
+        <name>ASM</name>
+        <initializer>asm</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Project/lib/macros.h" line="107" column="9" bodyfile="Project/lib/macros.h" bodystart="107" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="macros_8h_1a5dc1910d166c3f8036a94d9ed0da1ee5" prot="public" static="no">
+        <name>__MSTRING</name>
+        <param><defname>x</defname></param>
+        <initializer>#x</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Project/lib/macros.h" line="120" column="9" bodyfile="Project/lib/macros.h" bodystart="120" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="macros_8h_1a002b7abbdb9267fb8d3671475874d37b" prot="public" static="no">
+        <name>MSTRING</name>
+        <param><defname>x</defname></param>
+        <initializer><ref refid="macros_8h_1a5dc1910d166c3f8036a94d9ed0da1ee5" kindref="member">__MSTRING</ref> (x)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Project/lib/macros.h" line="121" column="9" bodyfile="Project/lib/macros.h" bodystart="121" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="macros_8h_1afb3a5733d10342c9a9ac65190cd33664" prot="public" static="no">
+        <name>__MSTRING_CONCAT</name>
+        <param><defname>a</defname></param>
+        <param><defname>b</defname></param>
+        <initializer>a##b</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Project/lib/macros.h" line="123" column="9" bodyfile="Project/lib/macros.h" bodystart="123" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="macros_8h_1a662a1c2b426245b4934db18ac66b17eb" prot="public" static="no">
+        <name>MSTRING_CONCAT</name>
+        <param><defname>a</defname></param>
+        <param><defname>b</defname></param>
+        <initializer><ref refid="macros_8h_1afb3a5733d10342c9a9ac65190cd33664" kindref="member">__MSTRING_CONCAT</ref> (a, b)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Project/lib/macros.h" line="124" column="9" bodyfile="Project/lib/macros.h" bodystart="124" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="macros_8h_1a32bd282e01bfb47604beffabcb83d4c1" prot="public" static="no">
+        <name>IGNORE_GLMJ01</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Project/lib/macros.h" line="134" column="9" bodyfile="Project/lib/macros.h" bodystart="134" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="macros_8h_1aa065a4e2eef6aa962f9730252a4b7e76" prot="public" static="no">
+        <name>IGNORE_GLME01</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Project/lib/macros.h" line="135" column="9" bodyfile="Project/lib/macros.h" bodystart="135" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="macros_8h_1aa8ecbf479f05ce19eaa9f14f98b7b982" prot="public" static="no">
+        <name>IGNORE_GLME01_1</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Project/lib/macros.h" line="136" column="9" bodyfile="Project/lib/macros.h" bodystart="136" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="macros_8h_1a488b4203cd0e9194b1234f1c487a956f" prot="public" static="no">
+        <name>IGNORE_GLMP01</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Project/lib/macros.h" line="137" column="9" bodyfile="Project/lib/macros.h" bodystart="137" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="macros_8h_1a9f25bf22f6a2a16358602dd3c127a8e1" prot="public" static="no">
+        <name>IGNORE_GLMP01_1</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Project/lib/macros.h" line="138" column="9" bodyfile="Project/lib/macros.h" bodystart="138" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="macros_8h_1a544caa4177e0a578cd0b40f201ab7d9e" prot="public" static="no">
+        <name>IGNORE_GLMP01_2</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Project/lib/macros.h" line="139" column="9" bodyfile="Project/lib/macros.h" bodystart="139" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="macros_8h_1a2743fb92be8ba88e4e07efefaefcf286" prot="public" static="no">
+        <name>ONLY_GLMJ01</name>
+        <initializer>inline</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Project/lib/macros.h" line="141" column="9" bodyfile="Project/lib/macros.h" bodystart="141" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="macros_8h_1ad16f9d72a458ba27109a061325d772b9" prot="public" static="no">
+        <name>ONLY_GLME01</name>
+        <initializer>inline</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Project/lib/macros.h" line="142" column="9" bodyfile="Project/lib/macros.h" bodystart="142" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="macros_8h_1a83dec9dd47a2c6a712924513263ec5df" prot="public" static="no">
+        <name>IGNORE_ALL</name>
+        <initializer>inline</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Project/lib/macros.h" line="144" column="9" bodyfile="Project/lib/macros.h" bodystart="144" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="macros_8h_1a32bd282e01bfb47604beffabcb83d4c1" prot="public" static="no">
+        <name>IGNORE_GLMJ01</name>
+        <initializer>inline</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Project/lib/macros.h" line="148" column="10" bodyfile="Project/lib/macros.h" bodystart="134" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="macros_8h_1a2743fb92be8ba88e4e07efefaefcf286" prot="public" static="no">
+        <name>ONLY_GLMJ01</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Project/lib/macros.h" line="150" column="10" bodyfile="Project/lib/macros.h" bodystart="141" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="macros_8h_1a4604d5ed76ab90486d02d389106afce9" prot="public" static="no">
+        <name>__PPCGEKKO__</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Project/lib/macros.h" line="159" column="9" bodyfile="Project/lib/macros.h" bodystart="159" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#ifndef<sp/>_H_MACROS_</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>_H_MACROS_</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight></codeline>
+<codeline lineno="4" refid="macros_8h_1a4bf0a01781df461ad257e5391ac09ae7" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>ARRAY_COUNT(arr)<sp/><sp/><sp/><sp/><sp/>(int)(sizeof<sp/>(arr)<sp/>/<sp/>sizeof<sp/>(arr[0]))</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5" refid="macros_8h_1af574046c9cd01c3b55b79b8cdd6eda73" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>FLAG_ON(V,<sp/>F)<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(((V)<sp/>&amp;<sp/>(F))<sp/>==<sp/>0)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6" refid="macros_8h_1a732052c8e274b2d483fd10049f8ecf72" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>FLAG_OFF(V,<sp/>F)<sp/><sp/><sp/><sp/><sp/><sp/><sp/>(((V)<sp/>&amp;<sp/>(F))<sp/>!=<sp/>0)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight></codeline>
+<codeline lineno="8" refid="macros_8h_1a66417e0890ee5d3bd63392cf5700f2ae" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>ALIGN_PREV(u,<sp/>align)<sp/>(u<sp/>&amp;<sp/>(~(align<sp/>-<sp/>1)))</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="9" refid="macros_8h_1a856ed1620b56e53eeaf00fb3b133b8a7" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>ALIGN_NEXT(u,<sp/>align)<sp/>((u<sp/>+<sp/>(align<sp/>-<sp/>1))<sp/>&amp;<sp/>(~(align<sp/>-<sp/>1)))</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="10" refid="macros_8h_1a2d51ef0022d849e6e19f3f1c0716417b" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>IS_ALIGNED(X,<sp/>N)<sp/><sp/><sp/><sp/><sp/>(((X)<sp/>&amp;<sp/>((N)<sp/>-<sp/>1))<sp/>==<sp/>0)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="11" refid="macros_8h_1a485a2f3a314685f8a6e72278b7746935" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>IS_NOT_ALIGNED(X,<sp/>N)<sp/>(((X)<sp/>&amp;<sp/>((N)<sp/>-<sp/>1))<sp/>!=<sp/>0)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight></codeline>
+<codeline lineno="13" refid="macros_8h_1ab593dd96bf8f92aee5fba9d85f29a902" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>READU32_BE(ptr,<sp/>offset)<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>\</highlight></codeline>
+<codeline lineno="14"><highlight class="preprocessor"><sp/><sp/><sp/><sp/>(((u32)ptr[offset]<sp/>&lt;&lt;<sp/>24)<sp/>|<sp/>((u32)ptr[offset<sp/>+<sp/>1]<sp/>&lt;&lt;<sp/>16)<sp/>|<sp/>((u32)ptr[offset<sp/>+<sp/>2]<sp/>&lt;&lt;<sp/>8)<sp/>|<sp/><sp/><sp/><sp/><sp/><sp/><sp/>\</highlight></codeline>
+<codeline lineno="15"><highlight class="preprocessor"><sp/><sp/><sp/><sp/><sp/>(u32)ptr[offset<sp/>+<sp/>3]);</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>DEBUG</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>ASSERTLINE(line,<sp/>cond)<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>((cond)<sp/>||<sp/>(OSPanic<sp/>(__FILE__,<sp/>line,<sp/>&quot;Failed<sp/>assertion<sp/>&quot;<sp/>#cond),<sp/>0))</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>ASSERTMSGLINE(line,<sp/>cond,<sp/>msg)<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>((cond)<sp/>||<sp/>(OSPanic<sp/>(__FILE__,<sp/>line,<sp/>msg),<sp/>0))</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight><highlight class="comment">//<sp/>This<sp/>is<sp/>dumb<sp/>but<sp/>we<sp/>dont<sp/>have<sp/>a<sp/>Metrowerks<sp/>way<sp/>to<sp/>do<sp/>variadic<sp/>macros<sp/>in<sp/>the</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight><highlight class="comment">//<sp/>macro<sp/>to<sp/>make<sp/>this<sp/>done<sp/>in<sp/>a<sp/>not<sp/>scrubby<sp/>way.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>ASSERTMSG1LINE(line,<sp/>cond,<sp/>msg,<sp/>arg1)<sp/>((cond)<sp/>||<sp/>(OSPanic<sp/>(__FILE__,<sp/>line,<sp/>msg,<sp/>arg1),<sp/>0))</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>ASSERTMSG2LINE(line,<sp/>cond,<sp/>msg,<sp/>arg1,<sp/>arg2)<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>\</highlight></codeline>
+<codeline lineno="27"><highlight class="preprocessor"><sp/><sp/><sp/><sp/>((cond)<sp/>||<sp/>(OSPanic<sp/>(__FILE__,<sp/>line,<sp/>msg,<sp/>arg1,<sp/>arg2),<sp/>0))</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="28"><highlight class="normal"></highlight></codeline>
+<codeline lineno="29"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>ASSERTMSGLINEV(line,<sp/>cond,<sp/>...)<sp/>((cond)<sp/>||<sp/>(OSPanic<sp/>(__FILE__,<sp/>line,<sp/>__VA_ARGS__),<sp/>0))</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="30"><highlight class="normal"></highlight></codeline>
+<codeline lineno="31"><highlight class="normal"></highlight><highlight class="preprocessor">#else</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="32" refid="macros_8h_1a33d4c5b1a214eeefb2ffd5c708c18152" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>ASSERTLINE(line,<sp/>cond)<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(void)0</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="33" refid="macros_8h_1ab70de2c23f5efbc0ca9123b1277a29b8" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>ASSERTMSGLINE(line,<sp/>cond,<sp/>msg)<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(void)0</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="34" refid="macros_8h_1a42266dd4ea490ca9bf7fe4180e095429" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>ASSERTMSG1LINE(line,<sp/>cond,<sp/>msg,<sp/>arg1)<sp/><sp/><sp/><sp/><sp/><sp/><sp/>(void)0</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="35" refid="macros_8h_1a22dae53a24805b354096bc7a1d348242" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>ASSERTMSG2LINE(line,<sp/>cond,<sp/>msg,<sp/>arg1,<sp/>arg2)<sp/>(void)0</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="36" refid="macros_8h_1ab21d1465952b48e6e00ba78565d3ff17" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>ASSERTMSGLINEV(line,<sp/>cond,<sp/>...)<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(void)0</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="37"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="38"><highlight class="normal"></highlight></codeline>
+<codeline lineno="39"><highlight class="normal"></highlight><highlight class="comment">//<sp/>clang-format<sp/>off</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="40" refid="macros_8h_1ad82fd02be65f19fd10e7342f8feceb79" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>FORCE_DONT_INLINE<sp/>\</highlight></codeline>
+<codeline lineno="41"><highlight class="preprocessor"><sp/><sp/><sp/><sp/>(void*)0;<sp/>(void*)0;<sp/>(void*)0;<sp/>(void*)0;<sp/>(void*)0;<sp/>(void*)0;<sp/>(void*)0;<sp/>(void*)0;<sp/>(void*)0;<sp/>(void*)0;<sp/>\</highlight></codeline>
+<codeline lineno="42"><highlight class="preprocessor"><sp/><sp/><sp/><sp/>(void*)0;<sp/>(void*)0;<sp/>(void*)0;<sp/>(void*)0;<sp/>(void*)0;<sp/>(void*)0;<sp/>(void*)0;<sp/>(void*)0;<sp/>(void*)0;<sp/>(void*)0;<sp/>\</highlight></codeline>
+<codeline lineno="43"><highlight class="preprocessor"><sp/><sp/><sp/><sp/>(void*)0;<sp/>(void*)0;<sp/>(void*)0;<sp/>(void*)0;<sp/>(void*)0;<sp/>(void*)0;<sp/>(void*)0;<sp/>(void*)0;<sp/>(void*)0;<sp/>(void*)0;<sp/>\</highlight></codeline>
+<codeline lineno="44"><highlight class="preprocessor"><sp/><sp/><sp/><sp/>(void*)0;<sp/>(void*)0;<sp/>(void*)0;<sp/>(void*)0;<sp/>(void*)0;<sp/>(void*)0;<sp/>(void*)0;<sp/>(void*)0;<sp/>(void*)0;<sp/>(void*)0;<sp/>\</highlight></codeline>
+<codeline lineno="45"><highlight class="preprocessor"><sp/><sp/><sp/><sp/>(void*)0;<sp/>(void*)0;<sp/>(void*)0;<sp/>(void*)0;<sp/>(void*)0;<sp/>(void*)0;<sp/>(void*)0;<sp/>(void*)0;<sp/>(void*)0;<sp/>(void*)0;<sp/>\</highlight></codeline>
+<codeline lineno="46"><highlight class="preprocessor"><sp/><sp/><sp/><sp/>(void*)0;<sp/>(void*)0;<sp/>(void*)0;<sp/>(void*)0;<sp/>(void*)0;<sp/>(void*)0;<sp/>(void*)0;<sp/>(void*)0;<sp/>(void*)0;<sp/>(void*)0;<sp/>\</highlight></codeline>
+<codeline lineno="47"><highlight class="preprocessor"><sp/><sp/><sp/><sp/>(void*)0;<sp/>(void*)0;<sp/>(void*)0;<sp/>(void*)0;<sp/>(void*)0;<sp/>(void*)0;<sp/>(void*)0;<sp/>(void*)0;<sp/>(void*)0;<sp/>(void*)0;<sp/>\</highlight></codeline>
+<codeline lineno="48"><highlight class="preprocessor"><sp/><sp/><sp/><sp/>(void*)0;<sp/>(void*)0;<sp/>(void*)0;<sp/>(void*)0;<sp/>(void*)0;<sp/>(void*)0;<sp/>(void*)0;<sp/>(void*)0;<sp/>(void*)0;<sp/>(void*)0;<sp/>\</highlight></codeline>
+<codeline lineno="49"><highlight class="preprocessor"><sp/><sp/><sp/><sp/>(void*)0;<sp/>(void*)0;<sp/>(void*)0;<sp/>(void*)0;<sp/>(void*)0;<sp/>(void*)0;<sp/>(void*)0;<sp/>(void*)0;<sp/>(void*)0;<sp/>(void*)0;<sp/>\</highlight></codeline>
+<codeline lineno="50"><highlight class="preprocessor"><sp/><sp/><sp/><sp/>(void*)0;<sp/>(void*)0;<sp/>(void*)0;<sp/>(void*)0;<sp/>(void*)0;<sp/>(void*)0;<sp/>(void*)0;<sp/>(void*)0;<sp/>(void*)0;<sp/>(void*)0;<sp/>\</highlight></codeline>
+<codeline lineno="51"><highlight class="preprocessor"><sp/><sp/><sp/><sp/>(void*)0;<sp/>(void*)0;<sp/>(void*)0;<sp/>(void*)0;<sp/>(void*)0;<sp/>(void*)0;<sp/>(void*)0;<sp/>(void*)0;<sp/>(void*)0;<sp/>(void*)0;<sp/>\</highlight></codeline>
+<codeline lineno="52"><highlight class="preprocessor"><sp/><sp/><sp/><sp/>(void*)0;<sp/>(void*)0;<sp/>(void*)0;<sp/>(void*)0;<sp/>(void*)0;<sp/>(void*)0;<sp/>(void*)0;<sp/>(void*)0;<sp/>(void*)0;<sp/>(void*)0;<sp/>\</highlight></codeline>
+<codeline lineno="53"><highlight class="preprocessor"><sp/><sp/><sp/><sp/>(void*)0;<sp/>(void*)0;<sp/>(void*)0;<sp/>(void*)0;<sp/>(void*)0;<sp/>(void*)0;<sp/>(void*)0;<sp/>(void*)0;<sp/>(void*)0;<sp/>(void*)0;<sp/>\</highlight></codeline>
+<codeline lineno="54"><highlight class="preprocessor"><sp/><sp/><sp/><sp/>(void*)0;<sp/>(void*)0;<sp/>(void*)0;<sp/>(void*)0;<sp/>(void*)0;<sp/>(void*)0;<sp/>(void*)0;<sp/>(void*)0;<sp/>(void*)0;<sp/>(void*)0;<sp/>\</highlight></codeline>
+<codeline lineno="55"><highlight class="preprocessor"><sp/><sp/><sp/><sp/>(void*)0;<sp/>(void*)0;<sp/>(void*)0;<sp/>(void*)0;<sp/>(void*)0;<sp/>(void*)0;<sp/>(void*)0;<sp/>(void*)0;<sp/>(void*)0;<sp/>(void*)0;<sp/>\</highlight></codeline>
+<codeline lineno="56"><highlight class="preprocessor"><sp/><sp/><sp/><sp/>(void*)0;<sp/>(void*)0;<sp/>(void*)0;<sp/>(void*)0;<sp/>(void*)0;<sp/>(void*)0;<sp/>(void*)0;<sp/>(void*)0;<sp/>(void*)0;<sp/>(void*)0;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="57"><highlight class="normal"></highlight><highlight class="comment">//<sp/>clang-format<sp/>on</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="58"><highlight class="normal"></highlight></codeline>
+<codeline lineno="59" refid="macros_8h_1ae688d728e1acdfe5988c7db45d6f0166" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>PATH_MAX<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(256)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="60"><highlight class="normal"></highlight></codeline>
+<codeline lineno="61"><highlight class="normal"></highlight><highlight class="comment">//<sp/>Sets<sp/>specific<sp/>flag<sp/>to<sp/>1</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="62" refid="macros_8h_1a795357f4b22ee1863fc9e5abe3c5b559" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>SET_FLAG(x,<sp/>val)<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(x<sp/>|=<sp/>(val))</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="63"><highlight class="normal"></highlight></codeline>
+<codeline lineno="64"><highlight class="normal"></highlight><highlight class="comment">//<sp/>Resets<sp/>specific<sp/>flag<sp/>from<sp/>(val)<sp/>back<sp/>to<sp/>0</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="65" refid="macros_8h_1afd90aa60c8d6bfb54aefee95fb0ec625" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>RESET_FLAG(x,<sp/>val)<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(x<sp/>&amp;=<sp/>~(val))</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="66"><highlight class="normal"></highlight></codeline>
+<codeline lineno="67"><highlight class="normal"></highlight><highlight class="comment">//<sp/>Return<sp/>1<sp/>if<sp/>flag<sp/>is<sp/>set,<sp/>0<sp/>if<sp/>flag<sp/>is<sp/>not<sp/>set</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="68" refid="macros_8h_1aa4bc77607490ad3d124a5d77722c3f88" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>IS_FLAG(x,<sp/>val)<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(x<sp/>&amp;<sp/>val)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="69"><highlight class="normal"></highlight></codeline>
+<codeline lineno="70"><highlight class="normal"></highlight><highlight class="comment">//<sp/>Array<sp/>size<sp/>define</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="71" refid="macros_8h_1a949a254e1e990fb6ad81ab2ad1a5111c" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>ARRAY_SIZE(o)<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(sizeof<sp/>((o))<sp/>/<sp/>sizeof<sp/>(*(o)))</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="72"><highlight class="normal"></highlight></codeline>
+<codeline lineno="73"><highlight class="normal"></highlight><highlight class="comment">//<sp/>Align<sp/>object<sp/>to<sp/>num<sp/>bytes<sp/>(num<sp/>should<sp/>be<sp/>power<sp/>of<sp/>two)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="74" refid="macros_8h_1a05147c28171e9f085e1007c4f5d7878d" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>ATTRIBUTE_ALIGN(num)<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>__attribute__<sp/>((aligned<sp/>(num)))</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="75"><highlight class="normal"></highlight></codeline>
+<codeline lineno="76"><highlight class="normal"></highlight><highlight class="comment">//<sp/>Checks<sp/>if<sp/>a<sp/>flag<sp/>is<sp/>set<sp/>in<sp/>a<sp/>bitfield</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="77" refid="macros_8h_1a0756f9fec486f081e95426ccbbed84fc" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>IS_FLAG_SET(flags,<sp/>bitsFromLSB)<sp/>(((flags)<sp/>&gt;&gt;<sp/>(bitsFromLSB)<sp/>&amp;<sp/>1))</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="78"><highlight class="normal"></highlight></codeline>
+<codeline lineno="79" refid="macros_8h_1a5e3abacabd8869b235b7fadc4218c2d2" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>ASSERT_HANG(cond)<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>\</highlight></codeline>
+<codeline lineno="80"><highlight class="preprocessor"><sp/><sp/><sp/><sp/>if<sp/>(!(cond))<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>\</highlight></codeline>
+<codeline lineno="81"><highlight class="preprocessor"><sp/><sp/><sp/><sp/>{<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>\</highlight></codeline>
+<codeline lineno="82"><highlight class="preprocessor"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>while<sp/>(true)<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>\</highlight></codeline>
+<codeline lineno="83"><highlight class="preprocessor"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>\</highlight></codeline>
+<codeline lineno="84"><highlight class="preprocessor"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>\</highlight></codeline>
+<codeline lineno="85"><highlight class="preprocessor"><sp/><sp/><sp/><sp/>}</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="86"><highlight class="normal"></highlight></codeline>
+<codeline lineno="87"><highlight class="normal"></highlight><highlight class="comment">//<sp/>Get<sp/>the<sp/>maximum<sp/>of<sp/>two<sp/>values</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="88" refid="macros_8h_1afa99ec4acc4ecb2dc3c2d05da15d0e3f" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>MAX(a,<sp/>b)<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(((a)<sp/>&gt;<sp/>(b))<sp/>?<sp/>(a)<sp/>:<sp/>(b))</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="89"><highlight class="normal"></highlight></codeline>
+<codeline lineno="90"><highlight class="normal"></highlight><highlight class="comment">//<sp/>Get<sp/>the<sp/>minimum<sp/>of<sp/>two<sp/>values</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="91" refid="macros_8h_1a3acffbd305ee72dcd4593c0d8af64a4f" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>MIN(a,<sp/>b)<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(((a)<sp/>&lt;<sp/>(b))<sp/>?<sp/>(a)<sp/>:<sp/>(b))</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="92"><highlight class="normal"></highlight></codeline>
+<codeline lineno="93"><highlight class="normal"></highlight><highlight class="comment">//<sp/>Rounds<sp/>a<sp/>float<sp/>to<sp/>a<sp/>u8</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="94" refid="macros_8h_1aec354e237c10024b47a40872232925f8" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>ROUND_F32_TO_U8(a)<sp/>a<sp/>&gt;=<sp/>0.0f<sp/>?<sp/>a<sp/>+<sp/>0.5f<sp/>:<sp/>a<sp/>-<sp/>0.5f</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="95"><highlight class="normal"></highlight></codeline>
+<codeline lineno="96"><highlight class="normal"></highlight><highlight class="comment">//<sp/>Number<sp/>of<sp/>bytes<sp/>in<sp/>a<sp/>kilobyte</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="97" refid="macros_8h_1a8b569312a2f8e0d2d38a0a3a0bc22f2d" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>KILOBYTE_BYTECOUNT<sp/>1024</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="98"><highlight class="normal"></highlight></codeline>
+<codeline lineno="99" refid="macros_8h_1aff14d6b65bdc4455792b1be5b31cd991" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>BUMP_REGISTER(reg)<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>\</highlight></codeline>
+<codeline lineno="100"><highlight class="preprocessor"><sp/><sp/><sp/><sp/>{<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>\</highlight></codeline>
+<codeline lineno="101"><highlight class="preprocessor"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>asm<sp/>{<sp/>mr<sp/>reg,<sp/>reg<sp/>}<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>\</highlight></codeline>
+<codeline lineno="102"><highlight class="preprocessor"><sp/><sp/><sp/><sp/>}</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="103"><highlight class="normal"></highlight></codeline>
+<codeline lineno="104"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>__MWERKS__</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="105" refid="macros_8h_1a25a8fdb10ae7e6dd58321422c441ba29" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>WEAKFUNC<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>__declspec<sp/>(weak)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="106" refid="macros_8h_1a4c85f314c2d16966f071e54c6c604367" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>DECL_SECT(name)<sp/>__declspec<sp/>(section<sp/>name)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="107" refid="macros_8h_1aa4490105d639938ba5c00b4e9e647e27" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>ASM<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>asm</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="108"><highlight class="normal"></highlight><highlight class="preprocessor">#else</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="109"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>WEAKFUNC</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="110"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>DECL_SECT(name)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="111"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>ASM</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="112"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="113"><highlight class="normal"></highlight></codeline>
+<codeline lineno="114"><highlight class="normal"></highlight><highlight class="comment">//<sp/>Disable<sp/>some<sp/>clangd<sp/>warnings</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="115"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>__clang__</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="116"><highlight class="normal"></highlight><highlight class="comment">//<sp/>Allow<sp/>string<sp/>literals<sp/>to<sp/>be<sp/>converted<sp/>to<sp/>char*</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="117"><highlight class="normal"></highlight><highlight class="preprocessor">#pragma<sp/>clang<sp/>diagnostic<sp/>ignored<sp/>&quot;-Wc++11-compat-deprecated-writable-strings&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="118"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="119"><highlight class="normal"></highlight></codeline>
+<codeline lineno="120" refid="macros_8h_1a5dc1910d166c3f8036a94d9ed0da1ee5" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>__MSTRING(x)<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>#x</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="121" refid="macros_8h_1a002b7abbdb9267fb8d3671475874d37b" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>MSTRING(x)<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>__MSTRING<sp/>(x)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="122"><highlight class="normal"></highlight></codeline>
+<codeline lineno="123" refid="macros_8h_1afb3a5733d10342c9a9ac65190cd33664" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>__MSTRING_CONCAT(a,<sp/>b)<sp/>a##b</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="124" refid="macros_8h_1a662a1c2b426245b4934db18ac66b17eb" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>MSTRING_CONCAT(a,<sp/>b)<sp/><sp/><sp/>__MSTRING_CONCAT<sp/>(a,<sp/>b)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="125"><highlight class="normal"></highlight></codeline>
+<codeline lineno="126"><highlight class="normal"></highlight><highlight class="comment">//<sp/>TODO:<sp/>make<sp/>more<sp/>unique</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="127"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>SASSERT(expr)<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>\</highlight></codeline>
+<codeline lineno="128"><highlight class="preprocessor"><sp/><sp/><sp/><sp/>enum<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>\</highlight></codeline>
+<codeline lineno="129"><highlight class="preprocessor"><sp/><sp/><sp/><sp/>{<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>\</highlight></codeline>
+<codeline lineno="130"><highlight class="preprocessor"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>MSTRING_CONCAT<sp/>(assert_fail_at_,<sp/>__LINE__)<sp/>=<sp/>1<sp/>/<sp/>(expr)<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>\</highlight></codeline>
+<codeline lineno="131"><highlight class="preprocessor"><sp/><sp/><sp/><sp/>}</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="132"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>SASSERT_SIZE(type,<sp/>size)<sp/>SASSERT<sp/>(sizeof<sp/>(type)<sp/>==<sp/>size)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="133"><highlight class="normal"></highlight></codeline>
+<codeline lineno="134" refid="macros_8h_1a32bd282e01bfb47604beffabcb83d4c1" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>IGNORE_GLMJ01</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="135" refid="macros_8h_1aa065a4e2eef6aa962f9730252a4b7e76" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>IGNORE_GLME01</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="136" refid="macros_8h_1aa8ecbf479f05ce19eaa9f14f98b7b982" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>IGNORE_GLME01_1</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="137" refid="macros_8h_1a488b4203cd0e9194b1234f1c487a956f" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>IGNORE_GLMP01</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="138" refid="macros_8h_1a9f25bf22f6a2a16358602dd3c127a8e1" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>IGNORE_GLMP01_1</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="139" refid="macros_8h_1a544caa4177e0a578cd0b40f201ab7d9e" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>IGNORE_GLMP01_2</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="140"><highlight class="normal"></highlight></codeline>
+<codeline lineno="141" refid="macros_8h_1a2743fb92be8ba88e4e07efefaefcf286" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>ONLY_GLMJ01<sp/>inline</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="142" refid="macros_8h_1ad16f9d72a458ba27109a061325d772b9" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>ONLY_GLME01<sp/>inline</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="143"><highlight class="normal"></highlight></codeline>
+<codeline lineno="144" refid="macros_8h_1a83dec9dd47a2c6a712924513263ec5df" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>IGNORE_ALL<sp/><sp/>inline</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="145"><highlight class="normal"></highlight></codeline>
+<codeline lineno="146"><highlight class="normal"></highlight><highlight class="preprocessor">#if<sp/>defined(VERSION_GLMJ01)<sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Japan</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="147"><highlight class="normal"></highlight><highlight class="preprocessor">#undef<sp/>IGNORE_GLMJ01</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="148"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>IGNORE_GLMJ01<sp/>inline</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="149"><highlight class="normal"></highlight><highlight class="preprocessor">#undef<sp/>ONLY_GLMJ01</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="150"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>ONLY_GLMJ01</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="151"><highlight class="normal"></highlight><highlight class="preprocessor">#elif<sp/>defined(VERSION_GLME01)<sp/></highlight><highlight class="comment">//<sp/>US</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="152"><highlight class="normal"></highlight><highlight class="preprocessor">#undef<sp/>IGNORE_GLME01</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="153"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>IGNORE_GLME01<sp/>inline</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="154"><highlight class="normal"></highlight><highlight class="preprocessor">#undef<sp/>ONLY_GLME01</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="155"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>ONLY_GLME01</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="156"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="157"><highlight class="normal"></highlight></codeline>
+<codeline lineno="158"><highlight class="normal"></highlight><highlight class="preprocessor">#ifndef<sp/>__PPCGEKKO__</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="159" refid="macros_8h_1a4604d5ed76ab90486d02d389106afce9" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>__PPCGEKKO__</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="160"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="161"><highlight class="normal"></highlight><highlight class="preprocessor">#ifndef<sp/>GEKKO</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="162"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>GEKKO</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="163"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="164"><highlight class="normal"></highlight></codeline>
+<codeline lineno="165"><highlight class="normal"></highlight><highlight class="preprocessor">#ifndef<sp/>__MWERKS__</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="166"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>__option(x)<sp/><sp/><sp/>0</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="167"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>__declspec(x)<sp/>0</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="168"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>__frsqrte(x)<sp/><sp/>0</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="169"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>__fabsf(x)<sp/><sp/><sp/><sp/>0</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="170"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>__sync()<sp/><sp/><sp/><sp/><sp/><sp/>0</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="171"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>__cntlzw(x)<sp/><sp/><sp/>0</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="172"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>asm</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="173"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="174"><highlight class="normal"></highlight></codeline>
+<codeline lineno="175"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>_H_MACROS_</highlight><highlight class="normal"></highlight></codeline>
+    </programlisting>
+    <location file="Project/lib/macros.h"/>
+  </compounddef>
+</doxygen>

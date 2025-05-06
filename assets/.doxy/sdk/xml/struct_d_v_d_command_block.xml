@@ -1,0 +1,291 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="struct_d_v_d_command_block" kind="struct" language="C++" prot="public">
+    <compoundname>DVDCommandBlock</compoundname>
+    <includes refid="dvd_8h" local="no">dvd.h</includes>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="struct_d_v_d_command_block_1ae3869b09be8d5da11cb6d425da305dbf" prot="public" static="no" mutable="no">
+        <type><ref refid="struct_d_v_d_command_block" kindref="compound">DVDCommandBlock</ref> *</type>
+        <definition>DVDCommandBlock* DVDCommandBlock::next</definition>
+        <argsstring></argsstring>
+        <name>next</name>
+        <qualifiedname>DVDCommandBlock::next</qualifiedname>
+        <briefdescription>
+<para>0x00 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="SDK/include/dolphin/dvd.h" line="22" column="21" bodyfile="SDK/include/dolphin/dvd.h" bodystart="22" bodyend="-1"/>
+        <referencedby refid="dvd__private_8h_1ab39f743ae25e3fc28207dedbee8284d3" compoundref="dvdqueue_8c" startline="17" endline="28">__DVDClearWaitingQueue</referencedby>
+        <referencedby refid="dvd__private_8h_1aae20ac849d38349749cf9cfe335d6dd0" compoundref="dvdqueue_8c" startline="106" endline="124">__DVDDequeueWaitingQueue</referencedby>
+        <referencedby refid="dvd__private_8h_1aeae20de641a06ebc68435f3537a8798c" compoundref="dvdqueue_8c" startline="127" endline="149">__DVDIsBlockInWaitingQueue</referencedby>
+        <referencedby refid="dvd__private_8h_1a75529ba1836b08a8f04978721892bd53" compoundref="dvdqueue_8c" startline="31" endline="42">__DVDPushWaitingQueue</referencedby>
+        <referencedby refid="seq_8c_1a509eecfe28f87b384bbe28f512c6d2b2" compoundref="seq_8c" startline="51" endline="71">__SEQRemoveSequenceFromList</referencedby>
+        <referencedby refid="_o_s_alloc_8c_1ab75291160ea77955ed3708ea3ea55f02" compoundref="_o_s_alloc_8c" startline="99" endline="143">DLInsert</referencedby>
+        <referencedby refid="dvd_8h_1ac3b0576f1d859d00f305020909673382" compoundref="dvdqueue_8c" startline="171" endline="206">DVDDumpWaitingQueue</referencedby>
+        <referencedby refid="_o_s_alarm_8c_1a8f3822f0b5ca4381962d68c467ea8f27" compoundref="_o_s_alarm_8c" startline="83" endline="145">InsertAlarm</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="struct_d_v_d_command_block_1a4c8ffc33378e6360f33c586642f16339" prot="public" static="no" mutable="no">
+        <type><ref refid="struct_d_v_d_command_block" kindref="compound">DVDCommandBlock</ref> *</type>
+        <definition>DVDCommandBlock* DVDCommandBlock::prev</definition>
+        <argsstring></argsstring>
+        <name>prev</name>
+        <qualifiedname>DVDCommandBlock::prev</qualifiedname>
+        <briefdescription>
+<para>0x04 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="SDK/include/dolphin/dvd.h" line="23" column="21" bodyfile="SDK/include/dolphin/dvd.h" bodystart="23" bodyend="-1"/>
+        <referencedby refid="dvd__private_8h_1ab39f743ae25e3fc28207dedbee8284d3" compoundref="dvdqueue_8c" startline="17" endline="28">__DVDClearWaitingQueue</referencedby>
+        <referencedby refid="dvd__private_8h_1aae20ac849d38349749cf9cfe335d6dd0" compoundref="dvdqueue_8c" startline="106" endline="124">__DVDDequeueWaitingQueue</referencedby>
+        <referencedby refid="dvd__private_8h_1a75529ba1836b08a8f04978721892bd53" compoundref="dvdqueue_8c" startline="31" endline="42">__DVDPushWaitingQueue</referencedby>
+        <referencedby refid="_o_s_alarm_8c_1a1122859864b8fa63ef93fad9cf492f16" compoundref="_o_s_alarm_8c" startline="228" endline="277">DecrementerExceptionCallback</referencedby>
+        <referencedby refid="_o_s_alloc_8c_1ab75291160ea77955ed3708ea3ea55f02" compoundref="_o_s_alloc_8c" startline="99" endline="143">DLInsert</referencedby>
+        <referencedby refid="_o_s_alarm_8c_1a8f3822f0b5ca4381962d68c467ea8f27" compoundref="_o_s_alarm_8c" startline="83" endline="145">InsertAlarm</referencedby>
+        <referencedby refid="_o_s_alarm_8h_1ad08820cab8590f7b2a3345b3ed8c3a0e" compoundref="_o_s_alarm_8c" startline="188" endline="225">OSCancelAlarm</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="struct_d_v_d_command_block_1ad5dba3d65c56054ec3fa73d3069e03fd" prot="public" static="no" mutable="no">
+        <type><ref refid="types_8h_1a2caf5cd7bcdbe1eefa727f44ffb10bac" kindref="member">u32</ref></type>
+        <definition>u32 DVDCommandBlock::command</definition>
+        <argsstring></argsstring>
+        <name>command</name>
+        <qualifiedname>DVDCommandBlock::command</qualifiedname>
+        <briefdescription>
+<para>0x08 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="SDK/include/dolphin/dvd.h" line="24" column="22" bodyfile="SDK/include/dolphin/dvd.h" bodystart="24" bodyend="-1"/>
+        <referencedby refid="dvd_8c_1aad662f66a577da72583041e97ce5d6cc" compoundref="dvd_8c" startline="231" endline="261">CategorizeError</referencedby>
+        <referencedby refid="dvd_8c_1a32cf226358f6449cea2cb9c097307130" compoundref="dvd_8c" startline="686" endline="759">stateReady</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="struct_d_v_d_command_block_1adf3acb6c9b9d20b55c8143abfeccbdc8" prot="public" static="no" mutable="no">
+        <type><ref refid="types_8h_1adafe97a8e4be18b0198f234819016582" kindref="member">s32</ref></type>
+        <definition>s32 DVDCommandBlock::state</definition>
+        <argsstring></argsstring>
+        <name>state</name>
+        <qualifiedname>DVDCommandBlock::state</qualifiedname>
+        <briefdescription>
+<para>0x0C </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="SDK/include/dolphin/dvd.h" line="25" column="22" bodyfile="SDK/include/dolphin/dvd.h" bodystart="25" bodyend="-1"/>
+        <referencedby refid="dsp__private_8h_1a0ca11dbcad7a99a785c28f41f16253ae" compoundref="dsp__task_8c" startline="189" endline="238">__DSP_exec_task</referencedby>
+        <referencedby refid="dvd_8c_1a343ccced30206ffdf6dfcbf485b1f6ec" compoundref="dvd_8c" startline="842" endline="1025">cbForStateBusy</referencedby>
+        <referencedby refid="dvd_8c_1a18f405befdb60a67ba89c0c2366ec4bc" compoundref="dvd_8c" startline="515" endline="543">cbForStateCheckID1</referencedby>
+        <referencedby refid="dvd_8c_1a68cbbc980f61bc6dd2a28b3f32bbaad0" compoundref="dvd_8c" startline="546" endline="568">cbForStateCheckID2</referencedby>
+        <referencedby refid="dvd_8c_1a612a535857930916f4415f6f33f29efe" compoundref="dvd_8c" startline="571" endline="597">cbForStateCheckID3</referencedby>
+        <referencedby refid="dvd_8c_1afe5bd6d17a918038855e9dd391384f99" compoundref="dvd_8c" startline="643" endline="668">cbForStateCoverClosed</referencedby>
+        <referencedby refid="dvd_8c_1ad2d9ba62ffc3be6f233899730f7b4d4c" compoundref="dvd_8c" startline="160" endline="188">cbForStateError</referencedby>
+        <referencedby refid="dvd_8c_1a0d4c4474433cb3dfc3b4c2cd33940434" compoundref="dvd_8c" startline="290" endline="384">cbForStateGettingError</referencedby>
+        <referencedby refid="dvd_8c_1a332022861ea62e781af413a314452b15" compoundref="dvd_8c" startline="434" endline="470">cbForStateGoToRetry</referencedby>
+        <referencedby refid="dvd_8c_1a96875a7221b917ad305886efe85826ff" compoundref="dvd_8c" startline="677" endline="683">cbForStateMotorStopped</referencedby>
+        <referencedby refid="dvd_8c_1a2c80aca789c20af602373e4805ba912e" compoundref="dvd_8c" startline="128" endline="157">cbForStateReadingFST</referencedby>
+        <referencedby refid="dvd_8c_1a11403b75e23bf6f145a48ea2134a251f" compoundref="dvd_8c" startline="387" endline="405">cbForUnrecoveredError</referencedby>
+        <referencedby refid="dvd_8c_1a1652a65c9c98215b78034dc1ff6795fd" compoundref="dvd_8c" startline="408" endline="425">cbForUnrecoveredErrorRetry</referencedby>
+        <referencedby refid="dvd_8c_1acf241626e36fe47c14aa0aa2f478c876" compoundref="dvd_8c" startline="264" endline="287">CheckCancel</referencedby>
+        <referencedby refid="dvd_8h_1a0453a6478023036695fd83140621a72a" compoundref="dvd_8c" startline="1998" endline="2064">DVDCheckDisk</referencedby>
+        <referencedby refid="dvd_8h_1a0cdf8829ecfdc5733c46decd8fc101e2" compoundref="dvdfs_8c" startline="209" endline="234">DVDFastOpen</referencedby>
+        <referencedby refid="dvd_8h_1ad78b1fd1e146040aa38343ca0544b592" compoundref="dvdfs_8c" startline="615" endline="618">DVDGetFileInfoStatus</referencedby>
+        <referencedby refid="dvd_8h_1aa7d0c1aef365217e3d719675cdf38e65" compoundref="dvdfs_8c" startline="237" endline="269">DVDOpen</referencedby>
+        <referencedby refid="dvd_8h_1a8e0982b8ed97fc3efff56bacd457b0e2" compoundref="dvdfs_8c" startline="750" endline="833">DVDPrepareStream</referencedby>
+        <referencedby refid="dvdfs_8c_1adc55caa987e5ae7f0783b65796b43608" compoundref="dvdfs_8c" startline="456" endline="517">DVDReadPrio</referencedby>
+        <referencedby refid="dvdfs_8c_1a578f42bb71027ae21f85c44df69d4cad" compoundref="dvdfs_8c" startline="561" endline="606">DVDSeekPrio</referencedby>
+        <referencedby refid="dvd_8c_1a05b2ee81dfde6202f0a8ddeb528c3fe7" compoundref="dvd_8c" startline="1028" endline="1058">issueCommand</referencedby>
+        <referencedby refid="dvd_8c_1ae2d6952b8cb43e33d8107e13b8136de6" compoundref="dvd_8c" startline="473" endline="500">stateCheckID</referencedby>
+        <referencedby refid="dvd_8c_1a32cf226358f6449cea2cb9c097307130" compoundref="dvd_8c" startline="686" endline="759">stateReady</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="struct_d_v_d_command_block_1a9fb16bbab962ae1b929e5bc87bff587b" prot="public" static="no" mutable="no">
+        <type><ref refid="types_8h_1a2caf5cd7bcdbe1eefa727f44ffb10bac" kindref="member">u32</ref></type>
+        <definition>u32 DVDCommandBlock::offset</definition>
+        <argsstring></argsstring>
+        <name>offset</name>
+        <qualifiedname>DVDCommandBlock::offset</qualifiedname>
+        <briefdescription>
+<para>0x10 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="SDK/include/dolphin/dvd.h" line="26" column="22" bodyfile="SDK/include/dolphin/dvd.h" bodystart="26" bodyend="-1"/>
+        <referencedby refid="dvd_8c_1a343ccced30206ffdf6dfcbf485b1f6ec" compoundref="dvd_8c" startline="842" endline="1025">cbForStateBusy</referencedby>
+        <referencedby refid="dvd_8c_1a0d4c4474433cb3dfc3b4c2cd33940434" compoundref="dvd_8c" startline="290" endline="384">cbForStateGettingError</referencedby>
+        <referencedby refid="dvd_8h_1a8e0982b8ed97fc3efff56bacd457b0e2" compoundref="dvdfs_8c" startline="750" endline="833">DVDPrepareStream</referencedby>
+        <referencedby refid="dvd_8h_1ad5974d82c8f151e1dd9bef74d3e8eed4" compoundref="dvdfs_8c" startline="682" endline="731">DVDPrepareStreamAsync</referencedby>
+        <referencedby refid="dvdfs_8c_1adc55caa987e5ae7f0783b65796b43608" compoundref="dvdfs_8c" startline="456" endline="517">DVDReadPrio</referencedby>
+        <referencedby refid="dvdfs_8c_1a1514d3a98d0b33f872f9db75305b16d4" compoundref="dvdfs_8c" startline="526" endline="545">DVDSeekAsyncPrio</referencedby>
+        <referencedby refid="dvdfs_8c_1a578f42bb71027ae21f85c44df69d4cad" compoundref="dvdfs_8c" startline="561" endline="606">DVDSeekPrio</referencedby>
+        <referencedby refid="dvdlow_8c_1ac9c83e9ae6e0e8aa40ac1c952df8f5ca" compoundref="dvdlow_8c" startline="285" endline="297">HitCache</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="struct_d_v_d_command_block_1aeb75412fcb2e427b86d83eda1e0c2288" prot="public" static="no" mutable="no">
+        <type><ref refid="types_8h_1a2caf5cd7bcdbe1eefa727f44ffb10bac" kindref="member">u32</ref></type>
+        <definition>u32 DVDCommandBlock::length</definition>
+        <argsstring></argsstring>
+        <name>length</name>
+        <qualifiedname>DVDCommandBlock::length</qualifiedname>
+        <briefdescription>
+<para>0x14 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="SDK/include/dolphin/dvd.h" line="27" column="22" bodyfile="SDK/include/dolphin/dvd.h" bodystart="27" bodyend="-1"/>
+        <referencedby refid="dvd_8c_1a343ccced30206ffdf6dfcbf485b1f6ec" compoundref="dvd_8c" startline="842" endline="1025">cbForStateBusy</referencedby>
+        <referencedby refid="dvd_8h_1a8e0982b8ed97fc3efff56bacd457b0e2" compoundref="dvdfs_8c" startline="750" endline="833">DVDPrepareStream</referencedby>
+        <referencedby refid="dvd_8h_1ad5974d82c8f151e1dd9bef74d3e8eed4" compoundref="dvdfs_8c" startline="682" endline="731">DVDPrepareStreamAsync</referencedby>
+        <referencedby refid="dvdfs_8c_1adc55caa987e5ae7f0783b65796b43608" compoundref="dvdfs_8c" startline="456" endline="517">DVDReadPrio</referencedby>
+        <referencedby refid="dvdfs_8c_1a1514d3a98d0b33f872f9db75305b16d4" compoundref="dvdfs_8c" startline="526" endline="545">DVDSeekAsyncPrio</referencedby>
+        <referencedby refid="dvdlow_8c_1ac9c83e9ae6e0e8aa40ac1c952df8f5ca" compoundref="dvdlow_8c" startline="285" endline="297">HitCache</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="struct_d_v_d_command_block_1a142c7dd63d3bb2d364c1313d65b4a329" prot="public" static="no" mutable="no">
+        <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">void</ref> *</type>
+        <definition>void* DVDCommandBlock::addr</definition>
+        <argsstring></argsstring>
+        <name>addr</name>
+        <qualifiedname>DVDCommandBlock::addr</qualifiedname>
+        <briefdescription>
+<para>0x18 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="SDK/include/dolphin/dvd.h" line="28" column="21" bodyfile="SDK/include/dolphin/dvd.h" bodystart="28" bodyend="-1"/>
+        <referencedby refid="dvdfs_8c_1adc55caa987e5ae7f0783b65796b43608" compoundref="dvdfs_8c" startline="456" endline="517">DVDReadPrio</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="struct_d_v_d_command_block_1a261d6a99b0eb21525d485c44053ac6ea" prot="public" static="no" mutable="no">
+        <type><ref refid="types_8h_1a2caf5cd7bcdbe1eefa727f44ffb10bac" kindref="member">u32</ref></type>
+        <definition>u32 DVDCommandBlock::currTransferSize</definition>
+        <argsstring></argsstring>
+        <name>currTransferSize</name>
+        <qualifiedname>DVDCommandBlock::currTransferSize</qualifiedname>
+        <briefdescription>
+<para>0x1C </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="SDK/include/dolphin/dvd.h" line="29" column="22" bodyfile="SDK/include/dolphin/dvd.h" bodystart="29" bodyend="-1"/>
+        <referencedby refid="dvd_8c_1a343ccced30206ffdf6dfcbf485b1f6ec" compoundref="dvd_8c" startline="842" endline="1025">cbForStateBusy</referencedby>
+        <referencedby refid="dvd_8c_1a000c1988681f53af0fcc79b5e32c5631" compoundref="dvd_8c" startline="762" endline="839">stateBusy</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="struct_d_v_d_command_block_1a0fe3e5035016753a9ec8cee4bde97af4" prot="public" static="no" mutable="no">
+        <type><ref refid="types_8h_1a2caf5cd7bcdbe1eefa727f44ffb10bac" kindref="member">u32</ref></type>
+        <definition>u32 DVDCommandBlock::transferredSize</definition>
+        <argsstring></argsstring>
+        <name>transferredSize</name>
+        <qualifiedname>DVDCommandBlock::transferredSize</qualifiedname>
+        <briefdescription>
+<para>0x20 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="SDK/include/dolphin/dvd.h" line="30" column="22" bodyfile="SDK/include/dolphin/dvd.h" bodystart="30" bodyend="-1"/>
+        <referencedby refid="dvd_8c_1a343ccced30206ffdf6dfcbf485b1f6ec" compoundref="dvd_8c" startline="842" endline="1025">cbForStateBusy</referencedby>
+        <referencedby refid="dvd_8h_1ac04e5d55e83452282b69f7297bb052a6" compoundref="dvdfs_8c" startline="842" endline="872">DVDGetTransferredSize</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="struct_d_v_d_command_block_1aafaf98073ccbdaeadfed00ee7567b715" prot="public" static="no" mutable="no">
+        <type><ref refid="struct_d_v_d_disk_i_d" kindref="compound">DVDDiskID</ref> *</type>
+        <definition>DVDDiskID* DVDCommandBlock::id</definition>
+        <argsstring></argsstring>
+        <name>id</name>
+        <qualifiedname>DVDCommandBlock::id</qualifiedname>
+        <briefdescription>
+<para>0x24 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="SDK/include/dolphin/dvd.h" line="31" column="21" bodyfile="SDK/include/dolphin/dvd.h" bodystart="31" bodyend="-1"/>
+        <referencedby refid="dvd_8c_1ae2d6952b8cb43e33d8107e13b8136de6" compoundref="dvd_8c" startline="473" endline="500">stateCheckID</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="struct_d_v_d_command_block_1ad790c6ca2b3a2453a2501b7875065edb" prot="public" static="no" mutable="no">
+        <type><ref refid="dvd_8h_1afe97b33ac2375f49fe321963bd5c0062" kindref="member">DVDCBCallback</ref></type>
+        <definition>DVDCBCallback DVDCommandBlock::callback</definition>
+        <argsstring></argsstring>
+        <name>callback</name>
+        <qualifiedname>DVDCommandBlock::callback</qualifiedname>
+        <briefdescription>
+<para>0x28 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="SDK/include/dolphin/dvd.h" line="32" column="22" bodyfile="SDK/include/dolphin/dvd.h" bodystart="32" bodyend="-1"/>
+        <referencedby refid="dvd_8h_1ad6c99010b0652d14dfdc555926ea9699" compoundref="dvd_8c" startline="2067" endline="2090">__DVDPrepareResetAsync</referencedby>
+        <referencedby refid="dvd_8h_1ad5974d82c8f151e1dd9bef74d3e8eed4" compoundref="dvdfs_8c" startline="682" endline="731">DVDPrepareStreamAsync</referencedby>
+        <referencedby refid="dvdfs_8c_1a1514d3a98d0b33f872f9db75305b16d4" compoundref="dvdfs_8c" startline="526" endline="545">DVDSeekAsyncPrio</referencedby>
+        <referencedby refid="dvd_8c_1abc1ef00aed1d00cb95992e6b75072095" compoundref="dvd_8c" startline="609" endline="634">stateCoverClosed</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="struct_d_v_d_command_block_1a9d0b6426b6850f046b4701ad3b681a8f" prot="public" static="no" mutable="no">
+        <type><ref refid="_c_a_r_d_private_8h_1a370a9cfcbedc961a57c684892b53f579" kindref="member">void</ref> *</type>
+        <definition>void* DVDCommandBlock::userData</definition>
+        <argsstring></argsstring>
+        <name>userData</name>
+        <qualifiedname>DVDCommandBlock::userData</qualifiedname>
+        <briefdescription>
+<para>0x2C </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="SDK/include/dolphin/dvd.h" line="33" column="21" bodyfile="SDK/include/dolphin/dvd.h" bodystart="33" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="1">
+        <label>DVDCommandBlock</label>
+        <link refid="struct_d_v_d_command_block"/>
+        <childnode refid="1" relation="usage">
+          <edgelabel>callback</edgelabel>
+          <edgelabel>next</edgelabel>
+          <edgelabel>prev</edgelabel>
+        </childnode>
+        <childnode refid="2" relation="usage">
+          <edgelabel>id</edgelabel>
+        </childnode>
+      </node>
+      <node id="2">
+        <label>DVDDiskID</label>
+        <link refid="struct_d_v_d_disk_i_d"/>
+      </node>
+    </collaborationgraph>
+    <location file="SDK/include/dolphin/dvd.h" line="20" column="1" bodyfile="SDK/include/dolphin/dvd.h" bodystart="21" bodyend="34"/>
+    <listofallmembers>
+      <member refid="struct_d_v_d_command_block_1a142c7dd63d3bb2d364c1313d65b4a329" prot="public" virt="non-virtual"><scope>DVDCommandBlock</scope><name>addr</name></member>
+      <member refid="struct_d_v_d_command_block_1ad790c6ca2b3a2453a2501b7875065edb" prot="public" virt="non-virtual"><scope>DVDCommandBlock</scope><name>callback</name></member>
+      <member refid="struct_d_v_d_command_block_1ad5dba3d65c56054ec3fa73d3069e03fd" prot="public" virt="non-virtual"><scope>DVDCommandBlock</scope><name>command</name></member>
+      <member refid="struct_d_v_d_command_block_1a261d6a99b0eb21525d485c44053ac6ea" prot="public" virt="non-virtual"><scope>DVDCommandBlock</scope><name>currTransferSize</name></member>
+      <member refid="struct_d_v_d_command_block_1aafaf98073ccbdaeadfed00ee7567b715" prot="public" virt="non-virtual"><scope>DVDCommandBlock</scope><name>id</name></member>
+      <member refid="struct_d_v_d_command_block_1aeb75412fcb2e427b86d83eda1e0c2288" prot="public" virt="non-virtual"><scope>DVDCommandBlock</scope><name>length</name></member>
+      <member refid="struct_d_v_d_command_block_1ae3869b09be8d5da11cb6d425da305dbf" prot="public" virt="non-virtual"><scope>DVDCommandBlock</scope><name>next</name></member>
+      <member refid="struct_d_v_d_command_block_1a9fb16bbab962ae1b929e5bc87bff587b" prot="public" virt="non-virtual"><scope>DVDCommandBlock</scope><name>offset</name></member>
+      <member refid="struct_d_v_d_command_block_1a4c8ffc33378e6360f33c586642f16339" prot="public" virt="non-virtual"><scope>DVDCommandBlock</scope><name>prev</name></member>
+      <member refid="struct_d_v_d_command_block_1adf3acb6c9b9d20b55c8143abfeccbdc8" prot="public" virt="non-virtual"><scope>DVDCommandBlock</scope><name>state</name></member>
+      <member refid="struct_d_v_d_command_block_1a0fe3e5035016753a9ec8cee4bde97af4" prot="public" virt="non-virtual"><scope>DVDCommandBlock</scope><name>transferredSize</name></member>
+      <member refid="struct_d_v_d_command_block_1a9d0b6426b6850f046b4701ad3b681a8f" prot="public" virt="non-virtual"><scope>DVDCommandBlock</scope><name>userData</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

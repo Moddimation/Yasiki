@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Project Yasiki: Decompilation of Luigi's Mansion.">
+    <link rel="stylesheet" href="https://moddimation.github.io/Yasiki/assets/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Reggae+One&disp=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito&disp=swap" rel="stylesheet">
+    <link rel="icon" href="https://moddimation.github.io/Yasiki/assets/favicon.ico" type="image/x-icon">
+    <title>File OSModule.h - Project Yasiki</title>
+  </head>
+  <body>
+    <div class="container">
+      <nav>
+        <ul>
+        </ul>
+      </nav>
+
+      <!--Upper bar-->
+      <div id="bar">
+
+          <!--Project text / logo-->
+          <a id="barTitle" href="https://moddimation.github.io/Yasiki/"><b>Project Yasiki</b></a>
+          <div style="display: flex; flex-direction: column; align-items: start;">
+            
+            <!--Both progress badges-->
+            <a href="https://github.com/Moddimation/Yasiki">
+              <img style="padding-top:10px; width: 90px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=code&label=Code" alt="Go to github repo">
+            </a>
+            <a href="https://decomp.dev/Moddimation/Yasiki">
+              <img style="padding-bottom:0px; width: 123px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=functions&label=Progress" alt="Go to progress page">
+            </a>
+          </div>
+          
+          <p> </p>
+          
+          <!--Add each nav head here-->
+            <li>
+              <button onclick="window.location.href='https://moddimation.github.io/Yasiki/files/'">Files</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddimation.github.io/Yasiki/classes/'">Classes</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddimation.github.io/Yasiki/wiki/'">Full Wiki</button>
+            </li>
+      </div>
+      
+      <h1 id="file-osmoduleh">File OSModule.h</h1>
+<p><a href="../files/"><strong>File List</strong></a> <strong>&gt;</strong> <a href="../dir_8d73ddf10613ffd25a966cd68a313b8d/"><strong>dolphin</strong></a> <strong>&gt;</strong> <a href="../dir_ec7c732b679442ba7b10ef1b15f4b60e/"><strong>os</strong></a> <strong>&gt;</strong> <a href="../_o_s_module_8h/"><strong>OSModule.h</strong></a></p>
+<p><a href="../_o_s_module_8h/">Go to the documentation of this file</a></p>
+<pre><code class="language-C++">#ifndef _DOLPHIN_OSMODULE_H_
+#define _DOLPHIN_OSMODULE_H_
+
+#include &lt;types.h&gt;
+
+#ifdef __cplusplus
+extern &quot;C&quot;
+{
+#endif
+
+#define OS_MODULE_VERSION 1
+typedef struct OSModuleHeader OSModuleHeader;
+
+typedef u32                  OSModuleID;
+typedef struct OSModuleQueue OSModuleQueue;
+typedef struct OSModuleLink  OSModuleLink;
+typedef struct OSModuleInfo  OSModuleInfo;
+typedef struct OSSectionInfo OSSectionInfo;
+typedef struct OSImportInfo  OSImportInfo;
+typedef struct OSRel         OSRel;
+
+struct OSModuleQueue
+{
+    OSModuleInfo* head;
+    OSModuleInfo* tail;
+};
+
+struct OSModuleLink
+{
+    OSModuleInfo* next;
+    OSModuleInfo* prev;
+};
+
+struct OSModuleInfo
+{
+    OSModuleID   id;                // unique identifier for the module
+    OSModuleLink link;              // doubly linked list of modules
+    u32          numSections;       // # of sections
+    u32          sectionInfoOffset; // offset to section info table
+    u32          nameOffset;        // offset to module name
+    u32          nameSize;          // size of module name
+    u32          version;           // version number
+};
+
+struct OSModuleHeader
+{
+    // CAUTION: info must be the 1st member
+    OSModuleInfo info;
+
+    // OS_MODULE_VERSION == 1
+    u32 bssSize;           // total size of bss sections in bytes
+    u32 relOffset;
+    u32 impOffset;
+    u32 impSize;           // size in bytes
+    u8  prologSection;     // section # for prolog function
+    u8  epilogSection;     // section # for epilog function
+    u8  unresolvedSection; // section # for unresolved function
+    u8  bssSection;        // section # for bss section (set at run-time)
+    u32 prolog;            // prolog function offset
+    u32 epilog;            // epilog function offset
+    u32 unresolved;        // unresolved function offset
+
+                           // OS_MODULE_VERSION == 2
+#if (2 &lt;= OS_MODULE_VERSION)
+    u32 align;    // module alignment constraint
+    u32 bssAlign; // bss alignment constraint
+#endif
+
+                  // OS_MODULE_VERSION == 3
+#if (3 &lt;= OS_MODULE_VERSION)
+    u32 fixSize;
+#endif
+};
+
+#define OSGetSectionInfo(module) ((OSSectionInfo*)(((OSModuleInfo*)(module))-&gt;sectionInfoOffset))
+
+struct OSSectionInfo
+{
+    u32 offset;
+    u32 size;
+};
+
+// OSSectionInfo.offset bit
+#define OS_SECTIONINFO_EXEC           0x1
+#define OS_SECTIONINFO_OFFSET(offset) ((offset) &amp; ~0x1)
+
+struct OSImportInfo
+{
+    OSModuleID id;            // external module id
+    u32        offset;        // offset to OSRel instructions
+};
+
+struct OSRel
+{
+    u16 offset;               // byte offset from the previous entry
+    u8  type;
+    u8  section;
+    u32 addend;
+};
+
+#define R_DOLPHIN_NOP     201 //  C9h current offset += OSRel.offset
+#define R_DOLPHIN_SECTION 202 //  CAh current section = OSRel.section
+#define R_DOLPHIN_END     203 //  CBh
+#define R_DOLPHIN_MRKREF  204 //  CCh
+
+void OSSetStringTable (const void* stringTable);
+BOOL OSLink (OSModuleInfo* newModule, void* bss);
+#if (3 &lt;= OS_MODULE_VERSION)
+BOOL OSLinkFixed (OSModuleInfo* newModule, void* bss);
+#endif
+BOOL OSUnlink (OSModuleInfo* oldModule);
+
+OSModuleInfo* OSSearchModule (void* ptr, u32* section, u32* offset);
+
+// debugger notification
+void OSNotifyLink (void);
+void OSNotifyUnlink (void);
+
+#ifdef __cplusplus
+}
+#endif
+
+#endif
+</code></pre>
+        <script src="../../search/main.js"></script>
+    </div>
+  </body>
+</html>

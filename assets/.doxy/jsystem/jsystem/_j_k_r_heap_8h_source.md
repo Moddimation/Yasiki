@@ -1,0 +1,73 @@
+
+
+# File JKRHeap.h
+
+[**File List**](files.md) **>** [**include**](dir_aa4045410c0ff4a0352c8e4463772829.md) **>** [**JKRHeap.h**](_j_k_r_heap_8h.md)
+
+[Go to the documentation of this file](_j_k_r_heap_8h.md)
+
+
+```C++
+#ifndef __JKR_HEAP_H__
+#define __JKR_HEAP_H__
+
+#include <JKRDisposer.h>
+#include <JSUList.h>
+
+typedef void* JKRHeapObj;
+
+class JKRHeap
+{
+public:
+    constructor JKRHeap (JKRHeapObj, u32, JKRHeap*, bool);
+    destructor ~JKRHeap();
+
+    static JKRHeap* initArena (char**, u32*, int size);
+    static void     alloc (u32, int, JKRHeap* heap);
+    static JKRHeap* findFromRoot (JKRHeapObj);
+    static void     copyMemory (JKRHeapObj, JKRHeapObj, u32);
+
+    void becomeSystemHeap ();
+    void becomeCurrentHeap ();
+    void find (JKRHeapObj) const;
+    void dispose_subroutine (u32, u32);
+    void dispose (JKRHeapObj, u32);
+    void dispose (JKRHeapObj, JKRHeapObj);
+    void dispose ();
+
+    virtual void alloc (u32, int);
+    virtual void free (JKRHeapObj);
+    virtual void freeAll ();
+    virtual void freeTail ();
+    virtual void resize (JKRHeapObj, int);
+    virtual u32  getSize (JKRHeapObj);
+    virtual u32  getFreeSize ();
+    virtual u32  getTotalFreeSize ();
+    virtual u32  getHeapType ();
+    virtual void check ();
+    virtual void dump ();
+    virtual void dump_sort ();
+    virtual u32  getCurrentGroupId ();
+
+    void
+    appendDisposer (JKRDisposer* disposer)
+    {
+        mPtrList.append (&disposer->mPtr);
+    }
+
+    void
+    removeDisposer (JKRDisposer* disposer)
+    {
+        mPtrList.remove (&disposer->mPtr);
+    }
+
+private:
+    u8         pad[84];
+    JSUPtrList mPtrList;
+    bool       someBool;
+};
+
+#endif
+```
+
+

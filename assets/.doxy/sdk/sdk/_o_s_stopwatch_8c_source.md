@@ -1,0 +1,83 @@
+
+
+# File OSStopwatch.c
+
+[**File List**](files.md) **>** [**dolphin**](dir_8daa6a5f7f30f79e111d6992c13d512c.md) **>** [**os**](dir_8207759a5d5564400a58f6bb524771f0.md) **>** [**OSStopwatch.c**](_o_s_stopwatch_8c.md)
+
+[Go to the documentation of this file](_o_s_stopwatch_8c.md)
+
+
+```C++
+#include <dolphin/os.h>
+
+void
+OSInitStopwatch (struct OSStopwatch* sw, char* name)
+{
+    sw->name = name;
+    sw->total = 0;
+    sw->hits = 0;
+    sw->min = 0x00000000FFFFFFFF;
+    sw->max = 0;
+}
+
+void
+OSStartStopwatch (struct OSStopwatch* sw)
+{
+    sw->running = 1;
+    sw->last = OSGetTime();
+}
+
+void
+OSStopStopwatch (struct OSStopwatch* sw)
+{
+    s64 interval;
+
+    if (sw->running != 0)
+    {
+        interval = OSGetTime() - sw->last;
+        sw->total += interval;
+        sw->running = 0;
+        sw->hits++;
+        if (sw->max < interval)
+        {
+            sw->max = interval;
+        }
+        if (interval < sw->min)
+        {
+            sw->min = interval;
+        }
+    }
+}
+
+s64
+OSCheckStopwatch (struct OSStopwatch* sw)
+{
+    s64 currTotal;
+
+    currTotal = sw->total;
+    if (sw->running != 0)
+    {
+        currTotal += OSGetTime() - sw->last;
+    }
+    return currTotal;
+}
+
+void
+OSResetStopwatch (struct OSStopwatch* sw)
+{
+    OSInitStopwatch (sw, sw->name);
+}
+
+void
+OSDumpStopwatch (struct OSStopwatch* sw)
+{
+    OSReport ("Stopwatch [%s]   :\n", sw->name);
+    OSReport ("\tTotal= %lld us\n", OSTicksToMicroseconds (sw->total));
+    OSReport ("\tHits = %d \n", sw->hits);
+    OSReport ("\tMin  = %lld us\n", OSTicksToMicroseconds (sw->min));
+    OSReport ("\tMax  = %lld us\n", OSTicksToMicroseconds (sw->max));
+    OSReport ("\tMean = %lld us\n", OSTicksToMicroseconds (sw->total / sw->hits));
+}
+```
+
+

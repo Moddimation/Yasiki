@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Project Yasiki: Decompilation of Luigi's Mansion.">
+    <link rel="stylesheet" href="https://moddimation.github.io/Yasiki/assets/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Reggae+One&disp=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito&disp=swap" rel="stylesheet">
+    <link rel="icon" href="https://moddimation.github.io/Yasiki/assets/favicon.ico" type="image/x-icon">
+    <title>Home - Project Yasiki</title>
+  </head>
+  <body>
+    <div class="container">
+      <nav>
+        <ul>
+        </ul>
+      </nav>
+
+      <!--Upper bar-->
+      <div id="bar">
+
+          <!--Project text / logo-->
+          <a id="barTitle" href="https://moddimation.github.io/Yasiki/"><b>Project Yasiki</b></a>
+          <div style="display: flex; flex-direction: column; align-items: start;">
+            
+            <!--Both progress badges-->
+            <a href="https://github.com/Moddimation/Yasiki">
+              <img style="padding-top:10px; width: 90px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=code&label=Code" alt="Go to github repo">
+            </a>
+            <a href="https://decomp.dev/Moddimation/Yasiki">
+              <img style="padding-bottom:0px; width: 123px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=functions&label=Progress" alt="Go to progress page">
+            </a>
+          </div>
+          
+          <p> </p>
+          
+          <!--Add each nav head here-->
+            <li>
+              <button onclick="window.location.href='https://moddimation.github.io/Yasiki/files/'">Files</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddimation.github.io/Yasiki/classes/'">Classes</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddimation.github.io/Yasiki/wiki/'">Full Wiki</button>
+            </li>
+      </div>
+      
+      <!--| [Progress](https://decomp.dev/Moddimation/YasikiDolphin) | [Repository](https://github.com/Moddimation/YasikiDolphin) | [Discord](https://discord.gg/hKx3FJJgrV) |
+|----------------------------------------------------------|------------------------------------------------------------|------------------------------------------|
+-->
+<h1 id="project-yasiki">Project Yasiki</h1>
+<p><a href="https://decomp.dev/Moddimation/Yasiki"><em>View project's progress</em></a><br>
+<a href="https://github.com/Moddimation/Yasiki"><em>View project's code</em></a><br></p>
+<p>An in-progress decompilation of <a href="https://wikipedia.org/wiki/Luigi’s_Mansion"><em>Luigi's Mansion</em></a> for the <a href="https://wikipedia.org/wiki/Nintendo_GameCube"><em>Nintendo GameCube</em></a>.<br />
+The focus is currently laid on the Japanese release (GLMJ01), but configurations exist for all <a href="#versions">available versions</a>.<br />
+The original creator first focused on the North American release (GLME01), and it's symbol map was put in a backup file.<br />
+<br />
+There are no known symbol maps for this game, however, it does come with <a href="https://www.sandordargo.com/blog/2023/03/01/binary-sizes-and-rtti">RTTI</a>.</p>
+<h2 id="history">History</h2>
+<h3 id="game">Game</h3>
+<ul>
+  <li><span style="display:inline-block; width: 110px">Aug. 24 2000</span> Presented at SpaceWorld 2000 simply as a tech-demo to show the power of the gamecube</li>
+  <!--<li><span style="display:inline-block; width: 110px">???. ?? 2000</span> Nintendo decides to shape a full game Project out of that demo.</li>-->
+  <li><span style="display:inline-block; width: 110px">Aug. 24 2001</span> Presented at SpaceWorld 2001 as an actual game title</li>
+  <li><span style="display:inline-block; width: 110px">2001 - 2002</span> Various game releases on gamecube</li>
+  <li><span style="display:inline-block; width: 110px">Sep. 13 2018</span> 3DS port announced</li>
+  <li><span style="display:inline-block; width: 110px">Oct. 19 2018</span> 3DS port released</li>
+</ul>
+
+<h3 id="project">Project</h3>
+<ul>
+  <li><span style="display:inline-block; width: 110px">Sep. 9 2022</span> luigis-mansion channel created in discord</li>
+  <li><span style="display:inline-block; width: 110px"><b>Dec. 15 2022</b></span> Sage-of-Mirrors creates <a href="https://github.com/Sage-of-Mirrors/zmansion">zmansion repo on github</a></li>
+  <li><span style="display:inline-block; width: 110px">Dec. 18 2023</span> Sage-of-Mirrors last activity in #luigis-mansion channel</li>
+  <li><span style="display:inline-block; width: 110px"><b>Dec. 12 2024</b></span> CoNesTra forks <a href="https://github.com/CoNesTra/zmansion">Sage-of-Mirrors/zmansion</a> and updates toolchain</li>
+  <li><span style="display:inline-block; width: 110px"><b>Mar. 20 2024</b></span> Moddimation forks <a href="https://github.com/Moddimation/zmansion">CoNesTra/zmansion</a> </li>
+  <li><span style="display:inline-block; width: 110px">Apr. 9 2025</span> #luigis-mansion channel is revived</li>
+  <li><span style="display:inline-block; width: 110px">Apr. 23 2025</span> project is back on decomp.dev</li>
+</ul>
+
+<h2 id="versions">Versions</h2>
+<table>
+<thead>
+<tr>
+<th>Config ID</th>
+<th>Region</th>
+<th>Variant</th>
+<th>Started?</th>
+<th>Release Date</th>
+<th>Build Date</th>
+<th>SDK Rev.</th>
+<th>SDK Build</th>
+<th>Apploader Build</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>GLMJ01</td>
+<td>Japan</td>
+<td>Release</td>
+<td>Yes</td>
+<td>Sep. 14 2001</td>
+<td>Aug. 28 2001</td>
+<td>37</td>
+<td>Jul. 19 2001</td>
+<td>Apr. 04 2001</td>
+</tr>
+<tr>
+<td>GLME01</td>
+<td>USA</td>
+<td>Release</td>
+<td>[No]</td>
+<td>Nov. 18 2001</td>
+<td>Sep. 24 2001</td>
+<td>37</td>
+<td>Jul. 19 2001</td>
+<td>Aug. 9 2001</td>
+</tr>
+<tr>
+<td>GLME01_1</td>
+<td>USA</td>
+<td>Demo</td>
+<td>No</td>
+<td>Oct.    2001</td>
+<td>Sep. 28 2001</td>
+<td>45</td>
+<td>Sep. 08 2001</td>
+<td>Sep. 08 2001</td>
+</tr>
+<tr>
+<td>GLMP01</td>
+<td>Europe</td>
+<td>Demo</td>
+<td>No</td>
+<td>Mar.    2002</td>
+<td>Jan. 21 2002</td>
+<td>49</td>
+<td>Dec. 17 2001</td>
+<td>Nov. 30 2001</td>
+</tr>
+<tr>
+<td>GLMP01_1</td>
+<td>Europe</td>
+<td>Release</td>
+<td>No</td>
+<td>May   3 2002</td>
+<td>Dec. 17 2001</td>
+<td>49</td>
+<td>Dec. 17 2001</td>
+<td>Nov. 30 2001</td>
+</tr>
+<tr>
+<td>GLMP01_2</td>
+<td>Europe</td>
+<td>Release</td>
+<td>No</td>
+<td>May  17 2002</td>
+<td>Dec. 17 2001</td>
+<td>49</td>
+<td>Dec. 17 2001</td>
+<td>Nov. 30 2001</td>
+</tr>
+</tbody>
+</table>
+<h2 id="libraries">Libraries</h2>
+<ul>
+<li>Dolphin SDK</li>
+<li>JSystem</li>
+</ul>
+<h2 id="external-resources">External resources</h2>
+<ul>
+<li><a href="https://www.lmhack.net/index.php/Main_Page">Luigi's Mansion modding wiki (LMHack)</a></li>
+<li><a href="https://discord.gg/hKx3FJJgrV">GC/Wii Decompilation Discord</a></li>
+</ul>
+<p>~Moddimation</p>
+        <script src="search/main.js"></script>
+    </div>
+  </body>
+</html>

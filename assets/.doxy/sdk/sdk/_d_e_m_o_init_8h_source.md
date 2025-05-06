@@ -1,0 +1,38 @@
+
+
+# File DEMOInit.h
+
+[**File List**](files.md) **>** [**demo**](dir_5983b1906ef8e2e82d96c775d5089d03.md) **>** [**DEMOInit.h**](_d_e_m_o_init_8h.md)
+
+[Go to the documentation of this file](_d_e_m_o_init_8h.md)
+
+
+```C++
+#ifndef _DOLPHIN_DEMOINIT_H_
+#define _DOLPHIN_DEMOINIT_H_
+
+#include <dolphin/gx.h>
+
+extern void* DemoFrameBuffer1;
+extern void* DemoFrameBuffer2;
+extern void* DemoCurrentBuffer;
+
+void                     DEMOInit (struct _GXRenderModeObj* mode);
+void                     DEMOBeforeRender ();
+void                     DEMODoneRender ();
+void                     DEMOSwapBuffers ();
+void                     DEMOSetTevColorIn (enum _GXTevStageID  stage,
+                                            enum _GXTevColorArg a,
+                                            enum _GXTevColorArg b,
+                                            enum _GXTevColorArg c,
+                                            enum _GXTevColorArg d);
+void                     DEMOSetTevOp (enum _GXTevStageID id, enum _GXTevMode mode);
+struct _GXRenderModeObj* DEMOGetRenderModeObj ();
+u32                      DEMOGetCurrentBuffer (void);
+void                     DEMOEnableBypassWorkaround (u32 timeoutFrames);
+void                     DEMOReInit (struct _GXRenderModeObj* mode);
+
+#endif // _DOLPHIN_DEMOINIT_H_
+```
+
+

@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Project Yasiki: Decompilation of Luigi's Mansion.">
+    <link rel="stylesheet" href="https://moddimation.github.io/Yasiki/assets/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Reggae+One&disp=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito&disp=swap" rel="stylesheet">
+    <link rel="icon" href="https://moddimation.github.io/Yasiki/assets/favicon.ico" type="image/x-icon">
+    <title>File JSUList.cpp - Project Yasiki</title>
+  </head>
+  <body>
+    <div class="container">
+      <nav>
+        <ul>
+        </ul>
+      </nav>
+
+      <!--Upper bar-->
+      <div id="bar">
+
+          <!--Project text / logo-->
+          <a id="barTitle" href="https://moddimation.github.io/Yasiki/"><b>Project Yasiki</b></a>
+          <div style="display: flex; flex-direction: column; align-items: start;">
+            
+            <!--Both progress badges-->
+            <a href="https://github.com/Moddimation/Yasiki">
+              <img style="padding-top:10px; width: 90px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=code&label=Code" alt="Go to github repo">
+            </a>
+            <a href="https://decomp.dev/Moddimation/Yasiki">
+              <img style="padding-bottom:0px; width: 123px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=functions&label=Progress" alt="Go to progress page">
+            </a>
+          </div>
+          
+          <p> </p>
+          
+          <!--Add each nav head here-->
+            <li>
+              <button onclick="window.location.href='https://moddimation.github.io/Yasiki/files/'">Files</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddimation.github.io/Yasiki/classes/'">Classes</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddimation.github.io/Yasiki/wiki/'">Full Wiki</button>
+            </li>
+      </div>
+      
+      <h1 id="file-jsulistcpp">File JSUList.cpp</h1>
+<p><a href="../files/"><strong>File List</strong></a> <strong>&gt;</strong> <a href="../dir_05ab848294d7094a10a4e4296b348af7/"><strong>JSupport</strong></a> <strong>&gt;</strong> <a href="../dir_d0b106f87611742dccad09d74ccf465c/"><strong>src</strong></a> <strong>&gt;</strong> <a href="../_j_s_u_list_8cpp/"><strong>JSUList.cpp</strong></a></p>
+<p><a href="../_j_s_u_list_8cpp/">Go to the documentation of this file</a></p>
+<pre><code class="language-C++">#include &lt;JSUList.h&gt;
+
+JSUPtrLink::JSUPtrLink (void* data)
+{
+    pSupervisor = nullptr;
+    pObject = data;
+    pNext = nullptr;
+    pPrev = nullptr;
+}
+
+JSUPtrLink::~JSUPtrLink ()
+{
+    if (pSupervisor != nullptr)
+    {
+        pSupervisor-&gt;remove (this);
+    }
+}
+
+JSUPtrList::JSUPtrList (bool _init)
+{
+    if (_init)
+    {
+        initiate();
+    }
+}
+
+JSUPtrList::~JSUPtrList ()
+{
+    JSUPtrLink* link = pHead;
+
+    for (u32 i = 0; i &lt; mNumLinks; i++)
+    {
+        link-&gt;pSupervisor = nullptr;
+        link = link-&gt;pPrev;
+    }
+}
+
+void
+JSUPtrList::initiate ()
+{
+    pHead = nullptr;
+    pTail = nullptr;
+    mNumLinks = nullptr;
+}
+
+void
+JSUPtrList::setFirst (JSUPtrLink* link)
+{
+    link-&gt;pSupervisor = this;
+    link-&gt;pNext = nullptr;
+    link-&gt;pPrev = nullptr;
+    pTail = link;
+    pHead = link;
+    mNumLinks = 1;
+}
+
+bool
+JSUPtrList::append (JSUPtrLink* link)
+{
+    bool result = (link-&gt;pSupervisor == nullptr);
+    if (!result)
+    {
+        result = link-&gt;pSupervisor-&gt;remove (link);
+    }
+
+    if (result)
+    {
+        if (mNumLinks == 0)
+        {
+            setFirst (link);
+        }
+        else
+        {
+            setLast (link);
+        }
+    }
+    return result;
+}
+
+bool
+JSUPtrList::prepend (JSUPtrLink* link)
+{
+    bool result = (link-&gt;pSupervisor == nullptr);
+    if (!result)
+    {
+        result = link-&gt;pSupervisor-&gt;remove (link);
+    }
+
+    if (result)
+    {
+        if (mNumLinks == 0)
+        {
+            setFirst (link);
+        }
+        else
+        {
+            setNext (link);
+        }
+    }
+    return result;
+}
+
+bool
+JSUPtrList::insert (JSUPtrLink* last, JSUPtrLink* next)
+{
+    if (last == pHead)
+    {
+        return prepend (next);
+    }
+    if (last == nullptr)
+    {
+        return append (next);
+    }
+
+    if (last-&gt;pSupervisor != this)
+    {
+        return false;
+    }
+
+    bool result = next-&gt;pSupervisor == nullptr;
+    if (!result)
+    {
+        result = next-&gt;pSupervisor-&gt;remove (next);
+    }
+    if (result)
+    {
+        JSUPtrLink* old = last-&gt;pNext;
+        next-&gt;pSupervisor = this;
+        next-&gt;pNext = old;
+        next-&gt;pPrev = last;
+        old-&gt;pPrev = next;
+        last-&gt;pNext = next;
+        mNumLinks++;
+    }
+
+    return result;
+}
+
+bool
+JSUPtrList::remove (JSUPtrLink* link)
+{
+    bool result = link-&gt;pSupervisor == this;
+    if (result)
+    {
+        if (mNumLinks == 1)
+        {
+            pHead = nullptr;
+            pTail = nullptr;
+        }
+        else if (link == pHead)
+        {
+            link-&gt;pPrev-&gt;pNext = nullptr;
+            pHead = link-&gt;pPrev;
+        }
+        else if (link == pTail)
+        {
+            link-&gt;pNext-&gt;pPrev = nullptr;
+            pTail = link-&gt;pNext;
+        }
+        else
+        {
+            link-&gt;pNext-&gt;pPrev = link-&gt;pPrev;
+            link-&gt;pPrev-&gt;pNext = link-&gt;pNext;
+        }
+
+        link-&gt;pSupervisor = nullptr;
+        mNumLinks--;
+    }
+    return result;
+}
+</code></pre>
+        <script src="../../search/main.js"></script>
+    </div>
+  </body>
+</html>

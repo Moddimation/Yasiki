@@ -1,0 +1,257 @@
+
+
+# File GXVert.h
+
+
+
+[**FileList**](files.md) **>** [**dolphin**](dir_8d73ddf10613ffd25a966cd68a313b8d.md) **>** [**gx**](dir_049675cf3b51aca8087b2c87edff05c3.md) **>** [**GXVert.h**](_g_x_vert_8h.md)
+
+[Go to the source code of this file](_g_x_vert_8h_source.md)
+
+
+
+* `#include <types.h>`
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+## Public Types
+
+| Type | Name |
+| ---: | :--- |
+| typedef [**union**](_c_a_r_d_private_8h.md#define-card_max_mount_step) [**uPPCWGPipe**](unionu_p_p_c_w_g_pipe.md) | [**PPCWGPipe**](#typedef-ppcwgpipe)  <br> |
+| union  | [**uPPCWGPipe**](#union-uppcwgpipe)  <br> |
+
+
+
+
+## Public Attributes
+
+| Type | Name |
+| ---: | :--- |
+|  [**volatile**](_c_a_r_d_private_8h.md#define-card_max_mount_step) [**PPCWGPipe**](_g_x_vert_8h.md#typedef-ppcwgpipe) | [**GXWGFifo**](#variable-gxwgfifo)  <br> |
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+## Macros
+
+| Type | Name |
+| ---: | :--- |
+| define  | [**FUNC\_1PARAM**](_g_x_vert_8h.md#define-func_1param) (name, T) `/* multi line expression */`<br> |
+| define  | [**FUNC\_2PARAM**](_g_x_vert_8h.md#define-func_2param) (name, T) `/* multi line expression */`<br> |
+| define  | [**FUNC\_3PARAM**](_g_x_vert_8h.md#define-func_3param) (name, T) `/* multi line expression */`<br> |
+| define  | [**FUNC\_4PARAM**](_g_x_vert_8h.md#define-func_4param) (name, T) `/* multi line expression */`<br> |
+| define  | [**FUNC\_INDEX16**](_g_x_vert_8h.md#define-func_index16) (name) `/* multi line expression */`<br> |
+| define  | [**FUNC\_INDEX8**](_g_x_vert_8h.md#define-func_index8) (name) `/* multi line expression */`<br> |
+| define  | [**GXFIFO\_ADDR**](_g_x_vert_8h.md#define-gxfifo_addr)  `0xCC008000`<br> |
+
+## Public Types Documentation
+
+
+
+
+### typedef PPCWGPipe 
+
+```C++
+typedef union uPPCWGPipe PPCWGPipe;
+```
+
+
+
+
+<hr>
+
+
+
+### union uPPCWGPipe 
+
+```C++
+
+```
+
+
+
+
+<hr>
+## Public Attributes Documentation
+
+
+
+
+### variable GXWGFifo 
+
+```C++
+volatile PPCWGPipe GXWGFifo;
+```
+
+
+
+
+<hr>
+## Macro Definition Documentation
+
+
+
+
+
+### define FUNC\_1PARAM 
+
+```C++
+#define FUNC_1PARAM (
+    name,
+    T
+) `/* multi line expression */`
+```
+
+
+
+
+<hr>
+
+
+
+### define FUNC\_2PARAM 
+
+```C++
+#define FUNC_2PARAM (
+    name,
+    T
+) `/* multi line expression */`
+```
+
+
+
+
+<hr>
+
+
+
+### define FUNC\_3PARAM 
+
+```C++
+#define FUNC_3PARAM (
+    name,
+    T
+) `/* multi line expression */`
+```
+
+
+
+
+<hr>
+
+
+
+### define FUNC\_4PARAM 
+
+```C++
+#define FUNC_4PARAM (
+    name,
+    T
+) `/* multi line expression */`
+```
+
+
+
+
+<hr>
+
+
+
+### define FUNC\_INDEX16 
+
+```C++
+#define FUNC_INDEX16 (
+    name
+) `/* multi line expression */`
+```
+
+
+
+
+<hr>
+
+
+
+### define FUNC\_INDEX8 
+
+```C++
+#define FUNC_INDEX8 (
+    name
+) `/* multi line expression */`
+```
+
+
+
+
+<hr>
+
+
+
+### define GXFIFO\_ADDR 
+
+```C++
+#define GXFIFO_ADDR `0xCC008000`
+```
+
+
+
+
+<hr>
+
+------------------------------
+The documentation for this class was generated from the following file `SDK/include/dolphin/gx/GXVert.h`
+

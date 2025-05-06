@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Project Yasiki: Decompilation of Luigi's Mansion.">
+    <link rel="stylesheet" href="https://moddimation.github.io/Yasiki/assets/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Reggae+One&disp=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito&disp=swap" rel="stylesheet">
+    <link rel="icon" href="https://moddimation.github.io/Yasiki/assets/favicon.ico" type="image/x-icon">
+    <title>File JSUList.h - Project Yasiki</title>
+  </head>
+  <body>
+    <div class="container">
+      <nav>
+        <ul>
+        </ul>
+      </nav>
+
+      <!--Upper bar-->
+      <div id="bar">
+
+          <!--Project text / logo-->
+          <a id="barTitle" href="https://moddimation.github.io/Yasiki/"><b>Project Yasiki</b></a>
+          <div style="display: flex; flex-direction: column; align-items: start;">
+            
+            <!--Both progress badges-->
+            <a href="https://github.com/Moddimation/Yasiki">
+              <img style="padding-top:10px; width: 90px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=code&label=Code" alt="Go to github repo">
+            </a>
+            <a href="https://decomp.dev/Moddimation/Yasiki">
+              <img style="padding-bottom:0px; width: 123px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=functions&label=Progress" alt="Go to progress page">
+            </a>
+          </div>
+          
+          <p> </p>
+          
+          <!--Add each nav head here-->
+            <li>
+              <button onclick="window.location.href='https://moddimation.github.io/Yasiki/files/'">Files</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddimation.github.io/Yasiki/classes/'">Classes</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddimation.github.io/Yasiki/wiki/'">Full Wiki</button>
+            </li>
+      </div>
+      
+      <h1 id="file-jsulisth">File JSUList.h</h1>
+<p><a href="../files/"><strong>File List</strong></a> <strong>&gt;</strong> <a href="../dir_701d6d343be5ce61cc43f23a5e957e2c/"><strong>include</strong></a> <strong>&gt;</strong> <a href="../_j_s_u_list_8h/"><strong>JSUList.h</strong></a></p>
+<p><a href="../_j_s_u_list_8h/">Go to the documentation of this file</a></p>
+<pre><code class="language-C++">#ifndef __JSU_LIST_HPP__
+#define __JSU_LIST_HPP__
+
+#include &lt;JUTTypes.h&gt;
+
+typedef void* JSUListPtr;
+
+class JSUPtrList;
+
+struct JSUPtrLink
+{
+    JSUPtrLink (JSUListPtr data);
+    ~JSUPtrLink ();
+
+    JSUListPtr  pObject;     
+    JSUPtrList* pSupervisor; 
+    JSUPtrLink* pNext;       
+    JSUPtrLink* pPrev;       
+};
+
+SASSERT_SIZE (JSUPtrLink, 0x10);
+
+template &lt;class T&gt;
+struct JSULink : public JSUPtrLink
+{
+    JSULink (JSUListPtr data) : JSUPtrLink (data) {}
+
+    ~JSULink () {}
+
+    JSUListPtr
+    getObject ()
+    {
+        return pObject;
+    }
+
+    JSUPtrList*
+    getSupervisor ()
+    {
+        return pSupervisor;
+    }
+
+    JSUPtrLink*
+    getNext ()
+    {
+        return pNext;
+    }
+
+    JSUPtrLink*
+    getPrev ()
+    {
+        return pPrev;
+    }
+};
+
+class JSUPtrList
+{
+public:
+    JSUPtrList (bool init);
+    ~JSUPtrList ();
+
+    void initiate ();
+    void setFirst (JSUPtrLink* link);
+
+    inline void
+    setLast (JSUPtrLink* link)
+    {
+        link-&gt;pSupervisor = this;
+        link-&gt;pNext = pTail;
+        link-&gt;pPrev = nullptr;
+        pTail-&gt;pPrev = link;
+        pTail = link;
+        mNumLinks++;
+    }
+
+    inline void
+    setNext (JSUPtrLink* link)
+    {
+        link-&gt;pSupervisor = this;
+        link-&gt;pNext = nullptr;
+        link-&gt;pPrev = pHead;
+        pHead-&gt;pNext = link;
+        pHead = link;
+        mNumLinks++;
+    }
+
+    bool append (JSUPtrLink* link);
+    bool prepend (JSUPtrLink* link);
+    bool insert (JSUPtrLink* last, JSUPtrLink* next);
+    bool remove (JSUPtrLink* link);
+
+    // TODO: add these
+    JSUPtrLink* getNthLink (u32 n) const;
+    JSUPtrLink* getFirstLink () const;
+    JSUPtrLink* getLastLink () const;
+
+    u32
+    getNumLinks ()
+    {
+        return mNumLinks;
+    }
+
+protected:
+    JSUPtrLink* pHead;     
+    JSUPtrLink* pTail;     
+    u32         mNumLinks; 
+};
+
+SASSERT_SIZE (JSUPtrLink, 0x10);
+
+template &lt;class T&gt;
+class JSUList : public JSUPtrList
+{
+    JSUList (bool init) : JSUPtrList (init) {}
+
+    void
+    initiate ()
+    {
+        JSUPtrList::initiate();
+    }
+
+    bool
+    append (JSULink&lt;T&gt;* link)
+    {
+        return JSUPtrList::append (link);
+    }
+
+    bool
+    prepend (JSULink&lt;T&gt;* link)
+    {
+        return JSUPtrList::prepend (link);
+    }
+
+    bool
+    insert (JSULink&lt;T&gt;* prev, JSULink&lt;T&gt;* next)
+    {
+        return JSUPtrList::insert (prev, next);
+    }
+
+    bool
+    remove (JSULink&lt;T&gt;* link)
+    {
+        return JSUPtrList::remove (link);
+    }
+
+    JSULink&lt;T&gt;*
+    getFirst ()
+    {
+        return JSUPtrList::getFirstLink();
+    }
+
+    JSULink&lt;T&gt;*
+    getLast ()
+    {
+        return JSUPtrList::getLastLink();
+    }
+
+    JSULink&lt;T&gt;*
+    getEnd ()
+    {
+        return nullptr;
+    }
+
+    u32
+    getNumLinks ()
+    {
+        return JSUPtrList::getNumLinks();
+    }
+};
+
+template &lt;typename T&gt;
+class JSUListIterator
+{
+public:
+    JSUListIterator () : mLink (nullptr) {}
+
+    JSUListIterator (JSULink&lt;T&gt;* link) : mLink (link) {}
+
+    JSUListIterator (JSUList&lt;T&gt;* list) : mLink (list-&gt;getFirst()) {}
+
+    JSUListIterator&lt;T&gt;&amp;
+    operator= (JSULink&lt;T&gt;* link)
+    {
+        mLink = link;
+        return *this;
+    }
+
+    T*
+    getObject () const
+    {
+        return mLink-&gt;getObject();
+    }
+
+    bool
+    isAvailable ()
+    {
+        return mLink != nullptr;
+    }
+
+    bool
+    operator== (const JSULink&lt;T&gt;* other) const
+    {
+        return mLink == other;
+    }
+
+    bool
+    operator!= (const JSULink&lt;T&gt;* other) const
+    {
+        return mLink != other;
+    }
+
+    bool
+    operator== (const JSUListIterator&lt;T&gt;&amp; other) const
+    {
+        return mLink == other.mLink;
+    }
+
+    bool
+    operator!= (const JSUListIterator&lt;T&gt;&amp; other) const
+    {
+        return mLink != other.mLink;
+    }
+
+    JSUListIterator&lt;T&gt;
+    operator++ (int)
+    {
+        JSUListIterator&lt;T&gt; prev = *this;
+        mLink = mLink-&gt;getNext();
+        return prev;
+    }
+
+    JSUListIterator&lt;T&gt;&amp;
+    operator++ ()
+    {
+        mLink = mLink-&gt;getNext();
+        return *this;
+    }
+
+    JSUListIterator&lt;T&gt;
+    operator-- (int)
+    {
+        JSUListIterator&lt;T&gt; prev = *this;
+        mLink = mLink-&gt;getPrev();
+        return prev;
+    }
+
+    JSUListIterator&lt;T&gt;&amp;
+    operator-- ()
+    {
+        mLink = mLink-&gt;getPrev();
+        return *this;
+    }
+
+                           // Investigate where and if this actually exists
+    // T &amp;operator*() { return *getObject(); }
+
+    T*
+    operator-&gt;() const
+    {
+        return mLink-&gt;getObject();
+    }
+
+    // private:
+    JSULink&lt;T&gt;* mLink;
+};
+
+template &lt;typename T&gt;
+class JSUTree : public JSUList&lt;T&gt;, public JSULink&lt;T&gt;
+{
+public:
+    JSUTree (T* owner) : JSUList&lt;T&gt;(), JSULink&lt;T&gt; (owner) {}
+
+    ~JSUTree () {}
+
+    bool
+    appendChild (JSUTree&lt;T&gt;* child)
+    {
+        return append (child);
+    }
+
+    bool
+    prependChild (JSUTree&lt;T&gt;* child)
+    {
+        return prepend (child);
+    }
+
+    bool
+    removeChild (JSUTree&lt;T&gt;* child)
+    {
+        return remove (child);
+    }
+
+    bool
+    insertChild (JSUTree&lt;T&gt;* before, JSUTree&lt;T&gt;* child)
+    {
+        return insert (before, child);
+    }
+
+    JSUTree&lt;T&gt;*
+    getEndChild () const
+    {
+        return nullptr;
+    }
+
+    JSUTree&lt;T&gt;*
+    getFirstChild () const
+    {
+        return (JSUTree&lt;T&gt;*)this-&gt;getFirstLink();
+    }
+
+    JSUTree&lt;T&gt;*
+    getLastChild () const
+    {
+        return (JSUTree&lt;T&gt;*)this-&gt;getLastLink();
+    }
+
+    JSUTree&lt;T&gt;*
+    getNextChild () const
+    {
+        return (JSUTree&lt;T&gt;*)this-&gt;mNext;
+    }
+
+    JSUTree&lt;T&gt;*
+    getPrevChild () const
+    {
+        return (JSUTree&lt;T&gt;*)this-&gt;mPrev;
+    }
+
+    u32
+    getNumChildren () const
+    {
+        return this-&gt;mLinkCount;
+    } // In TP Debug getNumLinks() gets called here, however that kills
+      // something in JKRHeap::find(inline depth?)
+
+    T*
+    getObject () const
+    {
+        return (T*)this-&gt;mData;
+    }
+
+    JSUTree&lt;T&gt;*
+    getParent () const
+    {
+        return (JSUTree&lt;T&gt;*)this-&gt;mPtrList;
+    }
+};
+
+template &lt;typename T&gt;
+class JSUTreeIterator
+{
+public:
+    JSUTreeIterator () : mTree (nullptr) {}
+
+    JSUTreeIterator (JSUTree&lt;T&gt;* tree) : mTree (tree) {}
+
+    JSUTreeIterator&lt;T&gt;&amp;
+    operator= (JSUTree&lt;T&gt;* tree)
+    {
+        mTree = tree;
+        return *this;
+    }
+
+    T*
+    getObject () const
+    {
+        return mTree-&gt;getObject();
+    }
+
+    bool
+    operator== (JSUTree&lt;T&gt;* other)
+    {
+        return mTree == other;
+    }
+
+    bool
+    operator!= (const JSUTree&lt;T&gt;* other) const
+    {
+        return mTree != other;
+    }
+
+    JSUTreeIterator&lt;T&gt;
+    operator++ (int)
+    {
+        JSUTreeIterator&lt;T&gt; prev = *this;
+        mTree = mTree-&gt;getNextChild();
+        return prev;
+    }
+
+    JSUTreeIterator&lt;T&gt;&amp;
+    operator++ ()
+    {
+        mTree = mTree-&gt;getNextChild();
+        return *this;
+    }
+
+    T&amp;
+    operator* ()
+    {
+        return *getObject();
+    }
+
+    T*
+    operator-&gt;() const
+    {
+        return mTree-&gt;getObject();
+    }
+
+private:
+    JSUTree&lt;T&gt;* mTree;
+};
+
+#endif
+</code></pre>
+        <script src="../../search/main.js"></script>
+    </div>
+  </body>
+</html>

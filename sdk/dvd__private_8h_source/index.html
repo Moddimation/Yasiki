@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Project Yasiki: Decompilation of Luigi's Mansion.">
+    <link rel="stylesheet" href="https://moddimation.github.io/Yasiki/assets/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Reggae+One&disp=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito&disp=swap" rel="stylesheet">
+    <link rel="icon" href="https://moddimation.github.io/Yasiki/assets/favicon.ico" type="image/x-icon">
+    <title>File dvd_private.h - Project Yasiki</title>
+  </head>
+  <body>
+    <div class="container">
+      <nav>
+        <ul>
+        </ul>
+      </nav>
+
+      <!--Upper bar-->
+      <div id="bar">
+
+          <!--Project text / logo-->
+          <a id="barTitle" href="https://moddimation.github.io/Yasiki/"><b>Project Yasiki</b></a>
+          <div style="display: flex; flex-direction: column; align-items: start;">
+            
+            <!--Both progress badges-->
+            <a href="https://github.com/Moddimation/Yasiki">
+              <img style="padding-top:10px; width: 90px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=code&label=Code" alt="Go to github repo">
+            </a>
+            <a href="https://decomp.dev/Moddimation/Yasiki">
+              <img style="padding-bottom:0px; width: 123px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=functions&label=Progress" alt="Go to progress page">
+            </a>
+          </div>
+          
+          <p> </p>
+          
+          <!--Add each nav head here-->
+            <li>
+              <button onclick="window.location.href='https://moddimation.github.io/Yasiki/files/'">Files</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddimation.github.io/Yasiki/classes/'">Classes</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddimation.github.io/Yasiki/wiki/'">Full Wiki</button>
+            </li>
+      </div>
+      
+      <h1 id="file-dvd_privateh">File dvd_private.h</h1>
+<p><a href="../files/"><strong>File List</strong></a> <strong>&gt;</strong> <a href="../dir_8daa6a5f7f30f79e111d6992c13d512c/"><strong>dolphin</strong></a> <strong>&gt;</strong> <a href="../dir_89a52050841a8ad6d679d86dc07787eb/"><strong>dvd</strong></a> <strong>&gt;</strong> <a href="../dvd__private_8h/"><strong>dvd_private.h</strong></a></p>
+<p><a href="../dvd__private_8h/">Go to the documentation of this file</a></p>
+<pre><code class="language-C++">#ifndef _DOLPHIN_DVD_INTERNAL_H_
+#define _DOLPHIN_DVD_INTERNAL_H_
+
+#include &lt;dolphin/dvd.h&gt;
+#include &lt;dolphin/os.h&gt;
+
+// dvd.c
+void __DVDAudioBufferConfig (DVDCommandBlock* block,
+                             u32              enable,
+                             u32              size,
+                             void             (*callback) (s32, struct DVDCommandBlock*));
+void __DVDInitWA ();
+
+// dvdfs.c
+extern OSThreadQueue __DVDThreadQueue;
+extern u32           __DVDLongFileNameFlag;
+
+void __DVDFSInit ();
+void __DVDLowSetWAType (u32 type, s32 seekLoc);
+
+// dvdlow.c
+void __DVDInterruptHandler (s16 unused, OSContext* context);
+
+// dvdqueue.c
+void                    __DVDClearWaitingQueue ();
+int                     __DVDPushWaitingQueue (s32 prio, struct DVDCommandBlock* block);
+struct DVDCommandBlock* __DVDPopWaitingQueue ();
+int                     __DVDCheckWaitingQueue ();
+int                     __DVDDequeueWaitingQueue (struct DVDCommandBlock* block);
+int                     __DVDIsBlockInWaitingQueue (struct DVDCommandBlock* block);
+
+// fstload.c
+void __fstLoad ();
+
+// dvderror.c
+void __DVDStoreErrorCode (u32 code);
+
+#define DVD_DE_INT_ERROR_CODE  0x01234567
+#define DVD_TIMEOUT_ERROR_CODE 0x01234568
+
+#endif // _DOLPHIN_DVD_INTERNAL_H_
+</code></pre>
+        <script src="../../search/main.js"></script>
+    </div>
+  </body>
+</html>
