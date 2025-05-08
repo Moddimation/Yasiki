@@ -7,11 +7,14 @@ class JKRHeap;
 
 struct JKRDisposer
 {
+    friend class JKRHeap;
+
     constructor JKRDisposer ();
     destructor ~JKRDisposer();
 
-    JKRHeap*             pHeap;
-    JSULink<JKRDisposer> mPtr;
+private:
+    JKRHeap*             pHeapObj;
+    JSULink<JKRDisposer> mHeapLink;
 };
 
 ;

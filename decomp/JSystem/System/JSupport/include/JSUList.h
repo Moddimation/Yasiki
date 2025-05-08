@@ -3,16 +3,14 @@
 
 #include <JUTTypes.h>
 
-typedef void* JSUListPtr;
-
 class JSUPtrList;
 
 struct JSUPtrLink
 {
-    JSUPtrLink (JSUListPtr data);
+    JSUPtrLink (void* data);
     ~JSUPtrLink ();
 
-    JSUListPtr  pObject;     ///< 0x00 // data ptr
+    void*       pObject;     ///< 0x00 // data ptr
     JSUPtrList* pSupervisor; ///< 0x04 // list that owns the link
     JSUPtrLink* pNext;       ///< 0x08 // next link
     JSUPtrLink* pPrev;       ///< 0x0C // last/previous link
@@ -23,11 +21,11 @@ SASSERT_SIZE (JSUPtrLink, 0x10);
 template <class T>
 struct JSULink : public JSUPtrLink
 {
-    JSULink (JSUListPtr data) : JSUPtrLink (data) {}
+    JSULink (void* data) : JSUPtrLink (data) {}
 
     ~JSULink () {}
 
-    JSUListPtr
+    void*
     getObject ()
     {
         return pObject;
@@ -55,58 +53,44 @@ struct JSULink : public JSUPtrLink
 class JSUPtrList
 {
 public:
-    void initiate ();
-
     JSUPtrList () { initiate(); }
 
-    JSUPtrList (bool init);
-
+    JSUPtrList (BOOL do_init);
     ~JSUPtrList ();
 
+    void initiate ();
     void setFirst (JSUPtrLink* link);
+    void setLast (JSUPtrLink* link);
+    void setNext (JSUPtrLink* link);
 
-    inline void
-    setLast (JSUPtrLink* link)
-    {
-        link->pSupervisor = this;
-        link->pNext = pTail;
-        link->pPrev = nullptr;
-        pTail->pPrev = link;
-        pTail = link;
-        mNumLinks++;
-    }
-
-    inline void
-    setNext (JSUPtrLink* link)
-    {
-        link->pSupervisor = this;
-        link->pNext = nullptr;
-        link->pPrev = pHead;
-        pHead->pNext = link;
-        pHead = link;
-        mNumLinks++;
-    }
-
-    bool append (JSUPtrLink* link);
-    bool prepend (JSUPtrLink* link);
-    bool insert (JSUPtrLink* last, JSUPtrLink* next);
-    bool remove (JSUPtrLink* link);
-
-    // TODO: add these
+    BOOL        append (JSUPtrLink* link);
+    BOOL        prepend (JSUPtrLink* link);
+    BOOL        insert (JSUPtrLink* last, JSUPtrLink* next);
+    BOOL        remove (JSUPtrLink* link);
     JSUPtrLink* getNthLink (u32 n) const;
-    JSUPtrLink* getFirstLink () const;
-    JSUPtrLink* getLastLink () const;
+
+    JSUPtrLink*
+    getFirstLink () const
+    {
+        return pFirst;
+    }
+
+    JSUPtrLink*
+    getLastLink () const
+    {
+        return pLast;
+    }
 
     u32
-    getNumLinks ()
+    getNumLinks () const
     {
         return mNumLinks;
     }
 
 protected:
-    JSUPtrLink* pHead;     ///< 0x00 // head link of list
-    JSUPtrLink* pTail;     ///< 0x04 // tail link of list
-    u32         mNumLinks; ///< 0x08 // number of links in list
+    JSUPtrLink* pFirst;      ///< 0x00 // head link of list
+    JSUPtrLink* pLast;       ///< 0x04 // tail link of list
+    u32         mNumLinks;   ///< 0x08 // number of links in list
 };
 
 SASSERT_SIZE (JSUPtrLink, 0x10);
@@ -115,9 +99,9 @@ template <class T>
 class JSUList : public JSUPtrList
 {
 public:
-    JSUList () : JSUPtrList() {}
+    JSUList (BOOL init) : JSUPtrList (init) {}
 
-    JSUList (bool init) : JSUPtrList (init) {}
+    JSUList () : JSUPtrList() {}
 
     void
     initiate ()
@@ -125,25 +109,25 @@ public:
         JSUPtrList::initiate();
     }
 
-    bool
+    BOOL
     append (JSULink<T>* link)
     {
         return JSUPtrList::append (link);
     }
 
-    bool
+    BOOL
     prepend (JSULink<T>* link)
     {
         return JSUPtrList::prepend (link);
     }
 
-    bool
+    BOOL
     insert (JSULink<T>* prev, JSULink<T>* next)
     {
         return JSUPtrList::insert (prev, next);
     }
 
-    bool
+    BOOL
     remove (JSULink<T>* link)
     {
         return JSUPtrList::remove (link);
@@ -197,31 +181,31 @@ public:
         return mLink->getObject();
     }
 
-    bool
+    BOOL
     isAvailable ()
     {
         return mLink != nullptr;
     }
 
-    bool
+    BOOL
     operator== (const JSULink<T>* other) const
     {
         return mLink == other;
     }
 
-    bool
+    BOOL
     operator!= (const JSULink<T>* other) const
     {
         return mLink != other;
     }
 
-    bool
+    BOOL
     operator== (const JSUListIterator<T>& other) const
     {
         return mLink == other.mLink;
     }
 
-    bool
+    BOOL
     operator!= (const JSUListIterator<T>& other) const
     {
         return mLink != other.mLink;
@@ -257,7 +241,7 @@ public:
         return *this;
     }
 
-                           // Investigate where and if this actually exists
+                             // Investigate where and if this actually exists
     // T &operator*() { return *getObject(); }
 
     T*
@@ -278,25 +262,25 @@ public:
 
     ~JSUTree () {}
 
-    bool
+    BOOL
     appendChild (JSUTree<T>* child)
     {
         return append (child);
     }
 
-    bool
+    BOOL
     prependChild (JSUTree<T>* child)
     {
         return prepend (child);
     }
 
-    bool
+    BOOL
     removeChild (JSUTree<T>* child)
     {
         return remove (child);
     }
 
-    bool
+    BOOL
     insertChild (JSUTree<T>* before, JSUTree<T>* child)
     {
         return insert (before, child);
@@ -335,20 +319,20 @@ public:
     u32
     getNumChildren () const
     {
-        return this->mLinkCount;
+        return this->mNumLinks;
     } // In TP Debug getNumLinks() gets called here, however that kills
       // something in JKRHeap::find(inline depth?)
 
     T*
     getObject () const
     {
-        return (T*)this->mData;
+        return (T*)this->pObject;
     }
 
     JSUTree<T>*
     getParent () const
     {
-        return (JSUTree<T>*)this->mPtrList;
+        return (JSUTree<T>*)this->pSupervisor;
     }
 };
 
@@ -373,13 +357,13 @@ public:
         return mTree->getObject();
     }
 
-    bool
+    BOOL
     operator== (JSUTree<T>* other)
     {
         return mTree == other;
     }
 
-    bool
+    BOOL
     operator!= (const JSUTree<T>* other) const
     {
         return mTree != other;

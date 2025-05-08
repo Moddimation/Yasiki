@@ -131,6 +131,7 @@
     }
 #define SASSERT_SIZE(type, size) SASSERT (sizeof (type) == size)
 
+// TODO: remove in OdemuExi2.
 #define IGNORE_GLMJ01
 #define IGNORE_GLME01
 #define IGNORE_GLME01_1
@@ -138,28 +139,12 @@
 #define IGNORE_GLMP01_1
 #define IGNORE_GLMP01_2
 
-#define ONLY_GLMJ01 inline
-#define ONLY_GLME01 inline
-
-#define IGNORE_ALL  inline
-
-#if defined(VERSION_GLMJ01)   // Japan
-#undef IGNORE_GLMJ01
-#define IGNORE_GLMJ01 inline
-#undef ONLY_GLMJ01
-#define ONLY_GLMJ01
-#elif defined(VERSION_GLME01) // US
-#undef IGNORE_GLME01
-#define IGNORE_GLME01 inline
-#undef ONLY_GLME01
-#define ONLY_GLME01
-#endif
-
 #ifndef __PPCGEKKO__
 #define __PPCGEKKO__
 #endif
-#ifndef GEKKO
-#define GEKKO
+
+#ifndef __GEKKO__
+#define __GEKKO__
 #endif
 
 #ifndef __MWERKS__
@@ -169,7 +154,8 @@
 #define __fabsf(x)    0
 #define __sync()      0
 #define __cntlzw(x)   0
+#define __cdecl       0
 #define asm
 #endif
 
-#endif                        // _H_MACROS_
+#endif // _H_MACROS_

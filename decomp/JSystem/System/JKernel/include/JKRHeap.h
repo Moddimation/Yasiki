@@ -6,73 +6,98 @@
 #include <JKRDisposer.h>
 #include <JSUList.h>
 
-typedef JKRHeap* JKRHEAP_HANDLE;
+typedef void* HANDLE;
+typedef void  (*JKRErrorRoutine) (void*, u32, int);
 
 class JKRHeap : JKRDisposer
 {
 public:
+    // static
     static JKRHeap* initArena (char**, u32*, int maxHeaps);
-    static void     alloc (u32, int, JKRHeap* parent);
-    static JKRHeap* getSystemHeap (void);
-    static JKRHeap* getCurrentHeap (void);
-    static JKRHeap* getRootHeap (void);
-    static JKRHeap* findFromRoot (JKRHEAP_HANDLE);
-    static void     copyMemory (JKRHEAP_HANDLE, JKRHEAP_HANDLE, u32);
+    static void*    alloc (size_t size, int align, JKRHeap* heap);
+    static JKRHeap* findFromRoot (HANDLE);
+    static void     copyMemory (HANDLE, HANDLE, u32);
+
+    static JKRHeap*
+    getSystemHeap ()
+    {
+        return sSystemHeap;
+    }
+
+    static JKRHeap*
+    getCurrentHeap ()
+    {
+        return sCurrentHeap;
+    }
+
+    static JKRHeap*
+    getRootHeap ()
+    {
+        return sRootHeap;
+    }
+
+protected:
+    // members
+    static JKRHeap* sSystemHeap;
+    static JKRHeap* sCurrentHeap;
+    static JKRHeap* sRootHeap;
+
+    static JKRErrorRoutine mErrorHandler;
+
+    OSMutex              mMutex;        ///< 0x18
+    HANDLE               pHeapObj;      ///< 0x30
+    void*                mStart;        ///< 0x34
+    u32                  mSize;         ///< 0x38
+    JSUTree<JKRHeap>     mHeapTree;     ///< 0x3C
+    JSUList<JKRDisposer> mDisposerList; ///< 0x58
+    BOOL                 mErrorFlag;    ///< 0x64
+
+protected:
+    // base
+    constructor JKRHeap (HANDLE obj, u32 size, JKRHeap* parent, bool isAssertLocked);
+    destructor ~JKRHeap();
+
+    JKRHeap* becomeSystemHeap (void);
+    JKRHeap* becomeCurrentHeap (void);
+    JKRHeap* find (HANDLE) const;
+    void     dispose_subroutine (u32, u32);
+    void     dispose (HANDLE, u32);
+    void     dispose (HANDLE, HANDLE);
+    void     dispose (void);
+
+    virtual void* alloc (int align, size_t size);
+    virtual void  free (HANDLE);
+    virtual void  freeAll (void);
+    virtual void  freeTail (void);
+    virtual void  resize (HANDLE, int);
+    virtual u32   getSize (HANDLE);
+    virtual u32   getFreeSize (void);
+    virtual u32   getTotalFreeSize (void);
+    virtual u32   getHeapType (void);
+    virtual void  check (void);
+    virtual void  dump (void);
+    virtual void  dump_sort (void);
+    virtual u32   getCurrentGroupId (void);
 
     void
     appendDisposer (JKRDisposer* disposer)
     {
-        mDisposerList.append (&disposer->mPtr);
+        mDisposerList.append (&disposer->mHeapLink);
+    }
+
+    void
+    append (JKRHeap* parent)
+    {
     }
 
     void
     removeDisposer (JKRDisposer* disposer)
     {
-        mDisposerList.remove (&disposer->mPtr);
+        mDisposerList.remove (&disposer->mHeapLink);
     }
 
-protected:
-    static JKRHeap* sSystemHeap;
-    static JKRHeap* sCurrentHeap;
-    static JKRHeap* sRootHeap;
-    static void*    sErrorHandler;
-
-    OSMutex              mMutex;          ///< 0x18
-    JKRHEAP_HANDLE       pHeapObj;        ///< 0x30
-    void*                mEnd;            ///< 0x34
-    u32                  mSize;           ///< 0x38
-    JSUTree<JKRHeap>     mHeapTree;       ///< 0x3C
-    JSUList<JKRDisposer> mDisposerList;   ///< 0x58
-    BOOL                 mIsAssertLocked; ///< 0x64
-
-protected:
-    constructor JKRHeap (JKRHEAP_HANDLE obj, u32 size, JKRHeap* parent, bool isAssertLocked);
-    destructor ~JKRHeap();
-
-    JKRHeap* becomeSystemHeap ();
-    JKRHeap* becomeCurrentHeap ();
-    JKRHeap* find (JKRHEAP_HANDLE) const;
-    void     dispose_subroutine (u32, u32);
-    void     dispose (JKRHEAP_HANDLE, u32);
-    void     dispose (JKRHEAP_HANDLE, JKRHEAP_HANDLE);
-    void     dispose ();
-
-    virtual void alloc (u32, int);
-    virtual void free (JKRHEAP_HANDLE);
-    virtual void freeAll ();
-    virtual void freeTail ();
-    virtual void resize (JKRHEAP_HANDLE, int);
-    virtual u32  getSize (JKRHEAP_HANDLE);
-    virtual u32  getFreeSize ();
-    virtual u32  getTotalFreeSize ();
-    virtual u32  getHeapType ();
-    virtual void check ();
-    virtual void dump ();
-    virtual void dump_sort ();
-    virtual u32  getCurrentGroupId ();
-
-    inline void
-    append (JKRHeap* next)
+    void
+    remove (JKRHeap* parent)
     {
     }
 
@@ -87,18 +112,32 @@ protected:
     {
         OSUnlockMutex (&mMutex);
     }
+
+    JSUTree<JKRHeap>&
+    getHeapTree ()
+    {
+        return mHeapTree;
+    }
 };
 
 SASSERT_SIZE (JKRHeap, 0x68);
 
-#define USE_MYHEAP                        // JKRHeap* heap = JKRHeap::findFromRoot (SELF)
-#define USE_SYSTEMHEAP  JKRHeap* heap = JKRHeap::getSystemHeap()
-#define USE_CURRENTHEAP JKRHeap* heap = JKRHeap::getCurrentHeap()
-#define USE_ROOTHEAP    JKRHeap* heap = JKRHeap::getRootHeap()
+#define USE_MYHEAP      JKRHeap* heap = JKRHeap::findFromRoot (SELF)
+#define USE_SYSTEMHEAP  JKRHeap* heap = JKRHeap::sSystemHeap
+#define USE_CURRENTHEAP JKRHeap* heap = JKRHeap::sCurrentHeap
+#define USE_ROOTHEAP    JKRHeap* heap = JKRHeap::sRootHeap
 
-extern "C"
-{
-void JKRSetCurrentHeap ();
-}
+void JKRDefaultMemoryErrorRoutine (void*, u32, int);
+
+void* operator new (size_t size);
+void* operator new (size_t size, int align);
+void* operator new (size_t size, JKRHeap* heap, int align);
+
+void* operator new[] (size_t size);
+void* operator new[] (size_t size, int align);
+void* operator new[] (size_t size, JKRHeap* heap, int align);
+
+void operator delete (void* data);
+void operator delete[] (void* data);
 
 #endif

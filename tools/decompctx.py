@@ -27,6 +27,7 @@ once_pattern = re.compile(r"^#\s*pragma\s+once$")
 seen_files = set()
 defines = set()
 deps = []
+is_first = True
 
 
 def import_h_file(in_file: str, r_path: str) -> str:
@@ -52,6 +53,11 @@ def import_h_file(in_file: str, r_path: str) -> str:
 def import_c_file(in_file: str) -> str:
     in_file = os.path.relpath(in_file, root_dir)
     out_text = ""
+    global is_first
+
+    if is_first == True:
+        out_text = "#define CTX_GEN 1\n"
+        is_first = False
 
     # avoid possibly adding file twice
     if in_file in seen_files:

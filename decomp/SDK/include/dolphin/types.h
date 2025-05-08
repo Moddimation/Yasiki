@@ -1,6 +1,7 @@
 #ifndef _DOLPHIN_TYPES_H_
 #define _DOLPHIN_TYPES_H_
 
+#include <size_t.h>
 #include <stdarg.h>
 #include <stddef.h>
 #include <string.h>
@@ -19,7 +20,20 @@ typedef double f64;
 
 typedef char* Ptr;
 
+// global "BOOL" in both c and c++
+#ifndef __cplusplus
+
 typedef int BOOL;
+#define FALSE 0
+#define TRUE  1
+
+#else
+
+typedef bool BOOL;
+#define FALSE false
+#define TRUE  true
+
+#endif
 
 typedef volatile u8  vu8;
 typedef volatile u16 vu16;
@@ -37,7 +51,9 @@ typedef volatile f128 vf128;
 
 #ifdef __MWERKS__
 #ifndef __cplusplus
+
 typedef u16 wchar_t;
+
 #endif
 #endif
 
@@ -48,9 +64,6 @@ typedef u16 wchar_t;
 #ifndef nullptr
 #define nullptr 0
 #endif
-
-#define FALSE 0
-#define TRUE  1
 
 #if defined(__MWERKS__)
 #define AT_ADDRESS(addr) : (addr)

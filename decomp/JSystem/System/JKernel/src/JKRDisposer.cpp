@@ -1,19 +1,19 @@
 #include <JKRDisposer.h>
 #include <JKRHeap.h>
 
-JKRDisposer::JKRDisposer () : mPtr (this)
+JKRDisposer::JKRDisposer () : mHeapLink (SELF)
 {
-    pHeap = JKRHeap::findFromRoot (this);
-    if (pHeap != nullptr)
+    pHeapObj = JKRHeap::findFromRoot (SELF);
+    if (pHeapObj != nullptr)
     {
-        pHeap->appendDisposer (this);
+        pHeapObj->appendDisposer (SELF);
     }
 }
 
 JKRDisposer::~JKRDisposer ()
 {
-    if (pHeap != nullptr)
+    if (pHeapObj != nullptr)
     {
-        pHeap->removeDisposer (this);
+        pHeapObj->removeDisposer (SELF);
     }
 }

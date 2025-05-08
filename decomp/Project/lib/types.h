@@ -1,13 +1,6 @@
 #ifndef _TYPES_H
 #define _TYPES_H
 
-#ifndef __GEKKO__
-typedef unsigned long size_t;
-#define __cdecl
-
-#define __GEKKO__
-#endif
-
 #include <macros.h>
 
 #include <dolphin/types.h>

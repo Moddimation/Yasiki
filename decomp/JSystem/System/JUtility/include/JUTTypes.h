@@ -7,5 +7,6 @@
 #define constructor explicit
 #define destructor  virtual
 #define SELF        this
+#define Nil         0
 
 #endif
