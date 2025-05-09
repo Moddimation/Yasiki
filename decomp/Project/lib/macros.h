@@ -10,31 +10,60 @@
 #define IS_ALIGNED(X, N)     (((X) & ((N) - 1)) == 0)
 #define IS_NOT_ALIGNED(X, N) (((X) & ((N) - 1)) != 0)
 
-#define READU32_BE(ptr, offset)                                                                    \
-    (((u32)ptr[offset] << 24) | ((u32)ptr[offset + 1] << 16) | ((u32)ptr[offset + 2] << 8) |       \
+#define READU32_BE(ptr, offset)                                                                \
+    (((u32)ptr[offset] << 24) | ((u32)ptr[offset + 1] << 16) | ((u32)ptr[offset + 2] << 8) |   \
      (u32)ptr[offset + 3]);
 
-#ifdef DEBUG
-#define ASSERTLINE(line, cond)                ((cond) || (OSPanic (__FILE__, line, "Failed assertion " #cond), 0))
+// please use this with #line <n>
 
-#define ASSERTMSGLINE(line, cond, msg)        ((cond) || (OSPanic (__FILE__, line, msg), 0))
+#ifdef DEBUG
+#define ASSERT(cond)                ((cond) || (OSPanic (__FILE__, __LINE__, "Failed assertion " #cond), 0))
+
+#define ASSERTMSG(cond, msg)        ((cond) || (OSPanic (__FILE__, __LINE__, msg), 0))
 
 // This is dumb but we dont have a Metrowerks way to do variadic macros in the
 // macro to make this done in a not scrubby way.
-#define ASSERTMSG1LINE(line, cond, msg, arg1) ((cond) || (OSPanic (__FILE__, line, msg, arg1), 0))
+#define ASSERTMSG1(cond, msg, arg1) ((cond) || (OSPanic (__FILE__, __LINE__, msg, arg1), 0))
 
-#define ASSERTMSG2LINE(line, cond, msg, arg1, arg2)                                                \
-    ((cond) || (OSPanic (__FILE__, line, msg, arg1, arg2), 0))
+#define ASSERTMSG2(cond, msg, arg1, arg2)                                                      \
+    ((cond) || (OSPanic (__FILE__, __LINE__, msg, arg1, arg2), 0))
 
-#define ASSERTMSGLINEV(line, cond, ...) ((cond) || (OSPanic (__FILE__, line, __VA_ARGS__), 0))
+#define ASSERTMSGV(cond, ...) ((cond) || (OSPanic (__FILE__, __LINE__, __VA_ARGS__), 0))
 
 #else
-#define ASSERTLINE(line, cond)                      (void)0
-#define ASSERTMSGLINE(line, cond, msg)              (void)0
-#define ASSERTMSG1LINE(line, cond, msg, arg1)       (void)0
-#define ASSERTMSG2LINE(line, cond, msg, arg1, arg2) (void)0
-#define ASSERTMSGLINEV(line, cond, ...)             (void)0
+#define ASSERT(cond)                      (void)0
+#define ASSERTMSG(cond, msg)              (void)0
+#define ASSERTMSG1(cond, msg, arg1)       (void)0
+#define ASSERTMSG2(cond, msg, arg1, arg2) (void)0
+#define ASSERTMSGV(cond, ...)             (void)0
 #endif
+
+// keep for SDK
+
+#ifdef DEBUG
+#define ASSERTLINE(cond, line)                                                                 \
+    ((cond) || (OSPanic (__FILE__, line, "Failed assertion " #cond), 0))
+
+#define ASSERTMSGLINE(cond, msg, line) ((cond) || (OSPanic (__FILE__, line, msg), 0))
+
+// This is dumb but we dont have a Metrowerks way to do variadic macros in the
+// macro to make this done in a not scrubby way.
+#define ASSERTMSG1LINE(cond, msg, arg1, line)                                                  \
+    ((cond) || (OSPanic (__FILE__, line, msg, arg1), 0))
+
+#define ASSERTMSG2LINE(cond, msg, arg1, arg2, line)                                            \
+    ((cond) || (OSPanic (__FILE__, line, msg, arg1, arg2), 0))
+
+#define ASSERTMSGVLINE(cond, line, ...) ((cond) || (OSPanic (__FILE__, line, __VA_ARGS__), 0))
+
+#else
+#define ASSERTLINE(cond, line)                      (void)0
+#define ASSERTMSGLINE(cond, msg, line)              (void)0
+#define ASSERTMSG1LINE(cond, msg, arg1, line)       (void)0
+#define ASSERTMSG2LINE(cond, msg, arg1, arg2, line) (void)0
+#define ASSERTMSGLINEV(cond, line, ...)             (void)0
+#endif
+//
 
 // clang-format off
 #define FORCE_DONT_INLINE \
@@ -76,12 +105,12 @@
 // Checks if a flag is set in a bitfield
 #define IS_FLAG_SET(flags, bitsFromLSB) (((flags) >> (bitsFromLSB) & 1))
 
-#define ASSERT_HANG(cond)                                                                          \
-    if (!(cond))                                                                                   \
-    {                                                                                              \
-        while (true)                                                                               \
-        {                                                                                          \
-        }                                                                                          \
+#define ASSERT_HANG(cond)                                                                      \
+    if (!(cond))                                                                               \
+    {                                                                                          \
+        while (true)                                                                           \
+        {                                                                                      \
+        }                                                                                      \
     }
 
 // Get the maximum of two values
@@ -96,9 +125,9 @@
 // Number of bytes in a kilobyte
 #define KILOBYTE_BYTECOUNT 1024
 
-#define BUMP_REGISTER(reg)                                                                         \
-    {                                                                                              \
-        asm { mr reg, reg }                                                                           \
+#define BUMP_REGISTER(reg)                                                                     \
+    {                                                                                          \
+        asm { mr reg, reg }                                                                       \
     }
 
 #ifdef __MWERKS__
@@ -124,30 +153,23 @@
 #define MSTRING_CONCAT(a, b)   __MSTRING_CONCAT (a, b)
 
 // TODO: make more unique
-#define SASSERT(expr)                                                                              \
-    enum                                                                                           \
-    {                                                                                              \
-        MSTRING_CONCAT (assert_fail_at_, __LINE__) = 1 / (expr)                                    \
+#define SASSERT(expr)                                                                          \
+    enum                                                                                       \
+    {                                                                                          \
+        MSTRING_CONCAT (assert_fail_at_, __LINE__) = 1 / (expr)                                \
     }
 #define SASSERT_SIZE(type, size) SASSERT (sizeof (type) == size)
 
-// TODO: remove in OdemuExi2.
-#define IGNORE_GLMJ01
-#define IGNORE_GLME01
-#define IGNORE_GLME01_1
-#define IGNORE_GLMP01
-#define IGNORE_GLMP01_1
-#define IGNORE_GLMP01_2
+#ifndef __MWERKS__
 
 #ifndef __PPCGEKKO__
 #define __PPCGEKKO__
 #endif
 
-#ifndef __GEKKO__
-#define __GEKKO__
+#ifdef __POWERPC__
+#undef __POWERPC__
 #endif
 
-#ifndef __MWERKS__
 #define __option(x)   0
 #define __declspec(x) 0
 #define __frsqrte(x)  0
@@ -156,6 +178,7 @@
 #define __cntlzw(x)   0
 #define __cdecl       0
 #define asm
+
 #endif
 
 #endif // _H_MACROS_

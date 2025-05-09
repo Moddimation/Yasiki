@@ -14,7 +14,6 @@
 #ifndef __ansi_prefix__
 #define __ansi_prefix__
 
-#include <mslGlobals.h>
 #include <os_enum.h>
 #define __dest_os __dolphin_os
 
@@ -30,10 +29,6 @@
  * application. This will stop iostream from calling new
  * before main.
  */
-
-#ifndef _MSL_ANSI_PARMS_H
-#include <ansi_parms.h>
-#endif
 
 /* Two macros determine what the floating support will be 	*/
 /* in the MSL and runtime support.							*/
@@ -62,6 +57,10 @@
 /* otherwise.		*/
 /*		0 - no floating point or hardware floating point	*/
 /*		1 - software floating point							*/
+
+#ifndef __MWERKS__
+#define __option(x) 1
+#endif
 
 #if __option(floatingpoint) == 0
 

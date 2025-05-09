@@ -1,5 +1,6 @@
 #include <dolphin/os.h>
 
+#include <stdarg.h>
 #include <stdio.h>
 
 // internal include

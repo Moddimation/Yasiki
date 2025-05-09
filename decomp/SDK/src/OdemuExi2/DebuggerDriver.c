@@ -35,7 +35,6 @@ MTRCallbackType MTRCallback;
 #define ODEMU_ERROR 0
 #endif
 
-ONLY_GLMJ01
 void
 DBGEXIClearInterrupts (void)
 {
@@ -44,7 +43,6 @@ DBGEXIClearInterrupts (void)
 #endif
 }
 
-ONLY_GLMJ01
 void
 DBGEXIInit (void)
 {
@@ -53,7 +51,6 @@ DBGEXIInit (void)
     __EXIRegs[EXI_C2_SR] = 0;
 }
 
-ONLY_GLMJ01
 BOOL
 DBGEXISelect (u32 v)
 {
@@ -64,7 +61,6 @@ DBGEXISelect (u32 v)
     return ODEMU_NO_ERROR;
 }
 
-ONLY_GLMJ01
 BOOL
 DBGEXIDeselect (void)
 {
@@ -72,7 +68,6 @@ DBGEXIDeselect (void)
     return ODEMU_NO_ERROR;
 }
 
-ONLY_GLMJ01
 BOOL
 DBGEXISync (void)
 {
@@ -116,7 +111,6 @@ DBGEXIImm (const void* data, s32 size, u32 mode)
     return ODEMU_NO_ERROR;
 }
 
-ONLY_GLMJ01
 BOOL
 DBGWriteMailbox (u32 v)
 {
@@ -255,7 +249,7 @@ void
 MWCallback (u32 a, OSContext* b)
 {
     EXIInputFlag = TRUE;
-    if (MTRCallback != nullptr)
+    if (MTRCallback != NULL)
     {
         MTRCallback (0);
     }
@@ -266,7 +260,7 @@ DBGHandler (s16 a, OSContext* b)
 {
     __PIRegs[PI_INTSR] = 0x1000;
 
-    if (DBGCallback != nullptr)
+    if (DBGCallback != NULL)
     {
         DBGCallback (a, b);
     }
@@ -295,7 +289,6 @@ DBInitInterrupts (void)
     __OSUnmaskInterrupts (OS_INTERRUPTMASK_PI_DEBUG);
 }
 
-ONLY_GLMJ01
 void
 CheckMailBox (void)
 {

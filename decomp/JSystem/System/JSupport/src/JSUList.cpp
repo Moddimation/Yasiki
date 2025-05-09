@@ -12,7 +12,7 @@ JSUPtrLink::~JSUPtrLink ()
 {
     if (pSupervisor != Nil)
     {
-        pSupervisor->remove (this);
+        pSupervisor->remove (SELF);
     }
 }
 
@@ -46,7 +46,7 @@ JSUPtrList::initiate ()
 void
 JSUPtrList::setFirst (JSUPtrLink* link)
 {
-    link->pSupervisor = this;
+    link->pSupervisor = SELF;
     link->pNext = Nil;
     link->pPrev = Nil;
     pLast = link;
@@ -57,9 +57,9 @@ JSUPtrList::setFirst (JSUPtrLink* link)
 void
 JSUPtrList::setLast (JSUPtrLink* link)
 {
-    link->pSupervisor = this;
+    link->pSupervisor = SELF;
     link->pNext = pLast;
-    link->pPrev = nullptr;
+    link->pPrev = Nil;
     pLast->pPrev = link;
     pLast = link;
     mNumLinks++;
@@ -68,8 +68,8 @@ JSUPtrList::setLast (JSUPtrLink* link)
 void
 JSUPtrList::setNext (JSUPtrLink* link)
 {
-    link->pSupervisor = this;
-    link->pNext = nullptr;
+    link->pSupervisor = SELF;
+    link->pNext = Nil;
     link->pPrev = pFirst;
     pFirst->pNext = link;
     pFirst = link;
@@ -134,7 +134,7 @@ JSUPtrList::insert (JSUPtrLink* last, JSUPtrLink* next)
         return append (next);
     }
 
-    if (last->pSupervisor != this)
+    if (last->pSupervisor != SELF)
     {
         return false;
     }
@@ -147,7 +147,7 @@ JSUPtrList::insert (JSUPtrLink* last, JSUPtrLink* next)
     if (result)
     {
         JSUPtrLink* old = last->pNext;
-        next->pSupervisor = this;
+        next->pSupervisor = SELF;
         next->pNext = old;
         next->pPrev = last;
         old->pPrev = next;
@@ -161,7 +161,7 @@ JSUPtrList::insert (JSUPtrLink* last, JSUPtrLink* next)
 BOOL
 JSUPtrList::remove (JSUPtrLink* link)
 {
-    BOOL result = link->pSupervisor == this;
+    BOOL result = link->pSupervisor == SELF;
     if (result)
     {
         if (mNumLinks == 1)

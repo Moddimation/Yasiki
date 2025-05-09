@@ -13,7 +13,7 @@ struct JSUPtrLink
     void*       pObject;     ///< 0x00 // data ptr
     JSUPtrList* pSupervisor; ///< 0x04 // list that owns the link
     JSUPtrLink* pNext;       ///< 0x08 // next link
-    JSUPtrLink* pPrev;       ///< 0x0C // last/previous link
+    JSUPtrLink* pPrev;       ///< 0x0C // previous link
 };
 
 SASSERT_SIZE (JSUPtrLink, 0x10);
@@ -63,10 +63,11 @@ public:
     void setLast (JSUPtrLink* link);
     void setNext (JSUPtrLink* link);
 
-    BOOL        append (JSUPtrLink* link);
-    BOOL        prepend (JSUPtrLink* link);
-    BOOL        insert (JSUPtrLink* last, JSUPtrLink* next);
-    BOOL        remove (JSUPtrLink* link);
+    BOOL append (JSUPtrLink* link);
+    BOOL prepend (JSUPtrLink* link);
+    BOOL insert (JSUPtrLink* last, JSUPtrLink* next);
+    BOOL remove (JSUPtrLink* link);
+
     JSUPtrLink* getNthLink (u32 n) const;
 
     JSUPtrLink*
@@ -134,25 +135,25 @@ public:
     }
 
     JSULink<T>*
-    getFirst ()
+    getFirst () const
     {
-        return JSUPtrList::getFirstLink();
+        return (JSULink<T>*)JSUPtrList::getFirstLink();
     }
 
     JSULink<T>*
-    getLast ()
+    getLast () const
     {
-        return JSUPtrList::getLastLink();
+        return (JSULink<T>*)JSUPtrList::getLastLink();
     }
 
     JSULink<T>*
-    getEnd ()
+    getEnd () const
     {
-        return nullptr;
+        return (JSULink<T>*)Nil;
     }
 
     u32
-    getNumLinks ()
+    getNumLinks () const
     {
         return JSUPtrList::getNumLinks();
     }
@@ -162,7 +163,7 @@ template <typename T>
 class JSUListIterator
 {
 public:
-    JSUListIterator () : mLink (nullptr) {}
+    JSUListIterator () : mLink (Nil) {}
 
     JSUListIterator (JSULink<T>* link) : mLink (link) {}
 
@@ -172,19 +173,19 @@ public:
     operator= (JSULink<T>* link)
     {
         mLink = link;
-        return *this;
+        return *SELF;
     }
 
     T*
     getObject () const
     {
-        return mLink->getObject();
+        return (T*)mLink->getObject();
     }
 
     BOOL
     isAvailable ()
     {
-        return mLink != nullptr;
+        return mLink != Nil;
     }
 
     BOOL
@@ -214,7 +215,7 @@ public:
     JSUListIterator<T>
     operator++ (int)
     {
-        JSUListIterator<T> prev = *this;
+        JSUListIterator<T> prev = *SELF;
         mLink = mLink->getNext();
         return prev;
     }
@@ -223,13 +224,13 @@ public:
     operator++ ()
     {
         mLink = mLink->getNext();
-        return *this;
+        return *SELF;
     }
 
     JSUListIterator<T>
     operator-- (int)
     {
-        JSUListIterator<T> prev = *this;
+        JSUListIterator<T> prev = *SELF;
         mLink = mLink->getPrev();
         return prev;
     }
@@ -238,10 +239,9 @@ public:
     operator-- ()
     {
         mLink = mLink->getPrev();
-        return *this;
+        return *SELF;
     }
 
-                             // Investigate where and if this actually exists
     // T &operator*() { return *getObject(); }
 
     T*
@@ -289,50 +289,49 @@ public:
     JSUTree<T>*
     getEndChild () const
     {
-        return nullptr;
+        return Nil;
     }
 
     JSUTree<T>*
     getFirstChild () const
     {
-        return (JSUTree<T>*)this->getFirstLink();
+        return (JSUTree<T>*)SELF->getFirstLink();
     }
 
     JSUTree<T>*
     getLastChild () const
     {
-        return (JSUTree<T>*)this->getLastLink();
+        return (JSUTree<T>*)SELF->getLastLink();
     }
 
     JSUTree<T>*
     getNextChild () const
     {
-        return (JSUTree<T>*)this->mNext;
+        return (JSUTree<T>*)SELF->pNext;
     }
 
     JSUTree<T>*
     getPrevChild () const
     {
-        return (JSUTree<T>*)this->mPrev;
+        return (JSUTree<T>*)SELF->pPrev;
     }
 
     u32
     getNumChildren () const
     {
-        return this->mNumLinks;
-    } // In TP Debug getNumLinks() gets called here, however that kills
-      // something in JKRHeap::find(inline depth?)
+        return JSUList<T>::getNumLinks();
+    }
 
     T*
     getObject () const
     {
-        return (T*)this->pObject;
+        return (T*)SELF->pObject;
     }
 
     JSUTree<T>*
     getParent () const
     {
-        return (JSUTree<T>*)this->pSupervisor;
+        return (JSUTree<T>*)SELF->pSupervisor;
     }
 };
 
@@ -340,7 +339,7 @@ template <typename T>
 class JSUTreeIterator
 {
 public:
-    JSUTreeIterator () : mTree (nullptr) {}
+    JSUTreeIterator () : mTree (Nil) {}
 
     JSUTreeIterator (JSUTree<T>* tree) : mTree (tree) {}
 
@@ -348,7 +347,7 @@ public:
     operator= (JSUTree<T>* tree)
     {
         mTree = tree;
-        return *this;
+        return *SELF;
     }
 
     T*
@@ -372,7 +371,7 @@ public:
     JSUTreeIterator<T>
     operator++ (int)
     {
-        JSUTreeIterator<T> prev = *this;
+        JSUTreeIterator<T> prev = *SELF;
         mTree = mTree->getNextChild();
         return prev;
     }
@@ -381,7 +380,7 @@ public:
     operator++ ()
     {
         mTree = mTree->getNextChild();
-        return *this;
+        return *SELF;
     }
 
     T&

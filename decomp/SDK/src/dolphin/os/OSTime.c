@@ -1,6 +1,8 @@
 #include <dolphin/exi.h>
 #include <dolphin/os.h>
 
+#include <limits.h>
+
 #include "OSPrivate.h"
 
 // End of each month in standard year
@@ -132,7 +134,8 @@ GetDates (int days, OSCalendarTime* td)
 
     td->wday = (days + 6) % WEEK_DAY_MAX;
 
-    for (year = days / YEAR_DAY_MAX; days < (n = year * YEAR_DAY_MAX + GetLeapDays (year)); year--)
+    for (year = days / YEAR_DAY_MAX; days < (n = year * YEAR_DAY_MAX + GetLeapDays (year));
+         year--)
     {
         ;
     }

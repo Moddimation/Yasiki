@@ -12,7 +12,9 @@
 #error You must have the /usr/include access path before the MSL access path
 #else
 
+#ifdef __MWERKS__
 #include <cmath>
+#endif
 
 #if defined(__cplusplus) && defined(_MSL_USING_NAMESPACE)
 #ifndef _No_Floating_Point

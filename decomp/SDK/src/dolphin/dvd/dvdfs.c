@@ -157,6 +157,7 @@ DVDConvertPathToEntrynum (u8* pathPtr)
 
             if (illegal)
             {
+                #line 373
                 OSPanic (__FILE__,
                          0x175,
                          "DVDConvertEntrynumToPath(possibly DVDOpen or DVDChangeDir "

@@ -10,8 +10,8 @@ JKRHeap::JKRHeap (HANDLE obj, u32 size, JKRHeap* parent, BOOL error)
 {
     OSInitMutex (&mMutex);
     mSize = size;
-    pHeapObj = obj;
-    mStart = (void*)((int)obj + size);
+    mStart = obj;
+    mEnd = (void*)((int)obj + size);
 
     if (parent == Nil)
     {
@@ -75,62 +75,125 @@ JKRHeap::alloc (size_t size, int align, JKRHeap* heap)
 
     if (heap != Nil)
     {
-        ret = heap->alloc (align, align);
+        ret = heap->alloc (size, align);
     }
     else if (sCurrentHeap != Nil)
     {
-        ret = sCurrentHeap->alloc (align, size);
+        ret = sCurrentHeap->alloc (size, align);
     }
 
     return ret;
 }
 
 void
+JKRHeap::free (HANDLE obj, JKRHeap* heap)
+{
+    if (heap == Nil)
+    {
+        heap = findFromRoot (obj);
+        if (heap == Nil)
+        {
+            return;
+        }
+    }
+    heap->free (obj);
+}
+
+void
+JKRHeap::freeAll (void)
+{
+    unk64 _;
+
+    JSUListIterator<JKRDisposer> iter;
+    while (iter = mDisposerList.getFirst(), iter != mDisposerList.getEnd())
+    {
+        iter.getObject()->~JKRDisposer();
+    }
+}
+
+JKRHeap*
+JKRHeap::findFromRoot (HANDLE obj)
+{
+    return getRootHeap() != Nil ? getRootHeap()->find (obj) : Nil;
+}
+
+JKRHeap*
+JKRHeap::find (HANDLE obj) const
+{
+    if (mStart <= obj && obj <= mEnd)
+    {
+        if (mHeapTree.getNumChildren() != 0)
+        {
+            for (JSUTreeIterator<JKRHeap> treeIter (mHeapTree.getFirstChild());
+                 treeIter != mHeapTree.getEndChild();
+                 ++treeIter)
+            {
+                JKRHeap* search = treeIter->find (obj);
+                if (search == Nil)
+                {
+                    continue;
+                }
+
+                return search;
+            }
+        }
+        return const_cast<JKRHeap*> (SELF);
+    }
+    return Nil;
+}
+
+void
 JKRDefaultMemoryErrorRoutine (void*, u32, int)
 {
-    OSPanic (__FILE__, 629, "abort\n");
+#line 629
+    OSPanic (__FILE__, __LINE__, "abort\n");
 }
 
 void*
 operator new (size_t size)
 {
-    return JKRHeap::alloc (4, size, JKRHeap::getCurrentHeap());
+    return JKRHeap::alloc (size, 4, Nil);
 }
 
 void*
 operator new (size_t size, int align)
 {
-    return JKRHeap::alloc (align, size, JKRHeap::getCurrentHeap());
+    return JKRHeap::alloc (size, align, Nil);
 }
 
 void*
 operator new (size_t size, JKRHeap* heap, int align)
 {
-    return JKRHeap::alloc (align, size, heap);
+    return JKRHeap::alloc (size, align, heap);
 }
 
 void*
 operator new[] (size_t size)
 {
+    return operator new (size);
 }
 
 void*
 operator new[] (size_t size, int align)
 {
+    return operator new (size, align);
 }
 
 void*
 operator new[] (size_t size, JKRHeap* heap, int align)
 {
+    return operator new (size, heap, align);
 }
 
 void
-operator delete (void*)
+operator delete (void* obj)
 {
+    JKRHeap::free (obj, Nil);
 }
 
 void
-operator delete[] (void*)
+operator delete[] (void* obj)
 {
+    operator delete (obj);
 }
 

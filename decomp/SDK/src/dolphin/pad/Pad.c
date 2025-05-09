@@ -2,6 +2,10 @@
 #include <dolphin/pad.h>
 #include <dolphin/si.h>
 
+#include <stddef.h>
+#include <stdlib.h>
+#include <string.h>
+
 #include "../os/OSPrivate.h"
 #include "pad_private.h"
 

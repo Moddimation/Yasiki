@@ -1,6 +1,7 @@
+#include <dolphin/pad.h>
 #include <types.h>
 
-#include <dolphin/pad.h>
+#include <math.h>
 
 typedef struct PADClampRegion
 {
