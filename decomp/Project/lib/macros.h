@@ -14,32 +14,6 @@
     (((u32)ptr[offset] << 24) | ((u32)ptr[offset + 1] << 16) | ((u32)ptr[offset + 2] << 8) |   \
      (u32)ptr[offset + 3]);
 
-// please use this with #line <n>
-
-#ifdef DEBUG
-#define ASSERT(cond)                ((cond) || (OSPanic (__FILE__, __LINE__, "Failed assertion " #cond), 0))
-
-#define ASSERTMSG(cond, msg)        ((cond) || (OSPanic (__FILE__, __LINE__, msg), 0))
-
-// This is dumb but we dont have a Metrowerks way to do variadic macros in the
-// macro to make this done in a not scrubby way.
-#define ASSERTMSG1(cond, msg, arg1) ((cond) || (OSPanic (__FILE__, __LINE__, msg, arg1), 0))
-
-#define ASSERTMSG2(cond, msg, arg1, arg2)                                                      \
-    ((cond) || (OSPanic (__FILE__, __LINE__, msg, arg1, arg2), 0))
-
-#define ASSERTMSGV(cond, ...) ((cond) || (OSPanic (__FILE__, __LINE__, __VA_ARGS__), 0))
-
-#else
-#define ASSERT(cond)                      (void)0
-#define ASSERTMSG(cond, msg)              (void)0
-#define ASSERTMSG1(cond, msg, arg1)       (void)0
-#define ASSERTMSG2(cond, msg, arg1, arg2) (void)0
-#define ASSERTMSGV(cond, ...)             (void)0
-#endif
-
-// keep for SDK
-
 #ifdef DEBUG
 #define ASSERTLINE(cond, line)                                                                 \
     ((cond) || (OSPanic (__FILE__, line, "Failed assertion " #cond), 0))
@@ -63,7 +37,6 @@
 #define ASSERTMSG2LINE(cond, msg, arg1, arg2, line) (void)0
 #define ASSERTMSGLINEV(cond, line, ...)             (void)0
 #endif
-//
 
 // clang-format off
 #define FORCE_DONT_INLINE \

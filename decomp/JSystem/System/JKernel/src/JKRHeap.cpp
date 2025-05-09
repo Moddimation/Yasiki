@@ -145,8 +145,7 @@ JKRHeap::find (HANDLE obj) const
 void
 JKRDefaultMemoryErrorRoutine (void*, u32, int)
 {
-#line 629
-    OSPanic (__FILE__, __LINE__, "abort\n");
+    OSPanic (__FILE__, 629, "abort\n");
 }
 
 void*
