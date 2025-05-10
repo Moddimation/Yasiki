@@ -19,7 +19,7 @@
 
 /* Turn on and off namespace std here */
 #if defined(__cplusplus) && __embedded_cplusplus == 0
-#define _MSL_USING_NAMESPACE
+// #define _MSL_USING_NAMESPACE
 /* Turn on support for wchar_t as a built in type */
 /* #pragma wchar_type on */ /*  vss  not implemented yet  */
 #endif

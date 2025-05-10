@@ -6,12 +6,12 @@
 
 #include <stddef.h>
 
-JKRDisposer::JKRDisposer () : mHeapLink (SELF)
+JKRDisposer::JKRDisposer () : mHeapLink (this)
 {
-    pHeapObj = JKRHeap::findFromRoot (SELF);
+    pHeapObj = JKRHeap::findFromRoot (this);
     if (pHeapObj != Nil)
     {
-        pHeapObj->appendDisposer (SELF);
+        pHeapObj->appendDisposer (this);
     }
 }
 
@@ -19,6 +19,6 @@ JKRDisposer::~JKRDisposer ()
 {
     if (pHeapObj != Nil)
     {
-        pHeapObj->removeDisposer (SELF);
+        pHeapObj->removeDisposer (this);
     }
 }

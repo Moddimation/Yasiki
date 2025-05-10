@@ -354,8 +354,7 @@ cflags_paths_expand(cflags_cw_trk)
 cflags_paths_expand(cflags_game)
 cflags_paths_expand(cflags_sdk)
 
-config.linker_version = "GC/1.3.2"
-linker_version_default = "GC/1.2.5"
+config.linker_version = "GC/1.2.5"
 
 # Helper function for SDK libraries
 def SDKLib(lib_name: str, files: List[Tuple[bool, str]], conf: Dict[str,str]={"":""}) -> Dict[str, Any]:
@@ -369,7 +368,6 @@ def SDKLib(lib_name: str, files: List[Tuple[bool, str]], conf: Dict[str,str]={""
 
     return {
         "lib": lib_name,
-        "mw_version": linker_version_default,
         "cflags": __cflags,
         "progress_category": "sdk",
         "src_dir": "decomp",
@@ -393,7 +391,6 @@ def JSystemLib(lib_name: str, sub_dir: str, files: List[Tuple[bool, str]], cflag
 
     return {
         "lib": lib_name,
-        "mw_version": linker_version_default,
         "cflags": __cflags,
         "progress_category": "jsys",
         "src_dir": "decomp",
@@ -413,7 +410,6 @@ def CWLib(lib_name: str, sub_path: str, files: List[Tuple[bool, str]], conf: Dic
 
     return {
         "lib": lib_name,
-        "mw_version": linker_version_default,
         "cflags": __cflags,
         "progress_category": "cw",
         "src_dir": f"decomp",
@@ -433,7 +429,6 @@ def GameSource(lib_name: str, files: List[Tuple[bool, str]], conf: Dict[str, str
 
     return {
         "lib": lib_name,
-        "mw_version": config.linker_version,
         "cflags": cflags_game,
         "progress_category": "game",
         "src_dir": f"decomp/Project",
@@ -450,7 +445,6 @@ def GameMain(file: Tuple[bool, str], conf: Dict[str, str]={"":""}) -> Dict[str, 
 
     return {
         "lib": lib_name,
-        "mw_version": config.linker_version,
         "cflags": cflags_game,
         "progress_category": "game",
         "src_dir": f"decomp/Project",

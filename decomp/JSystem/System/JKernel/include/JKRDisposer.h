@@ -5,16 +5,16 @@
 
 class JKRHeap;
 
-struct JKRDisposer
+class JKRDisposer
 {
     friend class JKRHeap;
 
     constructor JKRDisposer ();
-    destructor ~JKRDisposer();
+    destructor ~JKRDisposer();      ///< 0x08v
 
 private:
-    JKRHeap*             pHeapObj;
-    JSULink<JKRDisposer> mHeapLink;
+    JKRHeap*             pHeapObj;  ///< 0x00 // Pointer to inheriting heap (?)
+    JSULink<JKRDisposer> mHeapLink; ///< 0x04 // Link to disposer, for heap (?)
 };
 
 ;

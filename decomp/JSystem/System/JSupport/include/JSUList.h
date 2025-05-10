@@ -173,7 +173,7 @@ public:
     operator= (JSULink<T>* link)
     {
         mLink = link;
-        return *SELF;
+        return *this;
     }
 
     T*
@@ -215,31 +215,31 @@ public:
     JSUListIterator<T>
     operator++ (int)
     {
-        JSUListIterator<T> prev = *SELF;
-        mLink = mLink->getNext();
+        JSUListIterator<T> prev = *this;
+        mLink = (JSULink<T>*)mLink->getNext();
         return prev;
     }
 
     JSUListIterator<T>&
     operator++ ()
     {
-        mLink = mLink->getNext();
-        return *SELF;
+        mLink = (JSULink<T>*)mLink->getNext();
+        return *this;
     }
 
     JSUListIterator<T>
     operator-- (int)
     {
-        JSUListIterator<T> prev = *SELF;
-        mLink = mLink->getPrev();
+        JSUListIterator<T> prev = *this;
+        mLink = (JSULink<T>*)mLink->getPrev();
         return prev;
     }
 
     JSUListIterator<T>&
     operator-- ()
     {
-        mLink = mLink->getPrev();
-        return *SELF;
+        mLink = (JSULink<T>*)mLink->getPrev();
+        return *this;
     }
 
     // T &operator*() { return *getObject(); }
@@ -247,10 +247,10 @@ public:
     T*
     operator->() const
     {
-        return mLink->getObject();
+        return (T*)mLink->getObject();
     }
 
-    // private:
+private:
     JSULink<T>* mLink;
 };
 
@@ -295,25 +295,25 @@ public:
     JSUTree<T>*
     getFirstChild () const
     {
-        return (JSUTree<T>*)SELF->getFirstLink();
+        return (JSUTree<T>*)this->getFirstLink();
     }
 
     JSUTree<T>*
     getLastChild () const
     {
-        return (JSUTree<T>*)SELF->getLastLink();
+        return (JSUTree<T>*)this->getLastLink();
     }
 
     JSUTree<T>*
     getNextChild () const
     {
-        return (JSUTree<T>*)SELF->pNext;
+        return (JSUTree<T>*)this->pNext;
     }
 
     JSUTree<T>*
     getPrevChild () const
     {
-        return (JSUTree<T>*)SELF->pPrev;
+        return (JSUTree<T>*)this->pPrev;
     }
 
     u32
@@ -325,13 +325,13 @@ public:
     T*
     getObject () const
     {
-        return (T*)SELF->pObject;
+        return (T*)this->pObject;
     }
 
     JSUTree<T>*
     getParent () const
     {
-        return (JSUTree<T>*)SELF->pSupervisor;
+        return (JSUTree<T>*)this->pSupervisor;
     }
 };
 
@@ -347,7 +347,7 @@ public:
     operator= (JSUTree<T>* tree)
     {
         mTree = tree;
-        return *SELF;
+        return *this;
     }
 
     T*
@@ -371,7 +371,7 @@ public:
     JSUTreeIterator<T>
     operator++ (int)
     {
-        JSUTreeIterator<T> prev = *SELF;
+        JSUTreeIterator<T> prev = *this;
         mTree = mTree->getNextChild();
         return prev;
     }
@@ -380,7 +380,22 @@ public:
     operator++ ()
     {
         mTree = mTree->getNextChild();
-        return *SELF;
+        return *this;
+    }
+
+    JSUTreeIterator<T>
+    operator-- (int)
+    {
+        JSUTreeIterator<T> prev = *this;
+        mTree = mTree->getPrevChild();
+        return prev;
+    }
+
+    JSUTreeIterator<T>&
+    operator-- ()
+    {
+        mTree = mTree->getPrevChild();
+        return *this;
     }
 
     T&

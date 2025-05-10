@@ -15,7 +15,7 @@ class JKRHeap : JKRDisposer
 {
 public:
     // static
-    static JKRHeap* initArena (char**, u32*, int maxHeaps);
+    static BOOL     initArena (char** ramStart, u32* ramSize, int maxHeaps);
     static void*    alloc (size_t size, int align, JKRHeap* heap);
     static void     free (HANDLE ptr, JKRHeap* heap);
     static JKRHeap* findFromRoot (HANDLE);
@@ -74,24 +74,24 @@ protected:
 
     JKRHeap* becomeSystemHeap (void);
     JKRHeap* becomeCurrentHeap (void);
-    JKRHeap* find (HANDLE) const;
-    void     dispose_subroutine (u32, u32);
-    void     dispose (HANDLE, u32);
+    JKRHeap* find (HANDLE obj) const;
+    void     dispose_subroutine (size_t start, size_t end);
+    int      dispose (HANDLE, u32);
     void     dispose (HANDLE, HANDLE);
     void     dispose (void);
 
-    virtual JKRHeap* alloc (size_t size, int align);
-    virtual void     free (HANDLE ptr);
-    virtual void     freeAll (void);
-    virtual void     freeTail (void);
-    virtual void     resize (HANDLE, int);
-    virtual u32      getSize (HANDLE);
-    virtual u32      getFreeSize (void);
-    virtual u32      getTotalFreeSize (void);
-    virtual u32      getHeapType (void);
-    virtual void     check (void);
-    virtual void     dump (void);
-    virtual void     dump_sort (void);
+    virtual JKRHeap* alloc (size_t size, int align) = 0;
+    virtual void     free (HANDLE ptr) = 0;
+    virtual void     freeAll (void) = 0;
+    virtual void     freeTail (void) = 0;
+    virtual void     resize (HANDLE, int) = 0;
+    virtual u32      getSize (HANDLE) = 0;
+    virtual u32      getFreeSize (void) = 0;
+    virtual u32      getTotalFreeSize (void) = 0;
+    virtual u32      getHeapType (void) = 0;
+    virtual void     check (void) = 0;
+    virtual void     dump (void) = 0;
+    virtual BOOL     dump_sort (void);
     virtual u32      getCurrentGroupId (void);
 
     void
@@ -125,7 +125,7 @@ protected:
 
 SASSERT_SIZE (JKRHeap, 0x68);
 
-#define USE_MYHEAP      JKRHeap* heap = JKRHeap::findFromRoot (SELF)
+#define USE_MYHEAP      JKRHeap* heap = JKRHeap::findFromRoot (this)
 #define USE_SYSTEMHEAP  JKRHeap* heap = JKRHeap::sSystemHeap
 #define USE_CURRENTHEAP JKRHeap* heap = JKRHeap::sCurrentHeap
 #define USE_ROOTHEAP    JKRHeap* heap = JKRHeap::sRootHeap

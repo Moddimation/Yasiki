@@ -6,7 +6,7 @@ JKRHeap*        JKRHeap::sRootHeap = Nil;
 JKRErrorRoutine JKRHeap::mErrorHandler = Nil;
 
 JKRHeap::JKRHeap (HANDLE obj, u32 size, JKRHeap* parent, BOOL error)
-  : JKRDisposer(), mHeapTree (SELF), mDisposerList()
+  : JKRDisposer(), mHeapTree (this), mDisposerList()
 {
     OSInitMutex (&mMutex);
     mSize = size;
@@ -42,21 +42,46 @@ JKRHeap::~JKRHeap ()
 {
     mHeapTree.getParent()->removeChild (&mHeapTree);
     JSUTree<JKRHeap>* pNewRoot = sRootHeap->mHeapTree.getFirstChild();
-    if (sCurrentHeap == SELF)
+    if (sCurrentHeap == this)
     {
         sCurrentHeap = pNewRoot == Nil ? sRootHeap : (JKRHeap*)pNewRoot->getObject();
     }
-    if (sSystemHeap == SELF)
+    if (sSystemHeap == this)
     {
         sSystemHeap = pNewRoot == Nil ? sRootHeap : (JKRHeap*)pNewRoot->getObject();
     }
+}
+
+BOOL
+JKRHeap::initArena (char** ramStart, u32* ramSize, int maxHeaps)
+{
+    HANDLE arenaLo = OSGetArenaLo();
+    HANDLE arenaHi = OSGetArenaHi();
+
+    if (arenaLo == arenaHi)
+    {
+        return FALSE;
+    }
+
+    HANDLE arenaStart = OSInitAlloc (arenaLo, arenaHi, maxHeaps);
+
+    arenaHi = (HANDLE)OSRoundDown32B (arenaHi);
+    arenaLo = (HANDLE)OSRoundUp32B (arenaStart);
+
+    OSSetArenaLo (arenaHi);
+    OSSetArenaHi (arenaHi);
+
+    *ramStart = (char*)arenaLo;
+    *ramSize = (u32)arenaHi - (u32)arenaLo;
+
+    return TRUE;
 }
 
 JKRHeap*
 JKRHeap::becomeSystemHeap ()
 {
     USE_SYSTEMHEAP;
-    sSystemHeap = SELF;
+    sSystemHeap = this;
     return heap;
 }
 
@@ -64,7 +89,7 @@ JKRHeap*
 JKRHeap::becomeCurrentHeap ()
 {
     USE_CURRENTHEAP;
-    sCurrentHeap = SELF;
+    sCurrentHeap = this;
     return heap;
 }
 
@@ -114,7 +139,12 @@ JKRHeap::freeAll (void)
 JKRHeap*
 JKRHeap::findFromRoot (HANDLE obj)
 {
-    return getRootHeap() != Nil ? getRootHeap()->find (obj) : Nil;
+    if (getRootHeap() != Nil)
+    {
+        return getRootHeap()->find (obj);
+    }
+
+    return Nil;
 }
 
 JKRHeap*
@@ -124,22 +154,97 @@ JKRHeap::find (HANDLE obj) const
     {
         if (mHeapTree.getNumChildren() != 0)
         {
-            for (JSUTreeIterator<JKRHeap> treeIter (mHeapTree.getFirstChild());
-                 treeIter != mHeapTree.getEndChild();
-                 ++treeIter)
+            for (JSUTreeIterator<JKRHeap> iter (mHeapTree.getFirstChild());
+                 iter != mHeapTree.getEndChild();
+                 --iter)
             {
-                JKRHeap* search = treeIter->find (obj);
-                if (search == Nil)
+                JKRHeap* search = iter->find (obj);
+                if (search != Nil)
                 {
-                    continue;
+                    return search;
                 }
-
-                return search;
             }
         }
-        return const_cast<JKRHeap*> (SELF);
+        return const_cast<JKRHeap*> (this);
     }
     return Nil;
+}
+
+void
+JKRHeap::dispose_subroutine (size_t begin, size_t end)
+{
+    JSUListIterator<JKRDisposer> iter_prev;
+    JSUListIterator<JKRDisposer> iter_next;
+    JSUListIterator<JKRDisposer> iter_curr;
+
+    for (iter_curr = mDisposerList.getFirst(); iter_curr != mDisposerList.getEnd();
+         iter_curr = iter_next)
+    {
+        void* obj = iter_curr.getObject();
+        if ((void*)begin <= obj && obj < (void*)end)
+        {
+            iter_curr.getObject()->~JKRDisposer();
+            if (iter_prev == Nil)
+            {
+                iter_next = mDisposerList.getFirst();
+            }
+            else
+            {
+                iter_next = iter_prev;
+                iter_next--;
+            }
+        }
+        else
+        {
+            iter_prev = iter_curr;
+            iter_next = iter_curr;
+            iter_next--;
+        }
+    }
+}
+
+int
+JKRHeap::dispose (HANDLE obj, u32 size)
+{
+    u32 begin = (u32)obj;
+    u32 end = (u32)obj + size;
+    dispose_subroutine (begin, end);
+    return 0;
+}
+
+void
+JKRHeap::dispose (void* begin, void* end)
+{
+    dispose_subroutine ((u32)begin, (u32)end);
+}
+
+void
+JKRHeap::dispose ()
+{
+    unk64 __;
+
+    JSUListIterator<JKRDisposer> iterator;
+    while (iterator = mDisposerList.getFirst(), iterator != mDisposerList.getEnd())
+    {
+        iterator->~JKRDisposer();
+    }
+}
+
+static inline void
+__copyMemory (u32* __dest, u32* __source, u32 size)
+{
+    while (size-- > 0)
+    {
+        *__dest = *__source;
+        __dest++;
+        __source++;
+    }
+}
+
+void
+JKRHeap::copyMemory (HANDLE dest, HANDLE source, u32 size)
+{
+    __copyMemory ((u32*)dest, (u32*)source, (size + 3) / 4);
 }
 
 void
@@ -185,14 +290,26 @@ operator new[] (size_t size, JKRHeap* heap, int align)
 }
 
 void
-operator delete (void* obj)
+operator delete (HANDLE obj)
 {
     JKRHeap::free (obj, Nil);
 }
 
 void
-operator delete[] (void* obj)
+operator delete[] (HANDLE obj)
 {
     operator delete (obj);
+}
+
+BOOL
+JKRHeap::dump_sort (void)
+{
+    return FALSE;
+}
+
+u32
+JKRHeap::getCurrentGroupId (void)
+{
+    return 0;
 }
 
