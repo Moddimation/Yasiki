@@ -14,6 +14,9 @@ static OSTime HoldDown;
 void
 __OSResetSWInterruptHandler (__OSInterrupt exception, OSContext* context)
 {
+#pragma unused(exception)
+#pragma unused(context)
+
     OSResetCallback callback;
 
     HoldDown = __OSGetSystemTime();
@@ -56,6 +59,7 @@ OSSetResetCallback (OSResetCallback callback)
         __OSMaskInterrupts (0x200);
     }
     OSRestoreInterrupts (enabled);
+
     return prevCallback;
 }
 
@@ -104,5 +108,6 @@ OSGetResetSwitchState ()
     LastState = state;
 
     OSRestoreInterrupts (enabled);
+
     return state;
 }

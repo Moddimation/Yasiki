@@ -1,5 +1,3 @@
-#include <macros.h>
-
 #include <dolphin/gx.h>
 #include <dolphin/os.h>
 
@@ -26,7 +24,7 @@ static void
 RestoreVertState (void)
 {
     GXSetVtxDescv (vcd);
-    GXSetVtxAttrFmtv (3, vat);
+    GXSetVtxAttrFmtv (GX_VTXFMT3, vat);
 }
 
 inline static void
@@ -34,10 +32,7 @@ vsub (f32 p1[3], f32 p2[3], f32 u[3])
 {
     u32 i;
 
-    for (i = 0; i < 3; i++)
-    {
-        u[i] = p2[i] - p1[i];
-    }
+    for (i = 0; i < 3; i++) { u[i] = p2[i] - p1[i]; }
 }
 
 inline static void
@@ -48,9 +43,9 @@ vcross (f32 u[3], f32 v[3], f32 n[3])
     n1[0] = (u[1] * v[2]) - (u[2] * v[1]);
     n1[1] = (u[2] * v[0]) - (u[0] * v[2]);
     n1[2] = (u[0] * v[1]) - (u[1] * v[0]);
-    n[0] = n1[0];
-    n[1] = n1[1];
-    n[2] = n1[2];
+    n[0]  = n1[0];
+    n[1]  = n1[1];
+    n[2]  = n1[2];
 }
 
 inline static void
@@ -104,10 +99,10 @@ Subdivide (u8 depth, f32 v0[3], f32 v1[3], f32 v2[3])
     normalize (v01);
     normalize (v12);
     normalize (v20);
-    Subdivide (depth - 1, v0, v01, v20);
-    Subdivide (depth - 1, v1, v12, v01);
-    Subdivide (depth - 1, v2, v20, v12);
-    Subdivide (depth - 1, v01, v12, v20);
+    Subdivide ((u8)(depth - 1), v0, v01, v20);
+    Subdivide ((u8)(depth - 1), v1, v12, v01);
+    Subdivide ((u8)(depth - 1), v2, v20, v12);
+    Subdivide ((u8)(depth - 1), v01, v12, v20);
 }
 
 static void
@@ -130,7 +125,7 @@ GXDrawCylinder (u8 numEdges)
     f32 y[100];
     f32 angle;
 
-    top = 1.0f;
+    top    = 1.0f;
     bottom = -top;
     ASSERTMSGLINE (0xD8, numEdges <= 99, "GXDrawCylinder: too many edges");
 
@@ -139,11 +134,11 @@ GXDrawCylinder (u8 numEdges)
     for (i = 0; i <= numEdges; i++)
     {
         angle = (3.1415927f * (2.0f * i)) / numEdges;
-        x[i] = cosf (angle);
-        y[i] = sinf (angle);
+        x[i]  = cosf (angle);
+        y[i]  = sinf (angle);
     }
 
-    GXBegin (GX_TRIANGLESTRIP, GX_VTXFMT3, (numEdges + 1) * 2);
+    GXBegin (GX_TRIANGLESTRIP, GX_VTXFMT3, (u16)((numEdges + 1) * 2));
     for (i = 0; i <= numEdges; i++)
     {
         GXPosition3f32 (x[i], y[i], bottom);
@@ -153,7 +148,7 @@ GXDrawCylinder (u8 numEdges)
     }
     GXEnd();
 
-    GXBegin (GX_TRIANGLEFAN, GX_VTXFMT3, numEdges + 2);
+    GXBegin (GX_TRIANGLEFAN, GX_VTXFMT3, (u16)(numEdges + 2));
     GXPosition3f32 (0.0f, 0.0f, top);
     GXNormal3f32 (0.0f, 0.0f, 1.0f);
     for (i = 0; i <= numEdges; i++)
@@ -163,7 +158,7 @@ GXDrawCylinder (u8 numEdges)
     }
     GXEnd();
 
-    GXBegin (GX_TRIANGLEFAN, GX_VTXFMT3, numEdges + 2);
+    GXBegin (GX_TRIANGLEFAN, GX_VTXFMT3, (u16)(numEdges + 2));
     GXPosition3f32 (0.0f, 0.0f, bottom);
     GXNormal3f32 (0.0f, 0.0f, -1.0f);
     for (i = 0; i <= numEdges; i++)
@@ -198,7 +193,7 @@ GXDrawTorus (f32 rc, u8 numc, u8 numt)
     }
     for (i = 0; i < numc; i++)
     {
-        GXBegin (GX_TRIANGLESTRIP, GX_VTXFMT3, (numt + 1) * 2);
+        GXBegin (GX_TRIANGLESTRIP, GX_VTXFMT3, (u16)((numt + 1) * 2));
         for (j = 0; j <= numt; j++)
         {
             for (k = 1; k >= 0; k--)
@@ -228,7 +223,7 @@ void
 GXDrawSphere (u8 numMajor, u8 numMinor)
 {
     GXAttrType ttype;
-    f32        radius = 1.0f;
+    f32        radius    = 1.0f;
     f32        majorStep = 3.1415927f / numMajor;
     f32        minorStep = 6.2831855f / numMinor;
     s32        i, j;
@@ -247,13 +242,13 @@ GXDrawSphere (u8 numMajor, u8 numMinor)
     }
     for (i = 0; i < numMajor; i++)
     {
-        a = i * majorStep;
-        b = a + majorStep;
+        a  = i * majorStep;
+        b  = a + majorStep;
         r0 = radius * sinf (a);
         r1 = radius * sinf (b);
         z0 = radius * cosf (a);
         z1 = radius * cosf (b);
-        GXBegin (GX_TRIANGLESTRIP, GX_VTXFMT3, (numMinor + 1) * 2);
+        GXBegin (GX_TRIANGLESTRIP, GX_VTXFMT3, (u16)((numMinor + 1) * 2));
         for (j = 0; j <= numMinor; j++)
         {
             c = j * minorStep;
@@ -353,11 +348,13 @@ GXDrawCube (void)
     GXGetVtxDesc (GX_VA_NBT, &ntype);
     GXGetVtxDesc (GX_VA_TEX0, &ttype);
     GetVertState();
+
     if (ntype != GX_NONE)
     {
         GXSetVtxDesc (GX_VA_NBT, GX_DIRECT);
         GXSetVtxAttrFmt (GX_VTXFMT3, GX_VA_NBT, GX_TEX_ST, GX_RGBA6, 0);
     }
+
     if (ttype != GX_NONE)
     {
         GXSetVtxDesc (GX_VA_TEX0, GX_DIRECT);
@@ -404,14 +401,14 @@ static f32 verts[20][3] = {
     {       0.0f, -0.309015f, -0.809015f },
     {       0.0f, -0.309015f,  0.809015f },
     {       0.0f,  0.309015f,  0.809015f },
-    {      -0.5f,      -0.5f,        0.5 },
-    {      -0.5f,      -0.5f,       -0.5 },
-    {       0.5f,      -0.5f,       -0.5 },
-    {       0.5f,      -0.5f,        0.5 },
-    {      -0.5f,       0.5f,        0.5 },
-    {      -0.5f,       0.5f,       -0.5 },
-    {       0.5f,       0.5f,       -0.5 },
-    {       0.5f,       0.5f,        0.5 },
+    {      -0.5f,      -0.5f,       0.5f },
+    {      -0.5f,      -0.5f,      -0.5f },
+    {       0.5f,      -0.5f,      -0.5f },
+    {       0.5f,      -0.5f,       0.5f },
+    {      -0.5f,       0.5f,       0.5f },
+    {      -0.5f,       0.5f,      -0.5f },
+    {       0.5f,       0.5f,      -0.5f },
+    {       0.5f,       0.5f,       0.5f },
 };
 
 void
@@ -472,10 +469,9 @@ GXDrawOctahedron (void)
     s32 i;
 
     GetVertState();
-    for (i = 7; i >= 0; i--)
-    {
-        SubDivTriangle (0, i, odata, ondex);
-    }
+
+    for (i = 7; i >= 0; i--) { SubDivTriangle (0, (u8)i, odata, ondex); }
+
     RestoreVertState();
 }
 
@@ -523,10 +519,9 @@ GXDrawIcosahedron (void)
     s32 i;
 
     GetVertState();
-    for (i = 19; i >= 0; i--)
-    {
-        SubDivTriangle (0, i, idata, index);
-    }
+
+    for (i = 19; i >= 0; i--) { SubDivTriangle (0, (u8)i, idata, index); }
+
     RestoreVertState();
 }
 
@@ -536,10 +531,9 @@ GXDrawSphere1 (u8 depth)
     s32 i;
 
     GetVertState();
-    for (i = 19; i >= 0; i--)
-    {
-        SubDivTriangle (depth, i, idata, index);
-    }
+
+    for (i = 19; i >= 0; i--) { SubDivTriangle (depth, (u8)i, idata, index); }
+
     RestoreVertState();
 }
 
@@ -555,6 +549,7 @@ CmpNormal32 (f32 n1[3], f32 n2[3])
             return FALSE;
         }
     }
+
     return TRUE;
 }
 
@@ -574,10 +569,12 @@ AddNormal (f32 n[3])
             return;
         }
     }
-    indx = nrm_cnt * 3;
+    indx              = nrm_cnt * 3;
+
     nrm_tab[indx + 0] = n[0];
     nrm_tab[indx + 1] = n[1];
     nrm_tab[indx + 2] = n[2];
+
     nrm_cnt++;
 }
 
@@ -603,13 +600,15 @@ SubdivideNrm (u8 depth, f32 v0[3], f32 v1[3], f32 v2[3])
         v12[i] = v1[i] + v2[i];
         v20[i] = v2[i] + v0[i];
     }
+
     normalize (v01);
     normalize (v12);
     normalize (v20);
-    SubdivideNrm (depth - 1, v0, v01, v20);
-    SubdivideNrm (depth - 1, v1, v12, v01);
-    SubdivideNrm (depth - 1, v2, v20, v12);
-    SubdivideNrm (depth - 1, v01, v12, v20);
+
+    SubdivideNrm ((u8)(depth - 1), v0, v01, v20);
+    SubdivideNrm ((u8)(depth - 1), v1, v12, v01);
+    SubdivideNrm ((u8)(depth - 1), v2, v20, v12);
+    SubdivideNrm ((u8)(depth - 1), v01, v12, v20);
 }
 
 static void
@@ -629,9 +628,8 @@ GXGenNormalTable (u8 depth, f32* table)
 
     nrm_cnt = 0;
     nrm_tab = table;
-    for (i = 7; i >= 0; i--)
-    {
-        SubDivNrm (depth, i, odata, ondex);
-    }
+
+    for (i = 7; i >= 0; i--) { SubDivNrm (depth, (u8)i, odata, ondex); }
+
     return nrm_cnt;
 }

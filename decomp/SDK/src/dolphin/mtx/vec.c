@@ -1,7 +1,6 @@
 #include <dolphin/mtx.h>
 
 #include <cmath>
-#include <dolphin.h>
 
 // defines to make ASM work
 #define qr0 0
@@ -91,7 +90,7 @@ C_VECNormalize (Vec* src, Vec* unit)
     ASSERTMSGLINE (0x128, unit, "VECNormalize():  NULL VecPtr 'unit' ");
     mag = (src->z * src->z) + ((src->x * src->x) + (src->y * src->y));
     ASSERTMSGLINE (0x12D, 0.0f != mag, "VECNormalize():  zero magnitude vector ");
-    mag = 1.0f / sqrtf (mag);
+    mag     = 1.0f / sqrtf (mag);
     unit->x = src->x * mag;
     unit->y = src->y * mag;
     unit->z = src->z * mag;
@@ -100,7 +99,7 @@ C_VECNormalize (Vec* src, Vec* unit)
 void
 PSVECNormalize (register Vec* vec1, register Vec* dst)
 {
-    register float c_half = 0.5f;
+    register float c_half  = 0.5f;
     register float c_three = 3.0f;
     register float v1_xy;
     register float v1_z;
@@ -269,7 +268,7 @@ VECReflect (Vec* src, Vec* normal, Vec* dst)
     uI.z = -src->z;
     VECNormalize (&uI, &uI);
     VECNormalize (normal, &uN);
-    cosA = VECDotProduct (&uI, &uN);
+    cosA   = VECDotProduct (&uI, &uN);
     dst->x = (2.0f * uN.x * cosA) - uI.x;
     dst->y = (2.0f * uN.y * cosA) - uI.y;
     dst->z = (2.0f * uN.z * cosA) - uI.z;

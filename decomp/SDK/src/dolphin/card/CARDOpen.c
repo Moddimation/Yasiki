@@ -1,6 +1,6 @@
 #include <dolphin/card.h>
 
-#include <dolphin.h>
+#include <string.h>
 
 #include "CARDPrivate.h"
 
@@ -18,16 +18,17 @@ __CARDCompareFileName (CARDDir* ent, const char* fileName)
         {
             return FALSE;
         }
-        else if (c2 == '¥0')
+        else if (c2 == '\0')
         {
             return TRUE;
         }
     }
 
-    if (*fileName == '¥0')
+    if (*fileName == '\0')
     {
         return TRUE;
     }
+
     return FALSE;
 }
 
@@ -60,6 +61,7 @@ __CARDIsPublic (CARDDir* ent)
     {
         return 0;
     }
+
     return CARD_RESULT_NOPERM;
 }
 
@@ -77,7 +79,7 @@ __CARDGetFileNo (CARDControl* card, const char* fileName, s32* pfileNo)
     dir = __CARDGetDirBlock (card);
     for (fileNo = 0; fileNo < CARD_MAX_FILE; fileNo++)
     {
-        CARDDir* ent = &dir[fileNo];
+        CARDDir* ent    = &dir[fileNo];
         s32      result = __CARDAccess (ent);
 
         if (result < 0)
@@ -90,6 +92,7 @@ __CARDGetFileNo (CARDControl* card, const char* fileName, s32* pfileNo)
             return CARD_RESULT_READY;
         }
     }
+
     return CARD_RESULT_NOFILE;
 }
 
@@ -110,14 +113,14 @@ CARDFastOpen (s32 chan, s32 fileNo, CARDFileInfo* fileInfo)
     }
 
     fileInfo->chan = -1;
-    result = __CARDGetControlBlock (chan, &card);
+    result         = __CARDGetControlBlock (chan, &card);
     if (result < 0)
     {
         return result;
     }
 
-    dir = __CARDGetDirBlock (card);
-    ent = &dir[fileNo];
+    dir    = __CARDGetDirBlock (card);
+    ent    = &dir[fileNo];
     result = __CARDAccess (ent);
     if (result == CARD_RESULT_NOPERM)
     {
@@ -131,12 +134,13 @@ CARDFastOpen (s32 chan, s32 fileNo, CARDFileInfo* fileInfo)
         }
         else
         {
-            fileInfo->chan = chan;
+            fileInfo->chan   = chan;
             fileInfo->fileNo = fileNo;
             fileInfo->offset = 0;
             fileInfo->iBlock = ent->startBlock;
         }
     }
+
     return __CARDPutControlBlock (card, result);
 }
 
@@ -152,7 +156,7 @@ CARDOpen (s32 chan, char* fileName, CARDFileInfo* fileInfo)
     ASSERTLINE (0x11A, 0 <= chan && chan < 2);
 
     fileInfo->chan = -1;
-    result = __CARDGetControlBlock (chan, &card);
+    result         = __CARDGetControlBlock (chan, &card);
     if (result < 0)
     {
         return result;
@@ -169,12 +173,13 @@ CARDOpen (s32 chan, char* fileName, CARDFileInfo* fileInfo)
         }
         else
         {
-            fileInfo->chan = chan;
+            fileInfo->chan   = chan;
             fileInfo->fileNo = fileNo;
             fileInfo->offset = 0;
             fileInfo->iBlock = ent->startBlock;
         }
     }
+
     return __CARDPutControlBlock (card, result);
 }
 
@@ -194,11 +199,15 @@ CARDClose (CARDFileInfo* fileInfo)
     }
 
     fileInfo->chan = -1;
+
     return __CARDPutControlBlock (card, CARD_RESULT_READY);
 }
 
 BOOL
 __CARDIsOpened (CARDControl* card, s32 fileNo)
 {
+#pragma unused(card)
+#pragma unused(fileNo)
+
     return FALSE;
 }

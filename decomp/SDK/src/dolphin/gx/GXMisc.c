@@ -1,8 +1,5 @@
-#include <macros.h>
-
 #include <dolphin/base/PPCArch.h>
 #include <dolphin/gx.h>
-#include <dolphin/hw_regs.h>
 #include <dolphin/os.h>
 
 #include <stddef.h>
@@ -20,7 +17,7 @@ GXSetMisc (GXMiscToken token, u32 val)
     switch (token)
     {
         case GX_MT_XF_FLUSH:
-            __GXData->vNum = val;
+            __GXData->vNum = (u16)val;
             if (__GXData->vNum != 0)
             {
                 __GXData->dirtyState |= 8;
@@ -53,19 +50,14 @@ GXFlush (void)
     {
         __GXSetDirtyState();
     }
-    for (i = 32; i > 0; i--)
-    {
-        GX_WRITE_U8 (0);
-    }
+    for (i = 32; i > 0; i--) { GX_WRITE_U8 (0); }
     PPCSync();
 }
 
 void
 GXResetWriteGatherPipe (void)
 {
-    while (PPCMfwpar() & 1)
-    {
-    }
+    while (PPCMfwpar() & 1) {}
     PPCMtwpar (OSUncachedToPhysical ((void*)GXFIFO_ADDR));
 }
 
@@ -101,13 +93,15 @@ GXSetDrawSync (u16 token)
     CHECK_GXBEGIN (0x162, "GXSetDrawSync");
 
     enabled = OSDisableInterrupts();
-    reg = token | 0x48000000;
+    reg     = (u32)(token | 0x48000000);
     GX_WRITE_RAS_REG (reg);
     SET_REG_FIELD (0x16F, reg, 16, 0, token);
     SET_REG_FIELD (0x170, reg, 8, 24, 0x47);
     GX_WRITE_RAS_REG (reg);
     GXFlush();
+
     OSRestoreInterrupts (enabled);
+
     __GXData->bpSent = 1;
 }
 
@@ -126,10 +120,11 @@ GXSetDrawDone (void)
 
     CHECK_GXBEGIN (0x19C, "GXSetDrawDone");
     enabled = OSDisableInterrupts();
-    reg = 0x45000002;
+    reg     = 0x45000002;
     GX_WRITE_RAS_REG (reg);
     GXFlush();
     DrawDone = 0;
+
     OSRestoreInterrupts (enabled);
 }
 
@@ -141,10 +136,7 @@ GXWaitDrawDone (void)
     CHECK_GXBEGIN (0x1CA, "GXWaitDrawDone");
 
     enabled = OSDisableInterrupts();
-    while (!DrawDone)
-    {
-        OSSleepThread (&FinishQueue);
-    }
+    while (!DrawDone) { OSSleepThread (&FinishQueue); }
     OSRestoreInterrupts (enabled);
 }
 
@@ -195,7 +187,7 @@ GXPokeAlphaMode (GXCompare func, u8 threshold)
     u32 reg;
 
     CHECK_GXBEGIN (0x25F, "GXPokeAlphaMode");
-    reg = (func << 8) | threshold;
+    reg = (u32)((func << 8) | threshold);
     GX_SET_PE_REG (PE_PI_ALPHA_THRESHOLD_ID, reg);
 }
 
@@ -223,7 +215,10 @@ GXPokeAlphaUpdate (GXBool update_enable)
 }
 
 void
-GXPokeBlendMode (GXBlendMode type, GXBlendFactor src_factor, GXBlendFactor dst_factor, GXLogicOp op)
+GXPokeBlendMode (GXBlendMode   type,
+                 GXBlendFactor src_factor,
+                 GXBlendFactor dst_factor,
+                 GXLogicOp     op)
 {
     u32 reg;
 
@@ -335,16 +330,20 @@ GXSetDrawSyncCallback (GXDrawSyncCallback cb)
     GXDrawSyncCallback oldcb;
     BOOL               enabled;
 
-    oldcb = TokenCB;
+    oldcb   = TokenCB;
     enabled = OSDisableInterrupts();
     TokenCB = cb;
+
     OSRestoreInterrupts (enabled);
+
     return oldcb;
 }
 
 static void
 GXTokenInterruptHandler (__OSInterrupt interrupt, OSContext* context)
 {
+#pragma unused(interrupt)
+
     u16       token;
     OSContext exceptionContext;
     u32       reg;
@@ -369,16 +368,20 @@ GXSetDrawDoneCallback (GXDrawDoneCallback cb)
     GXDrawDoneCallback oldcb;
     BOOL               enabled;
 
-    oldcb = DrawDoneCB;
-    enabled = OSDisableInterrupts();
+    oldcb      = DrawDoneCB;
+    enabled    = OSDisableInterrupts();
     DrawDoneCB = cb;
+
     OSRestoreInterrupts (enabled);
+
     return oldcb;
 }
 
 static void
 GXFinishInterruptHandler (__OSInterrupt interrupt, OSContext* context)
 {
+#pragma unused(interrupt)
+
     OSContext exceptionContext;
     u32       reg;
 
@@ -426,6 +429,7 @@ GXCompressZ16 (u32 z24, GXZFmt16 zfmt)
 #else
     s32 temp;
     u8  unused[4];
+#pragma unused(unused)
 #endif
 
     z24n = ~(z24 << 8);
@@ -496,6 +500,7 @@ GXCompressZ16 (u32 z24, GXZFmt16 zfmt)
             OSPanic (__FILE__, 0x3B0, "GXCompressZ16: Invalid Z format\n");
             break;
     }
+
     return z16;
 }
 
@@ -507,12 +512,14 @@ GXDecompressZ16 (u32 z16, GXZFmt16 zfmt)
     s32 exp;
     s32 shift;
 
+#ifdef __MWERKS__
     cb1;
     cb1;
     cb1;
     z16;
     z16;
     z16; // needed to match
+#endif
 
     switch (zfmt)
     {
@@ -520,7 +527,7 @@ GXDecompressZ16 (u32 z16, GXZFmt16 zfmt)
             z24 = (z16 << 8) & 0xFFFF00;
             break;
         case GX_ZC_NEAR:
-            exp = (z16 >> 14) & 3;
+            exp = (s32)((z16 >> 14) & 3);
             if (exp == 3)
             {
                 shift = 7;
@@ -529,11 +536,11 @@ GXDecompressZ16 (u32 z16, GXZFmt16 zfmt)
             {
                 shift = 9 - exp;
             }
-            cb1 = -1 << (24 - exp);
+            cb1 = (u32)(-1 << (24 - exp));
             z24 = (cb1 | ((z16 & 0x3FFF) << shift)) & 0xFFFFFF;
             break;
         case GX_ZC_MID:
-            exp = (z16 >> 13) & 7;
+            exp = (s32)((z16 >> 13) & 7);
             if (exp == 7)
             {
                 shift = 4;
@@ -542,11 +549,11 @@ GXDecompressZ16 (u32 z16, GXZFmt16 zfmt)
             {
                 shift = 10 - exp;
             }
-            cb1 = -1 << (24 - exp);
+            cb1 = (u32)(-1 << (24 - exp));
             z24 = (cb1 | ((z16 & 0x1FFF) << shift)) & 0xFFFFFF;
             break;
         case GX_ZC_FAR:
-            exp = (z16 >> 12) & 0xF;
+            exp = (s32)((z16 >> 12) & 0xF);
             if (exp == 12)
             {
                 shift = 0;
@@ -555,12 +562,13 @@ GXDecompressZ16 (u32 z16, GXZFmt16 zfmt)
             {
                 shift = 11 - exp;
             }
-            cb1 = -1 << (24 - exp);
+            cb1 = (u32)(-1 << (24 - exp));
             z24 = (cb1 | ((z16 & 0xFFF) << shift)) & 0xFFFFFF;
             break;
         default:
             OSPanic (__FILE__, 0x3E2, "GXDecompressZ16: Invalid Z format\n");
             break;
     }
+
     return z24;
 }

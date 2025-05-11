@@ -1,7 +1,6 @@
-#include <macros.h>
-
 #include <dolphin/gx.h>
 #include <dolphin/os.h>
+#include <macros.h>
 
 #include <math.h>
 
@@ -58,10 +57,10 @@ GXSetFog (GXFogType type, f32 startz, f32 endz, f32 nearz, f32 farz, GXColor col
         B_expn--;
     }
 
-    a = A / (f32)(1 << (B_expn + 1));
-    b_m = 8.388638e6f * B_mant;
-    b_s = B_expn + 1;
-    c = C;
+    a    = A / (f32)(1 << (B_expn + 1));
+    b_m  = (u32)(8.388638e6f * B_mant);
+    b_s  = B_expn + 1;
+    c    = C;
 
     fog1 = 0;
     SET_REG_FIELD (0x94, fog1, 24, 0, b_m);
@@ -74,7 +73,7 @@ GXSetFog (GXFogType type, f32 startz, f32 endz, f32 nearz, f32 farz, GXColor col
     a_hex = *(u32*)&a;
     c_hex = *(u32*)&c;
 
-    fog0 = 0;
+    fog0  = 0;
     SET_REG_FIELD (0xA0, fog0, 11, 0, (a_hex >> 12) & 0x7FF);
     SET_REG_FIELD (0xA1, fog0, 8, 11, (a_hex >> 23) & 0xFF);
     SET_REG_FIELD (0xA2, fog0, 1, 19, (a_hex >> 31));
@@ -130,11 +129,11 @@ GXInitFogAdjTable (GXFogAdjTable* table, u16 width, f32 projmtx[4][4])
     iw = 2.0f / width;
     for (i = 0; i < 10; i++)
     {
-        xi = (i + 1) << 5;
-        xi *= iw;
-        xi *= sideX;
-        rangeVal = sqrtf (1.0f + ((xi * xi) / (nearZ * nearZ)));
-        table->r[i] = (u32)(256.0f * rangeVal) & 0xFFF;
+        xi           = (i + 1) << 5;
+        xi          *= iw;
+        xi          *= sideX;
+        rangeVal     = sqrtf (1.0f + ((xi * xi) / (nearZ * nearZ)));
+        table->r[i]  = (u16)((u32)(256.0f * rangeVal) & 0xFFF);
     }
 }
 
@@ -168,11 +167,18 @@ GXSetFogRangeAdj (GXBool enable, u16 center, GXFogAdjTable* table)
 }
 
 void
-GXSetBlendMode (GXBlendMode type, GXBlendFactor src_factor, GXBlendFactor dst_factor, GXLogicOp op)
+GXSetBlendMode (GXBlendMode   type,
+                GXBlendFactor src_factor,
+                GXBlendFactor dst_factor,
+                GXLogicOp     op)
 {
     CHECK_GXBEGIN (0x12F, "GXSetBlendMode");
 
-    SET_REG_FIELD (0x135, __GXData->cmode0, 1, 0, (type == GX_BM_BLEND || type == GX_BM_SUBTRACT));
+    SET_REG_FIELD (0x135,
+                   __GXData->cmode0,
+                   1,
+                   0,
+                   (type == GX_BM_BLEND || type == GX_BM_SUBTRACT));
     SET_REG_FIELD (0x136, __GXData->cmode0, 1, 11, (type == GX_BM_SUBTRACT));
     SET_REG_FIELD (0x138, __GXData->cmode0, 1, 1, (type == GX_BM_LOGIC));
     SET_REG_FIELD (0x139, __GXData->cmode0, 4, 12, op);
@@ -298,7 +304,7 @@ GXSetFieldMode (GXBool field_mode, GXBool half_aspect_ratio)
     SET_REG_FIELD (0x21A, __GXData->lpSize, 1, 22, half_aspect_ratio);
     GX_WRITE_RAS_REG (__GXData->lpSize);
     __GXFlushTextureState();
-    reg = field_mode | 0x68000000;
+    reg = (u32)(field_mode | 0x68000000);
     GX_WRITE_RAS_REG (reg);
     __GXFlushTextureState();
 }

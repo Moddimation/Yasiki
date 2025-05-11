@@ -1,7 +1,6 @@
-#include <macros.h>
-
 #include <dolphin/gx.h>
 #include <dolphin/os.h>
+#include <macros.h>
 
 #include "GXPrivate.h"
 
@@ -412,12 +411,12 @@ GXSetTevOrder (GXTevStageID stage, GXTexCoordID coord, GXTexMapID map, GXChannel
     CHECK_GXBEGIN (0x307, "GXSetTevOrder");
     ASSERTMSGLINE (0x308, stage < 16, "GXSetTevColor: Invalid Tev Stage Index");
 
-    ptref = &__GXData->tref[stage / 2];
+    ptref                     = &__GXData->tref[stage / 2];
     __GXData->texmapId[stage] = map;
 
-    tmap = map & ~0x100;
-    tmap = (tmap >= GX_MAX_TEXMAP) ? GX_TEXMAP0 : tmap;
-    tcoord = (coord >= GX_MAX_TEXCOORD) ? GX_TEXCOORD0 : coord;
+    tmap                      = (u32)(map & ~0x100);
+    tmap                      = (tmap >= GX_MAX_TEXMAP) ? GX_TEXMAP0 : tmap;
+    tcoord                    = (coord >= GX_MAX_TEXCOORD) ? GX_TEXCOORD0 : coord;
 
     if (stage & 1)
     {
@@ -435,7 +434,7 @@ GXSetTevOrder (GXTevStageID stage, GXTexCoordID coord, GXTexMapID map, GXChannel
     }
 
     GX_WRITE_RAS_REG (*ptref);
-    __GXData->bpSent = 1;
+    __GXData->bpSent      = 1;
     __GXData->dirtyState |= 1;
 }
 

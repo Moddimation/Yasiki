@@ -1,4 +1,6 @@
-#include <dolphin.h>
+#include <dolphin/os.h>
+
+#include <string.h>
 
 #include "dvd_private.h"
 
@@ -35,8 +37,8 @@ cb (s32 result, DVDCommandBlock* block)
                 status = 2;                // next read fst
                 DVDReadAbsAsyncForBS (block,
                                       bb2->FSTAddress,
-                                      (bb2->FSTLength + 0x1F) & 0xFFFFFFE0,
-                                      bb2->FSTPosition,
+                                      (s32)((bb2->FSTLength + 0x1F) & 0xFFFFFFE0),
+                                      (s32)bb2->FSTPosition,
                                       cb);
             default:
                 return;
@@ -64,13 +66,13 @@ __fstLoad ()
     void*                  arenaHi;
     static DVDCommandBlock block;
 
-    arenaHi = OSGetArenaHi();
+    arenaHi  = OSGetArenaHi();
 
     bootInfo = (void*)OSPhysicalToCached (0);
 
     // disk id is not aligned 32b
-    idTmp = (void*)OSRoundUp32B (idTmpBuf);
-    bb2 = (void*)OSRoundUp32B (bb2Buf);
+    idTmp    = (void*)OSRoundUp32B (idTmpBuf);
+    bb2      = (void*)OSRoundUp32B (bb2Buf);
 
     DVDReset();
     DVDReadDiskID (&block, idTmp, cb);
@@ -104,10 +106,10 @@ __fstLoad ()
         }
     }
 
-    bootInfo->FSTLocation = (void*)bb2->FSTAddress;
+    bootInfo->FSTLocation  = (void*)bb2->FSTAddress;
     bootInfo->FSTMaxLength = bb2->FSTMaxLength;
 
-    id = &bootInfo->DVDDiskID;
+    id                     = &bootInfo->DVDDiskID;
     memcpy (id, idTmp, 0x20);
 
     OSReport ("\n");

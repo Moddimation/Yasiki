@@ -1,6 +1,7 @@
+#include <dolphin/pad.h>
 #include <types.h>
 
-#include <dolphin/pad.h>
+#include <math.h>
 
 typedef struct PADClampRegion
 {
@@ -39,7 +40,7 @@ ClampStick (s8* px, s8* py, s8 max, s8 xy, s8 min)
     else
     {
         signX = -1;
-        x = -x;
+        x     = -x;
     }
     if (y >= 0)
     {
@@ -48,7 +49,7 @@ ClampStick (s8* px, s8* py, s8 max, s8 xy, s8 min)
     else
     {
         signY = -1;
-        y = -y;
+        y     = -y;
     }
 
     if (x <= min)
@@ -93,8 +94,8 @@ ClampStick (s8* px, s8* py, s8 max, s8 xy, s8 min)
         }
     }
 
-    *px = signX * x;
-    *py = signY * y;
+    *px = (s8)(signX * x);
+    *py = (s8)(signY * y);
 }
 
 inline static void

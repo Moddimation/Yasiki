@@ -1,4 +1,4 @@
-#include <dolphin.h>
+#include <dolphin/os.h>
 
 // EXI error codes
 typedef enum
@@ -18,13 +18,11 @@ int         AMC_IsStub ();
 
 void
 EXI2_Init ()
-{
-}
+{}
 
 void
 EXI2_EnableInterrupts ()
-{
-}
+{}
 
 int
 EXI2_Poll ()
@@ -46,13 +44,11 @@ EXI2_WriteN ()
 
 void
 EXI2_Reserve ()
-{
-}
+{}
 
 void
 EXI2_Unreserve ()
-{
-}
+{}
 
 int
 AMC_IsStub ()
