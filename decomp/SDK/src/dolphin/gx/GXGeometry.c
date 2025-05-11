@@ -1,9 +1,5 @@
-#include <macros.h>
-
 #include <dolphin/gx.h>
 #include <dolphin/os.h>
-
-#include <stddef.h>
 
 #include "GXPrivate.h"
 
@@ -66,10 +62,7 @@ __GXSendFlushPrim (void)
 
     GX_WRITE_U8 (0x98);
     GX_WRITE_U16 (__GXData->vNum);
-    for (i = 0; i < numD; i += 4)
-    {
-        GX_WRITE_U32 (0);
-    }
+    for (i = 0; i < numD; i += 4) { GX_WRITE_U32 (0); }
     __GXData->bpSent = 0;
 }
 
@@ -88,8 +81,8 @@ GXGetLineWidth (u8* width, GXTexOffset* texOffsets)
 {
     ASSERTMSGLINE (0x1BF, width != NULL && texOffsets != NULL, "GXGet*: invalid null pointer");
 
-    *width = GET_REG_FIELD (__GXData->lpSize, 8, 0);
-    *texOffsets = GET_REG_FIELD (__GXData->lpSize, 3, 16);
+    *width      = (u8)GET_REG_FIELD (__GXData->lpSize, 8, 0);
+    *texOffsets = (GXTexOffset)GET_REG_FIELD (__GXData->lpSize, 3, 16);
 }
 
 void
@@ -105,10 +98,12 @@ GXSetPointSize (u8 pointSize, GXTexOffset texOffsets)
 void
 GXGetPointSize (u8* pointSize, GXTexOffset* texOffsets)
 {
-    ASSERTMSGLINE (0x1EB, pointSize != NULL && texOffsets != NULL, "GXGet*: invalid null pointer");
+    ASSERTMSGLINE (0x1EB,
+                   pointSize != NULL && texOffsets != NULL,
+                   "GXGet*: invalid null pointer");
 
-    *pointSize = (int)GET_REG_FIELD (__GXData->lpSize, 8, 8);
-    *texOffsets = GET_REG_FIELD (__GXData->lpSize, 3, 19);
+    *pointSize  = (u8)GET_REG_FIELD (__GXData->lpSize, 8, 8);
+    *texOffsets = (GXTexOffset)GET_REG_FIELD (__GXData->lpSize, 3, 19);
 }
 
 void
@@ -149,7 +144,7 @@ GXSetCullMode (GXCullMode mode)
 void
 GXGetCullMode (GXCullMode* mode)
 {
-    GXCullMode hwMode = GET_REG_FIELD (__GXData->genMode, 2, 14);
+    GXCullMode hwMode = (GXCullMode)GET_REG_FIELD (__GXData->genMode, 2, 14);
 
     switch (hwMode)
     {

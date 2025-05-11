@@ -1,12 +1,10 @@
-#include <macros.h>
-
 #include <dolphin/gx.h>
 #include <dolphin/os.h>
 
 #include "GXPrivate.h"
 
 GXRenderModeObj GXNtsc240Ds = {
-    1,
+    VI_TVMODE_NTSC_DS,
     640,
     240,
     240,
@@ -14,15 +12,15 @@ GXRenderModeObj GXNtsc240Ds = {
     0,
     640,
     480,
-    0,
-    0,
-    0,
+    VI_XFB_MODE_SF,
+    GX_FALSE,
+    GX_FALSE,
     { 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6 },
     { 0, 0, 21, 22, 21, 0, 0 }
 };
 
 GXRenderModeObj GXNtsc240DsAa = {
-    1,
+    VI_TVMODE_NTSC_DS,
     640,
     240,
     240,
@@ -30,15 +28,15 @@ GXRenderModeObj GXNtsc240DsAa = {
     0,
     640,
     480,
-    0,
-    0,
-    1,
+    VI_XFB_MODE_SF,
+    GX_FALSE,
+    GX_TRUE,
     { 3, 2, 9, 6, 3, 10, 3, 2, 9, 6, 3, 10, 9, 2, 3, 6, 9, 10, 9, 2, 3, 6, 9, 10 },
     { 0, 0, 21, 22, 21, 0, 0 }
 };
 
 GXRenderModeObj GXNtsc240Int = {
-    0,
+    VI_TVMODE_NTSC_INT,
     640,
     240,
     240,
@@ -46,15 +44,15 @@ GXRenderModeObj GXNtsc240Int = {
     0,
     640,
     480,
-    0,
-    1,
-    0,
+    VI_XFB_MODE_SF,
+    GX_TRUE,
+    GX_FALSE,
     { 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6 },
     { 0, 0, 21, 22, 21, 0, 0 }
 };
 
 GXRenderModeObj GXNtsc240IntAa = {
-    0,
+    VI_TVMODE_NTSC_INT,
     640,
     240,
     240,
@@ -62,15 +60,15 @@ GXRenderModeObj GXNtsc240IntAa = {
     0,
     640,
     480,
-    0,
-    1,
-    1,
+    VI_XFB_MODE_SF,
+    GX_TRUE,
+    GX_TRUE,
     { 3, 2, 9, 6, 3, 10, 3, 2, 9, 6, 3, 10, 9, 2, 3, 6, 9, 10, 9, 2, 3, 6, 9, 10 },
     { 0, 0, 21, 22, 21, 0, 0 }
 };
 
 GXRenderModeObj GXNtsc480IntDf = {
-    0,
+    VI_TVMODE_NTSC_INT,
     640,
     480,
     480,
@@ -78,15 +76,15 @@ GXRenderModeObj GXNtsc480IntDf = {
     0,
     640,
     480,
-    1,
-    0,
-    0,
+    VI_XFB_MODE_DF,
+    GX_FALSE,
+    GX_FALSE,
     { 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6 },
     { 8, 8, 10, 12, 10, 8, 8 }
 };
 
 GXRenderModeObj GXNtsc480Int = {
-    0,
+    VI_TVMODE_NTSC_INT,
     640,
     480,
     480,
@@ -94,15 +92,15 @@ GXRenderModeObj GXNtsc480Int = {
     0,
     640,
     480,
-    1,
-    0,
-    0,
+    VI_XFB_MODE_DF,
+    GX_FALSE,
+    GX_FALSE,
     { 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6 },
     { 0, 0, 21, 22, 21, 0, 0 }
 };
 
 GXRenderModeObj GXNtsc480IntAa = {
-    0,
+    VI_TVMODE_NTSC_INT,
     640,
     242,
     480,
@@ -110,15 +108,15 @@ GXRenderModeObj GXNtsc480IntAa = {
     0,
     640,
     480,
-    1,
-    0,
-    1,
+    VI_XFB_MODE_DF,
+    GX_FALSE,
+    GX_TRUE,
     { 3, 2, 9, 6, 3, 10, 3, 2, 9, 6, 3, 10, 9, 2, 3, 6, 9, 10, 9, 2, 3, 6, 9, 10 },
     { 4, 8, 12, 16, 12, 8, 4 }
 };
 
 GXRenderModeObj GXNtsc480Prog = {
-    2,
+    VI_TVMODE_NTSC_PROG,
     640,
     480,
     480,
@@ -126,15 +124,15 @@ GXRenderModeObj GXNtsc480Prog = {
     0,
     640,
     480,
-    0,
-    0,
-    0,
+    VI_XFB_MODE_SF,
+    GX_FALSE,
+    GX_FALSE,
     { 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6 },
     { 0, 0, 21, 22, 21, 0, 0 }
 };
 
 GXRenderModeObj GXNtsc480ProgAa = {
-    2,
+    VI_TVMODE_NTSC_PROG,
     640,
     242,
     480,
@@ -142,15 +140,15 @@ GXRenderModeObj GXNtsc480ProgAa = {
     0,
     640,
     480,
-    0,
-    0,
-    1,
+    VI_XFB_MODE_SF,
+    GX_FALSE,
+    GX_TRUE,
     { 3, 2, 9, 6, 3, 10, 3, 2, 9, 6, 3, 10, 9, 2, 3, 6, 9, 10, 9, 2, 3, 6, 9, 10 },
     { 4, 8, 12, 16, 12, 8, 4 }
 };
 
 GXRenderModeObj GXMpal240Ds = {
-    9,
+    VI_TVMODE_MPAL_DS,
     640,
     240,
     240,
@@ -158,14 +156,14 @@ GXRenderModeObj GXMpal240Ds = {
     0,
     640,
     480,
-    0,
-    0,
-    0,
+    VI_XFB_MODE_SF,
+    GX_FALSE,
+    GX_FALSE,
     { 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6 },
     { 0, 0, 21, 22, 21, 0, 0 }
 };
 GXRenderModeObj GXMpal240DsAa = {
-    9,
+    VI_TVMODE_MPAL_DS,
     640,
     240,
     240,
@@ -173,14 +171,14 @@ GXRenderModeObj GXMpal240DsAa = {
     0,
     640,
     480,
-    0,
-    0,
-    1,
+    VI_XFB_MODE_SF,
+    GX_FALSE,
+    GX_TRUE,
     { 3, 2, 9, 6, 3, 10, 3, 2, 9, 6, 3, 10, 9, 2, 3, 6, 9, 10, 9, 2, 3, 6, 9, 10 },
     { 0, 0, 21, 22, 21, 0, 0 }
 };
 GXRenderModeObj GXMpal240Int = {
-    8,
+    VI_TVMODE_MPAL_INT,
     640,
     240,
     240,
@@ -188,14 +186,14 @@ GXRenderModeObj GXMpal240Int = {
     0,
     640,
     480,
-    0,
-    1,
-    0,
+    VI_XFB_MODE_SF,
+    GX_TRUE,
+    GX_FALSE,
     { 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6 },
     { 0, 0, 21, 22, 21, 0, 0 }
 };
 GXRenderModeObj GXMpal240IntAa = {
-    8,
+    VI_TVMODE_MPAL_INT,
     640,
     240,
     240,
@@ -203,14 +201,14 @@ GXRenderModeObj GXMpal240IntAa = {
     0,
     640,
     480,
-    0,
-    1,
-    1,
+    VI_XFB_MODE_SF,
+    GX_TRUE,
+    GX_TRUE,
     { 3, 2, 9, 6, 3, 10, 3, 2, 9, 6, 3, 10, 9, 2, 3, 6, 9, 10, 9, 2, 3, 6, 9, 10 },
     { 0, 0, 21, 22, 21, 0, 0 }
 };
 GXRenderModeObj GXMpal480IntDf = {
-    8,
+    VI_TVMODE_MPAL_INT,
     640,
     480,
     480,
@@ -218,14 +216,14 @@ GXRenderModeObj GXMpal480IntDf = {
     0,
     640,
     480,
-    1,
-    0,
-    0,
+    VI_XFB_MODE_DF,
+    GX_FALSE,
+    GX_FALSE,
     { 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6 },
     { 8, 8, 10, 12, 10, 8, 8 }
 };
 GXRenderModeObj GXMpal480Int = {
-    8,
+    VI_TVMODE_MPAL_INT,
     640,
     480,
     480,
@@ -233,14 +231,14 @@ GXRenderModeObj GXMpal480Int = {
     0,
     640,
     480,
-    1,
-    0,
-    0,
+    VI_XFB_MODE_DF,
+    GX_FALSE,
+    GX_FALSE,
     { 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6 },
     { 0, 0, 21, 22, 21, 0, 0 }
 };
 GXRenderModeObj GXMpal480IntAa = {
-    8,
+    VI_TVMODE_MPAL_INT,
     640,
     242,
     480,
@@ -248,14 +246,14 @@ GXRenderModeObj GXMpal480IntAa = {
     0,
     640,
     480,
-    1,
-    0,
-    1,
+    VI_XFB_MODE_DF,
+    GX_FALSE,
+    GX_TRUE,
     { 3, 2, 9, 6, 3, 10, 3, 2, 9, 6, 3, 10, 9, 2, 3, 6, 9, 10, 9, 2, 3, 6, 9, 10 },
     { 4, 8, 12, 16, 12, 8, 4 }
 };
 GXRenderModeObj GXPal264Ds = {
-    5,
+    VI_TVMODE_PAL_DS,
     640,
     264,
     264,
@@ -263,14 +261,14 @@ GXRenderModeObj GXPal264Ds = {
     23,
     640,
     528,
-    0,
-    0,
-    0,
+    VI_XFB_MODE_SF,
+    GX_FALSE,
+    GX_FALSE,
     { 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6 },
     { 0, 0, 21, 22, 21, 0, 0 }
 };
 GXRenderModeObj GXPal264DsAa = {
-    5,
+    VI_TVMODE_PAL_DS,
     640,
     264,
     264,
@@ -278,14 +276,14 @@ GXRenderModeObj GXPal264DsAa = {
     23,
     640,
     528,
-    0,
-    0,
-    1,
+    VI_XFB_MODE_SF,
+    GX_FALSE,
+    GX_TRUE,
     { 3, 2, 9, 6, 3, 10, 3, 2, 9, 6, 3, 10, 9, 2, 3, 6, 9, 10, 9, 2, 3, 6, 9, 10 },
     { 0, 0, 21, 22, 21, 0, 0 }
 };
 GXRenderModeObj GXPal264Int = {
-    4,
+    VI_TVMODE_PAL_DS,
     640,
     264,
     264,
@@ -293,14 +291,14 @@ GXRenderModeObj GXPal264Int = {
     23,
     640,
     528,
-    0,
-    1,
-    0,
+    VI_XFB_MODE_SF,
+    GX_TRUE,
+    GX_FALSE,
     { 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6 },
     { 0, 0, 21, 22, 21, 0, 0 }
 };
 GXRenderModeObj GXPal264IntAa = {
-    4,
+    VI_TVMODE_PAL_DS,
     640,
     264,
     264,
@@ -308,14 +306,14 @@ GXRenderModeObj GXPal264IntAa = {
     23,
     640,
     528,
-    0,
-    1,
-    1,
+    VI_XFB_MODE_SF,
+    GX_TRUE,
+    GX_TRUE,
     { 3, 2, 9, 6, 3, 10, 3, 2, 9, 6, 3, 10, 9, 2, 3, 6, 9, 10, 9, 2, 3, 6, 9, 10 },
     { 0, 0, 21, 22, 21, 0, 0 }
 };
 GXRenderModeObj GXPal528IntDf = {
-    4,
+    VI_TVMODE_PAL_INT,
     640,
     528,
     528,
@@ -323,14 +321,14 @@ GXRenderModeObj GXPal528IntDf = {
     23,
     640,
     528,
-    1,
-    0,
-    0,
+    VI_XFB_MODE_DF,
+    GX_FALSE,
+    GX_FALSE,
     { 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6 },
     { 8, 8, 10, 12, 10, 8, 8 }
 };
 GXRenderModeObj GXPal528Int = {
-    4,
+    VI_TVMODE_PAL_INT,
     640,
     528,
     528,
@@ -338,14 +336,14 @@ GXRenderModeObj GXPal528Int = {
     23,
     640,
     528,
-    1,
-    0,
-    0,
+    VI_XFB_MODE_DF,
+    GX_FALSE,
+    GX_FALSE,
     { 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6 },
     { 0, 0, 21, 22, 21, 0, 0 }
 };
 GXRenderModeObj GXPal524IntAa = {
-    4,
+    VI_TVMODE_PAL_INT,
     640,
     264,
     524,
@@ -353,14 +351,14 @@ GXRenderModeObj GXPal524IntAa = {
     23,
     640,
     524,
-    1,
-    0,
-    1,
+    VI_XFB_MODE_DF,
+    GX_FALSE,
+    GX_TRUE,
     { 3, 2, 9, 6, 3, 10, 3, 2, 9, 6, 3, 10, 9, 2, 3, 6, 9, 10, 9, 2, 3, 6, 9, 10 },
     { 4, 8, 12, 16, 12, 8, 4 }
 };
 GXRenderModeObj GXRmHW = {
-    1,
+    VI_TVMODE_NTSC_DS,
     320,
     240,
     240,
@@ -368,9 +366,9 @@ GXRenderModeObj GXRmHW = {
     0,
     640,
     480,
-    0,
-    0,
-    0,
+    VI_XFB_MODE_SF,
+    GX_FALSE,
+    GX_FALSE,
     { 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6 },
     { 0, 0, 21, 22, 21, 0, 0 }
 };
@@ -378,8 +376,8 @@ GXRenderModeObj GXRmHW = {
 void
 GXAdjustForOverscan (GXRenderModeObj* rmin, GXRenderModeObj* rmout, u16 hor, u16 ver)
 {
-    u16 hor2 = hor * 2;
-    u16 ver2 = ver * 2;
+    u16 hor2 = (u16)(hor * 2);
+    u16 ver2 = (u16)(ver * 2);
     u32 verf;
 
     if (rmin != rmout)
@@ -387,21 +385,21 @@ GXAdjustForOverscan (GXRenderModeObj* rmin, GXRenderModeObj* rmout, u16 hor, u16
         *rmout = *rmin;
     }
 
-    rmout->fbWidth = rmin->fbWidth - hor2;
-    verf = (ver2 * rmin->efbHeight) / (u32)rmin->xfbHeight;
-    rmout->efbHeight = rmin->efbHeight - verf;
+    rmout->fbWidth   = (u16)(rmin->fbWidth - hor2);
+    verf             = (ver2 * rmin->efbHeight) / (u32)rmin->xfbHeight;
+    rmout->efbHeight = (u16)(rmin->efbHeight - verf);
     if (rmin->xFBmode == VI_XFB_MODE_SF && (rmin->viTVmode & 2) != 2)
     {
-        rmout->xfbHeight = rmin->xfbHeight - ver;
+        rmout->xfbHeight = (u16)(rmin->xfbHeight - ver);
     }
     else
     {
-        rmout->xfbHeight = rmin->xfbHeight - ver2;
+        rmout->xfbHeight = (u16)(rmin->xfbHeight - ver2);
     }
-    rmout->viWidth = rmin->viWidth - hor2;
-    rmout->viHeight = rmin->viHeight - ver2;
-    rmout->viXOrigin = rmin->viXOrigin + hor;
-    rmout->viYOrigin = rmin->viYOrigin + ver;
+    rmout->viWidth   = (u16)(rmin->viWidth - hor2);
+    rmout->viHeight  = (u16)(rmin->viHeight - ver2);
+    rmout->viXOrigin = (u16)(rmin->viXOrigin + hor);
+    rmout->viYOrigin = (u16)(rmin->viYOrigin + ver);
 }
 
 void
@@ -439,12 +437,14 @@ GXSetTexCopySrc (u16 left, u16 top, u16 wd, u16 ht)
 void
 GXSetDispCopyDst (u16 wd, u16 ht)
 {
+#pragma unused(ht)
+
     u16 stride;
 
     ASSERTMSGLINE (0x3F3, (wd & 0xF) == 0, "GXSetDispCopyDst: Width must be a multiple of 16");
     CHECK_GXBEGIN (0x3F4, "GXSetDispCopyDst");
 
-    stride = (int)wd * 2;
+    stride                 = (u16)(wd * 2);
     __GXData->cpDispStride = 0;
     SET_REG_FIELD (0x3FA, __GXData->cpDispStride, 10, 0, (stride >> 5));
     SET_REG_FIELD (0x3FB, __GXData->cpDispStride, 8, 24, 0x4D);
@@ -462,7 +462,7 @@ GXSetTexCopyDst (u16 wd, u16 ht, GXTexFmt fmt, GXBool mipmap)
     CHECK_GXBEGIN (0x415, "GXSetTexCopyDst");
 
     __GXData->cpTexZ = 0;
-    peTexFmt = fmt & 0xF;
+    peTexFmt         = (u32)(fmt & 0xF);
     ASSERTMSGLINEV (0x434, peTexFmt < 13, "%s: invalid texture format", "GXSetTexCopyDst");
 
     if (fmt == GX_TF_Z16)
@@ -484,7 +484,7 @@ GXSetTexCopyDst (u16 wd, u16 ht, GXTexFmt fmt, GXBool mipmap)
     }
 
     __GXData->cpTexZ = (fmt & _GX_TF_ZTF) == _GX_TF_ZTF;
-    peTexFmtH = (peTexFmt >> 3) & 1;
+    peTexFmtH        = (peTexFmt >> 3) & 1;
     !peTexFmt;
     SET_REG_FIELD (0x44B, __GXData->cpTex, 1, 3, peTexFmtH);
     peTexFmt = peTexFmt & 7;
@@ -540,14 +540,15 @@ GXSetDispCopyYScale (f32 vscale)
     fScale = 256.0f / (f32)iScale;
     enable = (iScale != 256);
 
-    reg = 0;
+    reg    = 0;
     SET_REG_FIELD (0x4A6, reg, 9, 0, iScale);
     SET_REG_FIELD (0x4A7, reg, 8, 24, 0x4E);
     GX_WRITE_RAS_REG (reg);
     __GXData->bpSent = 1;
     SET_REG_FIELD (0x4AB, __GXData->cpDisp, 1, 10, enable);
-    ht = GET_REG_FIELD (__GXData->cpDispSize, 10, 10) + 1;
-    return ht * fScale;
+    ht = (u32)GET_REG_FIELD (__GXData->cpDispSize, 10, 10) + 1;
+
+    return (u32)(ht * fScale);
 }
 
 void
@@ -671,6 +672,7 @@ GXSetDispCopyGamma (GXGamma gamma)
     CHECK_GXBEGIN (0x555, "GXSetDispCopyGamma");
     SET_REG_FIELD (0x556, __GXData->cpDisp, 2, 7, gamma);
 }
+
 #if DEBUG
 static void
 __GXVerifCopy (void* dest, u8 clear)
@@ -686,12 +688,14 @@ __GXVerifCopy (void* dest, u8 clear)
 
     clmpT = GET_REG_FIELD (__GXData->cpDisp, 1, 0);
     clmpB = (u32)GET_REG_FIELD (__GXData->cpDisp, 1, 1);
-    x0 = GET_REG_FIELD (__GXData->cpDispSrc, 10, 0);
-    dx = GET_REG_FIELD (__GXData->cpDispSize, 10, 0) + 1;
-    y0 = GET_REG_FIELD (__GXData->cpDispSrc, 10, 10);
-    dy = GET_REG_FIELD (__GXData->cpDispSize, 10, 10) + 1;
+    x0    = GET_REG_FIELD (__GXData->cpDispSrc, 10, 0);
+    dx    = GET_REG_FIELD (__GXData->cpDispSize, 10, 0) + 1;
+    y0    = GET_REG_FIELD (__GXData->cpDispSrc, 10, 10);
+    dy    = GET_REG_FIELD (__GXData->cpDispSize, 10, 10) + 1;
 
-    ASSERTMSGLINE (0x574, clmpT || y0 != 0, "GXCopy: Have to set GX_CLAMP_TOP if source top == 0");
+    ASSERTMSGLINE (0x574,
+                   clmpT || y0 != 0,
+                   "GXCopy: Have to set GX_CLAMP_TOP if source top == 0");
     ASSERTMSGLINE (0x576,
                    clmpB || y0 + dy <= 528,
                    "GXCopy: Have to set GX_CLAMP_BOTTOM if source bottom > 528");
@@ -701,8 +705,12 @@ __GXVerifCopy (void* dest, u8 clear)
     if ((u32)(__GXData->peCtrl & 7) == 5)
     {
         ASSERTMSGLINE (0x581, clear == 0, "GXCopy: Can not clear YUV framebuffer");
-        ASSERTMSGLINE (0x583, (x0 & 3) == 0, "GXCopy: Source x is not multiple of 4 for YUV copy");
-        ASSERTMSGLINE (0x585, (y0 & 3) == 0, "GXCopy: Source y is not multiple of 4 for YUV copy");
+        ASSERTMSGLINE (0x583,
+                       (x0 & 3) == 0,
+                       "GXCopy: Source x is not multiple of 4 for YUV copy");
+        ASSERTMSGLINE (0x585,
+                       (y0 & 3) == 0,
+                       "GXCopy: Source y is not multiple of 4 for YUV copy");
         ASSERTMSGLINE (0x587,
                        (dx & 3) == 0,
                        "GXCopy: Source width is not multiple of 4 for YUV copy");
@@ -712,8 +720,12 @@ __GXVerifCopy (void* dest, u8 clear)
     }
     else
     {
-        ASSERTMSGLINE (0x58D, (x0 & 1) == 0, "GXCopy: Source x is not multiple of 2 for RGB copy");
-        ASSERTMSGLINE (0x58F, (y0 & 1) == 0, "GXCopy: Source y is not multiple of 2 for RGB copy");
+        ASSERTMSGLINE (0x58D,
+                       (x0 & 1) == 0,
+                       "GXCopy: Source x is not multiple of 2 for RGB copy");
+        ASSERTMSGLINE (0x58F,
+                       (y0 & 1) == 0,
+                       "GXCopy: Source y is not multiple of 2 for RGB copy");
         ASSERTMSGLINE (0x591,
                        (dx & 1) == 0,
                        "GXCopy: Source width is not multiple of 2 for RGB copy");
@@ -726,6 +738,7 @@ __GXVerifCopy (void* dest, u8 clear)
                    "GXCopy: Display destination address not 32B aligned");
 }
 #endif
+
 void
 GXCopyDisp (void* dest, GXBool clear)
 {
@@ -756,7 +769,7 @@ GXCopyDisp (void* dest, GXBool clear)
         (u32)GET_REG_FIELD (__GXData->peCtrl, 1, 6) == 1)
     {
         changePeCtrl = TRUE;
-        tempPeCtrl = __GXData->peCtrl;
+        tempPeCtrl   = __GXData->peCtrl;
         SET_REG_FIELD (0, tempPeCtrl, 1, 6, 0);
         GX_WRITE_RAS_REG (tempPeCtrl);
     }
@@ -765,7 +778,7 @@ GXCopyDisp (void* dest, GXBool clear)
     GX_WRITE_RAS_REG (__GXData->cpDispStride);
 
     phyAddr = (u32)dest & 0x3FFFFFFF;
-    reg = 0;
+    reg     = 0;
     SET_REG_FIELD (0x5D8, reg, 21, 0, phyAddr >> 5);
     SET_REG_FIELD (0x5D9, reg, 8, 24, 0x4B);
     GX_WRITE_RAS_REG (reg);
@@ -813,16 +826,16 @@ GXCopyTex (void* dest, GXBool clear)
         GX_WRITE_RAS_REG (reg);
     }
     changePeCtrl = 0;
-    tempPeCtrl = __GXData->peCtrl;
+    tempPeCtrl   = __GXData->peCtrl;
     if (((u8)__GXData->cpTexZ != 0) && ((u32)(tempPeCtrl & 7) != 3))
     {
         changePeCtrl = 1;
-        tempPeCtrl = (tempPeCtrl & 0xFFFFFFF8) | 3;
+        tempPeCtrl   = (tempPeCtrl & 0xFFFFFFF8) | 3;
     }
     if (((clear != 0) || ((u32)(tempPeCtrl & 7) == 3)) && ((u32)((tempPeCtrl >> 6U) & 1) == 1))
     {
-        changePeCtrl = 1;
-        tempPeCtrl &= 0xFFFFFFBF;
+        changePeCtrl  = 1;
+        tempPeCtrl   &= 0xFFFFFFBF;
     }
     if (changePeCtrl)
     {
@@ -833,7 +846,7 @@ GXCopyTex (void* dest, GXBool clear)
     GX_WRITE_RAS_REG (__GXData->cpTexStride);
 
     phyAddr = (u32)dest & 0x3FFFFFFF;
-    reg = 0;
+    reg     = 0;
     SET_REG_FIELD (0x635, reg, 21, 0, phyAddr >> 5);
     SET_REG_FIELD (0x636, reg, 8, 24, 0x4B);
     GX_WRITE_RAS_REG (reg);
@@ -872,8 +885,8 @@ void
 GXReadBoundingBox (u16* left, u16* top, u16* right, u16* bottom)
 {
     CHECK_GXBEGIN (0x671, "GXReadBoundingBox");
-    *left = __PERegs[PE_PI_XBOUND0_ID];
-    *top = __PERegs[PE_PI_YBOUND0_ID];
-    *right = __PERegs[PE_PI_XBOUND1_ID];
+    *left   = __PERegs[PE_PI_XBOUND0_ID];
+    *top    = __PERegs[PE_PI_YBOUND0_ID];
+    *right  = __PERegs[PE_PI_XBOUND1_ID];
     *bottom = __PERegs[PE_PI_YBOUND1_ID];
 }

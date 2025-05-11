@@ -10,30 +10,32 @@
 #define IS_ALIGNED(X, N)     (((X) & ((N) - 1)) == 0)
 #define IS_NOT_ALIGNED(X, N) (((X) & ((N) - 1)) != 0)
 
-#define READU32_BE(ptr, offset)                                                                    \
-    (((u32)ptr[offset] << 24) | ((u32)ptr[offset + 1] << 16) | ((u32)ptr[offset + 2] << 8) |       \
+#define READU32_BE(ptr, offset)                                                                \
+    (((u32)ptr[offset] << 24) | ((u32)ptr[offset + 1] << 16) | ((u32)ptr[offset + 2] << 8) |   \
      (u32)ptr[offset + 3]);
 
 #ifdef DEBUG
-#define ASSERTLINE(line, cond)                ((cond) || (OSPanic (__FILE__, line, "Failed assertion " #cond), 0))
+#define ASSERTLINE(cond, line)                                                                 \
+    ((cond) || (OSPanic (__FILE__, line, "Failed assertion " #cond), 0))
 
-#define ASSERTMSGLINE(line, cond, msg)        ((cond) || (OSPanic (__FILE__, line, msg), 0))
+#define ASSERTMSGLINE(cond, msg, line) ((cond) || (OSPanic (__FILE__, line, msg), 0))
 
 // This is dumb but we dont have a Metrowerks way to do variadic macros in the
 // macro to make this done in a not scrubby way.
-#define ASSERTMSG1LINE(line, cond, msg, arg1) ((cond) || (OSPanic (__FILE__, line, msg, arg1), 0))
+#define ASSERTMSG1LINE(cond, msg, arg1, line)                                                  \
+    ((cond) || (OSPanic (__FILE__, line, msg, arg1), 0))
 
-#define ASSERTMSG2LINE(line, cond, msg, arg1, arg2)                                                \
+#define ASSERTMSG2LINE(cond, msg, arg1, arg2, line)                                            \
     ((cond) || (OSPanic (__FILE__, line, msg, arg1, arg2), 0))
 
-#define ASSERTMSGLINEV(line, cond, ...) ((cond) || (OSPanic (__FILE__, line, __VA_ARGS__), 0))
+#define ASSERTMSGVLINE(cond, line, ...) ((cond) || (OSPanic (__FILE__, line, __VA_ARGS__), 0))
 
 #else
-#define ASSERTLINE(line, cond)                      (void)0
-#define ASSERTMSGLINE(line, cond, msg)              (void)0
-#define ASSERTMSG1LINE(line, cond, msg, arg1)       (void)0
-#define ASSERTMSG2LINE(line, cond, msg, arg1, arg2) (void)0
-#define ASSERTMSGLINEV(line, cond, ...)             (void)0
+#define ASSERTLINE(cond, line)                      (void)0
+#define ASSERTMSGLINE(cond, msg, line)              (void)0
+#define ASSERTMSG1LINE(cond, msg, arg1, line)       (void)0
+#define ASSERTMSG2LINE(cond, msg, arg1, arg2, line) (void)0
+#define ASSERTMSGLINEV(cond, line, ...)             (void)0
 #endif
 
 // clang-format off
@@ -56,6 +58,10 @@
 	(void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0;
 // clang-format on
 
+#define TRUNC(n, a)                     (((u32)(n)) & ~((a) - 1))
+
+#define OFFSET(addr, align)             (((u32)(addr) & ((align) - 1)))
+
 #define PATH_MAX                        (256)
 
 // Sets specific flag to 1
@@ -76,12 +82,10 @@
 // Checks if a flag is set in a bitfield
 #define IS_FLAG_SET(flags, bitsFromLSB) (((flags) >> (bitsFromLSB) & 1))
 
-#define ASSERT_HANG(cond)                                                                          \
-    if (!(cond))                                                                                   \
-    {                                                                                              \
-        while (true)                                                                               \
-        {                                                                                          \
-        }                                                                                          \
+#define ASSERT_HANG(cond)                                                                      \
+    if (!(cond))                                                                               \
+    {                                                                                          \
+        while (true) {}                                                                        \
     }
 
 // Get the maximum of two values
@@ -96,9 +100,9 @@
 // Number of bytes in a kilobyte
 #define KILOBYTE_BYTECOUNT 1024
 
-#define BUMP_REGISTER(reg)                                                                         \
-    {                                                                                              \
-        asm { mr reg, reg }                                                                           \
+#define BUMP_REGISTER(reg)                                                                     \
+    {                                                                                          \
+        asm { mr reg, reg }                                                                       \
     }
 
 #ifdef __MWERKS__
@@ -124,52 +128,33 @@
 #define MSTRING_CONCAT(a, b)   __MSTRING_CONCAT (a, b)
 
 // TODO: make more unique
-#define SASSERT(expr)                                                                              \
-    enum                                                                                           \
-    {                                                                                              \
-        MSTRING_CONCAT (assert_fail_at_, __LINE__) = 1 / (expr)                                    \
+#define SASSERT(expr)                                                                          \
+    enum                                                                                       \
+    {                                                                                          \
+        MSTRING_CONCAT (assert_fail_at_, __LINE__) = 1 / (expr)                                \
     }
 #define SASSERT_SIZE(type, size) SASSERT (sizeof (type) == size)
 
-#define IGNORE_GLMJ01
-#define IGNORE_GLME01
-#define IGNORE_GLME01_1
-#define IGNORE_GLMP01
-#define IGNORE_GLMP01_1
-#define IGNORE_GLMP01_2
-
-#define ONLY_GLMJ01 inline
-#define ONLY_GLME01 inline
-
-#define IGNORE_ALL  inline
-
-#if defined(VERSION_GLMJ01)   // Japan
-#undef IGNORE_GLMJ01
-#define IGNORE_GLMJ01 inline
-#undef ONLY_GLMJ01
-#define ONLY_GLMJ01
-#elif defined(VERSION_GLME01) // US
-#undef IGNORE_GLME01
-#define IGNORE_GLME01 inline
-#undef ONLY_GLME01
-#define ONLY_GLME01
-#endif
-
-#ifndef __PPCGEKKO__
-#define __PPCGEKKO__
-#endif
-#ifndef GEKKO
-#define GEKKO
-#endif
-
 #ifndef __MWERKS__
+
+#ifdef __POWERPC__
+#undef __POWERPC__
+#endif
+
+#ifndef __PPC_EABI__
+#define __PPC_EABI__
+#endif
+
+#define __builtin_va_info
 #define __option(x)   0
 #define __declspec(x) 0
 #define __frsqrte(x)  0
 #define __fabsf(x)    0
 #define __sync()      0
 #define __cntlzw(x)   0
+#define __cdecl       0
 #define asm
+
 #endif
 
-#endif                        // _H_MACROS_
+#endif // _H_MACROS_

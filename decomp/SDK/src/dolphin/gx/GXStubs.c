@@ -5,4 +5,6 @@
 void
 __GXSetRange (float nearz, float fgSideX)
 {
+#pragma unused(nearz)
+#pragma unused(fgSideX)
 }

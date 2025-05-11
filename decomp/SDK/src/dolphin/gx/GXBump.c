@@ -1,24 +1,24 @@
-#include <macros.h>
-
 #include <dolphin/gx.h>
 #include <dolphin/os.h>
+#include <macros.h>
 
+#include "dolphin/gx/GXEnum.h"
 #include "GXPrivate.h"
 
 #if DEBUG
-#define GX_WRITE_SOME_REG5(a, b)                                                                   \
-    do {                                                                                           \
-        GX_WRITE_U8 (a);                                                                           \
-        GX_WRITE_U32 (b);                                                                          \
-        __gxVerif->rasRegs[(b >> 24) & 0xFF] = b;                                                  \
-    }                                                                                              \
+#define GX_WRITE_SOME_REG5(a, b)                                                               \
+    do {                                                                                       \
+        GX_WRITE_U8 (a);                                                                       \
+        GX_WRITE_U32 (b);                                                                      \
+        __gxVerif->rasRegs[(b >> 24) & 0xFF] = b;                                              \
+    }                                                                                          \
     while (0)
 #else
-#define GX_WRITE_SOME_REG5(a, b)                                                                   \
-    do {                                                                                           \
-        GX_WRITE_U8 (a);                                                                           \
-        GX_WRITE_U32 (b);                                                                          \
-    }                                                                                              \
+#define GX_WRITE_SOME_REG5(a, b)                                                               \
+    do {                                                                                       \
+        GX_WRITE_U8 (a);                                                                       \
+        GX_WRITE_U32 (b);                                                                      \
+    }                                                                                          \
     while (0)
 #endif
 void
@@ -65,27 +65,27 @@ GXSetIndTexMtx (GXIndTexMtxID mtx_id, f32 offset[2][3], s8 scale_exp)
         case GX_ITM_0:
         case GX_ITM_1:
         case GX_ITM_2:
-            id = mtx_id - 1;
+            id = (u32)mtx_id - 1;
             break;
         case GX_ITM_S0:
         case GX_ITM_S1:
         case GX_ITM_S2:
-            id = mtx_id - 5;
+            id = (u32)mtx_id - 5;
             break;
         case GX_ITM_T0:
         case GX_ITM_T1:
         case GX_ITM_T2:
-            id = mtx_id - 9;
+            id = (u32)mtx_id - 9;
             break;
         default:
             id = 0;
             break;
     }
 
-    mtx[0] = (int)(1024.0f * offset[0][0]) & 0x7FF;
-    mtx[1] = (int)(1024.0f * offset[1][0]) & 0x7FF;
+    mtx[0]     = (int)(1024.0f * offset[0][0]) & 0x7FF;
+    mtx[1]     = (int)(1024.0f * offset[1][0]) & 0x7FF;
     scale_exp += 0x11;
-    reg = 0;
+    reg        = 0;
     SET_REG_FIELD (0xBD, reg, 11, 0, mtx[0]);
     SET_REG_FIELD (0xBE, reg, 11, 11, mtx[1]);
     SET_REG_FIELD (0xBF, reg, 2, 22, scale_exp & 3);
@@ -94,7 +94,7 @@ GXSetIndTexMtx (GXIndTexMtxID mtx_id, f32 offset[2][3], s8 scale_exp)
 
     mtx[2] = (int)(1024.0f * offset[0][1]) & 0x7FF;
     mtx[3] = (int)(1024.0f * offset[1][1]) & 0x7FF;
-    reg = 0;
+    reg    = 0;
     SET_REG_FIELD (0xC6, reg, 11, 0, mtx[2]);
     SET_REG_FIELD (0xC7, reg, 11, 11, mtx[3]);
     SET_REG_FIELD (0xC8, reg, 2, 22, (scale_exp >> 2) & 3);
@@ -103,7 +103,7 @@ GXSetIndTexMtx (GXIndTexMtxID mtx_id, f32 offset[2][3], s8 scale_exp)
 
     mtx[4] = (int)(1024.0f * offset[0][2]) & 0x7FF;
     mtx[5] = (int)(1024.0f * offset[1][2]) & 0x7FF;
-    reg = 0;
+    reg    = 0;
     SET_REG_FIELD (0xCF, reg, 11, 0, mtx[4]);
     SET_REG_FIELD (0xD0, reg, 11, 11, mtx[5]);
     SET_REG_FIELD (0xD1, reg, 2, 22, (scale_exp >> 4) & 3);
@@ -183,7 +183,7 @@ GXSetIndTexOrder (GXIndTexStageID ind_stage, GXTexCoordID tex_coord, GXTexMapID 
     }
     GX_WRITE_SOME_REG5 (0x61, __GXData->iref);
     __GXData->dirtyState |= 3;
-    __GXData->bpSent = 1;
+    __GXData->bpSent      = 1;
 }
 
 void
@@ -208,9 +208,9 @@ GXSetTevDirect (GXTevStageID tev_stage)
                       GX_ITM_OFF,
                       GX_ITW_OFF,
                       GX_ITW_OFF,
-                      0U,
-                      0,
-                      0);
+                      GX_FALSE,
+                      GX_FALSE,
+                      GX_ITBA_OFF);
 }
 
 void
@@ -230,9 +230,9 @@ GXSetTevIndWarp (GXTevStageID    tev_stage,
                       matrix_sel,
                       wrap,
                       wrap,
-                      0U,
-                      0,
-                      0);
+                      GX_FALSE,
+                      GX_FALSE,
+                      GX_ITBA_OFF);
 }
 
 void
@@ -300,7 +300,7 @@ GXSetTevIndTile (GXTevStageID     tev_stage,
     }
     mtx[0][0] = tilespacing_s / 1024.0f;
     mtx[0][1] = mtx[0][2] = 0.0f;
-    mtx[1][1] = tilespacing_t / 1024.0f;
+    mtx[1][1]             = tilespacing_t / 1024.0f;
     mtx[1][0] = mtx[1][2] = 0.0f;
     GXSetIndTexMtx (matrix_sel, mtx, 0xA);
     GXSetTevIndirect (tev_stage,
@@ -340,27 +340,36 @@ GXSetTevIndBumpST (GXTevStageID tev_stage, GXIndTexStageID ind_stage, GXIndTexMt
             ASSERTMSGLINE (0x1E0, 0, "GXSetTevIndBumpST: Invalid matrix selection");
             break;
     }
-    GXSetTevIndirect (tev_stage, ind_stage, GX_ITF_8, GX_ITB_ST, sm, GX_ITW_0, GX_ITW_0, 0U, 0, 0);
-    GXSetTevIndirect (tev_stage + 1,
+    GXSetTevIndirect (tev_stage,
+                      ind_stage,
+                      GX_ITF_8,
+                      GX_ITB_ST,
+                      sm,
+                      GX_ITW_0,
+                      GX_ITW_0,
+                      GX_FALSE,
+                      GX_FALSE,
+                      GX_ITBA_OFF);
+    GXSetTevIndirect ((GXTevStageID)(tev_stage + 1),
                       ind_stage,
                       GX_ITF_8,
                       GX_ITB_ST,
                       tm,
                       GX_ITW_0,
                       GX_ITW_0,
-                      1U,
-                      0,
-                      0);
-    GXSetTevIndirect (tev_stage + 2,
+                      GX_TRUE,
+                      GX_FALSE,
+                      GX_ITBA_OFF);
+    GXSetTevIndirect ((GXTevStageID)(tev_stage + 2),
                       ind_stage,
                       GX_ITF_8,
                       GX_ITB_NONE,
                       GX_ITM_OFF,
                       GX_ITW_OFF,
                       GX_ITW_OFF,
-                      1U,
-                      0,
-                      0);
+                      GX_TRUE,
+                      GX_FALSE,
+                      GX_ITBA_OFF);
 }
 
 void
@@ -374,9 +383,9 @@ GXSetTevIndBumpXYZ (GXTevStageID tev_stage, GXIndTexStageID ind_stage, GXIndTexM
                       matrix_sel,
                       GX_ITW_OFF,
                       GX_ITW_OFF,
-                      0U,
-                      0,
-                      0);
+                      GX_FALSE,
+                      GX_FALSE,
+                      GX_ITBA_OFF);
 }
 
 void
@@ -390,9 +399,9 @@ GXSetTevIndRepeat (GXTevStageID tev_stage)
                       GX_ITM_OFF,
                       GX_ITW_0,
                       GX_ITW_0,
-                      1U,
-                      0,
-                      0);
+                      GX_TRUE,
+                      GX_FALSE,
+                      GX_ITBA_OFF);
 }
 
 void
@@ -404,25 +413,26 @@ __GXUpdateBPMask (void)
     u32 new_imask;
     u32 nStages;
     u32 new_dmask;
+#pragma unused(nStages)
 
-    new_imask = 0;
-    new_dmask = 0;
-    nIndStages = GET_REG_FIELD (__GXData->genMode, 3, 16);
+    new_imask  = 0;
+    new_dmask  = 0;
+    nIndStages = (u32)GET_REG_FIELD (__GXData->genMode, 3, 16);
     for (i = 0; i < nIndStages; i++)
     {
         switch (i)
         {
             case 0:
-                tmap = GET_REG_FIELD (__GXData->iref, 3, 0);
+                tmap = (u32)GET_REG_FIELD (__GXData->iref, 3, 0);
                 break;
             case 1:
-                tmap = GET_REG_FIELD (__GXData->iref, 3, 6);
+                tmap = (u32)GET_REG_FIELD (__GXData->iref, 3, 6);
                 break;
             case 2:
-                tmap = GET_REG_FIELD (__GXData->iref, 3, 12);
+                tmap = (u32)GET_REG_FIELD (__GXData->iref, 3, 12);
                 break;
             case 3:
-                tmap = GET_REG_FIELD (__GXData->iref, 3, 18);
+                tmap = (u32)GET_REG_FIELD (__GXData->iref, 3, 18);
                 break;
         }
         new_imask |= 1 << tmap;

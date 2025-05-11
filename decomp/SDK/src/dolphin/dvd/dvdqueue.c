@@ -1,7 +1,6 @@
-#include "dolphin/os.h"
-#include <dolphin/dvd.h>
 
-#include <dolphin.h>
+#include <dolphin/dvd.h>
+#include <dolphin/os.h>
 
 #include "dvd_private.h"
 
@@ -21,42 +20,44 @@ __DVDClearWaitingQueue (void)
 
     for (i = 0; i < 4; i++)
     {
-        q = (DVDCommandBlock*)&WaitingQueue[i].next;
+        q       = (DVDCommandBlock*)&WaitingQueue[i].next;
         q->next = q;
         q->prev = q;
     }
 }
 
-int
+BOOL
 __DVDPushWaitingQueue (s32 prio, DVDCommandBlock* block)
 {
-    int              enabled = OSDisableInterrupts();
-    DVDCommandBlock* q = (DVDCommandBlock*)&WaitingQueue[prio];
+    BOOL             enabled = OSDisableInterrupts();
+    DVDCommandBlock* q       = (DVDCommandBlock*)&WaitingQueue[prio];
 
-    q->prev->next = block;
-    block->prev = q->prev;
-    block->next = q;
-    q->prev = block;
+    q->prev->next            = block;
+    block->prev              = q->prev;
+    block->next              = q;
+    q->prev                  = block;
     OSRestoreInterrupts (enabled);
-    return 1;
+
+    return TRUE;
 }
 
 static DVDCommandBlock*
 PopWaitingQueuePrio (s32 prio)
 {
     DVDCommandBlock* tmp;
-    int              enabled;
+    BOOL             enabled;
     DVDCommandBlock* q;
 
     enabled = OSDisableInterrupts();
-    q = (DVDCommandBlock*)&WaitingQueue[prio];
+    q       = (DVDCommandBlock*)&WaitingQueue[prio];
     ASSERTLINE (0x54, q->next != q);
-    tmp = q->next;
-    q->next = tmp->next;
+    tmp             = q->next;
+    q->next         = tmp->next;
     tmp->next->prev = q;
     OSRestoreInterrupts (enabled);
     tmp->next = 0;
     tmp->prev = 0;
+
     return tmp;
 }
 
@@ -64,7 +65,7 @@ DVDCommandBlock*
 __DVDPopWaitingQueue (void)
 {
     u32              i;
-    int              enabled;
+    BOOL             enabled;
     DVDCommandBlock* q;
 
     enabled = OSDisableInterrupts();
@@ -74,10 +75,11 @@ __DVDPopWaitingQueue (void)
         if (q->next != q)
         {
             OSRestoreInterrupts (enabled);
-            return PopWaitingQueuePrio (i);
+            return PopWaitingQueuePrio ((s32)i);
         }
     }
     OSRestoreInterrupts (enabled);
+
     return NULL;
 }
 
@@ -85,7 +87,7 @@ int
 __DVDCheckWaitingQueue (void)
 {
     u32              i;
-    int              enabled;
+    BOOL             enabled;
     DVDCommandBlock* q;
 
     enabled = OSDisableInterrupts();
@@ -95,32 +97,35 @@ __DVDCheckWaitingQueue (void)
         if (q->next != q)
         {
             OSRestoreInterrupts (enabled);
-            return 1;
+            return TRUE;
         }
     }
     OSRestoreInterrupts (enabled);
-    return 0;
+
+    return FALSE;
 }
 
 int
 __DVDDequeueWaitingQueue (DVDCommandBlock* block)
 {
-    int              enabled;
+    BOOL             enabled;
     DVDCommandBlock* prev;
     DVDCommandBlock* next;
 
     enabled = OSDisableInterrupts();
-    prev = block->prev;
-    next = block->next;
+    prev    = block->prev;
+    next    = block->next;
     if (prev == NULL || next == NULL)
     {
         OSRestoreInterrupts (enabled);
-        return 0;
+        return FALSE;
     }
     prev->next = next;
     next->prev = prev;
+
     OSRestoreInterrupts (enabled);
-    return 1;
+
+    return TRUE;
 }
 
 int
@@ -141,11 +146,12 @@ __DVDIsBlockInWaitingQueue (DVDCommandBlock* block)
         {
             if (q == block)
             {
-                return 1;
+                return TRUE;
             }
         }
     }
-    return 0;
+
+    return FALSE;
 }
 
 static char* CommandNames[16] = {

@@ -17,6 +17,7 @@ InitializeUART ()
         return 2;
     }
     serEnabled = 0xA5FF005A;
+
     return 0;
 }
 
@@ -41,7 +42,8 @@ QueueLength (void)
     EXIImm (0, &cmd, 1, 0, 0);
     EXISync (0);
     EXIDeselect (0);
-    return 0x10 - (cmd >> 0x18);
+
+    return (int)(0x10 - (cmd >> 0x18));
 }
 
 int
@@ -77,7 +79,7 @@ WriteUARTN (void* buf, u32 len)
         }
     }
     error = 0;
-    cmd = 0xA0010000;
+    cmd   = 0xA0010000;
 
     while (len != 0)
     {
@@ -110,13 +112,14 @@ WriteUARTN (void* buf, u32 len)
 
                 EXIImm (0, buf, xLen, 1, 0);
                 (u8*)buf += xLen;
-                len -= xLen;
-                qLen -= xLen;
+                len      -= xLen;
+                qLen     -= xLen;
                 EXISync (0);
             }
             EXIDeselect (0);
         }
     }
     EXIUnlock (0);
+
     return error;
 }

@@ -89,6 +89,11 @@ parser.add_argument(
     action="store_true",
     help="build for github actions (do not use)",
 )
+parser.add_argument(
+    "--nowarn",
+    action="store_true",
+    help="Disable all warnings"
+)
 if not is_windows():
     parser.add_argument(
         "--wrapper",
@@ -235,7 +240,6 @@ cflags_base = [
     "-enum int",
     "-fp hardware",
     "-Cpp_exceptions off",
-    # "-W all",
     '-pragma "cats off"',
     '-pragma "warn_notinlined off"',
     "-maxerrors 1",
@@ -248,7 +252,6 @@ cflags_base = [
     "-i decomp/CodeWarrior/**/Inc",
     f"-i {config.build_dir}/{config.version}/include",
     f"-DVERSION_{config.version}",
-    "-D__GEKKO__"
 ]
 
 # Debug flags
@@ -259,6 +262,11 @@ else:
 
 if args.action:
     cflags_base.append("-DGH_ACTION=1")
+
+if args.nowarn:
+    cflags_base.append("-W off")
+else:
+    cflags_base.append("-W all")
 
 # JAudio flags
 cflags_jaudio = [
@@ -338,10 +346,15 @@ cflags_sdk = [
     "-DBUILD_REV=37",
     "-DBUILD_DATE=\"\\\"Jul 19 2001\\\"\"",
     "-DBUILD_TIME=\"\\\"05:43:42\\\"\"",
+    "-DJAUDIO_OLD",
     "-i decomp/SDK/include",
     "-i decomp/CodeWarrior/PowerPC_EABI_Support/MetroTRK",
     "-O4,p",
     "-inline auto",
+]
+cflags_sdk_cpp = [
+    *cflags_sdk,
+    "-lang cpp"
 ]
 
 # fill in * , because MWCC not supporting that
@@ -354,8 +367,7 @@ cflags_paths_expand(cflags_cw_trk)
 cflags_paths_expand(cflags_game)
 cflags_paths_expand(cflags_sdk)
 
-config.linker_version = "GC/1.3.2"
-linker_version_default = "GC/1.2.5"
+config.linker_version = "GC/1.2.5"
 
 # Helper function for SDK libraries
 def SDKLib(lib_name: str, files: List[Tuple[bool, str]], conf: Dict[str,str]={"":""}) -> Dict[str, Any]:
@@ -369,7 +381,6 @@ def SDKLib(lib_name: str, files: List[Tuple[bool, str]], conf: Dict[str,str]={""
 
     return {
         "lib": lib_name,
-        "mw_version": linker_version_default,
         "cflags": __cflags,
         "progress_category": "sdk",
         "src_dir": "decomp",
@@ -393,7 +404,6 @@ def JSystemLib(lib_name: str, sub_dir: str, files: List[Tuple[bool, str]], cflag
 
     return {
         "lib": lib_name,
-        "mw_version": linker_version_default,
         "cflags": __cflags,
         "progress_category": "jsys",
         "src_dir": "decomp",
@@ -413,7 +423,6 @@ def CWLib(lib_name: str, sub_path: str, files: List[Tuple[bool, str]], conf: Dic
 
     return {
         "lib": lib_name,
-        "mw_version": linker_version_default,
         "cflags": __cflags,
         "progress_category": "cw",
         "src_dir": f"decomp",
@@ -433,7 +442,6 @@ def GameSource(lib_name: str, files: List[Tuple[bool, str]], conf: Dict[str, str
 
     return {
         "lib": lib_name,
-        "mw_version": config.linker_version,
         "cflags": cflags_game,
         "progress_category": "game",
         "src_dir": f"decomp/Project",
@@ -450,7 +458,6 @@ def GameMain(file: Tuple[bool, str], conf: Dict[str, str]={"":""}) -> Dict[str, 
 
     return {
         "lib": lib_name,
-        "mw_version": config.linker_version,
         "cflags": cflags_game,
         "progress_category": "game",
         "src_dir": f"decomp/Project",
@@ -496,14 +503,15 @@ config.libs = [
 #    GameSource("Koga", [
 #        (Matching, "CharacterEventObserver.cpp"),
 #        (Matching, "IncludeStrategy.cpp"),
+#        (NonMatching, "EnStrategy.cpp"),
+#        (NonMatching, "EnemyStrategy.cpp"),
+#        (NonMatching, "EnemyTypicalStrategy.cpp"),
 #    ]),
 #    GameSource("Ajioka", [
 #        (NonMatching, ""),
 #    ]),
 #    GameSource("Sato", [
-#        (NonMatching, "EnStrategy.cpp"),
-#        (NonMatching, "EnemyStrategy.cpp"),
-#        (NonMatching, "EnemyTypicalStrategy.cpp"),
+#        (NonMatching, ""),
 #    ]),
 #    GameSource("Kohno", [
 #        (NonMatching, ""),
@@ -523,6 +531,7 @@ config.libs = [
     # JSystem Libraries
 
     JSystemLib("JKernel", "System/JKernel", [
+        (NonMatching, "JKRHeap.cpp"),
         (Matching, "JKRDisposer.cpp"),
         (NonMatching, "JKRThread.cpp"),
     ]),
@@ -562,12 +571,17 @@ config.libs = [
         (Matching, "OSRtc.c"),
         (Matching, "OSSerial.c"),
         (Matching, "OSSync.c"),
-        (Matching, "OSThread.c"),
+        (Equivalent, "OSThread.c"),
         (Matching, "OSTime.c"),
         (Matching, "OSUartExi.c"),
         (Matching, "init/__start.c"),
+    ]),
+
+    DolphinLib("os", [
         (Matching, "init/__ppc_eabi_init.cpp"),
-    ],),
+    ],{
+        "cflags": cflags_sdk_cpp
+    }),
 
     DolphinLib("db", [
         (Matching, "db.c"), 

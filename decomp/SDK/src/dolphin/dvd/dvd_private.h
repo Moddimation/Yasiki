@@ -17,17 +17,18 @@ extern u32           __DVDLongFileNameFlag;
 
 void __DVDFSInit ();
 void __DVDLowSetWAType (u32 type, s32 seekLoc);
+BOOL __DVDLowTestAlarm (const OSAlarm* alarm);
 
 // dvdlow.c
 void __DVDInterruptHandler (s16 unused, OSContext* context);
 
 // dvdqueue.c
 void                    __DVDClearWaitingQueue ();
-int                     __DVDPushWaitingQueue (s32 prio, struct DVDCommandBlock* block);
+BOOL                    __DVDPushWaitingQueue (s32 prio, struct DVDCommandBlock* block);
 struct DVDCommandBlock* __DVDPopWaitingQueue ();
-int                     __DVDCheckWaitingQueue ();
-int                     __DVDDequeueWaitingQueue (struct DVDCommandBlock* block);
-int                     __DVDIsBlockInWaitingQueue (struct DVDCommandBlock* block);
+BOOL                    __DVDCheckWaitingQueue ();
+BOOL                    __DVDDequeueWaitingQueue (struct DVDCommandBlock* block);
+BOOL                    __DVDIsBlockInWaitingQueue (struct DVDCommandBlock* block);
 
 // fstload.c
 void __fstLoad ();

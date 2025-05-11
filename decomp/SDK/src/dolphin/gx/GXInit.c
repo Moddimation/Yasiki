@@ -1,5 +1,3 @@
-#include <macros.h>
-
 #include <dolphin/base/PPCArch.h>
 #include <dolphin/gx.h>
 #include <dolphin/os.h>
@@ -11,7 +9,6 @@
 
 static struct __GXData_struct gxData;
 struct __GXData_struct*       __GXData = &gxData;
-// DWARF info lists all of these as "void *", but these types make more sense.
 void*                         __memReg;
 void*                         __peReg;
 void*                         __cpReg;
@@ -19,12 +16,17 @@ void*                         __piReg;
 #if DEBUG
 GXBool __GXinBegin;
 #endif
+
 asm BOOL
 IsWriteGatherBufferEmpty (void)
 {
+#ifdef __MWERKS__
     sync;
     mfspr r3, WPAR;
     andi.r3, r3, 1
+#else
+    return FALSE;
+#endif
 }
 
 static void
@@ -40,18 +42,20 @@ EnableWriteGatherPipe (void)
 static void
 DisableWriteGatherPipe (void)
 {
-    u32 hid2 = PPCMfhid2();
+    u32 hid2  = PPCMfhid2();
 
-    hid2 &= ~0x40000000;
+    hid2     &= ~0x40000000;
     PPCMthid2 (hid2);
 }
 
 static GXTexRegion*
 __GXDefaultTexRegionCallback (GXTexObj* t_obj, GXTexMapID unused)
 {
+#pragma unused(unused)
+
     GXTexFmt fmt = GXGetTexObjFmt (t_obj);
 
-    if (fmt != GX_TF_C4 && fmt != GX_TF_C8 && fmt != GX_TF_C14X2)
+    if (fmt != (GXTexFmt)GX_TF_C4 && fmt != (GXTexFmt)GX_TF_C8 && fmt != (GXTexFmt)GX_TF_C14X2)
     {
         return &__GXData->TexRegions[__GXData->nextTexRgn++ & 7];
     }
@@ -92,17 +96,17 @@ GXInit (void* base, u32 size)
     u32              reg;
     u32              freqBase;
 
-    __GXData->inDispList = FALSE;
+    __GXData->inDispList    = FALSE;
     __GXData->dlSaveContext = TRUE;
 #if DEBUG
     __GXinBegin = FALSE;
 #endif
     __GXData->tcsManEnab = FALSE;
-    __GXData->vNum = 0;
-    __piReg = OSPhysicalToUncached (0xC003000);
-    __cpReg = OSPhysicalToUncached (0xC000000);
-    __peReg = OSPhysicalToUncached (0xC001000);
-    __memReg = OSPhysicalToUncached (0xC004000);
+    __GXData->vNum       = 0;
+    __piReg              = OSPhysicalToUncached (0xC003000);
+    __cpReg              = OSPhysicalToUncached (0xC000000);
+    __peReg              = OSPhysicalToUncached (0xC001000);
+    __memReg             = OSPhysicalToUncached (0xC004000);
     __GXFifoInit();
     GXInitFifoBase (&FifoObj, base, size);
     GXSetCPUFifo (&FifoObj);
@@ -118,8 +122,8 @@ GXInit (void* base, u32 size)
     SET_REG_FIELD (0, __GXData->lpSize, 8, 24, 0x22);
     for (i = 0; i < 16; ++i)
     {
-        __GXData->tevc[i] = 0;
-        __GXData->teva[i] = 0;
+        __GXData->tevc[i]     = 0;
+        __GXData->teva[i]     = 0;
         __GXData->tref[i / 2] = 0;
         __GXData->texmapId[i] = GX_TEXMAP_NULL;
         SET_REG_FIELD (0x2F2, __GXData->tevc[i], 8, 24, 0xC0 + i * 2);
@@ -144,14 +148,11 @@ GXInit (void* base, u32 size)
     SET_REG_FIELD (0, __GXData->peCtrl, 8, 24, 0x43);
     SET_REG_FIELD (0, __GXData->cpTex, 2, 7, 0);
     __GXData->dirtyState = 0;
-    __GXData->dirtyVAT = FALSE;
+    __GXData->dirtyVAT   = FALSE;
 #if DEBUG
     __gxVerif->verifyLevel = GX_WARN_ALL;
     GXSetVerifyCallback (__GXDefaultVerifyCallback);
-    for (i = 0; i < 256; i++)
-    {
-        SET_REG_FIELD (0, __gxVerif->rasRegs[i], 8, 24, 0xFF);
-    }
+    for (i = 0; i < 256; i++) { SET_REG_FIELD (0, __gxVerif->rasRegs[i], 8, 24, 0xFF); }
     memset (__gxVerif->xfRegsDirty, 0, 0x50);
     memset (__gxVerif->xfMtxDirty, 0, 0x100);
     memset (__gxVerif->xfNrmDirty, 0, 0x60);
@@ -175,7 +176,7 @@ GXInit (void* base, u32 size)
             GX_WRITE_U8 (8);
             GX_WRITE_U8 (i | 0x80);
             GX_WRITE_U32 (__GXData->vatB[i]);
-            regAddr = i - 12;
+            regAddr = (s32)(i - 12);
         }
     }
     {
@@ -231,16 +232,16 @@ GXInit (void* base, u32 size)
     GXSetNumTexGens (1);
     GXClearVtxDesc();
     GXInvalidateVtxCache();
-    GXSetLineWidth (6, 0);
-    GXSetPointSize (6, 0);
-    GXEnableTexOffsets (0, 0, 0);
-    GXEnableTexOffsets (1, 0, 0);
-    GXEnableTexOffsets (2, 0, 0);
-    GXEnableTexOffsets (3, 0, 0);
-    GXEnableTexOffsets (4, 0, 0);
-    GXEnableTexOffsets (5, 0, 0);
-    GXEnableTexOffsets (6, 0, 0);
-    GXEnableTexOffsets (7, 0, 0);
+    GXSetLineWidth (6, GX_TO_ZERO);
+    GXSetPointSize (6, GX_TO_ZERO);
+    GXEnableTexOffsets (GX_TEXCOORD0, 0, 0);
+    GXEnableTexOffsets (GX_TEXCOORD1, 0, 0);
+    GXEnableTexOffsets (GX_TEXCOORD2, 0, 0);
+    GXEnableTexOffsets (GX_TEXCOORD3, 0, 0);
+    GXEnableTexOffsets (GX_TEXCOORD4, 0, 0);
+    GXEnableTexOffsets (GX_TEXCOORD5, 0, 0);
+    GXEnableTexOffsets (GX_TEXCOORD6, 0, 0);
+    GXEnableTexOffsets (GX_TEXCOORD7, 0, 0);
     identity_mtx[0][0] = 1.0f;
     identity_mtx[0][1] = 0.0f;
     identity_mtx[0][2] = 0.0f;
@@ -287,7 +288,12 @@ GXInit (void* base, u32 size)
     __GXData->nextTexRgn = 0;
     for (i = 0; i < 8; i++)
     {
-        GXInitTexCacheRegion (&__GXData->TexRegions[i], 0, i * 0x8000, 0, 0x80000 + i * 0x8000, 0);
+        GXInitTexCacheRegion (&__GXData->TexRegions[i],
+                              0,
+                              i * 0x8000,
+                              GX_TEXCACHE_32K,
+                              0x80000 + i * 0x8000,
+                              GX_TEXCACHE_32K);
     }
     __GXData->nextTexRgnCI = 0;
     for (i = 0; i < 4; i++)
@@ -295,17 +301,17 @@ GXInit (void* base, u32 size)
         GXInitTexCacheRegion (&__GXData->TexRegionsCI[i],
                               0,
                               (i * 2 + 8) * 0x8000,
-                              0,
+                              GX_TEXCACHE_32K,
                               (i * 2 + 9) * 0x8000,
-                              0);
+                              GX_TEXCACHE_32K);
     }
     for (i = 0; i < 16; i++)
     {
-        GXInitTlutRegion (&__GXData->TlutRegions[i], 0xC0000 + i * 0x2000, 16);
+        GXInitTlutRegion (&__GXData->TlutRegions[i], 0xC0000 + i * 0x2000, GX_TLUT_256);
     }
     for (i = 0; i < 4; i++)
     {
-        GXInitTlutRegion (&__GXData->TlutRegions[i + 16], 0xE0000 + i * 0x8000, 64);
+        GXInitTlutRegion (&__GXData->TlutRegions[i + 16], 0xE0000 + i * 0x8000, GX_TLUT_1K);
     }
     GXSetTexRegionCallback (__GXDefaultTexRegionCallback);
     GXSetTlutRegionCallback (__GXDefaultTlutRegionCallback);
@@ -341,10 +347,7 @@ GXInit (void* base, u32 size)
     GXSetTevSwapModeTable (GX_TEV_SWAP2, GX_CH_GREEN, GX_CH_GREEN, GX_CH_GREEN, GX_CH_ALPHA);
     GXSetTevSwapModeTable (GX_TEV_SWAP3, GX_CH_BLUE, GX_CH_BLUE, GX_CH_BLUE, GX_CH_ALPHA);
 
-    for (i = GX_TEVSTAGE0; i < GX_MAX_TEVSTAGE; i++)
-    {
-        GXSetTevDirect ((GXTevStageID)i);
-    }
+    for (i = GX_TEVSTAGE0; i < GX_MAX_TEVSTAGE; i++) { GXSetTevDirect ((GXTevStageID)i); }
     GXSetNumIndStages (0);
     GXSetIndTexCoordScale (GX_INDTEXSTAGE0, GX_ITS_1, GX_ITS_1);
     GXSetIndTexCoordScale (GX_INDTEXSTAGE1, GX_ITS_1, GX_ITS_1);

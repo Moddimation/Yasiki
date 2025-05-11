@@ -101,8 +101,8 @@ void __OSReboot (u32 resetCode, BOOL forceMenu);
 SEC_INIT ASM void __init_hardware (void);
 SEC_INIT ASM void __flush_cache (void* address, u32 size);
 void              __init_user (void);
-void              __init_cpp (void);
-void              __fini_cpp (void);
+static void       __init_cpp (void);
+static void       __fini_cpp (void);
 void              _ExitProcess (void);
 
 // __start.c
@@ -129,6 +129,7 @@ int __to_gm_time (void);
 
 unsigned long __OSIsDebuggerPresent (void);
 void          __OSPSInit (void);
+u8            __OSGetDIConfig (void);
 
 extern void* BOOT_REGION_START;
 extern void* BOOT_REGION_END;

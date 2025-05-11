@@ -1,11 +1,10 @@
-#include "dolphin/os/OSAlarm.h"
+#include <dolphin.h>
 #include <dolphin/card.h>
 #include <dolphin/exi.h>
 
-#include <dolphin.h>
-
 #include "../os/OSPrivate.h"
 #include "CARDPrivate.h"
+#include "dolphin/os/OSAlarm.h"
 
 static u32 SectorSizeTable[8] = {
     8 * 1024, 16 * 1024, 32 * 1024, 64 * 1024, 128 * 1024, 256 * 1024, 0, 0,
@@ -19,10 +18,10 @@ static u32 LatencyTable[8] = {
 static s32  DoMount (s32 chan);
 static void DoUnmount (s32 chan, s32 v);
 
-int
+BOOL
 CARDProbe (s32 chan)
 {
-    EXIProbe (chan);
+    return EXIProbe (chan);
 }
 
 s32
@@ -39,9 +38,9 @@ CARDProbeEx (s32 chan, s32* memSize, s32* sectorSize)
         return CARD_RESULT_FATAL_ERROR;
     }
 
-    card = &__CARDBlock[chan];
+    card    = &__CARDBlock[chan];
     enabled = OSDisableInterrupts();
-    probe = EXIProbeEx (chan);
+    probe   = EXIProbeEx (chan);
     if (probe == -1)
     {
         result = CARD_RESULT_NOCARD;
@@ -90,12 +89,13 @@ CARDProbeEx (s32 chan, s32* memSize, s32* sectorSize)
         }
         if (sectorSize != 0)
         {
-            *sectorSize = SectorSizeTable[(id & 0x00003800) >> 11];
+            *sectorSize = (s32)SectorSizeTable[(id & 0x00003800) >> 11];
         }
         result = CARD_RESULT_READY;
     }
 
     OSRestoreInterrupts (enabled);
+
     return result;
 }
 
@@ -122,10 +122,10 @@ DoMount (s32 chan)
             goto error;
         }
 
-        card->size = (u16)(id & 0xFC);
-        card->sectorSize = SectorSizeTable[(id & 0x00003800) >> 11];
-        card->cBlock = (u16)((card->size * 1024 * 1024 / 8) / card->sectorSize);
-        card->latency = LatencyTable[(id & 0x00000700) >> 8];
+        card->size       = (u16)(id & 0xFC);
+        card->sectorSize = (s32)SectorSizeTable[(id & 0x00003800) >> 11];
+        card->cBlock     = (u16)((card->size * 1024 * 1024 / 8) / card->sectorSize);
+        card->latency    = (s32)LatencyTable[(id & 0x00000700) >> 8];
 
         if (card->sectorSize == 0 || card->cBlock < 8)
         {
@@ -157,11 +157,11 @@ DoMount (s32 chan)
             }
 
             checkSum = 0;
-            sram = __OSLockSramEx();
+            sram     = __OSLockSramEx();
             for (i = 0; i < 12; i++)
             {
-                sram->flashID[chan][i] = card->id[i];
-                checkSum += card->id[i];
+                sram->flashID[chan][i]  = card->id[i];
+                checkSum               += card->id[i];
             }
             sram->flashIDCheckSum[chan] = (u8)~checkSum;
             __OSUnlockSramEx (TRUE);
@@ -172,12 +172,9 @@ DoMount (s32 chan)
         {
             card->mountStep = 1;
 
-            checkSum = 0;
-            sram = __OSLockSramEx();
-            for (i = 0; i < 12; i++)
-            {
-                checkSum += sram->flashID[chan][i];
-            }
+            checkSum        = 0;
+            sram            = __OSLockSramEx();
+            for (i = 0; i < 12; i++) { checkSum += sram->flashID[chan][i]; }
 
             __OSUnlockSramEx (FALSE);
             if (sram->flashIDCheckSum[chan] != (u8)~checkSum)
@@ -192,7 +189,7 @@ DoMount (s32 chan)
     {
         card->mountStep = 2;
 
-        result = __CARDEnableInterrupt (chan, TRUE);
+        result          = __CARDEnableInterrupt (chan, TRUE);
         if (result < 0)
         {
             goto error;
@@ -203,7 +200,7 @@ DoMount (s32 chan)
         DCInvalidateRange (card->workArea, CARD_WORKAREA_SIZE);
     }
 
-    step = card->mountStep - 2;
+    step   = card->mountStep - 2;
     result = __CARDRead (chan,
                          (u32)card->sectorSize * step,
                          CARD_SYSTEM_BLOCK_SIZE,
@@ -213,11 +210,13 @@ DoMount (s32 chan)
     {
         __CARDPutControlBlock (card, result);
     }
+
     return result;
 
 error:
     EXIUnlock (chan);
     DoUnmount (chan, result);
+
     return result;
 }
 
@@ -259,7 +258,7 @@ __CARDMountCallback (s32 chan, s32 result)
             break;
     }
 
-    callback = card->apiCallback;
+    callback          = card->apiCallback;
     card->apiCallback = NULL;
     __CARDPutControlBlock (card, result);
     ASSERTLINE (0x1AB, callback);
@@ -267,7 +266,10 @@ __CARDMountCallback (s32 chan, s32 result)
 }
 
 s32
-CARDMountAsync (s32 chan, void* workArea, CARDCallback detachCallback, CARDCallback attachCallback)
+CARDMountAsync (s32          chan,
+                void*        workArea,
+                CARDCallback detachCallback,
+                CARDCallback attachCallback)
 {
     CARDControl* card;
     BOOL         enabled;
@@ -280,7 +282,7 @@ CARDMountAsync (s32 chan, void* workArea, CARDCallback detachCallback, CARDCallb
         return CARD_RESULT_FATAL_ERROR;
     }
 
-    card = &__CARDBlock[chan];
+    card    = &__CARDBlock[chan];
 
     enabled = OSDisableInterrupts();
     if (card->result == CARD_RESULT_BUSY)
@@ -295,8 +297,8 @@ CARDMountAsync (s32 chan, void* workArea, CARDCallback detachCallback, CARDCallb
         return CARD_RESULT_WRONGDEVICE;
     }
 
-    card->result = CARD_RESULT_BUSY;
-    card->workArea = workArea;
+    card->result      = CARD_RESULT_BUSY;
+    card->workArea    = workArea;
     card->extCallback = detachCallback;
     card->apiCallback = attachCallback ? attachCallback : __CARDDefaultApiCallback;
     card->exiCallback = 0;
@@ -309,7 +311,7 @@ CARDMountAsync (s32 chan, void* workArea, CARDCallback detachCallback, CARDCallb
     }
 
     card->mountStep = 0;
-    card->attached = TRUE;
+    card->attached  = TRUE;
     EXISetExiCallback (chan, 0);
     OSCancelAlarm (&card->alarm);
 
@@ -325,6 +327,7 @@ CARDMountAsync (s32 chan, void* workArea, CARDCallback detachCallback, CARDCallb
     }
 
     card->unlockCallback = 0;
+
     return DoMount (chan);
 }
 
@@ -348,17 +351,18 @@ DoUnmount (s32 chan, s32 result)
 
     ASSERTLINE (0x22F, 0 <= chan && chan < 2);
 
-    card = &__CARDBlock[chan];
+    card    = &__CARDBlock[chan];
     enabled = OSDisableInterrupts();
     if (card->attached)
     {
         EXISetExiCallback (chan, 0);
         EXIDetach (chan);
         OSCancelAlarm (&card->alarm);
-        card->attached = FALSE;
-        card->result = result;
+        card->attached  = FALSE;
+        card->result    = result;
         card->mountStep = 0;
     }
+
     OSRestoreInterrupts (enabled);
 }
 
@@ -376,5 +380,6 @@ CARDUnmount (s32 chan)
         return result;
     }
     DoUnmount (chan, CARD_RESULT_NOCARD);
+
     return CARD_RESULT_READY;
 }

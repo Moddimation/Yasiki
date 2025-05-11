@@ -1,8 +1,6 @@
 #ifndef _DOLPHIN_H_
 #define _DOLPHIN_H_
 
-#include <types.h>
-
 #include <dolphin/ai.h>
 #include <dolphin/ar.h>
 #include <dolphin/base/PPCArch.h>
@@ -19,7 +17,6 @@
 #include <dolphin/pad.h>
 #include <dolphin/perf.h>
 #include <dolphin/vi.h>
-
-#include "macros.h"
+#include <types.h>
 
 #endif

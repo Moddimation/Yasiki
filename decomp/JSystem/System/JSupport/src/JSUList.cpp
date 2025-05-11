@@ -1,24 +1,24 @@
 #include <JSUList.h>
 
-JSUPtrLink::JSUPtrLink (void* data)
+JSUPtrLink::JSUPtrLink (void* obj)
 {
-    pSupervisor = nullptr;
-    pObject = data;
-    pNext = nullptr;
-    pPrev = nullptr;
+    pSupervisor = Nil;
+    pObject = obj;
+    pNext = Nil;
+    pPrev = Nil;
 }
 
 JSUPtrLink::~JSUPtrLink ()
 {
-    if (pSupervisor != nullptr)
+    if (pSupervisor != Nil)
     {
         pSupervisor->remove (this);
     }
 }
 
-JSUPtrList::JSUPtrList (bool _init)
+JSUPtrList::JSUPtrList (BOOL do_init)
 {
-    if (_init)
+    if (do_init)
     {
         initiate();
     }
@@ -26,11 +26,11 @@ JSUPtrList::JSUPtrList (bool _init)
 
 JSUPtrList::~JSUPtrList ()
 {
-    JSUPtrLink* link = pHead;
+    JSUPtrLink* link = pFirst;
 
     for (u32 i = 0; i < mNumLinks; i++)
     {
-        link->pSupervisor = nullptr;
+        link->pSupervisor = Nil;
         link = link->pPrev;
     }
 }
@@ -38,26 +38,48 @@ JSUPtrList::~JSUPtrList ()
 void
 JSUPtrList::initiate ()
 {
-    pHead = nullptr;
-    pTail = nullptr;
-    mNumLinks = nullptr;
+    pFirst = Nil;
+    pLast = Nil;
+    mNumLinks = Nil;
 }
 
 void
 JSUPtrList::setFirst (JSUPtrLink* link)
 {
     link->pSupervisor = this;
-    link->pNext = nullptr;
-    link->pPrev = nullptr;
-    pTail = link;
-    pHead = link;
+    link->pNext = Nil;
+    link->pPrev = Nil;
+    pLast = link;
+    pFirst = link;
     mNumLinks = 1;
 }
 
-bool
+void
+JSUPtrList::setLast (JSUPtrLink* link)
+{
+    link->pSupervisor = this;
+    link->pNext = pLast;
+    link->pPrev = Nil;
+    pLast->pPrev = link;
+    pLast = link;
+    mNumLinks++;
+}
+
+void
+JSUPtrList::setNext (JSUPtrLink* link)
+{
+    link->pSupervisor = this;
+    link->pNext = Nil;
+    link->pPrev = pFirst;
+    pFirst->pNext = link;
+    pFirst = link;
+    mNumLinks++;
+}
+
+BOOL
 JSUPtrList::append (JSUPtrLink* link)
 {
-    bool result = (link->pSupervisor == nullptr);
+    BOOL result = (link->pSupervisor == Nil);
     if (!result)
     {
         result = link->pSupervisor->remove (link);
@@ -77,10 +99,10 @@ JSUPtrList::append (JSUPtrLink* link)
     return result;
 }
 
-bool
+BOOL
 JSUPtrList::prepend (JSUPtrLink* link)
 {
-    bool result = (link->pSupervisor == nullptr);
+    BOOL result = (link->pSupervisor == Nil);
     if (!result)
     {
         result = link->pSupervisor->remove (link);
@@ -100,14 +122,14 @@ JSUPtrList::prepend (JSUPtrLink* link)
     return result;
 }
 
-bool
+BOOL
 JSUPtrList::insert (JSUPtrLink* last, JSUPtrLink* next)
 {
-    if (last == pHead)
+    if (last == pFirst)
     {
         return prepend (next);
     }
-    if (last == nullptr)
+    if (last == Nil)
     {
         return append (next);
     }
@@ -117,7 +139,7 @@ JSUPtrList::insert (JSUPtrLink* last, JSUPtrLink* next)
         return false;
     }
 
-    bool result = next->pSupervisor == nullptr;
+    BOOL result = next->pSupervisor == Nil;
     if (!result)
     {
         result = next->pSupervisor->remove (next);
@@ -136,26 +158,26 @@ JSUPtrList::insert (JSUPtrLink* last, JSUPtrLink* next)
     return result;
 }
 
-bool
+BOOL
 JSUPtrList::remove (JSUPtrLink* link)
 {
-    bool result = link->pSupervisor == this;
+    BOOL result = link->pSupervisor == this;
     if (result)
     {
         if (mNumLinks == 1)
         {
-            pHead = nullptr;
-            pTail = nullptr;
+            pFirst = Nil;
+            pLast = Nil;
         }
-        else if (link == pHead)
+        else if (link == pFirst)
         {
-            link->pPrev->pNext = nullptr;
-            pHead = link->pPrev;
+            link->pPrev->pNext = Nil;
+            pFirst = link->pPrev;
         }
-        else if (link == pTail)
+        else if (link == pLast)
         {
-            link->pNext->pPrev = nullptr;
-            pTail = link->pNext;
+            link->pNext->pPrev = Nil;
+            pLast = link->pNext;
         }
         else
         {
@@ -163,7 +185,7 @@ JSUPtrList::remove (JSUPtrLink* link)
             link->pPrev->pNext = link->pNext;
         }
 
-        link->pSupervisor = nullptr;
+        link->pSupervisor = Nil;
         mNumLinks--;
     }
     return result;

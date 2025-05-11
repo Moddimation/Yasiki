@@ -4,7 +4,7 @@
 #include "OSPrivate.h"
 
 // End of each month in standard year
-static int YearDays[MONTH_MAX] = { 0, 31, 59, 90, 120, 151, 181, 212, 243, 273, 304, 334 };
+static int YearDays[MONTH_MAX]     = { 0, 31, 59, 90, 120, 151, 181, 212, 243, 273, 304, 334 };
 // End of each month in leap year
 static int LeapYearDays[MONTH_MAX] = { 0, 31, 60, 91, 121, 152, 182, 213, 244, 274, 305, 335 };
 
@@ -44,6 +44,8 @@ OSGetTick (void)
 asm static void
 __SetTime (s64 time)
 {
+#pragma unused(time)
+
 #ifdef __MWERKS__
     nofralloc;
     li    r5, 0;
@@ -60,8 +62,8 @@ __OSSetTime (s64 time)
     int  enabled;
     s64* timeAdjustAddr;
 
-    timeAdjustAddr = (s64*)0x800030D8;
-    enabled = OSDisableInterrupts();
+    timeAdjustAddr   = (s64*)0x800030D8;
+    enabled          = OSDisableInterrupts();
 
     *timeAdjustAddr += OSGetTime() - time;
     __SetTime (time);
@@ -77,9 +79,9 @@ __OSGetSystemTime ()
     s64  result;
 
     timeAdjustAddr = (s64*)0x800030D8;
-    enabled = OSDisableInterrupts();
+    enabled        = OSDisableInterrupts();
 
-    result = OSGetTime() + *timeAdjustAddr;
+    result         = OSGetTime() + *timeAdjustAddr;
     OSRestoreInterrupts (enabled);
     return result;
 }
@@ -132,21 +134,19 @@ GetDates (int days, OSCalendarTime* td)
 
     td->wday = (days + 6) % WEEK_DAY_MAX;
 
-    for (year = days / YEAR_DAY_MAX; days < (n = year * YEAR_DAY_MAX + GetLeapDays (year)); year--)
+    for (year = days / YEAR_DAY_MAX; days < (n = year * YEAR_DAY_MAX + GetLeapDays (year));
+         year--)
     {
         ;
     }
 
-    days -= n;
-    td->year = year;
-    td->yday = days;
+    days     -= n;
+    td->year  = year;
+    td->yday  = days;
 
-    md = IsLeapYear (year) ? LeapYearDays : YearDays;
-    for (month = MONTH_MAX; days < md[--month];)
-    {
-        ;
-    }
-    td->mon = month;
+    md        = IsLeapYear (year) ? LeapYearDays : YearDays;
+    for (month = MONTH_MAX; days < md[--month];) { ; }
+    td->mon  = month;
     td->mday = days - md[month] + 1;
 }
 
@@ -164,8 +164,8 @@ OSTicksToCalendarTime (s64 ticks, OSCalendarTime* td)
         ASSERTLINE (330, 0 <= d);
     }
 
-    td->usec = OS_TICKS_TO_USEC (d) % USEC_MAX;
-    td->msec = OS_TICKS_TO_MSEC (d) % MSEC_MAX;
+    td->usec = (int)(OS_TICKS_TO_USEC (d) % USEC_MAX);
+    td->msec = (int)(OS_TICKS_TO_MSEC (d) % MSEC_MAX);
 
     ASSERTLINE (334, 0 <= td->usec);
     ASSERTLINE (335, 0 <= td->msec);
@@ -177,8 +177,8 @@ OSTicksToCalendarTime (s64 ticks, OSCalendarTime* td)
                 0 <= OSTicksToSeconds (ticks) / 86400 + BIAS &&
                     OSTicksToSeconds (ticks) / 86400 + BIAS <= INT_MAX);
 
-    days = (OS_TICKS_TO_SEC (ticks) / SECS_IN_DAY) + BIAS;
-    secs = OS_TICKS_TO_SEC (ticks) % SECS_IN_DAY;
+    days = (int)((OS_TICKS_TO_SEC (ticks) / SECS_IN_DAY) + BIAS);
+    secs = (int)(OS_TICKS_TO_SEC (ticks) % SECS_IN_DAY);
     if (secs < 0)
     {
         days -= 1;
@@ -188,8 +188,8 @@ OSTicksToCalendarTime (s64 ticks, OSCalendarTime* td)
 
     GetDates (days, td);
     td->hour = secs / 60 / 60;
-    td->min = secs / 60 % 60;
-    td->sec = secs % 60;
+    td->min  = secs / 60 % 60;
+    td->sec  = secs % 60;
 }
 
 OSTime
@@ -201,7 +201,7 @@ OSCalendarTimeToTicks (OSCalendarTime* td)
     int year;
 
     ov_mon = td->mon / MONTH_MAX;
-    mon = td->mon - (ov_mon * MONTH_MAX);
+    mon    = td->mon - (ov_mon * MONTH_MAX);
 
     if (mon < 0)
     {

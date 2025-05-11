@@ -8,7 +8,7 @@ PPCMfmsr ()
     mfmsr r3;
     blr;
 #else
-    return NULL;
+    return 0;
 #endif
 }
 
@@ -32,7 +32,7 @@ PPCOrMsr (register u32 value)
     or value, r4, value;
     blr;
 #else
-    return NULL;
+    return 0;
 #endif
 }
 
@@ -45,7 +45,7 @@ PPCAndMsr (register u32 value)
     and value, r4, value;
     blr;
 #else
-    return NULL;
+    return 0;
 #endif
 }
 
@@ -58,7 +58,7 @@ PPCAndCMsr (register u32 value)
     andc  value, r4, value;
     blr;
 #else
-    return NULL;
+    return 0;
 #endif
 }
 
@@ -71,7 +71,7 @@ PPCMfhid0 ()
     mfspr r3, HID0;
     blr;
 #else
-    return NULL;
+    return 0;
 #endif
 }
 
@@ -95,7 +95,7 @@ PPCMfhid1 ()
     mfspr r3, HID1;
     blr;
 #else
-    return NULL;
+    return 0;
 #endif
 }
 
@@ -108,7 +108,7 @@ PPCMfl2cr ()
     mfspr r3, L2CR;
     blr;
 #else
-    return NULL;
+    return 0;
 #endif
 }
 
@@ -141,7 +141,7 @@ PPCMfdec ()
     mfdec r3;
     blr;
 #else
-    return NULL;
+    return 0;
 #endif
 }
 
@@ -201,7 +201,7 @@ PPCMfmmcr0 ()
     mfspr r3, MMCR0;
     blr;
 #else
-    return NULL;
+    return 0;
 #endif
 }
 
@@ -225,7 +225,7 @@ PPCMfmmcr1 ()
     mfspr r3, MMCR1;
     blr;
 #else
-    return NULL;
+    return 0;
 #endif
 }
 
@@ -249,7 +249,7 @@ PPCMfpmc1 ()
     mfspr r3, PMC1;
     blr;
 #else
-    return NULL;
+    return 0;
 #endif
 }
 
@@ -273,7 +273,7 @@ PPCMfpmc2 ()
     mfspr r3, PMC2;
     blr;
 #else
-    return NULL;
+    return 0;
 #endif
 }
 
@@ -297,7 +297,7 @@ PPCMfpmc3 ()
     mfspr r3, PMC3;
     blr;
 #else
-    return NULL;
+    return 0;
 #endif
 }
 
@@ -321,7 +321,7 @@ PPCMfpmc4 ()
     mfspr r3, PMC4;
     blr;
 #else
-    return NULL;
+    return 0;
 #endif
 }
 
@@ -345,7 +345,7 @@ PPCMfsia ()
     mfspr r3, SIA;
     blr;
 #else
-    return NULL;
+    return 0;
 #endif
 }
 
@@ -369,7 +369,7 @@ PPCMfhid2 ()
     mfspr r3, HID2;
     blr;
 #else
-    return NULL;
+    return 0;
 #endif
 }
 
@@ -393,7 +393,7 @@ PPCMfwpar ()
     mfspr r3, WPAR;
     blr;
 #else
-    return NULL;
+    return 0;
 #endif
 }
 
@@ -417,7 +417,7 @@ PPCMfdmaU ()
     mfspr r3, DMA_U;
     blr;
 #else
-    return NULL;
+    return 0;
 #endif
 }
 
@@ -430,7 +430,7 @@ PPCMfdmaL ()
     mfspr r3, DMA_L;
     blr;
 #else
-    return NULL;
+    return 0;
 #endif
 }
 
@@ -465,6 +465,6 @@ PPCMfpvr ()
     mfspr r3, PVR;
     blr;
 #else
-    return NULL;
+    return 0;
 #endif
 }

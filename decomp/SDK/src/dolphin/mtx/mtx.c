@@ -1,7 +1,6 @@
 #include <dolphin/mtx.h>
 
 #include <cmath>
-#include <dolphin.h>
 
 #define qr0 0
 
@@ -34,7 +33,7 @@ void
 PSMTXIdentity (register Mtx m)
 {
     register f32 c_zero = 0.0f;
-    register f32 c_one = 1.0f;
+    register f32 c_one  = 1.0f;
     register f32 c_01;
     register f32 c_10;
 
@@ -305,7 +304,7 @@ C_MTXInverse (Mtx src, Mtx inv)
     {
         return 0;
     }
-    det = 1 / det;
+    det     = 1 / det;
     m[0][0] = (det * +((src[1][1] * src[2][2]) - (src[2][1] * src[1][2])));
     m[0][1] = (det * -((src[0][1] * src[2][2]) - (src[2][1] * src[0][2])));
     m[0][2] = (det * +((src[0][1] * src[1][2]) - (src[1][1] * src[0][2])));
@@ -429,7 +428,7 @@ C_MTXInvXpose (Mtx src, Mtx invX)
     {
         return 0;
     }
-    det = 1 / det;
+    det     = 1 / det;
     m[0][0] = (det * +((src[1][1] * src[2][2]) - (src[2][1] * src[1][2])));
     m[0][1] = (det * -((src[1][0] * src[2][2]) - (src[2][0] * src[1][2])));
     m[0][2] = (det * +((src[1][0] * src[2][1]) - (src[2][0] * src[1][1])));
@@ -603,12 +602,12 @@ MTXRotAxisRad (Mtx m, Vec* axis, f32 rad)
     c = cosf (rad);
     t = 1 - c;
     VECNormalize (axis, &vN);
-    x = vN.x;
-    y = vN.y;
-    z = vN.z;
-    xSq = (x * x);
-    ySq = (y * y);
-    zSq = (z * z);
+    x       = vN.x;
+    y       = vN.y;
+    z       = vN.z;
+    xSq     = (x * x);
+    ySq     = (y * y);
+    zSq     = (z * z);
     m[0][0] = (c + (t * xSq));
     m[0][1] = (y * (t * x)) - (s * z);
     m[0][2] = (z * (t * x)) + (s * y);
@@ -722,19 +721,19 @@ MTXQuat (Mtx m, QuaternionPtr q)
     ASSERTMSGLINE (0x5C9, m, "MTXQuat():  NULL MtxPtr 'm' ");
     ASSERTMSGLINE (0x5CA, q, "MTXQuat():  NULL QuaternionPtr 'q' ");
     ASSERTMSGLINE (0x5CB, q->x || q->y || q->z || q->w, "MTXQuat():  zero-value quaternion ");
-    s = 2 / ((q->w * q->w) + ((q->z * q->z) + ((q->x * q->x) + (q->y * q->y))));
-    xs = q->x * s;
-    ys = q->y * s;
-    zs = q->z * s;
-    wx = q->w * xs;
-    wy = q->w * ys;
-    wz = q->w * zs;
-    xx = q->x * xs;
-    xy = q->x * ys;
-    xz = q->x * zs;
-    yy = q->y * ys;
-    yz = q->y * zs;
-    zz = q->z * zs;
+    s       = 2 / ((q->w * q->w) + ((q->z * q->z) + ((q->x * q->x) + (q->y * q->y))));
+    xs      = q->x * s;
+    ys      = q->y * s;
+    zs      = q->z * s;
+    wx      = q->w * xs;
+    wy      = q->w * ys;
+    wz      = q->w * zs;
+    xx      = q->x * xs;
+    xy      = q->x * ys;
+    xz      = q->x * zs;
+    yy      = q->y * ys;
+    yz      = q->y * zs;
+    zz      = q->z * zs;
     m[0][0] = (1 - (yy + zz));
     m[0][1] = (xy - wz);
     m[0][2] = (xz + wy);
@@ -757,10 +756,10 @@ MTXReflect (Mtx m, Vec* p, Vec* n)
     f32 vyz;
     f32 pdotn;
 
-    vxy = -2 * n->x * n->y;
-    vxz = -2 * n->x * n->z;
-    vyz = -2 * n->y * n->z;
-    pdotn = 2 * VECDotProduct (p, n);
+    vxy     = -2 * n->x * n->y;
+    vxz     = -2 * n->x * n->z;
+    vyz     = -2 * n->y * n->z;
+    pdotn   = 2 * VECDotProduct (p, n);
     m[0][0] = (1 - (2 * n->x * n->x));
     m[0][1] = vxy;
     m[0][2] = vxz;
@@ -823,15 +822,19 @@ MTXLightFrustum (Mtx m,
     f32 tmp;
 
     ASSERTMSGLINE (0x6A2, m, "MTXLightFrustum():  NULL MtxPtr 'm' ");
-    ASSERTMSGLINE (0x6A3, (t != b), "MTXLightFrustum():  't' and 'b' clipping planes are equal ");
-    ASSERTMSGLINE (0x6A4, (l != r), "MTXLightFrustum():  'l' and 'r' clipping planes are equal ");
+    ASSERTMSGLINE (0x6A3,
+                   (t != b),
+                   "MTXLightFrustum():  't' and 'b' clipping planes are equal ");
+    ASSERTMSGLINE (0x6A4,
+                   (l != r),
+                   "MTXLightFrustum():  'l' and 'r' clipping planes are equal ");
 
-    tmp = 1 / (r - l);
+    tmp     = 1 / (r - l);
     m[0][0] = (scaleS * (2 * n * tmp));
     m[0][1] = 0;
     m[0][2] = (scaleS * (tmp * (r + l))) - transS;
     m[0][3] = 0;
-    tmp = 1 / (t - b);
+    tmp     = 1 / (t - b);
     m[1][0] = 0;
     m[1][1] = (scaleT * (2 * n * tmp));
     m[1][2] = (scaleT * (tmp * (t + b))) - transT;
@@ -843,7 +846,13 @@ MTXLightFrustum (Mtx m,
 }
 
 void
-MTXLightPerspective (Mtx m, f32 fovY, f32 aspect, f32 scaleS, f32 scaleT, f32 transS, f32 transT)
+MTXLightPerspective (Mtx m,
+                     f32 fovY,
+                     f32 aspect,
+                     f32 scaleS,
+                     f32 scaleT,
+                     f32 transS,
+                     f32 transT)
 {
     f32 angle;
     f32 cot;
@@ -854,9 +863,9 @@ MTXLightPerspective (Mtx m, f32 fovY, f32 aspect, f32 scaleS, f32 scaleT, f32 tr
                    "MTXLightPerspective():  'fovY' out of range ");
     ASSERTMSGLINE (0x6E1, 0 != aspect, "MTXLightPerspective():  'aspect' is 0 ");
 
-    angle = (0.5f * fovY);
-    angle = angle * 0.017453293f;
-    cot = 1 / tanf (angle);
+    angle   = (0.5f * fovY);
+    angle   = angle * 0.017453293f;
+    cot     = 1 / tanf (angle);
     m[0][0] = (scaleS * (cot / aspect));
     m[0][1] = 0;
     m[0][2] = -transS;
@@ -872,19 +881,27 @@ MTXLightPerspective (Mtx m, f32 fovY, f32 aspect, f32 scaleS, f32 scaleT, f32 tr
 }
 
 void
-MTXLightOrtho (Mtx m, f32 t, f32 b, f32 l, f32 r, f32 scaleS, f32 scaleT, f32 transS, f32 transT)
+MTXLightOrtho (Mtx m,
+               f32 t,
+               f32 b,
+               f32 l,
+               f32 r,
+               f32 scaleS,
+               f32 scaleT,
+               f32 transS,
+               f32 transT)
 {
     f32 tmp;
 
     ASSERTMSGLINE (0x720, m, "MTXLightOrtho():  NULL MtxPtr 'm' ");
     ASSERTMSGLINE (0x721, (t != b), "MTXLightOrtho():  't' and 'b' clipping planes are equal ");
     ASSERTMSGLINE (0x722, (l != r), "MTXLightOrtho():  'l' and 'r' clipping planes are equal ");
-    tmp = 1 / (r - l);
+    tmp     = 1 / (r - l);
     m[0][0] = (2 * tmp * scaleS);
     m[0][1] = 0;
     m[0][2] = 0;
     m[0][3] = (transS + (scaleS * (tmp * -(r + l))));
-    tmp = 1 / (t - b);
+    tmp     = 1 / (t - b);
     m[1][0] = 0;
     m[1][1] = (2 * tmp * scaleT);
     m[1][2] = 0;

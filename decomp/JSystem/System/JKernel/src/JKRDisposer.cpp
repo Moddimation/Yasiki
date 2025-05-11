@@ -1,19 +1,24 @@
+#include <dolphin.h>
+#include <macros.h>
+
 #include <JKRDisposer.h>
 #include <JKRHeap.h>
 
-JKRDisposer::JKRDisposer () : mPtr (this)
+#include <stddef.h>
+
+JKRDisposer::JKRDisposer () : mHeapLink (this)
 {
-    pHeap = JKRHeap::findFromRoot (this);
-    if (pHeap != nullptr)
+    pHeapObj = JKRHeap::findFromRoot (this);
+    if (pHeapObj != Nil)
     {
-        pHeap->appendDisposer (this);
+        pHeapObj->appendDisposer (this);
     }
 }
 
 JKRDisposer::~JKRDisposer ()
 {
-    if (pHeap != nullptr)
+    if (pHeapObj != Nil)
     {
-        pHeap->removeDisposer (this);
+        pHeapObj->removeDisposer (this);
     }
 }

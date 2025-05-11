@@ -1,19 +1,22 @@
 #include <dolphin/os.h>
 
-#include <stdlib.h>
-
 #include "OSPrivate.h"
 
 #ifdef __cplusplus
 extern "C"
 {
 #endif
+static void __init_cpp (void);
+static void __fini_cpp (void);
+extern void abort (void);
+extern void exit (int status);
 
-DECL_SECT (".ctors") extern void (*_ctors[])(); // size: 0x0, address: 0x0
-DECL_SECT (".dtors") extern void (*_dtors[])(); // size: 0x0, address: 0x0
+DECL_SECT (".ctors") extern void (*_ctors[])();
+DECL_SECT (".dtors") extern void (*_dtors[])();
+
 DECL_SECT (".init")
 
-asm void
+ASM void
 __init_hardware (void)
 {
 #ifdef __MWERKS__
@@ -28,12 +31,14 @@ __init_hardware (void)
     blr;
 #endif
 }
-
 DECL_SECT (".init")
 
-asm void
+ASM void
 __flush_cache (void* address, u32 size)
 {
+#pragma unused(address)
+#pragma unused(size)
+
 #ifdef __MWERKS__
     nofralloc;
     lis r5, 0xffff;
@@ -57,39 +62,25 @@ rept:
 void
 __init_user (void)
 {
+#if defined(__cplusplus)
     __init_cpp();
+#endif
 }
 
-void
+static void
 __init_cpp (void)
 {
-#ifdef __MWERKS__
     void (**constructor)();
 
-    /*
-     *	call static initializers
-     */
-    for (constructor = _ctors; *constructor; constructor++)
-    {
-        (*constructor)();
-    }
-#endif
+    for (constructor = _ctors; *constructor; constructor++) { (*constructor)(); }
 }
 
-void
+static void
 __fini_cpp (void)
 {
-#ifdef __MWERKS__
     void (**destructor)();
 
-    /*
-     *	call destructors
-     */
-    for (destructor = _dtors; *destructor; destructor++)
-    {
-        (*destructor)();
-    }
-#endif
+    for (destructor = _dtors; *destructor; destructor++) { (*destructor)(); }
 }
 
 WEAKFUNC
@@ -103,7 +94,11 @@ WEAKFUNC
 void
 exit (int status)
 {
+#pragma unused(status)
+
+#if defined(__cplusplus)
     __fini_cpp();
+#endif
     _ExitProcess();
 }
 
@@ -112,6 +107,7 @@ _ExitProcess (void)
 {
     PPCHalt();
 }
+
 #ifdef __cplusplus
 }
 #endif

@@ -1,7 +1,6 @@
-#include <macros.h>
-
 #include <dolphin/gx.h>
 #include <dolphin/os.h>
+#include <macros.h>
 
 #include <math.h>
 
@@ -104,7 +103,7 @@ GXInitLightSpot (GXLightObj* lt_obj, f32 cutoff, GXSpotFn spot_func)
         spot_func = GX_SP_OFF;
     }
 
-    r = (3.1415927f * cutoff) / 180.0f;
+    r  = (3.1415927f * cutoff) / 180.0f;
     cr = cosf (r);
     switch (spot_func)
     {
@@ -124,19 +123,19 @@ GXInitLightSpot (GXLightObj* lt_obj, f32 cutoff, GXSpotFn spot_func)
             a2 = 1.0f / (1.0f - cr);
             break;
         case GX_SP_SHARP:
-            d = (1.0f - cr) * (1.0f - cr);
+            d  = (1.0f - cr) * (1.0f - cr);
             a0 = (cr * (cr - 2.0f)) / d;
             a1 = 2.0f / d;
             a2 = -1.0f / d;
             break;
         case GX_SP_RING1:
-            d = (1.0f - cr) * (1.0f - cr);
+            d  = (1.0f - cr) * (1.0f - cr);
             a0 = (-4.0f * cr) / d;
             a1 = (4.0f * (1.0f + cr)) / d;
             a2 = -4.0f / d;
             break;
         case GX_SP_RING2:
-            d = (1.0f - cr) * (1.0f - cr);
+            d  = (1.0f - cr) * (1.0f - cr);
             a0 = 1.0f - ((2.0f * cr * cr) / d);
             a1 = (4.0f * cr) / d;
             a2 = -2.0f / d;
@@ -236,7 +235,7 @@ GXInitLightDir (GXLightObj* lt_obj, f32 nx, f32 ny, f32 nz)
     struct __GXLightObjInt_struct* obj;
 
     ASSERTMSGLINE (0x149, lt_obj != NULL, "Light Object Pointer is null");
-    obj = (struct __GXLightObjInt_struct*)lt_obj;
+    obj          = (struct __GXLightObjInt_struct*)lt_obj;
 
     obj->ldir[0] = -nx;
     obj->ldir[1] = -ny;
@@ -269,10 +268,10 @@ GXInitSpecularDir (GXLightObj* lt_obj, f32 nx, f32 ny, f32 nz)
     obj = (struct __GXLightObjInt_struct*)lt_obj;
     CHECK_GXBEGIN (0x170, "GXInitSpecularDir");
 
-    vx = -nx;
-    vy = -ny;
-    vz = -nz + 1.0f;
-    mag = 1.0f / sqrtf ((vx * vx) + (vy * vy) + (vz * vz));
+    vx           = -nx;
+    vy           = -ny;
+    vz           = -nz + 1.0f;
+    mag          = 1.0f / sqrtf ((vx * vx) + (vy * vy) + (vz * vz));
     obj->ldir[0] = vx * mag;
     obj->ldir[1] = vy * mag;
     obj->ldir[2] = vz * mag;
@@ -307,7 +306,7 @@ GXInitLightColor (GXLightObj* lt_obj, GXColor color)
     obj = (struct __GXLightObjInt_struct*)lt_obj;
     CHECK_GXBEGIN (0x1A9, "GXInitLightColor");
 
-    obj->Color = (color.r << 24) | (color.g << 16) | (color.b << 8) | color.a;
+    obj->Color = (u32)((color.r << 24) | (color.g << 16) | (color.b << 8) | color.a);
 }
 
 void
@@ -319,26 +318,26 @@ GXGetLightColor (GXLightObj* lt_obj, GXColor* color)
     obj = (struct __GXLightObjInt_struct*)lt_obj;
     CHECK_GXBEGIN (0x1B3, "GXGetLightColor");
 
-    color->r = (obj->Color >> 24) & 0xFF;
-    color->g = (obj->Color >> 16) & 0xFF;
-    color->b = (obj->Color >> 8) & 0xFF;
-    color->a = obj->Color & 0xFF;
+    color->r = (u8)((obj->Color >> 24) & 0xFF);
+    color->g = (u8)((obj->Color >> 16) & 0xFF);
+    color->b = (u8)((obj->Color >> 8) & 0xFF);
+    color->a = (u8)(obj->Color & 0xFF);
 }
 #if DEBUG
-#define WRITE_SOME_LIGHT_REG1(val, addr)                                                           \
-    do {                                                                                           \
-        u32 xfData = val;                                                                          \
-        GX_WRITE_U32 (val);                                                                        \
-        VERIF_MTXLIGHT (addr, xfData);                                                             \
-    }                                                                                              \
+#define WRITE_SOME_LIGHT_REG1(val, addr)                                                       \
+    do {                                                                                       \
+        u32 xfData = val;                                                                      \
+        GX_WRITE_U32 (val);                                                                    \
+        VERIF_MTXLIGHT (addr, xfData);                                                         \
+    }                                                                                          \
     while (0)
 
-#define WRITE_SOME_LIGHT_REG2(val, addr)                                                           \
-    do {                                                                                           \
-        f32 xfData = val;                                                                          \
-        GX_WRITE_F32 (val);                                                                        \
-        VERIF_MTXLIGHT (addr, *(u32*)&xfData);                                                     \
-    }                                                                                              \
+#define WRITE_SOME_LIGHT_REG2(val, addr)                                                       \
+    do {                                                                                       \
+        f32 xfData = val;                                                                      \
+        GX_WRITE_F32 (val);                                                                    \
+        VERIF_MTXLIGHT (addr, *(u32*)&xfData);                                                 \
+    }                                                                                          \
     while (0)
 #else
 #define WRITE_SOME_LIGHT_REG1(val, addr) GX_WRITE_U32 (val)
@@ -453,7 +452,7 @@ GXLoadLightObjIndx (u32 lt_obj_indx, GXLightID light)
     }
 
     addr = idx * 0x10 + 0x600;
-    reg = 0;
+    reg  = 0;
     SET_REG_FIELD (0x21C, reg, 12, 0, addr);
     SET_REG_FIELD (0x21D, reg, 4, 12, 0xF);
     SET_REG_FIELD (0x21E, reg, 16, 16, lt_obj_indx);
@@ -522,7 +521,7 @@ GXSetChanAmbColor (GXChannelID chan, GXColor amb_color)
     }
 
     GX_WRITE_XF_REG (colIdx + 10, reg);
-    __GXData->bpSent = 0;
+    __GXData->bpSent           = 0;
     __GXData->ambColor[colIdx] = reg;
 }
 
@@ -583,7 +582,7 @@ GXSetChanMatColor (GXChannelID chan, GXColor mat_color)
     }
 
     GX_WRITE_XF_REG (colIdx + 12, reg);
-    __GXData->bpSent = 0;
+    __GXData->bpSent           = 0;
     __GXData->matColor[colIdx] = reg;
 }
 

@@ -2,6 +2,10 @@
 #include <dolphin/pad.h>
 #include <dolphin/si.h>
 
+#include <stddef.h>
+#include <stdlib.h>
+#include <string.h>
+
 #include "../os/OSPrivate.h"
 #include "pad_private.h"
 
@@ -19,7 +23,7 @@ GetWirelessID (s32 chan)
     u16       id;
 
     sram = __OSLockSramEx();
-    id = sram->wirelessPadID[chan];
+    id   = sram->wirelessPadID[chan];
     __OSUnlockSramEx (0);
     return id;
 }
@@ -44,22 +48,22 @@ DoReset ()
     int rc;
     u32 chanBit;
 
-    rc = 1;
+    rc            = 1;
     ResettingChan = __cntlzw (ResettingBits);
     if ((ResettingChan >= 0) && (ResettingChan < 4))
     {
         memset (&Origin[ResettingChan], 0, 0xC);
-        Type[ResettingChan] = 0;
-        PADType[ResettingChan] = 0;
-        rc = SITransfer (ResettingChan,
+        Type[ResettingChan]     = 0;
+        PADType[ResettingChan]  = 0;
+        rc                      = SITransfer (ResettingChan,
                          &cmdTypeAndStatus,
                          1,
                          &Type[ResettingChan],
                          3,
                          PADResetCallback,
                          0);
-        chanBit = (0x80000000 >> ResettingChan);
-        ResettingBits &= ~chanBit;
+        chanBit                 = (0x80000000 >> ResettingChan);
+        ResettingBits          &= ~chanBit;
         if (rc == 0)
         {
             ResettingBits = 0;
@@ -76,7 +80,7 @@ PADEnable (s32 chan)
     u32 chanBit;
     u32 data[2];
 
-    chanBit = 0x80000000 >> chan;
+    chanBit      = 0x80000000 >> chan;
     EnabledBits |= chanBit;
     SIGetResponse (chan, &data);
     ASSERTLINE (0x1C4, !(Type[chan] & RES_WIRELESS_LITE));
@@ -93,15 +97,16 @@ ProbeWireless (s32 chan)
     u32 data[2];
     u32 type;
     u8  unused[4];
+#pragma unused(unused)
 
-    chanBit = 0x80000000 >> chan;
+    chanBit      = 0x80000000 >> chan;
     EnabledBits |= chanBit;
     ProbingBits |= chanBit;
     SIGetResponse (chan, &data);
     type = Type[chan];
     if (!(type & 0x02000000))
     {
-        cmd = (chan << 0xE) | 0x4D0000 | (__OSWirelessPadFixMode & 0x3FFF);
+        cmd = (u32)((chan << 0xE) | 0x4D0000 | (__OSWirelessPadFixMode & 0x3FFF));
     }
     else if (((type & 0xC0000) + 0xFFFC0000) == 0)
     {
@@ -118,7 +123,9 @@ ProbeWireless (s32 chan)
 static void
 PADProbeCallback (s32 chan, u32 error, OSContext* context)
 {
+#pragma unused(context)
     u32 type;
+
     ASSERTLINE (0x1F5, 0 <= ResettingChan && ResettingChan < SI_MAX_CHAN);
     ASSERTLINE (0x1F6, chan == ResettingChan);
     if (!(error &
@@ -147,10 +154,10 @@ PADDisable (s32 chan)
     enabled = OSDisableInterrupts();
     chanBit = 0x80000000 >> chan;
     SIDisablePolling (chanBit);
-    EnabledBits &= ~chanBit;
-    WaitingBits &= ~chanBit;
+    EnabledBits  &= ~chanBit;
+    WaitingBits  &= ~chanBit;
     CheckingBits &= ~chanBit;
-    ProbingBits &= ~chanBit;
+    ProbingBits  &= ~chanBit;
     SetWirelessID (chan, 0);
     OSRestoreInterrupts (enabled);
 }
@@ -161,28 +168,28 @@ UpdateOrigin (s32 chan)
     PADStatus* origin;
     u32        chanBit = 0x80000000 >> chan;
 
-    origin = &Origin[chan];
+    origin             = &Origin[chan];
     switch (AnalogMode & 0x00000700u)
     {
         case 0x00000000u:
         case 0x00000500u:
         case 0x00000600u:
         case 0x00000700u:
-            origin->triggerLeft &= ~15;
+            origin->triggerLeft  &= ~15;
             origin->triggerRight &= ~15;
-            origin->analogA &= ~15;
-            origin->analogB &= ~15;
+            origin->analogA      &= ~15;
+            origin->analogB      &= ~15;
             break;
         case 0x00000100u:
             origin->substickX &= ~15;
             origin->substickY &= ~15;
-            origin->analogA &= ~15;
-            origin->analogB &= ~15;
+            origin->analogA   &= ~15;
+            origin->analogB   &= ~15;
             break;
         case 0x00000200u:
-            origin->substickX &= ~15;
-            origin->substickY &= ~15;
-            origin->triggerLeft &= ~15;
+            origin->substickX    &= ~15;
+            origin->substickY    &= ~15;
+            origin->triggerLeft  &= ~15;
             origin->triggerRight &= ~15;
             break;
         case 0x00000300u:
@@ -191,8 +198,8 @@ UpdateOrigin (s32 chan)
             break;
     }
 
-    origin->stickX -= 128;
-    origin->stickY -= 128;
+    origin->stickX    -= 128;
+    origin->stickY    -= 128;
     origin->substickX -= 128;
     origin->substickY -= 128;
 
@@ -208,6 +215,9 @@ UpdateOrigin (s32 chan)
 static void
 PADOriginCallback (s32 chan, u32 error, OSContext* context)
 {
+#pragma unused(chan)
+#pragma unused(context)
+
     ASSERTLINE (0x267, 0 <= ResettingChan && ResettingChan < SI_MAX_CHAN);
     ASSERTLINE (0x268, chan == ResettingChan);
     if (!(error &
@@ -222,6 +232,8 @@ PADOriginCallback (s32 chan, u32 error, OSContext* context)
 static void
 PADOriginUpdateCallback (s32 chan, u32 error, OSContext* context)
 {
+#pragma unused(context)
+
     ASSERTLINE (0x285, 0 <= chan && chan < SI_MAX_CHAN);
     if (!(EnabledBits & (PAD_CHAN0_BIT >> chan)))
     {
@@ -237,6 +249,9 @@ PADOriginUpdateCallback (s32 chan, u32 error, OSContext* context)
 static void
 PADFixCallback (s32 chan, u32 error, OSContext* context)
 {
+#pragma unused(chan)
+#pragma unused(context)
+
     u32 type;
     u32 id;
 
@@ -245,7 +260,7 @@ PADFixCallback (s32 chan, u32 error, OSContext* context)
     if (!(error & 0xF))
     {
         type = Type[ResettingChan];
-        id = (GetWirelessID (ResettingChan) << 8);
+        id   = (u32)(GetWirelessID (ResettingChan) << 8);
         if (!(type & 0x100000) || ((id & 0xCFFF00u) != (type & 0xCFFF00)))
         {
             DoReset();
@@ -274,11 +289,14 @@ PADFixCallback (s32 chan, u32 error, OSContext* context)
     DoReset();
 }
 
-u32 __PADFixBits;                                                     // size: 0x4, address: 0x24
+u32 __PADFixBits;                                               // size: 0x4, address: 0x24
 
 static void
 PADResetCallback (s32 chan, u32 error, OSContext* context)
 {
+#pragma unused(chan)
+#pragma unused(context)
+
     u32 type;
     u32 id;
     u32 chanBit;
@@ -293,12 +311,12 @@ PADResetCallback (s32 chan, u32 error, OSContext* context)
         Type[ResettingChan] = 0;
     }
 
-    PADType[ResettingChan] = type = Type[ResettingChan];
-    chanBit = 0x80000000 >> ResettingChan;
-    recalibrate = RecalibrateBits & chanBit;
-    RecalibrateBits &= ~chanBit;
-    fix = __PADFixBits & chanBit;
-    __PADFixBits &= ~chanBit;
+    PADType[ResettingChan] = type  = Type[ResettingChan];
+    chanBit                        = 0x80000000 >> ResettingChan;
+    recalibrate                    = RecalibrateBits & chanBit;
+    RecalibrateBits               &= ~chanBit;
+    fix                            = (int)(__PADFixBits & chanBit);
+    __PADFixBits                  &= ~chanBit;
     if (error || (((type & 0x18000000) + 0xF8000000) != 0))
     {
         SetWirelessID (ResettingChan, 0);
@@ -339,7 +357,7 @@ PADResetCallback (s32 chan, u32 error, OSContext* context)
                     0);
         return;
     }
-    id = (GetWirelessID (ResettingChan) << 8);
+    id = (u32)(GetWirelessID (ResettingChan) << 8);
     if ((fix != 0) && (id & 0x100000))
     {
         cmdFixDevice[ResettingChan] = id & 0xcfff00 | 0x4e100000;
@@ -358,9 +376,9 @@ PADResetCallback (s32 chan, u32 error, OSContext* context)
         {
             if (!(id & 0x100000))
             {
-                id = (type & 0xCFFF00);
+                id  = (type & 0xCFFF00);
                 id |= 0x100000;
-                SetWirelessID (ResettingChan, (u16)(id >> 8) & 0xFFFFFF);
+                SetWirelessID (ResettingChan, (u16)((u16)(id >> 8) & 0xFFFFFF));
             }
             cmdFixDevice[ResettingChan] = id | 0x4e000000;
             SITransfer (ResettingChan,
@@ -394,9 +412,9 @@ PADResetCallback (s32 chan, u32 error, OSContext* context)
     }
     if (type & 0x40000000)
     {
-        u32 id = (type & 0xCFFF00);
-        id |= 0x100000;
-        SetWirelessID (ResettingChan, (u16)(id >> 8) & 0xFFFFFF);
+        u32 id  = (type & 0xCFFF00);
+        id     |= 0x100000;
+        SetWirelessID (ResettingChan, (u16)((u16)(id >> 8) & 0xFFFFFF));
         cmdFixDevice[ResettingChan] = id | 0x4e000000;
         SITransfer (ResettingChan,
                     &cmdFixDevice[ResettingChan],
@@ -420,11 +438,11 @@ PADReset (u32 mask)
 
     rc = 0;
     ASSERTMSGLINE (0x392, !(mask & 0x0FFFFFFF), "PADReset(): invalid mask");
-    enabled = OSDisableInterrupts();
-    mask = mask & ~(CheckingBits | (ProbingBits | WaitingBits));
+    enabled        = OSDisableInterrupts();
+    mask           = mask & ~(CheckingBits | (ProbingBits | WaitingBits));
     ResettingBits |= mask;
-    EnabledBits &= ~mask;
-    WaitingBits &= ~mask;
+    EnabledBits   &= ~mask;
+    WaitingBits   &= ~mask;
     if (Spec == 4)
     {
         RecalibrateBits |= mask;
@@ -446,10 +464,10 @@ PADRecalibrate (u32 mask)
 
     ret = FALSE;
     ASSERTMSGLINE (0x3BD, !(mask & 0x0FFFFFFF), "PADReset(): invalid mask");
-    intrEnabled = OSDisableInterrupts();
-    mask &= ~(CheckingBits | (ProbingBits | WaitingBits));
-    ResettingBits |= mask;
-    EnabledBits &= ~mask;
+    intrEnabled      = OSDisableInterrupts();
+    mask            &= ~(CheckingBits | (ProbingBits | WaitingBits));
+    ResettingBits   |= mask;
+    EnabledBits     &= ~mask;
     RecalibrateBits |= mask;
     SIDisablePolling (ResettingBits);
     if ((s32)ResettingChan == 32)
@@ -460,7 +478,7 @@ PADRecalibrate (u32 mask)
     return ret;
 }
 
-u32 __PADSpec;                                                        // size: 0x4, address: 0x20
+u32 __PADSpec;                                                  // size: 0x4, address: 0x20
 
 BOOL
 PADInit ()
@@ -476,8 +494,8 @@ PADInit ()
 
         if (__PADFixBits == 0xFFFFFFFF)
         {
-            OSTime time = OSGetTime();
-            __OSWirelessPadFixMode = (u16)((((time) & 0xffff) +       //
+            OSTime time            = OSGetTime();
+            __OSWirelessPadFixMode = (u16)((((time) & 0xffff) + //
                                             ((time >> 16) & 0xffff) + //
                                             ((time >> 32) & 0xffff) + //
                                             ((time >> 48) & 0xffff)) &
@@ -487,7 +505,7 @@ PADInit ()
         for (chan = 0; chan < SI_MAX_CHAN; ++chan)
         {
             cmdProbeDevice[chan] =
-                (__OSWirelessPadFixMode & 0x3fff) << 8 | (0x4d000000 + (chan << 22));
+                (u32)(__OSWirelessPadFixMode & 0x3fff) << 8 | (0x4d000000 + (chan << 22));
         }
         Initialized = TRUE;
 
@@ -499,20 +517,22 @@ PADInit ()
 }
 
 static void
-PADReceiveCheckCallback (s32 chan, u32 error, OSContext* arg2)
+PADReceiveCheckCallback (s32 chan, u32 error, OSContext* context)
 {
     u32 type;
     u32 chanBit;
     u32 motor;
+#pragma unused(motor)
+#pragma unused(context)
 
-    type = Type[chan];
-    chanBit = 0x80000000 >> chan;
-    WaitingBits &= ~chanBit;
+    type          = Type[chan];
+    chanBit       = 0x80000000 >> chan;
+    WaitingBits  &= ~chanBit;
     CheckingBits &= ~chanBit;
     if (EnabledBits & chanBit)
     {
-        if (!(error & 0xF) && (type & 0x80000000) && (type & 0x02000000) && (type & 0x40000000) &&
-            !(type & 0x04000000))
+        if (!(error & 0xF) && (type & 0x80000000) && (type & 0x02000000) &&
+            (type & 0x40000000) && !(type & 0x04000000))
         {
             SITransfer (chan,
                         &cmdReadOrigin,
@@ -541,7 +561,7 @@ PADRead (struct PADStatus* status)
     motor = 0;
     for (chan = 0; chan < SI_MAX_CHAN; chan++, status++)
     {
-        chanBit = 0x80000000 >> chan;
+        chanBit   = 0x80000000 >> chan;
         chanShift = 8 * (SI_MAX_CHAN - 1 - chan);
 
         if ((ResettingBits & chanBit) || (ResettingChan == chan))
@@ -621,7 +641,7 @@ PADRead (struct PADStatus* status)
             continue;
         }
 
-        status->err = 0;
+        status->err     = 0;
 
         status->button &= 0xFFFFFF7F;
         continue;
@@ -708,7 +728,7 @@ __PADTestSamplingRate (u32 tvmode)
             xy = XYNTSC;
             for (msec = 0; msec <= 0xB; msec++)
             {
-                line = xy[msec].line;
+                line  = xy[msec].line;
                 count = xy[msec].count;
                 OSReport (
                     "%2d[msec]: count %3d, line %3d, last %3d, diff0 %2d.%03d, "
@@ -733,7 +753,7 @@ __PADTestSamplingRate (u32 tvmode)
             xy = XYPAL;
             for (msec = 0; msec <= 0xB; msec++)
             {
-                line = xy[msec].line;
+                line  = xy[msec].line;
                 count = xy[msec].count;
                 OSReport (
                     "%2d[msec]: count %3d, line %3d, last %3d, diff0 %2d.%03d, "
@@ -767,7 +787,7 @@ PADControlAllMotors (const u32* commandArray)
     u32  chanBit;
 
     enabled = OSDisableInterrupts();
-    commit = FALSE;
+    commit  = FALSE;
 
     for (chan = 0; chan < SI_MAX_CHAN; chan++, commandArray++)
     {
@@ -782,7 +802,8 @@ PADControlAllMotors (const u32* commandArray)
             {
                 command = PAD_MOTOR_STOP;
             }
-            SISetCommand (chan, (0x40 << 16) | AnalogMode | (command & (0x00000001 | 0x00000002)));
+            SISetCommand (chan,
+                          (0x40 << 16) | AnalogMode | (command & (0x00000001 | 0x00000002)));
             commit = TRUE;
         }
     }
@@ -847,20 +868,22 @@ PADGetSpec (void)
 static void
 SPEC0_MakeStatus (s32 chan, PADStatus* status, u32 data[2])
 {
-    status->button = 0;
-    status->button |= ((data[0] >> 16) & 0x0008) ? PAD_BUTTON_A : 0;
-    status->button |= ((data[0] >> 16) & 0x0020) ? PAD_BUTTON_B : 0;
-    status->button |= ((data[0] >> 16) & 0x0100) ? PAD_BUTTON_X : 0;
-    status->button |= ((data[0] >> 16) & 0x0001) ? PAD_BUTTON_Y : 0;
-    status->button |= ((data[0] >> 16) & 0x0010) ? PAD_BUTTON_START : 0;
-    status->stickX = (s8)(data[1] >> 16);
-    status->stickY = (s8)(data[1] >> 24);
-    status->substickX = (s8)(data[1]);
-    status->substickY = (s8)(data[1] >> 8);
-    status->triggerLeft = (u8)(data[0] >> 8);
-    status->triggerRight = (u8)data[0];
-    status->analogA = 0;
-    status->analogB = 0;
+#pragma unused(chan)
+
+    status->button        = 0;
+    status->button       |= ((data[0] >> 16) & 0x0008) ? PAD_BUTTON_A : 0;
+    status->button       |= ((data[0] >> 16) & 0x0020) ? PAD_BUTTON_B : 0;
+    status->button       |= ((data[0] >> 16) & 0x0100) ? PAD_BUTTON_X : 0;
+    status->button       |= ((data[0] >> 16) & 0x0001) ? PAD_BUTTON_Y : 0;
+    status->button       |= ((data[0] >> 16) & 0x0010) ? PAD_BUTTON_START : 0;
+    status->stickX        = (s8)(data[1] >> 16);
+    status->stickY        = (s8)(data[1] >> 24);
+    status->substickX     = (s8)(data[1]);
+    status->substickY     = (s8)(data[1] >> 8);
+    status->triggerLeft   = (u8)(data[0] >> 8);
+    status->triggerRight  = (u8)data[0];
+    status->analogA       = 0;
+    status->analogB       = 0;
     if (170 <= status->triggerLeft)
     {
         status->button |= PAD_TRIGGER_L;
@@ -869,8 +892,8 @@ SPEC0_MakeStatus (s32 chan, PADStatus* status, u32 data[2])
     {
         status->button |= PAD_TRIGGER_R;
     }
-    status->stickX -= 128;
-    status->stickY -= 128;
+    status->stickX    -= 128;
+    status->stickY    -= 128;
     status->substickX -= 128;
     status->substickY -= 128;
 }
@@ -878,23 +901,25 @@ SPEC0_MakeStatus (s32 chan, PADStatus* status, u32 data[2])
 static void
 SPEC1_MakeStatus (s32 chan, PADStatus* status, u32 data[2])
 {
-    status->button = 0;
-    status->button |= ((data[0] >> 16) & 0x0080) ? PAD_BUTTON_A : 0;
-    status->button |= ((data[0] >> 16) & 0x0100) ? PAD_BUTTON_B : 0;
-    status->button |= ((data[0] >> 16) & 0x0020) ? PAD_BUTTON_X : 0;
-    status->button |= ((data[0] >> 16) & 0x0010) ? PAD_BUTTON_Y : 0;
-    status->button |= ((data[0] >> 16) & 0x0200) ? PAD_BUTTON_START : 0;
+#pragma unused(chan)
 
-    status->stickX = (s8)(data[1] >> 16);
-    status->stickY = (s8)(data[1] >> 24);
-    status->substickX = (s8)(data[1]);
-    status->substickY = (s8)(data[1] >> 8);
+    status->button        = 0;
+    status->button       |= ((data[0] >> 16) & 0x0080) ? PAD_BUTTON_A : 0;
+    status->button       |= ((data[0] >> 16) & 0x0100) ? PAD_BUTTON_B : 0;
+    status->button       |= ((data[0] >> 16) & 0x0020) ? PAD_BUTTON_X : 0;
+    status->button       |= ((data[0] >> 16) & 0x0010) ? PAD_BUTTON_Y : 0;
+    status->button       |= ((data[0] >> 16) & 0x0200) ? PAD_BUTTON_START : 0;
 
-    status->triggerLeft = (u8)(data[0] >> 8);
-    status->triggerRight = (u8)data[0];
+    status->stickX        = (s8)(data[1] >> 16);
+    status->stickY        = (s8)(data[1] >> 24);
+    status->substickX     = (s8)(data[1]);
+    status->substickY     = (s8)(data[1] >> 8);
 
-    status->analogA = 0;
-    status->analogB = 0;
+    status->triggerLeft   = (u8)(data[0] >> 8);
+    status->triggerRight  = (u8)data[0];
+
+    status->analogA       = 0;
+    status->analogB       = 0;
 
     if (170 <= status->triggerLeft)
     {
@@ -905,8 +930,8 @@ SPEC1_MakeStatus (s32 chan, PADStatus* status, u32 data[2])
         status->button |= PAD_TRIGGER_R;
     }
 
-    status->stickX -= 128;
-    status->stickY -= 128;
+    status->stickX    -= 128;
+    status->stickY    -= 128;
     status->substickX -= 128;
     status->substickY -= 128;
 }
@@ -958,59 +983,59 @@ SPEC2_MakeStatus (s32 chan, PADStatus* status, u32 data[2])
         case 0x00000500:
         case 0x00000600:
         case 0x00000700:
-            status->substickX = (s8)(data[1] >> 24);
-            status->substickY = (s8)(data[1] >> 16);
-            status->triggerLeft = (u8)(((data[1] >> 12) & 0x0f) << 4);
+            status->substickX    = (s8)(data[1] >> 24);
+            status->substickY    = (s8)(data[1] >> 16);
+            status->triggerLeft  = (u8)(((data[1] >> 12) & 0x0f) << 4);
             status->triggerRight = (u8)(((data[1] >> 8) & 0x0f) << 4);
-            status->analogA = (u8)(((data[1] >> 4) & 0x0f) << 4);
-            status->analogB = (u8)(((data[1] >> 0) & 0x0f) << 4);
+            status->analogA      = (u8)(((data[1] >> 4) & 0x0f) << 4);
+            status->analogB      = (u8)(((data[1] >> 0) & 0x0f) << 4);
             break;
         case 0x00000100:
-            status->substickX = (s8)(((data[1] >> 28) & 0x0f) << 4);
-            status->substickY = (s8)(((data[1] >> 24) & 0x0f) << 4);
-            status->triggerLeft = (u8)(data[1] >> 16);
+            status->substickX    = (s8)(((data[1] >> 28) & 0x0f) << 4);
+            status->substickY    = (s8)(((data[1] >> 24) & 0x0f) << 4);
+            status->triggerLeft  = (u8)(data[1] >> 16);
             status->triggerRight = (u8)(data[1] >> 8);
-            status->analogA = (u8)(((data[1] >> 4) & 0x0f) << 4);
-            status->analogB = (u8)(((data[1] >> 0) & 0x0f) << 4);
+            status->analogA      = (u8)(((data[1] >> 4) & 0x0f) << 4);
+            status->analogB      = (u8)(((data[1] >> 0) & 0x0f) << 4);
             break;
         case 0x00000200:
-            status->substickX = (s8)(((data[1] >> 28) & 0x0f) << 4);
-            status->substickY = (s8)(((data[1] >> 24) & 0x0f) << 4);
-            status->triggerLeft = (u8)(((data[1] >> 20) & 0x0f) << 4);
+            status->substickX    = (s8)(((data[1] >> 28) & 0x0f) << 4);
+            status->substickY    = (s8)(((data[1] >> 24) & 0x0f) << 4);
+            status->triggerLeft  = (u8)(((data[1] >> 20) & 0x0f) << 4);
             status->triggerRight = (u8)(((data[1] >> 16) & 0x0f) << 4);
-            status->analogA = (u8)(data[1] >> 8);
-            status->analogB = (u8)(data[1] >> 0);
+            status->analogA      = (u8)(data[1] >> 8);
+            status->analogB      = (u8)(data[1] >> 0);
             break;
         case 0x00000300:
-            status->substickX = (s8)(data[1] >> 24);
-            status->substickY = (s8)(data[1] >> 16);
-            status->triggerLeft = (u8)(data[1] >> 8);
+            status->substickX    = (s8)(data[1] >> 24);
+            status->substickY    = (s8)(data[1] >> 16);
+            status->triggerLeft  = (u8)(data[1] >> 8);
             status->triggerRight = (u8)(data[1] >> 0);
-            status->analogA = 0;
-            status->analogB = 0;
+            status->analogA      = 0;
+            status->analogB      = 0;
             break;
         case 0x00000400:
-            status->substickX = (s8)(data[1] >> 24);
-            status->substickY = (s8)(data[1] >> 16);
-            status->triggerLeft = 0;
+            status->substickX    = (s8)(data[1] >> 24);
+            status->substickY    = (s8)(data[1] >> 16);
+            status->triggerLeft  = 0;
             status->triggerRight = 0;
-            status->analogA = (u8)(data[1] >> 8);
-            status->analogB = (u8)(data[1] >> 0);
+            status->analogA      = (u8)(data[1] >> 8);
+            status->analogB      = (u8)(data[1] >> 0);
             break;
     }
 
-    status->stickX -= 128;
-    status->stickY -= 128;
-    status->substickX -= 128;
-    status->substickY -= 128;
+    status->stickX       -= 128;
+    status->stickY       -= 128;
+    status->substickX    -= 128;
+    status->substickY    -= 128;
 
-    origin = &Origin[chan];
-    status->stickX = ClampS8 (status->stickX, origin->stickX);
-    status->stickY = ClampS8 (status->stickY, origin->stickY);
-    status->substickX = ClampS8 (status->substickX, origin->substickX);
-    status->substickY = ClampS8 (status->substickY, origin->substickY);
-    status->triggerLeft = ClampU8 (status->triggerLeft, origin->triggerLeft);
-    status->triggerRight = ClampU8 (status->triggerRight, origin->triggerRight);
+    origin                = &Origin[chan];
+    status->stickX        = ClampS8 (status->stickX, origin->stickX);
+    status->stickY        = ClampS8 (status->stickY, origin->stickY);
+    status->substickX     = ClampS8 (status->substickX, origin->substickX);
+    status->substickY     = ClampS8 (status->substickY, origin->substickY);
+    status->triggerLeft   = ClampU8 (status->triggerLeft, origin->triggerLeft);
+    status->triggerRight  = ClampU8 (status->triggerRight, origin->triggerRight);
 }
 
 int
@@ -1018,7 +1043,7 @@ PADGetType (s32 chan, u32* type)
 {
     u32 chanBit;
 
-    *type = Type[chan];
+    *type   = Type[chan];
     chanBit = 0x80000000 >> chan;
     if (ResettingBits & chanBit || ResettingChan == chan || !(EnabledBits & chanBit))
     {
@@ -1041,12 +1066,12 @@ PADSetAnalogMode (u32 mode)
 
     ASSERTMSGLINE (0x6C9, (mode < 8), "PADSetAnalogMode(): invalid mode");
 
-    enabled = OSDisableInterrupts();
-    AnalogMode = mode << 8;
-    mask = EnabledBits & ~ProbingBits;
+    enabled       = OSDisableInterrupts();
+    AnalogMode    = mode << 8;
+    mask          = EnabledBits & ~ProbingBits;
 
-    EnabledBits &= ~mask;
-    WaitingBits &= ~mask;
+    EnabledBits  &= ~mask;
+    WaitingBits  &= ~mask;
     CheckingBits &= ~mask;
 
     SIDisablePolling (mask);

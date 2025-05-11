@@ -6,5 +6,12 @@
 
 #define constructor explicit
 #define destructor  virtual
+#define Nil         0
+
+#undef FALSE
+#undef TRUE
+#define BOOL  bool
+#define FALSE false
+#define TRUE  true
 
 #endif

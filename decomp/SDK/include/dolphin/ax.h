@@ -1,6 +1,8 @@
 #ifndef _DOLPHIN_AX_H_
 #define _DOLPHIN_AX_H_
 
+#include <types.h>
+
 typedef struct _AXPBMIX
 {
     u16 vL;                    ///< 0x00
