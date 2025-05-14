@@ -205,7 +205,7 @@ config.asflags = [
     "-i decomp/Project/lib",
     "-i decomp/Project/sources/*/include",
     "-i decomp/JSystem/**/include",
-    "-i decomp/SDK/include",
+    "-i decomp/DolphinSDK1.0/include",
     "-i decomp/CodeWarrior/**/Include",
     "-i decomp/CodeWarrior/**/INCLUDE",
     "-i decomp/CodeWarrior/**/Inc",
@@ -287,7 +287,7 @@ cflags_jaudio = [
 # JSystem library flags
 cflags_jsys = [
     *cflags_base,
-    "-i decomp/SDK/include",
+    "-i decomp/DolphinSDK1.0/include",
     "-i decomp/JSystem/**/include",
     "-O4,p",
     "-inline auto",
@@ -299,7 +299,7 @@ cflags_jsys = [
 # OdemuExi2 library flags
 cflags_odemu = [
     *cflags_base,
-    "-i decomp/SDK/include",
+    "-i decomp/DolphinSDK1.0/include",
 
 ]
 # Metrowerks library flags
@@ -326,7 +326,7 @@ cflags_cw_trk = [
 # Game flags
 cflags_game = [
     *cflags_base,
-    "-i decomp/SDK/include",
+    "-i decomp/DolphinSDK1.0/include",
     "-i decomp/Project/sources/*/include",
     "-i decomp/JSystem/**/include",
     "-O4,p",
@@ -347,7 +347,7 @@ cflags_sdk = [
     "-DBUILD_DATE=\"\\\"Jul 19 2001\\\"\"",
     "-DBUILD_TIME=\"\\\"05:43:42\\\"\"",
     "-DJAUDIO_OLD",
-    "-i decomp/SDK/include",
+    "-i decomp/DolphinSDK1.0/include",
     "-i decomp/CodeWarrior/PowerPC_EABI_Support/MetroTRK",
     "-O4,p",
     "-inline auto",
@@ -372,7 +372,7 @@ config.linker_version = "GC/1.2.5"
 # Helper function for SDK libraries
 def SDKLib(lib_name: str, files: List[Tuple[bool, str]], conf: Dict[str,str]={"":""}) -> Dict[str, Any]:
     objects = []
-    dirname = f"SDK/src/{lib_name}"
+    dirname = f"DolphinSDK1.0/src/{lib_name}"
     for matching, filename in files:
         filepath = f"{dirname}/{filename}"
         objects.append(Object(matching, filepath))
@@ -696,9 +696,9 @@ config.libs = [
 # Optional extra categories for progress tracking
 # Adjust as desired for your project
 config.progress_categories = [
-    ProgressCategory("game", "Game App"),
-    ProgressCategory("jsys", "JSystem"),
-    ProgressCategory("sdk", "Dolphin SDK (2001)"),
+    ProgressCategory("game", "Main Game"),
+    ProgressCategory("jsys", "JSystem Framework"),
+    ProgressCategory("sdk", "Dolphin SDK"),
     ProgressCategory("cw", "CodeWarrior Runtime"),
 ]
 config.progress_each_module = args.verbose
