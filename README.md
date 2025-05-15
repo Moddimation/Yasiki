@@ -2,49 +2,61 @@ Luigi's Mansion
 [![Build Status]][actions] [![Code Progress]][progress] [![Functions]][progress] [![Discord Badge]][discord] [![Wiki]][wikipage]
 =============
 
-[Build Status]: https://github.com/Moddimation/Yasiki/actions/workflows/build.yml/badge.svg
-[actions]: https://github.com/Moddimation/Yasiki/actions/workflows/build.yml
-[Code Progress]: https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=code&label=Code
-[progress]: https://decomp.dev/Moddimation/Yasiki
-[Discord Badge]: https://img.shields.io/discord/727908905392275526?color=%237289DA&logo=discord&logoColor=%23FFFFFF
-[discord]: https://discord.gg/hKx3FJJgrV
-[Wiki]: https://img.shields.io/badge/Wiki-page-blue
-[wikipage]: https://moddimation.github.io/Yasiki
-[Functions]: https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=functions&label=Functions
+Yasiki is a work-in-progress decompilation project of **Luigi's Mansion**[^1] for the **Nintendo GameCube**[^2].  <br><br>
+The focus is currently laid on the Japanese release (GLMJ01), but configurations exist for all available versions.  <br>
+The original creator first focused on the North American release (GLME01), and it's symbols.txt was copied to a backup file.
 
-This repository contains a work-in-progress decompilation work of [*Luigi's Mansion*](https://wikipedia.org/wiki/Luigi%27s_Mansion) for the [Nintendo GameCube system](https://en.wikipedia.org/wiki/GameCube).
+### Note:  <br>
+**this will not produce a playable game**, if you do not supply it beforehand.  <br>
 
-Supported versions (active):
-- `GLMJ01`: Japan (Rev 0)
+### Warning  <br>
+This game does *no*t ship with *symbols*, so information is scraped together from *RTTI* and connected games.  <br>
+Not as simple as most projects, but possible.
 
-Supported versions (to be worked on):
-- `GLME01`: USA (Rev 0)
-- `GLME01_1`: USA Demo (Oct 2001)
-- `GLMP01`: Europe (Rev 0)
-- `GLMP01_1`: Europe (Rev 1)
-- `GLMP01_2`: Europe (Mar 2002)
+## Index
+- [Available versions](#available-versions)
+- [About this project](#about-this-project)
+  - [Progress state](#progress-state)
+  - [Folder structure](#folder-structure)
+  - [Documents](#documents)
+  - [Misc](#misc)
+- [Contributing](#contributing)
+- [Setting up build](#setting-up-build)
+- [Building](#building)
+- [Diffing](#diffing)
+- [Setting up Ghidra](#setting-up-ghidra)
+- [Detailed progress](#detailed-progress)
+- [Credits](#credits)
 
-> [!IMPORTANT]
-> Reminder: **this will not produce a playable game.** 
-> This project will not allow you to play the game if you don't provide your own copy.
 
-> [!WARNING]
-> This game does *no*t ship with *symbols*, so information is scraped together with *RTTI* and *LM for 3DS* (has a few folder /file names).
-> 
-> Not recommended for beginners, but noone shall remove your right to advance.
 
-Information
-===========
-I heavily restructured the source layout of the original repo from [Sage-of-Mirrors](https://github.com/Sage-of-Mirrors/zmansion). This was not forked directly from it, but from [CoNesTra](https://github.com/CoNesTra/zmansion), as he put in effort to add Luigi's Mansion 3DS information to the repo and updated the [DTK](https://github.com/encounter/decomp-toolkit) tools.
-I did reset the splits and the symbol list, so the % were brought back to 0.
-### Current State of Progress
-I was trying to fill out the symbols in the Ghidra repository (read further to learn how to connect to the server),
-but decided to start with matching libraries instead, as labelling the symbols sometimes requires context and struct data etc.
-### Code Structure
-The code categories are put inside of the 'decomp' folder in root, as follows:  
+## Available versions
+| Config ID | Region | Variant | Active? | Release Date |  Build Date  | SDK Rev. |  SDK Build   | Apploader Build |
+|-----------|--------|---------|----------|--------------|--------------|----------|--------------|------------------|
+| GLMJ01    | Japan  | Release |       Yes| Sep. 14 2001 | Aug. 28 2001 |    37    | Jul. 19 2001 | Apr. 04 2001 |
+| GLME01    |  USA   | Release |   [No]   | Nov. 18 2001 | Sep. 24 2001 |    37    | Jul. 19 2001 | Aug. 9 2001 |
+| GLME01_1  |  USA   |  Demo   |    No    | Oct.    2001 | Sep. 28 2001 |    45    | Sep. 08 2001 | Sep. 08 2001 |
+| GLMP01    | Europe |  Demo   |    No    | Mar.    2002 | Jan. 21 2002 |    49    | Dec. 17 2001 | Nov. 30 2001 |
+| GLMP01_1  | Europe | Release |    No    | May   3 2002 | Dec. 17 2001 |    49    | Dec. 17 2001 | Nov. 30 2001 |
+| GLMP01_2  | Europe | Release |    No    | May  17 2002 | Dec. 17 2001 |    49    | Dec. 17 2001 | Nov. 30 2001 |
+
+
+## About this project
+This project bases on the Decomp-Toolkit template.[^3]
+
+- [Progress state](#progress-state)
+- [Folder structure](#folder-structure)
+- [Documents](#documents)
+- [Misc](#misc)
+
+### Progress state
+Rather early. I was trying to fill out the symbols in the Ghidra repository (read further to learn how to connect to the server),
+but decided to start with matching libraries instead, as the game code uses them, and it is better to go step for step rather than losing the sight of progress.
+### Folder structure
+The folders are split by categories inside of the 'decomp' folder in the project's root, as follows:  
  `/decomp/<category>/...`
  
-Sublibraries in a library rely on the modular scheme used for libraries and for the game, such as:  
+Most modules in a library rely on the modular scheme used originally, such as:
  `/decomp/JSystem/System/JKernel/ src/include`,  
  `/decomp/JSystem/System/JSupport/ src/include`,  
  `/decomp/JSystem/JAudio/JAInterface/ src/include`,  
@@ -54,25 +66,21 @@ Sublibraries in a library rely on the modular scheme used for libraries and for 
 and so on.
 
 My goal is to stay as original as possible, while still making it possible to work with for the decompiling efforts.
-### Configuration Structure
-I put every library in configure.py in a helper function according to its category, for a better interface.
 ### Documents
-I’ve also included some small private notes in `/docs/*.txt`, which may contain useful information (if needed).
+I’ve also included some small private notes in `/docs/game/*.txt`, which may contain useful information (if needed).
 ### Misc
-- You can put personal stuff in /private/, it is ignored with github.
+- You can put personal stuff in /private/, it is ignored by github.
 - I prefer communication through [the Discord](https://discord.gg/hKx3FJJgrV) in the #luigis-mansion channel, but you can open issues as needed.
 
-Contributing
-=======
+## Contributing
+
 You are welcome to contribute, even pointing out small mistakes/issues counts as contributing!  
 
 The guidelines for contributing have yet to be written, but that hopefully won't stop you.
 
-Dependencies
-============
+## Setting up build
 
-Windows:
---------
+### Windows:
 
 On Windows, it's **highly recommended** to use native tooling. WSL or msys2 are **not** required.  
 When running under WSL, [objdiff](#diffing) is unable to get filesystem notifications for automatic rebuilds.
@@ -82,8 +90,8 @@ When running under WSL, [objdiff](#diffing) is unable to get filesystem notifica
 - Download [ninja](https://github.com/ninja-build/ninja/releases) and add it to `%PATH%`.
   - Quick install via pip: `pip install ninja`
 
-macOS:
-------
+### macOS:
+
 - Install [ninja](https://github.com/ninja-build/ninja/wiki/Pre-built-Ninja-packages):
   ```
   brew install ninja
@@ -98,14 +106,14 @@ After OS upgrades, if macOS complains about `Wine Crossover.app` being unverifie
 sudo xattr -rd com.apple.quarantine '/Applications/Wine Crossover.app'
 ```
 
-Linux:
-------
+### Linux:
+
 - Install [ninja](https://github.com/ninja-build/ninja/wiki/Pre-built-Ninja-packages).
 - For non-x86(_64) platforms: Install wine from your package manager.
   - For x86(_64), [WiBo](https://github.com/decompals/WiBo), a minimal 32-bit Windows binary wrapper, will be automatically downloaded and used.
 
-Building
-========
+## Building
+
 
 - Clone the repository:
   ```
@@ -137,8 +145,7 @@ Building
   - `ninja apply` When finished decompiling a file, and marking it as Matching in configure.py, this updates the symbols.txt for correctness.
 
 
-Diffing
-=======
+## Diffing
 
 Once the initial build succeeds, an `objdiff.json` should exist in the project root. 
 
@@ -148,10 +155,9 @@ Under project settings, set `Project directory` to the root, aka the file contai
 
 Select an object from the left sidebar to begin diffing. Changes to the project will rebuild automatically: changes to source files, headers, `configure.py`, `splits.txt` or `symbols.txt`.
 
-![](docs/decomp/objdiff.png)
+![Screenshot of Objdiff](docs/decomp/objdiff.png)
 
-Setting up Ghidra
-=================
+## Setting up Ghidra
 
 Ghidra is a tool that automatically decompiles code. Although Ghidra's output is not accurate enough to be directly copy-pasted into this decompilation project, it can still be helpful for understanding functions and decompiling them faster. You are free to use other decompilation methods, such as IDA, m2c or manually, but ghidra was chosen as the preferred tool in the gamecube/wii decomp scene.
 
@@ -178,16 +184,44 @@ Now you have Ghidra set up and ready to use.
 
 For an introduction on how to use Ghidra, you can read [this section of the Twilight Princess decompilation's guide](https://zsrtp.link/contribute/decompiler-setup#using-ghidra).
 
-Progress in detail
-=======
-![ProjectCode](https://decomp.dev/projects/948728710.svg?mode=shield&version=GLMJ01&label=Project+Progress+-+Code&labelColor=%23005c12&color=%23575757&style=flatsquare&measure=matched_code_size) ![ProjectData](https://decomp.dev/projects/948728710.svg?mode=shield&version=GLMJ01&label=Data&labelColor=%232b2b2b&color=%23575757&style=flatsquare&measure=matched_data_size) ![ProjectFunc](https://decomp.dev/projects/948728710.svg?mode=shield&version=GLMJ01&label=Functions&labelColor=%232b2b2b&color=%23575757&style=flatsquare&measure=matched_functions) ![ProjectUnits](https://decomp.dev/projects/948728710.svg?mode=shield&version=GLMJ01&label=Units&labelColor=%232b2b2b&color=%23575757&style=flatsquare&measure=complete_units)  <br>
-![MainAppCode](https://decomp.dev/projects/948728710.svg?mode=shield&version=GLMJ01&category=game&label=Main+Game+-+Code&labelColor=%23003d1e&color=%23575757&style=flatsquare&measure=matched_code_size) ![MainAppData](https://decomp.dev/projects/948728710.svg?mode=shield&version=GLMJ01&category=game&label=Data&labelColor=%232b2b2b&color=%23575757&style=flatsquare&measure=matched_data_size) ![MainAppFunc](https://decomp.dev/projects/948728710.svg?mode=shield&version=GLMJ01&category=game&label=Functions&labelColor=%232b2b2b&color=%23575757&style=flatsquare&measure=matched_functions) ![MainAppUnit](https://decomp.dev/projects/948728710.svg?mode=shield&version=GLMJ01&category=game&label=Units&labelColor=%232b2b2b&color=%23575757&style=flatsquare&measure=complete_units)  <br>
-![JSysCode](https://decomp.dev/projects/948728710.svg?mode=shield&version=GLMJ01&category=jsys&label=JSystem+Framework+-+Code&labelColor=%23004d57&color=%23575757&style=flatsquare&measure=matched_code_size) ![JSysData](https://decomp.dev/projects/948728710.svg?mode=shield&version=GLMJ01&category=jsys&label=Data&labelColor=%232b2b2b&color=%23575757&style=flatsquare&measure=matched_data_size) ![JSysFunc](https://decomp.dev/projects/948728710.svg?mode=shield&version=GLMJ01&category=jsys&label=Functions&labelColor=%232b2b2b&color=%23575757&style=flatsquare&measure=matched_functions) ![JSysUnit](https://decomp.dev/projects/948728710.svg?mode=shield&version=GLMJ01&category=jsys&label=Units&labelColor=%232b2b2b&color=%23575757&style=flatsquare&measure=complete_units)  <br>
-![SDKCode](https://decomp.dev/projects/948728710.svg?mode=shield&version=GLMJ01&category=sdk&label=Dolphin+SDK+-+Code&labelColor=%23004b85&color=%23575757&style=flatsquare&measure=matched_code_size) ![SDKData](https://decomp.dev/projects/948728710.svg?mode=shield&version=GLMJ01&category=sdk&label=Data&labelColor=%232b2b2b&color=%23575757&style=flatsquare&measure=matched_data_size) ![SDKFunc](https://decomp.dev/projects/948728710.svg?mode=shield&version=GLMJ01&category=sdk&label=Functions&labelColor=%232b2b2b&color=%23575757&style=flatsquare&measure=matched_functions) ![SDKUnit](https://decomp.dev/projects/948728710.svg?mode=shield&version=GLMJ01&category=sdk&label=Units&labelColor=%232b2b2b&color=%23575757&style=flatsquare&measure=complete_units)  <br>
-![CWCode](https://decomp.dev/projects/948728710.svg?mode=shield&version=GLMJ01&category=cw&label=CodeWarrior+Runtime+-+Code&labelColor=%23132fa0&color=%23575757&style=flatsquare&measure=matched_code_size) ![CWDATA](https://decomp.dev/projects/948728710.svg?mode=shield&version=GLMJ01&category=cw&label=Data&labelColor=%232b2b2b&color=%23575757&style=flatsquare&measure=matched_data_size) ![CWFunc](https://decomp.dev/projects/948728710.svg?mode=shield&version=GLMJ01&category=cw&label=Functions&labelColor=%232b2b2b&color=%23575757&style=flatsquare&measure=matched_functions) ![CWUnit](https://decomp.dev/projects/948728710.svg?mode=shield&version=GLMJ01&category=sdk&label=Units&labelColor=%232b2b2b&color=%23575757&style=flatsquare&measure=complete_units)  <br>
+## Timeline
 
-Credits
-=======
+### Game
+<ul>
+  <li><span style="display:inline-block; width: 110px">Aug. 24 2000</span> Presented at SpaceWorld 2000 simply as a tech-demo to show the power of the gamecube</li>
+  <!--<li><span style="display:inline-block; width: 110px">???. ?? 2000</span> Nintendo decides to shape a full game Project out of that demo.</li>-->
+  <li><span style="display:inline-block; width: 110px">Aug. 24 2001</span> Presented at SpaceWorld 2001 as an actual game title</li>
+  <li><span style="display:inline-block; width: 110px">2001 - 2002</span> Various game releases on gamecube</li>
+  <li><span style="display:inline-block; width: 110px">Sep. 13 2018</span> 3DS port announced</li>
+  <li><span style="display:inline-block; width: 110px">Oct. 19 2018</span> 3DS port released</li>
+</ul>
+
+### Project
+<ul>
+  <li><span style="display:inline-block; width: 110px">Sep. 9 2022</span> luigis-mansion channel created in discord</li>
+  <li><span style="display:inline-block; width: 110px"><b>Dec. 15 2022</b></span> Sage-of-Mirrors creates <a href="https://github.com/Sage-of-Mirrors/zmansion">zmansion repo on github</a></li>
+  <li><span style="display:inline-block; width: 110px">Dec. 18 2023</span> Sage-of-Mirrors last activity in #luigis-mansion channel</li>
+  <li><span style="display:inline-block; width: 110px"><b>Dec. 12 2024</b></span> CoNesTra forks <a href="https://github.com/CoNesTra/zmansion">Sage-of-Mirrors/zmansion</a> and updates toolchain</li>
+  <li><span style="display:inline-block; width: 110px"><b>Mar. 20 2024</b></span> Moddimation forks <a href="https://github.com/Moddimation/zmansion">CoNesTra/zmansion</a> </li>
+  <li><span style="display:inline-block; width: 110px">Apr. 9 2025</span> #luigis-mansion channel is revived</li>
+  <li><span style="display:inline-block; width: 110px">Apr. 23 2025</span> project is back on decomp.dev</li>
+</ul>
+
+## Detailed progress
+
+Project Yasiki  <br>
+![ProjectCode](https://decomp.dev/projects/948728710.svg?mode=shield&version=GLMJ01&label=Code&labelColor=%23005c12&color=%23575757&style=flatsquare&measure=matched_code_size) ![ProjectData](https://decomp.dev/projects/948728710.svg?mode=shield&version=GLMJ01&label=Data&labelColor=%232b2b2b&color=%23575757&style=flatsquare&measure=matched_data_size) ![ProjectFunc](https://decomp.dev/projects/948728710.svg?mode=shield&version=GLMJ01&label=Functions&labelColor=%232b2b2b&color=%23575757&style=flatsquare&measure=matched_functions) ![ProjectUnits](https://decomp.dev/projects/948728710.svg?mode=shield&version=GLMJ01&label=Units&labelColor=%232b2b2b&color=%23575757&style=flatsquare&measure=complete_units)  <br>
+Main App  <br>
+![MainAppCode](https://decomp.dev/projects/948728710.svg?mode=shield&version=GLMJ01&category=game&label=Code&labelColor=%23003d1e&color=%23575757&style=flatsquare&measure=matched_code_size) ![MainAppData](https://decomp.dev/projects/948728710.svg?mode=shield&version=GLMJ01&category=game&label=Data&labelColor=%232b2b2b&color=%23575757&style=flatsquare&measure=matched_data_size) ![MainAppFunc](https://decomp.dev/projects/948728710.svg?mode=shield&version=GLMJ01&category=game&label=Functions&labelColor=%232b2b2b&color=%23575757&style=flatsquare&measure=matched_functions) ![MainAppUnit](https://decomp.dev/projects/948728710.svg?mode=shield&version=GLMJ01&category=game&label=Units&labelColor=%232b2b2b&color=%23575757&style=flatsquare&measure=complete_units)  <br>
+JSystem Framework  <br>
+![JSysCode](https://decomp.dev/projects/948728710.svg?mode=shield&version=GLMJ01&category=jsys&label=Code&labelColor=%23004d57&color=%23575757&style=flatsquare&measure=matched_code_size) ![JSysData](https://decomp.dev/projects/948728710.svg?mode=shield&version=GLMJ01&category=jsys&label=Data&labelColor=%232b2b2b&color=%23575757&style=flatsquare&measure=matched_data_size) ![JSysFunc](https://decomp.dev/projects/948728710.svg?mode=shield&version=GLMJ01&category=jsys&label=Functions&labelColor=%232b2b2b&color=%23575757&style=flatsquare&measure=matched_functions) ![JSysUnit](https://decomp.dev/projects/948728710.svg?mode=shield&version=GLMJ01&category=jsys&label=Units&labelColor=%232b2b2b&color=%23575757&style=flatsquare&measure=complete_units)  <br>
+Dolphin SDK  <br>
+![SDKCode](https://decomp.dev/projects/948728710.svg?mode=shield&version=GLMJ01&category=sdk&label=Code&labelColor=%23004b85&color=%23575757&style=flatsquare&measure=matched_code_size) ![SDKData](https://decomp.dev/projects/948728710.svg?mode=shield&version=GLMJ01&category=sdk&label=Data&labelColor=%232b2b2b&color=%23575757&style=flatsquare&measure=matched_data_size) ![SDKFunc](https://decomp.dev/projects/948728710.svg?mode=shield&version=GLMJ01&category=sdk&label=Functions&labelColor=%232b2b2b&color=%23575757&style=flatsquare&measure=matched_functions) ![SDKUnit](https://decomp.dev/projects/948728710.svg?mode=shield&version=GLMJ01&category=sdk&label=Units&labelColor=%232b2b2b&color=%23575757&style=flatsquare&measure=complete_units)  <br>
+CodeWarrior Runtime  <br>
+![CWCode](https://decomp.dev/projects/948728710.svg?mode=shield&version=GLMJ01&category=cw&label=Code&labelColor=%23132fa0&color=%23575757&style=flatsquare&measure=matched_code_size) ![CWDATA](https://decomp.dev/projects/948728710.svg?mode=shield&version=GLMJ01&category=cw&label=Data&labelColor=%232b2b2b&color=%23575757&style=flatsquare&measure=matched_data_size) ![CWFunc](https://decomp.dev/projects/948728710.svg?mode=shield&version=GLMJ01&category=cw&label=Functions&labelColor=%232b2b2b&color=%23575757&style=flatsquare&measure=matched_functions) ![CWUnit](https://decomp.dev/projects/948728710.svg?mode=shield&version=GLMJ01&category=sdk&label=Units&labelColor=%232b2b2b&color=%23575757&style=flatsquare&measure=complete_units)  <br>
+
+## Credits
+
 - Nintendo and it's developers for this great masterpiece
 - encounter and NWPlayer123 for dtk-template, the used build system.
 - Sage-of-Mirrors, EpochFlame and NWPlayer123 for past documentation of Luigi's Mansion.
@@ -197,3 +231,21 @@ Credits
 
  
 ~Moddimation
+
+
+
+[Build Status]: https://github.com/Moddimation/Yasiki/actions/workflows/build.yml/badge.svg
+[actions]: https://github.com/Moddimation/Yasiki/actions/workflows/build.yml
+[Code Progress]: https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=code&label=Code
+[progress]: https://decomp.dev/Moddimation/Yasiki
+[Discord Badge]: https://img.shields.io/discord/727908905392275526?color=%237289DA&logo=discord&logoColor=%23FFFFFF
+[discord]: https://discord.gg/hKx3FJJgrV
+[Wiki]: https://img.shields.io/badge/Wiki-page-blue
+[wikipage]: https://moddimation.github.io/Yasiki
+[Functions]: https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=functions&label=Functions
+
+[^1]: https://wikipedia.org/wiki/Luigi%27s_Mansion
+[^2]: https://en.wikipedia.org/wiki/GameCube
+[^3]: https://github.com/encounter/dtk-template
+
+
