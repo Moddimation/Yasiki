@@ -41,7 +41,7 @@ jobs:
       run: |
         mkdir private
         mv YasikiWebsite private/yasiki
-        wget https://github.com/Moddimation/Yasiki/blob/main/README.md -O private/yasiki/docs/index.md
+        wget https://github.com/Moddimation/Yasiki/blob/main/README.md?raw=true -O private/yasiki/docs/index.md
         python -m mkdocs gh-deploy --config-file private/yasiki/mkdocs.yml --force --remote-branch website
       env:
         GG_TOKEN: ${{ secrets.GG_TOKEN }}
