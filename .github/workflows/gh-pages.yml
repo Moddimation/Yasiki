@@ -40,8 +40,8 @@ jobs:
     - name: Build and Deploy
       run: |
         mkdir priv
-        mv YasikiWebsite private/yasiki
-        wget https://github.com/Moddimation/Yasiki/blob/main/README.md?raw=true -O priv/yasiki/docs/index.md
+        mv YasikiWebsite priv/yasiki
+        wget https://github.com/Moddimation/Yasiki/blob/main/readme.md?raw=true -O priv/yasiki/docs/index.md
         python -m mkdocs gh-deploy --config-file priv/yasiki/mkdocs.yml --force --remote-branch website
       env:
         GG_TOKEN: ${{ secrets.GG_TOKEN }}
