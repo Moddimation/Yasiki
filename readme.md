@@ -1,8 +1,9 @@
-Luigi's Mansion  
+# Luigi's Mansion  
 [![Build Status]][actions] [![Code Progress]][progress] [![Functions]][progress] [![Discord Badge]][discord] [![Wiki]][wikipage]
-=============
 
-Yasiki is a work-in-progress decompilation project of **Luigi's Mansion**[^1] for the **Nintendo GameCube**[^2].  <br><br>
+---
+
+Yasiki is a work-in-progress decompilation project of [**Luigi's Mansion**](https://wikipedia.org/wiki/Luigi%27s_Mansion) for the [**Nintendo GameCube**](https://en.wikipedia.org/wiki/GameCube).  <br><br>
 The focus is currently laid on the Japanese release (GLMJ01), but configurations exist for all available versions.  <br>
 The original creator first focused on the North American release (GLME01), and it's symbols.txt was copied to a backup file.
 
@@ -42,7 +43,7 @@ Not as simple as most projects, but possible.
 
 
 ## About this project
-This project bases on the Decomp-Toolkit template.[^3]
+This project uses the [Decomp-Toolkit template](https://github.com/encounter/dtk-template).
 
 - [Progress state](#progress-state)
 - [Folder structure](#folder-structure)
@@ -243,9 +244,5 @@ CodeWarrior Runtime  <br>
 [Wiki]: https://img.shields.io/badge/Wiki-page-blue
 [wikipage]: https://moddimation.github.io/Yasiki
 [Functions]: https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=functions&label=Functions
-
-[^1]: https://wikipedia.org/wiki/Luigi%27s_Mansion
-[^2]: https://en.wikipedia.org/wiki/GameCube
-[^3]: https://github.com/encounter/dtk-template
 
 

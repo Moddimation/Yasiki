@@ -215,8 +215,10 @@ config.asflags = [
 cflags_paths_expand(config.asflags)
 
 config.ldflags = [
+    "-proc gekko",
     "-fp hardware",
     "-nodefaults",
+    "-msgstyle IDE",
 ]
 if args.debug:
     config.ldflags.append("-g")
@@ -229,6 +231,11 @@ config.reconfig_deps = []
 # Mumeric ID for decomp.me preset
 # Can be overridden in libraries or objects
 config.scratch_preset_id = 91
+
+# Libraries that should not be linked in a bundled library file
+config.nolib = [
+    "*", # Leaving libraries unused for now, needs decomp to be finished
+]
 
 # Base flags, common to most GC/Wii games.
 # Generally leave untouched, with overrides added below.
@@ -251,13 +258,15 @@ cflags_base = [
     "-i CodeWarrior/**/Inc",
     f"-i {config.build_dir}/{config.version}/include",
     f"-DVERSION_{config.version}",
+    "-msgstyle IDE",
 ]
 
 # Debug flags
 if args.debug:
-    cflags_base.extend(["-sym on", "-DDEBUG=1"])
-else:
-    cflags_base.append("-DNDEBUG=1")
+#    cflags_base.extend(["-g", "-DDEBUG=1"])
+    cflags_base.extend(["-g"]) # TODO: fix all ASSERTS.
+#else:
+#    cflags_base.append("-DNDEBUG=1")
 
 if args.action:
     cflags_base.append("-DGH_ACTION=1")
@@ -369,8 +378,11 @@ cflags_paths_expand(cflags_sdk)
 config.linker_version = "GC/1.2.5"
 
 # Helper function for SDK libraries
-def SDKLib(lib_name: str, files: List[Tuple[bool, str]], conf: Dict[str,str]={"":""}) -> Dict[str, Any]:
+def SDKLib(lib_name: str, files: List[Tuple[bool, str]], lib_name_override: str="", conf: Dict[str,str]={"":""}) -> Dict[str, Any]:
     objects = []
+    if lib_name_override == "":
+        lib_name_override = str
+
     dirname = f"DolphinSDK/src/{lib_name}"
     for matching, filename in files:
         filepath = f"{dirname}/{filename}"
@@ -379,7 +391,7 @@ def SDKLib(lib_name: str, files: List[Tuple[bool, str]], conf: Dict[str,str]={""
     __cflags = cflags_sdk + [f"-i {dirname}"]
 
     return {
-        "lib": lib_name,
+        "lib": lib_name_override,
         "cflags": __cflags,
         "progress_category": "sdk",
         "src_dir": ".",
@@ -389,7 +401,7 @@ def SDKLib(lib_name: str, files: List[Tuple[bool, str]], conf: Dict[str,str]={""
 
 # Helper function for Dolphin libraries
 def DolphinLib(lib_name: str, files: List[Tuple[bool, str]], conf:Dict[str,str]={"":""}) -> Dict[str, Any]:
-    return SDKLib(f"dolphin/{lib_name}", files)
+    return SDKLib(f"dolphin/{lib_name}", files, f"{lib_name}")
 
 # Helper function for JSystem libraries
 def JSystemLib(lib_name: str, sub_dir: str, files: List[Tuple[bool, str]], cflags: List[str]=cflags_jsys, conf: Dict[str, str]={"":""}) -> Dict[str, Any]:
@@ -481,20 +493,20 @@ config.libs = [
     # Game source folders
 
 #    GameMain("main.cpp")
-#    GameSource("system", [
+#    GameSource("PSystem", [
 #        (NonMatching, "initthread.cpp"),
 #        (NonMatching, "memory.cpp"),
 #        (NonMatching, "dvd.cpp"),
 #    ]),
-#    GameSource("Kawano", [
+#    GameSource("Sequences", [
 #        (NonMatching, "sequence.cpp"),
 #        (NonMatching, "rolling.cpp"),
 #    ]),
 #    GameSource("Iwamoto", [
 #        (NonMatching, ""),
 #    ]),
-#    GameSource("Sotoike", [
-#        (NonMatching, "AITurara.cpp"),
+#    GameSource("sotoike", [
+#        (NonMatching, "aiTurara.cpp"),
 #    ]),
 #    GameSource("Kawamoto", [
 #        (NonMatching, ""),
@@ -541,7 +553,7 @@ config.libs = [
 
     JSystemLib("JUtility", "System/JUtility", [
         (NonMatching, "JUTDirectPrint.cpp"),
-        (NonMatching, "JUTFontData_Sjsfont.s"),
+        (Matching, "JUTFontData_Sjsfont.s"),
     ]),
 
     # SDK
@@ -685,7 +697,7 @@ config.libs = [
     ]),
     SDKLib("OdemuExi2", [
         (Matching, "DebuggerDriver.c")
-    ],{
+    ],"OdemuExi2",{
         "cflags": cflags_odemu
     }),
     DolphinLib("odenotstub", [
