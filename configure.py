@@ -543,7 +543,7 @@ config.libs = [
     # JSystem Libraries
 
     JSystemLib("JKernel", "System/JKernel", [
-        (NonMatching, "JKRHeap.cpp"),
+        (Matching, "JKRHeap.cpp"),
         (Matching, "JKRDisposer.cpp"),
         (NonMatching, "JKRThread.cpp"),
     ]),
@@ -554,7 +554,7 @@ config.libs = [
 
     JSystemLib("JUtility", "System/JUtility", [
         (NonMatching, "JUTDirectPrint.cpp"),
-        (Matching, "JUTFontData_Sjsfont.s"),
+        (NonMatching, "JUTFontData_Sjsfont.s"),
     ]),
 
     # SDK
