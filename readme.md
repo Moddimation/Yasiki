@@ -38,9 +38,10 @@ Not as simple as most projects, but possible.
 | GLME01    |  USA   | Release |   [No]   | Nov. 18 2001 | Sep. 24 2001 |    37    | Jul. 19 2001 | Aug. 9 2001 |
 | GLME01_1  |  USA   |  Demo   |    No    | Oct.    2001 | Sep. 28 2001 |    45    | Sep. 08 2001 | Sep. 08 2001 |
 | GLMP01    | Europe |  Demo   |    No    | Mar.    2002 | Jan. 21 2002 |    49    | Dec. 17 2001 | Nov. 30 2001 |
-| GLMP01_1  | Europe | Release |    No    | May   3 2002 | Dec. 17 2001 |    49    | Dec. 17 2001 | Nov. 30 2001 |
-| GLMP01_2  | Europe | Release |    No    | May  17 2002 | Dec. 17 2001 |    49    | Dec. 17 2001 | Nov. 30 2001 |
-
+| GLMP01_1  | Europe | Release |    No    | May   3 2002 | Mar.    2002 |    49    | Dec. 17 2001 | Nov. 30 2001 |
+| GLMP01_2  | Europe | Release |    No    | May  17 2002 | Mar     2002 |    49    | Dec. 17 2001 | Nov. 30 2001 |
+*note that the Europe Release Rev. 1 left the DOL identical, only changing the movie rating.* 
+*furthermore, the USA Release had previously been the decomp target, but now the active one is the Japan Release.*
 
 ## About this project
 This project uses the [Decomp-Toolkit template](https://github.com/encounter/dtk-template).

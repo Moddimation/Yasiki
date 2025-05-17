@@ -449,11 +449,11 @@ def GameSource(lib_name: str, files: List[Tuple[bool, str]], conf: Dict[str, str
         filepath = f"{dirpath}/{filename}"
         objects.append(Object(matching, filepath))
 
-    __cflags = cflags_game + [f"-i {dirpath}"]
+    __cflags = cflags_game + [f"-i Project/{dirpath}"]
 
     return {
         "lib": lib_name,
-        "cflags": cflags_game,
+        "cflags": __cflags,
         "progress_category": "game",
         "src_dir": f"Project",
         "objects": objects,
@@ -469,7 +469,7 @@ def GameMain(file: Tuple[bool, str], conf: Dict[str, str]={"":""}) -> Dict[str, 
 
     return {
         "lib": lib_name,
-        "cflags": cflags_game,
+        "cflags": __cflags,
         "progress_category": "game",
         "src_dir": f"Project",
         "objects": objects,
@@ -498,10 +498,11 @@ config.libs = [
 #        (NonMatching, "memory.cpp"),
 #        (NonMatching, "dvd.cpp"),
 #    ]),
-#    GameSource("Sequences", [
+    GameSource("Sequence", [
+        (Matching, "boot.cpp"),
 #        (NonMatching, "sequence.cpp"),
 #        (NonMatching, "rolling.cpp"),
-#    ]),
+    ]),
 #    GameSource("Iwamoto", [
 #        (NonMatching, ""),
 #    ]),
