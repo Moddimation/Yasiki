@@ -81,19 +81,18 @@ protected:
     void     dispose (void);
 
     virtual JKRHeap* alloc (size_t size, int align) = 0;
-    virtual void     free (HANDLE ptr) = 0;
+    virtual void     free (HANDLE ptr)              = 0;
     virtual void     freeAll (void);
-    virtual void     freeTail (void) = 0;
-    virtual void     resize (HANDLE, int) = 0;
-    virtual u32      getSize (HANDLE) = 0;
-    virtual u32      getFreeSize (void) = 0;
+    virtual void     freeTail (void)         = 0;
+    virtual void     resize (HANDLE, int)    = 0;
+    virtual u32      getSize (HANDLE)        = 0;
+    virtual u32      getFreeSize (void)      = 0;
     virtual u32      getTotalFreeSize (void) = 0;
-    virtual u32      getHeapType (void) = 0;
-    virtual void     check (void) = 0;
-    virtual void     dump (void) = 0;
+    virtual u32      getHeapType (void)      = 0;
+    virtual void     check (void)            = 0;
+    virtual void     dump (void)             = 0;
     virtual int      dump_sort (void);
     virtual u32      getCurrentGroupId (void);
-    virtual void     __unknown (void) = 0;
 
     void
     unlock ()
