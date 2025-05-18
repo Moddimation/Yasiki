@@ -218,7 +218,7 @@ config.ldflags = [
     "-proc gekko",
     "-fp hardware",
     "-nodefaults",
-    "-msgstyle IDE",
+    #"-msgstyle IDE",
 ]
 if args.debug:
     config.ldflags.append("-g")
@@ -258,7 +258,7 @@ cflags_base = [
     "-i CodeWarrior/**/Inc",
     f"-i {config.build_dir}/{config.version}/include",
     f"-DVERSION_{config.version}",
-    "-msgstyle IDE",
+    #"-msgstyle IDE",
 ]
 
 # Debug flags

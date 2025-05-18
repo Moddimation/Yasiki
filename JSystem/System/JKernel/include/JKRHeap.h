@@ -10,8 +10,14 @@
 typedef void* HANDLE;
 typedef void  (*JKRErrorRoutine) (void*, u32, int);
 
+class JKRSolidHeap;
+class JKRExpHeap;
+
 class JKRHeap : public JKRDisposer
 {
+    friend class JKRSolidHeap;
+    friend class JKRExpHeap;
+
 public:
     // static
     static BOOL     initArena (char** ramStart, u32* ramSize, int maxHeaps);
@@ -83,7 +89,7 @@ protected:
     virtual void     free (HANDLE ptr)              = 0;
     virtual void     freeAll (void);
     virtual void     freeTail (void)         = 0;
-    virtual void     resize (HANDLE, int)    = 0;
+    virtual s32      resize (HANDLE, int)    = 0;
     virtual size_t   getSize (HANDLE)        = 0;
     virtual size_t   getFreeSize (void)      = 0;
     virtual size_t   getTotalFreeSize (void) = 0;
@@ -109,6 +115,12 @@ protected:
     getHeapTree ()
     {
         return mHeapTree;
+    }
+
+    JKRHeap*
+    getParent () const
+    {
+        return mHeapTree.getParent()->getObject();
     }
 };
 

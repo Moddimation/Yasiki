@@ -56,25 +56,25 @@
 #endif
 
 #ifndef _MSL_NO_THROW_SPECS
-	void* operator new(_CSTD::size_t size) throw(_STD::bad_alloc);
+	void* operator new(size_t size) throw(_STD::bad_alloc);
 #else
-	void* operator new(_CSTD::size_t size);
+	void* operator new(size_t size);
 #endif
-void* operator new(_CSTD::size_t size, const _STD::nothrow_t&) _MSL_THROW;
-inline void* operator new(_CSTD::size_t, void* ptr) _MSL_THROW {return ptr;}
+void* operator new(size_t size, const _STD::nothrow_t&) _MSL_THROW;
+inline void* operator new(size_t, void* ptr) _MSL_THROW {return ptr;}
 void  operator delete(void* ptr) _MSL_THROW;
 #if __MWERKS__ >= 0x2020 || defined (__GNUC__)
 //	void  operator delete(void* ptr, const _STD::nothrow_t&) _MSL_THROW;
 //	inline void  operator delete  (void*, void*) _MSL_THROW {}
 	#ifndef _MSL_NO_THROW_SPECS
-		void* operator new[](_CSTD::size_t size) throw(_STD::bad_alloc);
+		void* operator new[](size_t size) throw(_STD::bad_alloc);
 	#else
-		void* operator new[](_CSTD::size_t size);
+		void* operator new[](size_t size);
 	#endif
-	void* operator new[](_CSTD::size_t size, const _STD::nothrow_t&) _MSL_THROW;
+	void* operator new[](size_t size, const _STD::nothrow_t&) _MSL_THROW;
 	void  operator delete[](void* ptr) _MSL_THROW;
 //	void  operator delete[](void* ptr, const _STD::nothrow_t&) _MSL_THROW;
-	inline void* operator new[](_CSTD::size_t, void* ptr) _MSL_THROW {return ptr;}
+	inline void* operator new[](size_t, void* ptr) _MSL_THROW {return ptr;}
 //	inline void  operator delete[](void*, void*) _MSL_THROW {}
 #endif
 

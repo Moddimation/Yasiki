@@ -6,6 +6,7 @@
 
 #define constructor explicit
 #define destructor  virtual
+#define override    virtual
 #define Nil         0
 
 #undef FALSE
