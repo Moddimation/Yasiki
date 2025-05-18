@@ -8,7 +8,7 @@ class JKRSolidHeap : public JKRHeap
 public:
 
 protected:
-    size_t _68;
+    size_t mFreeSize;
     HANDLE _6C;
     HANDLE _70;
     u32    _74;
