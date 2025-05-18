@@ -1,7 +1,7 @@
 #include <JKRSolidHeap.h>
 
 JKRSolidHeap::JKRSolidHeap (HANDLE obj, size_t size, JKRHeap* parent, bool is_error)
-  : JKRHeap (obj, size, parent, is_error), _68 (mSize), _6C (mStart), _70 (mEnd), _74 (0)
+  : JKRHeap (obj, size, parent, is_error), mFreeSize (mSize), _6C (mStart), _70 (mEnd), _74 (0)
 {}
 
 JKRSolidHeap::~JKRSolidHeap ()

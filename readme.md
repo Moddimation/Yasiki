@@ -1,5 +1,5 @@
 # Luigi's Mansion  
-[![Build Status]][actions] [![Code Progress]][progress] [![Functions]][progress] [![Discord Badge]][discord] [![Wiki]][wikipage]
+[![Build Status]][actions] [![Code Progress]][progress] [![Functions]][progress] [![Wiki]][wikipage]
 
 ---
 
@@ -13,6 +13,12 @@ The original creator first focused on the North American release (GLME01), and i
 ### Warning  <br>
 This game does *no*t ship with *symbols*, so information is scraped together from *RTTI* and connected games.  <br>
 Not as simple as most projects, but possible.
+
+### Discord / Contact
+*For this project specifically:*  <br>
+**Yasiki Parlor**: [![Discord Badge]][discord]  <br>
+*For general, other gc/wii purposes (ask for pc ports!):*  <br>
+**GC/Wii Decompilation**: [![Discord Badge OG]][discord-og]  <br>
 
 ## Index
 - [Available versions](#available-versions)
@@ -72,7 +78,7 @@ My goal is to stay as original as possible, while still making it possible to wo
 I’ve also included some small private notes in `/docs/game/*.txt`, which may contain useful information (if needed).
 ### Misc
 - You can put personal stuff in /private/, it is ignored by github.
-- I prefer communication through [the Discord](https://discord.gg/hKx3FJJgrV) in the #luigis-mansion channel, but you can open issues as needed.
+- I prefer communication through the Discord, [Yasiki Parlor](https://discord.gg/697xRJJww3), but you can open issues as needed.
 
 ## Contributing
 
@@ -240,8 +246,10 @@ CodeWarrior Runtime  <br>
 [actions]: https://github.com/Moddimation/Yasiki/actions/workflows/build.yml
 [Code Progress]: https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=code&label=Code
 [progress]: https://decomp.dev/Moddimation/Yasiki
-[Discord Badge]: https://img.shields.io/discord/727908905392275526?color=%237289DA&logo=discord&logoColor=%23FFFFFF
-[discord]: https://discord.gg/hKx3FJJgrV
+[Discord Badge OG]: https://img.shields.io/discord/727908905392275526?color=%237289DA&logo=discord&logoColor=%23FFFFFF
+[Discord Badge]: https://img.shields.io/discord/1373544736165728296?color=%237289DA&logo=discord&logoColor=%23FFFFFF
+[discord-og]: https://discord.gg/hKx3FJJgrV
+[discord]: https://discord.gg/697xRJJww3
 [Wiki]: https://img.shields.io/badge/Wiki-page-blue
 [wikipage]: https://moddimation.github.io/Yasiki
 [Functions]: https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=functions&label=Functions
