@@ -32,7 +32,7 @@ JKRSolidHeap::destroy ()
 
 JKRSolidHeap::JKRSolidHeap (HANDLE obj, size_t size, JKRHeap* parent, bool is_error)
   : JKRHeap (obj, size, parent, is_error), mFreeSize (mSize), mHead (mStart), mTail (mEnd),
-    _74 (0)
+    mIter (Nil)
 {}
 
 JKRSolidHeap::~JKRSolidHeap ()
@@ -51,7 +51,7 @@ JKRSolidHeap::adjustSize ()
         size_t sizeOld = (u32)mStart - (u32)this;
         size_t sizeNew = ALIGN_NEXT ((u32)mHead - (u32)mStart, 0x20);
 
-        s32 result     = parent->resize (this, (int)(sizeOld + sizeNew));
+        s32 result     = parent->resize (this, sizeOld + sizeNew);
         if (result != -1)
         {
             mFreeSize = 0;
@@ -149,3 +149,100 @@ JKRSolidHeap::allocFromTail (size_t size, int align)
 
     return mem;
 }
+
+void
+JKRSolidHeap::free (HANDLE ptr)
+{
+#pragma unnused(ptr)
+}
+
+void
+JKRSolidHeap::freeAll (void)
+{
+    lock();
+
+    JKRHeap::freeAll();
+
+    mFreeSize = mSize;
+    mHead     = mStart;
+    mTail     = mEnd;
+    mIter     = Nil;
+
+    unlock();
+}
+
+void
+JKRSolidHeap::freeTail (void)
+{
+    lock();
+
+    if (mTail != mEnd)
+    {
+        dispose (mTail, mEnd);
+    }
+    mFreeSize = mFreeSize + ((u32)mEnd - (u32)mTail);
+    mTail     = mEnd;
+    for (Iter* s = mIter; s != Nil; s = s->mHead) { s->mTail = mEnd; }
+
+    unlock();
+}
+
+s32
+JKRSolidHeap::resize (HANDLE obj, size_t size)
+{
+#pragma unused(obj)
+#pragma unused(size)
+
+    return -1;
+}
+
+s32
+JKRSolidHeap::getSize (HANDLE obj)
+{
+#pragma unused(obj)
+
+    return -1;
+}
+
+BOOL
+JKRSolidHeap::check (void)
+{
+    lock();
+
+    u32  check = mFreeSize + ((u32)mHead - (u32)mStart) + ((u32)mEnd - (u32)mTail);
+    BOOL ok    = true;
+
+    if (check != mSize)
+    {
+        ok = false;
+    }
+
+    unlock();
+
+    return ok;
+}
+
+void*
+JKRSolidHeap::dump (void)
+{
+    void* ret = dump();
+    lock();
+#ifdef DEBUG
+
+#endif
+    unlock();
+    return ret;
+}
+
+size_t
+JKRSolidHeap::getTotalFreeSize (void)
+{
+    return getTotalFreeSize();
+}
+
+u32
+JKRSolidHeap::getHeapType (void)
+{
+    return 'SLID';
+}
+
