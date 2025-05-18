@@ -25,9 +25,9 @@ typedef struct _ApploaderHeader
     u32  reserved2;  ///< 0x1C
 } ApploaderHeader;
 
-static ApploaderHeader Header ATTRIBUTE_ALIGN (32);
+static ApploaderHeader Header ALIGN (32);
 
-static ASM void
+static asm void
 Run (register u32 addr)
 {
 #ifdef __MWERKS__

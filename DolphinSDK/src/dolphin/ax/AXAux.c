@@ -4,8 +4,8 @@
 
 #include "AXPrivate.h"
 
-static s32 __AXBufferAuxA[3][480] ATTRIBUTE_ALIGN (32);
-static s32 __AXBufferAuxB[3][480] ATTRIBUTE_ALIGN (32);
+static s32 __AXBufferAuxA[3][480] ALIGN (32);
+static s32 __AXBufferAuxB[3][480] ALIGN (32);
 
 static void  (*__AXCallbackAuxA) (void*, void*);
 static void  (*__AXCallbackAuxB) (void*, void*);

@@ -11,12 +11,12 @@ static void __fini_cpp (void);
 extern void abort (void);
 extern void exit (int status);
 
-DECL_SECT (".ctors") extern void (*_ctors[])();
-DECL_SECT (".dtors") extern void (*_dtors[])();
+__declspec (section ".ctors") extern void (*_ctors[])();
+__declspec (section ".dtors") extern void (*_dtors[])();
 
-DECL_SECT (".init")
+__declspec (section ".init")
 
-ASM void
+asm void
 __init_hardware (void)
 {
 #ifdef __MWERKS__
@@ -31,9 +31,10 @@ __init_hardware (void)
     blr;
 #endif
 }
-DECL_SECT (".init")
 
-ASM void
+__declspec (section ".init")
+
+asm void
 __flush_cache (void* address, u32 size)
 {
 #pragma unused(address)
@@ -83,15 +84,13 @@ __fini_cpp (void)
     for (destructor = _dtors; *destructor; destructor++) { (*destructor)(); }
 }
 
-WEAKFUNC
-void
+__declspec (weak) void
 abort (void)
 {
     _ExitProcess();
 }
 
-WEAKFUNC
-void
+__declspec (weak) void
 exit (int status)
 {
 #pragma unused(status)

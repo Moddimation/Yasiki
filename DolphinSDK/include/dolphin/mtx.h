@@ -68,7 +68,7 @@ void C_MTXLookAt (Mtx m, Point3dPtr camPos, VecPtr camUp, Point3dPtr target);
 #define MTXIdentity       PSMTXIdentity
 #endif
 
-// ASM only
+// asm only
 #define MTXReorder           PSMTXReorder
 #define MTXROMultVecArray    PSMTXROMultVecArray
 #define MTXROSkin2VecArray   PSMTXROSkin2VecArray
@@ -122,7 +122,7 @@ void C_MTXTranspose (Mtx src, Mtx xPose);
 u32  C_MTXInverse (Mtx src, Mtx inv);
 u32  C_MTXInvXpose (Mtx src, Mtx invX);
 
-// ASM functions
+// asm functions
 void PSMTXIdentity (Mtx m);
 void PSMTXCopy (Mtx src, Mtx dst);
 void PSMTXConcat (Mtx mA, Mtx mB, Mtx mAB);
@@ -154,7 +154,7 @@ void MTXMultVecArraySR (Mtx44 m, Vec* srcBase, Vec* dstBase, u32 count);
 void C_MTXMultVec (Mtx44 m, Vec* src, Vec* dst);
 void C_MTXMultVecArray (Mtx m, Vec* srcBase, Vec* dstBase, u32 count);
 
-// ASM functions
+// asm functions
 void PSMTXMultVec (Mtx44 m, Vec* src, Vec* dst);
 void PSMTXMultVecArray (Mtx m, Vec* srcBase, Vec* dstBase, u32 count);
 

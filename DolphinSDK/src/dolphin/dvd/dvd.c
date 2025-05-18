@@ -7,7 +7,7 @@
 #define ERROR_RETRY            2
 #define ERROR_RETRY_INTERNALLY 3
 
-static u16*            tmpBuffer[32] ATTRIBUTE_ALIGN (32);
+static u16*            tmpBuffer[32] ALIGN (32);
 static DVDCommandBlock DummyCommandBlock;
 static OSAlarm         ResetAlarm;
 

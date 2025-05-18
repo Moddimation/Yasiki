@@ -82,7 +82,7 @@ OSThreadQueue __OSActiveThreadQueue;
 #endif
 
 static int      CallResetFunctions (int final);
-static ASM void Reset (u32 resetCode);
+static asm void Reset (u32 resetCode);
 
 void
 OSRegisterResetFunction (OSResetFunctionInfo* info)
@@ -116,7 +116,7 @@ CallResetFunctions (int final)
     return 1;
 }
 
-static ASM void
+static asm void
 Reset (u32 resetCode)
 {
 #pragma unused(resetCode)

@@ -4,7 +4,6 @@
 #include <dolphin/os.h>
 
 #include <JKRDisposer.h>
-#include <JSUList.h>
 
 #include <size_t.h>
 
@@ -61,15 +60,15 @@ protected:
 
     OSMutex              mMutex;        ///< 0x18
     HANDLE               mStart;        ///< 0x30
-    void*                mEnd;          ///< 0x34
-    u32                  mSize;         ///< 0x38
+    HANDLE               mEnd;          ///< 0x34
+    size_t               mSize;         ///< 0x38
     JSUTree<JKRHeap>     mHeapTree;     ///< 0x3C
     JSUList<JKRDisposer> mDisposerList; ///< 0x58
     BOOL                 mErrorFlag;    ///< 0x64
 
 protected:
     // base
-    constructor JKRHeap (HANDLE obj, u32 size, JKRHeap* parent, bool isAssertLocked);
+    constructor JKRHeap (HANDLE obj, size_t size, JKRHeap* parent, bool is_error);
     destructor ~JKRHeap();
 
     JKRHeap* becomeSystemHeap (void);
@@ -85,9 +84,9 @@ protected:
     virtual void     freeAll (void);
     virtual void     freeTail (void)         = 0;
     virtual void     resize (HANDLE, int)    = 0;
-    virtual u32      getSize (HANDLE)        = 0;
-    virtual u32      getFreeSize (void)      = 0;
-    virtual u32      getTotalFreeSize (void) = 0;
+    virtual size_t   getSize (HANDLE)        = 0;
+    virtual size_t   getFreeSize (void)      = 0;
+    virtual size_t   getTotalFreeSize (void) = 0;
     virtual u32      getHeapType (void)      = 0;
     virtual void     check (void)            = 0;
     virtual void     dump (void)             = 0;

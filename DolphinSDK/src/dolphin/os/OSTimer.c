@@ -129,7 +129,7 @@ DecrementerExceptionCallback (u8 exception, OSContext* context)
     OSLoadContext (context);
 }
 
-static ASM void
+static asm void
 DecrementerExceptionHandler (u8 exception, register OSContext* context)
 {
 #ifdef __MWERKS__
