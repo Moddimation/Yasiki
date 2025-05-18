@@ -17,7 +17,7 @@ Not as simple as most projects, but possible.
 ### Discord / Contact
 *For this project specifically:*  <br>
 **Yasiki Parlor**: [![Discord Badge]][discord]  <br>
-*For general, other gc/wii purposes (ask for pc ports!):*  <br>
+*For general, other gc/wii purposes (do not ask for pc ports!):*  <br>
 **GC/Wii Decompilation**: [![Discord Badge OG]][discord-og]  <br>
 
 ## Index
