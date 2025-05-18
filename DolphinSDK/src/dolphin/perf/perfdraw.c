@@ -1,27 +1,23 @@
-// probably from tgmath.h
 #include <dolphin/perf.h>
 
-#include <dolphin.h>
-
-#include "fake_tgmath.h"
 #include "PERFPrivate.h"
 
-WEAKFUNC float HEIGHT (u32 a, float f);
-WEAKFUNC float COORD (u32 a /* r3 */);
+__declspec (weak) float HEIGHT (u32 a, float f);
+__declspec (weak) float COORD (u32 a /* r3 */);
 
 extern Mtx mID;
 
 // internal macro for Perfdraw.
-#define DRAW_RECT(x1, x2, y1, y2, color)                                                           \
-    do {                                                                                           \
-        GXSetChanMatColor (GX_COLOR0A0, color);                                                    \
-        GXBegin (GX_QUADS, GX_VTXFMT0, 4U);                                                        \
-        GXPosition3f32 ((x1), (y1), -1.0f);                                                        \
-        GXPosition3f32 ((x1), (y2), -1.0f);                                                        \
-        GXPosition3f32 ((x2), (y2), -1.0f);                                                        \
-        GXPosition3f32 ((x2), (y1), -1.0f);                                                        \
-        GXEnd();                                                                                   \
-    }                                                                                              \
+#define DRAW_RECT(x1, x2, y1, y2, color)                                                       \
+    do {                                                                                       \
+        GXSetChanMatColor (GX_COLOR0A0, color);                                                \
+        GXBegin (GX_QUADS, GX_VTXFMT0, 4U);                                                    \
+        GXPosition3f32 ((x1), (y1), -1.0f);                                                    \
+        GXPosition3f32 ((x1), (y2), -1.0f);                                                    \
+        GXPosition3f32 ((x2), (y2), -1.0f);                                                    \
+        GXPosition3f32 ((x2), (y1), -1.0f);                                                    \
+        GXEnd();                                                                               \
+    }                                                                                          \
     while (0)
 
 static u32   DrawFrameMax;       // size: 0x4, address: 0x0
@@ -29,36 +25,36 @@ static float DrawFrameH;         // size: 0x4, address: 0x4
 static u32   MaxBusTransactions; // size: 0x4, address: 0x8
 
 // .sdata
-static u32     DrawNumFrames = 3;       // size: 0x4, address: 0x0
-static float   DrawFrameW = 205.33333f; // size: 0x4, address: 0x4
-static GXColor DrawFrameBGColor = { 0xC8, 0xC8, 0xC8, 0xC8 }; // size: 0x4, address: 0x8
-static GXColor DrawFrameColor = { 0x19, 0x19, 0x19, 0xC8 }; // size: 0x4, address: 0xC
-static GXColor DrawCPUColor = { 0xFF, 0x19, 0x00, 0xC8 }; // size: 0x4, address: 0x10
-static GXColor DrawFullColor = { 0xFF, 0x00, 0xFF, 0xC8 }; // size: 0x4, address: 0x14
-static GXColor DrawGPColor = { 0x00, 0x64, 0xFF, 0xC8 }; // size: 0x4, address: 0x18
-static GXColor DrawCPUCacheColor = { 0x00, 0x96, 0x00, 0xC8 }; // size: 0x4, address: 0x1C
-static GXColor DrawConnectColor = { 0x00, 0x00, 0x00, 0xC8 }; // size: 0x4, address: 0x20
-static GXColor DrawBWBarColor = { 0x32, 0x32, 0x32, 0xC8 }; // size: 0x4, address: 0x24
-static GXColor DrawIPCBarColor = { 0x00, 0x00, 0x5A, 0xAA }; // size: 0x4, address: 0x28
-static GXColor DrawGPUBarColor = { 0x5A, 0x00, 0x00, 0xAA }; // size: 0x4, address: 0x2C
-static GXColor DrawIPCColor = { 0xC8, 0x64, 0x00, 0xAA }; // size: 0x4, address: 0x30
-static GXColor DrawCPColor = { 0xC8, 0x00, 0xC8, 0xC8 };  // size: 0x4, address: 0x34
-static GXColor DrawTCColor = { 0x00, 0xC8, 0x00, 0xC8 };  // size: 0x4, address: 0x38
-static GXColor DrawCPURDColor = { 0xFF, 0xFF, 0x00, 0xC8 }; // size: 0x4, address: 0x3C
-static GXColor DrawCPUWRColor = { 0x00, 0x64, 0x64, 0xC8 }; // size: 0x4, address: 0x40
-static GXColor DrawDSPColor = { 0xC8, 0x00, 0x00, 0xC8 }; // size: 0x4, address: 0x44
-static GXColor DrawIOColor = { 0x96, 0x96, 0x32, 0xC8 };  // size: 0x4, address: 0x48
-static GXColor DrawVIColor = { 0xFF, 0xFF, 0xFF, 0xC8 };  // size: 0x4, address: 0x4C
-static GXColor DrawPEColor = { 0x00, 0x00, 0xC8, 0xC8 };  // size: 0x4, address: 0x50
-static GXColor DrawRFColor = { 0x00, 0xFF, 0xFF, 0xC8 };  // size: 0x4, address: 0x54
-static GXColor DrawFIColor = { 0xC8, 0x64, 0x64, 0xC8 };  // size: 0x4, address: 0x58
-static GXColor DrawGPXFIColor = { 0x00, 0xC8, 0x00, 0xAA }; // size: 0x4, address: 0x5C
-static GXColor DrawGPXFOColor = { 0x00, 0x00, 0xC8, 0xAA }; // size: 0x4, address: 0x60
+static u32     DrawNumFrames      = 3;                          // size: 0x4, address: 0x0
+static float   DrawFrameW         = 205.33333f;                 // size: 0x4, address: 0x4
+static GXColor DrawFrameBGColor   = { 0xC8, 0xC8, 0xC8, 0xC8 }; // size: 0x4, address: 0x8
+static GXColor DrawFrameColor     = { 0x19, 0x19, 0x19, 0xC8 }; // size: 0x4, address: 0xC
+static GXColor DrawCPUColor       = { 0xFF, 0x19, 0x00, 0xC8 }; // size: 0x4, address: 0x10
+static GXColor DrawFullColor      = { 0xFF, 0x00, 0xFF, 0xC8 }; // size: 0x4, address: 0x14
+static GXColor DrawGPColor        = { 0x00, 0x64, 0xFF, 0xC8 }; // size: 0x4, address: 0x18
+static GXColor DrawCPUCacheColor  = { 0x00, 0x96, 0x00, 0xC8 }; // size: 0x4, address: 0x1C
+static GXColor DrawConnectColor   = { 0x00, 0x00, 0x00, 0xC8 }; // size: 0x4, address: 0x20
+static GXColor DrawBWBarColor     = { 0x32, 0x32, 0x32, 0xC8 }; // size: 0x4, address: 0x24
+static GXColor DrawIPCBarColor    = { 0x00, 0x00, 0x5A, 0xAA }; // size: 0x4, address: 0x28
+static GXColor DrawGPUBarColor    = { 0x5A, 0x00, 0x00, 0xAA }; // size: 0x4, address: 0x2C
+static GXColor DrawIPCColor       = { 0xC8, 0x64, 0x00, 0xAA }; // size: 0x4, address: 0x30
+static GXColor DrawCPColor        = { 0xC8, 0x00, 0xC8, 0xC8 }; // size: 0x4, address: 0x34
+static GXColor DrawTCColor        = { 0x00, 0xC8, 0x00, 0xC8 }; // size: 0x4, address: 0x38
+static GXColor DrawCPURDColor     = { 0xFF, 0xFF, 0x00, 0xC8 }; // size: 0x4, address: 0x3C
+static GXColor DrawCPUWRColor     = { 0x00, 0x64, 0x64, 0xC8 }; // size: 0x4, address: 0x40
+static GXColor DrawDSPColor       = { 0xC8, 0x00, 0x00, 0xC8 }; // size: 0x4, address: 0x44
+static GXColor DrawIOColor        = { 0x96, 0x96, 0x32, 0xC8 }; // size: 0x4, address: 0x48
+static GXColor DrawVIColor        = { 0xFF, 0xFF, 0xFF, 0xC8 }; // size: 0x4, address: 0x4C
+static GXColor DrawPEColor        = { 0x00, 0x00, 0xC8, 0xC8 }; // size: 0x4, address: 0x50
+static GXColor DrawRFColor        = { 0x00, 0xFF, 0xFF, 0xC8 }; // size: 0x4, address: 0x54
+static GXColor DrawFIColor        = { 0xC8, 0x64, 0x64, 0xC8 }; // size: 0x4, address: 0x58
+static GXColor DrawGPXFIColor     = { 0x00, 0xC8, 0x00, 0xAA }; // size: 0x4, address: 0x5C
+static GXColor DrawGPXFOColor     = { 0x00, 0x00, 0xC8, 0xAA }; // size: 0x4, address: 0x60
 static GXColor DrawGPRASIDLEColor = { 0xC8, 0xC8, 0x00, 0xAA }; // size: 0x4, address: 0x64
-static int     bDrawBWBar = 1;  // size: 0x4, address: 0x68
-static int     bDrawCPUBar = 1; // size: 0x4, address: 0x6C
-static int     bDrawXFBars = 1; // size: 0x4, address: 0x70
-static int     bDrawRASBar = 1; // size: 0x4, address: 0x74
+static int     bDrawBWBar         = 1;                          // size: 0x4, address: 0x68
+static int     bDrawCPUBar        = 1;                          // size: 0x4, address: 0x6C
+static int     bDrawXFBars        = 1;                          // size: 0x4, address: 0x70
+static int     bDrawRASBar        = 1;                          // size: 0x4, address: 0x74
 
 // .sbss
 static int   bDrawBWBarKey; // size: 0x4, address: 0xC
@@ -113,15 +109,15 @@ __PERFDrawInit (void (*id)())
 #else
     PSMTXIdentity (mID);
 #endif
-    GameDrawInit = id;
-    DrawFrameMax = (OS_CORE_CLOCK / 60U) * 3;
-    DrawFrameH = (PERFNumEvents + 1) * 7;
+    GameDrawInit       = id;
+    DrawFrameMax       = (OS_CORE_CLOCK / 60U) * 3;
+    DrawFrameH         = (PERFNumEvents + 1) * 7;
     MaxBusTransactions = (OS_BUS_CLOCK / 120);
     FramePts[3] = FramePts[11] = FramePts[13] = FramePts[15] = FramePts[19] = FramePts[23] =
         DrawFrameH;
     FramePts[6] = FramePts[8] = FramePts[10] = FramePts[14] = 616.0f;
-    FramePts[33] = (PERFNumEvents + 2) * 19;
-    FramePts[35] = FramePts[33];
+    FramePts[33]                                            = (PERFNumEvents + 2) * 19;
+    FramePts[35]                                            = FramePts[33];
 }
 
 static Mtx44 mProj;       // size: 0x40, address: 0x30
@@ -136,10 +132,7 @@ PERFPreDraw ()
     GXGetProjectionv (pSave);
     for (i = 0; i < 4; i++)
     {
-        for (j = 0; j < 4; j++)
-        {
-            mProj[i][j] = 0.0f;
-        }
+        for (j = 0; j < 4; j++) { mProj[i][j] = 0.0f; }
     }
     mProj[0][0] = 0.003125f;
     mProj[1][1] = 0.004166667f;
@@ -183,10 +176,10 @@ DrawBWBar (struct PerfSample* s)
     u32   misses;
 
     interval = s->gpTimeStampEnd - s->gpTimeStampStart;
-    bwscale = (f32)interval / (OS_CORE_CLOCK / 60);
-    lastY = 7.0f + DrawFrameH;
-    x1 = COORD (s->gpTimeStampStart);
-    x2 = COORD (s->gpTimeStampEnd);
+    bwscale  = (f32)interval / (OS_CORE_CLOCK / 60);
+    lastY    = 7.0f + DrawFrameH;
+    x1       = COORD (s->gpTimeStampStart);
+    x2       = COORD (s->gpTimeStampEnd);
     if (fabs (lastx - x1) < 1.0f)
     {
         x1 = lastx;
@@ -196,63 +189,63 @@ DrawBWBar (struct PerfSample* s)
     // Draw BW Bars if toggled
     if (bDrawBWBar != 0)
     {
-        delta = s->cpReq[1] - s->cpReq[0];
+        delta  = s->cpReq[1] - s->cpReq[0];
         height = HEIGHT (delta, bwscale);
         if (height > 1.0f)
         {
             DRAW_RECT (x1, x2, lastY, lastY + height, DrawCPColor);
             lastY += height;
         }
-        delta = s->tcReq[1] - s->tcReq[0];
+        delta  = s->tcReq[1] - s->tcReq[0];
         height = HEIGHT (delta, bwscale);
         if (height > 1.0f)
         {
             DRAW_RECT (x1, x2, lastY, lastY + height, DrawTCColor);
             lastY += height;
         }
-        delta = s->cpuRdReq[1] - s->cpuRdReq[0];
+        delta  = s->cpuRdReq[1] - s->cpuRdReq[0];
         height = HEIGHT (delta, bwscale);
         if (height > 1.0f)
         {
             DRAW_RECT (x1, x2, lastY, lastY + height, DrawCPURDColor);
             lastY += height;
         }
-        delta = s->cpuWrReq[1] - s->cpuWrReq[0];
+        delta  = s->cpuWrReq[1] - s->cpuWrReq[0];
         height = HEIGHT (delta, bwscale);
         if (height > 1.0f)
         {
             DRAW_RECT (x1, x2, lastY, lastY + height, DrawCPUWRColor);
             lastY += height;
         }
-        delta = s->dspReq[1] - s->dspReq[0];
+        delta  = s->dspReq[1] - s->dspReq[0];
         height = HEIGHT (delta, bwscale);
         if (height > 1.0f)
         {
             DRAW_RECT (x1, x2, lastY, lastY + height, DrawDSPColor);
             lastY += height;
         }
-        delta = s->ioReq[1] - s->ioReq[0];
+        delta  = s->ioReq[1] - s->ioReq[0];
         height = HEIGHT (delta, bwscale);
         if (height > 1.0f)
         {
             DRAW_RECT (x1, x2, lastY, lastY + height, DrawIOColor);
             lastY += height;
         }
-        delta = s->viReq[1] - s->viReq[0];
+        delta  = s->viReq[1] - s->viReq[0];
         height = HEIGHT (delta, bwscale);
         if (height > 1.0f)
         {
             DRAW_RECT (x1, x2, lastY, lastY + height, DrawVIColor);
             lastY += height;
         }
-        delta = s->peReq[1] - s->peReq[0];
+        delta  = s->peReq[1] - s->peReq[0];
         height = HEIGHT (delta, bwscale);
         if (height > 1.0f)
         {
             DRAW_RECT (x1, x2, lastY, lastY + height, DrawPEColor);
             lastY += height;
         }
-        delta = s->rfReq[1] - s->rfReq[0];
+        delta  = s->rfReq[1] - s->rfReq[0];
         height = HEIGHT (delta, bwscale);
         if (height > 1.0f)
         {
@@ -261,8 +254,8 @@ DrawBWBar (struct PerfSample* s)
         }
         s->fiReq[0] /= 2;
         s->fiReq[1] /= 2;
-        delta = s->fiReq[1] - s->fiReq[0];
-        height = HEIGHT (delta, bwscale);
+        delta        = s->fiReq[1] - s->fiReq[0];
+        height       = HEIGHT (delta, bwscale);
         if (height > 1.0f)
         {
             DRAW_RECT (x1, x2, lastY, lastY + height, DrawFIColor);
@@ -271,11 +264,11 @@ DrawBWBar (struct PerfSample* s)
     if (bDrawCPUBar != 0)
     {
         instructions = s->instructions[1] - s->instructions[0];
-        ipc = (f32)instructions / (f32)interval;
-        ipcscale = ipc / 2.0f;
-        misses = s->cacheMisses[1] - s->cacheMisses[0];
-        lastY = 7.0f + (140.0f + (7.0f + DrawFrameH));
-        height = ipcscale * 50.0f;
+        ipc          = (f32)instructions / (f32)interval;
+        ipcscale     = ipc / 2.0f;
+        misses       = s->cacheMisses[1] - s->cacheMisses[0];
+        lastY        = 7.0f + (140.0f + (7.0f + DrawFrameH));
+        height       = ipcscale * 50.0f;
         if (height > 1.0f)
         {
             DRAW_RECT (x1, x2, lastY, lastY + height, DrawIPCColor);
@@ -287,11 +280,11 @@ DrawBWBar (struct PerfSample* s)
     if (bDrawXFBars != 0)
     {
         lastY = 14.0f + (50.0f + (140.0f + (7.0f + DrawFrameH)));
-        xfI = s->xfWaitIn[1] - s->xfWaitIn[0];
-        xfO = s->xfWaitOut[1] - s->xfWaitOut[0];
+        xfI   = s->xfWaitIn[1] - s->xfWaitIn[0];
+        xfO   = s->xfWaitOut[1] - s->xfWaitOut[0];
         if (rasclocks >= (u32)(xfO + xfI))
         {
-            xfI = rasclocks - (xfO + xfI);
+            xfI    = rasclocks - (xfO + xfI);
             height = (50.0f * xfI) / rasclocks;
             if (height > 1.0f)
             {
@@ -301,9 +294,9 @@ DrawBWBar (struct PerfSample* s)
     }
     if (bDrawRASBar != 0)
     {
-        lastY = 50.0f + (21.0f + (50.0f + (140.0f + (7.0f + DrawFrameH))));
+        lastY   = 50.0f + (21.0f + (50.0f + (140.0f + (7.0f + DrawFrameH))));
         rasBusy = s->rasBusy[1] - s->rasBusy[0];
-        height = (50.0f * (f32)rasBusy) / rasclocks;
+        height  = (50.0f * (f32)rasBusy) / rasclocks;
         if (height > 1.0f)
         {
             DRAW_RECT (x1, x2, lastY, lastY + height, DrawGPRASIDLEColor);
@@ -311,13 +304,13 @@ DrawBWBar (struct PerfSample* s)
     }
 }
 #if DEBUG
-WEAKFUNC float
+__declspec (weak) float
 HEIGHT (u32 a, float f)
 {
     return 140.0f * ((f32)a / ((f32)MaxBusTransactions * f));
 }
 
-WEAKFUNC float
+__declspec (weak) float
 COORD (u32 a)
 {
     return 616.0f * ((f32)a / (f32)DrawFrameMax);
@@ -334,22 +327,22 @@ DrawKey ()
     float x2;
     float height;
 
-    x1 = 595.4667f;
-    x2 = 616.0f;
-    lastY = 7.0f + DrawFrameH;
+    x1      = 595.4667f;
+    x2      = 616.0f;
+    lastY   = 7.0f + DrawFrameH;
     bwscale = 1.0f;
-    foo[0] = 0;
-    foo[1] = MaxBusTransactions / 10;
+    foo[0]  = 0;
+    foo[1]  = MaxBusTransactions / 10;
 
-    delta = (foo[1] - foo[0]);
-    height = HEIGHT (delta, bwscale);
+    delta   = (foo[1] - foo[0]);
+    height  = HEIGHT (delta, bwscale);
     if (height > 1.0f)
     {
         DRAW_RECT (x1, x2, lastY, lastY + height, DrawCPColor);
         lastY += height;
     }
 
-    delta = (foo[1] - foo[0]);
+    delta  = (foo[1] - foo[0]);
     height = HEIGHT (delta, bwscale);
     if (height > 1.0f)
     {
@@ -357,7 +350,7 @@ DrawKey ()
         lastY += height;
     }
 
-    delta = (foo[1] - foo[0]);
+    delta  = (foo[1] - foo[0]);
     height = HEIGHT (delta, bwscale);
     if (height > 1.0f)
     {
@@ -365,7 +358,7 @@ DrawKey ()
         lastY += height;
     }
 
-    delta = (foo[1] - foo[0]);
+    delta  = (foo[1] - foo[0]);
     height = HEIGHT (delta, bwscale);
     if (height > 1.0f)
     {
@@ -373,7 +366,7 @@ DrawKey ()
         lastY += height;
     }
 
-    delta = (foo[1] - foo[0]);
+    delta  = (foo[1] - foo[0]);
     height = HEIGHT (delta, bwscale);
     if (height > 1.0f)
     {
@@ -381,7 +374,7 @@ DrawKey ()
         lastY += height;
     }
 
-    delta = (foo[1] - foo[0]);
+    delta  = (foo[1] - foo[0]);
     height = HEIGHT (delta, bwscale);
     if (height > 1.0f)
     {
@@ -389,7 +382,7 @@ DrawKey ()
         lastY += height;
     }
 
-    delta = (foo[1] - foo[0]);
+    delta  = (foo[1] - foo[0]);
     height = HEIGHT (delta, bwscale);
     if (height > 1.0f)
     {
@@ -397,7 +390,7 @@ DrawKey ()
         lastY += height;
     }
 
-    delta = (foo[1] - foo[0]);
+    delta  = (foo[1] - foo[0]);
     height = HEIGHT (delta, bwscale);
     if (height > 1.0f)
     {
@@ -405,7 +398,7 @@ DrawKey ()
         lastY += height;
     }
 
-    delta = (foo[1] - foo[0]);
+    delta  = (foo[1] - foo[0]);
     height = HEIGHT (delta, bwscale);
     if (height > 1.0f)
     {
@@ -413,7 +406,7 @@ DrawKey ()
         lastY += height;
     }
 
-    delta = (foo[1] - foo[0]);
+    delta  = (foo[1] - foo[0]);
     height = HEIGHT (delta, bwscale);
     if (height > 1.0f)
     {
@@ -438,11 +431,11 @@ PERFDumpScreen ()
 
     if (GameDrawInit)
     {
-        samples = PERFFrames[PERFCurrFrame].samples;
+        samples       = PERFFrames[PERFCurrFrame].samples;
         DrawNumFrames = PERFFrames[PERFCurrFrame].end / (OS_CORE_CLOCK / 60U) + 1;
-        DrawFrameMax = (OS_CORE_CLOCK / 60U) * DrawNumFrames;
-        DrawFrameW = 616.0f / DrawNumFrames;
-        allX = COORD (PERFFrames[PERFCurrFrame].end);
+        DrawFrameMax  = (OS_CORE_CLOCK / 60U) * DrawNumFrames;
+        DrawFrameW    = 616.0f / DrawNumFrames;
+        allX          = COORD (PERFFrames[PERFCurrFrame].end);
         GXLoadPosMtxImm (mID, 0);
         DRAW_RECT (0.0f, 616.0f, 0.0f, DrawFrameH, DrawFrameBGColor);
         GXSetChanMatColor (GX_COLOR0A0, DrawFrameColor);
@@ -606,7 +599,9 @@ PERFDumpScreen ()
                                 GXSetChanMatColor (GX_COLOR0A0, DrawGPColor);
                                 GXSetLineWidth (0x20U, GX_TO_ZERO);
                                 GXBegin (GX_LINES, GX_VTXFMT0, 2U);
-                                GXPosition3f32 (COORD (samples[s].origgpStart), DrawFrameH, -1.0f);
+                                GXPosition3f32 (COORD (samples[s].origgpStart),
+                                                DrawFrameH,
+                                                -1.0f);
                                 GXPosition3f32 (COORD (samples[s].gpTimeStampEnd),
                                                 DrawFrameH,
                                                 -1.0f);
@@ -617,7 +612,9 @@ PERFDumpScreen ()
                                 GXSetChanMatColor (GX_COLOR0A0, DrawConnectColor);
                                 GXSetLineWidth (0x6U, GX_TO_ZERO);
                                 GXBegin (GX_LINES, GX_VTXFMT0, 4U);
-                                GXPosition3f32 (COORD (samples[s].origgpStart), DrawFrameH, -1.0f);
+                                GXPosition3f32 (COORD (samples[s].origgpStart),
+                                                DrawFrameH,
+                                                -1.0f);
                                 GXPosition3f32 (COORD (samples[s].origcpuStart),
                                                 (f32)((id + 1) * 7),
                                                 -1.0f);
@@ -664,8 +661,12 @@ PERFDumpScreen ()
                             GXSetChanMatColor (GX_COLOR0A0, DrawGPColor);
                             GXSetLineWidth (0x20U, GX_TO_ZERO);
                             GXBegin (GX_LINES, GX_VTXFMT0, 2U);
-                            GXPosition3f32 (COORD (samples[s].gpTimeStampStart), DrawFrameH, -1.0f);
-                            GXPosition3f32 (COORD (samples[s].gpTimeStampEnd), DrawFrameH, -1.0f);
+                            GXPosition3f32 (COORD (samples[s].gpTimeStampStart),
+                                            DrawFrameH,
+                                            -1.0f);
+                            GXPosition3f32 (COORD (samples[s].gpTimeStampEnd),
+                                            DrawFrameH,
+                                            -1.0f);
                             GXEnd();
                             DrawBWBar (&samples[s]);
                         }
@@ -675,7 +676,9 @@ PERFDumpScreen ()
                             GXSetLineWidth (0x20U, GX_TO_ZERO);
                             GXBegin (GX_LINES, GX_VTXFMT0, 2U);
                             GXPosition3f32 (COORD (samples[s].origgpStart), DrawFrameH, -1.0f);
-                            GXPosition3f32 (COORD (samples[s].gpTimeStampEnd), DrawFrameH, -1.0f);
+                            GXPosition3f32 (COORD (samples[s].gpTimeStampEnd),
+                                            DrawFrameH,
+                                            -1.0f);
                             GXEnd();
                             DrawBWBar (&samples[s]);
                         }
@@ -698,10 +701,7 @@ PERFPostDraw ()
 
     for (i = 0; i < 4; i++)
     {
-        for (j = 0; j < 4; j++)
-        {
-            mProj[i][j] = 0.0f;
-        }
+        for (j = 0; j < 4; j++) { mProj[i][j] = 0.0f; }
     }
     mProj[0][0] = pSave[1];
     mProj[0][2] = pSave[2];

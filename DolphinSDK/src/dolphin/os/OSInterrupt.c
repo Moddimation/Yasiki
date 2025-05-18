@@ -4,7 +4,7 @@
 
 #include "OSPrivate.h"
 
-static ASM void ExternalInterruptHandler (register __OSException exception,
+static asm void ExternalInterruptHandler (register __OSException exception,
                                           register OSContext*    context);
 
 extern void __RAS_OSDisableInterrupts_begin (void);
@@ -608,7 +608,7 @@ __OSDispatchInterrupt (__OSException exception, OSContext* context)
     OSLoadContext (context);
 }
 
-static ASM void
+static asm void
 ExternalInterruptHandler (register __OSException exception, register OSContext* context)
 {
 #pragma unused(exception)

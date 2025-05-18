@@ -7,7 +7,7 @@
 volatile OSContext* __OSCurrentContext AT_ADDRESS (OS_BASE_CACHED | 0x00D4);
 volatile OSContext* __OSFPUContext     AT_ADDRESS (OS_BASE_CACHED | 0x00D8);
 
-static ASM void
+static asm void
 __OSLoadFPUContext (register u32 p0, register OSContext* fpuContext)
 {
 #pragma unused(p0)
@@ -95,7 +95,7 @@ _return:
 #endif
 }
 
-static ASM void
+static asm void
 __OSSaveFPUContext (register u32 p0, register u32 p1, register OSContext* fpuContext)
 {
 #pragma unused(p0)
@@ -568,7 +568,7 @@ OSDumpContext (OSContext* context)
     }
 }
 
-static ASM void
+static asm void
 OSSwitchFPUContext (register __OSException exception, register OSContext* context)
 {
 #pragma unused(exception)

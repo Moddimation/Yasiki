@@ -6,6 +6,8 @@
 // functions
 static void ReadCallback (s32 chan, s32 result);
 
+#define TRUNC(n, a) (((u32)(n)) & ~((a) - 1))
+
 s32
 __CARDSeek (CARDFileInfo* fileInfo, s32 length, s32 offset, CARDControl** pcard)
 {
@@ -44,7 +46,7 @@ __CARDSeek (CARDFileInfo* fileInfo, s32 length, s32 offset, CARDControl** pcard)
         return __CARDPutControlBlock (card, CARD_RESULT_LIMIT);
     }
 
-    card->fileInfo = fileInfo;
+    card->fileInfo   = fileInfo;
     fileInfo->length = length;
     if (offset < fileInfo->offset)
     {
@@ -59,7 +61,7 @@ __CARDSeek (CARDFileInfo* fileInfo, s32 length, s32 offset, CARDControl** pcard)
     while (fileInfo->offset < TRUNC (offset, card->sectorSize))
     {
         fileInfo->offset += card->sectorSize;
-        fileInfo->iBlock = fat[fileInfo->iBlock];
+        fileInfo->iBlock  = fat[fileInfo->iBlock];
         if (!CARDIsValidBlockNo (card, fileInfo->iBlock))
         {
             return __CARDPutControlBlock (card, CARD_RESULT_BROKEN);
@@ -68,7 +70,7 @@ __CARDSeek (CARDFileInfo* fileInfo, s32 length, s32 offset, CARDControl** pcard)
 
     fileInfo->offset = offset;
 
-    *pcard = card;
+    *pcard           = card;
 
     return CARD_RESULT_READY;
 }
@@ -103,9 +105,9 @@ ReadCallback (s32 chan, s32 result)
         goto error;
     }
 
-    fat = __CARDGetFatBlock (card);
+    fat               = __CARDGetFatBlock (card);
     fileInfo->offset += length;
-    fileInfo->iBlock = fat[fileInfo->iBlock];
+    fileInfo->iBlock  = fat[fileInfo->iBlock];
     if (!CARDIsValidBlockNo (card, fileInfo->iBlock))
     {
         result = CARD_RESULT_BROKEN;
@@ -129,7 +131,7 @@ ReadCallback (s32 chan, s32 result)
     return;
 
 error:
-    callback = card->apiCallback;
+    callback          = card->apiCallback;
     card->apiCallback = NULL;
     __CARDPutControlBlock (card, result);
     ASSERTLINE (0xCE, callback);
@@ -158,8 +160,8 @@ CARDReadAsync (CARDFileInfo* fileInfo, void* buf, s32 length, s32 offset, CARDCa
         return result;
     }
 
-    dir = __CARDGetDirBlock (card);
-    ent = &dir[fileInfo->fileNo];
+    dir    = __CARDGetDirBlock (card);
+    ent    = &dir[fileInfo->fileNo];
     result = __CARDAccess (ent);
     if (result == CARD_RESULT_NOPERM)
     {
@@ -173,7 +175,7 @@ CARDReadAsync (CARDFileInfo* fileInfo, void* buf, s32 length, s32 offset, CARDCa
     DCInvalidateRange (buf, (u32)length);
     card->apiCallback = callback ? callback : __CARDDefaultApiCallback;
 
-    offset = (s32)OFFSET (fileInfo->offset, card->sectorSize);
+    offset            = (s32)OFFSET (fileInfo->offset, card->sectorSize);
     length = (length < card->sectorSize - offset) ? length : card->sectorSize - offset;
     result = __CARDRead (fileInfo->chan,
                          card->sectorSize * (u32)fileInfo->iBlock + offset,
@@ -213,8 +215,8 @@ CARDCancel (CARDFileInfo* fileInfo)
 
     intrEnabled = OSDisableInterrupts();
 
-    card = &__CARDBlock[fileInfo->chan];
-    result = CARD_RESULT_READY;
+    card        = &__CARDBlock[fileInfo->chan];
+    result      = CARD_RESULT_READY;
     if (!card->attached)
     {
         result = CARD_RESULT_NOCARD;
@@ -222,7 +224,7 @@ CARDCancel (CARDFileInfo* fileInfo)
     else if (card->result == CARD_RESULT_BUSY && card->fileInfo == fileInfo)
     {
         fileInfo->length = -1;
-        result = CARD_RESULT_CANCELED;
+        result           = CARD_RESULT_CANCELED;
     }
     OSRestoreInterrupts (intrEnabled);
 

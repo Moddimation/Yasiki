@@ -278,7 +278,7 @@ DecrementerExceptionCallback (register __OSException exception, register OSConte
     OSLoadContext (context);
 }
 
-static ASM void
+static asm void
 DecrementerExceptionHandler (register __OSException exception, register OSContext* context)
 {
 #pragma unused(exception)

@@ -390,7 +390,7 @@ ICSync (void)
 #define LC_LINES    512
 #define CACHE_LINES 1024
 
-static ASM void
+static asm void
 __LCEnable (void)
 {
 #ifdef __MWERKS__

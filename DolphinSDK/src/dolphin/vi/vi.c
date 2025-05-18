@@ -276,6 +276,8 @@ __VIInit (VITVMode mode)
 }
 
 #define CLAMP(val, min, max) ((val) > (max) ? (max) : (val) < (min) ? (min) : (val))
+#define MAX(a, b)            (((a) > (b)) ? (a) : (b))
+#define MIN(a, b)            (((a) < (b)) ? (a) : (b))
 
 static void
 AdjustPosition (u16 acv)

@@ -21,9 +21,11 @@ SASSERT_SIZE (JSUPtrLink, 0x10);
 template <class T>
 struct JSULink : public JSUPtrLink
 {
-    JSULink (void* data) : JSUPtrLink (data) {}
+    JSULink (void* data) : JSUPtrLink (data)
+    {}
 
-    ~JSULink () {}
+    ~JSULink ()
+    {}
 
     void*
     getObject ()
@@ -53,7 +55,10 @@ struct JSULink : public JSUPtrLink
 class JSUPtrList
 {
 public:
-    JSUPtrList () { initiate(); }
+    JSUPtrList ()
+    {
+        initiate();
+    }
 
     JSUPtrList (BOOL do_init);
     ~JSUPtrList ();
@@ -94,15 +99,17 @@ protected:
     u32         mNumLinks;   ///< 0x08 // number of links in list
 };
 
-SASSERT_SIZE (JSUPtrLink, 0x10);
+SASSERT_SIZE (JSUPtrList, 0xC);
 
 template <class T>
 class JSUList : public JSUPtrList
 {
 public:
-    JSUList (BOOL init) : JSUPtrList (init) {}
+    JSUList (BOOL init) : JSUPtrList (init)
+    {}
 
-    JSUList () : JSUPtrList() {}
+    JSUList () : JSUPtrList()
+    {}
 
     void
     initiate ()
@@ -163,11 +170,14 @@ template <typename T>
 class JSUListIterator
 {
 public:
-    JSUListIterator () : mLink (Nil) {}
+    JSUListIterator () : mLink (Nil)
+    {}
 
-    JSUListIterator (JSULink<T>* link) : mLink (link) {}
+    JSUListIterator (JSULink<T>* link) : mLink (link)
+    {}
 
-    JSUListIterator (JSUList<T>* list) : mLink (list->getFirst()) {}
+    JSUListIterator (JSUList<T>* list) : mLink (list->getFirst())
+    {}
 
     JSUListIterator<T>&
     operator= (JSULink<T>* link)
@@ -216,7 +226,7 @@ public:
     operator++ (int)
     {
         JSUListIterator<T> prev = *this;
-        mLink = (JSULink<T>*)mLink->getNext();
+        mLink                   = (JSULink<T>*)mLink->getNext();
         return prev;
     }
 
@@ -231,7 +241,7 @@ public:
     operator-- (int)
     {
         JSUListIterator<T> prev = *this;
-        mLink = (JSULink<T>*)mLink->getPrev();
+        mLink                   = (JSULink<T>*)mLink->getPrev();
         return prev;
     }
 
@@ -258,9 +268,11 @@ template <typename T>
 class JSUTree : public JSUList<T>, public JSULink<T>
 {
 public:
-    JSUTree (T* owner) : JSUList<T>(), JSULink<T> (owner) {}
+    JSUTree (T* owner) : JSUList<T>(), JSULink<T> (owner)
+    {}
 
-    ~JSUTree () {}
+    ~JSUTree ()
+    {}
 
     BOOL
     appendChild (JSUTree<T>* child)
@@ -339,9 +351,11 @@ template <typename T>
 class JSUTreeIterator
 {
 public:
-    JSUTreeIterator () : mTree (Nil) {}
+    JSUTreeIterator () : mTree (Nil)
+    {}
 
-    JSUTreeIterator (JSUTree<T>* tree) : mTree (tree) {}
+    JSUTreeIterator (JSUTree<T>* tree) : mTree (tree)
+    {}
 
     JSUTreeIterator<T>&
     operator= (JSUTree<T>* tree)
@@ -372,7 +386,7 @@ public:
     operator++ (int)
     {
         JSUTreeIterator<T> prev = *this;
-        mTree = mTree->getNextChild();
+        mTree                   = mTree->getNextChild();
         return prev;
     }
 
@@ -387,7 +401,7 @@ public:
     operator-- (int)
     {
         JSUTreeIterator<T> prev = *this;
-        mTree = mTree->getPrevChild();
+        mTree                   = mTree->getPrevChild();
         return prev;
     }
 

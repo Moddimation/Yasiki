@@ -1,10 +1,6 @@
 #ifndef _H_MACROS_
 #define _H_MACROS_
 
-#define ARRAY_COUNT(arr)     (int)(sizeof (arr) / sizeof (arr[0]))
-#define FLAG_ON(V, F)        (((V) & (F)) == 0)
-#define FLAG_OFF(V, F)       (((V) & (F)) != 0)
-
 #define ALIGN_PREV(u, align) (u & (~(align - 1)))
 #define ALIGN_NEXT(u, align) ((u + (align - 1)) & (~(align - 1)))
 #define IS_ALIGNED(X, N)     (((X) & ((N) - 1)) == 0)
@@ -58,62 +54,11 @@
 	(void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0;
 // clang-format on
 
-#define TRUNC(n, a)                     (((u32)(n)) & ~((a) - 1))
-
-#define OFFSET(addr, align)             (((u32)(addr) & ((align) - 1)))
-
-#define PATH_MAX                        (256)
-
-// Sets specific flag to 1
-#define SET_FLAG(x, val)                (x |= (val))
-
-// Resets specific flag from (val) back to 0
-#define RESET_FLAG(x, val)              (x &= ~(val))
-
-// Return 1 if flag is set, 0 if flag is not set
-#define IS_FLAG(x, val)                 (x & val)
-
-// Array size define
-#define ARRAY_SIZE(o)                   (sizeof ((o)) / sizeof (*(o)))
-
 // Align object to num bytes (num should be power of two)
-#define ATTRIBUTE_ALIGN(num)            __attribute__ ((aligned (num)))
+#define ALIGN(num)          __attribute__ ((aligned (num)))
 
-// Checks if a flag is set in a bitfield
-#define IS_FLAG_SET(flags, bitsFromLSB) (((flags) >> (bitsFromLSB) & 1))
-
-#define ASSERT_HANG(cond)                                                                      \
-    if (!(cond))                                                                               \
-    {                                                                                          \
-        while (true) {}                                                                        \
-    }
-
-// Get the maximum of two values
-#define MAX(a, b)          (((a) > (b)) ? (a) : (b))
-
-// Get the minimum of two values
-#define MIN(a, b)          (((a) < (b)) ? (a) : (b))
-
-// Rounds a float to a u8
-#define ROUND_F32_TO_U8(a) a >= 0.0f ? a + 0.5f : a - 0.5f
-
-// Number of bytes in a kilobyte
-#define KILOBYTE_BYTECOUNT 1024
-
-#define BUMP_REGISTER(reg)                                                                     \
-    {                                                                                          \
-        asm { mr reg, reg }                                                                       \
-    }
-
-#ifdef __MWERKS__
-#define WEAKFUNC        __declspec (weak)
-#define DECL_SECT(name) __declspec (section name)
-#define ASM             asm
-#else
-#define WEAKFUNC
-#define DECL_SECT(name)
-#define ASM
-#endif
+// Kept it because its used everywhere
+#define OFFSET(addr, align) (((u32)(addr) & ((align) - 1)))
 
 // Disable some clangd warnings
 #ifdef __clang__
@@ -127,15 +72,16 @@
 #define __MSTRING_CONCAT(a, b) a##b
 #define MSTRING_CONCAT(a, b)   __MSTRING_CONCAT (a, b)
 
-// TODO: make more unique
-#define SASSERT(expr)                                                                          \
+// Static Asserts, for decompiling purposes and security
+#define SASSERT(name, expr)                                                                    \
     enum                                                                                       \
     {                                                                                          \
-        MSTRING_CONCAT (assert_fail_at_, __LINE__) = 1 / (expr)                                \
+        MSTRING_CONCAT (assert_fail_, name) = 1 / (expr)                                       \
     }
-#define SASSERT_SIZE(type, size) SASSERT (sizeof (type) == size)
+#define SASSERT_SIZE(type, size) SASSERT (MSTRING_CONCAT (size_, type), sizeof (type) == size)
 
 #ifndef __MWERKS__
+// Avoid a few warnings inside of text editors with clangd or similar
 
 #ifdef __POWERPC__
 #undef __POWERPC__
@@ -146,14 +92,17 @@
 #endif
 
 #define __builtin_va_info
-#define __option(x)   0
-#define __declspec(x) 0
-#define __frsqrte(x)  0
-#define __fabsf(x)    0
-#define __sync()      0
-#define __cntlzw(x)   0
-#define __cdecl       0
+#define __option(x) 1
+#define __declspec(x)
+#define __frsqrte(x)
+#define __fabsf(x)
+#define __sync()
+#define __cntlzw(x) 1
+#define __cdecl
 #define asm
+#define weak 1
+#define section
+#define floatingpoint 1
 
 #endif
 

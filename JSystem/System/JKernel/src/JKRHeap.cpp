@@ -5,7 +5,7 @@ JKRHeap*        JKRHeap::sCurrentHeap  = Nil;
 JKRHeap*        JKRHeap::sRootHeap     = Nil;
 JKRErrorRoutine JKRHeap::mErrorHandler = Nil;
 
-JKRHeap::JKRHeap (HANDLE obj, u32 size, JKRHeap* parent, BOOL error)
+JKRHeap::JKRHeap (HANDLE obj, size_t size, JKRHeap* parent, BOOL error)
   : JKRDisposer(), mHeapTree (this), mDisposerList()
 {
     OSInitMutex (&mMutex);

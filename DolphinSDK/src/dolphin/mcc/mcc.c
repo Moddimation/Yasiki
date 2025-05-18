@@ -3,11 +3,11 @@
 #include <dolphin.h>
 
 // .bss
-static MCC_ChannelInfo gChannelInfo[16] ATTRIBUTE_ALIGN (32);
-static s8              gStreamWork[32] ATTRIBUTE_ALIGN (32);
-static s8              m_szAdapterMode[32] ATTRIBUTE_ALIGN (32);
-static s8              m_szInitCode[32] ATTRIBUTE_ALIGN (32);
-static MCC_Info        channelInfo[16] ATTRIBUTE_ALIGN (32);
+static MCC_ChannelInfo gChannelInfo[16] ALIGN (32);
+static s8              gStreamWork[32] ALIGN (32);
+static s8              m_szAdapterMode[32] ALIGN (32);
+static s8              m_szInitCode[32] ALIGN (32);
+static MCC_Info        channelInfo[16] ALIGN (32);
 
 // .sdata
 volatile static int gIsChannelinfoDirty = 1;

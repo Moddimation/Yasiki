@@ -2,7 +2,7 @@
 
 #include <cmath>
 
-// defines to make ASM work
+// defines to make asm work
 #define qr0 0
 
 void
@@ -111,7 +111,7 @@ PSVECNormalize (register Vec* vec1, register Vec* dst)
     register float nwork1;
 
 #ifdef __MWERKS__
-    ASM
+    asm
     {
         psq_l     v1_xy, Vec.x (vec1), 0, qr0;
         ps_mul    xx_yy, v1_xy, v1_xy;

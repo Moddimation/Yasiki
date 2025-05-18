@@ -16,7 +16,7 @@ struct SramControl
     BOOL sync;                ///< 0x4C
     void (*callback)();       ///< 0x50
 };
-static struct SramControl Scb ATTRIBUTE_ALIGN (32);
+static struct SramControl Scb ALIGN (32);
 
 static BOOL  GetRTC (u32* rtc);
 static BOOL  ReadSram (void* buffer);

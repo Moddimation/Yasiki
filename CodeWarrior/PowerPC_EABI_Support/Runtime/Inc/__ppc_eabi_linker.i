@@ -67,7 +67,7 @@
 ;HISTORY
 ;	97 APR 16 LLY	Moved from __start.c, new names for 4/1/97 PPC EABI tools.
 ;	97 JUN 8 MEA	New names for 6/8/97 PPC EABI tools (C++ exceptions).
-;	97 JULY 1 JFH	created ASM version .i from .h
+;	97 JULY 1 JFH	created asm version .i from .h
 ;	97 SEP 11 MEA	_heap_size and _stack_size are now in bytes.
 ;	97 DEC  7 MEA	linker generated symbols are now forced into the .init section.
 ;					Created new symbols _bss_init_info and _rom_copy_info.

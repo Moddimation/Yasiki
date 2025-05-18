@@ -13,9 +13,9 @@
 #define DEBUGFLAG_ADDR          0x800030E8
 #define DVD_DEVICECODE_ADDR     0x800030E6
 
-SEC_INIT extern s8 _stack_addr[];
-SEC_INIT extern s8 _SDA_BASE_[];
-SEC_INIT extern s8 _SDA2_BASE_[];
+__declspec (section ".init") extern s8 _stack_addr[];
+__declspec (section ".init") extern s8 _SDA_BASE_[];
+__declspec (section ".init") extern s8 _SDA2_BASE_[];
 
 typedef struct __rom_copy_info
 {
@@ -24,7 +24,7 @@ typedef struct __rom_copy_info
     unsigned int size;
 } __rom_copy_info;
 
-SEC_INIT extern __rom_copy_info _rom_copy_info[];
+__declspec (section ".init") extern __rom_copy_info _rom_copy_info[];
 
 typedef struct __bss_init_info
 {
@@ -32,12 +32,12 @@ typedef struct __bss_init_info
     u32   size;
 } __bss_init_info;
 
-SEC_INIT extern __bss_init_info _bss_init_info[];
-extern int                      main (int argc, char* argv[]);
-extern void                     exit (int);
+__declspec (section ".init") extern __bss_init_info _bss_init_info[];
+extern int                                          main (int argc, char* argv[]);
+extern void                                         exit (int);
 
-SEC_INIT extern void __init_hardware (void);
-SEC_INIT extern void __flush_cache (void* address, u32 size);
+__declspec (section ".init") extern void __init_hardware (void);
+__declspec (section ".init") extern void __flush_cache (void* address, u32 size);
 
 void __init_registers (void);
 void __init_data (void);
@@ -51,7 +51,7 @@ mtk_stub ()
 }
 #endif
 
-SEC_INIT WEAKFUNC asm void
+__declspec (section ".init") __declspec (weak) asm void
 __start (void)
 {
 #ifdef __MWERKS__

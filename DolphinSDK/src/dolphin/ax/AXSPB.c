@@ -5,7 +5,7 @@
 #include "AXPrivate.h"
 
 // .bss
-static struct _AXSPB __AXStudio ATTRIBUTE_ALIGN (32);
+static struct _AXSPB __AXStudio ALIGN (32);
 
 // .sbss
 static s32 __AXSpbAL;

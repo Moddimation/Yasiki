@@ -52,7 +52,7 @@ static int                  AreWeInitialized;
 static void                 (**OSExceptionTable) (u8, OSContext*);
 
 // functions
-static ASM void __OSInitFPRs (void);
+static asm void __OSInitFPRs (void);
 static void     OSExceptionInit (void);
 static void     OSDefaultExceptionHandler (u8 exception /* r3 */, OSContext* context /* r4 */);
 
@@ -62,7 +62,7 @@ __OSIsDebuggerPresent ()
     return *(u32*)OSPhysicalToCached (0x40);
 }
 
-static ASM void
+static asm void
 __OSInitFPRs (void)
 {
 #ifdef __MWERKS__
@@ -321,7 +321,7 @@ OSExceptionInit (void)
     DBPrintf ("Exceptions initialized...\n");
 }
 
-static ASM void
+static asm void
 __OSDBIntegrator (void)
 {
 #ifdef __MWERKS__
@@ -340,7 +340,7 @@ __OSDBIntegrator (void)
 #endif
 }
 
-static ASM void
+static asm void
 __OSDBJump (void)
 {
 #ifdef __MWERKS__
@@ -375,7 +375,7 @@ __OSGetExceptionHandler (__OSException exception)
     return OSExceptionTable[exception];
 }
 
-static ASM void
+static asm void
 OSExceptionVector (void)
 {
 #ifdef __MWERKS__
@@ -463,7 +463,7 @@ recoverable:
 
 void __OSUnhandledException (__OSException exception, OSContext* context, u32 dsisr, u32 dar);
 
-ASM void
+asm void
 OSDefaultExceptionHandler (register __OSException exception, register OSContext* context)
 {
 #pragma unused(exception)
@@ -485,7 +485,7 @@ __OSPSInit (void)
     ICFlashInvalidate();
     __sync();
 #ifdef __MWERKS__
-    ASM
+    asm
     {
         li    r3, 0;
         mtspr GQR0, r3;

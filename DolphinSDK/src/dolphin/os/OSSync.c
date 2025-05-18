@@ -7,7 +7,7 @@
 void __OSSystemCallVectorStart ();
 void __OSSystemCallVectorEnd ();
 
-static ASM void
+static asm void
 SystemCallVector (void)
 {
 #ifdef __MWERKS__

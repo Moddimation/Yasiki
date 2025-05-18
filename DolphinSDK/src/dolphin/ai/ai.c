@@ -387,7 +387,7 @@ __AIDHandler (__OSInterrupt interrupt, OSContext* context)
     OSSetCurrentContext (context);
 }
 
-static ASM void
+static asm void
 __AICallbackStackSwitch (register void* cb)
 {
 #pragma unused(cb)

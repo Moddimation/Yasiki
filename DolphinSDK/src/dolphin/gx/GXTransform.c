@@ -118,7 +118,7 @@ GXGetProjectionv (f32* ptr)
     ptr[6] = __GXData->projMtx[5];
 }
 
-static ASM void
+static asm void
 WriteMTXPS4x3 (register f32 mtx[3][4], register volatile f32* dest)
 {
 #ifdef __MWERKS__
@@ -138,7 +138,7 @@ WriteMTXPS4x3 (register f32 mtx[3][4], register volatile f32* dest)
 #endif
 }
 
-static ASM void
+static asm void
 WriteMTXPS3x3from3x4 (register f32 mtx[3][4], register volatile f32* dest)
 {
 #ifdef __MWERKS__
@@ -157,7 +157,7 @@ WriteMTXPS3x3from3x4 (register f32 mtx[3][4], register volatile f32* dest)
 #endif
 }
 
-static ASM void
+static asm void
 WriteMTXPS3x3 (register f32 mtx[3][3], register volatile f32* dest)
 {
 #ifdef __MWERKS__
@@ -174,7 +174,7 @@ WriteMTXPS3x3 (register f32 mtx[3][3], register volatile f32* dest)
 #endif
 }
 
-static ASM void
+static asm void
 WriteMTXPS4x2 (register f32 mtx[2][4], register volatile f32* dest)
 {
 #ifdef __MWERKS__
