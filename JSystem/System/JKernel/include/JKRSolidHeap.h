@@ -9,19 +9,21 @@ public:
     static JKRSolidHeap* create (size_t size, JKRHeap* parent, BOOL isError);
     void                 destroy ();
 
-    s32 adjustSize ();
+    s32    adjustSize ();
+    HANDLE allocFromHead (size_t size, int align);
+    HANDLE allocFromTail (size_t size, int align);
 
-    override JKRHeap* alloc (size_t size, int align);
-    override void     free (HANDLE ptr);
-    override void     freeAll (void);
-    override void     freeTail (void);
-    override s32      resize (HANDLE, int);
-    override size_t   getSize (HANDLE);
-    override size_t   getFreeSize (void);
-    override size_t   getTotalFreeSize (void);
-    override u32      getHeapType (void);
-    override void     check (void);
-    override void     dump (void);
+    override HANDLE alloc (size_t size, int align);
+    override void   free (HANDLE ptr);
+    override void   freeAll (void);
+    override void   freeTail (void);
+    override s32    resize (HANDLE, int);
+    override size_t getSize (HANDLE);
+    override size_t getFreeSize (void);
+    override size_t getTotalFreeSize (void);
+    override u32    getHeapType (void);
+    override void   check (void);
+    override void   dump (void);
 
 protected:
     size_t mFreeSize;

@@ -19,6 +19,8 @@ Not as simple as most projects, but possible.
 **Yasiki Parlor**: [![Discord Badge]][discord]  <br>
 *For general, other gc/wii purposes (do not ask for pc ports!):*  <br>
 **GC/Wii Decompilation**: [![Discord Badge OG]][discord-og]  <br>
+*All about modding the game:*  <br>
+**Luigi's Bigger Mansion**: [![Discord Badge MOD]][discord-mod]  <br>
 
 ## Index
 - [Available versions](#available-versions)
@@ -46,6 +48,7 @@ Not as simple as most projects, but possible.
 | GLMP01    | Europe |  Demo   |    No    | Mar.    2002 | Jan. 21 2002 |    49    | Dec. 17 2001 | Nov. 30 2001 |
 | GLMP01_1  | Europe | Release |    No    | May   3 2002 | Mar.    2002 |    49    | Dec. 17 2001 | Nov. 30 2001 |
 | GLMP01_2  | Europe | Release |    No    | May  17 2002 | Mar     2002 |    49    | Dec. 17 2001 | Nov. 30 2001 |
+  
 *note that the Europe Release Rev. 1 left the DOL identical, only changing the movie rating.* 
 *furthermore, the USA Release had previously been the decomp target, but now the active one is the Japan Release.*
 
@@ -247,8 +250,10 @@ CodeWarrior Runtime  <br>
 [Code Progress]: https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=code&label=Code
 [progress]: https://decomp.dev/Moddimation/Yasiki
 [Discord Badge OG]: https://img.shields.io/discord/727908905392275526?color=%237289DA&logo=discord&logoColor=%23FFFFFF
+[Discord Badge MOD]: https://img.shields.io/discord/610396457962307604?color=%237289DA&logo=discord&logoColor=%23FFFFFF
 [Discord Badge]: https://img.shields.io/discord/1373544736165728296?color=%237289DA&logo=discord&logoColor=%23FFFFFF
 [discord-og]: https://discord.gg/hKx3FJJgrV
+[discord-mod]: https://discord.gg/lbm
 [discord]: https://discord.gg/697xRJJww3
 [Wiki]: https://img.shields.io/badge/Wiki-page-blue
 [wikipage]: https://moddimation.github.io/Yasiki

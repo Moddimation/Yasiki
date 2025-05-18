@@ -85,30 +85,30 @@ protected:
     void     dispose (HANDLE, HANDLE);
     void     dispose (void);
 
-    virtual JKRHeap* alloc (size_t size, int align) = 0;
-    virtual void     free (HANDLE ptr)              = 0;
-    virtual void     freeAll (void);
-    virtual void     freeTail (void)         = 0;
-    virtual s32      resize (HANDLE, int)    = 0;
-    virtual size_t   getSize (HANDLE)        = 0;
-    virtual size_t   getFreeSize (void)      = 0;
-    virtual size_t   getTotalFreeSize (void) = 0;
-    virtual u32      getHeapType (void)      = 0;
-    virtual void     check (void)            = 0;
-    virtual void     dump (void)             = 0;
-    virtual int      dump_sort (void);
-    virtual u32      getCurrentGroupId (void);
+    virtual HANDLE alloc (size_t size, int align) = 0;
+    virtual void   free (HANDLE ptr)              = 0;
+    virtual void   freeAll (void);
+    virtual void   freeTail (void)         = 0;
+    virtual s32    resize (HANDLE, int)    = 0;
+    virtual size_t getSize (HANDLE)        = 0;
+    virtual size_t getFreeSize (void)      = 0;
+    virtual size_t getTotalFreeSize (void) = 0;
+    virtual u32    getHeapType (void)      = 0;
+    virtual void   check (void)            = 0;
+    virtual void   dump (void)             = 0;
+    virtual int    dump_sort (void);
+    virtual u32    getCurrentGroupId (void);
 
     void
     unlock ()
     {
-        OSLockMutex (&mMutex);
+        OSUnlockMutex (&mMutex);
     }
 
     void
     lock ()
     {
-        OSUnlockMutex (&mMutex);
+        OSLockMutex (&mMutex);
     }
 
     JSUTree<JKRHeap>&
