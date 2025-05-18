@@ -459,16 +459,15 @@ def GameSource(lib_name: str, files: List[Tuple[bool, str]], conf: Dict[str, str
         "objects": objects,
         **conf
     }
-def GameMain(file: Tuple[bool, str], conf: Dict[str, str]={"":""}) -> Dict[str, Any]:
+def GameMain(file: str, matching: bool, conf: Dict[str, str]={"":""}) -> Dict[str, Any]:
     objects = []
-    dirpath = "sources"
-    filepath = f"{dirpath}/{file}"
+    filepath = f"sources/{file}"
     objects.append(Object(matching, filepath))
 
-    __cflags = cflags_game + [f"-i {dirpath}"]
+    __cflags = cflags_game
 
     return {
-        "lib": lib_name,
+        "lib": "yasiki",
         "cflags": __cflags,
         "progress_category": "game",
         "src_dir": f"Project",
@@ -492,7 +491,7 @@ config.libs = [
 
     # Game source folders
 
-#    GameMain("main.cpp")
+    GameMain("main.cpp", NonMatching),
 #    GameSource("PSystem", [
 #        (NonMatching, "initthread.cpp"),
 #        (NonMatching, "memory.cpp"),
