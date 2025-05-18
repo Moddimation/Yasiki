@@ -6,7 +6,7 @@
 Yasiki is a work-in-progress decompilation project of [**Luigi's Mansion**](https://wikipedia.org/wiki/Luigi%27s_Mansion) for the [**Nintendo GameCube**](https://en.wikipedia.org/wiki/GameCube).  <br><br>
 The focus is currently laid on the Japanese release (GLMJ01), but configurations exist for all available versions.  <br>
 The original creator first focused on the North American release (GLME01), and it's symbols.txt was copied to a backup file.
-
+ 
 ### Note:  <br>
 **this will not produce a playable game**, if you do not supply it beforehand.  <br>
 
