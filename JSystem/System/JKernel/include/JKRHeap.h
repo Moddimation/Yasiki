@@ -95,8 +95,8 @@ protected:
     virtual size_t getTotalFreeSize (void) = 0;
     virtual u32    getHeapType (void)      = 0;
     virtual BOOL   check (void)            = 0;
-    virtual void*  dump (void)             = 0;
-    virtual int    dump_sort (void);
+    virtual BOOL   dump (void)             = 0;
+    virtual BOOL   dump_sort (void);
     virtual u32    getCurrentGroupId (void);
 
     void

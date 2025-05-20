@@ -35,10 +35,7 @@ JKRSolidHeap::JKRSolidHeap (HANDLE obj, size_t size, JKRHeap* parent, bool is_er
     mIter (Nil)
 {}
 
-JKRSolidHeap::~JKRSolidHeap ()
-{
-    dispose();
-}
+JKRSolidHeap::~JKRSolidHeap () { dispose(); }
 
 s32
 JKRSolidHeap::adjustSize ()
@@ -222,15 +219,17 @@ JKRSolidHeap::check (void)
     return ok;
 }
 
-void*
+BOOL
 JKRSolidHeap::dump (void)
 {
-    void* ret = dump();
+    BOOL ret = dump();
+
     lock();
 #ifdef DEBUG
 
 #endif
     unlock();
+
     return ret;
 }
 

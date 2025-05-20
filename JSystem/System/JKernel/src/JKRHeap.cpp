@@ -303,10 +303,10 @@ operator delete[] (HANDLE obj)
     operator delete (obj);
 }
 
-int
+BOOL
 JKRHeap::dump_sort (void)
 {
-    return 0;
+    return FALSE;
 }
 
 u32

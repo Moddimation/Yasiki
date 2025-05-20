@@ -50,10 +50,9 @@ AllowShortBlocksOnASingleLine: true
 AllowShortCaseLabelsOnASingleLine: false
 AllowShortCompoundRequirementOnASingleLine: false
 AllowShortEnumsOnASingleLine: false
-AllowShortFunctionsOnASingleLine: None
-AllowShortLambdasOnASingleLine: None
+AllowShortFunctionsOnASingleLine: Inline
+AllowShortLambdasOnASingleLine: true
 AllowShortLoopsOnASingleLine: true
-AlwaysBreakAfterDefinitionReturnType: true
 AlwaysBreakBeforeMultilineStrings: true
 AlwaysBreakTemplateDeclarations: true
 BinPackArguments: false
@@ -81,6 +80,7 @@ BraceWrapping:
 BreakAdjacentStringLiterals: true
 BreakAfterAttributes: Never
 BreakAfterJavaFieldAnnotations: false
+BreakAfterReturnType: AllDefinitions
 BreakArrays: true
 BreakBeforeBinaryOperators: None
 BreakBeforeBraces: Custom
@@ -116,7 +116,7 @@ IndentCaseBlocks: true
 IndentCaseLabels: true
 IndentExternBlock: NoIndent
 IndentGotoLabels: true
-IndentPPDirectives: None
+IndentPPDirectives: AfterHash
 IndentRequiresClause: true
 IndentWidth: 4
 IndentWrappedFunctionNames: false
@@ -145,11 +145,11 @@ ObjCBlockIndentWidth: 2
 ObjCBreakBeforeNestedBlockParam: true
 ObjCSpaceAfterProperty: false
 ObjCSpaceBeforeProtocolList: true
-PPIndentWidth: -1
-PackConstructorInitializers: BinPack
+PPIndentWidth: 4
+PackConstructorInitializers: Never
 ColumnLimit: 96
 PenaltyBreakAssignment: 2
-PenaltyBreakBeforeFirstCallParameter: 19
+PenaltyBreakBeforeFirstCallParameter: 22
 PenaltyBreakComment: 300
 PenaltyBreakFirstLessLess: 120
 PenaltyBreakOpenParenthesis: 0

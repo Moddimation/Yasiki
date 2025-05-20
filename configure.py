@@ -546,7 +546,7 @@ config.libs = [
         (NonMatching, "JKRExpHeap.cpp"),
         (NonMatching, "JKRSolidHeap.cpp"),
         (Matching, "JKRDisposer.cpp"),
-        (NonMatching, "JKRThread.cpp"),
+#        (NonMatching, "JKRThread.cpp"),
     ]),
 
     JSystemLib("JSupport", "System/JSupport", [
