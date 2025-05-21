@@ -1,5 +1,5 @@
-name: Deploy to GitHub Pages
-
+name: Build pages
+ 
 on:
   push:
     branches:
@@ -10,7 +10,7 @@ on:
 
 jobs:
   deploy:
-    name: Deploy Github Pages
+    name: Build pages
     runs-on: ubuntu-latest
 
     steps:
@@ -42,6 +42,7 @@ jobs:
         mkdir priv
         mv YasikiWebsite priv/yasiki
         wget https://github.com/Moddimation/Yasiki/blob/main/readme.md?raw=true -O priv/yasiki/docs/index.md
-        python -m mkdocs gh-deploy --config-file priv/yasiki/mkdocs.yml --remote-branch website
+        python -m mkdocs gh-deploy --config-file priv/yasiki/mkdocs.yml --force --remote-branch website
       env:
         GG_TOKEN: ${{ secrets.GG_TOKEN }}
+
