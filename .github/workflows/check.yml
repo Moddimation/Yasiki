@@ -1,0 +1,31 @@
+name: Quick Check
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  quickcheck:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+
+    steps:
+    # Checkout the repository
+    - name: Checkout
+      uses: actions/checkout@v4
+#      with:
+#        submodules: recursive
+
+    # Set Git config
+    - name: Git config
+      run: git config --global --add safe.directory "$GITHUB_WORKSPACE"
+
+    # Adding checks here in the future
+    - name: Check
+      run: |
+        echo "Hello There :D"
