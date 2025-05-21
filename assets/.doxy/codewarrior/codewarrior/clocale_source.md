@@ -1,0 +1,101 @@
+
+
+# File clocale
+
+[**File List**](files.md) **>** [**CodeWarrior**](dir_c5aab8d4319c0669f4501cae4cd3ca21.md) **>** [**PowerPC\_EABI\_Support**](dir_7a6c87a887c36ca33135c86474059f07.md) **>** [**Msl**](dir_7345a9473b198df67a564f445bc0d615.md) **>** [**MSL\_C**](dir_219b89db6f18167528da0b33a71eb580.md) **>** [**MSL\_Common**](dir_92c8450e06c94075b3621ac302a86fb9.md) **>** [**Include**](dir_3ffa88f97e35b066b52bd9bbaed6371b.md) **>** [**clocale**](clocale.md)
+
+[Go to the documentation of this file](clocale.md)
+
+
+```C++
+/*  Metrowerks Standard Library  */
+
+/*  $Date: 1999/01/22 23:40:30 $ 
+ *  $Revision: 1.7 $ 
+ *  $NoKeywords: $ 
+ *
+ *      Copyright 1995-1999 Metrowerks, Inc.
+ *      All rights reserved.
+ */
+
+/*
+ *  clocale       hh  971206 filename used to be locale.h
+ */
+ 
+#ifndef __clocale__
+#define __clocale__
+
+#include <ansi_parms.h>
+
+#ifndef RC_INVOKED   /* hh 971230 */
+
+#pragma options align=native
+#if defined(__CFM68K__) && !defined(__USING_STATIC_LIBS__)
+    #pragma import on
+#endif
+
+#ifdef __cplusplus        /* hh  971206 */
+    #ifdef _MSL_USING_NAMESPACE
+        namespace std {
+    #endif
+    extern "C" {
+#endif
+
+struct lconv {
+    char    * decimal_point;
+    char    * thousands_sep;
+    char    * grouping;
+    char    * int_curr_symbol;
+    char    * currency_symbol;
+    char    * mon_decimal_point;
+    char    * mon_thousands_sep;
+    char    * mon_grouping;
+    char    * positive_sign;
+    char    * negative_sign;
+    char      int_frac_digits;
+    char      frac_digits;
+    char      p_cs_precedes;
+    char      p_sep_by_space;
+    char      n_cs_precedes;
+    char      n_sep_by_space;
+    char      p_sign_posn;
+    char      n_sign_posn;
+};
+
+#define LC_FIRST        0
+
+#define LC_COLLATE      0x01  /* hh 980415 Changed values to cooperate with C++ locale */
+#define LC_CTYPE        0x02
+#define LC_MONETARY     0x04
+#define LC_NUMERIC      0x08
+#define LC_TIME         0x10
+#define LC_MESSAGES     0x20  /* hh 980415 added */
+#define LC_ALL          0x3F
+
+#define LC_LAST         LC_ALL
+
+char                    * setlocale(int category, const char *locale);
+struct lconv    * localeconv(void);
+
+#ifdef __cplusplus              /* hh  971206 */
+    }
+    #ifdef _MSL_USING_NAMESPACE
+        }
+    #endif
+#endif
+
+#if defined(__CFM68K__) && !defined(__USING_STATIC_LIBS__)
+    #pragma import reset
+#endif
+#pragma options align=reset
+
+#endif /* RC_INVOKED */
+
+#endif /* __clocale__ */
+/*     Change record
+ * hh  971206 Changed filename from locale.h to clocale and added namespace support.
+ * hh 971230 added RC_INVOKED wrapper
+*/
+```
+
+

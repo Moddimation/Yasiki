@@ -1,0 +1,21 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="bug" kind="page">
+    <compoundname>bug</compoundname>
+    <title>Bug List</title>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para><variablelist>
+<varlistentry><term>Member <ref refid="_a_x_v_p_b_8c_1a7d4b8d86e365784fb218913e22571822" kindref="member">AXSetVoiceMix</ref>  (AXVPB *p, AXPBMIX *mix)</term></varlistentry>
+<listitem><para><anchor id="bug_1_bug000001"/>? This is a pointer (to) a pointer and is not what you want if you want to copy the information, no?  </para>
+</listitem>
+<varlistentry><term>Member <ref refid="mcc_8c_1acd90879295c1169570d4a3fc828844e5" kindref="member">SearchFreeBlocks</ref>  (enum MCC_MODE mode, u8 *index)</term></varlistentry>
+<listitem><para><anchor id="bug_1_bug000002"/>I think this will read OOB of the map array by 1. </para>
+</listitem>
+</variablelist>
+</para>
+    </detaileddescription>
+    <location file="bug"/>
+  </compounddef>
+</doxygen>

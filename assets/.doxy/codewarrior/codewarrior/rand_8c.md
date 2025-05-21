@@ -1,0 +1,140 @@
+
+
+# File rand.c
+
+
+
+[**FileList**](files.md) **>** [**CodeWarrior**](dir_c5aab8d4319c0669f4501cae4cd3ca21.md) **>** [**PowerPC\_EABI\_Support**](dir_7a6c87a887c36ca33135c86474059f07.md) **>** [**Msl**](dir_7345a9473b198df67a564f445bc0d615.md) **>** [**MSL\_C**](dir_219b89db6f18167528da0b33a71eb580.md) **>** [**MSL\_Common**](dir_92c8450e06c94075b3621ac302a86fb9.md) **>** [**Src**](dir_a72881c2e453fec2ff00fd48c42297a2.md) **>** [**rand.c**](rand_8c.md)
+
+[Go to the source code of this file](rand_8c_source.md)
+
+
+
+* `#include <stdlib.h>`
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+## Public Static Attributes
+
+| Type | Name |
+| ---: | :--- |
+|  [**\_\_tls**](ansi__parms_8h.md#define-__tls) unsigned long int | [**next**](#variable-next)   = `1`<br> |
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+## Public Functions
+
+| Type | Name |
+| ---: | :--- |
+|  int | [**rand**](#function-rand) (void) <br> |
+|  void | [**srand**](#function-srand) (unsigned int seed) <br> |
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+## Public Static Attributes Documentation
+
+
+
+
+### variable next 
+
+```C++
+__tls unsigned long int next;
+```
+
+
+
+
+<hr>
+## Public Functions Documentation
+
+
+
+
+### function rand 
+
+```C++
+int rand (
+    void
+) 
+```
+
+
+
+
+<hr>
+
+
+
+### function srand 
+
+```C++
+void srand (
+    unsigned int seed
+) 
+```
+
+
+
+
+<hr>
+
+------------------------------
+The documentation for this class was generated from the following file `CodeWarrior/PowerPC_EABI_Support/Msl/MSL_C/MSL_Common/Src/rand.c`
+

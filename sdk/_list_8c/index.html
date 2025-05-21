@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Project Yasiki: Decompilation of Luigi's Mansion.">
+    <link rel="stylesheet" href="https://moddimation.github.io/Yasiki/assets/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Reggae+One&disp=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito&disp=swap" rel="stylesheet">
+    <link rel="icon" href="https://moddimation.github.io/Yasiki/assets/favicon.ico" type="image/x-icon">
+    <title>File List.c - Project Yasiki</title>
+  </head>
+  <body>
+    <div class="container">
+      <nav>
+        <ul>
+        </ul>
+      </nav>
+
+      <!--Upper bar-->
+      <div id="bar">
+
+          <!--Project text / logo-->
+          <a id="barTitle" href="https://moddimation.github.io/Yasiki/"><b>Project Yasiki</b></a>
+          <div style="display: flex; flex-direction: column; align-items: start;">
+            
+            <!--Both progress badges-->
+            <a href="https://github.com/Moddimation/Yasiki">
+              <img style="padding-top:10px; width: 90px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=code&label=Code" alt="Go to github repo">
+            </a>
+            <a href="https://decomp.dev/Moddimation/Yasiki">
+              <img style="padding-bottom:0px; width: 123px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=functions&label=Progress" alt="Go to progress page">
+            </a>
+          </div>
+          
+          <p> </p>
+          
+          <!--Add each nav head here-->
+            <li>
+              <button onclick="window.location.href='https://moddimation.github.io/Yasiki/files/'">Files</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddimation.github.io/Yasiki/classes/'">Classes</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddimation.github.io/Yasiki/wiki/'">Full Wiki</button>
+            </li>
+      </div>
+      
+      <h1 id="file-listc">File List.c</h1>
+<p><a href="../files/"><strong>FileList</strong></a> <strong>&gt;</strong> <a href="../dir_5daac82a3cf194997369e9388ff34711/"><strong>dolphin</strong></a> <strong>&gt;</strong> <a href="../dir_d42fc5faea36bfcac8cfa54d83f853a0/"><strong>support</strong></a> <strong>&gt;</strong> <a href="./"><strong>List.c</strong></a></p>
+<p><a href="../_list_8c_source/">Go to the source code of this file</a></p>
+<ul>
+<li><code>#include &lt;charPipeline/structures/List.h&gt;</code></li>
+</ul>
+<h2 id="public-functions">Public Functions</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Type</th>
+<th style="text-align: left;">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-dsattachlist"><strong>DSAttachList</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>DSListPtr</strong></a> baseList, <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>DSListPtr</strong></a> attachList) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-dsinitlist"><strong>DSInitList</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>DSListPtr</strong></a> list, <a href="../types_8h/#typedef-ptr"><strong>Ptr</strong></a> obj, <a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>DSLinkPtr</strong></a> link) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-dsinsertlistobject"><strong>DSInsertListObject</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>DSListPtr</strong></a> list, <a href="../types_8h/#typedef-ptr"><strong>Ptr</strong></a> cursor, <a href="../types_8h/#typedef-ptr"><strong>Ptr</strong></a> obj) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a> *</td>
+<td style="text-align: left;"><a href="#function-dsnextlistobj"><strong>DSNextListObj</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>DSListPtr</strong></a> list, <a href="../types_8h/#typedef-ptr"><strong>Ptr</strong></a> obj) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="#function-dsremovelistobject"><strong>DSRemoveListObject</strong></a> (<a href="../_c_a_r_d_private_8h/#define-card_max_mount_step"><strong>DSListPtr</strong></a> list, <a href="../types_8h/#typedef-ptr"><strong>Ptr</strong></a> obj) <br></td>
+</tr>
+</tbody>
+</table>
+<h2 id="public-functions-documentation">Public Functions Documentation</h2>
+<h3 id="function-dsattachlist">function DSAttachList</h3>
+<pre><code class="language-C++">void DSAttachList (
+    DSListPtr baseList,
+    DSListPtr attachList
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-dsinitlist">function DSInitList</h3>
+<pre><code class="language-C++">void DSInitList (
+    DSListPtr list,
+    Ptr obj,
+    DSLinkPtr link
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-dsinsertlistobject">function DSInsertListObject</h3>
+<pre><code class="language-C++">void DSInsertListObject (
+    DSListPtr list,
+    Ptr cursor,
+    Ptr obj
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-dsnextlistobj">function DSNextListObj</h3>
+<pre><code class="language-C++">void * DSNextListObj (
+    DSListPtr list,
+    Ptr obj
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-dsremovelistobject">function DSRemoveListObject</h3>
+<pre><code class="language-C++">void DSRemoveListObject (
+    DSListPtr list,
+    Ptr obj
+) 
+</code></pre>
+<hr>
+
+<hr />
+<p>The documentation for this class was generated from the following file <code>DolphinSDK/src/dolphin/support/List.c</code></p>
+        <script src="../../search/main.js"></script>
+    </div>
+  </body>
+</html>

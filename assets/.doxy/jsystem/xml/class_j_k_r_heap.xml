@@ -1,0 +1,1271 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="class_j_k_r_heap" kind="class" language="C++" prot="public" abstract="yes">
+    <compoundname>JKRHeap</compoundname>
+    <basecompoundref refid="class_j_k_r_disposer" prot="public" virt="non-virtual">JKRDisposer</basecompoundref>
+    <derivedcompoundref refid="class_j_k_r_exp_heap" prot="public" virt="non-virtual">JKRExpHeap</derivedcompoundref>
+    <derivedcompoundref refid="class_j_k_r_solid_heap" prot="public" virt="non-virtual">JKRSolidHeap</derivedcompoundref>
+    <includes refid="_j_k_r_heap_8h" local="no">JKRHeap.h</includes>
+    <sectiondef kind="friend">
+      <memberdef kind="friend" id="class_j_k_r_heap_1ab470536acb85ba41b44e5cbbeda27817" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>class</type>
+        <definition>friend class JKRSolidHeap</definition>
+        <argsstring></argsstring>
+        <name>JKRSolidHeap</name>
+        <qualifiedname>JKRHeap::JKRSolidHeap</qualifiedname>
+        <param>
+          <type><ref refid="class_j_k_r_solid_heap" kindref="compound">JKRSolidHeap</ref></type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="JSystem/System/JKernel/include/JKRHeap.h" line="18" column="18" bodyfile="JSystem/System/JKernel/include/JKRHeap.h" bodystart="18" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="friend" id="class_j_k_r_heap_1a0867ff1dd1b1fb0c0920ad87a6f31443" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>class</type>
+        <definition>friend class JKRExpHeap</definition>
+        <argsstring></argsstring>
+        <name>JKRExpHeap</name>
+        <qualifiedname>JKRHeap::JKRExpHeap</qualifiedname>
+        <param>
+          <type><ref refid="class_j_k_r_exp_heap" kindref="compound">JKRExpHeap</ref></type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="JSystem/System/JKernel/include/JKRHeap.h" line="19" column="18" bodyfile="JSystem/System/JKernel/include/JKRHeap.h" bodystart="19" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="protected-static-attrib">
+      <memberdef kind="variable" id="class_j_k_r_heap_1afd99c7bf77dd29a4b5da708a2668a76a" prot="protected" static="yes" mutable="no">
+        <type><ref refid="class_j_k_r_heap" kindref="compound">JKRHeap</ref> *</type>
+        <definition>JKRHeap * JKRHeap::sSystemHeap</definition>
+        <argsstring></argsstring>
+        <name>sSystemHeap</name>
+        <qualifiedname>JKRHeap::sSystemHeap</qualifiedname>
+        <initializer>= <ref refid="_j_u_t_types_8h_1ae3b89c60b6c464ce16be3640106365f7" kindref="member">Nil</ref></initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="JSystem/System/JKernel/include/JKRHeap.h" line="61" column="20" bodyfile="JSystem/System/JKernel/include/JKRHeap.h" bodystart="61" bodyend="-1"/>
+        <referencedby refid="class_j_k_r_heap_1a12b945dc345f7253beda93597622e5b3" compoundref="_j_k_r_heap_8cpp" startline="81" endline="86">becomeSystemHeap</referencedby>
+        <referencedby refid="class_j_k_r_heap_1a3df939abb6f6608b3e533fa1a12e19b5" compoundref="_j_k_r_heap_8h" startline="30" endline="33">getSystemHeap</referencedby>
+        <referencedby refid="class_j_k_r_heap_1a56c2836b185d2c681f011bd96bcd6f66" compoundref="_j_k_r_heap_8cpp" startline="8" endline="39">JKRHeap</referencedby>
+        <referencedby refid="class_j_k_r_heap_1aa03b5f9d9602ba520f06ea0e2163a31e" compoundref="_j_k_r_heap_8cpp" startline="41" endline="53">~JKRHeap</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="class_j_k_r_heap_1a2d9eea4100b22f9e5ccc0c13129bffdb" prot="protected" static="yes" mutable="no">
+        <type><ref refid="class_j_k_r_heap" kindref="compound">JKRHeap</ref> *</type>
+        <definition>JKRHeap * JKRHeap::sCurrentHeap</definition>
+        <argsstring></argsstring>
+        <name>sCurrentHeap</name>
+        <qualifiedname>JKRHeap::sCurrentHeap</qualifiedname>
+        <initializer>= <ref refid="_j_u_t_types_8h_1ae3b89c60b6c464ce16be3640106365f7" kindref="member">Nil</ref></initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="JSystem/System/JKernel/include/JKRHeap.h" line="62" column="20" bodyfile="JSystem/System/JKernel/include/JKRHeap.h" bodystart="62" bodyend="-1"/>
+        <referencedby refid="class_j_k_r_heap_1a498fd99ff144c61bccf85cbd3d747f66" compoundref="_j_k_r_heap_8cpp" startline="97" endline="111">alloc</referencedby>
+        <referencedby refid="class_j_k_r_heap_1ab81c1019c28df71dd0b6aaa30c57f20c" compoundref="_j_k_r_heap_8cpp" startline="89" endline="94">becomeCurrentHeap</referencedby>
+        <referencedby refid="class_j_k_r_heap_1a1ac9d23deb47b3f8393f13b5a334844a" compoundref="_j_k_r_heap_8h" startline="36" endline="39">getCurrentHeap</referencedby>
+        <referencedby refid="class_j_k_r_heap_1a56c2836b185d2c681f011bd96bcd6f66" compoundref="_j_k_r_heap_8cpp" startline="8" endline="39">JKRHeap</referencedby>
+        <referencedby refid="class_j_k_r_heap_1aa03b5f9d9602ba520f06ea0e2163a31e" compoundref="_j_k_r_heap_8cpp" startline="41" endline="53">~JKRHeap</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="class_j_k_r_heap_1aeba48f01ea0cbd1f733257f5f69b6823" prot="protected" static="yes" mutable="no">
+        <type><ref refid="class_j_k_r_heap" kindref="compound">JKRHeap</ref> *</type>
+        <definition>JKRHeap * JKRHeap::sRootHeap</definition>
+        <argsstring></argsstring>
+        <name>sRootHeap</name>
+        <qualifiedname>JKRHeap::sRootHeap</qualifiedname>
+        <initializer>= <ref refid="_j_u_t_types_8h_1ae3b89c60b6c464ce16be3640106365f7" kindref="member">Nil</ref></initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="JSystem/System/JKernel/include/JKRHeap.h" line="63" column="20" bodyfile="JSystem/System/JKernel/include/JKRHeap.h" bodystart="63" bodyend="-1"/>
+        <referencedby refid="class_j_k_r_solid_heap_1a3903f9d0a13b8483e27798113158b4b6" compoundref="_j_k_r_solid_heap_8cpp" startline="6" endline="20">JKRSolidHeap::create</referencedby>
+        <referencedby refid="class_j_k_r_heap_1aaf479562b1f0732620f58c6213a423c7" compoundref="_j_k_r_heap_8h" startline="42" endline="45">getRootHeap</referencedby>
+        <referencedby refid="class_j_k_r_heap_1a56c2836b185d2c681f011bd96bcd6f66" compoundref="_j_k_r_heap_8cpp" startline="8" endline="39">JKRHeap</referencedby>
+        <referencedby refid="class_j_k_r_heap_1aa03b5f9d9602ba520f06ea0e2163a31e" compoundref="_j_k_r_heap_8cpp" startline="41" endline="53">~JKRHeap</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="class_j_k_r_heap_1a306606cc7e2fb7420e131231b9a73994" prot="protected" static="yes" mutable="no">
+        <type><ref refid="_j_k_r_heap_8h_1a318ea88f0cb5904def59c9111171a9f9" kindref="member">JKRErrorRoutine</ref></type>
+        <definition>JKRErrorRoutine JKRHeap::mErrorHandler</definition>
+        <argsstring></argsstring>
+        <name>mErrorHandler</name>
+        <qualifiedname>JKRHeap::mErrorHandler</qualifiedname>
+        <initializer>= <ref refid="_j_u_t_types_8h_1ae3b89c60b6c464ce16be3640106365f7" kindref="member">Nil</ref></initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="JSystem/System/JKernel/include/JKRHeap.h" line="65" column="28" bodyfile="JSystem/System/JKernel/include/JKRHeap.h" bodystart="65" bodyend="-1"/>
+        <referencedby refid="class_j_k_r_solid_heap_1aec4fd3e63b6417dd5f98aca874f89268" compoundref="_j_k_r_solid_heap_8cpp" startline="97" endline="121">JKRSolidHeap::allocFromHead</referencedby>
+        <referencedby refid="class_j_k_r_solid_heap_1ad1f54de20a7a80152f8cbc80761229c5" compoundref="_j_k_r_solid_heap_8cpp" startline="124" endline="148">JKRSolidHeap::allocFromTail</referencedby>
+        <referencedby refid="class_j_k_r_heap_1a56c2836b185d2c681f011bd96bcd6f66" compoundref="_j_k_r_heap_8cpp" startline="8" endline="39">JKRHeap</referencedby>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="protected-attrib">
+      <memberdef kind="variable" id="class_j_k_r_heap_1a0fa1bb086804a1537c2a46bda1664579" prot="protected" static="no" mutable="no">
+        <type>OSMutex</type>
+        <definition>OSMutex JKRHeap::mMutex</definition>
+        <argsstring></argsstring>
+        <name>mMutex</name>
+        <qualifiedname>JKRHeap::mMutex</qualifiedname>
+        <briefdescription>
+<para>0x18 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="JSystem/System/JKernel/include/JKRHeap.h" line="67" column="26" bodyfile="JSystem/System/JKernel/include/JKRHeap.h" bodystart="67" bodyend="-1"/>
+        <referencedby refid="class_j_k_r_heap_1a56c2836b185d2c681f011bd96bcd6f66" compoundref="_j_k_r_heap_8cpp" startline="8" endline="39">JKRHeap</referencedby>
+        <referencedby refid="class_j_k_r_heap_1a0da395e54b6cc58410b7385f4937a70c" compoundref="_j_k_r_heap_8h" startline="109" endline="112">lock</referencedby>
+        <referencedby refid="class_j_k_r_heap_1a6d3abaf89fd9617b992f9b4de1d43210" compoundref="_j_k_r_heap_8h" startline="103" endline="106">unlock</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="class_j_k_r_heap_1a1e347c3b2baf3232b2d45598a311930b" prot="protected" static="no" mutable="no">
+        <type><ref refid="_j_k_r_heap_8h_1aa8c0374618b33785ccb02f74bcfebc46" kindref="member">HANDLE</ref></type>
+        <definition>HANDLE JKRHeap::mStart</definition>
+        <argsstring></argsstring>
+        <name>mStart</name>
+        <qualifiedname>JKRHeap::mStart</qualifiedname>
+        <briefdescription>
+<para>0x30 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="JSystem/System/JKernel/include/JKRHeap.h" line="68" column="26" bodyfile="JSystem/System/JKernel/include/JKRHeap.h" bodystart="68" bodyend="-1"/>
+        <referencedby refid="class_j_k_r_solid_heap_1a7279e82156ad90d2df4ca92836f2d6ea" compoundref="_j_k_r_solid_heap_8cpp" startline="41" endline="69">JKRSolidHeap::adjustSize</referencedby>
+        <referencedby refid="class_j_k_r_solid_heap_1a0c5d2e4fb681eca394c06f55a48b73a1" compoundref="_j_k_r_solid_heap_8cpp" startline="205" endline="220">JKRSolidHeap::check</referencedby>
+        <referencedby refid="class_j_k_r_heap_1acda91bbde04176437b588d205bd9369b" compoundref="_j_k_r_heap_8cpp" startline="152" endline="172">find</referencedby>
+        <referencedby refid="class_j_k_r_solid_heap_1ae5d8e7c1d7bcc16ea9094d0930aceb2f" compoundref="_j_k_r_solid_heap_8cpp" startline="157" endline="169">JKRSolidHeap::freeAll</referencedby>
+        <referencedby refid="class_j_k_r_heap_1a56c2836b185d2c681f011bd96bcd6f66" compoundref="_j_k_r_heap_8cpp" startline="8" endline="39">JKRHeap</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="class_j_k_r_heap_1ae5501a3bae6bb5df02dbc6f4426428f2" prot="protected" static="no" mutable="no">
+        <type><ref refid="_j_k_r_heap_8h_1aa8c0374618b33785ccb02f74bcfebc46" kindref="member">HANDLE</ref></type>
+        <definition>HANDLE JKRHeap::mEnd</definition>
+        <argsstring></argsstring>
+        <name>mEnd</name>
+        <qualifiedname>JKRHeap::mEnd</qualifiedname>
+        <briefdescription>
+<para>0x34 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="JSystem/System/JKernel/include/JKRHeap.h" line="69" column="26" bodyfile="JSystem/System/JKernel/include/JKRHeap.h" bodystart="69" bodyend="-1"/>
+        <referencedby refid="class_j_k_r_solid_heap_1a7279e82156ad90d2df4ca92836f2d6ea" compoundref="_j_k_r_solid_heap_8cpp" startline="41" endline="69">JKRSolidHeap::adjustSize</referencedby>
+        <referencedby refid="class_j_k_r_solid_heap_1a0c5d2e4fb681eca394c06f55a48b73a1" compoundref="_j_k_r_solid_heap_8cpp" startline="205" endline="220">JKRSolidHeap::check</referencedby>
+        <referencedby refid="class_j_k_r_heap_1acda91bbde04176437b588d205bd9369b" compoundref="_j_k_r_heap_8cpp" startline="152" endline="172">find</referencedby>
+        <referencedby refid="class_j_k_r_solid_heap_1ae5d8e7c1d7bcc16ea9094d0930aceb2f" compoundref="_j_k_r_solid_heap_8cpp" startline="157" endline="169">JKRSolidHeap::freeAll</referencedby>
+        <referencedby refid="class_j_k_r_solid_heap_1a3aa9227885869918bdca488ca20b6341" compoundref="_j_k_r_solid_heap_8cpp" startline="172" endline="185">JKRSolidHeap::freeTail</referencedby>
+        <referencedby refid="class_j_k_r_heap_1a56c2836b185d2c681f011bd96bcd6f66" compoundref="_j_k_r_heap_8cpp" startline="8" endline="39">JKRHeap</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="class_j_k_r_heap_1a39d1093d3fcfd2d5b57844a64c9ecbf8" prot="protected" static="no" mutable="no">
+        <type>size_t</type>
+        <definition>size_t JKRHeap::mSize</definition>
+        <argsstring></argsstring>
+        <name>mSize</name>
+        <qualifiedname>JKRHeap::mSize</qualifiedname>
+        <briefdescription>
+<para>0x38 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="JSystem/System/JKernel/include/JKRHeap.h" line="70" column="26" bodyfile="JSystem/System/JKernel/include/JKRHeap.h" bodystart="70" bodyend="-1"/>
+        <referencedby refid="class_j_k_r_solid_heap_1a7279e82156ad90d2df4ca92836f2d6ea" compoundref="_j_k_r_solid_heap_8cpp" startline="41" endline="69">JKRSolidHeap::adjustSize</referencedby>
+        <referencedby refid="class_j_k_r_solid_heap_1a0c5d2e4fb681eca394c06f55a48b73a1" compoundref="_j_k_r_solid_heap_8cpp" startline="205" endline="220">JKRSolidHeap::check</referencedby>
+        <referencedby refid="class_j_k_r_solid_heap_1ae5d8e7c1d7bcc16ea9094d0930aceb2f" compoundref="_j_k_r_solid_heap_8cpp" startline="157" endline="169">JKRSolidHeap::freeAll</referencedby>
+        <referencedby refid="class_j_k_r_heap_1a56c2836b185d2c681f011bd96bcd6f66" compoundref="_j_k_r_heap_8cpp" startline="8" endline="39">JKRHeap</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="class_j_k_r_heap_1ac5463d575471ab73964ff50e0b61670b" prot="protected" static="no" mutable="no">
+        <type><ref refid="class_j_s_u_tree" kindref="compound">JSUTree</ref>&lt; <ref refid="class_j_k_r_heap" kindref="compound">JKRHeap</ref> &gt;</type>
+        <definition>JSUTree&lt;JKRHeap&gt; JKRHeap::mHeapTree</definition>
+        <argsstring></argsstring>
+        <name>mHeapTree</name>
+        <qualifiedname>JKRHeap::mHeapTree</qualifiedname>
+        <briefdescription>
+<para>0x3C </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="JSystem/System/JKernel/include/JKRHeap.h" line="71" column="17" bodyfile="JSystem/System/JKernel/include/JKRHeap.h" bodystart="71" bodyend="-1"/>
+        <referencedby refid="class_j_k_r_heap_1acda91bbde04176437b588d205bd9369b" compoundref="_j_k_r_heap_8cpp" startline="152" endline="172">find</referencedby>
+        <referencedby refid="class_j_k_r_heap_1ad836c0faa798b610b7fb85690c5d1e3c" compoundref="_j_k_r_heap_8h" startline="115" endline="118">getHeapTree</referencedby>
+        <referencedby refid="class_j_k_r_heap_1abfe14bc6c364adfb7c46d69ec89fc575" compoundref="_j_k_r_heap_8h" startline="121" endline="124">getParent</referencedby>
+        <referencedby refid="class_j_k_r_heap_1a56c2836b185d2c681f011bd96bcd6f66" compoundref="_j_k_r_heap_8cpp" startline="8" endline="39">JKRHeap</referencedby>
+        <referencedby refid="class_j_k_r_heap_1aa03b5f9d9602ba520f06ea0e2163a31e" compoundref="_j_k_r_heap_8cpp" startline="41" endline="53">~JKRHeap</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="class_j_k_r_heap_1a9d6ecfffdef777d6a8a4a88064a51e7f" prot="protected" static="no" mutable="no">
+        <type><ref refid="class_j_s_u_list" kindref="compound">JSUList</ref>&lt; <ref refid="class_j_k_r_disposer" kindref="compound">JKRDisposer</ref> &gt;</type>
+        <definition>JSUList&lt;JKRDisposer&gt; JKRHeap::mDisposerList</definition>
+        <argsstring></argsstring>
+        <name>mDisposerList</name>
+        <qualifiedname>JKRHeap::mDisposerList</qualifiedname>
+        <briefdescription>
+<para>0x58 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="JSystem/System/JKernel/include/JKRHeap.h" line="72" column="13" bodyfile="JSystem/System/JKernel/include/JKRHeap.h" bodystart="72" bodyend="-1"/>
+        <referencedby refid="class_j_k_r_heap_1aacd984b702e5fc47861c7f903f941826" compoundref="_j_k_r_heap_8h" startline="48" endline="51">appendDisposer</referencedby>
+        <referencedby refid="class_j_k_r_heap_1acdced2392dcf6c6e6baa1b9ccc2cba00" compoundref="_j_k_r_heap_8cpp" startline="223" endline="233">dispose</referencedby>
+        <referencedby refid="class_j_k_r_heap_1ab096264d4899f9b1e59c9d631d24b71e" compoundref="_j_k_r_heap_8cpp" startline="175" endline="205">dispose_subroutine</referencedby>
+        <referencedby refid="class_j_k_r_heap_1ab7c6e95f8e83ab275d696455b0c52f4b" compoundref="_j_k_r_heap_8cpp" startline="128" endline="138">freeAll</referencedby>
+        <referencedby refid="class_j_k_r_heap_1a8172bbbcfd4cd8b47f0ce975a6ee499b" compoundref="_j_k_r_heap_8h" startline="54" endline="57">removeDisposer</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="class_j_k_r_heap_1ac0bade52f0b510f137141f6c3592409a" prot="protected" static="no" mutable="no">
+        <type><ref refid="_j_u_t_types_8h_1ae4cc35dcc70810fa972cc8a5185a28fa" kindref="member">BOOL</ref></type>
+        <definition>BOOL JKRHeap::mErrorFlag</definition>
+        <argsstring></argsstring>
+        <name>mErrorFlag</name>
+        <qualifiedname>JKRHeap::mErrorFlag</qualifiedname>
+        <briefdescription>
+<para>0x64 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="JSystem/System/JKernel/include/JKRHeap.h" line="73" column="26" bodyfile="JSystem/System/JKernel/include/JKRHeap.h" bodystart="73" bodyend="-1"/>
+        <referencedby refid="class_j_k_r_solid_heap_1aec4fd3e63b6417dd5f98aca874f89268" compoundref="_j_k_r_solid_heap_8cpp" startline="97" endline="121">JKRSolidHeap::allocFromHead</referencedby>
+        <referencedby refid="class_j_k_r_solid_heap_1ad1f54de20a7a80152f8cbc80761229c5" compoundref="_j_k_r_solid_heap_8cpp" startline="124" endline="148">JKRSolidHeap::allocFromTail</referencedby>
+        <referencedby refid="class_j_k_r_heap_1a56c2836b185d2c681f011bd96bcd6f66" compoundref="_j_k_r_heap_8cpp" startline="8" endline="39">JKRHeap</referencedby>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="class_j_k_r_heap_1a3ff5df2f33f923aba70d23ab96b25b21" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="_j_u_t_types_8h_1ae4cc35dcc70810fa972cc8a5185a28fa" kindref="member">BOOL</ref></type>
+        <definition>BOOL JKRHeap::initArena</definition>
+        <argsstring>(char **ramStart, u32 *ramSize, int maxHeaps)</argsstring>
+        <name>initArena</name>
+        <qualifiedname>JKRHeap::initArena</qualifiedname>
+        <param>
+          <type>char **</type>
+          <declname>ramStart</declname>
+        </param>
+        <param>
+          <type>u32 *</type>
+          <declname>ramSize</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>maxHeaps</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="JSystem/System/JKernel/include/JKRHeap.h" line="23" column="21" bodyfile="JSystem/System/JKernel/src/JKRHeap.cpp" bodystart="56" bodyend="78"/>
+        <references refid="_j_u_t_types_8h_1aa93f0eb578d23995850d61f7d61c55c1" compoundref="_j_u_t_types_8h" startline="15">FALSE</references>
+        <references refid="_j_u_t_types_8h_1aa8cecfc5c5c054d2875c03e77b7be15d" compoundref="_j_u_t_types_8h" startline="16">TRUE</references>
+      </memberdef>
+      <memberdef kind="function" id="class_j_k_r_heap_1a498fd99ff144c61bccf85cbd3d747f66" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void *</type>
+        <definition>void * JKRHeap::alloc</definition>
+        <argsstring>(size_t size, int align, JKRHeap *heap)</argsstring>
+        <name>alloc</name>
+        <qualifiedname>JKRHeap::alloc</qualifiedname>
+        <param>
+          <type>size_t</type>
+          <declname>size</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>align</declname>
+        </param>
+        <param>
+          <type><ref refid="class_j_k_r_heap" kindref="compound">JKRHeap</ref> *</type>
+          <declname>heap</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="JSystem/System/JKernel/include/JKRHeap.h" line="24" column="20" bodyfile="JSystem/System/JKernel/src/JKRHeap.cpp" bodystart="97" bodyend="111"/>
+        <references refid="class_j_k_r_heap_1a498fd99ff144c61bccf85cbd3d747f66" compoundref="_j_k_r_heap_8cpp" startline="97" endline="111">alloc</references>
+        <references refid="_j_u_t_types_8h_1ae3b89c60b6c464ce16be3640106365f7" compoundref="_j_u_t_types_8h" startline="10">Nil</references>
+        <references refid="class_j_k_r_heap_1a2d9eea4100b22f9e5ccc0c13129bffdb" compoundref="_j_k_r_heap_8h" startline="62">sCurrentHeap</references>
+        <referencedby refid="class_j_k_r_heap_1a498fd99ff144c61bccf85cbd3d747f66" compoundref="_j_k_r_heap_8cpp" startline="97" endline="111">alloc</referencedby>
+        <referencedby refid="class_j_k_r_solid_heap_1a3903f9d0a13b8483e27798113158b4b6" compoundref="_j_k_r_solid_heap_8cpp" startline="6" endline="20">JKRSolidHeap::create</referencedby>
+        <referencedby refid="_j_k_r_heap_8h_1a160dcabc54bbecfc69484678cafadb81" compoundref="_j_k_r_heap_8cpp" startline="259" endline="262">operator new</referencedby>
+        <referencedby refid="_j_k_r_heap_8h_1a697f586e86f5b9a0e7736b0b5bad82e0" compoundref="_j_k_r_heap_8cpp" startline="265" endline="268">operator new</referencedby>
+        <referencedby refid="_j_k_r_heap_8h_1a3ddc527c10f6cb1c0c2dbac79c30a70e" compoundref="_j_k_r_heap_8cpp" startline="271" endline="274">operator new</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="class_j_k_r_heap_1a35194adf7e374fd22136209248819481" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void JKRHeap::free</definition>
+        <argsstring>(HANDLE ptr, JKRHeap *heap)</argsstring>
+        <name>free</name>
+        <qualifiedname>JKRHeap::free</qualifiedname>
+        <param>
+          <type><ref refid="_j_k_r_heap_8h_1aa8c0374618b33785ccb02f74bcfebc46" kindref="member">HANDLE</ref></type>
+          <declname>ptr</declname>
+        </param>
+        <param>
+          <type><ref refid="class_j_k_r_heap" kindref="compound">JKRHeap</ref> *</type>
+          <declname>heap</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="JSystem/System/JKernel/include/JKRHeap.h" line="25" column="21" bodyfile="JSystem/System/JKernel/src/JKRHeap.cpp" bodystart="114" bodyend="125"/>
+        <references refid="class_j_k_r_heap_1a807310c85f0b94ed417bf17724f19db6" compoundref="_j_k_r_heap_8cpp" startline="141" endline="149">findFromRoot</references>
+        <references refid="class_j_k_r_heap_1a35194adf7e374fd22136209248819481" compoundref="_j_k_r_heap_8cpp" startline="114" endline="125">free</references>
+        <references refid="_j_u_t_types_8h_1ae3b89c60b6c464ce16be3640106365f7" compoundref="_j_u_t_types_8h" startline="10">Nil</references>
+        <referencedby refid="class_j_k_r_solid_heap_1ad38ccc0f300112ea5b594e30b00215b1" compoundref="_j_k_r_solid_heap_8cpp" startline="23" endline="31">JKRSolidHeap::destroy</referencedby>
+        <referencedby refid="class_j_k_r_heap_1a35194adf7e374fd22136209248819481" compoundref="_j_k_r_heap_8cpp" startline="114" endline="125">free</referencedby>
+        <referencedby refid="_j_k_r_heap_8h_1aece6c2a4cc26f3e0e2d2439c9a2f377c" compoundref="_j_k_r_heap_8cpp" startline="295" endline="298">operator delete</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="class_j_k_r_heap_1a807310c85f0b94ed417bf17724f19db6" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="class_j_k_r_heap" kindref="compound">JKRHeap</ref> *</type>
+        <definition>JKRHeap * JKRHeap::findFromRoot</definition>
+        <argsstring>(HANDLE)</argsstring>
+        <name>findFromRoot</name>
+        <qualifiedname>JKRHeap::findFromRoot</qualifiedname>
+        <param>
+          <type><ref refid="_j_k_r_heap_8h_1aa8c0374618b33785ccb02f74bcfebc46" kindref="member">HANDLE</ref></type>
+          <defname>obj</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="JSystem/System/JKernel/include/JKRHeap.h" line="26" column="20" bodyfile="JSystem/System/JKernel/src/JKRHeap.cpp" bodystart="141" bodyend="149"/>
+        <references refid="class_j_k_r_heap_1acda91bbde04176437b588d205bd9369b" compoundref="_j_k_r_heap_8cpp" startline="152" endline="172">find</references>
+        <references refid="class_j_k_r_heap_1aaf479562b1f0732620f58c6213a423c7" compoundref="_j_k_r_heap_8h" startline="42" endline="45">getRootHeap</references>
+        <references refid="_j_u_t_types_8h_1ae3b89c60b6c464ce16be3640106365f7" compoundref="_j_u_t_types_8h" startline="10">Nil</references>
+        <referencedby refid="class_j_k_r_heap_1a35194adf7e374fd22136209248819481" compoundref="_j_k_r_heap_8cpp" startline="114" endline="125">free</referencedby>
+        <referencedby refid="class_j_k_r_disposer_1ac5a1bf5e5a976af8c8f0114452590c22" compoundref="_j_k_r_disposer_8cpp" startline="9" endline="16">JKRDisposer::JKRDisposer</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="class_j_k_r_heap_1af8cbba64803c20a69d9ecc88ec1bb55d" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void JKRHeap::copyMemory</definition>
+        <argsstring>(HANDLE, HANDLE, u32)</argsstring>
+        <name>copyMemory</name>
+        <qualifiedname>JKRHeap::copyMemory</qualifiedname>
+        <param>
+          <type><ref refid="_j_k_r_heap_8h_1aa8c0374618b33785ccb02f74bcfebc46" kindref="member">HANDLE</ref></type>
+          <defname>dest</defname>
+        </param>
+        <param>
+          <type><ref refid="_j_k_r_heap_8h_1aa8c0374618b33785ccb02f74bcfebc46" kindref="member">HANDLE</ref></type>
+          <defname>source</defname>
+        </param>
+        <param>
+          <type>u32</type>
+          <defname>size</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="JSystem/System/JKernel/include/JKRHeap.h" line="27" column="21" bodyfile="JSystem/System/JKernel/src/JKRHeap.cpp" bodystart="247" bodyend="250"/>
+        <references refid="_j_k_r_heap_8cpp_1a7231f1b6434db34d22b826a1b4da0caa" compoundref="_j_k_r_heap_8cpp" startline="236" endline="244">__copyMemory</references>
+      </memberdef>
+      <memberdef kind="function" id="class_j_k_r_heap_1a3df939abb6f6608b3e533fa1a12e19b5" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="class_j_k_r_heap" kindref="compound">JKRHeap</ref> *</type>
+        <definition>static JKRHeap * JKRHeap::getSystemHeap</definition>
+        <argsstring>()</argsstring>
+        <name>getSystemHeap</name>
+        <qualifiedname>JKRHeap::getSystemHeap</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="JSystem/System/JKernel/include/JKRHeap.h" line="30" column="5" bodyfile="JSystem/System/JKernel/include/JKRHeap.h" bodystart="30" bodyend="33"/>
+        <references refid="class_j_k_r_heap_1afd99c7bf77dd29a4b5da708a2668a76a" compoundref="_j_k_r_heap_8h" startline="61">sSystemHeap</references>
+      </memberdef>
+      <memberdef kind="function" id="class_j_k_r_heap_1a1ac9d23deb47b3f8393f13b5a334844a" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="class_j_k_r_heap" kindref="compound">JKRHeap</ref> *</type>
+        <definition>static JKRHeap * JKRHeap::getCurrentHeap</definition>
+        <argsstring>()</argsstring>
+        <name>getCurrentHeap</name>
+        <qualifiedname>JKRHeap::getCurrentHeap</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="JSystem/System/JKernel/include/JKRHeap.h" line="36" column="5" bodyfile="JSystem/System/JKernel/include/JKRHeap.h" bodystart="36" bodyend="39"/>
+        <references refid="class_j_k_r_heap_1a2d9eea4100b22f9e5ccc0c13129bffdb" compoundref="_j_k_r_heap_8h" startline="62">sCurrentHeap</references>
+      </memberdef>
+      <memberdef kind="function" id="class_j_k_r_heap_1aaf479562b1f0732620f58c6213a423c7" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="class_j_k_r_heap" kindref="compound">JKRHeap</ref> *</type>
+        <definition>static JKRHeap * JKRHeap::getRootHeap</definition>
+        <argsstring>()</argsstring>
+        <name>getRootHeap</name>
+        <qualifiedname>JKRHeap::getRootHeap</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="JSystem/System/JKernel/include/JKRHeap.h" line="42" column="5" bodyfile="JSystem/System/JKernel/include/JKRHeap.h" bodystart="42" bodyend="45"/>
+        <references refid="class_j_k_r_heap_1aeba48f01ea0cbd1f733257f5f69b6823" compoundref="_j_k_r_heap_8h" startline="63">sRootHeap</references>
+        <referencedby refid="class_j_k_r_heap_1a807310c85f0b94ed417bf17724f19db6" compoundref="_j_k_r_heap_8cpp" startline="141" endline="149">findFromRoot</referencedby>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_j_k_r_heap_1aacd984b702e5fc47861c7f903f941826" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void JKRHeap::appendDisposer</definition>
+        <argsstring>(JKRDisposer *disposer)</argsstring>
+        <name>appendDisposer</name>
+        <qualifiedname>JKRHeap::appendDisposer</qualifiedname>
+        <param>
+          <type><ref refid="class_j_k_r_disposer" kindref="compound">JKRDisposer</ref> *</type>
+          <declname>disposer</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="JSystem/System/JKernel/include/JKRHeap.h" line="48" column="5" bodyfile="JSystem/System/JKernel/include/JKRHeap.h" bodystart="48" bodyend="51"/>
+        <references refid="class_j_s_u_list_1a2a81df81c39ab99bbe33ef1d3ce55673" compoundref="_j_s_u_list_8h" startline="121" endline="124">JSUList&lt; T &gt;::append</references>
+        <references refid="class_j_k_r_heap_1a9d6ecfffdef777d6a8a4a88064a51e7f" compoundref="_j_k_r_heap_8h" startline="72">mDisposerList</references>
+        <references refid="class_j_k_r_disposer_1a159ab203c05ca292bf3067cef1c20e1c" compoundref="_j_k_r_disposer_8h" startline="17">JKRDisposer::mHeapLink</references>
+        <referencedby refid="class_j_k_r_disposer_1ac5a1bf5e5a976af8c8f0114452590c22" compoundref="_j_k_r_disposer_8cpp" startline="9" endline="16">JKRDisposer::JKRDisposer</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="class_j_k_r_heap_1a8172bbbcfd4cd8b47f0ce975a6ee499b" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void JKRHeap::removeDisposer</definition>
+        <argsstring>(JKRDisposer *disposer)</argsstring>
+        <name>removeDisposer</name>
+        <qualifiedname>JKRHeap::removeDisposer</qualifiedname>
+        <param>
+          <type><ref refid="class_j_k_r_disposer" kindref="compound">JKRDisposer</ref> *</type>
+          <declname>disposer</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="JSystem/System/JKernel/include/JKRHeap.h" line="54" column="5" bodyfile="JSystem/System/JKernel/include/JKRHeap.h" bodystart="54" bodyend="57"/>
+        <references refid="class_j_k_r_heap_1a9d6ecfffdef777d6a8a4a88064a51e7f" compoundref="_j_k_r_heap_8h" startline="72">mDisposerList</references>
+        <references refid="class_j_k_r_disposer_1a159ab203c05ca292bf3067cef1c20e1c" compoundref="_j_k_r_disposer_8h" startline="17">JKRDisposer::mHeapLink</references>
+        <references refid="class_j_s_u_list_1af1f7f688ac9299e0abc27fab5c8a0110" compoundref="_j_s_u_list_8h" startline="139" endline="142">JSUList&lt; T &gt;::remove</references>
+        <referencedby refid="class_j_k_r_disposer_1ace9ccd5e957de58c466c6a4e986721f0" compoundref="_j_k_r_disposer_8cpp" startline="18" endline="24">JKRDisposer::~JKRDisposer</referencedby>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="protected-func">
+      <memberdef kind="function" id="class_j_k_r_heap_1a56c2836b185d2c681f011bd96bcd6f66" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="_j_u_t_types_8h_1a29d583e02d7d25852fb356110c1a0bf7" kindref="member">constructor</ref></type>
+        <definition>JKRHeap::JKRHeap</definition>
+        <argsstring>(HANDLE obj, size_t size, JKRHeap *parent, bool is_error)</argsstring>
+        <name>JKRHeap</name>
+        <qualifiedname>JKRHeap::JKRHeap</qualifiedname>
+        <param>
+          <type><ref refid="_j_k_r_heap_8h_1aa8c0374618b33785ccb02f74bcfebc46" kindref="member">HANDLE</ref></type>
+          <declname>obj</declname>
+        </param>
+        <param>
+          <type>size_t</type>
+          <declname>size</declname>
+        </param>
+        <param>
+          <type><ref refid="class_j_k_r_heap" kindref="compound">JKRHeap</ref> *</type>
+          <declname>parent</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>is_error</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="JSystem/System/JKernel/include/JKRHeap.h" line="77" column="17" bodyfile="JSystem/System/JKernel/src/JKRHeap.cpp" bodystart="8" bodyend="39"/>
+        <references refid="class_j_s_u_tree_1a78fc0902d3bd20b9e1a2dc7208b38619" compoundref="_j_s_u_list_8h" startline="278" endline="281">JSUTree&lt; T &gt;::appendChild</references>
+        <references refid="class_j_k_r_heap_1ab81c1019c28df71dd0b6aaa30c57f20c" compoundref="_j_k_r_heap_8cpp" startline="89" endline="94">becomeCurrentHeap</references>
+        <references refid="class_j_k_r_heap_1a12b945dc345f7253beda93597622e5b3" compoundref="_j_k_r_heap_8cpp" startline="81" endline="86">becomeSystemHeap</references>
+        <references refid="_j_k_r_heap_8h_1a66e840fb5d52b457d635e22ac0b084b9" compoundref="_j_k_r_heap_8cpp" startline="253" endline="256">JKRDefaultMemoryErrorRoutine</references>
+        <references refid="class_j_k_r_heap_1ae5501a3bae6bb5df02dbc6f4426428f2" compoundref="_j_k_r_heap_8h" startline="69">mEnd</references>
+        <references refid="class_j_k_r_heap_1ac0bade52f0b510f137141f6c3592409a" compoundref="_j_k_r_heap_8h" startline="73">mErrorFlag</references>
+        <references refid="class_j_k_r_heap_1a306606cc7e2fb7420e131231b9a73994" compoundref="_j_k_r_heap_8h" startline="65">mErrorHandler</references>
+        <references refid="class_j_k_r_heap_1ac5463d575471ab73964ff50e0b61670b" compoundref="_j_k_r_heap_8h" startline="71">mHeapTree</references>
+        <references refid="class_j_k_r_heap_1a0fa1bb086804a1537c2a46bda1664579" compoundref="_j_k_r_heap_8h" startline="67">mMutex</references>
+        <references refid="class_j_k_r_heap_1a39d1093d3fcfd2d5b57844a64c9ecbf8" compoundref="_j_k_r_heap_8h" startline="70">mSize</references>
+        <references refid="class_j_k_r_heap_1a1e347c3b2baf3232b2d45598a311930b" compoundref="_j_k_r_heap_8h" startline="68">mStart</references>
+        <references refid="_j_u_t_types_8h_1ae3b89c60b6c464ce16be3640106365f7" compoundref="_j_u_t_types_8h" startline="10">Nil</references>
+        <references refid="class_j_k_r_heap_1a2d9eea4100b22f9e5ccc0c13129bffdb" compoundref="_j_k_r_heap_8h" startline="62">sCurrentHeap</references>
+        <references refid="class_j_k_r_heap_1aeba48f01ea0cbd1f733257f5f69b6823" compoundref="_j_k_r_heap_8h" startline="63">sRootHeap</references>
+        <references refid="class_j_k_r_heap_1afd99c7bf77dd29a4b5da708a2668a76a" compoundref="_j_k_r_heap_8h" startline="61">sSystemHeap</references>
+      </memberdef>
+      <memberdef kind="function" id="class_j_k_r_heap_1aa03b5f9d9602ba520f06ea0e2163a31e" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="_j_u_t_types_8h_1a9e47057ec8b35a4c28c50454143074d3" kindref="member">destructor</ref></type>
+        <definition>JKRHeap::~JKRHeap</definition>
+        <argsstring>()</argsstring>
+        <name>~JKRHeap</name>
+        <qualifiedname>JKRHeap::~JKRHeap</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="JSystem/System/JKernel/include/JKRHeap.h" line="78" column="16" bodyfile="JSystem/System/JKernel/src/JKRHeap.cpp" bodystart="41" bodyend="53"/>
+        <references refid="class_j_s_u_tree_1ab6a93e7f0e30927d2d3014036af00bce" compoundref="_j_s_u_list_8h" startline="308" endline="311">JSUTree&lt; T &gt;::getFirstChild</references>
+        <references refid="class_j_s_u_tree_1a83b2c274fa731a78efe654c42ee443eb" compoundref="_j_s_u_list_8h" startline="338" endline="341">JSUTree&lt; T &gt;::getObject</references>
+        <references refid="class_j_s_u_tree_1afe12e664d12fc30ebafd9f57153d607d" compoundref="_j_s_u_list_8h" startline="344" endline="347">JSUTree&lt; T &gt;::getParent</references>
+        <references refid="class_j_k_r_heap_1ac5463d575471ab73964ff50e0b61670b" compoundref="_j_k_r_heap_8h" startline="71">mHeapTree</references>
+        <references refid="_j_u_t_types_8h_1ae3b89c60b6c464ce16be3640106365f7" compoundref="_j_u_t_types_8h" startline="10">Nil</references>
+        <references refid="class_j_s_u_tree_1a967917f2357dfcb51d8d8b8338d2b9d8" compoundref="_j_s_u_list_8h" startline="290" endline="293">JSUTree&lt; T &gt;::removeChild</references>
+        <references refid="class_j_k_r_heap_1a2d9eea4100b22f9e5ccc0c13129bffdb" compoundref="_j_k_r_heap_8h" startline="62">sCurrentHeap</references>
+        <references refid="class_j_k_r_heap_1aeba48f01ea0cbd1f733257f5f69b6823" compoundref="_j_k_r_heap_8h" startline="63">sRootHeap</references>
+        <references refid="class_j_k_r_heap_1afd99c7bf77dd29a4b5da708a2668a76a" compoundref="_j_k_r_heap_8h" startline="61">sSystemHeap</references>
+      </memberdef>
+      <memberdef kind="function" id="class_j_k_r_heap_1a12b945dc345f7253beda93597622e5b3" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="class_j_k_r_heap" kindref="compound">JKRHeap</ref> *</type>
+        <definition>JKRHeap * JKRHeap::becomeSystemHeap</definition>
+        <argsstring>(void)</argsstring>
+        <name>becomeSystemHeap</name>
+        <qualifiedname>JKRHeap::becomeSystemHeap</qualifiedname>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="JSystem/System/JKernel/include/JKRHeap.h" line="80" column="13" bodyfile="JSystem/System/JKernel/src/JKRHeap.cpp" bodystart="81" bodyend="86"/>
+        <references refid="class_j_k_r_heap_1afd99c7bf77dd29a4b5da708a2668a76a" compoundref="_j_k_r_heap_8h" startline="61">sSystemHeap</references>
+        <references refid="_j_k_r_heap_8h_1ad637f1d147f8df390b0e419e3daa9dce" compoundref="_j_k_r_heap_8h" startline="130">USE_SYSTEMHEAP</references>
+        <referencedby refid="class_j_k_r_heap_1a56c2836b185d2c681f011bd96bcd6f66" compoundref="_j_k_r_heap_8cpp" startline="8" endline="39">JKRHeap</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="class_j_k_r_heap_1ab81c1019c28df71dd0b6aaa30c57f20c" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="class_j_k_r_heap" kindref="compound">JKRHeap</ref> *</type>
+        <definition>JKRHeap * JKRHeap::becomeCurrentHeap</definition>
+        <argsstring>(void)</argsstring>
+        <name>becomeCurrentHeap</name>
+        <qualifiedname>JKRHeap::becomeCurrentHeap</qualifiedname>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="JSystem/System/JKernel/include/JKRHeap.h" line="81" column="13" bodyfile="JSystem/System/JKernel/src/JKRHeap.cpp" bodystart="89" bodyend="94"/>
+        <references refid="class_j_k_r_heap_1a2d9eea4100b22f9e5ccc0c13129bffdb" compoundref="_j_k_r_heap_8h" startline="62">sCurrentHeap</references>
+        <references refid="_j_k_r_heap_8h_1a9e1783dbc76847718f2a751d1a8d030d" compoundref="_j_k_r_heap_8h" startline="131">USE_CURRENTHEAP</references>
+        <referencedby refid="class_j_k_r_heap_1a56c2836b185d2c681f011bd96bcd6f66" compoundref="_j_k_r_heap_8cpp" startline="8" endline="39">JKRHeap</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="class_j_k_r_heap_1acda91bbde04176437b588d205bd9369b" prot="protected" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="class_j_k_r_heap" kindref="compound">JKRHeap</ref> *</type>
+        <definition>JKRHeap * JKRHeap::find</definition>
+        <argsstring>(HANDLE obj) const</argsstring>
+        <name>find</name>
+        <qualifiedname>JKRHeap::find</qualifiedname>
+        <param>
+          <type><ref refid="_j_k_r_heap_8h_1aa8c0374618b33785ccb02f74bcfebc46" kindref="member">HANDLE</ref></type>
+          <declname>obj</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="JSystem/System/JKernel/include/JKRHeap.h" line="82" column="13" bodyfile="JSystem/System/JKernel/src/JKRHeap.cpp" bodystart="152" bodyend="172"/>
+        <references refid="class_j_k_r_heap_1acda91bbde04176437b588d205bd9369b" compoundref="_j_k_r_heap_8cpp" startline="152" endline="172">find</references>
+        <references refid="class_j_s_u_tree_1ab6c9d03df92a2b35413df6becef55cdd" compoundref="_j_s_u_list_8h" startline="302" endline="305">JSUTree&lt; T &gt;::getEndChild</references>
+        <references refid="class_j_s_u_tree_1ab6a93e7f0e30927d2d3014036af00bce" compoundref="_j_s_u_list_8h" startline="308" endline="311">JSUTree&lt; T &gt;::getFirstChild</references>
+        <references refid="class_j_s_u_tree_1ab67fd7e485916af69d7d83c772e6fdbc" compoundref="_j_s_u_list_8h" startline="332" endline="335">JSUTree&lt; T &gt;::getNumChildren</references>
+        <references refid="class_j_k_r_heap_1ae5501a3bae6bb5df02dbc6f4426428f2" compoundref="_j_k_r_heap_8h" startline="69">mEnd</references>
+        <references refid="class_j_k_r_heap_1ac5463d575471ab73964ff50e0b61670b" compoundref="_j_k_r_heap_8h" startline="71">mHeapTree</references>
+        <references refid="class_j_k_r_heap_1a1e347c3b2baf3232b2d45598a311930b" compoundref="_j_k_r_heap_8h" startline="68">mStart</references>
+        <references refid="_j_u_t_types_8h_1ae3b89c60b6c464ce16be3640106365f7" compoundref="_j_u_t_types_8h" startline="10">Nil</references>
+        <referencedby refid="class_j_k_r_heap_1acda91bbde04176437b588d205bd9369b" compoundref="_j_k_r_heap_8cpp" startline="152" endline="172">find</referencedby>
+        <referencedby refid="class_j_k_r_heap_1a807310c85f0b94ed417bf17724f19db6" compoundref="_j_k_r_heap_8cpp" startline="141" endline="149">findFromRoot</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="class_j_k_r_heap_1ab096264d4899f9b1e59c9d631d24b71e" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void JKRHeap::dispose_subroutine</definition>
+        <argsstring>(size_t start, size_t end)</argsstring>
+        <name>dispose_subroutine</name>
+        <qualifiedname>JKRHeap::dispose_subroutine</qualifiedname>
+        <param>
+          <type>size_t</type>
+          <declname>start</declname>
+        </param>
+        <param>
+          <type>size_t</type>
+          <declname>end</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="JSystem/System/JKernel/include/JKRHeap.h" line="83" column="14" bodyfile="JSystem/System/JKernel/src/JKRHeap.cpp" bodystart="175" bodyend="205"/>
+        <references refid="class_j_s_u_list_1a2b4e4955f9947935dd1aa0e964f35aa2" compoundref="_j_s_u_list_8h" startline="157" endline="160">JSUList&lt; T &gt;::getEnd</references>
+        <references refid="class_j_s_u_list_1a8dae403d9ae5243ece1f17fb1d6d7599" compoundref="_j_s_u_list_8h" startline="145" endline="148">JSUList&lt; T &gt;::getFirst</references>
+        <references refid="class_j_s_u_list_iterator_1afd01b26ffaa34952193b0542a3785507" compoundref="_j_s_u_list_8h" startline="190" endline="193">JSUListIterator&lt; T &gt;::getObject</references>
+        <references refid="class_j_k_r_heap_1a9d6ecfffdef777d6a8a4a88064a51e7f" compoundref="_j_k_r_heap_8h" startline="72">mDisposerList</references>
+        <references refid="_j_u_t_types_8h_1ae3b89c60b6c464ce16be3640106365f7" compoundref="_j_u_t_types_8h" startline="10">Nil</references>
+        <referencedby refid="class_j_k_r_heap_1a2324f26064947a09651a6fe0f673bbee" compoundref="_j_k_r_heap_8cpp" startline="217" endline="220">dispose</referencedby>
+        <referencedby refid="class_j_k_r_heap_1a6cc683f2b8f93502e53f4dae1c24746d" compoundref="_j_k_r_heap_8cpp" startline="208" endline="214">dispose</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="class_j_k_r_heap_1a6cc683f2b8f93502e53f4dae1c24746d" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int JKRHeap::dispose</definition>
+        <argsstring>(HANDLE, u32)</argsstring>
+        <name>dispose</name>
+        <qualifiedname>JKRHeap::dispose</qualifiedname>
+        <param>
+          <type><ref refid="_j_k_r_heap_8h_1aa8c0374618b33785ccb02f74bcfebc46" kindref="member">HANDLE</ref></type>
+          <defname>obj</defname>
+        </param>
+        <param>
+          <type>u32</type>
+          <defname>size</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="JSystem/System/JKernel/include/JKRHeap.h" line="84" column="14" bodyfile="JSystem/System/JKernel/src/JKRHeap.cpp" bodystart="208" bodyend="214"/>
+        <references refid="class_j_k_r_heap_1ab096264d4899f9b1e59c9d631d24b71e" compoundref="_j_k_r_heap_8cpp" startline="175" endline="205">dispose_subroutine</references>
+      </memberdef>
+      <memberdef kind="function" id="class_j_k_r_heap_1a2324f26064947a09651a6fe0f673bbee" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void JKRHeap::dispose</definition>
+        <argsstring>(HANDLE, HANDLE)</argsstring>
+        <name>dispose</name>
+        <qualifiedname>JKRHeap::dispose</qualifiedname>
+        <param>
+          <type><ref refid="_j_k_r_heap_8h_1aa8c0374618b33785ccb02f74bcfebc46" kindref="member">HANDLE</ref></type>
+          <defname>begin</defname>
+        </param>
+        <param>
+          <type><ref refid="_j_k_r_heap_8h_1aa8c0374618b33785ccb02f74bcfebc46" kindref="member">HANDLE</ref></type>
+          <defname>end</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="JSystem/System/JKernel/include/JKRHeap.h" line="85" column="14" bodyfile="JSystem/System/JKernel/src/JKRHeap.cpp" bodystart="217" bodyend="220"/>
+        <references refid="class_j_k_r_heap_1ab096264d4899f9b1e59c9d631d24b71e" compoundref="_j_k_r_heap_8cpp" startline="175" endline="205">dispose_subroutine</references>
+      </memberdef>
+      <memberdef kind="function" id="class_j_k_r_heap_1acdced2392dcf6c6e6baa1b9ccc2cba00" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void JKRHeap::dispose</definition>
+        <argsstring>(void)</argsstring>
+        <name>dispose</name>
+        <qualifiedname>JKRHeap::dispose</qualifiedname>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="JSystem/System/JKernel/include/JKRHeap.h" line="86" column="14" bodyfile="JSystem/System/JKernel/src/JKRHeap.cpp" bodystart="223" bodyend="233"/>
+        <references refid="class_j_s_u_list_1a2b4e4955f9947935dd1aa0e964f35aa2" compoundref="_j_s_u_list_8h" startline="157" endline="160">JSUList&lt; T &gt;::getEnd</references>
+        <references refid="class_j_s_u_list_1a8dae403d9ae5243ece1f17fb1d6d7599" compoundref="_j_s_u_list_8h" startline="145" endline="148">JSUList&lt; T &gt;::getFirst</references>
+        <references refid="class_j_k_r_heap_1a9d6ecfffdef777d6a8a4a88064a51e7f" compoundref="_j_k_r_heap_8h" startline="72">mDisposerList</references>
+        <referencedby refid="class_j_k_r_solid_heap_1a3aa9227885869918bdca488ca20b6341" compoundref="_j_k_r_solid_heap_8cpp" startline="172" endline="185">JKRSolidHeap::freeTail</referencedby>
+        <referencedby refid="class_j_k_r_solid_heap_1a8d616a1380121bcba109df5ae7da4e66" compoundref="_j_k_r_solid_heap_8cpp" startline="38" endline="38">JKRSolidHeap::~JKRSolidHeap</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="class_j_k_r_heap_1a2b0b0a32de4c3938ce1dc905f96b9871" prot="protected" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type><ref refid="_j_k_r_heap_8h_1aa8c0374618b33785ccb02f74bcfebc46" kindref="member">HANDLE</ref></type>
+        <definition>virtual HANDLE JKRHeap::alloc</definition>
+        <argsstring>(size_t size, int align)=0</argsstring>
+        <name>alloc</name>
+        <qualifiedname>JKRHeap::alloc</qualifiedname>
+        <reimplementedby refid="class_j_k_r_exp_heap_1a1b0cccb2d550918235cb8fd07fc6671c">alloc</reimplementedby>
+        <reimplementedby refid="class_j_k_r_solid_heap_1a1d9033937ac26941e6d53c3bad159b7a">alloc</reimplementedby>
+        <param>
+          <type>size_t</type>
+          <declname>size</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>align</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="JSystem/System/JKernel/include/JKRHeap.h" line="88" column="20"/>
+      </memberdef>
+      <memberdef kind="function" id="class_j_k_r_heap_1a2c6c89056537372b6b91265bad3e2091" prot="protected" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>void</type>
+        <definition>virtual void JKRHeap::free</definition>
+        <argsstring>(HANDLE ptr)=0</argsstring>
+        <name>free</name>
+        <qualifiedname>JKRHeap::free</qualifiedname>
+        <reimplementedby refid="class_j_k_r_exp_heap_1a41f64324d1875025d1f871ec27b230a8">free</reimplementedby>
+        <reimplementedby refid="class_j_k_r_solid_heap_1aa5adcb9ca8ee418e8cf8a41e81cb58f2">free</reimplementedby>
+        <param>
+          <type><ref refid="_j_k_r_heap_8h_1aa8c0374618b33785ccb02f74bcfebc46" kindref="member">HANDLE</ref></type>
+          <declname>ptr</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="JSystem/System/JKernel/include/JKRHeap.h" line="89" column="20"/>
+      </memberdef>
+      <memberdef kind="function" id="class_j_k_r_heap_1ab7c6e95f8e83ab275d696455b0c52f4b" prot="protected" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void JKRHeap::freeAll</definition>
+        <argsstring>(void)</argsstring>
+        <name>freeAll</name>
+        <qualifiedname>JKRHeap::freeAll</qualifiedname>
+        <reimplementedby refid="class_j_k_r_exp_heap_1a63a98ec64c6582ec14a7f3051036c028">freeAll</reimplementedby>
+        <reimplementedby refid="class_j_k_r_solid_heap_1ae5d8e7c1d7bcc16ea9094d0930aceb2f">freeAll</reimplementedby>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="JSystem/System/JKernel/include/JKRHeap.h" line="90" column="20" bodyfile="JSystem/System/JKernel/src/JKRHeap.cpp" bodystart="128" bodyend="138"/>
+        <references refid="class_j_s_u_list_1a2b4e4955f9947935dd1aa0e964f35aa2" compoundref="_j_s_u_list_8h" startline="157" endline="160">JSUList&lt; T &gt;::getEnd</references>
+        <references refid="class_j_s_u_list_1a8dae403d9ae5243ece1f17fb1d6d7599" compoundref="_j_s_u_list_8h" startline="145" endline="148">JSUList&lt; T &gt;::getFirst</references>
+        <references refid="class_j_s_u_list_iterator_1afd01b26ffaa34952193b0542a3785507" compoundref="_j_s_u_list_8h" startline="190" endline="193">JSUListIterator&lt; T &gt;::getObject</references>
+        <references refid="class_j_k_r_heap_1a9d6ecfffdef777d6a8a4a88064a51e7f" compoundref="_j_k_r_heap_8h" startline="72">mDisposerList</references>
+        <referencedby refid="class_j_k_r_solid_heap_1ae5d8e7c1d7bcc16ea9094d0930aceb2f" compoundref="_j_k_r_solid_heap_8cpp" startline="157" endline="169">JKRSolidHeap::freeAll</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="class_j_k_r_heap_1ac3785bd06dc042c10a9befcdd1e1c5ab" prot="protected" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>void</type>
+        <definition>virtual void JKRHeap::freeTail</definition>
+        <argsstring>(void)=0</argsstring>
+        <name>freeTail</name>
+        <qualifiedname>JKRHeap::freeTail</qualifiedname>
+        <reimplementedby refid="class_j_k_r_exp_heap_1ac21f9f5adee095bd807dcf984a48eb87">freeTail</reimplementedby>
+        <reimplementedby refid="class_j_k_r_solid_heap_1a3aa9227885869918bdca488ca20b6341">freeTail</reimplementedby>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="JSystem/System/JKernel/include/JKRHeap.h" line="91" column="20"/>
+      </memberdef>
+      <memberdef kind="function" id="class_j_k_r_heap_1a9e60b0c6e74659aad707588bd0eb7c55" prot="protected" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>s32</type>
+        <definition>virtual s32 JKRHeap::resize</definition>
+        <argsstring>(HANDLE, size_t)=0</argsstring>
+        <name>resize</name>
+        <qualifiedname>JKRHeap::resize</qualifiedname>
+        <reimplementedby refid="class_j_k_r_exp_heap_1a5d3d38f5dacf9d3ef9d06ca67e1d89de">resize</reimplementedby>
+        <reimplementedby refid="class_j_k_r_solid_heap_1a9f7fc12575605f8427f364d88f161ade">resize</reimplementedby>
+        <param>
+          <type><ref refid="_j_k_r_heap_8h_1aa8c0374618b33785ccb02f74bcfebc46" kindref="member">HANDLE</ref></type>
+        </param>
+        <param>
+          <type>size_t</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="JSystem/System/JKernel/include/JKRHeap.h" line="92" column="20"/>
+        <referencedby refid="class_j_k_r_solid_heap_1a7279e82156ad90d2df4ca92836f2d6ea" compoundref="_j_k_r_solid_heap_8cpp" startline="41" endline="69">JKRSolidHeap::adjustSize</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="class_j_k_r_heap_1a5e3d32bd6e9ef98c283fc26666323542" prot="protected" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>s32</type>
+        <definition>virtual s32 JKRHeap::getSize</definition>
+        <argsstring>(HANDLE)=0</argsstring>
+        <name>getSize</name>
+        <qualifiedname>JKRHeap::getSize</qualifiedname>
+        <reimplementedby refid="class_j_k_r_exp_heap_1a7a6105e4a262105eb5a9b7cb4826f7a0">getSize</reimplementedby>
+        <reimplementedby refid="class_j_k_r_solid_heap_1afb8fbcc6026b4768c1fe9c7cb16b0469">getSize</reimplementedby>
+        <param>
+          <type><ref refid="_j_k_r_heap_8h_1aa8c0374618b33785ccb02f74bcfebc46" kindref="member">HANDLE</ref></type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="JSystem/System/JKernel/include/JKRHeap.h" line="93" column="20"/>
+      </memberdef>
+      <memberdef kind="function" id="class_j_k_r_heap_1aad1dd93117e195a145f5d373dcf8b52e" prot="protected" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>size_t</type>
+        <definition>virtual size_t JKRHeap::getFreeSize</definition>
+        <argsstring>(void)=0</argsstring>
+        <name>getFreeSize</name>
+        <qualifiedname>JKRHeap::getFreeSize</qualifiedname>
+        <reimplementedby refid="class_j_k_r_exp_heap_1ab08b5ea05bd99af2ebf6423326fd1044">getFreeSize</reimplementedby>
+        <reimplementedby refid="class_j_k_r_solid_heap_1aac89137d8888bcf4188ab138a78ea014">getFreeSize</reimplementedby>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="JSystem/System/JKernel/include/JKRHeap.h" line="94" column="20"/>
+      </memberdef>
+      <memberdef kind="function" id="class_j_k_r_heap_1a0f522c66c9a043fde22c180cab698f27" prot="protected" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>size_t</type>
+        <definition>virtual size_t JKRHeap::getTotalFreeSize</definition>
+        <argsstring>(void)=0</argsstring>
+        <name>getTotalFreeSize</name>
+        <qualifiedname>JKRHeap::getTotalFreeSize</qualifiedname>
+        <reimplementedby refid="class_j_k_r_exp_heap_1a6688a2c3a34fb07abca5082399be0d0b">getTotalFreeSize</reimplementedby>
+        <reimplementedby refid="class_j_k_r_solid_heap_1a2434c9a6a223662dd7779a1a5a8f9365">getTotalFreeSize</reimplementedby>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="JSystem/System/JKernel/include/JKRHeap.h" line="95" column="20"/>
+      </memberdef>
+      <memberdef kind="function" id="class_j_k_r_heap_1a0d2a413f2f45248865e88b11b01641cf" prot="protected" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>u32</type>
+        <definition>virtual u32 JKRHeap::getHeapType</definition>
+        <argsstring>(void)=0</argsstring>
+        <name>getHeapType</name>
+        <qualifiedname>JKRHeap::getHeapType</qualifiedname>
+        <reimplementedby refid="class_j_k_r_exp_heap_1aa235b42d3cee73ef9f975456eeed8bda">getHeapType</reimplementedby>
+        <reimplementedby refid="class_j_k_r_solid_heap_1ab5802d440265e51460eb4c8502fdc3cc">getHeapType</reimplementedby>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="JSystem/System/JKernel/include/JKRHeap.h" line="96" column="20"/>
+      </memberdef>
+      <memberdef kind="function" id="class_j_k_r_heap_1ab335bb8af294c0cba3ecdc6719f7e181" prot="protected" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type><ref refid="_j_u_t_types_8h_1ae4cc35dcc70810fa972cc8a5185a28fa" kindref="member">BOOL</ref></type>
+        <definition>virtual BOOL JKRHeap::check</definition>
+        <argsstring>(void)=0</argsstring>
+        <name>check</name>
+        <qualifiedname>JKRHeap::check</qualifiedname>
+        <reimplementedby refid="class_j_k_r_exp_heap_1a68b0e5ef208d4f48c3a23ee9d4109b6d">check</reimplementedby>
+        <reimplementedby refid="class_j_k_r_solid_heap_1a0c5d2e4fb681eca394c06f55a48b73a1">check</reimplementedby>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="JSystem/System/JKernel/include/JKRHeap.h" line="97" column="20"/>
+      </memberdef>
+      <memberdef kind="function" id="class_j_k_r_heap_1a892c554de008274dd543ab73d0cc87f4" prot="protected" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type><ref refid="_j_u_t_types_8h_1ae4cc35dcc70810fa972cc8a5185a28fa" kindref="member">BOOL</ref></type>
+        <definition>virtual BOOL JKRHeap::dump</definition>
+        <argsstring>(void)=0</argsstring>
+        <name>dump</name>
+        <qualifiedname>JKRHeap::dump</qualifiedname>
+        <reimplementedby refid="class_j_k_r_exp_heap_1a56c8e9814f6ef3afd6e20bbbac0bedc1">dump</reimplementedby>
+        <reimplementedby refid="class_j_k_r_solid_heap_1a317277dd190655cb629fa603402a72b7">dump</reimplementedby>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="JSystem/System/JKernel/include/JKRHeap.h" line="98" column="20"/>
+      </memberdef>
+      <memberdef kind="function" id="class_j_k_r_heap_1a328abcf201b1e7e2f2cdd9dc9ae60767" prot="protected" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type><ref refid="_j_u_t_types_8h_1ae4cc35dcc70810fa972cc8a5185a28fa" kindref="member">BOOL</ref></type>
+        <definition>BOOL JKRHeap::dump_sort</definition>
+        <argsstring>(void)</argsstring>
+        <name>dump_sort</name>
+        <qualifiedname>JKRHeap::dump_sort</qualifiedname>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="JSystem/System/JKernel/include/JKRHeap.h" line="99" column="20" bodyfile="JSystem/System/JKernel/src/JKRHeap.cpp" bodystart="307" bodyend="310"/>
+        <references refid="_j_u_t_types_8h_1aa93f0eb578d23995850d61f7d61c55c1" compoundref="_j_u_t_types_8h" startline="15">FALSE</references>
+      </memberdef>
+      <memberdef kind="function" id="class_j_k_r_heap_1a49445d5d3bce709a7cd4f5be1d57f23d" prot="protected" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>u32</type>
+        <definition>u32 JKRHeap::getCurrentGroupId</definition>
+        <argsstring>(void)</argsstring>
+        <name>getCurrentGroupId</name>
+        <qualifiedname>JKRHeap::getCurrentGroupId</qualifiedname>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="JSystem/System/JKernel/include/JKRHeap.h" line="100" column="20" bodyfile="JSystem/System/JKernel/src/JKRHeap.cpp" bodystart="313" bodyend="316"/>
+      </memberdef>
+      <memberdef kind="function" id="class_j_k_r_heap_1a6d3abaf89fd9617b992f9b4de1d43210" prot="protected" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void JKRHeap::unlock</definition>
+        <argsstring>()</argsstring>
+        <name>unlock</name>
+        <qualifiedname>JKRHeap::unlock</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="JSystem/System/JKernel/include/JKRHeap.h" line="103" column="5" bodyfile="JSystem/System/JKernel/include/JKRHeap.h" bodystart="103" bodyend="106"/>
+        <references refid="class_j_k_r_heap_1a0fa1bb086804a1537c2a46bda1664579" compoundref="_j_k_r_heap_8h" startline="67">mMutex</references>
+        <referencedby refid="class_j_k_r_solid_heap_1a7279e82156ad90d2df4ca92836f2d6ea" compoundref="_j_k_r_solid_heap_8cpp" startline="41" endline="69">JKRSolidHeap::adjustSize</referencedby>
+        <referencedby refid="class_j_k_r_solid_heap_1a1d9033937ac26941e6d53c3bad159b7a" compoundref="_j_k_r_solid_heap_8cpp" startline="72" endline="94">JKRSolidHeap::alloc</referencedby>
+        <referencedby refid="class_j_k_r_solid_heap_1a0c5d2e4fb681eca394c06f55a48b73a1" compoundref="_j_k_r_solid_heap_8cpp" startline="205" endline="220">JKRSolidHeap::check</referencedby>
+        <referencedby refid="class_j_k_r_solid_heap_1a317277dd190655cb629fa603402a72b7" compoundref="_j_k_r_solid_heap_8cpp" startline="223" endline="234">JKRSolidHeap::dump</referencedby>
+        <referencedby refid="class_j_k_r_solid_heap_1ae5d8e7c1d7bcc16ea9094d0930aceb2f" compoundref="_j_k_r_solid_heap_8cpp" startline="157" endline="169">JKRSolidHeap::freeAll</referencedby>
+        <referencedby refid="class_j_k_r_solid_heap_1a3aa9227885869918bdca488ca20b6341" compoundref="_j_k_r_solid_heap_8cpp" startline="172" endline="185">JKRSolidHeap::freeTail</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="class_j_k_r_heap_1a0da395e54b6cc58410b7385f4937a70c" prot="protected" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void JKRHeap::lock</definition>
+        <argsstring>()</argsstring>
+        <name>lock</name>
+        <qualifiedname>JKRHeap::lock</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="JSystem/System/JKernel/include/JKRHeap.h" line="109" column="5" bodyfile="JSystem/System/JKernel/include/JKRHeap.h" bodystart="109" bodyend="112"/>
+        <references refid="class_j_k_r_heap_1a0fa1bb086804a1537c2a46bda1664579" compoundref="_j_k_r_heap_8h" startline="67">mMutex</references>
+        <referencedby refid="class_j_k_r_solid_heap_1a7279e82156ad90d2df4ca92836f2d6ea" compoundref="_j_k_r_solid_heap_8cpp" startline="41" endline="69">JKRSolidHeap::adjustSize</referencedby>
+        <referencedby refid="class_j_k_r_solid_heap_1a1d9033937ac26941e6d53c3bad159b7a" compoundref="_j_k_r_solid_heap_8cpp" startline="72" endline="94">JKRSolidHeap::alloc</referencedby>
+        <referencedby refid="class_j_k_r_solid_heap_1a0c5d2e4fb681eca394c06f55a48b73a1" compoundref="_j_k_r_solid_heap_8cpp" startline="205" endline="220">JKRSolidHeap::check</referencedby>
+        <referencedby refid="class_j_k_r_solid_heap_1a317277dd190655cb629fa603402a72b7" compoundref="_j_k_r_solid_heap_8cpp" startline="223" endline="234">JKRSolidHeap::dump</referencedby>
+        <referencedby refid="class_j_k_r_solid_heap_1ae5d8e7c1d7bcc16ea9094d0930aceb2f" compoundref="_j_k_r_solid_heap_8cpp" startline="157" endline="169">JKRSolidHeap::freeAll</referencedby>
+        <referencedby refid="class_j_k_r_solid_heap_1a3aa9227885869918bdca488ca20b6341" compoundref="_j_k_r_solid_heap_8cpp" startline="172" endline="185">JKRSolidHeap::freeTail</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="class_j_k_r_heap_1ad836c0faa798b610b7fb85690c5d1e3c" prot="protected" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="class_j_s_u_tree" kindref="compound">JSUTree</ref>&lt; <ref refid="class_j_k_r_heap" kindref="compound">JKRHeap</ref> &gt; &amp;</type>
+        <definition>JSUTree&lt; JKRHeap &gt; &amp; JKRHeap::getHeapTree</definition>
+        <argsstring>()</argsstring>
+        <name>getHeapTree</name>
+        <qualifiedname>JKRHeap::getHeapTree</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="JSystem/System/JKernel/include/JKRHeap.h" line="115" column="5" bodyfile="JSystem/System/JKernel/include/JKRHeap.h" bodystart="115" bodyend="118"/>
+        <references refid="class_j_k_r_heap_1ac5463d575471ab73964ff50e0b61670b" compoundref="_j_k_r_heap_8h" startline="71">mHeapTree</references>
+      </memberdef>
+      <memberdef kind="function" id="class_j_k_r_heap_1abfe14bc6c364adfb7c46d69ec89fc575" prot="protected" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="class_j_k_r_heap" kindref="compound">JKRHeap</ref> *</type>
+        <definition>JKRHeap * JKRHeap::getParent</definition>
+        <argsstring>() const</argsstring>
+        <name>getParent</name>
+        <qualifiedname>JKRHeap::getParent</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="JSystem/System/JKernel/include/JKRHeap.h" line="121" column="5" bodyfile="JSystem/System/JKernel/include/JKRHeap.h" bodystart="121" bodyend="124"/>
+        <references refid="class_j_s_u_tree_1a83b2c274fa731a78efe654c42ee443eb" compoundref="_j_s_u_list_8h" startline="338" endline="341">JSUTree&lt; T &gt;::getObject</references>
+        <references refid="class_j_s_u_tree_1afe12e664d12fc30ebafd9f57153d607d" compoundref="_j_s_u_list_8h" startline="344" endline="347">JSUTree&lt; T &gt;::getParent</references>
+        <references refid="class_j_k_r_heap_1ac5463d575471ab73964ff50e0b61670b" compoundref="_j_k_r_heap_8h" startline="71">mHeapTree</references>
+        <referencedby refid="class_j_k_r_solid_heap_1a7279e82156ad90d2df4ca92836f2d6ea" compoundref="_j_k_r_solid_heap_8cpp" startline="41" endline="69">JKRSolidHeap::adjustSize</referencedby>
+        <referencedby refid="class_j_k_r_solid_heap_1ad38ccc0f300112ea5b594e30b00215b1" compoundref="_j_k_r_solid_heap_8cpp" startline="23" endline="31">JKRSolidHeap::destroy</referencedby>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2">
+        <label>JKRDisposer</label>
+        <link refid="class_j_k_r_disposer"/>
+      </node>
+      <node id="3">
+        <label>JKRExpHeap</label>
+        <link refid="class_j_k_r_exp_heap"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>JKRHeap</label>
+        <link refid="class_j_k_r_heap"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>JKRSolidHeap</label>
+        <link refid="class_j_k_r_solid_heap"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="2">
+        <label>JKRDisposer</label>
+        <link refid="class_j_k_r_disposer"/>
+        <childnode refid="1" relation="usage">
+          <edgelabel>pHeapObj</edgelabel>
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>mHeapLink</edgelabel>
+        </childnode>
+      </node>
+      <node id="1">
+        <label>JKRHeap</label>
+        <link refid="class_j_k_r_heap"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="1" relation="usage">
+          <edgelabel>sCurrentHeap</edgelabel>
+          <edgelabel>sRootHeap</edgelabel>
+          <edgelabel>sSystemHeap</edgelabel>
+        </childnode>
+        <childnode refid="7" relation="usage">
+          <edgelabel>mHeapTree</edgelabel>
+        </childnode>
+        <childnode refid="13" relation="usage">
+          <edgelabel>mDisposerList</edgelabel>
+        </childnode>
+      </node>
+      <node id="6">
+        <label>JSULink&lt; T &gt;</label>
+        <link refid="struct_j_s_u_link"/>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>JSULink&lt; JKRDisposer &gt;</label>
+        <link refid="struct_j_s_u_link"/>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+        <childnode refid="6" relation="template-instance">
+          <edgelabel>&lt; JKRDisposer &gt;</edgelabel>
+        </childnode>
+      </node>
+      <node id="9">
+        <label>JSULink&lt; T &gt;</label>
+        <link refid="struct_j_s_u_link"/>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="12">
+        <label>JSULink&lt; T &gt;</label>
+        <link refid="struct_j_s_u_link"/>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="14">
+        <label>JSUList&lt; T &gt;</label>
+        <link refid="class_j_s_u_list"/>
+        <childnode refid="5" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="13">
+        <label>JSUList&lt; JKRDisposer &gt;</label>
+        <link refid="class_j_s_u_list"/>
+        <childnode refid="5" relation="public-inheritance">
+        </childnode>
+        <childnode refid="14" relation="template-instance">
+          <edgelabel>&lt; JKRDisposer &gt;</edgelabel>
+        </childnode>
+      </node>
+      <node id="8">
+        <label>JSUList&lt; T &gt;</label>
+        <link refid="class_j_s_u_list"/>
+        <childnode refid="5" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="11">
+        <label>JSUList&lt; T &gt;</label>
+        <link refid="class_j_s_u_list"/>
+        <childnode refid="5" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>JSUPtrLink</label>
+        <link refid="struct_j_s_u_ptr_link"/>
+        <childnode refid="5" relation="usage">
+          <edgelabel>pSupervisor</edgelabel>
+        </childnode>
+        <childnode refid="4" relation="usage">
+          <edgelabel>pNext</edgelabel>
+          <edgelabel>pPrev</edgelabel>
+        </childnode>
+      </node>
+      <node id="5">
+        <label>JSUPtrList</label>
+        <link refid="class_j_s_u_ptr_list"/>
+        <childnode refid="4" relation="usage">
+          <edgelabel>pFirst</edgelabel>
+          <edgelabel>pLast</edgelabel>
+        </childnode>
+      </node>
+      <node id="10">
+        <label>JSUTree&lt; T &gt;</label>
+        <link refid="class_j_s_u_tree"/>
+        <childnode refid="11" relation="public-inheritance">
+        </childnode>
+        <childnode refid="12" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>JSUTree&lt; JKRHeap &gt;</label>
+        <link refid="class_j_s_u_tree"/>
+        <childnode refid="8" relation="public-inheritance">
+        </childnode>
+        <childnode refid="9" relation="public-inheritance">
+        </childnode>
+        <childnode refid="10" relation="template-instance">
+          <edgelabel>&lt; JKRHeap &gt;</edgelabel>
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="JSystem/System/JKernel/include/JKRHeap.h" line="16" column="1" bodyfile="JSystem/System/JKernel/include/JKRHeap.h" bodystart="17" bodyend="125"/>
+    <listofallmembers>
+      <member refid="class_j_k_r_heap_1a498fd99ff144c61bccf85cbd3d747f66" prot="public" virt="non-virtual"><scope>JKRHeap</scope><name>alloc</name></member>
+      <member refid="class_j_k_r_heap_1a2b0b0a32de4c3938ce1dc905f96b9871" prot="protected" virt="pure-virtual"><scope>JKRHeap</scope><name>alloc</name></member>
+      <member refid="class_j_k_r_heap_1aacd984b702e5fc47861c7f903f941826" prot="public" virt="non-virtual"><scope>JKRHeap</scope><name>appendDisposer</name></member>
+      <member refid="class_j_k_r_heap_1ab81c1019c28df71dd0b6aaa30c57f20c" prot="protected" virt="non-virtual"><scope>JKRHeap</scope><name>becomeCurrentHeap</name></member>
+      <member refid="class_j_k_r_heap_1a12b945dc345f7253beda93597622e5b3" prot="protected" virt="non-virtual"><scope>JKRHeap</scope><name>becomeSystemHeap</name></member>
+      <member refid="class_j_k_r_heap_1ab335bb8af294c0cba3ecdc6719f7e181" prot="protected" virt="pure-virtual"><scope>JKRHeap</scope><name>check</name></member>
+      <member refid="class_j_k_r_heap_1af8cbba64803c20a69d9ecc88ec1bb55d" prot="public" virt="non-virtual"><scope>JKRHeap</scope><name>copyMemory</name></member>
+      <member refid="class_j_k_r_heap_1a6cc683f2b8f93502e53f4dae1c24746d" prot="protected" virt="non-virtual"><scope>JKRHeap</scope><name>dispose</name></member>
+      <member refid="class_j_k_r_heap_1a2324f26064947a09651a6fe0f673bbee" prot="protected" virt="non-virtual"><scope>JKRHeap</scope><name>dispose</name></member>
+      <member refid="class_j_k_r_heap_1acdced2392dcf6c6e6baa1b9ccc2cba00" prot="protected" virt="non-virtual"><scope>JKRHeap</scope><name>dispose</name></member>
+      <member refid="class_j_k_r_heap_1ab096264d4899f9b1e59c9d631d24b71e" prot="protected" virt="non-virtual"><scope>JKRHeap</scope><name>dispose_subroutine</name></member>
+      <member refid="class_j_k_r_heap_1a892c554de008274dd543ab73d0cc87f4" prot="protected" virt="pure-virtual"><scope>JKRHeap</scope><name>dump</name></member>
+      <member refid="class_j_k_r_heap_1a328abcf201b1e7e2f2cdd9dc9ae60767" prot="protected" virt="virtual"><scope>JKRHeap</scope><name>dump_sort</name></member>
+      <member refid="class_j_k_r_heap_1acda91bbde04176437b588d205bd9369b" prot="protected" virt="non-virtual"><scope>JKRHeap</scope><name>find</name></member>
+      <member refid="class_j_k_r_heap_1a807310c85f0b94ed417bf17724f19db6" prot="public" virt="non-virtual"><scope>JKRHeap</scope><name>findFromRoot</name></member>
+      <member refid="class_j_k_r_heap_1a35194adf7e374fd22136209248819481" prot="public" virt="non-virtual"><scope>JKRHeap</scope><name>free</name></member>
+      <member refid="class_j_k_r_heap_1a2c6c89056537372b6b91265bad3e2091" prot="protected" virt="pure-virtual"><scope>JKRHeap</scope><name>free</name></member>
+      <member refid="class_j_k_r_heap_1ab7c6e95f8e83ab275d696455b0c52f4b" prot="protected" virt="virtual"><scope>JKRHeap</scope><name>freeAll</name></member>
+      <member refid="class_j_k_r_heap_1ac3785bd06dc042c10a9befcdd1e1c5ab" prot="protected" virt="pure-virtual"><scope>JKRHeap</scope><name>freeTail</name></member>
+      <member refid="class_j_k_r_heap_1a49445d5d3bce709a7cd4f5be1d57f23d" prot="protected" virt="virtual"><scope>JKRHeap</scope><name>getCurrentGroupId</name></member>
+      <member refid="class_j_k_r_heap_1a1ac9d23deb47b3f8393f13b5a334844a" prot="public" virt="non-virtual"><scope>JKRHeap</scope><name>getCurrentHeap</name></member>
+      <member refid="class_j_k_r_heap_1aad1dd93117e195a145f5d373dcf8b52e" prot="protected" virt="pure-virtual"><scope>JKRHeap</scope><name>getFreeSize</name></member>
+      <member refid="class_j_k_r_heap_1ad836c0faa798b610b7fb85690c5d1e3c" prot="protected" virt="non-virtual"><scope>JKRHeap</scope><name>getHeapTree</name></member>
+      <member refid="class_j_k_r_heap_1a0d2a413f2f45248865e88b11b01641cf" prot="protected" virt="pure-virtual"><scope>JKRHeap</scope><name>getHeapType</name></member>
+      <member refid="class_j_k_r_heap_1abfe14bc6c364adfb7c46d69ec89fc575" prot="protected" virt="non-virtual"><scope>JKRHeap</scope><name>getParent</name></member>
+      <member refid="class_j_k_r_heap_1aaf479562b1f0732620f58c6213a423c7" prot="public" virt="non-virtual"><scope>JKRHeap</scope><name>getRootHeap</name></member>
+      <member refid="class_j_k_r_heap_1a5e3d32bd6e9ef98c283fc26666323542" prot="protected" virt="pure-virtual"><scope>JKRHeap</scope><name>getSize</name></member>
+      <member refid="class_j_k_r_heap_1a3df939abb6f6608b3e533fa1a12e19b5" prot="public" virt="non-virtual"><scope>JKRHeap</scope><name>getSystemHeap</name></member>
+      <member refid="class_j_k_r_heap_1a0f522c66c9a043fde22c180cab698f27" prot="protected" virt="pure-virtual"><scope>JKRHeap</scope><name>getTotalFreeSize</name></member>
+      <member refid="class_j_k_r_heap_1a3ff5df2f33f923aba70d23ab96b25b21" prot="public" virt="non-virtual"><scope>JKRHeap</scope><name>initArena</name></member>
+      <member refid="class_j_k_r_disposer_1ac5a1bf5e5a976af8c8f0114452590c22" prot="private" virt="non-virtual"><scope>JKRHeap</scope><name>JKRDisposer</name></member>
+      <member refid="class_j_k_r_heap_1a0867ff1dd1b1fb0c0920ad87a6f31443" prot="private" virt="non-virtual"><scope>JKRHeap</scope><name>JKRExpHeap</name></member>
+      <member refid="class_j_k_r_heap_1a56c2836b185d2c681f011bd96bcd6f66" prot="protected" virt="non-virtual"><scope>JKRHeap</scope><name>JKRHeap</name></member>
+      <member refid="class_j_k_r_heap_1ab470536acb85ba41b44e5cbbeda27817" prot="private" virt="non-virtual"><scope>JKRHeap</scope><name>JKRSolidHeap</name></member>
+      <member refid="class_j_k_r_heap_1a0da395e54b6cc58410b7385f4937a70c" prot="protected" virt="non-virtual"><scope>JKRHeap</scope><name>lock</name></member>
+      <member refid="class_j_k_r_heap_1a9d6ecfffdef777d6a8a4a88064a51e7f" prot="protected" virt="non-virtual"><scope>JKRHeap</scope><name>mDisposerList</name></member>
+      <member refid="class_j_k_r_heap_1ae5501a3bae6bb5df02dbc6f4426428f2" prot="protected" virt="non-virtual"><scope>JKRHeap</scope><name>mEnd</name></member>
+      <member refid="class_j_k_r_heap_1ac0bade52f0b510f137141f6c3592409a" prot="protected" virt="non-virtual"><scope>JKRHeap</scope><name>mErrorFlag</name></member>
+      <member refid="class_j_k_r_heap_1a306606cc7e2fb7420e131231b9a73994" prot="protected" virt="non-virtual"><scope>JKRHeap</scope><name>mErrorHandler</name></member>
+      <member refid="class_j_k_r_disposer_1a159ab203c05ca292bf3067cef1c20e1c" prot="protected" virt="non-virtual"><scope>JKRHeap</scope><name>mHeapLink</name></member>
+      <member refid="class_j_k_r_heap_1ac5463d575471ab73964ff50e0b61670b" prot="protected" virt="non-virtual"><scope>JKRHeap</scope><name>mHeapTree</name></member>
+      <member refid="class_j_k_r_heap_1a0fa1bb086804a1537c2a46bda1664579" prot="protected" virt="non-virtual"><scope>JKRHeap</scope><name>mMutex</name></member>
+      <member refid="class_j_k_r_heap_1a39d1093d3fcfd2d5b57844a64c9ecbf8" prot="protected" virt="non-virtual"><scope>JKRHeap</scope><name>mSize</name></member>
+      <member refid="class_j_k_r_heap_1a1e347c3b2baf3232b2d45598a311930b" prot="protected" virt="non-virtual"><scope>JKRHeap</scope><name>mStart</name></member>
+      <member refid="class_j_k_r_disposer_1aba425c2ee46aaffbb1d5ef1aa717b298" prot="protected" virt="non-virtual"><scope>JKRHeap</scope><name>pHeapObj</name></member>
+      <member refid="class_j_k_r_heap_1a8172bbbcfd4cd8b47f0ce975a6ee499b" prot="public" virt="non-virtual"><scope>JKRHeap</scope><name>removeDisposer</name></member>
+      <member refid="class_j_k_r_heap_1a9e60b0c6e74659aad707588bd0eb7c55" prot="protected" virt="pure-virtual"><scope>JKRHeap</scope><name>resize</name></member>
+      <member refid="class_j_k_r_heap_1a2d9eea4100b22f9e5ccc0c13129bffdb" prot="protected" virt="non-virtual"><scope>JKRHeap</scope><name>sCurrentHeap</name></member>
+      <member refid="class_j_k_r_heap_1aeba48f01ea0cbd1f733257f5f69b6823" prot="protected" virt="non-virtual"><scope>JKRHeap</scope><name>sRootHeap</name></member>
+      <member refid="class_j_k_r_heap_1afd99c7bf77dd29a4b5da708a2668a76a" prot="protected" virt="non-virtual"><scope>JKRHeap</scope><name>sSystemHeap</name></member>
+      <member refid="class_j_k_r_heap_1a6d3abaf89fd9617b992f9b4de1d43210" prot="protected" virt="non-virtual"><scope>JKRHeap</scope><name>unlock</name></member>
+      <member refid="class_j_k_r_disposer_1ace9ccd5e957de58c466c6a4e986721f0" prot="private" virt="non-virtual"><scope>JKRHeap</scope><name>~JKRDisposer</name></member>
+      <member refid="class_j_k_r_heap_1aa03b5f9d9602ba520f06ea0e2163a31e" prot="protected" virt="non-virtual"><scope>JKRHeap</scope><name>~JKRHeap</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

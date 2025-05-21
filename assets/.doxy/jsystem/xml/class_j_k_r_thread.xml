@@ -1,0 +1,404 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="class_j_k_r_thread" kind="class" language="C++" prot="public">
+    <compoundname>JKRThread</compoundname>
+    <includes refid="_j_k_r_thread_8h" local="no">JKRThread.h</includes>
+    <sectiondef kind="protected-attrib">
+      <memberdef kind="variable" id="class_j_k_r_thread_1a8fabdb0e00530959a96c6551b77c47e5" prot="protected" static="no" mutable="no">
+        <type><ref refid="struct_j_s_u_link" kindref="compound">JSULink</ref>&lt; <ref refid="class_j_k_r_thread" kindref="compound">JKRThread</ref> &gt;</type>
+        <definition>JSULink&lt;JKRThread&gt; JKRThread::mLink</definition>
+        <argsstring></argsstring>
+        <name>mLink</name>
+        <qualifiedname>JKRThread::mLink</qualifiedname>
+        <briefdescription>
+<para>0x18 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="JSystem/System/JKernel/include/JKRThread.h" line="27" column="13" bodyfile="JSystem/System/JKernel/include/JKRThread.h" bodystart="27" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_j_k_r_thread_1a669fa84c622d73cea0b7c9a6f4510e88" prot="protected" static="no" mutable="no">
+        <type><ref refid="class_j_k_r_heap" kindref="compound">JKRHeap</ref> *</type>
+        <definition>JKRHeap* JKRThread::mCurrHeap</definition>
+        <argsstring></argsstring>
+        <name>mCurrHeap</name>
+        <qualifiedname>JKRThread::mCurrHeap</qualifiedname>
+        <briefdescription>
+<para>0x28 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="JSystem/System/JKernel/include/JKRThread.h" line="28" column="23" bodyfile="JSystem/System/JKernel/include/JKRThread.h" bodystart="28" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_j_k_r_thread_1a7fcfa867b0260573d235a8f323cea443" prot="protected" static="no" mutable="no">
+        <type>OSThread *</type>
+        <definition>OSThread* JKRThread::mOSThread</definition>
+        <argsstring></argsstring>
+        <name>mOSThread</name>
+        <qualifiedname>JKRThread::mOSThread</qualifiedname>
+        <briefdescription>
+<para>0x2C </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="JSystem/System/JKernel/include/JKRThread.h" line="29" column="23" bodyfile="JSystem/System/JKernel/include/JKRThread.h" bodystart="29" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_j_k_r_thread_1a419b3bcfeb24da5967237d2d3e14678e" prot="protected" static="no" mutable="no">
+        <type>OSMessageQueue</type>
+        <definition>OSMessageQueue JKRThread::mMesgQueue</definition>
+        <argsstring></argsstring>
+        <name>mMesgQueue</name>
+        <qualifiedname>JKRThread::mMesgQueue</qualifiedname>
+        <briefdescription>
+<para>0x30 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="JSystem/System/JKernel/include/JKRThread.h" line="30" column="24" bodyfile="JSystem/System/JKernel/include/JKRThread.h" bodystart="30" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_j_k_r_thread_1a145d8a559cf176ba05d437fa510667cf" prot="protected" static="no" mutable="no">
+        <type>void *</type>
+        <definition>void* JKRThread::mMesgArray</definition>
+        <argsstring></argsstring>
+        <name>mMesgArray</name>
+        <qualifiedname>JKRThread::mMesgArray</qualifiedname>
+        <briefdescription>
+<para>0x50 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="JSystem/System/JKernel/include/JKRThread.h" line="31" column="23" bodyfile="JSystem/System/JKernel/include/JKRThread.h" bodystart="31" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_j_k_r_thread_1acd527df4c8ef49f799aeddf46bf9a6fe" prot="protected" static="no" mutable="no">
+        <type>u32</type>
+        <definition>u32 JKRThread::mMesgCount</definition>
+        <argsstring></argsstring>
+        <name>mMesgCount</name>
+        <qualifiedname>JKRThread::mMesgCount</qualifiedname>
+        <briefdescription>
+<para>0x54 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="JSystem/System/JKernel/include/JKRThread.h" line="32" column="24" bodyfile="JSystem/System/JKernel/include/JKRThread.h" bodystart="32" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_j_k_r_thread_1a3cb8a2f233ceef4fe8b9f83ddce5c70c" prot="protected" static="no" mutable="no">
+        <type>unk32</type>
+        <definition>unk32 JKRThread::_58</definition>
+        <argsstring></argsstring>
+        <name>_58</name>
+        <qualifiedname>JKRThread::_58</qualifiedname>
+        <briefdescription>
+<para>0x58 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="JSystem/System/JKernel/include/JKRThread.h" line="33" column="24" bodyfile="JSystem/System/JKernel/include/JKRThread.h" bodystart="33" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_j_k_r_thread_1a26ec208b1686c74f96bd2c3abc779326" prot="protected" static="no" mutable="no">
+        <type>unk32</type>
+        <definition>unk32 JKRThread::_5C</definition>
+        <argsstring></argsstring>
+        <name>_5C</name>
+        <qualifiedname>JKRThread::_5C</qualifiedname>
+        <briefdescription>
+<para>0x5C </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="JSystem/System/JKernel/include/JKRThread.h" line="34" column="24" bodyfile="JSystem/System/JKernel/include/JKRThread.h" bodystart="34" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_j_k_r_thread_1a649f9ede69362e9b92ecef168c5f3d6a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="_j_u_t_types_8h_1a29d583e02d7d25852fb356110c1a0bf7" kindref="member">constructor</ref></type>
+        <definition>JKRThread::JKRThread</definition>
+        <argsstring>(OSThread *thread, int i)</argsstring>
+        <name>JKRThread</name>
+        <qualifiedname>JKRThread::JKRThread</qualifiedname>
+        <param>
+          <type>OSThread *</type>
+          <declname>thread</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>i</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="JSystem/System/JKernel/include/JKRThread.h" line="15" column="17" bodyfile="JSystem/System/JKernel/src/JKRThread.cpp" bodystart="13" bodyend="13"/>
+      </memberdef>
+      <memberdef kind="function" id="class_j_k_r_thread_1aace095bb2bab6bf3577f4c637dcaf0ea" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="_j_u_t_types_8h_1a9e47057ec8b35a4c28c50454143074d3" kindref="member">destructor</ref></type>
+        <definition>JKRThread::~JKRThread</definition>
+        <argsstring>()</argsstring>
+        <name>~JKRThread</name>
+        <qualifiedname>JKRThread::~JKRThread</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="JSystem/System/JKernel/include/JKRThread.h" line="16" column="16" bodyfile="JSystem/System/JKernel/src/JKRThread.cpp" bodystart="15" bodyend="15"/>
+      </memberdef>
+      <memberdef kind="function" id="class_j_k_r_thread_1adc185361ef03f00e39fca962c93f5477" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void JKRThread::start</definition>
+        <argsstring>(void *)</argsstring>
+        <name>start</name>
+        <qualifiedname>JKRThread::start</qualifiedname>
+        <param>
+          <type>void *</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="JSystem/System/JKernel/include/JKRThread.h" line="18" column="10" bodyfile="JSystem/System/JKernel/src/JKRThread.cpp" bodystart="18" bodyend="19"/>
+      </memberdef>
+      <memberdef kind="function" id="class_j_k_r_thread_1a3c0a1433d8b5af0224657509ad1d7291" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>int</type>
+        <definition>virtual int JKRThread::run</definition>
+        <argsstring>()</argsstring>
+        <name>run</name>
+        <qualifiedname>JKRThread::run</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="JSystem/System/JKernel/include/JKRThread.h" line="21" column="5" bodyfile="JSystem/System/JKernel/include/JKRThread.h" bodystart="21" bodyend="24"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-func">
+      <memberdef kind="function" id="class_j_k_r_thread_1a11977e96b58812e354c848d28263a69d" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void JKRThread::setCommon_mesgQueue</definition>
+        <argsstring>(JKRHeap *, int)</argsstring>
+        <name>setCommon_mesgQueue</name>
+        <qualifiedname>JKRThread::setCommon_mesgQueue</qualifiedname>
+        <param>
+          <type><ref refid="class_j_k_r_heap" kindref="compound">JKRHeap</ref> *</type>
+        </param>
+        <param>
+          <type>int</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="JSystem/System/JKernel/include/JKRThread.h" line="37" column="10" bodyfile="JSystem/System/JKernel/src/JKRThread.cpp" bodystart="6" bodyend="7"/>
+      </memberdef>
+      <memberdef kind="function" id="class_j_k_r_thread_1ad395671f074f754a8f1010edecb40f0a" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void JKRThread::setCommon_heapSpecified</definition>
+        <argsstring>(JKRHeap *, u32, int)</argsstring>
+        <name>setCommon_heapSpecified</name>
+        <qualifiedname>JKRThread::setCommon_heapSpecified</qualifiedname>
+        <param>
+          <type><ref refid="class_j_k_r_heap" kindref="compound">JKRHeap</ref> *</type>
+        </param>
+        <param>
+          <type>u32</type>
+        </param>
+        <param>
+          <type>int</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="JSystem/System/JKernel/include/JKRThread.h" line="38" column="10" bodyfile="JSystem/System/JKernel/src/JKRThread.cpp" bodystart="10" bodyend="11"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="7">
+        <label>JKRDisposer</label>
+        <link refid="class_j_k_r_disposer"/>
+        <childnode refid="6" relation="usage">
+          <edgelabel>pHeapObj</edgelabel>
+        </childnode>
+        <childnode refid="8" relation="usage">
+          <edgelabel>mHeapLink</edgelabel>
+        </childnode>
+      </node>
+      <node id="6">
+        <label>JKRHeap</label>
+        <link refid="class_j_k_r_heap"/>
+        <childnode refid="7" relation="public-inheritance">
+        </childnode>
+        <childnode refid="6" relation="usage">
+          <edgelabel>sCurrentHeap</edgelabel>
+          <edgelabel>sRootHeap</edgelabel>
+          <edgelabel>sSystemHeap</edgelabel>
+        </childnode>
+        <childnode refid="9" relation="usage">
+          <edgelabel>mHeapTree</edgelabel>
+        </childnode>
+        <childnode refid="15" relation="usage">
+          <edgelabel>mDisposerList</edgelabel>
+        </childnode>
+      </node>
+      <node id="1">
+        <label>JKRThread</label>
+        <link refid="class_j_k_r_thread"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>mLink</edgelabel>
+        </childnode>
+        <childnode refid="6" relation="usage">
+          <edgelabel>mCurrHeap</edgelabel>
+        </childnode>
+      </node>
+      <node id="5">
+        <label>JSULink&lt; T &gt;</label>
+        <link refid="struct_j_s_u_link"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="8">
+        <label>JSULink&lt; JKRDisposer &gt;</label>
+        <link refid="struct_j_s_u_link"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+        <childnode refid="5" relation="template-instance">
+          <edgelabel>&lt; JKRDisposer &gt;</edgelabel>
+        </childnode>
+      </node>
+      <node id="11">
+        <label>JSULink&lt; T &gt;</label>
+        <link refid="struct_j_s_u_link"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>JSULink&lt; JKRThread &gt;</label>
+        <link refid="struct_j_s_u_link"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+        <childnode refid="5" relation="template-instance">
+          <edgelabel>&lt; JKRThread &gt;</edgelabel>
+        </childnode>
+      </node>
+      <node id="14">
+        <label>JSULink&lt; T &gt;</label>
+        <link refid="struct_j_s_u_link"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="16">
+        <label>JSUList&lt; T &gt;</label>
+        <link refid="class_j_s_u_list"/>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="15">
+        <label>JSUList&lt; JKRDisposer &gt;</label>
+        <link refid="class_j_s_u_list"/>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+        <childnode refid="16" relation="template-instance">
+          <edgelabel>&lt; JKRDisposer &gt;</edgelabel>
+        </childnode>
+      </node>
+      <node id="10">
+        <label>JSUList&lt; T &gt;</label>
+        <link refid="class_j_s_u_list"/>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="13">
+        <label>JSUList&lt; T &gt;</label>
+        <link refid="class_j_s_u_list"/>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>JSUPtrLink</label>
+        <link refid="struct_j_s_u_ptr_link"/>
+        <childnode refid="4" relation="usage">
+          <edgelabel>pSupervisor</edgelabel>
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>pNext</edgelabel>
+          <edgelabel>pPrev</edgelabel>
+        </childnode>
+      </node>
+      <node id="4">
+        <label>JSUPtrList</label>
+        <link refid="class_j_s_u_ptr_list"/>
+        <childnode refid="3" relation="usage">
+          <edgelabel>pFirst</edgelabel>
+          <edgelabel>pLast</edgelabel>
+        </childnode>
+      </node>
+      <node id="12">
+        <label>JSUTree&lt; T &gt;</label>
+        <link refid="class_j_s_u_tree"/>
+        <childnode refid="13" relation="public-inheritance">
+        </childnode>
+        <childnode refid="14" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="9">
+        <label>JSUTree&lt; JKRHeap &gt;</label>
+        <link refid="class_j_s_u_tree"/>
+        <childnode refid="10" relation="public-inheritance">
+        </childnode>
+        <childnode refid="11" relation="public-inheritance">
+        </childnode>
+        <childnode refid="12" relation="template-instance">
+          <edgelabel>&lt; JKRHeap &gt;</edgelabel>
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="JSystem/System/JKernel/include/JKRThread.h" line="12" column="1" bodyfile="JSystem/System/JKernel/include/JKRThread.h" bodystart="13" bodyend="39"/>
+    <listofallmembers>
+      <member refid="class_j_k_r_thread_1a3cb8a2f233ceef4fe8b9f83ddce5c70c" prot="protected" virt="non-virtual"><scope>JKRThread</scope><name>_58</name></member>
+      <member refid="class_j_k_r_thread_1a26ec208b1686c74f96bd2c3abc779326" prot="protected" virt="non-virtual"><scope>JKRThread</scope><name>_5C</name></member>
+      <member refid="class_j_k_r_thread_1a649f9ede69362e9b92ecef168c5f3d6a" prot="public" virt="non-virtual"><scope>JKRThread</scope><name>JKRThread</name></member>
+      <member refid="class_j_k_r_thread_1a669fa84c622d73cea0b7c9a6f4510e88" prot="protected" virt="non-virtual"><scope>JKRThread</scope><name>mCurrHeap</name></member>
+      <member refid="class_j_k_r_thread_1a8fabdb0e00530959a96c6551b77c47e5" prot="protected" virt="non-virtual"><scope>JKRThread</scope><name>mLink</name></member>
+      <member refid="class_j_k_r_thread_1a145d8a559cf176ba05d437fa510667cf" prot="protected" virt="non-virtual"><scope>JKRThread</scope><name>mMesgArray</name></member>
+      <member refid="class_j_k_r_thread_1acd527df4c8ef49f799aeddf46bf9a6fe" prot="protected" virt="non-virtual"><scope>JKRThread</scope><name>mMesgCount</name></member>
+      <member refid="class_j_k_r_thread_1a419b3bcfeb24da5967237d2d3e14678e" prot="protected" virt="non-virtual"><scope>JKRThread</scope><name>mMesgQueue</name></member>
+      <member refid="class_j_k_r_thread_1a7fcfa867b0260573d235a8f323cea443" prot="protected" virt="non-virtual"><scope>JKRThread</scope><name>mOSThread</name></member>
+      <member refid="class_j_k_r_thread_1a3c0a1433d8b5af0224657509ad1d7291" prot="public" virt="virtual"><scope>JKRThread</scope><name>run</name></member>
+      <member refid="class_j_k_r_thread_1ad395671f074f754a8f1010edecb40f0a" prot="private" virt="non-virtual"><scope>JKRThread</scope><name>setCommon_heapSpecified</name></member>
+      <member refid="class_j_k_r_thread_1a11977e96b58812e354c848d28263a69d" prot="private" virt="non-virtual"><scope>JKRThread</scope><name>setCommon_mesgQueue</name></member>
+      <member refid="class_j_k_r_thread_1adc185361ef03f00e39fca962c93f5477" prot="public" virt="non-virtual"><scope>JKRThread</scope><name>start</name></member>
+      <member refid="class_j_k_r_thread_1aace095bb2bab6bf3577f4c637dcaf0ea" prot="public" virt="non-virtual"><scope>JKRThread</scope><name>~JKRThread</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

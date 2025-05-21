@@ -1,0 +1,541 @@
+
+# Variables
+
+
+
+## a
+
+* **atexit\_curr\_func** ([**abort\_exit.c**](abort__exit_8c.md))
+* **atexit\_funcs** ([**abort\_exit.c**](abort__exit_8c.md))
+* **argument\_options** ([**printf.c**](printf_8c.md), [**scanf.c**](scanf_8c.md), [**wprintf.c**](wprintf_8c.md), [**wscanf.c**](wscanf_8c.md))
+* **a0** ([**e\_lgamma\_r.c**](e__lgamma__r_8c.md))
+* **a1** ([**e\_lgamma\_r.c**](e__lgamma__r_8c.md))
+* **a10** ([**e\_lgamma\_r.c**](e__lgamma__r_8c.md))
+* **a11** ([**e\_lgamma\_r.c**](e__lgamma__r_8c.md))
+* **a2** ([**e\_lgamma\_r.c**](e__lgamma__r_8c.md))
+* **a3** ([**e\_lgamma\_r.c**](e__lgamma__r_8c.md))
+* **a4** ([**e\_lgamma\_r.c**](e__lgamma__r_8c.md))
+* **a5** ([**e\_lgamma\_r.c**](e__lgamma__r_8c.md))
+* **a6** ([**e\_lgamma\_r.c**](e__lgamma__r_8c.md))
+* **a7** ([**e\_lgamma\_r.c**](e__lgamma__r_8c.md))
+* **a8** ([**e\_lgamma\_r.c**](e__lgamma__r_8c.md))
+* **a9** ([**e\_lgamma\_r.c**](e__lgamma__r_8c.md))
+* **aT** ([**s\_atan.c**](s__atan_8c.md))
+* **atanhi** ([**s\_atan.c**](s__atan_8c.md))
+* **atanlo** ([**s\_atan.c**](s__atan_8c.md))
+
+
+## b
+
+* **buffer\_\_io\_8h\_1a61dadd085c1777f559549e05962b2c9e** ([**buffer\_io.h**](buffer__io_8h.md))
+* **big** ([**e\_asin.c**](e__asin_8c.md), [**e\_atanh.c**](e__atanh_8c.md), [**e\_cosh.c**](e__cosh_8c.md), [**e\_exp.c**](e__exp_8c.md), [**e\_pow.c**](e__pow_8c.md), [**s\_asinh.c**](s__asinh_8c.md), [**s\_atan.c**](s__atan_8c.md), [**s\_ceil.c**](s__ceil_8c.md), [**s\_expm1.c**](s__expm1_8c.md), [**s\_floor.c**](s__floor_8c.md), [**s\_ldexp.c**](s__ldexp_8c.md))
+* **bp** ([**e\_pow.c**](e__pow_8c.md))
+* **B1** ([**s\_cbrt.c**](s__cbrt_8c.md))
+* **B2** ([**s\_cbrt.c**](s__cbrt_8c.md))
+* **bit\_values** ([**ansi\_fp.c**](ansi__fp_8c.md))
+
+
+## c
+
+* **CommandReply** ([**trk.h**](trk_8h.md))
+* **critical\_regions** ([**critical\_regions.h**](critical__regions_8h.md))
+* **console\_buff** ([**ansi\_files.c**](ansi__files_8c.md))
+* **char\_map** ([**scanf.c**](scanf_8c.md), [**string.c**](string_8c.md), [**wscanf.c**](wscanf_8c.md))
+* **cp** ([**e\_pow.c**](e__pow_8c.md))
+* **cp\_h** ([**e\_pow.c**](e__pow_8c.md))
+* **cp\_l** ([**e\_pow.c**](e__pow_8c.md))
+* **C1** ([**k\_cos.c**](k__cos_8c.md))
+* **C2** ([**k\_cos.c**](k__cos_8c.md))
+* **C3** ([**k\_cos.c**](k__cos_8c.md))
+* **C4** ([**k\_cos.c**](k__cos_8c.md))
+* **C5** ([**k\_cos.c**](k__cos_8c.md))
+* **C6** ([**k\_cos.c**](k__cos_8c.md))
+* **C** ([**s\_cbrt.c**](s__cbrt_8c.md))
+* **ConstructorDestructor** ([**MWCPlusLib.h**](_m_w_c_plus_lib_8h.md))
+* **CatchInfo** ([**NMWException.h**](_n_m_w_exception_8h.md))
+
+
+## d
+
+* **DBCommFunc** ([**dolphin\_trk\_glue.h**](dolphin__trk__glue_8h.md))
+* **DBCommInitFunc** ([**dolphin\_trk\_glue.h**](dolphin__trk__glue_8h.md))
+* **DBCommReadFunc** ([**dolphin\_trk\_glue.h**](dolphin__trk__glue_8h.md))
+* **DBCommTable** ([**dolphin\_trk\_glue.h**](dolphin__trk__glue_8h.md))
+* **DBCommWriteFunc** ([**dolphin\_trk\_glue.h**](dolphin__trk__glue_8h.md))
+* **DBPollFunc** ([**dolphin\_trk\_glue.h**](dolphin__trk__glue_8h.md))
+* **DSCPUType** ([**targimpl.h**](targimpl_8h.md))
+* **DSVersions** ([**targimpl.h**](targimpl_8h.md))
+* **Default\_PPC** ([**targimpl.h**](targimpl_8h.md))
+* **DSError** ([**trk.h**](trk_8h.md))
+* **DSFileHandle** ([**trk.h**](trk_8h.md))
+* **DSIOResult** ([**trk.h**](trk_8h.md))
+* **DSMessageRegisterOptions** ([**trk.h**](trk_8h.md))
+* **DSMessageStepOptions** ([**trk.h**](trk_8h.md))
+* **DSReplyError** ([**trk.h**](trk_8h.md))
+* **DS\_NoError** ([**targimpl.c**](targimpl_8c.md))
+* **decform** ([**ansi\_fp.h**](ansi__fp_8h.md))
+* **decimal** ([**ansi\_fp.h**](ansi__fp_8h.md))
+* **day\_name** ([**time.c**](time_8c.md), [**wtime.c**](wtime_8c.md))
+* **dp\_h** ([**e\_pow.c**](e__pow_8c.md))
+* **dp\_l** ([**e\_pow.c**](e__pow_8c.md))
+* **D** ([**s\_cbrt.c**](s__cbrt_8c.md))
+* **digit\_values** ([**ansi\_fp.c**](ansi__fp_8c.md))
+* **DestructorChain** ([**NMWException.h**](_n_m_w_exception_8h.md))
+
+
+## e
+
+* **Extended1\_PPC\_6xx\_7xx** ([**targimpl.h**](targimpl_8h.md))
+* **Extended2\_PPC\_6xx\_7xx** ([**targimpl.h**](targimpl_8h.md))
+* **exitSetup** ([**abort\_exit.c**](abort__exit_8c.md))
+* **errno** ([**errno.c**](errno_8c.md))
+* **E** ([**s\_cbrt.c**](s__cbrt_8c.md))
+* **efx** ([**s\_erf.c**](s__erf_8c.md))
+* **efx8** ([**s\_erf.c**](s__erf_8c.md))
+* **erx** ([**s\_erf.c**](s__erf_8c.md))
+* **ExceptionRangeLarge** ([**ExceptionPPC.h**](_exception_p_p_c_8h.md))
+* **ExceptionRangeSmall** ([**ExceptionPPC.h**](_exception_p_p_c_8h.md))
+* **ExceptionTableIndex** ([**ExceptionPPC.h**](_exception_p_p_c_8h.md))
+* **ExceptionTableLarge** ([**ExceptionPPC.h**](_exception_p_p_c_8h.md))
+* **ExceptionTableSmall** ([**ExceptionPPC.h**](_exception_p_p_c_8h.md))
+* **ExceptionTableSmallVector** ([**ExceptionPPC.h**](_exception_p_p_c_8h.md))
+* **ex\_activecatchblock** ([**ExceptionPPC.h**](_exception_p_p_c_8h.md))
+* **ex\_branch** ([**ExceptionPPC.h**](_exception_p_p_c_8h.md))
+* **ex\_catchblock** ([**ExceptionPPC.h**](_exception_p_p_c_8h.md))
+* **ex\_deletepointer** ([**ExceptionPPC.h**](_exception_p_p_c_8h.md))
+* **ex\_deletepointercond** ([**ExceptionPPC.h**](_exception_p_p_c_8h.md))
+* **ex\_destroylocal** ([**ExceptionPPC.h**](_exception_p_p_c_8h.md))
+* **ex\_destroylocalarray** ([**ExceptionPPC.h**](_exception_p_p_c_8h.md))
+* **ex\_destroylocalcond** ([**ExceptionPPC.h**](_exception_p_p_c_8h.md))
+* **ex\_destroylocalpointer** ([**ExceptionPPC.h**](_exception_p_p_c_8h.md))
+* **ex\_destroymember** ([**ExceptionPPC.h**](_exception_p_p_c_8h.md))
+* **ex\_destroymemberarray** ([**ExceptionPPC.h**](_exception_p_p_c_8h.md))
+* **ex\_destroymembercond** ([**ExceptionPPC.h**](_exception_p_p_c_8h.md))
+* **ex\_specification** ([**ExceptionPPC.h**](_exception_p_p_c_8h.md))
+* **ex\_terminate** ([**ExceptionPPC.h**](_exception_p_p_c_8h.md))
+* **exaction\_type** ([**ExceptionPPC.h**](_exception_p_p_c_8h.md))
+
+
+## f
+
+* **Float\_PPC** ([**targimpl.h**](targimpl_8h.md))
+* **format\_str** ([**wtime.h**](wtime_8h.md))
+* **F** ([**s\_cbrt.c**](s__cbrt_8c.md))
+* **fdversion** ([**fdlibm.h**](fdlibm_8h.md))
+* **fragmentID** ([**\_\_init\_cpp\_exceptions.cpp**](____init__cpp__exceptions_8cpp.md))
+
+
+## g
+
+* **gTRKEventQueue** ([**nubevent.h**](nubevent_8h.md), [**nubevent.c**](nubevent_8c.md))
+* **gTRKBigEndian** ([**nubinit.h**](nubinit_8h.md), [**nubinit.c**](nubinit_8c.md), [**targimpl.c**](targimpl_8c.md))
+* **gTRKInputPendingPtr** ([**serpoll.h**](serpoll_8h.md), [**serpoll.c**](serpoll_8c.md))
+* **gTRKCPUState** ([**targimpl.h**](targimpl_8h.md), [**targimpl.c**](targimpl_8c.md))
+* **gTRKState** ([**targimpl.h**](targimpl_8h.md), [**targimpl.c**](targimpl_8c.md))
+* **gTRKInterruptVectorTable** ([**dolphin\_trk.c**](dolphin__trk_8c.md))
+* **gDBCommTable** ([**dolphin\_trk\_glue.c**](dolphin__trk__glue_8c.md))
+* **gTRKDispatchTable** ([**dispatch.c**](dispatch_8c.md))
+* **gTRKDispatchTableSize** ([**dispatch.c**](dispatch_8c.md))
+* **gTRKMsgBufs** ([**msgbuf.c**](msgbuf_8c.md))
+* **gTRKFramingState** ([**serpoll.c**](serpoll_8c.md))
+* **gTRKRestoreFlags** ([**mpc\_7xx\_603e.c**](mpc__7xx__603e_8c.md), [**targimpl.c**](targimpl_8c.md))
+* **gTRKExceptionStatus** ([**targimpl.c**](targimpl_8c.md))
+* **gTRKMemMap** ([**targimpl.c**](targimpl_8c.md))
+* **gTRKSaveState** ([**targimpl.c**](targimpl_8c.md))
+* **gTRKStepStatus** ([**targimpl.c**](targimpl_8c.md))
+* **G** ([**s\_cbrt.c**](s__cbrt_8c.md))
+
+
+## h
+
+* **HardwareType** ([**trk.h**](trk_8h.md))
+* **half** ([**e\_cosh.c**](e__cosh_8c.md), [**e\_lgamma\_r.c**](e__lgamma__r_8c.md), [**e\_rem\_pio2.c**](e__rem__pio2_8c.md), [**k\_sin.c**](k__sin_8c.md), [**s\_erf.c**](s__erf_8c.md))
+* **halF** ([**e\_exp.c**](e__exp_8c.md))
+* **Handle** ([**MWMemory.h**](_m_w_memory_8h.md))
+
+
+## i
+
+* **invln2** ([**e\_exp.c**](e__exp_8c.md), [**s\_expm1.c**](s__expm1_8c.md))
+* **ivln10** ([**e\_log10.c**](e__log10_8c.md))
+* **ivln2** ([**e\_pow.c**](e__pow_8c.md))
+* **ivln2\_h** ([**e\_pow.c**](e__pow_8c.md))
+* **ivln2\_l** ([**e\_pow.c**](e__pow_8c.md))
+* **invpio2** ([**e\_rem\_pio2.c**](e__rem__pio2_8c.md))
+* **init\_jk** ([**k\_rem\_pio2.c**](k__rem__pio2_8c.md))
+* **inv\_sqrt\_guess** ([**sqrtf.c**](sqrtf_8c.md))
+* **inv\_sqrt\_guess2** ([**sqrtf.c**](sqrtf_8c.md))
+
+
+## j
+
+* **justification\_options** ([**printf.c**](printf_8c.md), [**wprintf.c**](wprintf_8c.md))
+
+
+## k
+
+* **kernelMajor** ([**targimpl.c**](targimpl_8c.md))
+* **kernelMinor** ([**targimpl.c**](targimpl_8c.md))
+* **K1** ([**string.c**](string_8c.md))
+* **K2** ([**string.c**](string_8c.md))
+
+
+## l
+
+* **lc\_base** ([**dolphin\_trk.c**](dolphin__trk_8c.md))
+* **ln2** ([**e\_acosh.c**](e__acosh_8c.md), [**s\_asinh.c**](s__asinh_8c.md))
+* **ln2HI** ([**e\_exp.c**](e__exp_8c.md))
+* **ln2LO** ([**e\_exp.c**](e__exp_8c.md))
+* **Lg1** ([**e\_log.c**](e__log_8c.md))
+* **Lg2** ([**e\_log.c**](e__log_8c.md))
+* **Lg3** ([**e\_log.c**](e__log_8c.md))
+* **Lg4** ([**e\_log.c**](e__log_8c.md))
+* **Lg5** ([**e\_log.c**](e__log_8c.md))
+* **Lg6** ([**e\_log.c**](e__log_8c.md))
+* **Lg7** ([**e\_log.c**](e__log_8c.md))
+* **ln2\_hi** ([**e\_log.c**](e__log_8c.md), [**s\_expm1.c**](s__expm1_8c.md), [**s\_log1p.c**](s__log1p_8c.md))
+* **ln2\_lo** ([**e\_log.c**](e__log_8c.md), [**s\_expm1.c**](s__expm1_8c.md), [**s\_log1p.c**](s__log1p_8c.md))
+* **log10\_2hi** ([**e\_log10.c**](e__log10_8c.md))
+* **log10\_2lo** ([**e\_log10.c**](e__log10_8c.md))
+* **L1** ([**e\_pow.c**](e__pow_8c.md))
+* **L2** ([**e\_pow.c**](e__pow_8c.md))
+* **L3** ([**e\_pow.c**](e__pow_8c.md))
+* **L4** ([**e\_pow.c**](e__pow_8c.md))
+* **L5** ([**e\_pow.c**](e__pow_8c.md))
+* **L6** ([**e\_pow.c**](e__pow_8c.md))
+* **lg2** ([**e\_pow.c**](e__pow_8c.md))
+* **lg2\_h** ([**e\_pow.c**](e__pow_8c.md))
+* **lg2\_l** ([**e\_pow.c**](e__pow_8c.md))
+* **Lp1** ([**s\_log1p.c**](s__log1p_8c.md))
+* **Lp2** ([**s\_log1p.c**](s__log1p_8c.md))
+* **Lp3** ([**s\_log1p.c**](s__log1p_8c.md))
+* **Lp4** ([**s\_log1p.c**](s__log1p_8c.md))
+* **Lp5** ([**s\_log1p.c**](s__log1p_8c.md))
+* **Lp6** ([**s\_log1p.c**](s__log1p_8c.md))
+* **Lp7** ([**s\_log1p.c**](s__log1p_8c.md))
+* **local\_cond\_type** ([**NMWException.h**](_n_m_w_exception_8h.md))
+
+
+## m
+
+* **MemoryAccessOptions** ([**trk.h**](trk_8h.md))
+* **MessageBufferID** ([**trk.h**](trk_8h.md))
+* **MessageCommandID** ([**trk.h**](trk_8h.md))
+* **memRange** ([**targimpl.c**](targimpl_8c.md))
+* **month\_name** ([**time.c**](time_8c.md), [**wtime.c**](wtime_8c.md))
+* **month\_to\_days** ([**wtime.c**](wtime_8c.md))
+
+
+## n
+
+* **NubEventID** ([**nubevent.h**](nubevent_8h.md))
+* **NubEventType** ([**trk.h**](trk_8h.md))
+* **next** ([**rand.c**](rand_8c.md))
+* **npio2\_hw** ([**e\_rem\_pio2.c**](e__rem__pio2_8c.md))
+
+
+## o
+
+* **one** ([**e\_acos.c**](e__acos_8c.md), [**e\_acosh.c**](e__acosh_8c.md), [**e\_asin.c**](e__asin_8c.md), [**e\_atanh.c**](e__atanh_8c.md), [**e\_cosh.c**](e__cosh_8c.md), [**e\_exp.c**](e__exp_8c.md), [**e\_fmod.c**](e__fmod_8c.md), [**e\_lgamma\_r.c**](e__lgamma__r_8c.md), [**e\_pow.c**](e__pow_8c.md), [**e\_sinh.c**](e__sinh_8c.md), [**e\_sqrt.c**](e__sqrt_8c.md), [**k\_cos.c**](k__cos_8c.md), [**k\_rem\_pio2.c**](k__rem__pio2_8c.md), [**k\_tan.c**](k__tan_8c.md), [**s\_asinh.c**](s__asinh_8c.md), [**s\_atan.c**](s__atan_8c.md), [**s\_erf.c**](s__erf_8c.md), [**s\_expm1.c**](s__expm1_8c.md), [**s\_modf.c**](s__modf_8c.md), [**s\_tanh.c**](s__tanh_8c.md))
+* **o\_threshold** ([**e\_exp.c**](e__exp_8c.md), [**s\_expm1.c**](s__expm1_8c.md), [**w\_exp.c**](w__exp_8c.md))
+* **ovt** ([**e\_pow.c**](e__pow_8c.md))
+* **OSErr** ([**MWMemory.h**](_m_w_memory_8h.md))
+
+
+## p
+
+* **ProcessorState\_PPC** ([**targimpl.h**](targimpl_8h.md))
+* **ProcessorState\_PPC\_6xx\_7xx** ([**targimpl.h**](targimpl_8h.md))
+* **ProcessorRestoreFlags\_PPC** ([**trk.h**](trk_8h.md))
+* **protocolMajor** ([**targimpl.c**](targimpl_8c.md))
+* **protocolMinor** ([**targimpl.c**](targimpl_8c.md))
+* **public\_lconv** ([**locale.c**](locale_8c.md))
+* **pS0** ([**e\_acos.c**](e__acos_8c.md), [**e\_asin.c**](e__asin_8c.md))
+* **pS1** ([**e\_acos.c**](e__acos_8c.md), [**e\_asin.c**](e__asin_8c.md))
+* **pS2** ([**e\_acos.c**](e__acos_8c.md), [**e\_asin.c**](e__asin_8c.md))
+* **pS3** ([**e\_acos.c**](e__acos_8c.md), [**e\_asin.c**](e__asin_8c.md))
+* **pS4** ([**e\_acos.c**](e__acos_8c.md), [**e\_asin.c**](e__asin_8c.md))
+* **pS5** ([**e\_acos.c**](e__acos_8c.md), [**e\_asin.c**](e__asin_8c.md))
+* **pi** ([**e\_acos.c**](e__acos_8c.md), [**e\_atan2.c**](e__atan2_8c.md), [**e\_lgamma\_r.c**](e__lgamma__r_8c.md))
+* **pio2\_hi** ([**e\_acos.c**](e__acos_8c.md), [**e\_asin.c**](e__asin_8c.md))
+* **pio2\_lo** ([**e\_acos.c**](e__acos_8c.md), [**e\_asin.c**](e__asin_8c.md))
+* **pio4\_hi** ([**e\_asin.c**](e__asin_8c.md))
+* **pi\_lo** ([**e\_atan2.c**](e__atan2_8c.md))
+* **pi\_o\_2** ([**e\_atan2.c**](e__atan2_8c.md))
+* **pi\_o\_4** ([**e\_atan2.c**](e__atan2_8c.md))
+* **P1** ([**e\_exp.c**](e__exp_8c.md), [**e\_pow.c**](e__pow_8c.md))
+* **P2** ([**e\_exp.c**](e__exp_8c.md), [**e\_pow.c**](e__pow_8c.md))
+* **P3** ([**e\_exp.c**](e__exp_8c.md), [**e\_pow.c**](e__pow_8c.md))
+* **P4** ([**e\_exp.c**](e__exp_8c.md), [**e\_pow.c**](e__pow_8c.md))
+* **P5** ([**e\_exp.c**](e__exp_8c.md), [**e\_pow.c**](e__pow_8c.md))
+* **pio2\_1** ([**e\_rem\_pio2.c**](e__rem__pio2_8c.md))
+* **pio2\_1t** ([**e\_rem\_pio2.c**](e__rem__pio2_8c.md))
+* **pio2\_2** ([**e\_rem\_pio2.c**](e__rem__pio2_8c.md))
+* **pio2\_2t** ([**e\_rem\_pio2.c**](e__rem__pio2_8c.md))
+* **pio2\_3** ([**e\_rem\_pio2.c**](e__rem__pio2_8c.md))
+* **pio2\_3t** ([**e\_rem\_pio2.c**](e__rem__pio2_8c.md))
+* **PIo2** ([**k\_rem\_pio2.c**](k__rem__pio2_8c.md))
+* **pio4** ([**k\_tan.c**](k__tan_8c.md))
+* **pio4lo** ([**k\_tan.c**](k__tan_8c.md))
+* **pa0** ([**s\_erf.c**](s__erf_8c.md))
+* **pa1** ([**s\_erf.c**](s__erf_8c.md))
+* **pa2** ([**s\_erf.c**](s__erf_8c.md))
+* **pa3** ([**s\_erf.c**](s__erf_8c.md))
+* **pa4** ([**s\_erf.c**](s__erf_8c.md))
+* **pa5** ([**s\_erf.c**](s__erf_8c.md))
+* **pa6** ([**s\_erf.c**](s__erf_8c.md))
+* **pp0** ([**s\_erf.c**](s__erf_8c.md))
+* **pp1** ([**s\_erf.c**](s__erf_8c.md))
+* **pp2** ([**s\_erf.c**](s__erf_8c.md))
+* **pp3** ([**s\_erf.c**](s__erf_8c.md))
+* **pp4** ([**s\_erf.c**](s__erf_8c.md))
+* **PTMF** ([**MWCPlusLib.h**](_m_w_c_plus_lib_8h.md), [**ptmf.c**](ptmf_8c.md))
+* **Ptr** ([**MWMemory.h**](_m_w_memory_8h.md))
+
+
+## q
+
+* **qS1** ([**e\_acos.c**](e__acos_8c.md), [**e\_asin.c**](e__asin_8c.md))
+* **qS2** ([**e\_acos.c**](e__acos_8c.md), [**e\_asin.c**](e__asin_8c.md))
+* **qS3** ([**e\_acos.c**](e__acos_8c.md), [**e\_asin.c**](e__asin_8c.md))
+* **qS4** ([**e\_acos.c**](e__acos_8c.md), [**e\_asin.c**](e__asin_8c.md))
+* **qa1** ([**s\_erf.c**](s__erf_8c.md))
+* **qa2** ([**s\_erf.c**](s__erf_8c.md))
+* **qa3** ([**s\_erf.c**](s__erf_8c.md))
+* **qa4** ([**s\_erf.c**](s__erf_8c.md))
+* **qa5** ([**s\_erf.c**](s__erf_8c.md))
+* **qa6** ([**s\_erf.c**](s__erf_8c.md))
+* **qq1** ([**s\_erf.c**](s__erf_8c.md))
+* **qq2** ([**s\_erf.c**](s__erf_8c.md))
+* **qq3** ([**s\_erf.c**](s__erf_8c.md))
+* **qq4** ([**s\_erf.c**](s__erf_8c.md))
+* **qq5** ([**s\_erf.c**](s__erf_8c.md))
+* **Q1** ([**s\_expm1.c**](s__expm1_8c.md))
+* **Q2** ([**s\_expm1.c**](s__expm1_8c.md))
+* **Q3** ([**s\_expm1.c**](s__expm1_8c.md))
+* **Q4** ([**s\_expm1.c**](s__expm1_8c.md))
+* **Q5** ([**s\_expm1.c**](s__expm1_8c.md))
+
+
+## r
+
+* **ReceiverState** ([**trk.h**](trk_8h.md))
+* **r1** ([**e\_lgamma\_r.c**](e__lgamma__r_8c.md))
+* **r2** ([**e\_lgamma\_r.c**](e__lgamma__r_8c.md))
+* **r3** ([**e\_lgamma\_r.c**](e__lgamma__r_8c.md))
+* **r4** ([**e\_lgamma\_r.c**](e__lgamma__r_8c.md))
+* **r5** ([**e\_lgamma\_r.c**](e__lgamma__r_8c.md))
+* **r6** ([**e\_lgamma\_r.c**](e__lgamma__r_8c.md))
+* **ra0** ([**s\_erf.c**](s__erf_8c.md))
+* **ra1** ([**s\_erf.c**](s__erf_8c.md))
+* **ra2** ([**s\_erf.c**](s__erf_8c.md))
+* **ra3** ([**s\_erf.c**](s__erf_8c.md))
+* **ra4** ([**s\_erf.c**](s__erf_8c.md))
+* **ra5** ([**s\_erf.c**](s__erf_8c.md))
+* **ra6** ([**s\_erf.c**](s__erf_8c.md))
+* **ra7** ([**s\_erf.c**](s__erf_8c.md))
+* **rb0** ([**s\_erf.c**](s__erf_8c.md))
+* **rb1** ([**s\_erf.c**](s__erf_8c.md))
+* **rb2** ([**s\_erf.c**](s__erf_8c.md))
+* **rb3** ([**s\_erf.c**](s__erf_8c.md))
+* **rb4** ([**s\_erf.c**](s__erf_8c.md))
+* **rb5** ([**s\_erf.c**](s__erf_8c.md))
+* **rb6** ([**s\_erf.c**](s__erf_8c.md))
+
+
+## s
+
+* **StopInfo\_PPC** ([**targimpl.c**](targimpl_8c.md))
+* **size\_t** ([**size\_t.h**](size__t_8h.md))
+* **stderr\_buff** ([**ansi\_files.c**](ansi__files_8c.md))
+* **stdin\_buff** ([**ansi\_files.c**](ansi__files_8c.md))
+* **stdout\_buff** ([**ansi\_files.c**](ansi__files_8c.md))
+* **sign\_options** ([**printf.c**](printf_8c.md), [**wprintf.c**](wprintf_8c.md))
+* **signal\_funcs** ([**signal.c**](signal_8c.md))
+* **scan\_states** ([**strtold.c**](strtold_8c.md), [**strtoul.c**](strtoul_8c.md), [**wcstold.c**](wcstold_8c.md), [**wcstoul.c**](wcstoul_8c.md))
+* **signgam** ([**e\_gamma.c**](e__gamma_8c.md), [**e\_lgamma.c**](e__lgamma_8c.md), [**s\_signgam.c**](s__signgam_8c.md), [**w\_gamma.c**](w__gamma_8c.md), [**w\_lgamma.c**](w__lgamma_8c.md), [**fdlibm.h**](fdlibm_8h.md))
+* **s0** ([**e\_lgamma\_r.c**](e__lgamma__r_8c.md))
+* **s1** ([**e\_lgamma\_r.c**](e__lgamma__r_8c.md))
+* **s2** ([**e\_lgamma\_r.c**](e__lgamma__r_8c.md))
+* **s3** ([**e\_lgamma\_r.c**](e__lgamma__r_8c.md))
+* **s4** ([**e\_lgamma\_r.c**](e__lgamma__r_8c.md))
+* **s5** ([**e\_lgamma\_r.c**](e__lgamma__r_8c.md))
+* **s6** ([**e\_lgamma\_r.c**](e__lgamma__r_8c.md))
+* **shuge** ([**e\_sinh.c**](e__sinh_8c.md))
+* **S1** ([**k\_sin.c**](k__sin_8c.md))
+* **S2** ([**k\_sin.c**](k__sin_8c.md))
+* **S3** ([**k\_sin.c**](k__sin_8c.md))
+* **S4** ([**k\_sin.c**](k__sin_8c.md))
+* **S5** ([**k\_sin.c**](k__sin_8c.md))
+* **S6** ([**k\_sin.c**](k__sin_8c.md))
+* **sa1** ([**s\_erf.c**](s__erf_8c.md))
+* **sa2** ([**s\_erf.c**](s__erf_8c.md))
+* **sa3** ([**s\_erf.c**](s__erf_8c.md))
+* **sa4** ([**s\_erf.c**](s__erf_8c.md))
+* **sa5** ([**s\_erf.c**](s__erf_8c.md))
+* **sa6** ([**s\_erf.c**](s__erf_8c.md))
+* **sa7** ([**s\_erf.c**](s__erf_8c.md))
+* **sa8** ([**s\_erf.c**](s__erf_8c.md))
+* **sb1** ([**s\_erf.c**](s__erf_8c.md))
+* **sb2** ([**s\_erf.c**](s__erf_8c.md))
+* **sb3** ([**s\_erf.c**](s__erf_8c.md))
+* **sb4** ([**s\_erf.c**](s__erf_8c.md))
+* **sb5** ([**s\_erf.c**](s__erf_8c.md))
+* **sb6** ([**s\_erf.c**](s__erf_8c.md))
+* **sb7** ([**s\_erf.c**](s__erf_8c.md))
+* **size** ([**\_\_ppc\_eabi\_init.h**](____ppc__eabi__init_8h.md))
+
+
+## t
+
+* **TRKBuffer** ([**dispatch.h**](dispatch_8h.md), [**trk.h**](trk_8h.md))
+* **TRK\_Msg** ([**msg.h**](msg_8h.md))
+* **TRKEvent** ([**nubevent.h**](nubevent_8h.md))
+* **TRKEventQueue** ([**nubevent.h**](nubevent_8h.md))
+* **TRKState** ([**targimpl.h**](targimpl_8h.md))
+* **TRKFramingState** ([**trk.h**](trk_8h.md))
+* **TRKState\_PPC** ([**trk.h**](trk_8h.md))
+* **trk\_8h\_1a06fc87d81c62e9abb8790b6e5713c55b** ([**trk.h**](trk_8h.md))
+* **trk\_8h\_1adf764cbdea00d65edcd07bb9953ad2b7** ([**trk.h**](trk_8h.md))
+* **TRK\_ISR\_OFFSETS** ([**dolphin\_trk.c**](dolphin__trk_8c.md))
+* **TRK\_mainError** ([**main\_TRK.c**](main___t_r_k_8c.md))
+* **TRKExceptionStatus** ([**targimpl.c**](targimpl_8c.md))
+* **TRKStepStatus** ([**targimpl.c**](targimpl_8c.md))
+* **TRK\_saved\_exceptionID** ([**targimpl.c**](targimpl_8c.md))
+* **TRKvalue128\_temp** ([**targimpl.c**](targimpl_8c.md))
+* **tiny** ([**e\_atan2.c**](e__atan2_8c.md), [**e\_pow.c**](e__pow_8c.md), [**e\_sqrt.c**](e__sqrt_8c.md), [**s\_erf.c**](s__erf_8c.md), [**s\_expm1.c**](s__expm1_8c.md), [**s\_ldexp.c**](s__ldexp_8c.md), [**s\_tanh.c**](s__tanh_8c.md))
+* **twom1000** ([**e\_exp.c**](e__exp_8c.md))
+* **t0** ([**e\_lgamma\_r.c**](e__lgamma__r_8c.md))
+* **t1** ([**e\_lgamma\_r.c**](e__lgamma__r_8c.md))
+* **t10** ([**e\_lgamma\_r.c**](e__lgamma__r_8c.md))
+* **t11** ([**e\_lgamma\_r.c**](e__lgamma__r_8c.md))
+* **t12** ([**e\_lgamma\_r.c**](e__lgamma__r_8c.md))
+* **t13** ([**e\_lgamma\_r.c**](e__lgamma__r_8c.md))
+* **t14** ([**e\_lgamma\_r.c**](e__lgamma__r_8c.md))
+* **t2** ([**e\_lgamma\_r.c**](e__lgamma__r_8c.md))
+* **t3** ([**e\_lgamma\_r.c**](e__lgamma__r_8c.md))
+* **t4** ([**e\_lgamma\_r.c**](e__lgamma__r_8c.md))
+* **t5** ([**e\_lgamma\_r.c**](e__lgamma__r_8c.md))
+* **t6** ([**e\_lgamma\_r.c**](e__lgamma__r_8c.md))
+* **t7** ([**e\_lgamma\_r.c**](e__lgamma__r_8c.md))
+* **t8** ([**e\_lgamma\_r.c**](e__lgamma__r_8c.md))
+* **t9** ([**e\_lgamma\_r.c**](e__lgamma__r_8c.md))
+* **tc** ([**e\_lgamma\_r.c**](e__lgamma__r_8c.md))
+* **tf** ([**e\_lgamma\_r.c**](e__lgamma__r_8c.md))
+* **tt** ([**e\_lgamma\_r.c**](e__lgamma__r_8c.md))
+* **two52** ([**e\_lgamma\_r.c**](e__lgamma__r_8c.md))
+* **two54** ([**e\_log.c**](e__log_8c.md), [**e\_log10.c**](e__log10_8c.md), [**s\_frexp.c**](s__frexp_8c.md), [**s\_ldexp.c**](s__ldexp_8c.md), [**s\_log1p.c**](s__log1p_8c.md))
+* **two** ([**e\_pow.c**](e__pow_8c.md), [**s\_erf.c**](s__erf_8c.md), [**s\_tanh.c**](s__tanh_8c.md))
+* **two53** ([**e\_pow.c**](e__pow_8c.md))
+* **two24** ([**e\_rem\_pio2.c**](e__rem__pio2_8c.md), [**k\_rem\_pio2.c**](k__rem__pio2_8c.md))
+* **two\_over\_pi** ([**e\_rem\_pio2.c**](e__rem__pio2_8c.md))
+* **twon24** ([**k\_rem\_pio2.c**](k__rem__pio2_8c.md))
+* **T** ([**k\_tan.c**](k__tan_8c.md))
+* **twom54** ([**s\_ldexp.c**](s__ldexp_8c.md))
+* **TWO52** ([**s\_rint.c**](s__rint_8c.md))
+* **tmp\_float** ([**trigf.c**](trigf_8c.md))
+* **temp\_info** ([**file\_io.stub.c**](file__io_8stub_8c.md))
+
+
+## u
+
+* **UARTBaudRate** ([**trk.h**](trk_8h.md), [**UART.h**](_u_a_r_t_8h.md))
+* **UARTError** ([**trk.h**](trk_8h.md), [**UART.h**](_u_a_r_t_8h.md))
+* **UARTErrorOptions** ([**trk.h**](trk_8h.md))
+* **u128** ([**targimpl.c**](targimpl_8c.md))
+* **unused** ([**float.c**](float_8c.md))
+* **u\_threshold** ([**e\_exp.c**](e__exp_8c.md), [**w\_exp.c**](w__exp_8c.md))
+* **u0** ([**e\_lgamma\_r.c**](e__lgamma__r_8c.md))
+* **u1** ([**e\_lgamma\_r.c**](e__lgamma__r_8c.md))
+* **u2** ([**e\_lgamma\_r.c**](e__lgamma__r_8c.md))
+* **u3** ([**e\_lgamma\_r.c**](e__lgamma__r_8c.md))
+* **u4** ([**e\_lgamma\_r.c**](e__lgamma__r_8c.md))
+* **u5** ([**e\_lgamma\_r.c**](e__lgamma__r_8c.md))
+
+
+## v
+
+* **ValidMemoryOptions** ([**trk.h**](trk_8h.md))
+* **va\_list** ([**va\_list.h**](va__list_8h.md))
+* **v1** ([**e\_lgamma\_r.c**](e__lgamma__r_8c.md))
+* **v2** ([**e\_lgamma\_r.c**](e__lgamma__r_8c.md))
+* **v3** ([**e\_lgamma\_r.c**](e__lgamma__r_8c.md))
+* **v4** ([**e\_lgamma\_r.c**](e__lgamma__r_8c.md))
+* **v5** ([**e\_lgamma\_r.c**](e__lgamma__r_8c.md))
+* **vbase\_ctor\_arg\_type** ([**NMWException.h**](_n_m_w_exception_8h.md))
+
+
+## w
+
+* **wchar\_t** ([**wchar\_t.h**](wchar__t_8h.md))
+* **wctrans\_t** ([**wctrans.h**](wctrans_8h.md))
+* **wtable** ([**wctrans.c**](wctrans_8c.md))
+* **wchar\_map** ([**wstring.c**](wstring_8c.md))
+* **w0** ([**e\_lgamma\_r.c**](e__lgamma__r_8c.md))
+* **w1** ([**e\_lgamma\_r.c**](e__lgamma__r_8c.md))
+* **w2** ([**e\_lgamma\_r.c**](e__lgamma__r_8c.md))
+* **w3** ([**e\_lgamma\_r.c**](e__lgamma__r_8c.md))
+* **w4** ([**e\_lgamma\_r.c**](e__lgamma__r_8c.md))
+* **w5** ([**e\_lgamma\_r.c**](e__lgamma__r_8c.md))
+* **w6** ([**e\_lgamma\_r.c**](e__lgamma__r_8c.md))
+
+
+## z
+
+* **zero** ([**e\_atan2.c**](e__atan2_8c.md), [**e\_atanh.c**](e__atanh_8c.md), [**e\_lgamma\_r.c**](e__lgamma__r_8c.md), [**e\_log.c**](e__log_8c.md), [**e\_log10.c**](e__log10_8c.md), [**e\_pow.c**](e__pow_8c.md), [**e\_rem\_pio2.c**](e__rem__pio2_8c.md), [**e\_remainder.c**](e__remainder_8c.md), [**k\_rem\_pio2.c**](k__rem__pio2_8c.md), [**k\_standard.c**](k__standard_8c.md), [**s\_log1p.c**](s__log1p_8c.md))
+* **Zero** ([**e\_fmod.c**](e__fmod_8c.md))
+
+
+## _
+
+* **\_\_aborting** ([**abort\_exit.h**](abort__exit_8h.md), [**abort\_exit.c**](abort__exit_8c.md))
+* **\_\_console\_exit** ([**abort\_exit.h**](abort__exit_8h.md), [**abort\_exit.c**](abort__exit_8c.md))
+* **\_\_stdio\_exit** ([**abort\_exit.h**](abort__exit_8h.md), [**abort\_exit.c**](abort__exit_8c.md))
+* **\_FE\_DFL\_ENV** ([**fenv.h**](fenv_8h.md))
+* **\_\_lconv** ([**lconv.h**](lconv_8h.md), [**locale.c**](locale_8c.md))
+* **\_INT32** ([**msl\_t.h**](msl__t_8h.md))
+* **\_UINT32** ([**msl\_t.h**](msl__t_8h.md))
+* **\_\_\_atexit\_hook** ([**abort\_exit.c**](abort__exit_8c.md))
+* **\_\_atexit\_curr\_func** ([**abort\_exit.c**](abort__exit_8c.md))
+* **\_\_atexit\_funcs** ([**abort\_exit.c**](abort__exit_8c.md))
+* **\_\_atexit\_hook** ([**abort\_exit.c**](abort__exit_8c.md))
+* **\_\_files** ([**ansi\_files.c**](ansi__files_8c.md))
+* **\_\_ctype\_map** ([**ctype.c**](ctype_8c.md))
+* **\_\_lower\_map** ([**ctype.c**](ctype_8c.md))
+* **\_\_upper\_map** ([**ctype.c**](ctype_8c.md))
+* **\_\_temp\_file\_mode** ([**file\_io.c**](file__io_8c.md))
+* **\_\_double\_epsilon** ([**float.c**](float_8c.md))
+* **\_\_double\_huge** ([**float.c**](float_8c.md))
+* **\_\_double\_max** ([**float.c**](float_8c.md))
+* **\_\_double\_min** ([**float.c**](float_8c.md))
+* **\_\_double\_nan** ([**float.c**](float_8c.md), [**ansi\_fp.c**](ansi__fp_8c.md))
+* **\_\_double\_tiny** ([**float.c**](float_8c.md))
+* **\_\_extended\_epsilon** ([**float.c**](float_8c.md))
+* **\_\_extended\_huge** ([**float.c**](float_8c.md))
+* **\_\_extended\_max** ([**float.c**](float_8c.md))
+* **\_\_extended\_min** ([**float.c**](float_8c.md))
+* **\_\_extended\_nan** ([**float.c**](float_8c.md))
+* **\_\_extended\_tiny** ([**float.c**](float_8c.md))
+* **\_\_float\_huge** ([**float.c**](float_8c.md))
+* **\_\_float\_nan** ([**float.c**](float_8c.md))
+* **\_\_month\_to\_days** ([**time.c**](time_8c.md))
+* **\_\_wctype\_map** ([**wctype.c**](wctype_8c.md))
+* **\_\_wlower\_map** ([**wctype.c**](wctype_8c.md))
+* **\_\_wupper\_map** ([**wctype.c**](wctype_8c.md))
+* **\_u\_a\_r\_t\_8h\_1a726ca809ffd3d67ab4b8476646f26635** ([**UART.h**](_u_a_r_t_8h.md))
+* **\_LIB\_VERSION** ([**s\_lib\_version.c**](s__lib__version_8c.md), [**fdlibm.h**](fdlibm_8h.md))
+* **\_log10\_poly** ([**log10f.c**](log10f_8c.md))
+* **\_\_four\_over\_pi\_m1** ([**trigf.c**](trigf_8c.md))
+* **\_\_sincos\_on\_quadrant** ([**trigf.c**](trigf_8c.md))
+* **\_\_sincos\_poly** ([**trigf.c**](trigf_8c.md))
+* **\_\_global\_destructor\_chain** ([**NMWException.h**](_n_m_w_exception_8h.md), [**global\_destructor\_chain.c**](global__destructor__chain_8c.md))
+* **\_\_jmp\_buf** ([**\_\_jmp\_buf.h**](____jmp__buf_8h.md))
+* **\_\_bss\_init\_info** ([**\_\_ppc\_eabi\_linker.h**](____ppc__eabi__linker_8h.md))
+* **\_\_eti\_init\_info** ([**\_\_ppc\_eabi\_linker.h**](____ppc__eabi__linker_8h.md))
+* **\_\_rom\_copy\_info** ([**\_\_ppc\_eabi\_linker.h**](____ppc__eabi__linker_8h.md))
+* **\_va\_arg\_type** ([**\_\_va\_arg.c**](____va__arg_8c.md))
+* **\_\_ptmf\_null** ([**ptmf.c**](ptmf_8c.md))
+
+
+
+

@@ -1,0 +1,63 @@
+
+
+# File msgbuf.h
+
+[**File List**](files.md) **>** [**CodeWarrior**](dir_c5aab8d4319c0669f4501cae4cd3ca21.md) **>** [**PowerPC\_EABI\_Support**](dir_7a6c87a887c36ca33135c86474059f07.md) **>** [**MetroTRK**](dir_c3a70b8fd2ab33ad27dbbbe9970ceb3e.md) **>** [**Priv**](dir_58866132d53834b5384652e07310e785.md) **>** [**Portable**](dir_209eb07e7fc57e3cf528d8690e13aba6.md) **>** [**msgbuf.h**](msgbuf_8h.md)
+
+[Go to the documentation of this file](msgbuf_8h.md)
+
+
+```C++
+#ifndef METROTRK_PORTABLE_MSGBUF_H
+#define METROTRK_PORTABLE_MSGBUF_H
+
+#include "trk.h"
+#include "stddef.h"
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+DSError TRKInitializeMessageBuffers(void);
+
+DSError TRKSetBufferPosition(TRKBuffer* msg, u32 pos);
+void* TRKGetBuffer(int);
+void TRKResetBuffer(TRKBuffer* msg, BOOL keepData);
+void* TRKGetBuffer(int idx);
+void TRKReleaseBuffer(int idx);
+DSError TRKGetFreeBuffer(int* msgID, TRKBuffer** outMsg);
+
+DSError TRKAppendBuffer(TRKBuffer* msg, const void* data, size_t length);
+DSError TRKAppendBuffer1_ui8(TRKBuffer* buffer, const u8 data);
+inline DSError TRKAppendBuffer1_ui8(TRKBuffer* buffer, const u8 data)
+{
+    if (buffer->position >= TRKMSGBUF_SIZE) {
+        return DS_MessageBufferOverflow;
+    }
+
+    buffer->data[buffer->position++] = data;
+    buffer->length++;
+    return DS_NoError;
+}
+DSError TRKAppendBuffer1_ui16(TRKBuffer* buffer, const u16 data);
+DSError TRKAppendBuffer1_ui32(TRKBuffer* buffer, const u32 data);
+DSError TRKAppendBuffer1_ui64(TRKBuffer* buffer, const u64 data);
+DSError TRKAppendBuffer_ui8(TRKBuffer* buffer, const u8* data, int count);
+DSError TRKAppendBuffer_ui32(TRKBuffer* buffer, const u32* data, int count);
+
+DSError TRKReadBuffer1_ui8(TRKBuffer* buffer, u8* data);
+DSError TRKReadBuffer1_ui16(TRKBuffer* buffer, u16* data);
+DSError TRKReadBuffer1_ui32(TRKBuffer* buffer, u32* data);
+DSError TRKReadBuffer1_ui64(TRKBuffer* buffer, u64* data);
+DSError TRKReadBuffer_ui8(TRKBuffer* buffer, u8* data, int count);
+DSError TRKReadBuffer_ui32(TRKBuffer* buffer, u32* data, int count);
+DSError TRKReadBuffer(TRKBuffer* msg, void* data, size_t length);
+
+#ifdef __cplusplus
+}
+#endif
+
+#endif /* METROTRK_PORTABLE_MSGBUF_H */
+```
+
+

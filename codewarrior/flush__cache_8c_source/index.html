@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Project Yasiki: Decompilation of Luigi's Mansion.">
+    <link rel="stylesheet" href="https://moddimation.github.io/Yasiki/assets/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Reggae+One&disp=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito&disp=swap" rel="stylesheet">
+    <link rel="icon" href="https://moddimation.github.io/Yasiki/assets/favicon.ico" type="image/x-icon">
+    <title>File flush_cache.c - Project Yasiki</title>
+  </head>
+  <body>
+    <div class="container">
+      <nav>
+        <ul>
+        </ul>
+      </nav>
+
+      <!--Upper bar-->
+      <div id="bar">
+
+          <!--Project text / logo-->
+          <a id="barTitle" href="https://moddimation.github.io/Yasiki/"><b>Project Yasiki</b></a>
+          <div style="display: flex; flex-direction: column; align-items: start;">
+            
+            <!--Both progress badges-->
+            <a href="https://github.com/Moddimation/Yasiki">
+              <img style="padding-top:10px; width: 90px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=code&label=Code" alt="Go to github repo">
+            </a>
+            <a href="https://decomp.dev/Moddimation/Yasiki">
+              <img style="padding-bottom:0px; width: 123px;" src="https://decomp.dev/Moddimation/Yasiki.svg?mode=shield&measure=functions&label=Progress" alt="Go to progress page">
+            </a>
+          </div>
+          
+          <p> </p>
+          
+          <!--Add each nav head here-->
+            <li>
+              <button onclick="window.location.href='https://moddimation.github.io/Yasiki/files/'">Files</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddimation.github.io/Yasiki/classes/'">Classes</button>
+            </li>
+            <li>
+              <button onclick="window.location.href='https://moddimation.github.io/Yasiki/wiki/'">Full Wiki</button>
+            </li>
+      </div>
+      
+      <h1 id="file-flush_cachec">File flush_cache.c</h1>
+<p><a href="../files/"><strong>File List</strong></a> <strong>&gt;</strong> <a href="../dir_c5aab8d4319c0669f4501cae4cd3ca21/"><strong>CodeWarrior</strong></a> <strong>&gt;</strong> <a href="../dir_7a6c87a887c36ca33135c86474059f07/"><strong>PowerPC_EABI_Support</strong></a> <strong>&gt;</strong> <a href="../dir_c3a70b8fd2ab33ad27dbbbe9970ceb3e/"><strong>MetroTRK</strong></a> <strong>&gt;</strong> <a href="../dir_106e46045b07ca5148f57373b702a9f2/"><strong>Src</strong></a> <strong>&gt;</strong> <a href="../dir_5e2470d5a2e9c1fe412cce1dc95066ef/"><strong>Processor</strong></a> <strong>&gt;</strong> <a href="../dir_2907991c457a64f2feba231cad2bae37/"><strong>ppc</strong></a> <strong>&gt;</strong> <a href="../dir_2a1d7e99c80da236aadcfe5e4900549f/"><strong>Generic</strong></a> <strong>&gt;</strong> <a href="../flush__cache_8c/"><strong>flush_cache.c</strong></a></p>
+<p><a href="../flush__cache_8c/">Go to the documentation of this file</a></p>
+<pre><code class="language-C++">#include &quot;Processor/ppc/Generic/flush_cache.h&quot;
+
+asm void TRK_flush_cache(register void* param_1, register int param_2)
+{
+#ifdef __MWERKS__ // clang-format off
+    nofralloc
+
+    lis r5, 0xFFFF
+    ori r5, r5, 0xFFF1
+    and r5, r5, param_1
+    subf r3, r5, param_1
+    add r4, param_2, r3
+
+loop:
+    dcbst 0, r5
+    dcbf 0, r5
+    sync
+    icbi 0, r5
+    addic r5, r5, 8
+    addic. r4, r4, -8
+    bge loop
+
+    isync
+    blr
+#endif // clang-format on
+}
+</code></pre>
+        <script src="../../search/main.js"></script>
+    </div>
+  </body>
+</html>

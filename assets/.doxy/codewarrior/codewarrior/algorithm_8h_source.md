@@ -1,0 +1,45 @@
+
+
+# File algorithm.h
+
+[**File List**](files.md) **>** [**CodeWarrior**](dir_c5aab8d4319c0669f4501cae4cd3ca21.md) **>** [**PowerPC\_EABI\_Support**](dir_7a6c87a887c36ca33135c86474059f07.md) **>** [**Msl**](dir_7345a9473b198df67a564f445bc0d615.md) **>** [**MSL\_C++**](dir_bbcc9336d50f30308554b0fe78acfee6.md) **>** [**MSL\_Common**](dir_0c0c2b83f86d5caed54e8218e0fa784d.md) **>** [**Include**](dir_4b09b958bee5575b6e3a9125618b7d0e.md) **>** [**algorithm.h**](algorithm_8h.md)
+
+[Go to the documentation of this file](algorithm_8h.md)
+
+
+```C++
+/*  Metrowerks Standard Library */
+
+/*  $Date: 1999/12/09 17:58:47 $ 
+ *  $Revision: 1.9.4.1 $ 
+ *  $NoKeywords: $ 
+ *
+ *      Copyright 1995-1999 Metrowerks, Inc.
+ *      All rights reserved.
+ */
+
+/*
+ *  algorithm.h          hh 971206 filename changed from algorithm
+ *  
+ */
+
+#ifndef _ALGORITHM_H      // hh 971206 include guards added
+#define _ALGORITHM_H
+
+#include <algorithm>
+
+#ifndef _MSL_NO_CPP_NAMESPACE  // hh 971206 backward compatibility
+    using namespace std;
+#endif
+
+#endif
+
+/*     Change record
+ * hh 971206 filename changed from algorithm to algorithm.h
+ * hh 971206 include guards added
+ * hh 971206 backward compatibility "using" added
+ * hh 990120 changed namespace flag name
+*/
+```
+
+
