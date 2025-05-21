@@ -160,7 +160,7 @@ if not config.non_matching:
 
 # Tool versions
 config.binutils_tag = "2.42-1"
-config.compilers_tag = "20240706"
+config.compilers_tag = "20250520"
 config.dtk_tag = "v1.5.1"
 config.objdiff_tag = "v2.7.1"
 config.sjiswrap_tag = "v1.2.0"
@@ -433,6 +433,7 @@ def CWLib(lib_name: str, sub_path: str, files: List[Tuple[bool, str]], conf: Dic
     __cflags = cflags_cw + [f"-i {dirpath}"]
 
     return {
+        "mw_version": "GC/1.1p1",
         "lib": lib_name,
         "cflags": __cflags,
         "progress_category": "cw",
