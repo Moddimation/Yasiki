@@ -25,10 +25,10 @@ Not as simple as most projects, but possible.
 ## Index
 - [Available versions](#available-versions)
 - [About this project](#about-this-project)
-  - [Progress state](#progress-state)
-  - [Folder structure](#folder-structure)
-  - [Documents](#documents)
-  - [Misc](#misc)
+->  [Progress state](#progress-state)
+->  [Folder structure](#folder-structure)
+->  [Documents](#documents)
+->  [Misc](#misc)
 - [Contributing](#contributing)
 - [Setting up build](#setting-up-build)
 - [Building](#building)
@@ -64,16 +64,18 @@ This project uses the [Decomp-Toolkit template](https://github.com/encounter/dtk
 Rather early. I was trying to fill out the symbols in the Ghidra repository (read further to learn how to connect to the server),
 but decided to start with matching libraries instead, as the game code uses them, and it is better to go step for step rather than losing the sight of progress.
 ### Folder structure
-The folders are split by categories inside of the 'decomp' folder in the project's root, as follows:  
- `/decomp/<category>/...`
+The folders are split by categories in the project's root, where non-category folders are lowercase. As follows:  
+ `./CategoryName/...`
+ `./config/...`
+ `./tools/...`
  
-Most modules in a library rely on the modular scheme used originally, such as:
- `/decomp/JSystem/System/JKernel/ src/include`,  
- `/decomp/JSystem/System/JSupport/ src/include`,  
- `/decomp/JSystem/JAudio/JAInterface/ src/include`,  
- `/decomp/Project/Kawamoto/  src/include`,  
- `/decomp/Project/Sotoike/  src/include`,  
- `/decomp/Project/Koga/  src/include`,
+Most modules in a library rely on the modular scheme used originally, such as:  
+ `./JSystem/System/JKernel/{src|include}`,  
+ `./JSystem/System/JSupport/{src|include}`,  
+ `./JSystem/JAudio/JAInterface/{src|include}`,  
+ `./Project/Kawamoto/{src|include}`,  
+ `./Project/Sotoike/{src|include}`,  
+ `./Project/Koga/{src|include}`,
 and so on.
 
 My goal is to stay as original as possible, while still making it possible to work with for the decompiling efforts.
@@ -166,7 +168,7 @@ Under project settings, set `Project directory` to the root, aka the file contai
 
 Select an object from the left sidebar to begin diffing. Changes to the project will rebuild automatically: changes to source files, headers, `configure.py`, `splits.txt` or `symbols.txt`.
 
-![Screenshot of Objdiff](docs/decomp/objdiff.png)
+![Screenshot of Objdiff](docs/objdiff.png)
 
 ## Setting up Ghidra
 
