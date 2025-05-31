@@ -201,12 +201,12 @@ config.check_sha_path = Path("config") / config.version / "build.sha1"
 config.asflags = [
     "-mgekko",
     "--strip-local-absolute",
-#    "-I Project/sources/*/include",
-    "-I JSystem/**/include",
-    "-I DolphinSDK/include",
-    "-I CodeWarrior/**/Include",
-    "-I CodeWarrior/**/INCLUDE",
-    "-I CodeWarrior/**/Inc",
+#    "-I {decomp_root}/Project/sources/*/include",
+    "-I {decomp_root}/JSystem/**/include",
+    "-I {decomp_root}/DolphinSDK/include",
+    "-I {decomp_root}/CodeWarrior/**/Include",
+    "-I {decomp_root}/CodeWarrior/**/INCLUDE",
+    "-I {decomp_root}/CodeWarrior/**/Inc",
     f"-I {config.build_dir}/{config.version}/include",
     f"-I {config.build_dir}/{config.version}/bin",
     f"--defsym version={version_num}",
@@ -236,6 +236,7 @@ config.scratch_preset_id = 91
 config.nolib = [
     "*", # Leaving libraries unused for now, needs decomp to be finished
 ]
+decomp_root = "decomp"
 
 # Base flags, common to most GC/Wii games.
 # Generally leave untouched, with overrides added below.
@@ -252,10 +253,10 @@ cflags_base = [
     "-nosyspath",
     "-str reuse",
     "-multibyte",
-    "-i Project/lib",
-    "-i CodeWarrior/**/Include",
-    "-i CodeWarrior/**/INCLUDE",
-    "-i CodeWarrior/**/Inc",
+    f"-i {decomp_root}/Project/lib",
+    f"-i {decomp_root}/CodeWarrior/**/Include",
+    f"-i {decomp_root}/CodeWarrior/**/INCLUDE",
+    f"-i {decomp_root}/CodeWarrior/**/Inc",
     f"-i {config.build_dir}/{config.version}/include",
     f"-DVERSION_{config.version}",
     #"-msgstyle IDE",
@@ -279,7 +280,7 @@ else:
 # JAudio flags
 cflags_jaudio = [
     *cflags_base,
-    "-i JSystem/**/include",
+    f"-i {decomp_root}/JSystem/**/include",
     "-proc 750",
     "-O4,s",
     "-inline off",
@@ -295,8 +296,8 @@ cflags_jaudio = [
 # JSystem library flags
 cflags_jsys = [
     *cflags_base,
-    "-i DolphinSDK/include",
-    "-i JSystem/**/include",
+    f"-i {decomp_root}/DolphinSDK/include",
+    f"-i {decomp_root}/JSystem/**/include",
     "-O4,p",
     "-inline auto",
     "-RTTI on",
@@ -307,13 +308,13 @@ cflags_jsys = [
 # OdemuExi2 library flags
 cflags_odemu = [
     *cflags_base,
-    "-i DolphinSDK/include",
+    f"-i {decomp_root}/DolphinSDK/include",
 
 ]
 # Metrowerks library flags
 cflags_cw = [
     *cflags_base,
-    "-i CodeWarrior/**/Include",
+    f"-i {decomp_root}/CodeWarrior/**/Include",
     "-O4,p",
     "-use_lmw_stmw on",
     "-str reuse,pool,readonly",
@@ -334,9 +335,9 @@ cflags_cw_trk = [
 # Game flags
 cflags_game = [
     *cflags_base,
-    "-i DolphinSDK/include",
-    "-i Project/sources/*/include",
-    "-i JSystem/**/include",
+    f"-i {decomp_root}/DolphinSDK/include",
+    f"-i {decomp_root}/Project/sources/*/include",
+    f"-i {decomp_root}/JSystem/**/include",
     "-O4,p",
     "-RTTI on",
     "-inline auto",
@@ -355,8 +356,8 @@ cflags_sdk = [
     "-DBUILD_DATE=\"\\\"Jul 19 2001\\\"\"",
     "-DBUILD_TIME=\"\\\"05:43:42\\\"\"",
     "-DJAUDIO_OLD",
-    "-i DolphinSDK/include",
-    "-i CodeWarrior/PowerPC_EABI_Support/MetroTRK",
+    f"-i {decomp_root}/DolphinSDK/include",
+    f"-i {decomp_root}/CodeWarrior/PowerPC_EABI_Support/MetroTRK",
     "-O4,p",
     "-inline auto",
 ]
@@ -388,13 +389,13 @@ def SDKLib(lib_name: str, files: List[Tuple[bool, str]], lib_name_override: str=
         filepath = f"{dirname}/{filename}"
         objects.append(Object(matching, filepath))
 
-    __cflags = cflags_sdk + [f"-i {dirname}"]
+    __cflags = cflags_sdk + [f"-i {decomp_root}/{dirname}"]
 
     return {
         "lib": lib_name_override,
         "cflags": __cflags,
         "progress_category": "sdk",
-        "src_dir": ".",
+        "src_dir": decomp_root,
         "objects": objects,
         **conf
     }
@@ -411,13 +412,13 @@ def JSystemLib(lib_name: str, sub_dir: str, files: List[Tuple[bool, str]], cflag
         filepath = f"{dirpath}/{filename}"
         objects.append(Object(matching, filepath))
 
-    __cflags = cflags_jsys + [f"-i {dirpath}"]
+    __cflags = cflags_jsys + [f"-i {decomp_root}/{dirpath}"]
 
     return {
         "lib": lib_name,
         "cflags": __cflags,
         "progress_category": "jsys",
-        "src_dir": ".",
+        "src_dir": decomp_root,
         "objects": objects,
         **conf
     }
@@ -430,7 +431,7 @@ def CWLib(lib_name: str, sub_path: str, files: List[Tuple[bool, str]], conf: Dic
         filepath = f"{dirpath}/{filename}"
         objects.append(Object(matching, filepath))
 
-    __cflags = cflags_cw + [f"-i {dirpath}"]
+    __cflags = cflags_cw + [f"-i {decomp_root}/{dirpath}"]
 
     return {
         "mw_version": "GC/1.1p1",
@@ -450,13 +451,13 @@ def GameSource(lib_name: str, files: List[Tuple[bool, str]], conf: Dict[str, str
         filepath = f"{dirpath}/{filename}"
         objects.append(Object(matching, filepath))
 
-    __cflags = cflags_game + [f"-i Project/{dirpath}"]
+    __cflags = cflags_game + [f"-i {decomp_root}/Project/{dirpath}"]
 
     return {
         "lib": lib_name,
         "cflags": __cflags,
         "progress_category": "game",
-        "src_dir": f"Project",
+        "src_dir": f"{decomp_root}/Project",
         "objects": objects,
         **conf
     }
@@ -465,13 +466,13 @@ def GameMain(file: str, matching: bool, conf: Dict[str, str]={"":""}) -> Dict[st
     filepath = f"sources/{file}"
     objects.append(Object(matching, filepath))
 
-    __cflags = cflags_game
+    __cflags = cflags_game + [f"-i {decomp_root}/Project"]
 
     return {
         "lib": "yasiki",
         "cflags": __cflags,
         "progress_category": "game",
-        "src_dir": f"Project",
+        "src_dir": f"{decomp_root}/Project",
         "objects": objects,
         **conf
     }
@@ -547,7 +548,7 @@ config.libs = [
         (NonMatching, "JKRExpHeap.cpp"),
         (NonMatching, "JKRSolidHeap.cpp"),
         (Matching, "JKRDisposer.cpp"),
-#        (NonMatching, "JKRThread.cpp"),
+        (NonMatching, "JKRThread.cpp"),
     ]),
 
     JSystemLib("JSupport", "System/JSupport", [
