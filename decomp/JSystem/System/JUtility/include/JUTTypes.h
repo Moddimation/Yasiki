@@ -4,6 +4,8 @@
 #include <macros.h>
 #include <types.h>
 
+#include <size_t.h>
+
 #define constructor explicit
 #define destructor  virtual
 #define override    virtual

@@ -9,10 +9,10 @@ class JKRDisposer
 {
     friend class JKRHeap;
 
+protected:
     constructor JKRDisposer ();
     destructor ~JKRDisposer();      ///< 0x08v
 
-protected:
     JKRHeap*             pHeapObj;  ///< 0x00 // Pointer to inheriting heap (?)
     JSULink<JKRDisposer> mHeapLink; ///< 0x04 // Link to disposer, for heap (?)
 };

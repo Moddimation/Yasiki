@@ -14,7 +14,7 @@ JKRSolidHeap::create (size_t size, JKRHeap* parent, BOOL isError)
     const u32 alignedSize = ALIGN_PREV (size, 0x10);
 
     JKRSolidHeap* heap    = (JKRSolidHeap*)JKRHeap::alloc (alignedSize, 0x10, parent);
-    HANDLE        dataPtr = (char*)heap + 0x80;
+    void*         dataPtr = (char*)heap + 0x80;
 
     return new (heap) JKRSolidHeap (dataPtr, alignedSize - expHeapSize, parent, isError);
 }
@@ -30,7 +30,7 @@ JKRSolidHeap::destroy ()
     }
 }
 
-JKRSolidHeap::JKRSolidHeap (HANDLE obj, size_t size, JKRHeap* parent, bool is_error)
+JKRSolidHeap::JKRSolidHeap (void* obj, size_t size, JKRHeap* parent, bool is_error)
   : JKRHeap (obj, size, parent, is_error),
     mFreeSize (mSize),
     mHead (mStart),
@@ -59,7 +59,7 @@ JKRSolidHeap::adjustSize ()
         {
             mFreeSize = 0;
             mSize     = sizeNew;
-            mEnd      = (HANDLE)((u32)mStart + mSize);
+            mEnd      = (void*)((u32)mStart + mSize);
             mHead     = mEnd;
             mTail     = mEnd;
         }
@@ -74,10 +74,10 @@ JKRSolidHeap::adjustSize ()
     }
 }
 
-HANDLE
+void*
 JKRSolidHeap::alloc (size_t size, int align)
 {
-    HANDLE mem;
+    void* mem;
 
     lock();
     if (size < 4)
@@ -99,21 +99,21 @@ JKRSolidHeap::alloc (size_t size, int align)
     return mem;
 }
 
-HANDLE
+void*
 JKRSolidHeap::allocFromHead (size_t size, int align)
 {
     size          = ALIGN_NEXT (size, align);
 
-    HANDLE mem    = Nil;
+    void* mem     = Nil;
 
     u32 startNext = ALIGN_NEXT ((u32)mHead, align);
     u32 sizeNext  = size + (startNext - (u32)mHead);
 
     if (sizeNext <= mFreeSize)
     {
-        mHead      = (HANDLE)((u32)mHead + sizeNext);
+        mHead      = (void*)((u32)mHead + sizeNext);
         mFreeSize -= sizeNext;
-        mem        = (HANDLE)startNext;
+        mem        = (void*)startNext;
     }
     else
     {
@@ -126,21 +126,21 @@ JKRSolidHeap::allocFromHead (size_t size, int align)
     return mem;
 }
 
-HANDLE
+void*
 JKRSolidHeap::allocFromTail (size_t size, int align)
 {
     size          = ALIGN_NEXT (size, align);
 
-    HANDLE mem    = Nil;
+    void* mem     = Nil;
 
     u32 startLast = ALIGN_PREV ((u32)mTail - size, align);
     u32 sizeLast  = (u32)mTail - startLast;
 
     if (sizeLast <= mFreeSize)
     {
-        mTail      = (HANDLE)((u32)mTail - sizeLast);
+        mTail      = (void*)((u32)mTail - sizeLast);
         mFreeSize -= sizeLast;
-        mem        = (HANDLE)startLast;
+        mem        = (void*)startLast;
     }
     else
     {
@@ -154,7 +154,7 @@ JKRSolidHeap::allocFromTail (size_t size, int align)
 }
 
 void
-JKRSolidHeap::free (HANDLE ptr)
+JKRSolidHeap::free (void* ptr)
 {
 #pragma unused(ptr)
 }
@@ -191,7 +191,7 @@ JKRSolidHeap::freeTail (void)
 }
 
 s32
-JKRSolidHeap::resize (HANDLE obj, size_t size)
+JKRSolidHeap::resize (void* obj, size_t size)
 {
 #pragma unused(obj)
 #pragma unused(size)
@@ -200,7 +200,7 @@ JKRSolidHeap::resize (HANDLE obj, size_t size)
 }
 
 s32
-JKRSolidHeap::getSize (HANDLE obj)
+JKRSolidHeap::getSize (void* obj)
 {
 #pragma unused(obj)
 
@@ -250,4 +250,3 @@ JKRSolidHeap::getHeapType (void)
 {
     return 'SLID';
 }
-

@@ -8,11 +8,12 @@ class JKRExpHeap : public JKRHeap
 public:
     static JKRExpHeap* createRoot (int maxHeaps, bool errorFlag);
     static JKRExpHeap* create (size_t size, JKRHeap* parent, bool errorFlag);
-    static JKRExpHeap* create (HANDLE obj, size_t size, JKRHeap* parent, bool errorFlag);
+    static JKRExpHeap* create (void* obj, size_t size, JKRHeap* parent, bool errorFlag);
 
     enum EAllocMode
     {
-        ALLOC_MODE_1 = 1,
+        ALLOC_HEAD = 0,
+        ALLOC_TAIL = 1
     };
 
     class CMemBlock
@@ -20,7 +21,7 @@ public:
         friend class JKRExpHeap;
 
     public:
-        static CMemBlock* getHeapBlock (HANDLE obj);
+        static CMemBlock* getHeapBlock (void* obj);
 
         void initiate (CMemBlock* prev, //
                        CMemBlock* next,
@@ -66,8 +67,11 @@ public:
             return mFlags & 0x7f;
         }
 
-        HANDLE
-        getContent () const { return (HANDLE)(this + 1); }
+        void*
+        getContent () const
+        {
+            return (void*)(this + 1);
+        }
 
         CMemBlock*
         getPrevBlock () const
@@ -111,14 +115,14 @@ public:
     friend class CMemBlock;
 
 public:
-    override HANDLE alloc (size_t size, int align);
+    override void* alloc (size_t size, int align);
 
-    override void free (HANDLE obj);
+    override void free (void* obj);
     override void freeAll (void);
     override void freeTail (void);
 
-    override s32    resize (HANDLE obj, size_t size);
-    override s32    getSize (HANDLE obj);
+    override s32    resize (void* obj, size_t size);
+    override s32    getSize (void* obj);
     override size_t getFreeSize (void);
     override size_t getTotalFreeSize (void);
     s32             getUsedSize (u8 groupId) const;

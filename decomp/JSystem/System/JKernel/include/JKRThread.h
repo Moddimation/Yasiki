@@ -5,37 +5,39 @@
 
 #include <dolphin/os.h>
 
+#include <JKRDisposer.h>
 #include <JSUList.h>
 
 class JKRHeap;
 
-class JKRThread
+class JKRThread : public JKRDisposer
 {
-public:
+protected:
     constructor JKRThread (OSThread* thread, int i);
+    constructor JKRThread (size_t size, int mesg_count, int priority);
     destructor ~JKRThread();
 
-    void start (void*);
-
-    virtual int
+    virtual void*
     run ()
     {
-        return 0;
+        return Nil;
     }
 
 protected:
-    JSULink<JKRThread> mLink;      ///< 0x18
-    JKRHeap*           mCurrHeap;  ///< 0x28
-    OSThread*          mOSThread;  ///< 0x2C
-    OSMessageQueue     mMesgQueue; ///< 0x30
-    void*              mMesgArray; ///< 0x50
-    u32                mMesgCount; ///< 0x54
-    unk32              _58;        ///< 0x58
-    unk32              _5C;        ///< 0x5C
+    JSULink<JKRThread> mLink;         ///< 0x18
+    JKRHeap*           mCurrHeap;     ///< 0x28
+    OSThread*          mThreadRecord; ///< 0x2C
+    OSMessageQueue     mMesgQueue;    ///< 0x30
+    void*              mMesgArray;    ///< 0x50
+    int                mMesgCount;    ///< 0x54
+    void*              mStack;        ///< 0x58
+    size_t             mStackSize;    ///< 0x5C
 
 private:
-    void setCommon_mesgQueue (JKRHeap*, int);
-    void setCommon_heapSpecified (JKRHeap*, u32, int);
+    void setCommon_mesgQueue (int mesg_count);
+    void setCommon_heapSpecified (size_t size, int priority);
+
+    static void* start (void*);
 };
 
 #endif
