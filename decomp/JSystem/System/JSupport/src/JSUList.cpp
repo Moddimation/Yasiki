@@ -3,9 +3,9 @@
 JSUPtrLink::JSUPtrLink (void* obj)
 {
     pSupervisor = Nil;
-    pObject = obj;
-    pNext = Nil;
-    pPrev = Nil;
+    pObject     = obj;
+    pNext       = Nil;
+    pPrev       = Nil;
 }
 
 JSUPtrLink::~JSUPtrLink ()
@@ -31,15 +31,15 @@ JSUPtrList::~JSUPtrList ()
     for (u32 i = 0; i < mNumLinks; i++)
     {
         link->pSupervisor = Nil;
-        link = link->pPrev;
+        link              = link->pPrev;
     }
 }
 
 void
 JSUPtrList::initiate ()
 {
-    pFirst = Nil;
-    pLast = Nil;
+    pFirst    = Nil;
+    pLast     = Nil;
     mNumLinks = Nil;
 }
 
@@ -47,21 +47,21 @@ void
 JSUPtrList::setFirst (JSUPtrLink* link)
 {
     link->pSupervisor = this;
-    link->pNext = Nil;
-    link->pPrev = Nil;
-    pLast = link;
-    pFirst = link;
-    mNumLinks = 1;
+    link->pNext       = Nil;
+    link->pPrev       = Nil;
+    pLast             = link;
+    pFirst            = link;
+    mNumLinks         = 1;
 }
 
 void
 JSUPtrList::setLast (JSUPtrLink* link)
 {
     link->pSupervisor = this;
-    link->pNext = pLast;
-    link->pPrev = Nil;
-    pLast->pPrev = link;
-    pLast = link;
+    link->pNext       = pLast;
+    link->pPrev       = Nil;
+    pLast->pPrev      = link;
+    pLast             = link;
     mNumLinks++;
 }
 
@@ -69,10 +69,10 @@ void
 JSUPtrList::setNext (JSUPtrLink* link)
 {
     link->pSupervisor = this;
-    link->pNext = Nil;
-    link->pPrev = pFirst;
-    pFirst->pNext = link;
-    pFirst = link;
+    link->pNext       = Nil;
+    link->pPrev       = pFirst;
+    pFirst->pNext     = link;
+    pFirst            = link;
     mNumLinks++;
 }
 
@@ -146,12 +146,12 @@ JSUPtrList::insert (JSUPtrLink* last, JSUPtrLink* next)
     }
     if (result)
     {
-        JSUPtrLink* old = last->pNext;
+        JSUPtrLink* old   = last->pNext;
         next->pSupervisor = this;
-        next->pNext = old;
-        next->pPrev = last;
-        old->pPrev = next;
-        last->pNext = next;
+        next->pNext       = old;
+        next->pPrev       = last;
+        old->pPrev        = next;
+        last->pNext       = next;
         mNumLinks++;
     }
 
@@ -167,17 +167,17 @@ JSUPtrList::remove (JSUPtrLink* link)
         if (mNumLinks == 1)
         {
             pFirst = Nil;
-            pLast = Nil;
+            pLast  = Nil;
         }
         else if (link == pFirst)
         {
             link->pPrev->pNext = Nil;
-            pFirst = link->pPrev;
+            pFirst             = link->pPrev;
         }
         else if (link == pLast)
         {
             link->pNext->pPrev = Nil;
-            pLast = link->pNext;
+            pLast              = link->pNext;
         }
         else
         {

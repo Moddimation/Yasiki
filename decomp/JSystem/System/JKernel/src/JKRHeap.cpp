@@ -5,8 +5,10 @@ JKRHeap*        JKRHeap::sCurrentHeap  = Nil;
 JKRHeap*        JKRHeap::sRootHeap     = Nil;
 JKRErrorRoutine JKRHeap::mErrorHandler = Nil;
 
-JKRHeap::JKRHeap (HANDLE obj, size_t size, JKRHeap* parent, BOOL error)
-  : JKRDisposer(), mHeapTree (this), mDisposerList()
+JKRHeap::JKRHeap (void* obj, size_t size, JKRHeap* parent, BOOL error)
+  : JKRDisposer(),
+    mHeapTree (this),
+    mDisposerList()
 {
     OSInitMutex (&mMutex);
     mSize  = size;
@@ -55,18 +57,18 @@ JKRHeap::~JKRHeap ()
 BOOL
 JKRHeap::initArena (char** ramStart, u32* ramSize, int maxHeaps)
 {
-    HANDLE arenaLo = OSGetArenaLo();
-    HANDLE arenaHi = OSGetArenaHi();
+    void* arenaLo = OSGetArenaLo();
+    void* arenaHi = OSGetArenaHi();
 
     if (arenaLo == arenaHi)
     {
         return FALSE;
     }
 
-    HANDLE arenaStart = OSInitAlloc (arenaLo, arenaHi, maxHeaps);
+    void* arenaStart = OSInitAlloc (arenaLo, arenaHi, maxHeaps);
 
-    arenaHi           = (HANDLE)OSRoundDown32B (arenaHi);
-    arenaLo           = (HANDLE)OSRoundUp32B (arenaStart);
+    arenaHi          = (void*)OSRoundDown32B (arenaHi);
+    arenaLo          = (void*)OSRoundUp32B (arenaStart);
 
     OSSetArenaLo (arenaHi);
     OSSetArenaHi (arenaHi);
@@ -111,7 +113,7 @@ JKRHeap::alloc (size_t size, int align, JKRHeap* heap)
 }
 
 void
-JKRHeap::free (HANDLE obj, JKRHeap* heap)
+JKRHeap::free (void* obj, JKRHeap* heap)
 {
     if (heap == Nil)
     {
@@ -138,7 +140,7 @@ JKRHeap::freeAll (void)
 }
 
 JKRHeap*
-JKRHeap::findFromRoot (HANDLE obj)
+JKRHeap::findFromRoot (void* obj)
 {
     if (getRootHeap() != Nil)
     {
@@ -149,7 +151,7 @@ JKRHeap::findFromRoot (HANDLE obj)
 }
 
 JKRHeap*
-JKRHeap::find (HANDLE obj) const
+JKRHeap::find (void* obj) const
 {
     if (mStart <= obj && obj <= mEnd)
     {
@@ -205,7 +207,7 @@ JKRHeap::dispose_subroutine (size_t begin, size_t end)
 }
 
 int
-JKRHeap::dispose (HANDLE obj, u32 size)
+JKRHeap::dispose (void* obj, u32 size)
 {
     u32 begin = (u32)obj;
     u32 end   = (u32)obj + size;
@@ -244,7 +246,7 @@ __copyMemory (u32* __dest, u32* __source, u32 size)
 }
 
 void
-JKRHeap::copyMemory (HANDLE dest, HANDLE source, u32 size)
+JKRHeap::copyMemory (void* dest, void* source, u32 size)
 {
     __copyMemory ((u32*)dest, (u32*)source, (size + 3) / 4);
 }
@@ -292,13 +294,13 @@ operator new[] (size_t size, JKRHeap* heap, int align)
 }
 
 void
-operator delete (HANDLE obj)
+operator delete (void* obj)
 {
     JKRHeap::free (obj, Nil);
 }
 
 void
-operator delete[] (HANDLE obj)
+operator delete[] (void* obj)
 {
     operator delete (obj);
 }
@@ -314,4 +316,3 @@ JKRHeap::getCurrentGroupId (void)
 {
     return 0;
 }
-

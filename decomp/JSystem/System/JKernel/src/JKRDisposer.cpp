@@ -6,7 +6,8 @@
 
 #include <stddef.h>
 
-JKRDisposer::JKRDisposer () : mHeapLink (this)
+JKRDisposer::JKRDisposer ()
+  : mHeapLink (this)
 {
     pHeapObj = JKRHeap::findFromRoot (this);
     if (pHeapObj != Nil)
