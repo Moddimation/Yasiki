@@ -31,11 +31,17 @@ JKRSolidHeap::destroy ()
 }
 
 JKRSolidHeap::JKRSolidHeap (HANDLE obj, size_t size, JKRHeap* parent, bool is_error)
-  : JKRHeap (obj, size, parent, is_error), mFreeSize (mSize), mHead (mStart), mTail (mEnd),
+  : JKRHeap (obj, size, parent, is_error),
+    mFreeSize (mSize),
+    mHead (mStart),
+    mTail (mEnd),
     mIter (Nil)
 {}
 
-JKRSolidHeap::~JKRSolidHeap () { dispose(); }
+JKRSolidHeap::~JKRSolidHeap ()
+{
+    dispose();
+}
 
 s32
 JKRSolidHeap::adjustSize ()
@@ -150,7 +156,7 @@ JKRSolidHeap::allocFromTail (size_t size, int align)
 void
 JKRSolidHeap::free (HANDLE ptr)
 {
-#pragma unnused(ptr)
+#pragma unused(ptr)
 }
 
 void
