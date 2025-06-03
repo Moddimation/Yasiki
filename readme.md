@@ -9,6 +9,8 @@ The original creator first focused on the North American release (GLME01), and i
  
 ### Note:  <br>
 **this will not produce a playable game**, if you do not supply it beforehand.  <br>
+  <br>
+This repo will get updates, but I have personal stuff to do, and so I/t wont be active all the time.
 
 ### Warning  <br>
 This game does *no*t ship with *symbols*, so information is scraped together from *RTTI* and connected games.  <br>
