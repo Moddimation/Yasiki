@@ -252,8 +252,12 @@ JKRHeap::copyMemory (void* dest, void* source, u32 size)
 }
 
 void
-JKRDefaultMemoryErrorRoutine (void*, u32, int)
+JKRDefaultMemoryErrorRoutine (JKRHeap* heap, size_t size, int align)
 {
+#pragma unused(heap)
+#pragma unused(size)
+#pragma unused(align)
+
     OSPanic (__FILE__, 629, "abort\n");
 }
 

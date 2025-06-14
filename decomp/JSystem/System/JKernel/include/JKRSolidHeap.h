@@ -9,6 +9,7 @@ public:
     static JKRSolidHeap* create (size_t size, JKRHeap* parent, BOOL isError);
     void                 destroy (void);
 
+public:
     override void* alloc (size_t size, int align);
     void*          allocFromHead (size_t size, int align);
     void*          allocFromTail (size_t size, int align);

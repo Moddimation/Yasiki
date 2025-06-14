@@ -9,6 +9,7 @@ public:
     static JKRExpHeap* createRoot (int maxHeaps, bool errorFlag);
     static JKRExpHeap* create (size_t size, JKRHeap* parent, bool errorFlag);
     static JKRExpHeap* create (void* obj, size_t size, JKRHeap* parent, bool errorFlag);
+    void               destroy (void);
 
     enum EAllocMode
     {
@@ -30,23 +31,23 @@ public:
                        u8         align);
 
         JKRExpHeap::CMemBlock* allocFore (size_t size,
-                                          u8     groupId1,
-                                          u8     align1,
-                                          u8     groupId2,
-                                          u8     align2);
+                                          u8     group_id,
+                                          u8     align_1,
+                                          u8     group_id_2,
+                                          u8     align_2);
 
         JKRExpHeap::CMemBlock* allocBack (size_t size,
-                                          u8     groupId1,
-                                          u8     align1,
-                                          u8     groupId2,
-                                          u8     align2);
+                                          u8     group_id_1,
+                                          u8     align_1,
+                                          u8     group_id_2,
+                                          u8     align_2);
 
         int free (JKRExpHeap* heap);
 
         inline void
-        newGroupId (u8 groupId)
+        newGroupId (u8 group_id)
         {
-            mGroupId = groupId;
+            mGroupID = group_id;
         }
 
         bool
@@ -70,7 +71,7 @@ public:
         void*
         getContent () const
         {
-            return (void*)(this + 1);
+            return (void*)(this + 0x1);
         }
 
         CMemBlock*
@@ -94,7 +95,7 @@ public:
         u8
         getGroupId () const
         {
-            return mGroupId;
+            return mGroupID;
         }
 
         static CMemBlock*
@@ -106,8 +107,8 @@ public:
     private:
         u16        mMagic;              ///< 0x0
         u8         mFlags;              ///< 0x2 // a|bbbbbbb a=temporary b=align
-        u8         mGroupId;            ///< 0x3
-        u32        mSize;               ///< 0x4
+        u8         mGroupID;            ///< 0x3
+        size_t     mSize;               ///< 0x4
         CMemBlock* mPrev;               ///< 0x8
         CMemBlock* mNext;               ///< 0xC
     };
@@ -115,6 +116,8 @@ public:
     friend class CMemBlock;
 
 public:
+    u8 changeGroupID (u8 group_id);
+
     override void* alloc (size_t size, int align);
 
     override void free (void* obj);
@@ -125,12 +128,13 @@ public:
     override s32    getSize (void* obj);
     override size_t getFreeSize (void);
     override size_t getTotalFreeSize (void);
-    s32             getUsedSize (u8 groupId) const;
+    s32             getUsedSize (u8 group_id) const;
     s32             getTotalUsedSize (void) const;
 
     override u32  getHeapType (void);
     override BOOL check (void);
     override BOOL dump (void);
+    override BOOL dump_sort (void);
 
     CMemBlock*
     getHeadUsedList () const
@@ -150,7 +154,7 @@ protected:
     void* allocFromTail (size_t size, int align);
     void* allocFromTail (size_t size);
 
-    void appendUsedList (CMemBlock* newblock);
+    void appendUsedList (CMemBlock* block);
     void setFreeBlock (CMemBlock* block, CMemBlock* prev, CMemBlock* next);
     void removeFreeBlock (CMemBlock* block);
     void removeUsedBlock (CMemBlock* block);
@@ -159,11 +163,11 @@ protected:
 
 public:
     u8   mAllocMode;                    ///< 0x6C
-    u8   mGroupId;                      ///< 0x6D
-    bool _6E;                           ///< 0x6E
+    u8   mGroupID;                      ///< 0x6D
+    bool mIsRoot;                       ///< 0x6E
 
 protected:
-    constructor JKRExpHeap (void* data, size_t size, JKRHeap* parent, bool errorFlag);
+    constructor JKRExpHeap (void* data, size_t size, JKRHeap* parent, bool error);
     destructor ~JKRExpHeap();
 
 private:
