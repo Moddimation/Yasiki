@@ -4,6 +4,7 @@
 #include <macros.h>
 #include <types.h>
 
+#include <new>
 #include <size_t.h>
 
 #define constructor explicit

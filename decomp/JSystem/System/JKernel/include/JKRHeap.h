@@ -5,7 +5,7 @@
 
 #include <JKRDisposer.h>
 
-typedef void (*JKRErrorRoutine) (void*, u32, int);
+typedef void (*JKRErrorRoutine) (JKRHeap* heap, size_t size, int align);
 
 class JKRSolidHeap;
 class JKRExpHeap;
@@ -51,6 +51,21 @@ public:
     removeDisposer (JKRDisposer* disposer)
     {
         mDisposerList.remove (&disposer->mHeapLink);
+    }
+
+    BOOL
+    getErrorFlag ()
+    {
+        return mErrorFlag == true;
+    }
+
+    void
+    callErrorHandler (JKRHeap* heap, size_t size, int align)
+    {
+        if (mErrorHandler != Nil)
+        {
+            (*mErrorHandler) (heap, size, align);
+        }
     }
 
     // static members
@@ -130,7 +145,7 @@ SASSERT_SIZE (JKRHeap, 0x68);
 #define USE_CURRENTHEAP JKRHeap* heap = JKRHeap::sCurrentHeap
 #define USE_ROOTHEAP    JKRHeap* heap = JKRHeap::sRootHeap
 
-void JKRDefaultMemoryErrorRoutine (void*, u32, int);
+void JKRDefaultMemoryErrorRoutine (JKRHeap* heao, size_t size, int align);
 
 extern "C"
 {

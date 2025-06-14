@@ -1,7 +1,5 @@
 #include <JKRSolidHeap.h>
 
-#include <new>
-
 JKRSolidHeap*
 JKRSolidHeap::create (size_t size, JKRHeap* parent, BOOL isError)
 {
