@@ -14,9 +14,7 @@
 #define __dest_os __dolphin_os
 
 #include <macros.h>
-#ifndef __mslGlobals_h
 #include <ansi_parms.h>
-#endif
 
 /* Two macros determine what the floating support will be 	*/
 /* in the MSL and runtime support.							*/

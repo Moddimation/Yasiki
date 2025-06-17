@@ -11,27 +11,28 @@
      (u32)ptr[offset + 3]);
 
 #ifdef DEBUG
-#define ASSERTLINE(cond, line)                                                                 \
-    ((cond) || (OSPanic (__FILE__, line, "Failed assertion " #cond), 0))
+#    define ASSERTLINE(cond, line)                                                             \
+        ((cond) || (OSPanic (__FILE__, line, "Failed assertion " #cond), 0))
 
-#define ASSERTMSGLINE(cond, msg, line) ((cond) || (OSPanic (__FILE__, line, msg), 0))
+#    define ASSERTMSGLINE(cond, msg, line) ((cond) || (OSPanic (__FILE__, line, msg), 0))
 
 // This is dumb but we dont have a Metrowerks way to do variadic macros in the
 // macro to make this done in a not scrubby way.
-#define ASSERTMSG1LINE(cond, msg, arg1, line)                                                  \
-    ((cond) || (OSPanic (__FILE__, line, msg, arg1), 0))
+#    define ASSERTMSG1LINE(cond, msg, arg1, line)                                              \
+        ((cond) || (OSPanic (__FILE__, line, msg, arg1), 0))
 
-#define ASSERTMSG2LINE(cond, msg, arg1, arg2, line)                                            \
-    ((cond) || (OSPanic (__FILE__, line, msg, arg1, arg2), 0))
+#    define ASSERTMSG2LINE(cond, msg, arg1, arg2, line)                                        \
+        ((cond) || (OSPanic (__FILE__, line, msg, arg1, arg2), 0))
 
-#define ASSERTMSGVLINE(cond, line, ...) ((cond) || (OSPanic (__FILE__, line, __VA_ARGS__), 0))
+#    define ASSERTMSGVLINE(cond, line, ...)                                                    \
+        ((cond) || (OSPanic (__FILE__, line, __VA_ARGS__), 0))
 
 #else
-#define ASSERTLINE(cond, line)                      (void)0
-#define ASSERTMSGLINE(cond, msg, line)              (void)0
-#define ASSERTMSG1LINE(cond, msg, arg1, line)       (void)0
-#define ASSERTMSG2LINE(cond, msg, arg1, arg2, line) (void)0
-#define ASSERTMSGLINEV(cond, line, ...)             (void)0
+#    define ASSERTLINE(cond, line)                      (void)0
+#    define ASSERTMSGLINE(cond, msg, line)              (void)0
+#    define ASSERTMSG1LINE(cond, msg, arg1, line)       (void)0
+#    define ASSERTMSG2LINE(cond, msg, arg1, arg2, line) (void)0
+#    define ASSERTMSGLINEV(cond, line, ...)             (void)0
 #endif
 
 // clang-format off
@@ -63,7 +64,7 @@
 // Disable some clangd warnings
 #ifdef __clang__
 // Allow string literals to be converted to char*
-#pragma clang diagnostic ignored "-Wc++11-compat-deprecated-writable-strings"
+#    pragma clang diagnostic ignored "-Wc++11-compat-deprecated-writable-strings"
 #endif
 
 #define __MSTRING(x)           #x
@@ -83,27 +84,26 @@
 #ifndef __MWERKS__
 // Avoid a few warnings inside of text editors with clangd or similar
 
-#ifdef __POWERPC__
-#undef __POWERPC__
-#endif
+#    ifdef __POWERPC__
+#        undef __POWERPC__
+#    endif
 
-#ifndef __PPC_EABI__
-#define __PPC_EABI__
-#endif
+#    ifndef __PPC_EABI__
+#        define __PPC_EABI__
+#    endif
 
-#define __builtin_va_info
-#define __option(x) 1
-#define __declspec(x)
-#define __frsqrte(x)
-#define __fabsf(x)
-#define __sync()
-#define __cntlzw(x) 1
-#define __cdecl
-#define asm
-#define weak 1
-#define section
-#define floatingpoint 1
-
+#    define __builtin_va_info
+#    define __option(x) 1
+#    define __declspec(x)
+#    define __frsqrte(x)
+#    define __fabsf(x)
+#    define __sync()
+#    define __cntlzw(x) 1
+#    define __cdecl
+#    define asm
+#    define weak 1
+#    define section
+#    define floatingpoint 1
 #endif
 
 #endif // _H_MACROS_
