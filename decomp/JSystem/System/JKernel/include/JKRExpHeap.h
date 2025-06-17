@@ -161,7 +161,7 @@ protected:
     void recycleFreeBlock (CMemBlock* block);
     void joinTwoBlocks (CMemBlock* block);
 
-public:
+public:                                 // TODO: I feel like these offsets are wrong
     u8   mAllocMode;                    ///< 0x6C
     u8   mGroupID;                      ///< 0x6D
     bool mIsRoot;                       ///< 0x6E

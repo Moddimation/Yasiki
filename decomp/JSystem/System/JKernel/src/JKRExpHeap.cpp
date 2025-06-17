@@ -1,8 +1,5 @@
 #include <JKRExpHeap.h>
 
-#include "JKRHeap.h"
-#include "JUTTypes.h"
-
 static int whatdo;  // some sort of state, possibly for dump()?
 static int whatdo2; // possibly something for dump()
 
@@ -10,7 +7,7 @@ static size_t DBfoundSize;
 static u32    DBfoundOffset;
 static void*  DBfoundBlock;
 static void*  DBnewFreeBlock;
-static void*  DBnewUserBlock;
+static void*  DBnewUsedBlock;
 
 JKRExpHeap*
 JKRExpHeap::createRoot (int max, bool err)
@@ -164,10 +161,201 @@ JKRExpHeap::alloc (size_t size, int align)
             callErrorHandler (this, size, align);
         }
         dump();
-        dump_sort();
+        JKRExpHeap::dump_sort();
     }
 
     unlock();
 
     return ptr;
 }
+
+void*
+JKRExpHeap::allocFromHead (size_t size, int align)
+{
+    size                 = ALIGN_NEXT (size, align);
+    size_t     foundSize = (size_t)-1;
+    u32        foundOff  = 0;
+    CMemBlock* foundBlk  = (CMemBlock*)Nil;
+
+    for (CMemBlock* blk = mFreeHeadList; blk != Nil; blk = blk->mNext)
+    {
+        u32 data = (u32)blk->getContent();
+        u32 off  = ALIGN_PREV (align - 1 + data, align) - data;
+
+        if (blk->mSize < (size + off) || foundSize <= blk->mSize)
+        {
+            continue;
+        }
+
+        foundSize = blk->mSize;
+        foundBlk  = blk;
+        foundOff  = off;
+
+        if (mAllocMode != ALLOC_HEAD || blk->mSize == size)
+        {
+            break;
+        }
+    }
+
+    DBfoundSize   = foundSize;
+    DBfoundOffset = foundOff;
+    DBfoundBlock  = foundBlk;
+
+    if (foundBlk != Nil)
+    {
+        CMemBlock* newFreeBlock;
+        CMemBlock* newUsedBlock;
+
+        if (foundOff >= sizeof (CMemBlock))
+        {
+            whatdo2         += 0x1;
+
+            CMemBlock* prev  = foundBlk->mPrev;
+            CMemBlock* next  = foundBlk->mNext;
+            newUsedBlock     = foundBlk->allocFore (foundOff - sizeof (CMemBlock), 0, 0, 0, 0);
+
+            if (newUsedBlock != Nil)
+            {
+                whatdo2      += 0x2;
+
+                newFreeBlock  = newUsedBlock->allocFore (size, mGroupID, 0, 0, 0);
+            }
+            else
+            {
+                newUsedBlock = Nil;
+            }
+
+            if (newFreeBlock != Nil)
+            {
+                setFreeBlock (foundBlk, prev, newFreeBlock);
+            }
+            else
+            {
+                setFreeBlock (foundBlk, prev, next);
+            }
+            if (newFreeBlock != Nil)
+            {
+                whatdo2 += 0x4;
+
+                setFreeBlock (newFreeBlock, foundBlk, next);
+            }
+
+            appendUsedList (newUsedBlock);
+
+            whatdo2        += 0x8;
+
+            DBnewFreeBlock  = newFreeBlock;
+            DBnewUsedBlock  = newUsedBlock;
+
+            return newUsedBlock->getContent();
+        }
+
+        if (foundOff != 0)
+        {
+            whatdo2         += 0x10;
+
+            CMemBlock* prev  = foundBlk->mPrev;
+            CMemBlock* next  = foundBlk->mNext;
+
+            removeFreeBlock (foundBlk);
+            newUsedBlock        = (CMemBlock*)((u32)foundBlk + foundOff);
+            newUsedBlock->mSize = foundBlk->mSize - foundOff;
+            newFreeBlock        = newUsedBlock->allocFore (size, mGroupID, (u8)foundOff, 0, 0);
+
+            if (newFreeBlock != Nil)
+            {
+                whatdo2 += 0x20;
+
+                setFreeBlock (newFreeBlock, prev, next);
+            }
+
+            appendUsedList (newUsedBlock);
+
+            whatdo2 += 0x40;
+
+            return newUsedBlock->getContent();
+        }
+        else
+        {
+            whatdo2         += 0x80;
+
+            CMemBlock* prev  = foundBlk->mPrev;
+            CMemBlock* next  = foundBlk->mNext;
+
+            newFreeBlock     = foundBlk->allocFore (size, mGroupID, 0, 0, 0);
+            removeFreeBlock (foundBlk);
+
+            if (newFreeBlock != Nil)
+            {
+                whatdo2 += 0x100;
+
+                setFreeBlock (newFreeBlock, prev, next);
+            }
+
+            appendUsedList (newUsedBlock);
+
+            whatdo2 += 0x200;
+
+            return foundBlk->getContent();
+        }
+    }
+
+    whatdo2 += 0x400;
+
+    return Nil;
+}
+
+void*
+JKRExpHeap::allocFromHead (size_t size)
+{
+    size                 = ALIGN_NEXT (size, 4);
+    size_t     foundSize = (size_t)-1;
+    CMemBlock* foundBlk  = (CMemBlock*)Nil;
+
+    for (CMemBlock* blk = mFreeHeadList; blk != Nil; blk = blk->mNext)
+    {
+        if (blk->mSize < size || foundSize <= blk->mSize)
+        {
+            continue;
+        }
+
+        foundSize = blk->mSize;
+        foundBlk  = blk;
+
+        if (mAllocMode != ALLOC_HEAD || foundSize == size)
+        {
+            break;
+        }
+    }
+
+    whatdo2 += 0x1;
+
+    if (foundBlk != Nil)
+    {
+        CMemBlock* newFreeBlock  = foundBlk->allocFore (size, mGroupID, 0, 0, 0);
+
+        whatdo2                 += 0x2;
+
+        if (newFreeBlock != Nil)
+        {
+            whatdo2 += 0x4;
+            setFreeBlock (newFreeBlock, foundBlk->mPrev, foundBlk->mNext);
+        }
+        else
+        {
+            whatdo2 += 0x8;
+            removeFreeBlock (foundBlk);
+        }
+
+        appendUsedList (foundBlk);
+
+        whatdo2 += 0x10;
+
+        return foundBlk->getContent();
+    }
+
+    whatdo2 += 0x20;
+
+    return Nil;
+}
+
