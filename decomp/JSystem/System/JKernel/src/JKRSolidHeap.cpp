@@ -52,7 +52,7 @@ JKRSolidHeap::adjustSize ()
         size_t sizeOld = (u32)mStart - (u32)this;
         size_t sizeNew = ALIGN_NEXT ((u32)mHead - (u32)mStart, 0x20);
 
-        s32 result     = parent->resize (this, sizeOld + sizeNew);
+        size_t result  = parent->resize (this, (size_t)(sizeOld + sizeNew));
         if (result != -1)
         {
             mFreeSize = 0;
@@ -188,21 +188,21 @@ JKRSolidHeap::freeTail (void)
     unlock();
 }
 
-s32
+size_t
 JKRSolidHeap::resize (void* obj, size_t size)
 {
 #pragma unused(obj)
 #pragma unused(size)
 
-    return -1;
+    return (size_t)-1;
 }
 
-s32
+size_t
 JKRSolidHeap::getSize (void* obj)
 {
 #pragma unused(obj)
 
-    return -1;
+    return (size_t)-1;
 }
 
 BOOL
@@ -229,9 +229,11 @@ JKRSolidHeap::dump (void)
     BOOL ret = dump();
 
     lock();
+
 #ifdef DEBUG
 
 #endif
+
     unlock();
 
     return ret;

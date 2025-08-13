@@ -18,9 +18,9 @@ public:
     override void freeAll (void);
     override void freeTail (void);
 
-    override s32 resize (void* obj, size_t size);
-    s32          adjustSize (void);
-    override s32 getSize (void* obj);
+    override size_t resize (void* obj, size_t size);
+    s32             adjustSize (void);
+    override size_t getSize (void* obj);
 
     override size_t
     getFreeSize (void)

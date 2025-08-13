@@ -42,7 +42,7 @@ public:
                                           u8     group_id_2,
                                           u8     align_2);
 
-        int free (JKRExpHeap* heap);
+        void* free (JKRExpHeap* heap);
 
         inline void
         newGroupId (u8 group_id)
@@ -115,6 +115,10 @@ public:
 
     friend class CMemBlock;
 
+protected:
+    constructor JKRExpHeap (void* data, size_t size, JKRHeap* parent, bool error);
+    destructor ~JKRExpHeap();
+
 public:
     u8 changeGroupID (u8 group_id);
 
@@ -123,18 +127,21 @@ public:
     override void free (void* obj);
     override void freeAll (void);
     override void freeTail (void);
+    s32           freeGroup (u8 groupID);
 
-    override s32    resize (void* obj, size_t size);
-    override s32    getSize (void* obj);
+    override size_t resize (void* obj, size_t size);
+    override size_t getSize (void* obj);
     override size_t getFreeSize (void);
     override size_t getTotalFreeSize (void);
-    s32             getUsedSize (u8 group_id) const;
-    s32             getTotalUsedSize (void) const;
+    size_t          getUsedSize (u8 group_id) const;
+    size_t          getTotalUsedSize (void) const;
 
     override u32  getHeapType (void);
     override BOOL check (void);
     override BOOL dump (void);
-    override BOOL dump_sort (void);
+    BOOL          dump_sort (void);
+    override u32  getUNK (void);
+    override u32  getCurrentGroupId (void);
 
     CMemBlock*
     getHeadUsedList () const
@@ -166,17 +173,13 @@ public:                                 // TODO: I feel like these offsets are w
     u8   mGroupID;                      ///< 0x6D
     bool mIsRoot;                       ///< 0x6E
 
-protected:
-    constructor JKRExpHeap (void* data, size_t size, JKRHeap* parent, bool error);
-    destructor ~JKRExpHeap();
-
 private:
-    void*      _70;                     ///< 0x70
-    u32        _74;                     ///< 0x74
-    CMemBlock* mFreeHeadList;           ///< 0x78
-    CMemBlock* mFreeTailList;           ///< 0x7C
-    CMemBlock* mUsedHeadList;           ///< 0x80
-    CMemBlock* mUsedTailList;           ///< 0x84
+    void*      _68;                     ///< 0x68
+    u32        _6C;                     ///< 0x6C
+    CMemBlock* mFreeHeadList;           ///< 0x70
+    CMemBlock* mFreeTailList;           ///< 0x74
+    CMemBlock* mUsedHeadList;           ///< 0x78
+    CMemBlock* mUsedTailList;           ///< 0x7C
 };
 
 #endif                                  /* __JKR_EXPHEAP_H__ */
