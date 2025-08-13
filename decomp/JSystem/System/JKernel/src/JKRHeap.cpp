@@ -309,10 +309,10 @@ operator delete[] (void* obj)
     operator delete (obj);
 }
 
-BOOL
-JKRHeap::dump_sort (void)
+u32
+JKRHeap::getUNK (void)
 {
-    return FALSE;
+    return 0;
 }
 
 u32

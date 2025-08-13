@@ -103,14 +103,14 @@ protected:
     virtual void   free (void* ptr)               = 0; ///< 0x10v
     virtual void   freeAll (void);                     ///< 0x14v
     virtual void   freeTail (void)         = 0;        ///< 0x18v
-    virtual s32    resize (void*, size_t)  = 0;        ///< 0x1Cv
-    virtual s32    getSize (void*)         = 0;        ///< 0x20v
+    virtual size_t resize (void*, size_t)  = 0;        ///< 0x1Cv
+    virtual size_t getSize (void*)         = 0;        ///< 0x20v
     virtual size_t getFreeSize (void)      = 0;        ///< 0x24v
     virtual size_t getTotalFreeSize (void) = 0;        ///< 0x28v
     virtual u32    getHeapType (void)      = 0;        ///< 0x2Cv
     virtual BOOL   check (void)            = 0;        ///< 0x30v
     virtual BOOL   dump (void)             = 0;        ///< 0x34v
-    virtual BOOL   dump_sort (void);                   ///< 0x38v
+    virtual u32    getUNK (void);                      ///< 0x38v
     virtual u32    getCurrentGroupId (void);           ///< 0x3Cv
 
     void
