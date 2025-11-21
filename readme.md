@@ -1,4 +1,4 @@
-# Luigi's Mansion  
+# Luigi's Mansion   
 [![Build Status]][actions] [![Code Progress]][progress] [![Functions]][progress] [![Wiki]][wikipage]
 
 ---
