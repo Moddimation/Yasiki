@@ -3,12 +3,12 @@
 
 ---
 
-This decomp project has been stopped due to drama on discord. If you feel like contacting me, nothing stops you, just contact me on discord. If I should take down this repo, or anyone gained interest in it, or really just anything you feel like asking, you can do just that.  <br>
+This decomp project has been stopped due to lost interest and a drama that pushed it. If you feel like contacting me, just contact me on discord. If I should take down this repo, or anyone gained interest in it, or really just anything you feel like asking, you can just tell me.  <br>
 Thanks, moddi out.
 
 ---
 
-Yasiki is a work-in-progress decompilation project of [**Luigi's Mansion**](https://wikipedia.org/wiki/Luigi%27s_Mansion) for the [**Nintendo GameCube**](https://en.wikipedia.org/wiki/GameCube).  <br><br>
+Project Yasiki was a work-in-progress decompilation project of [**Luigi's Mansion**](https://wikipedia.org/wiki/Luigi%27s_Mansion) for the [**Nintendo GameCube**](https://en.wikipedia.org/wiki/GameCube).  <br><br>
 The focus is currently laid on the Japanese release (GLMJ01), but configurations exist for all available versions.  <br>
 The original creator first focused on the North American release (GLME01), and it's symbols.txt was copied to a backup file.
  
